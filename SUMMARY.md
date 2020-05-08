@@ -100,6 +100,7 @@
   * [Guide: How to stake BNB](coins/overview-bnb/guide-how-to-stake-bnb.md)
 * [Tezos: XTZ](coins/overview-xtz/README.md)
   * [Guide: How to stake XTZ](coins/overview-xtz/guide-how-to-stake-xtz.md)
+  * [Guide: How to sign or verify a XTZ message](coins/overview-xtz/guide-how-to-sign-or-verify-a-xtz-message.md)
   * [Guide: How to setup a Baker](coins/overview-xtz/guide-how-to-setup-a-baker/README.md)
     * [1. Requirements](coins/overview-xtz/guide-how-to-setup-a-baker/requirements.md)
     * [2. Install Ubuntu](coins/overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md)
