@@ -4,7 +4,7 @@ description: A simple 3 step tutorial to get your first taste of cryptocurrency.
 
 # Guide: Where to Get Started
 
-## 📖 1. Learn and educate yourself
+## 👩💻 1. Learn and educate yourself
 
 {% embed url="https://www.youtube.com/playlist?list=PLL-mmY61Sru8x1FuJ5BO0DLxTiZn3aUrq" %}
 
@@ -21,7 +21,7 @@ To get your hands on a free wallet, visit [https://www.bitcoin.com/](https://www
 {% embed url="https://free.bitcoin.com/" %}
 
 {% hint style="success" %}
-Well done! That's how quick and easy crypto is.
+🎆 Well done! That's crypto -- quick and easy.
 {% endhint %}
 
 ## 👩💻 4. Bonus - Additional Challenges

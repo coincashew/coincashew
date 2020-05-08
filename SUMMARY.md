@@ -1,16 +1,16 @@
 # Table of contents
 
 * [Home](README.md)
+* [Guide: Where to Get Started](guide-where-to-get-started.md)
+* [Coins](coin-listing.md)
+* [Wallets](wallets-1.md)
+* [Exchanges](exchanges-1.md)
 * [About Us](contact-us/README.md)
   * [Contributing](contact-us/contributing/README.md)
     * [Contributor Covenant Code of Conduct](contact-us/contributing/contributor-covenant-code-of-conduct.md)
     * [Style Guide](contact-us/contributing/style-guide.md)
   * [Donations](contact-us/donations.md)
   * [Disclaimer](contact-us/disclaimer.md)
-* [Coins](coin-listing.md)
-* [Wallets](wallets-1.md)
-* [Exchanges](exchanges-1.md)
-* [Guide: Where to Get Started](guide-where-to-get-started.md)
 
 ## Wallets
 

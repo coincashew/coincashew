@@ -11,6 +11,20 @@
 ## 🙋 I would like to ...
 
 {% tabs %}
+{% tab title="Learn" %}
+{% page-ref page="guide-where-to-get-started.md" %}
+
+{% page-ref page="wallets/guide-wallet-tips-101-dos-and-donts.md" %}
+
+{% page-ref page="exchanges/guide-where-to-get-crypto.md" %}
+
+{% page-ref page="coin-listing.md" %}
+
+{% page-ref page="wallets-1.md" %}
+
+{% page-ref page="exchanges-1.md" %}
+{% endtab %}
+
 {% tab title="Stake Coins" %}
 {% page-ref page="coins/overview-xtz/guide-how-to-stake-xtz.md" %}
 
@@ -45,18 +59,6 @@
 {% page-ref page="coins/overview-beam/guide-how-to-mine-beam.md" %}
 
 {% page-ref page="coins/overview-grin/guide-how-to-mine-grin.md" %}
-{% endtab %}
-
-{% tab title="Learn" %}
-{% page-ref page="wallets/guide-wallet-tips-101-dos-and-donts.md" %}
-
-{% page-ref page="exchanges/guide-where-to-get-crypto.md" %}
-
-{% page-ref page="coin-listing.md" %}
-
-{% page-ref page="wallets-1.md" %}
-
-{% page-ref page="exchanges-1.md" %}
 {% endtab %}
 
 {% tab title="Get a Wallet" %}
