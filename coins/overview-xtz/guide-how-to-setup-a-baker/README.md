@@ -16,7 +16,11 @@ description: Your guide to building a solo baker and improving Tezos decentraliz
 
 {% page-ref page="start-the-baker.md" %}
 
+{% page-ref page="monitoring-and-autostart.md" %}
+
 {% page-ref page="updating-a-node.md" %}
+
+{% page-ref page="distribute-rewards.md" %}
 
 {% page-ref page="tips-and-tricks.md" %}
 
