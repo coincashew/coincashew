@@ -28,11 +28,11 @@ To get your hands on a free wallet, visit [https://www.bitcoin.com/](https://www
 
 ### ✨ Receive some free Tezos
 
-{% embed url="https://faucet.tezos.com/" %}
-
 {% hint style="info" %}
 To get your hands on Tezos, use a Tezos compatible wallet such as [https://www.exodus.io/](https://www.exodus.io/)
 {% endhint %}
+
+{% embed url="https://faucet.tezos.com/" %}
 
 ### 🎞 Introduction to Bitcoin by Andreas Antonopoulos
 
