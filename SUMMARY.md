@@ -10,6 +10,7 @@
 * [Coins](coin-listing.md)
 * [Wallets](wallets-1.md)
 * [Exchanges](exchanges-1.md)
+* [Guide: Where to Get Started](guide-where-to-get-started.md)
 
 ## Wallets
 
