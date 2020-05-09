@@ -2,11 +2,8 @@
 
 ## 🏁1. Prerequisites
 
-Tez stored on a local wallet. You control the seed/private keys. 
-
-{% hint style="warning" %}
-Remember, it's best practice to always withdraw coins from an Exchange.
-{% endhint %}
+* Tez stored on a local wallet. You control the seed/private keys. 
+* Any amount of tez will work, but check if your baker has a minimum delegation amount requirement. For example, some bakers require at least 10 tez to be delegated.
 
 ## 🌜 2. Download and use a compatible wallet
 
