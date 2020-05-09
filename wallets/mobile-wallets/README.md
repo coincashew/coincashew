@@ -26,5 +26,7 @@
 
 {% page-ref page="tronwallet-trx.md" %}
 
+{% page-ref page="lynx-eos.md" %}
+
 
 

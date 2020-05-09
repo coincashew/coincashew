@@ -1,3 +1,10 @@
+---
+description: >-
+  Grin is an open source software project that implements a Mimblewimble
+  blockchain and fills the gaps required for a full blockchain and
+  cryptocurrency deployment.
+---
+
 # GRIN
 
 ## ![](../../.gitbook/assets/grin.png) General Data
@@ -14,7 +21,7 @@
 | :--- | :--- |
 | 🐦 Twitter | [https://twitter.com/grinMW](https://twitter.com/grinMW) |
 | Reddit | [https://www.reddit.com/r/GRIN](https://www.reddit.com/r/GRIN) |
-| Official Forums | [https://www.grin-forum.org/](https://www.grin-forum.org/) |
+| Official Forums | [https://forum.grin.mw/](https://forum.grin.mw/) |
 | Discord | [https://discord.gg/Z3sEfEU](https://discord.gg/Z3sEfEU) |
 | Gitter | [https://gitter.im/grin\_community/Lobby](https://gitter.im/grin_community/Lobby) |
 

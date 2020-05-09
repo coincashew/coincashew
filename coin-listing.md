@@ -6,7 +6,7 @@
 | ![](.gitbook/assets/bch.png) [Bitcoin Cash](coins/overview-bch/) | ![](.gitbook/assets/bnb.png) [Binance Coin](coins/overview-bnb/) |
 | ![](.gitbook/assets/xtz.png) [Tezos](coins/overview-xtz/) | ![](.gitbook/assets/ltc.png) [Litecoin](coins/overview-ltc/) |
 | ![](.gitbook/assets/eos.png) [EOS](coins/overview-eos/) | ![](.gitbook/assets/xmr.png) [Monero](coins/overview-xmr/) |
-| ![](.gitbook/assets/xlm.png) [Stellar](coins/overview-xlm.md) | ![](.gitbook/assets/ada.png) [Cardano](coins/overview-ada/) |
+| ![](.gitbook/assets/xlm.png) [Stellar](coins/overview-xlm/) | ![](.gitbook/assets/ada.png) [Cardano](coins/overview-ada/) |
 | ![](.gitbook/assets/neo.png) [NEO](coins/overview-neo/) | ![](.gitbook/assets/atom.png) [Cosmos](coins/overview-atom/) |
 | ![](.gitbook/assets/vet.png) [Vechain](coins/overview-vet/) | ![](.gitbook/assets/hex.png) [HEX](coins/overview-hex/) |
 | ![](.gitbook/assets/trx.png) [TRON](coins/overview-trx/) | ![](.gitbook/assets/icx.png) [ICON](coins/overview-icx/) |

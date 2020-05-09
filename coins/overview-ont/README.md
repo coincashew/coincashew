@@ -1,3 +1,9 @@
+---
+description: >-
+  Ontology is a high performance public blockchain and distributed collaboration
+  platform. Business-ready.
+---
+
 # Ontology: ONT
 
 ## ![](../../.gitbook/assets/ont.png) General Data
@@ -14,6 +20,10 @@
 | :--- | :--- |
 | 🐦 Twitter | [https://twitter.com/OntologyNetwork](https://twitter.com/OntologyNetwork) |
 | Reddit | [https://www.reddit.com/r/OntologyNetwork](https://www.reddit.com/r/OntologyNetwork) |
+| Facebook | [https://www.facebook.com/ONTnetwork](https://www.facebook.com/ONTnetwork) |
+| Medium | [https://medium.com/OntologyNetwork](https://medium.com/OntologyNetwork) |
+| LinkedIn | [https://www.linkedin.com/company/ontology-network-official](https://www.linkedin.com/company/ontology-network-official) |
+| Habr | [https://habr.com/ru/users/ontologic/](https://habr.com/ru/users/ontologic/) |
 | Discord | [https://discord.gg/4TQujHj](https://discord.gg/4TQujHj) |
 | Telegram | [https://t.me/OntologyNetwork](https://t.me/OntologyNetwork) |
 | Telegram | [https://t.me/OntologyNetworkCN](https://t.me/OntologyNetworkCN) |

@@ -1,3 +1,10 @@
+---
+description: >-
+  Secure. Upgradable. Built to last. Tezos is an open-source platform for assets
+  and applications backed by a global community of validators, researchers, and
+  builders.
+---
+
 # Tezos: XTZ
 
 ## ![](../../.gitbook/assets/xtz.png) General Data

@@ -1,3 +1,7 @@
+---
+description: THE FIRST HIGH INTEREST BLOCKCHAIN CERTIFICATE OF DEPOSIT
+---
+
 # HEX
 
 ## ![](../../.gitbook/assets/hex.png) General Data
@@ -15,12 +19,15 @@
 | 🐦 Twitter | [https://twitter.com/HEXCrypto](https://twitter.com/HEXCrypto) |
 | Reddit | [https://www.reddit.com/r/HEXcrypto/](https://www.reddit.com/r/HEXcrypto/) |
 | Youtube | [https://youtube.com/HexCrypto](https://youtube.com/HexCrypto?sub_confirmation=1) |
+| Discord | [https://discord.gg/VzDwBW8](https://discord.gg/VzDwBW8) |
 | Telegram: Main | [https://t.me/HEXcrypto](https://t.me/HEXcrypto) |
 | Telegram: Chat | [https://t.me/Strape](https://t.me/Strape) |
 | Telegram: News | [https://t.me/HEXnews](https://t.me/HEXnews) |
 | Telegram: Trading | [https://t.me/HEXtrading](https://t.me/HEXtrading) |
 | Telegram: Charts | [https://t.me/HEXcharts](https://t.me/HEXcharts) |
 | Telegram: Memes | [https://t.me/HEXmemes](https://t.me/HEXmemes) |
+| Wiki | [https://www.reddit.com/r/HEXcrypto/wiki/index](https://www.reddit.com/r/HEXcrypto/wiki/index) |
+| HEX Podcast | [https://podcasts.apple.com/ph/podcast/the-hexican-backup-of-richard-heart/id1500276878](https://podcasts.apple.com/ph/podcast/the-hexican-backup-of-richard-heart/id1500276878) |
 
 ## 🔃 Block Explorers
 

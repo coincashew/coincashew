@@ -1,3 +1,7 @@
+---
+description: 'The interoperable, scalable blockchain network. Built for developers.'
+---
+
 # Cosmos: ATOM
 
 ## ![](../../.gitbook/assets/atom.png) General Data
@@ -16,7 +20,9 @@
 | Reddit | [https://www.reddit.com/r/cosmosnetwork](https://www.reddit.com/r/cosmosnetwork) |
 | Official Blog | [https://blog.cosmos.network/](https://blog.cosmos.network/) |
 | Official Forum | [https://forum.cosmos.network/](https://forum.cosmos.network/) |
+| Community Events | [https://cosmos.network/community](https://cosmos.network/community) |
 | Telegram | [https://t.me/cosmosproject](https://t.me/cosmosproject) |
+| Discord | [https://discord.gg/HbvhWZw](https://discord.gg/HbvhWZw) |
 
 ## 🔃 Block Explorers
 

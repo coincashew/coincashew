@@ -1,3 +1,10 @@
+---
+description: >-
+  Komodo is an open, composable multi-chain platform. With blockchain
+  development roots going back to 2014, Komodo is consistently recognized as a
+  pioneer of multi-chain architecture in the blockchain.
+---
+
 # Komodo: KMD
 
 ## ![](../../.gitbook/assets/kmd.png) General Data
@@ -17,6 +24,8 @@
 | Official Blog | [https://blog.komodoplatform.com/](https://blog.komodoplatform.com/) |
 | Discord | [https://discord.gg/ZSrn5sJ](https://discord.gg/ZSrn5sJ) |
 | Telegram | [https://telegram.me/KomodoPlatform\_Official](https://telegram.me/KomodoPlatform_Official) |
+| Knowledge Base | [https://support.komodoplatform.com/support/home](https://support.komodoplatform.com/support/home) |
+| Documentation | [https://docs.komodoplatform.com/](https://docs.komodoplatform.com/) |
 
 ## 🔃 Block Explorers
 

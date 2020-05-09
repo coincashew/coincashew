@@ -1,3 +1,7 @@
+---
+description: 'Scalable confidential cryptocurrency. Easy to use, capped supply, no ICO.'
+---
+
 # BEAM
 
 ## ![](../../.gitbook/assets/beam.png) General Data
@@ -13,8 +17,11 @@
 | :--- | :--- |
 | 🐦 Twitter | [https://twitter.com/beamprivacy](https://twitter.com/beamprivacy) |
 | Reddit | [https://www.reddit.com/r/beamprivacy](https://www.reddit.com/r/beamprivacy) |
+| Medium | [https://medium.com/beam-mw](https://medium.com/beam-mw) |
 | Official Forums | [https://bitcointalk.org/index.php?topic=5052151.80](https://bitcointalk.org/index.php?topic=5052151.80) |
 | Telegram | [https://t.me/BeamPrivacy](https://t.me/BeamPrivacy) |
+| Telegram Support | [https://t.me/BeamSupport](https://t.me/BeamSupport) |
+| QQ Beam | [https://jq.qq.com/?\_wv=1027&k=5Mbs8N4](https://jq.qq.com/?_wv=1027&k=5Mbs8N4) |
 
 ## 🔃 Block Explorers
 

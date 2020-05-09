@@ -1,3 +1,7 @@
+---
+description: Public Blockchain for Business Mass Adoption
+---
+
 # VeChain: VET
 
 ## ![](../../.gitbook/assets/vet.png) General Data
@@ -15,6 +19,10 @@
 | 🐦 Twitter | [https://twitter.com/vechainofficial](https://twitter.com/vechainofficial) |
 | Reddit | [https://www.reddit.com/r/vechain](https://www.reddit.com/r/vechain) |
 | Telegram | [https://t.me/vechain\_official\_english](https://t.me/vechain_official_english) |
+| Telegram News | [https://t.me/vechainannouncement](https://t.me/vechainannouncement) |
+| Builders | [https://www.builders.vechain.org/](https://www.builders.vechain.org/) |
+| Vechain Insider | [http://vechaininsider.com/](http://vechaininsider.com/) |
+| Wiki | [https://www.reddit.com/r/Vechain/wiki/index](https://www.reddit.com/r/Vechain/wiki/index) |
 
 ## 🔃 Block Explorers
 

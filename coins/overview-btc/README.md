@@ -1,3 +1,7 @@
+---
+description: Bitcoin is an innovative payment network and a new kind of money.
+---
+
 # Bitcoin: BTC
 
 ##  ![](../../.gitbook/assets/btc.png)General Data

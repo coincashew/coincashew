@@ -1,3 +1,7 @@
+---
+description: Next generation video delivery powered by you.
+---
+
 # THETA
 
 ## ![](../../.gitbook/assets/theta.png) General Data
@@ -13,7 +17,7 @@
 | Community | Link |
 | :--- | :--- |
 | 🐦 Twitter | [https://twitter.com/thetatoken](https://twitter.com/thetatoken) |
-| Reddit | [https://www.reddit.com/r/thetatoken](https://www.reddit.com/r/thetatoken) |
+| Reddit | [https://www.reddit.com/r/theta\_network/](https://www.reddit.com/r/theta_network/) |
 | Telegram | [https://t.me/joinchat/Gt6mbxJb-2XukwGA\_atLjg](https://t.me/joinchat/Gt6mbxJb-2XukwGA_atLjg) |
 
 ## 🔃 Block Explorers

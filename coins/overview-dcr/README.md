@@ -1,3 +1,7 @@
+---
+description: 'Community-Directed, Superior Store of Value'
+---
+
 # Decred: DCR
 
 ## ![](../../.gitbook/assets/dcr.png) General Data
@@ -15,8 +19,11 @@
 | 🐦 Twitter | [https://twitter.com/decredproject](https://twitter.com/decredproject) |
 | Reddit | [https://www.reddit.com/r/decred](https://www.reddit.com/r/decred) |
 | Official Forums | [https://forum.decred.org/](https://forum.decred.org/) |
+| Community | [https://decred.org/community](https://decred.org/community) |
 | Discord | [https://discordapp.com/invite/GJ2GXfz](https://discordapp.com/invite/GJ2GXfz) |
 | Telegram | [https://t.me/decred](https://t.me/decred) |
+| Wiki | [https://www.reddit.com/r/decred/wiki/index](https://www.reddit.com/r/decred/wiki/index) |
+| Documentation | [https://docs.decred.org/](https://docs.decred.org/) |
 
 ## 🔃 Block Explorers
 
@@ -25,6 +32,10 @@
 | [https://mainnet.decred.org/](https://mainnet.decred.org/) |
 | [https://stats.decred.org/](https://stats.decred.org/) |
 | [https://explorer.dcrdata.org/](https://explorer.dcrdata.org/) |
+
+## 🗳 Governance Proposals
+
+{% embed url="https://proposals.decred.org/" %}
 
 ## 📊 Charts and Pricing
 

@@ -1,3 +1,10 @@
+---
+description: >-
+  Binance Chain is a blockchain software system developed by Binance and its
+  community. Binance DEX refers to the decentralized exchange features developed
+  on top of Binance Chain.
+---
+
 # Binance Coin: BNB
 
 ## ![](../../.gitbook/assets/bnb.png) General Data

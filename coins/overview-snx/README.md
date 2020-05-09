@@ -1,3 +1,9 @@
+---
+description: >-
+  Synthetix is a cryptoasset-backed network that enables the creation of
+  on-chain synthetic assets.
+---
+
 # Synthetix: SNX
 
 ## ![](../../.gitbook/assets/snx.png) General Data
@@ -14,6 +20,7 @@
 | :--- | :--- |
 | 🐦 Twitter | [https://twitter.com/havven\_io](https://twitter.com/havven_io) |
 | Reddit | [https://www.reddit.com/r/havven](https://www.reddit.com/r/havven) |
+| Documentation | [https://synthetix.community/docs/intro](https://synthetix.community/docs/intro) |
 | Official Blog | [https://blog.havven.io/](https://blog.havven.io/) |
 | Discord | [https://discord.gg/AEdUHzt](https://discord.gg/AEdUHzt) |
 

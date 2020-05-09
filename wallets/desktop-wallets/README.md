@@ -24,5 +24,7 @@
 
 {% page-ref page="sqrl-tlos.md" %}
 
+{% page-ref page="zcoin-official-wallet.md" %}
+
 
 

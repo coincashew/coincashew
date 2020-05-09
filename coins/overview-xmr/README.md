@@ -1,3 +1,10 @@
+---
+description: >-
+  A Reasonably Private Digital Currency. Monero is cash for a connected world.
+  It’s fast, private, and secure. You can spend safely, knowing that others
+  cannot see your balances or track your activity.
+---
+
 # Monero: XMR
 
 ## ![](../../.gitbook/assets/xmr.png) General Data
@@ -13,10 +20,15 @@
 | Community | Link |
 | :--- | :--- |
 | 🐦 Twitter | [https://twitter.com/monero](https://twitter.com/monero) |
+| Facebook | [https://www.facebook.com/monerocurrency](https://www.facebook.com/monerocurrency) |
 | Reddit | [https://www.reddit.com/r/monero](https://www.reddit.com/r/monero) |
+|  |  |
 | Official Forum | [https://forum.getmonero.org/](https://forum.getmonero.org/) |
 | Bitcointalk Forum | [https://bitcointalk.org/index.php?topic=583449.0](https://bitcointalk.org/index.php?topic=583449.0) |
 | Telegram | [https://t.me/monero](https://t.me/monero) |
+| StackExchange | [https://monero.stackexchange.com/](https://monero.stackexchange.com/) |
+| IRC Chat | [https://monerologs.net](https://monerologs.net) |
+| Conference | [https://monerokon.com/](https://monerokon.com/) |
 
 ## 🔃 Block Explorers
 

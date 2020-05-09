@@ -1,3 +1,9 @@
+---
+description: >-
+  Open blockchain protocol and development toolset for Web 3.0 applications and
+  decentralized solutions
+---
+
 # WAVES
 
 ## ![](../../.gitbook/assets/waves.png) General Data
@@ -14,7 +20,12 @@
 | :--- | :--- |
 | 🐦 Twitter | [https://twitter.com/wavesplatform](https://twitter.com/wavesplatform) |
 | Reddit | [https://www.reddit.com/r/Wavesplatform](https://www.reddit.com/r/Wavesplatform) |
+| Facebook | [https://www.facebook.com/wavesplatform/](https://www.facebook.com/wavesplatform/) |
+| Steemit | [https://steemit.com/@wavesplatform](https://steemit.com/@wavesplatform) |
+| Youtube | [https://www.youtube.com/wavesplatform](https://www.youtube.com/wavesplatform) |
 | Official Forum | [https://forum.wavesplatform.com/](https://forum.wavesplatform.com/) |
+| Official Blog | [https://blog.wavesplatform.com/](https://blog.wavesplatform.com/) |
+| Documentation | [https://docs.wavesplatform.com/](https://docs.wavesplatform.com/) |
 | Discord | [https://discordapp.com/invite/cnFmDyA](https://discordapp.com/invite/cnFmDyA) |
 | Telegram News | [https://telegram.me/wavesnews](https://telegram.me/wavesnews) |
 | Telegram | [https://t.me/Wavescommunity](https://t.me/Wavescommunity) |

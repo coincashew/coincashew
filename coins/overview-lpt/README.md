@@ -1,3 +1,7 @@
+---
+description: Decentralized live video broadcasting on Ethereum
+---
+
 # LivePeer: LPT
 
 ## ![](../../.gitbook/assets/lpt.png) General Data

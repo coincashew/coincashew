@@ -1,3 +1,9 @@
+---
+description: >-
+  Edgeware is a cutting-edge, hyper-fast smart contract platform with a
+  laser-focus on on-chain and community-owned governance.
+---
+
 # Edgeware: EDG
 
 ## ![](../../.gitbook/assets/edg.png) General Data
@@ -7,6 +13,7 @@
 | Website | [https://edgewa.re/](https://edgewa.re/) |
 | Source Code | [https://github.com/hicommonwealth](https://github.com/hicommonwealth) |
 | Technical | [http://docs.edgewa.re/](http://docs.edgewa.re/) |
+| Whitepaper | [https://arena-attachments.s3.amazonaws.com/3765033/1232ea3075e0940291fa7b5f152f4a04.pdf?1551468991](https://arena-attachments.s3.amazonaws.com/3765033/1232ea3075e0940291fa7b5f152f4a04.pdf?1551468991) |
 
 ## 🙋 Social Media and Community
 
@@ -14,9 +21,11 @@
 | :--- | :--- |
 | 🐦 Twitter | [https://twitter.com/heyedgeware](https://twitter.com/heyedgeware) |
 | Reddit | [https://www.reddit.com/r/edgeware/](https://www.reddit.com/r/edgeware/) |
+| Medium | [https://medium.com/commonwealth-labs](https://medium.com/commonwealth-labs) |
 | Official Forums | [https://commonwealth.im/edgeware/](https://commonwealth.im/edgeware/) |
 | Discord | [https://discordapp.com/invite/bDktqyj](https://discordapp.com/invite/bDktqyj) |
 | Telegram | [https://t.me/heyedgeware](https://t.me/heyedgeware) |
+| Documentation | [https://edgeware.gitbook.io/](https://edgeware.gitbook.io/) |
 
 ## 🔃 Block Explorers
 

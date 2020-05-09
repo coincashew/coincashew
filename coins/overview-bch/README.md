@@ -1,3 +1,9 @@
+---
+description: >-
+  Peer-to-Peer Electronic Cash. Enabling new economies with low fee
+  micro-transactions, large business transactions, and permissionless spending.
+---
+
 # Bitcoin Cash: BCH
 
 ## ![](../../.gitbook/assets/bch.png) General Data

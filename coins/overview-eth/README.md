@@ -1,3 +1,10 @@
+---
+description: >-
+  A global, open-source platform for decentralized applications. On Ethereum,
+  you can write code that controls digital value, runs exactly as programmed,
+  and is accessible anywhere in the world.
+---
+
 # Ethereum: ETH
 
 ## ![](../../.gitbook/assets/eth.png) General Data

@@ -1,3 +1,7 @@
+---
+description: 'Private financial transactions,enabled by the Sigma Protocol'
+---
+
 # ZCOIN: XZC
 
 ## ![](../../.gitbook/assets/xzc.png) General Data
@@ -32,4 +36,12 @@
 | :--- | :--- |
 | CoinPaprika | [https://coinpaprika.com/coin/xzc-zcoin/](https://coinpaprika.com/coin/xzc-zcoin/) |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/zcoin/](https://coinmarketcap.com/currencies/zcoin/) |
+
+## 💰 Wallets
+
+{% page-ref page="../../wallets/desktop-wallets/zcoin-official-wallet.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
 
