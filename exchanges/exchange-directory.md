@@ -5,7 +5,7 @@
 | Site | Location | KYC Required? |
 | :--- | :--- | :--- |
 | [Binance](https://www.binance.com/en/register?ref=RI4R7YI6) | Global | No. 2₿/day. |
-| [CoinEx](%20https://www.coinex.com/exchange?currency=bch&dest=xtz#limit) | Hong Kong | No. 10,000USD/day. |
+| [CoinEx](https://www.coinex.com/register?refer_code=6rcz2) | Hong Kong | No. 10,000USD/day. |
 | [Kucoin](%20https://www.kucoin.com/#/trade/XTZ-USDT?rcode=) | Seychelles | No. 2₿/day. |
 | [Huobi](https://www.hbg.com/en-us/exchange/?s=xtz_btc&invite_code=) | Singapore | No |
 | [TradeOgre](https://tradeogre.com/markets) | Global | No |
@@ -20,14 +20,14 @@
 
 | Site | Comments |
 | :--- | :--- |
-| [Sideshift.ai](https://sideshift.ai) | Automated Coin Swap |
+| [Sideshift.ai](https://sideshift.ai/a/ziLELkDY5) | Automated Coin Swap |
 | [MorphToken.com](https://www.morphtoken.com) | Quickly and simply swap one coin to another.Or split into multiple coins at once. |
-| [Changenow.io](https://changenow.io) | Fast Crypto Swaps, Free of Custody |
-| [Godex.io](https://godex.io) | Exchange anonymously any volume with guaranteed fixed rate |
+| [Changenow.io](https://changenow.io?link_id=e542777107ca34) | Fast Crypto Swaps, Free of Custody |
+| [Godex.io](https://godex.io/?aff_id=zNyhC0A10Be5YRBt&utm_source=affiliate&utm_medium=www&utm_campaign=zNyhC0A10Be5YRBt) | Exchange anonymously any volume with guaranteed fixed rate |
 | [TxQuick.com](https://ca.txquick.com) | No Account Required |
 | [SimpleSwap.io](https://simpleswap.io) | Free from sign up, limits, complications |
 | [changehero.io](https://changehero.io) | Free from sign up, limits, complications |
-| [FixedFloat.com](https://fixedfloat.com) | Lightning cryptocurrency exchange |
+| [FixedFloat.com](https://fixedfloat.com/?ref=cn8rt3qa) | Lightning cryptocurrency exchange |
 
 ## 🌌 Decentralized Exchanges
 
@@ -47,7 +47,7 @@
 
 |  |  |
 | :--- | :--- |
-| [Local.Bitcoin.com](https://local.bitcoin.com) | A simple, transparent and private platform to buy and sell Bitcoin Cash. |
+| [Local.Bitcoin.com](https://local.bitcoin.com/r/coincashew9) | A simple, transparent and private platform to buy and sell Bitcoin Cash. |
 | [LocalMonero.co](https://localmonero.co) | LocalMonero is a peer-to-peer Monero exchange. |
 | [LocalCryptos.com](https://localcryptos.com) | LocalCryptos is a peer-to-peer marketplace where people exchange crypto with each other. |
 | [Bisq](https://bisq.network) | Decentralized open-source, peer-to-peer application exchange |
