@@ -6,7 +6,7 @@
 | :--- | :--- | :--- |
 | [Binance](https://www.binance.com/en/register?ref=RI4R7YI6) | Global | No. 2₿/day. |
 | [CoinEx](https://www.coinex.com/register?refer_code=6rcz2) | Hong Kong | No. 10,000USD/day. |
-| [Kucoin](%20https://www.kucoin.com/#/trade/XTZ-USDT?rcode=) | Seychelles | No. 2₿/day. |
+| [Kucoin](https://www.kucoin.com/ucenter/signup?rcode=2M43tty) | Seychelles | No. 2₿/day. |
 | [Huobi](https://www.hbg.com/en-us/exchange/?s=xtz_btc&invite_code=) | Singapore | No |
 | [TradeOgre](https://tradeogre.com/markets) | Global | No |
 | [Bitcoin.com Exchange](https://exchange.bitcoin.com) | Saint Bitts | No |
