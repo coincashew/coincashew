@@ -44,3 +44,7 @@ description: 'Community-Directed, Superior Store of Value'
 | CoinPaprika | [https://coinpaprika.com/coin/dcr-decred/](https://coinpaprika.com/coin/dcr-decred/) |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/decred/](https://coinmarketcap.com/currencies/decred/) |
 
+## 💰 Wallets
+
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+

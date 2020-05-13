@@ -46,3 +46,5 @@ description: Public Blockchain for Business Mass Adoption
 
 {% page-ref page="../../wallets/desktop-wallets/sync-vechain.md" %}
 
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+

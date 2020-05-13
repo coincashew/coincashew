@@ -153,6 +153,8 @@
   * [Guide: How to stake ICX](coins/overview-icx/guide-how-to-stake-icx.md)
 * [Decred: DCR](coins/overview-dcr/README.md)
   * [Guide: How to stake Decred](https://docs.decred.org/proof-of-stake/how-to-stake/)
+* [Dogecoin: DOGE](coins/dogecoin-doge.md)
+* [Digibyte: DGB](coins/digibyte-dgb.md)
 * [Ontology: ONT](coins/overview-ont/README.md)
   * [Guide: Getting started with ONT dApps](https://docs.ont.io/getting-started)
   * [Guide: How to stake ONT](coins/overview-ont/guide-how-to-stake-ont.md)

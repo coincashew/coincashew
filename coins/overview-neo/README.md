@@ -48,3 +48,5 @@ description: An open network for the Smart Economy
 
 {% page-ref page="../../wallets/desktop-wallets/o3-neo-ont.md" %}
 
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+

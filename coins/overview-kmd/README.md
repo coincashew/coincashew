@@ -46,3 +46,7 @@ description: >-
 
 {% page-ref page="../../wallets/desktop-wallets/atomic-multi-currency.md" %}
 
+{% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
+
+{% page-ref page="../../wallets/hardware-wallets/trezor.io-wallet/" %}
+

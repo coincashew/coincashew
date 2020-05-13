@@ -99,11 +99,13 @@ This guide is for you.
 {% endtab %}
 
 {% tab title="I want to earn crypto" %}
+{% embed url="https://brave.com/coinbase-earn-bat/" %}
+
 {% embed url="https://www.coinbase.com/earn" %}
 
 {% embed url="https://medium.com/coinmonks/how-to-earn-crypto-19de67e3ec32" %}
-
-{% embed url="https://www.nichemarket.co.za/blog/money-talks/ways-earn-cryptocurrency" %}
 {% endtab %}
 {% endtabs %}
+
+
 

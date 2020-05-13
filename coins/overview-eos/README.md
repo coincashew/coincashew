@@ -73,5 +73,11 @@ description: >-
 
 {% page-ref page="../../wallets/mobile-wallets/lynx-eos.md" %}
 
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+
+{% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
+
+
+
 
 
