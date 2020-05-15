@@ -104,6 +104,8 @@ This guide is for you.
 {% embed url="https://www.coinbase.com/earn" %}
 
 {% embed url="https://medium.com/coinmonks/how-to-earn-crypto-19de67e3ec32" %}
+
+{% embed url="https://www.nichemarket.co.za/blog/money-talks/ways-earn-cryptocurrency" %}
 {% endtab %}
 {% endtabs %}
 
