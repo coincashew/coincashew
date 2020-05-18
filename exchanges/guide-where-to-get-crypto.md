@@ -69,9 +69,11 @@ This guide is for you.
 
 ## 🏧 Cryptocurrency ATM
 
-{% hint style="success" %}
-[Coin ATM Radar](https://coinatmradar.com) - Find where to buy or sell crypto with an ATM
-{% endhint %}
+| Site |
+| :--- |
+| [Coin ATM Radar](https://coinatmradar.com/) |
+| [Coinstar Kiosk](https://www.coinstar.com/bitcoin) |
+| [Bitcoin ATM Map](https://bitcoinatmmap.com/) |
 
 ## 🏢 Centralized Exchanges
 
@@ -99,6 +101,8 @@ This guide is for you.
 {% endtab %}
 
 {% tab title="I want to earn crypto" %}
+{% page-ref page="guide-earning-crypto-via-cashback.md" %}
+
 {% embed url="https://brave.com/coinbase-earn-bat/" %}
 
 {% embed url="https://www.coinbase.com/earn" %}
@@ -106,6 +110,12 @@ This guide is for you.
 {% embed url="https://medium.com/coinmonks/how-to-earn-crypto-19de67e3ec32" %}
 
 {% embed url="https://www.nichemarket.co.za/blog/money-talks/ways-earn-cryptocurrency" %}
+
+{% embed url="http://bitgigs.com/" %}
+
+{% embed url="https://freelanceforcoins.com/" %}
+
+{% embed url="https://www.earnsats.co/" %}
 {% endtab %}
 {% endtabs %}
 

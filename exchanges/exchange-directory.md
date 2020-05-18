@@ -57,9 +57,11 @@
 
 ## 🏧 Cryptocurrency ATM
 
-{% hint style="success" %}
-[Coin ATM Radar](https://coinatmradar.com/) - Find where to buy or sell crypto with an ATM
-{% endhint %}
+|  |
+| :--- |
+| [Coin ATM Radar](https://coinatmradar.com/) |
+| [Coinstar Kiosk](https://www.coinstar.com/bitcoin) |
+| [Bitcoin ATM Map](https://bitcoinatmmap.com/) |
 
 ## 💸 Centralized Fiat On Ramp Exchanges
 

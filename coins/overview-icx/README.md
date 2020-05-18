@@ -30,6 +30,7 @@ description: >-
 | Site |
 | :--- |
 | [Tracker.Icon.Foundation](https://tracker.icon.foundation/) |
+| [ICXScan.tech](https://www.icxscan.tech/) |
 | [ICONwat.ch](https://iconwat.ch/) |
 
 ## 📊 Charts and Pricing

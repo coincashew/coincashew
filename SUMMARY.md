@@ -68,6 +68,7 @@
 * [Exchange Directory](exchanges/exchange-directory.md)
 * [Guide: Dollar-cost averaging into crypto](exchanges/guide-dollar-cost-averaging-into-crypto.md)
 * [Guide: Where to get Crypto](exchanges/guide-where-to-get-crypto.md)
+* [Guide: Earning Crypto via CashBack](exchanges/guide-earning-crypto-via-cashback.md)
 
 ## DeFi
 

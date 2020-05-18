@@ -36,6 +36,8 @@ description: >-
 
 {% embed url="https://developers.tezos.com/" %}
 
+{% embed url="https://cryptocodeschool.in/tezos/" %}
+
 {% embed url="https://tezosacademy.io/" %}
 
 {% embed url="http://doc.tzalpha.net/" %}

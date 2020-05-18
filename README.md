@@ -54,6 +54,8 @@
 {% tab title="Get Crypto" %}
 {% page-ref page="exchanges/guide-where-to-get-crypto.md" %}
 
+{% page-ref page="exchanges/guide-earning-crypto-via-cashback.md" %}
+
 {% page-ref page="exchanges/guide-dollar-cost-averaging-into-crypto.md" %}
 {% endtab %}
 

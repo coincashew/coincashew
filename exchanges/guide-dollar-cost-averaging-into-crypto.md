@@ -29,6 +29,7 @@ Here is a list of known services by region.
 ### 🇺🇸 United States
 
 * [CashApp](https://cash.app/)
+* [Gemini.com](https://support.gemini.com/hc/en-us/articles/360020827411-What-is-a-recurring-buy-)
 * [SwanBitcoin](http://swanbitcoin.com/)
 * [RIVER FINANCIAL](https://river.com/)
 * [DonutApp](https://www.donut.app/)
@@ -36,6 +37,7 @@ Here is a list of known services by region.
 ### 🇨🇦 Canada
 
 * [BullBitcoin](https://bullbitcoin.com/)
+* [Gemini.com](https://support.gemini.com/hc/en-us/articles/360020827411-What-is-a-recurring-buy-)
 
 ## 🇪🇺 Europe
 
