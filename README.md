@@ -5,7 +5,7 @@
 > ### The best how-to guide for all your favorite cryptocurrencies.
 
 {% hint style="success" %}
-✨ Learn to do anything with crypto, better. _Browse the menu._
+✨ Learn to do anything with crypto, _better_.
 {% endhint %}
 
 ## 🙋 I would like to ...
