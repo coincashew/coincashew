@@ -8,6 +8,7 @@
 | ![](.gitbook/assets/eos.png) [EOS](coins/overview-eos/) | ![](.gitbook/assets/xmr.png) [Monero](coins/overview-xmr/) |
 | ![](.gitbook/assets/xlm.png) [Stellar](coins/overview-xlm/) | ![](.gitbook/assets/ada.png) [Cardano](coins/overview-ada/) |
 | ![](.gitbook/assets/neo.png) [NEO](coins/overview-neo/) | ![](.gitbook/assets/atom.png) [Cosmos](coins/overview-atom/) |
+| ![](.gitbook/assets/mco.png) MCO |  |
 | ![](.gitbook/assets/vet.png) [Vechain](coins/overview-vet/) | ![](.gitbook/assets/hex.png) [HEX](coins/overview-hex/) |
 | ![](.gitbook/assets/trx.png) [TRON](coins/overview-trx/) | ![](.gitbook/assets/icx.png) [ICON](coins/overview-icx/) |
 | ![](.gitbook/assets/doge.png) [Dogecoin](coins/dogecoin-doge.md) | ![](.gitbook/assets/dgb.png) [Digibyte](coins/digibyte-dgb.md) |
