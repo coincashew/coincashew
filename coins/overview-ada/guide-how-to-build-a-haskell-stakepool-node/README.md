@@ -10,7 +10,7 @@ description: >-
 
 ### 🎗 Minimum Setup Requirements
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 18.04.4 LTS\)
+* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** Dual core CPU
 * **Memory:** 4GB RAM
 * **Storage:** 20GB
@@ -21,7 +21,7 @@ description: >-
 
 ### 🏋♂ Recommended Futureproof Setup
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 18.04.4 LTS\)
+* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** Quad core or better CPU
 * **Memory:** 16GB RAM
 * **Storage:** 500GB SSD with RAID
@@ -574,7 +574,7 @@ Create a registration certificate for your stakepool.
 cardano-cli shelley stake-pool registration-certificate \
     --stake-pool-verification-key-file node.vkey \
     --vrf-verification-key-file vrf.vkey \
-    --pool-pledge 100000000 \
+    --pool-pledge 1000000000 \
     --pool-cost 10000000 \
     --pool-margin 0.07 \
     --reward-account-verification-key-file stake.vkey \
@@ -584,7 +584,7 @@ cardano-cli shelley stake-pool registration-certificate \
 ```
 
 {% hint style="info" %}
-Here we are pledging 100 ADA with a fixed pool cost of 10 ADA and a pool margin of 7%. 
+Here we are pledging 1000 ADA with a fixed pool cost of 10 ADA and a pool margin of 7%. 
 {% endhint %}
 
 Pledge stake to your stakepool.
@@ -629,15 +629,14 @@ cardano-cli shelley transaction calculate-min-fee \
     --certificate deleg.cert \
     --protocol-params-file params.json
 
-> runTxCalculateMinFee: 184861
-
+#> runTxCalculateMinFee: 184861
 ```
 
 Find the deposit fee for a pool.
 
 ```text
 cat ff-genesis.json | grep poolDeposit
-> "poolDeposit": 500000000,
+#> "poolDeposit": 500000000,
 ```
 
 Find your unspent output \(UTXO\).
@@ -646,10 +645,6 @@ Find your unspent output \(UTXO\).
 cardano-cli shelley query utxo \
     --address $(cat pay.addr) \
     --testnet-magic 42
-
-                 TxHash                       TxIx        Lovelace
---------------------------------------------------------------------
-3ac393d...                                        0       999428691
 ```
 
 Calculate the change amount.
