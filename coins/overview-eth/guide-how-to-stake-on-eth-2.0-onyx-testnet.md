@@ -2,10 +2,10 @@
 description: >-
   The Onyx Testnet is a public network created by Prysmatic Labs. It implements
   the Ethereum 2.0 Phase 0 protocol for a proof-of-stake blockchain, enabling
-  anyone holding Goerli test ETH to join and par
+  anyone holding Goerli test ETH to join.
 ---
 
-# Guide: How to stake on ETH 2.0 ONYX testnet
+# Guide: How to stake on ETH 2.0 ONYX testnet with Prysm
 
 ## 🏁 0. Prerequisites
 
