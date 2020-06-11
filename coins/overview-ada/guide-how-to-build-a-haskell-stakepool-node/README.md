@@ -409,11 +409,23 @@ cardano-cli shelley node issue-op-cert \
 You are required to regenerate the hot keys and issue a new operational certificate, a process called rotating the KES keys, when the hot keys expire.
 {% endhint %}
 
-With your hot keys created, now you can remove access to the cold keys for improved security. This protects against accidental deletion, editing, or access.
+{% hint style="warning" %}
+**Optional tip:** Save this step until after you finish the guide.
+
+With your hot keys created, you can remove access to the cold keys for improved security. This protects against accidental deletion, editing, or access. 
+
+To lock,
 
 ```text
 chmod a-rwx ~/cold-keys
 ```
+
+To unlock,
+
+```text
+chmod u+rwx ~/cold-keys
+```
+{% endhint %}
 
 {% hint style="info" %}
 When it's time to regenerate the hot keys, run the following:
@@ -645,7 +657,7 @@ Sign the transaction.
 cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file pay.skey \
-    --signing-key-file ~/cold-keys/cold.skey \
+    --signing-key-file node.skey \
     --signing-key-file stake.skey \
     --testnet-magic 42 \
     --tx-file tx.signed
