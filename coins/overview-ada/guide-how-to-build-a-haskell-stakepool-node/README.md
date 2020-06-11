@@ -575,7 +575,7 @@ Create a registration certificate for your stakepool.
 cardano-cli shelley stake-pool registration-certificate \
     --stake-pool-verification-key-file node.vkey \
     --vrf-verification-key-file vrf.vkey \
-    --pool-pledge 1000000000 \
+    --pool-pledge 100000000 \
     --pool-cost 10000000 \
     --pool-margin 0.07 \
     --reward-account-verification-key-file stake.vkey \
@@ -585,7 +585,7 @@ cardano-cli shelley stake-pool registration-certificate \
 ```
 
 {% hint style="info" %}
-Here we are pledging 1000 ADA with a fixed pool cost of 10 ADA and a pool margin of 7%. 
+Here we are pledging 100 ADA with a fixed pool cost of 10 ADA and a pool margin of 7%. 
 {% endhint %}
 
 Pledge stake to your stakepool.
