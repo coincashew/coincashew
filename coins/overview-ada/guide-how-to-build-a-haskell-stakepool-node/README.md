@@ -4,7 +4,7 @@ description: >-
   stakepool from source code.
 ---
 
-# Guide: How to build a Haskell Stakepool Node
+# Guide: How to build a Haskell Testnet Stakepool Node
 
 ## 🏁 0. Pre-requisites
 
@@ -26,9 +26,9 @@ description: >-
 * **Storage:** 500GB SSD with RAID
 * **Internet:** Multiple 24/7 broadband internet connections with speeds at least 10 Mbps \(i.e. fiber + cellular 4G\)
 * **Power:** Redundant 24/7 electrical power with UPS
-* **ADA balance:** more pledge is better, TBD by a0, the pledge influence factor
+* **ADA balance:** more pledge is better, to be determined by **a0**, the pledge influence factor
 
-For instructions on installing Ubuntu, refer to the following:
+For instructions on installing **Ubuntu**, refer to the following:
 
 {% page-ref page="../../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
 
@@ -134,9 +134,123 @@ Run the following to modify **config.json** and
 sed -i.bak -e "s/SimpleView/LiveView/g" -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" ff-config.json
 ```
 
-## 🤖 4. Create a startup script
+### 🔮 3.1 Configure the block-producer node and the relay nodes
+
+{% hint style="info" %}
+A block producing node will be configured with various key-pairs needed for block generation \(cold keys, KES hot keys and VRF hot keys\). It can only connect to its relay nodes.
+{% endhint %}
+
+{% hint style="info" %}
+A relay node will not be in possession of any keys and will therefore be unable to produce blocks. It will be connected to its block-producing node, other relays and external nodes.
+{% endhint %}
+
+![](../../../.gitbook/assets/producer-relay-diagram.png)
+
+Create two new directories, one for each **relay** node.
+
+```text
+mkdir relaynode1
+mkdir relaynode2
+```
+
+Copy the essential json files to each directory.
+
+```text
+cp ff-*.json relaynode1
+cp ff-*.json relaynode2
+```
+
+Configure **ff-topology.json** file so that 
+
+* only relay nodes connect to the public internet and your block-producing node
+* the block-producing node can only connect to your relay nodes
+
+Update relaynode1 with the following. Simply copy/paste.
+
+```text
+cat > relaynode1/ff-topology.json << EOF 
+ {
+    "Producers": [
+      {
+        "addr": "127.0.0.1",
+        "port": 9770,
+        "valency": 2
+      },
+      {
+        "addr": "127.0.0.1",
+        "port": 9772,
+        "valency": 2
+      },
+      {
+        "addr": "relays-new.ff.dev.cardano.org",
+        "port": 3001,
+        "valency": 2
+      }
+    ]
+  }
+EOF
+```
+
+Update relaynode2 with the following. Simply copy/paste.
+
+```text
+cat > relaynode2/ff-topology.json << EOF 
+ {
+    "Producers": [
+      {
+        "addr": "127.0.0.1",
+        "port": 9770,
+        "valency": 2
+      },
+      {
+        "addr": "127.0.0.1",
+        "port": 9771,
+        "valency": 2
+      },
+      {
+        "addr": "relays-new.ff.dev.cardano.org",
+        "port": 3001,
+        "valency": 2
+      }
+    ]
+  }
+EOF
+```
+
+Update the block-producer node with the following. Simply copy/paste.
+
+```text
+cat > ff-topology.json << EOF 
+ {
+    "Producers": [
+      {
+        "addr": "127.0.0.1",
+        "port": 9771,
+        "valency": 2
+      },
+      {
+        "addr": "127.0.0.1",
+        "port": 9772,
+        "valency": 2
+      }
+    ]
+  }
+EOF
+```
+
+{% hint style="info" %}
+Valency tells the node how many connections to keep open. Only DNS addresses are affected. If value is 0, the address is ignored.
+{% endhint %}
+
+{% hint style="success" %}
+\*\*\*\*✨ **Port Forwarding Tip:** In our above setup, you'll need to open and forward ports 9771 and 9772 to your computer.
+{% endhint %}
+
+## 🤖 4. Create startup scripts
 
 The startup script contains all the variables needed to run a cardano-node such as directory, port, db path, config file, and topology file.
+
+For your **block-producing node**:
 
 ```text
 cat > startBlockProducingNode.sh << EOF 
@@ -151,13 +265,58 @@ EOF
 
 ```
 
-## ✅ 5. Start the node
-
-Add execute permissions to the script and start it to begin syncing the ADA blockchain!
+For your **relaynode1**:
 
 ```text
+cat > relaynode1/startRelayNode1.sh << EOF 
+DIRECTORY=~/cardano-my-node/relaynode1
+PORT=9771
+TOPOLOGY=\${DIRECTORY}/ff-topology.json
+DB_PATH=\${DIRECTORY}/db
+SOCKET_PATH=\${DIRECTORY}/db/socket
+CONFIG=\${DIRECTORY}/ff-config.json
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr 127.0.0.1 --port \${PORT} --config \${CONFIG}
+EOF
+```
+
+For your **relaynode2**:
+
+```text
+cat > relaynode2/startRelayNode2.sh << EOF 
+DIRECTORY=~/cardano-my-node/relaynode2
+PORT=9772
+TOPOLOGY=\${DIRECTORY}/ff-topology.json
+DB_PATH=\${DIRECTORY}/db
+SOCKET_PATH=\${DIRECTORY}/db/socket
+CONFIG=\${DIRECTORY}/ff-config.json
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr 127.0.0.1 --port \${PORT} --config \${CONFIG}
+EOF
+```
+
+## ✅ 5. Start the node
+
+**Press** Ctrl+Alt+T. This will launch the Terminal. Do this 3 times for 3 terminals. 
+
+Add execute permissions to the script and begin syncing the ADA blockchain!
+
+Run each in a separate terminal.
+
+```text
+cd ~/cardano-my-node
 chmod +x startBlockProducingNode.sh
 ./startBlockProducingNode.sh
+```
+
+```text
+cd ~/cardano-my-node
+chmod +x relaynode1/startRelayNode1.sh
+./relaynode1/startRelayNode1.sh
+```
+
+```text
+cd ~/cardano-my-node
+chmod +x relaynode2/startRelayNode2.sh
+./relaynode2/startRelayNode2.sh
 ```
 
 ![Screenshot of a running Shelley Node](../../../.gitbook/assets/shellynode.png)
@@ -207,7 +366,7 @@ cp ~/cold-keys/node.vkey ~/cardano-my-node
 ```
 
 {% hint style="info" %}
-Delegators will require the **pool ID** data contained in `node.vkey` in order to delegate to your stakepool. You can share this file or the **pool ID text**. DO NOT share the `node.skey` file.
+Currently on testnet, delegators who delegate via CLI tools will require the ****data contained in `node.vkey` in order to delegate to your stakepool. You can share this file. DO NOT accidentally share the secret key,`node.skey` file.
 {% endhint %}
 
 Determine the number of slots per KES period from the genesis file.
@@ -282,6 +441,7 @@ On your node's terminal window, stop your node by typing the letter `q`
 Update your startup script with the new **KES, VRF and Operation Certificate.**
 
 ```text
+cd ~/cardano-my-node
 cat > startBlockProducingNode.sh << EOF 
 DIRECTORY=~/cardano-my-node
 PORT=9770
@@ -303,7 +463,8 @@ To operate a stakepool, two sets of keys are needed: they KES key \(hot\) and th
 Now start the new block-producing node.
 
 ```text
-startBlockProducingNode.sh
+cd ~/cardano-my-node
+./startBlockProducingNode.sh
 ```
 
 ## 🔐 7. Setup payment and staking keys
@@ -393,8 +554,8 @@ cardano-cli shelley stake-pool registration-certificate \
     --stake-pool-verification-key-file node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 1000000000 \
-    --pool-cost 100000000 \
-    --pool-margin 0.08 \
+    --pool-cost 10000000 \
+    --pool-margin 0.07 \
     --reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
     --out-file pool.cert \
@@ -402,7 +563,7 @@ cardano-cli shelley stake-pool registration-certificate \
 ```
 
 {% hint style="info" %}
-Here we are pledging 1000 ADA with a fixed pool cost of 100 ADA and a pool margin of 8%. 
+Here we are pledging 1000 ADA with a fixed pool cost of 10 ADA and a pool margin of 7%. 
 {% endhint %}
 
 Pledge stake to your stake pool.
@@ -496,11 +657,31 @@ cardano-cli shelley transaction submit \
     --testnet-magic 42
 ```
 
+## 🐣 9. Locate your Stakepool ID and verify everything is working 
+
+Your stakepool ID can be computed with:
+
+```text
+cardano-cli shelley stake-pool id --verification-key-file node.vkey
+```
+
+With your stakepool ID, now you can find your data on block explorers such as [https://ff.pooltool.io/](https://ff.pooltool.io/)
+
 {% hint style="success" %}
 Congratulations! Your stakepool is registered and ready to accept delegations.
 {% endhint %}
 
-In the next section, you can learn to delegate ADA accounts to your stakepool.
+In the next section, you can learn to delegate other ADA accounts to your stakepool.
 
 {% page-ref page="how-to-delegate-to-a-stakepool.md" %}
+
+## 👏 10. Thank yous and reference material
+
+Thanks to all Cardano hodlers, builders, stakers, and pool operators for making the better future a reality.
+
+For more information and official documentation, please refer to the following links:
+
+{% embed url="https://testnets.cardano.org/en/shelley/get-started/creating-a-stake-pool/" %}
+
+{% embed url="https://github.com/input-output-hk/cardano-tutorials" %}
 

@@ -133,7 +133,7 @@
 * [Stellar: XLM](coins/overview-xlm/README.md)
   * [External Reading Material](coins/overview-xlm/external-reading-material.md)
 * [Cardano: ADA](coins/overview-ada/README.md)
-  * [Guide: How to build a Haskell Stakepool Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
+  * [Guide: How to build a Haskell Testnet Stakepool Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
     * [How to delegate to a Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-delegate-to-a-stakepool.md)
   * [Guide: How to setup a Stakepool](https://guides.poapool.com/)
   * [Guide: Build Haskell Pool by Cardano Community](https://cardano-community.github.io/guild-operators/)
