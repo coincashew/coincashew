@@ -426,7 +426,7 @@ cardano-cli shelley node issue-op-cert \
     --operational-certificate-issue-counter ~/cold-keys/coldcounter \
     --kes-period 140 \
     --out-file opcert
-$  chmod a-rwx ~/cold-keys
+chmod a-rwx ~/cold-keys
 ```
 {% endhint %}
 
