@@ -140,7 +140,7 @@ sed -i.bak -e "s/SimpleView/LiveView/g" -e "s/TraceBlockFetchDecisions\": false/
 Update **.bashrc** shell variables.
 
 ```
-echo "CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket" >> ~/.bashrc
+echo export CARDANO_NODE_SOCKET_PATH="$HOME/cardano-my-node/db/socket" >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -494,7 +494,6 @@ cd ~/cardano-my-node
 First, obtain the protocol-parameters.
 
 ```text
-export CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket
 cardano-cli shelley query protocol-parameters \
     --testnet-magic 42 \
     --out-file params.json
