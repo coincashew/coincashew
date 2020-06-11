@@ -22,7 +22,6 @@ description: >-
 | 🐦 Twitter | [https://twitter.com/monero](https://twitter.com/monero) |
 | Facebook | [https://www.facebook.com/monerocurrency](https://www.facebook.com/monerocurrency) |
 | Reddit | [https://www.reddit.com/r/monero](https://www.reddit.com/r/monero) |
-|  |  |
 | Official Forum | [https://forum.getmonero.org/](https://forum.getmonero.org/) |
 | Bitcointalk Forum | [https://bitcointalk.org/index.php?topic=583449.0](https://bitcointalk.org/index.php?topic=583449.0) |
 | Telegram | [https://t.me/monero](https://t.me/monero) |

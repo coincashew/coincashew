@@ -13,7 +13,7 @@ description: >-
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 18.04.4 LTS\)
 * **Processor:** Dual core CPU
 * **Memory:** 4GB RAM
-* **Storage:** 64GB SSD
+* **Storage:** 20GB
 * **Internet:** 24/7 broadband internet connection with speeds at least 1 Mbps.
 * **Data Plan**: At least 1GB per hour. 720GB per month.
 * **Power:** 24/7 electrical power
@@ -578,7 +578,7 @@ cardano-cli shelley stake-address delegation-certificate \
 ```
 
 {% hint style="info" %}
- This creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `cold.vkey`
+ This creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `node.vkey`
 {% endhint %}
 
 Calculate the fee for a stakepool registration transaction.
@@ -666,6 +666,16 @@ Your stakepool ID can be computed with:
 ```text
 cardano-cli shelley stake-pool id --verification-key-file node.vkey
 ```
+
+Now that you have your stakepool ID,  verify it's included in the blockchain.
+
+```text
+cardano-cli shelley query ledger-state --testnet-magic 42 | grep poolPubKey | grep <your stakepool ID>
+```
+
+{% hint style="info" %}
+A non-empty string return means you're registered! 👏 
+{% endhint %}
 
 With your stakepool ID, now you can find your data on block explorers such as [https://ff.pooltool.io/](https://ff.pooltool.io/)
 
