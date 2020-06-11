@@ -148,7 +148,7 @@ A relay node will not be in possession of any keys and will therefore be unable 
 
 ![](../../../.gitbook/assets/producer-relay-diagram.png)
 
-Create two new directories, one for each **relay** node.
+Create two new directories, one for each relay node.
 
 ```text
 mkdir relaynode1
@@ -531,7 +531,7 @@ You can find your payment address in `pay.addr`
 cat pay.addr
 ```
 
-After funding your account, to check your payment address balance you will run the following
+After funding your account, check your payment address balance.
 
 ```text
 cardano-cli shelley query utxo \
@@ -539,7 +539,7 @@ cardano-cli shelley query utxo \
     --testnet-magic 42
 ```
 
-You should see output similar to this. This is your UXTO.
+You should see output similar to this. This is your unspent transaction output \(UXTO\).
 
 ```text
                            TxHash                                 TxIx        Lovelace
@@ -549,7 +549,7 @@ You should see output similar to this. This is your UXTO.
 
 ## 📄 8. Register your stakepool
 
-Create a registration certificate for your stake pool.
+Create a registration certificate for your stakepool.
 
 ```text
 cardano-cli shelley stake-pool registration-certificate \
@@ -568,7 +568,7 @@ cardano-cli shelley stake-pool registration-certificate \
 Here we are pledging 1000 ADA with a fixed pool cost of 10 ADA and a pool margin of 7%. 
 {% endhint %}
 
-Pledge stake to your stake pool.
+Pledge stake to your stakepool.
 
 ```text
 cardano-cli shelley stake-address delegation-certificate \
@@ -679,7 +679,7 @@ In the next section, you can learn to delegate other ADA accounts to your stakep
 
 ## 👏 10. Thank yous and reference material
 
-Thanks to all Cardano hodlers, builders, stakers, and pool operators for making the better future a reality.
+Thanks to all Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
 
 For more information and official documentation, please refer to the following links:
 
