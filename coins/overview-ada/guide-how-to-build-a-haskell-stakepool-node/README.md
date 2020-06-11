@@ -6,7 +6,7 @@ description: >-
 
 # Guide: How to build a Haskell Testnet Stakepool Node
 
-## 🏁 0. Pre-requisites
+## 🏁 0. Prerequisites
 
 ### 🎗 Minimum Setup Requirements
 
