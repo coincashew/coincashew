@@ -36,6 +36,8 @@ For instructions on installing **Ubuntu**, refer to the following:
 
 ## 🏭 1. Install Cabal and GHC
 
+**Press** Ctrl+Alt+T. This will launch a terminal window. 
+
 First, update packages and install Ubuntu dependencies.
 
 ```text
@@ -303,7 +305,7 @@ EOF
 
 ## ✅ 5. Start the node
 
-**Press** Ctrl+Alt+T. This will launch the Terminal. Do this 3 times for 3 terminals. 
+**Press** Ctrl+Alt+T. This will launch a terminal window. Do this 3 times for 3 terminals. 
 
 Add execute permissions to the script and begin syncing the ADA blockchain!
 
