@@ -26,7 +26,7 @@ Example **tip** output:
 > `Tip (SlotNo {unSlotNo = 511000})`
 
 {% hint style="info" %}
-You will want to set your **ttl** value greater than the current tip. In this example, we use 520000. Your **ttl** value will be even higher.
+You will want to set your **ttl** value greater than the current tip. In this example, we use 2000000. 
 {% endhint %}
 
 Calculate the current minimum fee:
@@ -35,7 +35,7 @@ Calculate the current minimum fee:
 cardano-cli shelley transaction calculate-min-fee \
     --tx-in-count 1 \
     --tx-out-count 1 \
-    --ttl 520000 \
+    --ttl 2000000 \
     --testnet-magic 42 \
     --signing-key-file pay.skey \
     --signing-key-file stake.skey \
@@ -88,7 +88,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 cardano-cli shelley transaction build-raw \
     --tx-in 81acd93...#0 \
     --tx-out $(cat pay.addr)+999428691\
-    --ttl 520000 \
+    --ttl 2000000 \
     --fee 171309 \
     --tx-body-file tx.raw \
     --certificate stake.cert
@@ -130,7 +130,7 @@ Next, build then sign and submit your delegation transaction.
 cardano-cli shelley transaction calculate-min-fee \
     --tx-in-count 1 \
     --tx-out-count 1 \
-    --ttl 530000 \
+    --ttl 2000000 \
     --testnet-magic 42 \
     --signing-key-file pay.skey \
     --signing-key-file stake.skey \
@@ -157,7 +157,7 @@ expr 499243830 - 172805
 cardano-cli shelley transaction build-raw \
     --tx-in 32cd839...#0 \
     --tx-out $(cat pay.addr)+499071025\
-    --ttl 520000 \
+    --ttl 2000000 \
     --fee 172805 \
     --out-file tx.raw \
     --certificate deleg.cert

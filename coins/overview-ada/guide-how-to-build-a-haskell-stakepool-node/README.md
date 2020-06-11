@@ -593,13 +593,28 @@ cardano-cli shelley stake-address delegation-certificate \
  This creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `node.vkey`
 {% endhint %}
 
+You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
+
+```
+export CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket
+cardano-cli shelley query tip --testnet-magic 42
+```
+
+> `Tip (SlotNo {unSlotNo = 511000})`
+
+Example **tip** output:
+
+{% hint style="info" %}
+You will want to set your **ttl** value greater than the current tip. In this example, we use 2000000. 
+{% endhint %}
+
 Calculate the fee for a stakepool registration transaction.
 
 ```text
 cardano-cli shelley transaction calculate-min-fee \
     --tx-in-count 1 \
     --tx-out-count 1 \
-    --ttl 530000 \
+    --ttl 2000000 \
     --testnet-magic 42 \
     --signing-key-file pay.skey \
     --signing-key-file ~/cold-keys/node.skey \
@@ -644,7 +659,7 @@ Build the transaction.
 cardano-cli shelley transaction build-raw \
     --tx-in 3ac393d...#0 \
     --tx-out $(cat pay.addr)+499243830\
-    --ttl 530000 \
+    --ttl 2000000 \
     --fee 184861\
     --tx-body-file tx.raw \
     --certificate pool.cert \
