@@ -15,9 +15,9 @@ description: >-
 * **Memory:** 4GB RAM
 * **Storage:** 20GB
 * **Internet:** 24/7 broadband internet connection with speeds at least 1 Mbps.
-* **Data Plan**: At least 1GB per hour. 720GB per month.
+* **Data Plan**: at least 100MB per hour. 72GB per month.
 * **Power:** 24/7 electrical power
-* **ADA balance:** at least 1000 ADA
+* **ADA balance:** at least 1000 fADA
 
 ### 🏋♂ Recommended Futureproof Setup
 
@@ -26,7 +26,7 @@ description: >-
 * **Memory:** 16GB RAM
 * **Storage:** 500GB SSD with RAID
 * **Internet:** Multiple 24/7 broadband internet connections with speeds at least 10 Mbps \(i.e. fiber + cellular 4G\)
-* **Data Plan**: At least 1GB per hour. 720GB per month.
+* **Data Plan**: at least 100MB per hour. 72GB per month.
 * **Power:** Redundant 24/7 electrical power with UPS
 * **ADA balance:** more pledge is better, to be determined by **a0**, the pledge influence factor
 
