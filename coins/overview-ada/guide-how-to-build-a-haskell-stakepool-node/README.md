@@ -136,6 +136,13 @@ Run the following to modify **config.json** and
 sed -i.bak -e "s/SimpleView/LiveView/g" -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" ff-config.json
 ```
 
+Update **.bashrc** shell variables.
+
+```
+echo "CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket" >> ~/.bashrc
+source ~/.bashrc
+```
+
 ### 🔮 3.1 Configure the block-producer node and the relay nodes
 
 {% hint style="info" %}
@@ -381,7 +388,6 @@ cat ff-genesis.json | grep KESPeriod
 Determine the KES period.
 
 ```text
-export CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket
 cardano-cli shelley query tip --testnet-magic 42
 > Tip (SlotNo {unSlotNo = 507516}) ...
 ```
@@ -486,7 +492,6 @@ cd ~/cardano-my-node
 First, obtain the protocol-parameters.
 
 ```text
-export CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket
 cardano-cli shelley query protocol-parameters \
     --testnet-magic 42 \
     --out-file params.json
@@ -596,7 +601,6 @@ cardano-cli shelley stake-address delegation-certificate \
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
 ```
-export CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket
 cardano-cli shelley query tip --testnet-magic 42
 ```
 
