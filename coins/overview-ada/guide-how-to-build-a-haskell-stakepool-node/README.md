@@ -657,7 +657,7 @@ Sign the transaction.
 cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file pay.skey \
-    --signing-key-file node.skey \
+    --signing-key-file ~/cold-keys/node.skey \
     --signing-key-file stake.skey \
     --testnet-magic 42 \
     --tx-file tx.signed
