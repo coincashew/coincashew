@@ -340,6 +340,7 @@ Congratulations! Your node is running successfully now. Let it sync up.
 Make a KES key pair.
 
 ```text
+cd ~/cardano-my-node
 cardano-cli shelley node key-gen-KES \
     --verification-key-file kes.vkey \
     --signing-key-file kes.skey
@@ -493,6 +494,7 @@ cd ~/cardano-my-node
 First, obtain the protocol-parameters.
 
 ```text
+export CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket
 cardano-cli shelley query protocol-parameters \
     --testnet-magic 42 \
     --out-file params.json
