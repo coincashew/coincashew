@@ -399,7 +399,7 @@ With this information, now you can generate a operational certificate for your p
 pushd +1
 cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
-    --cold-signing-key-file node.skey \
+    --cold-signing-key-file ~/cold-keys/node.skey \
     --operational-certificate-issue-counter ~/cold-keys/coldcounter \
     --kes-period 140 \
     --out-file opcert
