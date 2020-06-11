@@ -68,9 +68,8 @@ sudo make install
 Update PATH to include Cabal and GHC.
 
 ```text
-cd ~
-echo PATH="~/.local/bin:$PATH" >> .bashrc
-source .bashrc
+echo PATH="~/.local/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 Update cabal and verify the correct versions were installed successfully.
