@@ -23,7 +23,7 @@ cardano-cli shelley query tip --testnet-magic 42
 
 Example **tip** output:
 
-> `Tip (SlotNo {unSlotNo = 511000})`
+> `Tip (SlotNo {unSlotNo = 510000})`
 
 {% hint style="info" %}
 You will want to set your **ttl** value greater than the current tip. In this example, we use 2000000. 
