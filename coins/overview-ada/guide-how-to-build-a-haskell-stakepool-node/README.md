@@ -183,12 +183,12 @@ cat > relaynode1/ff-topology.json << EOF
     "Producers": [
       {
         "addr": "127.0.0.1",
-        "port": 9770,
+        "port": 3000,
         "valency": 2
       },
       {
         "addr": "127.0.0.1",
-        "port": 9772,
+        "port": 3002,
         "valency": 2
       },
       {
@@ -209,12 +209,12 @@ cat > relaynode2/ff-topology.json << EOF
     "Producers": [
       {
         "addr": "127.0.0.1",
-        "port": 9770,
+        "port": 3000,
         "valency": 2
       },
       {
         "addr": "127.0.0.1",
-        "port": 9771,
+        "port": 3001,
         "valency": 2
       },
       {
@@ -235,12 +235,12 @@ cat > ff-topology.json << EOF
     "Producers": [
       {
         "addr": "127.0.0.1",
-        "port": 9771,
+        "port": 3001,
         "valency": 2
       },
       {
         "addr": "127.0.0.1",
-        "port": 9772,
+        "port": 3002,
         "valency": 2
       }
     ]
@@ -253,7 +253,7 @@ Valency tells the node how many connections to keep open. Only DNS addresses are
 {% endhint %}
 
 {% hint style="success" %}
-\*\*\*\*✨ **Port Forwarding Tip:** In our above setup, you'll need to open and forward ports 9771 and 9772 to your computer.
+\*\*\*\*✨ **Port Forwarding Tip:** You'll need to forward ports 3001 and 3002 to your computer.
 {% endhint %}
 
 ## 🤖 4. Create startup scripts
@@ -265,12 +265,13 @@ For your **block-producing node**:
 ```text
 cat > startBlockProducingNode.sh << EOF 
 DIRECTORY=~/cardano-my-node
-PORT=9770
+PORT=3000
+HOSTADDR=127.0.0.1
 TOPOLOGY=\${DIRECTORY}/ff-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/ff-config.json
-cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr 127.0.0.1 --port \${PORT} --config \${CONFIG}
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 
 ```
@@ -280,12 +281,13 @@ For your **relaynode1**:
 ```text
 cat > relaynode1/startRelayNode1.sh << EOF 
 DIRECTORY=~/cardano-my-node/relaynode1
-PORT=9771
+PORT=3001
+HOSTADDR=127.0.0.1
 TOPOLOGY=\${DIRECTORY}/ff-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/ff-config.json
-cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr 127.0.0.1 --port \${PORT} --config \${CONFIG}
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
 
@@ -294,17 +296,18 @@ For your **relaynode2**:
 ```text
 cat > relaynode2/startRelayNode2.sh << EOF 
 DIRECTORY=~/cardano-my-node/relaynode2
-PORT=9772
+PORT=3002
+HOSTADDR=127.0.0.1
 TOPOLOGY=\${DIRECTORY}/ff-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/ff-config.json
-cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr 127.0.0.1 --port \${PORT} --config \${CONFIG}
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
 
 {% hint style="info" %}
-**Pro tip**: 🎆 If you want your relay nodes to be hosted on a different server, make sure to change **host-addr** from `127.0.0.1 to 0.0.0.0`  and update **ff-topology.json** where appropriate.
+**Pro tip**: 🎆 If you want your relay nodes to be hosted on a different server, make sure to change **HOSTADDR** from `127.0.0.1 to 0.0.0.0`  and update **ff-topology.json** where appropriate.
 {% endhint %}
 
 ## ✅ 5. Start the node
@@ -479,7 +482,8 @@ Update your startup script with the new **KES, VRF and Operation Certificate.**
 cd ~/cardano-my-node
 cat > startBlockProducingNode.sh << EOF 
 DIRECTORY=~/cardano-my-node
-PORT=9770
+PORT=3000
+HOSTADDR=127.0.0.1
 TOPOLOGY=\${DIRECTORY}/ff-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
@@ -487,7 +491,7 @@ CONFIG=\${DIRECTORY}/ff-config.json
 KES=\${DIRECTORY}/kes.skey
 VRF=\${DIRECTORY}/vrf.skey
 CERT=\${DIRECTORY}/opcert
-cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr 127.0.0.1 --port \${PORT} --config \${CONFIG} --shelley-kes-key \${KES} --shelley-vrf-key \${VRF} --shelley-operational-certificate \${CERT}
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG} --shelley-kes-key \${KES} --shelley-vrf-key \${VRF} --shelley-operational-certificate \${CERT}
 EOF
 ```
 
