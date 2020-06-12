@@ -636,8 +636,11 @@ Find the deposit fee for a pool.
 
 ```text
 cat ff-genesis.json | grep poolDeposit
-#> "poolDeposit": 500000000,
 ```
+
+Example **poolDeposit** output:
+
+> "poolDeposit": 500000000,
 
 Find your unspent output \(UTXO\).
 
@@ -651,8 +654,11 @@ Calculate the change amount.
 
 ```text
 expr 999428691 - 500000000 - 184861
-> 499243830
 ```
+
+Example **change amount** output:
+
+> 499243830
 
 Build the transaction.
 

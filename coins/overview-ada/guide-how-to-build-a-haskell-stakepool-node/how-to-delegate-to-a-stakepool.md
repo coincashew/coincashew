@@ -43,7 +43,7 @@ cardano-cli shelley transaction calculate-min-fee \
     --protocol-params-file params.json
 ```
 
-Result of current minimum fee:
+Example of **calculate-min-fee**:
 
 > `runTxCalculateMinFee: 171309`
 
@@ -55,12 +55,12 @@ cardano-cli shelley query utxo \
     --testnet-magic 42
 ```
 
-Example output:
+Example **utxo** output:
 
 ```text
                  TxHash                         Ix        Lovelace
 --------------------------------------------------------------------
-81acd93...                                        0      100000000000
+81acd93...                                        0      499243830
 ```
 
 {% hint style="info" %}
@@ -70,9 +70,13 @@ Notice the TxHash and Ix \(index\). Will use this data shortly.
 Calculate your transaction's change
 
 ```text
-expr 1000000000 - 400000 - 171309
-> 999428691
+expr 499243830 - 400000 - 171309
+> 498672521
 ```
+
+Example **translocation change amount**:
+
+> 498672521
 
 {% hint style="info" %}
 Registration of a stake address certificate costs 400000 lovelace.
@@ -87,7 +91,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in 81acd93...#0 \
-    --tx-out $(cat pay.addr)+999428691\
+    --tx-out $(cat pay.addr)+498672521\
     --ttl 2000000 \
     --fee 171309 \
     --tx-body-file tx.raw \
@@ -124,7 +128,7 @@ cardano-cli shelley stake-address delegation-certificate \
     --out-file deleg.cert
 ```
 
-Next, build then sign and submit your delegation transaction.
+Calculate the transaction fee.
 
 ```text
 cardano-cli shelley transaction calculate-min-fee \
@@ -136,24 +140,41 @@ cardano-cli shelley transaction calculate-min-fee \
     --signing-key-file stake.skey \
     --certificate deleg.cert \
     --protocol-params-file params.json
+```
 
-> runTxCalculateMinFee: 172805
+Example of **calculate-min-fee**:
 
+> `runTxCalculateMinFee: 172805`
+
+Find your UTXO.
+
+```text
 cardano-cli shelley query utxo \
     --address $(cat pay.addr) \
     --testnet-magic 42
+```
 
-                 TxHash                       TxIx        Lovelace
---------------------------------------------------------------------
-32cd839...                                        0       499243830
+> Sample Output:
+>
+> ```text
+> TxHash                       TxIx        Lovelace
+> --------------------------------------------------
+> 32cd839...                       0       499243830
+> ```
 
+Calculate your change.
+
+```text
 expr 499243830 - 172805
-> 499071025
+```
 
-########################
-# Update tx-in with your TxHash and TxIx
-########################
+Example of **change amount:**
 
+> `> 499071025`
+
+Build your transaction. Update `tx-in` with your `TxHash` and `TxIx`
+
+```text
 cardano-cli shelley transaction build-raw \
     --tx-in 32cd839...#0 \
     --tx-out $(cat pay.addr)+499071025\
@@ -161,14 +182,22 @@ cardano-cli shelley transaction build-raw \
     --fee 172805 \
     --out-file tx.raw \
     --certificate deleg.cert
+```
 
+Sign your transaction.
+
+```text
 cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file pay.skey \
     --signing-key-file stake.skey \
     --testnet-magic 42 \
     --tx-file tx.signed
+```
 
+Finally, submit your transaction.
+
+```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
     --testnet-magic 42
