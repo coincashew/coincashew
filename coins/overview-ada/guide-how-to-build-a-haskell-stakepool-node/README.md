@@ -383,6 +383,7 @@ Currently on testnet, delegators who delegate via CLI tools will require the ***
 Determine the number of slots per KES period from the genesis file.
 
 ```text
+pushd +1
 cat ff-genesis.json | grep KESPeriod
 ```
 
@@ -416,7 +417,6 @@ Example **expr calculation** output:
 With this information, now you can generate a operational certificate for your pool.
 
 ```text
-pushd +1
 cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file ~/cold-keys/node.skey \
