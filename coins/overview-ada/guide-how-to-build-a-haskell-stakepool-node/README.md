@@ -650,6 +650,14 @@ cardano-cli shelley query utxo \
     --testnet-magic 42
 ```
 
+Example of **query utxo** output:
+
+```text
+                 TxHash                         Ix        Lovelace
+--------------------------------------------------------------------
+3ac393d...                                        0      999428691 
+```
+
 Calculate the change amount.
 
 ```text
