@@ -71,7 +71,6 @@ Calculate your transaction's change
 
 ```text
 expr 499243830 - 400000 - 171309
-> 498672521
 ```
 
 Example **translocation change amount**:

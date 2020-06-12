@@ -662,6 +662,10 @@ Example **change amount** output:
 
 Build the transaction.
 
+{% hint style="info" %}
+Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix number>`from above.
+{% endhint %}
+
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in 3ac393d...#0 \
