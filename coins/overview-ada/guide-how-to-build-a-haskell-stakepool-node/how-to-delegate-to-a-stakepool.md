@@ -1,6 +1,6 @@
 # How to delegate to a Stakepool
 
-## ✅ 0. Pre-requisites
+## ✅ 0. Prerequisites
 
 * Both a payment and a stake key pair. Payment key should contain some ADA.
 
