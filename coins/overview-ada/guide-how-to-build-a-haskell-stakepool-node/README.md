@@ -553,15 +553,15 @@ Payment keys are used to send and receive payments and staking keys are used to 
 
 Next step is to fund your payment address from a faucet or other address.
 
-{% hint style="success" %}
-[The Shelly Testnet Faucet](https://testnets.cardano.org/en/shelley/tools/faucet/) can deliver up to 100,000 fADA per 24 hours.
-{% endhint %}
-
 You can find your payment address in `pay.addr`
 
 ```text
 cat pay.addr
 ```
+
+{% hint style="success" %}
+[The Shelly Testnet Faucet](https://testnets.cardano.org/en/shelley/tools/faucet/) can deliver up to 100,000 fADA per 24 hours.
+{% endhint %}
 
 After funding your account, check your payment address balance.
 
