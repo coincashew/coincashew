@@ -742,11 +742,15 @@ With your stakepool ID, now you can find your data on block explorers such as [h
 Congratulations! Your stakepool is registered and ready to accept delegations.
 {% endhint %}
 
-In the next section, you can learn to delegate other ADA accounts to your stakepool.
+## 🎇 10. Checking Stakepool Rewards
 
-{% page-ref page="how-to-delegate-to-a-stakepool.md" %}
+After the epoch is over and assuming you successfully minted blocks, check with this:
 
-## 👏 10. Thank yous and reference material
+```text
+cardano-cli shelley query stake-address-info --address $(cat pay.addr) --testnet-magic 42
+```
+
+## 👏 11. Thank yous and reference material
 
 Thanks to all Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
 
