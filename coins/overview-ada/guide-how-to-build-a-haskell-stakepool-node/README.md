@@ -636,7 +636,7 @@ Example **tip** output:
 > `Tip (SlotNo {unSlotNo = 510000})`
 
 {% hint style="info" %}
-You will want to set your **ttl** value greater than the current tip. In this example, we use 2000000. 
+You will want to set your **ttl** value greater than the current tip. In this example, we use 250000000. 
 {% endhint %}
 
 Calculate the fee for a stakepool registration transaction.
@@ -645,7 +645,7 @@ Calculate the fee for a stakepool registration transaction.
 cardano-cli shelley transaction calculate-min-fee \
     --tx-in-count 1 \
     --tx-out-count 1 \
-    --ttl 2000000 \
+    --ttl 250000000 \
     --testnet-magic 42 \
     --signing-key-file pay.skey \
     --signing-key-file ~/cold-keys/node.skey \
@@ -703,7 +703,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 cardano-cli shelley transaction build-raw \
     --tx-in 3ac393d...#0 \
     --tx-out $(cat pay.addr)+499243830\
-    --ttl 2000000 \
+    --ttl 250000000 \
     --fee 184861\
     --tx-body-file tx.raw \
     --certificate pool.cert \
