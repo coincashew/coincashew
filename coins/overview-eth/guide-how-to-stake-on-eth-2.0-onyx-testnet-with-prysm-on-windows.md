@@ -5,13 +5,13 @@ description: >-
   anyone holding Goerli test ETH to join.
 ---
 
-# Guide: How to stake on ETH 2.0 ONYX testnet with Prysm on Ubuntu
+# Guide: How to stake on ETH 2.0 ONYX testnet with Prysm on Windows
 
 ## 🏁 0. Prerequisites
 
 ### \*\*\*\*🎗 **Minimum Setup Requirements**
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 18.04.4 LTS\)
+* **Operating system:** Windows 10
 * **Processor:** Dual core CPU
 * **Memory:** 4GB RAM
 * **Storage:** 20GB SSD
@@ -20,19 +20,25 @@ description: >-
 * **ETH balance:** at least 32 Goerli ETH
 * **Wallet**: Metamask installed
 
-If you need to install Ubuntu, refer to
-
-{% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
-
 If you need to install Metamask, refer to
 
 {% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
 ## 🤖 1. Install Prysm
 
+1. Press **Windows Key** + **R** to open Run window
+2. Type "**cmd**" then press OK
+3. Change directories to where you would like to install. By default, location is `c:\Users\<yourUserName>`
+
 ```text
  mkdir prysm && cd prysm 
- curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh 
+ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.bat --output prysm.bat
+```
+
+Fix for ensuring logging works correctly.
+
+```text
+reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1
 ```
 
 {% hint style="info" %}
@@ -65,15 +71,16 @@ This method is sometimes unreliable.
 If you were participating on the previous Topaz testnet, you will first need to clear the database.
 
 ```text
-./prysm.sh beacon-chain --clear-db
+.\prysm.bat beacon-chain --clear-db
 ```
 {% endhint %}
 
 ```text
-./prysm.sh validator accounts create
+mkdir \.eth2validator
+.\prysm.bat validator accounts create --keystore-path=\.eth2validator
 ```
 
-Accept default key location and enter a password to encrypt your private keys.
+Enter a password to encrypt your private keys.
 
 Save the deposit data for the next steps. Sample deposit data looks as follows:
 
@@ -91,7 +98,7 @@ Save the deposit data for the next steps. Sample deposit data looks as follows:
 In a new terminal, start the beacon chain.
 
 ```text
-./prysm.sh beacon-chain
+.\prysm.bat beacon-chain
 ```
 
 ## 🚥 5. Start the validator
@@ -99,7 +106,7 @@ In a new terminal, start the beacon chain.
 In a new terminal, start the validator.
 
 ```text
-./prysm.sh validator
+.\prysm.bat validator --keystore-path=\.eth2validator
 ```
 
 ## 📩 6. Send the validator deposit
@@ -128,6 +135,4 @@ Congratulations. Once your beacon-chain is sync'd, validator up and running, you
 Check out the official documentation at:
 
 {% embed url="https://prylabs.net/participate" %}
-
-
 
