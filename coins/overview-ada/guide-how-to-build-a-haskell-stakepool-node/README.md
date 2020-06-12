@@ -431,6 +431,25 @@ cardano-cli shelley node issue-op-cert \
 
 {% hint style="info" %}
 You are required to regenerate the hot keys and issue a new operational certificate, a process called rotating the KES keys, when the hot keys expire.
+
+**Mainnet**: KES keys will be valid for 120 rotations or 90 days
+
+**Testnet**: KES keys will be valid for 120 rotations or 5 days
+{% endhint %}
+
+{% hint style="info" %}
+When it's time to issue a new operational certificate, update your KES period value and run the following:
+
+```text
+chmod u+rwx ~/cold-keys
+cardano-cli shelley node issue-op-cert \
+    --kes-verification-key-file kes.vkey \
+    --cold-signing-key-file ~/cold-keys/node.skey \
+    --operational-certificate-issue-counter ~/cold-keys/coldcounter \
+    --kes-period <new kes period = old period + 120> \
+    --out-file opcert
+chmod a-rwx ~/cold-keys
+```
 {% endhint %}
 
 {% hint style="warning" %}
@@ -448,21 +467,6 @@ To unlock,
 
 ```text
 chmod u+rwx ~/cold-keys
-```
-{% endhint %}
-
-{% hint style="info" %}
-When it's time to regenerate the hot keys, run the following:
-
-```text
-chmod u+rwx ~/cold-keys
-cardano-cli shelley node issue-op-cert \
-    --kes-verification-key-file kes.vkey \
-    --cold-signing-key-file ~/cold-keys/node.skey \
-    --operational-certificate-issue-counter ~/cold-keys/coldcounter \
-    --kes-period 140 \
-    --out-file opcert
-chmod a-rwx ~/cold-keys
 ```
 {% endhint %}
 
