@@ -384,8 +384,11 @@ Determine the number of slots per KES period from the genesis file.
 
 ```text
 cat ff-genesis.json | grep KESPeriod
-> "slotsPerKESPeriod": 3600,
 ```
+
+Example **KES Period** output:
+
+> "slotsPerKESPeriod": 3600,
 
 Determine the KES period.
 
@@ -394,12 +397,21 @@ cardano-cli shelley query tip --testnet-magic 42
 > Tip (SlotNo {unSlotNo = 507516}) ...
 ```
 
+Example **query tip** output:
+
+> Tip \(SlotNo {unSlotNo = 507516}\) ...
+
 Find the tip number\(e.g. 507516\) and divide by one period which is 3600 slots.
 
 ```text
 expr 507516 / 3600
-> 140
 ```
+
+
+
+Example **expr calculation** output:
+
+> 140
 
 With this information, now you can generate a operational certificate for your pool.
 
