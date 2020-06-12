@@ -303,6 +303,10 @@ cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-pa
 EOF
 ```
 
+{% hint style="info" %}
+**Pro tip**: 🎆 If you want your relay nodes to be hosted on a different server, make sure to change **host-addr** from `127.0.0.1 to 0.0.0.0`  and update **ff-topology.json** where appropriate.
+{% endhint %}
+
 ## ✅ 5. Start the node
 
 **Press** Ctrl+Alt+T. This will launch a terminal window. Do this 3 times for 3 terminals. 
