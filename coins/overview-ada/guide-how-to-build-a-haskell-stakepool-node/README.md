@@ -395,7 +395,6 @@ Determine the KES period.
 
 ```text
 cardano-cli shelley query tip --testnet-magic 42
-> Tip (SlotNo {unSlotNo = 507516}) ...
 ```
 
 Example **query tip** output:
