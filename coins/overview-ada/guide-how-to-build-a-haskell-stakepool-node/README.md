@@ -407,8 +407,6 @@ Find the tip number\(e.g. 507516\) and divide by one period which is 3600 slots.
 expr 507516 / 3600
 ```
 
-
-
 Example **expr calculation** output:
 
 > 140
@@ -562,6 +560,10 @@ cat pay.addr
 ```
 
 After funding your account, check your payment address balance.
+
+{% hint style="warning" %}
+ Before continuing, your nodes must be fully synchronized to the blockchain. Otherwise, you won't see your funds.
+{% endhint %}
 
 ```text
 cardano-cli shelley query utxo \
