@@ -663,7 +663,7 @@ Calculate your transaction's change
 expr 100000000000 - 400000 - 171309
 ```
 
-Example **translocation change amount**:
+Example **transaction change amount**:
 
 > 99999428691
 
