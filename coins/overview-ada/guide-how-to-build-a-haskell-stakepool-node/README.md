@@ -418,14 +418,14 @@ Example **expr calculation** output:
 
 > 140
 
-With this information, now you can generate a operational certificate for your pool.
+With this calculation, update your **--kes-period** and you can generate a operational certificate for your pool. 
 
 ```text
 cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file ~/cold-keys/node.skey \
     --operational-certificate-issue-counter ~/cold-keys/coldcounter \
-    --kes-period 140 \
+    --kes-period <kes period from expr calculation> \
     --out-file opcert
 ```
 
