@@ -1,10 +1,10 @@
 ---
 description: >-
   On Ubuntu/Debian, this guide will illustrate how to install and configure a
-  stakepool from source code.
+  Cardano stakepool from source code.
 ---
 
-# Guide: How to build a Haskell Testnet Stakepool Node
+# Guide: How to build a Haskell Testnet Cardano Stakepool
 
 ## 🏁 0. Prerequisites
 
