@@ -401,7 +401,7 @@ Example **KES Period** output:
 Determine the KES period.
 
 {% hint style="warning" %}
-Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period
+Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period.
 {% endhint %}
 
 ```text
@@ -482,7 +482,7 @@ cardano-cli shelley node key-gen-VRF \
     --signing-key-file vrf.skey
 ```
 
-On your node's terminal window, stop your node by typing the letter `q`
+On your **block-producing node's terminal**, stop your **block-producing node** by typing the letter `q`
 
 Update your startup script with the new **KES, VRF and Operation Certificate.**
 
@@ -592,7 +592,7 @@ You should see output similar to this. This is your unspent transaction output \
 ```text
                            TxHash                                 TxIx        Lovelace
 ----------------------------------------------------------------------------------------
-100322a39d02c2ead....                                              0        100000000
+100322a39d02c2ead....                                              0        100000000000
 ```
 
 ## 👩💻 8. Register your stake address
@@ -769,9 +769,11 @@ cardano-cli shelley transaction calculate-min-fee \
     --certificate pool.cert \
     --certificate deleg.cert \
     --protocol-params-file params.json
-
-#> runTxCalculateMinFee: 184861
 ```
+
+Example **calculate-min-fee** output:
+
+> runTxCalculateMinFee: 185037
 
 Find the deposit fee for a pool.
 
@@ -802,12 +804,12 @@ Example of **query utxo** output:
 Calculate the change amount.
 
 ```text
-expr 99999428691 - 500000000 - 184861
+expr 99999428691 - 500000000 - 185037
 ```
 
 Example **change amount** output:
 
-> 99499815139
+> 99499243654
 
 Build the transaction.
 
@@ -818,9 +820,9 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in 3ac393d...#0 \
-    --tx-out $(cat pay.addr)+99499243830\
+    --tx-out $(cat pay.addr)+99499243654\
     --ttl 250000000 \
-    --fee 184861\
+    --fee 185037\
     --tx-body-file tx.raw \
     --certificate pool.cert \
     --certificate deleg.cert
