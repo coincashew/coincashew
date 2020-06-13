@@ -400,23 +400,27 @@ Example **KES Period** output:
 
 Determine the KES period.
 
+{% hint style="warning" %}
+Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period
+{% endhint %}
+
 ```text
 cardano-cli shelley query tip --testnet-magic 42
 ```
 
 Example **query tip** output:
 
-> Tip \(SlotNo {unSlotNo = 507516}\) ...
+> Tip \(SlotNo {unSlotNo = 690000}\) ...
 
-Find the tip number\(e.g. 507516\) and divide by one period which is 3600 slots.
+Find the tip number\(e.g. 690000\) and divide by one period which is 3600 slots.
 
 ```text
-expr 507516 / 3600
+expr 690000 / 3600
 ```
 
 Example **expr calculation** output:
 
-> 140
+> 192
 
 With this calculation, update your **--kes-period** and you can generate a operational certificate for your pool. 
 
@@ -559,7 +563,7 @@ cardano-cli shelley address build \
 Payment keys are used to send and receive payments and staking keys are used to manage stake delegations.
 {% endhint %}
 
-Next step is to fund your payment address from a faucet or other address.
+Next step is to fund your payment address from the [Shelley Testnet Faucet](https://testnets.cardano.org/en/shelley/tools/faucet/) or other address.
 
 You can find your payment address in `pay.addr`
 
@@ -574,7 +578,7 @@ cat pay.addr
 After funding your account, check your payment address balance.
 
 {% hint style="warning" %}
- Before continuing, your nodes must be fully synchronized to the blockchain. Otherwise, you won't see your funds.
+Before continuing, your nodes must be fully synchronized to the blockchain. Otherwise, you won't see your funds.
 {% endhint %}
 
 ```text
@@ -591,7 +595,119 @@ You should see output similar to this. This is your unspent transaction output \
 100322a39d02c2ead....                                              0        100000000
 ```
 
-## 📄 8. Register your stakepool
+## 👩💻 8. Register your stake address
+
+Create a certificate, `stake.cert`, using the `stake.vkey`
+
+```text
+cardano-cli shelley stake-address registration-certificate \
+    --staking-verification-key-file stake.vkey \
+    --out-file stake.cert
+```
+
+You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
+
+```
+export CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket
+cardano-cli shelley query tip --testnet-magic 42
+```
+
+Example **tip** output:
+
+> `Tip (SlotNo {unSlotNo = 510000})`
+
+{% hint style="info" %}
+You will want to set your **ttl** value greater than the current tip. In this example, we use 250000000. 
+{% endhint %}
+
+Calculate the current minimum fee:
+
+```text
+cardano-cli shelley transaction calculate-min-fee \
+    --tx-in-count 1 \
+    --tx-out-count 1 \
+    --ttl 250000000 \
+    --testnet-magic 42 \
+    --signing-key-file pay.skey \
+    --signing-key-file stake.skey \
+    --certificate stake.cert \
+    --protocol-params-file params.json
+```
+
+Example of **calculate-min-fee**:
+
+> `runTxCalculateMinFee: 171309`
+
+Build your transaction which will register your stake address.
+
+```text
+cardano-cli shelley query utxo \
+    --address $(cat pay.addr) \
+    --testnet-magic 42
+```
+
+Example **utxo** output:
+
+```text
+                 TxHash                         Ix        Lovelace
+--------------------------------------------------------------------
+81acd93...                                        0      100000000000
+```
+
+{% hint style="info" %}
+Notice the TxHash and Ix \(index\). Will use this data shortly.
+{% endhint %}
+
+Calculate your transaction's change
+
+```text
+expr 100000000000 - 400000 - 171309
+```
+
+Example **translocation change amount**:
+
+> 99999428691
+
+{% hint style="info" %}
+Registration of a stake address certificate costs 400000 lovelace.
+{% endhint %}
+
+Run the build-raw transaction command
+
+{% hint style="info" %}
+Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix number>`from above.
+{% endhint %}
+
+```text
+cardano-cli shelley transaction build-raw \
+    --tx-in 81acd93...#0 \
+    --tx-out $(cat pay.addr)+99999428691\
+    --ttl 250000000 \
+    --fee 171309 \
+    --tx-body-file tx.raw \
+    --certificate stake.cert
+```
+
+Sign the transaction with both the payment and stake secret keys.
+
+```text
+cardano-cli shelley transaction sign \
+    --tx-body-file tx.raw \
+    --signing-key-file pay.skey \
+    --signing-key-file stake.skey \
+    --testnet-magic 42 \
+    --tx-file tx.signed
+```
+
+Send the signed transaction.
+
+```text
+cardano-cli shelley transaction submit \
+    --tx-file tx.signed \
+    --testnet-magic 42
+```
+
+## 📄 9. Register your stakepool
 
 Create a registration certificate for your stakepool.
 
@@ -680,18 +796,18 @@ Example of **query utxo** output:
 ```text
                  TxHash                         Ix        Lovelace
 --------------------------------------------------------------------
-3ac393d...                                        0      999428691 
+3ac393d...                                        0      99999428691
 ```
 
 Calculate the change amount.
 
 ```text
-expr 999428691 - 500000000 - 184861
+expr 99999428691 - 500000000 - 184861
 ```
 
 Example **change amount** output:
 
-> 499243830
+> 99499815139
 
 Build the transaction.
 
@@ -702,7 +818,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in 3ac393d...#0 \
-    --tx-out $(cat pay.addr)+499243830\
+    --tx-out $(cat pay.addr)+99499243830\
     --ttl 250000000 \
     --fee 184861\
     --tx-body-file tx.raw \
@@ -730,7 +846,7 @@ cardano-cli shelley transaction submit \
     --testnet-magic 42
 ```
 
-## 🐣 9. Locate your Stakepool ID and verify everything is working 
+## 🐣 10. Locate your Stakepool ID and verify everything is working 
 
 Your stakepool ID can be computed with:
 
@@ -754,7 +870,7 @@ With your stakepool ID, now you can find your data on block explorers such as [h
 Congratulations! Your stakepool is registered and ready to accept delegations.
 {% endhint %}
 
-## 🎇 10. Checking Stakepool Rewards
+## 🎇 11. Checking Stakepool Rewards
 
 After the epoch is over and assuming you successfully minted blocks, check with this:
 
@@ -762,7 +878,7 @@ After the epoch is over and assuming you successfully minted blocks, check with 
 cardano-cli shelley query stake-address-info --address $(cat pay.addr) --testnet-magic 42
 ```
 
-## 👏 11. Thank yous and reference material
+## 👏 12. Thank yous and reference material
 
 Thanks to all Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
 

@@ -60,7 +60,7 @@ Example **utxo** output:
 ```text
                  TxHash                         Ix        Lovelace
 --------------------------------------------------------------------
-81acd93...                                        0      499243830
+81acd93...                                        0      100000000000
 ```
 
 {% hint style="info" %}
@@ -70,12 +70,12 @@ Notice the TxHash and Ix \(index\). Will use this data shortly.
 Calculate your transaction's change
 
 ```text
-expr 499243830 - 400000 - 171309
+expr 100000000000 - 400000 - 171309
 ```
 
 Example **translocation change amount**:
 
-> 498672521
+> 99999428691
 
 {% hint style="info" %}
 Registration of a stake address certificate costs 400000 lovelace.
@@ -90,7 +90,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in 81acd93...#0 \
-    --tx-out $(cat pay.addr)+498672521\
+    --tx-out $(cat pay.addr)+99999428691\
     --ttl 250000000 \
     --fee 171309 \
     --tx-body-file tx.raw \
