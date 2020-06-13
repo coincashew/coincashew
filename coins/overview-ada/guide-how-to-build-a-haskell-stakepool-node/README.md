@@ -608,13 +608,12 @@ cardano-cli shelley stake-address registration-certificate \
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
 ```
-export CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket
 cardano-cli shelley query tip --testnet-magic 42
 ```
 
 Example **tip** output:
 
-> `Tip (SlotNo {unSlotNo = 510000})`
+> `Tip (SlotNo {unSlotNo = 690000})`
 
 {% hint style="info" %}
 You will want to set your **ttl** value greater than the current tip. In this example, we use 250000000. 
@@ -749,7 +748,7 @@ cardano-cli shelley query tip --testnet-magic 42
 
 Example **tip** output:
 
-> `Tip (SlotNo {unSlotNo = 510000})`
+> `Tip (SlotNo {unSlotNo = 690000})`
 
 {% hint style="info" %}
 You will want to set your **ttl** value greater than the current tip. In this example, we use 250000000. 
