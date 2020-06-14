@@ -609,7 +609,6 @@ You need to find the **tip** of the blockchain to set the **ttl** parameter prop
 
 ```
 cardano-cli shelley query tip --testnet-magic 42 | grep -oP 'SlotNo = \K\d+'
-
 ```
 
 Example **tip** output:
