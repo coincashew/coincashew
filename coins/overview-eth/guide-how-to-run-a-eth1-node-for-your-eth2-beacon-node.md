@@ -37,7 +37,7 @@ or manually download at:
 
 ```text
 cat > startGethNode.sh << EOF 
-geth --goerli --datadir="$HOME/Goerli" --rpc --rpcaddr=127.0.0.1 --rpcport=8545 --ws --wsaddr=127.0.0.1 --wsport=8546
+geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
 ```
 
@@ -61,7 +61,7 @@ You are fully sync'd when you see the message: `Imported new chain segment`
 Start prysm.sh with these new parameters to connect your new geth node.
 
 ```text
-./prysm.sh beacon-chain --web3provider=ws://localhost:8546/ --http-web3provider=http://localhost:8545/
+./prysm.sh beacon-chain --http-web3provider=http://localhost:8545/
 ```
 
 {% hint style="success" %}
