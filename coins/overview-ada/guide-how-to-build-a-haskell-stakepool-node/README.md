@@ -405,12 +405,12 @@ Before continuing, your node must be fully synchronized to the blockchain. Other
 {% endhint %}
 
 ```text
-cardano-cli shelley query tip --testnet-magic 42
+cardano-cli shelley query tip --testnet-magic 42 | grep -oP 'SlotNo = \K\d+'
 ```
 
 Example **query tip** output:
 
-> Tip \(SlotNo {unSlotNo = 690000}\) ...
+> 690000
 
 Find the tip number\(e.g. 690000\) and divide by one period which is 3600 slots.
 
@@ -524,12 +524,12 @@ cardano-cli shelley query protocol-parameters \
     --out-file params.json
 ```
 
-Create a new payment key pair:  `pay.skey` & `pay.vkey`
+Create a new payment key pair:  `payment.skey` & `payment.vkey`
 
 ```text
 cardano-cli shelley address key-gen \
-    --verification-key-file pay.vkey \
-    --signing-key-file pay.skey
+    --verification-key-file payment.vkey \
+    --signing-key-file payment.skey
 ```
 
  Create a new stake address key pair: `stake.skey` & `stake.vkey`
@@ -549,13 +549,13 @@ cardano-cli shelley stake-address build \
     --testnet-magic 42
 ```
 
-Build a payment address for the payment key `pay.vkey` which will delegate to the stake address, `stake.vkey`
+Build a payment address for the payment key `payment.vkey` which will delegate to the stake address, `stake.vkey`
 
 ```text
 cardano-cli shelley address build \
-    --payment-verification-key-file pay.vkey \
+    --payment-verification-key-file payment.vkey \
     --staking-verification-key-file stake.vkey \
-    --out-file pay.addr \
+    --out-file payment.addr \
     --testnet-magic 42
 ```
 
@@ -565,10 +565,10 @@ Payment keys are used to send and receive payments and staking keys are used to 
 
 Next step is to fund your payment address from the [Shelley Testnet Faucet](https://testnets.cardano.org/en/shelley/tools/faucet/) or other address.
 
-You can find your payment address in `pay.addr`
+You can find your payment address in `payment.addr`
 
 ```text
-cat pay.addr
+cat payment.addr
 ```
 
 {% hint style="success" %}
@@ -583,7 +583,7 @@ Before continuing, your nodes must be fully synchronized to the blockchain. Othe
 
 ```text
 cardano-cli shelley query utxo \
-    --address $(cat pay.addr) \
+    --address $(cat payment.addr) \
     --testnet-magic 42
 ```
 
@@ -608,12 +608,13 @@ cardano-cli shelley stake-address registration-certificate \
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
 ```
-cardano-cli shelley query tip --testnet-magic 42
+cardano-cli shelley query tip --testnet-magic 42 | grep -oP 'SlotNo = \K\d+'
+
 ```
 
 Example **tip** output:
 
-> `Tip (SlotNo {unSlotNo = 690000})`
+> `690000`
 
 {% hint style="info" %}
 You will want to set your **ttl** value greater than the current tip. In this example, we use 250000000. 
@@ -627,7 +628,7 @@ cardano-cli shelley transaction calculate-min-fee \
     --tx-out-count 1 \
     --ttl 250000000 \
     --testnet-magic 42 \
-    --signing-key-file pay.skey \
+    --signing-key-file payment.skey \
     --signing-key-file stake.skey \
     --certificate stake.cert \
     --protocol-params-file params.json
@@ -641,7 +642,7 @@ Build your transaction which will register your stake address.
 
 ```text
 cardano-cli shelley query utxo \
-    --address $(cat pay.addr) \
+    --address $(cat payment.addr) \
     --testnet-magic 42
 ```
 
@@ -680,7 +681,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in 81acd93...#0 \
-    --tx-out $(cat pay.addr)+99999428691\
+    --tx-out $(cat payment.addr)+99999428691\
     --ttl 250000000 \
     --fee 171309 \
     --tx-body-file tx.raw \
@@ -692,7 +693,7 @@ Sign the transaction with both the payment and stake secret keys.
 ```text
 cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
-    --signing-key-file pay.skey \
+    --signing-key-file payment.skey \
     --signing-key-file stake.skey \
     --testnet-magic 42 \
     --tx-file tx.signed
@@ -743,12 +744,12 @@ cardano-cli shelley stake-address delegation-certificate \
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
 ```
-cardano-cli shelley query tip --testnet-magic 42
+cardano-cli shelley query tip --testnet-magic 42 | grep -oP 'SlotNo = \K\d+'
 ```
 
 Example **tip** output:
 
-> `Tip (SlotNo {unSlotNo = 690000})`
+> `690000`
 
 {% hint style="info" %}
 You will want to set your **ttl** value greater than the current tip. In this example, we use 250000000. 
@@ -762,7 +763,7 @@ cardano-cli shelley transaction calculate-min-fee \
     --tx-out-count 1 \
     --ttl 250000000 \
     --testnet-magic 42 \
-    --signing-key-file pay.skey \
+    --signing-key-file payment.skey \
     --signing-key-file ~/cold-keys/node.skey \
     --signing-key-file stake.skey \
     --certificate pool.cert \
@@ -788,7 +789,7 @@ Find your unspent output \(UTXO\).
 
 ```text
 cardano-cli shelley query utxo \
-    --address $(cat pay.addr) \
+    --address $(cat payment.addr) \
     --testnet-magic 42
 ```
 
@@ -819,7 +820,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in 3ac393d...#0 \
-    --tx-out $(cat pay.addr)+99499243654\
+    --tx-out $(cat payment.addr)+99499243654\
     --ttl 250000000 \
     --fee 185037\
     --tx-body-file tx.raw \
@@ -832,7 +833,7 @@ Sign the transaction.
 ```text
 cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
-    --signing-key-file pay.skey \
+    --signing-key-file payment.skey \
     --signing-key-file ~/cold-keys/node.skey \
     --signing-key-file stake.skey \
     --testnet-magic 42 \
@@ -876,7 +877,7 @@ Congratulations! Your stakepool is registered and ready to accept delegations.
 After the epoch is over and assuming you successfully minted blocks, check with this:
 
 ```text
-cardano-cli shelley query stake-address-info --address $(cat pay.addr) --testnet-magic 42
+cardano-cli shelley query stake-address-info --address $(cat payment.addr) --testnet-magic 42
 ```
 
 ## 👏 12. Thank yous and reference material

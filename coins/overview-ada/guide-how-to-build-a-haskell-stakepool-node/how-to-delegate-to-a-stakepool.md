@@ -18,12 +18,12 @@ You need to find the **tip** of the blockchain to set the **ttl** parameter prop
 
 ```
 export CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket
-cardano-cli shelley query tip --testnet-magic 42
+cardano-cli shelley query tip --testnet-magic 42 | grep -oP 'SlotNo = \K\d+'
 ```
 
 Example **tip** output:
 
-> `Tip (SlotNo {unSlotNo = 510000})`
+> `690000`
 
 {% hint style="info" %}
 You will want to set your **ttl** value greater than the current tip. In this example, we use 250000000. 
@@ -37,7 +37,7 @@ cardano-cli shelley transaction calculate-min-fee \
     --tx-out-count 1 \
     --ttl 250000000 \
     --testnet-magic 42 \
-    --signing-key-file pay.skey \
+    --signing-key-file payment.skey \
     --signing-key-file stake.skey \
     --certificate stake.cert \
     --protocol-params-file params.json
@@ -51,7 +51,7 @@ Build your transaction which will register your stake address.
 
 ```text
 cardano-cli shelley query utxo \
-    --address $(cat pay.addr) \
+    --address $(cat payment.addr) \
     --testnet-magic 42
 ```
 
@@ -90,7 +90,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in 81acd93...#0 \
-    --tx-out $(cat pay.addr)+99999428691\
+    --tx-out $(cat payment.addr)+99999428691\
     --ttl 250000000 \
     --fee 171309 \
     --tx-body-file tx.raw \
@@ -102,7 +102,7 @@ Sign the transaction with both the payment and stake secret keys.
 ```text
 cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
-    --signing-key-file pay.skey \
+    --signing-key-file payment.skey \
     --signing-key-file stake.skey \
     --testnet-magic 42 \
     --tx-file tx.signed
@@ -135,7 +135,7 @@ cardano-cli shelley transaction calculate-min-fee \
     --tx-out-count 1 \
     --ttl 250000000 \
     --testnet-magic 42 \
-    --signing-key-file pay.skey \
+    --signing-key-file payment.skey \
     --signing-key-file stake.skey \
     --certificate deleg.cert \
     --protocol-params-file params.json
@@ -149,7 +149,7 @@ Find your UTXO.
 
 ```text
 cardano-cli shelley query utxo \
-    --address $(cat pay.addr) \
+    --address $(cat payment.addr) \
     --testnet-magic 42
 ```
 
@@ -176,7 +176,7 @@ Build your transaction. Update `tx-in` with your `TxHash` and `TxIx`
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in 32cd839...#0 \
-    --tx-out $(cat pay.addr)+499071025\
+    --tx-out $(cat payment.addr)+499071025\
     --ttl 250000000 \
     --fee 172805 \
     --out-file tx.raw \
@@ -188,7 +188,7 @@ Sign your transaction.
 ```text
 cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
-    --signing-key-file pay.skey \
+    --signing-key-file payment.skey \
     --signing-key-file stake.skey \
     --testnet-magic 42 \
     --tx-file tx.signed
