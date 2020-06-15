@@ -142,6 +142,7 @@
   * [Guide: How to build a Haskell Testnet Cardano Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
     * [How to delegate to a Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-delegate-to-a-stakepool.md)
   * [Guide: Build Haskell Pool by Cardano Community](https://cardano-community.github.io/guild-operators/)
+  * [A Non-technical Guide for Running a Stakepool](https://medium.com/@contact_73710/a-non-technical-guide-for-running-a-stake-pool-part-1-a9071022d125)
   * [Guide: How to stake ADA](coins/overview-ada/guide-how-to-stake-ada.md)
   * [Guide: Install Daedalus mainnet wallet](coins/overview-ada/guide-install-daedalus-mainnet-wallet.md)
 * [NEO](coins/overview-neo/README.md)
