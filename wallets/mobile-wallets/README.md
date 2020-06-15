@@ -28,5 +28,5 @@
 
 {% page-ref page="lynx-eos.md" %}
 
-
+{% page-ref page="guarda-multi-chain-assets.md" %}
 

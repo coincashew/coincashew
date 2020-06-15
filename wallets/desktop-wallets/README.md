@@ -26,5 +26,5 @@
 
 {% page-ref page="zcoin-official-wallet.md" %}
 
-
+{% page-ref page="guarda-multi-chain-assets.md" %}
 

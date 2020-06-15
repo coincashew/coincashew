@@ -14,5 +14,5 @@
 
 {% page-ref page="bloks.io-eos.md" %}
 
-
+{% page-ref page="guarda-web-wallet-multi-chain-assets.md" %}
 
