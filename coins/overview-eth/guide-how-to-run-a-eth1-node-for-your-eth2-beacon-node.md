@@ -67,8 +67,6 @@ Start prysm.sh with these new parameters to connect your new geth node.
 {% hint style="success" %}
 Congratulations. In your logs, this means it's working
 
-`INFO powchain: Connected to eth1 proof-of-work chain endpoint=`[`http://localhost:8545/`](http://localhost:8545/)\`\`
+`INFO powchain: Connected to eth1 proof-of-work chain endpoint=/home/<username>/Goerli/geth.ipc`
 {% endhint %}
-
-
 
