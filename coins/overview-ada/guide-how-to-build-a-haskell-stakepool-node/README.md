@@ -1015,6 +1015,10 @@ cd ~/cardano-my-node
 As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pull the latest topology data. Restart your relay nodes afterwards.
 {% endhint %}
 
+You are properly connected to the network when you see the transactions processed increasing.
+
+![](../../../.gitbook/assets/ada-tx-processed.png)
+
 {% hint style="success" %}
 Congratulations! Your stakepool is registered and ready to produce blocks.
 {% endhint %}
