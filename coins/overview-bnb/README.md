@@ -37,3 +37,11 @@ description: >-
 | CoinPaprika | [https://coinpaprika.com/coin/bnb-binance-coin/](https://coinpaprika.com/coin/bnb-binance-coin/) |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/binance-coin/](https://coinmarketcap.com/currencies/binance-coin/) |
 
+## 💰 Wallets
+
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+

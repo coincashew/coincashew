@@ -77,7 +77,5 @@ description: >-
 
 {% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
 
-
-
-
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
 

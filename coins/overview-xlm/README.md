@@ -60,5 +60,5 @@ description: >-
 
 {% page-ref page="../../wallets/desktop-wallets/solar-stellar.md" %}
 
-
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
 

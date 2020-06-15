@@ -59,3 +59,5 @@ description: >-
 
 {% page-ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
 
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+

@@ -61,3 +61,5 @@ description: THE FIRST HIGH INTEREST BLOCKCHAIN CERTIFICATE OF DEPOSIT
 
 {% page-ref page="../../wallets/mobile-wallets/enjin-multi-currency.md" %}
 
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+

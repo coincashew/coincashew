@@ -50,3 +50,5 @@ description: An open network for the Smart Economy
 
 {% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
 
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+

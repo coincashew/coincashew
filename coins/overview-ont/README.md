@@ -46,3 +46,7 @@ description: >-
 
 {% page-ref page="../../wallets/desktop-wallets/o3-neo-ont.md" %}
 
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+

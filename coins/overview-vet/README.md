@@ -48,3 +48,5 @@ description: Public Blockchain for Business Mass Adoption
 
 {% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
 
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+

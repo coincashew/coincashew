@@ -44,3 +44,9 @@ description: >-
 | CoinPaprika | [https://coinpaprika.com/coin/waves-waves/](https://coinpaprika.com/coin/waves-waves/) |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/waves/](https://coinmarketcap.com/currencies/waves/) |
 
+## 💰 Wallets
+
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+

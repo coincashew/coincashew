@@ -59,5 +59,5 @@ description: DECENTRALIZE THE WEB
 
 {% page-ref page="../../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
 
-
+{% page-ref page="../../wallets/desktop-wallets/guarda-multi-chain-assets.md" %}
 

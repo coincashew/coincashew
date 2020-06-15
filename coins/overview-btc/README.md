@@ -61,3 +61,5 @@ description: Bitcoin is an innovative payment network and a new kind of money.
 
 {% page-ref page="../../wallets/mobile-wallets/enjin-multi-currency.md" %}
 
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+

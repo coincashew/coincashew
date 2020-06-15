@@ -53,3 +53,5 @@ description: 'The best place to Buy, Sell and Pay with Crypto'
 
 {% page-ref page="../../wallets/desktop-wallets/mycrypto-ethereum.md" %}
 
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+
