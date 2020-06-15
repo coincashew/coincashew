@@ -370,7 +370,7 @@ Make a set of cold keys and create the cold counter file.
 cardano-cli shelley node key-gen \
     --cold-verification-key-file node.vkey \
     --cold-signing-key-file node.skey \
-    --operational-certificate-issue-counter coldcounter
+    --operational-certificate-issue-counter node.counter
 ```
 
 {% hint style="info" %}
@@ -428,9 +428,9 @@ With this calculation, update your **--kes-period** and you can generate a opera
 cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file ~/cold-keys/node.skey \
-    --operational-certificate-issue-counter ~/cold-keys/coldcounter \
+    --operational-certificate-issue-counter ~/cold-keys/node.counter \
     --kes-period <kes period from expr calculation> \
-    --out-file opcert
+    --out-file node.cert
 ```
 
 {% hint style="info" %}
@@ -449,9 +449,9 @@ chmod u+rwx ~/cold-keys
 cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file ~/cold-keys/node.skey \
-    --operational-certificate-issue-counter ~/cold-keys/coldcounter \
+    --operational-certificate-issue-counter ~/cold-keys/node.counter \
     --kes-period <new kes period = old period + 120> \
-    --out-file opcert
+    --out-file node.cert
 chmod a-rwx ~/cold-keys
 ```
 {% endhint %}
@@ -498,7 +498,7 @@ SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/ff-config.json
 KES=\${DIRECTORY}/kes.skey
 VRF=\${DIRECTORY}/vrf.skey
-CERT=\${DIRECTORY}/opcert
+CERT=\${DIRECTORY}/node.cert
 cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG} --shelley-kes-key \${KES} --shelley-vrf-key \${VRF} --shelley-operational-certificate \${CERT}
 EOF
 ```
@@ -679,7 +679,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 
 ```text
 cardano-cli shelley transaction build-raw \
-    --tx-in 81acd93...#0 \
+    --tx-in <TxHash>#<Index number> \
     --tx-out $(cat payment.addr)+99999428691\
     --ttl 250000000 \
     --fee 171309 \
@@ -818,7 +818,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 
 ```text
 cardano-cli shelley transaction build-raw \
-    --tx-in 3ac393d...#0 \
+    --tx-in <TxHash>#<Index number> \
     --tx-out $(cat payment.addr)+99499243654\
     --ttl 250000000 \
     --fee 185037\

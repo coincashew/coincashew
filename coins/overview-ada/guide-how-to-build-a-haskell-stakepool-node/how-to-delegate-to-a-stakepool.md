@@ -89,7 +89,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 
 ```text
 cardano-cli shelley transaction build-raw \
-    --tx-in 81acd93...#0 \
+    --tx-in <TxHash>#<Index number> \
     --tx-out $(cat payment.addr)+99999428691\
     --ttl 250000000 \
     --fee 171309 \
@@ -175,7 +175,7 @@ Build your transaction. Update `tx-in` with your `TxHash` and `TxIx`
 
 ```text
 cardano-cli shelley transaction build-raw \
-    --tx-in 32cd839...#0 \
+    --tx-in <TxHash>#<Index number> \
     --tx-out $(cat payment.addr)+499071025\
     --ttl 250000000 \
     --fee 172805 \
