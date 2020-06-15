@@ -867,11 +867,159 @@ A non-empty string return means you're registered! 👏
 
 With your stakepool ID, now you can find your data on block explorers such as [https://ff.pooltool.io/](https://ff.pooltool.io/)
 
-{% hint style="success" %}
-Congratulations! Your stakepool is registered and ready to accept delegations.
+## 11. Configure topology with Pooltool.io
+
+{% hint style="info" %}
+Shelley testnet has been launched without peer-to-peer \(p2p\) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
 {% endhint %}
 
-## 🎇 11. Checking Stakepool Rewards
+1. Visit [https://ff.pooltool.io/](https://ff.pooltool.io/)
+2. Create an account and login
+3. Search for your stakepool id
+4. Click ➡ **Pool Details** &gt; **Manage** &gt; **CLAIM THIS POOL**
+5. Fill in your pool name and pool URL if you have one.
+6. Fill in your **Private Nodes** and **Your Relays** as follows.
+
+![](../../../.gitbook/assets/configurepooltool.png)
+
+Add requests for nodes or "buddies" to each of your relay nodes. Make sure you include the IOHK node and your private nodes.
+
+For example, on relaynode1's buddies you should add **requests** for
+
+* your BlockProducingNode
+* your RelayNode2
+* IOHK
+* and any other buddy/friend nodes your can find or know
+
+For example, on relaynode2's buddies you should add **requests** for
+
+* your BlockProducingNode
+* your RelayNode1
+* IOHK
+* and any other buddy/friend nodes your can find or know
+
+{% hint style="info" %}
+A relay node connection is not established until there is a request and an approval.
+{% endhint %}
+
+For relaynode1, create a get\_buddies.sh script to update your ff-topology.json file.
+
+```text
+cd ~/cardano-my-node
+cat > relaynode1/get_buddies.sh << EOF 
+#!/usr/bin/env bash
+
+## CHANGE THESE TO SUIT YOUR POOL TO YOUR POOL ID AS ON THE EXPLORER
+MY_POOL_ID="XXXXXXXX"
+## GET THIS FROM YOUR ACCOUNT PROFILE PAGE ON POOLTOOL WEBSITE
+MY_API_KEY="XXXXXXXX"
+## GET THIS FROM YOUR POOL MANAGE TAB ON POOLTOOL WEBSITE
+MY_NODE_ID="XXXXXXXX"
+## SET THIS TO THE LOCATION OF YOUR TOPOLOGY FILE THAT YOUR NODE USES
+TOPOLOGY_FILE="$HOME/cardano-my-node/relaynode1/ff-topology.json"
+
+JSON="$(jq -n --compact-output --arg MY_API_KEY "$MY_API_KEY" --arg MY_POOL_ID "$MY_POOL_ID" --arg MY_NODE_ID "$MY_NODE_ID" '{apiKey: $MY_API_KEY, nodeId: $MY_NODE_ID, poolId: $MY_POOL_ID}')"
+echo "Packet Sent: $JSON"
+RESPONSE="$(curl -s -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "$JSON" "https://api.pooltool.io/v0/getbuddies")"
+SUCCESS="$(echo $RESPONSE | jq '.success')"
+if [ $SUCCESS ]; then
+  echo "Success"
+  echo $RESPONSE | jq '. | {Producers: .message}' > $TOPOLOGY_FILE
+  echo "Topology saved to $TOPOLOGY_FILE.  Note topology will only take effect next time you restart your node"
+else
+  echo "Failure "
+  echo $RESPONSE | jq '.message'
+fi
+EOF
+```
+
+For relaynode2, create a get\_buddies.sh script to update your ff-topology.json file.
+
+```text
+cd ~/cardano-my-node
+cat > relaynode2/get_buddies.sh << EOF 
+#!/usr/bin/env bash
+
+## CHANGE THESE TO SUIT YOUR POOL TO YOUR POOL ID AS ON THE EXPLORER
+MY_POOL_ID="XXXXXXXX"
+## GET THIS FROM YOUR ACCOUNT PROFILE PAGE ON POOLTOOL WEBSITE
+MY_API_KEY="XXXXXXXX"
+## GET THIS FROM YOUR POOL MANAGE TAB ON POOLTOOL WEBSITE
+MY_NODE_ID="XXXXXXXX"
+## SET THIS TO THE LOCATION OF YOUR TOPOLOGY FILE THAT YOUR NODE USES
+TOPOLOGY_FILE="$HOME/cardano-my-node/relaynode2/ff-topology.json"
+
+JSON="$(jq -n --compact-output --arg MY_API_KEY "$MY_API_KEY" --arg MY_POOL_ID "$MY_POOL_ID" --arg MY_NODE_ID "$MY_NODE_ID" '{apiKey: $MY_API_KEY, nodeId: $MY_NODE_ID, poolId: $MY_POOL_ID}')"
+echo "Packet Sent: $JSON"
+RESPONSE="$(curl -s -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "$JSON" "https://api.pooltool.io/v0/getbuddies")"
+SUCCESS="$(echo $RESPONSE | jq '.success')"
+if [ $SUCCESS ]; then
+  echo "Success"
+  echo $RESPONSE | jq '. | {Producers: .message}' > $TOPOLOGY_FILE
+  echo "Topology saved to $TOPOLOGY_FILE.  Note topology will only take effect next time you restart your node"
+else
+  echo "Failure "
+  echo $RESPONSE | jq '.message'
+fi
+EOF
+```
+
+For each of your relay nodes, update the following variables from pooltool.io into your get\_buddies.sh file
+
+* MY\_POOL\_ID 
+* MY\_API\_KEY 
+* MY\_NODE\_ID
+
+Update your get\_buddies.sh scripts with this information.
+
+{% hint style="info" %}
+Use **nano** to edit your files. 
+
+`nano relaynode1/get_buddies.sh`
+
+`nano relaynode2/get_buddies.sh`
+{% endhint %}
+
+Add execute permissions to these scripts.
+
+```text
+chmod +x relaynode1/get_buddies.sh
+chmod +x relaynode2/get_buddies.sh
+```
+
+Run the scripts to update your topology files.
+
+```text
+./relaynode1/get_buddies.sh
+./relaynode2/get_buddies.sh
+```
+
+Stop and then restart your relay nodes in order for the new topology settings to take effect.
+
+```text
+kill $(lsof -t -i:3001)
+kill $(lsof -t -i:3002)
+```
+
+```text
+cd ~/cardano-my-node
+./relaynode1/startRelayNode1.sh
+```
+
+```text
+cd ~/cardano-my-node
+./relaynode2/startRelayNode2.sh
+```
+
+{% hint style="info" %}
+As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pull the latest topology data. Restart your relay nodes afterwards.
+{% endhint %}
+
+{% hint style="success" %}
+Congratulations! Your stakepool is registered and ready to produce blocks.
+{% endhint %}
+
+## 🎇 12. Checking Stakepool Rewards
 
 After the epoch is over and assuming you successfully minted blocks, check with this:
 
@@ -879,7 +1027,7 @@ After the epoch is over and assuming you successfully minted blocks, check with 
 cardano-cli shelley query stake-address-info --address $(cat payment.addr) --testnet-magic 42
 ```
 
-## 👏 12. Thank yous and reference material
+## 👏 13. Thank yous and reference material
 
 Thanks to all Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
 
