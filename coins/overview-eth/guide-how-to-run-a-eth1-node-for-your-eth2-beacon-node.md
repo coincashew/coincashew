@@ -2,7 +2,7 @@
 description: How to run a geth node for your Eth 2.0 beacon node on Ubutnu.
 ---
 
-# Guide: How to run a ETH1 node for your ETH2 Prysm Beacon Node on Ubuntu
+# Guide: How to run a Goerli ETH1 node for your ETH2 Prysm Beacon Node on Testnet with Ubuntu
 
 ## 🏁 0. Prerequisites
 

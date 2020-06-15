@@ -90,7 +90,7 @@
 * [Bitcoin: BTC](coins/overview-btc/README.md)
   * [Book: Mastering Bitcoin](coins/overview-btc/book-mastering-bitcoin.md)
 * [Ethereum: ETH](coins/overview-eth/README.md)
-  * [Guide: How to run a ETH1 node for your ETH2 Prysm Beacon Node on Ubuntu](coins/overview-eth/guide-how-to-run-a-eth1-node-for-your-eth2-beacon-node.md)
+  * [Guide: How to run a Goerli ETH1 node for your ETH2 Prysm Beacon Node on Testnet with Ubuntu](coins/overview-eth/guide-how-to-run-a-eth1-node-for-your-eth2-beacon-node.md)
   * [Guide: How to stake on ETH 2.0 ONYX testnet with Prysm on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth-2.0-onyx-testnet.md)
   * [Guide: How to stake on ETH 2.0 ONYX testnet with Prysm on Windows](coins/overview-eth/guide-how-to-stake-on-eth-2.0-onyx-testnet-with-prysm-on-windows.md)
   * [Guide to Staking on Ethereum 2.0 \(Ubuntu/Prysm/Witti\) by Somer Est](https://medium.com/@SomerEsat/guide-to-staking-on-ethereum-2-0-ubuntu-prysm-witti-2b972e697918)
