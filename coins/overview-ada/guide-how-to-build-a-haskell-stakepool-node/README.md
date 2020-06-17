@@ -401,7 +401,7 @@ Example **KES Period** output:
 Determine the KES period.
 
 {% hint style="warning" %}
-Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period.
+Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the _epoch_ and _slot\#_ is equal to that found on a block explorer such as [https://ff.pooltool.io/](https://ff.pooltool.io/)
 {% endhint %}
 
 ```text
