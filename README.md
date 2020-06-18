@@ -46,7 +46,7 @@
 
 {% page-ref page="coins/overview-tlos/guide-how-to-stake-tlos.md" %}
 
-{% page-ref page="coins/overview-ont/guide-how-to-stake-ont.md" %}
+{% page-ref page="coins/ont/guide-how-to-stake-ont.md" %}
 
 {% page-ref page="coins/overview-trx/guide-how-to-stake-trx.md" %}
 {% endtab %}

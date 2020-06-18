@@ -10,5 +10,5 @@
 
 ## 💰 Supported Assets
 
-* [Zcoin](../../coins/overview-xzc/)
+* [Zcoin](../../coins/xzc/)
 

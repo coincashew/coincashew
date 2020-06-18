@@ -18,5 +18,5 @@ description: >-
 
 ## 💰 Supported Assets
 
-* [Litecoin \(LTC\)](../../coins/overview-ltc/)
+* [Litecoin \(LTC\)](../../coins/ltc/)
 

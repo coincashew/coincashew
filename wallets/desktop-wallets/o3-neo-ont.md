@@ -19,5 +19,5 @@ description: Your gateway to the Smart Economy
 ## 💰 Supported Assets
 
 * [NEO + GAS](../../coins/overview-neo/)
-* [Ontology \(ONT + ONG\)](../../coins/overview-ont/)
+* [Ontology \(ONT + ONG\)](../../coins/ont/)
 

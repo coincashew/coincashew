@@ -30,6 +30,10 @@ If you need to install Metamask, refer to
 2. Type "**cmd**" then press OK
 3. Change directories to where you would like to install. By default, location is `c:\Users\<yourUserName>`
 
+{% hint style="info" %}
+If your Windows 10 is version 1803 or later, your OS [ships with a copy of curl](https://devblogs.microsoft.com/commandline/tar-and-curl-come-to-windows/), already set up and ready to use. If not, install [curl manually](https://curl.haxx.se/windows/) or update your Windows.
+{% endhint %}
+
 ```text
  mkdir prysm && cd prysm 
  curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.bat --output prysm.bat

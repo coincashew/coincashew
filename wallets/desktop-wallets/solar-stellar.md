@@ -16,7 +16,7 @@ description: >-
 
 ## 💰 Supported Assets
 
-* [Stellar \(XLM\)](../../coins/overview-xlm/)
+* [Stellar \(XLM\)](../../coins/xlm/)
 
 
 

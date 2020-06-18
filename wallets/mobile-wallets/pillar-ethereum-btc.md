@@ -23,7 +23,7 @@ description: >-
 
 * [Ethereum](../../coins/overview-eth/)
 * [ERC Tokens](../../coins/overview-eth/)
-* [BTC](../../coins/overview-btc/)
+* [BTC](../../coins/btc/)
 
 
 

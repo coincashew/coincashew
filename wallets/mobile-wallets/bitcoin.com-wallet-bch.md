@@ -24,6 +24,6 @@ description: >-
 
 ## 💰 Supported Assets
 
-* [Bitcoin Cash \(BCH\)](../../coins/overview-bch/)
-* [Bitcoin \(BTC\)](../../coins/overview-btc/)
+* [Bitcoin Cash \(BCH\)](../../coins/bch/)
+* [Bitcoin \(BTC\)](../../coins/btc/)
 
