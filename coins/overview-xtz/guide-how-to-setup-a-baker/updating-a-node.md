@@ -19,6 +19,7 @@ Change to the new directory and rebuild the latest binaries. Run the following c
 
 ```text
 cd ~/tezos2
+git clean -fd
 git fetch && git checkout latest-release && git pull && make build-deps && eval $(opam env) && make
 ```
 
