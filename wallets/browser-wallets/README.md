@@ -16,5 +16,5 @@
 
 {% page-ref page="guarda-web-wallet-multi-chain-assets.md" %}
 
-{% page-ref page="atomex-wallet.md" %}
+{% page-ref page="atomex-web-wallet-multi-chain-assets.md" %}
 

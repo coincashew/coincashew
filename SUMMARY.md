@@ -63,6 +63,7 @@
   * [MyMonero: XMR](wallets/browser-wallets/mymonero-xmr.md)
   * [TronLink: TRX](wallets/browser-wallets/tronlink-trx.md)
   * [ICONex: Icon](wallets/browser-wallets/iconex-icon.md)
+  * [Atomex Web Wallet: Multi-chain assets](wallets/browser-wallets/atomex-web-wallet-multi-chain-assets.md)
 * [Guide: Crypto Wallet Tips 101 - Do's and Don'ts](wallets/guide-wallet-tips-101-dos-and-donts.md)
 * [Review: Metal Bitcoin Seed Storage by jlopp](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
 
