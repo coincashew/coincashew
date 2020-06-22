@@ -1,6 +1,6 @@
 ---
 description: >-
-  Multicurrency HD wallet with built-in hybrid atomic swap exchange. Atomex allows users to securely and anonymously exchange different cryptocurrencies like Bitcoin, Ethereum, Litecoin, Tezos, USDT etc via your own wallet directly without any third-party.
+  Multicurrency HD wallet with built-in hybrid Atomic Swap exchange. Atomex allows users to securely and anonymously exchange different cryptocurrencies like Bitcoin, Ethereum, Litecoin, Tezos, USDT etc via your own wallet directly without any third-party.
 ---
 
 # Atomex Web Wallet
