@@ -17,9 +17,9 @@ description: >-
 
 {% embed url="https://www.youtube.com/watch?v=fiwx9f1BOFU" %}
 
-## ⁉ FAQ
+## 🥨 Staking
 
-{% embed url="https://atomex.me/#faq" %}
+{% embed url="https://atomex.me/delegation" %}
 
 ## 💰 Supported Assets
 
