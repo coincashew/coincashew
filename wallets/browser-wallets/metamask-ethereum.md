@@ -2,7 +2,7 @@
 description: A crypto wallet & gateway to blockchain apps
 ---
 
-# MetaMask: Ethereum
+# MetaMask: Ethereum test
 
 ## 🚀 Official Website
 
