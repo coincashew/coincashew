@@ -266,7 +266,7 @@ For your **block-producing node**:
 cat > startBlockProducingNode.sh << EOF 
 DIRECTORY=~/cardano-my-node
 PORT=3000
-HOSTADDR=127.0.0.1
+HOSTADDR=0.0.0.0
 TOPOLOGY=\${DIRECTORY}/ff-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
@@ -282,7 +282,7 @@ For your **relaynode1**:
 cat > relaynode1/startRelayNode1.sh << EOF 
 DIRECTORY=~/cardano-my-node/relaynode1
 PORT=3001
-HOSTADDR=127.0.0.1
+HOSTADDR=0.0.0.0
 TOPOLOGY=\${DIRECTORY}/ff-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
@@ -297,7 +297,7 @@ For your **relaynode2**:
 cat > relaynode2/startRelayNode2.sh << EOF 
 DIRECTORY=~/cardano-my-node/relaynode2
 PORT=3002
-HOSTADDR=127.0.0.1
+HOSTADDR=0.0.0.0
 TOPOLOGY=\${DIRECTORY}/ff-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
@@ -305,10 +305,6 @@ CONFIG=\${DIRECTORY}/ff-config.json
 cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
-
-{% hint style="info" %}
-**Recommended pro tip**: 🎆 If you want your relay nodes to be hosted on physically different servers, make sure to change **HOSTADDR** from `127.0.0.1 to 0.0.0.0`  and update **ff-topology.json** where appropriate.
-{% endhint %}
 
 ## ✅ 5. Start the node
 
@@ -491,7 +487,7 @@ cd ~/cardano-my-node
 cat > startBlockProducingNode.sh << EOF 
 DIRECTORY=~/cardano-my-node
 PORT=3000
-HOSTADDR=127.0.0.1
+HOSTADDR=0.0.0.0
 TOPOLOGY=\${DIRECTORY}/ff-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
