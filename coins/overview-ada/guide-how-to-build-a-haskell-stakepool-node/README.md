@@ -863,7 +863,7 @@ A non-empty string return means you're registered! 👏
 
 With your stakepool ID, now you can find your data on block explorers such as [https://ff.pooltool.io/](https://ff.pooltool.io/)
 
-## 11. Configure topology with Pooltool.io
+## ⚙ 11. Configure topology with Pooltool.io
 
 {% hint style="info" %}
 Shelley testnet has been launched without peer-to-peer \(p2p\) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
