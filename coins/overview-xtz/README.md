@@ -76,3 +76,5 @@ description: >-
 
 {% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
 
+{% page-ref page="../../wallets/browser-wallets/atomex-web-wallet-multi-chain-assets.md" %}
+
