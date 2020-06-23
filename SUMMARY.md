@@ -165,7 +165,7 @@
 * [ICON: ICX](coins/overview-icx/README.md)
   * [Guide: Becoming a Public Representative for ICON](coins/overview-icx/guide-becoming-a-public-representative-for-icon.md)
   * [Guide: How to stake ICX](coins/overview-icx/guide-how-to-stake-icx.md)
-* [Enjin Coin: ENJ](coins/enjin-coin-enj.md)
+* [Enjin Coin: ENJ](coins/enj.md)
 * [Crypto.com: MCO](coins/mco/README.md)
   * [The Essential Guide to the MCO Visa Debit Card from Crypto.com by Richardson](https://medium.com/@techboy/the-essential-guide-to-the-mco-visa-debit-card-from-crypto-com-61d7b2f358c9)
 * [Aave: LEND](coins/lend.md)

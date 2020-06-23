@@ -16,7 +16,7 @@
 | ![](.gitbook/assets/dcr.png) [Decred](coins/dcr/) | ![](.gitbook/assets/ont.png) [Ontology](coins/ont/) |
 | ![](.gitbook/assets/zrx.png) [Ox](coins/zrx.md) | ![](.gitbook/assets/knc.png) [Kyber Network](coins/knc.md) |
 | ![](.gitbook/assets/kmd.png) [Komodo](coins/kmd/) | ![](.gitbook/assets/theta.png) [THETA](coins/theta/) |
-| ![](.gitbook/assets/lend.png) [Aave](coins/lend.md) | ![](.gitbook/assets/enj.png) [Enjin Coin](coins/enjin-coin-enj.md) |
+| ![](.gitbook/assets/lend.png) [Aave](coins/lend.md) | ![](.gitbook/assets/enj.png) [Enjin Coin](coins/enj.md) |
 | ![](.gitbook/assets/xzc.png) [Zcoin](coins/xzc/) | ![](.gitbook/assets/waves.png) [Waves](coins/waves/) |
 | ![](.gitbook/assets/ren.png) [Ren](coins/ren.md) | ![](.gitbook/assets/fun.png) [FunFair](coins/fun.md) |
 | ![](.gitbook/assets/mtl.png) [Metal](coins/mtl.md) | ![](.gitbook/assets/algo.png) [Algorand](coins/algo.md) |
