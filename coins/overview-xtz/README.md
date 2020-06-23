@@ -40,6 +40,7 @@ description: >-
 | TzKT | [https://tzkt.io/](https://tzkt.io/) |
 | tezblock by AirGap | [https://tezblock.io/](https://tezblock.io/) |
 | Tezos.id | [https://www.tezos.id/](https://www.tezos.id/) |
+| Blockchair | [https://blockchair.com/tezos](https://blockchair.com/tezos) |
 
 ## 🏙 Public Nodes
 
