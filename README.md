@@ -40,6 +40,8 @@
 
 {% page-ref page="coins/overview-icx/guide-how-to-stake-icx.md" %}
 
+{% page-ref page="coins/theta/guide-how-to-stake-theta.md" %}
+
 {% page-ref page="coins/overview-vet/guide-how-to-stake-vet.md" %}
 
 {% page-ref page="coins/overview-neo/guide-how-to-stake-neo.md" %}
