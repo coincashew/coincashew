@@ -914,7 +914,7 @@ Add requests for nodes or "buddies" to each of your relay nodes. Make sure you i
 IOHK's node address is:
 
 ```text
-http://relays-new.shelley-testnet.dev.cardano.org/
+relays-new.shelley-testnet.dev.cardano.org
 ```
 
 For example, on relaynode1's buddies you should add **requests** for
