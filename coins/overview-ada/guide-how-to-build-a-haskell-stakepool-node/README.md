@@ -894,8 +894,6 @@ A non-empty string return means you're registered! 👏
 
 With your stakepool ID, now you can find your data on block explorers such as [https://htn.pooltool.io/](https://htn.pooltool.io/)
 
-
-
 ## ⚙ 11. Configure topology with Pooltool.io
 
 {% hint style="info" %}
@@ -912,6 +910,12 @@ Shelley testnet has been launched without peer-to-peer \(p2p\) node discovery so
 ![](../../../.gitbook/assets/configurepooltool.png)
 
 Add requests for nodes or "buddies" to each of your relay nodes. Make sure you include the IOHK node and your private nodes.
+
+IOHK's node address is:
+
+```text
+http://relays-new.shelley-testnet.dev.cardano.org/
+```
 
 For example, on relaynode1's buddies you should add **requests** for
 
