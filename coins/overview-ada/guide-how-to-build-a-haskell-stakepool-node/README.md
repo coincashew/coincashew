@@ -398,7 +398,7 @@ Example **KES Period** output:
 Determine the KES period.
 
 {% hint style="warning" %}
-Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the _epoch_ and _slot\#_ is equal to that found on a block explorer such as [https://ff.pooltool.io/](https://ff.pooltool.io/)
+Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the _epoch_ and _slot\#_ is equal to that found on a block explorer such as [https://htn.pooltool.io/](https://htn.pooltool.io/)
 {% endhint %}
 
 ```text
@@ -409,7 +409,7 @@ Example **query tip** output:
 
 > 80000
 
-Find the tip number\(e.g. 690000\) and divide by one period which is 3600 slots.
+Find the tip number\(e.g. 80000\) and divide by one period which is 3600 slots.
 
 ```text
 expr 80000 / 3600
@@ -919,23 +919,23 @@ relays-new.shelley-testnet.dev.cardano.org
 
 For example, on relaynode1's buddies you should add **requests** for
 
-* your BlockProducingNode
-* your RelayNode2
+* your BlockProducingNode Private Node
+* your RelayNode2 Private Node
 * IOHK
-* and any other buddy/friend nodes your can find or know
+* and any other buddy/friendly nodes your can find or know
 
 For example, on relaynode2's buddies you should add **requests** for
 
-* your BlockProducingNode
-* your RelayNode1
+* your BlockProducingNode Private Node
+* your RelayNode1 Private Node
 * IOHK
-* and any other buddy/friend nodes your can find or know
+* and any other buddy/friendly nodes your can find or know
 
 {% hint style="info" %}
 A relay node connection is not established until there is a request and an approval.
 {% endhint %}
 
-For relaynode1, create a get\_buddies.sh script to update your ff-topology.json file.
+For relaynode1, create a get\_buddies.sh script to update your shelley\_testnet-topology.json file.
 
 ```text
 cd ~/cardano-my-node
@@ -966,7 +966,7 @@ fi
 EOF
 ```
 
-For relaynode2, create a get\_buddies.sh script to update your ff-topology.json file.
+For relaynode2, create a get\_buddies.sh script to update your shelley\_testnet-topology.json file.
 
 ```text
 cd ~/cardano-my-node
