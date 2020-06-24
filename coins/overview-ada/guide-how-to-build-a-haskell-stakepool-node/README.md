@@ -724,7 +724,7 @@ Get the hash of your metadata file.
 cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
 ```
 
-Now upload your **poolMetaData.json** to a public website such as [https://pages.github.com/](https://pages.github.com/)
+Now upload your **poolMetaData.json** to your website or a public website such as [https://pages.github.com/](https://pages.github.com/)
 
 Create a registration certificate for your stakepool. Update with your metadata URL and pool relay IP.
 
