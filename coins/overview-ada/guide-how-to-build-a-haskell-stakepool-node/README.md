@@ -707,6 +707,10 @@ cardano-cli shelley transaction submit \
 
 Create your pool's metadata with a JSON file. Update with your pool information.
 
+{% hint style="warning" %}
+**ticker** must be between 3-5 characters in length.
+{% endhint %}
+
 ```text
 cat > poolMetaData.json << EOF
 {
@@ -729,14 +733,14 @@ Now upload your **poolMetaData.json** to your website or a public website such a
 Create a registration certificate for your stakepool. Update with your metadata URL and pool relay IP.
 
 {% hint style="warning" %}
-Metadata URL must be a maximum length of 64 characters.
+**metadata-url** must be no longer than 64 characters.
 {% endhint %}
 
 ```text
 cardano-cli shelley stake-pool registration-certificate \
     --cold-verification-key-file node.vkey \
     --vrf-verification-key-file vrf.vkey \
-    --pool-pledge 1000000000 \
+    --pool-pledge 10000000000 \
     --pool-cost 10000000 \
     --pool-margin 0.1 \
     --pool-reward-account-verification-key-file stake.vkey \
@@ -750,7 +754,7 @@ cardano-cli shelley stake-pool registration-certificate \
 ```
 
 {% hint style="info" %}
-Here we are pledging 1000 ADA with a fixed pool cost of 10 ADA and a pool margin of 10%. 
+Here we are pledging 10000 ADA with a fixed pool cost of 10 ADA and a pool margin of 10%. 
 {% endhint %}
 
 Pledge stake to your stakepool.
