@@ -87,6 +87,7 @@
   * [Uniswap.io: How to earn returns as a Liquidity Provider](defi/guides-how-to-defi/uniswap.io-how-to-earn-returns-as-a-liquidity-provider.md)
   * [Makerdao.com: How to mint DAI with a vault](defi/guides-how-to-defi/makerdao.com-how-to-mint-dai.md)
   * [PoolTogether.com: How to play the no-loss lottery](defi/guides-how-to-defi/pooltogether.com-how-to-play-the-no-loss-lottery.md)
+* [Guide: Intro to DEFI Yield Farming](defi/guide-intro-to-defi-yield-farming.md)
 * [External Reading Material](defi/external-reading-material.md)
 
 ## Coins
