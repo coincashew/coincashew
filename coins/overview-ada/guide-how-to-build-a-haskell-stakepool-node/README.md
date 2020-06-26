@@ -88,21 +88,21 @@ Cabal library should be version 3.2.0.0 and GHC should be version 8.6.5
 
 ## 🏗 2. Build the node from source code
 
-Download source code and switch to the latest tag. In this case, use `1.14.0` with commit `88ed4d1`.
+Download source code and switch to the latest tag. In this case, use `release/1.14.x`
 
 ```text
 cd ~
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch
-git checkout 88ed4d1090fd713e7bcdb969eab42f2202acfa2c
+git checkout release/1.14.x
 ```
 
 Build the cardano-node from source code.
 
 ```text
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
-cabal install cardano-node cardano-cli
+cabal install cardano-node cardano-cli  --overwrite-policy=always
 ```
 
 {% hint style="info" %}
