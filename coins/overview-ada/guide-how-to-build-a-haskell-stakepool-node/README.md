@@ -112,8 +112,15 @@ Building process may take a few minutes up to a few hours depending on your comp
 Copy **cardano-cli** and **cardano-node** files into bin directory.
 
 ```text
-sudo cp $(find ~/.cabal/store/ghc-8.6.5/cardano-cli-1.14.0* -type f -name "cardano-cli") /usr/local/bin/cardano-cli
-sudo cp $(find ~/.cabal/store/ghc-8.6.5/cardano-node-1.14.0* -type f -name "cardano-node") /usr/local/bin/cardano-node
+sudo cp $HOME/.cabal/bin/cardano-cli /usr/local/bin/cardano-cli
+sudo cp $HOME/.cabal/bin/cardano-node /usr/local/bin/cardano-node
+```
+
+Verify your **cardano-cli** and **cardano-node** are the expected versions.
+
+```text
+cardano-node version
+cardano-cli version
 ```
 
 ## 📐 3. Configure the node
