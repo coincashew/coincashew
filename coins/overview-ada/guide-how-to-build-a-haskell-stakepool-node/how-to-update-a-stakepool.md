@@ -49,7 +49,7 @@ cardano-cli version
 Stop your node by pressing "q".
 {% endhint %}
 
-The following commands will quickly switch-over to your newly built cardano-node binaries while keeping the old directory for backup.
+Finally, the following sequence will switch-over to your newly built cardano-node folder while keeping the old directory for backup.
 
 ```text
 cd
