@@ -131,9 +131,9 @@ Here you'll grab the config.json, genesis.json, and topology.json files needed t
 cd ~
 mkdir cardano-my-node
 cd cardano-my-node
-wget https://hydra.iohk.io/build/3175192/download/1/shelley_testnet-config.json
-wget https://hydra.iohk.io/build/3175192/download/1/shelley_testnet-genesis.json
-wget https://hydra.iohk.io/build/3175192/download/1/shelley_testnet-topology.json
+wget https://hydra.iohk.io/build/3246637/download/1/shelley_testnet-config.json
+wget https://hydra.iohk.io/build/3246637/download/1/shelley_testnet-genesis.json
+wget https://hydra.iohk.io/build/3246637/download/1/shelley_testnet-topology.json
 ```
 
 Run the following to modify **config.json** and 
@@ -639,7 +639,7 @@ cardano-cli shelley transaction calculate-min-fee \
 
 Example of **calculate-min-fee**:
 
-> `runTxCalculateMinFee: 171309`
+> `runTxCalculateMinFee: 171133`
 
 Build your transaction which will register your stake address.
 
@@ -747,9 +747,9 @@ Create a registration certificate for your stakepool. Update with your metadata 
 cardano-cli shelley stake-pool registration-certificate \
     --cold-verification-key-file node.vkey \
     --vrf-verification-key-file vrf.vkey \
-    --pool-pledge 10000000000 \
-    --pool-cost 10000000 \
-    --pool-margin 0.1 \
+    --pool-pledge 50000000000 \
+    --pool-cost 100000000 \
+    --pool-margin 0.15 \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
     --testnet-magic 42 \
@@ -761,7 +761,7 @@ cardano-cli shelley stake-pool registration-certificate \
 ```
 
 {% hint style="info" %}
-Here we are pledging 10000 ADA with a fixed pool cost of 10 ADA and a pool margin of 10%. 
+Here we are pledging 500000 ADA with a fixed pool cost of 100 ADA and a pool margin of 15%. 
 {% endhint %}
 
 Pledge stake to your stakepool.
@@ -809,7 +809,7 @@ cardano-cli shelley transaction calculate-min-fee \
 
 Example **calculate-min-fee** output:
 
-> runTxCalculateMinFee: 188469
+> runTxCalculateMinFee: 188645
 
 Find the deposit fee for a pool.
 
@@ -840,12 +840,12 @@ Example of **query utxo** output:
 Calculate the change amount.
 
 ```text
-expr 99999428867 - 500000000 - 188469
+expr 99999428867 - 500000000 - 188645
 ```
 
 Example **change amount** output:
 
-> 99499240398
+> 99499240222
 
 Build the transaction.
 
@@ -856,9 +856,9 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in <TxHash>#<Index number> \
-    --tx-out $(cat payment.addr)+99499240398 \
+    --tx-out $(cat payment.addr)+99499240222 \
     --ttl 250000000 \
-    --fee 188469\
+    --fee 188645 \
     --tx-body-file tx.raw \
     --certificate pool.cert \
     --certificate deleg.cert
