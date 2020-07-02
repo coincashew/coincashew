@@ -1082,17 +1082,20 @@ Install prometheus and prometheus node exporter.
 sudo apt-get install -y prometheus prometheus-alertmanager prometheus-node-exporter 
 ```
 
-Install grafana under su.
-
-```text
-sudo su
-```
+Install grafana.
 
 ```text
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+```
+
+```text
+sudo su
 echo "deb https://packages.grafana.com/oss/deb stable main" > /etc/apt/sources.list.d/grafana.list
-sudo apt-get update && sudo apt-get install -y grafana
 exit
+```
+
+```text
+sudo apt-get update && sudo apt-get install -y grafana
 ```
 
 Change the default port of Grafana from 3000 to 30000
@@ -1103,7 +1106,7 @@ Port 3000 is used by the block-producing node.
 
 ```text
 cd /etc/grafana
-sudo sed -i.bak -e "s/http_port = 3000/http_port = 30000/g" grafana.ini
+sudo sed -i.bak -e "s/;http_port = 3000/http_port = 30000/g" grafana.ini
 ```
 
 Enable services so they start automatically.
@@ -1163,18 +1166,10 @@ sudo systemctl restart prometheus-node-exporter.service
 Verify that the services are running properly:
 
 ```text
-sudo systemctl status grafana-server.service
+sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
-```text
-sudo systemctl status prometheus-node-exporter.service
-```
-
-```text
-sudo systemctl status prometheus.service
-```
-
-Update `shelley_testnet-config.json` config files with new`hasEKG` and `hasPrometheus` ports.
+Update `shelley_testnet-config.json` config files with new `hasEKG`  and `hasPrometheus` ports.
 
 ```text
 cd $HOME/cardano-my-node
@@ -1210,17 +1205,18 @@ cd ~/cardano-my-node
 
 ### 📶 13.2 Setting up Grafana Dashboards 
 
-1. Goto [http://localhost:30000](http://localhost:30000)
+1. Open [http://localhost:30000](http://localhost:30000) in your browser
 2. Login with **admin** / **admin**
 3. Change password
 4. Click the **configuration gear** icon, then **Data Source**
-5. Select **prometheus**
-6. Set URL to **http://localhost:9090**
+5. Select **Prometheus**
+6. Set **URL** to **http://localhost:9090**
 7. Click **Save & Test**
 8. Click **Create +** icon &gt; **Import**
 9. Add dashboard by importing id: **11074**
-10. Select Prometheus data source as "Prometheus"
-11. Click the Import button.
+10. Click the **Load** button.
+11. Set **Prometheus** data source as "Prometheus"
+12. Click the **Import** button.
 
 {% hint style="info" %}
 Grafana [dashboard ID 11074](https://grafana.com/grafana/dashboards/11074) is an excellent overall systems health visualizer.
