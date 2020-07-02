@@ -1092,8 +1092,18 @@ sudo su
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 echo "deb https://packages.grafana.com/oss/deb stable main" > /etc/apt/sources.list.d/grafana.list
 sudo apt-get update && sudo apt-get install -y grafana
-sudo systemctl start grafana-server.service
 exit
+```
+
+Change the default port of Grafana from 3000 to 30000
+
+{% hint style="info" %}
+Port 3000 is used by the block-producing node.
+{% endhint %}
+
+```text
+cd /etc/grafana
+sudo sed -i.bak -e "s/http_port = 3000/http_port = 30000/g" grafana.ini
 ```
 
 Enable services so they start automatically.
@@ -1156,7 +1166,7 @@ EOF
 exit
 ```
 
-Finally, restart prometheus and node exporter.
+Finally, restart the services.
 
 ```text
 sudo systemctl restart grafana-server.service
@@ -1200,7 +1210,7 @@ cd ~/cardano-my-node
 
 ### 📶 13.2 Setting up Grafana Dashboards 
 
-1. Goto [http://localhost:3000](http://localhost:3000)
+1. Goto [http://localhost:30000](http://localhost:30000)
 2. Login with **admin** / **admin**
 3. Change password
 4. Click the **configuration gear** icon, then **Data Source**
