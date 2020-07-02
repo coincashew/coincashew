@@ -1230,13 +1230,9 @@ Grafana [dashboard ID 11074](https://grafana.com/grafana/dashboards/11074) is an
 
 Import a **Cardano-Node** dashboard
 
-1. Click the **configuration gear** icon, then **Data Source**
-2. Select **prometheus**
-3. Set URL to **http://localhost:9090**
-4. Click **Save & Test**
-5. Click **Create +** icon &gt; **Import**
-6. Add dashboard by **importing via panel json. Copy the json from below.**
-7. Click the Import button.
+1. Click **Create +** icon &gt; **Import**
+2. Add dashboard by **importing via panel json. Copy the json from below.**
+3. Click the Import button.
 
 ```text
 {
