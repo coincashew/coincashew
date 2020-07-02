@@ -1114,20 +1114,6 @@ sudo systemctl enable prometheus.service
 sudo systemctl enable prometheus-node-exporter.service
 ```
 
-To verify that the service has started:
-
-```text
-sudo systemctl status grafana-server.service
-```
-
-```text
-sudo systemctl status prometheus-node-exporter.service
-```
-
-```text
-sudo systemctl status prometheus.service
-```
-
 Update prometheus.yml located in `/etc/prometheus/prometheus.yml`
 
 ```text
@@ -1172,6 +1158,20 @@ Finally, restart the services.
 sudo systemctl restart grafana-server.service
 sudo systemctl restart prometheus.service
 sudo systemctl restart prometheus-node-exporter.service
+```
+
+Verify that the services are running properly:
+
+```text
+sudo systemctl status grafana-server.service
+```
+
+```text
+sudo systemctl status prometheus-node-exporter.service
+```
+
+```text
+sudo systemctl status prometheus.service
 ```
 
 Update `shelley_testnet-config.json` config files with new`hasEKG` and `hasPrometheus` ports.
