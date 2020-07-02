@@ -1067,7 +1067,7 @@ Congratulations! Your stakepool is registered and ready to produce blocks.
 After the epoch is over and assuming you successfully minted blocks, check with this:
 
 ```text
-cardano-cli shelley query stake-address-info --address $(cat payment.addr) --testnet-magic 42
+cardano-cli shelley query stake-address-info --address $(cat stake.addr) --testnet-magic 42
 ```
 
 ## 🔮 13. Setup Prometheus and Grafana Dashboard
