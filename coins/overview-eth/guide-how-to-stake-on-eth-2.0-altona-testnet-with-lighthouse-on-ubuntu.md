@@ -233,7 +233,7 @@ Do not send mainnet ETH.
 Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 8 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards. Find your validator's status at [beaconcha.in](https://altona.beaconcha.in)
 {% endhint %}
 
-## Reference Material
+## 🧩 13. Reference Material
 
 {% embed url="https://lighthouse-book.sigmaprime.io/intro.html" %}
 
