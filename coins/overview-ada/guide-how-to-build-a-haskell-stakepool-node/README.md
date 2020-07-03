@@ -454,7 +454,7 @@ cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file ~/cold-keys/node.skey \
     --operational-certificate-issue-counter ~/cold-keys/node.counter \
-    --kes-period <new kes period = old period + 120> \
+    --kes-period <new kes period = old kes period + 120> \
     --out-file node.cert
 chmod a-rwx ~/cold-keys
 ```

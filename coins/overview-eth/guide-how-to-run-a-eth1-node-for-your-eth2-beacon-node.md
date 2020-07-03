@@ -37,7 +37,7 @@ or manually download at:
 
 ```text
 cat > startGethNode.sh << EOF 
-geth --goerli --datadir="$HOME/Goerli"
+geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
 ```
 
