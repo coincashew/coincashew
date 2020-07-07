@@ -596,7 +596,7 @@ You should see output similar to this. This is your unspent transaction output \
 ```text
                            TxHash                                 TxIx        Lovelace
 ----------------------------------------------------------------------------------------
-100322a39d02c2ead....                                              0        100000000
+100322a39d02c2ead....                                              0        1000000000
 ```
 
 ## 👩💻 8. Register your stake address
