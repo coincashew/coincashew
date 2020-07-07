@@ -576,7 +576,7 @@ curl -v -XPOST "https://faucet.shelley-testnet.dev.cardano.org/send-money/$(cat 
 ```
 
 {% hint style="info" %}
-The Shelly Testnet Faucet can deliver up to 100,000 fADA every 24 hours.
+The Shelly Testnet Faucet can deliver up to 1000 fADA every 24 hours.
 {% endhint %}
 
 After funding your account, check your payment address balance.
@@ -596,7 +596,7 @@ You should see output similar to this. This is your unspent transaction output \
 ```text
                            TxHash                                 TxIx        Lovelace
 ----------------------------------------------------------------------------------------
-100322a39d02c2ead....                                              0        100000000000
+100322a39d02c2ead....                                              0        100000000
 ```
 
 ## 👩💻 8. Register your stake address
@@ -654,7 +654,7 @@ Example **utxo** output:
 ```text
                  TxHash                         Ix        Lovelace
 --------------------------------------------------------------------
-81acd93...                                        0      100000000000
+81acd93...                                        0      1000000000
 ```
 
 {% hint style="info" %}
@@ -664,12 +664,12 @@ Notice the TxHash and Ix \(index\). Will use this data shortly.
 Calculate your transaction's change
 
 ```text
-expr 100000000000 - 400000 - 171133
+expr 1000000000 - 400000 - 171133
 ```
 
 Example **transaction change amount**:
 
-> 99999428867
+> 999428867
 
 {% hint style="info" %}
 Registration of a stake address certificate costs 400000 lovelace.
@@ -684,7 +684,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in <TxHash>#<Index number> \
-    --tx-out $(cat payment.addr)+99999428867 \
+    --tx-out $(cat payment.addr)+999428867 \
     --ttl 250000000 \
     --fee 171133 \
     --tx-body-file tx.raw \
@@ -747,7 +747,7 @@ Create a registration certificate for your stakepool. Update with your metadata 
 cardano-cli shelley stake-pool registration-certificate \
     --cold-verification-key-file node.vkey \
     --vrf-verification-key-file vrf.vkey \
-    --pool-pledge 50000000000 \
+    --pool-pledge 50000000 \
     --pool-cost 100000000 \
     --pool-margin 0.15 \
     --pool-reward-account-verification-key-file stake.vkey \
@@ -761,7 +761,7 @@ cardano-cli shelley stake-pool registration-certificate \
 ```
 
 {% hint style="info" %}
-Here we are pledging 500000 ADA with a fixed pool cost of 100 ADA and a pool margin of 15%. 
+Here we are pledging 500 ADA with a fixed pool cost of 100 ADA and a pool margin of 15%. 
 {% endhint %}
 
 Pledge stake to your stakepool.
@@ -834,18 +834,18 @@ Example of **query utxo** output:
 ```text
                  TxHash                         Ix        Lovelace
 --------------------------------------------------------------------
-3ac393d...                                        0      99999428867
+3ac393d...                                        0      999428867
 ```
 
 Calculate the change amount.
 
 ```text
-expr 99999428867 - 500000000 - 188645
+expr 999428867 - 500000000 - 188645
 ```
 
 Example **change amount** output:
 
-> 99499240222
+> 499240222
 
 Build the transaction.
 
@@ -856,7 +856,7 @@ Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix num
 ```text
 cardano-cli shelley transaction build-raw \
     --tx-in <TxHash>#<Index number> \
-    --tx-out $(cat payment.addr)+99499240222 \
+    --tx-out $(cat payment.addr)+499240222 \
     --ttl 250000000 \
     --fee 188645 \
     --tx-body-file tx.raw \
