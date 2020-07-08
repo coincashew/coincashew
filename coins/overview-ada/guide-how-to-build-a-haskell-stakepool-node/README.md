@@ -918,7 +918,7 @@ Shelley testnet has been launched without peer-to-peer \(p2p\) node discovery so
 5. Fill in your pool name and pool URL if you have one.
 6. Fill in your **Private Nodes** and **Your Relays** as follows.
 
-![](../../../.gitbook/assets/configurepooltool.png)
+![](../../../.gitbook/assets/ada-relay-setup.png)
 
 Add requests for nodes or "buddies" to each of your relay nodes. Make sure you include the IOHK node and your private nodes.
 
@@ -928,17 +928,23 @@ IOHK's node address is:
 relays-new.shelley-testnet.dev.cardano.org
 ```
 
+IOHK's node port is:
+
+```text
+3001
+```
+
 For example, on relaynode1's buddies you should add **requests** for
 
-* your BlockProducingNode Private Node
-* your RelayNode2 Private Node
+* your private BlockProducingNode
+* your private RelayNode2
 * IOHK
 * and any other buddy/friendly nodes your can find or know
 
 For example, on relaynode2's buddies you should add **requests** for
 
-* your BlockProducingNode Private Node
-* your RelayNode1 Private Node
+* your private BlockProducingNode
+* your private RelayNode1
 * IOHK
 * and any other buddy/friendly nodes your can find or know
 
