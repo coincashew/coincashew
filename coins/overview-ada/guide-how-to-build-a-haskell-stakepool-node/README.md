@@ -2097,8 +2097,7 @@ You are required to regenerate the hot keys and issue a new operational certific
 **Testnet**: KES keys will be valid for 120 rotations or 5 days
 {% endhint %}
 
-{% hint style="info" %}
-✨ **Updating the KES Period:** When it's time to issue a new operational certificate, run the following:
+**Updating the KES Period**: When it's time to issue a new operational certificate, run the following:
 
 ```text
 cd $NODE_HOME
@@ -2114,7 +2113,6 @@ cardano-cli shelley node issue-op-cert \
     --out-file node.cert
 chmod a-rwx ~/cold-keys
 ```
-{% endhint %}
 
 ### 🌊 15.2 Resetting the databases
 
