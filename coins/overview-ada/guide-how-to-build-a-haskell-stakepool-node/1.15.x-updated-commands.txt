@@ -1,0 +1,514 @@
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get -y install curl libsodium-dev build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 -y
+
+
+
+
+wget https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
+tar -xf cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
+rm cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz cabal.sig
+mkdir -p ~/.local/bin
+mv cabal ~/.local/bin/
+
+
+
+
+wget https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-deb9-linux.tar.xz
+tar -xf ghc-8.6.5-x86_64-deb9-linux.tar.xz
+rm ghc-8.6.5-x86_64-deb9-linux.tar.xz
+cd ghc-8.6.5
+./configure
+sudo make install
+
+
+
+
+echo PATH="~/.local/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
+
+
+
+
+cabal update
+cabal -V
+ghc -V
+
+
+
+
+cd ~
+git clone https://github.com/input-output-hk/cardano-node.git
+cd cardano-node
+git fetch
+git checkout release/1.15.x
+
+
+
+
+echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
+cabal install cardano-node cardano-cli  --overwrite-policy=always
+
+
+
+
+sudo cp $HOME/.cabal/bin/cardano-cli /usr/local/bin/cardano-cli
+sudo cp $HOME/.cabal/bin/cardano-node /usr/local/bin/cardano-node
+
+
+
+
+cardano-node version
+cardano-cli version
+
+
+
+
+cd ~
+mkdir cardano-my-node
+cd cardano-my-node
+wget https://hydra.iohk.io/build/3416851/download/1/mainnet_candidate-config.json
+wget https://hydra.iohk.io/build/3416851/download/1/mainnet_candidate-byron-genesis.json
+wget https://hydra.iohk.io/build/3416851/download/1/mainnet_candidate-shelley-genesis.json
+wget https://hydra.iohk.io/build/3416851/download/1/mainnet_candidate-topology.json
+
+
+
+
+sed -i.bak -e "s/SimpleView/LiveView/g" -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" mainnet_candidate-config.json
+
+
+
+
+echo export CARDANO_NODE_SOCKET_PATH="$HOME/cardano-my-node/db/socket" >> ~/.bashrc
+source ~/.bashrc
+
+
+
+
+mkdir relaynode1
+mkdir relaynode2
+
+
+
+
+cp mainnet_candidate-*.json relaynode1
+cp mainnet_candidate-*.json relaynode2
+
+
+
+
+cat > relaynode1/mainnet_candidate-topology.json << EOF 
+ {
+    "Producers": [
+      {
+        "addr": "127.0.0.1",
+        "port": 3000,
+        "valency": 2
+      },
+      {
+        "addr": "127.0.0.1",
+        "port": 3002,
+        "valency": 2
+      },
+      {
+        "addr": "relays-new.mainnet-candidate.dev.cardano.org",
+        "port": 3001,
+        "valency": 2
+      }
+    ]
+  }
+EOF
+
+
+
+
+cat > relaynode2/mainnet_candidate-topology.json << EOF 
+ {
+    "Producers": [
+      {
+        "addr": "127.0.0.1",
+        "port": 3000,
+        "valency": 2
+      },
+      {
+        "addr": "127.0.0.1",
+        "port": 3001,
+        "valency": 2
+      },
+      {
+        "addr": "relays-new.mainnet-candidate.dev.cardano.org",
+        "port": 3001,
+        "valency": 2
+      }
+    ]
+  }
+EOF
+
+
+
+
+cat > mainnet_candidate-topology.json << EOF 
+ {
+    "Producers": [
+      {
+        "addr": "127.0.0.1",
+        "port": 3001,
+        "valency": 2
+      },
+      {
+        "addr": "127.0.0.1",
+        "port": 3002,
+        "valency": 2
+      }
+    ]
+  }
+EOF
+
+
+
+
+cat > startBlockProducingNode.sh << EOF 
+DIRECTORY=~/cardano-my-node
+PORT=3000
+HOSTADDR=0.0.0.0
+TOPOLOGY=\${DIRECTORY}/mainnet_candidate-topology.json
+DB_PATH=\${DIRECTORY}/db
+SOCKET_PATH=\${DIRECTORY}/db/socket
+CONFIG=\${DIRECTORY}/mainnet_candidate-config.json
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
+EOF
+
+
+
+
+cat > relaynode1/startRelayNode1.sh << EOF 
+DIRECTORY=~/cardano-my-node/relaynode1
+PORT=3001
+HOSTADDR=0.0.0.0
+TOPOLOGY=\${DIRECTORY}/mainnet_candidate-topology.json
+DB_PATH=\${DIRECTORY}/db
+SOCKET_PATH=\${DIRECTORY}/db/socket
+CONFIG=\${DIRECTORY}/mainnet_candidate-config.json
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
+EOF
+
+
+
+
+cat > relaynode2/startRelayNode2.sh << EOF 
+DIRECTORY=~/cardano-my-node/relaynode2
+PORT=3002
+HOSTADDR=0.0.0.0
+TOPOLOGY=\${DIRECTORY}/mainnet_candidate-topology.json
+DB_PATH=\${DIRECTORY}/db
+SOCKET_PATH=\${DIRECTORY}/db/socket
+CONFIG=\${DIRECTORY}/mainnet_candidate-config.json
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
+EOF
+
+
+
+
+cd ~/cardano-my-node
+chmod +x startBlockProducingNode.sh
+./startBlockProducingNode.sh
+
+
+
+
+cd ~/cardano-my-node
+chmod +x relaynode1/startRelayNode1.sh
+./relaynode1/startRelayNode1.sh
+
+
+
+
+cd ~/cardano-my-node
+chmod +x relaynode2/startRelayNode2.sh
+./relaynode2/startRelayNode2.sh
+
+
+
+
+cd ~/cardano-my-node
+cardano-cli shelley node key-gen-KES \
+    --verification-key-file kes.vkey \
+    --signing-key-file kes.skey
+
+
+
+
+mkdir ~/cold-keys
+pushd ~/cold-keys
+
+
+
+
+cardano-cli shelley node key-gen \
+    --cold-verification-key-file node.vkey \
+    --cold-signing-key-file node.skey \
+    --operational-certificate-issue-counter node.counter
+
+
+
+
+cp ~/cold-keys/node.vkey ~/cardano-my-node
+
+
+
+
+pushd +1
+cat mainnet_candidate-shelley-genesis.json | grep KESPeriod
+
+
+
+
+cardano-cli shelley query tip --testnet-magic 42 | grep -oP '"slotNo": \K\d+'
+
+
+
+
+expr 80000 / 3600
+
+
+
+
+cardano-cli shelley node issue-op-cert \
+    --kes-verification-key-file kes.vkey \
+    --cold-signing-key-file ~/cold-keys/node.skey \
+    --operational-certificate-issue-counter ~/cold-keys/node.counter \
+    --kes-period <kes period from expr calculation> \
+    --out-file node.cert
+
+
+
+
+cardano-cli shelley node key-gen-VRF \
+    --verification-key-file vrf.vkey \
+    --signing-key-file vrf.skey
+
+
+
+
+cd ~/cardano-my-node
+cat > startBlockProducingNode.sh << EOF 
+DIRECTORY=~/cardano-my-node
+PORT=3000
+HOSTADDR=0.0.0.0
+TOPOLOGY=\${DIRECTORY}/shelley_testnet-topology.json
+DB_PATH=\${DIRECTORY}/db
+SOCKET_PATH=\${DIRECTORY}/db/socket
+CONFIG=\${DIRECTORY}/shelley_testnet-config.json
+KES=\${DIRECTORY}/kes.skey
+VRF=\${DIRECTORY}/vrf.skey
+CERT=\${DIRECTORY}/node.cert
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG} --shelley-kes-key \${KES} --shelley-vrf-key \${VRF} --shelley-operational-certificate \${CERT}
+EOF
+
+
+
+
+cd ~/cardano-my-node
+./startBlockProducingNode.sh
+
+
+
+
+cardano-cli shelley query protocol-parameters \
+    --cardano-mode \
+    --testnet-magic 42 \
+    --out-file params.json
+
+
+
+
+cardano-cli shelley address key-gen \
+    --verification-key-file payment.vkey \
+    --signing-key-file payment.skey
+
+
+
+
+cardano-cli shelley stake-address key-gen \
+    --verification-key-file stake.vkey \
+    --signing-key-file stake.skey
+
+
+
+
+cardano-cli shelley stake-address build \
+    --staking-verification-key-file stake.vkey \
+    --out-file stake.addr \
+    --mainnet
+
+
+
+
+cardano-cli shelley address build \
+    --payment-verification-key-file payment.vkey \
+    --staking-verification-key-file stake.vkey \
+    --out-file payment.addr \
+    --mainnet
+
+
+
+
+curl -v -XPOST "https://faucet.mainnet-candidate.dev.cardano.org/send-money/$(cat payment.addr)"
+
+
+
+
+cardano-cli shelley query utxo \
+    --address $(cat payment.addr) \
+    --cardano-mode \
+    --testnet-magic 42
+
+
+
+
+cardano-cli shelley stake-address registration-certificate \
+    --staking-verification-key-file stake.vkey \
+    --out-file stake.cert
+
+
+
+
+cardano-cli shelley query tip --testnet-magic 42 | grep -oP '"slotNo": \K\d+'
+
+
+
+
+expr 1000000000 - 400000 - 200000
+
+
+
+
+cardano-cli shelley transaction build-raw \
+    --tx-in <TxHash>#<Index number> \
+    --tx-out $(cat payment.addr)+999400000 \
+    --ttl 250000000 \
+    --fee 200000 \
+    --tx-body-file tx.raw \
+    --certificate stake.cert
+
+
+
+
+cardano-cli shelley transaction sign \
+    --tx-body-file tx.raw \
+    --signing-key-file payment.skey \
+    --signing-key-file stake.skey \
+    --testnet-magic 42 \
+    --tx-file tx.signed
+
+
+
+
+cardano-cli shelley transaction submit \
+    --tx-file tx.signed \
+    --cardano-mode \
+    --testnet-magic 42
+
+
+
+
+cat > poolMetaData.json << EOF
+{
+"name": "MyPoolName",
+"description": "My pool description",
+"ticker": "MPN",
+"homepage": "https://myadapoolnamerocks.com"
+}
+EOF
+
+
+
+
+cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
+
+
+
+
+cardano-cli shelley stake-pool registration-certificate \
+    --cold-verification-key-file node.vkey \
+    --vrf-verification-key-file vrf.vkey \
+    --pool-pledge 499200000 \
+    --pool-cost 228000000 \
+    --pool-margin 0.15 \
+    --pool-reward-account-verification-key-file stake.vkey \
+    --pool-owner-stake-verification-key-file stake.vkey \
+    --testnet-magic 42 \
+    --pool-relay-port 3001 \
+    --pool-relay-ipv4 <your relay IP address> \
+    --metadata-url <url where you uploaded poolMetaData.json> \
+    --metadata-hash $(cat poolMetaDataHash.txt) \
+    --out-file pool.cert
+
+
+
+
+cardano-cli shelley stake-address delegation-certificate \
+    --staking-verification-key-file stake.vkey \
+    --cold-verification-key-file node.vkey \
+    --out-file deleg.cert
+
+
+
+
+cat mainnet_candidate-shelley-genesis.json | grep poolDeposit
+
+
+
+
+cardano-cli shelley query utxo \
+    --address $(cat payment.addr) \
+    --cardano-mode \
+    --testnet-magic 42
+
+
+
+
+expr 999400000 - 500000000 - 200000
+
+
+
+
+cardano-cli shelley transaction build-raw \
+    --tx-in <TxHash>#<Index number> \
+    --tx-out $(cat payment.addr)+499200000 \
+    --ttl 250000000 \
+    --fee 200000 \
+    --tx-body-file tx.raw \
+    --certificate pool.cert \
+    --certificate deleg.cert
+
+
+
+
+cardano-cli shelley transaction sign \
+    --tx-body-file tx.raw \
+    --signing-key-file payment.skey \
+    --signing-key-file ~/cold-keys/node.skey \
+    --signing-key-file stake.skey \
+    --testnet-magic 42 \
+    --tx-file tx.signed
+
+
+
+
+cardano-cli shelley transaction submit \
+    --tx-file tx.signed \
+    --cardano-mode \
+    --testnet-magic 42
+
+
+
+
+cardano-cli shelley stake-pool id --verification-key-file node.vkey > stakepoolid.txt
+cat stakepoolid.txt
+
+
+
+
+cardano-cli shelley query ledger-state --cardano-mode --testnet-magic 42 | grep publicKey | grep $(cat stakepoolid.txt)
