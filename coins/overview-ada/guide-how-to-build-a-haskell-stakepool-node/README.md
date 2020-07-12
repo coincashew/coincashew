@@ -2087,7 +2087,7 @@ For more information and official documentation, please refer to the following l
 
 ## 🛠 15. Maintenance Tips
 
-### 🤖 15.1 Updating the operational cert with a the KES Period
+### 🤖 15.1 Updating the operational cert with a new KES Period
 
 {% hint style="info" %}
 You are required to regenerate the hot keys and issue a new operational certificate, a process called rotating the KES keys, when the hot keys expire.
