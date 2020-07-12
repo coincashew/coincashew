@@ -6,6 +6,10 @@ description: >-
 
 # Guide: How to build a Haskell Testnet Cardano Stakepool
 
+{% hint style="success" %}
+As of July 12, 2020, this guide is written for mainnet candidate v.1.15.1 😁 
+{% endhint %}
+
 ## 🏁 0. Prerequisites
 
 ### 🎗 Minimum Setup Requirements
@@ -2080,8 +2084,6 @@ For more information and official documentation, please refer to the following l
 {% embed url="https://github.com/cardano-community/guild-operators" %}
 
 {% embed url="https://github.com/gitmachtl/scripts" %}
-
-
 
 ## 🛠 15. Maintenance Tips
 
