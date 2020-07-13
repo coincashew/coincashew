@@ -1244,7 +1244,7 @@ cd $NODE_HOME
 
 ```text
 cd $NODE_HOME
-./relaynode1/startRelayNode2.sh
+./relaynode2/startRelayNode2.sh
 ```
 
 ### 📶 13.2 Setting up Grafana Dashboards 
