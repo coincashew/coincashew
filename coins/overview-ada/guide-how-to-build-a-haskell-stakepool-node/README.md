@@ -7,7 +7,7 @@ description: >-
 # Guide: How to build a Haskell Testnet Cardano Stakepool
 
 {% hint style="success" %}
-As of July 12, 2020, this guide is written for mainnet candidate v.1.15.1 😁 
+As of July 13, 2020, this guide is written for **shelley\_testnet v.1.15.1** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -86,12 +86,15 @@ cd ghc-8.6.5
 sudo make install
 ```
 
-Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE\_HOME**.
+Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE\_HOME**. The [cluster configuration](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) is set by **$NODE\_CONFIG, $NODE\_URL** and **$NODE\_BUILD\_NUM**. 
 
 ```text
 echo PATH="~/.local/bin:$PATH" >> ~/.bashrc
 echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
+echo export NODE_CONFIG=shelley_testnet >> ~/.bashrc
+echo export NODE_URL=shelley-testnet >> ~/.bashrc
+echo export NODE_BUILD_NUM=3425018 >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -158,10 +161,11 @@ Here you'll grab the config.json, genesis.json, and topology.json files needed t
 ```text
 mkdir $NODE_HOME
 cd $NODE_HOME
-wget https://hydra.iohk.io/build/3425018/download/1/mainnet_candidate-byron-genesis.json
-wget https://hydra.iohk.io/build/3425018/download/1/mainnet_candidate-topology.json
-wget https://hydra.iohk.io/build/3425018/download/1/mainnet_candidate-shelley-genesis.json
-wget https://hydra.iohk.io/build/3425018/download/1/mainnet_candidate-config.json
+### wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
+wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-topology.json
+wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
+wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
+mv ${NODE_CONFIG}-shelley-genesis.json {NODE_CONFIG}-genesis.json
 ```
 
 Run the following to modify **config.json** and 
@@ -170,7 +174,7 @@ Run the following to modify **config.json** and
 * update TraceBlockFetchDecisions to "true"
 
 ```text
-sed -i.bak -e "s/SimpleView/LiveView/g" -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" mainnet_candidate-config.json
+sed -i.bak -e "s/SimpleView/LiveView/g" -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" ${NODE_CONFIG}-config.json
 ```
 
 Update **.bashrc** shell variables.
@@ -214,7 +218,7 @@ Configure **topology.json** file so that
 Update relaynode1 with the following. Simply copy/paste.
 
 ```text
-cat > $NODE_HOME/relaynode1/mainnet_candidate-topology.json << EOF 
+cat > $NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json << EOF 
  {
     "Producers": [
       {
@@ -228,7 +232,7 @@ cat > $NODE_HOME/relaynode1/mainnet_candidate-topology.json << EOF
         "valency": 2
       },
       {
-        "addr": "relays-new.mainnet-candidate.dev.cardano.org",
+        "addr": "relays-new.${NODE_URL}.dev.cardano.org",
         "port": 3001,
         "valency": 2
       }
@@ -240,7 +244,7 @@ EOF
 Update relaynode2 with the following. Simply copy/paste.
 
 ```text
-cat > $NODE_HOME/relaynode2/mainnet_candidate-topology.json << EOF 
+cat > $NODE_HOME/relaynode2/${NODE_CONFIG}-topology.json << EOF 
  {
     "Producers": [
       {
@@ -254,7 +258,7 @@ cat > $NODE_HOME/relaynode2/mainnet_candidate-topology.json << EOF
         "valency": 2
       },
       {
-        "addr": "relays-new.mainnet-candidate.dev.cardano.org",
+        "addr": "relays-new.${NODE_URL}.dev.cardano.org",
         "port": 3001,
         "valency": 2
       }
@@ -266,7 +270,7 @@ EOF
 Update the block-producer node with the following. Simply copy/paste.
 
 ```text
-cat > $NODE_HOME/mainnet_candidate-topology.json << EOF 
+cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF 
  {
     "Producers": [
       {
@@ -303,10 +307,10 @@ cat > $NODE_HOME/startBlockProducingNode.sh << EOF
 DIRECTORY=\$NODE_HOME
 PORT=3000
 HOSTADDR=0.0.0.0
-TOPOLOGY=\${DIRECTORY}/mainnet_candidate-topology.json
+TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
-CONFIG=\${DIRECTORY}/mainnet_candidate-config.json
+CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
 cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
@@ -318,10 +322,10 @@ cat > $NODE_HOME/relaynode1/startRelayNode1.sh << EOF
 DIRECTORY=\$NODE_HOME/relaynode1
 PORT=3001
 HOSTADDR=0.0.0.0
-TOPOLOGY=\${DIRECTORY}/mainnet_candidate-topology.json
+TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
-CONFIG=\${DIRECTORY}/mainnet_candidate-config.json
+CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
 cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
@@ -333,10 +337,10 @@ cat > $NODE_HOME/relaynode2/startRelayNode2.sh << EOF
 DIRECTORY=\$NODE_HOME/relaynode2
 PORT=3002
 HOSTADDR=0.0.0.0
-TOPOLOGY=\${DIRECTORY}/mainnet_candidate-topology.json
+TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
-CONFIG=\${DIRECTORY}/mainnet_candidate-config.json
+CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
 cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
@@ -367,7 +371,7 @@ chmod +x startRelayNode2.sh
 ./startRelayNode2.sh
 ```
 
-![](../../../.gitbook/assets/adabyshel.png)
+![](../../../.gitbook/assets/shel-node.png)
 
 {% hint style="success" %}
 Congratulations! Your node is running successfully now. Let it sync up.
@@ -416,7 +420,8 @@ Determine the number of slots per KES period from the genesis file.
 
 ```text
 pushd +1
-slotsPerKESPeriod=$(cat $NODE_HOME/mainnet_candidate-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
+slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-genesis.json | jq -r '.slotsPerKESPeriod')
+#slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 ```
 
@@ -482,10 +487,10 @@ cat > $NODE_HOME/startBlockProducingNode.sh << EOF
 DIRECTORY=\$NODE_HOME
 PORT=3000
 HOSTADDR=0.0.0.0
-TOPOLOGY=\${DIRECTORY}/mainnet_candidate-topology.json
+TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
-CONFIG=\${DIRECTORY}/mainnet_candidate-config.json
+CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
 KES=\${DIRECTORY}/kes.skey
 VRF=\${DIRECTORY}/vrf.skey
 CERT=\${DIRECTORY}/node.cert
@@ -517,8 +522,8 @@ Wait for the block-producing node to start syncing before continuing if you get 
 ```text
 cardano-cli shelley query protocol-parameters \
     --testnet-magic 42 \
-    --out-file params.json \
-    --cardano-mode
+    --out-file params.json
+    #--cardano-mode
 ```
 
 Create a new payment key pair:  `payment.skey` & `payment.vkey`
@@ -553,7 +558,8 @@ Create your stake address from the stake address verification key and store it i
 cardano-cli shelley stake-address build \
     --staking-verification-key-file stake.vkey \
     --out-file stake.addr \
-    --mainnet
+    --testnet-magic 42
+    ##--mainnet
 ```
 
 Build a payment address for the payment key `payment.vkey` which will delegate to the stake address, `stake.vkey`
@@ -563,14 +569,37 @@ cardano-cli shelley address build \
     --payment-verification-key-file payment.vkey \
     --staking-verification-key-file stake.vkey \
     --out-file payment.addr \
-    --mainnet
+    --testnet-magic 42
+    ##--mainnet
 ```
 
 {% hint style="info" %}
 Payment keys are used to send and receive payments and staking keys are used to manage stake delegations.
 {% endhint %}
 
-Next step is to fund your payment address. Payment address can be funded from your Byron mainnet funds based on a snapshot from July 10th. If you were part of the ITN, you can convert your address as specified above. Public faucet is coming soon.
+Next step is to fund your payment address. 
+
+{% tabs %}
+{% tab title="Shelley Testnet" %}
+Visit the [faucet ](https://testnets.cardano.org/en/shelley/tools/faucet/)to request funds to your `payment.addr`
+
+ Run the following to find your address.
+
+```text
+cat payment.addr
+```
+
+Paste this address and fill out the captcha.
+
+{% hint style="info" %}
+The Shelly Testnet Faucet can deliver up to 100,000 fADA every 24 hours.
+{% endhint %}
+{% endtab %}
+
+{% tab title="Release Candidate" %}
+Payment address can be funded from your Byron mainnet funds based on a snapshot from July 10th. If you were part of the ITN, you can convert your address as specified above. Public faucet is coming soon.
+{% endtab %}
+{% endtabs %}
 
 After funding your account, check your payment address balance.
 
@@ -581,8 +610,8 @@ Before continuing, your nodes must be fully synchronized to the blockchain. Othe
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 \
-    --cardano-mode
+    --testnet-magic 42
+    #--cardano-mode
 ```
 
 You should see output similar to this. This is your unspent transaction output \(UXTO\).
@@ -615,8 +644,8 @@ Find your balance and **UTXOs**.
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 \
-    --cardano-mode > fullUtxo.out
+    --testnet-magic 42 > fullUtxo.out
+    #--cardano-mode > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -718,8 +747,8 @@ Send the signed transaction.
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --cardano-mode \
     --testnet-magic 42
+    #--cardano-mode
 ```
 
 ## 📄 9. Register your stakepool
@@ -741,7 +770,7 @@ cat > poolMetaData.json << EOF
 EOF
 ```
 
-Get the hash of your metadata file.
+Calculate the hash of your metadata file.
 
 ```text
 cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
@@ -816,8 +845,8 @@ Find your balance and **UTXOs**.
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 \
-    --cardano-mode > fullUtxo.out
+    --testnet-magic 42 > fullUtxo.out
+    #--cardano-mode > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -918,8 +947,8 @@ Send the transaction.
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --cardano-mode \
     --testnet-magic 42
+    #--cardano-mode
 ```
 
 ## 🐣 10. Locate your Stakepool ID and verify everything is working 
@@ -934,7 +963,8 @@ cat stakepoolid.txt
 Now that you have your stakepool ID,  verify it's included in the blockchain.
 
 ```text
-cardano-cli shelley query ledger-state --testnet-magic 42 --cardano-mode | grep publicKey | grep $(cat stakepoolid.txt)
+#cardano-cli shelley query ledger-state --testnet-magic 42 --cardano-mode | grep publicKey | grep $(cat stakepoolid.txt)
+cardano-cli shelley query ledger-state --testnet-magic 42 | grep publicKey | grep $(cat stakepoolid.txt)
 ```
 
 {% hint style="info" %}
@@ -963,7 +993,7 @@ Add requests for nodes or "buddies" to each of your relay nodes. Make sure you i
 IOHK's node address is:
 
 ```text
-relays-new.mainnet-candidate.dev.cardano.org
+echo relays-new.${NODE_URL}.dev.cardano.org
 ```
 
 IOHK's node port is:
@@ -1004,7 +1034,7 @@ MY_API_KEY="XXXXXXXX"
 ## GET THIS FROM YOUR POOL MANAGE TAB ON POOLTOOL WEBSITE
 MY_NODE_ID="XXXXXXXX"
 ## SET THIS TO THE LOCATION OF YOUR TOPOLOGY FILE THAT YOUR NODE USES
-TOPOLOGY_FILE="$NODE_HOME/relaynode1/mainnet_candidate-topology.json"
+TOPOLOGY_FILE="$NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json"
 
 JSON="\$(jq -n --compact-output --arg MY_API_KEY "\$MY_API_KEY" --arg MY_POOL_ID "\$MY_POOL_ID" --arg MY_NODE_ID "\$MY_NODE_ID" '{apiKey: \$MY_API_KEY, nodeId: \$MY_NODE_ID, poolId: \$MY_POOL_ID}')"
 echo "Packet Sent: \$JSON"
@@ -1035,7 +1065,7 @@ MY_API_KEY="XXXXXXXX"
 ## GET THIS FROM YOUR POOL MANAGE TAB ON POOLTOOL WEBSITE
 MY_NODE_ID="XXXXXXXX"
 ## SET THIS TO THE LOCATION OF YOUR TOPOLOGY FILE THAT YOUR NODE USES
-TOPOLOGY_FILE="$NODE_HOME/relaynode2/mainnet_candidate-topology.json"
+TOPOLOGY_FILE="$NODE_HOME/relaynode2/${NODE_CONFIG}-topology.json"
 
 JSON="\$(jq -n --compact-output --arg MY_API_KEY "\$MY_API_KEY" --arg MY_POOL_ID "\$MY_POOL_ID" --arg MY_NODE_ID "\$MY_NODE_ID" '{apiKey: \$MY_API_KEY, nodeId: \$MY_NODE_ID, poolId: \$MY_POOL_ID}')"
 echo "Packet Sent: \$JSON"
@@ -1213,15 +1243,15 @@ Verify that the services are running properly:
 sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
-Update `mainnet_candidate-config.json` config files with new `hasEKG`  and `hasPrometheus` ports.
+Update `${NODE_CONFIG}-config.json` config files with new `hasEKG`  and `hasPrometheus` ports.
 
 ```text
 cd $NODE_HOME
-sed -i.bak -e "s/    12798/    12700/g" -e "s/hasEKG\": 12788/hasEKG\": 12600/g" mainnet_candidate-config.json
+sed -i.bak -e "s/    12798/    12700/g" -e "s/hasEKG\": 12788/hasEKG\": 12600/g" ${NODE_CONFIG}-config.json
 cd $NODE_HOME/relaynode1
-sed -i.bak -e "s/    12798/    12701/g" -e "s/hasEKG\": 12788/hasEKG\": 12601/g" mainnet_candidate-config.json
+sed -i.bak -e "s/    12798/    12701/g" -e "s/hasEKG\": 12788/hasEKG\": 12601/g" ${NODE_CONFIG}-config.json
 cd $NODE_HOME/relaynode2
-sed -i.bak -e "s/    12798/    12702/g" -e "s/hasEKG\": 12788/hasEKG\": 12602/g" mainnet_candidate-config.json
+sed -i.bak -e "s/    12798/    12702/g" -e "s/hasEKG\": 12788/hasEKG\": 12602/g" ${NODE_CONFIG}-config.json
 ```
 
 Stop and start your blockproducer, relaynode1, relaynode2.
@@ -2106,7 +2136,7 @@ You are required to regenerate the hot keys and issue a new operational certific
 ```text
 cd $NODE_HOME
 slotNo=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
-slotsPerKESPeriod=$(cat $NODE_HOME/mainnet_candidate-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
+slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 chmod u+rwx ~/cold-keys
 cardano-cli shelley node issue-op-cert \
