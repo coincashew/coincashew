@@ -158,10 +158,10 @@ Here you'll grab the config.json, genesis.json, and topology.json files needed t
 ```text
 mkdir $NODE_HOME
 cd $NODE_HOME
-wget https://hydra.iohk.io/build/3413883/download/1/mainnet_candidate-byron-genesis.json
-wget https://hydra.iohk.io/build/3413883/download/1/mainnet_candidate-topology.json
-wget https://hydra.iohk.io/build/3413883/download/1/mainnet_candidate-shelley-genesis.json
-wget https://hydra.iohk.io/build/3413883/download/1/mainnet_candidate-config.json
+wget https://hydra.iohk.io/build/3425018/download/1/mainnet_candidate-byron-genesis.json
+wget https://hydra.iohk.io/build/3425018/download/1/mainnet_candidate-topology.json
+wget https://hydra.iohk.io/build/3425018/download/1/mainnet_candidate-shelley-genesis.json
+wget https://hydra.iohk.io/build/3425018/download/1/mainnet_candidate-config.json
 ```
 
 Run the following to modify **config.json** and 
