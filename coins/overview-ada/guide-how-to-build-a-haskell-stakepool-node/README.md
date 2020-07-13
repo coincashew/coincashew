@@ -452,24 +452,6 @@ cardano-cli shelley node issue-op-cert \
     --out-file node.cert
 ```
 
-{% hint style="warning" %}
-**Optional tip:** Save this step until after you finish the guide.
-
-With your hot keys created, you can remove access to the cold keys for improved security. This protects against accidental deletion, editing, or access. 
-
-To lock,
-
-```text
-chmod a-rwx ~/cold-keys
-```
-
-To unlock,
-
-```text
-chmod u+rwx ~/cold-keys
-```
-{% endhint %}
-
 Make a VRF key pair.
 
 ```text
@@ -2147,6 +2129,22 @@ cardano-cli shelley node issue-op-cert \
     --out-file node.cert
 chmod a-rwx ~/cold-keys
 ```
+
+{% hint style="info" %}
+\*\*\*\*✨ **Tip:** With your hot keys created, you can remove access to the cold keys for improved security. This protects against accidental deletion, editing, or access. 
+
+To lock,
+
+```text
+chmod a-rwx ~/cold-keys
+```
+
+To unlock,
+
+```text
+chmod u+rwx ~/cold-keys
+```
+{% endhint %}
 
 ### 🌊 15.2 Resetting the databases
 
