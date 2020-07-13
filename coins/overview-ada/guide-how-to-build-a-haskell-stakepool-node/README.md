@@ -547,7 +547,7 @@ cardano-cli shelley stake-address key-gen \
     --signing-key-file stake.skey
 ```
 
-Create your stake address from the stake address verification key and store it in `stake`
+Create your stake address from the stake address verification key and store it in `stake.addr`
 
 ```text
 cardano-cli shelley stake-address build \
@@ -749,11 +749,9 @@ cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.j
 
 Now upload your **poolMetaData.json** to your website or a public website such as [https://pages.github.com/](https://pages.github.com/)
 
-Create a registration certificate for your stakepool. Update with your metadata URL and pool relay IP.
+Refer to the following quick guide if you need help hosting your metadata on github.com
 
-{% hint style="warning" %}
-**metadata-url** must be no longer than 64 characters.
-{% endhint %}
+{% page-ref page="how-to-upload-poolmetadata.json-to-github.md" %}
 
 Find the minimum pool cost.
 
@@ -766,13 +764,19 @@ echo minPoolCost: ${minPoolCost}
 minPoolCost is 228000000 lovelace or 228 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
+Create a registration certificate for your stakepool. Update with your **metadata URL** and **relay IP address**.
+
+{% hint style="warning" %}
+**metadata-url** must be no longer than 64 characters.
+{% endhint %}
+
 ```text
 cardano-cli shelley stake-pool registration-certificate \
     --cold-verification-key-file ~/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
-    --pool-pledge 50000000 \
-    --pool-cost 328000000 \
-    --pool-margin 0.12 \
+    --pool-pledge 100000000 \
+    --pool-cost 321000000 \
+    --pool-margin 0.15 \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
     --testnet-magic 42 \
@@ -784,7 +788,7 @@ cardano-cli shelley stake-pool registration-certificate \
 ```
 
 {% hint style="info" %}
-Here we are pledging 50 ADA with a fixed pool cost of 328 ADA and a pool margin of 12%. 
+Here we are pledging 100 ADA with a fixed pool cost of 321 ADA and a pool margin of 15%. 
 {% endhint %}
 
 Pledge stake to your stakepool.

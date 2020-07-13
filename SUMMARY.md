@@ -116,6 +116,7 @@
   * [Guide: How to build a Haskell Testnet Cardano Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
     * [How to setup chrony](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md)
     * [How to update a Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-update-a-stakepool.md)
+    * [How to upload poolMetaData.json to Github](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-upload-poolmetadata.json-to-github.md)
     * [How to delegate to a Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-delegate-to-a-stakepool.md)
   * [Guide: Build Haskell Pool by Cardano Community](https://cardano-community.github.io/guild-operators/)
   * [A Non-technical Guide for Running a Stakepool](https://medium.com/@contact_73710/a-non-technical-guide-for-running-a-stake-pool-part-1-a9071022d125)
