@@ -165,7 +165,7 @@ cd $NODE_HOME
 wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-topology.json
 wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
 wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
-mv ${NODE_CONFIG}-shelley-genesis.json {NODE_CONFIG}-genesis.json
+mv ${NODE_CONFIG}-shelley-genesis.json ${NODE_CONFIG}-genesis.json
 ```
 
 Run the following to modify **config.json** and 
