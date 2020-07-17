@@ -47,7 +47,7 @@ First, update packages and install Ubuntu dependencies.
 ```text
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf
+sudo apt-get install -y git curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf
 ```
 
 Install Libsodium.
@@ -94,7 +94,7 @@ echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
 echo export NODE_CONFIG=shelley_testnet >> ~/.bashrc
 echo export NODE_URL=shelley-testnet >> ~/.bashrc
-echo export NODE_BUILD_NUM=3425018 >> ~/.bashrc
+echo export NODE_BUILD_NUM=3460262 >> ~/.bashrc
 source ~/.bashrc
 ```
 
