@@ -9,7 +9,7 @@ You can sign a message with your Tezos address to prove you own and control it. 
 {% hint style="info" %}
 Galleon is the first easy to use wallet with sign & verify message functionality.
 
-Download version 1.1.0b or greater here: [https://github.com/Cryptonomic/Deployments/wiki/Galleon%3A-Releases](https://github.com/Cryptonomic/Deployments/wiki/Galleon%3A-Releases) 
+Download version 1.1.0b or greater here: [https://github.com/Cryptonomic/Deployments/wiki/Galleon:-Releases\#preview-releases](https://github.com/Cryptonomic/Deployments/wiki/Galleon:-Releases#preview-releases)
 {% endhint %}
 
 ## 📶 2. Sign a message
