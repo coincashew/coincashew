@@ -2157,3 +2157,169 @@ rm -rf relaynode1/db
 rm -rf relaynode2/db
 ```
 
+### 📝 15.3 Changing the pledge, fee, margin, etc.
+
+{% hint style="info" %}
+Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resubmit your stakepool registration certificate.
+{% endhint %}
+
+Find the minimum pool cost.
+
+```text
+minPoolCost=$(cat $NODE_HOME/params.json | jq -r .minPoolCost)
+echo minPoolCost: ${minPoolCost}
+```
+
+{% hint style="info" %}
+minPoolCost is 228000000 lovelace or 228 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
+{% endhint %}
+
+If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file.
+
+```text
+cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
+```
+
+Update the below registration-certificate transaction with your desired settings.
+
+{% hint style="warning" %}
+**metadata-url** must be no longer than 64 characters.
+{% endhint %}
+
+```text
+cardano-cli shelley stake-pool registration-certificate \
+    --cold-verification-key-file ~/cold-keys/node.vkey \
+    --vrf-verification-key-file vrf.vkey \
+    --pool-pledge 1000000000 \
+    --pool-cost 323000000 \
+    --pool-margin 0.20 \
+    --pool-reward-account-verification-key-file stake.vkey \
+    --pool-owner-stake-verification-key-file stake.vkey \
+    --testnet-magic 42 \
+    --pool-relay-port 3001 \
+    --pool-relay-ipv4 <your relay IP address> \
+    --metadata-url <url where you uploaded poolMetaData.json> \
+    --metadata-hash $(cat poolMetaDataHash.txt) \
+    --out-file pool.cert
+```
+
+{% hint style="info" %}
+Here we are pledging 1000 ADA with a fixed pool cost of 323 ADA and a pool margin of 20%. 
+{% endhint %}
+
+Pledge stake to your stakepool.
+
+```text
+cardano-cli shelley stake-address delegation-certificate \
+    --staking-verification-key-file stake.vkey \
+    --cold-verification-key-file ~/cold-keys/node.vkey \
+    --out-file deleg.cert
+```
+
+You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
+
+```
+currentSlot=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
+echo Current Slot: $currentSlot
+```
+
+Find your balance and **UTXOs**.
+
+```text
+cardano-cli shelley query utxo \
+    --address $(cat payment.addr) \
+    --testnet-magic 42 > fullUtxo.out
+    #--cardano-mode > fullUtxo.out
+
+tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
+
+cat balance.out
+
+tx_in=""
+total_balance=0
+while read -r utxo; do
+    in_addr=$(awk '{ print $1 }' <<< "${utxo}")
+    idx=$(awk '{ print $2 }' <<< "${utxo}")
+    utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
+    total_balance=$((${total_balance}+${utxo_balance}))
+    echo TxHash: ${in_addr}#${idx}
+    echo ADA: ${utxo_balance}
+    tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
+done < balance.out
+txcnt=$(cat balance.out | wc -l)
+echo Total ADA balance: ${total_balance}
+echo Number of UTXOs: ${txcnt}
+```
+
+Run the build-raw transaction command.
+
+{% hint style="info" %}
+The **ttl** value must be greater than the current tip. In this example, we use current slot + 10000. 
+{% endhint %}
+
+```text
+cardano-cli shelley transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+${total_balance} \
+    --ttl $(( ${currentSlot} + 10000)) \
+    --fee 0 \
+    --certificate-file pool.cert \
+    --certificate-file deleg.cert \
+    --out-file tx.tmp
+```
+
+Calculate the minimum fee:
+
+```text
+fee=$(cardano-cli shelley transaction calculate-min-fee \
+    --tx-body-file tx.tmp \
+    --tx-in-count ${txcnt} \
+    --tx-out-count 1 \
+    --testnet-magic 42 \
+    --witness-count 3 \
+    --byron-witness-count 0 \
+    --protocol-params-file params.json | awk '{ print $1 }')
+echo fee: $fee
+```
+
+Calculate your change output.
+
+```text
+txOut=$((${total_balance}-${fee}))
+echo txOut: ${txOut}
+```
+
+Build the transaction.
+
+```text
+cardano-cli shelley transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+${txOut} \
+    --ttl $(( ${currentSlot} + 10000)) \
+    --fee ${fee} \
+    --certificate-file pool.cert \
+    --certificate-file deleg.cert \
+    --out-file tx.raw
+```
+
+Sign the transaction.
+
+```text
+cardano-cli shelley transaction sign \
+    --tx-body-file tx.raw \
+    --signing-key-file payment.skey \
+    --signing-key-file ~/cold-keys/node.skey \
+    --signing-key-file stake.skey \
+    --testnet-magic 42 \
+    --out-file tx.signed
+```
+
+Send the transaction.
+
+```text
+cardano-cli shelley transaction submit \
+    --tx-file tx.signed \
+    --testnet-magic 42
+    #--cardano-mode
+```
+
