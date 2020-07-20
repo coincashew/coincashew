@@ -94,7 +94,7 @@ echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
 echo export NODE_CONFIG=mainnet_candidate>> ~/.bashrc
 echo export NODE_URL=mainnet-candidate >> ~/.bashrc
-echo export NODE_BUILD_NUM=3518809>> ~/.bashrc
+echo export NODE_BUILD_NUM=3535269>> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -613,7 +613,7 @@ Next step is to fund your payment address.
 
 {% tabs %}
 {% tab title="Release Candidate" %}
-Payment address can be funded from your Byron mainnet funds based on a snapshot from July 20th. If you were part of the ITN, you can convert your address as specified above. Public faucet is coming soon.
+Payment address can be funded from your Byron mainnet funds based on a snapshot from 07/20 00:00 UTC. If you were part of the ITN, you can convert your address as specified above. Public faucet is coming soon or [https://t.me/CardanoStakePoolWorkgroup](https://t.me/CardanoStakePoolWorkgroup)
 {% endtab %}
 
 {% tab title="Shelley Testnet" %}
