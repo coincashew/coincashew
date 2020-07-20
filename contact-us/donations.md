@@ -38,7 +38,7 @@ D5FS6FnKnkq3ZnmE8HiQtV9eF9ukdGYdad
 {% endtab %}
 
 {% tab title="Dai" %}
-![](https://gblobscdn.gitbook.com/assets%2F-M5KYnWuA6dS_nKYsmfV%2F-M5uI9tRKk9lxM_Ibklj%2F-M5uLJFCzgn_xeREGTgJ%2Fdonate-eth.png?alt=media&token=b0b9bb0a-9429-40d1-a019-3f6a5fbeac56)
+![](../.gitbook/assets/donate-eth.png)
 
 ```text
 0xCF83d0c22dd54475cC0C52721B0ef07d9756E8C0

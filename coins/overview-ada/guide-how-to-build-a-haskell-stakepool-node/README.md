@@ -165,7 +165,6 @@ wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byr
 wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-topology.json
 wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
 wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
-### mv ${NODE_CONFIG}-shelley-genesis.json ${NODE_CONFIG}-genesis.json
 ```
 
 Run the following to modify **config.json** and 
@@ -2192,7 +2191,7 @@ chmod u+rwx ~/cold-keys
 
  Want a clean start? Re-using existing server? Forked blockchain?
 
-Delete git code, and then rename your previous `$NODE_HOME` and `cold-keys` directory \(or optionally, remove\).
+Delete git repo, and then rename your previous `$NODE_HOME` and `cold-keys` directory \(or optionally, remove\).
 
 ```text
 rm -rf ~/git/cardano-node/ ~/git/libsodium/
@@ -2421,8 +2420,8 @@ rsync -avzhe “ssh -p <SSH-PORT>” <PATH TO LOCAL PC DESTINATION> <USERNAME>@<
 
 #### 🍰 Benefits of using systemd for your stakepool
 
-1. Auto-start your stakepool when the computer reboots due to maintenance, power outage, etc with systemd.
-2. Automatically restart crashed stakepool processes
+1. Auto-start your stakepool when the computer reboots due to maintenance, power outage, etc.
+2. Automatically restart crashed stakepool processes.
 3. Maximize your stakepool up-time and performance.
 
 #### 🛠 Setup Instructions
@@ -2521,8 +2520,7 @@ journalctl --unit=cardano-stakepool --since='2020-07-29 00:00:00' --until='2020-
 Find the slots per epoch.
 
 ```text
-epochLength=$(cat $NODE_HOME/${NODE_CONFIG}-genesis.json | jq -r '.epochLength')
-#slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.epochLength')
+epochLength=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.epochLength')
 echo epochLength: ${epochLength}
 ```
 
