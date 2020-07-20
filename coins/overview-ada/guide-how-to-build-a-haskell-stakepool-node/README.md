@@ -7,7 +7,7 @@ description: >-
 # Guide: How to build a Haskell Testnet Cardano Stakepool
 
 {% hint style="success" %}
-As of July 13, 2020, this guide is written for **shelley\_testnet v.1.15.1** 😁 
+As of July 20, 2020, this guide is written for **mainnet\_candidate version 2** with **release v.1.16.x** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -47,7 +47,7 @@ First, update packages and install Ubuntu dependencies.
 ```text
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y git curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf
+sudo apt-get install -y git tmux rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf
 ```
 
 Install Libsodium.
@@ -92,9 +92,9 @@ Update PATH to include Cabal and GHC and add exports. Your node's location will 
 echo PATH="~/.local/bin:$PATH" >> ~/.bashrc
 echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
-echo export NODE_CONFIG=shelley_testnet >> ~/.bashrc
-echo export NODE_URL=shelley-testnet >> ~/.bashrc
-echo export NODE_BUILD_NUM=3460262 >> ~/.bashrc
+echo export NODE_CONFIG=mainnet_candidate>> ~/.bashrc
+echo export NODE_URL=mainnet-candidate >> ~/.bashrc
+echo export NODE_BUILD_NUM=3518809>> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -112,21 +112,21 @@ Cabal library should be version 3.2.0.0 and GHC should be version 8.6.5
 
 ## 🏗 2. Build the node from source code
 
-Download source code and switch to the latest tag. In this case, use `release/1.15.x`
+Download source code and switch to the latest tag. In this case, use `release/1.16.x`
 
 ```text
 cd ~/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --tags
-git checkout release/1.15.x
+git checkout release/1.16.x
 ```
 
 Update the cabal config, project settings, and reset build folder.
 
 ```text
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
-sed -i.bak -e "s/overwrite-policy:/overwrite-policy: always/g" $HOME/.cabal/config
+sed -i $HOME/.cabal/config -e "s/overwrite-policy:/overwrite-policy: always/g"
 rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 ```
 
@@ -161,11 +161,11 @@ Here you'll grab the config.json, genesis.json, and topology.json files needed t
 ```text
 mkdir $NODE_HOME
 cd $NODE_HOME
-### wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
+wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
 wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-topology.json
 wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
 wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
-mv ${NODE_CONFIG}-shelley-genesis.json ${NODE_CONFIG}-genesis.json
+### mv ${NODE_CONFIG}-shelley-genesis.json ${NODE_CONFIG}-genesis.json
 ```
 
 Run the following to modify **config.json** and 
@@ -174,7 +174,9 @@ Run the following to modify **config.json** and
 * update TraceBlockFetchDecisions to "true"
 
 ```text
-sed -i.bak -e "s/SimpleView/LiveView/g" -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" ${NODE_CONFIG}-config.json
+sed -i ${NODE_CONFIG}-config.json \
+    -e "s/SimpleView/LiveView/g" \
+    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
 ```
 
 Update **.bashrc** shell variables.
@@ -196,16 +198,11 @@ A relay node will not be in possession of any keys and will therefore be unable 
 
 ![](../../../.gitbook/assets/producer-relay-diagram.png)
 
-Setup the directory structure.
+Setup the directory structure and copy the essential json files to each directory.
 
 ```text
 mkdir relaynode1
 mkdir relaynode2
-```
-
-Copy the essential json files to each directory.
-
-```text
 cp *.json relaynode1
 cp *.json relaynode2
 ```
@@ -345,33 +342,83 @@ cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-pa
 EOF
 ```
 
+The **startStakePool.sh** script will automatically start your relays and block-producing node.
+
+```text
+cat > $NODE_HOME/startStakePool.sh << EOF
+#!/bin/bash
+SESSION=$(whoami)
+tmux has-session -t \$SESSION 2>/dev/null
+if [ \$? != 0 ]; then
+   # tmux attach-session -t \$SESSION
+    tmux new-session -s \$SESSION -n window -d
+    tmux split-window -v
+    tmux split-window -h
+    tmux select-pane -t \$SESSION:window.0
+    tmux split-window -h
+    tmux send-keys -t \$SESSION:window.0 $NODE_HOME/startBlockProducingNode.sh Enter
+    tmux send-keys -t \$SESSION:window.1 htop Enter
+    tmux send-keys -t \$SESSION:window.2 $NODE_HOME/relaynode1/startRelayNode1.sh Enter
+    tmux send-keys -t \$SESSION:window.3 $NODE_HOME/relaynode2/startRelayNode2.sh Enter
+    echo Stakepool started. \"tmux a\" to view.
+fi
+EOF
+```
+
+The **stopStakePool.sh** script will automatically stop your relays and block-producing node.
+
+```text
+cat > $NODE_HOME/stopStakePool.sh << EOF
+#!/bin/bash
+SESSION=$(whoami)
+tmux has-session -t \$SESSION 2>/dev/null
+if [ \$? != 0 ]; then
+        echo Stakepool not running.
+else
+        echo Stopped stakepool.
+        tmux kill-session -t \$SESSION
+fi
+EOF
+```
+
 ## ✅ 5. Start the node
 
-**Press** Ctrl+Alt+T. This will launch a terminal window. Do this 3 times for 3 terminals. 
+**Press** Ctrl+Alt+T. This will launch a terminal window.
 
-Add execute permissions to the script and begin syncing the ADA blockchain!
-
-Run each in a separate terminal.
+Add execute permissions to the script, start your stakepool, and begin syncing the blockchain!
 
 ```text
 cd $NODE_HOME
 chmod +x startBlockProducingNode.sh
-./startBlockProducingNode.sh
+chmod +x relaynode1/startRelayNode1.sh
+chmod +x relaynode2/startRelayNode2.sh
+chmod +x startStakePool.sh
+chmod +x stopStakePool.sh
+./startStakePool.sh
 ```
+
+Your stakepool is running in a **tmux** terminal session now. To attach to the terminal, run the following.
 
 ```text
-cd $NODE_HOME/relaynode1
-chmod +x startRelayNode1.sh
-./startRelayNode1.sh
+tmux a
 ```
 
-```text
-cd $NODE_HOME/relaynode2
-chmod +x startRelayNode2.sh
-./startRelayNode2.sh
-```
+{% hint style="info" %}
+Smash the Maximize Window icon for best viewing effect.
+{% endhint %}
 
-![](../../../.gitbook/assets/shel-node.png)
+![](../../../.gitbook/assets/adatmux.png)
+
+To detach from a **tmux** session,
+
+**Press** Ctrl+b+d.
+
+{% hint style="info" %}
+✨ Tips for using **tmux** with the \[start\|stop\]StakePool.sh scripts.
+
+* **Ctrl + b + arrow key** to navigate around panes
+* **Ctrl + b + z** to zoom
+{% endhint %}
 
 {% hint style="success" %}
 Congratulations! Your node is running successfully now. Let it sync up.
@@ -420,8 +467,7 @@ Determine the number of slots per KES period from the genesis file.
 
 ```text
 pushd +1
-slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-genesis.json | jq -r '.slotsPerKESPeriod')
-#slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
+slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 ```
 
@@ -460,7 +506,12 @@ cardano-cli shelley node key-gen-VRF \
     --signing-key-file vrf.skey
 ```
 
-On your **block-producing node's terminal**, stop your **block-producing node** by typing the letter `q`
+Open a new terminal window with Ctrl+Alt+T and stop your ****stakepool by running the following:
+
+```text
+cd $NODE_HOME
+./stopStakePool.sh
+```
 
 Update your startup script with the new **KES, VRF and Operation Certificate.**
 
@@ -484,11 +535,12 @@ EOF
 To operate a stakepool, two sets of keys are needed: they KES key \(hot\) and the cold key. Cold keys generate new hot keys periodically.
 {% endhint %}
 
-Now start the new block-producing node.
+Now start your stakepool.
 
 ```text
 cd $NODE_HOME
-./startBlockProducingNode.sh
+./startStakePool.sh
+tmux a
 ```
 
 ## 🔐 7. Setup payment and staking keys
@@ -504,8 +556,8 @@ Wait for the block-producing node to start syncing before continuing if you get 
 ```text
 cardano-cli shelley query protocol-parameters \
     --testnet-magic 42 \
-    --out-file params.json
-    #--cardano-mode
+    --out-file params.json \
+    --cardano-mode
 ```
 
 Create a new payment key pair:  `payment.skey` & `payment.vkey`
@@ -540,8 +592,7 @@ Create your stake address from the stake address verification key and store it i
 cardano-cli shelley stake-address build \
     --staking-verification-key-file stake.vkey \
     --out-file stake.addr \
-    --testnet-magic 42
-    ##--mainnet
+    --mainnet
 ```
 
 Build a payment address for the payment key `payment.vkey` which will delegate to the stake address, `stake.vkey`
@@ -551,8 +602,7 @@ cardano-cli shelley address build \
     --payment-verification-key-file payment.vkey \
     --staking-verification-key-file stake.vkey \
     --out-file payment.addr \
-    --testnet-magic 42
-    ##--mainnet
+    --mainnet
 ```
 
 {% hint style="info" %}
@@ -562,6 +612,10 @@ Payment keys are used to send and receive payments and staking keys are used to 
 Next step is to fund your payment address. 
 
 {% tabs %}
+{% tab title="Release Candidate" %}
+Payment address can be funded from your Byron mainnet funds based on a snapshot from July 20th. If you were part of the ITN, you can convert your address as specified above. Public faucet is coming soon.
+{% endtab %}
+
 {% tab title="Shelley Testnet" %}
 Visit the [faucet ](https://testnets.cardano.org/en/shelley/tools/faucet/)to request funds to your `payment.addr`
 
@@ -577,10 +631,6 @@ Paste this address and fill out the captcha.
 The Shelly Testnet Faucet can deliver up to 100,000 fADA every 24 hours.
 {% endhint %}
 {% endtab %}
-
-{% tab title="Release Candidate" %}
-Payment address can be funded from your Byron mainnet funds based on a snapshot from July 10th. If you were part of the ITN, you can convert your address as specified above. Public faucet is coming soon.
-{% endtab %}
 {% endtabs %}
 
 After funding your account, check your payment address balance.
@@ -592,8 +642,8 @@ Before continuing, your nodes must be fully synchronized to the blockchain. Othe
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42
-    #--cardano-mode
+    --testnet-magic 42 \
+    --cardano-mode
 ```
 
 You should see output similar to this. This is your unspent transaction output \(UXTO\).
@@ -626,8 +676,8 @@ Find your balance and **UTXOs**.
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 > fullUtxo.out
-    #--cardano-mode > fullUtxo.out
+    --testnet-magic 42 \
+    --cardano-mode > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -729,8 +779,8 @@ Send the signed transaction.
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --testnet-magic 42
-    #--cardano-mode
+    --testnet-magic 42 \
+    --cardano-mode
 ```
 
 ## 📄 9. Register your stakepool
@@ -827,8 +877,8 @@ Find your balance and **UTXOs**.
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 > fullUtxo.out
-    #--cardano-mode > fullUtxo.out
+    --testnet-magic 42 \
+    --cardano-mode > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -929,8 +979,8 @@ Send the transaction.
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --testnet-magic 42
-    #--cardano-mode
+    --testnet-magic 42 \
+    --cardano-mode
 ```
 
 ## 🐣 10. Locate your Stakepool ID and verify everything is working 
@@ -1005,8 +1055,7 @@ A relay node connection is not established until there is a request and an appro
 For relaynode1, create a get\_buddies.sh script to update your topology.json file.
 
 ```text
-cd $NODE_HOME
-cat > relaynode1/get_buddies.sh << EOF 
+cat > $NODE_HOME/relaynode1/get_buddies.sh << EOF 
 #!/usr/bin/env bash
 
 ## CHANGE THESE TO SUIT YOUR POOL TO YOUR POOL ID AS ON THE EXPLORER
@@ -1036,8 +1085,7 @@ EOF
 For relaynode2, create a get\_buddies.sh script to update your topology.json file.
 
 ```text
-cd $NODE_HOME
-cat > relaynode2/get_buddies.sh << EOF 
+cat > $NODE_HOME/relaynode2/get_buddies.sh << EOF 
 #!/usr/bin/env bash
 
 ## CHANGE THESE TO SUIT YOUR POOL TO YOUR POOL ID AS ON THE EXPLORER
@@ -1083,27 +1131,19 @@ Use **nano** to edit your files.
 Add execute permissions to these scripts. Run the scripts to update your topology files.
 
 ```text
+cd $NODE_HOME
 chmod +x relaynode1/get_buddies.sh
 chmod +x relaynode2/get_buddies.sh
 ./relaynode1/get_buddies.sh
 ./relaynode2/get_buddies.sh
 ```
 
-Stop and then restart your relay nodes in order for the new topology settings to take effect.
+Stop and then restart your stakepool in order for the new topology settings to take effect.
 
 ```text
-kill $(lsof -t -i:3001)
-kill $(lsof -t -i:3002)
-```
-
-```text
-cd $NODE_HOME
-./relaynode1/startRelayNode1.sh
-```
-
-```text
-cd $NODE_HOME
-./relaynode2/startRelayNode2.sh
+./stopStakePool.sh
+./startStakePool.sh
+tmux a
 ```
 
 {% hint style="info" %}
@@ -1162,7 +1202,7 @@ Port 3000 is used by the block-producing node.
 
 ```text
 cd /etc/grafana
-sudo sed -i.bak -e "s/;http_port = 3000/http_port = 30000/g" grafana.ini
+sudo sed -i grafana.ini -e "s/;http_port = 3000/http_port = 30000/g"
 ```
 
 Enable services so they start automatically.
@@ -1229,34 +1269,18 @@ Update `${NODE_CONFIG}-config.json` config files with new `hasEKG`  and `hasProm
 
 ```text
 cd $NODE_HOME
-sed -i.bak -e "s/    12798/    12700/g" -e "s/hasEKG\": 12788/hasEKG\": 12600/g" ${NODE_CONFIG}-config.json
-cd $NODE_HOME/relaynode1
-sed -i.bak -e "s/    12798/    12701/g" -e "s/hasEKG\": 12788/hasEKG\": 12601/g" ${NODE_CONFIG}-config.json
-cd $NODE_HOME/relaynode2
-sed -i.bak -e "s/    12798/    12702/g" -e "s/hasEKG\": 12788/hasEKG\": 12602/g" ${NODE_CONFIG}-config.json
+sed -i ${NODE_CONFIG}-config.json -e "s/    12798/    12700/g" -e "s/hasEKG\": 12788/hasEKG\": 12600/g" 
+sed -i relaynode1/${NODE_CONFIG}-config.json -e "s/    12798/    12701/g" -e "s/hasEKG\": 12788/hasEKG\": 12601/g" 
+sed -i relaynode2/${NODE_CONFIG}-config.json -e "s/    12798/    12702/g" -e "s/hasEKG\": 12788/hasEKG\": 12602/g" 
 ```
 
-Stop and start your blockproducer, relaynode1, relaynode2.
-
-```text
-kill $(lsof -t -i:3000)
-kill $(lsof -t -i:3001)
-kill $(lsof -t -i:3002)
-```
+Stop and restart your stakepool.
 
 ```text
 cd $NODE_HOME
-./startBlockProducingNode.sh
-```
-
-```text
-cd $NODE_HOME
-./relaynode1/startRelayNode1.sh
-```
-
-```text
-cd $NODE_HOME
-./relaynode2/startRelayNode2.sh
+./stopStakePool.sh
+./startStakePool.sh
+tmux a
 ```
 
 ### 📶 13.2 Setting up Grafana Dashboards 
@@ -2085,11 +2109,29 @@ Import a **Cardano-Node** dashboard
 Congratulations. Prometheus and Grafana are working.
 {% endhint %}
 
-## 👏 14. Thank yous and reference material
+## 👏 14. Thank yous, Telegram and reference material
 
-Thanks to all Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
+### 😁 14.1 Thank yous
+
+Thanks to all &gt; 5000 of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
 
 👏 Special thanks to [Kaze-Stake](https://github.com/Kaze-Stake) for the pull requests and automatic script contributions.
+
+### \*\*\*\*💬 **14.2 Telegram Chat Channel**
+
+ Hang out and chat with our stakepool community at [https://t.me/coincashew](https://t.me/coincashew)
+
+### 😊 14.3 Donation Tipjar
+
+We sincerely appreciate all [donations](../../../contact-us/donations.md). 😁 Thank you for supporting Cardano and us! 
+
+![ADA tipjar](../../../.gitbook/assets/ada-tip.png)
+
+```text
+Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj
+```
+
+### 📚 14.4 Reference Material
 
 For more information and official documentation, please refer to the following links:
 
@@ -2101,7 +2143,7 @@ For more information and official documentation, please refer to the following l
 
 {% embed url="https://github.com/gitmachtl/scripts" %}
 
-## 🛠 15. Maintenance Tips
+## 🛠 15. Operational and Maintenance Tips
 
 ### 🤖 15.1 Updating the operational cert with a new KES Period
 
@@ -2146,7 +2188,19 @@ chmod u+rwx ~/cold-keys
 ```
 {% endhint %}
 
-### 🌊 15.2 Resetting the databases
+### 🔥 15.2 Resetting the installation
+
+ Want a clean start? Re-using existing server? Forked blockchain?
+
+Delete git code, and then rename your previous `$NODE_HOME` and `cold-keys` directory \(or optionally, remove\).
+
+```text
+rm -rf ~/git/cardano-node/ ~/git/libsodium/
+mv $NODE_HOME $(basename $NODE_HOME)_backup_$(date -I)
+mv ~/cold-keys ~/cold-keys_backup_$(date -I)
+```
+
+### 🌊 15.3 Resetting the databases
 
 Corrupted or stuck blockchain? Delete all db folders.
 
@@ -2157,7 +2211,7 @@ rm -rf relaynode1/db
 rm -rf relaynode2/db
 ```
 
-### 📝 15.3 Changing the pledge, fee, margin, etc.
+### 📝 15.4 Changing the pledge, fee, margin, etc.
 
 {% hint style="info" %}
 Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resubmit your stakepool registration certificate.
@@ -2228,8 +2282,8 @@ Find your balance and **UTXOs**.
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 > fullUtxo.out
-    #--cardano-mode > fullUtxo.out
+    --testnet-magic 42 \
+    --cardano-mode > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -2319,7 +2373,305 @@ Send the transaction.
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --testnet-magic 42
-    #--cardano-mode
+    --testnet-magic 42 \
+    --cardano-mode
+```
+
+After the transaction confirms, verify that your pool settings are correct.
+
+```text
+cardano-cli shelley query ledger-state --testnet-magic 42 --out-file ledger-state.json
+jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
+```
+
+### 🧩 15.5 Transferring files over SSH
+
+Common use cases can include
+
+* Downloading backups of staking/payment keys
+* Uploading a new operational certificate to the block producer from an offline node
+
+#### To download files from a node to your local PC
+
+```text
+ssh <USERNAME>@<IP ADDRESS> -p <SSH-PORT>
+rsync -avzhe “ssh -p <SSH-PORT>” <USERNAME>@<IP ADDRESS>:<PATH TO NODE DESTINATION> <PATH TO LOCAL PC DESTINATION>
+```
+
+> Example:
+>
+> `ssh myusername@6.1.2.3 -p 12345`
+>
+> `rsync -avzhe "ssh -p 12345" myusername@6.1.2.3:/home/myusername/cardano-my-node/stake.vkey ./stake.vkey`
+
+#### To upload files from your local PC to a node
+
+```text
+ssh <USERNAME>@<IP ADDRESS> -p <SSH-PORT>
+rsync -avzhe “ssh -p <SSH-PORT>” <PATH TO LOCAL PC DESTINATION> <USERNAME>@<IP ADDRESS>:<PATH TO NODE DESTINATION>
+```
+
+> Example:
+>
+> `ssh myusername@6.1.2.3 -p 12345`
+>
+> `rsync -avzhe "ssh -p 12345" ./node.cert myusername@6.1.2.3:/home/myusername/cardano-my-node/node.cert`
+
+### 🏃♂ 15.6 Auto-starting with systemd services
+
+#### 🍰 Benefits of using systemd for your stakepool
+
+1. Auto-start your stakepool when the computer reboots due to maintenance, power outage, etc with systemd.
+2. Automatically restart crashed stakepool processes
+3. Maximize your stakepool up-time and performance.
+
+#### 🛠 Setup Instructions
+
+Before beginning, ensure your stakepool is stopped.
+
+```text
+$NODE_HOME/stopStakePool.sh
+```
+
+Run the following to create a **unit file** to define your`cardano-stakepool.service` configuration.
+
+```text
+cat > $NODE_HOME/cardano-stakepool.service << EOF 
+# The Cardano Stakepool service (part of systemd)
+# file: /etc/systemd/system/cardano-stakepool.service 
+
+[Unit]
+Description     = Cardano Stakepool Service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+Type            = forking
+WorkingDirectory= /home/$(whoami)/
+ExecStart       = $NODE_HOME/startStakePool.sh
+ExecStop        = $NODE_HOME/stopStakePool.sh
+ExecReload      = $NODE_HOME/stopStakePool.sh && $NODE_HOME/startStakePool.sh
+Restart         = always
+
+[Install]
+WantedBy	= multi-user.target
+EOF
+```
+
+Copy the unit file to `/etc/systemd/system` and give it permissions.
+
+```text
+sudo cp $NODE_HOME/cardano-stakepool.service /etc/systemd/system/cardano-stakepool.service
+sudo chmod 644 /etc/systemd/system/cardano-stakepool.service
+```
+
+Run the following to enable auto-start at boot time and then start your stakepool service.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable cardano-stakepool
+sudo systemctl start cardano-stakepool
+```
+
+{% hint style="success" %}
+Nice work. Your stakepool is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+{% endhint %}
+
+#### 📎 Reattach to the stakepool tmux session after system startup.
+
+```text
+tmux a
+```
+
+#### ✅ Check whether the stakepool service is active
+
+```text
+sudo systemctl is-active cardano-stakepool
+```
+
+#### 🔎 View the status of the stakepool service
+
+```text
+sudo systemctl status cardano-stakepool
+```
+
+#### 🔄 Restarting the stakepool service
+
+```text
+sudo systemctl reload-or-restart cardano-stakepool
+```
+
+#### 🛑 Stopping the stakepool service
+
+```text
+sudo systemctl stop cardano-stakepool
+```
+
+#### 🗄 Filtering logs
+
+```text
+journalctl --unit=cardano-stakepool --since=yesterday
+journalctl --unit=cardano-stakepool --since=today
+journalctl --unit=cardano-stakepool --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
+```
+
+## 🌜 16. Retiring your stakepool
+
+Find the slots per epoch.
+
+```text
+epochLength=$(cat $NODE_HOME/${NODE_CONFIG}-genesis.json | jq -r '.epochLength')
+#slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.epochLength')
+echo epochLength: ${epochLength}
+```
+
+ Find the current slot by querying the tip.
+
+```text
+slotNo=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
+echo slotNo: ${slotNo}
+```
+
+Calculate the current epoch by dividing the slot tip number by epochLength which is 21600 slots.
+
+```text
+epoch=$((${slotNo} / ${epochLength}))
+echo current epoch: ${epoch}
+```
+
+Find the eMax value.
+
+```text
+eMax=$(cat $NODE_HOME/params.json | jq -r '.eMax')
+echo eMax: ${eMax}
+```
+
+{% hint style="info" %}
+\*\*\*\*🚧 **Example**: if we are in epoch 39 and eMax is 100,
+
+* the earliest epoch for retirement is 40 \( current epoch  + 1\).
+* the latest epoch for retirement is 139 \( eMax + current epoch\). 
+* Let's pretend we wish to retire as soon as possible in epoch 40.
+{% endhint %}
+
+ Create the deregistration certificate and save it as `pool.dereg`:
+
+```text
+cardano-cli shelley stake-pool deregistration-certificate \
+--cold-verification-key-file ~/cold-keys/node.vkey \
+--epoch $((${epoch} + 1)) \
+--out-file pool.dereg
+echo pool will retire at end of epoch: $((${epoch} + 1))
+```
+
+Find your balance and **UTXOs**.
+
+```text
+cardano-cli shelley query utxo \
+    --address $(cat payment.addr) \
+    --testnet-magic 42 \
+    --cardano-mode > fullUtxo.out
+
+tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
+
+cat balance.out
+
+tx_in=""
+total_balance=0
+while read -r utxo; do
+    in_addr=$(awk '{ print $1 }' <<< "${utxo}")
+    idx=$(awk '{ print $2 }' <<< "${utxo}")
+    utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
+    total_balance=$((${total_balance}+${utxo_balance}))
+    echo TxHash: ${in_addr}#${idx}
+    echo ADA: ${utxo_balance}
+    tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
+done < balance.out
+txcnt=$(cat balance.out | wc -l)
+echo Total ADA balance: ${total_balance}
+echo Number of UTXOs: ${txcnt}
+```
+
+Run the build-raw transaction command.
+
+{% hint style="info" %}
+The **ttl** value must be greater than the current tip. In this example, we use current slot + 10000. 
+{% endhint %}
+
+```text
+cardano-cli shelley transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+${total_balance} \
+    --ttl $(( ${slotNo} + 10000)) \
+    --fee 0 \
+    --certificate-file pool.dereg \
+    --out-file tx.tmp
+```
+
+Calculate the minimum fee:
+
+```text
+fee=$(cardano-cli shelley transaction calculate-min-fee \
+    --tx-body-file tx.tmp \
+    --tx-in-count ${txcnt} \
+    --tx-out-count 1 \
+    --testnet-magic 42 \
+    --witness-count 2 \
+    --byron-witness-count 0 \
+    --protocol-params-file params.json | awk '{ print $1 }')
+echo fee: $fee
+```
+
+Calculate your change output.
+
+```text
+txOut=$((${total_balance}-${fee}))
+echo txOut: ${txOut}
+```
+
+Build the transaction.
+
+```text
+cardano-cli shelley transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+${txOut} \
+    --ttl $(( ${slotNo} + 10000)) \
+    --fee ${fee} \
+    --certificate-file pool.dereg \
+    --out-file tx.raw
+```
+
+Sign the transaction.
+
+```text
+cardano-cli shelley transaction sign \
+    --tx-body-file tx.raw \
+    --signing-key-file payment.skey \
+    --signing-key-file ~/cold-keys/node.skey \
+    --testnet-magic 42 \
+    --out-file tx.signed
+```
+
+Send the transaction.
+
+```text
+cardano-cli shelley transaction submit \
+    --tx-file tx.signed \
+    --testnet-magic 42 \
+    --cardano-mode
+```
+
+{% hint style="success" %}
+Pool will retire at the end of your specified epoch. In this example, retirement occurs at the end of epoch 40. 
+
+If you have a change of heart, you can create and submit a new registration certificate before the end of epoch 40, which will then overrule the deregistration certificate.
+{% endhint %}
+
+After the retirement epoch, you can verify that the pool was successfully retired with the following query which should return an empty result.
+
+```text
+cardano-cli shelley query ledger-state --testnet-magic 42 --out-file ledger-state.json
+jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 
