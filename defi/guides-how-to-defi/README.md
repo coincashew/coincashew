@@ -12,7 +12,7 @@
 
 {% page-ref page="compound.finance-how-to-earn-interest-on-crypto.md" %}
 
-{% page-ref page="how-to-create-synthetix-assets.md" %}
+{% page-ref page="how-to-synthetix.io.md" %}
 
 {% page-ref page="makerdao.com-how-to-mint-dai.md" %}
 

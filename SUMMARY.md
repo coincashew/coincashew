@@ -78,11 +78,12 @@
 
 * [Overview: DeFi](defi/overview-defi.md)
 * [Guides: How to DeFi](defi/guides-how-to-defi/README.md)
+  * [Curve.fi Guides](defi/guides-how-to-defi/curve.fi-guides.md)
   * [Sablier: How to stream payments](defi/guides-how-to-defi/sablier-how-to-stream-payments.md)
   * [dYdX: How to margin trade](defi/guides-how-to-defi/dydx-how-to-margin-trade.md)
   * [Augur.net: How to use Prediction Markets](defi/guides-how-to-defi/augur.net-how-to-use-prediction-markets.md)
   * [Compound.finance: How to earn interest on crypto](defi/guides-how-to-defi/compound.finance-how-to-earn-interest-on-crypto.md)
-  * [Synthetix.io: How to create Synthetic Assets](defi/guides-how-to-defi/how-to-create-synthetix-assets.md)
+  * [Synthetix.io: How to trade and mint assets](defi/guides-how-to-defi/how-to-synthetix.io.md)
   * [Uniswap.io: How to trade on a DEX](defi/guides-how-to-defi/uniswap.io-how-to-trade-on-a-dex.md)
   * [Uniswap.io: How to earn returns as a Liquidity Provider](defi/guides-how-to-defi/uniswap.io-how-to-earn-returns-as-a-liquidity-provider.md)
   * [Makerdao.com: How to mint DAI with a vault](defi/guides-how-to-defi/makerdao.com-how-to-mint-dai.md)
