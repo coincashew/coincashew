@@ -2191,7 +2191,7 @@ chmod u+rwx ~/cold-keys
 
 ### 🔥 15.2 Resetting the installation
 
- Want a clean start? Re-using existing server? Forked blockchain?
+Want a clean start? Re-using existing server? Forked blockchain?
 
 Delete git repo, and then rename your previous `$NODE_HOME` and `cold-keys` directory \(or optionally, remove\).
 
@@ -2553,7 +2553,8 @@ echo eMax: ${eMax}
 
 * the earliest epoch for retirement is 40 \( current epoch  + 1\).
 * the latest epoch for retirement is 139 \( eMax + current epoch\). 
-* Let's pretend we wish to retire as soon as possible in epoch 40.
+
+Let's pretend we wish to retire as soon as possible in epoch 40.
 {% endhint %}
 
  Create the deregistration certificate and save it as `pool.dereg`:
