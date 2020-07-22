@@ -693,6 +693,7 @@ while read -r utxo; do
     echo ADA: ${utxo_balance}
     tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
 done < balance.out
+tx_in=$(echo $tx_in | sed -e 's/\"//g')
 txcnt=$(cat balance.out | wc -l)
 echo Total ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
@@ -894,6 +895,7 @@ while read -r utxo; do
     echo ADA: ${utxo_balance}
     tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
 done < balance.out
+tx_in=$(echo $tx_in | sed -e 's/\"//g')
 txcnt=$(cat balance.out | wc -l)
 echo Total ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
@@ -2299,6 +2301,7 @@ while read -r utxo; do
     echo ADA: ${utxo_balance}
     tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
 done < balance.out
+tx_in=$(echo $tx_in | sed -e 's/\"//g')
 txcnt=$(cat balance.out | wc -l)
 echo Total ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
@@ -2586,6 +2589,7 @@ while read -r utxo; do
     echo ADA: ${utxo_balance}
     tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
 done < balance.out
+tx_in=$(echo $tx_in | sed -e 's/\"//g')
 txcnt=$(cat balance.out | wc -l)
 echo Total ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
