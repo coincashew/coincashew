@@ -94,7 +94,7 @@ echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
 echo export NODE_CONFIG=mainnet_candidate>> ~/.bashrc
 echo export NODE_URL=mainnet-candidate >> ~/.bashrc
-echo export NODE_BUILD_NUM=3535269>> ~/.bashrc
+echo export NODE_BUILD_NUM=3554884>> ~/.bashrc
 source ~/.bashrc
 ```
 
