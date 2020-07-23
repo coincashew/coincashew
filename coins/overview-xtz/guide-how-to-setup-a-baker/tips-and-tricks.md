@@ -105,6 +105,33 @@ Proceed with the following commands:
 ./tezos-client get balance for myaccount
 ```
 
+## 🤹♀ Exporting and importing a snapshot
+
+Handy if you're building another node and want to speed up the blockchain sync process.
+
+Also useful for reclaiming disk space. 
+
+1. Run the export snapshot command
+2. Stop the node
+3. Rename `~/.tezos-node` to `~/.tezos-node2`
+4. Run the import snapshot command
+5. Copy `*.json` from `~/.tezos-node2` to `~/.tezos-node`
+6. Start the node
+7. Confirm everything is working
+8. Remove `~/.tezos-node2` to free up disk space.
+
+#### Export command
+
+```text
+./tezos-node snapshot export --block <block hash> mySnapshot.file
+```
+
+#### Import command
+
+```text
+./tezos-node snapshot import mySnapshot.file
+```
+
 ## 🆘 More help at the Official Documentation
 
 Comprehensive and official Tezos documentation is always available here:
