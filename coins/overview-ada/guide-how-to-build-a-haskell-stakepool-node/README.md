@@ -7,7 +7,7 @@ description: >-
 # Guide: How to build a Haskell Testnet Cardano Stakepool
 
 {% hint style="success" %}
-As of July 20, 2020, this guide is written for **mainnet\_candidate version 2** with **release v.1.16.x** 😁 
+As of July 23, 2020, this guide is written for **mainnet\_candidate version 3** with **release v.1.17.x** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -92,9 +92,9 @@ Update PATH to include Cabal and GHC and add exports. Your node's location will 
 echo PATH="~/.local/bin:$PATH" >> ~/.bashrc
 echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
-echo export NODE_CONFIG=mainnet_candidate>> ~/.bashrc
-echo export NODE_URL=mainnet-candidate >> ~/.bashrc
-echo export NODE_BUILD_NUM=3554884>> ~/.bashrc
+echo export NODE_CONFIG=mainnet_candidate_3>> ~/.bashrc
+echo export NODE_URL=mainnet-candidate-3 >> ~/.bashrc
+echo export NODE_BUILD_NUM=3595883>> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -119,7 +119,7 @@ cd ~/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --tags
-git checkout release/1.16.x
+git checkout 1.17.0
 ```
 
 Update the cabal config, project settings, and reset build folder.
