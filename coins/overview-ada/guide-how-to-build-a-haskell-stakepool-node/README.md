@@ -112,13 +112,13 @@ Cabal library should be version 3.2.0.0 and GHC should be version 8.6.5
 
 ## 🏗 2. Build the node from source code
 
-Download source code and switch to the latest tag. In this case, use `release/1.16.x`
+Download source code and switch to the latest tag. In this case, use `release/1.17.0`
 
 ```text
 cd ~/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
-git fetch --tags
+git fetch --all
 git checkout 1.17.0
 ```
 
