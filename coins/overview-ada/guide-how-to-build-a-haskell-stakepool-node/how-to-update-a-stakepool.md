@@ -4,7 +4,7 @@
 
 From time to time, there will be new versions of Cardano-Node. Follow the [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) by enabling **notifications** with the watch functionality.
 
-To update with `~/cardano-node` as the current binaries directory, copy the whole cardano-node directory to a new place so that you have a backup.
+To update with `~/git/cardano-node` as the current binaries directory, copy the whole cardano-node directory to a new place so that you have a backup.
 
 ```text
 cd ~/git
@@ -85,14 +85,14 @@ rm -rf relaynode2/db
 
 ### 📂 4.2 Roll back to previous version from backup
 
-Following the above guide, you can simply restore the old cardano-node directory.
-
-Then try the update procedure again.
-
 ```text
 cd ~/git
 mv cardano-node/ cardano-node-rolled-back/
 mv cardano-node-old/ cardano-node/
+sudo cp $(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
+sudo cp $(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
+$(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") version
+$(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") version
 ```
 
 ### 🤖 4.3 Last resort: Rebuild from source code
