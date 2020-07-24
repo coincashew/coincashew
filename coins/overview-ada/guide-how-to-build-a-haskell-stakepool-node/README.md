@@ -439,7 +439,7 @@ KES \(key evolving signature\) keys are created to secure your stakepool against
 {% endhint %}
 
 {% hint style="danger" %}
-In production, **cold keys** should remain true cold keys. Generate and store on an offline computer.
+In production, **cold keys** should remain true cold keys. Generate and store on an unconnected air-gapped offline ideally clean new computer. Copy `cardano-cli` binary over and run the `node key-gen` commands.
 {% endhint %}
 
 Make a directory to store your cold keys
