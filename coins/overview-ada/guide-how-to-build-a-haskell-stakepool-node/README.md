@@ -94,7 +94,7 @@ echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
 echo export NODE_CONFIG=mainnet_candidate_3>> ~/.bashrc
 echo export NODE_URL=mainnet-candidate-3 >> ~/.bashrc
-echo export NODE_BUILD_NUM=3595883>> ~/.bashrc
+echo export NODE_BUILD_NUM=3611354>> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -119,7 +119,7 @@ cd ~/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all
-git checkout 1.17.0
+git checkout tags/1.17.0
 ```
 
 Update the cabal config, project settings, and reset build folder.
@@ -436,6 +436,10 @@ cardano-cli shelley node key-gen-KES \
 
 {% hint style="info" %}
 KES \(key evolving signature\) keys are created to secure your stakepool against hackers who might compromise your keys. On mainnet, these will be regenerated every 90 days.
+{% endhint %}
+
+{% hint style="danger" %}
+In production, **cold keys** should remain true cold keys. Generate and store on an offline computer.
 {% endhint %}
 
 Make a directory to store your cold keys

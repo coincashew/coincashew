@@ -7,59 +7,65 @@ From time to time, there will be new versions of Cardano-Node. Follow the [Offic
 To update with `~/cardano-node` as the current binaries directory, copy the whole cardano-node directory to a new place so that you have a backup.
 
 ```text
-cd
+cd ~/git
 rsync -av cardano-node/ cardano-node2/
-cd ~/cardano-node2
+cd cardano-node2/
+```
+
+{% hint style="danger" %}
+Read the patch notes for any other special updates or dependencies that may be required for the latest release.
+{% endhint %}
+
+Rebuild the latest binaries. Run the following command to pull and build the latest Cardano-Node binaries. Change the **tag** or **branch** as needed.
+
+```text
+rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5
+git clean -fd
+git fetch --all && git checkout tags/1.17.0 && git pull
+cabal build cardano-node cardano-cli
 ```
 
 {% hint style="info" %}
-Read the patch notes for any other special updates or dependencies that may be required for this latest release.
+Building process may take a few minutes up to a few hours depending on your computer's processing power.
 {% endhint %}
-
-Install these two special updates for release 1.14.x
-
-```text
-sudo apt-get -y install curl libsodium-dev
-echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
-```
-
-Rebuild the latest binaries. Run the following command to pull and build the latest Cardano-Node binaries.
-
-```text
-git clean -fd
-git fetch && git checkout release/1.14.x && git pull
-cabal install cardano-node cardano-cli --overwrite-policy=always
-```
-
-Copy **cardano-cli** and **cardano-node** files into bin directory.
-
-```text
-sudo cp $HOME/.cabal/bin/cardano-cli /usr/local/bin/cardano-cli
-sudo cp $HOME/.cabal/bin/cardano-node /usr/local/bin/cardano-node
-```
 
 Verify your **cardano-cli** and **cardano-node** were updated to the expected version.
 
 ```text
-cardano-node version
-cardano-cli version
+$(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") version
+$(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") version
 ```
 
 {% hint style="danger" %}
-Stop your node by pressing "q".
+Stop your node by running **stopStakePool.sh** or 
+
+```text
+sudo systemctl stop cardano-stakepool
+```
+{% endhint %}
+
+Copy **cardano-cli** and **cardano-node** files into bin directory.
+
+```text
+sudo cp $(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
+sudo cp $(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
+```
+
+{% hint style="success" %}
+Now restart your nodes with **startStakePool.sh** or
+
+```text
+sudo systemctl start cardano-stakepool
+```
 {% endhint %}
 
 Finally, the following sequence will switch-over to your newly built cardano-node folder while keeping the old directory for backup.
 
 ```text
-cd
+cd ~/git
 mv cardano-node/ cardano-node-old/
 mv cardano-node2/ cardano-node/
 ```
-
-{% hint style="success" %}
-Now restart your nodes.
-{% endhint %}
 
 ## 🤯 2. In case of problems
 
@@ -71,9 +77,10 @@ Reset your database files and be sure to grab the [latest genesis, config, topol
 
 ```text
 # Sample commands for clearing the db
-rm -rf ~/cardano-my-node/db
-rm -rf ~/cardano-my-node/relaynode1/db
-rm -rf ~/cardano-my-node/relaynode2/db
+cd $NODE_HOME
+rm -rf db
+rm -rf relaynode1/db
+rm -rf relaynode2/db
 ```
 
 ### 📂 4.2 Roll back to previous version from backup
@@ -83,6 +90,7 @@ Following the above guide, you can simply restore the old cardano-node directory
 Then try the update procedure again.
 
 ```text
+cd ~/git
 mv cardano-node/ cardano-node-rolled-back/
 mv cardano-node-old/ cardano-node/
 ```
