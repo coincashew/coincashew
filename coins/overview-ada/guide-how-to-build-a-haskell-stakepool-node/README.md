@@ -47,7 +47,7 @@ First, update packages and install Ubuntu dependencies.
 ```text
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y git tmux rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf
+sudo apt-get install -y git make tmux rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf
 ```
 
 Install Libsodium.
