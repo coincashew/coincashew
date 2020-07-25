@@ -7,7 +7,7 @@ description: >-
 # Guide: How to build a Haskell Testnet Cardano Stakepool
 
 {% hint style="success" %}
-As of July 23, 2020, this guide is written for **mainnet\_candidate version 3** with **release v.1.17.x** 😁 
+As of July 25, 2020, this guide is written for **mainnet\_candidate version 4** with **release v.1.18.0** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -92,9 +92,9 @@ Update PATH to include Cabal and GHC and add exports. Your node's location will 
 echo PATH="~/.local/bin:$PATH" >> ~/.bashrc
 echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
-echo export NODE_CONFIG=mainnet_candidate_3>> ~/.bashrc
-echo export NODE_URL=mainnet-candidate-3 >> ~/.bashrc
-echo export NODE_BUILD_NUM=3611354>> ~/.bashrc
+echo export NODE_CONFIG=mainnet_candidate_4>> ~/.bashrc
+echo export NODE_URL=mainnet-candidate-4 >> ~/.bashrc
+echo export NODE_BUILD_NUM=3622471>> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -112,14 +112,14 @@ Cabal library should be version 3.2.0.0 and GHC should be version 8.6.5
 
 ## 🏗 2. Build the node from source code
 
-Download source code and switch to the latest tag. In this case, use `tag/1.17.0`
+Download source code and switch to the latest tag. In this case, use `tag/1.18.0`
 
 ```text
 cd ~/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all
-git checkout tags/1.17.0
+git checkout tags/1.18.0
 ```
 
 Update the cabal config, project settings, and reset build folder.
@@ -616,7 +616,18 @@ Next step is to fund your payment address.
 
 {% tabs %}
 {% tab title="Release Candidate" %}
-Payment address can be funded from your Byron mainnet funds based on a snapshot from 07/20 00:00 UTC. If you were part of the ITN, you can convert your address as specified above. Public faucet is coming soon or [https://t.me/CardanoStakePoolWorkgroup](https://t.me/CardanoStakePoolWorkgroup)
+Payment address can be funded from
+
+* [Public testnet faucet](https://testnets.cardano.org/en/shelley/tools/faucet/)
+* ask in telegram - [https://t.me/CardanoStakePoolWorkgroup](https://t.me/CardanoStakePoolWorkgroup)
+* your Byron mainnet funds based on a snapshot from 07/20 00:00 UTC. 
+* if you were part of the ITN, you can convert your address as specified above. 
+
+Run the following to find your payment address.
+
+```text
+cat payment.addr
+```
 {% endtab %}
 
 {% tab title="Shelley Testnet" %}
@@ -697,7 +708,6 @@ while read -r utxo; do
     echo ADA: ${utxo_balance}
     tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
 done < balance.out
-tx_in=$(echo $tx_in | sed -e 's/\"//g')
 txcnt=$(cat balance.out | wc -l)
 echo Total ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
@@ -899,7 +909,6 @@ while read -r utxo; do
     echo ADA: ${utxo_balance}
     tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
 done < balance.out
-tx_in=$(echo $tx_in | sed -e 's/\"//g')
 txcnt=$(cat balance.out | wc -l)
 echo Total ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
@@ -2304,7 +2313,6 @@ while read -r utxo; do
     echo ADA: ${utxo_balance}
     tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
 done < balance.out
-tx_in=$(echo $tx_in | sed -e 's/\"//g')
 txcnt=$(cat balance.out | wc -l)
 echo Total ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
@@ -2593,7 +2601,6 @@ while read -r utxo; do
     echo ADA: ${utxo_balance}
     tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
 done < balance.out
-tx_in=$(echo $tx_in | sed -e 's/\"//g')
 txcnt=$(cat balance.out | wc -l)
 echo Total ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}

@@ -21,7 +21,7 @@ Remove the old binaries and rebuild the latest binaries. Run the following comma
 ```text
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 git clean -fd
-git fetch --all && git checkout tags/1.17.0 && git pull
+git fetch --all && git checkout tags/1.18.0 && git pull
 cabal build cardano-node cardano-cli
 ```
 
