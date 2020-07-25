@@ -112,7 +112,7 @@ Cabal library should be version 3.2.0.0 and GHC should be version 8.6.5
 
 ## 🏗 2. Build the node from source code
 
-Download source code and switch to the latest tag. In this case, use `tag/1.18.0`
+Download source code and switch to the latest tag. In this case, use `tags/1.18.0`
 
 ```text
 cd ~/git
@@ -803,6 +803,10 @@ Create your pool's metadata with a JSON file. Update with your pool information.
 
 {% hint style="warning" %}
 **ticker** must be between 3-5 characters in length.
+{% endhint %}
+
+{% hint style="warning" %}
+**description** cannot exceed 255 characters in length.
 {% endhint %}
 
 ```text
@@ -2144,6 +2148,10 @@ We sincerely appreciate all [donations](../../../contact-us/donations.md). 😁 
 Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj
 ```
 
+or visit our [donation address on BlockChair](https://blockchair.com/cardano/address/Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj). 
+
+{% embed url="https://blockchair.com/cardano/address/Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj" %}
+
 ### 📚 14.4 Reference Material
 
 For more information and official documentation, please refer to the following links:
@@ -2241,7 +2249,7 @@ echo minPoolCost: ${minPoolCost}
 minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
-If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file.
+If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. Refer to [section 9 for information.](./#9-register-your-stakepool)
 
 ```text
 cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
