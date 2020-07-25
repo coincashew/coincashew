@@ -836,7 +836,7 @@ echo minPoolCost: ${minPoolCost}
 ```
 
 {% hint style="info" %}
-minPoolCost is 228000000 lovelace or 228 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
+minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
 Create a registration certificate for your stakepool. Update with your **metadata URL** and **relay IP address**.
@@ -850,7 +850,7 @@ cardano-cli shelley stake-pool registration-certificate \
     --cold-verification-key-file ~/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 100000000 \
-    --pool-cost 321000000 \
+    --pool-cost 345000000 \
     --pool-margin 0.15 \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
@@ -863,7 +863,7 @@ cardano-cli shelley stake-pool registration-certificate \
 ```
 
 {% hint style="info" %}
-Here we are pledging 100 ADA with a fixed pool cost of 321 ADA and a pool margin of 15%. 
+Here we are pledging 100 ADA with a fixed pool cost of 345 ADA and a pool margin of 15%. 
 {% endhint %}
 
 Pledge stake to your stakepool.
@@ -2238,7 +2238,7 @@ echo minPoolCost: ${minPoolCost}
 ```
 
 {% hint style="info" %}
-minPoolCost is 228000000 lovelace or 228 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
+minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
 If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file.
@@ -2258,7 +2258,7 @@ cardano-cli shelley stake-pool registration-certificate \
     --cold-verification-key-file ~/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 1000000000 \
-    --pool-cost 323000000 \
+    --pool-cost 345000000 \
     --pool-margin 0.20 \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
@@ -2271,7 +2271,7 @@ cardano-cli shelley stake-pool registration-certificate \
 ```
 
 {% hint style="info" %}
-Here we are pledging 1000 ADA with a fixed pool cost of 323 ADA and a pool margin of 20%. 
+Here we are pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 20%. 
 {% endhint %}
 
 Pledge stake to your stakepool.
