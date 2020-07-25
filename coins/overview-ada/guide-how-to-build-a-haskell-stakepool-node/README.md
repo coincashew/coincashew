@@ -112,7 +112,7 @@ Cabal library should be version 3.2.0.0 and GHC should be version 8.6.5
 
 ## 🏗 2. Build the node from source code
 
-Download source code and switch to the latest tag. In this case, use `release/1.17.0`
+Download source code and switch to the latest tag. In this case, use `tag/1.17.0`
 
 ```text
 cd ~/git
@@ -1190,9 +1190,8 @@ wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 ```
 
 ```text
-sudo su
-echo "deb https://packages.grafana.com/oss/deb stable main" > /etc/apt/sources.list.d/grafana.list
-exit
+echo "deb https://packages.grafana.com/oss/deb stable main" > grafana.list
+sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
 ```
 
 ```text
