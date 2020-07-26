@@ -38,6 +38,8 @@ For instructions on installing **Ubuntu**, refer to the following:
 
 {% page-ref page="../../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
 
+If you are rebuilding or reusing an existing `cardano-node` installation, [refer to section 15.2 on how to reset the installation.](./#15-2-resetting-the-installation)
+
 ## 🏭 1. Install Cabal and GHC
 
 **Press** Ctrl+Alt+T. This will launch a terminal window. 
@@ -2148,7 +2150,7 @@ We sincerely appreciate all [donations](../../../contact-us/donations.md). 😁 
 Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj
 ```
 
-or visit our [donation address on BlockChair](https://blockchair.com/cardano/address/Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj). 
+or visit the [donation address on BlockChair's](https://blockchair.com/cardano/address/Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj) ADA block explorer. 
 
 {% embed url="https://blockchair.com/cardano/address/Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj" %}
 
