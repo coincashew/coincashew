@@ -219,6 +219,10 @@ sudo systemctl start cardano-stakepool
 {% endtab %}
 {% endtabs %}
 
+### 🎊 9. Verify the connection
+
+On one of your node's tmux screen, press `P` to view the peer list. You should see the connection to other node's IP.
+
 {% hint style="success" %}
 ✨ Congrats on the new relay node.
 {% endhint %}
