@@ -723,7 +723,7 @@ echo keyDeposit: $keyDeposit
 ```
 
 {% hint style="info" %}
-Registration of a stake address certificate \(keyDeposit\) costs 400000 lovelace.
+Registration of a stake address certificate \(keyDeposit\) costs 2000000 lovelace.
 {% endhint %}
 
 Run the build-raw transaction command
@@ -1015,7 +1015,6 @@ cat stakepoolid.txt
 Now that you have your stakepool ID,  verify it's included in the blockchain.
 
 ```text
-#cardano-cli shelley query ledger-state --testnet-magic 42 --cardano-mode | grep publicKey | grep $(cat stakepoolid.txt)
 cardano-cli shelley query ledger-state --testnet-magic 42 | grep publicKey | grep $(cat stakepoolid.txt)
 ```
 
