@@ -10,7 +10,7 @@ description: This guide walks through setting up an external relay node.
 We call the current relay node **NEW** and the previous block producing or relay node **EXISTING**.
 {% endhint %}
 
-### 🌜 0. Pre-requisites
+### 🌜 0. Prerequisites
 
 * a different computer/laptop/server/VM \(not located on the same machine as your block-producing node\)
 
