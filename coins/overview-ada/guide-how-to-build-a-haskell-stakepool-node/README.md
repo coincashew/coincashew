@@ -882,7 +882,16 @@ cardano-cli shelley stake-address delegation-certificate \
 ```
 
 {% hint style="info" %}
- This creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `node.vkey`
+This creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `node.vkey`
+{% endhint %}
+
+{% hint style="info" %}
+A stakepool owner's promise to fund their own pool is called **Pledge**.
+
+* Your balance needs to be greater than the pledge amount.
+* You pledge funds are not moved anywhere. In this guide's example, the pledge remains in the stakepool's owner keys, specifically `payment.addr`
+* Failing to fulfill pledge will result in missed block minting opportunities and your delegators would miss rewards. 
+* Your pledge is not locked up. You are free to transfer your funds.
 {% endhint %}
 
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
@@ -2557,7 +2566,7 @@ echo slotNo: ${slotNo}
 Calculate the current epoch by dividing the slot tip number by epochLength which is 21600 slots.
 
 ```text
-epoch=$((${slotNo} / ${epochLength}))
+epoch=$(( $((${slotNo} / ${epochLength})) + 1))
 echo current epoch: ${epoch}
 ```
 
