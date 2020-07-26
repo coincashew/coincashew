@@ -10,6 +10,10 @@ description: This guide walks through setting up an external relay node.
 We call the current relay node **NEW** and the previous block producing or relay node **EXISTING**.
 {% endhint %}
 
+### 🌜 0. Pre-requisites
+
+* a different computer/laptop/server/VM \(not located on the same machine as your block-producing node\)
+
 ### ⚙ 1. Set the relay node IP/port info
 
 `NEW_RELAY_NODE_IP` can be discovered automatically with help from [ifconfig.me](http://ifconfig.me)
