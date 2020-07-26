@@ -621,7 +621,6 @@ Next step is to fund your payment address.
 Payment address can be funded from
 
 * [Public testnet faucet](https://testnets.cardano.org/en/shelley/tools/faucet/)
-* ask in telegram - [https://t.me/CardanoStakePoolWorkgroup](https://t.me/CardanoStakePoolWorkgroup)
 * your Byron mainnet funds based on a snapshot from 07/20 00:00 UTC. 
 * if you were part of the ITN, you can convert your address as specified above. 
 
@@ -1086,23 +1085,35 @@ For relaynode1, create a get\_buddies.sh script to update your topology.json fil
 cat > $NODE_HOME/relaynode1/get_buddies.sh << EOF 
 #!/usr/bin/env bash
 
+# YOU CAN PASS THESE STRINGS AS ENVIRONMENTAL VARIABLES, OR EDIT THEM IN THE SCRIPT HERE
+if [ -z "\$PT_MY_POOL_ID" ]; then
 ## CHANGE THESE TO SUIT YOUR POOL TO YOUR POOL ID AS ON THE EXPLORER
-MY_POOL_ID="XXXXXXXX"
-## GET THIS FROM YOUR ACCOUNT PROFILE PAGE ON POOLTOOL WEBSITE
-MY_API_KEY="XXXXXXXX"
-## GET THIS FROM YOUR POOL MANAGE TAB ON POOLTOOL WEBSITE
-MY_NODE_ID="XXXXXXXX"
-## SET THIS TO THE LOCATION OF YOUR TOPOLOGY FILE THAT YOUR NODE USES
-TOPOLOGY_FILE="$NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json"
+PT_MY_POOL_ID="XXXXXXXX"
+fi
 
-JSON="\$(jq -n --compact-output --arg MY_API_KEY "\$MY_API_KEY" --arg MY_POOL_ID "\$MY_POOL_ID" --arg MY_NODE_ID "\$MY_NODE_ID" '{apiKey: \$MY_API_KEY, nodeId: \$MY_NODE_ID, poolId: \$MY_POOL_ID}')"
+if [ -z "\$PT_MY_API_KEY" ]; then
+## GET THIS FROM YOUR ACCOUNT PROFILE PAGE ON POOLTOOL WEBSITE
+PT_MY_API_KEY="XXXXXXXX"
+fi
+
+if [ -z "\$PT_MY_NODE_ID" ]; then
+## GET THIS FROM YOUR POOL MANAGE TAB ON POOLTOOL WEBSITE
+PT_MY_NODE_ID="XXXXXXXX"
+fi
+
+if [ -z "\$PT_TOPOLOGY_FILE" ]; then
+## SET THIS TO THE LOCATION OF YOUR TOPOLOGY FILE THAT YOUR NODE USES
+PT_TOPOLOGY_FILE="$NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json"
+fi
+
+JSON="\$(jq -n --compact-output --arg MY_API_KEY "\$PT_MY_API_KEY" --arg MY_POOL_ID "\$PT_MY_POOL_ID" --arg MY_NODE_ID "\$PT_MY_NODE_ID" '{apiKey: \$MY_API_KEY, nodeId: \$MY_NODE_ID, poolId: \$MY_POOL_ID}')"
 echo "Packet Sent: \$JSON"
 RESPONSE="\$(curl -s -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "\$JSON" "https://api.pooltool.io/v0/getbuddies")"
 SUCCESS="\$(echo \$RESPONSE | jq '.success')"
 if [ \$SUCCESS ]; then
   echo "Success"
-  echo \$RESPONSE | jq '. | {Producers: .message}' > \$TOPOLOGY_FILE
-  echo "Topology saved to \$TOPOLOGY_FILE.  Note topology will only take effect next time you restart your node"
+  echo \$RESPONSE | jq '. | {Producers: .message}' > \$PT_TOPOLOGY_FILE
+  echo "Topology saved to \$PT_TOPOLOGY_FILE.  Note topology will only take effect next time you restart your node"
 else
   echo "Failure "
   echo \$RESPONSE | jq '.message'
@@ -1116,23 +1127,35 @@ For relaynode2, create a get\_buddies.sh script to update your topology.json fil
 cat > $NODE_HOME/relaynode2/get_buddies.sh << EOF 
 #!/usr/bin/env bash
 
+# YOU CAN PASS THESE STRINGS AS ENVIRONMENTAL VARIABLES, OR EDIT THEM IN THE SCRIPT HERE
+if [ -z "\$PT_MY_POOL_ID" ]; then
 ## CHANGE THESE TO SUIT YOUR POOL TO YOUR POOL ID AS ON THE EXPLORER
-MY_POOL_ID="XXXXXXXX"
-## GET THIS FROM YOUR ACCOUNT PROFILE PAGE ON POOLTOOL WEBSITE
-MY_API_KEY="XXXXXXXX"
-## GET THIS FROM YOUR POOL MANAGE TAB ON POOLTOOL WEBSITE
-MY_NODE_ID="XXXXXXXX"
-## SET THIS TO THE LOCATION OF YOUR TOPOLOGY FILE THAT YOUR NODE USES
-TOPOLOGY_FILE="$NODE_HOME/relaynode2/${NODE_CONFIG}-topology.json"
+PT_MY_POOL_ID="XXXXXXXX"
+fi
 
-JSON="\$(jq -n --compact-output --arg MY_API_KEY "\$MY_API_KEY" --arg MY_POOL_ID "\$MY_POOL_ID" --arg MY_NODE_ID "\$MY_NODE_ID" '{apiKey: \$MY_API_KEY, nodeId: \$MY_NODE_ID, poolId: \$MY_POOL_ID}')"
+if [ -z "\$PT_MY_API_KEY" ]; then
+## GET THIS FROM YOUR ACCOUNT PROFILE PAGE ON POOLTOOL WEBSITE
+PT_MY_API_KEY="XXXXXXXX"
+fi
+
+if [ -z "\$PT_MY_NODE_ID" ]; then
+## GET THIS FROM YOUR POOL MANAGE TAB ON POOLTOOL WEBSITE
+PT_MY_NODE_ID="XXXXXXXX"
+fi
+
+if [ -z "\$PT_TOPOLOGY_FILE" ]; then
+## SET THIS TO THE LOCATION OF YOUR TOPOLOGY FILE THAT YOUR NODE USES
+PT_TOPOLOGY_FILE="$NODE_HOME/relaynode2/${NODE_CONFIG}-topology.json"
+fi
+
+JSON="\$(jq -n --compact-output --arg MY_API_KEY "\$PT_MY_API_KEY" --arg MY_POOL_ID "\$PT_MY_POOL_ID" --arg MY_NODE_ID "\$PT_MY_NODE_ID" '{apiKey: \$MY_API_KEY, nodeId: \$MY_NODE_ID, poolId: \$MY_POOL_ID}')"
 echo "Packet Sent: \$JSON"
 RESPONSE="\$(curl -s -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "\$JSON" "https://api.pooltool.io/v0/getbuddies")"
 SUCCESS="\$(echo \$RESPONSE | jq '.success')"
 if [ \$SUCCESS ]; then
   echo "Success"
-  echo \$RESPONSE | jq '. | {Producers: .message}' > \$TOPOLOGY_FILE
-  echo "Topology saved to \$TOPOLOGY_FILE.  Note topology will only take effect next time you restart your node"
+  echo \$RESPONSE | jq '. | {Producers: .message}' > \$PT_TOPOLOGY_FILE
+  echo "Topology saved to \$PT_TOPOLOGY_FILE.  Note topology will only take effect next time you restart your node"
 else
   echo "Failure "
   echo \$RESPONSE | jq '.message'
@@ -2259,7 +2282,7 @@ echo minPoolCost: ${minPoolCost}
 minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
-If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. Refer to [section 9 for information.](./#9-register-your-stakepool)
+If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. Refer to [section 9 for information.](./#9-register-your-stakepool) If you're verifying your stakepool ID, the hash is already provided to you by pooltool.
 
 ```text
 cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
@@ -2408,7 +2431,7 @@ cardano-cli shelley transaction submit \
     --cardano-mode
 ```
 
-After the transaction confirms, verify that your pool settings are correct.
+Changes take effect next epoch. After the next epoch transition, verify that your pool settings are correct.
 
 ```text
 cardano-cli shelley query ledger-state --testnet-magic 42 --out-file ledger-state.json
@@ -2546,6 +2569,32 @@ journalctl --unit=cardano-stakepool --since=yesterday
 journalctl --unit=cardano-stakepool --since=today
 journalctl --unit=cardano-stakepool --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
 ```
+
+### ✅ 15.7 Verify your stakepool ticker with ITN key
+
+In order to defend against spoofing and hijacking of reputable stakepools, a owner can verify their ticker by proving ownership of an ITN stakepool.
+
+{% hint style="info" %}
+Incentivized Testnet phase of Cardano’s Shelley era ran from late November 2019 to late June 2020. If you participated, you can verify your ticker.
+{% endhint %}
+
+Make sure the ITN's `jcli` binaries are present in `$NODE_HOME`. Use `jcli` to sign your stakepool id with your `itn_owner.skey`
+
+```text
+./jcli key sign --secret-key itn_owner.skey stakepoolid.txt --output stakepoolid.sig
+```
+
+Visit [pooltool.io](https://pooltool.io/) and enter your owner public key and pool id witness data in the metadata section.
+
+Find your pool id witness with the following command.
+
+```text
+cat stakepoolid.sig
+```
+
+Find your owner public key in the file you generated on ITN. This data might be stored in a file ending in `.pub`
+
+Finally, perform section [15.4 instructions to update your pool registration data](./#15-4-changing-the-pledge-fee-margin-etc) with the pooltool generated **`metadata-url`** and **`metadata-hash`**. Notice the metadata has an "extended" field which proves your ticker ownership since ITN.
 
 ## 🌜 16. Retiring your stakepool
 
