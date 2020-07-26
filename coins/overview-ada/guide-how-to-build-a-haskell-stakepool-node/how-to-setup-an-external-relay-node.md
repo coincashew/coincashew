@@ -6,15 +6,15 @@ description: This guide walks through setting up an external relay node.
 
 **Relay nodes** do not have any keys, so they cannot produce blocks. Instead, relays act as proxies between the core network nodes and the internet, establishing a security perimeter around the core, block-producing network nodes. Since external nodes cannot communicate with block-producing nodes directly, relay nodes ensure that the integrity of the core nodes and the blockchain remains intact, even if one or more relays become compromised.
 
-{% hint style="info" %}
-We call the current relay node **NEW** and the previous block producing or relay node **EXISTING**.
-{% endhint %}
-
 ### 🌜 0. Prerequisites
 
 * a different computer/laptop/server/VM \(not located on the same machine as your block-producing node\)
 
 ### ⚙ 1. Set the relay node IP/port info
+
+{% hint style="info" %}
+We call the current relay node **NEW** and the previous block producing or relay node **EXISTING**.
+{% endhint %}
 
 `NEW_RELAY_NODE_IP` can be discovered automatically with help from [ifconfig.me](http://ifconfig.me)
 
