@@ -49,7 +49,7 @@ First, update packages and install Ubuntu dependencies.
 ```text
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y git make tmux rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf
+sudo apt-get install git make tmux rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
 ```
 
 Install Libsodium.
@@ -1266,8 +1266,7 @@ sudo systemctl enable prometheus-node-exporter.service
 Update prometheus.yml located in `/etc/prometheus/prometheus.yml`
 
 ```text
-sudo su
-cat > /etc/prometheus/prometheus.yml << EOF
+cat > prometheus.yml << EOF
 global:
   scrape_interval:     15s # By default, scrape targets every 15 seconds.
 
@@ -1296,9 +1295,8 @@ scrape_configs:
         labels:
           alias: 'relaynode2'
           type:  'cardano-node'
-
 EOF
-exit
+sudo mv prometheus.yml /etc/prometheus/prometheus.yml
 ```
 
 Finally, restart the services.
