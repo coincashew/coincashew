@@ -1045,7 +1045,7 @@ Shelley testnet has been launched without peer-to-peer \(p2p\) node discovery so
 5. Fill in your pool name and pool URL if you have one.
 6. Fill in your **Private Nodes** and **Your Relays** as follows.
 
-![](../../../.gitbook/assets/ada-relay-setup.png)
+![](../../../.gitbook/assets/ada-relay-setup-mc4.png)
 
 {% hint style="info" %}
 You can find your public IP with [https://www.whatismyip.com/](https://www.whatismyip.com/) or
