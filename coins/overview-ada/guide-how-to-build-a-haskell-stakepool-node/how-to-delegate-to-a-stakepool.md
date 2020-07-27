@@ -14,87 +14,103 @@ cardano-cli shelley stake-address registration-certificate \
     --out-file stake.cert
 ```
 
-You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
+You need to find the **slot tip** of the blockchain.
 
 ```
-export CARDANO_NODE_SOCKET_PATH=~/cardano-my-node/db/socket
-cardano-cli shelley query tip --testnet-magic 42 | grep -oP 'SlotNo = \K\d+'
+currentSlot=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
+echo Current Slot: $currentSlot
 ```
 
-Example **tip** output:
-
-> `690000`
-
-{% hint style="info" %}
-You will want to set your **ttl** value greater than the current tip. In this example, we use 250000000. 
-{% endhint %}
-
-Calculate the current minimum fee:
-
-```text
-cardano-cli shelley transaction calculate-min-fee \
-    --tx-in-count 1 \
-    --tx-out-count 1 \
-    --ttl 250000000 \
-    --testnet-magic 42 \
-    --signing-key-file payment.skey \
-    --signing-key-file stake.skey \
-    --certificate stake.cert \
-    --protocol-params-file params.json
-```
-
-Example of **calculate-min-fee**:
-
-> `runTxCalculateMinFee: 171309`
-
-Build your transaction which will register your stake address.
+Find your balance and **UTXOs**.
 
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42
+    --testnet-magic 42 \
+    --cardano-mode > fullUtxo.out
+
+tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
+
+cat balance.out
+
+tx_in=""
+total_balance=0
+while read -r utxo; do
+    in_addr=$(awk '{ print $1 }' <<< "${utxo}")
+    idx=$(awk '{ print $2 }' <<< "${utxo}")
+    utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
+    total_balance=$((${total_balance}+${utxo_balance}))
+    echo TxHash: ${in_addr}#${idx}
+    echo ADA: ${utxo_balance}
+    tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
+done < balance.out
+txcnt=$(cat balance.out | wc -l)
+echo Total ADA balance: ${total_balance}
+echo Number of UTXOs: ${txcnt}
 ```
 
-Example **utxo** output:
+Find the keyDeposit value.
 
 ```text
-                 TxHash                         Ix        Lovelace
---------------------------------------------------------------------
-81acd93...                                        0      100000000000
+keyDeposit=$(cat $NODE_HOME/params.json | jq -r '.keyDeposit')
+echo keyDeposit: $keyDeposit
 ```
 
 {% hint style="info" %}
-Notice the TxHash and Ix \(index\). Will use this data shortly.
-{% endhint %}
-
-Calculate your transaction's change
-
-```text
-expr 100000000000 - 400000 - 171309
-```
-
-Example **translocation change amount**:
-
-> 99999428691
-
-{% hint style="info" %}
-Registration of a stake address certificate costs 400000 lovelace.
+Registration of a stake address certificate \(keyDeposit\) costs 2000000 lovelace.
 {% endhint %}
 
 Run the build-raw transaction command
 
 {% hint style="info" %}
-Pay close attention to **tx-in**. The data should in the format`<TxHash>#<Ix number>`from above.
+The **ttl** value must be greater than the current tip. In this example, we use current slot + 10000.
 {% endhint %}
 
 ```text
 cardano-cli shelley transaction build-raw \
-    --tx-in <TxHash>#<Index number> \
-    --tx-out $(cat payment.addr)+99999428691\
-    --ttl 250000000 \
-    --fee 171309 \
-    --tx-body-file tx.raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+0 \
+    --ttl $(( ${currentSlot} + 10000)) \
+    --fee 0 \
+    --out-file tx.tmp \
     --certificate stake.cert
+```
+
+Calculate the current minimum fee:
+
+```text
+fee=$(cardano-cli shelley transaction calculate-min-fee \
+    --tx-body-file tx.tmp \
+    --tx-in-count ${txcnt} \
+    --tx-out-count 1 \
+    --testnet-magic 42 \
+    --witness-count 2 \
+    --byron-witness-count 0 \
+    --protocol-params-file params.json | awk '{ print $1 }')
+echo fee: $fee
+```
+
+{% hint style="info" %}
+Ensure your balance is greater than cost of fee + keyDeposit or this will not work.
+{% endhint %}
+
+Calculate your change output.
+
+```text
+txOut=$((${total_balance}-${keyDeposit}-${fee}))
+echo Change Output: ${txOut}
+```
+
+Build your transaction which will register your stake address.
+
+```text
+cardano-cli shelley transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+${txOut} \
+    --ttl $(( ${currentSlot} + 10000)) \
+    --fee ${fee} \
+    --certificate-file stake.cert \
+    --out-file tx.raw
 ```
 
 Sign the transaction with both the payment and stake secret keys.
@@ -105,7 +121,7 @@ cardano-cli shelley transaction sign \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
     --testnet-magic 42 \
-    --tx-file tx.signed
+    --out-file tx.signed
 ```
 
 Send the signed transaction.
@@ -113,7 +129,8 @@ Send the signed transaction.
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --testnet-magic 42
+    --testnet-magic 42 \
+    --cardano-mode
 ```
 
 ## 📄 2. Create a delegation certificate
@@ -127,63 +144,87 @@ cardano-cli shelley stake-address delegation-certificate \
     --out-file deleg.cert
 ```
 
-Calculate the transaction fee.
+You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
-```text
-cardano-cli shelley transaction calculate-min-fee \
-    --tx-in-count 1 \
-    --tx-out-count 1 \
-    --ttl 250000000 \
-    --testnet-magic 42 \
-    --signing-key-file payment.skey \
-    --signing-key-file stake.skey \
-    --certificate deleg.cert \
-    --protocol-params-file params.json
+```
+currentSlot=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
+echo Current Slot: $currentSlot
 ```
 
-Example of **calculate-min-fee**:
-
-> `runTxCalculateMinFee: 172805`
-
-Find your UTXO.
+Find your balance and **UTXOs**.
 
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42
+    --testnet-magic 42 \
+    --cardano-mode > fullUtxo.out
+
+tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
+
+cat balance.out
+
+tx_in=""
+total_balance=0
+while read -r utxo; do
+    in_addr=$(awk '{ print $1 }' <<< "${utxo}")
+    idx=$(awk '{ print $2 }' <<< "${utxo}")
+    utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
+    total_balance=$((${total_balance}+${utxo_balance}))
+    echo TxHash: ${in_addr}#${idx}
+    echo ADA: ${utxo_balance}
+    tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
+done < balance.out
+txcnt=$(cat balance.out | wc -l)
+echo Total ADA balance: ${total_balance}
+echo Number of UTXOs: ${txcnt}
 ```
 
-> Sample Output:
->
-> ```text
-> TxHash                       TxIx        Lovelace
-> --------------------------------------------------
-> 32cd839...                       0       499243830
-> ```
-
-Calculate your change.
-
-```text
-expr 499243830 - 172805
-```
-
-Example of **change amount:**
-
-> `> 499071025`
-
-Build your transaction. Update `tx-in` with your `TxHash` and `TxIx`
+Run the build-raw transaction command.
 
 ```text
 cardano-cli shelley transaction build-raw \
-    --tx-in <TxHash>#<Index number> \
-    --tx-out $(cat payment.addr)+499071025\
-    --ttl 250000000 \
-    --fee 172805 \
-    --out-file tx.raw \
-    --certificate deleg.cert
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+${total_balance} \
+    --ttl $(( ${currentSlot} + 10000)) \
+    --fee 0 \
+    --certificate-file deleg.cert \
+    --out-file tx.tmp
 ```
 
-Sign your transaction.
+Calculate the minimum fee:
+
+```text
+fee=$(cardano-cli shelley transaction calculate-min-fee \
+    --tx-body-file tx.tmp \
+    --tx-in-count ${txcnt} \
+    --tx-out-count 1 \
+    --testnet-magic 42 \
+    --witness-count 2 \
+    --byron-witness-count 0 \
+    --protocol-params-file params.json | awk '{ print $1 }')
+echo fee: $fee
+```
+
+Calculate your change output.
+
+```text
+txOut=$((${total_balance}-${fee}))
+echo txOut: ${txOut}
+```
+
+Build the transaction.
+
+```text
+cardano-cli shelley transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+${txOut} \
+    --ttl $(( ${currentSlot} + 10000)) \
+    --fee ${fee} \
+    --certificate-file deleg.cert \
+    --out-file tx.raw
+```
+
+Sign the transaction.
 
 ```text
 cardano-cli shelley transaction sign \
@@ -191,15 +232,16 @@ cardano-cli shelley transaction sign \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
     --testnet-magic 42 \
-    --tx-file tx.signed
+    --out-file tx.signed
 ```
 
-Finally, submit your transaction.
+Send the transaction.
 
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --testnet-magic 42
+    --testnet-magic 42 \
+    --cardano-mode
 ```
 
 {% hint style="success" %}
