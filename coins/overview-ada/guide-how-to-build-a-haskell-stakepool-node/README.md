@@ -1175,9 +1175,9 @@ EOF
 
 For each of your relay nodes, update the following variables from pooltool.io into your get\_buddies.sh file
 
-* MY\_POOL\_ID 
-* MY\_API\_KEY 
-* MY\_NODE\_ID
+* PT\_MY\_POOL\_ID 
+* PT\_MY\_API\_KEY 
+* PT\_MY\_NODE\_ID
 
 Update your get\_buddies.sh scripts with this information.
 
