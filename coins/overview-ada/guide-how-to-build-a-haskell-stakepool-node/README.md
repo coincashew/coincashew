@@ -96,7 +96,7 @@ echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
 echo export NODE_CONFIG=mainnet_candidate_4>> ~/.bashrc
 echo export NODE_URL=mainnet-candidate-4 >> ~/.bashrc
-echo export NODE_BUILD_NUM=3622471>> ~/.bashrc
+echo export NODE_BUILD_NUM=3627080 >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -291,7 +291,7 @@ Valency tells the node how many connections to keep open. Only DNS addresses are
 {% endhint %}
 
 {% hint style="success" %}
-\*\*\*\*✨ **Port Forwarding Tip:** You'll need to forward ports 3001 and 3002 to your computer.
+\*\*\*\*✨ **Port Forwarding Tip:** You'll need to forward ports 3001 and 3002 to your computer. Check with [https://canyouseeme.org/](https://canyouseeme.org/)
 {% endhint %}
 
 ## 🤖 4. Create startup scripts
