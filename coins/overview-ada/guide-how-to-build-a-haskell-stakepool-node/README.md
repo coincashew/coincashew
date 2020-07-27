@@ -1047,6 +1047,16 @@ Shelley testnet has been launched without peer-to-peer \(p2p\) node discovery so
 
 ![](../../../.gitbook/assets/ada-relay-setup.png)
 
+{% hint style="info" %}
+You can find your public IP with [https://www.whatismyip.com/](https://www.whatismyip.com/) or
+
+```text
+curl http://ifconfig.me/ip
+```
+{% endhint %}
+
+
+
 Add requests for nodes or "buddies" to each of your relay nodes. Make sure you include the IOHK node and your private nodes.
 
 IOHK's node address is:
