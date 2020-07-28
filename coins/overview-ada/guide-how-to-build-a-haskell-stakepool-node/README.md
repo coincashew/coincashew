@@ -485,7 +485,7 @@ slotNo=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
 echo slotNo: ${slotNo}
 ```
 
-Find the kesPeriod by dividing the slot tip number by theslotsPerKESPeriod which is 3600 slots.
+Find the kesPeriod by dividing the slot tip number by theslotsPerKESPeriod.
 
 ```text
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
