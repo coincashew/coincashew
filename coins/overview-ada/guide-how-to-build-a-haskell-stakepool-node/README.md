@@ -111,6 +111,7 @@ echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
 echo export NODE_CONFIG=mainnet_candidate_4>> ~/.bashrc
 echo export NODE_URL=mainnet-candidate-4 >> ~/.bashrc
 echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g') >> ~/.bashrc
+echo export NETWORK_IDENTIFIER=\"--testnet-magic 42\" >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -501,7 +502,7 @@ Before continuing, your node must be fully synchronized to the blockchain. Other
 {% endhint %}
 
 ```text
-slotNo=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
+slotNo=$(cardano-cli shelley query tip $NETWORK_IDENTIFIER | jq -r '.slotNo')
 echo slotNo: ${slotNo}
 ```
 
@@ -584,9 +585,8 @@ Wait for the block-producing node to start syncing before continuing if you get 
 
 ```text
 cardano-cli shelley query protocol-parameters \
-    --testnet-magic 42 \
-    --out-file params.json \
-    --cardano-mode
+    $NETWORK_IDENTIFIER \
+    --out-file params.json
 ```
 
 Create a new payment key pair:  `payment.skey` & `payment.vkey`
@@ -681,8 +681,7 @@ Before continuing, your nodes must be fully synchronized to the blockchain. Othe
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 \
-    --cardano-mode
+    $NETWORK_IDENTIFIER
 ```
 
 You should see output similar to this. This is your unspent transaction output \(UXTO\).
@@ -706,7 +705,7 @@ cardano-cli shelley stake-address registration-certificate \
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
 ```
-currentSlot=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
+currentSlot=$(cardano-cli shelley query tip $NETWORK_IDENTIFIER | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
 
@@ -715,8 +714,7 @@ Find your balance and **UTXOs**.
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 \
-    --cardano-mode > fullUtxo.out
+    $NETWORK_IDENTIFIER > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -772,7 +770,7 @@ fee=$(cardano-cli shelley transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
-    --testnet-magic 42 \
+    $NETWORK_IDENTIFIER \
     --witness-count 2 \
     --byron-witness-count 0 \
     --protocol-params-file params.json | awk '{ print $1 }')
@@ -809,7 +807,7 @@ cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
-    --testnet-magic 42 \
+    $NETWORK_IDENTIFIER \
     --out-file tx.signed
 ```
 
@@ -818,8 +816,7 @@ Send the signed transaction.
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --testnet-magic 42 \
-    --cardano-mode
+    $NETWORK_IDENTIFIER
 ```
 
 ## 📄 9. Register your stake pool
@@ -883,7 +880,7 @@ cardano-cli shelley stake-pool registration-certificate \
     --pool-margin 0.15 \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
-    --testnet-magic 42 \
+    $NETWORK_IDENTIFIER \
     --pool-relay-port 3001 \
     --pool-relay-ipv4 <your relay IP address> \
     --metadata-url <url where you uploaded poolMetaData.json> \
@@ -920,7 +917,7 @@ A stake pool owner's promise to fund their own pool is called **Pledge**.
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
 ```
-currentSlot=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
+currentSlot=$(cardano-cli shelley query tip $NETWORK_IDENTIFIER | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
 
@@ -929,8 +926,7 @@ Find your balance and **UTXOs**.
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 \
-    --cardano-mode > fullUtxo.out
+    $NETWORK_IDENTIFIER > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -983,7 +979,7 @@ fee=$(cardano-cli shelley transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
-    --testnet-magic 42 \
+    $NETWORK_IDENTIFIER \
     --witness-count 3 \
     --byron-witness-count 0 \
     --protocol-params-file params.json | awk '{ print $1 }')
@@ -1022,7 +1018,7 @@ cardano-cli shelley transaction sign \
     --signing-key-file payment.skey \
     --signing-key-file ~/cold-keys/node.skey \
     --signing-key-file stake.skey \
-    --testnet-magic 42 \
+    $NETWORK_IDENTIFIER \
     --out-file tx.signed
 ```
 
@@ -1031,8 +1027,7 @@ Send the transaction.
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --testnet-magic 42 \
-    --cardano-mode
+    $NETWORK_IDENTIFIER
 ```
 
 ## 🐣 10. Locate your Stake pool ID and verify everything is working 
@@ -1047,7 +1042,7 @@ cat stakepoolid.txt
 Now that you have your stake pool ID,  verify it's included in the blockchain.
 
 ```text
-cardano-cli shelley query ledger-state --testnet-magic 42 | grep publicKey | grep $(cat stakepoolid.txt)
+cardano-cli shelley query ledger-state $NETWORK_IDENTIFIER | grep publicKey | grep $(cat stakepoolid.txt)
 ```
 
 {% hint style="info" %}
@@ -1090,7 +1085,6 @@ CNODE_HOME=$NODE_HOME
 CNODE_LOG_DIR="\${CNODE_HOME}/logs"
 GENESIS_JSON="\${CNODE_HOME}/${NODE_CONFIG}-shelley-genesis.json"
 NETWORKID=\$(jq -r .networkId \$GENESIS_JSON)
-PROTOCOL_IDENTIFIER="--cardano-mode"
 CNODE_VALENCY=1   # optional for multi-IP hostnames
 NWMAGIC=\$(jq -r .networkMagic < \$GENESIS_JSON)
 [[ "\${NETWORKID}" = "Mainnet" ]] && HASH_IDENTIFIER="--mainnet" || HASH_IDENTIFIER="--testnet-magic \${NWMAGIC}"
@@ -1099,7 +1093,7 @@ NWMAGIC=\$(jq -r .networkMagic < \$GENESIS_JSON)
 export PATH="\${CNODE_BIN}:\${PATH}"
 export CARDANO_NODE_SOCKET_PATH="\${CNODE_HOME}/db/socket"
  
-blockNo=\$(cardano-cli shelley query tip \${PROTOCOL_IDENTIFIER} \${NETWORK_IDENTIFIER} | jq -r .blockNo )
+blockNo=\$(cardano-cli shelley query tip \${NETWORK_IDENTIFIER} | jq -r .blockNo )
  
 # Note:
 # if you run your node in IPv4/IPv6 dual stack network configuration and want announced the
@@ -1379,7 +1373,9 @@ Congratulations! Your stake pool is registered and ready to produce blocks.
 After the epoch is over and assuming you successfully minted blocks, check with this:
 
 ```text
-cardano-cli shelley query stake-address-info --address $(cat stake.addr) --cardano-mode --testnet-magic 42
+cardano-cli shelley query stake-address-info \
+ --address $(cat stake.addr) \
+ $NETWORK_IDENTIFIER
 ```
 
 ## 🔮 13. Setup Prometheus and Grafana Dashboard
@@ -2382,7 +2378,7 @@ You are required to regenerate the hot keys and issue a new operational certific
 
 ```text
 cd $NODE_HOME
-slotNo=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
+slotNo=$(cardano-cli shelley query tip $NETWORK_IDENTIFIER | jq -r '.slotNo')
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 chmod u+rwx ~/cold-keys
@@ -2472,7 +2468,7 @@ cardano-cli shelley stake-pool registration-certificate \
     --pool-margin 0.20 \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
-    --testnet-magic 42 \
+    $NETWORK_IDENTIFIER \
     --pool-relay-port 3001 \
     --pool-relay-ipv4 <your relay IP address> \
     --metadata-url <url where you uploaded poolMetaData.json> \
@@ -2496,7 +2492,7 @@ cardano-cli shelley stake-address delegation-certificate \
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
 ```
-currentSlot=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
+currentSlot=$(cardano-cli shelley query tip $NETWORK_IDENTIFIER | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
 
@@ -2505,8 +2501,7 @@ Find your balance and **UTXOs**.
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 \
-    --cardano-mode > fullUtxo.out
+    $NETWORK_IDENTIFIER > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -2552,7 +2547,7 @@ fee=$(cardano-cli shelley transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
-    --testnet-magic 42 \
+    $NETWORK_IDENTIFIER \
     --witness-count 3 \
     --byron-witness-count 0 \
     --protocol-params-file params.json | awk '{ print $1 }')
@@ -2587,7 +2582,7 @@ cardano-cli shelley transaction sign \
     --signing-key-file payment.skey \
     --signing-key-file ~/cold-keys/node.skey \
     --signing-key-file stake.skey \
-    --testnet-magic 42 \
+    $NETWORK_IDENTIFIER \
     --out-file tx.signed
 ```
 
@@ -2596,14 +2591,13 @@ Send the transaction.
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --testnet-magic 42 \
-    --cardano-mode
+    $NETWORK_IDENTIFIER
 ```
 
 Changes take effect next epoch. After the next epoch transition, verify that your pool settings are correct.
 
 ```text
-cardano-cli shelley query ledger-state --testnet-magic 42 --out-file ledger-state.json
+cardano-cli shelley query ledger-state $NETWORK_IDENTIFIER --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 
@@ -2792,7 +2786,7 @@ echo epochLength: ${epochLength}
  Find the current slot by querying the tip.
 
 ```text
-slotNo=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
+slotNo=$(cardano-cli shelley query tip $NETWORK_IDENTIFIER | jq -r '.slotNo')
 echo slotNo: ${slotNo}
 ```
 
@@ -2834,8 +2828,7 @@ Find your balance and **UTXOs**.
 ```text
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 \
-    --cardano-mode > fullUtxo.out
+    $NETWORK_IDENTIFIER > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -2880,7 +2873,7 @@ fee=$(cardano-cli shelley transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
-    --testnet-magic 42 \
+    $NETWORK_IDENTIFIER \
     --witness-count 2 \
     --byron-witness-count 0 \
     --protocol-params-file params.json | awk '{ print $1 }')
@@ -2913,7 +2906,7 @@ cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file ~/cold-keys/node.skey \
-    --testnet-magic 42 \
+    $NETWORK_IDENTIFIER \
     --out-file tx.signed
 ```
 
@@ -2922,8 +2915,7 @@ Send the transaction.
 ```text
 cardano-cli shelley transaction submit \
     --tx-file tx.signed \
-    --testnet-magic 42 \
-    --cardano-mode
+    $NETWORK_IDENTIFIER
 ```
 
 {% hint style="success" %}
@@ -2935,7 +2927,7 @@ If you have a change of heart, you can create and submit a new registration cert
 After the retirement epoch, you can verify that the pool was successfully retired with the following query which should return an empty result.
 
 ```text
-cardano-cli shelley query ledger-state --testnet-magic 42 --out-file ledger-state.json
+cardano-cli shelley query ledger-state $NETWORK_IDENTIFIER --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 
