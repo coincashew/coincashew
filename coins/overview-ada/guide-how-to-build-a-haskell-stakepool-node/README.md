@@ -2385,7 +2385,7 @@ chmod u+rwx ~/cold-keys
 
 Want a clean start? Re-using existing server? Forked blockchain?
 
-Delete git repo, and then rename your previous `$NODE_HOME` and `cold-keys` directory \(or optionally, remove\).
+Delete git repo, and then rename your previous `$NODE_HOME` and `cold-keys` directory \(or optionally, remove\). Now you can start this guide from the beginning again.
 
 ```text
 rm -rf ~/git/cardano-node/ ~/git/libsodium/
