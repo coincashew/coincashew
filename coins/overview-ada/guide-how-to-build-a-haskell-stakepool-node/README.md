@@ -1045,7 +1045,7 @@ There are two ways to configure your topology files.
 
 {% tabs %}
 {% tab title="topologyUpdater.sh Method" %}
-### 🚀 Publishing your IP with topologyUpdater.sh
+### 🚀 Publishing your Relay Node with topologyUpdater.sh
 
 {% hint style="info" %}
 Credits to [GROWPOOL](https://twitter.com/PoolGrow) for this addition and credits to [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) on creating this process.
