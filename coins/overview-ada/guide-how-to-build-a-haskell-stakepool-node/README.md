@@ -1,10 +1,10 @@
 ---
 description: >-
   On Ubuntu/Debian, this guide will illustrate how to install and configure a
-  Cardano stakepool from source code.
+  Cardano stake pool from source code.
 ---
 
-# Guide: How to build a Haskell Testnet Cardano Stakepool
+# Guide: How to build a Haskell Testnet Cardano Stake Pool
 
 {% hint style="success" %}
 As of July 25, 2020, this guide is written for **mainnet\_candidate version 4** with **release v.1.18.0** 😁 
@@ -386,7 +386,7 @@ EOF
 
 **Press** Ctrl+Alt+T. This will launch a terminal window.
 
-Add execute permissions to the script, start your stakepool, and begin syncing the blockchain!
+Add execute permissions to the script, start your stake pool, and begin syncing the blockchain!
 
 ```text
 cd $NODE_HOME
@@ -398,7 +398,7 @@ chmod +x stopStakePool.sh
 ./startStakePool.sh
 ```
 
-Your stakepool is running in a **tmux** terminal session now. To attach to the terminal, run the following.
+Your stake pool is running in a **tmux** terminal session now. To attach to the terminal, run the following.
 
 ```text
 tmux a
@@ -437,7 +437,7 @@ cardano-cli shelley node key-gen-KES \
 ```
 
 {% hint style="info" %}
-KES \(key evolving signature\) keys are created to secure your stakepool against hackers who might compromise your keys. On mainnet, these will be regenerated every 90 days.
+KES \(key evolving signature\) keys are created to secure your stake pool against hackers who might compromise your keys. On mainnet, these will be regenerated every 90 days.
 {% endhint %}
 
 {% hint style="danger" %}
@@ -465,7 +465,7 @@ Be sure to **back up your all your keys** to another secure storage device.
 {% endhint %}
 
 {% hint style="info" %}
-Currently on testnet, delegators who delegate via CLI tools will require the ****data contained in `node.vkey` in order to delegate to your stakepool. You can share this file. DO NOT accidentally share the secret key,`node.skey` file.
+Currently on testnet, delegators who delegate via CLI tools will require the ****data contained in `node.vkey` in order to delegate to your stake pool. You can share this file. DO NOT accidentally share the secret key,`node.skey` file.
 {% endhint %}
 
 Determine the number of slots per KES period from the genesis file.
@@ -511,7 +511,7 @@ cardano-cli shelley node key-gen-VRF \
     --signing-key-file vrf.skey
 ```
 
-Open a new terminal window with Ctrl+Alt+T and stop your ****stakepool by running the following:
+Open a new terminal window with Ctrl+Alt+T and stop your ****stake pool by running the following:
 
 ```text
 cd $NODE_HOME
@@ -537,10 +537,10 @@ EOF
 ```
 
 {% hint style="info" %}
-To operate a stakepool, two sets of keys are needed: they KES key \(hot\) and the cold key. Cold keys generate new hot keys periodically.
+To operate a stake pool, two sets of keys are needed: they KES key \(hot\) and the cold key. Cold keys generate new hot keys periodically.
 {% endhint %}
 
-Now start your stakepool.
+Now start your stake pool.
 
 ```text
 cd $NODE_HOME
@@ -798,7 +798,7 @@ cardano-cli shelley transaction submit \
     --cardano-mode
 ```
 
-## 📄 9. Register your stakepool
+## 📄 9. Register your stake pool
 
 Create your pool's metadata with a JSON file. Update with your pool information.
 
@@ -844,7 +844,7 @@ echo minPoolCost: ${minPoolCost}
 minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
-Create a registration certificate for your stakepool. Update with your **metadata URL** and **relay IP address**.
+Create a registration certificate for your stake pool. Update with your **metadata URL** and **relay IP address**.
 
 {% hint style="warning" %}
 **metadata-url** must be no longer than 64 characters.
@@ -871,7 +871,7 @@ cardano-cli shelley stake-pool registration-certificate \
 Here we are pledging 100 ADA with a fixed pool cost of 345 ADA and a pool margin of 15%. 
 {% endhint %}
 
-Pledge stake to your stakepool.
+Pledge stake to your stake pool.
 
 ```text
 cardano-cli shelley stake-address delegation-certificate \
@@ -885,10 +885,10 @@ This creates a delegation certificate which delegates funds from all stake addre
 {% endhint %}
 
 {% hint style="info" %}
-A stakepool owner's promise to fund their own pool is called **Pledge**.
+A stake pool owner's promise to fund their own pool is called **Pledge**.
 
 * Your balance needs to be greater than the pledge amount.
-* You pledge funds are not moved anywhere. In this guide's example, the pledge remains in the stakepool's owner keys, specifically `payment.addr`
+* You pledge funds are not moved anywhere. In this guide's example, the pledge remains in the stake pool's owner keys, specifically `payment.addr`
 * Failing to fulfill pledge will result in missed block minting opportunities and your delegators would miss rewards. 
 * Your pledge is not locked up. You are free to transfer your funds.
 {% endhint %}
@@ -1011,16 +1011,16 @@ cardano-cli shelley transaction submit \
     --cardano-mode
 ```
 
-## 🐣 10. Locate your Stakepool ID and verify everything is working 
+## 🐣 10. Locate your Stake pool ID and verify everything is working 
 
-Your stakepool ID can be computed with:
+Your stake pool ID can be computed with:
 
 ```text
 cardano-cli shelley stake-pool id --verification-key-file ~/cold-keys/node.vkey > stakepoolid.txt
 cat stakepoolid.txt
 ```
 
-Now that you have your stakepool ID,  verify it's included in the blockchain.
+Now that you have your stake pool ID,  verify it's included in the blockchain.
 
 ```text
 cardano-cli shelley query ledger-state --testnet-magic 42 | grep publicKey | grep $(cat stakepoolid.txt)
@@ -1030,7 +1030,7 @@ cardano-cli shelley query ledger-state --testnet-magic 42 | grep publicKey | gre
 A non-empty string return means you're registered! 👏 
 {% endhint %}
 
-With your stakepool ID, now you can find your data on block explorers such as [https://htn.pooltool.io/](https://htn.pooltool.io/)
+With your stake pool ID, now you can find your data on block explorers such as [https://htn.pooltool.io/](https://htn.pooltool.io/)
 
 ## ⚙ 11. Configure your topology files
 
@@ -1153,7 +1153,7 @@ chmod +x relay-topology_pull.sh
 ./relay-topology_pull.sh
 ```
 
-The new topology takes after after restarting your stakepool.
+The new topology takes after after restarting your stake pool.
 
 ```text
 ./stopStakePool.sh
@@ -1340,15 +1340,17 @@ As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pul
 {% endtab %}
 {% endtabs %}
 
-You are properly connected to the network when you see the transactions processed increasing.
+{% hint style="danger" %}
+\*\*\*\*🔥 **Critical step:** In order to be functional stake pool and be able to mint blocks, you must see the **transactions processed count** increasing. If not, check your topology file and ensure you have well connect relay buddies.
+{% endhint %}
 
 ![](../../../.gitbook/assets/ada-tx-processed.png)
 
 {% hint style="success" %}
-Congratulations! Your stakepool is registered and ready to produce blocks.
+Congratulations! Your stake pool is registered and ready to produce blocks.
 {% endhint %}
 
-## 🎇 12. Checking Stakepool Rewards
+## 🎇 12. Checking Stake pool Rewards
 
 After the epoch is over and assuming you successfully minted blocks, check with this:
 
@@ -1461,7 +1463,7 @@ sed -i relaynode1/${NODE_CONFIG}-config.json -e "s/    12798/    12701/g" -e "s/
 sed -i relaynode2/${NODE_CONFIG}-config.json -e "s/    12798/    12702/g" -e "s/hasEKG\": 12788/hasEKG\": 12602/g" 
 ```
 
-Stop and restart your stakepool.
+Stop and restart your stake pool.
 
 ```text
 cd $NODE_HOME
@@ -2306,7 +2308,7 @@ Thanks to all &gt; 7000 of you, the Cardano hodlers, buidlers, stakers, and pool
 
 ### \*\*\*\*💬 **14.2 Telegram Chat Channel**
 
- Hang out and chat with our stakepool community at [https://t.me/coincashew](https://t.me/coincashew)
+ Hang out and chat with our stake pool community at [https://t.me/coincashew](https://t.me/coincashew)
 
 ### 😊 14.3 Donation Tipjar
 
@@ -2405,7 +2407,7 @@ rm -rf relaynode2/db
 ### 📝 15.4 Changing the pledge, fee, margin, etc.
 
 {% hint style="info" %}
-Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resubmit your stakepool registration certificate.
+Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resubmit your stake pool registration certificate.
 {% endhint %}
 
 Find the minimum pool cost.
@@ -2419,7 +2421,7 @@ echo minPoolCost: ${minPoolCost}
 minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
-If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. Refer to [section 9 for information.](./#9-register-your-stakepool) If you're verifying your stakepool ID, the hash is already provided to you by pooltool.
+If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. Refer to [section 9 for information.](./#9-register-your-stakepool) If you're verifying your stake pool ID, the hash is already provided to you by pooltool.
 
 ```text
 cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
@@ -2452,7 +2454,7 @@ cardano-cli shelley stake-pool registration-certificate \
 Here we are pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 20%. 
 {% endhint %}
 
-Pledge stake to your stakepool.
+Pledge stake to your stake pool.
 
 ```text
 cardano-cli shelley stake-address delegation-certificate \
@@ -2610,15 +2612,15 @@ rsync -avzhe “ssh -p <SSH-PORT>” <PATH TO LOCAL PC DESTINATION> <USERNAME>@<
 
 ### 🏃♂ 15.6 Auto-starting with systemd services
 
-#### 🍰 Benefits of using systemd for your stakepool
+#### 🍰 Benefits of using systemd for your stake pool
 
-1. Auto-start your stakepool when the computer reboots due to maintenance, power outage, etc.
-2. Automatically restart crashed stakepool processes.
-3. Maximize your stakepool up-time and performance.
+1. Auto-start your stake pool when the computer reboots due to maintenance, power outage, etc.
+2. Automatically restart crashed stake pool processes.
+3. Maximize your stake pool up-time and performance.
 
 #### 🛠 Setup Instructions
 
-Before beginning, ensure your stakepool is stopped.
+Before beginning, ensure your stake pool is stopped.
 
 ```text
 $NODE_HOME/stopStakePool.sh
@@ -2657,7 +2659,7 @@ sudo cp $NODE_HOME/cardano-stakepool.service /etc/systemd/system/cardano-stakepo
 sudo chmod 644 /etc/systemd/system/cardano-stakepool.service
 ```
 
-Run the following to enable auto-start at boot time and then start your stakepool service.
+Run the following to enable auto-start at boot time and then start your stake pool service.
 
 ```text
 sudo systemctl daemon-reload
@@ -2666,34 +2668,34 @@ sudo systemctl start cardano-stakepool
 ```
 
 {% hint style="success" %}
-Nice work. Your stakepool is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+Nice work. Your stake pool is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-#### 📎 Reattach to the stakepool tmux session after system startup.
+#### 📎 Reattach to the stake pool tmux session after system startup.
 
 ```text
 tmux a
 ```
 
-#### ✅ Check whether the stakepool service is active
+#### ✅ Check whether the stake pool service is active
 
 ```text
 sudo systemctl is-active cardano-stakepool
 ```
 
-#### 🔎 View the status of the stakepool service
+#### 🔎 View the status of the stake pool service
 
 ```text
 sudo systemctl status cardano-stakepool
 ```
 
-#### 🔄 Restarting the stakepool service
+#### 🔄 Restarting the stake pool service
 
 ```text
 sudo systemctl reload-or-restart cardano-stakepool
 ```
 
-#### 🛑 Stopping the stakepool service
+#### 🛑 Stopping the stake pool service
 
 ```text
 sudo systemctl stop cardano-stakepool
@@ -2707,15 +2709,15 @@ journalctl --unit=cardano-stakepool --since=today
 journalctl --unit=cardano-stakepool --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
 ```
 
-### ✅ 15.7 Verify your stakepool ticker with ITN key
+### ✅ 15.7 Verify your stake pool ticker with ITN key
 
-In order to defend against spoofing and hijacking of reputable stakepools, a owner can verify their ticker by proving ownership of an ITN stakepool.
+In order to defend against spoofing and hijacking of reputable stake pools, a owner can verify their ticker by proving ownership of an ITN stake pool.
 
 {% hint style="info" %}
 Incentivized Testnet phase of Cardano’s Shelley era ran from late November 2019 to late June 2020. If you participated, you can verify your ticker.
 {% endhint %}
 
-Make sure the ITN's `jcli` binaries are present in `$NODE_HOME`. Use `jcli` to sign your stakepool id with your `itn_owner.skey`
+Make sure the ITN's `jcli` binaries are present in `$NODE_HOME`. Use `jcli` to sign your stake pool id with your `itn_owner.skey`
 
 ```text
 ./jcli key sign --secret-key itn_owner.skey stakepoolid.txt --output stakepoolid.sig
@@ -2745,7 +2747,7 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 ```
 
-## 🌜 16. Retiring your stakepool
+## 🌜 16. Retiring your stake pool
 
 Find the slots per epoch.
 
