@@ -27,9 +27,9 @@ As a stake pool operator for Cardano, you will typically have the following abil
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** Dual core CPU
 * **Memory:** 4GB RAM
-* **Storage:** 20GB
+* **Storage:** 24GB
 * **Internet:** 24/7 broadband internet connection with speeds at least 1 Mbps.
-* **Data Plan**: at least 100MB per hour. 72GB per month.
+* **Data Plan**: at least 1GB per hour. 720GB per month.
 * **Power:** 24/7 electrical power
 * **ADA balance:** at least 1000 fADA
 
@@ -40,9 +40,13 @@ As a stake pool operator for Cardano, you will typically have the following abil
 * **Memory:** 16GB RAM
 * **Storage:** 500GB SSD with RAID
 * **Internet:** Multiple 24/7 broadband internet connections with speeds at least 10 Mbps \(i.e. fiber + cellular 4G\)
-* **Data Plan**: at least 100MB per hour. 72GB per month.
+* **Data Plan**: at least 1GB per hour. 720GB per month.
 * **Power:** Redundant 24/7 electrical power with UPS
 * **ADA balance:** more pledge is better, to be determined by **a0**, the pledge influence factor
+
+{% hint style="info" %}
+Note that processor speed is not a significant factor for running a stake pool.
+{% endhint %}
 
 For instructions on installing **Ubuntu**, refer to the following:
 
