@@ -441,7 +441,13 @@ Congratulations! Your node is running successfully now. Let it sync up.
 
 ## ⚙ 6. Generate block-producer keys
 
-Make a KES key pair.
+The block-producer node requires you to create 3 keys as defined in the [Shelley ledger specs](https://hydra.iohk.io/build/2473732/download/1/ledger-spec.pdf):
+
+* stake pool cold key
+* stake pool hot key \(KES key\)
+* stake pool VRF key
+
+First, make a KES key pair.
 
 ```text
 cd $NODE_HOME
@@ -455,7 +461,7 @@ KES \(key evolving signature\) keys are created to secure your stake pool agains
 {% endhint %}
 
 {% hint style="danger" %}
-In production, **cold keys** should remain true cold keys. Generate and store on an unconnected air-gapped offline ideally clean new computer. Copy `cardano-cli` binary over and run the `node key-gen` commands. The cold keys are the files stored in `~/cold-keys.`
+**Cold keys** should be generated and store on an unconnected air-gapped offline machine. Copy `cardano-cli` binary over and run the `node key-gen` commands. The cold keys are the files stored in `~/cold-keys.`
 {% endhint %}
 
 Make a directory to store your cold keys
@@ -475,7 +481,7 @@ cardano-cli shelley node key-gen \
 ```
 
 {% hint style="info" %}
-Be sure to **back up your all your keys** to another secure storage device. 
+Be sure to **back up your all your keys** to another secure storage device. Make multiple copies.
 {% endhint %}
 
 {% hint style="info" %}
@@ -491,7 +497,7 @@ echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 ```
 
 {% hint style="warning" %}
-Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the _epoch_ and _slot\#_ is equal to that found on a block explorer such as [https://htn.pooltool.io/](https://htn.pooltool.io/)
+Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the _epoch_ and _slot\#_ is equal to that found on a block explorer such as [https://pooltool.io/](https://pooltool.io/)
 {% endhint %}
 
 ```text
@@ -506,7 +512,11 @@ kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 echo kesPeriod: ${kesPeriod}
 ```
 
-With this calculation, you can generate a operational certificate for your pool. 
+With this calculation, you can generate a operational certificate for your pool.
+
+{% hint style="info" %}
+Stake pool operators must provide an operational certificate to verify that the pool has the authority to run. The certificate includes the operator’s signature, and includes key information about the pool \(addresses, keys, etc.\). Operational certificates represent the link between the operator’s offline key and their operational key.
+{% endhint %}
 
 ```text
 cardano-cli shelley node issue-op-cert \
@@ -1044,7 +1054,7 @@ cardano-cli shelley query ledger-state --testnet-magic 42 | grep publicKey | gre
 A non-empty string return means you're registered! 👏 
 {% endhint %}
 
-With your stake pool ID, now you can find your data on block explorers such as [https://htn.pooltool.io/](https://htn.pooltool.io/)
+With your stake pool ID, now you can find your data on block explorers such as [https://pooltool.io/](https://pooltool.io/)
 
 ## ⚙ 11. Configure your topology files
 
