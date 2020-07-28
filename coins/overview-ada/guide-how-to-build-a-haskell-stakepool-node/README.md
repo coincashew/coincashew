@@ -1047,6 +1047,12 @@ There are two ways to configure your topology files.
 {% tab title="topologyUpdater.sh Method" %}
 ### 🚀 Publishing your IP with topologyUpdater.sh
 
+{% hint style="info" %}
+Credits to [GROWPOOL](https://twitter.com/PoolGrow) for this addition and credits to [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) on creating this process.
+{% endhint %}
+
+Create the `topologyUpdater.sh` script which publishes your node information to a topology fetch list.
+
 ```text
 cat > $NODE_HOME/topologyUpdater.sh << EOF
 #!/bin/bash
@@ -1103,7 +1109,7 @@ When the `topologyUpdater.sh` runs successfully, you will see
 Every time the script runs and updates your IP, a log is created in **`$NODE_HOME/logs`**
 {% endhint %}
 
-Add a crontab job to automatically run `topologyUpdater.sh` every hour on the 22nd minute. You can change the 22 value to your liking.
+Add a crontab job to automatically run `topologyUpdater.sh` every hour on the 22nd minute. You can change the 22 value to your own preference.
 
 ```text
 cat > $NODE_HOME/crontab-fragment.txt << EOF
@@ -1139,7 +1145,7 @@ cp $NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json $NODE_HOME/relaynode2/${NO
 EOF
 ```
 
-Add permissions and run pull your topology.
+Add permissions and pull new topology files.
 
 ```text
 chmod +x relay-topology_pull.sh
@@ -1154,8 +1160,8 @@ The new topology takes after after restarting your stakepool.
 tmux a
 ```
 
-{% hint style="info" %}
-Everytime you pull and update your topology, you'll want to restart your stakepool.
+{% hint style="warning" %}
+Don't forget to restart your nodes after everytime you fetch the topology!
 {% endhint %}
 {% endtab %}
 
@@ -1167,10 +1173,6 @@ Everytime you pull and update your topology, you'll want to restart your stakepo
 5. Fill in your pool name and pool URL if you have one.
 6. Fill in your **Private Nodes** and **Your Relays** as follows.
 
-
-
-dd
-
 ![](../../../.gitbook/assets/ada-relay-setup-mc4.png)
 
 {% hint style="info" %}
@@ -1180,8 +1182,6 @@ You can find your public IP with [https://www.whatismyip.com/](https://www.whati
 curl http://ifconfig.me/ip
 ```
 {% endhint %}
-
-
 
 Add requests for nodes or "buddies" to each of your relay nodes. Make sure you include the IOHK node and your private nodes.
 
@@ -1338,6 +1338,8 @@ As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pul
 {% endhint %}
 {% endtab %}
 {% endtabs %}
+
+
 
 You are properly connected to the network when you see the transactions processed increasing.
 
