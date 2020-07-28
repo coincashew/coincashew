@@ -96,7 +96,7 @@ echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
 echo export NODE_CONFIG=mainnet_candidate_4>> ~/.bashrc
 echo export NODE_URL=mainnet-candidate-4 >> ~/.bashrc
-echo export NODE_BUILD_NUM=3644329 >> ~/.bashrc
+echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g') >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -163,10 +163,10 @@ Here you'll grab the config.json, genesis.json, and topology.json files needed t
 ```text
 mkdir $NODE_HOME
 cd $NODE_HOME
-wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
-wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-topology.json
-wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
-wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-topology.json
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 ```
 
 Run the following to modify **config.json** and 
@@ -2300,7 +2300,7 @@ Congratulations. Prometheus and Grafana are working.
 
 ### 😁 14.1 Thank yous
 
-Thanks to all &gt; 5000 of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
+Thanks to all &gt; 7000 of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
 
 👏 Special thanks to [Kaze-Stake](https://github.com/Kaze-Stake) for the pull requests and automatic script contributions.
 
@@ -2732,6 +2732,18 @@ cat stakepoolid.sig
 Find your owner public key in the file you generated on ITN. This data might be stored in a file ending in `.pub`
 
 Finally, perform section [15.4 instructions to update your pool registration data](./#15-4-changing-the-pledge-fee-margin-etc) with the pooltool generated **`metadata-url`** and **`metadata-hash`**. Notice the metadata has an "extended" field which proves your ticker ownership since ITN.
+
+### 📚 15.8 Updating your node's configuration files
+
+Keep your config files fresh by downloading the latest .json files.
+
+```text
+NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g')
+cd $NODE_HOME
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
+```
 
 ## 🌜 16. Retiring your stakepool
 
