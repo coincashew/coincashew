@@ -1032,18 +1032,144 @@ A non-empty string return means you're registered! 👏
 
 With your stakepool ID, now you can find your data on block explorers such as [https://htn.pooltool.io/](https://htn.pooltool.io/)
 
-## ⚙ 11. Configure topology with Pooltool.io
+## ⚙ 11. Configure your topology files
 
 {% hint style="info" %}
 Shelley testnet has been launched without peer-to-peer \(p2p\) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
 {% endhint %}
 
+There are two ways to configure your topology files. 
+
+* **topologyUpdate.sh method** is automated and works after 4 hours. 
+* **Pooltool.io method** gives you control over who your nodes connect to.
+
+{% tabs %}
+{% tab title="topologyUpdater.sh Method" %}
+### 🚀 Publishing your IP with topologyUpdater.sh
+
+```text
+cat > $NODE_HOME/topologyUpdater.sh << EOF
+#!/bin/bash
+# shellcheck disable=SC2086,SC2034
+ 
+USERNAME="\$(whoami)"
+CNODE_PORT=3001  # must match your relay node port as set in the startup command
+CNODE_HOSTNAME="CHANGE ME"  # optional. must resolve to the IP you are requesting from
+CNODE_BIN="\$/usr/local/bin/"
+CNODE_HOME=\$NODE_HOME
+CNODE_LOG_DIR="\${NODE_HOME}/logs/"
+GENESIS_JSON="\${CNODE_HOME}/${NODE_CONFIG}-shelley-genesis.json"
+NETWORKID=\$(jq -r .networkId \$GENESIS_JSON)
+PROTOCOL_IDENTIFIER="--cardano-mode"
+CNODE_VALENCY=1   # optional for multi-IP hostnames
+NWMAGIC=\$(jq -r .networkMagic < \$GENESIS_JSON)
+[[ "\${NETWORKID}" = "Mainnet" ]] && HASH_IDENTIFIER="--mainnet" || HASH_IDENTIFIER="--testnet-magic \${NWMAGIC}"
+[[ "\${NWMAGIC}" = "764824073" ]] && NETWORK_IDENTIFIER="--mainnet" || NETWORK_IDENTIFIER="--testnet-magic \${NWMAGIC}"
+ 
+export PATH="\${CNODE_BIN}:\${PATH}"
+export CARDANO_NODE_SOCKET_PATH="\${CNODE_HOME}/db/socket"
+ 
+blockNo=\$(cardano-cli shelley query tip \${PROTOCOL_IDENTIFIER} \${NETWORK_IDENTIFIER} | jq -r .blockNo )
+ 
+# Note:
+# if you run your node in IPv4/IPv6 dual stack network configuration and want announced the
+# IPv4 address only please add the -4 parameter to the curl command below  (curl -4 -s ...)
+if [ "\${CNODE_HOSTNAME}" != "CHANGE ME" ]; then
+  T_HOSTNAME="&hostname=\${CNODE_HOSTNAME}"
+else
+  T_HOSTNAME=''
+fi
+
+if [ ! -d \${CNODE_LOG_DIR} ]; then
+  mkdir -p \${CNODE_LOG_DIR};
+fi
+ 
+curl -s "https://api.clio.one/htopology/v1/?port=\${CNODE_PORT}&blockNo=\${blockNo}&valency=\${CNODE_VALENCY}&magic=\${NWMAGIC}\${T_HOSTNAME}" | tee -a \$CNODE_LOG_DIR/topologyUpdater_lastresult.json
+EOF
+```
+
+Add permissions and run the updater script.
+
+```text
+chmod +x topologyUpdater.sh
+./topologyUpdater.sh
+```
+
+When the `topologyUpdater.sh` runs successfully, you will see 
+
+> `{ "resultcode": "201", "datetime":"2020-07-28 01:23:45", "clientIp": "1.2.3.4", "iptype": 4, "msg": "nice to meet you" }`
+
+{% hint style="info" %}
+Every time the script runs and updates your IP, a log is created in **`$NODE_HOME/logs`**
+{% endhint %}
+
+Add a crontab job to automatically run `topologyUpdater.sh` every hour on the 22nd minute. You can change the 22 value to your liking.
+
+```text
+cat > $NODE_HOME/crontab-fragment.txt << EOF
+22 * * * * ${NODE_HOME}/topologyUpdater.sh
+EOF
+crontab -l | cat - crontab-fragment.txt >crontab.txt && crontab crontab.txt
+rm crontab-fragment.txt
+```
+
+{% hint style="success" %}
+After four hours and four updates, your node IP will be registered in the topology fetch list.
+{% endhint %}
+
+### 🤹♀ Updating the topology file
+
+{% hint style="warning" %}
+Complete this section after **four hours** when your relay node IP is properly registered.
+{% endhint %}
+
+Create `relay-topology_pull.sh` script which fetches your relay node buddies and updates your topology file.
+
+```text
+cat > $NODE_HOME/relay-topology_pull.sh << EOF
+#!/bin/bash
+BLOCKPRODUCING_IP=127.0.0.1
+BLOCKPRODUCING_PORT=3000
+RELAYNODE1_IP=127.0.0.1
+RELAYNODE1_PORT=3001
+RELAYNODE1_IP=127.0.0.1
+RELAYNODE1_PORT=3002
+curl -s -o $NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:2|\${RELAYNODE1_IP}:\${RELAYNODE1_PORT}|relays-new.${NODE_URL}.dev.cardano.org:3001:2|\${RELAYNODE2_IP}:\${RELAYNODE2_PORT}"
+cp $NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json $NODE_HOME/relaynode2/${NODE_CONFIG}-topology.json
+EOF
+```
+
+Add permissions and run pull your topology.
+
+```text
+chmod +x relay-topology_pull.sh
+./relay-topology_pull.sh
+```
+
+The new topology takes after after restarting your stakepool.
+
+```text
+./stopStakePool.sh
+./startStakePool.sh
+tmux a
+```
+
+{% hint style="info" %}
+Everytime you pull and update your topology, you'll want to restart your stakepool.
+{% endhint %}
+{% endtab %}
+
+{% tab title="Pooltool.io Method" %}
 1. Visit [https://htn.pooltool.io/](https://htn.pooltool.io/)
 2. Create an account and login
 3. Search for your stakepool id
 4. Click ➡ **Pool Details** &gt; **Manage** &gt; **CLAIM THIS POOL**
 5. Fill in your pool name and pool URL if you have one.
 6. Fill in your **Private Nodes** and **Your Relays** as follows.
+
+
+
+dd
 
 ![](../../../.gitbook/assets/ada-relay-setup-mc4.png)
 
@@ -1210,6 +1336,8 @@ tmux a
 {% hint style="info" %}
 As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pull the latest topology data. Restart your relay nodes afterwards.
 {% endhint %}
+{% endtab %}
+{% endtabs %}
 
 You are properly connected to the network when you see the transactions processed increasing.
 
