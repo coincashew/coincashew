@@ -1061,7 +1061,7 @@ cat > $NODE_HOME/topologyUpdater.sh << EOF
 USERNAME=$(whoami)
 CNODE_PORT=3001  # must match your relay node port as set in the startup command
 CNODE_HOSTNAME="CHANGE ME"  # optional. must resolve to the IP you are requesting from
-CNODE_BIN="/usr/local/bin/"
+CNODE_BIN="/usr/local/bin"
 CNODE_HOME=$NODE_HOME
 CNODE_LOG_DIR="\${CNODE_HOME}/logs"
 GENESIS_JSON="\${CNODE_HOME}/${NODE_CONFIG}-shelley-genesis.json"
