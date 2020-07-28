@@ -1341,7 +1341,7 @@ As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pul
 {% endtabs %}
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **Critical step:** In order to be functional stake pool and be able to mint blocks, you must see the **transactions processed count** increasing. If not, check your topology file and ensure you have well connect relay buddies.
+\*\*\*\*🔥 **Critical step:** In order to be a functional stake pool ready to mint blocks, you must see the **TXs processed** number increasing. If not, review your topology file and ensure your relay buddies are well connected and ideally, minted some blocks.
 {% endhint %}
 
 ![](../../../.gitbook/assets/ada-tx-processed.png)
