@@ -12,7 +12,17 @@ As of July 25, 2020, this guide is written for **mainnet\_candidate version 4** 
 
 ## 🏁 0. Prerequisites
 
-### 🎗 Minimum Setup Requirements
+### 🧙♂ Skills for stake pool operators
+
+As a stake pool operator for Cardano, you will typically have the following abilities:
+
+* operational knowledge of how to set up, run and maintain a Cardano node continuously
+* a commitment to maintain your node 24/7/365
+* system operation skills
+* server administration skills \(operational and maintenance\).
+* experience of development and operations \(DevOps\) would be very useful
+
+### 🎗 Minimum Hardware Requirements
 
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** Dual core CPU
@@ -23,7 +33,7 @@ As of July 25, 2020, this guide is written for **mainnet\_candidate version 4** 
 * **Power:** 24/7 electrical power
 * **ADA balance:** at least 1000 fADA
 
-### 🏋♂ Recommended Futureproof Setup
+### 🏋♂ Recommended Futureproof Hardware Setup
 
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** Quad core or better CPU
