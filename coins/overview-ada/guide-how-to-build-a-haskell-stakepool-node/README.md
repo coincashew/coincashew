@@ -441,7 +441,7 @@ KES \(key evolving signature\) keys are created to secure your stake pool agains
 {% endhint %}
 
 {% hint style="danger" %}
-In production, **cold keys** should remain true cold keys. Generate and store on an unconnected air-gapped offline ideally clean new computer. Copy `cardano-cli` binary over and run the `node key-gen` commands.
+In production, **cold keys** should remain true cold keys. Generate and store on an unconnected air-gapped offline ideally clean new computer. Copy `cardano-cli` binary over and run the `node key-gen` commands. The cold keys are the files stored in `~/cold-keys.`
 {% endhint %}
 
 Make a directory to store your cold keys
@@ -485,7 +485,7 @@ slotNo=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
 echo slotNo: ${slotNo}
 ```
 
-Find the kesPeriod by dividing the slot tip number by theslotsPerKESPeriod.
+Find the kesPeriod by dividing the slot tip number by the slotsPerKESPeriod.
 
 ```text
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
