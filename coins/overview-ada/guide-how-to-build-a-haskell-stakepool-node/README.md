@@ -1058,12 +1058,12 @@ cat > $NODE_HOME/topologyUpdater.sh << EOF
 #!/bin/bash
 # shellcheck disable=SC2086,SC2034
  
-USERNAME="\$(whoami)"
+USERNAME=$(whoami)
 CNODE_PORT=3001  # must match your relay node port as set in the startup command
 CNODE_HOSTNAME="CHANGE ME"  # optional. must resolve to the IP you are requesting from
 CNODE_BIN="\$/usr/local/bin/"
-CNODE_HOME=\$NODE_HOME
-CNODE_LOG_DIR="\${NODE_HOME}/logs/"
+CNODE_HOME=$NODE_HOME
+CNODE_LOG_DIR="\${CNODE_HOME}/logs"
 GENESIS_JSON="\${CNODE_HOME}/${NODE_CONFIG}-shelley-genesis.json"
 NETWORKID=\$(jq -r .networkId \$GENESIS_JSON)
 PROTOCOL_IDENTIFIER="--cardano-mode"
