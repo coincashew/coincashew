@@ -1123,7 +1123,7 @@ rm crontab-fragment.txt
 After four hours and four updates, your node IP will be registered in the topology fetch list.
 {% endhint %}
 
-### 🤹♀ Updating the topology file
+### 🤹♀ Update your relay node topology files
 
 {% hint style="warning" %}
 Complete this section after **four hours** when your relay node IP is properly registered.
@@ -1161,7 +1161,7 @@ tmux a
 ```
 
 {% hint style="warning" %}
-Don't forget to restart your nodes after everytime you fetch the topology!
+Don't forget to restart your nodes after every time you fetch the topology!
 {% endhint %}
 {% endtab %}
 
@@ -1338,8 +1338,6 @@ As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pul
 {% endhint %}
 {% endtab %}
 {% endtabs %}
-
-
 
 You are properly connected to the network when you see the transactions processed increasing.
 
