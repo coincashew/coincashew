@@ -96,7 +96,7 @@ echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
 echo export NODE_CONFIG=mainnet_candidate_4>> ~/.bashrc
 echo export NODE_URL=mainnet-candidate-4 >> ~/.bashrc
-echo export NODE_BUILD_NUM=3627080 >> ~/.bashrc
+echo export NODE_BUILD_NUM=3644329 >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -1097,6 +1097,7 @@ EOF
 Add permissions and run the updater script.
 
 ```text
+cd $NODE_HOME
 chmod +x topologyUpdater.sh
 ./topologyUpdater.sh
 ```
@@ -1125,7 +1126,7 @@ After four hours and four updates, your node IP will be registered in the topolo
 
 ### 🤹♀ Update your relay node topology files
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 Complete this section after **four hours** when your relay node IP is properly registered.
 {% endhint %}
 
