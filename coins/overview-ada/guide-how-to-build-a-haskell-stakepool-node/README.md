@@ -2336,6 +2336,10 @@ For more information and official documentation, please refer to the following l
 
 {% embed url="https://github.com/gitmachtl/scripts" %}
 
+#### CNTools by Guild Operators
+
+Many pool operators have asked about how to deploy a stake pool with CNTools. The [official guide can be found here.](https://cardano-community.github.io/guild-operators/#/Scripts/cntools)
+
 ## 🛠 15. Operational and Maintenance Tips
 
 ### 🤖 15.1 Updating the operational cert with a new KES Period
