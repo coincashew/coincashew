@@ -2338,6 +2338,8 @@ or visit the [donation address on BlockChair's](https://blockchair.com/cardano/a
 
 For more information and official documentation, please refer to the following links:
 
+{% embed url="https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/index.html" %}
+
 {% embed url="https://testnets.cardano.org/en/shelley/get-started/creating-a-stake-pool/" %}
 
 {% embed url="https://github.com/input-output-hk/cardano-tutorials" %}
