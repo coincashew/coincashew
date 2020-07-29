@@ -2371,8 +2371,6 @@ You are required to regenerate the hot keys and issue a new operational certific
 **Mainnet**: KES keys will be valid for 120 rotations or 90 days
 {% endhint %}
 
-\*\*\*\*
-
 **Updating the KES Period**: When it's time to issue a new operational certificate, run the following:
 
 ```text
