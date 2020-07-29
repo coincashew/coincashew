@@ -4,10 +4,10 @@ description: >-
   Cardano stake pool from source code.
 ---
 
-# Guide: How to build a Haskell Testnet Cardano Stake Pool
+# Guide: How to build a Cardano Stake Pool
 
 {% hint style="success" %}
-As of July 25, 2020, this guide is written for **mainnet\_candidate version 4** with **release v.1.18.0** 😁 
+As of July 28, 2020, this guide is written for **mainnet** with **release v.1.18.0** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -108,10 +108,10 @@ Update PATH to include Cabal and GHC and add exports. Your node's location will 
 echo PATH="~/.local/bin:$PATH" >> ~/.bashrc
 echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
-echo export NODE_CONFIG=mainnet_candidate_4>> ~/.bashrc
-echo export NODE_URL=mainnet-candidate-4 >> ~/.bashrc
+echo export NODE_CONFIG=mainnet>> ~/.bashrc
+echo export NODE_URL=cardano-mainnet >> ~/.bashrc
 echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g') >> ~/.bashrc
-echo export NETWORK_IDENTIFIER=\"--testnet-magic 42\" >> ~/.bashrc
+echo export NETWORK_IDENTIFIER=\"--mainnet\" >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -245,7 +245,7 @@ cat > $NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json << EOF
         "valency": 2
       },
       {
-        "addr": "relays-new.${NODE_URL}.dev.cardano.org",
+        "addr": "relays-new.${NODE_URL}.iohk.io",
         "port": 3001,
         "valency": 2
       }
@@ -271,7 +271,7 @@ cat > $NODE_HOME/relaynode2/${NODE_CONFIG}-topology.json << EOF
         "valency": 2
       },
       {
-        "addr": "relays-new.${NODE_URL}.dev.cardano.org",
+        "addr": "relays-new.${NODE_URL}.iohk.io",
         "port": 3001,
         "valency": 2
       }
@@ -483,10 +483,6 @@ cardano-cli shelley node key-gen \
 
 {% hint style="info" %}
 Be sure to **back up your all your keys** to another secure storage device. Make multiple copies.
-{% endhint %}
-
-{% hint style="info" %}
-Currently on testnet, delegators who delegate via CLI tools will require the ****data contained in `node.vkey` in order to delegate to your stake pool. You can share this file. DO NOT accidentally share the secret key,`node.skey` file.
 {% endhint %}
 
 Determine the number of slots per KES period from the genesis file.
@@ -1159,7 +1155,7 @@ RELAYNODE1_IP=127.0.0.1
 RELAYNODE1_PORT=3001
 RELAYNODE2_IP=127.0.0.1
 RELAYNODE2_PORT=3002
-curl -s -o $NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:2|\${RELAYNODE1_IP}:\${RELAYNODE1_PORT}|relays-new.${NODE_URL}.dev.cardano.org:3001:2|\${RELAYNODE2_IP}:\${RELAYNODE2_PORT}"
+curl -s -o $NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:2|\${RELAYNODE1_IP}:\${RELAYNODE1_PORT}|relays-new.${NODE_URL}.iohk.io:3001:2|\${RELAYNODE2_IP}:\${RELAYNODE2_PORT}"
 cp $NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json $NODE_HOME/relaynode2/${NODE_CONFIG}-topology.json
 EOF
 ```
@@ -2370,9 +2366,9 @@ Many pool operators have asked about how to deploy a stake pool with CNTools. Th
 You are required to regenerate the hot keys and issue a new operational certificate, a process called rotating the KES keys, when the hot keys expire.
 
 **Mainnet**: KES keys will be valid for 120 rotations or 90 days
-
-**Testnet**: KES keys will be valid for 120 rotations or 5 days
 {% endhint %}
+
+\*\*\*\*
 
 **Updating the KES Period**: When it's time to issue a new operational certificate, run the following:
 
@@ -2680,6 +2676,9 @@ Copy the unit file to `/etc/systemd/system` and give it permissions.
 
 ```text
 sudo cp $NODE_HOME/cardano-stakepool.service /etc/systemd/system/cardano-stakepool.service
+```
+
+```text
 sudo chmod 644 /etc/systemd/system/cardano-stakepool.service
 ```
 
@@ -2790,7 +2789,7 @@ slotNo=$(cardano-cli shelley query tip $NETWORK_IDENTIFIER | jq -r '.slotNo')
 echo slotNo: ${slotNo}
 ```
 
-Calculate the current epoch by dividing the slot tip number by epochLength which is 21600 slots.
+Calculate the current epoch by dividing the slot tip number by epochLength.
 
 ```text
 epoch=$(( $((${slotNo} / ${epochLength})) + 1))
@@ -2805,10 +2804,10 @@ echo eMax: ${eMax}
 ```
 
 {% hint style="info" %}
-\*\*\*\*🚧 **Example**: if we are in epoch 39 and eMax is 100,
+\*\*\*\*🚧 **Example**: if we are in epoch 39 and eMax is 18,
 
 * the earliest epoch for retirement is 40 \( current epoch  + 1\).
-* the latest epoch for retirement is 139 \( eMax + current epoch\). 
+* the latest epoch for retirement is 57 \( eMax + current epoch\). 
 
 Let's pretend we wish to retire as soon as possible in epoch 40.
 {% endhint %}
