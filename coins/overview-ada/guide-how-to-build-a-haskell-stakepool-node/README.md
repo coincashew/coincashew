@@ -638,7 +638,7 @@ Credits to [ilap](https://gist.github.com/ilap/3fd57e39520c90f084d25b0ef2b96894)
 **Benefits**: Track and control pool rewards from any wallet \(Daedalus, Yoroi or any other wallet\) that support stakings.
 {% endhint %}
 
-Create a 15-world length mnemonic with [Daedalus](https://daedaluswallet.io/) or [Yoroi](../../../wallets/browser-wallets/yoroi-wallet-cardano.md) on a offline machine preferred.
+Create a 15-word or 24-word length shelley compatible mnemonic with [Daedalus](https://daedaluswallet.io/) or [Yoroi](../../../wallets/browser-wallets/yoroi-wallet-cardano.md) on a offline machine preferred.
 
 Download `cardano-wallet`.
 
