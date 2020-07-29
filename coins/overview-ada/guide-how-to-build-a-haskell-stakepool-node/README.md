@@ -1360,7 +1360,7 @@ Add requests for nodes or "buddies" to each of your relay nodes. Make sure you i
 IOHK's node address is:
 
 ```text
-echo relays-new.${NODE_URL}.dev.cardano.org
+relays-new.cardano-mainnet.iohk.io
 ```
 
 IOHK's node port is:
