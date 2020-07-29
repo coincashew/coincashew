@@ -758,6 +758,10 @@ Extract your keys. Update the command with your mnemonic phrase.
 ./extractPoolStakingKeys.sh extractedPoolKeys/ <15-word length mnemonic>
 ```
 
+{% hint style="danger" %}
+Important the base.addr and the base.addr\_candidate must be the same. Review the screen output.
+{% endhint %}
+
 Your new staking keys are in the folder `extractedPoolKeys/`
 
 Now move `payment/stake` key pair over to your `$NODE_HOME` for use with your stake pool.
