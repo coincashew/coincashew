@@ -31,7 +31,7 @@ As a stake pool operator for Cardano, you will typically have the following abil
 * **Internet:** 24/7 broadband internet connection with speeds at least 1 Mbps.
 * **Data Plan**: at least 1GB per hour. 720GB per month.
 * **Power:** 24/7 electrical power
-* **ADA balance:** at least 1000 fADA
+* **ADA balance:** at least 1000 ADA
 
 ### 🏋♂ Recommended Futureproof Hardware Setup
 
@@ -585,6 +585,14 @@ cardano-cli shelley query protocol-parameters \
     --out-file params.json
 ```
 
+{% hint style="info" %}
+Payment keys are used to send and receive payments and staking keys are used to manage stake delegations.
+{% endhint %}
+
+There are two ways to create your `payment` and `stake` key pair. Pick the one that best suits your needs.
+
+{% tabs %}
+{% tab title="CLI Method" %}
 Create a new payment key pair:  `payment.skey` & `payment.vkey`
 
 ```text
@@ -619,10 +627,151 @@ cardano-cli shelley address build \
     --out-file payment.addr \
     --mainnet
 ```
+{% endtab %}
 
+{% tab title="Mnemonic Method" %}
 {% hint style="info" %}
-Payment keys are used to send and receive payments and staking keys are used to manage stake delegations.
+Credits to [ilap](https://gist.github.com/ilap/3fd57e39520c90f084d25b0ef2b96894) for creating this process.
 {% endhint %}
+
+{% hint style="success" %}
+**Benefits**: Track and control pool rewards from any wallet \(Daedalus, Yoroi or any other wallet\) that support stakings.
+{% endhint %}
+
+Create a 15-world length mnemonic with [Daedalus](https://daedaluswallet.io/) or [Yoroi](../../../wallets/browser-wallets/yoroi-wallet-cardano.md) on a offline machine preferred.
+
+Download `cardano-wallet`.
+
+```text
+cd $NODE_HOME
+wget https://hydra.iohk.io/build/3662127/download/1/cardano-wallet-shelley-2020.7.28-linux64.tar.gz
+tar -xvf cardano-wallet-shelley-2020.7.28-linux64.tar.gz
+```
+
+Create`extractPoolStakingKeys.sh` script.
+
+```text
+cat > extractPoolStakingKeys.sh << HERE
+#!/bin/bash 
+
+CADDR=\${CADDR:=\$( which cardano-address )}
+[[ -z "\$CADDR" ]] && ( echo "cardano-address cannot be found, exiting..." >&2 ; exit 127 )
+
+CCLI=\${CCLI:=\$( which cardano-cli )}
+[[ -z "\$CCLI" ]] && ( echo "cardano-cli cannot be found, exiting..." >&2 ; exit 127 )
+
+#[[ "\$#" -ne 16 && "\$#" -ne 28 ]] && {
+#       	echo "usage: `basename \$0` <ouptut dir> <15-word length mnemonic>" >&2 
+#       	exit 127
+#}
+OUT_DIR="\$1"
+[[ -e "\$OUT_DIR"  ]] && {
+       	echo "The \"\$OUT_DIR\" is already exist delete and run again." >&2 
+       	exit 127
+} || mkdir -p "\$OUT_DIR" && pushd "\$OUT_DIR" >/dev/null
+
+shift
+MNEMONIC="\$*"
+
+# Generate the master key from mnemonics and derive the stake account keys 
+# as extended private and public keys (xpub, xprv)
+echo "\$MNEMONIC" |\
+"\$CADDR" key from-recovery-phrase Shelley > root.prv
+
+cat root.prv |\
+"\$CADDR" key child 1852H/1815H/0H/2/0 > stake.xprv
+
+cat root.prv |\
+"\$CADDR" key child 1852H/1815H/0H/0/0 > payment.xprv
+
+TESTNET=0
+MAINNET=1
+NETWORK=\$MAINNET
+
+cat payment.xprv |\
+"\$CADDR" key public | tee payment.xpub |\
+"\$CADDR" address payment --network-tag \$NETWORK |\
+"\$CADDR" address delegation \$(cat stake.xprv | "\$CADDR" key public | tee stake.xpub) |\
+tee base.addr_candidate |\
+"\$CADDR" address inspect
+echo "Generated from 1852H/1815H/0H/{0,2}/0"
+cat base.addr_candidate
+echo
+
+# XPrv/XPub conversion to normal private and public key, keep in mind the 
+# keypars are not a valind Ed25519 signing keypairs.
+TESTNET_MAGIC="--testnet-magic 42"
+MAINNET_MAGIC="--mainnet"
+MAGIC="\$MAINNET_MAGIC"
+
+SESKEY=\$( cat stake.xprv | bech32 | cut -b -128 )\$( cat stake.xpub | bech32)
+PESKEY=\$( cat payment.xprv | bech32 | cut -b -128 )\$( cat payment.xpub | bech32)
+
+cat << EOF > stake.skey
+{
+    "type": "StakeExtendedSigningKeyShelley_ed25519_bip32",
+    "description": "",
+    "cborHex": "5880\$SESKEY"
+}
+EOF
+
+cat << EOF > payment.skey
+{
+    "type": "PaymentExtendedSigningKeyShelley_ed25519_bip32",
+    "description": "Payment Signing Key",
+    "cborHex": "5880\$PESKEY"
+}
+EOF
+
+"\$CCLI" shelley key verification-key --signing-key-file stake.skey --verification-key-file stake.evkey
+"\$CCLI" shelley key verification-key --signing-key-file payment.skey --verification-key-file payment.evkey
+
+"\$CCLI" shelley key non-extended-key --extended-verification-key-file payment.evkey --verification-key-file payment.vkey
+"\$CCLI" shelley key non-extended-key --extended-verification-key-file stake.evkey --verification-key-file stake.vkey
+
+
+"\$CCLI" shelley stake-address build --stake-verification-key-file stake.vkey \$MAGIC > stake.addr
+"\$CCLI" shelley address build --payment-verification-key-file payment.vkey \$MAGIC > payment.addr
+"\$CCLI" shelley address build \
+    --payment-verification-key-file payment.vkey \
+    --stake-verification-key-file stake.vkey \
+    \$MAGIC > base.addr
+
+echo "Important the base.addr and the base.addr_candidate must be the same"
+diff base.addr base.addr_candidate
+popd >/dev/null
+HERE
+```
+
+Add permissions and update PATH.
+
+```text
+chmod +x extractPoolStakingKeys.sh
+mkdir extractedPoolKeys/
+echo PATH="$(pwd):$PATH" >> ~/.bashrc
+source ~/.bashrc
+```
+
+Extract your keys. Update the command with your mnemonic phrase.
+
+```text
+./extractPoolStakingKeys.sh extractedPoolKeys/ <15-word length mnemonic>
+```
+
+Your new staking keys are in the folder `extractedPoolKeys/`
+
+Now move `payment/stake` key pair over to your `$NODE_HOME` for use with your stake pool.
+
+```text
+cd extractedPoolKeys/
+cp stake.vkey stake.skey stake.addr payment.vkey payment.skey payment.addr $NODE_HOME
+```
+
+{% hint style="success" %}
+Awesome. Now you can track your pool rewards in your wallet.
+{% endhint %}
+{% endtab %}
+{% endtabs %}
 
 Next step is to fund your payment address. 
 
