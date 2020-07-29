@@ -646,6 +646,7 @@ Download `cardano-wallet`.
 cd $NODE_HOME
 wget https://hydra.iohk.io/build/3662127/download/1/cardano-wallet-shelley-2020.7.28-linux64.tar.gz
 tar -xvf cardano-wallet-shelley-2020.7.28-linux64.tar.gz
+rm cardano-wallet-shelley-2020.7.28-linux64.tar.gz
 ```
 
 Create`extractPoolStakingKeys.sh` script.
