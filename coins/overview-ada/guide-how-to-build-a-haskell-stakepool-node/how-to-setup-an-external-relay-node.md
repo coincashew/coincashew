@@ -38,9 +38,11 @@ echo EXISTING_NODE_PORT: $EXISTING_NODE_PORT
 
 ```text
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
-echo export NODE_CONFIG=mainnet_candidate_4>> ~/.bashrc
-echo export NODE_URL=mainnet-candidate-4 >> ~/.bashrc
-echo export NODE_BUILD_NUM=3622471>> ~/.bashrc
+echo export NODE_CONFIG=mainnet>> ~/.bashrc
+echo export NODE_URL=cardano-mainnet >> ~/.bashrc
+echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g') >> ~/.bashrc
+echo export NETWORK_IDENTIFIER=\"--mainnet\" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 ### 👩🌾 4. Run the following auto-setup relaynode script
@@ -111,7 +113,7 @@ cat > $NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json << EOF
         "valency": 1
       },
       {
-        "addr": "relays-new.${NODE_URL}.dev.cardano.org",
+        "addr": "relays-new.${NODE_URL}.iohk.io",
         "port": 3001,
         "valency": 2
       }
