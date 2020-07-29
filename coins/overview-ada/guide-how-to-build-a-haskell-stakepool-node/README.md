@@ -593,16 +593,6 @@ cardano-cli shelley address key-gen \
     --signing-key-file payment.skey
 ```
 
-{% hint style="info" %}
-If you participated in the ITN, you can convert your ITN ed25519 public/private key to a shelley stake verification/signing key. This does not yet work for ITN ed25519e keys.
-
-```
-itnKeyFile=<yourITNPrivateKeyFile>
-cardano-cli shelley stake-address convert-itn-key --itn-signing-key-file ${itnKeyFile} --out-file payment.skey
-cardano-cli shelley stake-address convert-itn-key --itn-verification-key-file ${itnKeyFile} --out-file payment.vkey
-```
-{% endhint %}
-
  Create a new stake address key pair: `stake.skey` & `stake.vkey`
 
 ```text
@@ -637,6 +627,19 @@ Payment keys are used to send and receive payments and staking keys are used to 
 Next step is to fund your payment address. 
 
 {% tabs %}
+{% tab title="Mainnet" %}
+Payment address can be funded from
+
+* your Daedalus / Yoroi wallet
+* if you were part of the ITN, you can convert your keys.
+
+Run the following to find your payment address.
+
+```text
+cat payment.addr
+```
+{% endtab %}
+
 {% tab title="Release Candidate" %}
 Payment address can be funded from
 
