@@ -747,7 +747,6 @@ Add permissions and update PATH.
 
 ```text
 chmod +x extractPoolStakingKeys.sh
-mkdir extractedPoolKeys/
 echo PATH="$(pwd)/cardano-wallet-shelley-2020.7.28:$PATH" >> ~/.bashrc
 source ~/.bashrc
 ```
