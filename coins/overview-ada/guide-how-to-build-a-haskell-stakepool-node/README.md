@@ -765,6 +765,7 @@ Now move `payment/stake` key pair over to your `$NODE_HOME` for use with your st
 ```text
 cd extractedPoolKeys/
 cp stake.vkey stake.skey stake.addr payment.vkey payment.skey payment.addr $NODE_HOME
+cd $NODE_HOME
 ```
 
 {% hint style="success" %}
