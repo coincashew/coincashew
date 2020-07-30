@@ -759,7 +759,7 @@ Extract your keys. Update the command with your mnemonic phrase.
 ```
 
 {% hint style="danger" %}
-Important the base.addr and the base.addr\_candidate must be the same. Review the screen output.
+Important the base.addr and the base.addr\_candidate must be the same. Review the screen output. **Base.addr is the payment address to be funded.**
 {% endhint %}
 
 Your new staking keys are in the folder `extractedPoolKeys/`
@@ -768,8 +768,10 @@ Now move `payment/stake` key pair over to your `$NODE_HOME` for use with your st
 
 ```text
 cd extractedPoolKeys/
-cp stake.vkey stake.skey stake.addr payment.vkey payment.skey payment.addr $NODE_HOME
+cp stake.vkey stake.skey stake.addr payment.vkey payment.skey base.addr $NODE_HOME
 cd $NODE_HOME
+#Rename to base.addr file to payment.addr
+mv base.addr payment.addr
 ```
 
 {% hint style="success" %}
