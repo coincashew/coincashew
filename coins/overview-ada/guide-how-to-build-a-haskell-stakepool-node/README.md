@@ -2487,15 +2487,15 @@ Thanks to all &gt; 7000 of you, the Cardano hodlers, buidlers, stakers, and pool
 
 We sincerely appreciate all [donations](../../../contact-us/donations.md). 😁 Thank you for supporting Cardano and us! 
 
-![ADA tipjar](../../../.gitbook/assets/ada-tip.png)
+![Cardano Tip Jar](../../../.gitbook/assets/ada-shelley-qr.png)
 
 ```text
-Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj
+addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
 ```
 
-or visit the [donation address on BlockChair's](https://blockchair.com/cardano/address/Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj) ADA block explorer. 
+or visit the donation address on[ ADAScan's block explorer](https://adascan.net/address/addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q/).
 
-{% embed url="https://blockchair.com/cardano/address/Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj" %}
+{% embed url="https://adascan.net/address/addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q/" %}
 
 ### 📚 14.4 Reference Material
 

@@ -66,10 +66,10 @@ bnb13uaxxcfflt708gdaqurx39jk75xdyl6e2eyapr
 {% tab title="Cardano" %}
  
 
-![](../.gitbook/assets/ada-tip.png)
+![](../.gitbook/assets/ada-shelley-qr.png)
 
 ```text
-Ae2tdPwUPEZ8Kfc1fAcmxsRbvVvcoh5yRva9mKPt9fz3b9gNWC1bfcLogAj
+addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
 ```
 {% endtab %}
 
