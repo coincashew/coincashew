@@ -87,6 +87,14 @@ git fetch --all
 git checkout tags/1.18.0
 sed -i $HOME/.cabal/config -e "s/overwrite-policy:/overwrite-policy: always/g"
 rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5
+HERE
+chmod +x installRelayNode.sh
+sudo -u $(whoami) ./installRelayNode.sh
+```
+
+Build binaries and fetch the node .json files.
+
+```text
 cabal build cardano-cli cardano-node
 mkdir $NODE_HOME
 cd $NODE_HOME
@@ -100,9 +108,6 @@ sed -i ${NODE_CONFIG}-config.json \
 cd $NODE_HOME
 mkdir relaynode1
 cp *.json relaynode1
-HERE
-chmod +x installRelayNode.sh
-sudo -u $(whoami) ./installRelayNode.sh
 ```
 
 Copy binaries and verify the correct version is installed.
