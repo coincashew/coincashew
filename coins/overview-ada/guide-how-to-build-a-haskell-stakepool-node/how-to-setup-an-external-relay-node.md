@@ -95,6 +95,7 @@ sudo -u $(whoami) ./installRelayNode.sh
 Build binaries and fetch the node .json files.
 
 ```text
+cd ~/git/cardano-node
 cabal build cardano-cli cardano-node
 mkdir $NODE_HOME
 cd $NODE_HOME
