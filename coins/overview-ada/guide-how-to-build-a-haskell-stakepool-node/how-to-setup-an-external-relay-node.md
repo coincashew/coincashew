@@ -28,26 +28,31 @@ EXISTING_NODE_PORT=<PORT OF MY EXISTING BLOCK PRODUCING OR RELAY NODE>
 ### 🚧 2. Review the IP/port information before continuing
 
 ```text
-echo NEW_RELAY_NODE_IP: $NEW_RELAY_NODE_IP
-echo NEW_RELAY_NODE_PORT: $NEW_RELAY_NODE_PORT
-echo EXISTING_NODE_IP: $EXISTING_NODE_IP
-echo EXISTING_NODE_PORT: $EXISTING_NODE_PORT
+printf "NEW_RELAY_NODE_IP: $NEW_RELAY_NODE_IP \n\
+NEW_RELAY_NODE_PORT: $NEW_RELAY_NODE_PORT \n\
+EXISTING_NODE_IP: $EXISTING_NODE_IP \n\
+EXISTING_NODE_PORT: $EXISTING_NODE_PORT \n"
 ```
 
 ### 🤹♀ 3. Set the node configuration data
 
 ```text
+echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
-echo export NODE_CONFIG=mainnet>> ~/.bashrc
+echo export NODE_CONFIG=mainnet >> ~/.bashrc
 echo export NODE_URL=cardano-mainnet >> ~/.bashrc
 echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g') >> ~/.bashrc
 echo export NETWORK_IDENTIFIER=\"--mainnet\" >> ~/.bashrc
+echo export CARDANO_NODE_SOCKET_PATH="$NODE_HOME/db/socket" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-### 👩🌾 4. Run the following auto-setup relaynode script
+### 👩🌾 4. Run the following installation steps
+
+Install dependencies and compile source code.
 
 ```text
+cat > installRelayNode.sh << HERE
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install git make tmux rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
@@ -72,9 +77,6 @@ rm ghc-8.6.5-x86_64-deb9-linux.tar.xz
 cd ghc-8.6.5
 ./configure
 sudo make install
-echo PATH="~/.local/bin:$PATH" >> ~/.bashrc
-echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
-source ~/.bashrc
 cabal update
 cabal -V
 ghc -V
@@ -83,27 +85,38 @@ git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all
 git checkout tags/1.18.0
-echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 sed -i $HOME/.cabal/config -e "s/overwrite-policy:/overwrite-policy: always/g"
 rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 cabal build cardano-cli cardano-node
+mkdir $NODE_HOME
+cd $NODE_HOME
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-topology.json
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
+sed -i ${NODE_CONFIG}-config.json \
+    -e "s/SimpleView/LiveView/g" \
+    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
+cd $NODE_HOME
+mkdir relaynode1
+cp *.json relaynode1
+HERE
+chmod +x installRelayNode.sh
+sudo -u $(whoami) ./installRelayNode.sh
+```
+
+Copy binaries and verify the correct version is installed.
+
+```text
 sudo cp $(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
 sudo cp $(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
 cardano-node version
 cardano-cli version
-mkdir $NODE_HOME
-cd $NODE_HOME
-wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
-wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-topology.json
-wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
-wget https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
-sed -i ${NODE_CONFIG}-config.json \
-    -e "s/SimpleView/LiveView/g" \
-    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
-echo export CARDANO_NODE_SOCKET_PATH="$NODE_HOME/db/socket" >> ~/.bashrc
-source ~/.bashrc
-mkdir relaynode1
-cp *.json relaynode1
+```
+
+Create topology and start/stop scripts.
+
+```text
 cat > $NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json << EOF 
  {
     "Producers": [
@@ -197,7 +210,6 @@ On **NEW** relay node,
 
 ```text
 cd $NODE_HOME
-./stopRelay.sh
 ./startRelay.sh
 ```
 
