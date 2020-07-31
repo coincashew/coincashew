@@ -116,6 +116,7 @@
   * [Create a LTC paper wallet](https://liteaddress.org/)
 * [Cardano: ADA](coins/overview-ada/README.md)
   * [Guide: How to build a Cardano Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
+    * [How to fix the Mnemonic staking balance bug](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-fix-the-mnemonic-staking-balance-bug.md)
     * [How to setup chrony](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md)
     * [How to update a Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-update-a-stakepool.md)
     * [How to setup an external relay node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-an-external-relay-node.md)
