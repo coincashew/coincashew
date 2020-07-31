@@ -37,7 +37,6 @@ EXISTING_NODE_PORT: $EXISTING_NODE_PORT \n"
 ### 🤹♀ 3. Set the node configuration data
 
 ```text
-echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
 echo export NODE_CONFIG=mainnet >> ~/.bashrc
 echo export NODE_URL=cardano-mainnet >> ~/.bashrc
@@ -96,6 +95,7 @@ Build binaries and fetch the node .json files.
 
 ```text
 cd ~/git/cardano-node
+echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 cabal build cardano-cli cardano-node
 mkdir $NODE_HOME
 cd $NODE_HOME
