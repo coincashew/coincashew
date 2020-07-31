@@ -15,7 +15,8 @@ If this returns **`59 payment.addr`**`,` then continue reading. If this returns 
 
 ## 🛠 What is the problem?
 
-* The balance towards your stake is not being counted properly. 
+* The balance towards your stake is not being counted because the script's default, **`payment.addr`**, is also known as the enterprise address.
+* By design, enterprise address balances are not counted as stake.
 * The public address found in **`base.addr`** should have been funded. In other words, `base.addr` should have been the real `payment.addr`.
 
 ## 🤖 Verify that the problem exists
