@@ -154,6 +154,10 @@ Be sure to safely save your mnemonic seed offline.
 
 Accept default locations and enter a password to your imported accounts.
 
+{% hint style="danger" %}
+**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+{% endhint %}
+
 ## 🔥 8. Configure port forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
