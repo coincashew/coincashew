@@ -146,7 +146,14 @@ sudo ./deposit.sh install
 
 Accept default locations and enter a password to your imported accounts.
 
-## 🏂 8. Start the beacon chain
+## 🔥 8. Configure port forwarding and/or router
+
+Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
+
+* **Beacon chain** requires port 12000 for udp and port 13000 for tcp
+* **geth** node requires port 30303 for tcp and udp
+
+## 🏂 9. Start the beacon chain
 
 {% hint style="warning" %}
 If you participated in any of the prior test nets, you need to clear the database.
@@ -162,7 +169,7 @@ In a new terminal, start the beacon chain.
 ~/prysm/prysm.sh beacon-chain --http-web3provider=$HOME/Goerli/geth.ipc
 ```
 
-## 🚥 9. Start the validator
+## 🚥 10. Start the validator
 
 In a new terminal, start the validator.
 
@@ -174,7 +181,7 @@ In a new terminal, start the validator.
 Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes 4-5 hours. When you're assigned, your validator will begin creating and voting on blocks as well as earning eth2 staking rewards.
 {% endhint %}
 
-## 🎞 10. Reference Material
+## 🎞 11. Reference Material
 
 Check out the official documentation at:
 
