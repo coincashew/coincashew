@@ -28,6 +28,17 @@ As a validator for eth2, you will typically have the following abilities:
 * **ETH balance:** at least 32 Goerli ETH
 * **Wallet**: Metamask installed
 
+### 🏋♀ Recommended Futureproof Hardware Setup
+
+* **Operating system:** 64-bit Linux \(i.e. Ubuntu 18.04.4 LTS\)
+* **Processor:** Octa core CPU
+* **Memory:** 32GB RAM
+* **Storage:** 2 TB SSD
+* **Internet:** Multiple 24/7 broadband internet connections with speeds at least 100 Mbps \(i.e. fiber + cellular 4G\)
+* **Power:** Redundant 24/7 electrical power with uninterruptible power supply \(UPS\)
+* **ETH balance:** at least 32 Goerli ETH
+* **Wallet**: Metamask installed
+
 If you need to install Ubuntu, refer to
 
 {% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
