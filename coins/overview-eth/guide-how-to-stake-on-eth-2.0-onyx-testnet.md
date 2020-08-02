@@ -1,13 +1,21 @@
 ---
 description: >-
-  The Onyx Testnet is a public network created by Prysmatic Labs. It implements
-  the Ethereum 2.0 Phase 0 protocol for a proof-of-stake blockchain, enabling
-  anyone holding Goerli test ETH to join.
+  The Medalla Testnet is a public multi-client network. It implements the
+  Ethereum 2.0 Phase 0 protocol for a proof-of-stake blockchain, enabling anyone
+  holding Goerli test ETH to join.
 ---
 
-# Guide: How to stake on ETH 2.0 ONYX testnet with Prysm on Ubuntu
+# Guide: How to stake on eth2 Medalla Testnet with Prysm on Ubuntu
 
 ## 🏁 0. Prerequisites
+
+### 👩💻 Skills for operating a eth2 validator and beacon node
+
+As a validator for eth2, you will typically have the following abilities:
+
+* operational knowledge of how to set up, run and maintain a eth2 beacon node and validator continuously
+* a commitment to maintain your validator 24/7/365
+* basic operating system skills
 
 ### \*\*\*\*🎗 **Minimum Setup Requirements**
 
@@ -43,7 +51,42 @@ Prysm is a Ethereum 2.0 client and it comes in two components.
 **Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
 {% endhint %}
 
-## ⚙ 2. Obtain Goerli test network ETH
+## 🛸 2. Download geth, a eth1 node
+
+{% hint style="info" %}
+Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
+{% endhint %}
+
+```text
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt-get update -y
+sudo apt-get install ethereum -y
+```
+
+## ⚙ 3. Create a geth startup script
+
+```text
+cat > startGethNode.sh << EOF 
+geth --goerli --datadir="$HOME/Goerli" --rpc
+EOF
+```
+
+## 👩🌾 4. Start the geth node for ETH Goerli testnet <a id="3-start-the-geth-node-for-eth-goerli-testnet"></a>
+
+```text
+chmod +x startGethNode.sh
+./startGethNode.sh
+```
+
+{% hint style="info" %}
+Syncing the node could take up to 1 hour.
+{% endhint %}
+
+{% hint style="success" %}
+You are fully sync'd when you see the message: `Imported new chain segment`
+{% endhint %}
+
+## 🚀 5. Obtain Goerli test network ETH
 
 Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a request for ETH in the **`-request-goerli-eth channel`**
 
@@ -51,83 +94,84 @@ Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a
 !send <your metamask goerli network ETH address>
 ```
 
-Otherwise, visit below and use metamask to request ETH on step 2, "Get GöETH — Test ether". 
+Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mudit.blog).
 
-{% embed url="https://prylabs.net/participate" %}
+## 👩💻6. Signup to be a validator at the Launchpad
 
-{% hint style="warning" %}
-This method is sometimes unreliable.
+1. Visit [https://medalla.launchpad.ethereum.org/](https://medalla.launchpad.ethereum.org/)
+2. **Study** the eth2 phase 0 overview material. Understanding eth2 is the key to success!
+3. Enter the amount of validators you would like to run.
+4. Install dependencies, the ethereum foundation deposit tool and generate keys.
+
+```text
+sudo apt install python3-venv python3-pip git python3.x 
+```
+
+```text
+mkdir ~/git
+cd ~/git
+git clone https://github.com/ethereum/eth2.0-deposit-cli.git
+cd eth2.0-deposit-cli
+sudo ./deposit.sh install
+```
+
+```text
+./deposit.sh --chain medalla
+```
+
+5. Follow the prompts and pick a password. Write down your mnemonic and keep this safe, preferably **offline**.
+
+6. Upload the `deposit_data.json` found in the `validator_keys` directory.
+
+7. Connect your metamask wallet, review and accept terms.
+
+8. Confirm the transaction.
+
+{% hint style="success" %}
+Congratulations! 🚀 Thank you for supporting the eth2 network!
 {% endhint %}
 
-## 👩💻 3. Generate a validator key pair
+## 🎩 7. Import validator key pair
+
+```text
+~/prysm/prysm.sh validator accounts-v2 import --keys-dir=~/git/eth2.0-deposit-cli/validator_keys
+```
+
+Accept default locations and enter a password to your imported accounts.
+
+## 🏂 8. Start the beacon chain
 
 {% hint style="warning" %}
-If you were participating on the previous Topaz testnet, you will first need to clear the database.
+If you participated in any of the prior testnets, you need to clear the database.
 
 ```text
-./prysm.sh beacon-chain --clear-db
+~/prysm/prysm.sh beacon-chain --clear-db
 ```
 {% endhint %}
-
-```text
-./prysm.sh validator accounts create
-```
-
-Accept default key location and enter a password to encrypt your private keys.
-
-Save the deposit data for the next steps. Sample deposit data looks as follows:
-
-```text
-========================Deposit Data=======================
-
-0x2289511800000000000000000000000000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000120d77ff7f6ee42ff448b239856012c2650752b664a3e17927135b0a363a78c1b550000000000000000000000000000000000000000000000000000000000000030b539868a621d45b51f66ce88bc80e35099e01f31a0aec8484e7fbd04936056483053c5f2b1d195273b651599555ef35e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200086c2c1fb70ed4e6435d2f32a3f6a5fdd4596ad5dc82bd6254ef73959d1ec2b0000000000000000000000000000000000000000000000000000000000000060a8480dd7d6341273789afa176e00e2c105cfe76adb670a211da5604c74cb7fd1ee6ceb4753a25400227fbf01cc344e98000d0705db8f3a964692f85901e4cb4fb6211aa5091967c22f550666adfa65bbde8b33c41cdc56fb62564a73a2135c20
-
-===================================================================
-
-```
-
-## 🏂 4. Start the beacon chain
 
 In a new terminal, start the beacon chain.
 
 ```text
-./prysm.sh beacon-chain
+~/prysm/prysm.sh beacon-chain --http-web3provider=$HOME/Goerli/geth.ipc
 ```
 
-## 🚥 5. Start the validator
+## 🚥 9. Start the validator
 
 In a new terminal, start the validator.
 
 ```text
-./prysm.sh validator
+~/prysm/prysm.sh validator --monitoring-host "0.0.0.0" --beacon-rpc-provider "127.0.0.1:4000" --graffiti "ETHEREUM IS THE GOING TO THE MOON"
 ```
 
-## 📩 6. Send the validator deposit
-
-1. Open **Metamask** wallet in your browser
-2. Ensure you have selected the **Goerli Test Network** from the dropdown menu.
-3. Click your account Identicon, the circular colorful icon.
-4. Go to **Settings then Advanced**
-5. Enable **"Show Hex Data"**
-6. Click **Send**
-7. Enter the Onyx Deposit Contract Address as Recipient:  [0x0F0F0fc0530007361933EaB5DB97d09aCDD6C1c8](https://goerli.etherscan.io/address/0x0F0F0fc0530007361933EaB5DB97d09aCDD6C1c8)
-8. Enter **32 ETH** into the **Amount** field
-9. Paste the **Deposit Data** from step 3 into the **Hex Data** field.
-10. Click **Next** to send.
-
-![Turning on Show Hex Data](../../.gitbook/assets/eth2-onyx-metamask.png)
-
-![Preparing to send with 32ETH and Deposit Data](../../.gitbook/assets/eth2-onyx-send.png)
-
 {% hint style="success" %}
-Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes 4-5 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards.
+Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes 4-5 hours. When you're assigned, your validator will begin creating and voting on blocks as well as earning ETH staking rewards.
 {% endhint %}
 
-## 🎞 7. Reference Material
+## 🎞 10. Reference Material
 
 Check out the official documentation at:
 
+{% embed url="https://medalla.launchpad.ethereum.org/" %}
+
 {% embed url="https://prylabs.net/participate" %}
-
-
 
