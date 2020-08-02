@@ -11,7 +11,7 @@ description: How to run a geth node for your Eth 2.0 beacon node on Ubutnu.
 
 If you need a prysm beacon node, follow this guide.
 
-{% page-ref page="guide-how-to-stake-on-eth-2.0-onyx-testnet.md" %}
+{% page-ref page="guide-how-to-stake-on-eth2.md" %}
 
 If you need to install Ubuntu, follow this guide.
 
