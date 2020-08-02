@@ -1,14 +1,14 @@
 ---
 description: >-
-  The Medalla Testnet is a public multi-client network. It implements the
-  Ethereum 2.0 Phase 0 protocol for a proof-of-stake blockchain, enabling anyone
-  holding Goerli test ETH to join.
+  Medalla is a multi-client ETH 2.0 testnet. It implements the Ethereum 2.0
+  Phase 0 protocol for a proof-of-stake blockchain, enabling anyone holding
+  Goerli test ETH to join.
 ---
 
-# Guide: How to stake on ETH2 Medalla Testnet with Prysm on Ubuntu
+# Guide: How to stake on ETH2 Medalla Testnet with Lighthouse on Ubuntu
 
 {% hint style="success" %}
- [Prysm](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com/), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
+ [Lighthouse](https://github.com/sigp/lighthouse) is an Eth2.0 client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io/), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -51,26 +51,7 @@ If you need to install Metamask, refer to
 
 {% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
-## 🤖 1. Install Prysm
-
-```text
- mkdir prysm && cd prysm 
- curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh 
-```
-
-{% hint style="info" %}
-Prysm is a Ethereum 2.0 client and it comes in two components.
-
-**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
-
-**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
-{% endhint %}
-
-## 🛸 2. Download geth, a eth1 node
-
-{% hint style="info" %}
-Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
-{% endhint %}
+## 🤖 1. Download geth, a eth1 node
 
 ```text
 sudo add-apt-repository -y ppa:ethereum/ethereum
@@ -78,7 +59,11 @@ sudo apt-get update -y
 sudo apt-get install ethereum -y
 ```
 
-## ⚙ 3. Create a geth startup script
+or manually download at:
+
+{% embed url="https://geth.ethereum.org/downloads/" %}
+
+## 📄 2. Create a geth startup script
 
 ```text
 cat > startGethNode.sh << EOF 
@@ -86,7 +71,7 @@ geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
 ```
 
-## 👩🌾 4. Start the geth node for ETH Goerli testnet <a id="3-start-the-geth-node-for-eth-goerli-testnet"></a>
+## 🐣 3. Start the geth node for ETH Goerli testnet
 
 ```text
 chmod +x startGethNode.sh
@@ -101,7 +86,7 @@ Syncing the node could take up to 1 hour.
 You are fully sync'd when you see the message: `Imported new chain segment`
 {% endhint %}
 
-## 🚀 5. Obtain Goerli test network ETH
+## ⚙ 4. Obtain Goerli test network ETH
 
 Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a request for ETH in the **`-request-goerli-eth channel`**
 
@@ -111,7 +96,7 @@ Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a
 
 Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mudit.blog).
 
-## 👩💻6. Signup to be a validator at the Launchpad
+## 👩💻5. Signup to be a validator at the Launchpad
 
 1. Visit [https://medalla.launchpad.ethereum.org/](https://medalla.launchpad.ethereum.org/)
 2. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
@@ -119,7 +104,8 @@ Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mu
 4. Install dependencies, the ethereum foundation deposit tool and generate keys.
 
 ```text
-sudo apt install python3-pip git
+sudo apt install python3-pip git -y
+source ~/.bashrc
 ```
 
 ```text
@@ -136,60 +122,120 @@ sudo ./deposit.sh install
 
 5. Follow the prompts and pick a password. Write down your mnemonic and keep this safe, preferably **offline**.
 
-6. Upload the `deposit_data.json` found in the `validator_keys` directory.
+6. Back on the launchpad website, upload the `deposit_data.json` found in the `validator_keys` directory.
 
 7. Connect your metamask wallet, review and accept terms.
 
 8. Confirm the transaction.
 
-## 🎩 7. Import validator key pair
+{% hint style="danger" %}
+Be sure to safely save your mnemonic seed offline.
+{% endhint %}
+
+## 👩🌾 6. Install rust
 
 ```text
-~/prysm/prysm.sh validator accounts-v2 import --keys-dir=~/git/eth2.0-deposit-cli/validator_keys
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+{% hint style="info" %}
+ In case of compilation errors, run`rustup update`
+{% endhint %}
+
+Enter '1' to proceed with the default install.
+
+Update your environment variables.
+
+```text
+echo export PATH="$HOME/.cargo/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
+```
+
+Install rust dependencies.
+
+```text
+sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev
+```
+
+## 💡 7. Install Lighthouse
+
+```text
+cd ~/git
+git clone https://github.com/sigp/lighthouse.git
+cd lighthouse
+make
+```
+
+{% hint style="info" %}
+This build process may take up to an hour.
+{% endhint %}
+
+Verify lighthouse was installed properly.
+
+```text
+lighthouse --version
+```
+
+## 🎩 8. Import validator key
+
+```text
+lighthouse account validator import --directory=$HOME/git/eth2.0-deposit-cli/validator_keys
 ```
 
 Accept default locations and enter a password to your imported accounts.
 
-## 🔥 8. Configure port forwarding and/or firewall
+{% hint style="danger" %}
+WARNING: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+{% endhint %}
+
+## 🔥 9. Configure port forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
-* **Beacon chain** requires port 12000 for udp and port 13000 for tcp
+* **Lighthouse beacon chain** requires port 9000 for tcp
 * **geth** node requires port 30303 for tcp and udp
 
-## 🏂 9. Start the beacon chain
+## 🏂 10. Start the beacon chain
 
 {% hint style="warning" %}
 If you participated in any of the prior test nets, you need to clear the database.
 
 ```text
-~/prysm/prysm.sh beacon-chain --clear-db
+rm -rf $HOME/.lighthouse
 ```
 {% endhint %}
 
 In a new terminal, start the beacon chain.
 
 ```text
-~/prysm/prysm.sh beacon-chain --http-web3provider=$HOME/Goerli/geth.ipc
+lighthouse beacon --eth1 --http --graffiti "ETH TO THE MOON WITH LIGHTHOUSE"
 ```
 
-## 🚥 10. Start the validator
+{% hint style="danger" %}
+Allow the beacon chain to fully sync with eth1 chain before continuing.
 
-In a new terminal, start the validator.
-
-```text
-~/prysm/prysm.sh validator --monitoring-host "0.0.0.0" --beacon-rpc-provider "127.0.0.1:4000" --graffiti "ETHEREUM IS THE GOING TO THE MOON"
-```
-
-{% hint style="success" %}
-Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes 4-5 hours. When you're assigned, your validator will begin creating and voting on blocks as well as earning eth2 staking rewards.
+Continue when you see the "**Beacon chain initialized"** message.
 {% endhint %}
 
-## 🎞 11. Reference Material
+## 🧬 11. Start the validator
 
-Check out the official documentation at:
+```text
+lighthouse vc
+```
 
-{% embed url="https://medalla.launchpad.ethereum.org/" %}
+{% hint style="info" %}
+**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
 
-{% embed url="https://prylabs.net/participate" %}
+**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
+{% endhint %}
+
+{% hint style="success" %}
+Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 8 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards. Find your validator's status at [beaconcha.in](https://altona.beaconcha.in)
+{% endhint %}
+
+## 🧩 12. Reference Material
+
+{% embed url="https://medalla.launchpad.ethereum.org/lighthouse" %}
+
+{% embed url="https://lighthouse-book.sigmaprime.io/intro.html" %}
 
