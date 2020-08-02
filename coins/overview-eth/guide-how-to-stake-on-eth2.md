@@ -146,7 +146,7 @@ sudo ./deposit.sh install
 
 Accept default locations and enter a password to your imported accounts.
 
-## 🔥 8. Configure port forwarding and/or router
+## 🔥 8. Configure port forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
