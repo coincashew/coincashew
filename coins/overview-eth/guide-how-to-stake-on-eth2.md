@@ -142,7 +142,11 @@ sudo ./deposit.sh install
 
 8. Confirm the transaction.
 
-## 🎩 7. Import validator key pair
+{% hint style="danger" %}
+Be sure to safely save your mnemonic seed offline.
+{% endhint %}
+
+## 🎩 7. Import validator key
 
 ```text
 ~/prysm/prysm.sh validator accounts-v2 import --keys-dir=~/git/eth2.0-deposit-cli/validator_keys

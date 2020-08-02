@@ -105,7 +105,6 @@ Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mu
 
 ```text
 sudo apt install python3-pip git -y
-source ~/.bashrc
 ```
 
 ```text
