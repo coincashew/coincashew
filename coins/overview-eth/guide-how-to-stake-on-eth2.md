@@ -99,7 +99,7 @@ Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mu
 ## 👩💻6. Signup to be a validator at the Launchpad
 
 1. Visit [https://medalla.launchpad.ethereum.org/](https://medalla.launchpad.ethereum.org/)
-2. **Study** the eth2 phase 0 overview material. Understanding eth2 is the key to success!
+2. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
 3. Enter the amount of validators you would like to run.
 4. Install dependencies, the ethereum foundation deposit tool and generate keys.
 
@@ -127,10 +127,6 @@ sudo ./deposit.sh install
 
 8. Confirm the transaction.
 
-{% hint style="success" %}
-Congratulations! 🚀 Thank you for supporting the eth2 network!
-{% endhint %}
-
 ## 🎩 7. Import validator key pair
 
 ```text
@@ -142,7 +138,7 @@ Accept default locations and enter a password to your imported accounts.
 ## 🏂 8. Start the beacon chain
 
 {% hint style="warning" %}
-If you participated in any of the prior testnets, you need to clear the database.
+If you participated in any of the prior test nets, you need to clear the database.
 
 ```text
 ~/prysm/prysm.sh beacon-chain --clear-db
@@ -164,7 +160,7 @@ In a new terminal, start the validator.
 ```
 
 {% hint style="success" %}
-Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes 4-5 hours. When you're assigned, your validator will begin creating and voting on blocks as well as earning ETH staking rewards.
+Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes 4-5 hours. When you're assigned, your validator will begin creating and voting on blocks as well as earning eth2 staking rewards.
 {% endhint %}
 
 ## 🎞 10. Reference Material
