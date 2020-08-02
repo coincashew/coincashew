@@ -104,7 +104,7 @@ Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mu
 4. Install dependencies, the ethereum foundation deposit tool and generate keys.
 
 ```text
-sudo apt install python3-venv python3-pip git python3.x 
+sudo apt install python3-pip git
 ```
 
 ```text
