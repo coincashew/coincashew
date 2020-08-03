@@ -5,10 +5,14 @@ description: >-
   Goerli test ETH to join.
 ---
 
-# Guide: How to stake on ETH2 Medalla Testnet with Lighthouse on Ubuntu
+# Guide: How to stake on ETH2 Medalla Testnet with Nimbus on Ubuntu
+
+{% hint style="danger" %}
+Work in progress.
+{% endhint %}
 
 {% hint style="success" %}
-[Lighthouse](https://github.com/sigp/lighthouse) is an Eth2.0 client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io/), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
+[Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im/) by the same name. Nimbus \(Apache 2\) is written in Nim, a language with Python-like syntax that compiles to C.
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -131,96 +135,83 @@ sudo ./deposit.sh install
 Be sure to safely save your mnemonic seed offline.
 {% endhint %}
 
-## 👩🌾 6. Install rust
+## 💡 6. Build Nimbus from source
+
+Install dependencies
 
 ```text
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sudo apt-get install build-essential git libpcre3-dev
 ```
 
-{% hint style="info" %}
- In case of compilation errors, run`rustup update`
-{% endhint %}
-
-Enter '1' to proceed with the default install.
-
-Update your environment variables.
-
-```text
-echo export PATH="$HOME/.cargo/bin:$PATH" >> ~/.bashrc
-source ~/.bashrc
-```
-
-Install rust dependencies.
-
-```text
-sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev
-```
-
-## 💡 7. Install Lighthouse
+Install and build Nimbus.
 
 ```text
 cd ~/git
-git clone https://github.com/sigp/lighthouse.git
-cd lighthouse
-make
+git clone https://github.com/status-im/nim-beacon-chain
+cd nim-beacon-chain
+make testnet0
 ```
 
 {% hint style="info" %}
 This build process may take up to an hour.
 {% endhint %}
 
-Verify lighthouse was installed properly.
+Verify Teku was installed properly by displaying the help menu.
 
 ```text
-lighthouse --version
+cd $HOME/git/nim-beacon-chain
+./beacon_node --help
 ```
 
-## 🎩 8. Import validator key
-
-```text
-lighthouse account validator import --directory=$HOME/git/eth2.0-deposit-cli/validator_keys
-```
-
-Accept default locations and enter a password to your imported accounts.
-
-{% hint style="danger" %}
-WARNING: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
-{% endhint %}
-
-## 🔥 9. Configure port forwarding and/or firewall
+## 🔥 7. Configure port forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
-* **Lighthouse beacon chain** requires port 9000 for tcp and udp
-* **geth** node requires port 30303 for tcp and udp
+* **Teku beacon chain node** will use port 9151 for tcp
+* **geth** node will use port 30303 for tcp and udp
 
-## 🏂 10. Start the beacon chain
+## 🏂 8. Start the beacon chain and validator
 
 {% hint style="warning" %}
-If you participated in any of the prior test nets, you need to clear the database.
+If you participated in any of the prior test nets, you need to reset your database.
 
 ```text
-rm -rf $HOME/.lighthouse
+./connect-to-testnet testnet0
 ```
 {% endhint %}
 
-In a new terminal, start the beacon chain.
+Store your validator's password in a file.
 
 ```text
-lighthouse beacon --eth1 --http --graffiti "ETH TO THE MOON WITH LIGHTHOUSE"
+echo "my_password_goes_here" > $HOME/git/teku/password.txt
+```
+
+Update the `--validators-key-files` with the full path to your validator key. If you possess multiple validator keys then separate with commas. Use a [config file](https://docs.teku.pegasys.tech/en/latest/HowTo/Configure/Use-Configuration-File/) if you have many validator keys,
+
+```text
+cd $HOME/git/nim-beacon-chain/build
+./beacon_node \
+--network=medalla \
+--data-dir="build/data/shared_medalla_0" \
+--web3-url=http://localhost:8545 \
+--validators-dir=build/data/medalla/validators \
+--secrets-dir=build/data/medalla/secrets \
+--validators-graffiti="nimbus and ETH2 the moon!" \
+--p2p-port=9151 \
+--rest-api-port=5151
 ```
 
 {% hint style="danger" %}
-Allow the beacon chain to fully sync with eth1 chain before continuing.
-
-Continue when you see the "**Beacon chain initialized"** message.
+**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
 
-## 🧬 11. Start the validator
+{% hint style="info" %}
+Allow the beacon chain to fully sync with eth1 chain.
 
-```text
-lighthouse vc
-```
+This message means your node is synced:
+
+**`Eth1 tracker successfully caught up to chain head`"** 
+{% endhint %}
 
 {% hint style="info" %}
 **Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
@@ -232,23 +223,25 @@ lighthouse vc
 Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 8 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards. Find your validator's status at [beaconcha.in](https://altona.beaconcha.in)
 {% endhint %}
 
-## 🕒 12. Time Synchronization
+## 🕒 9. Time Synchronization
 
 {% hint style="info" %}
 Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
 {% endhint %}
 
-### 🛠 12.1 Setup Chrony
+### 🛠 9.1 Setup Chrony
 
 Refer to the following guide.
+
+{% page-ref page="../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md" %}
 
 {% hint style="info" %}
 chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
 {% endhint %}
 
-## 🧩 13. Reference Material
+## 🧩 10. Reference Material
 
-{% embed url="https://medalla.launchpad.ethereum.org/lighthouse" %}
+{% embed url="https://status-im.github.io/nim-beacon-chain/install.html" %}
 
-{% embed url="https://lighthouse-book.sigmaprime.io/intro.html" %}
+{% embed url="https://medalla.launchpad.ethereum.org/" %}
 

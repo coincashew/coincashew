@@ -8,7 +8,7 @@ description: >-
 # Guide: How to stake on ETH2 Medalla Testnet with Prysm on Ubuntu
 
 {% hint style="success" %}
- [Prysm](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com/), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
+[Prysm](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com/), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -193,7 +193,21 @@ In a new terminal, start the validator.
 Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes 4-5 hours. When you're assigned, your validator will begin creating and voting on blocks as well as earning eth2 staking rewards.
 {% endhint %}
 
-## 🎞 11. Reference Material
+## 🕒 11. Time Synchronization
+
+{% hint style="info" %}
+Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
+{% endhint %}
+
+### 🛠 11.1 Setup Chrony
+
+Refer to the following guide.
+
+{% hint style="info" %}
+chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
+{% endhint %}
+
+## 🎞 12. Reference Material
 
 Check out the official documentation at:
 

@@ -6,6 +6,8 @@
 
 {% embed url="https://github.com/ethereum/eth2.0-specs" %}
 
+{% embed url="https://medalla.launchpad.ethereum.org/faq" %}
+
 {% embed url="https://notes.ethereum.org/@serenity/handbook" %}
 
 {% embed url="https://www.adiasg.me/2020/03/31/casper-ffg-explainer.html" %}

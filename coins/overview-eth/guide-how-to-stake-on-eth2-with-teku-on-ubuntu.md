@@ -277,7 +277,23 @@ This message means your node is synced:
 Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 8 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards. Find your validator's status at [beaconcha.in](https://altona.beaconcha.in)
 {% endhint %}
 
-## 🧩 9. Reference Material
+## 🕒 9. Time Synchronization
+
+{% hint style="info" %}
+Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
+{% endhint %}
+
+### 🛠 9.1 Setup Chrony
+
+Refer to the following guide.
+
+{% page-ref page="../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md" %}
+
+{% hint style="info" %}
+chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
+{% endhint %}
+
+## 🧩 10. Reference Material
 
 {% embed url="https://medalla.launchpad.ethereum.org/teku" %}
 
