@@ -151,17 +151,18 @@ Install and build Nimbus.
 cd ~/git
 git clone https://github.com/status-im/nim-beacon-chain
 cd nim-beacon-chain
-make testnet0
+git checkout medalla
+make medalla
 ```
 
 {% hint style="info" %}
 This build process may take up to an hour.
 {% endhint %}
 
-Verify Teku was installed properly by displaying the help menu.
+Teku will autostart running a beacon node.
 
 ```text
-cd $HOME/git/nim-beacon-chain
+cd $HOME/git/nim-beacon-chain/build
 ./beacon_node --help
 ```
 
@@ -174,18 +175,10 @@ Specific to your networking setup or cloud provider settings, ensure your beacon
 
 ## 🏂 8. Start the beacon chain and validator
 
-{% hint style="warning" %}
-If you participated in any of the prior test nets, you need to reset your database.
-
-```text
-./connect-to-testnet testnet0
-```
-{% endhint %}
-
 Store your validator's password in a file.
 
 ```text
-echo "my_password_goes_here" > $HOME/git/teku/password.txt
+echo "my_password_goes_here" > $HOME/git/nim-beacon-chain/password.txt
 ```
 
 Update the `--validators-key-files` with the full path to your validator key. If you possess multiple validator keys then separate with commas. Use a [config file](https://docs.teku.pegasys.tech/en/latest/HowTo/Configure/Use-Configuration-File/) if you have many validator keys,
@@ -198,9 +191,9 @@ cd $HOME/git/nim-beacon-chain/build
 --web3-url=http://localhost:8545 \
 --validators-dir=build/data/medalla/validators \
 --secrets-dir=build/data/medalla/secrets \
---validators-graffiti="nimbus and ETH2 the moon!" \
 --p2p-port=9151 \
---rest-api-port=5151
+--rest-api-port=5151 \
+--graffiti="hello from my friendly nimbus eth2 node"
 ```
 
 {% hint style="danger" %}
