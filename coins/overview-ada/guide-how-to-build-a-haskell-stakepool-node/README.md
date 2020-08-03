@@ -770,7 +770,7 @@ source ~/.bashrc
 Extract your keys. Update the command with your mnemonic phrase.
 
 ```text
-./extractPoolStakingKeys.sh extractedPoolKeys/ <15-word length mnemonic>
+./extractPoolStakingKeys.sh extractedPoolKeys/ <15|24-word length mnemonic>
 ```
 
 {% hint style="danger" %}
