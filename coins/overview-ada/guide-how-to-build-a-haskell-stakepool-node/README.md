@@ -645,6 +645,25 @@ Download `cardano-wallet`.
 ```text
 cd $NODE_HOME
 wget https://hydra.iohk.io/build/3662127/download/1/cardano-wallet-shelley-2020.7.28-linux64.tar.gz
+```
+
+Verify the legitimacy of `cardano-wallet` by checking the [sha256 hash found in the **Details** button.](https://hydra.iohk.io/build/3662127/)
+
+```text
+echo "f75e5b2b4cc5f373d6b1c1235818bcab696d86232cb2c5905b2d91b4805bae84 *cardano-wallet-shelley-2020.7.28-linux64.tar.gz" | shasum -a 256 --check
+```
+
+Example valid output:
+
+> cardano-wallet-shelley-2020.7.28-linux64.tar.gz: OK
+
+{% hint style="danger" %}
+Only proceed if the sha256 check passes with **OK**!
+{% endhint %}
+
+Extract the wallet files and cleanup.
+
+```text
 tar -xvf cardano-wallet-shelley-2020.7.28-linux64.tar.gz
 rm cardano-wallet-shelley-2020.7.28-linux64.tar.gz
 ```
@@ -768,6 +787,12 @@ cp stake.vkey stake.skey stake.addr payment.vkey payment.skey base.addr $NODE_HO
 cd $NODE_HOME
 #Rename to base.addr file to payment.addr
 mv base.addr payment.addr
+```
+
+Finally, clear the bash history in order to protect your mnemonic phrase.
+
+```text
+history -c && history -w
 ```
 
 {% hint style="success" %}
