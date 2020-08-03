@@ -223,7 +223,7 @@ cd $HOME/git/teku/build/install/teku/bin
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
-* **Teku beacon chain node** will use port 9151 for tcp
+* **Teku beacon chain node** will use port 9151 for tcp and udp
 * **geth** node will use port 30303 for tcp and udp
 
 ## 🏂 8. Start the beacon chain and validator

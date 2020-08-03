@@ -191,7 +191,7 @@ WARNING: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR Y
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
-* **Lighthouse beacon chain** requires port 9000 for tcp
+* **Lighthouse beacon chain** requires port 9000 for tcp and udp
 * **geth** node requires port 30303 for tcp and udp
 
 ## 🏂 10. Start the beacon chain
