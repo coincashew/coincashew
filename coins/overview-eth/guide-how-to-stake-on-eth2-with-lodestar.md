@@ -1,20 +1,11 @@
----
-description: >-
-  Medalla is a multi-client ETH 2.0 testnet. It implements the Ethereum 2.0
-  Phase 0 protocol for a proof-of-stake blockchain, enabling anyone holding
-  Goerli test ETH to join.
----
-
-# Guide: How to stake on ETH2 Medalla Testnet with Nimbus on Ubuntu
-
-
+# Guide: How to stake on ETH2 Medalla Testnet with Lodestar on Ubuntu
 
 {% hint style="danger" %}
-Work in progress.
+WIP
 {% endhint %}
 
 {% hint style="success" %}
-[Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im/) by the same name. Nimbus \(Apache 2\) is written in Nim, a language with Python-like syntax that compiles to C.
+**Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -59,7 +50,7 @@ If you need to install Metamask, refer to
 
 ## 🤖 1. Download geth, a eth1 node
 
-```text
+```bash
 sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt-get update -y
 sudo apt-get install ethereum -y
@@ -71,7 +62,7 @@ or manually download at:
 
 ## 📄 2. Create a geth startup script
 
-```text
+```bash
 cat > startGethNode.sh << EOF 
 geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
@@ -113,7 +104,7 @@ Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mu
 sudo apt install python3-pip git -y
 ```
 
-```text
+```bash
 mkdir ~/git
 cd ~/git
 git clone https://github.com/ethereum/eth2.0-deposit-cli.git
@@ -137,70 +128,86 @@ sudo ./deposit.sh install
 Be sure to safely save your mnemonic seed offline.
 {% endhint %}
 
-## 💡 6. Build Nimbus from source
+## 💡 6. Build Lodestar from source
 
-Install dependencies
+Install curl and git.
 
-```text
-sudo apt-get install build-essential git libpcre3-dev
+```bash
+sudo apt-get install git curl
 ```
 
-Install and build Nimbus.
+Install yarn.
+
+```bash
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
+sudo apt install yarn
+```
+
+Confirm yarn is installed properly.
+
+```bash
+yarn --version
+# Should output version >= 1.22.4
+```
+
+Install nodejs.
 
 ```text
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+Confirm nodejs is installed properly.
+
+```bash
+nodejs -v
+# Should output version >= v12.18.3
+```
+
+Install and build Lodestar.
+
+```bash
 cd ~/git
-git clone https://github.com/status-im/nim-beacon-chain
-cd nim-beacon-chain
-make testnet0
+git clone https://github.com/chainsafe/lodestar.git
+cd lodestar
+yarn install
+yarn run build
 ```
 
 {% hint style="info" %}
 This build process may take up to an hour.
 {% endhint %}
 
-Verify Teku was installed properly by displaying the help menu.
+Verify Lodestar was installed properly by displaying the help menu.
 
 ```text
-cd $HOME/git/nim-beacon-chain
-./beacon_node --help
+yarn run cli --help
 ```
 
 ## 🔥 7. Configure port forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
-* **Teku beacon chain node** will use port 9151 for tcp
+* **Lodestar beacon chain node** will use port 30607 for tcp
 * **geth** node will use port 30303 for tcp and udp
 
 ## 🏂 8. Start the beacon chain and validator
 
-{% hint style="warning" %}
-If you participated in any of the prior test nets, you need to reset your database.
-
-```text
-./connect-to-testnet testnet0
-```
-{% endhint %}
-
 Store your validator's password in a file.
 
 ```text
-echo "my_password_goes_here" > $HOME/git/teku/password.txt
+echo "my_password_goes_here" > $HOME/git/lodestar/password.txt
 ```
 
 Update the `--validators-key-files` with the full path to your validator key. If you possess multiple validator keys then separate with commas. Use a [config file](https://docs.teku.pegasys.tech/en/latest/HowTo/Configure/Use-Configuration-File/) if you have many validator keys,
 
 ```text
-cd $HOME/git/nim-beacon-chain/build
-./beacon_node \
---network=medalla \
---data-dir="build/data/shared_medalla_0" \
---web3-url=http://localhost:8545 \
---validators-dir=build/data/medalla/validators \
---secrets-dir=build/data/medalla/secrets \
---validators-graffiti="nimbus and ETH2 the moon!" \
---p2p-port=9151 \
---rest-api-port=5151
+yarn run cli beacon --testnet medalla \
+  --eth1.provider.url http://localhost:8545 \
+  --metrics.serverPort 8009 \
+  --graffiti="lodestar and ETH2 the moon!"
 ```
 
 {% hint style="danger" %}
@@ -241,9 +248,11 @@ chrony is an implementation of the Network Time Protocol and helps to keep your 
 
 ## 🧩 10. Reference Material
 
-{% embed url="https://status-im.github.io/nim-beacon-chain/install.html" %}
+{% embed url="https://chainsafe.github.io/lodestar/installation/" %}
 
 {% embed url="https://medalla.launchpad.ethereum.org/" %}
 
-ss
+{% embed url="https://github.com/ChainSafe/lodestar" %}
+
+
 
