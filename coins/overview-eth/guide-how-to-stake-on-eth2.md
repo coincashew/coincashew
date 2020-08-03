@@ -203,6 +203,8 @@ Because beacon chain relies on accurate times to perform attestations and produc
 
 Refer to the following guide.
 
+{% page-ref page="../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md" %}
+
 {% hint style="info" %}
 chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
 {% endhint %}
