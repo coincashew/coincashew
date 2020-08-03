@@ -661,10 +661,6 @@ CADDR=\${CADDR:=\$( which cardano-address )}
 CCLI=\${CCLI:=\$( which cardano-cli )}
 [[ -z "\$CCLI" ]] && ( echo "cardano-cli cannot be found, exiting..." >&2 ; exit 127 )
 
-[[ "\$#" -ne 16 && "\$#" -ne 28 ]] && {
-       	echo "usage: `basename \$0` <ouptut dir> <15-word length mnemonic>" >&2 
-       	exit 127
-}
 OUT_DIR="\$1"
 [[ -e "\$OUT_DIR"  ]] && {
        	echo "The \"\$OUT_DIR\" is already exist delete and run again." >&2 
