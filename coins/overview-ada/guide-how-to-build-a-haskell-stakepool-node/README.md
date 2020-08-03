@@ -789,11 +789,13 @@ cd $NODE_HOME
 mv base.addr payment.addr
 ```
 
-Finally, clear the bash history in order to protect your mnemonic phrase.
+Clear the bash history in order to protect your mnemonic phrase.
 
 ```text
 history -c && history -w
 ```
+
+Finally close all your terminal windows and open new ones with zero history.
 
 {% hint style="success" %}
 Awesome. Now you can track your pool rewards in your wallet.
