@@ -283,9 +283,7 @@ Congratulations. Once your beacon-chain is sync'd, validator up and running, you
 Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
 {% endhint %}
 
-### 🛠 9.1 Setup Chrony
-
-Refer to the following guide.
+Setup **Chrony** with the following guide.
 
 {% page-ref page="../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md" %}
 
