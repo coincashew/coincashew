@@ -178,7 +178,9 @@ If you participated in any of the prior test nets, you need to clear the databas
 In a new terminal, start the beacon chain.
 
 ```text
-~/prysm/prysm.sh beacon-chain --http-web3provider=$HOME/Goerli/geth.ipc
+~/prysm/prysm.sh beacon-chain \
+--p2p-host-ip=$(curl -s v4.ident.me) \
+--http-web3provider=$HOME/Goerli/geth.ipc
 ```
 
 ## 🚥 10. Start the validator
@@ -186,7 +188,10 @@ In a new terminal, start the beacon chain.
 In a new terminal, start the validator.
 
 ```text
-~/prysm/prysm.sh validator --monitoring-host "0.0.0.0" --beacon-rpc-provider "127.0.0.1:4000" --graffiti "ETHEREUM IS THE GOING TO THE MOON"
+~/prysm/prysm.sh validator \
+--monitoring-host "0.0.0.0" \ 
+--beacon-rpc-provider "127.0.0.1:4000" \
+--graffiti "prysm and eth2 IS THE GOING TO THE MOON"
 ```
 
 {% hint style="success" %}
