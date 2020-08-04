@@ -186,7 +186,7 @@ yarn run cli --help
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
-* **Lodestar beacon chain node** will use port 30607 for tcp
+* **Lodestar beacon chain node** will use port 30607 for tcp and port 9000 for udp peer discovery.
 * **geth** node will use port 30303 for tcp and udp
 
 ## 🏂 8. Start the beacon chain and validator
@@ -236,6 +236,10 @@ yarn run cli beacon --testnet medalla \
   --metrics.serverPort 8009 \
   --graffiti="lodestar and ETH2 the moon!"
 ```
+
+{% hint style="info" %}
+If you cannot find peers, then likely port 9000 is already in use. Change the port in the file`.medalla/beacon.config.json` located at **network** &gt; **bindAddr**
+{% endhint %}
 
 Start your validator in a new terminal window.
 
