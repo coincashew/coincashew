@@ -1,9 +1,5 @@
 # Guide: How to stake on ETH2 Medalla Testnet with Lodestar on Ubuntu
 
-{% hint style="danger" %}
-WIP
-{% endhint %}
-
 {% hint style="success" %}
 **Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
@@ -195,31 +191,59 @@ Specific to your networking setup or cloud provider settings, ensure your beacon
 
 ## 🏂 8. Start the beacon chain and validator
 
-Store your validator's password in a file.
+Move a validator key to `.medalla/keystores`
 
 ```text
-echo "my_password_goes_here" > $HOME/git/lodestar/password.txt
+mkdir -p $HOME/git/lodestar/.medalla/keystores
 ```
 
-Update the `--validators-key-files` with the full path to your validator key. If you possess multiple validator keys then separate with commas. Use a [config file](https://docs.teku.pegasys.tech/en/latest/HowTo/Configure/Use-Configuration-File/) if you have many validator keys,
+Update below command with your validator key. If you have multiple validator keys, repeat this step for each key.
 
 ```text
+MY_KEYSTORE_FILE=<CHANGE THIS TO YOUR keystore-m_.....json>
+```
+
+```bash
+shortPubKey=$(cat ${MY_KEYSTORE_FILE} | jq -r '.pubkey')
+PUBKEY=$(echo 0x${shortPubKey})
+echo VALIDATOR PUBKEY: ${PUBKEY}
+
+mkdir -p $HOME/git/lodestar/.medalla/keystores/${PUBKEY}
+
+cp $HOME/git/eth2.0-deposit-cli/validator_keys/$MY_KEYSTORE_FILE \
+   $HOME/git/lodestar/.medalla/keystores/${PUBKEY}/voting-keystore.json
+```
+
+**Example**: If your **pubkey** is `0x846...0f00` then your keystore should be located as follows:
+
+> `$HOME/git/lodestar/.medalla/keystores/0x846...0f00/voting-keystore.json`
+
+Store your validator's password in a secrets file.
+
+```bash
+mkdir -p $HOME/git/lodestar/.medalla/secrets
+echo "my_password_goes_here" > $HOME/git/lodestar/.medalla/secrets/${shortPubKey}
+```
+
+Start your beacon chain.
+
+```text
+cd $HOME/git/lodestar
 yarn run cli beacon --testnet medalla \
   --eth1.provider.url http://localhost:8545 \
   --metrics.serverPort 8009 \
   --graffiti="lodestar and ETH2 the moon!"
 ```
 
+Start your validator in a new terminal window.
+
+```text
+cd $HOME/git/lodestar
+yarn run cli validator run --testnet medalla
+```
+
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
-{% endhint %}
-
-{% hint style="info" %}
-Allow the beacon chain to fully sync with eth1 chain.
-
-This message means your node is synced:
-
-**`Eth1 tracker successfully caught up to chain head`"** 
 {% endhint %}
 
 {% hint style="info" %}
