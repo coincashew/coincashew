@@ -191,26 +191,28 @@ Specific to your networking setup or cloud provider settings, ensure your beacon
 
 ## 🏂 8. Start the beacon chain and validator
 
-Move a validator key to `.medalla/keystores`
-
-```text
-mkdir -p $HOME/git/lodestar/.medalla/keystores
-```
-
-Update below command with your validator key. If you have multiple validator keys, repeat this step for each key.
-
-```text
-MY_KEYSTORE_FILE=<CHANGE THIS TO YOUR keystore-m_.....json>
-```
+Locate your keystore filename\(s\).
 
 ```bash
-shortPubKey=$(cat ${MY_KEYSTORE_FILE} | jq -r '.pubkey')
+ll $HOME/git/eth2.0-deposit-cli/validator_keys/
+```
+
+Update `MY_KEYSTORE_FILE` with your validator key's filename. If you have multiple validator keys, repeat this sequence for each key.
+
+```text
+MY_KEYSTORE_FILENAME=<FILENAME OF YOUR keystore-m_.....json>
+```
+
+Copy your **keystore** file to `voting-keystore.json` according to loadstar's expected file naming structure.
+
+```bash
+shortPubKey=$(cat ${MY_KEYSTORE_FILENAME} | jq -r '.pubkey')
 PUBKEY=$(echo 0x${shortPubKey})
 echo VALIDATOR PUBKEY: ${PUBKEY}
 
 mkdir -p $HOME/git/lodestar/.medalla/keystores/${PUBKEY}
 
-cp $HOME/git/eth2.0-deposit-cli/validator_keys/$MY_KEYSTORE_FILE \
+cp $HOME/git/eth2.0-deposit-cli/validator_keys/$MY_KEYSTORE_FILENAME \
    $HOME/git/lodestar/.medalla/keystores/${PUBKEY}/voting-keystore.json
 ```
 
@@ -218,7 +220,7 @@ cp $HOME/git/eth2.0-deposit-cli/validator_keys/$MY_KEYSTORE_FILE \
 
 > `$HOME/git/lodestar/.medalla/keystores/0x846...0f00/voting-keystore.json`
 
-Store your validator's password in a secrets file.
+Store your validator's password in a secrets file, named as it's pubKey without 0x.
 
 ```bash
 mkdir -p $HOME/git/lodestar/.medalla/secrets
