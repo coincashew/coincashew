@@ -65,7 +65,7 @@ or manually download at:
 
 ## 📄 2. Create a geth startup script
 
-```text
+```bash
 cat > startGethNode.sh << EOF 
 geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
@@ -214,7 +214,7 @@ This build process may take up to an hour.
 
 Verify Teku was installed properly by displaying the help menu.
 
-```text
+```bash
 cd $HOME/git/teku/build/install/teku/bin
 ./teku --help
 ```
@@ -231,20 +231,20 @@ Specific to your networking setup or cloud provider settings, ensure your beacon
 {% hint style="warning" %}
 If you participated in any of the prior test nets, you need to clear the database.
 
-```text
+```bash
 rm -rf $HOME/.local/share/teku/data
 ```
 {% endhint %}
 
 Store your validator's password in a file.
 
-```text
+```bash
 echo "my_password_goes_here" > $HOME/git/teku/password.txt
 ```
 
 Update the `--validators-key-files` with the full path to your validator key. If you possess multiple validator keys then separate with commas. Use a [config file](https://docs.teku.pegasys.tech/en/latest/HowTo/Configure/Use-Configuration-File/) if you have many validator keys,
 
-```text
+```bash
 ./teku --network=medalla --eth1-endpoint=http://localhost:8545 \
 --validators-key-files=$HOME/git/eth2.0-deposit-cli/validator_keys/<my keystore file.json i.e. keystore-m_12...324.json> \
 --validators-key-password-files=$HOME/git/teku/password.txt \

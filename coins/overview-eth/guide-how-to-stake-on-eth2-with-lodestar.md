@@ -227,7 +227,7 @@ echo "my_password_goes_here" > $HOME/git/lodestar/.medalla/secrets/${shortPubKey
 
 Start your beacon chain.
 
-```text
+```bash
 cd $HOME/git/lodestar
 yarn run cli beacon --testnet medalla \
   --eth1.provider.url http://localhost:8545 \
@@ -237,7 +237,7 @@ yarn run cli beacon --testnet medalla \
 
 Start your validator in a new terminal window.
 
-```text
+```bash
 cd $HOME/git/lodestar
 yarn run cli validator run --testnet medalla
 ```

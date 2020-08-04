@@ -80,7 +80,7 @@ sudo apt-get install ethereum -y
 
 ## ⚙ 3. Create a geth startup script
 
-```text
+```bash
 cat > startGethNode.sh << EOF 
 geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
@@ -148,7 +148,7 @@ Be sure to safely save your mnemonic seed offline.
 
 ## 🎩 7. Import validator key
 
-```text
+```bash
 ~/prysm/prysm.sh validator accounts-v2 import --keys-dir=~/git/eth2.0-deposit-cli/validator_keys
 ```
 
@@ -170,14 +170,14 @@ Specific to your networking setup or cloud provider settings, ensure your beacon
 {% hint style="warning" %}
 If you participated in any of the prior test nets, you need to clear the database.
 
-```text
+```bash
 ~/prysm/prysm.sh beacon-chain --clear-db
 ```
 {% endhint %}
 
 In a new terminal, start the beacon chain.
 
-```text
+```bash
 ~/prysm/prysm.sh beacon-chain \
 --p2p-host-ip=$(curl -s v4.ident.me) \
 --http-web3provider=$HOME/Goerli/geth.ipc
@@ -187,7 +187,7 @@ In a new terminal, start the beacon chain.
 
 In a new terminal, start the validator.
 
-```text
+```bash
 ~/prysm/prysm.sh validator \
 --monitoring-host "0.0.0.0" \ 
 --beacon-rpc-provider "127.0.0.1:4000" \

@@ -65,7 +65,7 @@ or manually download at:
 
 ## 📄 2. Create a geth startup script
 
-```text
+```bash
 cat > startGethNode.sh << EOF 
 geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
@@ -107,7 +107,7 @@ Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mu
 sudo apt install python3-pip git -y
 ```
 
-```text
+```bash
 mkdir ~/git
 cd ~/git
 git clone https://github.com/ethereum/eth2.0-deposit-cli.git
@@ -155,7 +155,7 @@ The build process may take a few minutes.
 
 ## 🎩 7. Import your validator keys.
 
-```text
+```bash
 cd $HOME/git/nim-beacon-chain
 ./build/beacon_node deposits import  --data-dir=build/data/shared_medalla_0 $HOME/git/eth2.0-deposit-cli/validator_keys
 ```
@@ -170,7 +170,7 @@ Enter your password to import your accounts.
 **Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
 {% endhint %}
 
-```text
+```bash
 make \
   BASE_PORT=19000 \
   NODE_PARAMS="--graffiti=0x6e696d62757320616e64206574683220726f6300000000000000000000006b73" \

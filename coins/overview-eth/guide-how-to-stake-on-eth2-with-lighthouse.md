@@ -65,7 +65,7 @@ or manually download at:
 
 ## 📄 2. Create a geth startup script
 
-```text
+```bash
 cat > startGethNode.sh << EOF 
 geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
@@ -133,7 +133,7 @@ Be sure to safely save your mnemonic seed offline.
 
 ## 👩🌾 6. Install rust
 
-```text
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
@@ -145,7 +145,7 @@ Enter '1' to proceed with the default install.
 
 Update your environment variables.
 
-```text
+```bash
 echo export PATH="$HOME/.cargo/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 ```
@@ -177,7 +177,7 @@ lighthouse --version
 
 ## 🎩 8. Import validator key
 
-```text
+```bash
 lighthouse account validator import --directory=$HOME/git/eth2.0-deposit-cli/validator_keys
 ```
 
@@ -199,14 +199,14 @@ Specific to your networking setup or cloud provider settings, ensure your beacon
 {% hint style="warning" %}
 If you participated in any of the prior test nets, you need to clear the database.
 
-```text
+```bash
 rm -rf $HOME/.lighthouse
 ```
 {% endhint %}
 
 In a new terminal, start the beacon chain.
 
-```text
+```bash
 lighthouse beacon --eth1 --http --graffiti "ETH TO THE MOON WITH LIGHTHOUSE"
 ```
 
