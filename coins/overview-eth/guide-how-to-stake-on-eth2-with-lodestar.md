@@ -237,7 +237,7 @@ yarn run cli beacon --testnet medalla \
   --graffiti="lodestar and ETH2 the moon!"
 ```
 
-{% hint style="info" %}
+{% hint style="warning" %}
 If you cannot find peers, then likely port 9000 is already in use. Change the port in the file`.medalla/beacon.config.json` located at **network** &gt; **bindAddr**
 {% endhint %}
 
