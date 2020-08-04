@@ -785,10 +785,11 @@ cd $NODE_HOME
 mv base.addr payment.addr
 ```
 
-Clear the bash history in order to protect your mnemonic phrase.
+Clear the bash history in order to protect your mnemonic phrase and remove the `cardano-wallet` files.
 
-```text
+```bash
 history -c && history -w
+rm -rf $NODE_HOME/cardano-wallet-shelley-2020.7.28
 ```
 
 Finally close all your terminal windows and open new ones with zero history.
