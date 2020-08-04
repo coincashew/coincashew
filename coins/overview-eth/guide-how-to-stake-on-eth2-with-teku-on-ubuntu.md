@@ -59,10 +59,6 @@ sudo apt-get update -y
 sudo apt-get install ethereum -y
 ```
 
-or manually download at:
-
-{% embed url="https://geth.ethereum.org/downloads/" %}
-
 ## 📄 2. Create a geth startup script
 
 ```bash
@@ -133,70 +129,30 @@ Be sure to safely save your mnemonic seed offline.
 
 ## 💡 6. Build Teku from source
 
-Install dependencies -- Gradle, Git, tmux and Java JDK.
-
-Download and unzip gradle.
-
-```bash
-wget https://services.gradle.org/distributions/gradle-6.5.1-bin.zip
-```
-
-```bash
-sudo mkdir /opt/gradle
-sudo unzip -d /opt/gradle gradle-6.5.1-bin.zip
-```
-
-Verify gradle was installed running '`ls`' on the directory.
-
-```bash
-ls /opt/gradle/gradle-6.5.1
-# LICENSE  NOTICE  bin  getting-started.html  init.d  lib  media
-```
-
 Install tmux and git.
 
 ```text
 sudo apt-get install git tmux -y
 ```
 
-Install java 14.
+Install Java 11.
 
-```text
+{% tabs %}
+{% tab title="Ubuntu 20.x" %}
+```
 sudo apt update
+sudo apt install openjdk-11-jdk
+```
+{% endtab %}
+
+{% tab title="Ubuntu 18.x" %}
+```text
 sudo add-apt-repository ppa:linuxuprising/java
+sudo apt update
+sudo apt install oracle-java11-set-default
 ```
-
-```text
-sudo apt -y install oracle-java14-installer
-sudo apt -y install oracle-java14-set-default
-```
-
-Confirm java was installed properly.
-
-```bash
-java -version
-```
-
-Example version output:
-
-> java version "14.0.2" 2020-07-14 Java\(TM\) SE Runtime Environment \(build 14.0.2+12-46\) Java HotSpot\(TM\) 64-Bit Server VM \(build 14.0.2+12-46, mixed mode, sharing\)
-
-Add the following entries with nano `/etc/profile.d/jdk.sh`
-
-```text
-sudo nano /etc/profile.d/jdk.sh
-```
-
-```text
-export JAVA_HOME=/usr/lib/jvm/java-14-oracle
-export PATH=$PATH:$JAVA_HOME/bin
-```
-
-Reload environment variables.
-
-```text
-source /etc/profile.d/jdk.sh
-```
+{% endtab %}
+{% endtabs %}
 
 Install and build Teku.
 
@@ -209,7 +165,7 @@ cd build/install/teku
 ```
 
 {% hint style="info" %}
-This build process may take up to an hour.
+This build process may take a few minutes.
 {% endhint %}
 
 Verify Teku was installed properly by displaying the help menu.
@@ -278,8 +234,6 @@ Congratulations. Once your beacon-chain is sync'd, validator up and running, you
 
 Use [beaconcha.in](https://medalla.beaconcha.in/) and [register an account](https://medalla.beaconcha.in/register) to create alerts and track your validator's performance.
 {% endhint %}
-
-
 
 ## 🕒 9. Time Synchronization
 
