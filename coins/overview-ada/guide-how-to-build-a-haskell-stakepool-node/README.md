@@ -3076,7 +3076,7 @@ cardano-cli shelley query utxo \
     $NETWORK_IDENTIFIER
 ```
 
-You should see output similar to this. This is your unspent transaction output \(UXTO\).
+You should see output similar to this showing the funds you sent.
 
 ```text
                            TxHash                                 TxIx        Lovelace
