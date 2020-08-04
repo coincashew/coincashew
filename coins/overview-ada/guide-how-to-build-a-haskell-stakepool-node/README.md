@@ -2953,6 +2953,137 @@ sed -i ${NODE_CONFIG}-config.json \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
 ```
 
+### 💸 15.9 Send a simple transaction example
+
+Let's walk through an example to send **10 ADA** to **CoinCashew's tip address** 🙃 
+
+First, find the **tip** of the blockchain to set the **ttl** parameter properly.
+
+```bash
+currentSlot=$(cardano-cli shelley query tip $NETWORK_IDENTIFIER | jq -r '.slotNo')
+echo Current Slot: $currentSlot
+```
+
+Set the amount to send in lovelaces. ✨ Remember **1 ADA** = **1,000,000 lovelaces.**
+
+```bash
+amountToSend=10000000
+echo amountToSend: $amountToSend
+```
+
+Set the destination address which is where you're sending funds to.
+
+```bash
+destinationAddress=addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
+echo destinationAddress: $destinationAddress
+```
+
+Find your balance and **UTXOs**.
+
+```bash
+cardano-cli shelley query utxo \
+    --address $(cat payment.addr) \
+    $NETWORK_IDENTIFIER > fullUtxo.out
+
+tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
+
+cat balance.out
+
+tx_in=""
+total_balance=0
+while read -r utxo; do
+    in_addr=$(awk '{ print $1 }' <<< "${utxo}")
+    idx=$(awk '{ print $2 }' <<< "${utxo}")
+    utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
+    total_balance=$((${total_balance}+${utxo_balance}))
+    echo TxHash: ${in_addr}#${idx}
+    echo ADA: ${utxo_balance}
+    tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
+done < balance.out
+txcnt=$(cat balance.out | wc -l)
+echo Total ADA balance: ${total_balance}
+echo Number of UTXOs: ${txcnt}
+```
+
+Run the build-raw transaction command.
+
+```bash
+cardano-cli shelley transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+0 \
+    --tx-out ${destinationAddress}+0 \
+    --ttl $(( ${currentSlot} + 10000)) \
+    --fee 0 \
+    --out-file tx.tmp
+```
+
+Calculate the current minimum fee:
+
+```bash
+fee=$(cardano-cli shelley transaction calculate-min-fee \
+    --tx-body-file tx.tmp \
+    --tx-in-count ${txcnt} \
+    --tx-out-count 2 \
+    $NETWORK_IDENTIFIER \
+    --witness-count 1 \
+    --byron-witness-count 0 \
+    --protocol-params-file params.json | awk '{ print $1 }')
+echo fee: $fee
+```
+
+Calculate your change output.
+
+```bash
+txOut=$((${total_balance}-${fee}-${amountToSend}))
+echo Change Output: ${txOut}
+```
+
+Build your transaction.
+
+```bash
+cardano-cli shelley transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+${txOut} \
+    --tx-out ${destinationAddress}+${amountToSend} \
+    --ttl $(( ${currentSlot} + 10000)) \
+    --fee ${fee} \
+    --out-file tx.raw
+```
+
+Sign the transaction with both the payment and stake secret keys.
+
+```bash
+cardano-cli shelley transaction sign \
+    --tx-body-file tx.raw \
+    --signing-key-file payment.skey \
+    $NETWORK_IDENTIFIER \
+    --out-file tx.signed
+```
+
+Send the signed transaction.
+
+```bash
+cardano-cli shelley transaction submit \
+    --tx-file tx.signed \
+    $NETWORK_IDENTIFIER
+```
+
+Check if the funds arrived.
+
+```bash
+cardano-cli shelley query utxo \
+    --address ${destinationAddress} \
+    $NETWORK_IDENTIFIER
+```
+
+You should see output similar to this. This is your unspent transaction output \(UXTO\).
+
+```text
+                           TxHash                                 TxIx        Lovelace
+----------------------------------------------------------------------------------------
+100322a39d02c2ead....                                              0        10000000
+```
+
 ## 🌜 16. Retiring your stake pool
 
 Find the slots per epoch.
