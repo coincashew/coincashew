@@ -7,12 +7,6 @@ description: >-
 
 # Guide: How to stake on ETH2 Medalla Testnet with Nimbus on Ubuntu
 
-
-
-{% hint style="danger" %}
-Work in progress.
-{% endhint %}
-
 {% hint style="success" %}
 [Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im/) by the same name. Nimbus \(Apache 2\) is written in Nim, a language with Python-like syntax that compiles to C.
 {% endhint %}
@@ -151,62 +145,24 @@ Install and build Nimbus.
 cd ~/git
 git clone https://github.com/status-im/nim-beacon-chain
 cd nim-beacon-chain
-git checkout medalla
-make medalla
+git checkout devel
+make beacon_node
 ```
 
 {% hint style="info" %}
-This build process may take up to an hour.
+The build process may take a few minutes.
 {% endhint %}
 
-Teku will autostart running a beacon node.
+## 🎩 7. Import your validator keys.
 
 ```text
-cd $HOME/git/nim-beacon-chain/build
-./beacon_node --help
+cd $HOME/git/nim-beacon-chain
+./build/beacon_node deposits import  --data-dir=build/data/shared_medalla_0 $HOME/git/eth2.0-deposit-cli/validator_keys
 ```
 
-## 🔥 7. Configure port forwarding and/or firewall
-
-Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
-
-* **Teku beacon chain node** will use port 9151 for tcp
-* **geth** node will use port 30303 for tcp and udp
+Enter your password to import your accounts.
 
 ## 🏂 8. Start the beacon chain and validator
-
-Store your validator's password in a file.
-
-```text
-echo "my_password_goes_here" > $HOME/git/nim-beacon-chain/password.txt
-```
-
-Update the `--validators-key-files` with the full path to your validator key. If you possess multiple validator keys then separate with commas. Use a [config file](https://docs.teku.pegasys.tech/en/latest/HowTo/Configure/Use-Configuration-File/) if you have many validator keys,
-
-```text
-cd $HOME/git/nim-beacon-chain/build
-./beacon_node \
---network=medalla \
---data-dir="build/data/shared_medalla_0" \
---web3-url=http://localhost:8545 \
---validators-dir=build/data/medalla/validators \
---secrets-dir=build/data/medalla/secrets \
---p2p-port=9151 \
---rest-api-port=5151 \
---graffiti="hello from my friendly nimbus eth2 node"
-```
-
-{% hint style="danger" %}
-**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
-{% endhint %}
-
-{% hint style="info" %}
-Allow the beacon chain to fully sync with eth1 chain.
-
-This message means your node is synced:
-
-**`Eth1 tracker successfully caught up to chain head`"** 
-{% endhint %}
 
 {% hint style="info" %}
 **Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
@@ -214,11 +170,35 @@ This message means your node is synced:
 **Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
 {% endhint %}
 
-{% hint style="success" %}
-Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 8 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards. Find your validator's status at [beaconcha.in](https://altona.beaconcha.in)
+```text
+make \
+  BASE_PORT=19000 \
+  NODE_PARAMS="--graffiti=0x6e696d62757320616e64206574683220726f6300000000000000000000006b73" \
+  medalla
+```
+
+{% hint style="info" %}
+Convert your **graffiti** [string to hex](https://codebeautify.org/string-hex-converter). Prepend with `0x`. The graffiti bytes should be less than 32.
 {% endhint %}
 
-## 🕒 9. Time Synchronization
+{% hint style="danger" %}
+**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+{% endhint %}
+
+{% hint style="success" %}
+Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 8 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards.
+
+Use [beaconcha.in](https://medalla.beaconcha.in/) and [register an account](https://medalla.beaconcha.in/register) to create alerts and track your validator's performance.
+{% endhint %}
+
+## 🔥 9. Configure port forwarding and/or firewall
+
+Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
+
+* **Nimbus beacon chain node** will use port 19000 for tcp and udp
+* **geth** node will use port 30303 for tcp and udp
+
+## 🕒 10. Time Synchronization
 
 {% hint style="info" %}
 Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
@@ -232,11 +212,9 @@ Setup **Chrony** with the following guide.
 chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
 {% endhint %}
 
-## 🧩 10. Reference Material
+## 🧩 11. Reference Material
 
 {% embed url="https://status-im.github.io/nim-beacon-chain/install.html" %}
 
 {% embed url="https://medalla.launchpad.ethereum.org/" %}
-
-ss
 
