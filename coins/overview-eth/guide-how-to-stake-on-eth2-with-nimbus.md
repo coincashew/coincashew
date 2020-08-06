@@ -172,13 +172,9 @@ Enter your password to import your accounts.
 ```bash
 make \
   BASE_PORT=19000 \
-  NODE_PARAMS="--graffiti=0x6e696d62757320616e64206574683220726f6300000000000000000000006b73" \
+  NODE_PARAMS="--graffiti=poap-goes-here" \
   medalla
 ```
-
-{% hint style="info" %}
-Convert your **graffiti** [string to hex](https://codebeautify.org/string-hex-converter). Prepend with `0x`. The graffiti bytes should be less than 32.
-{% endhint %}
 
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
