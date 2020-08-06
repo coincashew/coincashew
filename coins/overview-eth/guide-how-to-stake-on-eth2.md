@@ -66,11 +66,35 @@ Prysm is a Ethereum 2.0 client and it comes in two components.
 **Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
 {% endhint %}
 
-## 🛸 2. Download geth, a eth1 node
+## 🛸 2. Install a ETH1 node
 
 {% hint style="info" %}
 Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
 {% endhint %}
+
+Your choice of either **OpenEthereum** or **Geth**.
+
+{% tabs %}
+{% tab title="OpenEthereum \(Parity\)" %}
+####  🤖 Install and run OpenEthereum by execute the following.
+
+```text
+mkdir ~/openethereum
+cd ~/openethereum
+wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
+unzip openethereum*.zip
+chmod +x openethereum
+```
+
+#### ⛓ Start the node on goerli chain
+
+```text
+./openethereum --chain goerli
+```
+{% endtab %}
+
+{% tab title="Geth" %}
+#### 🧬 Install from the repository.
 
 ```text
 sudo add-apt-repository -y ppa:ethereum/ethereum
@@ -78,7 +102,7 @@ sudo apt-get update -y
 sudo apt-get install ethereum -y
 ```
 
-## ⚙ 3. Create a geth startup script
+#### 📄 Create a geth startup script
 
 ```bash
 cat > startGethNode.sh << EOF 
@@ -86,12 +110,14 @@ geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
 ```
 
-## 👩🌾 4. Start the geth node for ETH Goerli testnet <a id="3-start-the-geth-node-for-eth-goerli-testnet"></a>
+#### 🐣 Start the geth node for ETH Goerli testnet
 
 ```text
 chmod +x startGethNode.sh
 ./startGethNode.sh
 ```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 Syncing the node could take up to 1 hour.
@@ -101,7 +127,7 @@ Syncing the node could take up to 1 hour.
 You are fully sync'd when you see the message: `Imported new chain segment`
 {% endhint %}
 
-## 🚀 5. Obtain Goerli test network ETH
+## 🚀 3. Obtain Goerli test network ETH
 
 Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a request for ETH in the **`-request-goerli-eth channel`**
 
@@ -111,7 +137,7 @@ Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a
 
 Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mudit.blog).
 
-## 👩💻6. Signup to be a validator at the Launchpad
+## 👩💻4. Signup to be a validator at the Launchpad
 
 1. Install dependencies, the ethereum foundation deposit tool and generate keys.
 
@@ -145,7 +171,7 @@ sudo ./deposit.sh install
 Be sure to safely save your mnemonic seed offline.
 {% endhint %}
 
-## 🎩 7. Import validator key
+## 🎩 5. Import validator key
 
 ```bash
 ~/prysm/prysm.sh validator accounts-v2 import --keys-dir=~/git/eth2.0-deposit-cli/validator_keys
@@ -157,14 +183,14 @@ Accept default locations and enter a password to your imported accounts.
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
 
-## 🔥 8. Configure port forwarding and/or firewall
+## 🔥 6. Configure port forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
 * **Beacon chain** requires port 12000 for udp and port 13000 for tcp
 * **geth** node requires port 30303 for tcp and udp
 
-## 🏂 9. Start the beacon chain
+## 🏂 7. Start the beacon chain
 
 {% hint style="warning" %}
 If you participated in any of the prior test nets, you need to clear the database.
@@ -182,7 +208,7 @@ In a new terminal, start the beacon chain.
 --http-web3provider=$HOME/Goerli/geth.ipc
 ```
 
-## 🚥 10. Start the validator
+## 🚥 8. Start the validator
 
 In a new terminal, start the validator.
 
@@ -199,7 +225,7 @@ Congratulations. Once your beacon-chain is sync'd, validator up and running, you
 Use [beaconcha.in](https://medalla.beaconcha.in/) and [register an account](https://medalla.beaconcha.in/register) to create alerts and track your validator's performance.
 {% endhint %}
 
-## 🕒 11. Time Synchronization
+## 🕒 9. Time Synchronization
 
 {% hint style="info" %}
 Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
@@ -213,7 +239,7 @@ Setup **Chrony** with the following guide.
 chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
 {% endhint %}
 
-## 🎞 12. Reference Material
+## 🎞 10. Reference Material
 
 Check out the official documentation at:
 
