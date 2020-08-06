@@ -75,7 +75,7 @@ chmod +x openethereum
 {% endtab %}
 
 {% tab title="Geth" %}
-#### 🧬 1. Install from the repository.
+#### 🧬 Install from the repository.
 
 ```text
 sudo add-apt-repository -y ppa:ethereum/ethereum
@@ -83,7 +83,7 @@ sudo apt-get update -y
 sudo apt-get install ethereum -y
 ```
 
-#### 📄 2. Create a geth startup script
+#### 📄 Create a geth startup script
 
 ```bash
 cat > startGethNode.sh << EOF 
@@ -91,7 +91,7 @@ geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
 ```
 
-#### 🐣 3. Start the geth node for ETH Goerli testnet
+#### 🐣 Start the geth node for ETH Goerli testnet
 
 ```text
 chmod +x startGethNode.sh
