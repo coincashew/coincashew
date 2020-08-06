@@ -20,6 +20,7 @@ As a validator for eth2, you will typically have the following abilities:
 * operational knowledge of how to set up, run and maintain a eth2 beacon node and validator continuously
 * a commitment to maintain your validator 24/7/365
 * basic operating system skills
+* and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
 ### \*\*\*\*🎗 **Minimum Setup Requirements**
 
@@ -53,21 +54,24 @@ If you need to install Metamask, refer to
 
 ## 🤖 1. Install a ETH1 node
 
-Your choice of either **OpenEthereum** or **Geth**.
+{% hint style="info" %}
+Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
+{% endhint %}
+
+Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/)**.**
 
 {% tabs %}
 {% tab title="OpenEthereum \(Parity\)" %}
-####  🤖 Install and run OpenEthereum by execute the following.
+####  🤖 Install and run OpenEthereum.
 
 ```text
-mkdir ~/openethereum
-cd ~/openethereum
+mkdir ~/openethereum && cd ~/openethereum
 wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
 unzip openethereum*.zip
 chmod +x openethereum
 ```
 
-#### ⛓ Start the node on goerli chain
+#### ⛓ Start OpenEthereum on goerli chain.
 
 ```text
 ./openethereum --chain goerli
@@ -83,20 +87,61 @@ sudo apt-get update -y
 sudo apt-get install ethereum -y
 ```
 
-#### 📄 Create a geth startup script
-
-```bash
-cat > startGethNode.sh << EOF 
-geth --goerli --datadir="$HOME/Goerli" --rpc
-EOF
-```
-
-#### 🐣 Start the geth node for ETH Goerli testnet
+#### 🐣 Start the geth node for ETH Goerli testnet.
 
 ```text
-chmod +x startGethNode.sh
-./startGethNode.sh
+geth --goerli --datadir="$HOME/Goerli" --rpc
 ```
+{% endtab %}
+
+{% tab title="Besu" %}
+#### 🧬 Install java dependency.
+
+```text
+sudo apt install openjdk-11-jdk
+```
+
+#### 🌜 Download and unzip Besu.
+
+```text
+cd
+wget -O besu.tar.gz https://bintray.com/hyperledger-org/besu-repo/download_file?file_path=besu-1.5.0.tar.gz
+tar -xvf besu.tar.gz
+rm besu.tar.gz
+cd besu-1.5.0/bin
+```
+
+#### ⛓ Run Besu on the goerli network.
+
+```text
+./besu --network=goerli --data-path="$HOME/Goerli"
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+#### ⚙ Install dependencies.
+
+```text
+sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
+```
+
+#### 🌜 Download and unzip Nethermind.
+
+```text
+mkdir ~/nethermind && cd ~/nethermind
+wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
+unzip nethermind.zip
+```
+
+#### 🛸 Launch Nethermind.
+
+```text
+./Nethermind.Launcher
+```
+
+* Select Ethereum Node
+* Select Goerli select Fast sync 
+* No to configure
 {% endtab %}
 {% endtabs %}
 
@@ -281,4 +326,14 @@ chrony is an implementation of the Network Time Protocol and helps to keep your 
 {% embed url="https://pegasys.tech/teku-ethereum-2-for-enterprise/" %}
 
 {% embed url="https://docs.teku.pegasys.tech/en/latest/HowTo/Get-Started/Build-From-Source/" %}
+
+##  🧙♂ 9. Updating Teku
+
+```text
+cd ~/git/teku
+git pull
+./gradlew distTar installDist
+```
+
+Restart Teku as per normal operating procedures.
 

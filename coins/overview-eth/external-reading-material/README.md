@@ -24,6 +24,8 @@
 Validators are virtual and are activated by stakers. In PoW, users buy hardware to become miners. In Ethereum 2.0, users stake ETH to activate and control validators. -- [**ethos.dev**](https://ethos.dev/beacon-chain/)\*\*\*\*
 {% endhint %}
 
+{% embed url="https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487" %}
+
 {% embed url="https://ethos.dev/beacon-chain/\#rewards-penalties" %}
 
 {% embed url="https://ethereumprice.org/eth-2-calculator/" %}

@@ -102,8 +102,6 @@
   * [Guide: How to stake on ETH2 Medalla Testnet with Teku on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md)
   * [Guide: How to stake on ETH2 Medalla Testnet with Nimbus on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-nimbus.md)
   * [Guide: How to stake on ETH2 Medalla Testnet with Lodestar on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-lodestar.md)
-  * [Guide: How to run a Goerli ETH1 node for your ETH2 Prysm Beacon Node on Testnet with Ubuntu](coins/overview-eth/guide-how-to-run-a-eth1-node-for-your-eth2-beacon-node.md)
-  * [Guide: How to stake on ETH 2.0 ONYX testnet with Prysm on Windows](coins/overview-eth/guide-how-to-stake-on-eth-2.0-onyx-testnet-with-prysm-on-windows.md)
   * [Guide: How to buy ETH](coins/overview-eth/guide-how-to-buy-eth.md)
   * [External Reading Material](coins/overview-eth/external-reading-material/README.md)
     * [Book: Mastering Ethereum](coins/overview-eth/external-reading-material/book-mastering-ethereum.md)
