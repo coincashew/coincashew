@@ -1548,7 +1548,7 @@ As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pul
 ![](../../../.gitbook/assets/ada-tx-processed.png)
 
 {% hint style="danger" %}
-\*\*\*\*🛑 **Critical Reminde**r: The only stake pool files that are required to run a stake pool are those required by the block producer. Namely, the following three files.
+\*\*\*\*🛑 **Critical Reminde**r: The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer. Namely, the following three files.
 
 ```bash
 KES=\${DIRECTORY}/kes.skey
