@@ -94,10 +94,7 @@ Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mu
 
 ## 👩💻5. Signup to be a validator at the Launchpad
 
-1. Visit [https://medalla.launchpad.ethereum.org/](https://medalla.launchpad.ethereum.org/)
-2. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
-3. Enter the amount of validators you would like to run.
-4. Install dependencies, the ethereum foundation deposit tool and generate keys.
+1. Install dependencies, the ethereum foundation deposit tool and generate keys.
 
 ```text
 sudo apt install python3-pip git -y
@@ -115,13 +112,15 @@ sudo ./deposit.sh install
 ./deposit.sh --chain medalla
 ```
 
-5. Follow the prompts and pick a password. Write down your mnemonic and keep this safe, preferably **offline**.
+2. Follow the prompts and pick a password. Write down your mnemonic and keep this safe, preferably **offline**.
 
-6. Back on the launchpad website, upload the `deposit_data.json` found in the `validator_keys` directory.
+3. Follow the steps at [https://medalla.launchpad.ethereum.org/](https://medalla.launchpad.ethereum.org/) but skip the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
 
-7. Connect your metamask wallet, review and accept terms.
+4. Back on the launchpad website, upload the `deposit_data.json` found in the `validator_keys` directory.
 
-8. Confirm the transaction.
+5. Connect your metamask wallet, review and accept terms.
+
+6. Confirm the transaction.
 
 {% hint style="danger" %}
 Be sure to safely save your mnemonic seed offline.
