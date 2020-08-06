@@ -587,6 +587,14 @@ Payment keys are used to send and receive payments and staking keys are used to 
 
 There are two ways to create your `payment` and `stake` key pair. Pick the one that best suits your needs.
 
+{% hint style="danger" %}
+🔥 **Critical Operational Security Advice:** `payment` and `stake` keys must be generated and used to build transactions in an cold environment. In other words, an air-gapped offline machine. Copy `cardano-cli` binary over to your offline machine and run the CLI method or mnemonic method. The only steps performed online in a hot environment are those steps that require live data. Namely the follow type of steps:
+
+* querying the current slot tip
+* querying the balance of an address
+* submitting a transaction
+{% endhint %}
+
 {% tabs %}
 {% tab title="CLI Method" %}
 Create a new payment key pair:  `payment.skey` & `payment.vkey`
@@ -1538,6 +1546,18 @@ As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pul
 {% endhint %}
 
 ![](../../../.gitbook/assets/ada-tx-processed.png)
+
+{% hint style="danger" %}
+\*\*\*\*🛑 **Critical Reminde**r: The only stake pool files that are required to run a stake pool are those required by the block producer. Namely, the following three files.
+
+```bash
+KES=\${DIRECTORY}/kes.skey
+VRF=\${DIRECTORY}/vrf.skey
+CERT=\${DIRECTORY}/node.cert
+```
+
+**All other keys must remain offline in your cold environment.**
+{% endhint %}
 
 {% hint style="success" %}
 Congratulations! Your stake pool is registered and ready to produce blocks.
