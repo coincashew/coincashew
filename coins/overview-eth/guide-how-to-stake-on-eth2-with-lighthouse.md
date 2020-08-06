@@ -51,7 +51,31 @@ If you need to install Metamask, refer to
 
 {% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
-## 🤖 1. Download geth, a eth1 node
+## 🤖 1. Install a ETH1 node
+
+Your choice of either **OpenEthereum** or **Geth**.
+
+{% tabs %}
+{% tab title="OpenEthereum \(Parity\)" %}
+####  🤖 Install and run OpenEthereum by execute the following.
+
+```text
+mkdir ~/openethereum
+cd ~/openethereum
+wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
+unzip openethereum*.zip
+chmod +x openethereum
+```
+
+#### ⛓ Start the node on goerli chain
+
+```text
+./openethereum --chain goerli
+```
+{% endtab %}
+
+{% tab title="Geth" %}
+#### 🧬 1. Install from the repository.
 
 ```text
 sudo add-apt-repository -y ppa:ethereum/ethereum
@@ -59,11 +83,7 @@ sudo apt-get update -y
 sudo apt-get install ethereum -y
 ```
 
-or manually download at:
-
-{% embed url="https://geth.ethereum.org/downloads/" %}
-
-## 📄 2. Create a geth startup script
+#### 📄 2. Create a geth startup script
 
 ```bash
 cat > startGethNode.sh << EOF 
@@ -71,12 +91,14 @@ geth --goerli --datadir="$HOME/Goerli" --rpc
 EOF
 ```
 
-## 🐣 3. Start the geth node for ETH Goerli testnet
+#### 🐣 3. Start the geth node for ETH Goerli testnet
 
 ```text
 chmod +x startGethNode.sh
 ./startGethNode.sh
 ```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 Syncing the node could take up to 1 hour.
@@ -86,7 +108,7 @@ Syncing the node could take up to 1 hour.
 You are fully sync'd when you see the message: `Imported new chain segment`
 {% endhint %}
 
-## ⚙ 4. Obtain Goerli test network ETH
+## ⚙ 2. Obtain Goerli test network ETH
 
 Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a request for ETH in the **`-request-goerli-eth channel`**
 
@@ -96,7 +118,7 @@ Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a
 
 Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mudit.blog).
 
-## 👩💻5. Signup to be a validator at the Launchpad
+## 👩💻3. Signup to be a validator at the Launchpad
 
 1. Install dependencies, the ethereum foundation deposit tool and generate keys.
 
@@ -130,7 +152,7 @@ sudo ./deposit.sh install
 Be sure to safely save your mnemonic seed offline.
 {% endhint %}
 
-## 👩🌾 6. Install rust
+## 👩🌾 4. Install rust
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -155,7 +177,7 @@ Install rust dependencies.
 sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev
 ```
 
-## 💡 7. Install Lighthouse
+## 💡 5. Install Lighthouse
 
 ```text
 cd ~/git
@@ -174,7 +196,7 @@ Verify lighthouse was installed properly.
 lighthouse --version
 ```
 
-## 🎩 8. Import validator key
+## 🎩 6. Import validator key
 
 ```bash
 lighthouse account validator import --directory=$HOME/git/eth2.0-deposit-cli/validator_keys
@@ -186,14 +208,14 @@ Accept default locations and enter a password to your imported accounts.
 WARNING: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
 
-## 🔥 9. Configure port forwarding and/or firewall
+## 🔥 7. Configure port forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
 * **Lighthouse beacon chain** requires port 9000 for tcp and udp
 * **geth** node requires port 30303 for tcp and udp
 
-## 🏂 10. Start the beacon chain
+## 🏂 8. Start the beacon chain
 
 {% hint style="warning" %}
 If you participated in any of the prior test nets, you need to clear the database.
@@ -215,7 +237,7 @@ Allow the beacon chain to fully sync with eth1 chain before continuing.
 Continue when you see the "**Beacon chain initialized"** message.
 {% endhint %}
 
-## 🧬 11. Start the validator
+## 🧬 9. Start the validator
 
 ```text
 lighthouse vc
@@ -233,7 +255,7 @@ Congratulations. Once your beacon-chain is sync'd, validator up and running, you
 Use [beaconcha.in](https://medalla.beaconcha.in/) and [register an account](https://medalla.beaconcha.in/register) to create alerts and track your validator's performance.
 {% endhint %}
 
-## 🕒 12. Time Synchronization
+## 🕒 10. Time Synchronization
 
 {% hint style="info" %}
 Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
@@ -247,7 +269,7 @@ Setup **Chrony** with the following guide.
 chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
 {% endhint %}
 
-## 🧩 13. Reference Material
+## 🧩 11. Reference Material
 
 {% embed url="https://medalla.launchpad.ethereum.org/lighthouse" %}
 
