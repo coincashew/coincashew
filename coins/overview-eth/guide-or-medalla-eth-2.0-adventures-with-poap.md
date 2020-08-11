@@ -37,25 +37,37 @@ Don't delay! POAP tokens will only be distributed if you propose a block within 
 Each time you propose a block with a different client, your block will contain your graffiti tag which entitles you to claim your POAP token for that client!
 {% endhint %}
 
+{% hint style="danger" %}
+**WARNING**: DO NOT USE THE SAME VALIDATOR KEYS TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED. EACH VALIDATOR CLIENT MUST HAVE IT'S OWN KEY.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Prysm" %}
-
+{% page-ref page="guide-how-to-stake-on-eth2.md" %}
 {% endtab %}
 
 {% tab title="Lighthouse" %}
-
+{% page-ref page="guide-how-to-stake-on-eth2-with-lighthouse.md" %}
 {% endtab %}
 
 {% tab title="Teku" %}
-
+{% page-ref page="guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md" %}
 {% endtab %}
 
 {% tab title="Nimbus" %}
+{% page-ref page="guide-how-to-stake-on-eth2-with-nimbus.md" %}
 
+{% hint style="warning" %}
+**Warning**: Nimbus may have troubles working. Make sure to pull in the latest source code updates and re-build the client.
+{% endhint %}
 {% endtab %}
 
 {% tab title="Lodestar" %}
+{% page-ref page="guide-how-to-stake-on-eth2-with-lodestar.md" %}
 
+{% hint style="warning" %}
+**Warning**: Lodestar may have troubles working. Make sure to pull in the latest source code updates and re-build the client.
+{% endhint %}
 {% endtab %}
 {% endtabs %}
 
@@ -70,7 +82,7 @@ Did you know your POAP tokens are transferable? Move them to deep, cold and swee
 {% endhint %}
 
 {% hint style="success" %}
-Grats on finishing this long journey. Hope you had fun! See you at mainnet launch! 🚀 
+Congrats on making to eth2 moon base. Hope you had fun! See you at mainnet launch! 🚀 
 {% endhint %}
 
 ## 🐶 Reference Material

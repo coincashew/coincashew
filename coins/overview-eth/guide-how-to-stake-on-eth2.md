@@ -276,8 +276,12 @@ In a new terminal, start the validator.
 ~/prysm/prysm.sh validator \
 --monitoring-host "0.0.0.0" \ 
 --beacon-rpc-provider "127.0.0.1:4000" \
---graffiti "prysm and eth2 IS THE GOING TO THE MOON"
+--graffiti "poapboP...CHANGEME"
 ```
+
+{% hint style="danger" %}
+**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+{% endhint %}
 
 {% hint style="success" %}
 Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes 4-5 hours. When you're assigned, your validator will begin creating and voting on blocks as well as earning eth2 staking rewards. 

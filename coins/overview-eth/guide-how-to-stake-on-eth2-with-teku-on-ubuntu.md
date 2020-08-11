@@ -285,7 +285,7 @@ Update the `--validators-key-files` with the full path to your validator key. If
 --validators-key-password-files=$HOME/git/teku/password.txt \
 --rest-api-enabled=true --rest-api-docs-enabled=true \
 --metrics-enabled \
---validators-graffiti="teku and ETH2 the moon!" \
+--validators-graffiti="poapboP...CHANGEME" \
 --p2p-port=9151 \
 --rest-api-port=5151
 ```

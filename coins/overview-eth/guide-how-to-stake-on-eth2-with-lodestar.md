@@ -309,7 +309,7 @@ cd $HOME/git/lodestar
 yarn run cli beacon --testnet medalla \
   --eth1.provider.url http://localhost:8545 \
   --metrics.serverPort 8009 \
-  --graffiti="lodestar and ETH2 the moon!"
+  --graffiti="poapboP...CHANGEME"
 ```
 
 {% hint style="warning" %}

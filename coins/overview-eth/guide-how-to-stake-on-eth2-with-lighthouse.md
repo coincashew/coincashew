@@ -284,7 +284,7 @@ rm -rf $HOME/.lighthouse
 In a new terminal, start the beacon chain.
 
 ```bash
-lighthouse beacon --eth1 --http --graffiti "ETH TO THE MOON WITH LIGHTHOUSE"
+lighthouse beacon --eth1 --http --graffiti "poapboP...CHANGEME"
 ```
 
 {% hint style="danger" %}
@@ -298,6 +298,10 @@ Continue when you see the "**Beacon chain initialized"** message.
 ```text
 lighthouse vc
 ```
+
+{% hint style="danger" %}
+**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+{% endhint %}
 
 {% hint style="info" %}
 **Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.

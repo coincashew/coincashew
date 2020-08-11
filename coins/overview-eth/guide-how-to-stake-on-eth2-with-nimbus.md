@@ -248,7 +248,7 @@ Enter your password to import your accounts.
 ```bash
 make \
   BASE_PORT=19000 \
-  NODE_PARAMS="--graffiti=poap-goes-here" \
+  NODE_PARAMS="--graffiti=poapboP...CHANGEME" \
   medalla
 ```
 
