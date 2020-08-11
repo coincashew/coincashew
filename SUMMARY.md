@@ -97,6 +97,7 @@
 * [Bitcoin: BTC](coins/btc/README.md)
   * [Book: Mastering Bitcoin](coins/btc/book-mastering-bitcoin.md)
 * [Ethereum: ETH](coins/overview-eth/README.md)
+  * [Guide \| Medalla ETH 2.0 Adventures with POAP](coins/overview-eth/guide-or-medalla-eth-2.0-adventures-with-poap.md)
   * [Guide: How to stake on ETH2 Medalla Testnet with Lighthouse on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-lighthouse.md)
   * [Guide: How to stake on ETH2 Medalla Testnet with Prysm on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2.md)
   * [Guide: How to stake on ETH2 Medalla Testnet with Teku on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md)
