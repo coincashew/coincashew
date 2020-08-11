@@ -2715,7 +2715,7 @@ or visit the donation address on[ ADAScan's block explorer](https://adascan.net/
 * 😊 GROW
 * 😊 Leonardo
 
-#### 🚀CoinCashew's Stake Pool Friends
+#### 🚀CoinCashew's Preferred Stake Pools
 
 * 🌟 OMEGA
 * 🌟 TLOA \| CODEX
