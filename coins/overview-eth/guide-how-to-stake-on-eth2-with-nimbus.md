@@ -24,23 +24,23 @@ As a validator for eth2, you will typically have the following abilities:
 
 ### \*\*\*\*🎗 **Minimum Setup Requirements**
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 18.04.4 LTS\)
+* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** Dual core CPU
 * **Memory:** 4GB RAM
 * **Storage:** 20GB SSD
-* **Internet:** 24/7 broadband internet connection with speeds at least 1 Mbps.
-* **Power:** 24/7 electrical power
+* **Internet:** Broadband internet connection with speeds at least 1 Mbps.
+* **Power:** Reliable electrical power.
 * **ETH balance:** at least 32 Goerli ETH
 * **Wallet**: Metamask installed
 
 ### 🏋♀ Recommended Futureproof Hardware Setup
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 18.04.4 LTS\)
+* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** Octa core CPU
 * **Memory:** 32GB RAM
 * **Storage:** 2 TB SSD
-* **Internet:** Multiple 24/7 broadband internet connections with speeds at least 100 Mbps \(i.e. fiber + cellular 4G\)
-* **Power:** Redundant 24/7 electrical power with uninterruptible power supply \(UPS\)
+* **Internet:** Broadband internet connections with speeds at least 100 Mbps \(i.e. fiber + cellular 4G\)
+* **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
 * **ETH balance:** at least 32 Goerli ETH
 * **Wallet**: Metamask installed
 

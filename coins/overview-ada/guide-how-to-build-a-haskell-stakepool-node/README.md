@@ -37,7 +37,7 @@ As a stake pool operator for Cardano, you will typically have the following abil
 * **Processor:** 4 core CPU
 * **Memory:** 8GB RAM
 * **Storage:** 20GB SSD
-* **Internet:** 24/7 broadband internet connection with speeds at least 10 Mbps.
+* **Internet:** Broadband internet connection with speeds at least 10 Mbps.
 * **Data Plan**: at least 1GB per hour. 720GB per month.
 * **Power:** 24/7 electrical power
 * **ADA balance:** at least 1000 ADA
@@ -50,16 +50,16 @@ As a stake pool operator for Cardano, you will typically have the following abil
 * **Processor:** 8 core or higher CPU
 * **Memory:** 16GB+ RAM
 * **Storage:** 1TB SSD
-* **Internet:** Multiple 24/7 broadband internet connections with speeds at least 100 Mbps
+* **Internet:** Broadband internet connections with speeds at least 100 Mbps
 * **Data Plan**: Unlimited
-* **Power:** Redundant 24/7 electrical power with UPS
+* **Power:** 24/7 electrical power with UPS
 * **ADA balance:** more pledge is better, to be determined by **a0**, the pledge influence factor
 
 For instructions on installing **Ubuntu**, refer to the following:
 
 {% page-ref page="../../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
 
-If you are rebuilding or reusing an existing `cardano-node` installation, [refer to section 15.2 on how to reset the installation.](./#15-2-resetting-the-installation)
+If you are rebuilding or reusing an existing `cardano-node` installation, refer to [section 18.2 on how to reset the installation.](./#18-2-resetting-the-installation)
 
 ## 🏭 1. Install Cabal and GHC
 
