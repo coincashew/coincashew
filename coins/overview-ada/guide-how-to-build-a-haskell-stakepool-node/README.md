@@ -103,14 +103,13 @@ cd ghc-8.6.5
 sudo make install
 ```
 
-Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE\_HOME**. The [cluster configuration](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) is set by **$NODE\_CONFIG, $NODE\_URL** and **$NODE\_BUILD\_NUM**. 
+Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE\_HOME**. The [cluster configuration](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) is set by **$NODE\_CONFIG** and **$NODE\_BUILD\_NUM**. 
 
 ```bash
 echo PATH="~/.local/bin:$PATH" >> ~/.bashrc
 echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
 echo export NODE_CONFIG=mainnet>> ~/.bashrc
-echo export NODE_URL=cardano-mainnet >> ~/.bashrc
 echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g') >> ~/.bashrc
 source ~/.bashrc
 ```
@@ -267,7 +266,7 @@ cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF
         "valency": 2
       },
       {
-        "addr": "relays-new.${NODE_URL}.iohk.io",
+        "addr": "relays-new.cardano-mainnet.iohk.io",
         "port": 3001,
         "valency": 2
       }
