@@ -15,7 +15,7 @@ As of July 28, 2020, this guide is written for **mainnet** with **release v.1.18
 
 ### 🧙♂ Mandatory skills for stake pool operators
 
-As a stake pool operator for Cardano, you will typically have the following abilities:
+As a stake pool operator for Cardano, you will be competent with the following abilities:
 
 * operational knowledge of how to set up, run and maintain a Cardano node continuously
 * a commitment to maintain your node 24/7/365
@@ -31,7 +31,7 @@ As a stake pool operator for Cardano, you will typically have the following abil
 
 ### 🎗 Minimum Node Hardware Requirements
 
-* **Two separate servers:** 1 for block producing node, 1 for relay node
+* **Two separate servers:** 1 for block producer node, 1 for relay node
 * **One air-gapped offline machine \(cold environment\)**
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** 4 core CPU
@@ -44,7 +44,7 @@ As a stake pool operator for Cardano, you will typically have the following abil
 
 ### 🏋♂ Recommended Node Futureproof Hardware Setup
 
-* **Three separate servers:** 1 for block producing node, 2 for relay nodes
+* **Three separate servers:** 1 for block producer node, 2 for relay nodes
 * **One air-gapped offline machine \(cold environment\)**
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** 8 core or higher CPU
@@ -210,7 +210,7 @@ source $HOME/.bashrc
 ## 🔮 4. Configure the block-producer node
 
 {% hint style="info" %}
-A block producing node will be configured with various key-pairs needed for block generation \(cold keys, KES hot keys and VRF hot keys\). It can only connect to its relay nodes.
+A block producer node will be configured with various key-pairs needed for block generation \(cold keys, KES hot keys and VRF hot keys\). It can only connect to its relay nodes.
 {% endhint %}
 
 {% hint style="info" %}
@@ -520,7 +520,7 @@ Update your startup script with the new **KES, VRF and Operation Certificate.**
 ```bash
 cat > $NODE_HOME/startBlockProducingNode.sh << EOF 
 DIRECTORY=\$NODE_HOME
-PORT=3000
+PORT=6000
 HOSTADDR=0.0.0.0
 TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
@@ -561,7 +561,7 @@ Wait for the block-producing node to start syncing before continuing if you get 
 {% endhint %}
 
 {% tabs %}
-{% tab title="block producing node" %}
+{% tab title="block producer node" %}
 ```bash
 cardano-cli shelley query protocol-parameters \
     --mainnet \
