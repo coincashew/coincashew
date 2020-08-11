@@ -73,6 +73,8 @@ Prysm is a Ethereum 2.0 client and it comes in two components.
 Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
 {% endhint %}
 
+
+
 Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/)**.**
 
 {% tabs %}
@@ -84,6 +86,7 @@ mkdir ~/openethereum && cd ~/openethereum
 wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
 unzip openethereum*.zip
 chmod +x openethereum
+rm openethereum*.zip
 ```
 
 #### ⛓ Start OpenEthereum on goerli chain.
@@ -129,9 +132,7 @@ cd besu-1.5.0/bin
 #### ⛓ Run Besu on the goerli network.
 
 ```text
-./besu --network=goerli \
---data-path="$HOME/Goerli" 
---rpc-http-enabled
+./besu --network=goerli --data-path="$HOME/Goerli"
 ```
 {% endtab %}
 
@@ -148,6 +149,7 @@ sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip 
 mkdir ~/nethermind && cd ~/nethermind
 wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
 unzip nethermind.zip
+rm nethermind.zip
 ```
 
 #### 🛸 Launch Nethermind.
@@ -158,7 +160,9 @@ unzip nethermind.zip
 
 * Select Ethereum Node
 * Select Goerli select Fast sync 
-* No to configure
+* Yes to enable web3 / JSON RPC
+* Accept default IP
+* Skip ethstats registration
 {% endtab %}
 {% endtabs %}
 
@@ -167,7 +171,12 @@ Syncing the node could take up to 1 hour.
 {% endhint %}
 
 {% hint style="success" %}
-You are fully sync'd when you see the message: `Imported new chain segment`
+Your eth1 node is fully sync'd when these events occur.
+
+* **`OpenEthereum:`** `Imported #<block number>`
+* **`Geth:`** `Imported new chain segment`
+* **`Besu:`** `Imported #<block number>`
+* **`Nethermind:`** `No longer syncing Old Headers`
 {% endhint %}
 
 ## 🚀 3. Obtain Goerli test network ETH

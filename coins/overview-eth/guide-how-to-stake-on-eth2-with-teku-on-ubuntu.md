@@ -69,6 +69,7 @@ mkdir ~/openethereum && cd ~/openethereum
 wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
 unzip openethereum*.zip
 chmod +x openethereum
+rm openethereum*.zip
 ```
 
 #### ⛓ Start OpenEthereum on goerli chain.
@@ -131,6 +132,7 @@ sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip 
 mkdir ~/nethermind && cd ~/nethermind
 wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
 unzip nethermind.zip
+rm nethermind.zip
 ```
 
 #### 🛸 Launch Nethermind.
@@ -141,7 +143,9 @@ unzip nethermind.zip
 
 * Select Ethereum Node
 * Select Goerli select Fast sync 
-* No to configure
+* Yes to enable web3 / JSON RPC
+* Accept default IP
+* Skip ethstats registration
 {% endtab %}
 {% endtabs %}
 
@@ -150,7 +154,12 @@ Syncing the node could take up to 1 hour.
 {% endhint %}
 
 {% hint style="success" %}
-You are fully sync'd when you see the message: `Imported new chain segment`
+Your eth1 node is fully sync'd when these events occur.
+
+* **`OpenEthereum:`** `Imported #<block number>`
+* **`Geth:`** `Imported new chain segment`
+* **`Besu:`** `Imported #<block number>`
+* **`Nethermind:`** `No longer syncing Old Headers`
 {% endhint %}
 
 ## ⚙ 2. Obtain Goerli test network ETH
