@@ -22,13 +22,13 @@ What the POAP you may ask? Proof of Attendance Protocol is a dapp that distribut
 ## 👩💻 3 simple steps to ETH 2.0 enlightenment and POAP collectibles.
 
 {% hint style="warning" %}
-Don't delay! POAP tokens will only be distributed if you propose a block within the first 300,000 blocks or abut first six weeks.
+Don't delay! POAP tokens will only be distributed if you propose a block within the first 300,000 blocks or roughly first six weeks of Medalla's launch.
 {% endhint %}
 
 ### 🧩 1. Register for poap rewards
 
 1. Visit [https://beaconcha.in/poap](https://beaconcha.in/poap)
-2. Enter your Eth 1.0 mainnet public address
+2. Enter your ETH 1.0 mainnet public address
 3. Add the generated graffiti tag to your validator clients!
 
 ### ⚙ 2. Learn to validate with different ETH2 clients
