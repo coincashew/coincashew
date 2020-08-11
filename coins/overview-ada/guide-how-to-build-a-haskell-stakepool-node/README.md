@@ -12,7 +12,7 @@ As of July 28, 2020, this guide is written for **mainnet** with **release v.1.18
 
 ## 🏁 0. Prerequisites
 
-### 🧙♂ Skills for stake pool operators
+### 🧙♂ Mandatory skills for stake pool operators
 
 As a stake pool operator for Cardano, you will typically have the following abilities:
 
@@ -20,8 +20,13 @@ As a stake pool operator for Cardano, you will typically have the following abil
 * a commitment to maintain your node 24/7/365
 * system operation skills
 * server administration skills \(operational and maintenance\).
-* experience of development and operations \(DevOps\) would be very useful
+* experience of development and operations \(DevOps\)
 * experience on how to [harden ](https://www.lifewire.com/harden-ubuntu-server-security-4178243)and [secure a server](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3).
+* [passed the official Stake Pool School course.](https://cardano-foundation.gitbook.io/stake-pool-course/)
+
+{% hint style="danger" %}
+🛑 **Before continuing this guide, you must satisfy the above skills requirements.** 🚧 
+{% endhint %}
 
 ### 🎗 Minimum Node Hardware Requirements
 
@@ -70,8 +75,8 @@ sudo apt-get install git make tmux rsync htop curl build-essential pkg-config li
 Install Libsodium.
 
 ```bash
-mkdir ~/git
-cd ~/git
+mkdir $HOME/git
+cd $HOME/git
 git clone https://github.com/input-output-hk/libsodium
 cd libsodium
 git checkout 66f017f1
@@ -88,8 +93,8 @@ cd
 wget https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
 tar -xf cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
 rm cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz cabal.sig
-mkdir -p ~/.local/bin
-mv cabal ~/.local/bin/
+mkdir -p $HOME/.local/bin
+mv cabal $HOME/.local/bin/
 ```
 
 Install GHC.
@@ -106,12 +111,12 @@ sudo make install
 Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE\_HOME**. The [cluster configuration](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) is set by **$NODE\_CONFIG** and **$NODE\_BUILD\_NUM**. 
 
 ```bash
-echo PATH="~/.local/bin:$PATH" >> ~/.bashrc
-echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
-echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
-echo export NODE_CONFIG=mainnet>> ~/.bashrc
-echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g') >> ~/.bashrc
-source ~/.bashrc
+echo PATH="$HOME/.local/bin:$PATH" >> $HOME/.bashrc
+echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> $HOME/.bashrc
+echo export NODE_HOME=$HOME/cardano-my-node >> $HOME/.bashrc
+echo export NODE_CONFIG=mainnet>> $HOME/.bashrc
+echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g') >> $HOME/.bashrc
+source $HOME/.bashrc
 ```
 
 Update cabal and verify the correct versions were installed successfully.
@@ -131,7 +136,7 @@ Cabal library should be version 3.2.0.0 and GHC should be version 8.6.5
 Download source code and switch to the latest tag. In this case, use `tags/1.18.0`
 
 ```bash
-cd ~/git
+cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all
@@ -159,8 +164,8 @@ Building process may take a few minutes up to a few hours depending on your comp
 Copy **cardano-cli** and **cardano-node** files into bin directory.
 
 ```bash
-sudo cp $(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
-sudo cp $(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
+sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
+sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
 ```
 
 Verify your **cardano-cli** and **cardano-node** are the expected versions.
@@ -197,8 +202,8 @@ sed -i ${NODE_CONFIG}-config.json \
 Update **.bashrc** shell variables.
 
 ```bash
-echo export CARDANO_NODE_SOCKET_PATH="$NODE_HOME/db/socket" >> ~/.bashrc
-source ~/.bashrc
+echo export CARDANO_NODE_SOCKET_PATH="$NODE_HOME/db/socket" >> $HOME/.bashrc
+source $HOME/.bashrc
 ```
 
 ## 🔮 4. Configure the block-producer node
@@ -282,7 +287,7 @@ Valency tells the node how many connections to keep open. Only DNS addresses are
 {% endhint %}
 
 {% hint style="danger" %}
-\*\*\*\*✨ **Port Forwarding Tip:** You'll need to forward and open ports 6000 to your server. Check with [https://canyouseeme.org/](https://canyouseeme.org/)
+\*\*\*\*✨ **Port Forwarding Tip:** You'll need to forward and open ports 6000 to your nodes. Check with [https://canyouseeme.org/](https://canyouseeme.org/) .
 {% endhint %}
 
 ## 🔏 6. Configure the air-gapped offline machine
@@ -290,8 +295,8 @@ Valency tells the node how many connections to keep open. Only DNS addresses are
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-echo export NODE_HOME=$HOME/cardano-my-node >> ~/.bashrc
-source ~/.bashrc
+echo export NODE_HOME=$HOME/cardano-my-node >> $HOME/.bashrc
+source $HOME/.bashrc
 mkdir -p $NODE_HOME
 ```
 {% endtab %}
@@ -397,7 +402,7 @@ KES \(key evolving signature\) keys are created to secure your stake pool agains
 {% endhint %}
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **Cold keys** **must be generated and stored on your air-gapped offline machine.** The cold keys are the files stored in `~/cold-keys.`
+\*\*\*\*🔥 **Cold keys** **must be generated and stored on your air-gapped offline machine.** The cold keys are the files stored in `$HOME/cold-keys.`
 {% endhint %}
 
 Make a directory to store your cold keys
@@ -405,8 +410,8 @@ Make a directory to store your cold keys
 {% tabs %}
 {% tab title="Air-gapped offline machine" %}
 ```text
-mkdir ~/cold-keys
-pushd ~/cold-keys
+mkdir $HOME/cold-keys
+pushd $HOME/cold-keys
 ```
 {% endtab %}
 {% endtabs %}
@@ -475,8 +480,8 @@ Stake pool operators must provide an operational certificate to verify that the 
 ```bash
 cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
-    --cold-signing-key-file ~/cold-keys/node.skey \
-    --operational-certificate-issue-counter ~/cold-keys/node.counter \
+    --cold-signing-key-file $HOME/cold-keys/node.skey \
+    --operational-certificate-issue-counter $HOME/cold-keys/node.counter \
     --kes-period <kesPeriod> \
     --out-file node.cert
 ```
@@ -1138,7 +1143,7 @@ Create a registration certificate for your stake pool. Update with your **metada
 {% tab title="air-gapped offline machine" %}
 ```bash
 cardano-cli shelley stake-pool registration-certificate \
-    --cold-verification-key-file ~/cold-keys/node.vkey \
+    --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 100000000 \
     --pool-cost 345000000 \
@@ -1166,7 +1171,7 @@ Pledge stake to your stake pool. Copy **deleg.cert** to your **hot environment**
 ```bash
 cardano-cli shelley stake-address delegation-certificate \
     --staking-verification-key-file stake.vkey \
-    --cold-verification-key-file ~/cold-keys/node.vkey \
+    --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --out-file deleg.cert
 ```
 {% endtab %}
@@ -1317,7 +1322,7 @@ Sign the transaction. Copy **tx.signed** to your **hot environment.**
 cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
-    --signing-key-file ~/cold-keys/node.skey \
+    --signing-key-file $HOME/cold-keys/node.skey \
     --signing-key-file stake.skey \
     --mainnet \
     --out-file tx.signed
@@ -1344,7 +1349,7 @@ Your stake pool ID can be computed with:
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli shelley stake-pool id --verification-key-file ~/cold-keys/node.vkey > stakepoolid.txt
+cardano-cli shelley stake-pool id --verification-key-file $HOME/cold-keys/node.vkey > stakepoolid.txt
 cat stakepoolid.txt
 ```
 {% endtab %}
@@ -1582,7 +1587,7 @@ fi
 
 if [ -z "\$PT_TOPOLOGY_FILE" ]; then
 ## SET THIS TO THE LOCATION OF YOUR TOPOLOGY FILE THAT YOUR NODE USES
-PT_TOPOLOGY_FILE="$NODE_HOME/relaynode1/${NODE_CONFIG}-topology.json"
+PT_TOPOLOGY_FILE="$NODE_HOME/${NODE_CONFIG}-topology.json"
 fi
 
 JSON="\$(jq -n --compact-output --arg MY_API_KEY "\$PT_MY_API_KEY" --arg MY_POOL_ID "\$PT_MY_POOL_ID" --arg MY_NODE_ID "\$PT_MY_NODE_ID" '{apiKey: \$MY_API_KEY, nodeId: \$MY_NODE_ID, poolId: \$MY_POOL_ID}')"
@@ -1818,7 +1823,7 @@ sed -i ${NODE_CONFIG}-config.json -e "s/    12798/    12700/g" -e "s/hasEKG\": 1
 {% endtab %}
 
 {% tab title="relaynode1" %}
-```
+```bash
 cd $NODE_HOME
 sed -i ${NODE_CONFIG}-config.json -e "s/    12798/    12701/g" -e "s/hasEKG\": 12788/hasEKG\": 12601/g" 
 ```
@@ -2761,14 +2766,14 @@ cd $NODE_HOME
 slotNo=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
-chmod u+rwx ~/cold-keys
+chmod u+rwx $HOME/cold-keys
 cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
-    --cold-signing-key-file ~/cold-keys/node.skey \
-    --operational-certificate-issue-counter ~/cold-keys/node.counter \
+    --cold-signing-key-file $HOME/cold-keys/node.skey \
+    --operational-certificate-issue-counter $HOME/cold-keys/node.counter \
     --kes-period ${kesPeriod} \
     --out-file node.cert
-chmod a-rwx ~/cold-keys
+chmod a-rwx $HOME/cold-keys
 ```
 {% endtab %}
 {% endtabs %}
@@ -2782,14 +2787,14 @@ Copy **node.cert** back to your block producer node.
 
 To lock,
 
-```text
-chmod a-rwx ~/cold-keys
+```bash
+chmod a-rwx $HOME/cold-keys
 ```
 
 To unlock,
 
-```text
-chmod u+rwx ~/cold-keys
+```bash
+chmod u+rwx $HOME/cold-keys
 ```
 {% endhint %}
 
@@ -2800,9 +2805,9 @@ Want a clean start? Re-using existing server? Forked blockchain?
 Delete git repo, and then rename your previous `$NODE_HOME` and `cold-keys` directory \(or optionally, remove\). Now you can start this guide from the beginning again.
 
 ```bash
-rm -rf ~/git/cardano-node/ ~/git/libsodium/
+rm -rf $HOME/git/cardano-node/ $HOME/git/libsodium/
 mv $NODE_HOME $(basename $NODE_HOME)_backup_$(date -I)
-mv ~/cold-keys ~/cold-keys_backup_$(date -I)
+mv $HOME/cold-keys $HOME/cold-keys_backup_$(date -I)
 ```
 
 ### 🌊 18.3 Resetting the databases
@@ -2855,7 +2860,7 @@ Update the below registration-certificate transaction with your desired settings
 {% tab title="air-gapped offline machine" %}
 ```bash
 cardano-cli shelley stake-pool registration-certificate \
-    --cold-verification-key-file ~/cold-keys/node.vkey \
+    --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 1000000000 \
     --pool-cost 345000000 \
@@ -2883,7 +2888,7 @@ Pledge stake to your stake pool. Copy **deleg.cert** to your **hot environment.*
 ```text
 cardano-cli shelley stake-address delegation-certificate \
     --staking-verification-key-file stake.vkey \
-    --cold-verification-key-file ~/cold-keys/node.vkey \
+    --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --out-file deleg.cert
 ```
 {% endtab %}
@@ -3006,7 +3011,7 @@ Sign the transaction. Copy **tx.signed** to your **hot environment.**
 cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
-    --signing-key-file ~/cold-keys/node.skey \
+    --signing-key-file $HOME/cold-keys/node.skey \
     --signing-key-file stake.skey \
     --mainnet \
     --out-file tx.signed
@@ -3479,7 +3484,7 @@ Let's pretend we wish to retire as soon as possible in epoch 40.
 {% tab title="air-gapped offline machine" %}
 ```bash
 cardano-cli shelley stake-pool deregistration-certificate \
---cold-verification-key-file ~/cold-keys/node.vkey \
+--cold-verification-key-file $HOME/cold-keys/node.vkey \
 --epoch $((${epoch} + 1)) \
 --out-file pool.dereg
 echo pool will retire at end of epoch: $((${epoch} + 1))
@@ -3591,7 +3596,7 @@ Sign the transaction. Copy **tx.signed** to your **hot environment.**
 cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
-    --signing-key-file ~/cold-keys/node.skey \
+    --signing-key-file $HOME/cold-keys/node.skey \
     --mainnet \
     --out-file tx.signed
 ```
