@@ -119,6 +119,7 @@
     * [How to setup chrony](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md)
     * [How to fix the Mnemonic staking balance bug](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-fix-the-mnemonic-staking-balance-bug.md)
     * [How to delegate to a Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-delegate-to-a-stakepool.md)
+  * [Guide: How to buy ADA](coins/overview-ada/guide-how-to-buy-ada.md)
   * [Guide: Build Haskell Pool by Cardano Community](https://cardano-community.github.io/guild-operators/)
   * [A Non-technical Guide for Running a Stakepool](https://medium.com/@contact_73710/a-non-technical-guide-for-running-a-stake-pool-part-1-a9071022d125)
   * [Guide: How to stake ADA](coins/overview-ada/guide-how-to-stake-ada.md)
