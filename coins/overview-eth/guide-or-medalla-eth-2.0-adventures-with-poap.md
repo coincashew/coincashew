@@ -31,10 +31,10 @@ Don't delay! POAP tokens will only be distributed if you propose a block within 
 2. Enter your Eth 1.0 mainnet public address
 3. Add the generated graffiti tag to your validator clients!
 
-### ⚙ 2. Learn to validate with different ETH2 clients with graffiti
+### ⚙ 2. Learn to validate with different ETH2 clients
 
 {% hint style="success" %}
-Each time you propose a block with a different client, your block will contain your graffiti tag which entitles you to claim your POAP token for that client!
+Did you know each time you propose a block with a different client, your block will contain your **graffiti tag** which entitles you to claim your POAP token for that client! Filter for your graffiti tag with this example query. [https://beaconcha.in/blocks?q=poapq1gBp9OYNRuL4RxDngXFsyWa7JsA](https://beaconcha.in/blocks?q=poapq1gBp9OYNRuL4RxDngXFsyWa7JsA)
 {% endhint %}
 
 {% hint style="danger" %}
