@@ -39,8 +39,8 @@ As a stake pool operator for Cardano, you will typically have the following abil
 * **Storage:** 20GB SSD
 * **Internet:** Broadband internet connection with speeds at least 10 Mbps.
 * **Data Plan**: at least 1GB per hour. 720GB per month.
-* **Power:** 24/7 electrical power
-* **ADA balance:** at least 1000 ADA
+* **Power:** Reliable electrical power
+* **ADA balance:** at least 505 ADA
 
 ### 🏋♂ Recommended Node Futureproof Hardware Setup
 
@@ -52,7 +52,7 @@ As a stake pool operator for Cardano, you will typically have the following abil
 * **Storage:** 1TB SSD
 * **Internet:** Broadband internet connections with speeds at least 100 Mbps
 * **Data Plan**: Unlimited
-* **Power:** 24/7 electrical power with UPS
+* **Power:** Reliable electrical power with UPS
 * **ADA balance:** more pledge is better, to be determined by **a0**, the pledge influence factor
 
 For instructions on installing **Ubuntu**, refer to the following:
