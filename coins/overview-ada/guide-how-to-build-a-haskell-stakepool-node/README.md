@@ -8,7 +8,7 @@ description: >-
 # Guide: How to build a Cardano Stake Pool
 
 {% hint style="success" %}
-As of July 28, 2020, this guide is written for **mainnet** with **release v.1.18.0** 😁 
+As of August 11, 2020, this guide is written for **mainnet** with **release v.1.18.1** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -134,14 +134,14 @@ Cabal library should be version 3.2.0.0 and GHC should be version 8.6.5
 
 ## 🏗 2. Build the node from source code
 
-Download source code and switch to the latest tag. In this case, use `tags/1.18.0`
+Download source code and switch to the latest tag. In this case, use `tags/1.18.1`
 
 ```bash
 cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all
-git checkout tags/1.18.0
+git checkout tags/1.18.1
 ```
 
 Update the cabal config, project settings, and reset build folder.
@@ -2909,7 +2909,7 @@ echo Current Slot: $currentSlot
 Find your balance and **UTXOs**.
 
 {% tabs %}
-{% tab title="blok producer node" %}
+{% tab title="block producer node" %}
 ```bash
 cardano-cli shelley query utxo \
     --address $(cat payment.addr) \
