@@ -117,6 +117,30 @@ rm -rf db
 
 ### 📂 4.2 Roll back to previous version from backup
 
+{% hint style="danger" %}
+Stop your node before updating the binaries.
+{% endhint %}
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+killall cardano-node
+```
+{% endtab %}
+
+{% tab title="relaynode1" %}
+```
+killall cardano-node
+```
+{% endtab %}
+
+{% tab title="systemd" %}
+```
+sudo systemctl stop cardano-node
+```
+{% endtab %}
+{% endtabs %}
+
 Restore the old repository.
 
 ```bash
@@ -138,6 +162,32 @@ Verify the binaries are the correct version.
 /usr/local/bin/cardano-cli version
 /usr/local/bin/cardano-node version
 ```
+
+{% hint style="success" %}
+Now restart your node to use the updated binaries.
+{% endhint %}
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cd $NODE_HOME
+./startBlockProducingNode.sh
+```
+{% endtab %}
+
+{% tab title="relaynode1" %}
+```
+cd $NODE_HOME
+./startRelayNode1.sh
+```
+{% endtab %}
+
+{% tab title="systemd" %}
+```
+sudo systemctl start cardano-node
+```
+{% endtab %}
+{% endtabs %}
 
 ### 🤖 4.3 Last resort: Rebuild from source code
 
