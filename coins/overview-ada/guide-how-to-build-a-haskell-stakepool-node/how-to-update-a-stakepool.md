@@ -117,14 +117,26 @@ rm -rf db
 
 ### 📂 4.2 Roll back to previous version from backup
 
+Restore the old repository.
+
 ```bash
 cd $HOME/git
 mv cardano-node/ cardano-node-rolled-back/
 mv cardano-node-old/ cardano-node/
+```
+
+Copy the binaries to `/usr/local/bin`
+
+```bash
 sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
 sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
-$(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") version
-$(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") version
+```
+
+Verify the binaries are the correct version.
+
+```bash
+/usr/local/bin/cardano-cli version
+/usr/local/bin/cardano-node version
 ```
 
 ### 🤖 4.3 Last resort: Rebuild from source code
