@@ -8,7 +8,7 @@ description: >-
 # Guide: How to build a Cardano Stake Pool
 
 {% hint style="success" %}
-As of August 11, 2020, this guide is written for **mainnet** with **release v.1.18.1** 😁 
+As of August 11, 2020, this guide is written for **mainnet** with **release v.1.18.0** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -134,14 +134,14 @@ Cabal library should be version 3.2.0.0 and GHC should be version 8.6.5
 
 ## 🏗 2. Build the node from source code
 
-Download source code and switch to the latest tag. In this case, use `tags/1.18.1`
+Download source code and switch to the latest tag. In this case, use `tags/1.18.0`
 
 ```bash
 cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all
-git checkout tags/1.18.1
+git checkout tags/1.18.0
 ```
 
 Update the cabal config, project settings, and reset build folder.
@@ -313,6 +313,7 @@ The startup script contains all the variables needed to run a cardano-node such 
 {% tab title="block producer node" %}
 ```bash
 cat > $NODE_HOME/startBlockProducingNode.sh << EOF 
+#!/bin/bash
 DIRECTORY=\$NODE_HOME
 PORT=6000
 HOSTADDR=0.0.0.0
@@ -328,6 +329,7 @@ EOF
 {% tab title="relaynode1" %}
 ```bash
 cat > $NODE_HOME/startRelayNode1.sh << EOF 
+#!/bin/bash
 DIRECTORY=\$NODE_HOME
 PORT=6000
 HOSTADDR=0.0.0.0
