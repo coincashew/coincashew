@@ -690,7 +690,7 @@ Example valid output:
 Only proceed if the sha256 check passes with **OK**!
 {% endhint %}
 
-Transfer the **cardano-wallet** to your **air-gapped offline machine** via USB key or other secure file transfer method.
+Transfer the **cardano-wallet** to your **air-gapped offline machine** via USB key or other removable media.
 
 Extract the wallet files and cleanup.
 
