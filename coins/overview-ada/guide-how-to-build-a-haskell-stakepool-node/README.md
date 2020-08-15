@@ -3185,10 +3185,11 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-WorkingDirectory= /home/$(whoami)/
-ExecStart       = $NODE_HOME/startBlockProducingNode.sh
+Type            = forking
+WorkingDirectory= $NODE_HOME
+ExecStart       = /usr/bin/tmux new -d -s cnode
+ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startBlockProducingNode.sh Enter 
 ExecStop        = killall cardano-node
-ExecReload      = killall cardano-node && $NODE_HOME/startBlockProducingNode.sh
 Restart         = always
 
 [Install]
@@ -3210,10 +3211,11 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-WorkingDirectory= /home/$(whoami)/
-ExecStart       = $NODE_HOME/startRelayNode1.sh
+Type            = forking
+WorkingDirectory= $NODE_HOME
+ExecStart       = /usr/bin/tmux new -d -s cnode
+ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startRelayNode1.sh Enter 
 ExecStop        = killall cardano-node
-ExecReload      = killall cardano-node && $NODE_HOME/startRelayNode1.sh
 Restart         = always
 
 [Install]
