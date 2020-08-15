@@ -293,6 +293,16 @@ Valency tells the node how many connections to keep open. Only DNS addresses are
 
 ## 🔏 6. Configure the air-gapped offline machine
 
+{% hint style="info" %}
+An air-gapped offline machine is called your cold environment. 
+
+* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits. 
+* Physically isolated from the rest of your network. 
+* Must not have a network connection, wired or wireless. 
+* Is not a VM on a machine with a network connection.
+* Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29).
+{% endhint %}
+
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
@@ -303,7 +313,11 @@ mkdir -p $NODE_HOME
 {% endtab %}
 {% endtabs %}
 
-Copy from your **hot environmen**t, your block producer node, a copy of the **`cardano-cli`** binaries to your **cold environment**, this air-gapped offline machine. You can use USB keys or other secure file transfer method.
+Copy from your **hot environment**, also known as your block producer node, a copy of the **`cardano-cli`** binaries to your **cold environment**, this air-gapped offline machine. 
+
+{% hint style="danger" %}
+In order to remain a true air-gapped environment, you must move files physically between your cold and hot environments with USB keys or other removable media.
+{% endhint %}
 
 ## 🤖 7. Create startup scripts
 
