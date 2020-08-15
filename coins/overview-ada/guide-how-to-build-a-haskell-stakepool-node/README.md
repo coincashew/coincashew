@@ -796,15 +796,14 @@ popd >/dev/null
 HERE
 ```
 
-Add permissions and update PATH.
+Add permissions and export PATH to use the binaries.
 
 ```bash
 ###
 ### On air-gapped offline machine,
 ###
 chmod +x extractPoolStakingKeys.sh
-echo PATH="$(pwd)/cardano-wallet-shelley-2020.7.28:$PATH" >> ~/.bashrc
-source ~/.bashrc
+export PATH="$(pwd)/cardano-wallet-shelley-2020.7.28:$PATH"
 ```
 
 Extract your keys. Update the command with your mnemonic phrase.
@@ -817,7 +816,7 @@ Extract your keys. Update the command with your mnemonic phrase.
 ```
 
 {% hint style="danger" %}
-Important the base.addr and the base.addr\_candidate must be the same. Review the screen output. **Base.addr is the payment address to be funded.**
+**Important**: The **base.addr** and the **base.addr\_candidate** must be the same. Review the screen output.
 {% endhint %}
 
 Your new staking keys are in the folder `extractedPoolKeys/`
@@ -834,6 +833,10 @@ cd $NODE_HOME
 #Rename to base.addr file to payment.addr
 mv base.addr payment.addr
 ```
+
+{% hint style="info" %}
+**payment.addr**, or also known as base.addr from this extraction script, will be the cardano address which holds your pool's pledge.
+{% endhint %}
 
 Clear the bash history in order to protect your mnemonic phrase and remove the `cardano-wallet` files.
 
