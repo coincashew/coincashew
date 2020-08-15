@@ -1165,7 +1165,7 @@ DNS based relays are recommended for simplicity of node management. In other wor
 {% endhint %}
 
 {% hint style="info" %}
-\*\*\*\*✨ **How to configure multiple relay nodes.** 
+#### \*\*\*\*✨ **How to configure multiple relay nodes.** 
 
 Update the next operation
 
@@ -2924,6 +2924,8 @@ cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.j
 
 Update the below registration-certificate transaction with your desired settings.
 
+If you have **multiple relay nodes,** [**refer to section 12**](./#12-register-your-stake-pool) and change your parameters appropriately.
+
 {% hint style="warning" %}
 **metadata-url** must be no longer than 64 characters.
 {% endhint %}
@@ -2940,8 +2942,8 @@ cardano-cli shelley stake-pool registration-certificate \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
     --mainnet \
+    --single-host-pool-relay <dns based relay, example ~ relaynode1.myadapoolnamerocks.com> \
     --pool-relay-port 6000 \
-    --pool-relay-ipv4 <your relay node's public IP address> \
     --metadata-url <url where you uploaded poolMetaData.json> \
     --metadata-hash $(cat poolMetaDataHash.txt) \
     --out-file pool.cert
