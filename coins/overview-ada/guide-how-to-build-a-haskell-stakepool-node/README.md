@@ -1144,7 +1144,7 @@ minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must
 Create a registration certificate for your stake pool. Update with your **metadata URL** and your **relay node information**. Choose one of the three options available to configure relay nodes -- DNS based, Round Robin DNS based, or IP based. 
 
 {% hint style="info" %}
-DNS based relays are recommended for simplicity of node management. In other words, your you don't need to re-submit this **registration certificate** transaction every time your IP changes. Also you can easily update the DNS to point towards a new IP should you re-locate a relay node, for example.
+DNS based relays are recommended for simplicity of node management. In other words, you don't need to re-submit this **registration certificate** transaction every time your IP changes. Also you can easily update the DNS to point towards a new IP should you re-locate or re-build a relay node, for example.
 {% endhint %}
 
 {% hint style="info" %}
