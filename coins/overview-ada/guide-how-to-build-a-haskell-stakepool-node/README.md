@@ -223,10 +223,12 @@ A relay node will not be in possession of any keys and will therefore be unable 
 For the purposes of this guide, we will be building **two nodes** on two **separate servers**. One node will be designated the **block producer node**, and the other will be the relay node, named **relaynode1**.
 {% endhint %}
 
+{% hint style="danger" %}
 Configure **topology.json** file so that 
 
-* only relay nodes connect to the public internet and your block-producing node
-* the block-producing node can only connect to your relay nodes
+* relay node\(s\) connect to public relay nodes \(like IOHK and buddy relay nodes\) and your block-producer node
+* block-producer node **only** connects to your relay node\(s\)
+{% endhint %}
 
 On your **block-producer node,** run the following. Update the **addr** with your relay node's public IP address.
 
