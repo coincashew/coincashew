@@ -472,7 +472,11 @@ echo kesPeriod: ${kesPeriod}
 {% endtab %}
 {% endtabs %}
 
-With this calculation, you can generate a operational certificate for your pool. Copy **kes.vkey** to your **cold environment**. Change the **kesPeriod** value accordingly.
+With this calculation, you can generate a operational certificate for your pool. 
+
+Copy **kes.vkey** to your **cold environment**. 
+
+Change the **kesPeriod** value accordingly.
 
 {% hint style="info" %}
 Stake pool operators must provide an operational certificate to verify that the pool has the authority to run. The certificate includes the operator’s signature, and includes key information about the pool \(addresses, keys, etc.\). Operational certificates represent the link between the operator’s offline key and their operational key.
@@ -837,6 +841,8 @@ Awesome. Now you can track your pool rewards in your wallet.
 
 Next step is to fund your payment address. 
 
+Copy **payment.addr** to your **hot environment**.
+
 {% tabs %}
 {% tab title="Mainnet" %}
 Payment address can be funded from
@@ -847,9 +853,6 @@ Payment address can be funded from
 Run the following to find your payment address.
 
 ```bash
-###
-### On air-gapped offline machine,
-###
 cat payment.addr
 ```
 {% endtab %}
@@ -885,11 +888,9 @@ The Shelly Testnet Faucet can deliver up to 100,000 fADA every 24 hours.
 {% endtab %}
 {% endtabs %}
 
-Copy **payment.addr** to your **hot environment**.
-
 After funding your account, check your payment address balance.
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 Before continuing, your nodes must be fully synchronized to the blockchain. Otherwise, you won't see your funds.
 {% endhint %}
 
@@ -1035,7 +1036,7 @@ echo Change Output: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build your transaction which will register your stake address. Copy **tx.raw** to your **cold environment**.
+Build your transaction which will register your stake address. 
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -1051,7 +1052,9 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Sign the transaction with both the payment and stake secret keys. Copy **tx.signed** to your **hot environment.**
+Copy **tx.raw** to your **cold environment**.
+
+Sign the transaction with both the payment and stake secret keys. 
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -1065,6 +1068,8 @@ cardano-cli shelley transaction sign \
 ```
 {% endtab %}
 {% endtabs %}
+
+Copy **tx.signed** to your **hot environment.**
 
 Send the signed transaction.
 
@@ -1136,7 +1141,46 @@ echo minPoolCost: ${minPoolCost}
 minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
-Create a registration certificate for your stake pool. Update with your **metadata URL** and **relay node's public IP address**. Copy **pool.cert** to your **hot environment.**
+Create a registration certificate for your stake pool. Update with your **metadata URL** and your **relay node information**. Choose one of the three options available to configure relay nodes -- DNS based, Round Robin DNS based, or IP based. 
+
+{% hint style="info" %}
+DNS based relays are recommended for simplicity of node management. In other words, your you don't need to re-submit this **registration certificate** transaction every time your IP changes. Also you can easily update the DNS to point towards a new IP should you re-locate a relay node, for example.
+{% endhint %}
+
+{% hint style="info" %}
+\*\*\*\*✨ **How to configure multiple relay nodes.** 
+
+Update the next operation
+
+`cardano-cli shelley stake-pool registration-certificate`
+
+to be run on your air-gapped offline machine appropriately. 
+
+**DNS based relays, 1 entry per DNS record**
+
+```bash
+    --single-host-pool-relay relaynode1.myadapoolnamerocks.com\
+    --pool-relay-port 6000 \
+    --single-host-pool-relay relaynode2.myadapoolnamerocks.com\
+    --pool-relay-port 6000 \
+```
+
+**Round Robin DNS based relays, 1 entry per** [**SRV DNS record**](https://support.dnsimple.com/articles/srv-record/)\*\*\*\*
+
+```bash
+    --multi-host-pool-relay relayNodes.myadapoolnamerocks.com\
+    --pool-relay-port 6000 \
+```
+
+**IP based relays, 1 entry per IP address**
+
+```bash
+    --pool-relay-port 6000 \
+    --pool-relay-ipv4 <your first relay node public IP address> \
+    --pool-relay-port 6000 \
+    --pool-relay-ipv4 <your second relay node public IP address> \
+```
+{% endhint %}
 
 {% hint style="warning" %}
 **metadata-url** must be no longer than 64 characters.
@@ -1154,8 +1198,8 @@ cardano-cli shelley stake-pool registration-certificate \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
     --mainnet \
+    --single-host-pool-relay <dns based relay, example ~ relaynode1.myadapoolnamerocks.com> \
     --pool-relay-port 6000 \
-    --pool-relay-ipv4 <your relay node's public IP address> \
     --metadata-url <url where you uploaded poolMetaData.json> \
     --metadata-hash $(cat poolMetaDataHash.txt) \
     --out-file pool.cert
@@ -1167,7 +1211,9 @@ cardano-cli shelley stake-pool registration-certificate \
 Here we are pledging 100 ADA with a fixed pool cost of 345 ADA and a pool margin of 15%. 
 {% endhint %}
 
-Pledge stake to your stake pool. Copy **deleg.cert** to your **hot environment**.
+Copy **pool.cert** to your **hot environment.**
+
+Pledge stake to your stake pool.
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -1180,8 +1226,10 @@ cardano-cli shelley stake-address delegation-certificate \
 {% endtab %}
 {% endtabs %}
 
+Copy **deleg.cert** to your **hot environment**.
+
 {% hint style="info" %}
-This creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `node.vkey`
+This operation creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `node.vkey`
 {% endhint %}
 
 {% hint style="info" %}
@@ -1300,7 +1348,7 @@ echo txOut: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build the transaction. Copy **tx.raw** to your **cold environment.**
+Build the transaction. 
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -1317,7 +1365,9 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Sign the transaction. Copy **tx.signed** to your **hot environment.**
+Copy **tx.raw** to your **cold environment.**
+
+Sign the transaction. 
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -1332,6 +1382,8 @@ cardano-cli shelley transaction sign \
 ```
 {% endtab %}
 {% endtabs %}
+
+Copy **tx.signed** to your **hot environment.**
 
 Send the transaction.
 
@@ -1382,7 +1434,7 @@ With your stake pool ID, now you can find your data on block explorers such as [
 Shelley has been launched without peer-to-peer \(p2p\) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
 {% endhint %}
 
-There are two ways to configure your topology files.  Copy deleg.cert to your hot environment.
+There are two ways to configure your topology files.
 
 * **topologyUpdate.sh method** is automated and works after 4 hours. 
 * **Pooltool.io method** gives you control over who your nodes connect to.
@@ -2884,7 +2936,7 @@ cardano-cli shelley stake-pool registration-certificate \
 Here we are pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 20%. 
 {% endhint %}
 
-Pledge stake to your stake pool. Copy **deleg.cert** to your **hot environment.**
+Pledge stake to your stake pool.
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -2896,6 +2948,8 @@ cardano-cli shelley stake-address delegation-certificate \
 ```
 {% endtab %}
 {% endtabs %}
+
+Copy **deleg.cert** to your **hot environment.**
 
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
@@ -2989,7 +3043,7 @@ echo txOut: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build the transaction. Copy **tx.raw** to your **cold environment.**
+Build the transaction. 
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -3006,7 +3060,9 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Sign the transaction. Copy **tx.signed** to your **hot environment.**
+Copy **tx.raw** to your **cold environment.**
+
+Sign the transaction. 
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -3021,6 +3077,8 @@ cardano-cli shelley transaction sign \
 ```
 {% endtab %}
 {% endtabs %}
+
+Copy **tx.signed** to your **hot environment.**
 
 Send the transaction.
 
@@ -3364,7 +3422,7 @@ echo Change Output: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build your transaction. Copy tx.raw to your cold environment.
+Build your transaction. 
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -3380,7 +3438,9 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Sign the transaction with both the payment and stake secret keys. Copy tx.signed to your hot environment.
+Copy **tx.raw** to your **cold environment.**
+
+Sign the transaction with both the payment and stake secret keys. 
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -3393,6 +3453,8 @@ cardano-cli shelley transaction sign \
 ```
 {% endtab %}
 {% endtabs %}
+
+Copy **tx.signed** to your **hot environment.**
 
 Send the signed transaction.
 
@@ -3481,7 +3543,7 @@ echo eMax: ${eMax}
 Let's pretend we wish to retire as soon as possible in epoch 40.
 {% endhint %}
 
- Create the deregistration certificate and save it as `pool.dereg.` Copy **pool.dereg** to your **hot environment.**
+Create the deregistration certificate and save it as `pool.dereg.` 
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -3494,6 +3556,8 @@ echo pool will retire at end of epoch: $((${epoch} + 1))
 ```
 {% endtab %}
 {% endtabs %}
+
+Copy **pool.dereg** to your **hot environment.**
 
 Find your balance and **UTXOs**.
 
@@ -3575,7 +3639,7 @@ echo txOut: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build the transaction. Copy tx.raw to your cold environment.
+Build the transaction. 
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -3591,7 +3655,9 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Sign the transaction. Copy **tx.signed** to your **hot environment.**
+Copy **tx.raw** to your **cold environment.**
+
+Sign the transaction. 
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -3605,6 +3671,8 @@ cardano-cli shelley transaction sign \
 ```
 {% endtab %}
 {% endtabs %}
+
+Copy **tx.signed** to your **hot environment.**
 
 Send the transaction.
 
