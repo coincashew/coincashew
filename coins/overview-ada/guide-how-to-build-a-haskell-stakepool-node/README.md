@@ -3247,6 +3247,18 @@ sudo systemctl start cardano-node
 Nice work. Your stake pool is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
+\*\*\*\*⛓ **Reattach to the node tmux session after system startup**
+
+```text
+tmux a
+```
+
+#### 🚧 To detach from a **tmux** session and leave the node running in the background
+
+```text
+press Ctrl + b + d
+```
+
 #### ✅ Check whether the node is active
 
 ```text
