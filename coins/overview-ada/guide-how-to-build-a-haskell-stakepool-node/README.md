@@ -55,9 +55,19 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **Power:** Reliable electrical power with UPS
 * **ADA balance:** more pledge is better, to be determined by **a0**, the pledge influence factor
 
+### 🔓 Recommended Node Security
+
+If you need ideas on how to harden your server node, refer to
+
+{% page-ref page="how-to-harden-ubuntu-server.md" %}
+
+### 🛠 Setup Ubuntu
+
 For instructions on installing **Ubuntu**, refer to the following:
 
 {% page-ref page="../../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+
+### 🧱 Rebuilding Nodes
 
 If you are rebuilding or reusing an existing `cardano-node` installation, refer to [section 18.2 on how to reset the installation.](./#18-2-resetting-the-installation)
 
