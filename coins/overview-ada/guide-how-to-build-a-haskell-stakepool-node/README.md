@@ -241,7 +241,7 @@ cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF
       {
         "addr": "<RELAYNODE1'S PUBLIC IP ADDRESS>",
         "port": 6000,
-        "valency": 2
+        "valency": 1
       }
     ]
   }
@@ -271,7 +271,7 @@ cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF
       {
         "addr": "<BLOCK PRODUCER NODE'S PUBLIC IP ADDRESS>",
         "port": 6000,
-        "valency": 2
+        "valency": 1
       },
       {
         "addr": "relays-new.cardano-mainnet.iohk.io",
@@ -290,7 +290,7 @@ Valency tells the node how many connections to keep open. Only DNS addresses are
 {% endhint %}
 
 {% hint style="danger" %}
-\*\*\*\*✨ **Port Forwarding Tip:** You'll need to forward and open ports 6000 to your nodes. Check with [https://canyouseeme.org/](https://canyouseeme.org/) .
+\*\*\*\*✨ **Port Forwarding Tip:** You'll need to forward and open ports 6000 to your nodes. Check with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
 {% endhint %}
 
 ## 🔏 6. Configure the air-gapped offline machine
@@ -1107,7 +1107,7 @@ cardano-cli shelley transaction submit \
 Create your pool's metadata with a JSON file. Update with your pool information.
 
 {% hint style="warning" %}
-**ticker** must be between 3-5 characters in length.
+**ticker** must be between 3-5 characters in length. Characters must be A-Z and 0-9 only.
 {% endhint %}
 
 {% hint style="warning" %}

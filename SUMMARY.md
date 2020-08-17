@@ -114,6 +114,7 @@
   * [Create a LTC paper wallet](https://liteaddress.org/)
 * [Cardano: ADA](coins/overview-ada/README.md)
   * [Guide: How to build a Cardano Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
+    * [How to Harden Ubuntu Server](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-harden-ubuntu-server.md)
     * [How to setup chrony](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md)
     * [How to upload poolMetaData.json to Github](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-upload-poolmetadata.json-to-github.md)
     * [How to update a Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-update-a-stakepool.md)
