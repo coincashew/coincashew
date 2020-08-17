@@ -76,28 +76,10 @@ Locate **ChallengeResponseAuthentication** and update to no
 ChallengeResponseAuthentication no
 ```
 
-Locate **KerberosAuthentication** and update to no
-
-```text
-KerberosAuthentication no
-```
-
-Locate **GSSAPIAuthentication** and update to no
-
-```text
-GSSAPIAuthentication no
-```
-
 Locate **PasswordAuthentication** update to no
 
 ```text
 PasswordAuthentication no 
-```
-
-Locate **StrictModes** and update to yes
-
-```text
-StrictModes yes
 ```
 
 Locate **PermitRootLogin** and update to no
@@ -136,6 +118,14 @@ Verify the login still works
 ssh cardano@server.ip.address
 ```
 
+{% hint style="info" %}
+Alternatively, you might need to use 
+
+```bash
+ssh -i <path to your SHH_key_name.pub> cardano@server.ip.address
+```
+{% endhint %}
+
 ## \*\*\*\*🤖 **Update your system**
 
 {% hint style="warning" %}
@@ -162,7 +152,9 @@ System admins should not frequently log in as root in order to maintain server s
 ```bash
 # To disable the root account, simply use the -l option.
 sudo passwd -l root
+```
 
+```bash
 # If for some valid reason you need to re-enable the account, simply use the -u option.
 sudo passwd -u root
 ```
@@ -174,10 +166,16 @@ SSH, the secure shell, is often used to access remote Linux systems. Because we 
 {% endhint %}
 
 ```text
-sudo apt install libpam-google-authenticator
+sudo apt install libpam-google-authenticator -y
 ```
 
-To make SSH use the Google Authenticator PAM module, add the following line to the `/etc/pam.d/sshd` file:
+To make SSH use the Google Authenticator PAM module, edit the `/etc/pam.d/sshd` file:
+
+```text
+sudo nano /etc/pam.d/sshd 
+```
+
+Add the follow line:
 
 ```text
 auth required pam_google_authenticator.so
@@ -258,7 +256,7 @@ Fail2ban is an intrusion-prevention system that monitors log files and searches 
 {% endhint %}
 
 ```text
-sudo apt-get install fail2ban
+sudo apt-get install fail2ban -y
 ```
 
 Edit a config file that monitors SSH logins.
