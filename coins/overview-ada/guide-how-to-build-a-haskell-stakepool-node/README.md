@@ -582,7 +582,7 @@ cd $NODE_HOME
 {% endtab %}
 {% endtabs %}
 
-## 🔐 10. Setup payment and staking keys
+## 🔐 10. Setup payment and stake keys
 
 First, obtain the protocol-parameters.
 
@@ -603,7 +603,7 @@ cardano-cli shelley query protocol-parameters \
 {% endtabs %}
 
 {% hint style="info" %}
-Payment keys are used to send and receive payments and staking keys are used to manage stake delegations.
+Payment keys are used to send and receive payments and stake keys are used to manage stake delegations.
 {% endhint %}
 
 There are two ways to create your `payment` and `stake` key pair. Pick the one that best suits your needs.
@@ -648,7 +648,7 @@ Create your stake address from the stake address verification key and store it i
 ### On air-gapped offline machine,
 ###
 cardano-cli shelley stake-address build \
-    --staking-verification-key-file stake.vkey \
+    --stake-verification-key-file stake.vkey \
     --out-file stake.addr \
     --mainnet
 ```
@@ -661,7 +661,7 @@ Build a payment address for the payment key `payment.vkey` which will delegate t
 ###
 cardano-cli shelley address build \
     --payment-verification-key-file payment.vkey \
-    --staking-verification-key-file stake.vkey \
+    --stake-verification-key-file stake.vkey \
     --out-file payment.addr \
     --mainnet
 ```
@@ -949,7 +949,7 @@ Create a certificate, `stake.cert`, using the `stake.vkey`
 {% tab title="block producer node" %}
 ```text
 cardano-cli shelley stake-address registration-certificate \
-    --staking-verification-key-file stake.vkey \
+    --stake-verification-key-file stake.vkey \
     --out-file stake.cert
 ```
 {% endtab %}
@@ -1248,7 +1248,7 @@ Pledge stake to your stake pool.
 {% tab title="air-gapped offline machine" %}
 ```bash
 cardano-cli shelley stake-address delegation-certificate \
-    --staking-verification-key-file stake.vkey \
+    --stake-verification-key-file stake.vkey \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --out-file deleg.cert
 ```
@@ -2975,7 +2975,7 @@ Pledge stake to your stake pool.
 {% tab title="air-gapped offline machine" %}
 ```text
 cardano-cli shelley stake-address delegation-certificate \
-    --staking-verification-key-file stake.vkey \
+    --stake-verification-key-file stake.vkey \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --out-file deleg.cert
 ```
@@ -3140,7 +3140,7 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 
 Common use cases can include
 
-* Downloading backups of staking/payment keys
+* Downloading backups of stake/payment keys
 * Uploading a new operational certificate to the block producer from an offline node
 
 #### To download files from a node to your local PC

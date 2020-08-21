@@ -10,7 +10,7 @@ Create a certificate, `stake.cert`, using the `stake.vkey`
 
 ```text
 cardano-cli shelley stake-address registration-certificate \
-    --staking-verification-key-file stake.vkey \
+    --stake-verification-key-file stake.vkey \
     --out-file stake.cert
 ```
 
@@ -139,7 +139,7 @@ Given the **stake pool verification key file** `node.vkey` from your stakepool, 
 
 ```text
 cardano-cli shelley stake-address delegation-certificate \
-    --staking-verification-key-file stake.vkey \
+    --stake-verification-key-file stake.vkey \
     --stake-pool-verification-key-file node.vkey \
     --out-file deleg.cert
 ```
