@@ -2770,9 +2770,11 @@ Thanks to all 11000 of you, the Cardano hodlers, buidlers, stakers, and pool ope
 
  Hang out and chat with our stake pool community at [https://t.me/coincashew](https://t.me/coincashew)
 
+### 😊 17.3 Donation Tip Jar
 
-
-### 😊 17.3 Donation Tipjar
+{% hint style="success" %}
+Did you find our guide useful? Let us know with a tip and we'll keep updating it. 🙏 🚀 
+{% endhint %}
 
 We sincerely appreciate all [donations](../../../contact-us/donations.md). 😁 Thank you for supporting Cardano and us! 
 
@@ -3337,7 +3339,7 @@ cat stakepoolid.sig
 
 Find your owner public key in the file you generated on ITN. This data might be stored in a file ending in `.pub`
 
-Finally, perform section [18.4 instructions to update your pool registration data](./#18-4-changing-the-pledge-fee-margin-etc) with the pooltool generated **`metadata-url`** and **`metadata-hash`**. Notice the metadata has an "extended" field which proves your ticker ownership since ITN.
+Finally, follow [instructions to update your pool registration data](./#18-4-changing-the-pledge-fee-margin-etc) with the pooltool generated **`metadata-url`** and **`metadata-hash`**. Notice the metadata has an "extended" field which proves your ticker ownership since ITN.
 
 ### 📚 18.8 Updating your node's configuration files
 
