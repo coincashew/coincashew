@@ -22,7 +22,7 @@ Remove the old binaries and rebuild the latest binaries. Run the following comma
 ```bash
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 git clean -fd
-git fetch --all && git checkout tags/1.18.1 && git pull
+git fetch --all && git checkout tags/1.19.0 && git pull
 cabal build cardano-node cardano-cli
 ```
 
@@ -176,7 +176,7 @@ cd $NODE_HOME
 {% endtab %}
 
 {% tab title="relaynode1" %}
-```
+```bash
 cd $NODE_HOME
 ./startRelayNode1.sh
 ```
