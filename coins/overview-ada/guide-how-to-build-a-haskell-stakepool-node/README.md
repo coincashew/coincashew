@@ -2805,8 +2805,8 @@ or visit the donation address on[ ADAScan's block explorer](https://adascan.net/
 
 #### 🚀CoinCashew's Preferred Stake Pools
 
-* 🌟 OMEGA
-* 🌟 TLOA \| CODEX
+* 🌟 OMEGA \| CODEX
+* 🌟 TLOA
 * 🌟 KAZE
 * 🌟 BEBOP
 * 🌟 DEW
@@ -3337,7 +3337,7 @@ cat stakepoolid.sig
 
 Find your owner public key in the file you generated on ITN. This data might be stored in a file ending in `.pub`
 
-Finally, perform section [15.4 instructions to update your pool registration data](./#15-4-changing-the-pledge-fee-margin-etc) with the pooltool generated **`metadata-url`** and **`metadata-hash`**. Notice the metadata has an "extended" field which proves your ticker ownership since ITN.
+Finally, perform section [18.4 instructions to update your pool registration data](./#18-4-changing-the-pledge-fee-margin-etc) with the pooltool generated **`metadata-url`** and **`metadata-hash`**. Notice the metadata has an "extended" field which proves your ticker ownership since ITN.
 
 ### 📚 18.8 Updating your node's configuration files
 
