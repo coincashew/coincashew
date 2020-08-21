@@ -3535,6 +3535,12 @@ You should see output similar to this showing the funds you sent.
 100322a39d02c2ead....                                              0        10000000
 ```
 
+### 🔓 18.10 Harden your node's security
+
+Do not skimp on this critical step to protect your pool and reputation.
+
+{% page-ref page="how-to-harden-ubuntu-server.md" %}
+
 ## 🌜 19. Retiring your stake pool
 
 Find the slots per epoch.
