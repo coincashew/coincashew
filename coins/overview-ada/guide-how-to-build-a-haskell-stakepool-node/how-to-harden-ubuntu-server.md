@@ -4,6 +4,10 @@ description: Quick steps to secure your node.
 
 # How to Harden Ubuntu Server
 
+{% hint style="success" %}
+Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
+{% endhint %}
+
 ## 🧙♂ Create a non-root user with sudo privileges
 
 {% hint style="info" %}

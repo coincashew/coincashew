@@ -1,5 +1,9 @@
 # How to update a Stakepool
 
+{% hint style="success" %}
+Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
+{% endhint %}
+
 ## 📡 1. How to perform an update
 
 From time to time, there will be new versions of `cardano-node`. Follow the [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) by enabling **notifications** with the watch functionality.

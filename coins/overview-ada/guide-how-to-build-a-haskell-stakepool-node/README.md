@@ -7,6 +7,12 @@ description: >-
 
 # Guide: How to build a Cardano Stake Pool
 
+## 🎉 ∞ Pre-Announcements
+
+{% hint style="success" %}
+Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
+{% endhint %}
+
 {% hint style="success" %}
 As of August 20, 2020, this guide is written for **mainnet** with **release v.1.19.0** 😁 
 {% endhint %}
@@ -47,9 +53,9 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **Three separate servers:** 1 for block producer node, 2 for relay nodes
 * **One air-gapped offline machine \(cold environment\)**
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **Processor:** 8 core or higher CPU
-* **Memory:** 16GB+ RAM
-* **Storage:** 1TB SSD
+* **Processor:** 4 core or higher CPU
+* **Memory:** 8GB+ RAM
+* **Storage:** 256GB+ SSD
 * **Internet:** Broadband internet connections with speeds at least 100 Mbps
 * **Data Plan**: Unlimited
 * **Power:** Reliable electrical power with UPS
@@ -2757,46 +2763,40 @@ Import a **Cardano-Node** dashboard
 ![Cardano-node dashboard](../../../.gitbook/assets/cardano-node-grafana.png)
 
 {% hint style="success" %}
-Congratulations. Prometheus and Grafana are working.
+Congratulations. You're basically done. More great operational and maintenance tips below.
 {% endhint %}
 
 ## 👏 17. Thank yous, Telegram and reference material
 
-### 😁 17.1 Thank yous
-
-Thanks to all 11000 of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
-
-### \*\*\*\*💬 17**.2 Telegram Chat Channel**
-
- Hang out and chat with our stake pool community at [https://t.me/coincashew](https://t.me/coincashew)
-
-### 😊 17.3 Donation Tip Jar
+### 😊 17.1 Donation Tip Jar
 
 {% hint style="success" %}
 Did you find our guide useful? Let us know with a tip and we'll keep updating it. 🙏 🚀 
+
+It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
 {% endhint %}
 
-We sincerely appreciate all [donations](../../../contact-us/donations.md). 😁 Thank you for supporting Cardano and us! 
+Thank you for supporting Cardano and us! Please use the below cointr.ee link. 😊 
 
-![Cardano Tip Jar](../../../.gitbook/assets/ada-shelley-qr.png)
+{% embed url="https://cointr.ee/coincashew" %}
 
-```text
-addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
-```
+### 😁 17.2 Thank yous
 
-or visit the donation address on[ ADAScan's block explorer](https://adascan.net/address/addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q/).
+Thanks to all 11000 of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
 
-{% embed url="https://adascan.net/address/addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q/" %}
+### \*\*\*\*💬 17**.3 Telegram Chat Channel**
+
+ Hang out and chat with our stake pool community at [https://t.me/coincashew](https://t.me/coincashew)
 
 ### 🙃 17.4 Contributors, Donators and Friendly Stake Pools of CoinCashew
 
 #### ✨ Contributors to the Guide
 
+* 👏 Antonie of CNT for being awesomely helpful with Youtube content and in telegram.
 * 👏 Special thanks to Kaze-Stake for the pull requests and automatic script contributions.
 * 👏 The Legend of ₳da \[TLOA\] for translating this guide to Spanish.
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
-* 👏 Antonie of CNT for being awesomely helpful with Youtube content and in telegram.
 
 #### 💸 Tip Jar Donators
 
@@ -2804,16 +2804,17 @@ or visit the donation address on[ ADAScan's block explorer](https://adascan.net/
 * 😊 DEW
 * 😊 GROW
 * 😊 Leonardo
+* 😊 YOU?! [Hit us up.](https://cointr.ee/coincashew)
 
 #### 🚀CoinCashew's Preferred Stake Pools
 
+* 🌟 CNT
 * 🌟 OMEGA \| CODEX
 * 🌟 TLOA
 * 🌟 KAZE
 * 🌟 BEBOP
 * 🌟 DEW
 * 🌟 GROW
-* 🌟 CNT
 
 ### 📚 17.5 Reference Material
 
@@ -3755,4 +3756,12 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 ```
 {% endtab %}
 {% endtabs %}
+
+## 🚀 20. Onwards...
+
+{% hint style="success" %}
+Did you find our guide useful? Let us know with a tip and we'll keep updating it. 🙏 🚀 
+
+It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
+{% endhint %}
 
