@@ -5,7 +5,7 @@ description: Quick steps to secure your node.
 # How to Harden Ubuntu Server
 
 {% hint style="success" %}
-Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
+Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏
 {% endhint %}
 
 ## 🧙♂ Create a non-root user with sudo privileges
@@ -83,7 +83,7 @@ ChallengeResponseAuthentication no
 Locate **PasswordAuthentication** update to no
 
 ```text
-PasswordAuthentication no 
+PasswordAuthentication no
 ```
 
 Locate **PermitRootLogin** and update to no
@@ -123,7 +123,7 @@ ssh cardano@server.ip.address
 ```
 
 {% hint style="info" %}
-Alternatively, you might need to use 
+Alternatively, you might need to use
 
 ```bash
 ssh -i <path to your SHH_key_name.pub> cardano@server.ip.address
@@ -176,7 +176,7 @@ sudo apt install libpam-google-authenticator -y
 To make SSH use the Google Authenticator PAM module, edit the `/etc/pam.d/sshd` file:
 
 ```text
-sudo nano /etc/pam.d/sshd 
+sudo nano /etc/pam.d/sshd
 ```
 
 Add the follow line:
@@ -191,7 +191,7 @@ Now you need to restart the `sshd` daemon using:
 sudo systemctl restart sshd.service
 ```
 
-Modify `/etc/ssh/sshd_config` 
+Modify `/etc/ssh/sshd_config`
 
 ```text
 sudo nano /etc/ssh/sshd_config
@@ -244,7 +244,7 @@ sudo nano /etc/fstab
 Insert the following line to the bottom of the file and save/close.
 
 ```text
-tmpfs	/run/shm	tmpfs	ro,noexec,nosuid	0 0
+tmpfs    /run/shm    tmpfs    ro,noexec,nosuid    0 0
 ```
 
 Reboot the node in order for changes to take effect.
@@ -280,7 +280,7 @@ logpath = /var/log/auth.log
 maxretry = 3
 ```
 
-Save/close file. 
+Save/close file.
 
 Restart fail2ban for settings to take effect.
 
@@ -306,7 +306,7 @@ ufw enable
 ufw status numbered
 ```
 
-Confirm the settings are in effect. 
+Confirm the settings are in effect.
 
 > ```csharp
 >      To                         Action      From
@@ -330,17 +330,17 @@ ss -tulpn
 
 ## 🚀 References
 
-{% embed url="https://medium.com/@BaneBiddix/how-to-harden-your-ubuntu-18-04-server-ffc4b6658fe7" %}
+{% embed url="https://medium.com/@BaneBiddix/how-to-harden-your-ubuntu-18-04-server-ffc4b6658fe7" caption="" %}
 
-{% embed url="https://linux-audit.com/ubuntu-server-hardening-guide-quick-and-secure/" %}
+{% embed url="https://linux-audit.com/ubuntu-server-hardening-guide-quick-and-secure/" caption="" %}
 
-{% embed url="https://www.digitalocean.com/community/tutorials/how-to-harden-openssh-on-ubuntu-18-04" %}
+{% embed url="https://www.digitalocean.com/community/tutorials/how-to-harden-openssh-on-ubuntu-18-04" caption="" %}
 
-{% embed url="https://ubuntu.com/tutorials/configure-ssh-2fa\#1-overview" %}
+{% embed url="https://ubuntu.com/tutorials/configure-ssh-2fa\#1-overview" caption="" %}
 
 [https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3\#file-ubuntu-hardening-md](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3#file-ubuntu-hardening-md)
 
-{% embed url="https://www.lifewire.com/harden-ubuntu-server-security-4178243" %}
+{% embed url="https://www.lifewire.com/harden-ubuntu-server-security-4178243" caption="" %}
 
-{% embed url="https://www.ubuntupit.com/best-linux-hardening-security-tips-a-comprehensive-checklist/" %}
+{% embed url="https://www.ubuntupit.com/best-linux-hardening-security-tips-a-comprehensive-checklist/" caption="" %}
 

@@ -8,26 +8,24 @@
 
 ![](../../../.gitbook/assets/git1.png)
 
-4. Enter your file name as **poolMetaData.json** and paste in your **json** content.
+1. Enter your file name as **poolMetaData.json** and paste in your **json** content.
 
 ![](../../../.gitbook/assets/git2.png)
 
-5. Click **Commit new file**
+1. Click **Commit new file**
 
 ![](../../../.gitbook/assets/git3.png)
 
-6. Click your new file's name
-
-7. Click on **Raw button**
-
-8. Copy the URL into your clipboard
+1. Click your new file's name
+2. Click on **Raw button**
+3. Copy the URL into your clipboard
 
 > Example: [https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json](https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json)
 
-9. The URL must be shorter than 64 characters. Use [https://tinyurl.com/](https://tinyurl.com/) to shorten it.
+1. The URL must be shorter than 64 characters. Use [https://tinyurl.com/](https://tinyurl.com/) to shorten it.
 
 > Example:  
 > [https://tinyurl.com/MPNpooldata](https://tinyurl.com/MPNpooldata)
 
-10. Use this tinyurl URL`--metadata-url` in your stakepool registration transaction.
+1. Use this tinyurl URL`--metadata-url` in your stakepool registration transaction.
 

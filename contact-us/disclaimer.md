@@ -5,15 +5,15 @@ description: 'By visiting this website, CoinCashew, you agree to the following t
 # Disclaimer
 
 {% hint style="warning" %}
-Education is your best investment. 
+Education is your best investment.
 
 Please do your own due diligence.
 
-Pricing can be volatile. 
+Pricing can be volatile.
 
-Use of this website does not consistent financial, tax, or legal advice. 
+Use of this website does not consistent financial, tax, or legal advice.
 
-You agree to take all responsibility or liability for your actions and decisions. 
+You agree to take all responsibility or liability for your actions and decisions.
 
 Anything presented, stated, allude to should not be considered as an endorsement or professional expert advice.
 

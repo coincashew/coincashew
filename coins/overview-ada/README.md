@@ -56,9 +56,3 @@ description: >-
 
 ## 💰 Wallets
 
-{% page-ref page="../../wallets/browser-wallets/yoroi-wallet-cardano.md" %}
-
-{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
-
-{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
-

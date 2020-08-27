@@ -23,5 +23,3 @@ Submit a PR on github.com and [get up to speed here](contributing/).
 * [Cryptocurrency Icons](https://github.com/atomiclabs/cryptocurrency-icons) by [atomiclabs](https://github.com/atomiclabs)
 * [opnsource.guide](https://github.com/github/opensource.guide) by [github](https://github.com/github)
 
-
-

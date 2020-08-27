@@ -7,8 +7,7 @@ If you had ada in a Daedalus or Yoroi wallet when the balance snapshot was taken
 {% endhint %}
 
 1. **Install** an official wallet from [Cardano.org](https://staking.cardano.org/en/delegation/)
-
-* Choice of **Daedalus** or **Yoroi**
+2. Choice of **Daedalus** or **Yoroi**
 
 {% hint style="info" %}
 Yoroi will be the quickest choice and is a lightweight wallet that runs in your browser or mobile phone.
@@ -18,11 +17,9 @@ For this example, we will delegate with Yoroi.
 
 ![](../../.gitbook/assets/ss.PNG)
 
-2. **Install** Yoroi from your app store
-
-3. Click on the **Delegation \(Simple\) tab**
-
-4. Search for a Stake Pool you would like to delegate to.
+1. **Install** Yoroi from your app store
+2. Click on the **Delegation \(Simple\) tab**
+3. Search for a Stake Pool you would like to delegate to.
 
 {% hint style="info" %}
 Easily find and browse Stake Pools at [PoolTool ](https://pooltool.io/)or [ADApools.org](https://adapools.org/)
@@ -30,13 +27,10 @@ Easily find and browse Stake Pools at [PoolTool ](https://pooltool.io/)or [ADApo
 Or watch this youtube video on [How to choose a good Cardano stake pool by Kaizen Crypto.](https://www.youtube.com/watch?v=tgxHfQy7CnU)
 {% endhint %}
 
-5. Click **Delegate**
-
-6. Enter in your spending password
-
-7. Click **DELEGATE** button
-
-8. 🎉 Congratulations. Rewards will start showing up in 2 days, or epochs. Check your rewards on the **Dashboard tab**.
+1. Click **Delegate**
+2. Enter in your spending password
+3. Click **DELEGATE** button
+4. 🎉 Congratulations. Rewards will start showing up in 2 days, or epochs. Check your rewards on the **Dashboard tab**.
 
 ## 🔎 Monitoring your rewards
 

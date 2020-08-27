@@ -6,8 +6,6 @@ description: Simple two step process to buying Cardano.
 
 ## ​ 🔥 1. Get some money into crypto <a id="1-get-some-money-into-crypto"></a>
 
-{% page-ref page="../../exchanges/guide-where-to-get-crypto.md" %}
-
 ## ​ 🔄 2. Convert on Exchange <a id="2-convert-on-exchange"></a>
 
 | Site | Pairs | Location | KYC Required? |

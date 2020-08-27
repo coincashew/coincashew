@@ -14,7 +14,7 @@ Install chrony.
 sudo apt-get install chrony
 ```
 
- Update the config file located in `/etc/chrony/chrony.conf` with the following 
+Update the config file located in `/etc/chrony/chrony.conf` with the following
 
 ```text
 pool time.google.com       iburst minpoll 1 maxpoll 2 maxsources 3

@@ -6,7 +6,7 @@ From the GitHub Manual of Style, which this style guide inherits from:
 >
 > In other words, the way we write is just as important as the way we design. Consider these things when writing copy.
 
-### 💡 Content principles
+## 💡 Content principles
 
 All written content should follow these principles:
 
@@ -16,7 +16,7 @@ All written content should follow these principles:
 
 Content should maintain a light-hearted, but wise \(think classy, not overly excited\) tone. Open source is fun! Readers should feel inspired, not discouraged, by the tone of your writing, and they should trust you to help them get started.
 
-### 👩💻 Mentions
+## 👩💻 Mentions
 
 When referring to people that use GitHub, use @mentions of their username instead of their full name.
 

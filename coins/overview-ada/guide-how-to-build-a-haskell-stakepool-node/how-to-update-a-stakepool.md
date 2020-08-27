@@ -1,7 +1,7 @@
 # How to update a Stakepool
 
 {% hint style="success" %}
-Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
+Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏
 {% endhint %}
 
 ## 📡 1. How to perform an update
@@ -53,13 +53,13 @@ killall cardano-node
 {% endtab %}
 
 {% tab title="relaynode1" %}
-```
+```text
 killall cardano-node
 ```
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl stop cardano-node
 ```
 {% endtab %}
@@ -85,14 +85,14 @@ cd $NODE_HOME
 {% endtab %}
 
 {% tab title="relaynode1" %}
-```
+```text
 cd $NODE_HOME
 ./startRelayNode1.sh
 ```
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl start cardano-node
 ```
 {% endtab %}
@@ -133,13 +133,13 @@ killall cardano-node
 {% endtab %}
 
 {% tab title="relaynode1" %}
-```
+```text
 killall cardano-node
 ```
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl stop cardano-node
 ```
 {% endtab %}
@@ -187,7 +187,7 @@ cd $NODE_HOME
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl start cardano-node
 ```
 {% endtab %}

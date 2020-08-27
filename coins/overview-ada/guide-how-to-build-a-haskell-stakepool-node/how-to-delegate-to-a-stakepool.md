@@ -16,7 +16,7 @@ cardano-cli shelley stake-address registration-certificate \
 
 You need to find the **slot tip** of the blockchain.
 
-```
+```text
 currentSlot=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
@@ -146,7 +146,7 @@ cardano-cli shelley stake-address delegation-certificate \
 
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
-```
+```text
 currentSlot=$(cardano-cli shelley query tip --testnet-magic 42 | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
