@@ -15,7 +15,7 @@ Yoroi will be the quickest choice and is a lightweight wallet that runs in your 
 
 For this example, we will delegate with Yoroi.
 
-![](../../.gitbook/assets/ss.PNG)
+![](.gitbook/assets/ss.PNG)
 
 1. **Install** Yoroi from your app store
 2. Click on the **Delegation \(Simple\) tab**

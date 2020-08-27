@@ -6,15 +6,15 @@
 2. Create a **new repository** with a short name
 3. Click Get started by "**creating a new file**"
 
-![](../../../.gitbook/assets/git1.png)
+![](../.gitbook/assets/git1.png)
 
 1. Enter your file name as **poolMetaData.json** and paste in your **json** content.
 
-![](../../../.gitbook/assets/git2.png)
+![](../.gitbook/assets/git2.png)
 
 1. Click **Commit new file**
 
-![](../../../.gitbook/assets/git3.png)
+![](../.gitbook/assets/git3.png)
 
 1. Click your new file's name
 2. Click on **Raw button**

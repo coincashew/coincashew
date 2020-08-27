@@ -16,7 +16,7 @@
 
 
 
-{% page-ref page="coins/overview-ada/guide-how-to-stake-ada.md" %}
+{% page-ref page="guide-how-to-stake-ada.md" %}
 
 
 

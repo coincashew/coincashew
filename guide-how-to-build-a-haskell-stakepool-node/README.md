@@ -231,7 +231,7 @@ A block producer node will be configured with various key-pairs needed for block
 A relay node will not be in possession of any keys and will therefore be unable to produce blocks. It will be connected to its block-producing node, other relays and external nodes.
 {% endhint %}
 
-![](../../../.gitbook/assets/producer-relay-diagram.png)
+![](../.gitbook/assets/producer-relay-diagram.png)
 
 {% hint style="success" %}
 For the purposes of this guide, we will be building **two nodes** on two **separate servers**. One node will be designated the **block producer node**, and the other will be the relay node, named **relaynode1**.
@@ -1620,7 +1620,7 @@ Don't forget to restart your relay nodes after every time you fetch the topology
 5. Fill in your pool name and pool URL if you have one.
 6. Fill in your **Private Nodes** and **Your Relays** as follows.
 
-![](../../../.gitbook/assets/ada-relay-setup-mainnet.png)
+![](../.gitbook/assets/ada-relay-setup-mainnet.png)
 
 {% hint style="info" %}
 You can find your public IP with [https://www.whatismyip.com/](https://www.whatismyip.com/) or
@@ -1744,7 +1744,7 @@ As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pul
 \*\*\*\*🔥 **Critical step:** In order to be a functional stake pool ready to mint blocks, you must see the **TXs processed** number increasing. If not, review your topology file and ensure your relay buddies are well connected and ideally, minted some blocks.
 {% endhint %}
 
-![](../../../.gitbook/assets/ada-tx-processed.png)
+![](../.gitbook/assets/ada-tx-processed.png)
 
 {% hint style="danger" %}
 \*\*\*\*🛑 **Critical Reminde**r: The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer. Namely, the following three files.
@@ -1964,7 +1964,7 @@ killall cardano-node
 Grafana [dashboard ID 11074](https://grafana.com/grafana/dashboards/11074) is an excellent overall systems health visualizer.
 {% endhint %}
 
-![Grafana system health dashboard](../../../.gitbook/assets/grafana.png)
+![Grafana system health dashboard](../.gitbook/assets/grafana.png)
 
 Import a **Cardano-Node** dashboard
 
@@ -2764,7 +2764,7 @@ Import a **Cardano-Node** dashboard
 }
 ```
 
-![Cardano-node dashboard](../../../.gitbook/assets/cardano-node-grafana.png)
+![Cardano-node dashboard](../.gitbook/assets/cardano-node-grafana.png)
 
 {% hint style="success" %}
 Congratulations. You're basically done. More great operational and maintenance tips below.

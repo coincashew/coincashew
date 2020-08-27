@@ -7,7 +7,7 @@ description: >-
 
 # Cardano: ADA
 
-## ![](../../.gitbook/assets/ada.png) General Data
+## ![](.gitbook/assets/ada.png) General Data
 
 | Site | Title |
 | :--- | :--- |
