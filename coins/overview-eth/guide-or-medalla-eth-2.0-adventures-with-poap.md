@@ -56,17 +56,13 @@ Did you know each time you propose a block with a different client, your block w
 
 {% tab title="Nimbus" %}
 {% page-ref page="guide-how-to-stake-on-eth2-with-nimbus.md" %}
-
-{% hint style="warning" %}
-**Warning**: Nimbus may have troubles working. Make sure to pull in the latest source code updates and re-build the client.
-{% endhint %}
 {% endtab %}
 
 {% tab title="Lodestar" %}
 {% page-ref page="guide-how-to-stake-on-eth2-with-lodestar.md" %}
 
 {% hint style="warning" %}
-**Warning**: Lodestar may have troubles working. Make sure to pull in the latest source code updates and re-build the client.
+**Warning**: Lodestar may have troubles proposing blocks and attesting. Make sure to pull in the latest source code updates and re-build the client.
 {% endhint %}
 {% endtab %}
 {% endtabs %}

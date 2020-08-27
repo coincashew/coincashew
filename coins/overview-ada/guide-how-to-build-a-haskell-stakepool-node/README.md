@@ -9,8 +9,8 @@ description: >-
 
 ## 🎉 ∞ Pre-Announcements
 
-{% hint style="success" %}
-Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
+{% hint style="info" %}
+Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
 {% endhint %}
 
 {% hint style="success" %}
@@ -35,7 +35,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 🛑 **Before continuing this guide, you must satisfy the above skills requirements.** 🚧 
 {% endhint %}
 
-### 🎗 Minimum Node Hardware Requirements
+### 🎗 Minimum Stake Pool Hardware Requirements
 
 * **Two separate servers:** 1 for block producer node, 1 for relay node
 * **One air-gapped offline machine \(cold environment\)**
@@ -48,7 +48,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **Power:** Reliable electrical power
 * **ADA balance:** at least 505 ADA
 
-### 🏋♂ Recommended Node Futureproof Hardware Setup
+### 🏋♂ Recommended Future-proof Stake Pool Hardware Setup
 
 * **Three separate servers:** 1 for block producer node, 2 for relay nodes
 * **One air-gapped offline machine \(cold environment\)**
@@ -61,9 +61,9 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **Power:** Reliable electrical power with UPS
 * **ADA balance:** more pledge is better, to be determined by **a0**, the pledge influence factor
 
-### 🔓 Recommended Node Security
+### 🔓 Recommended Stake Pool Security
 
-If you need ideas on how to harden your server node, refer to
+If you need ideas on how to harden your stake pool's nodes, refer to
 
 {% page-ref page="how-to-harden-ubuntu-server.md" %}
 
@@ -500,6 +500,8 @@ Find the kesPeriod by dividing the slot tip number by the slotsPerKESPeriod.
 ```bash
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 echo kesPeriod: ${kesPeriod}
+startKesPeriod=$(( ${kesPeriod} - 1 ))
+echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
 {% endtabs %}
@@ -508,7 +510,11 @@ With this calculation, you can generate a operational certificate for your pool.
 
 Copy **kes.vkey** to your **cold environment**. 
 
-Change the **kesPeriod** value accordingly.
+Change the **startKesPeriod** value accordingly.
+
+{% hint style="warning" %}
+As of [release 1.19.0](https://github.com/input-output-hk/cardano-node/issues/1742), the starting KES period value must be current kesPeriod - 1
+{% endhint %}
 
 {% hint style="info" %}
 Stake pool operators must provide an operational certificate to verify that the pool has the authority to run. The certificate includes the operator’s signature, and includes key information about the pool \(addresses, keys, etc.\). Operational certificates represent the link between the operator’s offline key and their operational key.
@@ -521,7 +527,7 @@ cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file $HOME/cold-keys/node.skey \
     --operational-certificate-issue-counter $HOME/cold-keys/node.counter \
-    --kes-period <kesPeriod> \
+    --kes-period <startKesPeriod> \
     --out-file node.cert
 ```
 {% endtab %}
@@ -2033,7 +2039,7 @@ Import a **Cardano-Node** dashboard
       "pluginVersion": "7.0.3",
       "targets": [
         {
-          "expr": "(cardano_node_Forge_metrics_remainingKESPeriods_int * 6 / 24 / 6)",
+          "expr": "(cardano_node_Forge_metrics_remainingKESPeriods_int * 129600 / (60 * 60 * 24))",
           "instant": true,
           "interval": "",
           "legendFormat": "Days till renew",
@@ -2770,10 +2776,12 @@ Congratulations. You're basically done. More great operational and maintenance t
 
 ### 😊 17.1 Donation Tip Jar
 
-{% hint style="success" %}
-Did you find our guide useful? Let us know with a tip and we'll keep updating it. 🙏 🚀 
+{% hint style="info" %}
+Did you find our guide useful? Let us know with a tip and we'll keep updating it. Bonus points if you use [section 18.9's instructions](./#18-9-send-a-simple-transaction-example). 🙏 🚀 
 
-It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
+It really energizes us to keep creating the best crypto guides. 
+
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
 {% endhint %}
 
 Thank you for supporting Cardano and us! Please use the below cointr.ee link. 😊 
@@ -2844,21 +2852,33 @@ You are required to regenerate the hot keys and issue a new operational certific
 **Mainnet**: KES keys will be valid for 120 rotations or 90 days
 {% endhint %}
 
-**Updating the KES Period**: When it's time to issue a new operational certificate, run the following.
+**Updating the KES Period**: When it's time to issue a new operational certificate, run the following to find the starting KES period.
 
 {% tabs %}
-{% tab title="air-gapped offline machine" %}
+{% tab title="block producer node" %}
 ```bash
 cd $NODE_HOME
 slotNo=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
+startKesPeriod=$(( ${kesPeriod} - 1 ))
+echo startKesPeriod: ${startKesPeriod}
+```
+{% endtab %}
+{% endtabs %}
+
+Create the new `node.cert` file with the following command. Update `<startKesPeriod>` with the value from above.
+
+{% tabs %}
+{% tab title="air-gapped offline machine" %}
+```bash
+cd $NODE_HOME
 chmod u+rwx $HOME/cold-keys
 cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file $HOME/cold-keys/node.skey \
     --operational-certificate-issue-counter $HOME/cold-keys/node.counter \
-    --kes-period ${kesPeriod} \
+    --kes-period <startKesPeriod> \
     --out-file node.cert
 chmod a-rwx $HOME/cold-keys
 ```
@@ -3757,7 +3777,7 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 {% endtab %}
 {% endtabs %}
 
-## 🚀 20. Onwards...
+## 🚀 20. Onwards and upwards...
 
 {% hint style="success" %}
 Did you find our guide useful? Let us know with a tip and we'll keep updating it. 🙏 🚀 

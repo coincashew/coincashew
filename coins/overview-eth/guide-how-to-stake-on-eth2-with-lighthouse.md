@@ -162,8 +162,6 @@ Your eth1 node is fully sync'd when these events occur.
 * **`Nethermind:`** `No longer syncing Old Headers`
 {% endhint %}
 
-\`\`
-
 ## ⚙ 2. Obtain Goerli test network ETH
 
 Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a request for ETH in the **`-request-goerli-eth channel`**
