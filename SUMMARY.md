@@ -6,7 +6,7 @@
     * [Contributor Covenant Code of Conduct](contact-us/contributing/contributor-covenant-code-of-conduct.md)
     * [Style Guide](contact-us/contributing/style-guide.md)
   * [Disclaimer](contact-us/disclaimer.md)
-* [Guide: How to build a Cardano Stake Pool](guide-how-to-build-a-haskell-stakepool-node/README.md)
+* [カルダノステークプール構築手順](guide-how-to-build-a-haskell-stakepool-node/README.md)
   * [How to Harden Ubuntu Server](guide-how-to-build-a-haskell-stakepool-node/how-to-harden-ubuntu-server.md)
   * [How to setup chrony](guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md)
   * [How to upload poolMetaData.json to Github](guide-how-to-build-a-haskell-stakepool-node/how-to-upload-poolmetadata.json-to-github.md)
