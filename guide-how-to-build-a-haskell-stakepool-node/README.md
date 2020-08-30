@@ -7,17 +7,17 @@ description: >-
 
 # カルダノステークプール構築手順
 
-## 🎉 ∞ Pre-Announcements
+## 🎉 ∞ お知らせ
 
 {% hint style="info" %}
-Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏
+このマニュアルは「CoinCashew」制作のマニュアルを許可を経て、日本語翻訳しております。
 {% endhint %}
 
 {% hint style="success" %}
-As of August 20, 2020, this guide is written for **mainnet** with **release v.1.19.0** 😁
+このマニュアルはCardano-nodeバージョン1.19.0を用いて作成されています。
 {% endhint %}
 
-## 🏁 0. Prerequisites
+## 🏁 0. 前提条件
 
 ### 🧙♂ Mandatory skills for stake pool operators
 
