@@ -1474,23 +1474,23 @@ cardano-cli shelley query ledger-state --mainnet | grep publicKey | grep $(cat s
 ## ⚙ 14. トポロジーファイルを構成する。
 
 {% hint style="info" %}
-Shelley has been launched without peer-to-peer \(p2p\) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
+Cardano-nodeバージョン1.19.0ではP2P(ピア・ツー・ピア)ノードを自動検出しないため、手動でトポロジーを構成する必要があります。この手順をスキップすると生成したブロックがブロックチェーン外で孤立するため、必須の設定項目となります。
 {% endhint %}
 
-There are two ways to configure your topology files.
+トポロジーファイルを構成するには、２つの方法があります。
 
-* **topologyUpdate.sh method** is automated and works after 4 hours. 
-* **Pooltool.io method** gives you control over who your nodes connect to.
+* **topologyUpdate.shを用いる場合は**4時間毎に自動でファイルを構成します。 
+* **Pooltool.ioを用いる場合は** 接続先を選択できる代わりに、手動で構成する必要があります。
 
 {% tabs %}
-{% tab title="topologyUpdater.sh Method" %}
-### 🚀 Publishing your Relay Node with topologyUpdater.sh
+{% tab title="topologyUpdater.shで構成する場合" %}
+### 🚀 topologyUpdater.shを使用してリレーノードを公開する
 
 {% hint style="info" %}
-Credits to [GROWPOOL](https://twitter.com/PoolGrow) for this addition and credits to [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) on creating this process.
+この方法を提案して頂いた [GROWPOOL](https://twitter.com/PoolGrow) および [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) へのクレジット表記。
 {% endhint %}
 
-Create the `topologyUpdater.sh` script which publishes your node information to a topology fetch list.
+ノード情報をトポロジーフェッチリストに公開するスクリプト「`topologyUpdater.sh`」を作成します。
 
 ```bash
 ###
@@ -1501,7 +1501,7 @@ cat > $NODE_HOME/topologyUpdater.sh << EOF
 # shellcheck disable=SC2086,SC2034
 
 USERNAME=$(whoami)
-CNODE_PORT=6000 # must match your relay node port as set in the startup command
+CNODE_PORT=6000 # 起動スクリプトで指定したリレーノードのポート番号を記入
 CNODE_HOSTNAME="CHANGE ME"  # optional. must resolve to the IP you are requesting from
 CNODE_BIN="/usr/local/bin"
 CNODE_HOME=$NODE_HOME
@@ -1535,7 +1535,7 @@ curl -s "https://api.clio.one/htopology/v1/?port=\${CNODE_PORT}&blockNo=\${block
 EOF
 ```
 
-Add permissions and run the updater script.
+権限を追加し、「topologyUpdater.sh」を実行します。
 
 ```bash
 ###
@@ -1546,15 +1546,16 @@ chmod +x topologyUpdater.sh
 ./topologyUpdater.sh
 ```
 
-When the `topologyUpdater.sh` runs successfully, you will see
+`topologyUpdater.sh`が正常に実行された場合、以下の表示表示されます。
 
 > `{ "resultcode": "201", "datetime":"2020-07-28 01:23:45", "clientIp": "1.2.3.4", "iptype": 4, "msg": "nice to meet you" }`
 
 {% hint style="info" %}
-Every time the script runs and updates your IP, a log is created in **`$NODE_HOME/logs`**
+スクリプトが実行されIPが更新されるたびに以下の場所にログが作成されます。 **`$NODE_HOME/logs`**
 {% endhint %}
 
-Add a crontab job to automatically run `topologyUpdater.sh` every hour on the 22nd minute. You can change the 22 value to your own preference.
+crontabジョブを追加し、「topologyUpdater.sh」が自動的に実行されるように設定します。
+以下のコードは毎時22分に実行されるように指定しています。(自由に設定可能です)
 
 ```bash
 ###
@@ -1568,13 +1569,13 @@ rm crontab-fragment.txt
 ```
 
 {% hint style="success" %}
-After four hours and four updates, your node IP will be registered in the topology fetch list.
+4時間で4回更新された後に、ノードIPがトポロジーフェッチリストに登録されます。
 {% endhint %}
 
-### 🤹♀ Update your relay node topology files
+### 🤹♀ リレーノードトポロジーファイルを更新する
 
 {% hint style="danger" %}
-Complete this section after **four hours** when your relay node IP is properly registered.
+リレーノードIPが正しく登録されてからこのセクションを実行して下さい。
 {% endhint %}
 
 Create `relay-topology_pull.sh` script which fetches your relay node buddies and updates your topology file. **Update with your block producer's public IP address.**
@@ -1745,13 +1746,13 @@ As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pul
 {% endtabs %}
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **Critical step:** In order to be a functional stake pool ready to mint blocks, you must see the **TXs processed** number increasing. If not, review your topology file and ensure your relay buddies are well connected and ideally, minted some blocks.
+\*\*\*\*🔥 **重要な確認事項:** ブロックを生成するステークプールになるためには、「TXs processed」が増加していることを確認する必要があります。万一、増加していない場合にはトポロジーファイルの内容を再確認して下さい。「peers」数はリレーノードが他ノードと接続している数を表しています。
 {% endhint %}
 
 ![](../.gitbook/assets/ada-tx-processed.png)
 
 {% hint style="danger" %}
-\*\*\*\*🛑 **Critical Reminde**r: The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer. Namely, the following three files.
+\*\*\*\*🛑 **注意事項**r: ブロックプロデューサーノードを実行するためには、以下の３つのファイルが必要です。このファイルが揃っていない場合や起動時に指定されていない場合はブロックが生成できません。
 
 ```bash
 ###
@@ -1762,16 +1763,16 @@ VRF=\${DIRECTORY}/vrf.skey
 CERT=\${DIRECTORY}/node.cert
 ```
 
-**All other keys must remain offline in your air-gapped offline cold environment.**
+**上記以外のキーファイルは、エアギャップオフライン環境で保管する必要があります**
 {% endhint %}
 
 {% hint style="success" %}
-Congratulations! Your stake pool is registered and ready to produce blocks.
+おめでとうございます！ステークプールが登録され、ブロックを作成する準備が出来ました。
 {% endhint %}
 
-## 🎇 15. Checking Stake pool Rewards
+## 🎇 15. ステークプール報酬を確認する
 
-After the epoch is over and assuming you successfully minted blocks, check with this:
+ブロックが正常に生成できた後、エポック終了後に報酬を確認しましょう！
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -1783,13 +1784,14 @@ cardano-cli shelley query stake-address-info \
 {% endtab %}
 {% endtabs %}
 
-## 🔮 16. Setup Prometheus and Grafana Dashboard
+## 🔮 16. 監視ツール「Prometheus」および「Grafana Dashboard」のセットアップ
 
-Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
+プロメテウスはターゲットに指定したメトリックHTTPエンドポイントをスクレイピングし、情報を収集する監視ツールです。[オフィシャルドキュメントはこちら](https://prometheus.io/docs/introduction/overview/) グラファナは収集されたデータを視覚的に表示させるダッシュボードツールです。
 
-### 🐣 16.1 Installation
+### 🐣 16.1 インストール
 
-Install prometheus and prometheus node exporter.
+「prometheus」および「prometheus node exporter」をインストールします。
+この手順では、releynode1でprometheusとGrafana本体を稼働させ、ブロックプロデューサーノードの情報を取得する手順です。
 
 {% tabs %}
 {% tab title="relaynode1" %}
@@ -1805,7 +1807,7 @@ sudo apt-get install -y prometheus-node-exporter
 {% endtab %}
 {% endtabs %}
 
-Install grafana.
+grafanaをインストールします。
 
 {% tabs %}
 {% tab title="relaynode1" %}
@@ -1832,7 +1834,7 @@ sudo apt-get update && sudo apt-get install -y grafana
 {% endtab %}
 {% endtabs %}
 
-Enable services so they start automatically.
+サービスを有効にして、自動的に開始されるように設定します。
 
 {% tabs %}
 {% tab title="relaynode1" %}
@@ -1850,16 +1852,16 @@ sudo systemctl enable prometheus-node-exporter.service
 {% endtab %}
 {% endtabs %}
 
-Update **prometheus.yml** located in `/etc/prometheus/prometheus.yml`
+`/etc/prometheus/prometheus.yml`　に格納されている、「prometheus.yml」を更新します。
 
-Change the **&lt;block producer public ip address&gt;** in the following command.
+ご自身の&lt;ブロックプロデューサーIPアドレス&gt;に書き換えて、コマンドを送信してください。
 
 {% tabs %}
 {% tab title="relaynode1" %}
 ```bash
 cat > prometheus.yml << EOF
 global:
-  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  scrape_interval:     15s # 15秒ごとに取得します
 
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
@@ -1874,7 +1876,7 @@ scrape_configs:
 
     static_configs:
       - targets: ['localhost:9100']
-      - targets: ['<block producer public ip address>:12700']
+      - targets: ['<ブロックプロデューサーIPアドレス>:12700']
         labels:
           alias: 'block-producing-node'
           type:  'cardano-node'
@@ -1888,7 +1890,7 @@ sudo mv prometheus.yml /etc/prometheus/prometheus.yml
 {% endtab %}
 {% endtabs %}
 
-Finally, restart the services.
+サービスを起動します。
 
 {% tabs %}
 {% tab title="relaynode1" %}
@@ -1900,7 +1902,7 @@ sudo systemctl restart prometheus-node-exporter.service
 {% endtab %}
 {% endtabs %}
 
-Verify that the services are running properly:
+サービスが正しく実行されていることを確認します。
 
 {% tabs %}
 {% tab title="relaynode1" %}
@@ -1910,7 +1912,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 {% endtab %}
 {% endtabs %}
 
-Update `${NODE_CONFIG}-config.json` config files with new `hasEKG` and `hasPrometheus` ports.
+${NODE_CONFIG}-config.jsonに新しい `hasEKG`情報と `hasPrometheus`ポート情報を更新します。　
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -1928,7 +1930,7 @@ sed -i ${NODE_CONFIG}-config.json -e "s/    12798/    12701/g" -e "s/hasEKG\": 1
 {% endtab %}
 {% endtabs %}
 
-Stop and restart your stake pool.
+ステークプールを停止してスクリプトを再起動します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -1948,33 +1950,33 @@ killall cardano-node
 {% endtab %}
 {% endtabs %}
 
-### 📶 16.2 Setting up Grafana Dashboards
+### 📶 16.2 Grafanaダッシュボードの設定
 
-1. On relaynode1, open [http://localhost:3000](http://localhost:3000) or [http://&lt;your](http://<your) relaynode1 ip address&gt;:3000 in your local browser. You may need to open up port 3000 in your router and/or firewall.
-2. Login with **admin** / **admin**
-3. Change password
-4. Click the **configuration gear** icon, then **Add data Source**
-5. Select **Prometheus**
-6. Set **Name** to **"prometheus**" . ✨ Lower case matters.
-7. Set **URL** to [http://localhost:9090](http://localhost:9090)
-8. Click **Save & Test**
-9. Click **Create +** icon &gt; **Import**
-10. Add dashboard by importing id: **11074**
-11. Click the **Load** button.
-12. Set **Prometheus** data source as "**prometheus**"
-13. Click the **Import** button.
+1. relaynode1で、ローカルブラウザから [http://localhost:3000](http://localhost:3000) または [http://&lt;your](http://<your) relaynode1 ip address&gt;:3000 を開きます。 事前に 3000番ポートを開いておく必要があります。
+2. ログイン名・PWは次のとおりです。 **admin** / **admin**
+3. パスワードを変更します。
+4. 左メニューの歯車アイコンから データソースを追加します。
+5. 「Add data source」をクリックし、「Prometheus」を選択します。
+6. 名前は **"prometheus**"とし、全て小文字であることが前提です。
+7. **URL** を [http://localhost:9090](http://localhost:9090)に設定します。
+8. **Save & Test**をクリックします。
+9. 左メニューから**Create +** iconを選択 &gt; **Import**をクリックします。
+10. id: **11074**をインポートしてダッシュボードを追加します。
+11. **Load**ボタンをクリックします。
+12. **Prometheus**データソースを"**prometheus**"にします。
+13. **Import**ボタンをクリックします。
 
 {% hint style="info" %}
-Grafana [dashboard ID 11074](https://grafana.com/grafana/dashboards/11074) is an excellent overall systems health visualizer.
+Grafana [ダッシュボードID 11074](https://grafana.com/grafana/dashboards/11074) は システム全体を把握する優れたビジュルダッシュボードです。
 {% endhint %}
 
 ![Grafana system health dashboard](../.gitbook/assets/grafana.png)
 
-Import a **Cardano-Node** dashboard
+**Cardano-Node**ダッシュボードをインポートする
 
-1. Click **Create +** icon &gt; **Import**
-2. Add dashboard by **importing via panel json. Copy the json from below.**
-3. Click the Import button.
+1.**Create +**アイコン &gt; **Import**をクリックします。
+1. **importing via panel jsonの項目に以下のソースを貼り付けます。
+2. インポートボタンをクリックします。
 
 ```bash
 {
@@ -2771,36 +2773,16 @@ Import a **Cardano-Node** dashboard
 ![Cardano-node dashboard](../.gitbook/assets/cardano-node-grafana.png)
 
 {% hint style="success" %}
-Congratulations. You're basically done. More great operational and maintenance tips below.
+おめでとうございます！これで基本的な設定は完了です。
+次の項目は、運用中の便利なコマンドや保守のヒントが書かれています。
 {% endhint %}
 
-## 👏 17. Thank yous, Telegram and reference material
-
-### 😊 17.1 Donation Tip Jar
+## 👏 17. クレジット表記
 
 {% hint style="info" %}
-Did you find our guide useful? Let us know with a tip and we'll keep updating it. Bonus points if you use [section 18.9's instructions](./#18-9-send-a-simple-transaction-example). 🙏 🚀
-
-It really energizes us to keep creating the best crypto guides.
-
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏
+このマニュアル制作に携わった全ての方に、感謝申し上げます。
+快く翻訳を承諾して頂いた、「CoinCashew」には敬意を表します。
 {% endhint %}
-
-Thank you for supporting Cardano and us! Please use the below cointr.ee link. 😊
-
-{% embed url="https://cointr.ee/coincashew" caption="" %}
-
-### 😁 17.2 Thank yous
-
-Thanks to all 11000 of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
-
-### \*\*\*\*💬 17**.3 Telegram Chat Channel**
-
-Hang out and chat with our stake pool community at [https://t.me/coincashew](https://t.me/coincashew)
-
-### 🙃 17.4 Contributors, Donators and Friendly Stake Pools of CoinCashew
-
-#### ✨ Contributors to the Guide
 
 * 👏 Antonie of CNT for being awesomely helpful with Youtube content and in telegram.
 * 👏 Special thanks to Kaze-Stake for the pull requests and automatic script contributions.
@@ -2808,27 +2790,10 @@ Hang out and chat with our stake pool community at [https://t.me/coincashew](htt
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
 
-#### 💸 Tip Jar Donators
 
-* 😊 BEBOP 
-* 😊 DEW
-* 😊 GROW
-* 😊 Leonardo
-* 😊 YOU?! [Hit us up.](https://cointr.ee/coincashew)
+### 📚 17.5 参考資料
 
-#### 🚀CoinCashew's Preferred Stake Pools
-
-* 🌟 CNT
-* 🌟 OMEGA \| CODEX
-* 🌟 TLOA
-* 🌟 KAZE
-* 🌟 BEBOP
-* 🌟 DEW
-* 🌟 GROW
-
-### 📚 17.5 Reference Material
-
-For more information and official documentation, please refer to the following links:
+公式ドキュメントおよび詳細事項は次のリンクを参照して下さい。
 
 {% embed url="https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/index.html" caption="" %}
 
@@ -2840,21 +2805,21 @@ For more information and official documentation, please refer to the following l
 
 {% embed url="https://github.com/gitmachtl/scripts" caption="" %}
 
-#### CNTools by Guild Operators
+#### ギルドオペレータ制作の「CNTools」
 
-Many pool operators have asked about how to deploy a stake pool with CNTools. The [official guide can be found here.](https://cardano-community.github.io/guild-operators/#/Scripts/cntools)
+[CNToolsの公式ガイドはこちら](https://cardano-community.github.io/guild-operators/#/Scripts/cntools)
 
-## 🛠 18. Operational and Maintenance Tips
+## 🛠 18. 運用とメンテナンス
 
-### 🤖 18.1 Updating the operational cert with a new KES Period
+### 🤖 18.1 新しいKES期間で運用証明書を更新する
 
 {% hint style="info" %}
-You are required to regenerate the hot keys and issue a new operational certificate, a process called rotating the KES keys, when the hot keys expire.
+ホットキーの有効期限が切れると、ホットキーを再作成し新しい運用証明書を発行する必要があります。
 
-**Mainnet**: KES keys will be valid for 120 rotations or 90 days
+**メインネット**では120ローテーションまたは90日間有効です。
 {% endhint %}
 
-**Updating the KES Period**: When it's time to issue a new operational certificate, run the following to find the starting KES period.
+**kesPeriodの更新**: 新しい運用証明書を発行するときは、次を実行して「startKesPeriod」を見つけます
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -2869,7 +2834,7 @@ echo startKesPeriod: ${startKesPeriod}
 {% endtab %}
 {% endtabs %}
 
-Create the new `node.cert` file with the following command. Update `<startKesPeriod>` with the value from above.
+次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の<"startKesPeriod">に入力してからコマンドを送信してください。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -2888,11 +2853,11 @@ chmod a-rwx $HOME/cold-keys
 {% endtabs %}
 
 {% hint style="danger" %}
-Copy **node.cert** back to your ブロックプロデューサーノード.
+**node.cert** をブロックプロデューサーノードにコピーします。
 {% endhint %}
 
 {% hint style="info" %}
-\*\*\*\*✨ **Tip:** With your hot keys created, you can remove access to the cold keys for improved security. This protects against accidental deletion, editing, or access.
+\*\*\*\*✨ **ヒント:** ホットキーを作成したら、コールドキーへのアクセス件を変更しセキュリティを向上させることができます。これによって誤削除、誤った編集などから保護できます。
 
 To lock,
 
@@ -2907,11 +2872,11 @@ chmod u+rwx $HOME/cold-keys
 ```
 {% endhint %}
 
-### 🔥 18.2 Resetting the installation
+### 🔥 18.2 インストールのリセット
 
-Want a clean start? Re-using existing server? Forked blockchain?
+もう一度はじめからやり直したいですか？次の方法でやり直すことができます。
 
-Delete git repo, and then rename your previous `$NODE_HOME` and `cold-keys` directory \(or optionally, remove\). Now you can start this guide from the beginning again.
+git repoを削除してから `$NODE_HOME` と `cold-keys` ディレクトリの名前を変更します \(またはオプションで削除します\)
 
 ```bash
 rm -rf $HOME/git/cardano-node/ $HOME/git/libsodium/
@@ -2919,22 +2884,22 @@ mv $NODE_HOME $(basename $NODE_HOME)_backup_$(date -I)
 mv $HOME/cold-keys $HOME/cold-keys_backup_$(date -I)
 ```
 
-### 🌊 18.3 Resetting the databases
+### 🌊 18.3 データベースのリセット
 
-Corrupted or stuck blockchain? Delete all db folders.
+ブロックチェーンファイルの破損やノードがスタックして動かない場合、dbファイルを削除することで初めから同期をやり直すことができます。
 
 ```bash
 cd $NODE_HOME
 rm -rf db
 ```
 
-### 📝 18.4 Changing the pledge, fee, margin, etc.
+### 📝 18.4 誓約や固定費、Marginの変更手順
 
 {% hint style="info" %}
-Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resubmit your stake pool registration certificate.
+誓約、固定費、Margin、リレー情報、メタ情報を変更する場合は、登録証明書の再送を行います。
 {% endhint %}
 
-Find the minimum pool cost.
+minPoolCostを出力します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -2946,10 +2911,10 @@ echo minPoolCost: ${minPoolCost}
 {% endtabs %}
 
 {% hint style="info" %}
-minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
+minPoolCost は340000000 lovelace または 340 ADAです。 `--pool-cost`は最低でもこの値以上に指定します。
 {% endhint %}
 
-If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. Refer to [section 9 for information.](./#9-register-your-stakepool) If you're verifying your stake pool ID, the hash is already provided to you by pooltool.
+poolMetaData.jsonを変更する場合は、メタデータファイルのハッシュを再計算し更新された、poolMetaData.jsonをWEBサーバへアップロードしてください。 詳細については [項目9](./#9-register-your-stakepool)を参照して下さい。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -2959,12 +2924,12 @@ cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.j
 {% endtab %}
 {% endtabs %}
 
-Update the below registration-certificate transaction with your desired settings.
+登録証明書トランザクションを作成します。
 
-If you have **multiple relay nodes,** [**refer to section 12**](./#12-register-your-stake-pool) and change your parameters appropriately.
+複数のリレーノードを設定する場合は [**項目12**](./#12-register-your-stake-pool) を参考にパラメーターを指定して下さい。
 
 {% hint style="warning" %}
-**metadata-url** must be no longer than 64 characters.
+**metadata-url**は64文字以下にする必要があります。
 {% endhint %}
 
 {% tabs %}
@@ -2989,10 +2954,10 @@ cardano-cli shelley stake-pool registration-certificate \
 {% endtabs %}
 
 {% hint style="info" %}
-Here we are pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 20%.
+この例では345ADAの固定費と20%のMrgin、1000ADAを誓約しています。
 {% endhint %}
 
-Pledge stake to your stake pool.
+ステークプールに誓約します。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -3005,9 +2970,9 @@ cardano-cli shelley stake-address delegation-certificate \
 {% endtab %}
 {% endtabs %}
 
-Copy **deleg.cert** to your **hot environment.**
+**deleg.cert** をブロックプロデューサーにコピーします。
 
-You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
+ttlパラメータを正しく設定するには、最新のスロット番号を見つける必要があります。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3018,7 +2983,7 @@ echo Current Slot: $currentSlot
 {% endtab %}
 {% endtabs %}
 
-Find your balance and **UTXOs**.
+残高と **UTXOs**を出力します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3049,10 +3014,10 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-Run the build-raw transaction command.
+build-rawトランザクションコマンドを実行します。
 
 {% hint style="info" %}
-The **ttl** value must be greater than the current tip. In this example, we use current slot + 10000.
+**ttl**の値は、現在のスロット番号よりも大きくなければいけません。この例では現在のスロット番号＋10000で設定しています。
 {% endhint %}
 
 {% tabs %}
@@ -3070,7 +3035,7 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Calculate the minimum fee:
+最低手数料を計算します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3088,7 +3053,7 @@ echo fee: $fee
 {% endtab %}
 {% endtabs %}
 
-Calculate your change output.
+計算結果を出力します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3099,7 +3064,7 @@ echo txOut: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build the transaction.
+トランザクションファイルを構築します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3118,7 +3083,7 @@ cardano-cli shelley transaction build-raw \
 
 Copy **tx.raw** to your **cold environment.**
 
-Sign the transaction.
+ソランザクションに署名します。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -3136,7 +3101,7 @@ cardano-cli shelley transaction sign \
 
 Copy **tx.signed** to your **hot environment.**
 
-Send the transaction.
+トランザクションを送信します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3148,7 +3113,7 @@ cardano-cli shelley transaction submit \
 {% endtab %}
 {% endtabs %}
 
-Changes take effect next epoch. After the next epoch transition, verify that your pool settings are correct.
+変更は次のエポックで有効になります。次のエポック移行後にプール設定が正しいことを確認してください。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3159,56 +3124,56 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 {% endtab %}
 {% endtabs %}
 
-### 🧩 18.5 Transferring files over SSH
+### 🧩 18.5 SSHを介したファイルの転送
 
-Common use cases can include
+一般的な使用例
 
-* Downloading backups of stake/payment keys
-* Uploading a new operational certificate to the block producer from an offline node
+* stake/paymentキーのバックアップをダウンロードする
+* オフラインノードからブロックプロデューサーへ新しいファイルをアップロードする。
 
-#### To download files from a node to your local PC
+#### ノードからローカルPCにファイルをダウンロードする方法
 
 ```bash
 ssh <USERNAME>@<IP ADDRESS> -p <SSH-PORT>
 rsync -avzhe “ssh -p <SSH-PORT>” <USERNAME>@<IP ADDRESS>:<PATH TO NODE DESTINATION> <PATH TO LOCAL PC DESTINATION>
 ```
 
-> Example:
+> 例:
 >
 > `ssh myusername@6.1.2.3 -p 12345`
 >
 > `rsync -avzhe "ssh -p 12345" myusername@6.1.2.3:/home/myusername/cardano-my-node/stake.vkey ./stake.vkey`
 
-#### To upload files from your local PC to a node
+#### ローカルPCからノードにファイルをアップロードする方法
 
 ```bash
 ssh <USERNAME>@<IP ADDRESS> -p <SSH-PORT>
 rsync -avzhe “ssh -p <SSH-PORT>” <PATH TO LOCAL PC DESTINATION> <USERNAME>@<IP ADDRESS>:<PATH TO NODE DESTINATION>
 ```
 
-> Example:
+> 例:
 >
 > `ssh myusername@6.1.2.3 -p 12345`
 >
 > `rsync -avzhe "ssh -p 12345" ./node.cert myusername@6.1.2.3:/home/myusername/cardano-my-node/node.cert`
 
-### 🏃♂ 18.6 Auto-starting with systemd services
+### 🏃♂ 18.6 「systemd」サービスでの自動起動設定
 
-#### 🍰 Benefits of using systemd for your stake pool
+#### 🍰 ステークプールにsystemdを使用するメリット
 
-1. Auto-start your stake pool when the computer reboots due to maintenance, power outage, etc.
-2. Automatically restart crashed stake pool processes.
-3. Maximize your stake pool up-time and performance.
+1. メンテナンスや停電など、自動的にコンピュータが再起動したときステークプールを自動起動します。
+2. クラッシュしたステークプールプロセスを自動的に再起動します。
+3. ステークプールの稼働時間とパフォーマンスをレベルアップさせます。
 
-#### 🛠 Setup Instructions
+#### 🛠 セットアップ手順
 
-Before beginning, ensure your stake pool is stopped.
+始める前にステークプールが停止しているか確認してください。
 
 ```bash
 killall cardano-node
 ```
 
-Run the following to create a **unit file** to define your`cardano-node.service` configuration.
+以下のコードを実行して、ユニットファイルを作成します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3264,8 +3229,7 @@ EOF
 {% endtab %}
 {% endtabs %}
 
-Copy the unit file to `/etc/systemd/system` and give it permissions.
-
+`/etc/systemd/system`にユニットファイルをコピーして、権限を付与します。
 ```bash
 sudo cp $NODE_HOME/cardano-node.service /etc/systemd/system/cardano-node.service
 ```
@@ -3274,7 +3238,7 @@ sudo cp $NODE_HOME/cardano-node.service /etc/systemd/system/cardano-node.service
 sudo chmod 644 /etc/systemd/system/cardano-node.service
 ```
 
-Run the following to enable auto-start at boot time and then start your stake pool service.
+次のコマンドを実行して、OS起動時にサービスの自動起動を有効にします。
 
 ```text
 sudo systemctl daemon-reload
@@ -3283,46 +3247,46 @@ sudo systemctl start cardano-node
 ```
 
 {% hint style="success" %}
-Nice work. Your stake pool is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+以下は、systemdを有効活用するためのコマンドです。
 {% endhint %}
 
-\*\*\*\*⛓ **Reattach to the node tmux session after system startup**
+\*\*\*\*⛓ **システム起動後に、ライブモニターを表示します**
 
 ```text
 tmux a
 ```
 
-#### 🚧 To detach from a **tmux** session and leave the node running in the background
+#### 🚧 ライブモニターバックグラウンド実行に切り替え、コマンドラインを表示します。
 
 ```text
 press Ctrl + b + d
 ```
 
-#### ✅ Check whether the node is active
+#### ✅ ノードが実行されているか確認します。
 
 ```text
 sudo systemctl is-active cardano-node
 ```
 
-#### 🔎 View the status of the node service
+#### 🔎 ノードのステータスを表示します。
 
 ```text
 sudo systemctl status cardano-node
 ```
 
-#### 🔄 Restarting the node service
+#### 🔄 ノードサービスを再起動します。
 
 ```text
 sudo systemctl reload-or-restart cardano-node
 ```
 
-#### 🛑 Stopping the node service
+#### 🛑 ノードサービスを停止します。
 
 ```text
 sudo systemctl stop cardano-node
 ```
 
-#### 🗄 Filtering logs
+#### 🗄 ログのフィルタリグ
 
 ```bash
 journalctl --unit=cardano-node --since=yesterday
@@ -3330,15 +3294,11 @@ journalctl --unit=cardano-node --since=today
 journalctl --unit=cardano-node --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
 ```
 
-### ✅ 18.7 Verify your stake pool ticker with ITN key
+### ✅ 18.7 ITNキーでステークプールティッカーを確認する。
 
-In order to defend against spoofing and hijacking of reputable stake pools, a owner can verify their ticker by proving ownership of an ITN stake pool.
+信頼できるステークプールのなりすましや、プール運営を悪用する人から身を守るために、所有者はITNステークプールの所有権を証明することでティッカーを証明できます。
 
-{% hint style="info" %}
-Incentivized Testnet phase of Cardano’s Shelley era ran from late November 2019 to late June 2020. If you participated, you can verify your ticker.
-{% endhint %}
-
-Make sure the ITN's `jcli` binaries are present in `$NODE_HOME`. Use `jcli` to sign your stake pool id with your `itn_owner.skey`
+ITNのバイナリファイルが`$NODE_HOME`にあることを確認して下さい。 `itn_owner.skey`はステークプールIDに署名するために使用されています。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -3348,9 +3308,8 @@ Make sure the ITN's `jcli` binaries are present in `$NODE_HOME`. Use `jcli` to s
 {% endtab %}
 {% endtabs %}
 
-Visit [pooltool.io](https://pooltool.io/) and enter your owner public key and pool id witness data in the metadata section.
 
-Find your pool id witness with the following command.
+次のコマンドでプールIDを確認します。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -3360,13 +3319,11 @@ cat stakepoolid.sig
 {% endtab %}
 {% endtabs %}
 
-Find your owner public key in the file you generated on ITN. This data might be stored in a file ending in `.pub`
+ITNで作成したファイルで、所有者の公開鍵を見つけます。このデータは末尾が「.pub」で保存されている可能性があります。
 
-Finally, follow [instructions to update your pool registration data](./#18-4-changing-the-pledge-fee-margin-etc) with the pooltool generated **`metadata-url`** and **`metadata-hash`**. Notice the metadata has an "extended" field which proves your ticker ownership since ITN.
+### 📚 18.8 ノードの構成ファイル更新
 
-### 📚 18.8 Updating your node's configuration files
-
-Keep your config files fresh by downloading the latest .json files.
+最新の.jsonファイルをダウンロードして、構成ファイルを最新の状態に保ちます。
 
 ```bash
 NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g')
@@ -3379,11 +3336,11 @@ sed -i ${NODE_CONFIG}-config.json \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
 ```
 
-### 💸 18.9 Send a simple transaction example
+### 💸 18.9 簡単なトランザクションの例を送信します。
 
-Let's walk through an example to send **10 ADA** to **CoinCashew's tip address** 🙃
+**10 ADA** を payment.addrから自分のアドレスへ送信する例です 🙃
 
-First, find the **tip** of the blockchain to set the **ttl** parameter properly.
+まずは、最新のスロット番号を取得し **ttl** パラメータを正しく設定します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3394,7 +3351,7 @@ echo Current Slot: $currentSlot
 {% endtab %}
 {% endtabs %}
 
-Set the amount to send in lovelaces. ✨ Remember **1 ADA** = **1,000,000 lovelaces.**
+lovelaces形式で送信する金額を設定します。. ✨ **1 ADA** = **1,000,000 lovelaces** で覚えます。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3405,7 +3362,7 @@ echo amountToSend: $amountToSend
 {% endtab %}
 {% endtabs %}
 
-Set the destination address which is where you're sending funds to.
+送金先のアドレスを設定します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3416,7 +3373,7 @@ echo destinationAddress: $destinationAddress
 {% endtab %}
 {% endtabs %}
 
-Find your balance and **UTXOs**.
+残高と **UTXOs**を出力します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3447,7 +3404,7 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-Run the build-raw transaction command.
+build-rawトランザクションコマンドを実行します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3463,7 +3420,7 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Calculate the current minimum fee:
+最低手数料を出力します
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3481,7 +3438,7 @@ echo fee: $fee
 {% endtab %}
 {% endtabs %}
 
-Calculate your change output.
+計算結果を出力します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3492,7 +3449,7 @@ echo Change Output: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build your transaction.
+トランザクションファイルを構築します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3508,9 +3465,9 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Copy **tx.raw** to your **cold environment.**
+**tx.raw** をコールド環境にコピーします。
 
-Sign the transaction with both the payment and stake secret keys.
+トランザクションに署名します。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -3524,9 +3481,9 @@ cardano-cli shelley transaction sign \
 {% endtab %}
 {% endtabs %}
 
-Copy **tx.signed** to your **hot environment.**
+**tx.signed** をブロックプロデューサーにコピーします。
 
-Send the signed transaction.
+署名されたトランザクションを送信します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3538,7 +3495,7 @@ cardano-cli shelley transaction submit \
 {% endtab %}
 {% endtabs %}
 
-Check if the funds arrived.
+入金されているか確認します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3550,7 +3507,7 @@ cardano-cli shelley query utxo \
 {% endtab %}
 {% endtabs %}
 
-You should see output similar to this showing the funds you sent.
+先程指定した金額と一致していれば問題ないです。
 
 ```text
                            TxHash                                 TxIx        Lovelace
@@ -3558,15 +3515,15 @@ You should see output similar to this showing the funds you sent.
 100322a39d02c2ead....                                              0        10000000
 ```
 
-### 🔓 18.10 Harden your node's security
+### 🔓 18.10 ノードのセキュリティを強化する
 
-Do not skimp on this critical step to protect your pool and reputation.
+あなたのプールの保護の為に、必ず実行してください。
 
 {% page-ref page="how-to-harden-ubuntu-server.md" %}
 
-## 🌜 19. Retiring your stake pool
+## 🌜 19. ステークプールを廃止する。
 
-Find the slots per epoch.
+エポックごとのスロットを出力します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3577,7 +3534,7 @@ echo epochLength: ${epochLength}
 {% endtab %}
 {% endtabs %}
 
-Find the current slot by querying the tip.
+現在のスロット番号を出力します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3588,7 +3545,7 @@ echo slotNo: ${slotNo}
 {% endtab %}
 {% endtabs %}
 
-Calculate the current epoch by dividing the slot tip number by epochLength.
+スロット番号をepochLengthで割って、現在のエポックを計算します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3599,7 +3556,7 @@ echo current epoch: ${epoch}
 {% endtab %}
 {% endtabs %}
 
-Find the eMax value.
+eMaxを出力します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3619,7 +3576,7 @@ echo eMax: ${eMax}
 Let's pretend we wish to retire as soon as possible in epoch 40.
 {% endhint %}
 
-Create the deregistration certificate and save it as `pool.dereg.`
+登録解除証明書を作成して、 `pool.dereg.`の名前で保存します。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -3633,9 +3590,9 @@ echo pool will retire at end of epoch: $((${epoch} + 1))
 {% endtab %}
 {% endtabs %}
 
-Copy **pool.dereg** to your **hot environment.**
+**pool.dereg**をブロックプロデューサーへコピーします。
 
-Find your balance and **UTXOs**.
+残高と **UTXOs**を出力します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3666,7 +3623,7 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-Run the build-raw transaction command.
+build-rawトランザクションコマンドを実行します。
 
 {% hint style="info" %}
 The **ttl** value must be greater than the current tip. In this example, we use current slot + 10000.
@@ -3686,7 +3643,7 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Calculate the minimum fee:
+最低手数料を計算します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3704,7 +3661,7 @@ echo fee: $fee
 {% endtab %}
 {% endtabs %}
 
-Calculate your change output.
+計算結果を出力します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3715,7 +3672,7 @@ echo txOut: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build the transaction.
+トランザクションファイルを構築します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3731,9 +3688,9 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Copy **tx.raw** to your **cold environment.**
+**tx.raw**をコールド環境へコピーします。
 
-Sign the transaction.
+トランザクションに署名します。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -3748,9 +3705,9 @@ cardano-cli shelley transaction sign \
 {% endtab %}
 {% endtabs %}
 
-Copy **tx.signed** to your **hot environment.**
+**tx.signed**をブロックプロデューサーにコピーします。
 
-Send the transaction.
+トランザクションを送信します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3763,12 +3720,13 @@ cardano-cli shelley transaction submit \
 {% endtabs %}
 
 {% hint style="success" %}
-Pool will retire at the end of your specified epoch. In this example, retirement occurs at the end of epoch 40.
+プールは、指定されたエポックの終わりに廃止されます。この例ではエポック40の終わりに廃止されます。
 
-If you have a change of heart, you can create and submit a new registration certificate before the end of epoch 40, which will then overrule the deregistration certificate.
+もし気が変わってプールを続ける場合には、エポック40が終了する前に、新しい登録証明書を作成すれば、登録解除証明書が無効となります。
 {% endhint %}
 
-After the retirement epoch, you can verify that the pool was successfully retired with the following query which should return an empty result.
+リタイアエポック後、次のクエリでプールが正常に廃止されたことを確認出来ます。
+廃止されている場合は、空の結果を表示します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
