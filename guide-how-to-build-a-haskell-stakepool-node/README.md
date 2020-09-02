@@ -1,20 +1,18 @@
 ---
 description: >-
-  On Ubuntu/Debian, this guide will illustrate how to install and configure a
-  Cardano stake pool from source code on a two node setup with 1 block producer
-  node and 1 relay node.
+  このマニュアルでは、１つのブロックプロデューサーノードと１つのリレーノードで構成し、ソースコードからカルダノステークプールをセットアップする手順となっております。
 ---
 
-# カルダノステークプール構築手順
+# カルダノステークプール構築マニュアル
 
 ## 🎉 ∞ お知らせ
 
 {% hint style="info" %}
-このマニュアルは「CoinCashew」制作のマニュアルを許可を経て、日本語翻訳しております。
+このマニュアルは、[CoinCashew](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node#9-register-your-stakepool)より許可を得て、日本語翻訳しております。
 {% endhint %}
 
 {% hint style="success" %}
-このマニュアルはCardano-nodeバージョン1.19.0を用いて作成されています。
+このマニュアルは、Shelleyメインネット用に1.19.0を用いて作成されています。
 {% endhint %}
 
 ## 🏁 0. 前提条件
@@ -39,9 +37,9 @@ description: >-
 
 * **２つのサーバー:** ブロックプロデューサーノード用1台、 リレーノード用2台
 * **エアギャップオフラインマシン1台 \(コールド環境\)**
-* **オペレーティング・システム:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
+* **オペレーティング・システム:** 64-bit Linux \(Ubuntu 20.04 LTS\)
 * **プロセッサー:** 2 core CPU
-* **メモリー:** 4GB RAM, 4GB swap file
+* **メモリー:** 4GB RAM, 4GB スワップファイル
 * **ストレージ:** 20GB SSD
 * **インターネット:** 10 Mbps以上のブロードバンド回線.
 * **データプラン**: 1時間あたり1GBの帯域. 1ヶ月あたり720GB.
@@ -53,7 +51,7 @@ description: >-
 * **３つのサーバー:** ブロックプロデューサーノード用1台、 リレーノード用2台
 * **エアギャップオフラインマシン1台 \(コールド環境\)**
 * **オペレーティング・システム:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **プロセッサー:** 4 core or higher CPU
+* **プロセッサー:** 4 core以上の CPU
 * **メモリー:** 8GB+ RAM
 * **ストレージ:** 256GB+ SSD
 * **インターネット:** 100 Mbps以上のブロードバンド回線
@@ -63,17 +61,18 @@ description: >-
 
 ### 🔓 ステークプールの推奨セキュリティ設定
 
-If you need ideas on how to harden your stake pool's nodes, refer to
+ステークプールのサーバを強化するには、以下の内容を実施して下さい。
 
 {% page-ref page="how-to-harden-ubuntu-server.md" %}
 
 ### 🛠 Ubuntuセットアップガイド
 
-For instructions on installing **Ubuntu**, refer to the following:
+Ubuntuのインストール手順については、以下を参照して下さい。
 
-### 🧱 ノードの再構築
 
-If you are rebuilding or reusing an existing `cardano-node` installation, refer to [section 18.2 on how to reset the installation.](./#18-2-resetting-the-installation)
+### 🧱 ノードを再構築したい場合
+
+もしノードインストールを初めからやり直したい場合は[項目18.2](./#18-2-resetting-the-installation)で、リセットの方法を確認して下さい。
 
 ## 🏭 1. CabalとGHCをインストールします
 
@@ -124,7 +123,7 @@ sudo make install
 ```
 
 環境変数を設定しパスを通します。 ノードの場所は **$NODE\_HOME** に設定されます。
-最新のノード設定ファイルは**$NODE\_CONFIG** and **$NODE\_BUILD\_NUM**によって取得されます。
+最新のノード構成ファイルは**$NODE\_CONFIG** と **$NODE\_BUILD\_NUM**によって取得されます。
 
 ```bash
 echo PATH="$HOME/.local/bin:$PATH" >> $HOME/.bashrc
@@ -135,7 +134,7 @@ echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/car
 source $HOME/.bashrc
 ```
 
-Cabalを更新し、正しいバージョンが正常にインストールされたことを確認して下さい。
+Cabalを更新し、正しいバージョンが正常にインストールされていることを確認して下さい。
 
 ```bash
 cabal update
@@ -147,7 +146,7 @@ ghc -V
 Cabalのライブラリーバージョンは「3.2.0.0」で GHCのバージョンは「8.6.5」であることを確認してください。
 {% endhint %}
 
-## 🏗 2. ソースコードからノードを構築する。
+## 🏗 2. ソースコードからノードを構築する
 
 Gitからソースコードをダウンロードし、最新のタグに切り替えます。
 
@@ -167,7 +166,7 @@ sed -i $HOME/.cabal/config -e "s/overwrite-policy:/overwrite-policy: always/g"
 rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 ```
 
-カルダノノードをビルドします）
+カルダノノードをビルドします。
 
 ```text
 cabal build cardano-cli cardano-node
@@ -184,7 +183,7 @@ sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano
 sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
 ```
 
-**cardano-cli** と **cardano-node**がタグ設定したバージョンであることを確認してください。
+**cardano-cli** と **cardano-node**が指定したGitタグバージョンであることを確認してください。
 
 ```text
 cardano-node version
@@ -193,7 +192,7 @@ cardano-cli version
 
 ## 📐 3. ノードを構成する
 
-ノード構成に必要な config.json, genesis.json, 及び topology.json ファイルを取得します。
+ノード構成に必要な config.json、genesis.json、及び topology.json ファイルを取得します。
 
 ```bash
 mkdir $NODE_HOME
@@ -215,7 +214,7 @@ sed -i ${NODE_CONFIG}-config.json \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
 ```
 
-環境変数を追加し、更新します。
+環境変数を追加し、.bashrcファイルを更新します。
 
 ```bash
 echo export CARDANO_NODE_SOCKET_PATH="$NODE_HOME/db/socket" >> $HOME/.bashrc
@@ -256,7 +255,7 @@ cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF
  {
     "Producers": [
       {
-        "addr": "<RELAYNODE1'S PUBLIC IP ADDRESS>",
+        "addr": "<RELAYNODE1'S パブリックIPアドレス>",
         "port": 6000,
         "valency": 1
       }
@@ -275,7 +274,7 @@ EOF
 
 自身のリレーノード上で以下のコマンドを実行します。
 「addr」には自身のブロックプロデューサーノードのパプリックIPアドレスを記述します。
-**IOHK**情報は削除しないで下さい。
+**IOHK情報は削除しないで下さい**
 
 {% tabs %}
 {% tab title="relaynode1" %}
@@ -301,7 +300,7 @@ EOF
 {% endtabs %}
 
 {% hint style="info" %}
-Valency tells the node how many connections to keep open. Only DNS addresses are affected. If value is 0, the address is ignored.
+Valencyが0の場合、アドレスは無視されます。
 {% endhint %}
 
 {% hint style="danger" %}
@@ -338,6 +337,8 @@ mkdir -p $NODE_HOME
 
 起動スクリプトには、ディレクトリ、ポート番号、DBパス、構成ファイルパス、トポロジーファイルパスなど、カルダノノードを実行するために必要な変数が含まれています。
 
+全行コピーしコマンドラインに送信します。
+
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
@@ -355,7 +356,7 @@ EOF
 ```
 {% endtab %}
 
-{% tab title="relaynode1" %}
+{% tab title="リレーノード1" %}
 ```bash
 cat > $NODE_HOME/startRelayNode1.sh << EOF 
 #!/bin/bash
@@ -397,16 +398,16 @@ chmod +x startRelayNode1.sh
 {% endtabs %}
 
 {% hint style="info" %}
-\*\*\*\*🛑 ノードを停止するには「q」を押すか、コマンドを実行します。
+🛑 ノードを停止するには「q」を押すか、コマンドを実行します。
  `killall cardano-node`
 {% endhint %}
 
 {% hint style="info" %}
-\*\*\*\*✨ **ヒント**: 複数サーバをセットアップする場合、同期が完了したDBディレクトリを他のサーバにコピーすることにより、同期時間を節約することができます。
+✨ **ヒント**: 複数のノードをセットアップする場合、同期が完了したDBディレクトリを他のサーバにコピーすることにより、同期時間を節約することができます。
 {% endhint %}
 
 {% hint style="success" %}
-おめでとうございます！ビジュアルグラフィックが表示され、「slot」の数値が増えて行けば同期が始まっています。
+おめでとうございます！ライブビューモニターが表示され、「slot」の数値が増えて行けば同期が始まっています。
 {% endhint %}
 
 ## ⚙ 9. ブロックプロデューサーキーを生成する。
@@ -431,11 +432,11 @@ cardano-cli shelley node key-gen-KES \
 {% endtabs %}
 
 {% hint style="info" %}
-KESキーは、キーを悪用するハッカーからステークプールを保護するために作成され、90日ごとに再生性する必要があります。
+KESキーは、キーを悪用するハッカーからステークプールを保護するために作成され、90日ごとに再生成する必要があります。
 {% endhint %}
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **コールドキーは常にエアギャップオフラインマシンで生成および保管する必要があります** コールドキーは次のパスに格納されます。 `$HOME/cold-keys.`
+🔥 **コールドキーは常にエアギャップオフラインマシンで生成および保管する必要があります** コールドキーは次のパスに格納されるようにします。 `$HOME/cold-keys.`
 {% endhint %}
 
 コールドキーを格納するディレクトリを作成します。
@@ -466,7 +467,7 @@ cardano-cli shelley node key-gen \
 すべてのキーを別の安全なストレージデバイスにバックアップしましょう！複数のバックアップを作成することをおすすめします。
 {% endhint %}
 
-ジェネシスファイルからKES期間あたりのスロット数を決定します。
+ジェネシスファイルからslotsPerKESPeriodを出力します。
 
 {% hint style="warning" %}
 続行する前に、ノードをブロックチェーンと完全に同期する必要があります。
@@ -495,7 +496,7 @@ echo slotNo: ${slotNo}
 {% endtab %}
 {% endtabs %}
 
-スロット番号をslotsPerKESPeriodで割り、kesPriodを算出します。
+スロット番号をslotsPerKESPeriodで割り、kesPeriodを算出します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -515,7 +516,7 @@ echo startKesPeriod: ${startKesPeriod}
 **startKesPeriod**の値を適宜変更します。
 
 {% hint style="warning" %}
-[バージョン 1.19.0](https://github.com/input-output-hk/cardano-node/issues/1742)では開始KES期間の値を(kesPeriod)-1に設定する必要があります。
+[バージョン 1.19.0](https://github.com/input-output-hk/cardano-node/issues/1742)ではstartKesPeriodの値を(kesPeriod-1)に設定する必要があります。
 {% endhint %}
 
 {% hint style="info" %}
@@ -596,7 +597,7 @@ cd $NODE_HOME
 {% endtab %}
 {% endtabs %}
 
-## 🔐 10. 各種アドレス用のキーを作成します。(支払い／ステーク用アドレス)
+## 🔐 10. 各種アドレス用のキーを作成します。(payment／stake用アドレス)
 
 まずは、プロトコルパラメータを取得します。
 
@@ -625,9 +626,9 @@ paymentキーは支払い用アドレスに使用され、stakeキーはプー�
 {% hint style="danger" %}
 🔥 **運用上のセキュリティに関する重要なアドバス:** キーの生成はエアギャップオフラインマシンで生成する必要があり、インターネット接続が無くても生成可能です。
 
-ホット環境で必要とする手順は以下の内容です。
+ホット環境(オンライン)で必要とする手順は以下の内容のみです。
 * 現在のスロット番号を取得する
-* アドレスの残高を紹介する
+* アドレスの残高を照会する
 * トランザクションの送信
 {% endhint %}
 
@@ -681,7 +682,7 @@ cardano-cli shelley address build \
     --mainnet
 ```
 
-※プール運営開始後に、上記の処理を実行するとアドレスが上書きされるので注意してください。
+**※プール運営開始後に、上記の処理を実行するとアドレスが上書きされるので注意してください。**
 {% endtab %}
 
 {% tab title="Mnemonic Method" %}
@@ -825,7 +826,7 @@ popd >/dev/null
 HERE
 ```
 
-バイナリーファイルを使用するには、アクセス県を追加してパスをエクスポートします。
+バイナリーファイルを使用するには、アクセス権を追加してパスをエクスポートします。
 
 ```bash
 ###
@@ -890,7 +891,7 @@ rm -rf $NODE_HOME/cardano-wallet-shelley-2020.7.28
 **payment.addr** をホット環境（ブロックプロデューサーノード）にコピーします。
 
 {% tabs %}
-{% tab title="Mainnet" %}
+{% tab title="メインネット" %}
 以下のウォレットアドレスから送金が可能です。
 
 * ダイダロス / ヨロイウォレット
@@ -1026,7 +1027,7 @@ echo keyDeposit: $keyDeposit
 {% endtabs %}
 
 {% hint style="info" %}
-ステークアドレス証明書の登録には2,000,000lovelace(2ADA)が必要です。
+ステークアドレス証明書の登録には2,000,000 lovelace (2ADA)が必要です。
 {% endhint %}
 
 build-rawトランザクションコマンドを実行します。
@@ -1189,7 +1190,7 @@ echo minPoolCost: ${minPoolCost}
 minPoolCostは 340000000 lovelace または 340 ADAです。
 {% endhint %}
 
-ステークプールの登録証明書を作成します。 **metadata URL**と**リレーノード情報**を追記し構成します。リレーノード構成にはDNSベースまたはIPベースのどちらかを選択できます。
+ステークプールの登録証明書を作成します。 **メタデータのURL**と**リレーノード情報**を追記し構成します。リレーノード構成にはDNSベースまたはIPベースのどちらかを選択できます。
 
 {% hint style="info" %}
 ノード管理を簡単にするために、DNSベースのリレー設定をお勧めします。もしリレーサーバを変更する場合IPアドレスが変わるため、その都度登録証明書トランザクションを再送する必要があります。DNSベースで登録しておけば、IPアドレスが変更になってもお使いのドメイン管理画面にてIPアドレスを変更するだけで完了します。
@@ -1278,7 +1279,7 @@ This operation creates a delegation certificate which delegates funds from all s
 {% hint style="info" %}
 自分のプールに資金を預けることを**Pledge(誓約)**と呼ばれます
 
-* あなたのペイメント残高はPledge額よりも大きい必要があります。
+* あなたの支払い用アドレスの残高はPledge額よりも大きい必要があります。
 * 誓約金を宣言しても、実際にはどこにも移動されていません。payment.addrに残ったままです。
 * 誓約を行わないと、ブロック生成の機会を逃し委任者は報酬を得ることができません。
 * あなたの誓約金はブロックされません。いつでも自由に取り出せます。
@@ -1442,7 +1443,7 @@ cardano-cli shelley transaction submit \
 
 ## 🐣 13. ステークプールが機能しているか確認します。
 
-ステークプールIDは以下の用に出力できます。
+ステークプールIDは以下のように出力できます。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -1474,7 +1475,7 @@ cardano-cli shelley query ledger-state --mainnet | grep publicKey | grep $(cat s
 ## ⚙ 14. トポロジーファイルを構成する。
 
 {% hint style="info" %}
-Cardano-nodeバージョン1.19.0ではP2P(ピア・ツー・ピア)ノードを自動検出しないため、手動でトポロジーを構成する必要があります。この手順をスキップすると生成したブロックがブロックチェーン外で孤立するため、必須の設定項目となります。
+バージョン1.19.0ではP2P(ピア・ツー・ピア)ノードを自動検出しないため、手動でトポロジーを構成する必要があります。この手順をスキップすると生成したブロックがブロックチェーン外で孤立するため、必須の設定項目となります。
 {% endhint %}
 
 トポロジーファイルを構成するには、２つの方法があります。
@@ -2972,7 +2973,7 @@ cardano-cli shelley stake-address delegation-certificate \
 
 **deleg.cert** をブロックプロデューサーにコピーします。
 
-ttlパラメータを正しく設定するには、最新のスロット番号を見つける必要があります。
+ttlパラメータを設定するには、最新のスロット番号を取得する必要があります。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3626,7 +3627,7 @@ echo Number of UTXOs: ${txcnt}
 build-rawトランザクションコマンドを実行します。
 
 {% hint style="info" %}
-The **ttl** value must be greater than the current tip. In this example, we use current slot + 10000.
+**ttl**の値は、現在のスロット番号よりも大きくなければなりません。この例では現在のスロット番号＋10000を使用します。
 {% endhint %}
 
 {% tabs %}
