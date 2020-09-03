@@ -1484,7 +1484,7 @@ cardano-cli shelley query ledger-state --mainnet | grep publicKey | grep $(cat s
 * **Pooltool.ioを用いる場合は** 接続先を選択できる代わりに、手動で構成する必要があります。
 
 {% tabs %}
-{% tab title="topologyUpdater.shで構成する場合" %}
+{% tab title="topologyUpdater.shで更新する場合" %}
 ### 🚀 topologyUpdater.shを使用してリレーノードを公開する
 
 {% hint style="info" %}
@@ -1502,8 +1502,8 @@ cat > $NODE_HOME/topologyUpdater.sh << EOF
 # shellcheck disable=SC2086,SC2034
 
 USERNAME=$(whoami)
-CNODE_PORT=6000 # 起動スクリプトで指定したリレーノードのポート番号を記入
-CNODE_HOSTNAME="CHANGE ME"  # optional. must resolve to the IP you are requesting from
+CNODE_PORT=6000 # 自身のリレーノードポート番号を記入
+CNODE_HOSTNAME="CHANGE ME"  # ノードのIPアドレスを記入
 CNODE_BIN="/usr/local/bin"
 CNODE_HOME=$NODE_HOME
 CNODE_LOG_DIR="\${CNODE_HOME}/logs"
@@ -1547,16 +1547,19 @@ chmod +x topologyUpdater.sh
 ./topologyUpdater.sh
 ```
 
-`topologyUpdater.sh`が正常に実行された場合、以下の表示表示されます。
+`topologyUpdater.sh`が正常に実行された場合、以下の形式が表示されます。
 
 > `{ "resultcode": "201", "datetime":"2020-07-28 01:23:45", "clientIp": "1.2.3.4", "iptype": 4, "msg": "nice to meet you" }`
 
 {% hint style="info" %}
-スクリプトが実行されIPが更新されるたびに以下の場所にログが作成されます。 **`$NODE_HOME/logs`**
+スクリプトが実行されるたびに、**`$NODE_HOME/logs`**にログが作成されます。 
+※`topologyUpdater.sh`は1時間以内に2回以上実行しないで下さい。ブラックリストに追加される場合があります。
 {% endhint %}
 
 crontabジョブを追加し、「topologyUpdater.sh」が自動的に実行されるように設定します。
-以下のコードは毎時22分に実行されるように指定しています。(自由に設定可能です)
+
+以下のコードは毎時22分に実行されるように指定しています。(上記でスクリプトを実行した時間(分)より以前の分を指定して下さい。)
+
 
 ```bash
 ###
@@ -1570,17 +1573,17 @@ rm crontab-fragment.txt
 ```
 
 {% hint style="success" %}
-4時間で4回更新された後に、ノードIPがトポロジーフェッチリストに登録されます。
+4時間の間で4回実行された後に、ノードIPがトポロジーフェッチリストに登録されます。
 {% endhint %}
 
 ### 🤹♀ リレーノードトポロジーファイルを更新する
 
 {% hint style="danger" %}
-リレーノードIPが正しく登録されてからこのセクションを実行して下さい。
+リレーノードIPがトポロジーフェッチリストに登録される、4時間後に以下のセクションを実行して下さい。
 {% endhint %}
 
-Create `relay-topology_pull.sh` script which fetches your relay node buddies and updates your topology file. **Update with your block producer's public IP address.**
-
+トポロジーファイルを更新する`relay-topology_pull.sh`スクリプトを作成します。
+コマンドラインに送信する際に、**自身のブロックプロデューサーのIPとポート番号に書き換えて下さい**
 ```bash
 ###
 ### On relaynode1
@@ -1593,7 +1596,7 @@ curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopolo
 EOF
 ```
 
-Add permissions and pull new topology files.
+shファイルに権限を追加し実行します。
 
 ```bash
 ###
@@ -1603,7 +1606,7 @@ chmod +x relay-topology_pull.sh
 ./relay-topology_pull.sh
 ```
 
-The new topology takes after after restarting your stake pool.
+新しいトポロジーファイルは、ステークプールを再起動した後に有効となります。
 
 ```bash
 ###
@@ -1614,53 +1617,46 @@ killall cardano-node
 ```
 
 {% hint style="warning" %}
-Don't forget to restart your relay nodes after every time you fetch the topology!
+トポロジーファイルを更新した場合は、リレーノードを再起動することを忘れないで下さい。
 {% endhint %}
 {% endtab %}
 
-{% tab title="Pooltool.io Method" %}
-1. Visit [https://pooltool.io/](https://pooltool.io/)
-2. Create an account and login
-3. Search for your stakepool id
-4. Click ➡ **Pool Details** &gt; **Manage** &gt; **CLAIM THIS POOL**
-5. Fill in your pool name and pool URL if you have one.
-6. Fill in your **Private Nodes** and **Your Relays** as follows.
+{% tab title="Pooltool.ioで更新する場合" %}
+1. [https://pooltool.io/](https://pooltool.io/)へアクセスします。
+2. アカウントを作成してログインします。
+3. あなたのステークプールを探します。
+4. **Pool Details** &gt; **Manage** &gt; **CLAIM THIS POOL**をクリックします。
+5. プール名とプールURLがある場合は入力します。
+6. あなたのリレーノード情報を入力します。
 
 ![](../.gitbook/assets/ada-relay-setup-mainnet.png)
 
-{% hint style="info" %}
-You can find your public IP with [https://www.whatismyip.com/](https://www.whatismyip.com/) or
 
-```text
-curl http://ifconfig.me/ip
-```
-{% endhint %}
+プライベートノードには、自身のブロックプロデューサーノードと、IOHKのノード情報を入力して下さい。
 
-Add requests for nodes or "buddies" to each of your relay nodes. Make sure you include the IOHK node and your private nodes.
-
-IOHK's node address is:
+IOHKのノードアドレスは:
 
 ```text
 relays-new.cardano-mainnet.iohk.io
 ```
 
-IOHK's node port is:
+IOHKのポート番号は:
 
 ```text
 3001
 ```
 
-For example, on relaynode1's buddies you should add **requests** for
+リレーノードのトポロジーファイルには以下の情報が含まれていることが前提です。
 
-* your private BlockProducingNode
-* IOHK's node
-* and any other buddy/friendly nodes your can find or know
+* あなたのブロックプロデューサーノード情報
+* IOHKのノード情報
+* 他のリレーノード情報
 
 {% hint style="info" %}
-A relay node connection is not established until there is a request and an approval.
+要求と承認があるまで、リレーノード接続は確立されません。
 {% endhint %}
 
-For **relaynode1**, create a get\_buddies.sh script to update your topology.json file.
+リレーノードのtopology.jsonファイルを更新するスクリプトを作成します。
 
 ```bash
 ###
@@ -1705,21 +1701,21 @@ fi
 EOF
 ```
 
-For each of your relay nodes, update the following variables from pooltool.io into your get\_buddies.sh file
+リレーノードごとに、Pooltool.ioで指定された変数の値を記入して下さい。
 
 * PT\_MY\_POOL\_ID 
 * PT\_MY\_API\_KEY 
 * PT\_MY\_NODE\_ID
 
-Update your get\_buddies.sh scripts with this information.
+この情報でスクリプトを更新します。(このスクリプトにはバグがあります。)
 
 {% hint style="info" %}
-Use **nano** to edit your files.
+**nano**エディターで更新できます。
 
 `nano $NODE_HOME/relaynode1/get_buddies.sh`
 {% endhint %}
 
-Add execute permissions to these scripts. Run the scripts to update your topology files.
+このスクリプトに権限を追加し実行します。
 
 ```bash
 ###
@@ -1730,7 +1726,7 @@ chmod +x get_buddies.sh
 ./get_buddies.sh
 ```
 
-Stop and then restart your stakepool in order for the new topology settings to take effect.
+新しいトポロジーファイルを有効にするために、ステークプールを再起動します。
 
 ```bash
 ###
@@ -1741,13 +1737,13 @@ killall cardano-node
 ```
 
 {% hint style="info" %}
-As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pull the latest topology data. Restart your relay nodes afterwards.
+Pooltool.ioでリクエストが承認されたら、その都度get_buddies.shスクリプトを実行して、最新のトポロジーファイルに更新して下さい。その後ステークプールを再起動します。
 {% endhint %}
 {% endtab %}
 {% endtabs %}
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **重要な確認事項:** ブロックを生成するステークプールになるためには、「TXs processed」が増加していることを確認する必要があります。万一、増加していない場合にはトポロジーファイルの内容を再確認して下さい。「peers」数はリレーノードが他ノードと接続している数を表しています。
+\*\*\*\*🔥 **重要な確認事項:** ブロックを生成するには、「TXs processed」が増加していることを確認する必要があります。万一、増加していない場合にはトポロジーファイルの内容を再確認して下さい。「peers」数はリレーノードが他ノードと接続している数を表しています。
 {% endhint %}
 
 ![](../.gitbook/assets/ada-tx-processed.png)
