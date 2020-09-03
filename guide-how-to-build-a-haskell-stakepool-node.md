@@ -3686,10 +3686,11 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 
 {% hint style="success" %}
 このマニュアルは役に立ちましたか？ 不明な点がある場合は、下記までご連絡下さい。
+・コミュニティ：[Cardano SPO Japanese Guild](https://discord.com/invite/3HnVHs3)
 
-・Twitter:[@btbfpark](https://twitter.com/btbfpark)
+・Twitter：[@btbfpark](https://twitter.com/btbfpark)
 
-・Twitter:[@X\_StakePool\_XSP](https://twitter.com/X_StakePool_XSP)
+・Twitter：[@X\_StakePool\_XSP](https://twitter.com/X_StakePool_XSP)
 
 このマニュアルは、常に[最新版](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node#19-retiring-your-stake-pool)に沿って更新されます。
 {% endhint %}
