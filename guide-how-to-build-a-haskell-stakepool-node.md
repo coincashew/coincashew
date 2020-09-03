@@ -3,7 +3,7 @@ description: >-
   このマニュアルでは、１つのブロックプロデューサーノードと１つのリレーノードで構成し、ソースコードからカルダノステークプールをセットアップする手順となっております。
 ---
 
-# カルダノステークプール構築マニュアル
+# カルダノステークプール構築手順
 
 ## 🎉 ∞ お知らせ
 
@@ -56,7 +56,7 @@ description: >-
 * **ストレージ:** 256GB+ SSD
 * **インターネット:** 100 Mbps以上のブロードバンド回線
 * **データプラン**: 無制限
-* **電力:** 無停電電源装置(UPS)による電源管理
+* **電力:** 無停電電源装置\(UPS\)による電源管理
 * **ADA残高:** ステークプールに対する保証金をご自身で定める分
 
 ### 🔓 ステークプールの推奨セキュリティ設定
@@ -66,7 +66,6 @@ description: >-
 {% hint style="info" %}
 絶賛翻訳中
 {% endhint %}
-<!--{% page-ref page="how-to-harden-ubuntu-server.md" %}-->
 
 ### 🛠 Ubuntuセットアップガイド
 
@@ -74,12 +73,9 @@ description: >-
 絶賛翻訳中
 {% endhint %}
 
-<!--Ubuntuのインストール手順については、以下を参照して下さい。-->
-
-
 ### 🧱 ノードを再構築したい場合
 
-もしノードインストールを初めからやり直したい場合は[項目18.2](./#18-2-resetting-the-installation)で、リセットの方法を確認して下さい。
+もしノードインストールを初めからやり直したい場合は[項目18.2](guide-how-to-build-a-haskell-stakepool-node.md#18-2-resetting-the-installation)で、リセットの方法を確認して下さい。
 
 ## 🏭 1. CabalとGHCをインストールします
 
@@ -129,8 +125,7 @@ cd ghc-8.6.5
 sudo make install
 ```
 
-環境変数を設定しパスを通します。 ノードの場所は **$NODE\_HOME** に設定されます。
-最新のノード構成ファイルは**$NODE\_CONFIG** と **$NODE\_BUILD\_NUM**によって取得されます。
+環境変数を設定しパスを通します。 ノードの場所は **$NODE\_HOME** に設定されます。 最新のノード構成ファイルは**$NODE\_CONFIG** と **$NODE\_BUILD\_NUM**によって取得されます。
 
 ```bash
 echo PATH="$HOME/.local/bin:$PATH" >> $HOME/.bashrc
@@ -238,7 +233,7 @@ source $HOME/.bashrc
 一方で、リレーノードはキーを所有していないため、ブロック生成はできません。その代わり、他のリレーノードとの繋がりを持ち最新スロットを取得します。
 {% endhint %}
 
-![](../.gitbook/assets/producer-relay-diagram.png)
+![](.gitbook/assets/producer-relay-diagram.png)
 
 {% hint style="success" %}
 このマニュアルでは、2つのサーバー上に1ノードづつ構築します。1つのノードはブロックプロデューサーノード、もう1つのノードはリレーノード1という名前のリレーノードになります。
@@ -248,12 +243,13 @@ source $HOME/.bashrc
 **topology.json** ファイルの構成について
 
 * リレーノードでは、パプリックノード \(IOHKや他のリレーノード\) 及び、自身の
+
   ブロックプロデューサーノード情報を記述します。
+
 * ブロックプロデューサーノードでは、自身のリレーノード情報のみ記述します。
 {% endhint %}
 
-自身のブロックプロデューサーノード上で以下のコマンドを実行します。
-「addr」にはリレーノードのパプリックIPアドレスを記述します。
+自身のブロックプロデューサーノード上で以下のコマンドを実行します。 「addr」にはリレーノードのパプリックIPアドレスを記述します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -279,9 +275,7 @@ EOF
 🚧 リレーサーバを増設する場合は、**リレーノードN**として1～3の手順を同様にセットアップします。
 {% endhint %}
 
-自身のリレーノード上で以下のコマンドを実行します。
-「addr」には自身のブロックプロデューサーノードのパプリックIPアドレスを記述します。
-**IOHKのノード情報は削除しないで下さい**
+自身のリレーノード上で以下のコマンドを実行します。 「addr」には自身のブロックプロデューサーノードのパプリックIPアドレスを記述します。 **IOHKのノード情報は削除しないで下さい**
 
 {% tabs %}
 {% tab title="relaynode1" %}
@@ -326,6 +320,7 @@ Valencyが0の場合、アドレスは無視されます。
 {% endhint %}
 
 エアギャップオフラインマシン上で手順1～3をセットアップした後、以下のパスを環境変数にセットします。
+
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
@@ -405,8 +400,7 @@ chmod +x startRelayNode1.sh
 {% endtabs %}
 
 {% hint style="info" %}
-🛑 ノードを停止するには「q」を押すか、次のコマンドを実行します。
- `killall cardano-node`
+🛑 ノードを停止するには「q」を押すか、次のコマンドを実行します。 `killall cardano-node`
 {% endhint %}
 
 {% hint style="info" %}
@@ -425,7 +419,7 @@ chmod +x startRelayNode1.sh
 * ステークプールのホットキー \(kes.skey\)
 * ステークプールのVRFキー \(vrf.skey\)
 
-まずは、KESペアキーを作成します。 (KES=Key Evolving Signature)
+まずは、KESペアキーを作成します。 \(KES=Key Evolving Signature\)
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -477,9 +471,7 @@ cardano-cli shelley node key-gen \
 ジェネシスファイルからslotsPerKESPeriodを出力します。
 
 {% hint style="warning" %}
-続行する前に、ノードをブロックチェーンと完全に同期する必要があります。
-同期が途中の場合、正しいslotsPerKESPeriodを取得できません。
-あなたのノードが完全に同期されたことを確認するには、こちらのサイト[https://pooltool.io/](https://pooltool.io/)で自身の同期済みエポックとスロットが一致しているかをご確認ください。
+続行する前に、ノードをブロックチェーンと完全に同期する必要があります。 同期が途中の場合、正しいslotsPerKESPeriodを取得できません。 あなたのノードが完全に同期されたことを確認するには、こちらのサイト[https://pooltool.io/](https://pooltool.io/)で自身の同期済みエポックとスロットが一致しているかをご確認ください。
 {% endhint %}
 
 {% tabs %}
@@ -491,8 +483,6 @@ echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 ```
 {% endtab %}
 {% endtabs %}
-
-
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -523,7 +513,7 @@ echo startKesPeriod: ${startKesPeriod}
 **startKesPeriod**の値を適宜変更します。
 
 {% hint style="warning" %}
-[バージョン 1.19.0](https://github.com/input-output-hk/cardano-node/issues/1742)ではstartKesPeriodの値を(kesPeriod-1)に設定する必要があります。
+[バージョン 1.19.0](https://github.com/input-output-hk/cardano-node/issues/1742)ではstartKesPeriodの値を\(kesPeriod-1\)に設定する必要があります。
 {% endhint %}
 
 {% hint style="info" %}
@@ -543,7 +533,7 @@ cardano-cli shelley node issue-op-cert \
 {% endtab %}
 {% endtabs %}
 
-**node.cert** をホット環境(ブロックプロデューサーノード)にコピーします。
+**node.cert** をホット環境\(ブロックプロデューサーノード\)にコピーします。
 
 VRFペアキーを作成します。
 
@@ -604,7 +594,7 @@ cd $NODE_HOME
 {% endtab %}
 {% endtabs %}
 
-## 🔐 10. 各種アドレス用のキーを作成します。(payment／stake用アドレス)
+## 🔐 10. 各種アドレス用のキーを作成します。\(payment／stake用アドレス\)
 
 まずは、プロトコルパラメータを取得します。
 
@@ -631,7 +621,8 @@ paymentキーは支払い用アドレスに使用され、stakeキーはプー�
 {% hint style="danger" %}
 🔥 **運用上のセキュリティに関する重要なアドバス:** キーの生成はエアギャップオフラインマシンで生成する必要があり、インターネット接続が無くても生成可能です。
 
-ホット環境(オンライン)で必要とする手順は以下の内容のみです。
+ホット環境\(オンライン\)で必要とする手順は以下の内容のみです。
+
 * 現在のスロット番号を取得する
 * アドレスの残高を照会する
 * トランザクションの送信
@@ -694,7 +685,7 @@ cardano-cli shelley address build \
 
 {% tab title="Mnemonic Method" %}
 {% hint style="info" %}
-このプロセスを提案してくれた [ilap](https://gist.github.com/ilap/3fd57e39520c90f084d25b0ef2b96894)のクレジット表記です。 
+このプロセスを提案してくれた [ilap](https://gist.github.com/ilap/3fd57e39520c90f084d25b0ef2b96894)のクレジット表記です。
 {% endhint %}
 
 {% hint style="success" %}
@@ -968,7 +959,7 @@ cardano-cli shelley query utxo \
 
 ## 👩💻 11. ステークアドレスを登録します。
 
-`stake.vkey`を使用して、`stake.cert`証明証を作成します。 
+`stake.vkey`を使用して、`stake.cert`証明証を作成します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -1034,7 +1025,7 @@ echo keyDeposit: $keyDeposit
 {% endtabs %}
 
 {% hint style="info" %}
-ステークアドレス証明書の登録には2,000,000 lovelace (2ADA)が必要です。
+ステークアドレス証明書の登録には2,000,000 lovelace \(2ADA\)が必要です。
 {% endhint %}
 
 build-rawトランザクションコマンドを実行します。
@@ -1176,12 +1167,6 @@ cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.j
 
 **poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。
 
-
-<!--Refer to the following quick guide if you need help hosting your metadata on github.com
-
-{% page-ref page="how-to-upload-poolmetadata.json-to-github.md" %}-->
-
-
 最小プールコストを出力します。
 
 {% tabs %}
@@ -1194,20 +1179,17 @@ echo minPoolCost: ${minPoolCost}
 {% endtabs %}
 
 {% hint style="info" %}
-minPoolCostは 340000000 lovelace (340 ADA)です。
+minPoolCostは 340000000 lovelace \(340 ADA\)です。
 {% endhint %}
 
-ステークプールの登録証明書を作成します。
-**メタデータのURL**と**リレーノード情報**を追記し構成します。リレーノード構成にはDNSベースまたはIPベースのどちらかを選択できます。
+ステークプールの登録証明書を作成します。 **メタデータのURL**と**リレーノード情報**を追記し構成します。リレーノード構成にはDNSベースまたはIPベースのどちらかを選択できます。
 
 {% hint style="info" %}
-ノード管理を簡単にするために、DNSベースのリレー設定をお勧めします。
-もしリレーサーバを変更する場合、IPアドレスが変わるため、その都度登録証明書を再送する必要がありますがDNSベースで登録しておけば、IPアドレスが変更になってもお使いのドメイン管理画面にてIPアドレスを変更するだけで完了します。
+ノード管理を簡単にするために、DNSベースのリレー設定をお勧めします。 もしリレーサーバを変更する場合、IPアドレスが変わるため、その都度登録証明書を再送する必要がありますがDNSベースで登録しておけば、IPアドレスが変更になってもお使いのドメイン管理画面にてIPアドレスを変更するだけで完了します。
 {% endhint %}
 
 {% hint style="info" %}
 #### \*\*\*\*✨ **複数のリレーノードを構成する記述方法**
-
 
 **DNSレコードに1つのエントリーの場合**
 
@@ -1261,10 +1243,8 @@ cardano-cli shelley stake-pool registration-certificate \
 {% endtabs %}
 
 {% hint style="info" %}
-ここでは345ADAの固定費と15%のプールマージン、100ADAの誓約を設定しています。
-ご自身の設定値に変更してください。
+ここでは345ADAの固定費と15%のプールマージン、100ADAの誓約を設定しています。 ご自身の設定値に変更してください。
 {% endhint %}
-
 
 ステークプールにステークを誓約するファイルを作成します。
 
@@ -1281,12 +1261,8 @@ cardano-cli shelley stake-address delegation-certificate \
 
 **pool.cert**と**deleg.cert**をブロックプロデューサーノードにコピーします。
 
-<!--{% hint style="info" %}
-This operation creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to the pool belonging to cold key `node.vkey`
-{% endhint %}-->
-
 {% hint style="info" %}
-自分のプールに資金を預けることを**Pledge(誓約)**と呼ばれます
+自分のプールに資金を預けることを**Pledge\(誓約\)**と呼ばれます
 
 * あなたの支払い用アドレスの残高はPledge額よりも大きい必要があります。
 * 誓約金を宣言しても、実際にはどこにも移動されていません。payment.addrに残ったままです。
@@ -1484,7 +1460,7 @@ cardano-cli shelley query ledger-state --mainnet | grep publicKey | grep $(cat s
 ## ⚙ 14. トポロジーファイルを構成する。
 
 {% hint style="info" %}
-バージョン1.19.0ではP2P(ピア・ツー・ピア)ノードを自動検出しないため、手動でトポロジーを構成する必要があります。この手順をスキップすると生成したブロックがブロックチェーン外で孤立するため、必須の設定項目となります。
+バージョン1.19.0ではP2P\(ピア・ツー・ピア\)ノードを自動検出しないため、手動でトポロジーを構成する必要があります。この手順をスキップすると生成したブロックがブロックチェーン外で孤立するため、必須の設定項目となります。
 {% endhint %}
 
 トポロジーファイルを構成するには、２つの方法があります。
@@ -1561,14 +1537,12 @@ chmod +x topologyUpdater.sh
 > `{ "resultcode": "201", "datetime":"2020-07-28 01:23:45", "clientIp": "1.2.3.4", "iptype": 4, "msg": "nice to meet you" }`
 
 {% hint style="info" %}
-スクリプトが実行されるたびに、**`$NODE_HOME/logs`**にログが作成されます。
-※`topologyUpdater.sh`は1時間以内に2回以上実行しないで下さい。最悪の場合ブラックリストに追加されることがあります。
+スクリプトが実行されるたびに、**`$NODE_HOME/logs`**にログが作成されます。 ※`topologyUpdater.sh`は1時間以内に2回以上実行しないで下さい。最悪の場合ブラックリストに追加されることがあります。
 {% endhint %}
 
 crontabジョブを追加し、「topologyUpdater.sh」が自動的に実行されるように設定します。
 
-以下のコードは毎時22分に実行されるように指定しています。(上記スクリプトを実行した時間(分)より以前の分を指定して下さい。)
-
+以下のコードは毎時22分に実行されるように指定しています。\(上記スクリプトを実行した時間\(分\)より以前の分を指定して下さい。\)
 
 ```bash
 ###
@@ -1591,8 +1565,8 @@ rm crontab-fragment.txt
 リレーノードIPがトポロジーフェッチリストに登録される、4時間後に以下のセクションを実行して下さい。
 {% endhint %}
 
-トポロジーファイルを更新する`relay-topology_pull.sh`スクリプトを作成します。
-コマンドラインに送信する際に、**自身のブロックプロデューサーのIPアドレスとポート番号に書き換えて下さい**
+トポロジーファイルを更新する`relay-topology_pull.sh`スクリプトを作成します。 コマンドラインに送信する際に、**自身のブロックプロデューサーのIPアドレスとポート番号に書き換えて下さい**
+
 ```bash
 ###
 ### On relaynode1
@@ -1615,7 +1589,7 @@ chmod +x relay-topology_pull.sh
 ./relay-topology_pull.sh
 ```
 
-新しいトポロジーファイル(mainnet-topology.json)は、ステークプールを再起動した後に有効となります。
+新しいトポロジーファイル\(mainnet-topology.json\)は、ステークプールを再起動した後に有効となります。
 
 ```bash
 ###
@@ -1631,17 +1605,9 @@ killall cardano-node
 {% endtab %}
 
 {% tab title="Pooltool.ioで更新する場合" %}
+※非推奨※ 1. [https://pooltool.io/](https://pooltool.io/)へアクセスします。 2. アカウントを作成してログインします。 3. あなたのステークプールを探します。 4. **Pool Details** &gt; **Manage** &gt; **CLAIM THIS POOL**をクリックします。 5. プール名とプールURLがある場合は入力します。 6. あなたのリレーノード情報を入力します。
 
-※非推奨※
-1. [https://pooltool.io/](https://pooltool.io/)へアクセスします。
-2. アカウントを作成してログインします。
-3. あなたのステークプールを探します。
-4. **Pool Details** &gt; **Manage** &gt; **CLAIM THIS POOL**をクリックします。
-5. プール名とプールURLがある場合は入力します。
-6. あなたのリレーノード情報を入力します。
-
-![](../.gitbook/assets/ada-relay-setup-mainnet.png)
-
+![](.gitbook/assets/ada-relay-setup-mainnet.png)
 
 プライベートノードには、自身のブロックプロデューサーノードと、IOHKのノード情報を入力して下さい。
 
@@ -1718,7 +1684,7 @@ EOF
 * PT\_MY\_API\_KEY 
 * PT\_MY\_NODE\_ID
 
-この情報でスクリプトを更新します。(このスクリプトにはバグがあります。)
+この情報でスクリプトを更新します。\(このスクリプトにはバグがあります。\)
 
 {% hint style="info" %}
 **nano**エディターで更新できます。
@@ -1748,7 +1714,7 @@ killall cardano-node
 ```
 
 {% hint style="info" %}
-Pooltool.ioでリクエストが承認されたら、その都度get_buddies.shスクリプトを実行して、最新のトポロジーファイルに更新して下さい。その後ステークプールを再起動します。
+Pooltool.ioでリクエストが承認されたら、その都度get\_buddies.shスクリプトを実行して、最新のトポロジーファイルに更新して下さい。その後ステークプールを再起動します。
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -1757,7 +1723,7 @@ Pooltool.ioでリクエストが承認されたら、その都度get_buddies.sh�
 \*\*\*\*🔥 **重要な確認事項:** ブロックを生成するには、「TXs processed」が増加していることを確認する必要があります。万一、増加していない場合にはトポロジーファイルの内容を再確認して下さい。「peers」数はリレーノードが他ノードと接続している数を表しています。
 {% endhint %}
 
-![](../.gitbook/assets/ada-tx-processed.png)
+![](.gitbook/assets/ada-tx-processed.png)
 
 {% hint style="danger" %}
 \*\*\*\*🛑 **注意事項**r: ブロックプロデューサーノードを実行するためには、以下の３つのファイルが必要です。このファイルが揃っていない場合や起動時に指定されていない場合はブロックが生成できません。
@@ -1798,8 +1764,7 @@ cardano-cli shelley query stake-address-info \
 
 ### 🐣 16.1 インストール
 
-「prometheus」および「prometheus node exporter」をインストールします。
-この手順では、リレーノード1でprometheusとGrafana本体を稼働させ、リレーノード1およびブロックプロデューサーノードの情報を取得する手順です。
+「prometheus」および「prometheus node exporter」をインストールします。 この手順では、リレーノード1でprometheusとGrafana本体を稼働させ、リレーノード1およびブロックプロデューサーノードの情報を取得する手順です。
 
 {% tabs %}
 {% tab title="リレーノード1" %}
@@ -1860,7 +1825,7 @@ sudo systemctl enable prometheus-node-exporter.service
 {% endtab %}
 {% endtabs %}
 
-`/etc/prometheus/prometheus.yml`　に格納されている、「prometheus.yml」を更新します。
+`/etc/prometheus/prometheus.yml` に格納されている、「prometheus.yml」を更新します。
 
 ご自身の&lt;ブロックプロデューサーIPアドレス&gt;に書き換えて、コマンドを送信してください。
 
@@ -1920,7 +1885,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 {% endtab %}
 {% endtabs %}
 
-${NODE_CONFIG}-config.jsonに新しい `hasEKG`情報と `hasPrometheus`ポート情報を更新します。　
+${NODE\_CONFIG}-config.jsonに新しい `hasEKG`情報と `hasPrometheus`ポート情報を更新します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -1960,7 +1925,7 @@ killall cardano-node
 
 ### 📶 16.2 Grafanaダッシュボードの設定
 
-1. リレーノード1で、ローカルブラウザから [http://localhost:3000](http://localhost:3000) または http://<リレーノードIPアドレス>:3000 を開きます。 事前に 3000番ポートを開いておく必要があります。
+1. リレーノード1で、ローカルブラウザから [http://localhost:3000](http://localhost:3000) または http://&lt;リレーノードIPアドレス&gt;:3000 を開きます。 事前に 3000番ポートを開いておく必要があります。
 2. ログイン名・PWは次のとおりです。 **admin** / **admin**
 3. パスワードを変更します。
 4. 左メニューの歯車アイコンから データソースを追加します。
@@ -1978,13 +1943,11 @@ killall cardano-node
 Grafana [ダッシュボードID 11074](https://grafana.com/grafana/dashboards/11074) は システム全体を把握する優れたビジュルダッシュボードです。
 {% endhint %}
 
-![Grafana system health dashboard](../.gitbook/assets/grafana.png)
+![Grafana system health dashboard](.gitbook/assets/grafana.png)
 
 **Cardano-Node**ダッシュボードをインポートする
 
-1.Create +アイコン &gt; **Import**をクリックします。
-1. **importing via panel json**の項目に以下のソースを貼り付けます。
-2. インポートボタンをクリックします。
+1.Create +アイコン &gt; **Import**をクリックします。 1. **importing via panel json**の項目に以下のソースを貼り付けます。 2. インポートボタンをクリックします。
 
 ```bash
 {
@@ -2778,18 +2741,16 @@ Grafana [ダッシュボードID 11074](https://grafana.com/grafana/dashboards/1
 }
 ```
 
-![Cardano-node dashboard](../.gitbook/assets/cardano-node-grafana.png)
+![Cardano-node dashboard](.gitbook/assets/cardano-node-grafana.png)
 
 {% hint style="success" %}
-おめでとうございます！これで基本的な設定は完了です。
-次の項目は、運用中の便利なコマンドや保守のヒントが書かれています。
+おめでとうございます！これで基本的な設定は完了です。 次の項目は、運用中の便利なコマンドや保守のヒントが書かれています。
 {% endhint %}
 
 ## 👏 17. クレジット表記
 
 {% hint style="info" %}
-このマニュアル制作に携わった全ての方に、感謝申し上げます。
-快く翻訳を承諾して頂いた、「CoinCashew」には敬意を表します。
+このマニュアル制作に携わった全ての方に、感謝申し上げます。 快く翻訳を承諾して頂いた、「CoinCashew」には敬意を表します。
 {% endhint %}
 
 * 👏 Antonie of CNT for being awesomely helpful with Youtube content and in telegram.
@@ -2797,28 +2758,6 @@ Grafana [ダッシュボードID 11074](https://grafana.com/grafana/dashboards/1
 * 👏 The Legend of ₳da \[TLOA\] for translating this guide to Spanish.
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
-
-
-<!--### 📚 17.5 参考資料
-
-公式ドキュメントおよび詳細事項は次のリンクを参照して下さい。
-
-{% embed url="https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/index.html" caption="" %}
-
-{% embed url="https://testnets.cardano.org/en/shelley/get-started/creating-a-stake-pool/" caption="" %}
-
-{% embed url="https://github.com/input-output-hk/cardano-tutorials" caption="" %}
-
-{% embed url="https://github.com/cardano-community/guild-operators" caption="" %}
-
-{% embed url="https://github.com/gitmachtl/scripts" caption="" %}
-
-#### ギルドオペレータ制作の「CNTools」
-
-[CNToolsの公式ガイドはこちら](https://cardano-community.github.io/guild-operators/#/Scripts/cntools)
-
-## 🛠 18. 運用とメンテナンス-->
-
 
 ### 🤖 18.1 新しいkesPeriodで運用証明書を更新する
 
@@ -2841,7 +2780,7 @@ echo startKesPeriod: ${startKesPeriod}
 {% endtab %}
 {% endtabs %}
 
-次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の<"startKesPeriod">に入力してからコマンドを送信してください。
+次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;"startKesPeriod"&gt;に入力してからコマンドを送信してください。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -2918,11 +2857,10 @@ echo minPoolCost: ${minPoolCost}
 {% endtabs %}
 
 {% hint style="info" %}
-minPoolCost は340000000 lovelace (340 ADA)です。
-`--pool-cost`は最低でもこの値以上に指定します。
+minPoolCost は340000000 lovelace \(340 ADA\)です。 `--pool-cost`は最低でもこの値以上に指定します。
 {% endhint %}
 
-poolMetaData.jsonを変更する場合は、メタデータファイルのハッシュを再計算し、更新されたpoolMetaData.jsonをWEBサーバへアップロードしてください。 詳細については [項目9](./#9-register-your-stakepool)を参照して下さい。
+poolMetaData.jsonを変更する場合は、メタデータファイルのハッシュを再計算し、更新されたpoolMetaData.jsonをWEBサーバへアップロードしてください。 詳細については [項目9](guide-how-to-build-a-haskell-stakepool-node.md#9-register-your-stakepool)を参照して下さい。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -2934,7 +2872,7 @@ cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.j
 
 登録証明書トランザクションを作成します。
 
-複数のリレーノードを設定する場合は [**項目12**](./#12-register-your-stake-pool) を参考にパラメーターを指定して下さい。
+複数のリレーノードを設定する場合は [**項目12**](guide-how-to-build-a-haskell-stakepool-node.md#12-register-your-stake-pool) を参考にパラメーターを指定して下さい。
 
 {% hint style="warning" %}
 **metadata-url**は64文字以下にする必要があります。
@@ -3238,6 +3176,7 @@ EOF
 {% endtabs %}
 
 `/etc/systemd/system`にユニットファイルをコピーして、権限を付与します。
+
 ```bash
 sudo cp $NODE_HOME/cardano-node.service /etc/systemd/system/cardano-node.service
 ```
@@ -3315,7 +3254,6 @@ ITNのバイナリファイルが`$NODE_HOME`にあることを確認して下�
 ```
 {% endtab %}
 {% endtabs %}
-
 
 次のコマンドでプールIDを確認します。
 
@@ -3524,13 +3462,10 @@ cardano-cli shelley query utxo \
 ```
 
 ### 🔓 18.10 ノードのセキュリティを強化する
+
 {% hint style="info" %}
 絶賛翻訳中！！
 {% endhint %}
-
-<!--あなたのプールの保護の為に、必ず実行してください。
-
-{% page-ref page="how-to-harden-ubuntu-server.md" %}-->
 
 ## 🌜 19. ステークプールを廃止する。
 
@@ -3736,8 +3671,7 @@ cardano-cli shelley transaction submit \
 もし気が変わってプールを続ける場合には、エポック40が終了する前に、新しい登録証明書を作成すれば、登録解除証明書が無効となります。
 {% endhint %}
 
-リタイアエポック後、次のクエリでプールが正常に廃止されたことを確認出来ます。
-廃止されている場合は、空の結果を表示します。
+リタイアエポック後、次のクエリでプールが正常に廃止されたことを確認出来ます。 廃止されている場合は、空の結果を表示します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -3751,14 +3685,12 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 ## 🚀 20. このマニュアルに関する問い合わせ先
 
 {% hint style="success" %}
-このマニュアルは役に立ちましたか？
-不明な点がある場合は、下記までご連絡下さい。
+このマニュアルは役に立ちましたか？ 不明な点がある場合は、下記までご連絡下さい。
 
 ・Twitter:[@btbfpark](https://twitter.com/btbfpark)
 
-・Twitter:[@X_StakePool_XSP](https://twitter.com/X_StakePool_XSP)
+・Twitter:[@X\_StakePool\_XSP](https://twitter.com/X_StakePool_XSP)
 
 このマニュアルは、常に[最新版](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node#19-retiring-your-stake-pool)に沿って更新されます。
-
 {% endhint %}
 
