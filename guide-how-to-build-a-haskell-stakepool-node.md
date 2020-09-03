@@ -3686,6 +3686,7 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 
 {% hint style="success" %}
 このマニュアルは役に立ちましたか？ 不明な点がある場合は、下記までご連絡下さい。
+
 ・コミュニティ：[Cardano SPO Japanese Guild](https://discord.com/invite/3HnVHs3)
 
 ・Twitter：[@btbfpark](https://twitter.com/btbfpark)
