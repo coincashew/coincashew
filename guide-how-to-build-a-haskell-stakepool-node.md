@@ -1914,7 +1914,7 @@ killall cardano-node
 ```
 {% endtab %}
 
-{% tab title="relaynode1" %}
+{% tab title="リレーノード1" %}
 ```bash
 cd $NODE_HOME
 killall cardano-node
