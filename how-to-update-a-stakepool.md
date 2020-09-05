@@ -1,3 +1,9 @@
+---
+description: >-
+  最新ノードをソースコードからビルドするには、数分～数時間かかる場合があります。その間プールを停止させるとブロック生成のチャンスが失われ、委任者に迷惑がかかります。プール停止時間を最小限に抑えた方法でアップデートするよう心がけましょう。
+---
+
+
 # ステークプールを更新する方法
 
 このマニュアルは、[X Stake Pool](https://xstakepool.com)オペレータの[BTBF](https://twitter.com/btbfpark)が[CoinCashew](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node#9-register-your-stakepool)より許可を得て、日本語翻訳しております。
