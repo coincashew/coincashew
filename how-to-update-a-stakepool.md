@@ -1,14 +1,13 @@
-# How to update a Stakepool
+# ステークプールを更新する方法
 
-{% hint style="success" %}
-Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
+このマニュアルは、[X Stake Pool](https://xstakepool.com)オペレータの[BTBF](https://twitter.com/btbfpark)が[CoinCashew](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node#9-register-your-stakepool)より許可を得て、日本語翻訳しております。
 {% endhint %}
 
-## 📡 1. How to perform an update
+## 📡 1. ノードバージョンアップデート手順
 
-From time to time, there will be new versions of `cardano-node`. Follow the [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) by enabling **notifications** with the watch functionality.
+ `cardano-node`は常に更新されており、バージョンがアップデートされるたびにプールサーバでも作業が必要です。 [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) をフォローし最新情報を取得しましょう。
 
-To update with `$HOME/git/cardano-node` as the current binaries directory, copy the whole cardano-node directory to a new place so that you have a backup.
+現在の `$HOME/git/cardano-node` ディレクトリに更新する場合は、ディレクトリ全体を新しい場所へコピーしてバックアップを作成します。(ロールバックする際に必要となります)
 
 ```bash
 cd $HOME/git
@@ -18,10 +17,10 @@ cd cardano-node2/
 ```
 
 {% hint style="danger" %}
-Read the patch notes for any other special updates or dependencies that may be required for the latest release.
+最新のリリースに必要となる他の更新や依存関係については、パッチノートを参照して下さい。
 {% endhint %}
 
-Remove the old binaries and rebuild the latest binaries. Run the following command to pull and build the latest binaries. Change the checkout **tag** or **branch** as needed.
+古いバイナリーを削除し、最新のバイナリーを再構築します。次のコマンドを実行して最新のバイナリーを取得し構築します。更新したいバージョンに合わせてタグを更新します。
 
 ```bash
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
@@ -31,10 +30,10 @@ cabal build cardano-node cardano-cli
 ```
 
 {% hint style="info" %}
-Build process may take a few minutes up to a few hours depending on your computer's processing power.
+コンピュータの処理能力によっては、構築プロセスに数分から数時間かかる場合があります。
 {% endhint %}
 
-Verify your **cardano-cli** and **cardano-node** were updated to the expected version.
+**cardano-cli** と **cardano-node** が、指定したバージョンに更新されたことを確認して下さい。
 
 ```bash
 $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") version
@@ -42,17 +41,17 @@ $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node")
 ```
 
 {% hint style="danger" %}
-Stop your node before updating the binaries.
+バイナリーを更新する前にノードを停止します。
 {% endhint %}
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサーノード" %}
 ```bash
 killall cardano-node
 ```
 {% endtab %}
 
-{% tab title="relaynode1" %}
+{% tab title="リレーノード" %}
 ```
 killall cardano-node
 ```
@@ -65,7 +64,7 @@ sudo systemctl stop cardano-node
 {% endtab %}
 {% endtabs %}
 
-Copy **cardano-cli** and **cardano-node** files into bin directory.
+**cardano-cli** と **cardano-node** ファイルをbinディレクトリにコピーします。
 
 ```bash
 sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
@@ -73,18 +72,18 @@ sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardan
 ```
 
 {% hint style="success" %}
-Now restart your node to use the updated binaries.
+次に、ノードを再起動して正常に同期が開始されているか確認して下さい。
 {% endhint %}
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
 ./startBlockProducingNode.sh
 ```
 {% endtab %}
 
-{% tab title="relaynode1" %}
+{% tab title="リレーノード1" %}
 ```
 cd $NODE_HOME
 ./startRelayNode1.sh
@@ -98,7 +97,7 @@ sudo systemctl start cardano-node
 {% endtab %}
 {% endtabs %}
 
-Finally, the following sequence will switch-over to your newly built cardano-node folder while keeping the old directory for backup.
+以前使用していたフォルダをバックアップとして保存し、新しく構築された**cardano-node**フォルダーに切り替えます。
 
 ```bash
 cd $HOME/git
@@ -106,33 +105,34 @@ mv cardano-node/ cardano-node-old/
 mv cardano-node2/ cardano-node/
 ```
 
-## 🤯 2. In case of problems
+## 🤯 2. 問題が発生した場合
 
-### 🛣 4.1 Forked off
+### 🛣 4.1 更新を忘れていた場合
 
-Forget to update your node and now your node is stuck on an old chain?
+ノードの更新を忘れ、ノードが古いチェーンで止まっている場合
 
-Reset your database files and be sure to grab the [latest genesis, config, topology json files](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/index.html).
+データベースをリセットし [最新の genesis, config, topology json files](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/index.html)を取得して下さい。
 
 ```bash
 cd $NODE_HOME
 rm -rf db
 ```
 
-### 📂 4.2 Roll back to previous version from backup
+### 📂 4.2 バックアップから前バージョンへロールバックする
+最新バージョンに問題がある場合は、以前のバージョンへ戻しましょう。
 
 {% hint style="danger" %}
-Stop your node before updating the binaries.
+バイナリを更新する前にノードを停止します。
 {% endhint %}
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサーノード" %}
 ```bash
 killall cardano-node
 ```
 {% endtab %}
 
-{% tab title="relaynode1" %}
+{% tab title="リレーノード1" %}
 ```
 killall cardano-node
 ```
@@ -145,7 +145,7 @@ sudo systemctl stop cardano-node
 {% endtab %}
 {% endtabs %}
 
-Restore the old repository.
+古いリポジトリを復元します。
 
 ```bash
 cd $HOME/git
@@ -153,14 +153,14 @@ mv cardano-node/ cardano-node-rolled-back/
 mv cardano-node-old/ cardano-node/
 ```
 
-Copy the binaries to `/usr/local/bin`
+バイナリーファイルを `/usr/local/bin`にコピーします。
 
 ```bash
 sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
 sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
 ```
 
-Verify the binaries are the correct version.
+バイナリーが希望するバージョンであることを確認します。
 
 ```bash
 /usr/local/bin/cardano-cli version
@@ -168,18 +168,18 @@ Verify the binaries are the correct version.
 ```
 
 {% hint style="success" %}
-Now restart your node to use the updated binaries.
+次にノードを再起動して同期が開始しているか確認して下さい。
 {% endhint %}
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
 ./startBlockProducingNode.sh
 ```
 {% endtab %}
 
-{% tab title="relaynode1" %}
+{% tab title="リレードード1" %}
 ```bash
 cd $NODE_HOME
 ./startRelayNode1.sh
@@ -193,7 +193,7 @@ sudo systemctl start cardano-node
 {% endtab %}
 {% endtabs %}
 
-### 🤖 4.3 Last resort: Rebuild from source code
+### 🤖 4.3 上手く行かない場合は、ソースコードから再構築
 
-Follow the steps in [How to build a Stakepool.](./)
+次のマニュアル [カルダノステークプール構築手順](./)1～3を実行する。
 
