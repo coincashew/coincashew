@@ -2759,7 +2759,7 @@ Grafana [ダッシュボードID 11074](https://grafana.com/grafana/dashboards/1
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
 
-## 🛠 18. Operational and Maintenance Tips
+## 🛠 18. プール運用とメンテナンス
 
 ### 🤖 18.1 新しいkesPeriodで運用証明書を更新する
 
