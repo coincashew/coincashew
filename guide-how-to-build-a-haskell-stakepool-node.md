@@ -2759,6 +2759,8 @@ Grafana [ダッシュボードID 11074](https://grafana.com/grafana/dashboards/1
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
 
+## 🛠 18. Operational and Maintenance Tips
+
 ### 🤖 18.1 新しいkesPeriodで運用証明書を更新する
 
 {% hint style="info" %}
@@ -3027,7 +3029,7 @@ cardano-cli shelley transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Copy **tx.raw** to your **cold environment.**
+**tx.raw** をコールド環境にコピーします。
 
 トランザクションに署名します。
 
@@ -3045,7 +3047,7 @@ cardano-cli shelley transaction sign \
 {% endtab %}
 {% endtabs %}
 
-Copy **tx.signed** to your **hot environment.**
+**tx.signed**ををブロックプロデューサーノードにコピーします。
 
 トランザクションを送信します。
 
