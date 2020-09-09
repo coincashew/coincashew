@@ -12,7 +12,7 @@ To update with `$HOME/git/cardano-node` as the current binaries directory, copy 
 
 ```bash
 cd $HOME/git
-rm cardano-node-old/
+rm -rf cardano-node-old/
 rsync -av cardano-node/ cardano-node2/
 cd cardano-node2/
 ```
@@ -26,7 +26,7 @@ Remove the old binaries and rebuild the latest binaries. Run the following comma
 ```bash
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 git clean -fd
-git fetch --all && git checkout tags/1.19.0 && git pull
+git fetch --all && git checkout tags/1.19.1 && git pull
 cabal build cardano-node cardano-cli
 ```
 

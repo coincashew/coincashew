@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of August 20, 2020, this guide is written for **mainnet** with **release v.1.19.0** 😁 
+As of September 4 2020, this guide is written for **mainnet** with **release v.1.19.1** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -157,7 +157,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all
-git checkout tags/1.19.0
+git checkout tags/1.19.1
 ```
 
 Update the cabal config, project settings, and reset build folder.

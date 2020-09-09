@@ -18,3 +18,5 @@
 
 {% page-ref page="atomex-web-wallet-multi-chain-assets.md" %}
 
+{% page-ref page="polkadot-.js-or-dot.md" %}
+

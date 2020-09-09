@@ -4,6 +4,7 @@
 | :--- | :--- |
 | ![](.gitbook/assets/btc.png) [Bitcoin](coins/btc/) | ![](.gitbook/assets/eth.png) [Ethereum](coins/overview-eth/) |
 | ![](.gitbook/assets/bch.png) [Bitcoin Cash](coins/bch/) | ![](.gitbook/assets/bnb.png) [Binance Coin](coins/bnb/) |
+| ![](.gitbook/assets/dot.png) [Polkadot](coins/polkadot-or-dot/) |  |
 | ![](.gitbook/assets/xtz.png) [Tezos](coins/overview-xtz/) | ![](.gitbook/assets/ltc.png) [Litecoin](coins/ltc/) |
 | ![](.gitbook/assets/eos.png) [EOS](coins/overview-eos/) | ![](.gitbook/assets/xmr.png) [Monero](coins/overview-xmr/) |
 | ![](.gitbook/assets/xlm.png) [Stellar](coins/xlm/) | ![](.gitbook/assets/ada.png) [Cardano](coins/overview-ada/) |
