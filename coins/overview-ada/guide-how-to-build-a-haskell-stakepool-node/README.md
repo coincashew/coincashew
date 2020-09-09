@@ -1749,7 +1749,7 @@ As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pul
 ![](../../../.gitbook/assets/ada-tx-processed.png)
 
 {% hint style="danger" %}
-\*\*\*\*🛑 **Critical Reminde**r: The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer. Namely, the following three files.
+\*\*\*\*🛑 **Critical Key Security Reminde**r: The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer. Namely, the following three files.
 
 ```bash
 ###
@@ -1761,6 +1761,10 @@ CERT=\${DIRECTORY}/node.cert
 ```
 
 **All other keys must remain offline in your air-gapped offline cold environment.**
+{% endhint %}
+
+{% hint style="danger" %}
+\*\*\*\*🔥 **Relay Node Security Reminder:** Relay nodes must not contain any **`operational certifications`, `vrf`, `skey` or `cold`** ``**keys**.
 {% endhint %}
 
 {% hint style="success" %}
