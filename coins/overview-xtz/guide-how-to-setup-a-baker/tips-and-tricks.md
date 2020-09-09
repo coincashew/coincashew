@@ -32,6 +32,28 @@ Rapidly get notified if something goes wrong.
 
 Participate in the unique Tezos governance process and make the future Tezos better!
 
+There are two kinds of voting, proposal selection and election voting. 
+
+{% tabs %}
+{% tab title="Proposal Selection" %}
+{% hint style="info" %}
+Determine the latest **proposal ID** by visiting your favorite block explorer such as [TzStats ](https://tzstats.com/election/head)or [Tezos.ID](https://tezos.id/proposals).
+{% endhint %}
+
+You can **upvote** a proposal with the following command. 
+
+```text
+./tezos-client submit proposals for <baker account name> <proposal ID Hash>
+```
+
+> \#Example: `./tezos-client submit proposal for ledger_mybaker  PsDELPH1Kxsxt8f9eWbxQeRxkjfbxoqM52jvs5Y5fBxWWh4ifpo`
+
+{% hint style="info" %}
+Your baker's upvote is weighted by the number of rolls you control. At least 5% of all rolls must upvote in order for a proposal to be promoted or also known as reaching quorum. After reaching quorum, a proposal moves on to the next phase of governance, the exploration vote.
+{% endhint %}
+{% endtab %}
+
+{% tab title="Election Voting" %}
 Voting is available when an On-Chain election is two types of Vote Periods:
 
 * **Exploration Vote Period**
@@ -55,6 +77,8 @@ The command to run is:
 ```
 
 > \#Example: `./tezos-client submit ballot for ledger_mybaker PsCARTHAGazKbHtnKfLzQg3kms52kSRpgnDY982a9oYsSXRLQEb yay`
+{% endtab %}
+{% endtabs %}
 
 ## 🕵♂ Test for ledger connectivity
 
