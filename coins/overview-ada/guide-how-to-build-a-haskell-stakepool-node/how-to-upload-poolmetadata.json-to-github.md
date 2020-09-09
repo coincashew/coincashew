@@ -24,10 +24,10 @@
 
 > Example: [https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json](https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json)
 
-9. The URL must be shorter than 64 characters. Use [https://tinyurl.com/](https://tinyurl.com/) to shorten it.
+9. The URL must be shorter than 64 characters. Use [https://git.io/](https://git.io/) to shorten it.
 
 > Example:  
-> [https://tinyurl.com/MPNpooldata](https://tinyurl.com/MPNpooldata)
+> [https://git.io/JUcnl](https://git.io/JUcnl)
 
 10. Use this tinyurl URL`--metadata-url` in your stakepool registration transaction.
 
