@@ -64,7 +64,7 @@ description: >-
 ステークプールのサーバを強化するには、以下の内容を実施して下さい。
 
 {% hint style="info" %}
-絶賛翻訳中
+[Ubuntuサーバーのセキュリティを強化する手順](how-to-harden-ubuntu-server.md)
 {% endhint %}
 
 ### 🛠 Ubuntuセットアップガイド
@@ -75,7 +75,7 @@ description: >-
 
 ### 🧱 ノードを再構築したい場合
 
-もしノードインストールを初めからやり直したい場合は[項目18.2](guide-how-to-build-a-haskell-stakepool-node.md#18-2-resetting-the-installation)で、リセットの方法を確認して下さい。
+もしノードインストールを初めからやり直したい場合は[項目18.2](guide-how-to-build-a-haskell-stakepool-node.md#182-resetting-the-installation)で、リセットの方法を確認して下さい。
 
 ## 🏭 1. CabalとGHCをインストールします
 
