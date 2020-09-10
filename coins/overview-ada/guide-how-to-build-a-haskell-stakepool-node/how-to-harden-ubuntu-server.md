@@ -16,7 +16,7 @@ Make a habit of logging to your server using a non-root account. This will preve
 
 SSH to your server
 
-```text
+```bash
 ssh username@server.public.ip.address
 ```
 
@@ -50,7 +50,7 @@ The basic rules of hardening SSH are:
 * Lock down SSH to only the ip range your require \(if you feel like it\)
 {% endhint %}
 
-Create a new SSH key pair on your local machine. Run this on your local machine.
+Create a new SSH key pair on your local machine. Run this on your local machine. You will be asked to type a file name in which to save the key. This will be your **keyname**.
 
 ```text
 ssh-keygen -t rsa
