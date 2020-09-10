@@ -17,7 +17,7 @@ Make a habit of logging to your server using a non-root account. This will preve
 SSH to your server
 
 ```text
-ssh username@server.ip.address
+ssh username@server.public.ip.address
 ```
 
 Create a new user called cardano
@@ -59,13 +59,13 @@ ssh-keygen -t rsa
 Transfer the public key to your remote node. Update the **keyname**.
 
 ```bash
-ssh-copy-id -i $HOME/.ssh/<keyname>.pub cardano@server.ip.address
+ssh-copy-id -i $HOME/.ssh/<keyname>.pub cardano@server.public.ip.address
 ```
 
 Login with your new cardano user
 
 ```text
-ssh cardano@server.ip.address
+ssh cardano@server.public.ip.address
 ```
 
 Disable root login and password based login. Edit the `/etc/ssh/sshd_config file`
@@ -119,14 +119,14 @@ sudo service sshd reload
 Verify the login still works
 
 ```text
-ssh cardano@server.ip.address
+ssh cardano@server.public.ip.address
 ```
 
 {% hint style="info" %}
 Alternatively, you might need to use 
 
 ```bash
-ssh -i <path to your SHH_key_name.pub> cardano@server.ip.address
+ssh -i <path to your SHH_key_name.pub> cardano@server.public.ip.address
 ```
 {% endhint %}
 
