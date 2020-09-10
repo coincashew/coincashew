@@ -2808,7 +2808,8 @@ Thanks to all 11000 of you, the Cardano hodlers, buidlers, stakers, and pool ope
 
 * 👏 Antonie of CNT for being awesomely helpful with Youtube content and in telegram.
 * 👏 Special thanks to Kaze-Stake for the pull requests and automatic script contributions.
-* 👏 The Legend of ₳da \[TLOA\] for translating this guide to Spanish.
+* 👏 The Legend of ₳da \[TLOA\] for translating this guide to Japanese.
+* 👏 X-StakePool \[BTBF\] for translating this guide to Spanish.
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
 
@@ -2824,6 +2825,7 @@ Thanks to all 11000 of you, the Cardano hodlers, buidlers, stakers, and pool ope
 
 * 🌟 CNT
 * 🌟 OMEGA \| CODEX
+* 🌟 BTBF
 * 🌟 TLOA
 * 🌟 KAZE
 * 🌟 BEBOP
