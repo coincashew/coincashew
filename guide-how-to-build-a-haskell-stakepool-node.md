@@ -12,7 +12,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-このマニュアルは、Shelleyメインネット用にVer1.19.0を用いて作成されています。
+このマニュアルは、Shelleyメインネット用にVer1.19.1を用いて作成されています。
 {% endhint %}
 
 ## 🏁 0. 前提条件
@@ -157,7 +157,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all
-git checkout tags/1.19.0
+git checkout tags/1.19.1
 ```
 
 Cabal構成、プロジェクト設定を更新し、ビルドフォルダーをリセットします。
@@ -500,7 +500,7 @@ echo slotNo: ${slotNo}
 ```bash
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 echo kesPeriod: ${kesPeriod}
-startKesPeriod=$(( ${kesPeriod} - 1 ))
+startKesPeriod=$(( ${kesPeriod} - 0 ))
 echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
@@ -2918,7 +2918,7 @@ cardano-cli shelley stake-address delegation-certificate \
 {% endtab %}
 {% endtabs %}
 
-**deleg.cert** をブロックプロデューサーにコピーします。
+**pool.cert**と**deleg.cert** をブロックプロデューサーにコピーします。
 
 ttlパラメータを設定するには、最新のスロット番号を取得する必要があります。
 
