@@ -1,139 +1,152 @@
 ---
-description: Quick steps to secure your node.
+description: ノード保護のためのセキュリティ強化方法です。
 ---
 
-# How to Harden Ubuntu Server
+# Ubuntuサーバーを強化する手順
 
-{% hint style="success" %}
+<!--{% hint style="success" %}
 Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
-{% endhint %}
+{% endhint %}-->
 
-## 🧙♂ Create a non-root user with sudo privileges
+## 🧙♂ ルート権限を付与したユーザーアカウントの作成
 
 {% hint style="info" %}
-Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command rm can wipe your entire server if run incorrectly using by a root user.
+サーバを操作する場合はrootアカウントを使用せず、root権限を付与したユーザーアカウントで操作するようにしましょう。
+rootアカウントで誤ってrmコマンドを使用すると、サーバ全体が完全消去されます。
 {% endhint %}
 
-SSH to your server
+<!--SSH to your server
 
 ```text
 ssh username@server.ip.address
-```
+```-->
 
-Create a new user called cardano
+新しいユーザーの追加　(例：cardano)
 
 ```text
 useradd -m -s /bin/bash cardano
 ```
 
-Set the password for cardano user
+cardanoにパスワードを設定します。
 
 ```text
 passwd cardano
 ```
 
-Add cardano to the sudo group
+cardanoをsudoグループに追加する
 
 ```text
 usermod -aG sudo cardano
 ```
 
-## \*\*\*\*🔏 **Disable SSH password Authentication and Use SSH Keys only**
+## \*\*\*\*🔏 **SSHパスワード認証を無効化し、SSH鍵認証方式のみを使用する**
 
 {% hint style="info" %}
-The basic rules of hardening SSH are:
+SSHを強化する基本的なルールは次の通りです。
 
-* No password for SSH access \(use private key\)
-* Don't allow root to SSH \(the appropriate users should SSH in, then `su` or `sudo`\)
-* Use `sudo` for users so commands are logged
-* Log unauthorized login attempts \(and consider software to block/ban users who try to access your server too many times, like fail2ban\)
-* Lock down SSH to only the ip range your require \(if you feel like it\)
+* SSHログイン時パスワード無効化 \(秘密鍵を使用\)
+* rootアカウントでのSSHログイン無効化 \(root権限な必要なコマンドは`su` or `sudo`コマンドを使う\)
+* 許可されていないアカウントからのログイン試行をログに記録する \(fail2banなどの、不正アクセスをブロックまたは禁止するソフトウェアの導入を検討する\)
+* SSHログイン元のIPアドレス範囲のみに限定する \(希望する場合のみ\)※利用プロバイダーによっては、定期的にグローバルIPが変更されるので注意が必要
 {% endhint %}
 
-Create a new SSH key pair on your local machine. Run this on your local machine.
+### 鍵ペアーの作成
+
+ローカルマシンに新しいSSH公開鍵と秘密鍵のペアキーを作成する。ファイル名(キーネーム)を入力するように求められます。
 
 ```text
 ssh-keygen -t rsa
 ```
 
-Transfer the public key to your remote node. Update the **keyname**.
-
+公開鍵(***.pub)をリモートノードをへ転送する。
+{% hint style="info" %}
+ssh-copy-id コマンドを使用することで、リモートサーバへ「.ssh/authorized_keys」として転送してくれます。
+{% endhint %}
 ```bash
-ssh-copy-id -i $HOME/.ssh/<keyname>.pub cardano@server.ip.address
+ssh-copy-id -i $HOME/.ssh/<キーネーム>.pub cardano@server.ip.address
 ```
 
-Login with your new cardano user
+先程作成したユーザーアカウント(cardano)でログインする
 
 ```text
 ssh cardano@server.ip.address
 ```
 
-Disable root login and password based login. Edit the `/etc/ssh/sshd_config file`
+### SSHの設定変更
+
+`/etc/ssh/sshd_config`ファイルを開く
 
 ```text
 sudo nano /etc/ssh/sshd_config
 ```
 
-Locate **ChallengeResponseAuthentication** and update to no
+**ChallengeResponseAuthentication**の項目を「no」にする
 
 ```text
 ChallengeResponseAuthentication no
 ```
 
-Locate **PasswordAuthentication** update to no
+**PasswordAuthentication**の項目を「no」にする
 
 ```text
 PasswordAuthentication no 
 ```
 
-Locate **PermitRootLogin** and update to no
+**PermitRootLogin**の項目を「no」にする
 
 ```text
 PermitRootLogin no
 ```
 
-Locate **PermitEmptyPasswords** and update to no
+**PermitEmptyPasswords**の項目を「no」にする
 
 ```text
 PermitEmptyPasswords no
 ```
 
-**Optional**: Locate **Port** and customize it your **random** port.
+ポート番号をランダムな数値へ変更する
+{% hint style="info" %}
+ローカルマシンからSSHログインする際、ポート番号を以下で設定した番号に合わせてください。
+{% endhint %}
 
 ```bash
 Port <port number>
 ```
 
-Validate the syntax of your new SSH configuration.
+SSH構文にエラーがないかチェックします。
 
 ```text
 sudo sshd -t
 ```
 
-If no errors with the syntax validation, reload the SSH process
+SSH構文エラーがない場合、SSHプロセスを再起動します。
 
 ```text
 sudo service sshd reload
 ```
 
-Verify the login still works
+一旦、ログオフし、ログイン出来るか確認します。
+
+```text
+exit
+```
 
 ```text
 ssh cardano@server.ip.address
 ```
 
 {% hint style="info" %}
-Alternatively, you might need to use 
+上記でログイン出来ない場合は、SSHキーを指定してログインします。
 
 ```bash
 ssh -i <path to your SHH_key_name.pub> cardano@server.ip.address
 ```
 {% endhint %}
 
-## \*\*\*\*🤖 **Update your system**
+## \*\*\*\*🤖 **システムを更新する**
 
 {% hint style="warning" %}
-It's critically important to keep your system up-to-date with the latest patches to prevent intruders from accessing your system.
+不正アクセスを予防するには、システムに最新のパッチを適用することが重要です。
 {% endhint %}
 
 ```bash
@@ -142,82 +155,82 @@ sudo apt-get autoremove
 sudo apt-get autoclean
 ```
 
-Enable automatic updates so you don't have to manually install them.
+自動更新を有効にすると、手動でインストールする手間を省けます。
 
 ```text
 sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-## 🧸 Disable root account
+## 🧸 rootアカウントを無効にする
 
-System admins should not frequently log in as root in order to maintain server security. Instead, you can use sudo execute that require low-level privileges.
+サーバーのセキュリティを維持するために、頻繁にrootアカウントでログインしないでください。
 
 ```bash
-# To disable the root account, simply use the -l option.
+# rootアカウントを無効にするには、-lオプションを使用します。
 sudo passwd -l root
 ```
 
 ```bash
-# If for some valid reason you need to re-enable the account, simply use the -u option.
+# 何らかの理由でrootアカウントを有効にする必要がある場合は、-uオプションを使用します。
 sudo passwd -u root
 ```
 
-## 🛠 Setup Two Factor Authentication for SSH
+## 🛠 SSHの2段階認証を設定する
 
 {% hint style="info" %}
-SSH, the secure shell, is often used to access remote Linux systems. Because we often use it to connect with computers containing important data, it’s recommended to add another security layer. Here comes the two factor authentication \(_2FA_\).
+SSHはリモートアクセスに使用されますが、重要なデータを含むコンピュータとの接続としても使われるため、別のセキュリティーレイヤーの導入をお勧めします。2段階認証(2FA)
 {% endhint %}
 
 ```text
 sudo apt install libpam-google-authenticator -y
 ```
 
-To make SSH use the Google Authenticator PAM module, edit the `/etc/pam.d/sshd` file:
+SSHがGoogle Authenticator PAM モジュールを使用するために、`/etc/pam.d/sshd`ファイルを編集します。
 
 ```text
 sudo nano /etc/pam.d/sshd 
 ```
 
-Add the follow line:
+以下の行を追加します。
 
 ```text
 auth required pam_google_authenticator.so
 ```
 
-Now you need to restart the `sshd` daemon using:
+以下を使用して`sshd`デーモンを再起動します。
 
 ```text
 sudo systemctl restart sshd.service
 ```
 
-Modify `/etc/ssh/sshd_config` 
+`/etc/ssh/sshd_config` ファイルを開きます。
 
 ```text
 sudo nano /etc/ssh/sshd_config
 ```
 
-Locate **ChallengeResponseAuthentication** and update to yes
+**ChallengeResponseAuthentication**の項目を「yes」にします。
 
 ```text
 ChallengeResponseAuthentication yes
 ```
 
-Locate **UsePAM** and update to yes
+**UsePAM**の項目を「yes」にします。
 
 ```text
 UsePAM yes
 ```
 
-Save the file and exit.
+ファイルを保存して閉じます。
 
-Run the **google-authenticator** command.
+**google-authenticator** コマンドを実行します。
 
 ```text
 google-authenticator
 ```
 
-It will ask you a series of questions, here is a recommended configuration:
+いくつか質問事項が表示されます。推奨項目は以下のとおりです。
 
 * Make tokens “time-base”": yes
 * Update the `.google_authenticator` file: yes
@@ -225,51 +238,51 @@ It will ask you a series of questions, here is a recommended configuration:
 * Increase the original generation time limit: no
 * Enable rate-limiting: yes
 
-You may have noticed the giant QR code that appeared during the process, underneath are your emergency scratch codes to be used if you don’t have access to your phone: write them down on paper and keep them in a safe place.
+プロセス中に大きなQRコードが表示されますが、その下には緊急時のスクラッチコードがひょうじされますので、忘れずに書き留めておいて下さい。
 
-Now, open Google Authenticator on your phone and add your secret key to make two factor authentication work.
+スマートフォンでGoogle認証システムアプリを開き、秘密鍵を追加して2段階認証を機能させます。
 
-## 🧩 Secure Shared Memory
+## 🧩 安全な共有メモリー
 
 {% hint style="info" %}
-One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.
+システムで共有されるメモリを保護します。
 {% endhint %}
 
-Edit `/etc/fstab`
+`/etc/fstab`を開きます
 
 ```text
 sudo nano /etc/fstab
 ```
 
-Insert the following line to the bottom of the file and save/close.
+次の行をファイルの最後に追記して保存します。
 
 ```text
 tmpfs	/run/shm	tmpfs	ro,noexec,nosuid	0 0
 ```
 
-Reboot the node in order for changes to take effect.
+変更を有効にするには、システムを再起動します。
 
 ```text
 sudo reboot
 ```
 
-## \*\*\*\*⛓ **Install Fail2ban**
+## \*\*\*\*⛓ **Fail2banのインストール**
 
 {% hint style="info" %}
-Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address \(within a specified amount of time\), fail2ban blocks access from that IP address.
+Fail2banは、ログファイルを監視し、ログイン試行に失敗した特定のパターンを監視する侵入防止システムです。特定のIPアドレスから（指定された時間内に）一定数のログイン失敗が検知された場合、Fail2banはそのIPアドレスからのアクセスをブロックします。
 {% endhint %}
 
 ```text
 sudo apt-get install fail2ban -y
 ```
 
-Edit a config file that monitors SSH logins.
+SSHログインを監視する設定ファイルを開きます。
 
 ```text
 sudo nano /etc/fail2ban/jail.local
 ```
 
-Add the following lines to the bottom of the file.
+ファイルの最後に次の行を追加し保存します。
 
 ```bash
 [sshd]
@@ -280,33 +293,35 @@ logpath = /var/log/auth.log
 maxretry = 3
 ```
 
-Save/close file. 
-
-Restart fail2ban for settings to take effect.
+fail2banを再起動して設定を有効にします。
 
 ```text
 sudo systemctl restart fail2ban
 ```
 
-## \*\*\*\*🧱 **Configure your Firewall**
+## \*\*\*\*🧱 **ファイアウォールを構成する**
 
-The standard UFW firewall can be used to control network access to your node.
+標準のUFWファイアウォールを使用して、ノードへのネットワークアクセスを制限できます。
 
-With any new installation, ufw is disabled by default. Enable it with the following settings.
+新規インストール時点では、デフォルトでufwが無効になっているため、以下のコマンドで有効にしてください。
 
-* Port 22 \(or your random port \#\) TCP for SSH connection
-* Port 6000 TCP for p2p traffic
-* Port 3000 TCP for Grafana web server \(if hosted on this node\)
+* SSH接続用のポート22番\(または設定したランダムなポート番号 \#\)
+* ノード用のポート6000番または6001番
+* ノード監視Grafana用3000番ポート \(このノードで起動している場合\)
+* ブロックプロデューサーノードおよびリレーノード用に設定を変更して下さい。
+* ブロックプロデューサーノードでは、リレーノードのIPのみ受け付ける用に設定してください。
 
 ```bash
-ufw allow <22 or your random port number>/tcp
+ufw allow <22またはランダムなポート番号>/tcp
+#リレーノードのIPを指定する場合
+#ufw allow from <リレーノードIP> to any port <ノード用のポート番号>
 ufw allow 6000/tcp
 ufw allow 3000/tcp
 ufw enable
 ufw status numbered
 ```
 
-Confirm the settings are in effect. 
+設定が有効であることを確認します。
 
 > ```csharp
 >      To                         Action      From
@@ -319,16 +334,16 @@ Confirm the settings are in effect.
 > [ 6] 6000/tcp (v6)              ALLOW IN    Anywhere (v6)
 > ```
 
-## 🔭 Verify Listening Ports
+## 🔭 リスニングポートの確認
 
-If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
+安全なサーバーを維持するには、時々リスニングネットワークポートを検証する必要があります。これにより、ネットワークに関する重要な情報を得られます。
 
 ```text
 netstat -tulpn
 ss -tulpn
 ```
 
-## 🚀 References
+## 🚀 参考文献
 
 {% embed url="https://medium.com/@BaneBiddix/how-to-harden-your-ubuntu-18-04-server-ffc4b6658fe7" %}
 
