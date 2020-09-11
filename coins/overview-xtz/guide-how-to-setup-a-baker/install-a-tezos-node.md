@@ -80,7 +80,7 @@ sudo apt install -y jq curl
 ```
 
 ```bash
-cd ~/Downloads
+cd ~/tezos
 curl -s https://api.github.com/repos/Phlogi/tezos-snapshots/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep roll | xargs wget -q --show-progress
 curl -s https://api.github.com/repos/Phlogi/tezos-snapshots/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep checksums.sha256 | xargs wget -q --show-progress
 ```
@@ -108,8 +108,8 @@ Extract the snapshot, then import the snapshot.
 
 ```bash
 unxz mainnet.roll*
-cd ~/tezos
-./tezos-node snapshot import ~/Downloads/mainnet.roll*
+./tezos-node snapshot import mainnet.roll*
+rm mainnet.roll* checksums.sha256 checksum
 ```
 
 {% hint style="info" %}
@@ -122,7 +122,6 @@ cd ~/tezos
 ## 🧱5. Starting the node
 
 ```bash
-cd ~/tezos
 ./tezos-node run --rpc-addr 127.0.0.1:8732 --log-output tezos.log &
 ```
 
