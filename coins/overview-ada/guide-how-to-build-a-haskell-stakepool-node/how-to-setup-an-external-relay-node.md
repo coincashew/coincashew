@@ -23,7 +23,7 @@ Major credits and appreciation to the fine folks at [Cardano Community Guild Ope
 Installs prerequisite dependencies and creates folder structure.
 
 ```text
-sudo apt-get install curl
+sudo apt-get install curl net-tools
 ```
 
 ```bash
