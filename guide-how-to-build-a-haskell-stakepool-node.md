@@ -401,7 +401,7 @@ chmod +x startRelayNode1.sh
 {% endtabs %}
 
 {% hint style="info" %}
-🛑 ノードを停止するには「q」を押すか、次のコマンドを実行します。 `killall cardano-node`
+🛑 ノードを停止するには「Shift」+「q」を押すか、次のコマンドを実行します。 `killall -s SIGINT cardano-node`
 {% endhint %}
 
 {% hint style="info" %}
