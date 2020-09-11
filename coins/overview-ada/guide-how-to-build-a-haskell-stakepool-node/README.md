@@ -433,7 +433,9 @@ cardano-cli shelley node key-gen-KES \
 {% endtabs %}
 
 {% hint style="info" %}
-KES \(key evolving signature\) keys are created to secure your stake pool against hackers who might compromise your keys. On mainnet, these will be regenerated every 90 days.
+KES \(key evolving signature\) keys are created to secure your stake pool against hackers who might compromise your keys. 
+
+**On mainnet, you will need to regenerate the KES key every 90 days.**
 {% endhint %}
 
 {% hint style="danger" %}
