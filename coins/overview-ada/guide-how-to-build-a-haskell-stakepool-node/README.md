@@ -2854,7 +2854,7 @@ Many pool operators have asked about how to deploy a stake pool with CNTools. Th
 
 ## 🛠 18. Operational and Maintenance Tips
 
-### 🤖 18.1 Updating the operational cert with a new KES Period
+### 🤖 18.1 Rotate pool's KES keys - Updating the operational cert with a new KES Period
 
 {% hint style="info" %}
 You are required to regenerate the hot keys and issue a new operational certificate, a process called rotating the KES keys, when the hot keys expire.
@@ -2862,7 +2862,7 @@ You are required to regenerate the hot keys and issue a new operational certific
 **Mainnet**: KES keys will be valid for 120 rotations or 90 days
 {% endhint %}
 
-**Updating the KES Period**: When it's time to issue a new operational certificate, run the following to find the starting KES period.
+When it's time to issue a new operational certificate, run the following to find the starting KES period.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -2876,6 +2876,21 @@ echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
 {% endtabs %}
+
+Make a new KES key pair.
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cd $NODE_HOME
+cardano-cli shelley node key-gen-KES \
+    --verification-key-file kes.vkey \
+    --signing-key-file kes.skey
+```
+{% endtab %}
+{% endtabs %}
+
+Copy **kes.vkey** to your **cold environment.**
 
 Create the new `node.cert` file with the following command. Update `<startKesPeriod>` with the value from above.
 
