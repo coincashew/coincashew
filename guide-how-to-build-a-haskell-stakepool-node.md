@@ -12,7 +12,8 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-このマニュアルは、Shelleyメインネット用にVer1.19.1を用いて作成されています。
+このマニュアルは、Shelleyメインネット用にVer1.19.1を用いて作成されています。  
+[ドキュメント更新情報はこちら](README.md)
 {% endhint %}
 
 ## 🏁 0. 前提条件
@@ -552,7 +553,7 @@ cardano-cli shelley node key-gen-VRF \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-killall cardano-node
+killall -s SIGINT cardano-node
 ```
 {% endtab %}
 {% endtabs %}
@@ -1595,7 +1596,7 @@ chmod +x relay-topology_pull.sh
 ###
 ### On relaynode1
 ###
-killall cardano-node
+killall -s SIGINT cardano-node
 ./startRelayNode1.sh
 ```
 
@@ -1709,7 +1710,7 @@ chmod +x get_buddies.sh
 ###
 ### On relaynode1
 ###
-killall cardano-node
+killall -s SIGINT cardano-node
 ./startRelayNode1.sh
 ```
 
@@ -1909,7 +1910,7 @@ sed -i ${NODE_CONFIG}-config.json -e "s/    12798/    12701/g" -e "s/hasEKG\": 1
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
-killall cardano-node
+killall -s SIGINT cardano-node
 ./startBlockProducingNode.sh
 ```
 {% endtab %}
@@ -1917,7 +1918,7 @@ killall cardano-node
 {% tab title="リレーノード1" %}
 ```bash
 cd $NODE_HOME
-killall cardano-node
+killall -s SIGINT cardano-node
 ./startRelayNode1.sh
 ```
 {% endtab %}
@@ -3118,7 +3119,7 @@ rsync -avzhe “ssh -p <SSH-PORT>” <PATH TO LOCAL PC DESTINATION> <USERNAME>@<
 始める前にステークプールが停止しているか確認してください。
 
 ```bash
-killall cardano-node
+killall -s SIGINT cardano-node
 ```
 
 以下のコードを実行して、ユニットファイルを作成します。
@@ -3141,7 +3142,7 @@ Type            = forking
 WorkingDirectory= $NODE_HOME
 ExecStart       = /usr/bin/tmux new -d -s cnode
 ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startBlockProducingNode.sh Enter 
-ExecStop        = killall cardano-node
+ExecStop        = killall -s SIGINT cardano-node
 Restart         = always
 
 [Install]
@@ -3167,7 +3168,7 @@ Type            = forking
 WorkingDirectory= $NODE_HOME
 ExecStart       = /usr/bin/tmux new -d -s cnode
 ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startRelayNode1.sh Enter 
-ExecStop        = killall cardano-node
+ExecStop        = killall -s SIGINT cardano-node
 Restart         = always
 
 [Install]
