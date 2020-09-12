@@ -1447,7 +1447,7 @@ Your stake pool ID can be computed with:
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli shelley stake-pool id --verification-key-file $HOME/cold-keys/node.vkey > stakepoolid.txt
+cardano-cli shelley stake-pool id --verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
 cat stakepoolid.txt
 ```
 {% endtab %}
