@@ -3777,46 +3777,34 @@ You should see output similar to this showing your updated Lovelace balance with
 
 ## 🌜 19. Retiring your stake pool
 
-Find the slots per epoch.
+Calculate the current epoch.
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-epochLength=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.epochLength')
-echo epochLength: ${epochLength}
-```
-{% endtab %}
-{% endtabs %}
-
- Find the current slot by querying the tip.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-slotNo=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
-echo slotNo: ${slotNo}
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate the current epoch by dividing the slot tip number by epochLength.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-epoch=$(( $((${slotNo} / ${epochLength})) + 1))
+startTimeGenesis=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r .systemStart)
+startTimeSec=$(date --date=${startTimeGenesis} +%s)
+currentTimeSec=$(date -u +%s)
+epochLength=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r .epochLength)
+epoch=$(( (${currentTimeSec}-${startTimeSec}) / ${epochLength} ))
 echo current epoch: ${epoch}
 ```
 {% endtab %}
 {% endtabs %}
 
-Find the eMax value.
+Find the earliest and latest retirement epoch that your pool can retire.
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
 eMax=$(cat $NODE_HOME/params.json | jq -r '.eMax')
 echo eMax: ${eMax}
+
+minRetirementEpoch=$(( ${epoch} + 1 ))
+maxRetirementEpoch=$(( ${epoch} + ${eMax} ))
+
+echo earliest epoch for retirement is: ${minRetirementEpoch}
+echo latest epoch for retirement is: ${maxRetirementEpoch}
 ```
 {% endtab %}
 {% endtabs %}
@@ -3830,16 +3818,15 @@ echo eMax: ${eMax}
 Let's pretend we wish to retire as soon as possible in epoch 40.
 {% endhint %}
 
-Create the deregistration certificate and save it as `pool.dereg.` 
+Create the deregistration certificate and save it as `pool.dereg.`  Update the epoch to your desired retirement epoch, usually the earliest epoch or asap.
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
 cardano-cli shelley stake-pool deregistration-certificate \
 --cold-verification-key-file $HOME/cold-keys/node.vkey \
---epoch $((${epoch} + 1)) \
+--epoch <retirementEpoch> \
 --out-file pool.dereg
-echo pool will retire at end of epoch: $((${epoch} + 1))
 ```
 {% endtab %}
 {% endtabs %}
