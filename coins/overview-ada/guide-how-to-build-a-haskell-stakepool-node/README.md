@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of September 4 2020, this guide is written for **mainnet** with **release v.1.19.1** 😁 
+As of September 4 2020, this japanese guide is written for **mainnet** with **release v.1.19.1** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
