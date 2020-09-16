@@ -2817,10 +2817,14 @@ Thanks to all 11000 of you, the Cardano hodlers, buidlers, stakers, and pool ope
 
 #### 💸 Tip Jar Donators
 
-* 😊 BEBOP 
+* 😊 BEBOP \| BCOOL
 * 😊 DEW
 * 😊 GROW
 * 😊 Leonardo
+* 😊 PANJ
+* 😊 SQUID
+* 😊 TREE
+* 😊 SAvvY
 * 😊 YOU?! [Hit us up.](https://cointr.ee/coincashew)
 
 #### 🚀CoinCashew's Preferred Stake Pools
@@ -2830,9 +2834,13 @@ Thanks to all 11000 of you, the Cardano hodlers, buidlers, stakers, and pool ope
 * 🌟 BTBF
 * 🌟 TLOA
 * 🌟 KAZE
-* 🌟 BEBOP
+* 🌟 BEBOP \| BCOOL
 * 🌟 DEW
 * 🌟 GROW
+* ⭐ PANJ
+* 🌟 SQUID
+* 🌟 TREE
+* ⭐ SAvvY
 
 ### 📚 17.5 Reference Material
 
