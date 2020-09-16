@@ -2756,20 +2756,24 @@ Grafana [ダッシュボードID 11074](https://grafana.com/grafana/dashboards/1
 {% endhint %}
 
 ### CoinCashew ADAアドレス
-```addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
+```bash
+addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
 ```
 
 ### X StakePoolへの寄付  
  
 カルダノ分散化、日本コミュニティ発展の為に日本語化させて頂きました。私達をサポート頂ける方は当プールへ委任頂けますと幸いです。  
-* Ticker：XSP
-Pool ID  
-```788898a81174665316af96880459dcca053f7825abb1b0db9a433630
+* Ticker：XSP  
+Pool ID↓  
+```bash
+788898a81174665316af96880459dcca053f7825abb1b0db9a433630
 ```
 * ADAアドレス
-```addr1q85kms3xw788pzxcr8g8d4umxjcr57w55k2gawnpwzklu97sc26z2lhct48alhew43ry674692u2eynccsyt9qexxsesjzz8qp
+```bash
+addr1q85kms3xw788pzxcr8g8d4umxjcr57w55k2gawnpwzklu97sc26z2lhct48alhew43ry674692u2eynccsyt9qexxsesjzz8qp
 ```
-
+  
+  
 ### 全ての協力者
 * 👏 Antonie of CNT for being awesomely helpful with Youtube content and in telegram.
 * 👏 Special thanks to Kaze-Stake for the pull requests and automatic script contributions.
