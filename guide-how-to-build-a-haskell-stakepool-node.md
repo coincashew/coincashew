@@ -2748,15 +2748,33 @@ Grafana [ダッシュボードID 11074](https://grafana.com/grafana/dashboards/1
 おめでとうございます！これで基本的な設定は完了です。 次の項目は、運用中の便利なコマンドや保守のヒントが書かれています。
 {% endhint %}
 
-## 👏 17. クレジット表記
+## 👏 17. 寄付とクレジット表記
 
 {% hint style="info" %}
-このマニュアル制作に携わった全ての方に、感謝申し上げます。 快く翻訳を承諾して頂いた、「CoinCashew」には敬意を表します。
+このマニュアル制作に携わった全ての方に、感謝申し上げます。 快く翻訳を承諾して頂いた、[CoinCashew](https://www.coincashew.com/)には敬意を表します。
+この活動をサポートして頂ける方は、是非寄付をよろしくお願い致します。
 {% endhint %}
 
+### CoinCashew ADAアドレス
+```addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
+```
+
+### X StakePoolへの寄付  
+ 
+カルダノ分散化、日本コミュニティ発展の為に日本語化させて頂きました。私達をサポート頂ける方は当プールへ委任頂けますと幸いです。  
+* Ticker：XSP
+Pool ID  
+```788898a81174665316af96880459dcca053f7825abb1b0db9a433630
+```
+* ADAアドレス
+```addr1q85kms3xw788pzxcr8g8d4umxjcr57w55k2gawnpwzklu97sc26z2lhct48alhew43ry674692u2eynccsyt9qexxsesjzz8qp
+```
+
+### 全ての協力者
 * 👏 Antonie of CNT for being awesomely helpful with Youtube content and in telegram.
 * 👏 Special thanks to Kaze-Stake for the pull requests and automatic script contributions.
-* 👏 The Legend of ₳da \[TLOA\] for translating this guide to Spanish.
+* 👏 The Legend of ₳da [TLOA] for translating this guide to Spanish.
+* 👏 X-StakePool [BTBF] for translating this guide to Japanese.
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
 
