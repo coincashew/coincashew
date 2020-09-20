@@ -10,7 +10,7 @@ Every guide, tip, and review written on CoinCashew was written by someone who wa
 
 \*\*\*\*📱 **Telegram:** [https://t.me/coincashew](https://t.me/coincashew)
 
-\*\*\*\*🐦 **Twitter:** @coincashew\_
+\*\*\*\*🐦 **Twitter:** [@coincashew\_](https://twitter.com/coincashew_)
 
 \*\*\*\*📧 **Email:** coincashew@protonmail.com
 
