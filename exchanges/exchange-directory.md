@@ -21,13 +21,14 @@
 | Site | Comments |
 | :--- | :--- |
 | [Sideshift.ai](https://sideshift.ai/a/ziLELkDY5) | Automated Coin Swap |
-| [MorphToken.com](https://www.morphtoken.com) | Quickly and simply swap one coin to another.Or split into multiple coins at once. |
+| [MorphToken.com](https://www.morphtoken.com) | Quickly and simply swap one coin to another. Or split into multiple coins at once. |
 | [Changenow.io](https://changenow.io?link_id=e542777107ca34) | Fast Crypto Swaps, Free of Custody |
 | [Godex.io](https://godex.io/?aff_id=zNyhC0A10Be5YRBt&utm_source=affiliate&utm_medium=www&utm_campaign=zNyhC0A10Be5YRBt) | Exchange anonymously any volume with guaranteed fixed rate |
 | [TxQuick.com](https://ca.txquick.com) | No Account Required |
 | [SimpleSwap.io](https://simpleswap.io) | Free from sign up, limits, complications |
 | [changehero.io](https://changehero.io) | Free from sign up, limits, complications |
 | [FixedFloat.com](https://fixedfloat.com/?ref=cn8rt3qa) | Lightning cryptocurrency exchange |
+| [ChangeAngel.io](https://changeangel.io/) | Non-Custodial Swap Exchange Service |
 
 ## 🌌 Decentralized Exchanges
 

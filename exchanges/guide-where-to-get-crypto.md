@@ -38,6 +38,7 @@ This guide is for you.
 | [SimpleSwap.io](https://simpleswap.io) | Free from sign up, limits, complications |
 | [changehero.io](https://changehero.io) | Instant cryptocurrency exchange |
 | [FixedFloat.com](https://fixedfloat.com/?ref=cn8rt3qa) | Lightning cryptocurrency exchange |
+| [ChangeAngel.io](https://changeangel.io/) | Non-Custodial Swap Exchange Service |
 
 ## 🌌 Decentralized Exchanges - No Registration Required
 
