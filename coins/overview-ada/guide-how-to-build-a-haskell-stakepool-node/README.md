@@ -502,7 +502,7 @@ Find the kesPeriod by dividing the slot tip number by the slotsPerKESPeriod.
 ```bash
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 echo kesPeriod: ${kesPeriod}
-startKesPeriod=$(( ${kesPeriod} - 1 ))
+startKesPeriod=$(( ${kesPeriod} ))
 echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
