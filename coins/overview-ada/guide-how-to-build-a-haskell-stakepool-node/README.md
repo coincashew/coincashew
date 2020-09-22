@@ -502,7 +502,7 @@ Find the kesPeriod by dividing the slot tip number by the slotsPerKESPeriod.
 ```bash
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 echo kesPeriod: ${kesPeriod}
-startKesPeriod=$(( ${kesPeriod} - 1 ))
+startKesPeriod=$(( ${kesPeriod} - 0 ))
 echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
@@ -2879,7 +2879,7 @@ cd $NODE_HOME
 slotNo=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
-startKesPeriod=$(( ${kesPeriod} - 1 ))
+startKesPeriod=$(( ${kesPeriod} - 0 ))
 echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
