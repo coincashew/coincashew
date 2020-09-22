@@ -1844,6 +1844,7 @@ scrape_configs:
 
     static_configs:
       - targets: ['localhost:9100']
+      - targets: ['<ブロックプロデューサーIPアドレス>:9100']
       - targets: ['<ブロックプロデューサーIPアドレス>:12700']
         labels:
           alias: 'block-producing-node'
@@ -1886,7 +1887,7 @@ ${NODE\_CONFIG}-config.jsonに新しい `hasEKG`情報と `hasPrometheus`ポー�
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
-sed -i ${NODE_CONFIG}-config.json -e "s/    12798/    12700/g" -e "s/hasEKG\": 12788/hasEKG\": 12600/g"
+sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g" -e "s/    12798/    12700/g" -e "s/hasEKG\": 12788/hasEKG\": 12600/g"
 ```
 {% endtab %}
 
