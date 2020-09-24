@@ -18,7 +18,7 @@ description: >-
 
 ```bash
 cd $HOME/git
-rm cardano-node-old/
+rm -rf cardano-node-old/
 rsync -av cardano-node/ cardano-node2/
 cd cardano-node2/
 ```
