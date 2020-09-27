@@ -12,7 +12,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-このマニュアルは、Shelleyメインネット用にVer1.19.1を用いて作成されています。  
+このマニュアルは、Shelleyメインネット用にVer1.20.0を用いて作成されています。  
 [ドキュメント更新情報はこちら](README.md)
 {% endhint %}
 
@@ -158,7 +158,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all
-git checkout tags/1.19.1
+git checkout tags/1.20.0
 ```
 
 Cabal構成、プロジェクト設定を更新し、ビルドフォルダーをリセットします。
