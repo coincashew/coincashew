@@ -478,7 +478,6 @@ cardano-cli shelley node key-gen \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-pushd +1
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 ```
