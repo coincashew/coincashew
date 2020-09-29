@@ -58,7 +58,7 @@ SSHを強化する基本的なルールは次の通りです。
 ssh-keygen -t rsa
 ```
 
-公開鍵(***.pub)をリモートノードをへ転送する。
+公開鍵(***.pub)をリモートノードへ転送する。
 {% hint style="info" %}
 ssh-copy-id コマンドを使用することで、リモートサーバへ「.ssh/authorized_keys」として転送してくれます。
 {% endhint %}
