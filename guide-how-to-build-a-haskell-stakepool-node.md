@@ -962,7 +962,7 @@ cardano-cli shelley query utxo \
 `stake.vkey`を使用して、`stake.cert`証明証を作成します。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="エアギャップオフラインマシン" %}
 ```text
 cardano-cli shelley stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
@@ -971,6 +971,7 @@ cardano-cli shelley stake-address registration-certificate \
 {% endtab %}
 {% endtabs %}
 
+**stake.cert** をブロックプロデューサーノードにコピーします。
 ttlパラメータを設定するには、最新のスロット番号を取得する必要があります。
 
 {% tabs %}
