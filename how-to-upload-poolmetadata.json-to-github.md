@@ -1,6 +1,6 @@
 # poolMetaData.jsonをGithubにアップロードする方法
 
-## poolmetadata.jsonをホストするクイックステップ
+## poolMetaData.jsonをホストするクイックステップ
 
 1. Githubアカウントを作成しログインします [https://github.com/](https://github.com/)
 2. 短い名前で**new repository** を名を作成します。
