@@ -7,21 +7,21 @@
 3. **Create repository**をクリックします。
 3. 小さい文字で書かれた"**creating a new file**"をクリックします。
 
-![](coincashew/.gitbook/assets/git1.png../.gitbook\assets\git1.png)
+![](.gitbook/assets/git1.png)
 
-4. ファイル名を **poolMetaData.json** として入力し **json** コンテンツを貼り付けます。
+1. ファイル名を **poolMetaData.json** として入力し **json** コンテンツを貼り付けます。
 
-![](coincashew/.gitbook/assets/git2.png../.gitbook\assets\git2.png)
+![](.gitbook/assets/git2.png)
 
 1. **Commit new file**をクリックします。
 
-![](coincashew/.gitbook/assets/git3.png../.gitbook\assets\git3.png)
+![](.gitbook/assets/git3.png)
 
-6. 新しいファイルの名前をクリックします。
+1. 新しいファイルの名前をクリックします。
 
-7. **Rawボタン**をクリックします。
+2. **Rawボタン**をクリックします。
 
-8. URLをコピーします。
+3. URLをコピーします。
 
 > 例: [https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json](https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json)
 
