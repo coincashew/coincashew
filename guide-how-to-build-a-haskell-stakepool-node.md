@@ -1165,8 +1165,9 @@ cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.j
 ```
 {% endtab %}
 {% endtabs %}
-
-**poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。
+  
+**poolMetaDataHash.txt**をエアギャップオフラインマシンへコピーしてください  
+**poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。  
 
 最小プールコストを出力します。
 
