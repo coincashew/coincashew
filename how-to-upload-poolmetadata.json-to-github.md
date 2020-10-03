@@ -7,15 +7,15 @@
 3. **Create repository**をクリックします。
 3. 小さい文字で書かれた"**creating a new file**"をクリックします。
 
-![](.gitbook\assets\git1.png)
+![](../../.gitbook\assets\git1.png)
 
 4. ファイル名を **poolMetaData.json** として入力し **json** コンテンツを貼り付けます。
 
-![](.gitbook\assets\git2.png)
+![](../../.gitbook\assets\git2.png)
 
 1. **Commit new file**をクリックします。
 
-![](.gitbook\assets\git3.png)
+![](../../.gitbook\assets\git3.png)
 
 6. 新しいファイルの名前をクリックします。
 
