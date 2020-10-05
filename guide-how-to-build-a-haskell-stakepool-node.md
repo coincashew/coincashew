@@ -1437,7 +1437,7 @@ cardano-cli shelley transaction submit \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley stake-pool id --verification-key-file $HOME/cold-keys/node.vkey > stakepoolid.txt
+cardano-cli shelley stake-pool id --verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
 cat stakepoolid.txt
 ```
 {% endtab %}
