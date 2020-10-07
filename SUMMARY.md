@@ -6,4 +6,5 @@
 * [ステークプールを更新する方法](how-to-update-a-stakepool.md)
 * [Chronyのセットアップ方法](how-to-setup-chrony.md)
 * [poolMetaData.jsonをGithubでホストする方法](how-to-upload-poolmetadata.json-to-github.md)
+* [ノード起動スクリプトを別セッションで起動する方法](how-to-session-window.md)
 * [外部リレーノードのセットアップ(翻訳中)](how-to-setup-an-external-relay-node.md)
