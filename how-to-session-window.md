@@ -12,12 +12,12 @@ description: ローカルPCからSSHで接続している場合、ノードス�
 ```bash
 cat > $NODE_HOME/startStakePool.sh << EOF 
 #!/bin/bash
-SESSION=btbf
+SESSION=node
 tmux has-session -t $SESSION 2>/dev/null
 if [ $? != 0 ]; then
    # tmux attach-session -t $SESSION
     tmux new-session -s $SESSION -n window -d
-    tmux send-keys -t $SESSION:window.0 /home/btbf/cardano-my-node/startBlockProducingNode.sh Enter
+    tmux send-keys -t $SESSION:window.0 ./startBlockProducingNode.sh Enter
     set -g mouse-resize-pane on
     echo Stakepool started. \"tmux a\" to view.
 fi
@@ -29,12 +29,12 @@ EOF
 ```bash
 cat > $NODE_HOME/startStakePool.sh << EOF 
 #!/bin/bash
-SESSION=btbf
+SESSION=node
 tmux has-session -t $SESSION 2>/dev/null
 if [ $? != 0 ]; then
    # tmux attach-session -t $SESSION
     tmux new-session -s $SESSION -n window -d
-    tmux send-keys -t $SESSION:window. /home/btbf/cardano-my-node/startRelayNode1.sh Enter
+    tmux send-keys -t $SESSION:window. ./startRelayNode1.sh Enter
     echo Stakepool started. \"tmux a\" to view.
 fi
 EOF
