@@ -1165,8 +1165,9 @@ cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.j
 ```
 {% endtab %}
 {% endtabs %}
-
-**poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。
+  
+**poolMetaDataHash.txt**をエアギャップオフラインマシンへコピーしてください  
+**poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。  
 
 最小プールコストを出力します。
 
@@ -1221,6 +1222,8 @@ minPoolCostは 340000000 lovelace \(340 ADA\)です。
 {% hint style="warning" %}
 **metadata-url**は64文字以内とし、あなたの環境に合わせて修正してください。
 {% endhint %}
+
+ブロックプロデューサーノードにある**vrf.vkey**をエアギャップオフラインマシンにコピーします。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -1434,7 +1437,7 @@ cardano-cli shelley transaction submit \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley stake-pool id --verification-key-file $HOME/cold-keys/node.vkey > stakepoolid.txt
+cardano-cli shelley stake-pool id --verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
 cat stakepoolid.txt
 ```
 {% endtab %}
