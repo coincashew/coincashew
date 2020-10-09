@@ -3782,7 +3782,7 @@ You should see output similar to this showing your updated Lovelace balance with
 ### 🕒 18.12 Slot Leader Schedule - Find out when your pool will mint blocks
 
 {% hint style="info" %}
-🔥 **Hot tip**: You can calculate your slot leader schedule, which tells you when it's your stake pools turn to mint a block. This can help you know what time is best to schedule maintenance on your stake pool. It can also help verify your pool is minting blocks correctly when it is your pool's turn. Credits to the hard work by Andrew Westberg \[@amw7\] \(developer of JorManager and operator of BCSH family of stake pools\).
+🔥 **Hot tip**: You can calculate your slot leader schedule, which tells you when it's your stake pools turn to mint a block. This can help you know what time is best to schedule maintenance on your stake pool. It can also help verify your pool is minting blocks correctly when it is your pool's turn. Credits for inventing this process goes to the hard work by [Andrew Westberg @amw7](https://twitter.com/amw7) \(developer of JorManager and operator of BCSH family of stake pools\).
 {% endhint %}
 
 Check if you have python installed.
@@ -3814,7 +3814,7 @@ sudo apt-get install -y python3-pip
 pip3 install pytz
 ```
 
-Verify python and pip is setup correctly before continuing.
+Verify python and pip are setup correctly before continuing.
 
 ```bash
 python3 --version
