@@ -17,7 +17,7 @@ description: >-
 
 ```bash
 cd $HOME/git
-rm cardano-node-old/
+rm -rf cardano-node-old/
 rsync -av cardano-node/ cardano-node2/
 cd cardano-node2/
 ```
@@ -31,7 +31,7 @@ cd cardano-node2/
 ```bash
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 git clean -fd
-git fetch --all && git checkout tags/1.19.0 && git pull
+git fetch --all && git checkout tags/<更新したいタグ> && git pull
 cabal build cardano-node cardano-cli
 ```
 
