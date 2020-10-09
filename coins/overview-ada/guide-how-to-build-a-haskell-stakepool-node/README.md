@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of September 4 2020, this guide is written for **mainnet** with **release v.1.19.1** 😁 
+As of October 8 2020, this guide is written for **mainnet** with **release v.1.21.1** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -40,9 +40,9 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **Two separate servers:** 1 for block producer node, 1 for relay node
 * **One air-gapped offline machine \(cold environment\)**
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **Processor:** 2 core CPU
-* **Memory:** 4GB RAM, 4GB swap file
-* **Storage:** 20GB SSD
+* **Processor:** An Intel or AMD x86 processor with two or more cores, at 1.6GHz or faster \(2GHz or faster for a stake pool or relay\)
+* **Memory:** 4GB of RAM \(8GB for a relay or stake pool\)
+* **Storage:** 10GB of free storage \(20GB for a stake pool\)
 * **Internet:** Broadband internet connection with speeds at least 10 Mbps.
 * **Data Plan**: at least 1GB per hour. 720GB per month.
 * **Power:** Reliable electrical power
@@ -157,7 +157,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all
-git checkout tags/1.19.1
+git checkout tags/1.21.1
 ```
 
 Update the cabal config, project settings, and reset build folder.
