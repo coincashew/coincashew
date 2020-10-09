@@ -1,23 +1,20 @@
 ---
 description: >-
-  chronyはネットワークタイムプロトコルを実装します。コンピュータの時刻をNTPと同期させるのに役立ちます。
+  chrony is an implementation of the Network Time Protocol and helps to keep
+  your computer's time synchronized with NTP.
 ---
 
-# chronyセットアップガイド
+# How to setup chrony
 
-## 🐣 1. インストール
+## 🐣 1. Installation
 
-chronyをインストールします。
+Install chrony.
 
 ```text
 sudo apt-get install chrony
 ```
 
-`/etc/chrony/chrony.conf` にある構成ファイルをっ秋の内容のように編集します。
-
-```text
-nano /etc/chrony/chrony.conf
-```
+ Update the config file located in `/etc/chrony/chrony.conf` with the following 
 
 ```text
 pool time.google.com       iburst minpoll 1 maxpoll 2 maxsources 3
@@ -51,21 +48,21 @@ rtcsync
 makestep 0.1 -1
 ```
 
-設定を有効にするには、Chronyを再起動します。
+Restart chrony in order for config change to take effect.
 
 ```text
 systemctl restart chronyd.service
 ```
 
-## 🤖 2. ヘルプコマンド
+## 🤖 2. Helpful Commands
 
-同期データのソースを確認します。
+To see the source of synchronization data.
 
 ```text
 chronyc sources
 ```
 
-現在のステータスを表示します。
+To view the current status of chrony.
 
 ```text
 chronyc tracking
