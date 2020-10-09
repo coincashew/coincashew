@@ -3779,6 +3779,90 @@ You should see output similar to this showing your updated Lovelace balance with
 100322a39d02c2ead....  
 ```
 
+### 🕒 18.12 Slot Leader Schedule - Find out when your pool will mint blocks
+
+{% hint style="info" %}
+🔥 **Hot tip**: You can calculate your slot leader schedule, which tells you when it's your stake pools turn to mint a block. This can help you know what time is best to schedule maintenance on your stake pool. It can also help verify your pool is minting blocks correctly when it is your pool's turn. Credits to the hard work by Andrew Westberg \[@amw7\] \(developer of JorManager and operator of BCSH family of stake pools\).
+{% endhint %}
+
+Check if you have python installed.
+
+```bash
+python3 --version
+```
+
+Otherwise, install python3.
+
+```text
+sudo apt-get update
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install -y python3.9
+```
+
+Check if you have pip installed.
+
+```bash
+pip3 --version
+```
+
+Install pip3 if needed.
+
+```bash
+sudo apt-get install -y python3-pip
+pip3 install pytz
+```
+
+Verify python and pip is setup correctly before continuing.
+
+```bash
+python3 --version
+pip3 --version
+```
+
+Clone the leaderLog scripts from [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) git repo.
+
+```bash
+cd $HOME/git
+git clone https://github.com/papacarp/pooltool.io
+cd pooltool.io/leaderLogs
+```
+
+Query the ledger state.
+
+```bash
+cardano-cli shelley query ledger-state --mainnet --out-file ledger.json
+```
+
+Calculate your pool's sigma. Sigma represents your pool's share of the active stake.
+
+```bash
+sigmaValue=$(python3 getSigma.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) | tail -n 1 | awk '{ print $2 }')
+echo Sigma: ${sigmaValue}
+```
+
+A sigma value should look like `0.000029302885338621295`
+
+Calculate your slot leader schedule.
+
+```bash
+python3 leaderLogs.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) --sigma ${sigmaValue} --vrf-skey ${NODE_HOME}/vrf.skey
+```
+
+{% hint style="info" %}
+Set the timezone name to format the schedule's times properly. Use the --tz option. \[Default: America/Los\_Angeles\]'\)
+{% endhint %}
+
+If your pool is scheduled to mint blocks, you should hopefully see output similar to this. Listed by date and time, this is your slot leader schedule or in other words, when your pool is eligible to mint a block.
+
+```bash
+Checking leadership log for Epoch 222 [ d Param: 0.6 ]
+2020-10-01 00:11:10 ==> Leader for slot 121212, Cumulative epoch blocks: 1
+2020-10-01 00:12:22 ==> Leader for slot 131313, Cumulative epoch blocks: 2
+2020-10-01 00:19:55 ==> Leader for slot 161212, Cumulative epoch blocks: 3
+```
+
 ## 🌜 19. Retiring your stake pool
 
 Calculate the current epoch.
