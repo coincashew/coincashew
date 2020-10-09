@@ -502,7 +502,7 @@ Find the kesPeriod by dividing the slot tip number by the slotsPerKESPeriod.
 ```bash
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 echo kesPeriod: ${kesPeriod}
-startKesPeriod=$(( ${kesPeriod} - 1 ))
+startKesPeriod=$(( ${kesPeriod} - 0 ))
 echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
@@ -512,11 +512,7 @@ With this calculation, you can generate a operational certificate for your pool.
 
 Copy **kes.vkey** to your **cold environment**. 
 
-Change the **startKesPeriod** value accordingly.
-
-{% hint style="warning" %}
-As of [release 1.19.0](https://github.com/input-output-hk/cardano-node/issues/1742), the starting KES period value must be current kesPeriod - 1
-{% endhint %}
+Change the &lt;**startKesPeriod&gt;** value accordingly.
 
 {% hint style="info" %}
 Stake pool operators must provide an operational certificate to verify that the pool has the authority to run. The certificate includes the operator’s signature, and includes key information about the pool \(addresses, keys, etc.\). Operational certificates represent the link between the operator’s offline key and their operational key.
@@ -2879,7 +2875,7 @@ cd $NODE_HOME
 slotNo=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
-startKesPeriod=$(( ${kesPeriod} - 1 ))
+startKesPeriod=$(( ${kesPeriod} - 0 ))
 echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
