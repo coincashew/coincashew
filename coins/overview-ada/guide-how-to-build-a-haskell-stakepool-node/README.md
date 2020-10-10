@@ -3045,7 +3045,11 @@ pip3 --version
 {% endtab %}
 {% endtabs %}
 
-Clone the leaderLog scripts from [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) git repo.
+Clone the leaderLog scripts from [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) git repo. 
+
+{% hint style="info" %}
+Official documentation for this LeaderLogs tool can be [read here.](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md)
+{% endhint %}
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -3091,7 +3095,7 @@ python3 leaderLogs.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) --sigma ${si
 {% endtabs %}
 
 {% hint style="info" %}
-Set the timezone name to format the schedule's times properly. Use the --tz option. \[Default: America/Los\_Angeles\]'\)
+Set the timezone name to format the schedule's times properly. Use the --tz option. \[Default: America/Los\_Angeles\]'\) [Refer to the official documentation for more info.](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md#arguments-1)
 {% endhint %}
 
 If your pool is scheduled to mint blocks, you should hopefully see output similar to this. Listed by date and time, this is your slot leader schedule or in other words, when your pool is eligible to mint a block.
