@@ -32,7 +32,7 @@ cd cardano-node2/
 ```bash
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 git clean -fd
-git fetch --all && git checkout tags/1.20.1 && git pull
+git fetch --all && git checkout tags/1.21.1 && git pull
 cabal build cardano-node cardano-cli
 ```
 
