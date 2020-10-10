@@ -2991,12 +2991,18 @@ You should see output similar to this showing your updated Lovelace balance with
 
 Check if you have python installed.
 
+{% tabs %}
+{% tab title="block producer node" %}
 ```bash
 python3 --version
 ```
+{% endtab %}
+{% endtabs %}
 
 Otherwise, install python3.
 
+{% tabs %}
+{% tab title="block producer node" %}
 ```text
 sudo apt-get update
 sudo apt-get install -y software-properties-common
@@ -3004,55 +3010,85 @@ sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt-get update
 sudo apt-get install -y python3.9
 ```
+{% endtab %}
+{% endtabs %}
 
 Check if you have pip installed.
 
+{% tabs %}
+{% tab title="block producer node" %}
 ```bash
 pip3 --version
 ```
+{% endtab %}
+{% endtabs %}
 
 Install pip3 if needed.
 
+{% tabs %}
+{% tab title="block producer node" %}
 ```bash
 sudo apt-get install -y python3-pip
 pip3 install pytz
 ```
+{% endtab %}
+{% endtabs %}
 
 Verify python and pip are setup correctly before continuing.
 
+{% tabs %}
+{% tab title="block producer node" %}
 ```bash
 python3 --version
 pip3 --version
 ```
+{% endtab %}
+{% endtabs %}
 
 Clone the leaderLog scripts from [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) git repo.
 
+{% tabs %}
+{% tab title="block producer node" %}
 ```bash
 cd $HOME/git
 git clone https://github.com/papacarp/pooltool.io
 cd pooltool.io/leaderLogs
 ```
+{% endtab %}
+{% endtabs %}
 
 Query the ledger state.
 
+{% tabs %}
+{% tab title="block producer node" %}
 ```bash
 cardano-cli shelley query ledger-state --mainnet --out-file ledger.json
 ```
+{% endtab %}
+{% endtabs %}
 
 Calculate your pool's sigma. Sigma represents your pool's share of the active stake.
 
+{% tabs %}
+{% tab title="block producer node" %}
 ```bash
 sigmaValue=$(python3 getSigma.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) | tail -n 1 | awk '{ print $2 }')
 echo Sigma: ${sigmaValue}
 ```
+{% endtab %}
+{% endtabs %}
 
 A sigma value should look like `0.000029302885338621295`
 
 Calculate your slot leader schedule.
 
+{% tabs %}
+{% tab title="block producer node" %}
 ```bash
 python3 leaderLogs.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) --sigma ${sigmaValue} --vrf-skey ${NODE_HOME}/vrf.skey
 ```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 Set the timezone name to format the schedule's times properly. Use the --tz option. \[Default: America/Los\_Angeles\]'\)
