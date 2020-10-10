@@ -3100,6 +3100,10 @@ Set the timezone name to format the schedule's times properly. Use the --tz opti
 
 If your pool is scheduled to mint blocks, you should hopefully see output similar to this. Listed by date and time, this is your slot leader schedule or in other words, when your pool is eligible to mint a block.
 
+{% hint style="danger" %}
+Your slot leader log should remain confidential. If you share this information publicly, an attacker could use this information to attack your stake pool.
+{% endhint %}
+
 ```bash
 Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 2020-10-01 00:11:10 ==> Leader for slot 121212, Cumulative epoch blocks: 1
