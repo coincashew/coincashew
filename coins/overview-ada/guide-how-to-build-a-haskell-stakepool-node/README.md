@@ -3029,10 +3029,15 @@ Install pip3 if needed.
 {% tab title="block producer node" %}
 ```bash
 sudo apt-get install -y python3-pip
-pip3 install pytz
 ```
 {% endtab %}
 {% endtabs %}
+
+Install pytz which handles timezones.
+
+```bash
+pip3 install pytz
+```
 
 Verify python and pip are setup correctly before continuing.
 
