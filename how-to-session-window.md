@@ -47,6 +47,7 @@ EOF
 ### 起動する(初回のみ)
 
 ```text
+cd $NODE_HOME
 ./startStakePool.sh
 tmux a
 ```
