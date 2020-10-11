@@ -31,6 +31,7 @@ Ctrl+O で保存し、Ctrl+Xで閉じます
 
 {% tab title="リレーノード1" %}
 ```bash
+cd $NODE_HOME
 nano startStakePool.sh
 ```
 新規ファイルを開いて、下記のコマンドを貼り付けます。
