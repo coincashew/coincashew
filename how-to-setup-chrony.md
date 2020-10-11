@@ -13,17 +13,18 @@ chronyをインストールします。
 sudo apt-get install chrony
 ```
 
-`/etc/chrony/chrony.conf` にある構成ファイルをっ秋の内容のように編集します。
+`/etc/chrony/chrony.conf` にある構成ファイルを下記の内容のように編集します。
 
 ```text
 nano /etc/chrony/chrony.conf
 ```
 
 ```text
-pool time.google.com       iburst minpoll 1 maxpoll 2 maxsources 3
-pool ntp.ubuntu.com        iburst minpoll 1 maxpoll 2 maxsources 3
-#pool time.nist.giv         iburst minpoll 1 maxpoll 2 maxsources 3
-pool us.pool.ntp.org     iburst minpoll 1 maxpoll 2 maxsources 3
+pool time.google.com       iburst minpoll 2 maxpoll 2 maxsources 3 maxdelay 0.3
+pool time.facebook.com     iburst minpoll 2 maxpoll 2 maxsources 3 maxdelay 0.3
+pool time.euro.apple.com   iburst minpoll 2 maxpoll 2 maxsources 3 maxdelay 0.3
+pool time.apple.com        iburst minpoll 2 maxpoll 2 maxsources 3 maxdelay 0.3
+pool ntp.ubuntu.com        iburst minpoll 2 maxpoll 2 maxsources 3 maxdelay 0.3
 
 # This directive specify the location of the file containing ID/key pairs for
 # NTP authentication.
@@ -49,6 +50,12 @@ rtcsync
 # Step the system clock instead of slewing it if the adjustment is larger than
 # one second, but only in the first three clock updates.
 makestep 0.1 -1
+
+# Get TAI-UTC offset and leap seconds from the system tz database
+leapsectz right/UTC
+
+# Serve time even if not synchronized to a time source.
+local stratum 10
 ```
 
 設定を有効にするには、Chronyを再起動します。
