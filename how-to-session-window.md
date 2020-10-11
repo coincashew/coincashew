@@ -48,6 +48,7 @@ EOF
 
 ```text
 cd $NODE_HOME
+chmod +x startStakePool.sh
 ./startStakePool.sh
 tmux a
 ```
