@@ -10,7 +10,11 @@ description: ローカルPCからSSHで接続している場合、ノードス�
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cat > $NODE_HOME/startStakePool.sh << EOF 
+cd $NODE_HOME
+nano startStakePool.sh
+```
+新規ファイルを開いて、下記のコマンドを貼り付けます。
+```bash
 #!/bin/bash
 SESSION=node
 tmux has-session -t $SESSION 2>/dev/null
@@ -21,13 +25,16 @@ if [ $? != 0 ]; then
     set -g mouse-resize-pane on
     echo Stakepool started. \"tmux a\" to view.
 fi
-EOF
 ```
+Ctrl+O で保存し、Ctrl+Xで閉じます  
 {% endtab %}
 
 {% tab title="リレーノード1" %}
 ```bash
-cat > $NODE_HOME/startStakePool.sh << EOF 
+nano startStakePool.sh
+```
+新規ファイルを開いて、下記のコマンドを貼り付けます。
+```bash
 #!/bin/bash
 SESSION=node
 tmux has-session -t $SESSION 2>/dev/null
@@ -37,8 +44,8 @@ if [ $? != 0 ]; then
     tmux send-keys -t $SESSION:window. $NODE_HOME/startRelayNode1.sh Enter
     echo Stakepool started. \"tmux a\" to view.
 fi
-EOF
 ```
+Ctrl+O で保存し、Ctrl+Xで閉じます  
 {% endtab %}
 {% endtabs %}
 
