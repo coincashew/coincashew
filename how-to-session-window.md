@@ -47,7 +47,7 @@ EOF
 ### 起動する(初回のみ)
 
 ```text
-./startStakepool.sh
+./startStakePool.sh
 tmux a
 ```
 
