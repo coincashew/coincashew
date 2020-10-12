@@ -7,7 +7,7 @@ description: >-
 
 # Guide: How to stake on ETH2 Medalla Testnet with Nimbus on Ubuntu
 
-{% hint style="success" %}
+{% hint style="info" %}
 [Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im/) by the same name. Nimbus \(Apache 2\) is written in Nim, a language with Python-like syntax that compiles to C.
 {% endhint %}
 
@@ -44,9 +44,19 @@ As a validator for eth2, you will typically have the following abilities:
 * **ETH balance:** at least 32 Goerli ETH
 * **Wallet**: Metamask installed
 
+### 🔓 Recommended ETH 2 Node Security
+
+If you need ideas or a reminder on how to secure and harden your node, refer to
+
+{% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+
+### 🛠 Setup Ubuntu
+
 If you need to install Ubuntu, refer to
 
 {% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+
+### 🎭 Setup Metamask
 
 If you need to install Metamask, refer to
 
@@ -298,4 +308,14 @@ make update
 ```
 
 Restart as per normal operating procedures.
+
+{% hint style="success" %}
+Congrats on completing the guide. 
+
+Did you find our guide useful? Let us know with a tip and we'll keep updating it. 
+
+It really energizes us to keep creating the best crypto guides. 
+
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+{% endhint %}
 

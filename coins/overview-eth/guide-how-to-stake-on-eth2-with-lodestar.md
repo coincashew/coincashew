@@ -1,6 +1,10 @@
 # Guide: How to stake on ETH2 Medalla Testnet with Lodestar on Ubuntu
 
 {% hint style="success" %}
+Thank you for your support. It really energizes us to keep creating the best guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏
+{% endhint %}
+
+{% hint style="info" %}
 **Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
@@ -37,9 +41,19 @@ As a validator for eth2, you will typically have the following abilities:
 * **ETH balance:** at least 32 Goerli ETH
 * **Wallet**: Metamask installed
 
+### 🔓 Recommended ETH 2 Node Security
+
+If you need ideas or a reminder on how to secure and harden your node, refer to
+
+{% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+
+### 🛠 Setup Ubuntu
+
 If you need to install Ubuntu, refer to
 
 {% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+
+### 🎭 Setup Metamask
 
 If you need to install Metamask, refer to
 
@@ -371,4 +385,14 @@ yarn run build
 ```
 
 Restart as per normal operating procedures.
+
+{% hint style="success" %}
+Congrats on completing the guide. 
+
+Did you find our guide useful? Let us know with a tip and we'll keep updating it. 
+
+It really energizes us to keep creating the best crypto guides. 
+
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+{% endhint %}
 

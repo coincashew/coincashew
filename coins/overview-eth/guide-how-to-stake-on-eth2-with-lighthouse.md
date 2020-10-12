@@ -7,7 +7,7 @@ description: >-
 
 # Guide: How to stake on ETH2 Medalla Testnet with Lighthouse on Ubuntu
 
-{% hint style="success" %}
+{% hint style="info" %}
 [Lighthouse](https://github.com/sigp/lighthouse) is an Eth2.0 client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io/), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
 {% endhint %}
 
@@ -44,9 +44,19 @@ As a validator for eth2, you will typically have the following abilities:
 * **ETH balance:** at least 32 Goerli ETH
 * **Wallet**: Metamask installed
 
+### 🔓 Recommended ETH 2 Node Security
+
+If you need ideas or a reminder on how to secure and harden your node, refer to
+
+{% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+
+### 🛠 Setup Ubuntu
+
 If you need to install Ubuntu, refer to
 
 {% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+
+### 🎭 Setup Metamask
 
 If you need to install Metamask, refer to
 
@@ -294,7 +304,13 @@ Continue when you see the "**Beacon chain initialized"** message.
 ## 🧬 9. Start the validator
 
 ```text
-lighthouse vc
+lighthouse vc --init-slashing-protection
+```
+
+Verify that your **validator public key** appears in the logs. Example below:
+
+```text
+INFO Enabled validator       voting_pubkey: 0x2374.....7121
 ```
 
 {% hint style="danger" %}
@@ -342,4 +358,14 @@ make
 ```
 
 Restart beacon chain and validator as per normal operating procedures.
+
+{% hint style="success" %}
+Congrats on completing the guide. 
+
+Did you find our guide useful? Let us know with a tip and we'll keep updating it. 
+
+It really energizes us to keep creating the best crypto guides. 
+
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+{% endhint %}
 

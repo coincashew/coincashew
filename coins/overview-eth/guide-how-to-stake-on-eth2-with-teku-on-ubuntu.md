@@ -7,7 +7,7 @@ description: >-
 
 # Guide: How to stake on ETH2 Medalla Testnet with Teku on Ubuntu
 
-{% hint style="success" %}
+{% hint style="info" %}
 [PegaSys Teku](https://pegasys.tech/teku/) \(formerly known as Artemis\) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net/) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
 {% endhint %}
 
@@ -44,9 +44,19 @@ As a validator for eth2, you will typically have the following abilities:
 * **ETH balance:** at least 32 Goerli ETH
 * **Wallet**: Metamask installed
 
+### 🔓 Recommended ETH 2 Node Security
+
+If you need ideas or a reminder on how to secure and harden your node, refer to
+
+{% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+
+### 🛠 Setup Ubuntu
+
 If you need to install Ubuntu, refer to
 
 {% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+
+### 🎭 Setup Metamask
 
 If you need to install Metamask, refer to
 
@@ -258,7 +268,7 @@ cd $HOME/git/teku/build/install/teku/bin
 
 Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
-* **Teku beacon chain node** will use port 9151 for tcp and udp
+* **Teku beacon chain node** will use port 9001 for tcp and udp
 * **geth** node will use port 30303 for tcp and udp
 
 ## 🏂 6. Start the beacon chain and validator
@@ -286,7 +296,7 @@ Update the `--validators-key-files` with the full path to your validator key. If
 --rest-api-enabled=true --rest-api-docs-enabled=true \
 --metrics-enabled \
 --validators-graffiti="poapboP...CHANGEME" \
---p2p-port=9151 \
+--p2p-port=9001 \
 --rest-api-port=5151
 ```
 
@@ -345,4 +355,14 @@ git pull
 ```
 
 Restart Teku as per normal operating procedures.
+
+{% hint style="success" %}
+Congrats on completing the guide. 
+
+Did you find our guide useful? Let us know with a tip and we'll keep updating it. 
+
+It really energizes us to keep creating the best crypto guides. 
+
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+{% endhint %}
 
