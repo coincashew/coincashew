@@ -1,9 +1,5 @@
 # Guide: How to stake on ETH2 Medalla Testnet with Lodestar on Ubuntu
 
-{% hint style="success" %}
-Thank you for your support. It really energizes us to keep creating the best guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏
-{% endhint %}
-
 {% hint style="info" %}
 **Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
