@@ -61,7 +61,7 @@ ssh-copy-id -i $HOME/.ssh/keyname.pub ethereum@server.public.ip.address
 Login with your new ethereum user
 
 ```text
-ssh cardano@server.public.ip.address
+ssh ethereum@server.public.ip.address
 ```
 
 Disable root login and password based login. Edit the `/etc/ssh/sshd_config file`
