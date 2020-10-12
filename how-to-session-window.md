@@ -21,8 +21,7 @@ tmux has-session -t $SESSION 2>/dev/null
 if [ $? != 0 ]; then
    # tmux attach-session -t $SESSION
     tmux new-session -s $SESSION -n window -d
-    tmux send-keys -t $SESSION:window.0 $NODE_HOME/startBlockProducingNode.sh Enter
-    set -g mouse-resize-pane on
+    tmux send-keys -t $SESSION:window. $NODE_HOME/startBlockProducingNode.sh Enter
     echo Stakepool started. \"tmux a\" to view.
 fi
 ```
