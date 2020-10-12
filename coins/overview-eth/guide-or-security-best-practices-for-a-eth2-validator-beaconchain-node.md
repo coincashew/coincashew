@@ -310,6 +310,7 @@ ufw allow 9000/udp
 ufw allow 9090/tcp
 ufw allow 30303/tcp
 ufw allow 30303/udp
+ufw allow 3000/tcp
 ufw enable
 ufw status numbered
 ```
@@ -323,6 +324,7 @@ ufw allow 12000/udp
 ufw allow 9090/tcp
 ufw allow 30303/tcp
 ufw allow 30303/udp
+ufw allow 3000/tcp
 ufw enable
 ufw status numbered
 ```
@@ -336,6 +338,7 @@ ufw allow 9001/udp
 ufw allow 9090/tcp
 ufw allow 30303/tcp
 ufw allow 30303/udp
+ufw allow 3000/tcp
 ufw enable
 ufw status numbered
 ```
@@ -349,6 +352,7 @@ ufw allow 19000/udp
 ufw allow 9090/tcp
 ufw allow 30303/tcp
 ufw allow 30303/udp
+ufw allow 3000/tcp
 ufw enable
 ufw status numbered
 ```
@@ -362,6 +366,7 @@ ufw allow 9000/udp
 ufw allow 9090/tcp
 ufw allow 30303/tcp
 ufw allow 30303/udp
+ufw allow 3000/tcp
 ufw enable
 ufw status numbered
 ```
