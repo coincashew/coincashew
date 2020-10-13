@@ -7,11 +7,11 @@ description: Quick steps to secure your node.
 ## 🧙 Create a non-root user with sudo privileges
 
 {% hint style="info" %}
-Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command rm can wipe your entire server if run incorrectly using by a root user.
+Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command `rm` can wipe your entire server if run incorrectly using by a root user.
 {% endhint %}
 
 {% hint style="danger" %}
-🔥Tip: Do NOT routinely use the root account. Use `su` or `sudo`,  always.
+🔥**Tip**: Do NOT routinely use the root account. Use `su` or `sudo`,  always.
 {% endhint %}
 
 SSH to your server
