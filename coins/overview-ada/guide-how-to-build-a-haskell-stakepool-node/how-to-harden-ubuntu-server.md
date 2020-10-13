@@ -126,7 +126,7 @@ ssh cardano@server.public.ip.address
 Alternatively, you might need to use 
 
 ```bash
-ssh -i <path to your SHH_key_name.pub> cardano@server.public.ip.address
+ssh -i <path to your SSH_key_name.pub> cardano@server.public.ip.address
 ```
 {% endhint %}
 
