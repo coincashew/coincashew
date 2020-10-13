@@ -10,6 +10,10 @@ description: Quick steps to secure your node.
 Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command rm can wipe your entire server if run incorrectly using by a root user.
 {% endhint %}
 
+{% hint style="danger" %}
+🔥Tip: Do NOT routinely use the root account. Use `su` or `sudo`,  always.
+{% endhint %}
+
 SSH to your server
 
 ```bash
@@ -159,7 +163,7 @@ sudo passwd -l root
 sudo passwd -u root
 ```
 
-## 🛠 Setup Two Factor Authentication for SSH
+## 🛠 Setup Two Factor Authentication for SSH \[Optional\]
 
 {% hint style="info" %}
 SSH, the secure shell, is often used to access remote Linux systems. Because we often use it to connect with computers containing important data, it’s recommended to add another security layer. Here comes the two factor authentication \(_2FA_\).
