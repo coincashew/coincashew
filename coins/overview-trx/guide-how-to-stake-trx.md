@@ -6,6 +6,8 @@ In order to stake, TRON must be stored on a local wallet, where you control the 
 
 ## 🌜 2. Download and use a compatible wallet
 
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+
 {% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
 
 {% page-ref page="../../wallets/mobile-wallets/tronwallet-trx.md" %}
@@ -18,8 +20,30 @@ In order to stake, TRON must be stored on a local wallet, where you control the 
 TRON rewards your participation in the governance process. This means when you vote for TRON Super Representatives \(SR\), you earn a share of their rewards.
 {% endhint %}
 
-For this example, we will demonstrate with Ledger Live wallet.
+For this example, we will demonstrate with Ledger Live wallet and Guarda Wallet.
 
+{% tabs %}
+{% tab title="Guarda Wallet" %}
+1. Open Guarda Wallet
+
+2. Find your Tron \(TRX\) account and click **Staking**
+
+3. Click **Deposit for Staking** button
+
+4. In the **To** field, choose your **Validator**
+
+5. Enter the **Deposit Amount**
+
+![Staking to a TRON Validator](../../.gitbook/assets/tron1.png)
+
+6. Click **Next** button  
+  
+7. Review your staking details and then click the **Confirm** button to finish!
+
+![Reviewing your staking selection](../../.gitbook/assets/tron2.png)
+{% endtab %}
+
+{% tab title="Ledger Live Wallet" %}
 1. Open Ledger Live wallet
 
 2. Select your Tron account
@@ -46,13 +70,13 @@ Research, compare, and discover details about your Super Representatives at [Tok
 
 8. After 24+ hours, click the **Claim TRX** button to receive your rewards or your SR might send rewards automatically to your account.
 
-{% hint style="success" %}
-✨ Now you're staking TRON and earning a portion of your Super Representative's block producer rewards every 24 hours.
-{% endhint %}
-
 ## 🎞 Video Tutorial
 
 {% embed url="https://www.youtube.com/watch?v=GKEUB9bs-Tk" %}
+{% endtab %}
+{% endtabs %}
 
-
+{% hint style="success" %}
+✨ Now you're staking TRON and earning a portion of your Validator's rewards every 24 hours.
+{% endhint %}
 
