@@ -6,14 +6,18 @@ description: ローカルPCからSSHで接続している場合、ノードス�
 
 ## 1.別セッション起動用のスクリプトを作成する。  
   
-
+  
+  
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="ブロックプロデューサーノード" %}  
+  
+  
 ```bash
 cd $NODE_HOME
 nano startStakePool.sh
 ```
 新規ファイルを開いて、下記のコマンドを貼り付けます。
+  
 ```bash
 #!/bin/bash
 SESSION=node

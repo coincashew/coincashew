@@ -1472,7 +1472,7 @@ cardano-cli shelley query ledger-state --mainnet | grep publicKey | grep $(cat s
 ## ⚙ 14. トポロジーファイルを構成する。
 
 {% hint style="info" %}
-バージョン1.19.0ではP2P\(ピア・ツー・ピア\)ノードを自動検出しないため、手動でトポロジーを構成する必要があります。この手順をスキップすると生成したブロックがブロックチェーン外で孤立するため、必須の設定項目となります。
+バージョン1.21.1ではP2P\(ピア・ツー・ピア\)ノードを自動検出しないため、手動でトポロジーを構成する必要があります。この手順をスキップすると生成したブロックがブロックチェーン外で孤立するため、必須の設定項目となります。
 {% endhint %}
 
 トポロジーファイルを構成するには、２つの方法があります。
@@ -1500,7 +1500,7 @@ cat > $NODE_HOME/topologyUpdater.sh << EOF
 
 USERNAME=$(whoami)
 CNODE_PORT=6000 # 自身のリレーノードポート番号を記入
-CNODE_HOSTNAME="CHANGE ME"  # ノードのIPアドレスを記入
+CNODE_HOSTNAME="CHANGE ME"  # リレーノードのIPアドレスを記入
 CNODE_BIN="/usr/local/bin"
 CNODE_HOME=$NODE_HOME
 CNODE_LOG_DIR="\${CNODE_HOME}/logs"
@@ -1577,7 +1577,9 @@ rm crontab-fragment.txt
 リレーノードIPがトポロジーフェッチリストに登録される、4時間後に以下のセクションを実行して下さい。
 {% endhint %}
 
-トポロジーファイルを更新する`relay-topology_pull.sh`スクリプトを作成します。 コマンドラインに送信する際に、**自身のブロックプロデューサーのIPアドレスとポート番号に書き換えて下さい**
+トポロジーファイルを更新する`relay-topology_pull.sh`スクリプトを作成します。 コマンドラインに送信する際に、**自身のブロックプロデューサーのIPアドレスとポート番号に書き換えて下さい**  
+  
+※お知り合いのノードや自ノードが複数ある場合は、IOHKノード情報の後に "|" で区切って{IPアドレス}:{ポート番号}:Valency の形式で追加できます。  
 
 ```bash
 ###
@@ -1587,7 +1589,7 @@ cat > $NODE_HOME/relay-topology_pull.sh << EOF
 #!/bin/bash
 BLOCKPRODUCING_IP=<BLOCK PRODUCERS PUBLIC IP ADDRESS>
 BLOCKPRODUCING_PORT=6000
-curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:2|relays-new.cardano-mainnet.iohk.io:3001:2"
+curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:1|relays-new.cardano-mainnet.iohk.io:3001:2"
 EOF
 ```
 
