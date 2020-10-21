@@ -3116,7 +3116,7 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 2020-10-01 00:19:55 ==> Leader for slot 161212, Cumulative epoch blocks: 3
 ```
 
-### 18.13 gLiveView - Node Status Monitoring
+### 🎯 18.13 gLiveView - Node Status Monitoring
 
 {% hint style="info" %}
 gLiveView displays crucial node status information and works well with systemd services. As of cardano-node releases greater than 1.21.1, LiveView was removed and gLiveView is a ideal substitute. Credits to the [Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview) for creating this tool.
@@ -3132,7 +3132,7 @@ curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operato
 chmod 755 gLiveView.sh
 ```
 
-Review the **env** file and ensure your node configuration, such as node port, is correct. Edit the **env** file if required.
+Review the **env** file and ensure your node configuration, such as node port, is correct. Edit the **env** file with your node's configuration, if required.
 
 Run Guild Liveview.
 
