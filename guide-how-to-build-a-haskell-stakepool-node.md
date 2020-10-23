@@ -1871,11 +1871,11 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9100']
       - targets: ['<ブロックプロデューサーIPアドレス>:9100']
-      - targets: ['<ブロックプロデューサーIPアドレス>:12789']
+      - targets: ['<ブロックプロデューサーIPアドレス>:12798']
         labels:
           alias: 'block-producing-node'
           type:  'cardano-node'
-      - targets: ['localhost:12789']
+      - targets: ['localhost:12798']
         labels:
           alias: 'relaynode1'
           type:  'cardano-node'
@@ -1926,7 +1926,7 @@ sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 {% endtabs %}
 
 {% hint style="info" %}
-ファイアウォールを設定している場合は、ブロックプロデューサーノードにて9100番と12789番ポートをリレーノードIP指定で開放して下さい。  
+ファイアウォールを設定している場合は、ブロックプロデューサーノードにて9100番と12798番ポートをリレーノードIP指定で開放して下さい。  
 リレーノード1では、Grafana用に3000番ポートを開放してください。
 {% endhint %}
 
