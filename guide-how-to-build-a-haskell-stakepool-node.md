@@ -2031,6 +2031,19 @@ echo startKesPeriod: ${startKesPeriod}
 {% endtab %}
 {% endtabs %}
 
+{% tabs %}
+{% tab title="ブロックプロデューサーノード" %}
+```bash
+cd $NODE_HOME
+cardano-cli shelley node key-gen-KES \
+    --verification-key-file kes.vkey \
+    --signing-key-file kes.skey
+```
+{% endtab %}
+{% endtabs %}
+
+kes.vkeyをコールド環境にコピーします。  
+  
 次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;"startKesPeriod"&gt;に入力してからコマンドを送信してください。
 
 {% tabs %}
