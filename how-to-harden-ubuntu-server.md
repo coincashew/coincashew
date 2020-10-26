@@ -225,7 +225,7 @@ ChallengeResponseAuthentication yes
 UsePAM yes
 ```
 
-@include common-passwordの行をコメントアウトします
+**@include common-password**の行をコメントアウトします
 
 ```text
 #@include common-password
