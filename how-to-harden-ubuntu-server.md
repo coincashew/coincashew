@@ -179,10 +179,13 @@ sudo passwd -u root
 ## 🛠 SSHの2段階認証を設定する
 
 {% hint style="info" %}
-SSHはリモートアクセスに使用されますが、重要なデータを含むコンピュータとの接続としても使われるため、別のセキュリティーレイヤーの導入をお勧めします。2段階認証(2FA)
+SSHはリモートアクセスに使用されますが、重要なデータを含むコンピュータとの接続としても使われるため、別のセキュリティーレイヤーの導入をお勧めします。2段階認証(2FA)  
+事前にお手元のスマートフォンに「Google認証システムアプリ」のインストールが必要です
 {% endhint %}
 
 ```text
+sudo apt update
+sudo apt upgrade
 sudo apt install libpam-google-authenticator -y
 ```
 
@@ -222,7 +225,25 @@ ChallengeResponseAuthentication yes
 UsePAM yes
 ```
 
+@include common-passwordの行をコメントアウトします
+
+```text
+#@include common-password
+```
+
+最後の行に1行追加します。(SSH公開鍵秘密鍵ログインを利用の場合)
+
+```text
+AuthenticationMethods publickey,keyboard-interactive
+```
+
 ファイルを保存して閉じます。
+
+以下を使用して`sshd`デーモンを再起動します。
+
+```text
+sudo systemctl restart sshd.service
+```
 
 **google-authenticator** コマンドを実行します。
 
