@@ -5,6 +5,7 @@
 * [Coins](coin-listing.md)
 * [Wallets](wallets-1.md)
 * [Exchanges](exchanges-1.md)
+* [Learn \| via Workshops & Courses](learn-or-via-workshops-and-courses.md)
 * [Donations \| via CoinTr.ee](donations.md)
 * [About Us](contact-us/README.md)
   * [Contributing](contact-us/contributing/README.md)
