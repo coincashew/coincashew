@@ -188,6 +188,14 @@ ping 10.0.0.1
 {% endtab %}
 {% endtabs %}
 
+Update and/or review your topology.json file to ensure the "addr" matches this new tunneled IP address, and not the usual public node IP address.
+
+> Example: topology.json on blockproducer  
+> { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
+
+> topology.json on relaynode1   
+> { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
+
 {% hint style="success" %}
 Congrats! Wireguard is working!
 {% endhint %}
