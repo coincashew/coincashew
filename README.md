@@ -8,7 +8,7 @@
 ✨ Learn to do anything with crypto, _better_.
 {% endhint %}
 
-## 🙋 I would like to ...
+## 🙋♀ I would like to ...
 
 {% tabs %}
 {% tab title="Learn" %}
