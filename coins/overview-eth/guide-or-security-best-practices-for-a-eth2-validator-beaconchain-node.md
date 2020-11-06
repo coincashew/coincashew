@@ -301,7 +301,7 @@ With any new installation, ufw is disabled by default. Enable it with the follow
   * Prysm uses port 13000 tcp and port 12000 udp
   * Nimbus uses port 19000 tcp/udp
   * Lodestar uses port 30607 tcp and port 9000 udp
-* Port 30303 tcp/udp geth node
+* Port 30303 tcp/udp eth1 geth node
 * Port 3000 tcp for Grafana \(optional\)
 * Port 9090 tcp for prometheus export data \(optional\)
 

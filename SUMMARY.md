@@ -101,7 +101,7 @@
 * [Ethereum: ETH](coins/overview-eth/README.md)
   * [Guide \| Security Best Practices for a ETH2 validator beaconchain node](coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
   * [Guide \| Medalla ETH 2.0 Adventures with POAP](coins/overview-eth/guide-or-medalla-eth-2.0-adventures-with-poap.md)
-  * [Guide: How to stake on ETH2 Medalla Testnet with Lighthouse on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-lighthouse.md)
+  * [Guide: How to stake on ETH2 Mainnet with Lighthouse on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-lighthouse.md)
   * [Guide: How to stake on ETH2 Medalla Testnet with Prysm on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2.md)
   * [Guide: How to stake on ETH2 Medalla Testnet with Teku on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md)
   * [Guide: How to stake on ETH2 Medalla Testnet with Nimbus on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-nimbus.md)
