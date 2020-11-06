@@ -1,5 +1,9 @@
 # Learn \| via Workshops & Courses
 
+### Abra \| Ultimate 10-day Crypto Course
+
+{% embed url="https://www.abra.com/cryptocurrency/cryptocurrency-course/" %}
+
 ### IBM \| Blockchain for Dummies
 
 {% embed url="https://www.ibm.com/blockchain/what-is-blockchain" %}
