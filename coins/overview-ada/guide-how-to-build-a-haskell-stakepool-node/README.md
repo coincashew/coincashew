@@ -502,7 +502,7 @@ Find the kesPeriod by dividing the slot tip number by the slotsPerKESPeriod.
 ```bash
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 echo kesPeriod: ${kesPeriod}
-startKesPeriod=$(( ${kesPeriod} - 0 ))
+startKesPeriod=${kesPeriod}
 echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
@@ -2079,7 +2079,7 @@ cd $NODE_HOME
 slotNo=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
-startKesPeriod=$(( ${kesPeriod} - 0 ))
+startKesPeriod=${kesPeriod}
 echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
@@ -2222,6 +2222,8 @@ cardano-cli shelley stake-pool registration-certificate \
 {% hint style="info" %}
 Here we are pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 20%. 
 {% endhint %}
+
+Copy **pool.cert** to your **hot environment.**
 
 Pledge stake to your stake pool.
 
