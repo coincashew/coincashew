@@ -4,6 +4,10 @@
 
 {% embed url="https://www.abra.com/cryptocurrency/cryptocurrency-course/" %}
 
+### PreethiKasireddy.com \| A Step-by-Step Intro to Cryptocurrency - Free Email Course
+
+{% embed url="https://www.preethikasireddy.com/intro-to-cryptocurrency" %}
+
 ### IBM \| Blockchain for Dummies
 
 {% embed url="https://www.ibm.com/blockchain/what-is-blockchain" %}
