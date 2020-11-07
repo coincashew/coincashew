@@ -85,7 +85,7 @@ If you need to buy/exchange or top up your ETH to a multiple of 32, check out:
 Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
 {% endhint %}
 
-You have those choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source.
+You have the choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source.
 
 {% tabs %}
 {% tab title="Pre-built eth2deposit-cli" %}
