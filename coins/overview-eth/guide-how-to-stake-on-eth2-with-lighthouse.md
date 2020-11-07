@@ -230,9 +230,6 @@ Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
@@ -284,9 +281,6 @@ Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
@@ -347,9 +341,6 @@ Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
