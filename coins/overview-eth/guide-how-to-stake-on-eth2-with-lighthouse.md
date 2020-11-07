@@ -902,6 +902,16 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 ## 🎉 14. Bonus links
 
+### 🌰 CoinCashew Guides for other ETH2 Clients
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-nimbus.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-lodestar.md" %}
+
 ### 🧱 ETH2 Block Explorers
 
 {% embed url="https://beaconcha.in/" %}
