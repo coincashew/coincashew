@@ -478,7 +478,7 @@ cd $HOME/git/teku/build/install/teku/bin
 Copy the teku binary files to `/usr/local/teku`
 
 ```bash
-sudo cp -r $HOME/git/teku/build/install/teku/. /usr/local/teku
+sudo cp -r $HOME/git/teku/build/install/teku/. /usr/bin/teku
 ```
 
 ## 🔥 5. Configure port forwarding and/or firewall
@@ -826,21 +826,23 @@ Hang out and chat with fellow stakers on telegram @ [https://t.me/coincashew](ht
 cd ~/git/teku
 git pull
 ./gradlew distTar installDist
-sudo cp -r $HOME/git/teku/build/install/teku/. /usr/local/teku
 ```
 
 Restart beacon chain and validator as per normal operating procedures.
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
-```text
+```bash
+sudo systemctl stop beacon-chain
+sudo cp -r $HOME/git/teku/build/install/teku/. /usr/bin/teku
 sudo systemctl reload-or-restart beacon-chain
 ```
 {% endtab %}
 
 {% tab title="CLI - Manual" %}
-```
+```bash
 killall teku
+sudo cp -r $HOME/git/teku/build/install/teku/. /usr/bin/teku
 /usr/local/teku/bin/teku -c /etc/teku/teku.yaml
 ```
 {% endtab %}
