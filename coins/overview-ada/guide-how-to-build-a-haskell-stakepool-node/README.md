@@ -3148,7 +3148,7 @@ Sample output of Guild Live View
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
-## 🌜 19. Retiring your stake pool
+## 🌜 19. Retire your stake pool
 
 Calculate the current epoch.
 
