@@ -387,11 +387,28 @@ rm nethermind.zip
 {% endtab %}
 
 {% tab title="Minimum Hardware Setup" %}
-🚧 **Untested - TBD - Work in progress** 🚧
+{% hint style="info" %}
+Infura is suitable for limited disk space setups. Always run your own full eth1 node when possible.
+{% endhint %}
 
-Use a third party by signing up for an API access key at [https://infura.io/](https://infura.io/)
+Sign up for an API access key at [https://infura.io/](https://infura.io/)
+
+1. Sign up for a free account.
+2. Confirm your email address.
+3. Visit your dashboard [https://infura.io/dashboard](https://infura.io/dashboard)
+4. Create a project, give it a name.
+5. Select **Mainnet** as the ENDPOINT
+6. Copy your API key.
+7. Update the parameter **http-web3provider** in the **start beacon chain** section.
+
+```bash
+#example parameter
+--http-web3provider=https://infura.io/v3/<YOUR_API_KEY>
+```
 {% endtab %}
 {% endtabs %}
+
+
 
 {% hint style="info" %}
 Syncing the eth1 node could take up to 24 hour.
@@ -951,4 +968,22 @@ Appreciate the hard work done by the fine folks at the following links which ser
 {% embed url="http://invite.gg/ethstaker" caption="" %}
 
 {% embed url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
+
+## 🔥 14. Additional Useful Tips
+
+### 🛑 14.1 Voluntary exit a validator
+
+{% hint style="info" %}
+Use this command to signal your intentions to stop validating with your validator. This means your validator voluntarily wishes to stop performing a validator's duties of attesting and proposing blocks.
+
+* Once a validator is exited in phase 0, this is non-reversible and you can no longer change your mind to start validating again. 
+* Your funds will not be available for withdrawal until phase 1.5 or later. 
+* After your validator is exited, it is safe to turn off your beacon node and validator.
+{% endhint %}
+
+```bash
+$HOME/prysm/prysm.sh validator accounts voluntary-exit
+```
+
+
 

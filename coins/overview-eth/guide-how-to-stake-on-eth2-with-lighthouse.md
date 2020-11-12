@@ -968,3 +968,21 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 {% embed url="http://invite.gg/ethstaker" %}
 
+## 🔥 15. Additional Useful Tips
+
+### 🛑 15.1 Voluntary exit a validator
+
+{% hint style="info" %}
+Use this command to signal your intentions to stop validating with your validator. This means your validator voluntarily wishes to stop performing a validator's duties of attesting and proposing blocks.
+
+* Once a validator is exited in phase 0, this is non-reversible and you can no longer change your mind to start validating again. 
+* Your funds will not be available for withdrawal until phase 1.5 or later. 
+* After your validator is exited, it is safe to turn off your beacon node and validator.
+{% endhint %}
+
+```bash
+lighthouse account validator exit \
+--keystore $HOME/.lighthouse/mainnet/validators \
+--beacon-node http://localhost:5052
+```
+
