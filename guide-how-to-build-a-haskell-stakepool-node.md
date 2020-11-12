@@ -2732,6 +2732,142 @@ cardano-cli shelley query utxo \
 絶賛翻訳中！！
 {% endhint %}
 
+
+### 🕒 18.12 スロットリーダースケジュール - ブロック生成時期を確認する
+
+{% hint style="info" %}
+🔥 **ヒント**: スロットリーダーのスケジュールを計算できます。これによりステークプールがブロックを生成する時期がわかるため、メンテナンススケジュールを組み立てるのに役立ちます。このプロセスを開発したのは [Andrew Westberg @amw7](https://twitter.com/amw7) \(JorManagerの開発者およびBCSHステークプールの皆さまです\)
+{% endhint %}
+
+Pythonがインストールされているか確認してくださ。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+python3 --version
+```
+{% endtab %}
+{% endtabs %}
+
+バージョン情報が表示されていない場合は、以下を実行しPython3をインストールします。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```text
+sudo apt-get update
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install -y python3.9
+```
+{% endtab %}
+{% endtabs %}
+
+pipがインストールされているか確認して下さい。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+pip3 --version
+```
+{% endtab %}
+{% endtabs %}
+
+バージョン情報が表示されない場合は、以下を実行して下さい。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+sudo apt-get install -y python3-pip
+```
+{% endtab %}
+{% endtabs %}
+
+タイムゾーンを処理するpytzをインストールします。
+
+```bash
+pip3 install pytz
+```
+
+pythonとpipが正しくインストールされたことを確認してください。
+
+{% tabs %}
+{% tab title="ブロックプロデューサーノード" %}
+```bash
+python3 --version
+pip3 --version
+```
+{% endtab %}
+{% endtabs %}
+
+ [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) から、leaderLogスクリプトのクローンを作成します。
+
+{% hint style="info" %}
+このLeaderLogsツールの公式サイトは次の通りです。 [こちら](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md)
+{% endhint %}
+
+{% tabs %}
+{% tab title="ブロックプロデューサーノード" %}
+```bash
+cd $HOME/git
+git clone https://github.com/papacarp/pooltool.io
+cd pooltool.io/leaderLogs
+```
+{% endtab %}
+{% endtabs %}
+
+元帳を抽出します
+
+{% tabs %}
+{% tab title="ブロックプロデューサーノード" %}
+```bash
+cardano-cli shelley query ledger-state --mainnet --out-file ledger.json
+```
+{% endtab %}
+{% endtabs %}
+
+プールのシグマ値を計算します。シグマ値はステーク値を表します。
+
+{% tabs %}
+{% tab title="ブロックプロデューサーノード" %}
+```bash
+sigmaValue=$(python3 getSigma.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) | tail -n 1 | awk '{ print $2 }')
+echo Sigma: ${sigmaValue}
+```
+{% endtab %}
+{% endtabs %}
+
+シグマ値は次のような形式で表示されます `0.000029302885338621295`
+
+スロットリーダースケジュールを計算します。
+
+{% tabs %}
+{% tab title="ブロックプロデューサーノード" %}
+```bash
+python3 leaderLogs.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) --sigma ${sigmaValue} --vrf-skey ${NODE_HOME}/vrf.skey --tz Asia/Tokyo
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+タイムゾーン名を設定して、スケジュールの時刻を適切にフォーマットできます。 --tz オプション \[デフォルト: America/Los\_Angeles\]'\) [詳細は開発元ドキュメントを参照してください](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md#arguments-1)  
+ここでは、BTBFが独自に日本時間に設定しています。--tz Asia/Tokyo
+{% endhint %}
+
+プールがブロックを生成するようスケジュールされている場合は、以下のような形式で表示されます。
+
+{% hint style="danger" %}
+スロットリーダースケジュールは機密情報扱いにする必要があります。この情報を公開するとサーバーを攻撃される可能性がありますので、ご注意下さい。
+{% endhint %}
+
+```bash
+Checking leadership log for Epoch 222 [ d Param: 0.6 ]
+2020-10-01 00:11:10 ==> Leader for slot 121212, Cumulative epoch blocks: 1
+2020-10-01 00:12:22 ==> Leader for slot 131313, Cumulative epoch blocks: 2
+2020-10-01 00:19:55 ==> Leader for slot 161212, Cumulative epoch blocks: 3
+```
+
+
 ## 🌜 19. ステークプールを廃止する。
 
 エポックごとのスロットを出力します。
