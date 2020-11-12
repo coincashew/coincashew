@@ -2826,7 +2826,8 @@ cardano-cli shelley query ledger-state --mainnet --out-file ledger.json
 {% endtab %}
 {% endtabs %}
 
-プールのシグマ値を計算します。シグマ値はステーク値を表します。
+プールのシグマ値を計算します。シグマ値はステーク値を表します。  
+${NODE_HOME}にstakepoolid.txtがあるか確認してください。無い場合は[13の手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#13-sutkuprugashiteirukashimasu)に沿ってファイルを生成してください。  
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
