@@ -722,7 +722,7 @@ chrony is an implementation of the Network Time Protocol and helps to keep your 
 
 Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
 
-###  🐣 Installation
+###  🐣 8.1 Installation
 
 Install prometheus and prometheus node exporter.
 
@@ -791,7 +791,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 \*\*\*\*💡 **Reminder**: Ensure port 3000 is open on the firewall and/or port forwarded if you intend to view monitoring info from a different machine.
 {% endhint %}
 
-### 📶 Setting up Grafana Dashboards 
+### 📶8.2 Setting up Grafana Dashboards 
 
 1. Open [http://localhost:3000](http://localhost:3000) or http://&lt;your validator's ip address&gt;:3000 in your local browser.
 2. Login with **admin** / **admin**
@@ -807,6 +807,53 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 12. Click the **Import** button.
 
 ![](../../.gitbook/assets/graf-teku-dash.png)
+
+### ⚠ 8.3 Setup Alert Notifications
+
+{% hint style="info" %}
+Setup alerts to get notified if your validators go offline.
+{% endhint %}
+
+Get notified of problems with your validators. Choose between email, telegram, discord or slack.
+
+{% tabs %}
+{% tab title="Email Notifications" %}
+1. Visit [https://beaconcha.in/](https://beaconcha.in/)
+2. Sign Up ****for an **account**
+3. Verify your **email**
+4. Search for your **validator's public address**
+5. Add validators to your watchlist by clicking the **bookmark symbol**.
+{% endtab %}
+
+{% tab title="Telegram Notifications" %}
+1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png) 
+2. Click on **Add channel**.
+3. Give the notification channel a **name**.
+4. Select **Telegram** from the Type list.
+5. To complete the **Telegram API settings**, a Telegram channel and bot are required. For instructions on setting up a bot with `@Botfather`, see [this section](https://core.telegram.org/bots#6-botfather) of the Telegram documentation.
+6. Once completed, invite the bot to the newly created channel.
+{% endtab %}
+
+{% tab title="Discord Notifications" %}
+1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png) 
+2. Click on **Add channel**.
+3. Add a **name** to the notification channel.
+4. Select **Discord** from the Type list.
+5. To complete the set up, a Discord server \(and a text channel available\) as well as a Webhook URL are required. For instructions on setting up a Discord's Webhooks, see [this section](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) of their documentation.
+6. Enter the Webhook **URL** in the Discord notification settings panel.
+7. Click **Send Test**, which will push a confirmation message to the Discord channel.
+{% endtab %}
+
+{% tab title="Slack Notifications" %}
+1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png) 
+2. Click on **Add channel**.
+3. Add a **name** to the notification channel.
+4. Select **Slack** from the Type list.
+5. For instructions on setting up a Slack's Incoming Webhooks, see [this section](https://api.slack.com/messaging/webhooks) of their documentation.
+6. Enter the Slack Incoming Webhook URL in the **URL** field.
+7. Click **Send Test**, which will push a confirmation message to the Slack channel.
+{% endtab %}
+{% endtabs %}
 
 {% hint style="success" %}
 🎉 Congrats on setting up your validator! You're good to go on eth2.0.
