@@ -887,6 +887,8 @@ lighthouse bn --staking --metrics
 
 Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
 
+{% embed url="https://discord.gg/cyAszAh" %}
+
 {% embed url="https://launchpad.ethereum.org/" %}
 
 {% embed url="https://lighthouse-book.sigmaprime.io/intro.html" %}

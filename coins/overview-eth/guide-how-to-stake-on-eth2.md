@@ -869,6 +869,8 @@ sudo systemctl reload-or-restart validator
 
 Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
 
+{% embed url="https://discord.gg/KSA7rPr" %}
+
 {% embed url="https://launchpad.ethereum.org/" caption="" %}
 
 {% embed url="https://prylabs.net/participate" %}

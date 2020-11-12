@@ -365,6 +365,8 @@ chrony is an implementation of the Network Time Protocol and helps to keep your 
 
 ## 🧩 8. Reference Material
 
+{% embed url="https://discord.gg/yjyvFRP" %}
+
 {% embed url="https://chainsafe.github.io/lodestar/installation/" %}
 
 {% embed url="https://medalla.launchpad.ethereum.org/" %}

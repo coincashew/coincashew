@@ -787,6 +787,8 @@ sudo cp $HOME/git/nimbus-eth2/build/beacon_node /usr/bin/beacon_node
 
 Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
 
+{% embed url="https://discord.gg/XRxWahP" %}
+
 {% embed url="https://launchpad.ethereum.org/" caption="" %}
 
 {% embed url="https://status-im.github.io/nim-beacon-chain/install.html" %}

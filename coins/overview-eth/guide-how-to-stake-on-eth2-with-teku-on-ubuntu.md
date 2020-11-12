@@ -852,6 +852,8 @@ sudo cp -r $HOME/git/teku/build/install/teku/. /usr/bin/teku
 
 Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
 
+{% embed url="https://discord.gg/7hPv2T6" %}
+
 {% embed url="https://launchpad.ethereum.org/" %}
 
 {% embed url="https://pegasys.tech/teku-ethereum-2-for-enterprise/" %}
