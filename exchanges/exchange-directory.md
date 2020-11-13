@@ -21,7 +21,6 @@
 | Site | Comments |
 | :--- | :--- |
 | [Sideshift.ai](https://sideshift.ai/a/ziLELkDY5) | Automated Coin Swap |
-| [InstaEx](https://instaex.io) | Privacy first - no Google Analytics, Accounts or KYC |
 | [MorphToken.com](https://www.morphtoken.com) | Quickly and simply swap one coin to another. Or split into multiple coins at once. |
 | [Changenow.io](https://changenow.io?link_id=e542777107ca34) | Fast Crypto Swaps, Free of Custody |
 | [Godex.io](https://godex.io/?aff_id=zNyhC0A10Be5YRBt&utm_source=affiliate&utm_medium=www&utm_campaign=zNyhC0A10Be5YRBt) | Exchange anonymously any volume with guaranteed fixed rate |
@@ -30,6 +29,8 @@
 | [changehero.io](https://changehero.io) | Free from sign up, limits, complications |
 | [FixedFloat.com](https://fixedfloat.com/?ref=cn8rt3qa) | Lightning cryptocurrency exchange |
 | [ChangeAngel.io](https://changeangel.io/) | Non-Custodial Swap Exchange Service |
+| [SwapSwop.io](https://swapswop.io/) | Exchange cryptocurrency anonymously without registration. |
+| [InstaEx.io](https://instaex.io) | Privacy first - no Google Analytics, Accounts or KYC |
 
 ## 🌌 Decentralized Exchanges
 
