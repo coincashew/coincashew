@@ -13,6 +13,8 @@ As a validator for eth2, you will typically have the following abilities:
 * operational knowledge of how to set up, run and maintain a eth2 beacon node and validator continuously
 * a commitment to maintain your validator 24/7/365
 * basic operating system skills
+* have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
+* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com/)
 * and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
 ### \*\*\*\*🎗**Minimum Setup Requirements**

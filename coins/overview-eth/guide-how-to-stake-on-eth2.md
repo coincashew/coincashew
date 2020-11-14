@@ -23,6 +23,8 @@ As a validator for eth2, you will typically have the following abilities:
 * operational knowledge of how to set up, run and maintain a eth2 beacon node and validator continuously
 * a commitment to maintain your validator 24/7/365
 * basic operating system skills
+* have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
+* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com/)
 * and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
 ### 🎗 **Minimum Setup Requirements**
@@ -974,11 +976,12 @@ Appreciate the hard work done by the fine folks at the following links which ser
 ### 🛑 14.1 Voluntary exit a validator
 
 {% hint style="info" %}
-Use this command to signal your intentions to stop validating with your validator. This means your validator voluntarily wishes to stop performing a validator's duties of attesting and proposing blocks.
+Use this command to signal your intentions to stop validating with your validator. This means you no longer want to stake with your validator and want to turn off your node.
 
-* Once a validator is exited in phase 0, this is non-reversible and you can no longer change your mind to start validating again. 
+* Voluntary exiting takes a minimum of 2048 epochs \(or ~9days\). There is a queue to exit and a delay before your validator is finally exited.
+* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again. 
 * Your funds will not be available for withdrawal until phase 1.5 or later. 
-* After your validator is exited, it is safe to turn off your beacon node and validator.
+* After your validator leaves the exit queue and is truely exited, it is safe to turn off your beacon node and validator.
 {% endhint %}
 
 ```bash
