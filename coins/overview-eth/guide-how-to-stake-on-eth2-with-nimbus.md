@@ -185,7 +185,7 @@ Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ET
 {% endhint %}
 
 {% hint style="warning" %}
-The subsequent steps assume you have completed the [best practices security guide](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md) and will be running your validator under a user called **`ethereum`**.
+The subsequent steps assume you have completed the [best practices security guide](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
 {% endhint %}
 
 Your choice of either [**Infura** ](https://infura.io/)or [**Geth**](https://geth.ethereum.org/)**.** [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/) ****coming soon.
