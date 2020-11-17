@@ -2122,6 +2122,24 @@ chmod a-rwx $HOME/cold-keys
 Copy **node.cert** back to your block producer node.
 {% endhint %}
 
+Stop and restart your block producer node to complete this procedure.
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cd $NODE_HOME
+killall cardano-node
+./startBlockProducingNode.sh
+```
+{% endtab %}
+
+{% tab title="block producer node with systemctl" %}
+```
+sudo systemctl reload-or-restart cardano-node
+```
+{% endtab %}
+{% endtabs %}
+
 {% hint style="info" %}
 \*\*\*\*✨ **Tip:** With your hot keys created, you can remove access to the cold keys for improved security. This protects against accidental deletion, editing, or access. 
 
