@@ -49,6 +49,10 @@ As a validator for eth2, you will typically have the following abilities:
 * **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
 * **Wallet**: Metamask installed
 
+{% hint style="warning" %}
+✨ **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your mainnet validator.
+{% endhint %}
+
 ### 🔓 Recommended eth2 validator Security Best Practices
 
 If you need ideas or a reminder on how to secure your validator, refer to
@@ -988,5 +992,27 @@ Use this command to signal your intentions to stop validating with your validato
 $HOME/prysm/prysm.sh validator accounts voluntary-exit
 ```
 
+### 🔐 14.2 Verify your mnemonic phrase
 
+Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys` 
+
+```bash
+./deposit existing-mnemonic --chain mainnet
+```
+
+{% hint style="info" %}
+When the **pubkey** is identical, this means your **keystore file** you correctly verified your mnemonic phrase. Other fields will be different because of salting.
+{% endhint %}
+
+### 🤖 14.3 Add additional validators
+
+Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
+
+For example, in case we originally created 3 validators but now wish to add 5 more validators, we could use the following command.
+
+```bash
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+```
+
+Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site.
 
