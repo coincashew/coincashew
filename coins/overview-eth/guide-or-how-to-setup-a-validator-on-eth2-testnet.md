@@ -272,7 +272,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = /usr/bin/geth --http --goerli
+ExecStart       = /usr/bin/geth --http --goerli --ws
 Restart         = on-failure
 
 [Install]
@@ -774,30 +774,25 @@ Install and build Nimbus.
 cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
-make NIMFLAGS="-d:insecure" pyrmont-build
+make nimbus_beacon_node
 ```
 
 {% hint style="info" %}
 The build process may take a few minutes.
 {% endhint %}
 
-Verify Nimbus was installed properly by displaying the version.
+Verify Nimbus was installed properly by displaying the help.
 
 ```bash
-cd $HOME/git/nimbus-eth2/build/
-./beacon_node --version
-```
-
-Copy the nimbus binary files to `/usr/bin`
-
-```bash
-sudo cp $HOME/git/nimbus-eth2/build/beacon_node /usr/bin/beacon_node  
+cd $HOME/git/nimbus-eth2/build
+./nimbus_beacon_node --help
 ```
 
 ## 🎩 4.2. Import validator key <a id="6-import-validator-key"></a>
 
 ```bash
-beacon_node deposits import  --data-dir=build/data/shared_pyrmont_0 $HOME/git/eth2.0-deposit-cli/validator_keys
+cd $HOME/git/nimbus-eth2
+build/nimbus_beacon_node deposits import  --data-dir=build/data/shared_pyrmont_0 $HOME/eth2deposit-cli/validator_keys
 ```
 
 Enter your keystore's password to import accounts.
@@ -860,13 +855,17 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 Environment     = "ClientIP=$(curl -s v4.ident.me)"
-ExecStart       = /usr/bin/beacon_node --nat=extip:${ClientIP} --web3-url=http://127.0.0.1:8545 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=128 
+ExecStart       = $(echo $HOME)/git/nimbus-eth2/run-pyrmont-beacon-node.sh --nat=extip:${ClientIP} --web3-url=wss://localhost:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=128 
 Restart         = on-failure
 
 [Install]
 WantedBy    = multi-user.target
 EOF
 ```
+
+{% hint style="warning" %}
+Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Only Geth or Infura ETH1 nodes verified compatible.
+{% endhint %}
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -1113,6 +1112,7 @@ User            = $(whoami)
 WorkingDirectory= /usr/local/teku/bin
 ExecStart       = /usr/local/teku/bin/teku -c /etc/teku/teku.yaml
 Restart         = on-failure
+Environment     = JAVA_OPTS=-Xmx5g
 
 [Install]
 WantedBy	= multi-user.target
@@ -2067,7 +2067,6 @@ Restart beacon chain and validator as per normal operating procedures.
 
 ```bash
 sudo systemctl stop beacon-chain
-sudo cp $HOME/git/nimbus-eth2/build/beacon_node /usr/bin/beacon_node
 sudo systemctl reload-or-restart beacon-chain
 ```
 {% endtab %}
@@ -2238,11 +2237,12 @@ $HOME/prysm/prysm.sh validator accounts voluntary-exit
 Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`
 
 ```bash
-./deposit existing-mnemonic --chain pyrmont
+cd $HOME/eth2deposit-cli 
+./deposit.sh existing-mnemonic --chain pyrmont
 ```
 
 {% hint style="info" %}
-When the **pubkey** is identical, this means your **keystore file** you correctly verified your mnemonic phrase. Other fields will be different because of salting.
+When the **pubkey** in both **keystore files** are **identical,** this means your mnemonic phrase is veritably correct. Other fields will be different because of salting.
 {% endhint %}
 
 ### 🤖11.3 Add additional validators
@@ -2252,7 +2252,8 @@ Using the eth2deposit-cli tool, you can add more validators by creating a new de
 For example, in case we originally created 3 validators but now wish to add 5 more validators, we could use the following command.
 
 ```bash
-./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
+cd $HOME/eth2deposit-cli
+./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
 ```
 
 Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site.
