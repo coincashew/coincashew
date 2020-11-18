@@ -433,12 +433,12 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 
 #### Nimbus Specific Configuration
 
-1. Copy the websocket endpoint. Starts with `wss://`
-2. Update and add **NODE\_PARAMS** to the **make** command in the **start beacon chain and validator** section.
+1. Copy the websocket endpoint.
+2. Update your systemd config file's `--web-url` parameter with this endpoint. Starts with `wss://`
 
 ```bash
 #example
-make NODE_PARAMS="--web3-url=<your wss:// infura endpoint>"
+--web3-url=<your wss:// infura endpoint>
 ```
 {% endtab %}
 {% endtabs %}
