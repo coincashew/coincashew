@@ -1741,7 +1741,7 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 {% hint style="success" %}
 Congratulations. Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
 
-Use [beaconcha.in](https://beaconcha.in/) and [register an account](https://beaconcha.in/register) to create alerts and track your validator's performance.
+Use [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) to create alerts and track your validator's performance.
 {% endhint %}
 
 ## 🕒5. Time Synchronization
@@ -1984,7 +1984,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 
 {% tabs %}
 {% tab title="Email Notifications" %}
-1. Visit [https://beaconcha.in/](https://beaconcha.in/)
+1. Visit [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
 2. Sign up for an account.
 3. Verify your **email**
 4. Search for your **validator's public address**
