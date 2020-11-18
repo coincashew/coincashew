@@ -70,7 +70,7 @@ If you need to install Metamask, refer to
 ## 🌱 1. Obtain testnet ETH
 
 {% hint style="info" %}
-Every 32 ETH you own allows you to make 1 validator. You can run thousands of validators with your beacon node. However on testnet, please only run 1 or 2 validators and allow others a fair chance too.
+Every 32 ETH you own allows you to make 1 validator. You can run thousands of validators with your beacon node. However on testnet, please only run 1 or 2 validators to keep the activation queue reasonably quick.
 {% endhint %}
 
 Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a request for ETH in the **`-request-goerli-eth channel`**
@@ -2206,8 +2206,11 @@ lighthouse account validator exit \
 {% endtab %}
 
 {% tab title="Teku" %}
-```
-#TO BE DETERMINED
+```bash
+teku voluntary-exit \
+--epoch=<epoch number to exit> \
+--beacon-node-api-endpoint=http://127.0.0.1:5051 \
+--validator-keys=<path to keystore.json>:<path to password.txt file>
 ```
 {% endtab %}
 
