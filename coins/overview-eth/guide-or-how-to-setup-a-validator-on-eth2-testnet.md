@@ -433,8 +433,9 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 
 #### Nimbus Specific Configuration
 
-1. Copy the websocket endpoint.
-2. Update your systemd config file's `--web-url` parameter with this endpoint. Starts with `wss://`
+1. Copy the websocket endpoint. Starts with `wss://`
+2. Save this for step 4, configuring your eth2 node.
+3. When creating your systemd's **unit file**, update the `--web-url` parameter with this endpoint. 
 
 ```bash
 #example
