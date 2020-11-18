@@ -2252,7 +2252,7 @@ Using the eth2deposit-cli tool, you can add more validators by creating a new de
 For example, in case we originally created 3 validators but now wish to add 5 more validators, we could use the following command.
 
 ```bash
-./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
 ```
 
 Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site.
