@@ -830,7 +830,23 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 Nimbus combines both the beacon chain and validator into one process.
 {% endhint %}
 
-Your choice of running a beacon chain and validator manually from command line or automatically with systemd.
+{% hint style="danger" %}
+**Nov 18/2020 - Temp workaround**: Run the beacon chain and validator manually for now as there is a prompt for the Web3 provider URL.
+
+Use the following command:
+
+```bash
+$(echo $HOME)/git/nimbus-eth2/run-pyrmont-beacon-node.sh --nat=extip:${ClientIP} --web3-url=wss://localhost:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=128 
+```
+
+Enter the following as web3 provider URL
+
+```bash
+wss://localhost:8546
+```
+{% endhint %}
+
+Running the beacon chain automatically with systemd.
 
 #### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
