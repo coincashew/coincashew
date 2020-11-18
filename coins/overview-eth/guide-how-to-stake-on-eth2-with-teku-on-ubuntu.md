@@ -43,7 +43,7 @@ As a validator for eth2, you will typically have the following abilities:
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
 * **Memory:** 16 GB RAM or more
-* **Storage:** 1TB SSD or more
+* **Storage:** 1TB SSD or more 
 * **Internet:** Broadband internet connections with speeds at least 10 Mbps
 * **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
 * **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
