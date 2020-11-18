@@ -529,7 +529,7 @@ lighthouse --version
 Run the following command to import your validator keys from the eth2deposit-cli tool directory.
 
 ```bash
-lighthouse account validator import --directory=$HOME/eth2deposit-cli/validator_keys
+lighthouse account validator import --testnet pyrmont --directory=$HOME/eth2deposit-cli/validator_keys
 ```
 
 Enter your keystore's password to import accounts.
@@ -803,7 +803,7 @@ beacon_node deposits import  --data-dir=build/data/shared_pyrmont_0 $HOME/git/et
 Enter your keystore's password to import accounts.
 
 {% hint style="info" %}
-When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `build/data/shared_mainnet_0/` folder, under `secrets` and `validators` - **make sure you keep these folders backed up somewhere sage.**
+When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `build/data/shared_pyrmont_0/` folder, under `secrets` and `validators` - **make sure you keep these folders backed up somewhere sage.**
 
 The `secrets` folder contains the common secret that gives you access to all your validator keys.
 
@@ -1204,7 +1204,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 ## 🎩 4.3. Import validator key
 
 ```bash
-$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/eth2deposit-cli/validator_keys
+$HOME/prysm/prysm.sh validator accounts import --pyrmont --keys-dir=$HOME/eth2deposit-cli/validator_keys
 ```
 
 Accept default wallet location, enter a new password to encrypt your wallet and enter the password for your imported accounts.
@@ -1250,7 +1250,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 Environment     = "ClientIP=$(curl -s v4.ident.me)"
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --p2p-host-ip=${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --p2p-host-ip=${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]
@@ -1359,7 +1359,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --accept-terms-of-use --wallet-password-file /home/$(whoami)/.eth2validators/validators-password.txt
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --pyrmont --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
 Restart         = on-failure
 
 [Install]
