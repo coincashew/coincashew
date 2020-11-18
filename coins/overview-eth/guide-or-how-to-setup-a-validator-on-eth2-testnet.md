@@ -194,7 +194,7 @@ The subsequent steps assume you have completed the [best practices security guid
 🛑 Do not run your processes as **ROOT** user. 😱 
 {% endhint %}
 
-Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/)**.**
+Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/) **or** [**Infura**](https://infura.io/)**.**
 
 {% tabs %}
 {% tab title="OpenEthereum \(Parity\)" %}
@@ -431,7 +431,7 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 4. Create a project, give it a name.
 5. Select **Goerli** as the ENDPOINT
 
-#### Teku Specific Configuration
+#### Nimbus Specific Configuration
 
 1. Copy the websocket endpoint. Starts with `wss://`
 2. Update and add **NODE\_PARAMS** to the **make** command in the **start beacon chain and validator** section.
