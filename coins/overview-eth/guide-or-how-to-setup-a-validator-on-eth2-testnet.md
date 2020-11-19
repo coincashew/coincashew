@@ -206,7 +206,7 @@ Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [
 
 ```text
 mkdir ~/openethereum && cd ~/openethereum
-wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
+wget https://github.com/openethereum/openethereum/releases/download/v3.1.0/openethereum-linux-v3.1.0.zip
 unzip openethereum*.zip
 chmod +x openethereum
 rm openethereum*.zip
