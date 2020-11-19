@@ -2049,6 +2049,10 @@ Select your ETH2 client.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
+Review release notes and check for breaking changes/features.
+
+[https://github.com/sigp/lighthouse/releases](https://github.com/sigp/lighthouse/releases)
+
 Pull the latest source and build it.
 
 ```bash
@@ -2066,6 +2070,10 @@ sudo systemctl reload-or-restart validator
 {% endtab %}
 
 {% tab title="Nimbus" %}
+Review release notes and check for breaking changes/features.
+
+[https://github.com/status-im/nimbus-eth2/releases](https://github.com/status-im/nimbus-eth2/releases)
+
 Pull the latest source and build it.
 
 ```bash
@@ -2083,6 +2091,10 @@ sudo systemctl reload-or-restart beacon-chain
 {% endtab %}
 
 {% tab title="Teku" %}
+Review release notes and check for breaking changes/features.
+
+[https://github.com/ConsenSys/teku/releases](https://github.com/ConsenSys/teku/releases)
+
 Pull the latest source and build it.
 
 ```bash
@@ -2101,6 +2113,8 @@ sudo systemctl reload-or-restart beacon-chain
 {% endtab %}
 
 {% tab title="Prysm" %}
+Review release notes and check for breaking changes/features. [https://github.com/prysmaticlabs/prysm/releases](https://github.com/prysmaticlabs/prysm/releases)
+
 ```bash
 #Simply restart the processes
 sudo systemctl reload-or-restart beacon-chain
@@ -2109,6 +2123,10 @@ sudo systemctl reload-or-restart validator
 {% endtab %}
 
 {% tab title="Lodestar" %}
+Review release notes and check for breaking changes/features. 
+
+[https://github.com/ChainSafe/lodestar/releases](https://github.com/ChainSafe/lodestar/releases)
+
 Pull the latest source and build it.
 
 ```bash
