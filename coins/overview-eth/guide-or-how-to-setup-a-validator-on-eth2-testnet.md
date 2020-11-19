@@ -770,13 +770,13 @@ INFO Enabled validator       voting_pubkey: 0x2374.....7121
 Install dependencies.
 
 ```text
-sudo apt-get install build-essential git libpcre3-dev
+sudo apt-get install build-essential git libpcre3-dev -y
 ```
 
 Install and build Nimbus.
 
 ```bash
-cd ~/git
+mkdir ~/git && cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
 make nimbus_beacon_node
@@ -835,22 +835,6 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 Nimbus combines both the beacon chain and validator into one process.
 {% endhint %}
 
-{% hint style="danger" %}
-**Nov 18/2020 - Temp workaround**: Run the beacon chain and validator manually for now as there is a prompt for the Web3 provider URL.
-
-Use the following command:
-
-```bash
-$(echo $HOME)/git/nimbus-eth2/run-pyrmont-beacon-node.sh --nat=extip:${ClientIP} --web3-url=wss://localhost:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=128 
-```
-
-Enter the following as web3 provider URL
-
-```bash
-wss://localhost:8546
-```
-{% endhint %}
-
 Running the beacon chain automatically with systemd.
 
 #### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
@@ -876,7 +860,8 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 Environment     = "ClientIP=$(curl -s v4.ident.me)"
-ExecStart       = $(echo $HOME)/git/nimbus-eth2/run-pyrmont-beacon-node.sh --nat=extip:${ClientIP} --web3-url=wss://localhost:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=128 
+Environment     = "WEB3_URL=wss://localhost:8546"
+ExecStart       = $(echo $HOME)/git/nimbus-eth2/run-pyrmont-beacon-node.sh --nat=extip:\${ClientIP} --web3-url=\${WEB3_URL} --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=128 
 Restart         = on-failure
 
 [Install]
@@ -1271,7 +1256,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 Environment     = "ClientIP=$(curl -s v4.ident.me)"
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --p2p-host-ip=${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --p2p-host-ip=\${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]
@@ -1471,7 +1456,7 @@ Lodestar may not be fully functional and stable yet.
 Install curl and git.
 
 ```bash
-sudo apt-get install git curl
+sudo apt-get install git curl -y
 ```
 
 Install yarn.
@@ -2086,6 +2071,7 @@ Pull the latest source and build it.
 ```bash
 cd $HOME/git/nimbus-eth2
 git pull && make update
+make nimbus_beacon_node
 ```
 
 Restart beacon chain and validator as per normal operating procedures.
