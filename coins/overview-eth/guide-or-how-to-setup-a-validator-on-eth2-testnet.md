@@ -861,7 +861,7 @@ After           = network-online.target
 User            = $(whoami)
 Environment     = "ClientIP=$(curl -s v4.ident.me)"
 Environment     = "WEB3_URL=wss://localhost:8546"
-ExecStart       = $(echo $HOME)/git/nimbus-eth2/run-pyrmont-beacon-node.sh --nat=extip:\${ClientIP} --web3-url=\${WEB3_URL} --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=128 
+ExecStart       = $(echo $HOME)/git/nimbus-eth2/run-pyrmont-beacon-node.sh --nat=extip:\${ClientIP} --web3-url=\${WEB3_URL} --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=100 
 Restart         = on-failure
 
 [Install]
@@ -2071,7 +2071,7 @@ Pull the latest source and build it.
 ```bash
 cd $HOME/git/nimbus-eth2
 git pull && make update
-make nimbus_beacon_node
+make NIMFLAGS="-d:insecure" nimbus_beacon_node
 ```
 
 Restart beacon chain and validator as per normal operating procedures.
