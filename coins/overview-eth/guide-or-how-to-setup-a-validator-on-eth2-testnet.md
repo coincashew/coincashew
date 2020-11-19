@@ -162,6 +162,10 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 {% endtab %}
 {% endtabs %}
 
+{% hint style="danger" %}
+**Do not send real mainnet ETH during this process!** 🛑 Use only goerli ETH.
+{% endhint %}
+
 1. Follow the prompts and pick a password. Write down your mnemonic and keep this safe and **offline**.
 2. Follow the steps at [https://pyrmont.launchpad.ethereum.org/](https://pyrmont.launchpad.ethereum.org/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
 3. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
@@ -818,7 +822,7 @@ The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). 
 
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
-* **Nimbus beacon chain node** will use port 19000 for tcp and udp
+* **Nimbus beacon chain node** will use port 9000 for tcp and udp
 * **eth1** node requires port 30303 for tcp and udp
 
 {% hint style="info" %}
@@ -2052,6 +2056,10 @@ Hang out and chat with fellow stakers on telegram @ [https://t.me/coincashew](ht
 
 ## 🧙♂7. Update a ETH2 client
 
+{% hint style="info" %}
+Always review the **git logs with command`git log`** or **release notes** before updating. There may be changes requiring your attention.
+{% endhint %}
+
 Select your ETH2 client.
 
 {% tabs %}
@@ -2129,6 +2137,23 @@ Restart beacon chain and validator as per normal operating procedures.
 ```text
 sudo systemctl reload-or-restart beacon-chain
 sudo systemctl reload-or-restart validator
+```
+{% endtab %}
+{% endtabs %}
+
+Check the logs to verify the services are working properly and ensure there are no errors.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl status beacon-chain
+sudo systemctl status validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl status beacon-chain
 ```
 {% endtab %}
 {% endtabs %}

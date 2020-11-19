@@ -299,10 +299,10 @@ With any new installation, ufw is disabled by default. Enable it with the follow
   * Lighthouse uses port 9000 tcp/udp
   * Teku uses port 9001 tcp/udp
   * Prysm uses port 13000 tcp and port 12000 udp
-  * Nimbus uses port 19000 tcp/udp
+  * Nimbus uses port 9000 tcp/udp
   * Lodestar uses port 30607 tcp and port 9000 udp
-* Port 30303 tcp/udp eth1 geth node
-* Port 3000 tcp for Grafana \(optional\)
+* Port 30303 tcp/udp eth1 node
+* Port 3000 tcp for Grafana
 * Port 9090 tcp for prometheus export data \(optional\)
 
 {% tabs %}
@@ -311,7 +311,6 @@ With any new installation, ufw is disabled by default. Enable it with the follow
 ufw allow <22 or your random port number>/tcp
 ufw allow 9000/tcp
 ufw allow 9000/udp
-ufw allow 9090/tcp
 ufw allow 30303/tcp
 ufw allow 30303/udp
 ufw allow 3000/tcp
@@ -325,7 +324,6 @@ ufw status numbered
 ufw allow <22 or your random port number>/tcp
 ufw allow 13000/tcp
 ufw allow 12000/udp
-ufw allow 9090/tcp
 ufw allow 30303/tcp
 ufw allow 30303/udp
 ufw allow 3000/tcp
@@ -339,7 +337,6 @@ ufw status numbered
 ufw allow <22 or your random port number>/tcp
 ufw allow 9001/tcp
 ufw allow 9001/udp
-ufw allow 9090/tcp
 ufw allow 30303/tcp
 ufw allow 30303/udp
 ufw allow 3000/tcp
@@ -351,9 +348,8 @@ ufw status numbered
 {% tab title="Nimbus" %}
 ```bash
 ufw allow <22 or your random port number>/tcp
-ufw allow 19000/tcp
-ufw allow 19000/udp
-ufw allow 9090/tcp
+ufw allow 9000/tcp
+ufw allow 9000/udp
 ufw allow 30303/tcp
 ufw allow 30303/udp
 ufw allow 3000/tcp
@@ -367,7 +363,6 @@ ufw status numbered
 ufw allow <22 or your random port number>/tcp
 ufw allow 30607/tcp
 ufw allow 9000/udp
-ufw allow 9090/tcp
 ufw allow 30303/tcp
 ufw allow 30303/udp
 ufw allow 3000/tcp
