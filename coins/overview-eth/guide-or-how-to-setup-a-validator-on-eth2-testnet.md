@@ -149,16 +149,20 @@ Make a new mnemonic.
 
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-🔥**\[ Optional \] Pro Security Tip**: Run the eth2deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine**.
-
-You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine.
-
-* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits. 
-* Physically isolated from the rest of your network. 
-* Must not have a network connection, wired or wireless. 
-* Is not a VM on a machine with a network connection.
-* Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29).
+🔥**\[ Optional \] Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
 {% endhint %}
+
+Follow this [ethstaker.cc](https://ethstaker.cc/) exclusive for the low down on making a bootable usb.
+
+### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
+
+{% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
+
+### Part 2 - Install Ubuntu 20.04 from the USB Drive
+
+{% embed url="https://www.youtube.com/watch?v=C97\_6MrufCE" %}
+
+You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
 {% endtab %}
 {% endtabs %}
 
