@@ -664,12 +664,6 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 The `--metrics` flag enables reporting on port 5054 and will be monitored with Prometheus.
 {% endhint %}
 
-{% hint style="danger" %}
-Allow the beacon chain to fully sync with eth1 chain before continuing.
-
-Continue when you see the "**Beacon chain initialized"** message.
-{% endhint %}
-
 ## 🧬 4.6. Start the validator
 
 Running the validator automatically with systemd.
@@ -756,12 +750,6 @@ journalctl --unit=validator --since=yesterday
 journalctl --unit=validator --since=today
 journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
-
-Verify that your **validator public key** appears in the logs. Example below:
-
-```text
-INFO Enabled validator       voting_pubkey: 0x2374.....7121
-```
 {% endtab %}
 
 {% tab title="Nimbus" %}
@@ -807,11 +795,13 @@ build/nimbus_beacon_node deposits import  --data-dir=build/data/shared_pyrmont_0
 Enter your keystore's password to import accounts.
 
 {% hint style="info" %}
-When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `build/data/shared_pyrmont_0/` folder, under `secrets` and `validators` - **make sure you keep these folders backed up somewhere sage.**
+When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `build/data/shared_pyrmont_0/` folder, under `secrets` and `validators` -  **keep these folders backed up somewhere safe.**
 
 The `secrets` folder contains the common secret that gives you access to all your validator keys.
 
-The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). Keystores are used by validators as a method for exchanging keys. For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/keys/).
+The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). Keystores are used by validators as a method for exchanging keys. 
+
+For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/keys/).
 {% endhint %}
 
 {% hint style="danger" %}
@@ -1233,7 +1223,7 @@ Accept default wallet location, enter a new password to encrypt your wallet and 
 If you participated in any of the prior test nets, you need to clear the database.
 
 ```bash
-$HOME/prysm/prysm.sh beacon-chain --clear-db
+$HOME/prysm/prysm.sh beacon-chain --clear-db --pyrmont
 ```
 {% endhint %}
 
@@ -1324,16 +1314,6 @@ journalctl --unit=beacon-chain --since=yesterday
 journalctl --unit=beacon-chain --since=today
 #view log between a date
 journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
-```
-
-In a new terminal, start the beacon chain.
-
-```bash
-$HOME/prysm/prysm.sh beacon-chain \
---p2p-host-ip=$(curl -s v4.ident.me) \
---http-web3provider="http://127.0.0.1:8545"
---monitoring-host="0.0.0.0" \
---accept-terms-of-use
 ```
 
 ## 🧬 4.5. Start the validator <a id="9-start-the-validator"></a>
@@ -1429,14 +1409,6 @@ journalctl --unit=validator --since=yesterday
 journalctl --unit=validator --since=today
 #view log between a date
 journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
-```
-
-In a new terminal, start the validator.
-
-```bash
-$HOME/prysm/prysm.sh validator \
---accept-terms-of-use \
---wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
 ```
 
 Verify that your **validator public key** appears in the logs. Example below:
@@ -1640,12 +1612,6 @@ journalctl --unit=beacon-chain --since=today
 #view log between a date
 journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
-
-{% hint style="danger" %}
-Allow the beacon chain to fully sync with eth1 chain before continuing.
-
-Continue when you see the "**Beacon chain initialized"** message.
-{% endhint %}
 
 ## 🧬 4.5. Start the validator
 
@@ -2231,6 +2197,20 @@ Appreciate the hard work done by the fine folks at the following links which ser
 {% embed url="https://www.reddit.com/r/ethstaker" caption="" %}
 
 {% embed url="https://blog.ethereum.org/" caption="" %}
+
+### 👨👩👧👦 Additional ETH2 Community Guides
+
+{% embed url="https://someresat.medium.com/" %}
+
+{% embed url="https://github.com/metanull-operator/eth2-ubuntu" %}
+
+{% embed url="https://agstakingco.gitbook.io/eth-2-0-staking-guide-medalla/" %}
+
+#### Hardware Staking Guide [https://www.reddit.com/r/ethstaker/comments/j3mlup/a\_slightly\_updated\_look\_at\_hardware\_for\_staking/](https://www.reddit.com/r/ethstaker/comments/j3mlup/a_slightly_updated_look_at_hardware_for_staking/)
+
+{% embed url="https://medium.com/@RaymondDurk/how-to-stake-for-ethereum-2-0-with-dappnode-231fa7689c02" %}
+
+{% embed url="https://kb.beaconcha.in/" %}
 
 ## 🔥11. Additional Useful Tips
 
