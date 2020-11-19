@@ -779,7 +779,7 @@ Install and build Nimbus.
 mkdir ~/git && cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
-make nimbus_beacon_node
+make NIMFLAGS="-d:insecure" nimbus_beacon_node
 ```
 
 {% hint style="info" %}
