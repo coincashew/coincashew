@@ -118,9 +118,19 @@ sudo service sshd reload
 
 Verify the login still works
 
+{% tabs %}
+{% tab title="Standard SSH Port 22" %}
 ```text
 ssh cardano@server.public.ip.address
 ```
+{% endtab %}
+
+{% tab title="Custom SSH Port" %}
+```bash
+ssh cardano@server.public.ip.address -p <custom port number>
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 Alternatively, you might need to use 

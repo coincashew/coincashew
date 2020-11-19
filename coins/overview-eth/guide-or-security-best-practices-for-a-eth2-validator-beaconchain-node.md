@@ -4,7 +4,7 @@ description: Quick steps to secure your node.
 
 # Guide \| Security Best Practices for a ETH2 validator beaconchain node
 
-## 🧙 Create a non-root user with sudo privileges
+## 🧙♂Create a non-root user with sudo privileges
 
 {% hint style="info" %}
 Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command `rm` can wipe your entire server if run incorrectly using by a root user.
@@ -38,7 +38,7 @@ Add ethereum to the sudo group
 usermod -aG sudo ethereum
 ```
 
-## 🔏 **Disable SSH password Authentication and Use SSH Keys only**
+## 🔐 **Disable SSH password Authentication and Use SSH Keys only**
 
 {% hint style="info" %}
 The basic rules of hardening SSH are:
@@ -118,9 +118,19 @@ sudo service sshd reload
 
 Verify the login still works
 
+{% tabs %}
+{% tab title="Standard SSH Port 22" %}
 ```text
 ssh ethereum@server.public.ip.address
 ```
+{% endtab %}
+
+{% tab title="Custom SSH Port" %}
+```bash
+ssh ethereum@server.public.ip.address -p <custom port number>
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 Alternatively, you might need to use
@@ -149,7 +159,7 @@ sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-## 🧸 Disable root account
+## 🐻 Disable root account
 
 System admins should not frequently log in as root in order to maintain server security. Instead, you can use sudo execute that require low-level privileges.
 
@@ -253,7 +263,7 @@ Reboot the node in order for changes to take effect.
 sudo reboot
 ```
 
-## ⛓ **Install Fail2ban**
+## ⛓**Install Fail2ban**
 
 {% hint style="info" %}
 Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address \(within a specified amount of time\), fail2ban blocks access from that IP address.
@@ -288,7 +298,7 @@ Restart fail2ban for settings to take effect.
 sudo systemctl restart fail2ban
 ```
 
-## 🧱 **Configure your Firewall**
+## 🧱**Configure your Firewall**
 
 The standard UFW firewall can be used to control network access to your node.
 
@@ -389,7 +399,7 @@ Confirm the settings are in effect.
 > [10] 30303/tcp (v6)             ALLOW IN    Anywhere (v6)
 > ```
 
-## 🔭 Verify Listening Ports
+## 📞 Verify Listening Ports
 
 If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
 
