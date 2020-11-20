@@ -438,16 +438,39 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 3. Visit your dashboard [https://infura.io/dashboard](https://infura.io/dashboard)
 4. Create a project, give it a name.
 5. Select **Goerli** as the ENDPOINT
+6. Follow the specific configuration for your eth2 client found below.
 
-#### Nimbus Specific Configuration
+## Nimbus Specific Configuration
 
-1. Copy the websocket endpoint. Starts with `wss://`
-2. Save this for step 4, configuring your eth2 node.
-3. When creating your systemd's **unit file**, update the `--web-url` parameter with this endpoint. 
+1. When creating your systemd's **unit file**, update the `--web-url` parameter with this endpoint. 
+2. Copy the websocket endpoint. Starts with `wss://`
+3. Save this for step 4, configuring your eth2 node.
 
 ```bash
 #example
 --web3-url=<your wss:// infura endpoint>
+```
+
+## Lighthouse Specific Configuration
+
+1. When creating your **beacon chain systemd** **unit file**, add the `--eth1-endpoint` parameter with this endpoint. 
+2. Copy the **https** endpoint. Starts with `https://`
+3. Save this for step 4, configuring your eth2 node.
+
+```bash
+#example
+--eth1-endpoint=<your https:// infura endpoint>
+```
+
+## Prysm Specific Configuration
+
+1. When creating your **beacon chain systemd unit file**, update the `--http-web3provider` parameter with this endpoint. 
+2. Copy the **https** endpoint. Starts with `https://`
+3. Save this for step 4, configuring your eth2 node.
+
+```bash
+#example
+--http-web3provider=<your https:// infura endpoint>
 ```
 {% endtab %}
 {% endtabs %}
