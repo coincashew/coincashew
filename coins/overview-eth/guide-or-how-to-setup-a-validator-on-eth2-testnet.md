@@ -31,7 +31,7 @@ As a validator for eth2, you will typically have the following abilities:
 * **Storage:** 20GB SSD
 * **Internet:** Broadband internet connection with speeds at least 1 Mbps.
 * **Power:** Reliable electrical power.
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
+* **ETH balance:** at least 32 goerli ETH and some ETH for deposit transaction fees
 * **Wallet**: Metamask installed
 
 ### 🏋♂ Recommended Hardware Setup
@@ -42,7 +42,7 @@ As a validator for eth2, you will typically have the following abilities:
 * **Storage:** 1TB SSD or more
 * **Internet:** Broadband internet connections with speeds at least 10 Mbps
 * **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
+* **ETH balance:** at least 32 goerli ETH and some ETH for deposit transaction fees
 * **Wallet**: Metamask installed
 
 {% hint style="success" %}
@@ -220,6 +220,8 @@ rm openethereum*.zip
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
+Simply copy/paste the following.
+
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
@@ -330,6 +332,8 @@ mv besu-1.5.0 besu
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
+Simply copy/paste the following.
+
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
@@ -387,6 +391,8 @@ rm nethermind.zip
 ⚙ **Setup and configure systemd**
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
+
+Simply copy/paste the following.
 
 ```bash
 cat > $HOME/eth1.service << EOF 
