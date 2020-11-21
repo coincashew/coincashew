@@ -273,6 +273,8 @@ sudo apt-get install ethereum -y
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
+Simply copy/paste the following.
+
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
