@@ -1092,7 +1092,9 @@ sudo cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
 **Pro Tip**: If you are switching between eth2 clients and you are in the process of re-importing keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two eth2 clients with same validator keys at the same time.
 {% endhint %}
 
-Store your validator's password in a file. Update the your password between the quotation marks.
+Store your validator's password in a file. 
+
+Update your password between the quotation marks after `echo`.
 
 ```bash
 echo "my_password_goes_here" > $HOME/validators-password.txt
