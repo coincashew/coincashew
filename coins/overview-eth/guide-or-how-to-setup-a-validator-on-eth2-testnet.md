@@ -1285,11 +1285,26 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 ## 🎩 4.3. Import validator key
 
+Accept terms of use, accept default wallet location, enter a new password to encrypt your wallet and enter the password for your imported accounts.
+
 ```bash
 $HOME/prysm/prysm.sh validator accounts import --pyrmont --keys-dir=$HOME/eth2deposit-cli/validator_keys
 ```
 
-Accept default wallet location, enter a new password to encrypt your wallet and enter the password for your imported accounts.
+Verify your validators imported successfully.
+
+```bash
+$HOME/prysm/prysm.sh validator accounts list --pyrmont     
+```
+
+Confirm your validator's pubkeys are listed.
+
+> \#Example output:
+>
+> Showing 1 validator account View the eth1 deposit transaction data for your accounts by running \`validator accounts list --show-deposit-data
+>
+> Account 0 \| pens-brother-heat   
+> \[validating public key\] 0x2374.....7121
 
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
@@ -1331,7 +1346,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-Environment     = "ClientIP=$(curl -s v4.ident.me)"
+Environment     = "ClientIP=\$(curl -s ident.me)"
 ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --p2p-host-ip=\${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
@@ -2331,6 +2346,8 @@ sudo systemctl stop beacon-chain
 [EIP-3076](https://eips.ethereum.org/EIPS/eip-3076) implements a standard to safety migrate validator keys between eth2 clients. This is the exported contents of the slashing database.
 {% endhint %}
 
+Update the export .json file location and name.
+
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
@@ -2366,6 +2383,8 @@ Do not start any **systemd processes** until the next step of importing the slas
 {% endhint %}
 
 #### 📂 8.4.4 Import slashing database
+
+Update the import .json file location and name.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
