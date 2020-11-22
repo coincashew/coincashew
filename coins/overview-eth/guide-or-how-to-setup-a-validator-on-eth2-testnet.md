@@ -484,7 +484,7 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 {% endtabs %}
 
 {% hint style="info" %}
-Syncing the eth1 node could take up to 24 hour.
+Syncing an eth1 node can take up to 1 week. On high-end machines and gigabit internet, expect syncing to take less than a day.
 {% endhint %}
 
 {% hint style="success" %}
@@ -566,13 +566,27 @@ lighthouse --version
 
 ## 🎩 4.3. Import validator key
 
+{% hint style="info" %}
+When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `build/data/shared_pyrmont_0/` folder, under `secrets` and `validators.`
+
+The `secrets` folder contains the common secret that gives you access to all your validator keys.
+
+The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). Keystores are used by validators as a method for exchanging keys. 
+{% endhint %}
+
 Run the following command to import your validator keys from the eth2deposit-cli tool directory.
+
+Enter your keystore's password to import accounts.
 
 ```bash
 lighthouse account validator import --testnet pyrmont --directory=$HOME/eth2deposit-cli/validator_keys
 ```
 
-Enter your keystore's password to import accounts.
+Verify the accounts were imported successfully.
+
+```bash
+lighthouse account_manager validator list --testnet pyrmont
+```
 
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED. 
@@ -793,13 +807,14 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 Install dependencies.
 
 ```text
-sudo apt-get install build-essential git libpcre3-dev -y
+sudo apt-get install curl build-essential git libpcre3-dev -y
 ```
 
 Install and build Nimbus.
 
 ```bash
-mkdir ~/git && cd ~/git
+mkdir ~/git 
+cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
 make NIMFLAGS="-d:insecure" nimbus_beacon_node
@@ -818,15 +833,8 @@ cd $HOME/git/nimbus-eth2/build
 
 ## 🎩 4.2. Import validator key <a id="6-import-validator-key"></a>
 
-```bash
-cd $HOME/git/nimbus-eth2
-build/nimbus_beacon_node deposits import  --data-dir=build/data/shared_pyrmont_0 $HOME/eth2deposit-cli/validator_keys
-```
-
-Enter your keystore's password to import accounts.
-
 {% hint style="info" %}
-When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `build/data/shared_pyrmont_0/` folder, under `secrets` and `validators` -  **keep these folders backed up somewhere safe.**
+When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `build/data/shared_pyrmont_0/` folder, under `secrets` and `validators.`
 
 The `secrets` folder contains the common secret that gives you access to all your validator keys.
 
@@ -834,6 +842,23 @@ The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). 
 
 For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/keys/).
 {% endhint %}
+
+The following command will import your validator keys.
+
+Enter your keystore's password to import accounts.
+
+```bash
+cd $HOME/git/nimbus-eth2
+build/nimbus_beacon_node deposits import  --data-dir=build/data/shared_pyrmont_0 $HOME/eth2deposit-cli/validator_keys
+```
+
+Now you can verify the accounts were imported successfully by doing a directory listing.
+
+```bash
+ll build/data/shared_pyrmont_0/validators
+```
+
+You should see a folder named for each of your validator's pubkey.
 
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
@@ -860,6 +885,17 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 Nimbus combines both the beacon chain and validator into one process.
 {% endhint %}
 
+{% hint style="danger" %}
+**Nimbus workaround:** Currently you'll be asked to enter your [Web3 provider URL](https://status-im.github.io/nimbus-eth2/start-syncing.html#web3-provider-url) again upon startup. This conflicts with systemd.
+
+In the meantime, manually start Nimbus. Do not use systemd as described below.
+
+```bash
+ClientIP=\$(curl -s ident.me)
+$HOME/git/nimbus-eth2/run-pyrmont-beacon-node.sh --nat=extip:${ClientIP} --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=100
+```
+{% endhint %}
+
 Running the beacon chain automatically with systemd.
 
 #### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
@@ -884,9 +920,8 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-Environment     = "ClientIP=$(curl -s v4.ident.me)"
-Environment     = "WEB3_URL=wss://localhost:8546"
-ExecStart       = $(echo $HOME)/git/nimbus-eth2/run-pyrmont-beacon-node.sh --nat=extip:\${ClientIP} --web3-url=\${WEB3_URL} --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=100 
+Environment     = "ClientIP=\$(curl -s ident.me)"
+ExecStart       = $(echo $HOME)/git/nimbus-eth2/run-pyrmont-beacon-node.sh --nat=extip:\${ClientIP} --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=100 
 Restart         = on-failure
 
 [Install]
@@ -974,13 +1009,19 @@ Install Java 11.
 
 ```
 sudo apt update
-sudo apt install openjdk-11-jdk
+sudo apt install openjdk-11-jdk -y
 ```
 
 ```text
 sudo add-apt-repository ppa:linuxuprising/java
 sudo apt update
-sudo apt install oracle-java11-set-default
+sudo apt install oracle-java11-set-default -y
+```
+
+Verify Java 11+ is installed.
+
+```bash
+java --version
 ```
 
 Install and build Teku.
@@ -1020,7 +1061,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 \*\*\*\*✨ **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
 {% endhint %}
 
-## 🏂 4.3. Start the beacon chain and validator
+## 🏂 4.3. Configure the beacon chain and validator
 
 {% hint style="info" %}
 Teku combines both the beacon chain and validator into one process.
@@ -1055,7 +1096,7 @@ sudo cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
 **Pro Tip**: If you are switching between eth2 clients and you are in the process of re-importing keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two eth2 clients with same validator keys at the same time.
 {% endhint %}
 
-Store your validator's password in a file.
+Store your validator's password in a file. Update the followin your password between the quotation marks.
 
 ```bash
 echo "my_password_goes_here" > $HOME/validators-password.txt
@@ -1106,6 +1147,8 @@ Move the config file to `/etc/teku`
 sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
 ```
 
+## 🎩 4.4 Import validator key
+
 {% hint style="info" %}
 When specifying directories for your validator-keys, Teku expects to find identically named keystore and password files. 
 
@@ -1115,8 +1158,18 @@ For example `keystore-m_12221_3600_1_0_0-11222333.json` and `keystore-m_12221_36
 Create a corresponding password file for every one of your validators.
 
 ```bash
-for f in /var/lib/teku/validator_keys/keystore*.json; do cp /etc/teku/validators-password.txt /var/lib/teku/validator_keys/$(basename $f .json).txt; doneYour choice of running a beacon chain and validator manually from command line or automatically with systemd.
+for f in /var/lib/teku/validator_keys/keystore*.json; do cp /etc/teku/validators-password.txt /var/lib/teku/validator_keys/$(basename $f .json).txt; done
 ```
+
+Verify that your validator's keystore and validator's passwords are present.
+
+```bash
+ll /var/lib/teku/validator_keys
+```
+
+## 🏁 4.5. Start the beacon chain and validator
+
+Use **systemd** to manage starting and stopping teku.
 
 #### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -1743,6 +1796,8 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 **Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
 
 **Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
+
+Remember, Teku combines both clients into one process.
 {% endhint %}
 
 {% hint style="success" %}
@@ -2086,7 +2141,6 @@ make NIMFLAGS="-d:insecure" nimbus_beacon_node
 Restart beacon chain and validator as per normal operating procedures.
 
 ```bash
-sudo systemctl stop beacon-chain
 sudo systemctl reload-or-restart beacon-chain
 ```
 {% endtab %}
@@ -2163,89 +2217,9 @@ sudo systemctl status beacon-chain
 {% endtab %}
 {% endtabs %}
 
-## 🌇 8. Join the community on Discord and Reddit
+## 🔥8. Additional Useful Tips
 
-### 📱 Discord
-
-{% tabs %}
-{% tab title="Lighthouse" %}
-{% embed url="https://discord.gg/cyAszAh" %}
-{% endtab %}
-
-{% tab title="Nimbus" %}
-{% embed url="https://discord.gg/XRxWahP" %}
-{% endtab %}
-
-{% tab title="Teku" %}
-{% embed url="https://discord.gg/7hPv2T6" %}
-{% endtab %}
-
-{% tab title="Prysm" %}
-{% embed url="https://discord.gg/KSA7rPr" %}
-{% endtab %}
-
-{% tab title="Lodestar" %}
-{% embed url="https://discord.gg/yjyvFRP" %}
-{% endtab %}
-{% endtabs %}
-
-### 🌍 Reddit r/ethStaker
-
-{% embed url="https://www.reddit.com/r/ethstaker/" %}
-
-## 🧩9. Reference Material
-
-Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
-
-{% embed url="https://pyrmont.launchpad.ethereum.org/" %}
-
-{% embed url="https://pegasys.tech/teku-ethereum-2-for-enterprise/" %}
-
-{% embed url="https://docs.teku.pegasys.tech/en/latest/HowTo/Get-Started/Build-From-Source/" %}
-
-{% embed url="https://lighthouse-book.sigmaprime.io/intro.html" caption="" %}
-
-{% embed url="https://status-im.github.io/nimbus-eth2/intro.html" %}
-
-{% embed url="https://prylabs.net/participate" %}
-
-{% embed url="https://docs.prylabs.network/docs/getting-started/" %}
-
-{% embed url="https://chainsafe.github.io/lodestar/installation/" %}
-
-## 🎉10. Bonus links
-
-### 🧱 ETH2 Block Explorers
-
-{% embed url="https://pyrmont.beaconcha.in/" %}
-
-{% embed url="https://beaconscan.com/" caption="" %}
-
-### 🗒 Latest Eth2 Info
-
-{% embed url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
-
-{% embed url="https://www.reddit.com/r/ethstaker" caption="" %}
-
-{% embed url="https://blog.ethereum.org/" caption="" %}
-
-### 👨👩👧👦 Additional ETH2 Community Guides
-
-{% embed url="https://someresat.medium.com/" %}
-
-{% embed url="https://github.com/metanull-operator/eth2-ubuntu" %}
-
-{% embed url="https://agstakingco.gitbook.io/eth-2-0-staking-guide-medalla/" %}
-
-#### Hardware Staking Guide [https://www.reddit.com/r/ethstaker/comments/j3mlup/a\_slightly\_updated\_look\_at\_hardware\_for\_staking/](https://www.reddit.com/r/ethstaker/comments/j3mlup/a_slightly_updated_look_at_hardware_for_staking/)
-
-{% embed url="https://medium.com/@RaymondDurk/how-to-stake-for-ethereum-2-0-with-dappnode-231fa7689c02" %}
-
-{% embed url="https://kb.beaconcha.in/" %}
-
-## 🔥11. Additional Useful Tips
-
-### 🛑 11.1 Voluntary exit a validator
+### 🛑 8.1 Voluntary exit a validator
 
 {% hint style="info" %}
 Use this command to signal your intentions to stop validating with your validator. This means you no longer want to stake with your validator and want to turn off your node.
@@ -2293,7 +2267,7 @@ $HOME/prysm/prysm.sh validator accounts voluntary-exit
 {% endtab %}
 {% endtabs %}
 
-### 🗝 11.2 Verify your mnemonic phrase
+### 🗝 8.2 Verify your mnemonic phrase
 
 Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`
 
@@ -2306,7 +2280,7 @@ cd $HOME/eth2deposit-cli
 When the **pubkey** in both **keystore files** are **identical,** this means your mnemonic phrase is veritably correct. Other fields will be different because of salting.
 {% endhint %}
 
-### 🤖11.3 Add additional validators
+### 🤖8.3 Add additional validators
 
 Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
 
@@ -2318,4 +2292,242 @@ cd $HOME/eth2deposit-cli
 ```
 
 Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site.
+
+### 💸 8.4 Switch / change eth2 clients with slash protection
+
+{% hint style="info" %}
+The priority in this process is to avoid running two eth2 clients simultaneously. You want to avoid being punished by a slashing penalty, which causes a loss of ether.
+{% endhint %}
+
+#### 🛑 8.4.1 Stop old beacon chain and old validator.
+
+In order to export the slashing database, the validator needs to be stopped.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl stop beacon-chain
+sudo systemctl stop validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl stop beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+#### 💽 8.4.2 Export slashing database
+
+{% hint style="info" %}
+[EIP-3076](https://eips.ethereum.org/EIPS/eip-3076) implements a standard to safety migrate validator keys between eth2 clients. This is the exported contents of the slashing database.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+lighthouse account validator slashing-protection export <lighthouse_interchange.json>
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+teku slashing-protection export --to=<FILE>
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+
+{% endtab %}
+
+{% tab title="Lodestar" %}
+
+{% endtab %}
+{% endtabs %}
+
+#### 🚧 8.4.3 Setup and install new validator / beacon chain
+
+Now you need to setup/install your new validator **but do not start running the systemd processes**. Be sure to thoroughly follow your new validator's  [Section 4. Configure a ETH2 beacon chain and validator.](guide-or-how-to-setup-a-validator-on-eth2-testnet.md#4-configure-a-eth2-beacon-chain-node-and-validator) You will need to build/install the client, configure port forwarding/firewalls, and new systemd  unit files.s.
+
+{% hint style="danger" %}
+Do not start any **systemd processes** until the next step of importing the slashing database is complete.
+{% endhint %}
+
+#### 📂 8.4.4 Import slashing database
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+lighthouse account validator slashing-protection import <my_interchange.json>
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+teku slashing-protection import --from=<FILE>
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+
+{% endtab %}
+
+{% tab title="Lodestar" %}
+
+{% endtab %}
+{% endtabs %}
+
+#### 🌠 8.4.5 Start new validator and new beacon chain
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl start beacon-chain
+sudo systemctl start validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl start beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+#### 🔥 8.4.6 Verify functionality
+
+Check the logs to verify the services are working properly and ensure there are no errors.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl status beacon-chain
+sudo systemctl status validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl status beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+Finally, verify your validator's attestations are working with public block explorer such as
+
+[https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+
+Enter your validator's pubkey to view its status.
+
+### 🖥 8.5 Use all available LVM disk space
+
+During installation of Ubuntu Server, a common issue arises where your hard drive's space is not fully available for use.
+
+```bash
+# View your disk drives
+df
+
+# Change the logical volume filesystem path if required
+lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+
+exit
+# Resize file system to use the new available space in the logical volume
+resize2fs /dev/ubuntu-vg/ubuntu-lv
+
+## Verify new available space
+df -h
+```
+
+**Source reference**:
+
+{% embed url="https://askubuntu.com/questions/1106795/ubuntu-server-18-04-lvm-out-of-space-with-improper-default-partitioning" %}
+
+## 🌇 9. Join the community on Discord and Reddit
+
+### 📱 Discord
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+{% embed url="https://discord.gg/cyAszAh" %}
+{% endtab %}
+
+{% tab title="Nimbus" %}
+{% embed url="https://discord.gg/XRxWahP" %}
+{% endtab %}
+
+{% tab title="Teku" %}
+{% embed url="https://discord.gg/7hPv2T6" %}
+{% endtab %}
+
+{% tab title="Prysm" %}
+{% embed url="https://discord.gg/KSA7rPr" %}
+{% endtab %}
+
+{% tab title="Lodestar" %}
+{% embed url="https://discord.gg/yjyvFRP" %}
+{% endtab %}
+{% endtabs %}
+
+### 🌍 Reddit r/ethStaker
+
+{% embed url="https://www.reddit.com/r/ethstaker/" %}
+
+## 🧩10. Reference Material
+
+Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
+
+{% embed url="https://pyrmont.launchpad.ethereum.org/" %}
+
+{% embed url="https://pegasys.tech/teku-ethereum-2-for-enterprise/" %}
+
+{% embed url="https://docs.teku.pegasys.tech/en/latest/HowTo/Get-Started/Build-From-Source/" %}
+
+{% embed url="https://lighthouse-book.sigmaprime.io/intro.html" caption="" %}
+
+{% embed url="https://status-im.github.io/nimbus-eth2/intro.html" %}
+
+{% embed url="https://prylabs.net/participate" %}
+
+{% embed url="https://docs.prylabs.network/docs/getting-started/" %}
+
+{% embed url="https://chainsafe.github.io/lodestar/installation/" %}
+
+## 🎉11. Bonus links
+
+### 🧱 ETH2 Block Explorers
+
+{% embed url="https://pyrmont.beaconcha.in/" %}
+
+{% embed url="https://beaconscan.com/" caption="" %}
+
+### 🗒 Latest Eth2 Info
+
+{% embed url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
+
+{% embed url="https://www.reddit.com/r/ethstaker" caption="" %}
+
+{% embed url="https://blog.ethereum.org/" caption="" %}
+
+### 👨👩👧👦 Additional ETH2 Community Guides
+
+{% embed url="https://someresat.medium.com/" %}
+
+{% embed url="https://github.com/metanull-operator/eth2-ubuntu" %}
+
+{% embed url="https://agstakingco.gitbook.io/eth-2-0-staking-guide-medalla/" %}
+
+#### Hardware Staking Guide [https://www.reddit.com/r/ethstaker/comments/j3mlup/a\_slightly\_updated\_look\_at\_hardware\_for\_staking/](https://www.reddit.com/r/ethstaker/comments/j3mlup/a_slightly_updated_look_at_hardware_for_staking/)
+
+{% embed url="https://medium.com/@RaymondDurk/how-to-stake-for-ethereum-2-0-with-dappnode-231fa7689c02" %}
+
+{% embed url="https://kb.beaconcha.in/" %}
 
