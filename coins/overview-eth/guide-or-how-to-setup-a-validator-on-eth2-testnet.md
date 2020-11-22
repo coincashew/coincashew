@@ -484,7 +484,7 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 {% endtabs %}
 
 {% hint style="info" %}
-Syncing an eth1 node can take up to 1 week. On high-end machines and gigabit internet, expect syncing to take less than a day.
+Syncing an eth1 node can take up to 1 week. On high-end machines with gigabit internet, expect syncing to take less than a day.
 {% endhint %}
 
 {% hint style="success" %}
@@ -567,11 +567,7 @@ lighthouse --version
 ## 🎩 4.3. Import validator key
 
 {% hint style="info" %}
-When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `build/data/shared_pyrmont_0/` folder, under `secrets` and `validators.`
-
-The `secrets` folder contains the common secret that gives you access to all your validator keys.
-
-The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). Keystores are used by validators as a method for exchanging keys. 
+When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `$HOME/.lighthouse/prymont/validators` folder.
 {% endhint %}
 
 Run the following command to import your validator keys from the eth2deposit-cli tool directory.
