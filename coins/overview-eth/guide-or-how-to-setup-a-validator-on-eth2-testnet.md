@@ -1040,10 +1040,10 @@ cd $HOME/git/teku/build/install/teku/bin
 ./teku --version
 ```
 
-Copy the teku binary file to `/usr/local/teku`
+Copy the teku binary file to `/usr/bin/teku`
 
 ```bash
-sudo cp -r $HOME/git/teku/build/install/teku/bin/teku /usr/bin/teku
+sudo cp $HOME/git/teku/build/install/teku /usr/bin/teku
 ```
 
 ## 🔥 4.2. Configure port forwarding and/or firewall
@@ -1078,10 +1078,11 @@ sudo mkdir -p /var/lib/teku
 sudo mkdir -p /etc/teku
 ```
 
- Copy your `validator_files` directory to the data directory we created above.
+ Copy your `validator_files` directory to the data directory we created above and remove the extra deposit\_data file.
 
 ```bash
 sudo cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
+rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
 {% hint style="danger" %}
@@ -1113,7 +1114,7 @@ p2p-enabled: true
 p2p-port: 9001
 
 # validators
-validator-keys: "/var/lib/teku/validator_keys:/etc/teku/validator_keys"
+validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
 validators-graffiti: "Teku validator & CoinCashew.com"
 
 # Eth 1
@@ -1180,7 +1181,7 @@ Use **systemd** to manage starting and stopping teku.
 Run the following to create a **unit file** to define your`beacon-chain.service` configuration.
 
 ```bash
-cat > $HOME/beacon-chain.service << EOF 
+cat > $HOME/beacon-chain.service << EOF
 # The eth2 beacon chain service (part of systemd)
 # file: /etc/systemd/system/beacon-chain.service 
 
@@ -1191,8 +1192,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-WorkingDirectory= /usr/local/teku/bin
-ExecStart       = /usr/local/teku/bin/teku -c /etc/teku/teku.yaml
+ExecStart       = /usr/bin/teku/bin/teku -c /etc/teku/teku.yaml
 Restart         = on-failure
 Environment     = JAVA_OPTS=-Xmx5g
 
