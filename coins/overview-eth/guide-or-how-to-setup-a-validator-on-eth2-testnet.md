@@ -1043,7 +1043,7 @@ cd $HOME/git/teku/build/install/teku/bin
 Copy the teku binary file to `/usr/bin/teku`
 
 ```bash
-sudo cp $HOME/git/teku/build/install/teku /usr/bin/teku
+sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 ```
 
 ## 🔥 4.2. Configure port forwarding and/or firewall
@@ -2005,7 +2005,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 6. Set **Name** to **"Prometheus**"
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
-9. **Download and save** your ETH2 Client's json file. \[ [Lighthouse ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Teku](https://grafana.com/api/dashboards/12523/revisions/2/download) \| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
+9. **Download and save** your ETH2 Client's json file. \[ [Lighthouse ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Teku ](https://grafana.com/api/dashboards/12522/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
 10. Click **Create +** icon &gt; **Import**
 11. Add dashboard by **Upload JSON file**
 12. Click the **Import** button.
@@ -2014,19 +2014,27 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 
 {% tabs %}
 {% tab title="Lighthouse" %}
-![](../../.gitbook/assets/lhm.png)
+![Dashboard by sigp](../../.gitbook/assets/lhm.png)
+
+Credits: [https://github.com/sigp/lighthouse-metrics/](https://github.com/sigp/lighthouse-metrics/)
 {% endtab %}
 
 {% tab title="Nimbus" %}
-![](../../.gitbook/assets/nim_dashboard.png)
+![Dashboard by status-im](../../.gitbook/assets/nim_dashboard.png)
+
+Credits: [https://github.com/status-im/nimbus-eth2/](https://github.com/status-im/nimbus-eth2/)
 {% endtab %}
 
 {% tab title="Teku" %}
-![](../../.gitbook/assets/graf-teku-dash.png)
+![Teku Overview by benjaminion](../../.gitbook/assets/teku-dash2.png)
+
+Credits: [https://grafana.com/grafana/dashboards/12522](https://grafana.com/grafana/dashboards/12522)
 {% endtab %}
 
 {% tab title="Prysm" %}
-![](../../.gitbook/assets/prysm_dash.png)
+![Prysm dashboard by GuillaumeMiralles](../../.gitbook/assets/prysm_dash.png)
+
+Credits: [https://github.com/GuillaumeMiralles/prysm-grafana-dashboard](https://github.com/GuillaumeMiralles/prysm-grafana-dashboard)
 {% endtab %}
 
 {% tab title="Lodestar" %}
@@ -2160,7 +2168,8 @@ Restart beacon chain and validator as per normal operating procedures.
 
 ```bash
 sudo systemctl stop beacon-chain
-sudo cp -r $HOME/git/teku/build/install/teku/bin/teku /usr/bin/teku
+sudo rm -rf /usr/bin/teku
+sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 sudo systemctl reload-or-restart beacon-chain
 ```
 {% endtab %}
@@ -2425,6 +2434,10 @@ Finally, verify your validator's attestations are working with public block expl
 [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
 
 Enter your validator's pubkey to view its status.
+
+#### 🧯 8.4.7 Update Monitoring with Prometheus and Grafana
+
+[Review section 6](guide-or-how-to-setup-a-validator-on-eth2-testnet.md#6-monitoring-your-validator-with-grafana-and-prometheus) and change your `prometheus.yml`. Ensure prometheus is connected to your new eth2 client's metrics port. You will also want to import your new eth2 client's dashboard. 
 
 ### 🖥 8.5 Use all available LVM disk space
 
