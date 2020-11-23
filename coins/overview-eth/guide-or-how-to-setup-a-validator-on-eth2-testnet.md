@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet
 
 {% hint style="success" %}
-As of November 17 2020, this guide is updated for **testnet Pyrmont.** 😁 
+As of November 22 2020, this guide is updated for **testnet Pyrmont.** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -783,8 +783,13 @@ sudo systemctl stop validator
 #### 🗄 Viewing and filtering logs
 
 ```bash
+#view and follow the log
+journalctl --unit=validator -f
+#view log since yesterday
 journalctl --unit=validator --since=yesterday
+#view log since today
 journalctl --unit=validator --since=today
+#view log between a date
 journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 {% endtab %}
@@ -1790,7 +1795,7 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 
 **Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
 
-Remember, Teku combines both clients into one process.
+Remember, Teku and Nimbus combines both clients into one process.
 {% endhint %}
 
 {% hint style="success" %}
