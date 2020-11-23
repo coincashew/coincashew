@@ -548,6 +548,7 @@ sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev
 ## 💡 4.2. Build Lighthouse from source
 
 ```text
+mkdir ~/git
 cd ~/git
 git clone https://github.com/sigp/lighthouse.git
 cd lighthouse
@@ -1020,8 +1021,9 @@ java --version
 Install and build Teku.
 
 ```bash
+mkdir ~/git
 cd ~/git
-git clone https://github.com/PegaSysEng/teku.git
+git clone https://github.com/ConsenSys/teku.git
 cd teku
 ./gradlew distTar installDist
 ```
