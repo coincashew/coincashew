@@ -2298,12 +2298,12 @@ cd $HOME/eth2deposit-cli
 ./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
 ```
 
-Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site.
+Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site and making your corresponding 32 ETH deposit transactions.
 
 ### 💸 8.4 Switch / change eth2 clients with slash protection
 
 {% hint style="info" %}
-The priority in this process is to avoid running two eth2 clients simultaneously. You want to avoid being punished by a slashing penalty, which causes a loss of ether.
+The key takeaway in this process is to avoid running two eth2 clients simultaneously. You want to avoid being punished by a slashing penalty, which causes a loss of ether.
 {% endhint %}
 
 #### 🛑 8.4.1 Stop old beacon chain and old validator.
@@ -2368,12 +2368,12 @@ Now you need to setup/install your new validator **but do not start running the 
 {% endhint %}
 
 {% hint style="danger" %}
-🛑 **Critical Step**: Do not start any **systemd processes** until the next you have imported the slashing database or you have **waited at least 13 minutes or two epochs**.
+🛑 **Critical Step**: Do not start any **systemd processes** until either you have **imported the slashing database** or you have **waited at least 13 minutes or two epochs**.
 {% endhint %}
 
 #### 📂 8.4.4 Import slashing database \(Optional\)
 
-Update the import .json file location and name.
+Using your new eth2 client, run the following command and update the relevant path to import your slashing database from 2 steps ago.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
