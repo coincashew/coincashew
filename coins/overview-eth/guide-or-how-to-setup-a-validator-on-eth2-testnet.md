@@ -2302,6 +2302,8 @@ cd $HOME/eth2deposit-cli
 
 Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site and making your corresponding 32 ETH deposit transactions.
 
+Finish by stopping your validator, importing the new validator key\(s\), restarting your validator and verifying the logs ensuring everything still works without error.
+
 ### 💸 8.4 Switch / change eth2 clients with slash protection
 
 {% hint style="info" %}
