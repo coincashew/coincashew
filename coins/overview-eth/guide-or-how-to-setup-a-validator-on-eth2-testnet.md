@@ -1092,6 +1092,10 @@ Store your validator's password in a file.
 
 Update your password between the quotation marks after `echo`.
 
+{% hint style="info" %}
+If your password contains a "`$`", you must escape the letter with backslash. Change to "`\$`"
+{% endhint %}
+
 ```bash
 echo "my_password_goes_here" > $HOME/validators-password.txt
 sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
@@ -1407,6 +1411,10 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 ## 🧬 4.5. Start the validator <a id="9-start-the-validator"></a>
 
 Store your validator's password in a file and make it read-only.
+
+{% hint style="info" %}
+If your password contains a "`$`", you must escape the letter with backslash. Change to "`\$`"
+{% endhint %}
 
 ```bash
 echo "my_password_goes_here" > $HOME/.eth2validators/validators-password.txt
