@@ -588,10 +588,6 @@ lighthouse account_manager validator list --testnet pyrmont
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED. 
 {% endhint %}
 
-{% hint style="info" %}
-**Pro Tip**: If you are switching between eth2 clients and you are in the process of re-importing keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two eth2 clients with same validator keys at the same time.
-{% endhint %}
-
 ## 🔥 4.4. Configure port forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
@@ -860,10 +856,6 @@ You should see a folder named for each of your validator's pubkey.
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
 
-{% hint style="info" %}
-**Pro Tip**: If you are switching between eth2 clients and you are in the process of re-importing keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two eth2 clients with same validator keys at the same time.
-{% endhint %}
-
 ## 🔥 4.3. Configure port forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
@@ -1089,10 +1081,6 @@ rm /var/lib/teku/validator_keys/deposit_data*
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
 
-{% hint style="info" %}
-**Pro Tip**: If you are switching between eth2 clients and you are in the process of re-importing keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two eth2 clients with same validator keys at the same time.
-{% endhint %}
-
 Store your validator's password in a file. 
 
 Update your password between the quotation marks after `echo`.
@@ -1308,10 +1296,6 @@ Confirm your validator's pubkeys are listed.
 
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
-{% endhint %}
-
-{% hint style="info" %}
-**Pro Tip**: If you are switching between eth2 clients and you are in the process of re-importing keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two eth2 clients with same validator keys at the same time.
 {% endhint %}
 
 ## 🏂 4.4. Start the beacon chain
@@ -1611,10 +1595,6 @@ yarn run cli account validator list --testnet pyrmont
 
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
-{% endhint %}
-
-{% hint style="info" %}
-**Pro Tip**: If you are switching between eth2 clients and you are in the process of re-importing keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two eth2 clients with same validator keys at the same time.
 {% endhint %}
 
 ## 🏂 4.4. Start the beacon chain and validator
@@ -2340,7 +2320,7 @@ sudo systemctl stop beacon-chain
 {% endtab %}
 {% endtabs %}
 
-#### 💽 8.4.2 Export slashing database
+#### 💽 8.4.2 Export slashing database \(Optional\)
 
 {% hint style="info" %}
 [EIP-3076](https://eips.ethereum.org/EIPS/eip-3076) implements a standard to safety migrate validator keys between eth2 clients. This is the exported contents of the slashing database.
@@ -2356,7 +2336,7 @@ lighthouse account validator slashing-protection export <lighthouse_interchange.
 {% endtab %}
 
 {% tab title="Nimbus" %}
-
+To be implemented
 {% endtab %}
 
 {% tab title="Teku" %}
@@ -2366,23 +2346,27 @@ teku slashing-protection export --to=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-
+To be implemented
 {% endtab %}
 
 {% tab title="Lodestar" %}
-
+To be implemented
 {% endtab %}
 {% endtabs %}
 
 #### 🚧 8.4.3 Setup and install new validator / beacon chain
 
-Now you need to setup/install your new validator **but do not start running the systemd processes**. Be sure to thoroughly follow your new validator's  [Section 4. Configure a ETH2 beacon chain and validator.](guide-or-how-to-setup-a-validator-on-eth2-testnet.md#4-configure-a-eth2-beacon-chain-node-and-validator) You will need to build/install the client, configure port forwarding/firewalls, and new systemd  unit files.s.
+Now you need to setup/install your new validator **but do not start running the systemd processes**. Be sure to thoroughly follow your new validator's  [Section 4. Configure a ETH2 beacon chain and validator.](guide-or-how-to-setup-a-validator-on-eth2-testnet.md#4-configure-a-eth2-beacon-chain-node-and-validator) You will need to build/install the client, configure port forwarding/firewalls, and new systemd unit files.
 
-{% hint style="danger" %}
-Do not start any **systemd processes** until the next step of importing the slashing database is complete.
+{% hint style="warning" %}
+\*\*\*\*✨ **Pro Tip**: During the process of re-importing validator keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two eth2 clients with same validator keys at the same time.
 {% endhint %}
 
-#### 📂 8.4.4 Import slashing database
+{% hint style="danger" %}
+🛑 **Critical Step**: Do not start any **systemd processes** until the next you have imported the slashing database or you have **waited at least 13 minutes or two epochs**.
+{% endhint %}
+
+#### 📂 8.4.4 Import slashing database \(Optional\)
 
 Update the import .json file location and name.
 
@@ -2394,7 +2378,7 @@ lighthouse account validator slashing-protection import <my_interchange.json>
 {% endtab %}
 
 {% tab title="Nimbus" %}
-
+To be implemented
 {% endtab %}
 
 {% tab title="Teku" %}
@@ -2404,11 +2388,11 @@ teku slashing-protection import --from=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-
+To be implemented
 {% endtab %}
 
 {% tab title="Lodestar" %}
-
+To be implemented
 {% endtab %}
 {% endtabs %}
 
