@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet
 
 {% hint style="success" %}
-As of November 22 2020, this guide is updated for **testnet Pyrmont.** 😁 
+As of November 24 2020, this guide is updated for **testnet Pyrmont.** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -208,6 +208,8 @@ Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [
 {% tab title="OpenEthereum \(Parity\)" %}
 #### 🤖 Install OpenEthereum
 
+Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
+
 ```text
 mkdir ~/openethereum && cd ~/openethereum
 wget https://github.com/openethereum/openethereum/releases/download/v3.1.0/openethereum-linux-v3.1.0.zip
@@ -322,9 +324,13 @@ sudo apt install openjdk-11-jdk
 
 #### 🌜 Download and unzip Besu
 
+Review the latest release at 
+
+[https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
+
 ```text
 cd
-wget -O besu.tar.gz https://bintray.com/hyperledger-org/besu-repo/download_file?file_path=besu-1.5.0.tar.gz
+wget -O besu.tar.gz https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.zip
 tar -xvf besu.tar.gz
 rm besu.tar.gz
 mv besu-1.5.0 besu
@@ -383,9 +389,13 @@ sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip 
 
 #### 🌜 Download and unzip Nethermind
 
+Review the latest release at 
+
+[https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
+
 ```bash
 mkdir $HOME/nethermind && cd $HOME/nethermind
-wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
+wget -O nethermind.zip https://github.com/NethermindEth/nethermind/releases/download/1.9.37/nethermind-linux-amd64-1.9.37-d83d23a-20201121.zip
 unzip nethermind.zip
 rm nethermind.zip
 ```
@@ -576,13 +586,13 @@ Run the following command to import your validator keys from the eth2deposit-cli
 Enter your keystore's password to import accounts.
 
 ```bash
-lighthouse account validator import --testnet pyrmont --directory=$HOME/eth2deposit-cli/validator_keys
+lighthouse account validator import --network pyrmont --directory=$HOME/eth2deposit-cli/validator_keys
 ```
 
 Verify the accounts were imported successfully.
 
 ```bash
-lighthouse account_manager validator list --testnet pyrmont
+lighthouse account_manager validator list --network pyrmont
 ```
 
 {% hint style="danger" %}
@@ -632,7 +642,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) bn --staking --metrics --testnet pyrmont
+ExecStart       = $(which lighthouse) bn --staking --metrics --network pyrmont
 Restart         = on-failure
 
 [Install]
@@ -728,7 +738,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --testnet pyrmont
+ExecStart       = $(which lighthouse) vc --network pyrmont
 Restart         = on-failure
 
 [Install]
