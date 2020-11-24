@@ -6,9 +6,23 @@ description: >-
 
 # Guide: How to stake on ETH2 Mainnet with Lighthouse on Ubuntu
 
-{% hint style="success" %}
-As of November 4 2020, this guide is updated for **mainnet.** 😁 
+{% hint style="danger" %}
+**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md). 
+
+Instructions below are now deprecated and for reference only.
 {% endhint %}
+
+
+
+
+
+
+
+
+
+
+
+
 
 {% hint style="info" %}
 [Lighthouse](https://github.com/sigp/lighthouse) is an Eth2.0 client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io/), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.

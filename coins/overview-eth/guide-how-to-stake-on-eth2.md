@@ -6,9 +6,21 @@ description: >-
 
 # Guide: How to stake on ETH2 Mainnet with Prysm on Ubuntu
 
-{% hint style="success" %}
-As of November 10 2020, this guide is updated for **mainnet.** 😁
+{% hint style="danger" %}
+**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md). 
+
+Instructions below are now deprecated and for reference only.
 {% endhint %}
+
+
+
+
+
+
+
+
+
+
 
 {% hint style="info" %}
 [Prysm](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com/), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.

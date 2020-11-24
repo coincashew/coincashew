@@ -6,9 +6,21 @@ description: >-
 
 # Guide: How to stake on ETH2 Mainnet with Teku on Ubuntu
 
-{% hint style="success" %}
-As of November 5 2020, this guide is updated for **mainnet.** 😁 
+{% hint style="danger" %}
+**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md). 
+
+Instructions below are now deprecated and for reference only.
 {% endhint %}
+
+
+
+
+
+
+
+
+
+
 
 {% hint style="info" %}
 [PegaSys Teku](https://pegasys.tech/teku/) \(formerly known as Artemis\) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net/) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.

@@ -6,9 +6,21 @@ description: >-
 
 # Guide: How to stake on ETH2 Mainnet with Nimbus on Ubuntu
 
-{% hint style="success" %}
-As of November 5 2020, this guide is updated for **mainnet.** 😁
+{% hint style="danger" %}
+**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md). 
+
+Instructions below are now deprecated and for reference only.
 {% endhint %}
+
+
+
+
+
+
+
+
+
+
 
 {% hint style="info" %}
 [Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im/) by the same name. Nimbus \(Apache 2\) is written in Nim, a language with Python-like syntax that compiles to C.

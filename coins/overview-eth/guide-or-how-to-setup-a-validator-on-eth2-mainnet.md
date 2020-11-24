@@ -10,6 +10,8 @@ description: >-
 As of November 24 2020, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
+#### ✨ For the testnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
+
 ## 🏁 0. Prerequisites
 
 ### 👩💻Skills for operating a eth2 validator and beacon node
