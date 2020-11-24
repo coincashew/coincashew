@@ -1587,7 +1587,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 ```bash
 yarn run cli account validator import \
-  --testnet mainnet \
+  --network mainnet \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
 
@@ -1596,7 +1596,7 @@ Enter your keystore's password to import accounts.
 Confirm your keys were imported properly.
 
 ```text
-yarn run cli account validator list --testnet mainnet
+yarn run cli account validator list --network mainnet
 ```
 
 {% hint style="danger" %}
