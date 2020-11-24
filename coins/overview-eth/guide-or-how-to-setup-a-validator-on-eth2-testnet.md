@@ -653,10 +653,15 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Move the unit file to `/etc/systemd/system` 
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Give it permissions.
+
+```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
 ```
 
@@ -1349,8 +1354,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-Environment     = "ClientIP=\$(curl -s ident.me)"
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --p2p-host-ip=\${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]
@@ -1358,10 +1362,15 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Move the unit file to `/etc/systemd/system` 
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Give it permissions.
+
+```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
 ```
 
