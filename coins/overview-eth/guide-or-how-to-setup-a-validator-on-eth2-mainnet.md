@@ -1848,7 +1848,7 @@ sudo systemctl enable prometheus.service
 sudo systemctl enable prometheus-node-exporter.service
 ```
 
-Create the **prometheus.yml** config file. Choose the tab for your eth2 client.
+Create the **prometheus.yml** config file. Choose the tab for your eth2 client. Simply copy and paste.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -2538,7 +2538,7 @@ sudo systemctl restart eth1
 ### 📂 8.7 Important directory locations
 
 {% hint style="info" %}
-In case you need to locate your validator keys or database directories.
+In case you need to locate your validator keys, database directories or other important files.
 {% endhint %}
 
 {% tabs %}
@@ -2653,7 +2653,7 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 ### 🧱 ETH2 Block Explorers
 
-{% embed url="https://pyrmont.beaconcha.in/" %}
+{% embed url="https://beaconcha.in/" %}
 
 {% embed url="https://beaconscan.com/" caption="" %}
 
