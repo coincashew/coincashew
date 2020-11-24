@@ -576,7 +576,7 @@ lighthouse --version
 ## 🎩 4.3. Import validator key
 
 {% hint style="info" %}
-When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `$HOME/.lighthouse/prymont/validators` folder.
+When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `$HOME/.lighthouse/mainnet/validators` folder.
 {% endhint %}
 
 Run the following command to import your validator keys from the eth2deposit-cli tool directory.
@@ -840,7 +840,7 @@ cd $HOME/git/nimbus-eth2/build
 ## 🎩 4.2. Import validator key <a id="6-import-validator-key"></a>
 
 {% hint style="info" %}
-When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `build/data/shared_pyrmont_0/` folder, under `secrets` and `validators.`
+When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `build/data/shared_mainnet_0/` folder, under `secrets` and `validators.`
 
 The `secrets` folder contains the common secret that gives you access to all your validator keys.
 
@@ -1310,7 +1310,7 @@ Confirm your validator's pubkeys are listed.
 If you participated in any of the prior test nets, you need to clear the database.
 
 ```bash
-$HOME/prysm/prysm.sh beacon-chain --clear-db --$HOME/prysm/prysm.sh beacon-chain --clear-db --pyrmont
+$HOME/prysm/prysm.sh beacon-chain --clear-db --$HOME/prysm/prysm.sh beacon-chain --clear-db --mainnet
 ```
 {% endhint %}
 
@@ -1587,7 +1587,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 ```bash
 yarn run cli account validator import \
-  --testnet pyrmont \
+  --testnet mainnet \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
 
@@ -1596,7 +1596,7 @@ Enter your keystore's password to import accounts.
 Confirm your keys were imported properly.
 
 ```text
-yarn run cli account validator list --testnet pyrmont
+yarn run cli account validator list --testnet mainnet
 ```
 
 {% hint style="danger" %}
@@ -1630,7 +1630,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli beacon --testnet pyrmont --eth1.providerUrl http://localhost:8545 --metrics.serverPort 8008
+ExecStart       = yarn run cli beacon --network mainnet --eth1.providerUrl http://localhost:8545 --metrics.serverPort 8008
 Restart         = on-failure
 
 [Install]
@@ -1723,7 +1723,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --testnet pyrmont
+ExecStart       = yarn run cli validator run --network mainnet
 Restart         = on-failure
 
 [Install]
@@ -2633,7 +2633,7 @@ TBD
 
 Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
 
-{% embed url="https://pyrmont.launchpad.ethereum.org/" %}
+{% embed url="https://launchpad.ethereum.org/" %}
 
 {% embed url="https://pegasys.tech/teku-ethereum-2-for-enterprise/" %}
 
