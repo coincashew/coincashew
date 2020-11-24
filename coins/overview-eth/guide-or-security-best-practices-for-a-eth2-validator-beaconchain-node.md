@@ -307,7 +307,7 @@ With any new installation, ufw is disabled by default. Enable it with the follow
 * Port 22 \(or your random port \#\) TCP for SSH connection
 * Ports for p2p traffic
   * Lighthouse uses port 9000 tcp/udp
-  * Teku uses port 9001 tcp/udp
+  * Teku uses port 9000 tcp/udp
   * Prysm uses port 13000 tcp and port 12000 udp
   * Nimbus uses port 9000 tcp/udp
   * Lodestar uses port 30607 tcp and port 9000 udp
@@ -345,8 +345,8 @@ ufw status numbered
 {% tab title="Teku" %}
 ```bash
 ufw allow <22 or your random port number>/tcp
-ufw allow 9001/tcp
-ufw allow 9001/udp
+ufw allow 9000/tcp
+ufw allow 9000/udp
 ufw allow 30303/tcp
 ufw allow 30303/udp
 ufw allow 3000/tcp

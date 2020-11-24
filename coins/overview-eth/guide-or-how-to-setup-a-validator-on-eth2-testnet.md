@@ -1049,7 +1049,7 @@ sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
-* **Teku beacon chain node** will use port 9001 for tcp and udp
+* **Teku beacon chain node** will use port 9000 for tcp and udp
 * **eth1** node requires port 30303 for tcp and udp
 
 {% hint style="info" %}
@@ -1106,8 +1106,7 @@ network: "pyrmont"
 
 # p2p
 p2p-enabled: true
-p2p-port: 9001
-
+p2p-port: 9000
 # validators
 validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
 validators-graffiti: "Teku validator & CoinCashew.com"
@@ -2293,6 +2292,13 @@ When the **pubkey** in both **keystore files** are **identical,** this means you
 
 Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
 
+First, backup and move your existing `validator_key` directory and append the date to the end.
+
+```bash
+cd $HOME/eth2deposit-cli
+mv validator_key validator_key_$(date +"%Y%d%m-%H%M%S")
+```
+
 For example, in case we originally created 3 validators but now wish to add 5 more validators, we could use the following command.
 
 ```bash
@@ -2473,6 +2479,125 @@ df -h
 **Source reference**:
 
 {% embed url="https://askubuntu.com/questions/1106795/ubuntu-server-18-04-lvm-out-of-space-with-improper-default-partitioning" %}
+
+### 🚦 8.6 Reduce network bandwidth usage
+
+{% hint style="info" %}
+Hosting your own ETH1 node can consume hundreds of gigabytes of data per day. Because data plans can be limited or costly, you might desire to slow down data usage but still maintain good connectivity to the network.
+{% endhint %}
+
+Edit your eth1.service unit file.
+
+```bash
+sudo nano /etc/systemd/system/eth1.service
+```
+
+Add the following flag to limit the number of peers on the `ExecStart` line. 
+
+{% tabs %}
+{% tab title="Geth" %}
+```bash
+--maxpeers 10
+# Example
+# ExecStart       = /usr/bin/geth --maxpeers 10 --http --goerli --ws
+```
+{% endtab %}
+
+{% tab title="OpenEthereum \(Parity\)" %}
+```bash
+--max-peers 10
+# Example
+# ExecStart       = $(echo $HOME)/openethereum/openethereum --max-peers 10 --chain goerli
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+```bash
+--max-peers 10
+# Example
+# ExecStart       = <home directory>/besu/bin/besu --max-peers 10 --rpc-http-enabled --network=goerli
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+```bash
+--ActivePeersMaxCount 10
+# Example
+# ExecStart       = <home directory>/nethermind/Nethermind.Runner --ActivePeersMaxCount 10 --config goerli --JsonRpc.Enabled true
+```
+{% endtab %}
+{% endtabs %}
+
+Finally, reload the new unit file and restart the eth1 node.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart eth1
+```
+
+### 📂 8.7 Important directory locations
+
+{% hint style="info" %}
+In case you need to locate your validator keys or database directories.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+# Validator Keys
+~/.lighthouse/pyrmont/validators
+
+# Beacon Chain Data
+~/.lighthouse/pyrmont/beacon
+
+# List of all validators and passwords
+~/.lighthouse/pyrmont/validators/validator_definitions.yml
+
+#Slash protection db
+~/.lighthouse/pyrmont/validators/slashing_protection.sqlite
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+```bash
+# Validator Keys
+~/git/nimbus-eth2/build/data/shared_pyrmont_0/validators
+
+# Beacon Chain Data
+~/git/nimbus-eth2/build/data/shared_pyrmont_0/db
+
+#Slash protection db
+~/git/nimbus-eth2/build/data/shared_pyrmont_0/validators/slashing_protection.sqlite3
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+# Validator Keys
+/var/lib/teku
+
+# Beacon Chain Data
+~/tekudata/beacon
+
+#Slash protection db
+~/tekudata/validator/slashprotection
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+# Validator Keys
+~/.eth2validators/prysm-wallet-v2/direct
+
+# Beacon Chain Data
+~/.eth2/beaconchaindata
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+TBD
+{% endtab %}
+{% endtabs %}
 
 ## 🌇 9. Join the community on Discord and Reddit
 
