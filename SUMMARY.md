@@ -100,6 +100,7 @@
   * [Book: Mastering Bitcoin](coins/btc/book-mastering-bitcoin.md)
 * [Ethereum: ETH](coins/overview-eth/README.md)
   * [Guide \| Security Best Practices for a ETH2 validator beaconchain node](coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+  * [Guide \| How to setup a validator on ETH2 mainnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet.md)
   * [Guide \| How to setup a validator on ETH2 testnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
   * [Guide: How to stake on ETH2 Mainnet with Lighthouse on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-lighthouse.md)
   * [Guide: How to stake on ETH2 Mainnet with Teku on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md)
