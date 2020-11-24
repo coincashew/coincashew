@@ -139,13 +139,14 @@ Extract the archive.
 ```text
 tar -xvf eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
 mv eth2deposit-cli-ed5a6d3-linux-amd64 eth2deposit-cli
+rm eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
 cd eth2deposit-cli
 ```
 
 Make a new mnemonic.
 
 ```text
-./deposit new-mnemonic --chain pyrmont
+./deposit.sh new-mnemonic --chain pyrmont
 ```
 {% endtab %}
 
