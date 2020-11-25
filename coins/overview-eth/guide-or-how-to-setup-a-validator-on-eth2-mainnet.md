@@ -836,7 +836,8 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 Install dependencies.
 
 ```text
-sudo apt-get install curl build-essential git libpcre3-dev -y
+sudo apt-get update
+sudo apt-get install curl build-essential git -y
 ```
 
 Install and build Nimbus.
@@ -860,17 +861,26 @@ cd $HOME/git/nimbus-eth2/build
 ./nimbus_beacon_node --help
 ```
 
+Copy the binary file to `/usr/bin`
+
+```bash
+sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/bin
+```
+
 ## 🎩 4.2. Import validator key <a id="6-import-validator-key"></a>
 
-{% hint style="info" %}
-When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `build/data/shared_mainnet_0/` folder, under `secrets` and `validators.`
+Create a directory structure to store nimbus data.
 
-The `secrets` folder contains the common secret that gives you access to all your validator keys.
+```bash
+sudo mkdir -p /var/lib/nimbus
+```
 
-The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). Keystores are used by validators as a method for exchanging keys. 
+Take ownership of this directory and set the correct permission level.
 
-For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/keys/).
-{% endhint %}
+```bash
+sudo chown $(whoami):$(whoami) /var/lib/nimbus
+sudo chmod 700 /var/lib/nimbus
+```
 
 The following command will import your validator keys.
 
@@ -878,16 +888,26 @@ Enter your keystore's password to import accounts.
 
 ```bash
 cd $HOME/git/nimbus-eth2
-build/nimbus_beacon_node deposits import  --data-dir=build/data/shared_mainnet_0 $HOME/eth2deposit-cli/validator_keys
+build/nimbus_beacon_node deposits import --data-dir=/var/lib/nimbus $HOME/eth2deposit-cli/validator_keys
 ```
 
 Now you can verify the accounts were imported successfully by doing a directory listing.
 
 ```bash
-ll build/data/shared_mainnet_0/validators
+ll /var/lib/nimbus/validators
 ```
 
 You should see a folder named for each of your validator's pubkey.
+
+{% hint style="info" %}
+When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `/var/lib/nimbus` folder, under `secrets` and `validators.`
+
+The `secrets` folder contains the common secret that gives you access to all your validator keys.
+
+The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). Keystores are used by validators as a method for exchanging keys. 
+
+For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/keys/).
+{% endhint %}
 
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
@@ -910,18 +930,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 Nimbus combines both the beacon chain and validator into one process.
 {% endhint %}
 
-{% hint style="danger" %}
-**Nimbus workaround:** Currently you'll be asked to enter your [Web3 provider URL](https://status-im.github.io/nimbus-eth2/start-syncing.html#web3-provider-url) again upon startup. This conflicts with systemd.
-
-In the meantime, manually start Nimbus. Do not use systemd as described below.
-
-```bash
-ClientIP=\$(curl -s ident.me)
-$HOME/git/nimbus-eth2/run-mainnet-beacon-node.sh --nat=extip:${ClientIP} --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=50
-```
-{% endhint %}
-
-Running the beacon chain automatically with systemd.
+Running the beacon chain and validator automatically with systemd.
 
 #### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -944,9 +953,11 @@ Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
+Type            = simple
 User            = $(whoami)
+WorkingDirectory= /var/lib/nimbus
 Environment     = "ClientIP=\$(curl -s ident.me)"
-ExecStart       = $(echo $HOME)/git/nimbus-eth2/run-mainnet-beacon-node.sh --nat=extip:\${ClientIP} --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --max-peers=50
+ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node --network=mainnet --data-dir=/var/lib/nimbus --nat=extip:\${ClientIP} --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log --max-peers=100'
 Restart         = on-failure
 
 [Install]
@@ -958,10 +969,15 @@ EOF
 Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Only Geth or Infura ETH1 nodes verified compatible.
 {% endhint %}
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Move the unit file to `/etc/systemd/system` 
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
 ```
 
@@ -2178,9 +2194,12 @@ git pull && make update
 make NIMFLAGS="-d:insecure" nimbus_beacon_node
 ```
 
-Restart beacon chain and validator as per normal operating procedures.
+Stop, copy new binary, and restart beacon chain and validator as per normal operating procedures.
 
 ```bash
+sudo systemctl stop beacon-chain
+sudo rm /usr/bin/nimbus_beacon_node
+sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/bin
 sudo systemctl reload-or-restart beacon-chain
 ```
 {% endtab %}
@@ -2594,13 +2613,16 @@ In case you need to locate your validator keys, database directories or other im
 {% tab title="Nimbus" %}
 ```bash
 # Validator Keys
-~/git/nimbus-eth2/build/data/shared_mainnet_0/validators
+/var/lib/nimbus/validators
 
 # Beacon Chain Data
-~/git/nimbus-eth2/build/data/shared_mainnet_0/db
+/var/lib/nimbus/db
 
 #Slash protection db
-~/git/nimbus-eth2/build/data/shared_mainnet_0/validators/slashing_protection.sqlite3
+/var/lib/nimbus/validators/slashing_protection.sqlite3
+
+#Logs
+/var/lib/nimbus/beacon.log
 ```
 {% endtab %}
 

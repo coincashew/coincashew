@@ -840,7 +840,8 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 Install dependencies.
 
 ```text
-sudo apt-get install curl build-essential git libpcre3-dev -y
+sudo apt-get update
+sudo apt-get install curl build-essential git -y
 ```
 
 Install and build Nimbus.
@@ -962,10 +963,15 @@ EOF
 Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Only Geth or Infura ETH1 nodes verified compatible.
 {% endhint %}
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Move the unit file to `/etc/systemd/system` 
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
 ```
 
