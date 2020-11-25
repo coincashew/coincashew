@@ -1338,7 +1338,7 @@ Confirm your validator's pubkeys are listed.
 If you participated in any of the prior test nets, you need to clear the database.
 
 ```bash
-$HOME/prysm/prysm.sh beacon-chain --clear-db --$HOME/prysm/prysm.sh beacon-chain --clear-db --mainnet
+$HOME/prysm/prysm.sh beacon-chain --clear-db --mainnet
 ```
 {% endhint %}
 
@@ -2041,7 +2041,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 9. **Download and save** your ETH2 Client's json file. \[ [Lighthouse ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
 10. Click **Create +** icon &gt; **Import**
 11. Add dashboard by **Upload JSON file**
-12. Select Prometheus as **Data Source**.
+12. If needed, select Prometheus as **Data Source**.
 13. Click the **Import** button.
 
 #### Example of Grafana Dashboards for each ETH2 client.
