@@ -42,7 +42,7 @@ As a validator for eth2, you will typically have the following abilities:
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
 * **Memory:** 16GB RAM or more
 * **Storage:** 1TB SSD or more
-* **Internet:** Broadband internet connections with speeds at least 10 Mbps
+* **Internet:** Broadband internet connections with speeds at least 10 Mbps without data limit. 
 * **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
 * **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
 * **Wallet**: Metamask installed
@@ -240,10 +240,21 @@ WantedBy    = multi-user.target
 EOF
 ```
 
+{% hint style="info" %}
+**Nimbus Specific Configuration**: Add the following flag to the **ExecStart** line.
+
+```bash
+--ws-origins=all
+```
+{% endhint %}
+
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
@@ -297,6 +308,9 @@ Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
@@ -362,6 +376,9 @@ Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
@@ -426,6 +443,9 @@ Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
