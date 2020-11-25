@@ -2644,7 +2644,7 @@ TBD
 Hosting your own ETH1 node on a different machine than where your beacon-chain and validator resides, can allow some extra modularity and flexibility.
 {% endhint %}
 
-Edit your eth1.service unit file.
+On the eth1 node machine, edit your eth1.service unit file.
 
 ```bash
 sudo nano /etc/systemd/system/eth1.service
@@ -2697,7 +2697,7 @@ sudo systemctl daemon-reload
 sudo systemctl restart eth1
 ```
 
-Update the beacon-chain unit file with the eth1 node's IP address.
+On the separate machine hosting the beacon-chain, update the beacon-chain unit file with the eth1 node's IP address.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
