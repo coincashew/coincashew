@@ -572,7 +572,13 @@ make
 ```
 
 {% hint style="info" %}
-In case of compilation errors, run`rustup update,` then re-run `make`
+In case of compilation errors, run the following sequence.
+
+```text
+rustup update
+cargo clean
+make
+```
 {% endhint %}
 
 {% hint style="info" %}
