@@ -1026,10 +1026,14 @@ sudo apt-get install git -y
 
 Install Java 11.
 
+For **Ubuntu 20.x**, use the following
+
 ```
 sudo apt update
 sudo apt install openjdk-11-jdk -y
 ```
+
+For **Ubuntu 18.x**, use the following
 
 ```text
 sudo add-apt-repository ppa:linuxuprising/java
