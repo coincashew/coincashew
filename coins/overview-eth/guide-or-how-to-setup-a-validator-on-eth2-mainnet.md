@@ -144,7 +144,7 @@ cd eth2deposit-cli
 Make a new mnemonic.
 
 ```text
-./deposit.sh new-mnemonic --chain mainnet
+./deposit new-mnemonic --chain mainnet
 ```
 {% endtab %}
 

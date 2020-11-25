@@ -146,7 +146,7 @@ cd eth2deposit-cli
 Make a new mnemonic.
 
 ```text
-./deposit.sh new-mnemonic --chain pyrmont
+./deposit new-mnemonic --chain pyrmont
 ```
 {% endtab %}
 
