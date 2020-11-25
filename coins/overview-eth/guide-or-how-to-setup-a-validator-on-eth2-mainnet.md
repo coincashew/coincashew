@@ -986,7 +986,7 @@ EOF
 ```
 
 {% hint style="warning" %}
-Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Only Geth or Infura ETH1 nodes verified compatible.
+Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum and Infura ETH1 nodes are verified compatible.
 {% endhint %}
 
 Move the unit file to `/etc/systemd/system` 
