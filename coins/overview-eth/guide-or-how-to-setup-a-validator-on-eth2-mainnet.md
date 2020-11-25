@@ -1379,8 +1379,10 @@ Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
+Type            = simple
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+Environment     = "ClientIP=\$(curl -s ident.me)"
+ExecStart       = /bin/bash -c '$(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --p2p-host-ip=\${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use' 
 Restart         = on-failure
 
 [Install]
