@@ -1096,12 +1096,13 @@ Setup a directory structure for Teku.
 ```bash
 sudo mkdir -p /var/lib/teku
 sudo mkdir -p /etc/teku
+sudo chown $(whoami):$(whoami) /var/lib/teku
 ```
 
  Copy your `validator_files` directory to the data directory we created above and remove the extra deposit\_data file.
 
 ```bash
-sudo cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
+cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
 rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
