@@ -18,6 +18,8 @@ SSH to your server
 
 ```bash
 ssh username@server.public.ip.address
+# example
+# ssh myUsername@77.22.161.10
 ```
 
 Create a new user called ethereum
