@@ -546,10 +546,6 @@ Your choice of Lighthouse, Nimbus, Teku, Prysm, or Lodestar.
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-{% hint style="info" %}
-In case of compilation errors, run`rustup update`
-{% endhint %}
-
 Enter '1' to proceed with the default install.
 
 Update your environment variables.
@@ -574,6 +570,10 @@ git clone https://github.com/sigp/lighthouse.git
 cd lighthouse
 make
 ```
+
+{% hint style="info" %}
+In case of compilation errors, run`rustup update,` then re-run `make`
+{% endhint %}
 
 {% hint style="info" %}
 This build process may take up to an hour.
