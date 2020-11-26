@@ -11,15 +11,15 @@ description: >-
 Install chrony.
 
 ```text
-sudo apt-get install chrony
+sudo apt-get install chrony -y
 ```
 
- Update the config file located in `/etc/chrony/chrony.conf` with the following 
+Create the `chrony.conf` config file. Simply copy and paste the following.
 
-```text
+```bash
+cat > $HOME/chrony.conf << EOF
 pool time.google.com       iburst minpoll 1 maxpoll 2 maxsources 3
 pool ntp.ubuntu.com        iburst minpoll 1 maxpoll 2 maxsources 3
-#pool time.nist.giv         iburst minpoll 1 maxpoll 2 maxsources 3
 pool us.pool.ntp.org     iburst minpoll 1 maxpoll 2 maxsources 3
 
 # This directive specify the location of the file containing ID/key pairs for
@@ -46,6 +46,13 @@ rtcsync
 # Step the system clock instead of slewing it if the adjustment is larger than
 # one second, but only in the first three clock updates.
 makestep 0.1 -1
+EOF
+```
+
+Move the file to `/etc/chrony/chrony.conf` 
+
+```bash
+sudo mv $HOME/chrony.conf /etc/chrony/chrony.conf
 ```
 
 Restart chrony in order for config change to take effect.

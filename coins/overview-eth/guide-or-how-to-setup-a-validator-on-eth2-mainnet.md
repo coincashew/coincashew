@@ -602,7 +602,7 @@ make
 {% endhint %}
 
 {% hint style="info" %}
-This build process may take up to an hour.
+This build process may take a few minutes.
 {% endhint %}
 
 Verify lighthouse was installed properly by checking the version number.
@@ -1633,7 +1633,7 @@ yarn run build
 ```
 
 {% hint style="info" %}
-This build process may take up to an hour.
+This build process may take a few minutes.
 {% endhint %}
 
 Verify Lodestar was installed properly by displaying the help menu.
