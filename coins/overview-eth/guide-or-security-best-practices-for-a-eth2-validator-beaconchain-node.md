@@ -405,9 +405,28 @@ Confirm the settings are in effect.
 
 If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
 
-```text
-netstat -tulpn
+```bash
 ss -tulpn
+# Example output. Ensure the port numbers look right.
+# Netid  State    Recv-Q  Send-Q    Local Address:Port   Peer Address:Port   Process
+# tcp    LISTEN   0       128       127.0.0.1:5052       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=22))
+# tcp    LISTEN   0       128       127.0.0.1:5054       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=23))
+# tcp    LISTEN   0       1024      0.0.0.0:9000         0.0.0.0:*           users:(("lighthouse",pid=12160,fd=21))
+# udp    UNCONN   0       0         *:30303              *:*                 users:(("geth",pid=22117,fd=158))
+# tcp    LISTEN   0       4096      *:30303              *:*                 users:(("geth",pid=22117,fd=156))
+```
+
+Alternatively you can use `netstat`
+
+```bash
+netstat -tulpn
+# Example output. Ensure the port numbers look right.
+# Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+# tcp        0      0 127.0.0.1:5052          0.0.0.0:*               LISTEN      12160/lighthouse
+# tcp        0      0 127.0.0.1:5054          0.0.0.0:*               LISTEN      12160/lighthouse
+# tcp        0      0 0.0.0.0:9000            0.0.0.0:*               LISTEN      12160/lighthouse
+# tcp6       0      0 :::30303                :::*                    LISTEN      22117/geth
+# udp6       0      0 :::30303                :::*                    LISTEN      22117/geth
 ```
 
 {% hint style="success" %}

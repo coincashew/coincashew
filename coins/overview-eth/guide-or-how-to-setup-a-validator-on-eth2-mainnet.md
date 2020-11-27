@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of November 24 2020, this guide is updated for **mainnet.** 😁 
+As of November 26 2020, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
 #### ✨ For the testnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
@@ -578,6 +578,7 @@ source ~/.bashrc
 Install rust dependencies.
 
 ```text
+sudo apt-get update
 sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev
 ```
 
@@ -662,9 +663,9 @@ rm -rf $HOME/.lighthouse
 2. Automatically restart crashed beacon chain processes.
 3. Maximize your beacon chain up-time and performance.
 
-#### 🛠 Setup Instructions
+#### 🛠 Setup Instructions for Systemd
 
-Run the following to create a **unit file** to define your`beacon-chain.service` configuration.
+Run the following to create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
 
 ```bash
 cat > $HOME/beacon-chain.service << EOF 
@@ -692,7 +693,7 @@ Move the unit file to `/etc/systemd/system`
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
 ```
 
-Give it permissions.
+Update file permissions.
 
 ```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
@@ -749,13 +750,24 @@ journalctl --unit=beacon-chain --since=today
 journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
-{% hint style="info" %}
-The `--metrics` flag enables reporting on port 5054 and will be monitored with Prometheus.
-{% endhint %}
-
 ## 🧬 4.6. Start the validator
 
-Running the validator automatically with systemd.
+#### 🚀 Setup Graffiti and POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
 
 #### 🍰 Benefits of using systemd for your validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -763,9 +775,9 @@ Running the validator automatically with systemd.
 2. Automatically restart crashed validator processes.
 3. Maximize your validator up-time and performance.
 
-#### 🛠 Setup Instructions
+#### 🛠 Setup Instructions for Systemd
 
-Run the following to create a **unit file** to define your`validator.service` configuration.
+Run the following to create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
 
 ```bash
 cat > $HOME/validator.service << EOF 
@@ -779,7 +791,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network mainnet
+ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" 
 Restart         = on-failure
 
 [Install]
@@ -787,10 +799,15 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Move the unit file to `/etc/systemd/system` 
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+Update file permissions.
+
+```bash
 sudo chmod 644 /etc/systemd/system/validator.service
 ```
 
@@ -807,6 +824,8 @@ Nice work. Your validator is now managed by the reliability and robustness of sy
 {% endhint %}
 
 ### 🛠 Some helpful systemd commands
+
+
 
 #### ✅ Check whether the validator is active
 
@@ -950,7 +969,22 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 Nimbus combines both the beacon chain and validator into one process.
 {% endhint %}
 
-Running the beacon chain and validator automatically with systemd.
+#### 🚀 Setup Graffiti and POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
 
 #### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -960,7 +994,7 @@ Running the beacon chain and validator automatically with systemd.
 
 #### 🛠 Setup Instructions
 
-Run the following to create a **unit file** to define your`beacon-chain.service` configuration.
+Run the following to create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
 
 ```bash
 cat > $HOME/beacon-chain.service << EOF 
@@ -977,7 +1011,7 @@ Type            = simple
 User            = $(whoami)
 WorkingDirectory= /var/lib/nimbus
 Environment     = "ClientIP=\$(curl -s ident.me)"
-ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node --network=mainnet --data-dir=/var/lib/nimbus --nat=extip:\${ClientIP} --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log --max-peers=100'
+ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node --network=mainnet --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --nat=extip:\${ClientIP} --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log --max-peers=100'
 Restart         = on-failure
 
 [Install]
@@ -1161,7 +1195,24 @@ echo 'my_password_goes_here' > $HOME/validators-password.txt
 sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
 ```
 
-Generate your Teku Config file.
+#### 🚀 Setup Graffiti and POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
+Generate your Teku Config file. Simply copy and paste.
 
 ```bash
 cat > $HOME/teku.yaml << EOF
@@ -1173,7 +1224,7 @@ p2p-enabled: true
 p2p-port: 9000
 # validators
 validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
-validators-graffiti: "Teku validator & CoinCashew.com"
+validators-graffiti: "${MY_GRAFFITI}"
 
 # Eth 1
 eth1-endpoint: "http://localhost:8545"
@@ -1259,10 +1310,15 @@ WantedBy	= multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Move the unit file to `/etc/systemd/system` 
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
 ```
 
@@ -1386,7 +1442,7 @@ $HOME/prysm/prysm.sh beacon-chain --clear-db --mainnet
 
 #### 🛠 Setup Instructions
 
-Run the following to create a **unit file** to define your`beacon-chain.service` configuration.
+Run the following to create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
 
 ```bash
 cat > $HOME/beacon-chain.service << EOF 
@@ -1416,7 +1472,7 @@ Move the unit file to `/etc/systemd/system`
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
 ```
 
-Give it permissions.
+Update file permissions.
 
 ```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
@@ -1482,6 +1538,23 @@ echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
 sudo chmod 600 $HOME/.eth2validators/validators-password.txt
 ```
 
+#### 🚀 Setup Graffiti and POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
 Your choice of running a validator manually from command line or automatically with systemd.
 
 #### 🍰 Benefits of using systemd for your validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
@@ -1490,9 +1563,9 @@ Your choice of running a validator manually from command line or automatically w
 2. Automatically restart crashed validator processes.
 3. Maximize your validator up-time and performance.
 
-#### 🛠 Setup Instructions
+#### 🛠 Setup Instructions for systemd
 
-Run the following to create a **unit file** to define your`validator.service` configuration.
+Run the following to create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
 
 ```bash
 cat > $HOME/validator.service << EOF 
@@ -1506,7 +1579,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --mainnet --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --mainnet --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
 Restart         = on-failure
 
 [Install]
@@ -1514,10 +1587,15 @@ WantedBy	= multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Move the unit file to `/etc/systemd/system` 
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+Update file permissions.
+
+```bash
 sudo chmod 644 /etc/systemd/system/validator.service
 ```
 
@@ -1568,10 +1646,12 @@ journalctl --unit=validator --since=today
 journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
-Verify that your **validator public key** appears in the logs. Example below:
+Verify that your **validator public key** appears in the logs.
 
-```text
-INFO Enabled validator       voting_pubkey: 0x2374.....7121
+```bash
+journalctl --unit=validator --since=today
+# Example below
+# INFO Enabled validator       voting_pubkey: 0x2374.....7121
 ```
 {% endtab %}
 
@@ -1685,7 +1765,7 @@ Run the beacon chain automatically with systemd.
 
 #### 🛠 Setup Instructions
 
-Run the following to create a **unit file** to define your`beacon-chain.service` configuration.
+Run the following to create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
 
 ```bash
 cat > $HOME/beacon-chain.service << EOF 
@@ -1708,10 +1788,15 @@ WantedBy	= multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Move the unit file to `/etc/systemd/system`
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
 ```
 
@@ -1768,6 +1853,23 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 
 ## 🧬 4.5. Start the validator
 
+#### 🚀 Setup Graffiti and POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
 Run the validator automatically with systemd.
 
 #### 🍰 Benefits of using systemd for your validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
@@ -1778,7 +1880,7 @@ Run the validator automatically with systemd.
 
 #### 🛠 Setup Instructions
 
-Run the following to create a **unit file** to define your`validator.service` configuration.
+Run the following to create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
 
 ```bash
 cat > $HOME/validator.service << EOF 
@@ -1793,7 +1895,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --network mainnet
+ExecStart       = yarn run cli validator run --network mainnet --graffiti "${MY_GRAFFITI}"
 Restart         = on-failure
 
 [Install]
@@ -1801,10 +1903,15 @@ WantedBy	= multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Move the unit file to `/etc/systemd/system`
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+Update file permissions.
+
+```bash
 sudo chmod 644 /etc/systemd/system/validator.service
 ```
 
@@ -2791,6 +2898,240 @@ Reload the updated unit file and restart the beacon-chain.
 sudo systemctl daemon-reload
 sudo systemctl restart beacon-chain
 ```
+
+### 🎊 8.9 Add or change graffiti / POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>`  between the single quotes.
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+Run the following to re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" 
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system` 
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+Run the following to re-create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/beacon-chain.service << EOF 
+# The eth2 beacon chain service (part of systemd)
+# file: /etc/systemd/system/beacon-chain.service 
+
+[Unit]
+Description     = eth2 beacon chain service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+Type            = simple
+User            = $(whoami)
+WorkingDirectory= /var/lib/nimbus
+Environment     = "ClientIP=\$(curl -s ident.me)"
+ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node --network=mainnet --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --nat=extip:\${ClientIP} --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log --max-peers=100'
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+{% hint style="warning" %}
+Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum and Infura ETH1 nodes are verified compatible.
+{% endhint %}
+
+Move the unit file to `/etc/systemd/system` 
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+Re-generate your Teku Config file. Simply copy and paste.
+
+```bash
+cat > $HOME/teku.yaml << EOF
+# network
+network: "mainnet"
+
+# p2p
+p2p-enabled: true
+p2p-port: 9000
+# validators
+validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
+validators-graffiti: "${MY_GRAFFITI}"
+
+# Eth 1
+eth1-endpoint: "http://localhost:8545"
+
+# metrics
+metrics-enabled: true
+metrics-categories: ["BEACON","LIBP2P","NETWORK"]
+metrics-port: 8008
+
+# database
+data-path: "$(echo $HOME)/tekudata"
+data-storage-mode: "archive"
+
+# rest api
+rest-api-port: 5051
+rest-api-docs-enabled: true
+rest-api-enabled: true
+
+# logging
+log-include-validator-duties-enabled: true
+log-destination: CONSOLE
+EOF
+```
+
+Move the config file to `/etc/teku`
+
+```bash
+sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+Re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --mainnet --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+Restart         = on-failure
+
+[Install]
+WantedBy	= multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+ Update its permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+Run the following to re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+WorkingDirectory= $(echo $HOME)/git/lodestar
+ExecStart       = yarn run cli validator run --network mainnet --graffiti "${MY_GRAFFITI}"
+Restart         = on-failure
+
+[Install]
+WantedBy	= multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+ Update its permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+{% endtab %}
+{% endtabs %}
+
+Reload the updated unit file and restart the validator process for your graffiti to take effect.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart validator
+```
+{% endtab %}
+
+{% tab title="Teku \| Nimbus" %}
+```
+sudo systemctl daemon-reload
+sudo systemctl restart beacon-chain
+```
+{% endtab %}
+{% endtabs %}
 
 ## 🌇 9. Join the community on Discord and Reddit
 
