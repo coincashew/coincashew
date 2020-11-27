@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of November 26 2020, this guide is updated for **mainnet.** 😁 
+As of November 27 2020, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
 #### ✨ For the testnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
@@ -2722,6 +2722,8 @@ sudo systemctl restart eth1
 In case you need to locate your validator keys, database directories or other important files.
 {% endhint %}
 
+#### Eth2 Client files and locations
+
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
@@ -2780,6 +2782,38 @@ In case you need to locate your validator keys, database directories or other im
 
 {% tab title="Lodestar" %}
 TBD
+{% endtab %}
+{% endtabs %}
+
+#### Eth1 node files and locations
+
+{% tabs %}
+{% tab title="Geth" %}
+```bash
+# database location
+$HOME/.ethereum
+```
+{% endtab %}
+
+{% tab title="OpenEthereum \(Parity\)" %}
+```bash
+# database location
+$HOME/.local/share/openethereum
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+```bash
+# database location
+/opt/besu/database
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+```bash
+#database location
+$HOME/nethermind/nethermind_db
+```
 {% endtab %}
 {% endtabs %}
 
