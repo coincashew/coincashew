@@ -584,11 +584,12 @@ sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev
 
 ## 💡 4.2. Build Lighthouse from source
 
-```text
+```bash
 mkdir ~/git
 cd ~/git
 git clone https://github.com/sigp/lighthouse.git
 cd lighthouse
+git fetch --all && git checkout stable && git pull
 make
 ```
 
@@ -2297,7 +2298,7 @@ Pull the latest source and build it.
 
 ```bash
 cd $HOME/git/lighthouse
-git pull
+git fetch --all && git checkout stable && git pull
 make
 ```
 

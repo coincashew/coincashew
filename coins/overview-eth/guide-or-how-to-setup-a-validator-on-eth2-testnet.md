@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet
 
 {% hint style="success" %}
-As of November 24 2020, this guide is updated for **testnet Pyrmont.** 😁
+As of November 27 2020, this guide is updated for **testnet Pyrmont.** 😁
 {% endhint %}
 
 #### ✨ For the mainnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md).
@@ -587,11 +587,12 @@ sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev
 
 ## 💡 4.2. Build Lighthouse from source
 
-```text
+```bash
 mkdir ~/git
 cd ~/git
 git clone https://github.com/sigp/lighthouse.git
 cd lighthouse
+git fetch --all && git checkout stable && git pull
 make
 ```
 
@@ -2202,7 +2203,7 @@ Pull the latest source and build it.
 
 ```bash
 cd $HOME/git/lighthouse
-git pull
+git fetch --all && git checkout stable && git pull
 make
 ```
 

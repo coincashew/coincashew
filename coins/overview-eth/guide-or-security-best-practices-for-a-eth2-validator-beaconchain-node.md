@@ -25,19 +25,19 @@ ssh username@server.public.ip.address
 Create a new user called ethereum
 
 ```text
-useradd -m -s /bin/bash ethereum
+sudo useradd -m -s /bin/bash ethereum
 ```
 
 Set the password for ethereum user
 
 ```text
-passwd ethereum
+sudo passwd ethereum
 ```
 
 Add ethereum to the sudo group
 
 ```text
-usermod -aG sudo ethereum
+sudo usermod -aG sudo ethereum
 ```
 
 ## 🔐 **Disable SSH password Authentication and Use SSH Keys only**
@@ -428,6 +428,11 @@ netstat -tulpn
 # tcp6       0      0 :::30303                :::*                    LISTEN      22117/geth
 # udp6       0      0 :::30303                :::*                    LISTEN      22117/geth
 ```
+
+## 🤖 Start staking by building a validator
+
+* Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md)
+* Visit here for our [Testnet guide](guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
 
 {% hint style="success" %}
 Congrats on completing the guide. 
