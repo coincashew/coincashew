@@ -825,8 +825,6 @@ Nice work. Your validator is now managed by the reliability and robustness of sy
 
 ### 🛠 Some helpful systemd commands
 
-
-
 #### ✅ Check whether the validator is active
 
 ```text
