@@ -1703,6 +1703,7 @@ nodejs -v
 Install and build Lodestar.
 
 ```bash
+mkdir ~/git
 cd ~/git
 git clone https://github.com/chainsafe/lodestar.git
 cd lodestar
@@ -2489,7 +2490,7 @@ Complete the steps of uploading the `deposit_data-#########.json` to the launch 
 
 Finish by stopping your validator, importing the new validator key\(s\), restarting your validator and verifying the logs ensuring everything still works without error.
 
-### 💸 8.4 Switch / change eth2 clients with slash protection
+### 💸 8.4 Switch / migrate Eth2 clients with slash protection
 
 {% hint style="info" %}
 The key takeaway in this process is to avoid running two eth2 clients simultaneously. You want to avoid being punished by a slashing penalty, which causes a loss of ether.
@@ -2897,9 +2898,9 @@ sudo systemctl daemon-reload
 sudo systemctl restart beacon-chain
 ```
 
-### 🎊 8.9 Add or change graffiti / POAP
+### 🎊 8.9 Add or change POAP graffiti flag
 
-Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn an early beacon chain validator POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
 
 Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>`  between the single quotes.
 
