@@ -77,6 +77,11 @@ sed -i mainnet-config.json \
 #### ログ出力をコンソールとJSONファイルの両方に対応する場合の記述方法
 
 ```bash
+nano mainnet-config.json
+ ```
+ 以下を該当する部分に貼り付けます。
+
+ ```
   "defaultScribes": [
     [
       "FileSK",
@@ -87,13 +92,8 @@ sed -i mainnet-config.json \
       "stdout"
     ]
   ],
-
-
- ~~~
- ~~~
- ~~~
-  
-
+```
+```
    "setupScribes": [
     {
       "scFormat": "ScJson",
