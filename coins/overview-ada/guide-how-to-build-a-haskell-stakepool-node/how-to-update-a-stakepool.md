@@ -174,6 +174,10 @@ mv cardano-node/ cardano-node-old/
 mv cardano-node2/ cardano-node/
 ```
 
+{% hint style="danger" %}
+**Reminder**: Don't forget to update your **air-gapped offline machine \(cold environment\)** with the new Cardano binaries.
+{% endhint %}
+
 ## 🤯 2. In case of problems
 
 ### 🛣 4.1 Forked off
