@@ -74,6 +74,43 @@ sed -i mainnet-config.json \
     -e "s/LiveView/SimpleView/g"
 ```
 
+#### ログ出力をコンソールとJSONファイルの両方に対応する場合の記述方法
+
+```bash
+  "defaultScribes": [
+    [
+      "FileSK",
+      "logs/node.json"
+    ],
+    [
+      "StdoutSK",
+      "stdout"
+    ]
+  ],
+
+
+ ~~~
+ ~~~
+ ~~~
+  
+
+   "setupScribes": [
+    {
+      "scFormat": "ScJson",
+      "scKind": "FileSK",
+      "scName": "logs/node.json"
+    },
+    {
+      "scFormat": "ScText",
+      "scKind": "StdoutSK",
+      "scName": "stdout",
+      "scRotation": null
+    }
+  ]
+ ```
+
+
+
 #### gLiveViewをインストールします（任意）
 
 LiveViewの代わりにノードを監視するコミュニティ製の監視ツールです。  
