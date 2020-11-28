@@ -792,7 +792,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" 
+ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" --metrics 
 Restart         = on-failure
 
 [Install]
@@ -2049,6 +2049,10 @@ scrape_configs:
      metrics_path: /metrics    
      static_configs:
        - targets: ['localhost:5054']
+   - job_name: 'validators'
+     metrics_path: /metrics
+     static_configs:
+       - targets: ['localhost:5064']
 EOF
 ```
 {% endtab %}
