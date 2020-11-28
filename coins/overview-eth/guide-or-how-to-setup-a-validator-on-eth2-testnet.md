@@ -415,7 +415,7 @@ Review the latest release at
 
 ```bash
 mkdir $HOME/nethermind && cd $HOME/nethermind
-wget -O nethermind.zip https://github.com/NethermindEth/nethermind/releases/download/1.9.37/nethermind-linux-amd64-1.9.37-d83d23a-20201121.zip
+wget -O nethermind.zip https://github.com/NethermindEth/nethermind/releases/download/1.9.42/nethermind-linux-amd64-1.9.42-3c4bb97-20201128.zip
 unzip nethermind.zip
 rm nethermind.zip
 ```
