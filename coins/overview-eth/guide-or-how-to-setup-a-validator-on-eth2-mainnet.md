@@ -431,7 +431,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --JsonRpc.Enabled true
+ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
 Restart         = on-failure
 
 [Install]
