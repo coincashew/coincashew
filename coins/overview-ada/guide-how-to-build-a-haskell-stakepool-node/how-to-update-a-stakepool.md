@@ -79,7 +79,7 @@ Remove the old binaries and rebuild the latest binaries. Run the following comma
 
 ```bash
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
-cd cd $HOME/git/cardano-node2
+cd $HOME/git/cardano-node2
 git clean -fd
 git fetch --all --recurse-submodules --tags
 git checkout tags/1.23.0 && git pull
