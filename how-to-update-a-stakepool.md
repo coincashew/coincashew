@@ -108,8 +108,12 @@ nano mainnet-config.json
     }
   ]
  ```
+#### vrf.skeyのパーミッションを変更する（ブロックプロデューサーの場合のみ）
 
-
+1.23.0バージョンより、vrf.skeyパーミッションチェックが実装されました。
+```
+chmod 400 vrf.skey
+```
 
 #### gLiveViewをインストールします（任意）
 
