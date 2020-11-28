@@ -1,33 +1,24 @@
-# How to upload poolMetaData.json to Github
+# poolMetaData.jsonをGithubにアップロードする方法
 
-## Quick steps to hosting your poolmetadata.json
+## poolMetaData.jsonをホストするクイックステップ
 
-1. Sign up for a Github account by visiting [https://github.com/](https://github.com/)
-2. Create a **new repository** with a short name
-3. Click Get started by "**creating a new file**"
+1. Githubアカウントを作成しログインします [https://github.com/](https://github.com/)
+2. 短い名前で**new repository** を名を作成します。
+3. **Create repository**をクリックします。
+4. 小さい文字で書かれた"**creating a new file**"をクリックします。
+5. ファイル名を **poolMetaData.json** として入力し **json** コンテンツを貼り付けます。
+6. **Commit new file**をクリックします。
+7. 作成したファイルの名前をクリックします。
+8. **Rawボタン**をクリックします。
+9. URLをコピーします。
 
-![](../../../.gitbook/assets/git1.png)
+> 例: [https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json](https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json)
 
-4. Enter your file name as **poolMetaData.json** and paste in your **json** content.
+1. URLは64文字より短くする必要があります。 [https://git.io/](https://git.io/) を使用してURLを短縮します。
+2. 9でコピーしたURLを貼り付けます。
 
-![](../../../.gitbook/assets/git2.png)
-
-5. Click **Commit new file**
-
-![](../../../.gitbook/assets/git3.png)
-
-6. Click your new file's name
-
-7. Click on **Raw button**
-
-8. Copy the URL into your clipboard
-
-> Example: [https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json](https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json)
-
-9. The URL must be shorter than 64 characters. Use [https://git.io/](https://git.io/) to shorten it.
-
-> Example:  
+> 例:  
 > [https://git.io/JUcnl](https://git.io/JUcnl)
 
-10. Use this tinyurl URL`--metadata-url` in your stakepool registration transaction.
+1. 短縮されたURLを`--metadata-url` に記述します。
 

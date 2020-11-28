@@ -47,7 +47,7 @@ SSHを強化する基本的なルールは次の通りです。
 ssh-keygen -t rsa
 ```
 
-公開鍵\(_\*_.pub\)をリモートノードをへ転送する。
+公開鍵\(_\*_.pub\)をリモートノードへ転送する。
 
 {% hint style="info" %}
 ssh-copy-id コマンドを使用することで、リモートサーバへ「.ssh/authorized\_keys」として転送してくれます。
@@ -171,10 +171,13 @@ sudo passwd -u root
 ## 🛠 SSHの2段階認証を設定する
 
 {% hint style="info" %}
-SSHはリモートアクセスに使用されますが、重要なデータを含むコンピュータとの接続としても使われるため、別のセキュリティーレイヤーの導入をお勧めします。2段階認証\(2FA\)
+SSHはリモートアクセスに使用されますが、重要なデータを含むコンピュータとの接続としても使われるため、別のセキュリティーレイヤーの導入をお勧めします。2段階認証\(2FA\)  
+事前にお手元のスマートフォンに「Google認証システムアプリ」のインストールが必要です
 {% endhint %}
 
 ```text
+sudo apt update
+sudo apt upgrade
 sudo apt install libpam-google-authenticator -y
 ```
 
@@ -214,7 +217,19 @@ ChallengeResponseAuthentication yes
 UsePAM yes
 ```
 
+最後の行に1行追加します。\(SSH公開鍵秘密鍵ログインを利用の場合\)
+
+```text
+AuthenticationMethods publickey,keyboard-interactive
+```
+
 ファイルを保存して閉じます。
+
+以下を使用して`sshd`デーモンを再起動します。
+
+```text
+sudo systemctl restart sshd.service
+```
 
 **google-authenticator** コマンドを実行します。
 
@@ -232,7 +247,7 @@ google-authenticator
 
 プロセス中に大きなQRコードが表示されますが、その下には緊急時のスクラッチコードがひょうじされますので、忘れずに書き留めておいて下さい。
 
-スマートフォンでGoogle認証システムアプリを開き、秘密鍵を追加して2段階認証を機能させます。
+スマートフォンでGoogle認証システムアプリを開き、QRコードを読み取り2段階認証を機能させます。
 
 ## 🧩 安全な共有メモリー
 
