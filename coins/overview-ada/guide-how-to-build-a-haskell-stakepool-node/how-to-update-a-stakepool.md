@@ -21,12 +21,67 @@ cd cardano-node2/
 Read the patch notes for any other special updates or dependencies that may be required for the latest release.
 {% endhint %}
 
+### Release v1.23.0 New Dependencies
+
+Install GHC version 8.10.2
+
+```bash
+cd
+wget https://downloads.haskell.org/ghc/8.10.2/ghc-8.10.2-x86_64-deb9-linux.tar.xz
+tar -xf ghc-8.10.2-x86_64-deb9-linux.tar.xz
+rm ghc-8.10.2-x86_64-deb9-linux.tar.xz
+cd ghc-8.10.2
+./configure
+sudo make install
+```
+
+Ensure the GHC version 8.10.2 is installed.
+
+```bash
+source $HOME/.bashrc
+ghc -V
+```
+
+> \#Example of version output
+>
+> The Glorious Glasgow Haskell Compilation System, version 8.10.2
+
+Configure build options.
+
+```text
+cd cardano-node2/
+cabal configure -O0 -w ghc-8.10.2
+```
+
+#### Disable Liveview
+
+As if this release, LiveView was removed.
+
+Run the following to modify **mainnet-config.json** and 
+
+* change LiveView to SimpleView
+
+```bash
+cd $NODE_HOME
+sed -i mainnet-config.json \
+    -e "s/LiveView/SimpleView/g"
+```
+
+#### Install gLiveView
+
+A recommended drop in replacement for LiveView to help you monitor activities on the node.
+
+Refer to [this link for install instructions.](./#18-13-gliveview-node-status-monitoring)
+
+### Compiling the new binaries
+
 Remove the old binaries and rebuild the latest binaries. Run the following command to pull and build the latest binaries. Change the checkout **tag** or **branch** as needed.
 
 ```bash
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 git clean -fd
-git fetch --all && git checkout tags/1.21.1 && git pull
+git fetch --all --recurse-submodules --tags
+git checkout tags/1.23.0 && git pull
 cabal build cardano-node cardano-cli
 ```
 

@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of October 8 2020, this guide is written for **mainnet** with **release v.1.21.1** 😁 
+As of Nov 27 2020, this guide is written for **mainnet** with **release v.1.23.0** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -117,10 +117,10 @@ mv cabal $HOME/.local/bin/
 Install GHC.
 
 ```bash
-wget https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-deb9-linux.tar.xz
-tar -xf ghc-8.6.5-x86_64-deb9-linux.tar.xz
-rm ghc-8.6.5-x86_64-deb9-linux.tar.xz
-cd ghc-8.6.5
+wget https://downloads.haskell.org/ghc/8.10.2/ghc-8.10.2-x86_64-deb9-linux.tar.xz
+tar -xf ghc-8.10.2-x86_64-deb9-linux.tar.xz
+rm ghc-8.10.2-x86_64-deb9-linux.tar.xz
+cd ghc-8.10.2
 ./configure
 sudo make install
 ```
@@ -145,7 +145,7 @@ ghc -V
 ```
 
 {% hint style="info" %}
-Cabal library should be version 3.2.0.0 and GHC should be version 8.6.5
+Cabal library should be version 3.2.0.0 and GHC should be version 8.10.2
 {% endhint %}
 
 ## 🏗 2. Build the node from source code
@@ -156,8 +156,14 @@ Download source code and switch to the latest tag.
 cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
-git fetch --all
-git checkout tags/1.21.1
+git fetch --all --recurse-submodules --tags
+git checkout tags/1.23.0
+```
+
+Configure build options.
+
+```text
+cabal configure -O0 -w ghc-8.10.2
 ```
 
 Update the cabal config, project settings, and reset build folder.
@@ -165,7 +171,7 @@ Update the cabal config, project settings, and reset build folder.
 ```bash
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 sed -i $HOME/.cabal/config -e "s/overwrite-policy:/overwrite-policy: always/g"
-rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5
+rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.10.2
 ```
 
 Build the cardano-node from source code.
@@ -207,12 +213,10 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 
 Run the following to modify **config.json** and 
 
-* update ViewMode to "LiveView"
 * update TraceBlockFetchDecisions to "true"
 
 ```bash
 sed -i ${NODE_CONFIG}-config.json \
-    -e "s/SimpleView/LiveView/g" \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
 ```
 
@@ -1443,7 +1447,7 @@ Your stake pool ID can be computed with:
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli shelley stake-pool id --verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
+cardano-cli shelley stake-pool id --cold-verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
 cat stakepoolid.txt
 ```
 {% endtab %}
@@ -2509,8 +2513,12 @@ Type            = forking
 WorkingDirectory= $NODE_HOME
 ExecStart       = /usr/bin/tmux new -d -s cnode
 ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startRelayNode1.sh Enter 
-ExecStop        = killall cardano-node
-Restart         = always
+KillSignal=SIGINT
+RestartKillSignal=SIGINT
+TimeoutStopSec=2
+LimitNOFILE=32768
+Restart=always
+RestartSec=5
 
 [Install]
 WantedBy	= multi-user.target

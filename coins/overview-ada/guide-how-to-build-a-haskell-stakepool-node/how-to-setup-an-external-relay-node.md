@@ -77,8 +77,8 @@ cd cardano-node
 ```bash
 git fetch --tags --all
 git pull
-# Replace tag 1.19.1 with the version/branch you'd like to build
-git checkout 1.19.1
+# Replace tag 1.23.0 with the version/branch you'd like to build
+git checkout 1.23.0
 
 echo -e "package cardano-crypto-praos\n  flags: -external-libsodium-vrf" > cabal.project.local
 $CNODE_HOME/scripts/cabal-build-all.sh
