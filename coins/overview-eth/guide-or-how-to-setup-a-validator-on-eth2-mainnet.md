@@ -680,7 +680,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) bn --staking --metrics --network mainnet
+ExecStart       = $(which lighthouse) bn --staking --metrics --target-peers 70 --network mainnet
 Restart         = on-failure
 
 [Install]
@@ -707,6 +707,18 @@ sudo systemctl daemon-reload
 sudo systemctl enable beacon-chain
 sudo systemctl start beacon-chain
 ```
+
+{% hint style="info" %}
+**Troubleshooting common issues**: 
+
+_The beacon chain couldn't connect to the :8545 service?_ 
+
+* In the beacon chain unit file under \[Service\], add, "`ExecStartPre = /bin/sleep 30`" so that it waits 30 seconds for eth1 node to startup before connecting.
+
+_CRIT Invalid eth1 chain id. Please switch to correct chain id._
+
+* Allow your eth1 node to fully sync to mainnet.
+{% endhint %}
 
 {% hint style="success" %}
 Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
@@ -1009,8 +1021,7 @@ After           = network-online.target
 Type            = simple
 User            = $(whoami)
 WorkingDirectory= /var/lib/nimbus
-Environment     = "ClientIP=\$(curl -s ident.me)"
-ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node --network=mainnet --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --nat=extip:\${ClientIP} --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log --max-peers=100'
+ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node --network=mainnet --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log --max-peers=70'
 Restart         = on-failure
 
 [Install]
@@ -1224,6 +1235,7 @@ p2p-port: 9000
 # validators
 validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
 validators-graffiti: "${MY_GRAFFITI}"
+p2p-peer-upper-bound: 70
 
 # Eth 1
 eth1-endpoint: "http://localhost:8545"
@@ -1456,8 +1468,7 @@ After           = network-online.target
 [Service]
 Type            = simple
 User            = $(whoami)
-Environment     = "ClientIP=\$(curl -s ident.me)"
-ExecStart       = /bin/bash -c '$(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --p2p-host-ip=\${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use' 
+ExecStart       = /bin/bash -c '$(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --p2p-max-peers=70 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use' 
 Restart         = on-failure
 
 [Install]
