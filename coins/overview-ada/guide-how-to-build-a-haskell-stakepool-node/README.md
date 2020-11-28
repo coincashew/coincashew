@@ -404,7 +404,7 @@ chmod +x startRelayNode1.sh
 {% endtabs %}
 
 {% hint style="info" %}
-\*\*\*\*🛑 **To stop your node**, you can press '**`q`**' or run the command `killall cardano-node`
+\*\*\*\*🛑 **To stop your node**,  run the command `killall -s 2 cardano-node`
 {% endhint %}
 
 {% hint style="info" %}
@@ -549,12 +549,22 @@ cardano-cli shelley node key-gen-VRF \
 {% endtab %}
 {% endtabs %}
 
+{% hint style="info" %}
+Starting with version 1.23.0, `vrf.skey` permission checking has been implemented and a node will only start if the owner is set to read-only permission.
+{% endhint %}
+
+Update vrf key permissions to read-only.
+
+```text
+chmod 400 vrf.skey
+```
+
 Open a new terminal window with Ctrl+Alt+T and stop your ****stake pool by running the following:
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-killall cardano-node
+killall -s 2 cardano-node
 ```
 {% endtab %}
 {% endtabs %}
@@ -1607,7 +1617,7 @@ The new topology takes after after restarting your stake pool.
 ###
 ### On relaynode1
 ###
-killall cardano-node
+killall -s 2 cardano-node
 ./startRelayNode1.sh
 ```
 
@@ -1949,7 +1959,7 @@ Stop and restart your stake pool.
 {% tab title="block producer node" %}
 ```bash
 cd $NODE_HOME
-killall cardano-node
+killall -s 2 cardano-node
 ./startBlockProducingNode.sh
 ```
 {% endtab %}
@@ -1957,7 +1967,7 @@ killall cardano-node
 {% tab title="relaynode1" %}
 ```bash
 cd $NODE_HOME
-killall cardano-node
+killall -s 2 cardano-node
 ./startRelayNode1.sh
 ```
 {% endtab %}
@@ -2132,7 +2142,7 @@ Stop and restart your block producer node to complete this procedure.
 {% tab title="block producer node" %}
 ```bash
 cd $NODE_HOME
-killall cardano-node
+killall -s 2 cardano-node
 ./startBlockProducingNode.sh
 ```
 {% endtab %}
@@ -2460,7 +2470,7 @@ rsync -avzhe “ssh -p <SSH-PORT>” <PATH TO LOCAL PC DESTINATION> <USERNAME>@<
 Before beginning, ensure your stake pool is stopped.
 
 ```bash
-killall cardano-node
+killall -s 2 cardano-node
 ```
 
 Run the following to create a **unit file** to define your`cardano-node.service` configuration.

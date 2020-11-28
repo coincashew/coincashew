@@ -35,10 +35,11 @@ cd ghc-8.10.2
 sudo make install
 ```
 
-Ensure the GHC version 8.10.2 is installed.
+Update cabal and ensure GHC version 8.10.2 is installed.
 
 ```bash
 source $HOME/.bashrc
+cabal update
 ghc -V
 ```
 
@@ -48,8 +49,8 @@ ghc -V
 
 Configure build options.
 
-```text
-cd cardano-node2/
+```bash
+cd $HOME/git/cardano-node2/
 cabal configure -O0 -w ghc-8.10.2
 ```
 
@@ -73,13 +74,24 @@ A recommended drop in replacement for LiveView to help you monitor activities on
 
 Refer to [this link for install instructions.](./#18-13-gliveview-node-status-monitoring)
 
+#### Update permissions on vrf.skey \(only for block producer node\)
+
+{% hint style="info" %}
+Starting with version 1.23.0, `vrf.skey` permission checking has been implemented and a block producer node will only start if the owner is set to read-only permission.
+{% endhint %}
+
+```bash
+cd $NODE_HOME
+chmod 400 vrf.skey
+```
+
 ### Compiling the new binaries
 
 Remove the old binaries and rebuild the latest binaries. Run the following command to pull and build the latest binaries. Change the checkout **tag** or **branch** as needed.
 
 ```bash
-rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 cd $HOME/git/cardano-node2
+rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 git clean -fd
 git fetch --all --recurse-submodules --tags
 git checkout tags/1.23.0 && git pull
@@ -104,13 +116,13 @@ Stop your node before updating the binaries.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-killall cardano-node
+killall -s 2 cardano-node
 ```
 {% endtab %}
 
 {% tab title="relaynode1" %}
 ```
-killall cardano-node
+killall -s 2 cardano-node
 ```
 {% endtab %}
 
@@ -184,13 +196,13 @@ Stop your node before updating the binaries.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-killall cardano-node
+killall -s 2 cardano-node
 ```
 {% endtab %}
 
 {% tab title="relaynode1" %}
 ```
-killall cardano-node
+killall -s 2 cardano-node
 ```
 {% endtab %}
 
