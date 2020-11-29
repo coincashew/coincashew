@@ -209,6 +209,13 @@ Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [
 
 {% tabs %}
 {% tab title="OpenEthereum \(Parity\)" %}
+#### ⚙ Install dependencies
+
+```text
+sudo apt-get update
+sudo apt-get install curl jq unzip -y
+```
+
 #### 🤖 Install OpenEthereum
 
 Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
@@ -339,7 +346,8 @@ sudo systemctl start eth1
 #### 🧬 Install java dependency
 
 ```text
-sudo apt install openjdk-11-jdk
+sudo apt-get update
+sudo apt install openjdk-11-jdk -y
 ```
 
 #### 🌜 Download and unzip Besu
@@ -371,7 +379,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/besu/bin/besu --rpc-http-enabled --network=goerli
+ExecStart       = $(echo $HOME)/besu/bin/besu --rpc-http-enabled --network=goerli --data-path="$HOME/.besu_goerli"
 Restart         = on-failure
 
 [Install]
@@ -407,7 +415,8 @@ sudo systemctl start eth1
 #### ⚙ Install dependencies
 
 ```text
-sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
+sudo apt-get update
+sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 ```
 
 #### 🌜 Download and unzip Nethermind
@@ -439,7 +448,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --config goerli --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
+ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --config goerli --baseDbPath $HOME/.nethermind_goerli --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
 Restart         = on-failure
 
 [Install]

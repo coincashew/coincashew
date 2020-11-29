@@ -205,6 +205,13 @@ Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [
 
 {% tabs %}
 {% tab title="OpenEthereum \(Parity\)" %}
+#### ⚙ Install dependencies
+
+```text
+sudo apt-get update
+sudo apt-get install curl jq unzip -y
+```
+
 #### 🤖 Install OpenEthereum
 
 Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
@@ -337,7 +344,8 @@ sudo systemctl start eth1
 #### 🧬 Install java dependency
 
 ```text
-sudo apt install openjdk-11-jdk
+sudo apt update
+sudo apt install openjdk-11-jdk -y
 ```
 
 #### 🌜 Download and unzip Besu
@@ -369,7 +377,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/besu/bin/besu --rpc-http-enabled
+ExecStart       = $(echo $HOME)/besu/bin/besu --rpc-http-enabled --data-path="$HOME/.besu"
 Restart         = on-failure
 
 [Install]
@@ -405,7 +413,8 @@ sudo systemctl start eth1
 #### ⚙ Install dependencies
 
 ```text
-sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
+sudo apt-get update
+sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 ```
 
 #### 🌜 Download and unzip Nethermind
@@ -437,7 +446,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
+ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --baseDbPath $HOME/.nethermind --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
 Restart         = on-failure
 
 [Install]
@@ -2826,14 +2835,14 @@ $HOME/.local/share/openethereum
 {% tab title="Besu" %}
 ```bash
 # database location
-/opt/besu/database
+$HOME/.besu/database
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
 ```bash
 #database location
-$HOME/nethermind/nethermind_db
+$HOME/.nethermind/nethermind_db/mainnet
 ```
 {% endtab %}
 {% endtabs %}
@@ -3201,16 +3210,16 @@ Stop your eth2 beacon chain, validator, and eth1 node processes.
 ```bash
 sudo systemctl stop validator
 sudo systemctl stop beacon-chain
-sudo systemctl stop eth1
 # This can take some time.
+sudo systemctl stop eth1
 ```
 {% endtab %}
 
 {% tab title="Nimbus \| Teku" %}
 ```bash
 sudo systemctl stop beacon-chain
-sudo systemctl stop eth1
 # This can take some time.
+sudo systemctl stop eth1
 ```
 {% endtab %}
 {% endtabs %}
@@ -3222,7 +3231,8 @@ Update the eth1 node package or binaries.
 Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+sudo apt update
+sudo apt upgrade -y
 ```
 {% endtab %}
 
@@ -3232,10 +3242,18 @@ Review the latest release at [https://github.com/openethereum/openethereum/relea
 Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
 
 ```bash
-cd $HOME/openethereum
+cd $HOME
+# backup previous openethereum version in case of rollback
+mv openethereum openethereum_backup_$(date +"%Y%d%m-%H%M%S")
+# store new version in openethreum directory
+mkdir openethereum && cd openethereum
+# download latest version
 curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+# unzip
 unzip openethereum*.zip
+# add execute permission
 chmod +x openethereum
+# cleanup
 rm openethereum*.zip
 ```
 {% endtab %}
@@ -3245,17 +3263,23 @@ Review the latest release at [https://github.com/hyperledger/besu/releases](http
 
 File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo)
 
-Manually find the desired file from above repo and update the `wget` command with the URL.
+Manually find the desired file from above repo and modify the `wget` command with the URL.
 
 > Example: 
 >
 > wget -O besu.tar.gz [https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
 
 ```bash
-cd
+cd $HOME
+# backup previous besu version in case of rollback
+mv besu besu_backup_$(date +"%Y%d%m-%H%M%S")
+# download latest besu
 wget -O besu.tar.gz <https URL to latest tax.gz linux file>
+# untar
 tar -xvf besu.tar.gz
+# cleanup
 rm besu.tar.gz
+# rename besu to standard folder location
 mv besu* besu
 ```
 {% endtab %}
@@ -3266,9 +3290,16 @@ Review the latest release at [https://github.com/NethermindEth/nethermind/releas
 Automatically download the latest linux release, un-zip and cleanup.
 
 ```bash
-cd $HOME/nethermind
+cd $HOME
+# backup previous nethermind version in case of rollback
+mv nethermind nethermind_backup_$(date +"%Y%d%m-%H%M%S")
+# store new version in nethermind directory
+mkdir nethermind && cd nethermind 
+# download latest version
 curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+# unzip
 unzip -o nethermind*.zip
+# cleanup
 rm nethermind*linux*.zip
 ```
 {% endtab %}
@@ -3289,7 +3320,6 @@ sudo systemctl start validator
 ```
 sudo systemctl stop eth1
 sudo systemctl stop beacon-chain
-
 ```
 {% endtab %}
 {% endtabs %}
