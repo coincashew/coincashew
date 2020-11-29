@@ -209,10 +209,13 @@ Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [
 
 Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
 
-```text
-mkdir ~/openethereum && cd ~/openethereum
-wget https://github.com/openethereum/openethereum/releases/download/v3.1.0/openethereum-linux-v3.1.0.zip
-unzip openethereum*.zip
+Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
+
+```bash
+mkdir $HOME/openethereum
+cd $HOME/openethereum
+curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux | xargs wget -q --show-progress
+unzip -o openethereum*.zip
 chmod +x openethereum
 rm openethereum*.zip
 ```
@@ -273,6 +276,8 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Geth" %}
+Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
+
 #### 🧬 Install from the repository
 
 ```text
@@ -337,16 +342,16 @@ sudo apt install openjdk-11-jdk
 
 #### 🌜 Download and unzip Besu
 
-Review the latest release at 
+Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
-[https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
+File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo)
 
 ```text
 cd
-wget -O besu.tar.gz https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.zip
+wget -O besu.tar.gz https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz
 tar -xvf besu.tar.gz
 rm besu.tar.gz
-mv besu-1.5.0 besu
+mv besu* besu
 ```
 
 ⚙ **Setup and configure systemd**
@@ -405,15 +410,16 @@ sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip 
 
 #### 🌜 Download and unzip Nethermind
 
-Review the latest release at 
+Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
 
-[https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
+Automatically download the latest linux release, un-zip and cleanup.
 
 ```bash
-mkdir $HOME/nethermind && cd $HOME/nethermind
-wget -O nethermind.zip https://github.com/NethermindEth/nethermind/releases/download/1.9.42/nethermind-linux-amd64-1.9.42-3c4bb97-20201128.zip
-unzip nethermind.zip
-rm nethermind.zip
+mkdir $HOME/nethermind 
+cd $HOME/nethermind
+curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+unzip -o nethermind*.zip
+rm nethermind*linux*.zip
 ```
 
 ⚙ **Setup and configure systemd**
@@ -3181,6 +3187,137 @@ sudo systemctl restart beacon-chain
 ```
 {% endtab %}
 {% endtabs %}
+
+### 📦 8.10 Update a ETH1 node - Geth / OpenEthereum / Besu / Nethermind
+
+{% hint style="info" %}
+From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
+{% endhint %}
+
+Stop your eth2 beacon chain, validator, and eth1 node processes.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl stop validator
+sudo systemctl stop beacon-chain
+sudo systemctl stop eth1
+# This can take some time.
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```bash
+sudo systemctl stop beacon-chain
+sudo systemctl stop eth1
+# This can take some time.
+```
+{% endtab %}
+{% endtabs %}
+
+Update the eth1 node package or binaries.
+
+{% tabs %}
+{% tab title="Geth" %}
+Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+{% endtab %}
+
+{% tab title="OpenEthereum \(Parity\)" %}
+Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
+
+Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
+
+```bash
+cd $HOME/openethereum
+curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+unzip openethereum*.zip
+chmod +x openethereum
+rm openethereum*.zip
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
+
+File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo)
+
+Manually find the desired file from above repo and update the `wget` command with the URL.
+
+> Example: 
+>
+> wget -O besu.tar.gz [https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
+
+```bash
+cd
+wget -O besu.tar.gz <https URL to latest tax.gz linux file>
+tar -xvf besu.tar.gz
+rm besu.tar.gz
+mv besu* besu
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
+
+Automatically download the latest linux release, un-zip and cleanup.
+
+```bash
+cd $HOME/nethermind
+curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+unzip -o nethermind*.zip
+rm nethermind*linux*.zip
+```
+{% endtab %}
+{% endtabs %}
+
+Start your eth2 beacon chain, validator, and eth1 node processes.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl start eth1
+sudo systemctl start beacon-chain
+sudo systemctl start validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl stop eth1
+sudo systemctl stop beacon-chain
+
+```
+{% endtab %}
+{% endtabs %}
+
+Check the logs to verify the services are working properly and ensure there are no errors.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl status eth1
+sudo systemctl status beacon-chain
+sudo systemctl status validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl status eth1
+sudo systemctl status beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+Finally, verify your validator's attestations are working with public block explorer such as
+
+[https://beaconcha.in/](https://beaconcha.in/)
+
+Enter your validator's pubkey to view its status.
 
 ## 🌇 9. Join the community on Discord and Reddit
 
