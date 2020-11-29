@@ -47,13 +47,6 @@ ghc -V
 >
 > The Glorious Glasgow Haskell Compilation System, version 8.10.2
 
-Configure build options.
-
-```bash
-cd $HOME/git/cardano-node2/
-cabal configure -O0 -w ghc-8.10.2
-```
-
 #### Disable Liveview
 
 As if this release, LiveView was removed.
@@ -95,6 +88,7 @@ rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 git clean -fd
 git fetch --all --recurse-submodules --tags
 git checkout tags/1.23.0 && git pull
+cabal configure -O0 -w ghc-8.10.2
 cabal build cardano-node cardano-cli
 ```
 
