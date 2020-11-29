@@ -220,7 +220,6 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 
 以下のコードを実行し **config.json**ファイルを更新します。
 
-* ViewModeを「LiveView」に変更します。
 * TraceBlockFetchDecisionsを「true」に変更します。
 
 ```bash
