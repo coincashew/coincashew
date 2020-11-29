@@ -18,7 +18,7 @@ description: >-
 
 ## 🏁 0. 前提条件
 
-### 🧙♂ ステークプールオペレータの必須スキル
+### 🧙♂ ステークプールオペレータの必須スキル  
 
 カルダノステークプールを運営するには、以下のスキルを必要とします。
 
@@ -244,8 +244,6 @@ source $HOME/.bashrc
 {% hint style="info" %}
 一方で、リレーノードはキーを所有していないため、ブロック生成はできません。その代わり、他のリレーノードとの繋がりを持ち最新スロットを取得します。
 {% endhint %}
-
-![](.gitbook/assets/producer-relay-diagram.png)
 
 {% hint style="success" %}
 このマニュアルでは、2つのサーバー上に1ノードづつ構築します。1つのノードはブロックプロデューサーノード、もう1つのノードはリレーノード1という名前のリレーノードになります。
@@ -996,8 +994,7 @@ cardano-cli shelley stake-address registration-certificate \
 {% endtab %}
 {% endtabs %}
 
-**stake.cert** をブロックプロデューサーノードにコピーします。
-ttlパラメータを設定するには、最新のスロット番号を取得する必要があります。
+**stake.cert** をブロックプロデューサーノードにコピーします。 ttlパラメータを設定するには、最新のスロット番号を取得する必要があります。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -1190,9 +1187,9 @@ cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.j
 ```
 {% endtab %}
 {% endtabs %}
-  
+
 **poolMetaDataHash.txt**をエアギャップオフラインマシンへコピーしてください  
-**poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。  
+**poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。
 
 最小プールコストを出力します。
 
@@ -1598,6 +1595,8 @@ rm crontab-fragment.txt
   
 ※お知り合いのノードや自ノードが複数ある場合は、IOHKノード情報の後に "|" で区切ってIPアドレス:ポート番号:Valency の形式で追加できます。  
 
+※お知り合いのノードや自ノードが複数ある場合は、IOHKノード情報の後に "\|" で区切ってIPアドレス:ポート番号:Valency の形式で追加できます。
+
 ```bash
 ###
 ### On relaynode1
@@ -1637,8 +1636,6 @@ killall -s 2 cardano-node
 
 {% tab title="Pooltool.ioで更新する場合" %}
 ※非推奨※ 1. [https://pooltool.io/](https://pooltool.io/)へアクセスします。 2. アカウントを作成してログインします。 3. あなたのステークプールを探します。 4. **Pool Details** &gt; **Manage** &gt; **CLAIM THIS POOL**をクリックします。 5. プール名とプールURLがある場合は入力します。 6. あなたのリレーノード情報を入力します。
-
-![](.gitbook/assets/ada-relay-setup-mainnet.png)
 
 プライベートノードには、自身のブロックプロデューサーノードと、IOHKのノード情報を入力して下さい。
 
@@ -1753,8 +1750,6 @@ Pooltool.ioでリクエストが承認されたら、その都度get\_buddies.sh
 {% hint style="danger" %}
 \*\*\*\*🔥 **重要な確認事項:** ブロックを生成するには、「TXs processed」が増加していることを確認する必要があります。万一、増加していない場合にはトポロジーファイルの内容を再確認して下さい。「peers」数はリレーノードが他ノードと接続している数を表しています。
 {% endhint %}
-
-![](.gitbook/assets/ada-tx-processed.png)
 
 {% hint style="danger" %}
 \*\*\*\*🛑 **注意事項**r: ブロックプロデューサーノードを実行するためには、以下の３つのファイルが必要です。このファイルが揃っていない場合や起動時に指定されていない場合はブロックが生成できません。
@@ -1962,7 +1957,7 @@ killall -s 2 cardano-node
 
 ### 📶 16.2 Grafanaダッシュボードの設定
 
-1. リレーノード1で、ローカルブラウザから [http://localhost:3000](http://localhost:3000) または http://&lt;リレーノードIPアドレス&gt;:3000 を開きます。 事前に 3000番ポートを開いておく必要があります。
+1. リレーノード1で、ローカルブラウザから [http://localhost:3000](http://localhost:3000) または [http://&lt;リレーノードIPアドレス&gt;:3000](http://<リレーノードIPアドレス>:3000) を開きます。 事前に 3000番ポートを開いておく必要があります。
 2. ログイン名・PWは次のとおりです。 **admin** / **admin**
 3. パスワードを変更します。
 4. 左メニューの歯車アイコンから データソースを追加します。
@@ -1987,34 +1982,39 @@ killall -s 2 cardano-node
 ## 👏 17. 寄付とクレジット表記
 
 {% hint style="info" %}
-このマニュアル制作に携わった全ての方に、感謝申し上げます。 快く翻訳を承諾して頂いた、[CoinCashew](https://www.coincashew.com/)には敬意を表します。
-この活動をサポートして頂ける方は、是非寄付をよろしくお願い致します。
+このマニュアル制作に携わった全ての方に、感謝申し上げます。 快く翻訳を承諾して頂いた、[CoinCashew](https://www.coincashew.com/)には敬意を表します。 この活動をサポートして頂ける方は、是非寄付をよろしくお願い致します。
 {% endhint %}
 
 ### CoinCashew ADAアドレス
+
 ```bash
 addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
 ```
 
-### X StakePoolへの寄付  
- 
-カルダノ分散化、日本コミュニティ発展の為に日本語化させて頂きました。私達をサポート頂ける方は当プールへ委任頂けますと幸いです。  
+### X StakePoolへの寄付
+
+カルダノ分散化、日本コミュニティ発展の為に日本語化させて頂きました。私達をサポート頂ける方は当プールへ委任頂けますと幸いです。
+
 * Ticker：XSP  
-Pool ID↓  
-```bash
-788898a81174665316af96880459dcca053f7825abb1b0db9a433630
-```
+
+  Pool ID↓  
+
+  ```bash
+  788898a81174665316af96880459dcca053f7825abb1b0db9a433630
+  ```
+
 * ADAアドレス
-```bash
-addr1q85kms3xw788pzxcr8g8d4umxjcr57w55k2gawnpwzklu97sc26z2lhct48alhew43ry674692u2eynccsyt9qexxsesjzz8qp
-```
-  
-  
+
+  ```bash
+  addr1q85kms3xw788pzxcr8g8d4umxjcr57w55k2gawnpwzklu97sc26z2lhct48alhew43ry674692u2eynccsyt9qexxsesjzz8qp
+  ```
+
 ### 全ての協力者
+
 * 👏 Antonie of CNT for being awesomely helpful with Youtube content and in telegram.
 * 👏 Special thanks to Kaze-Stake for the pull requests and automatic script contributions.
-* 👏 The Legend of ₳da [TLOA] for translating this guide to Spanish.
-* 👏 X-StakePool [BTBF] for translating this guide to Japanese.
+* 👏 The Legend of ₳da \[TLOA\] for translating this guide to Spanish.
+* 👏 X-StakePool \[BTBF\] for translating this guide to Japanese.
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
 
