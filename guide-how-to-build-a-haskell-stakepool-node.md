@@ -12,7 +12,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-このマニュアルは、Shelleyメインネット用にVer1.21.1を用いて作成されています。  
+このマニュアルは、Shelleyメインネット用にVer1.23.0を用いて作成されています。  
 [ドキュメント更新情報はこちら](README.md)
 {% endhint %}
 
@@ -125,10 +125,10 @@ mv cabal $HOME/.local/bin/
 GHCをインストールします。
 
 ```bash
-wget https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-deb9-linux.tar.xz
-tar -xf ghc-8.6.5-x86_64-deb9-linux.tar.xz
-rm ghc-8.6.5-x86_64-deb9-linux.tar.xz
-cd ghc-8.6.5
+wget https://downloads.haskell.org/ghc/8.10.2/ghc-8.10.2-x86_64-deb9-linux.tar.xz
+tar -xf ghc-8.10.2-x86_64-deb9-linux.tar.xz
+rm ghc-8.10.2-x86_64-deb9-linux.tar.xz
+cd ghc-8.10.2
 ./configure
 sudo make install
 ```
@@ -153,7 +153,7 @@ ghc -V
 ```
 
 {% hint style="info" %}
-Cabalのライブラリーバージョンは「3.2.0.0」で GHCのバージョンは「8.6.5」であることを確認してください。
+Cabalのライブラリーバージョンは「3.2.0.0」で GHCのバージョンは「8.10.2」であることを確認してください。
 {% endhint %}
 
 ## 🏗 2. ソースコードからノードを構築する
@@ -164,8 +164,13 @@ Gitからソースコードをダウンロードし、最新のタグに切り�
 cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
-git fetch --all
-git checkout tags/1.21.1
+git fetch --all --recurse-submodules --tags
+git checkout tags/1.23.0
+```
+
+Cabalのビルドオプションを構成します。
+```bash
+cabal configure -O0 -w ghc-8.10.2
 ```
 
 Cabal構成、プロジェクト設定を更新し、ビルドフォルダーをリセットします。
@@ -173,7 +178,7 @@ Cabal構成、プロジェクト設定を更新し、ビルドフォルダーを
 ```bash
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 sed -i $HOME/.cabal/config -e "s/overwrite-policy:/overwrite-policy: always/g"
-rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5
+rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.10.2
 ```
 
 カルダノノードをビルドします。
@@ -220,7 +225,6 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 
 ```bash
 sed -i ${NODE_CONFIG}-config.json \
-    -e "s/SimpleView/LiveView/g" \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
 ```
 
@@ -408,7 +412,7 @@ chmod +x startRelayNode1.sh
 {% endtabs %}
 
 {% hint style="info" %}
-🛑 ノードを停止するには「Shift」+「q」を押すか、次のコマンドを実行します。 `killall -s SIGINT cardano-node`
+🛑 ノードを停止するには「Ctrl」+「c」を押すか、次のコマンドを実行します。 `killall -s 2 cardano-node`
 {% endhint %}
 
 {% hint style="info" %}
@@ -493,6 +497,7 @@ cardano-cli shelley node key-gen \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
+pushd +1
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 ```
@@ -515,7 +520,7 @@ echo slotNo: ${slotNo}
 ```bash
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 echo kesPeriod: ${kesPeriod}
-startKesPeriod=$(( ${kesPeriod} - 0 ))
+startKesPeriod=${kesPeriod}
 echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
@@ -562,12 +567,17 @@ cardano-cli shelley node key-gen-VRF \
 {% endtab %}
 {% endtabs %}
 
+vrfキーのアクセス権を読み取り専用に更新します。
+```
+chmod 400 vrf.skey
+```
+
 新しいターミナルウィンドウを開き、次のコマンドを実行してノードを停止します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-killall -s SIGINT cardano-node
+killall -s 2 cardano-node
 ```
 {% endtab %}
 {% endtabs %}
@@ -1616,7 +1626,7 @@ chmod +x relay-topology_pull.sh
 ###
 ### On relaynode1
 ###
-killall -s SIGINT cardano-node
+killall -s 2 cardano-node
 ./startRelayNode1.sh
 ```
 
@@ -1730,7 +1740,7 @@ chmod +x get_buddies.sh
 ###
 ### On relaynode1
 ###
-killall -s SIGINT cardano-node
+killall -s 2 cardano-node
 ./startRelayNode1.sh
 ```
 
@@ -1936,7 +1946,7 @@ sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
-killall -s SIGINT cardano-node
+killall -s 2 cardano-node
 ./startBlockProducingNode.sh
 ```
 {% endtab %}
@@ -1944,7 +1954,7 @@ killall -s SIGINT cardano-node
 {% tab title="リレーノード1" %}
 ```bash
 cd $NODE_HOME
-killall -s SIGINT cardano-node
+killall -s 2 cardano-node
 ./startRelayNode1.sh
 ```
 {% endtab %}
@@ -2025,7 +2035,7 @@ cd $NODE_HOME
 slotNo=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
-startKesPeriod=$(( ${kesPeriod} - 0 ))
+startKesPeriod=${kesPeriod}
 echo startKesPeriod: ${startKesPeriod}
 ```
 {% endtab %}
@@ -2065,6 +2075,24 @@ chmod a-rwx $HOME/cold-keys
 {% hint style="danger" %}
 **node.cert** をブロックプロデューサーノードにコピーします。
 {% endhint %}
+
+この手順を完了するには、ブロックプロデューサーノードを停止して再起動します。
+
+{% tabs %}
+{% tab title="ブロックプロデューサーノード" %}
+```bash
+cd $NODE_HOME
+killall -s 2 cardano-node
+./startBlockProducingNode.sh
+```
+{% endtab %}
+
+{% tab title="ブロックプロデューサーノードsystemctl" %}
+```
+sudo systemctl reload-or-restart cardano-node
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 \*\*\*\*✨ **ヒント:** ホットキーを作成したら、コールドキーへのアクセス件を変更しセキュリティを向上させることができます。これによって誤削除、誤った編集などから保護できます。
@@ -2380,7 +2408,7 @@ rsync -avzhe “ssh -p <SSH-PORT>” <PATH TO LOCAL PC DESTINATION> <USERNAME>@<
 始める前にステークプールが停止しているか確認してください。
 
 ```bash
-killall -s SIGINT cardano-node
+killall -s 2 cardano-node
 ```
 
 以下のコードを実行して、ユニットファイルを作成します。
@@ -2403,11 +2431,15 @@ Type            = forking
 WorkingDirectory= $NODE_HOME
 ExecStart       = /usr/bin/tmux new -d -s cnode
 ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startBlockProducingNode.sh Enter 
-ExecStop        = killall -s SIGINT cardano-node
-Restart         = always
+KillSignal=SIGINT
+RestartKillSignal=SIGINT
+TimeoutStopSec=2
+LimitNOFILE=32768
+Restart=always
+RestartSec=5
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy	= multi-user.target
 EOF
 ```
 {% endtab %}
@@ -2429,11 +2461,15 @@ Type            = forking
 WorkingDirectory= $NODE_HOME
 ExecStart       = /usr/bin/tmux new -d -s cnode
 ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startRelayNode1.sh Enter 
-ExecStop        = killall -s SIGINT cardano-node
-Restart         = always
+KillSignal=SIGINT
+RestartKillSignal=SIGINT
+TimeoutStopSec=2
+LimitNOFILE=32768
+Restart=always
+RestartSec=5
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy	= multi-user.target
 EOF
 ```
 {% endtab %}
@@ -2542,7 +2578,6 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 sed -i ${NODE_CONFIG}-config.json \
-    -e "s/SimpleView/LiveView/g" \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
     -e "s/127.0.0.1/0.0.0.0/g"
 ```
@@ -2733,6 +2768,13 @@ cardano-cli shelley query utxo \
 {% endhint %}
 
 
+### 🔓 18.11 報酬を請求する
+
+{% hint style="info" %}
+絶賛翻訳中！！
+{% endhint %}
+
+
 ### 🕒 18.12 スロットリーダースケジュール - ブロック生成時期を確認する
 
 {% hint style="info" %}
@@ -2867,6 +2909,12 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 2020-10-01 00:12:22 ==> Leader for slot 131313, Cumulative epoch blocks: 2
 2020-10-01 00:19:55 ==> Leader for slot 161212, Cumulative epoch blocks: 3
 ```
+
+### 🕒 18.12 スロットリーダースケジュール - ブロック生成時期を確認する
+
+{% hint style="info" %}
+絶賛翻訳中！！
+{% endhint %}
 
 
 ## 🌜 19. ステークプールを廃止する。
