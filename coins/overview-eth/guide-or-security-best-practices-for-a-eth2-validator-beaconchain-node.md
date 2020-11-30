@@ -246,7 +246,7 @@ Now, open Google Authenticator on your phone and add your secret key to make two
 {% hint style="info" %}
 One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory. 
 
-To learn more about shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
+To learn more about secure shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
 {% endhint %}
 
 Edit `/etc/fstab`
@@ -286,7 +286,7 @@ sudo nano /etc/fail2ban/jail.local
 Add the following lines to the bottom of the file.
 
 {% hint style="info" %}
-🔥 **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges, or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local machine, local IP range or local domain, separated by spaces.
+🔥 **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local machine, local IP range or local domain, separated by spaces.
 
 ```bash
 # Example
@@ -397,7 +397,7 @@ sudo ufw status numbered
 {% endtab %}
 {% endtabs %}
 
-**\[ Optional \]** Whitelisting, or permitting connections from a specific IP, can be setup via the following command.
+**\[ Optional \]** Whitelisting or permitting connections from a specific IP, can be setup via the following command.
 
 ```bash
 sudo ufw allow from <your local daily laptop/pc>
