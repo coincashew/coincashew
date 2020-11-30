@@ -308,7 +308,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = /usr/bin/geth --http --ws
+ExecStart       = /usr/bin/geth --http --ws --metrics --pprof
 Restart         = on-failure
 
 [Install]
@@ -2162,6 +2162,28 @@ EOF
 {% endtab %}
 {% endtabs %}
 
+If using Geth as your eth1 node, add the following to the end of **prometheus.yml**
+
+```bash
+nano $HOME/prometheus.yml
+```
+
+Append the following job to scrape geth metrics and save the file.
+
+{% tabs %}
+{% tab title="Geth" %}
+```bash
+   - job_name: 'geth'
+     scrape_interval: 15s
+     scrape_timeout: 10s
+     metrics_path: /debug/metrics/prometheus
+     scheme: http
+     static_configs:
+     - targets: ['localhost:6060']
+```
+{% endtab %}
+{% endtabs %}
+
 Move it to `/etc/prometheus/prometheus.yml`
 
 ```bash
@@ -2197,10 +2219,11 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
 9. **Download and save** your ETH2 Client's json file. \[ [Lighthouse ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
-10. Click **Create +** icon &gt; **Import**
-11. Add dashboard by **Upload JSON file**
-12. If needed, select Prometheus as **Data Source**.
-13. Click the **Import** button.
+10. \[ **Optional** \] Download and save your ETH1 Client's dashboard json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \]
+11. Click **Create +** icon &gt; **Import**
+12. Add dashboard by **Upload JSON file**
+13. If needed, select Prometheus as **Data Source**.
+14. Click the **Import** button.
 
 #### Example of Grafana Dashboards for each ETH2 client.
 
@@ -2231,6 +2254,16 @@ Credits: [https://github.com/GuillaumeMiralles/prysm-grafana-dashboard](https://
 
 {% tab title="Lodestar" %}
 Work in progress.
+{% endtab %}
+{% endtabs %}
+
+#### Example of Grafana Dashboards for each ETH1 node.
+
+{% tabs %}
+{% tab title="Geth" %}
+![Dashboard by karalabe](../../.gitbook/assets/geth-dash.png)
+
+Credits: [https://gist.github.com/karalabe/e7ca79abdec54755ceae09c08bd090cd](https://gist.github.com/karalabe/e7ca79abdec54755ceae09c08bd090cd)
 {% endtab %}
 {% endtabs %}
 
