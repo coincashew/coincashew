@@ -665,14 +665,6 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 ## ⛓ 4.5. Start the beacon chain
 
-{% hint style="warning" %}
-If you participated in any of the prior test nets, you need to clear the database.
-
-```bash
-rm -rf $HOME/.lighthouse
-```
-{% endhint %}
-
 #### 🍰 Benefits of using systemd for your beacon chain <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
 1. Auto-start your beacon chain when the computer reboots due to maintenance, power outage, etc.
@@ -1452,14 +1444,6 @@ Confirm your validator's pubkeys are listed.
 
 ## 🏂 4.4. Start the beacon chain
 
-{% hint style="warning" %}
-If you participated in any of the prior test nets, you need to clear the database.
-
-```bash
-$HOME/prysm/prysm.sh beacon-chain --clear-db --mainnet
-```
-{% endhint %}
-
 #### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
 1. Auto-start your beacon chain when the computer reboots due to maintenance, power outage, etc.
@@ -1483,7 +1467,7 @@ After           = network-online.target
 [Service]
 Type            = simple
 User            = $(whoami)
-ExecStart       = /bin/bash -c '$(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --p2p-max-peers=70 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use' 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --p2p-max-peers=70 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]

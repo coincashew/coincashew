@@ -244,7 +244,9 @@ Now, open Google Authenticator on your phone and add your secret key to make two
 ## 🧩 Secure Shared Memory
 
 {% hint style="info" %}
-One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.
+One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory. 
+
+To learn more about shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
 {% endhint %}
 
 Edit `/etc/fstab`
@@ -283,6 +285,15 @@ sudo nano /etc/fail2ban/jail.local
 
 Add the following lines to the bottom of the file.
 
+{% hint style="info" %}
+🔥 **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges, or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local machine, local IP range or local domain, separated by spaces.
+
+```bash
+# Example
+ignoreip = 192.168.1.0/24 127.0.0.1/8 
+```
+{% endhint %}
+
 ```bash
 [sshd]
 enabled = true
@@ -290,6 +301,8 @@ port = <22 or your random port number>
 filter = sshd
 logpath = /var/log/auth.log
 maxretry = 3
+# whitelisted IP addresses
+ignoreip = <list of whitelisted IP address, your local daily laptop/pc>
 ```
 
 Save/close file.
@@ -320,69 +333,77 @@ With any new installation, ufw is disabled by default. Enable it with the follow
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-ufw allow <22 or your random port number>/tcp
-ufw allow 9000/tcp
-ufw allow 9000/udp
-ufw allow 30303/tcp
-ufw allow 30303/udp
-ufw allow 3000/tcp
-ufw enable
-ufw status numbered
+sudo ufw allow <22 or your random port number>/tcp
+sudo ufw allow 9000/tcp
+sudo ufw allow 9000/udp
+sudo ufw allow 30303/tcp
+sudo ufw allow 30303/udp
+sudo ufw allow 3000/tcp
+sudo ufw enable
+sudo ufw status numbered
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
 ```bash
-ufw allow <22 or your random port number>/tcp
-ufw allow 13000/tcp
-ufw allow 12000/udp
-ufw allow 30303/tcp
-ufw allow 30303/udp
-ufw allow 3000/tcp
-ufw enable
-ufw status numbered
+sudo ufw allow <22 or your random port number>/tcp
+sudo ufw allow 13000/tcp
+sudo ufw allow 12000/udp
+sudo ufw allow 30303/tcp
+sudo ufw allow 30303/udp
+sudo ufw allow 3000/tcp
+sudo ufw enable
+sudo ufw status numbered
 ```
 {% endtab %}
 
 {% tab title="Teku" %}
 ```bash
-ufw allow <22 or your random port number>/tcp
-ufw allow 9000/tcp
-ufw allow 9000/udp
-ufw allow 30303/tcp
-ufw allow 30303/udp
-ufw allow 3000/tcp
-ufw enable
-ufw status numbered
+sudo ufw allow <22 or your random port number>/tcp
+sudo ufw allow 9000/tcp
+sudo ufw allow 9000/udp
+sudo ufw allow 30303/tcp
+sudo ufw allow 30303/udp
+sudo ufw allow 3000/tcp
+sudo ufw enable
+sudo ufw status numbered
 ```
 {% endtab %}
 
 {% tab title="Nimbus" %}
 ```bash
-ufw allow <22 or your random port number>/tcp
-ufw allow 9000/tcp
-ufw allow 9000/udp
-ufw allow 30303/tcp
-ufw allow 30303/udp
-ufw allow 3000/tcp
-ufw enable
-ufw status numbered
+sudo ufw allow <22 or your random port number>/tcp
+sudo ufw allow 9000/tcp
+sudo ufw allow 9000/udp
+sudo ufw allow 30303/tcp
+sudo ufw allow 30303/udp
+sudo ufw allow 3000/tcp
+sudo ufw enable
+sudo ufw status numbered
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 ```bash
-ufw allow <22 or your random port number>/tcp
-ufw allow 30607/tcp
-ufw allow 9000/udp
-ufw allow 30303/tcp
-ufw allow 30303/udp
-ufw allow 3000/tcp
-ufw enable
-ufw status numbered
+sudo ufw allow <22 or your random port number>/tcp
+sudo ufw allow 30607/tcp
+sudo ufw allow 9000/udp
+sudo ufw allow 30303/tcp
+sudo ufw allow 30303/udp
+sudo ufw allow 3000/tcp
+sudo ufw enable
+sudo ufw status numbered
 ```
 {% endtab %}
 {% endtabs %}
+
+**\[ Optional \]** Whitelisting, or permitting connections from a specific IP, can be setup via the following command.
+
+```bash
+sudo ufw allow from <your local daily laptop/pc>
+# Example
+# sudo ufw allow from 192.168.50.22
+```
 
 Confirm the settings are in effect.
 
@@ -406,7 +427,7 @@ Confirm the settings are in effect.
 If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
 
 ```bash
-ss -tulpn
+sudo ss -tulpn
 # Example output. Ensure the port numbers look right.
 # Netid  State    Recv-Q  Send-Q    Local Address:Port   Peer Address:Port   Process
 # tcp    LISTEN   0       128       127.0.0.1:5052       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=22))
@@ -419,7 +440,7 @@ ss -tulpn
 Alternatively you can use `netstat`
 
 ```bash
-netstat -tulpn
+sudo netstat -tulpn
 # Example output. Ensure the port numbers look right.
 # Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
 # tcp        0      0 127.0.0.1:5052          0.0.0.0:*               LISTEN      12160/lighthouse
@@ -428,6 +449,35 @@ netstat -tulpn
 # tcp6       0      0 :::30303                :::*                    LISTEN      22117/geth
 # udp6       0      0 :::30303                :::*                    LISTEN      22117/geth
 ```
+
+## ✨ Additional validator node best practices
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"></th>
+      <th style="text-align:left"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">Networking</td>
+      <td style="text-align:left">
+        <p></p>
+        <p>Assign static internal IPs to both your validator node and daily laptop/PC.
+          This is useful in conjunction with ufw and Fail2ban&apos;s whitelisting
+          feature. Typically, this can be configured in your router&apos;s settings.
+          Consult your router&apos;s manual for instructions.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Power Outage</td>
+      <td style="text-align:left">In case of power outage, you want your validator machine to restart as
+        soon as power is available. In the BIOS settings, change the <b>Restore on AC / Power Loss</b> or <b>After Power Loss</b> setting
+        to always on.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 🤖 Start staking by building a validator
 
@@ -453,6 +503,8 @@ Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. �
 {% embed url="https://www.digitalocean.com/community/tutorials/how-to-harden-openssh-on-ubuntu-18-04" caption="" %}
 
 {% embed url="https://ubuntu.com/tutorials/configure-ssh-2fa\#1-overview" caption="" %}
+
+{% embed url="https://linuxize.com/post/install-configure-fail2ban-on-ubuntu-20-04/" %}
 
 [https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3\#file-ubuntu-hardening-md](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3#file-ubuntu-hardening-md)
 
