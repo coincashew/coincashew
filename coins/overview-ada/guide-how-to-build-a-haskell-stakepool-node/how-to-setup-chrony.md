@@ -75,3 +75,19 @@ To view the current status of chrony.
 chronyc tracking
 ```
 
+## 🔥 Bonus Commands
+
+Your server might be using the default timezone `UTC`.
+
+Find your **timezone tz name**. Format appears as "`Asia/Singapore`"
+
+```text
+timedatectl list-timezones
+```
+
+Set your timezone.
+
+```text
+sudo timedatectl set-timezone Europe/Isle_of_Man
+```
+
