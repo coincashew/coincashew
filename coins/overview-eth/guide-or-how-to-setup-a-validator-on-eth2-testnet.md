@@ -2343,7 +2343,7 @@ teku voluntary-exit \
 
 {% tab title="Nimbus" %}
 ```bash
-#TO BE DETERMINED
+build/nimbus_beacon_node deposits exit --validator=<VALIDATOR_PUBLIC_KEY> --data-dir=/var/lib/nimbus
 ```
 {% endtab %}
 
