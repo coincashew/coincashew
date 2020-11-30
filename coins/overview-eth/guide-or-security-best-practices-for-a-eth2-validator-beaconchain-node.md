@@ -330,6 +330,10 @@ With any new installation, ufw is disabled by default. Enable it with the follow
 * Port 3000 tcp for Grafana
 * Port 9090 tcp for prometheus export data \(optional\)
 
+{% hint style="warning" %}
+**Reminder**: please never expose the prometheus endpoint to the public internet!
+{% endhint %}
+
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
