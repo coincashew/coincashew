@@ -2909,7 +2909,7 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 2020-10-01 00:19:55 ==> Leader for slot 161212, Cumulative epoch blocks: 3
 ```
 
-### 🕒 18.12 スロットリーダースケジュール - ブロック生成時期を確認する
+### 🕒 18.13 gLiveView ノードステータスモニター
 
 {% hint style="info" %}
 絶賛翻訳中！！
