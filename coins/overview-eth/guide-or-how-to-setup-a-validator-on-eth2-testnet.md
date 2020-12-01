@@ -210,7 +210,7 @@ Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [
 {% tabs %}
 {% tab title="OpenEthereum \(Parity\)" %}
 {% hint style="info" %}
-**OpenEthereum** - It's ****goal is to be the fastest, lightest, and most secure Ethereum client. We are developing OpenEthereum using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
+**OpenEthereum** - It's ****goal is to be the fastest, lightest, and most secure Ethereum client  using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
 {% endhint %}
 
 #### ⚙ Install dependencies
@@ -352,7 +352,7 @@ sudo systemctl start eth1
 
 {% tab title="Besu" %}
 {% hint style="info" %}
-**Hyperledger Besu** is an open-source Ethereum client developed under the Apache 2.0 license and written in **Java**.
+**Hyperledger Besu** is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
 {% endhint %}
 
 #### 🧬 Install java dependency
@@ -713,7 +713,7 @@ EOF
 ```
 
 {% hint style="info" %}
-\*\*\*\*🔥 **Lighthouse Pro Tip:** On the **ExecStart** line, adding the `--eth1-endpoints` flag allows for redundant eth1 nodes. Separate with comma.
+\*\*\*\*🔥 **Lighthouse Pro Tip:** On the **ExecStart** line, adding the `--eth1-endpoints` flag allows for redundant eth1 nodes. Separate with comma. Make sure the endpoint does not end with a trailing slash or`/` Remove it.
 
 ```bash
 # Example:
