@@ -210,7 +210,7 @@ Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [
 {% tabs %}
 {% tab title="OpenEthereum \(Parity\)" %}
 {% hint style="info" %}
-**OpenEthereum** - It's ****goal is to be the fastest, lightest, and most secure Ethereum client  using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
+**OpenEthereum** - It's ****goal is to be the fastest, lightest, and most secure Ethereum client using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
 {% endhint %}
 
 #### ⚙ Install dependencies
@@ -318,13 +318,21 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = /usr/bin/geth --http --goerli --ws --metrics --pprof
+ExecStart       = /usr/bin/geth --http --goerli --metrics --pprof
 Restart         = on-failure
 
 [Install]
 WantedBy    = multi-user.target
 EOF
 ```
+
+{% hint style="info" %}
+**Nimbus Specific Configuration**: Add the following flag to the **ExecStart** line.
+
+```bash
+--ws
+```
+{% endhint %}
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -3328,11 +3336,11 @@ Enter your validator's pubkey to view its status.
 {% endtab %}
 
 {% tab title="Prysm" %}
-{% embed url="https://discord.gg/KSA7rPr" %}
+{% embed url="https://discord.gg/XkyZSSk4My" %}
 {% endtab %}
 
 {% tab title="Lodestar" %}
-{% embed url="https://discord.gg/yjyvFRP" %}
+{% embed url="https://discord.gg/aMxzVcr" %}
 {% endtab %}
 {% endtabs %}
 

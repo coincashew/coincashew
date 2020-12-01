@@ -316,13 +316,21 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = /usr/bin/geth --http --ws --metrics --pprof
+ExecStart       = /usr/bin/geth --http --metrics --pprof
 Restart         = on-failure
 
 [Install]
 WantedBy    = multi-user.target
 EOF
 ```
+
+{% hint style="info" %}
+**Nimbus Specific Configuration**: Add the following flag to the **ExecStart** line.
+
+```bash
+--ws
+```
+{% endhint %}
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -3474,11 +3482,11 @@ Enter your validator's pubkey to view its status.
 {% endtab %}
 
 {% tab title="Prysm" %}
-{% embed url="https://discord.gg/KSA7rPr" %}
+{% embed url="https://discord.gg/XkyZSSk4My" %}
 {% endtab %}
 
 {% tab title="Lodestar" %}
-{% embed url="https://discord.gg/yjyvFRP" %}
+{% embed url="https://discord.gg/aMxzVcr" %}
 {% endtab %}
 {% endtabs %}
 
