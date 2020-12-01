@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of November 27 2020, this guide is updated for **mainnet.** 😁 
+As of November 30 2020, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
 #### ✨ For the testnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
