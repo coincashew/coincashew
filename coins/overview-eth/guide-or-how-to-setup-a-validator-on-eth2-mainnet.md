@@ -205,6 +205,10 @@ Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [
 
 {% tabs %}
 {% tab title="OpenEthereum \(Parity\)" %}
+{% hint style="info" %}
+**OpenEthereum** - It's ****goal is to be the fastest, lightest, and most secure Ethereum client. We are developing OpenEthereum using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
+{% endhint %}
+
 #### ⚙ Install dependencies
 
 ```text
@@ -283,6 +287,10 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Geth" %}
+{% hint style="info" %}
+**Geth** - Go Ethereum is one of the three original implementations \(along with C++ and Python\) of the Ethereum protocol. It is written in **Go**, fully open source and licensed under the GNU LGPL v3.
+{% endhint %}
+
 Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
 
 #### 🧬 Install from the repository
@@ -341,6 +349,10 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Besu" %}
+{% hint style="info" %}
+**Hyperledger Besu** is an open-source Ethereum client developed under the Apache 2.0 license and written in **Java**.
+{% endhint %}
+
 #### 🧬 Install java dependency
 
 ```text
@@ -410,6 +422,10 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Nethermind" %}
+{% hint style="info" %}
+**Nethermind** is a flagship Ethereum client all about performance and flexibility. Built on **.NET** core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
+{% endhint %}
+
 #### ⚙ Install dependencies
 
 ```text
@@ -491,6 +507,10 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 4. Create a project, give it a name.
 5. Select **Mainnet** as the ENDPOINT
 6. Follow the specific configuration for your eth2 client found below.
+
+{% hint style="success" %}
+Alternatively use a free Ethereum node at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+{% endhint %}
 
 ## Nimbus Specific Configuration
 
@@ -694,6 +714,15 @@ Restart         = on-failure
 WantedBy    = multi-user.target
 EOF
 ```
+
+{% hint style="info" %}
+\*\*\*\*🔥 **Lighthouse Pro Tip:** On the **ExecStart** line, adding the `--eth1-endpoints` flag allows for redundant eth1 nodes. Separate with comma.
+
+```bash
+# Example:
+--eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
+```
+{% endhint %}
 
 Move the unit file to `/etc/systemd/system` 
 
@@ -2029,9 +2058,7 @@ sudo apt-get update && sudo apt-get install -y grafana
 Enable services so they start automatically.
 
 ```bash
-sudo systemctl enable grafana-server.service
-sudo systemctl enable prometheus.service
-sudo systemctl enable prometheus-node-exporter.service
+sudo systemctl enable grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
 Create the **prometheus.yml** config file. Choose the tab for your eth2 client. Simply copy and paste.
@@ -2233,9 +2260,7 @@ sudo mv $HOME/prometheus.yml /etc/prometheus/prometheus.yml
 Finally, restart the services.
 
 ```bash
-sudo systemctl restart grafana-server.service
-sudo systemctl restart prometheus.service
-sudo systemctl restart prometheus-node-exporter.service
+sudo systemctl restart grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
 Verify that the services are running properly:
@@ -2404,11 +2429,16 @@ git fetch --all && git checkout stable && git pull
 make
 ```
 
+Verify the build completed by checking the new version number.
+
+```bash
+lighthouse --version
+```
+
 Restart beacon chain and validator as per normal operating procedures.
 
 ```text
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl reload-or-restart beacon-chain validator
 ```
 {% endtab %}
 
@@ -2423,6 +2453,13 @@ Pull the latest source and build it.
 cd $HOME/git/nimbus-eth2
 git pull && make update
 make NIMFLAGS="-d:insecure" nimbus_beacon_node
+```
+
+Verify the build completed by checking the new version number.
+
+```bash
+cd $HOME/git/nimbus-eth2/build
+./nimbus_beacon_node --version
 ```
 
 Stop, copy new binary, and restart beacon chain and validator as per normal operating procedures.
@@ -2448,6 +2485,13 @@ git pull
 ./gradlew distTar installDist
 ```
 
+Verify the build completed by checking the new version number.
+
+```bash
+cd $HOME/git/teku/build/install/teku/bin
+./teku --version
+```
+
 Restart beacon chain and validator as per normal operating procedures.
 
 ```bash
@@ -2463,8 +2507,7 @@ Review release notes and check for breaking changes/features. [https://github.co
 
 ```bash
 #Simply restart the processes
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl reload-or-restart beacon-chain validator
 ```
 {% endtab %}
 
@@ -2482,11 +2525,16 @@ yarn install
 yarn run build
 ```
 
+Verify the build completed by checking the new version number.
+
+```bash
+yarn run cli --version
+```
+
 Restart beacon chain and validator as per normal operating procedures.
 
 ```text
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl reload-or-restart beacon-chain validator
 ```
 {% endtab %}
 {% endtabs %}
@@ -2496,8 +2544,7 @@ Check the logs to verify the services are working properly and ensure there are 
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl status beacon-chain
-sudo systemctl status validator
+sudo systemctl status beacon-chain validator
 ```
 {% endtab %}
 
@@ -2606,8 +2653,7 @@ In order to export the slashing database, the validator needs to be stopped.
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl stop beacon-chain
-sudo systemctl stop validator
+sudo systemctl stop beacon-chain validator
 ```
 {% endtab %}
 
@@ -2699,8 +2745,7 @@ To be implemented
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl start beacon-chain
-sudo systemctl start validator
+sudo systemctl start beacon-chain validator
 ```
 {% endtab %}
 
@@ -2718,8 +2763,7 @@ Check the logs to verify the services are working properly and ensure there are 
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl status beacon-chain
-sudo systemctl status validator
+sudo systemctl status beacon-chain validator
 ```
 {% endtab %}
 
@@ -3280,18 +3324,15 @@ Stop your eth2 beacon chain, validator, and eth1 node processes.
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl stop validator
-sudo systemctl stop beacon-chain
 # This can take some time.
-sudo systemctl stop eth1
+sudo systemctl stop validator beacon-chain eth1
 ```
 {% endtab %}
 
 {% tab title="Nimbus \| Teku" %}
 ```bash
-sudo systemctl stop beacon-chain
 # This can take some time.
-sudo systemctl stop eth1
+sudo systemctl stop beacon-chain eth1
 ```
 {% endtab %}
 {% endtabs %}
@@ -3382,16 +3423,13 @@ Start your eth2 beacon chain, validator, and eth1 node processes.
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl start eth1
-sudo systemctl start beacon-chain
-sudo systemctl start validator
+sudo systemctl start eth beacon-chain validator
 ```
 {% endtab %}
 
 {% tab title="Nimbus \| Teku" %}
 ```
-sudo systemctl stop eth1
-sudo systemctl stop beacon-chain
+sudo systemctl stop eth1 beacon-chain
 ```
 {% endtab %}
 {% endtabs %}
@@ -3401,16 +3439,13 @@ Check the logs to verify the services are working properly and ensure there are 
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl status eth1
-sudo systemctl status beacon-chain
-sudo systemctl status validator
+sudo systemctl status eth1 status beacon-chain validator
 ```
 {% endtab %}
 
 {% tab title="Nimbus \| Teku" %}
 ```
-sudo systemctl status eth1
-sudo systemctl status beacon-chain
+sudo systemctl status eth1 beacon-chain
 ```
 {% endtab %}
 {% endtabs %}
