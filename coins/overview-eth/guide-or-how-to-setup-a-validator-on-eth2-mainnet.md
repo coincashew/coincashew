@@ -3423,13 +3423,13 @@ Start your eth2 beacon chain, validator, and eth1 node processes.
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl start eth beacon-chain validator
+sudo systemctl start eth1 beacon-chain validator
 ```
 {% endtab %}
 
 {% tab title="Nimbus \| Teku" %}
 ```
-sudo systemctl stop eth1 beacon-chain
+sudo systemctl start eth1 beacon-chain
 ```
 {% endtab %}
 {% endtabs %}

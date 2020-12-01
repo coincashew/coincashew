@@ -209,6 +209,10 @@ Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [
 
 {% tabs %}
 {% tab title="OpenEthereum \(Parity\)" %}
+{% hint style="info" %}
+**OpenEthereum** - It's ****goal is to be the fastest, lightest, and most secure Ethereum client. We are developing OpenEthereum using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
+{% endhint %}
+
 #### ⚙ Install dependencies
 
 ```text
@@ -287,6 +291,10 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Geth" %}
+{% hint style="info" %}
+**Geth** - Go Ethereum is one of the three original implementations \(along with C++ and Python\) of the Ethereum protocol. It is written in **Go**, fully open source and licensed under the GNU LGPL v3.
+{% endhint %}
+
 #### 🧬 Install from the repository
 
 ```text
@@ -343,6 +351,10 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Besu" %}
+{% hint style="info" %}
+**Hyperledger Besu** is an open-source Ethereum client developed under the Apache 2.0 license and written in **Java**.
+{% endhint %}
+
 #### 🧬 Install java dependency
 
 ```text
@@ -412,6 +424,10 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Nethermind" %}
+{% hint style="info" %}
+**Nethermind** is a flagship Ethereum client all about performance and flexibility. Built on **.NET** core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
+{% endhint %}
+
 #### ⚙ Install dependencies
 
 ```text
@@ -695,6 +711,15 @@ Restart         = on-failure
 WantedBy    = multi-user.target
 EOF
 ```
+
+{% hint style="info" %}
+\*\*\*\*🔥 **Lighthouse Pro Tip:** On the **ExecStart** line, adding the `--eth1-endpoints` flag allows for redundant eth1 nodes. Separate with comma.
+
+```bash
+# Example:
+--eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
+```
+{% endhint %}
 
 Move the unit file to `/etc/systemd/system` 
 
@@ -1920,9 +1945,7 @@ sudo apt-get update && sudo apt-get install -y grafana
 Enable services so they start automatically.
 
 ```bash
-sudo systemctl enable grafana-server.service
-sudo systemctl enable prometheus.service
-sudo systemctl enable prometheus-node-exporter.service
+sudo systemctl enable grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
 Create the **prometheus.yml** config file. Choose the tab for your eth2 client.
@@ -2124,9 +2147,7 @@ sudo mv $HOME/prometheus.yml /etc/prometheus/prometheus.yml
 Finally, restart the services.
 
 ```bash
-sudo systemctl restart grafana-server.service
-sudo systemctl restart prometheus.service
-sudo systemctl restart prometheus-node-exporter.service
+sudo systemctl restart grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
 Verify that the services are running properly:
@@ -2295,6 +2316,12 @@ git fetch --all && git checkout stable && git pull
 make
 ```
 
+Verify the build completed by checking the new version number.
+
+```bash
+lighthouse --version
+```
+
 Restart beacon chain and validator as per normal operating procedures.
 
 ```text
@@ -2314,6 +2341,13 @@ Pull the latest source and build it.
 cd $HOME/git/nimbus-eth2
 git pull && make update
 make NIMFLAGS="-d:insecure" nimbus_beacon_node
+```
+
+Verify the build completed by checking the new version number.
+
+```bash
+cd $HOME/git/nimbus-eth2/build
+./nimbus_beacon_node --version
 ```
 
 Stop, copy new binary, and restart beacon chain and validator as per normal operating procedures.
@@ -2339,6 +2373,13 @@ git pull
 ./gradlew distTar installDist
 ```
 
+Verify the build completed by checking the new version number.
+
+```bash
+cd $HOME/git/teku/build/install/teku/bin
+./teku --version
+```
+
 Restart beacon chain and validator as per normal operating procedures.
 
 ```bash
@@ -2354,8 +2395,7 @@ Review release notes and check for breaking changes/features. [https://github.co
 
 ```bash
 #Simply restart the processes
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl reload-or-restart beacon-chain validator
 ```
 {% endtab %}
 
@@ -2373,6 +2413,12 @@ yarn install
 yarn run build
 ```
 
+Verify the build completed by checking the new version number.
+
+```bash
+yarn run cli --version
+```
+
 Restart beacon chain and validator as per normal operating procedures.
 
 ```text
@@ -2387,8 +2433,7 @@ Check the logs to verify the services are working properly and ensure there are 
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl status beacon-chain
-sudo systemctl status validator
+sudo systemctl status beacon-chain validator
 ```
 {% endtab %}
 
@@ -2497,8 +2542,7 @@ In order to export the slashing database, the validator needs to be stopped.
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl stop beacon-chain
-sudo systemctl stop validator
+sudo systemctl stop beacon-chain validator
 ```
 {% endtab %}
 
@@ -2590,8 +2634,7 @@ To be implemented
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl start beacon-chain
-sudo systemctl start validator
+sudo systemctl start beacon-chain validator
 ```
 {% endtab %}
 
@@ -2609,8 +2652,7 @@ Check the logs to verify the services are working properly and ensure there are 
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl status beacon-chain
-sudo systemctl status validator
+sudo systemctl status beacon-chain validator
 ```
 {% endtab %}
 
@@ -2891,6 +2933,383 @@ Reload the updated unit file and restart the beacon-chain.
 sudo systemctl daemon-reload
 sudo systemctl restart beacon-chain
 ```
+
+### 🎊 8.9 Add or change POAP graffiti flag
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn an early beacon chain validator POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>`  between the single quotes.
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+Run the following to re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(which lighthouse) vc --network pyrmont --graffiti "${MY_GRAFFITI}" 
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system` 
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+Run the following to re-create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/beacon-chain.service << EOF 
+# The eth2 beacon chain service (part of systemd)
+# file: /etc/systemd/system/beacon-chain.service 
+
+[Unit]
+Description     = eth2 beacon chain service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+Type            = simple
+User            = $(whoami)
+WorkingDirectory= /var/lib/nimbus
+Environment     = "ClientIP=\$(curl -s ident.me)"
+ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node --network=pyrmont --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --nat=extip:\${ClientIP} --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log --max-peers=100'
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+{% hint style="warning" %}
+Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum and Infura ETH1 nodes are verified compatible.
+{% endhint %}
+
+Move the unit file to `/etc/systemd/system` 
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+Re-generate your Teku Config file. Simply copy and paste.
+
+```bash
+cat > $HOME/teku.yaml << EOF
+# network
+network: "pyrmont"
+
+# p2p
+p2p-enabled: true
+p2p-port: 9000
+# validators
+validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
+validators-graffiti: "${MY_GRAFFITI}"
+
+# Eth 1
+eth1-endpoint: "http://localhost:8545"
+
+# metrics
+metrics-enabled: true
+metrics-categories: ["BEACON","LIBP2P","NETWORK"]
+metrics-port: 8008
+
+# database
+data-path: "$(echo $HOME)/tekudata"
+data-storage-mode: "archive"
+
+# rest api
+rest-api-port: 5051
+rest-api-docs-enabled: true
+rest-api-enabled: true
+
+# logging
+log-include-validator-duties-enabled: true
+log-destination: CONSOLE
+EOF
+```
+
+Move the config file to `/etc/teku`
+
+```bash
+sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+Re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --pyrmont --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+Restart         = on-failure
+
+[Install]
+WantedBy	= multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+ Update its permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+Run the following to re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+WorkingDirectory= $(echo $HOME)/git/lodestar
+ExecStart       = yarn run cli validator run --network pyrmont --graffiti "${MY_GRAFFITI}"
+Restart         = on-failure
+
+[Install]
+WantedBy	= multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+ Update its permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+{% endtab %}
+{% endtabs %}
+
+Reload the updated unit file and restart the validator process for your graffiti to take effect.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart validator
+```
+{% endtab %}
+
+{% tab title="Teku \| Nimbus" %}
+```
+sudo systemctl daemon-reload
+sudo systemctl restart beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+### 📦 8.10 Update a ETH1 node - Geth / OpenEthereum / Besu / Nethermind
+
+{% hint style="info" %}
+From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
+{% endhint %}
+
+Stop your eth2 beacon chain, validator, and eth1 node processes.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+# This can take some time.
+sudo systemctl stop validator beacon-chain eth1
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```bash
+# This can take some time.
+sudo systemctl stop beacon-chain eth1
+```
+{% endtab %}
+{% endtabs %}
+
+Update the eth1 node package or binaries.
+
+{% tabs %}
+{% tab title="Geth" %}
+Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+{% endtab %}
+
+{% tab title="OpenEthereum \(Parity\)" %}
+Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
+
+Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
+
+```bash
+cd $HOME
+# backup previous openethereum version in case of rollback
+mv openethereum openethereum_backup_$(date +"%Y%d%m-%H%M%S")
+# store new version in openethreum directory
+mkdir openethereum && cd openethereum
+# download latest version
+curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+# unzip
+unzip openethereum*.zip
+# add execute permission
+chmod +x openethereum
+# cleanup
+rm openethereum*.zip
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
+
+File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo)
+
+Manually find the desired file from above repo and modify the `wget` command with the URL.
+
+> Example: 
+>
+> wget -O besu.tar.gz [https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
+
+```bash
+cd $HOME
+# backup previous besu version in case of rollback
+mv besu besu_backup_$(date +"%Y%d%m-%H%M%S")
+# download latest besu
+wget -O besu.tar.gz <https URL to latest tax.gz linux file>
+# untar
+tar -xvf besu.tar.gz
+# cleanup
+rm besu.tar.gz
+# rename besu to standard folder location
+mv besu* besu
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
+
+Automatically download the latest linux release, un-zip and cleanup.
+
+```bash
+cd $HOME
+# backup previous nethermind version in case of rollback
+mv nethermind nethermind_backup_$(date +"%Y%d%m-%H%M%S")
+# store new version in nethermind directory
+mkdir nethermind && cd nethermind 
+# download latest version
+curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+# unzip
+unzip -o nethermind*.zip
+# cleanup
+rm nethermind*linux*.zip
+```
+{% endtab %}
+{% endtabs %}
+
+Start your eth2 beacon chain, validator, and eth1 node processes.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl start eth1 beacon-chain validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl start eth1 beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+Check the logs to verify the services are working properly and ensure there are no errors.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl status eth1 status beacon-chain validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl status eth1 beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+Finally, verify your validator's attestations are working with public block explorer such as
+
+[https://beaconcha.in/](https://beaconcha.in/)
+
+Enter your validator's pubkey to view its status.
 
 ## 🌇 9. Join the community on Discord and Reddit
 
