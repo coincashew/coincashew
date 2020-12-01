@@ -2053,7 +2053,7 @@ EOF
 {% endtab %}
 {% endtabs %}
 
-Setup prometheus for your eth1 node. Start by editing **prometheus.yml**
+Setup prometheus for your **eth1 node**. Start by editing **prometheus.yml**
 
 ```bash
 nano $HOME/prometheus.yml
