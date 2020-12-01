@@ -379,7 +379,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/besu/bin/besu --rpc-http-enabled --network=goerli --data-path="$HOME/.besu_goerli"
+ExecStart       = $(echo $HOME)/besu/bin/besu --metrics-enabled --rpc-http-enabled --network=goerli --data-path="$HOME/.besu_goerli"
 Restart         = on-failure
 
 [Install]
@@ -448,7 +448,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --config goerli --baseDbPath $HOME/.nethermind_goerli --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
+ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --config goerli --baseDbPath $HOME/.nethermind_goerli --Metrics.Enabled true --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
 Restart         = on-failure
 
 [Install]
@@ -2053,13 +2053,13 @@ EOF
 {% endtab %}
 {% endtabs %}
 
-If using Geth as your eth1 node, add the following to the end of **prometheus.yml**
+Setup prometheus for your eth1 node. Start by editing **prometheus.yml**
 
 ```bash
 nano $HOME/prometheus.yml
 ```
 
-Append the following job to scrape geth metrics and save the file.
+Append the applicable job snippet for your eth1 node to the end of **prometheus.yml**. Save the file.
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -2071,6 +2071,46 @@ Append the following job to scrape geth metrics and save the file.
      scheme: http
      static_configs:
      - targets: ['localhost:6060']
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+```bash
+  - job_name: 'besu'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    scheme: http
+    static_configs:
+    - targets:
+      - localhost:9545
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+```bash
+   - job_name: 'nethermind'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+    honor_labels: true
+    static_configs:
+    - targets: ['localhost:9091']
+```
+
+Nethermind monitoring requires [Prometheus Pushgateway](https://github.com/prometheus/pushgateway). Install with the following command.
+
+```bash
+sudo apt-get install -y prometheus-pushgateway
+```
+
+{% hint style="info" %}
+Pushgateway listens for data from Nethermind on port 9091.
+{% endhint %}
+{% endtab %}
+
+{% tab title="OpenEthereum" %}
+```bash
+Work in progress
 ```
 {% endtab %}
 {% endtabs %}
@@ -2110,7 +2150,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
 9. **Download and save** your ETH2 Client's json file. \[ [Lighthouse ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Teku](https://grafana.com/api/dashboards/13457/revisions/2/download)[ ](https://grafana.com/api/dashboards/12522/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
-10. \[ **Optional** \] Download and save your ETH1 Client's dashboard json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \]
+10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| OpenEthereum \]
 11. Click **Create +** icon &gt; **Import**
 12. Add dashboard by **Upload JSON file**
 13. If needed, select Prometheus as **Data Source**.
@@ -2155,6 +2195,22 @@ Work in progress.
 ![Dashboard by karalabe](../../.gitbook/assets/geth-dash.png)
 
 Credits: [https://gist.github.com/karalabe/e7ca79abdec54755ceae09c08bd090cd](https://gist.github.com/karalabe/e7ca79abdec54755ceae09c08bd090cd)
+{% endtab %}
+
+{% tab title="Besu" %}
+![](../../.gitbook/assets/besu-dash.png)
+
+Credits: [https://grafana.com/dashboards/10273](https://grafana.com/dashboards/10273)
+{% endtab %}
+
+{% tab title="Nethermind" %}
+![](../../.gitbook/assets/nethermind-dash.png)
+
+Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://github.com/NethermindEth/metrics-infrastructure)
+{% endtab %}
+
+{% tab title="OpenEthereum" %}
+Work in progress
 {% endtab %}
 {% endtabs %}
 
