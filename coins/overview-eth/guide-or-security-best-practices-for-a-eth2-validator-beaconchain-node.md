@@ -191,7 +191,7 @@ To make SSH use the Google Authenticator PAM module, edit the `/etc/pam.d/sshd` 
 sudo nano /etc/pam.d/sshd
 ```
 
-Add the follow line:
+Add the following line:
 
 ```text
 auth required pam_google_authenticator.so
