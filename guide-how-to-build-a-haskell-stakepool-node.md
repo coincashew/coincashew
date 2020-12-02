@@ -2780,6 +2780,10 @@ cardano-cli shelley query utxo \
 🔥 **ヒント**: スロットリーダーのスケジュールを計算できます。これによりステークプールがブロックを生成する時期がわかるため、メンテナンススケジュールを組み立てるのに役立ちます。このプロセスを開発したのは [Andrew Westberg @amw7](https://twitter.com/amw7) \(JorManagerの開発者およびBCSHステークプールの皆さまです\)
 {% endhint %}
 
+以下はリレーノードでも使用できます。  
+vrf.skeyおよびstakepoolid.txtをcardano-my-nodeへコピーして下さい。  
+
+
 Pythonがインストールされているか確認してくださ。
 
 {% tabs %}
