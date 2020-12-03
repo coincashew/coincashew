@@ -12,6 +12,14 @@ As of Dec 2 2020, this guide is updated for **mainnet.** 😁
 
 #### ✨ For the testnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
 
+![](../../.gitbook/assets/gg.jpg)
+
+\*\*\*\*🎊 **2020-12 Update**: We're on [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew), where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact.  Your **1 DAI** contribution equals a **12 DAI** match.
+
+Please [check us out](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Thank you!
+
+{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
+
 ## 🏁 0. Prerequisites
 
 ### 👩💻Skills for operating a eth2 validator and beacon node
