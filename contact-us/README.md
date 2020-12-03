@@ -8,6 +8,8 @@ Every guide, tip, and review written on CoinCashew was written by someone who wa
 
 \*\*\*\*👽 **Reddit**: [r/coincashew](https://www.reddit.com/r/coincashew/)
 
+\*\*\*\*🤖 **Discord**: [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)
+
 \*\*\*\*📱 **Telegram:** [https://t.me/coincashew](https://t.me/coincashew)
 
 \*\*\*\*🐦 **Twitter:** [@coincashew\_](https://twitter.com/coincashew_)

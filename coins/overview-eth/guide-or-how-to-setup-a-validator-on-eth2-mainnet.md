@@ -2429,7 +2429,9 @@ Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. �
 
 Any feedback and all pull requests much appreciated. 🌛 
 
-Hang out and chat with fellow stakers on telegram @ [https://t.me/coincashew](https://t.me/coincashew) 😃 
+Hang out and chat with fellow stakers on Discord @
+
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃 
 {% endhint %}
 
 ## 🧙♂7. Update a ETH2 client
@@ -3504,6 +3506,10 @@ Enter your validator's pubkey to view its status.
 
 {% tab title="Lodestar" %}
 {% embed url="https://discord.gg/aMxzVcr" %}
+{% endtab %}
+
+{% tab title="CoinCashew" %}
+{% embed url="https://discord.gg/w8Bx8W2HPW" %}
 {% endtab %}
 {% endtabs %}
 
