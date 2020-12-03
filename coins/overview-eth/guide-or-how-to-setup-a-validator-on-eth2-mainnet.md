@@ -35,7 +35,7 @@ As a validator for eth2, you will typically have the following abilities:
 
 ### 🎗 **Minimum Setup Requirements**
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
+* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS Server or Desktop\)
 * **Processor:** Dual core CPU, Intel Core i5–760 or AMD FX-8100 or better
 * **Memory:** 8GB RAM
 * **Storage:** 20GB SSD
@@ -46,7 +46,7 @@ As a validator for eth2, you will typically have the following abilities:
 
 ### 🏋♂ Recommended Hardware Setup
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
+* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS Server or Desktop\)
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
 * **Memory:** 16GB RAM or more
 * **Storage:** 1TB SSD or more
