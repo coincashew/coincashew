@@ -1288,7 +1288,6 @@ eth1-endpoint: "http://localhost:8545"
 
 # metrics
 metrics-enabled: true
-metrics-categories: ["BEACON","LIBP2P","NETWORK"]
 metrics-port: 8008
 
 # database
