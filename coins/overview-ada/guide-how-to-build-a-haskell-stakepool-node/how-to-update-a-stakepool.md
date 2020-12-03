@@ -131,6 +131,9 @@ Copy **cardano-cli** and **cardano-node** files into bin directory.
 
 ```bash
 sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
+```
+
+```bash
 sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
 ```
 
