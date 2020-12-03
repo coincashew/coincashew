@@ -2291,7 +2291,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 6. Set **Name** to **"Prometheus**"
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
-9. **Download and save** your ETH2 Client's json file. \[ [Lighthouse ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
+9. **Download and save** your ETH2 Client's json file. \[ [Lighthouse BC ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Lighthouse VC](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/ValidatorClient.json) \| [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
 10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| OpenEthereum \]
 11. Click **Create +** icon &gt; **Import**
 12. Add dashboard by **Upload JSON file**
@@ -2302,7 +2302,9 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 
 {% tabs %}
 {% tab title="Lighthouse" %}
-![Dashboard by sigp](../../.gitbook/assets/lhm.png)
+![Beacon Chain dashboard by sigp](../../.gitbook/assets/lhm.png)
+
+![Validator Client dashboard by sigp](../../.gitbook/assets/lighthouse-validator.png)
 
 Credits: [https://github.com/sigp/lighthouse-metrics/](https://github.com/sigp/lighthouse-metrics/)
 {% endtab %}
@@ -2378,8 +2380,20 @@ Get notified of problems with your validators. Choose between email, telegram, d
 2. Click on **Add channel**.
 3. Give the notification channel a **name**.
 4. Select **Telegram** from the Type list.
-5. To complete the **Telegram API settings**, a Telegram channel and bot are required. For instructions on setting up a bot with `@Botfather`, see [this section](https://core.telegram.org/bots#6-botfather) of the Telegram documentation.
-6. Once completed, invite the bot to the newly created channel.
+5. To complete the **Telegram API settings**, a **Telegram channel** and **bot** are required. For instructions on setting up a bot with `@Botfather`, see [this section](https://core.telegram.org/bots#6-botfather) of the Telegram documentation. You need to create a BOT API token.
+6. Create a new telegram group.
+7. Invite the bot to your new group.
+8. Type at least 1 message into the group to initialize it.
+9. Visit [`https://api.telegram.org/botXXX:YYY/getUpdates`](https://api.telegram.org/botXXX:YYY/getUpdates) where `XXX:YYY` is your BOT API Token.
+10. In the JSON response, find and copy the **Chat ID**. Find it between **chat** and **title**. _Example of Chat ID_:  `-1123123123`
+
+    ```text
+    "chat":{"id":-123123123,"title":
+    ```
+
+11. Paste the **Chat ID** into the corresponding field in **Grafana**.
+12. **Save and test** the notification channel for your alerts.
+13. Now you can create custom alerts from your dashboards. [Visit here to learn how to create alerts.](https://grafana.com/docs/grafana/latest/alerting/create-alerts/)
 {% endtab %}
 
 {% tab title="Discord Notifications" %}
