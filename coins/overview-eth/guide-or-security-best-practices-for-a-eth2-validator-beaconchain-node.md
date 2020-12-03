@@ -135,7 +135,7 @@ ssh ethereum@server.public.ip.address -p <custom port number>
 {% endtabs %}
 
 {% hint style="info" %}
-Alternatively, you might need to use
+Alternatively, you might need to use. Add the `-p <port#>` flag if you used a custom SSH port.
 
 ```bash
 ssh -i <path to your SSH_key_name.pub> ethereum@server.public.ip.address
@@ -328,10 +328,10 @@ With any new installation, ufw is disabled by default. Enable it with the follow
   * Lodestar uses port 30607 tcp and port 9000 udp
 * Port 30303 tcp/udp eth1 node
 * Port 3000 tcp for Grafana
-* Port 9090 tcp for prometheus export data \(optional\)
+* Port 9090 tcp for Prometheus export data \(optional\)
 
 {% hint style="warning" %}
-**Reminder**: please never expose the prometheus endpoint to the public internet!
+**Reminder**: Please do not expose the Prometheus endpoint to the public internet unless you understand your actions!
 {% endhint %}
 
 {% tabs %}
@@ -401,14 +401,6 @@ sudo ufw status numbered
 {% endtab %}
 {% endtabs %}
 
-**\[ Optional \]** Whitelisting or permitting connections from a specific IP, can be setup via the following command.
-
-```bash
-sudo ufw allow from <your local daily laptop/pc>
-# Example
-# sudo ufw allow from 192.168.50.22
-```
-
 Confirm the settings are in effect.
 
 > ```csharp
@@ -425,6 +417,14 @@ Confirm the settings are in effect.
 > [ 9] 9090/tcp (v6)              ALLOW IN    Anywhere (v6)
 > [10] 30303/tcp (v6)             ALLOW IN    Anywhere (v6)
 > ```
+
+**\[ Optional but recommended \]** Whitelisting \(or permitting connections from a specific IP\) can be setup via the following command.
+
+```bash
+sudo ufw allow from <your local daily laptop/pc>
+# Example
+# sudo ufw allow from 192.168.50.22
+```
 
 ## 📞 Verify Listening Ports
 
@@ -485,17 +485,22 @@ sudo netstat -tulpn
 
 ## 🤖 Start staking by building a validator
 
-* Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md)
-* Visit here for our [Testnet guide](guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
+### Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md) and here for our [Testnet guide](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
 
 {% hint style="success" %}
-Congrats on completing the guide. 
+Congrats on completing the guide. ✨ 
 
 Did you find our guide useful? Let us know with a tip and we'll keep updating it. 
 
 It really energizes us to keep creating the best crypto guides. 
 
 Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+
+Any feedback and all pull requests much appreciated. 🌛 
+
+Hang out and chat with fellow stakers on Discord @
+
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃 
 {% endhint %}
 
 ## 🚀 References
