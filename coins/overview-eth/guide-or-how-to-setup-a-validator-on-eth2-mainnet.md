@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of November 30 2020, this guide is updated for **mainnet.** 😁 
+As of Dec 2 2020, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
 #### ✨ For the testnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
@@ -184,9 +184,12 @@ Your transaction is sending and depositing your ETH to the [official ETH2 deposi
 {% endhint %}
 
 {% hint style="danger" %}
-Be sure to write down or record your mnemonic seed **offline**. _Not email. Not cloud._
+\*\*\*\*🔥 **Critical Crypto Reminder:** **Keep your mnemonic, keep your eth2.** 🚀 
 
-Make **offline backups**, such as to a USB key, of your **`validator_keys`** directory.
+* Write down your mnemonic seed **offline**. _Not email. Not cloud._
+* Multiple copies the better. _Best stored in a_ [_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
+* The withdrawal keys will be generated from this mnemonic in the future.
+* Make **offline backups**, such as to a USB key, of your **`validator_keys`** directory.
 {% endhint %}
 
 ## 🛸 3. Install a ETH1 node
