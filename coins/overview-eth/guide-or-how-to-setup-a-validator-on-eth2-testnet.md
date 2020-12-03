@@ -2328,6 +2328,8 @@ Hang out and chat with fellow stakers on Discord @ [https://discord.gg/w8Bx8W2HP
 
 ## 🧙♂7. Update a ETH2 client
 
+When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your eth2 beacon chain and validator.
+
 {% hint style="info" %}
 Always review the **git logs with command`git log`** or **release notes** before updating. There may be changes requiring your attention.
 {% endhint %}
