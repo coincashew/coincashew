@@ -16,7 +16,7 @@ sudo apt-get install chrony
 `/etc/chrony/chrony.conf` にある構成ファイルを下記の内容のように編集します。
 
 ```text
-nano /etc/chrony/chrony.conf
+sudo nano /etc/chrony/chrony.conf
 ```
 
 ```text
