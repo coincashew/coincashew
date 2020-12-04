@@ -67,7 +67,11 @@ If you need ideas or a reminder on how to secure your validator, refer to
 
 ### 🛠 Setup Ubuntu
 
-If you need to install Ubuntu, refer to
+If you need to install Ubuntu Server, refer to
+
+{% embed url="https://ubuntu.com/tutorials/install-ubuntu-server\#1-overview" %}
+
+or Ubuntu Desktop,
 
 {% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
 
