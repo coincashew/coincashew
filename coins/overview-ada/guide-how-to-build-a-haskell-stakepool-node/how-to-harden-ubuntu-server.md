@@ -52,9 +52,21 @@ The basic rules of hardening SSH are:
 
 Create a new SSH key pair on your local machine. Run this on your local machine. You will be asked to type a file name in which to save the key. This will be your **keyname**.
 
-```text
-ssh-keygen -t rsa
+Your choice of [ED25519 or RSA](https://goteleport.com/blog/comparing-ssh-keys/) public key algorithm.
+
+{% tabs %}
+{% tab title="ED25519" %}
 ```
+ssh-keygen -t ed25519
+```
+{% endtab %}
+
+{% tab title="RSA" %}
+```bash
+ssh-keygen -t rsa -b 4096
+```
+{% endtab %}
+{% endtabs %}
 
 Transfer the public key to your remote node. Update the **keyname**.
 

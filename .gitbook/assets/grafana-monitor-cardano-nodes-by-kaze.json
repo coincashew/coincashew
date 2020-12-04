@@ -649,7 +649,7 @@
       "pluginVersion": "7.1.5",
       "targets": [
         {
-          "expr": "rts_gc_wall_ms / (1000)",
+          "expr": "cardano_node_metrics_upTime_ns / (1000000000)",
           "instant": false,
           "interval": "",
           "legendFormat": "{{alias}}",
