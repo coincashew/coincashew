@@ -252,7 +252,7 @@ To learn more about secure shared memory, read this [techrepublic.com article](h
 {% hint style="warning" %}
 ### One exceptional case
 
-There may be a reason for you needing to have that memory space mounted in read/write mode \(such as a specific server application like **DappNode** that requires such access to the shared memory or standard applications like Google Chrome\). If this case, use this line of code:
+There may be a reason for you needing to have that memory space mounted in read/write mode \(such as a specific server application like **DappNode** that requires such access to the shared memory or standard applications like Google Chrome\). In this case, use the following line for the fstab file with instructions below.
 
 ```text
 none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
@@ -262,7 +262,7 @@ The above line will mount the shared memory with read/write access but without p
 
 ### Use with caution
 
-With some trial and error, you may discover some applications\(**like DappNode**\) do not work with shared memory in read-only mode. For the highest security, it's a worthwhile endeavour to implement this secure shared memory setting.
+With some trial and error, you may discover some applications\(**like DappNode**\) do not work with shared memory in read-only mode. For the highest security and if compatible with your applications, it is a worthwhile endeavor to implement this secure shared memory setting.
 
 Source: [techrepublic.com](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/)
 {% endhint %}
