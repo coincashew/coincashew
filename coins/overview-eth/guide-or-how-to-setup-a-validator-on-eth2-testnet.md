@@ -2195,10 +2195,10 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 9. **Download and save** your ETH2 Client's json file. \[ [Lighthouse BC ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Lighthouse VC](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/ValidatorClient.json) \| [Teku](https://grafana.com/api/dashboards/13457/revisions/2/download)[ ](https://grafana.com/api/dashboards/12522/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
 10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| OpenEthereum \]
 11. Click **Create +** icon &gt; **Import**
-12. Add the ETH2 dashboard via **Upload JSON file**
-13. Add the ETH1 dashboard via **Upload JSON file**
-14. If needed, select Prometheus as **Data Source**.
-15. Click the **Import** button.
+12. Add the ETH2 client's dashboard via **Upload JSON file**
+13. If needed, select Prometheus as **Data Source**.
+14. Click the **Import** button.
+15. Repeat steps 11-14 for the ETH1 client dashboard.
 
 {% hint style="info" %}
 \*\*\*\*🔥 **Troubleshooting common Grafana issues**: 
