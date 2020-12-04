@@ -249,13 +249,31 @@ One of the first things you should do is secure the shared [memory](https://www.
 To learn more about secure shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
 {% endhint %}
 
+{% hint style="warning" %}
+### One exceptional case
+
+There may be a reason for you needing to have that memory space mounted in read/write mode \(such as a specific server application like **DappNode** that requires such access to the shared memory or standard applications like Google Chrome\). If this case, use this line of code:
+
+```text
+none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
+```
+
+The above line will mount the shared memory with read/write access but without permission to execute programs, change the UID of running programs, or to create block or character devices in the namespace. This a net security improvement over default settings.
+
+### Use with caution
+
+With some trial and error, you may discover some applications\(**like DappNode**\) do not work with shared memory in read-only mode. For the highest security, it's a worthwhile endeavour to implement this secure shared memory setting.
+
+Source: [techrepublic.com](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/)
+{% endhint %}
+
 Edit `/etc/fstab`
 
 ```text
 sudo nano /etc/fstab
 ```
 
-Insert the following line to the bottom of the file and save/close.
+Insert the following line to the bottom of the file and save/close. This sets shared memory into read-only mode.
 
 ```text
 tmpfs    /run/shm    tmpfs    ro,noexec,nosuid    0 0
