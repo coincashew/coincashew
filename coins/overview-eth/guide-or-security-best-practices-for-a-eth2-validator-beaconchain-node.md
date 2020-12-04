@@ -7,8 +7,12 @@ description: Quick steps to secure your node.
 ## 🤖 Pre-requisites
 
 * Ubuntu Server or Ubuntu Desktop installed
-* SSH services enabled
+* SSH server installed
 * a SSH client or terminal window access
+
+In case you need to install SSH server, refer to:
+
+{% embed url="https://www.simplified.guide/ubuntu/install-ssh-server" %}
 
 In case you need a SSH client for your operating system, refer to:
 
