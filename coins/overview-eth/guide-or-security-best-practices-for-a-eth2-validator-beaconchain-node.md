@@ -4,6 +4,16 @@ description: Quick steps to secure your node.
 
 # Guide \| Security Best Practices for a ETH2 validator beaconchain node
 
+## 🤖 Pre-requisites
+
+* Ubuntu Server or Ubuntu Desktop installed
+* SSH services enabled
+* a SSH client or terminal window access
+
+In case you need a SSH client for your operating system, refer to:
+
+{% embed url="https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/" %}
+
 ## 🧙♂Create a non-root user with sudo privileges
 
 {% hint style="info" %}
