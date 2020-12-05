@@ -53,12 +53,6 @@ ghc -V
 >
 > The Glorious Glasgow Haskell Compilation System, version 8.10.2
 
-ビルドオプションを構成します。
-
-```text
-cd $HOME/git/cardano-node2/
-cabal configure -O0 -w ghc-8.10.2
-```
 
 #### Liveviewを無効にする
 
@@ -113,6 +107,7 @@ nano mainnet-config.json
 
 バージョン1.23.0より、vrf.skeyパーミッションチェックが実装され、所有者読み取り専用権限に設定することでノードを起動できます。
 ```
+cd $NODE_HOME
 chmod 400 vrf.skey
 ```
 
@@ -133,6 +128,7 @@ rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 git clean -fd
 git fetch --all --recurse-submodules --tags
 git checkout tags/1.23.0 && git pull
+cabal configure -O0 -w ghc-8.10.2
 cabal build cardano-node cardano-cli
 ```
 
@@ -144,6 +140,8 @@ cabal build cardano-node cardano-cli
 
 ```bash
 $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") version
+```
+```bash
 $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") version
 ```
 
