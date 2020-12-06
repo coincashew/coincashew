@@ -2465,8 +2465,12 @@ Here's how to setup a no-cost monitoring service called Uptime Check by Google.
 12. Select your desired frequency to check i.e. **5 minutes.**
 13. Choose the region closest to you to check from. Click Next.
 14. Create a Notification Channel. Click **Manage Notification Channels.**
-15. Choose your desired settings. Pick from any or all of Slack, Webhook, Email or SMS
-16. Click **test** to verify your notifications are setup correctly.
+15. Choose your desired settings. Pick from any or all of Slack, Webhook, Email or SMS.
+16. Go back to Create Uptime Check window. 
+17. Within the notifications field, click the refresh button to load your new notification channels.
+18. Select desired notifications.
+19. Click **TEST** to verify your notifications are setup correctly.
+20. Click **CREATE** to finish.
 
 For a video demo, watch [MohamedMansour's eth2 education videos](https://www.youtube.com/watch?v=txgOVDTemPQ). Please support his [GITCOIN grant](https://gitcoin.co/grants/1709/video-educational-grant). 🙏
 

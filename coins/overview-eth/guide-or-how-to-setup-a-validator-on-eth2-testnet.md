@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet
 
 {% hint style="success" %}
-As of Dec 4 2020, this guide is updated for **testnet Pyrmont.** 😁
+As of Dec 5 2020, this guide is updated for **testnet Pyrmont.** 😁
 {% endhint %}
 
 #### ✨ For the mainnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md).
@@ -2353,7 +2353,11 @@ Here's how to setup a no-cost monitoring service called Uptime Check by Google.
 13. Choose the region closest to you to check from. Click Next.
 14. Create a Notification Channel. Click **Manage Notification Channels.**
 15. Choose your desired settings. Pick from any or all of Slack, Webhook, Email or SMS
-16. Click **test** to verify your notifications are setup correctly.
+16. Go back to Create Uptime Check window. 
+17. Within the notifications field, click the refresh button to load your new notification channels.
+18. Select desired notifications.
+19. Click **TEST** to verify your notifications are setup correctly.
+20. Click **CREATE** to finish.
 
 For a video demo, watch [MohamedMansour's eth2 education videos](https://www.youtube.com/watch?v=txgOVDTemPQ). Please support his [GITCOIN grant](https://gitcoin.co/grants/1709/video-educational-grant). 🙏
 
