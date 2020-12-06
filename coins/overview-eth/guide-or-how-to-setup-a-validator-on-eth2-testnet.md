@@ -2328,6 +2328,84 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% endtab %}
 {% endtabs %}
 
+
+
+{% tabs %}
+{% tab title="Email Notifications" %}
+1. **bol**.
+{% endtab %}
+
+{% tab title="Telegram Notifications" %}
+1. On the menu of Grafana, select **Notification channels** under the bell icon.  
+2. Click on **Add channel**.
+3. Give the notification channel a **name**.
+4. Select **Telegram** from the Type list.
+5. To complete the **Telegram API settings**, a **Telegram channel** and **bot** are required. For instructions on setting up a bot with `@Botfather`, see [this section](https://core.telegram.org/bots#6-botfather) of the Telegram documentation. You need to create a BOT API token.
+6. Create a new telegram group.
+7. Invite the bot to your new group.
+8. Type at least 1 message into the group to initialize it.
+9. Visit [`https://api.telegram.org/botXXX:YYY/getUpdates`](https://api.telegram.org/botXXX:YYY/getUpdates) where `XXX:YYY` is your BOT API Token.
+10. In the JSON response, find and copy the **Chat ID**. Find it between **chat** and **title**. _Example of Chat ID_:  `-1123123123`
+
+    ```text
+    "chat":{"id":-123123123,"title":
+    ```
+
+11. Paste the **Chat ID** into the corresponding field in **Grafana**.
+12. **Save and test** the notification channel for your alerts.
+13. Now you can create custom alerts from your dashboards. [Visit here to learn how to create alerts.](https://grafana.com/docs/grafana/latest/alerting/create-alerts/)
+{% endtab %}
+
+{% tab title="Discord Notifications" %}
+1. On the menu of Grafana, select **Notification channels** under the bell icon.  
+2. Click on **Add channel**.
+3. Add a **name** to the notification channel.
+4. Select **Discord** from the Type list.
+5. To complete the set up, a Discord server \(and a text channel available\) as well as a Webhook URL are required. For instructions on setting up a Discord's Webhooks, see [this section](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) of their documentation.
+6. Enter the Webhook **URL** in the Discord notification settings panel.
+7. Click **Send Test**, which will push a confirmation message to the Discord channel.
+{% endtab %}
+
+{% tab title="Slack Notifications" %}
+1. On the menu of Grafana, select **Notification channels** under the bell icon.  
+2. Click on **Add channel**.
+3. Add a **name** to the notification channel.
+4. Select **Slack** from the Type list.
+5. For instructions on setting up a Slack's Incoming Webhooks, see [this section](https://api.slack.com/messaging/webhooks) of their documentation.
+6. Enter the Slack Incoming Webhook URL in the **URL** field.
+7. Click **Send Test**, which will push a confirmation message to the Slack channel.
+{% endtab %}
+{% endtabs %}
+
+### 🌊 6.4 Monitoring with Uptime Check by Google Cloud
+
+{% hint style="info" %}
+Who watches the watcher? With an external 3rd party tool like Uptime Check, you can have greater reassurance your validator is functioning in case of disasters such as power failure, hardware failure or internet outage. In these scenarios, the previously mentioned monitoring by Prometheus and Grafana would likely cease to function as well.
+
+Credits to [Mohamed Mansour for inspiring this how-to guide](https://www.youtube.com/watch?v=txgOVDTemPQ).
+{% endhint %}
+
+Here's how to setup a no-cost monitoring service called Uptime Check by Google.
+
+1. Visit [cloud.google.com](https://cloud.google.com/)
+2. Search for **Monitoring** in the search field.
+3. Click **Select a Project to Start Monitoring**.
+4. Click **New Project.**
+5. **Name** your project and click **Create.**
+6. From the notifications menu, select your new project.
+7. On the right column, there's a Monitoring Card. Click **Go to Monitoring**.
+8. On the left menu, click **Uptime checks** and then **CREATE UPTIME CHECK.**
+9. Type in a title i.e. _**Geth node**_ 
+10. Select protocol as _**TCP**_
+11. Enter your public IP address and port number. i.e. ip=**7.55.6.3** and port=**30303**
+12. Select your desired frequency to check i.e. **5 minutes.**
+13. Choose the region closest to you to check from. Click Next.
+14. Create a Notification Channel. Click **Manage Notification Channels.**
+15. Choose your desired settings. Pick from any or all of Slack, Webhook, Email or SMS
+16. Click **test** to verify your notifications are setup correctly.
+
+For a video demo, watch [MohamedMansour's eth2 education videos](https://www.youtube.com/watch?v=txgOVDTemPQ). Please support his [GITCOIN grant](https://gitcoin.co/grants/1709/video-educational-grant). 🙏
+
 {% hint style="success" %}
 🎉Congrats on setting up your validator! You're good to go on eth2.0.
 
