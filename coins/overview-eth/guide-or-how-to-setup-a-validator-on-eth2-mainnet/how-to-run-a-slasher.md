@@ -39,7 +39,7 @@ Slasher functionality is currently available in Lighthouse or Prysm.
 {% tab title="Lighthouse " %}
 ```bash
 # Edit your beacon-chain unit file
-nano /etc/systemd/system/beacon-chain.service
+sudo nano /etc/systemd/system/beacon-chain.service
 
 # Append the following slasher flag to ExecStart
 --slasher --debug-level debug
