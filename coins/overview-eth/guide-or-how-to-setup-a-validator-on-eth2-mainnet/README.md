@@ -2658,7 +2658,8 @@ Use this command to signal your intentions to stop validating with your validato
 ```bash
 lighthouse account validator exit \
 --keystore $HOME/.lighthouse/mainnet/validators \
---beacon-node http://localhost:5052
+--beacon-node http://localhost:5052 \
+--network mainnet
 ```
 {% endtab %}
 

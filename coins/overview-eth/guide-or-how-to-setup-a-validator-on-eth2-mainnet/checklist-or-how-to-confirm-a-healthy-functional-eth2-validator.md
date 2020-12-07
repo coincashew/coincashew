@@ -216,9 +216,9 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 | Concern | Solution |
 | :--- | :--- |
 | Enabled automatic OS patching | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#update-your-system) |
-| Setup chrony or other NTP time sync | Refer to [the mainnet guide.](./#5-time-synchronization) |
+| Setup chrony or other NTP time sync service | Refer to [the mainnet guide.](./#5-time-synchronization) |
 | Setup Prometheus and Grafana Monitoring/Alerts/Dashboard | Refer to [the mainnet guide.](./#6-2-setting-up-grafana-dashboards) |
-| Understand how to handle a power outage | In case of power outage, you want your validator machine to restart as soon as power is available. In the BIOS settings, change the **Restore on AC / Power Loss** or **After Power Loss** setting to always on.  |
+| Understand how to handle a power outage | In case of power outage, you want your validator machine to restart as soon as power is available. In the BIOS settings, change the **Restore on AC / Power Loss** or **After Power Loss** setting to always on. Better yet, install an Uninterruptable Power Supply \(UPS\). |
 | Understand how to migrate eth2 clients | Refer to the [mainnet guide.](./#8-4-switch-migrate-eth2-clients-with-slash-protection) |
 | Understand how to voluntary exit | Refer to the [mainnet guide.](./#8-1-voluntary-exit-a-validator) |
 | Used all available LVM disk space | Refer to the [mainnet guide.](./#8-5-use-all-available-lvm-disk-space) |

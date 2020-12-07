@@ -526,7 +526,7 @@ sudo netstat -tulpn
       <td style="text-align:left">Power Outage</td>
       <td style="text-align:left">In case of power outage, you want your validator machine to restart as
         soon as power is available. In the BIOS settings, change the <b>Restore on AC / Power Loss</b> or <b>After Power Loss</b> setting
-        to always on.</td>
+        to always on. Better yet, install an Uninterruptable Power Supply (UPS).</td>
     </tr>
   </tbody>
 </table>

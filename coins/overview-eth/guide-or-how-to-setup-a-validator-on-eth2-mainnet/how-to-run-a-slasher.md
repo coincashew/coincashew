@@ -52,7 +52,6 @@ sudo systemctl daemon-reload
 
 # Restart your beacon-chain
 sudo systemctl restart beacon-chain
-
 ```
 {% endtab %}
 
@@ -87,7 +86,6 @@ sudo chmod 644 /etc/systemd/system/slasher.service
 sudo systemctl daemon-reload
 sudo systemctl enable slasher
 sudo systemctl start slasher
-  
 ```
 {% endtab %}
 {% endtabs %}
