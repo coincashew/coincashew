@@ -2815,12 +2815,14 @@ During installation of Ubuntu Server, a common issue arises where your hard driv
 
 ```bash
 # View your disk drives
-df
+sudo -s lvm
 
 # Change the logical volume filesystem path if required
 lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 
+#exit lvextend
 exit
+
 # Resize file system to use the new available space in the logical volume
 resize2fs /dev/ubuntu-vg/ubuntu-lv
 
