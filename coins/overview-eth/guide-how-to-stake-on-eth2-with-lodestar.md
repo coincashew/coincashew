@@ -1,7 +1,7 @@
 # Guide: How to stake on ETH2 Medalla Testnet with Lodestar on Ubuntu
 
 {% hint style="danger" %}
-**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md). 
+**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/). 
 
 Instructions below are now deprecated and for reference only.
 {% endhint %}

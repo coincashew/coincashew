@@ -470,6 +470,10 @@ sudo ufw allow from <your local daily laptop/pc>
 # sudo ufw allow from 192.168.50.22
 ```
 
+{% hint style="info" %}
+ 🎊 **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
+{% endhint %}
+
 ## 📞 Verify Listening Ports
 
 If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
@@ -529,12 +533,12 @@ sudo netstat -tulpn
 
 ## 🤖 Start staking by building a validator
 
-### Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet.md) and here for our [Testnet guide](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
+### Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) and here for our [Testnet guide](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨ 
 
-Did you find our guide useful? Let us know with a tip and we'll keep updating it. 
+Did you find our guide useful? Send us a signal with a tip and we'll keep updating it. 
 
 It really energizes us to keep creating the best crypto guides. 
 
@@ -546,6 +550,14 @@ Hang out and chat with fellow stakers on Discord @
 
 [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃 
 {% endhint %}
+
+![](../../.gitbook/assets/gg.jpg)
+
+\*\*\*\*🎊 **2020-12 Update**: We're on [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew), where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact.  Your **1 DAI** contribution equals a **28 DAI** match. 
+
+Please [check us out](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Thank you!🙏
+
+{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
 ## 🚀 References
 
