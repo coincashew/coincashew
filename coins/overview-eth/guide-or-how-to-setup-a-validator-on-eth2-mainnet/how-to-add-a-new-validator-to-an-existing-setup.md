@@ -72,11 +72,15 @@ Run the existing-mnemonic command in the previous tabs.
 
 4. Finish by stopping your validator, importing the new validator key\(s\), restarting your validator and verifying the logs ensuring everything still works without error. [Review steps 2 and onward of the main guide if you need a refresher.](./#2-signup-to-be-a-validator-at-the-launchpad)
 
-5. Finally, verify your validator's attestations are working with public block explorer such as
+5. Finally, verify your **existing** validator's attestations are working with public block explorer such as
 
 [https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
 
 Enter your validator's pubkey to view its status.
+
+{% hint style="info" %}
+Your additional validators are now in the activation queue waiting their turn. Check your estimated activation time at [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app/)
+{% endhint %}
 
 ##  🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
 

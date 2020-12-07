@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of Dec 6 2020, this guide is updated for **mainnet.** 😁 
+As of Dec 7 2020, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
 #### ✨ For the testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
@@ -2706,25 +2706,75 @@ When the **pubkey** in both **keystore files** are **identical,** this means you
 
 ### 🤖8.3 Add additional validators
 
-Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
-
-First, backup and move your existing `validator_key` directory and append the date to the end.
+Backup and move your existing `validator_key` directory and append the date to the end.
 
 ```bash
+# Adjust your eth2deposit-cli directory accordingly
 cd $HOME/eth2deposit-cli
+# Renames and append the date to the existing validator_key directory
 mv validator_key validator_key_$(date +"%Y%d%m-%H%M%S")
+# Optional: you can also delete this folder since it can be regenerated.
 ```
 
-For example, in case we originally created 3 validators but now wish to add 5 more validators, we could use the following command.
+{% hint style="info" %}
+Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
+{% endhint %}
 
+2. For example, in case we originally created **3 validators** but now wish to **add 5 more validators**, we could use the following command. Select the tab depending on how you acquired [**eth2deposit tool**](https://github.com/ethereum/eth2.0-deposit-cli).
+
+{% hint style="warning" %}
+**Security recommendation reminder**: For best security practices, key management and other activities where you type your 24 word mnemonic seed should be completed on an air-gapped offline cold machine booted from USB drive.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Build from source code" %}
 ```bash
-cd $HOME/eth2deposit-cli
+# Generate from an existing mnemonic 5 more validators when 3 were previously already made
 ./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
+{% endtab %}
 
-Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site and making your corresponding 32 ETH deposit transactions.
+{% tab title="Pre-built eth2deposit-cli binaries" %}
+```bash
+# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+```
+{% endtab %}
 
-Finish by stopping your validator, importing the new validator key\(s\), restarting your validator and verifying the logs ensuring everything still works without error.
+{% tab title="Advanced - Most Secure" %}
+{% hint style="warning" %}
+🔥**Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
+{% endhint %}
+
+Follow this [ethstaker.cc](https://ethstaker.cc/) exclusive for the low down on making a bootable usb.
+
+### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
+
+{% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
+
+### Part 2 - Install Ubuntu 20.04 from the USB Drive
+
+{% embed url="https://www.youtube.com/watch?v=C97\_6MrufCE" %}
+
+You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
+
+Run the existing-mnemonic command in the previous tabs.
+{% endtab %}
+{% endtabs %}
+
+3. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org/) and making your corresponding 32 ETH deposit transactions.
+
+4. Finish by stopping your validator, importing the new validator key\(s\), restarting your validator and verifying the logs ensuring everything still works without error. [Review steps 2 and onward of the main guide if you need a refresher.](./#2-signup-to-be-a-validator-at-the-launchpad)
+
+5. Finally, verify your **existing** validator's attestations are working with public block explorer such as
+
+[https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
+
+Enter your validator's pubkey to view its status.
+
+{% hint style="info" %}
+Your additional validators are now in the activation queue waiting their turn. Check your estimated activation time at [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app/)
+{% endhint %}
 
 ### 💸 8.4 Switch / migrate Eth2 clients with slash protection
 
@@ -2887,6 +2937,10 @@ resize2fs /dev/ubuntu-vg/ubuntu-lv
 
 ## Verify new available space
 df -h
+
+# Example output of a 2TB drive where 25% is used
+# Filesystem                         Size   Used Avail Use% Mounted on
+# /dev/ubuntu-vg/ubuntu-lv           2000G  500G  1500G  25% /
 ```
 
 **Source reference**:
