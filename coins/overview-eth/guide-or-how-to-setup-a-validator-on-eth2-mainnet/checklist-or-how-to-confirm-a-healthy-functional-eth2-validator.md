@@ -27,7 +27,7 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
       <td style="text-align:left">Eth1 in sync</td>
       <td style="text-align:left">
         <p>Ensure your node&apos;s block number matches the tip block of a <a href="http://etherscan.io/">public block explorer</a>.
-          Find your eth1&apos;s block # with in eth1 logs with command <code>journalctl -fu eth1 </code>
+          Find your eth1&apos;s block # with command <code>journalctl -fu eth1 </code>
         </p>
         <p><b><code>Example log output:</code></b><code>INFO [12-06|14:50:05.314] Imported new chain ... number=11301130</code>
         </p>
