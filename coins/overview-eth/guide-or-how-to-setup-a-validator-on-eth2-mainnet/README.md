@@ -2192,7 +2192,7 @@ scrape_configs:
    - job_name: 'validators'
      metrics_path: /metrics
      static_configs:
-       - targets: ['localhost:5064']
+       - targets: ['localhost:5064']       
 EOF
 ```
 {% endtab %}
@@ -2218,6 +2218,7 @@ scrape_configs:
      metrics_path: /metrics    
      static_configs:
        - targets: ['localhost:8008']
+       
 EOF
 ```
 {% endtab %}
@@ -2261,18 +2262,18 @@ global:
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
-  - job_name: 'node_exporter'
-    static_configs:
-      - targets: ['localhost:9100']
-  - job_name: 'validator'
-    static_configs:
-      - targets: ['localhost:8081']
-  - job_name: 'beacon node'
-    static_configs:
-      - targets: ['localhost:8080']
-  - job_name: 'slasher'
-    static_configs:
-      - targets: ['localhost:8082']
+   - job_name: 'node_exporter'
+     static_configs:
+       - targets: ['localhost:9100']
+   - job_name: 'validator'
+     static_configs:
+       - targets: ['localhost:8081']
+   - job_name: 'beacon node'
+     static_configs:
+       - targets: ['localhost:8080']
+   - job_name: 'slasher'
+     static_configs:
+       - targets: ['localhost:8082']
 EOF
 ```
 {% endtab %}
@@ -2301,6 +2302,10 @@ nano $HOME/prometheus.yml
 
 Append the applicable job snippet for your eth1 node to the end of **prometheus.yml**. Save the file.
 
+{% hint style="warning" %}
+**Spacing matters**. Ensure all `job_name` snippets are in alignment.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Geth" %}
 ```bash
@@ -2316,25 +2321,25 @@ Append the applicable job snippet for your eth1 node to the end of **prometheus.
 
 {% tab title="Besu" %}
 ```bash
-  - job_name: 'besu'
-    scrape_interval: 15s
-    scrape_timeout: 10s
-    metrics_path: /metrics
-    scheme: http
-    static_configs:
-    - targets:
-      - localhost:9545
+   - job_name: 'besu'
+     scrape_interval: 15s
+     scrape_timeout: 10s
+     metrics_path: /metrics
+     scheme: http
+     static_configs:
+     - targets:
+       - localhost:9545
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
 ```bash
-  - job_name: 'nethermind'
-    scrape_interval: 15s
-    scrape_timeout: 10s
-    honor_labels: true
-    static_configs:
-      - targets: ['localhost:9091']
+   - job_name: 'nethermind'
+     scrape_interval: 15s
+     scrape_timeout: 10s
+     honor_labels: true
+     static_configs:
+       - targets: ['localhost:9091']
 ```
 
 Nethermind monitoring requires [Prometheus Pushgateway](https://github.com/prometheus/pushgateway). Install with the following command.
