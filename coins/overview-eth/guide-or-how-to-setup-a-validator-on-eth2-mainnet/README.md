@@ -2284,6 +2284,12 @@ Move it to `/etc/prometheus/prometheus.yml`
 sudo mv $HOME/prometheus.yml /etc/prometheus/prometheus.yml
 ```
 
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/prometheus/prometheus.yml
+```
+
 Finally, restart the services.
 
 ```bash
