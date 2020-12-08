@@ -2015,7 +2015,7 @@ scrape_configs:
    - job_name: 'validators'
      metrics_path: /metrics
      static_configs:
-       - targets: ['localhost:5064']       
+       - targets: ['localhost:5064']
 EOF
 ```
 {% endtab %}
@@ -2041,7 +2041,6 @@ scrape_configs:
      metrics_path: /metrics    
      static_configs:
        - targets: ['localhost:8008']
-       
 EOF
 ```
 {% endtab %}
