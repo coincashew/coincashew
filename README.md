@@ -8,6 +8,10 @@
 ✨ Learn to do anything with crypto, _better_.
 {% endhint %}
 
+{% hint style="info" %}
+\*\*\*\*🔥 **HOT TOPIC:** Learn to setup your own [ETH2 Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+{% endhint %}
+
 ## 🙋♀ I would like to ...
 
 {% tabs %}
@@ -28,6 +32,10 @@
 {% endtab %}
 
 {% tab title="Stake Coins" %}
+{% page-ref page="coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/" %}
+
+{% page-ref page="coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/" %}
+
 {% page-ref page="coins/overview-xtz/guide-how-to-stake-xtz.md" %}
 
 {% page-ref page="coins/overview-neo/guide-how-to-stake-neo.md" %}
