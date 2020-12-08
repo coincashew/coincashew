@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet
 
 {% hint style="success" %}
-As of Dec 7 2020, this guide is updated for **testnet Pyrmont.** 😁
+As of Dec 8 2020, this guide is updated for **testnet Pyrmont.** 😁
 {% endhint %}
 
 #### ✨ For the mainnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
@@ -185,7 +185,7 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 **Do not send real mainnet ETH during this process!** 🛑 Use only goerli ETH.
 {% endhint %}
 
-1. Follow the prompts and pick a password. Write down your mnemonic and keep this safe and **offline**.
+1. Follow the prompts and pick a **keystore password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
 2. Follow the steps at [https://pyrmont.launchpad.ethereum.org/](https://pyrmont.launchpad.ethereum.org/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
 3. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
 4. Connect to the launchpad with your Metamask wallet, review and accept terms.
@@ -681,7 +681,7 @@ When you import your keys into Lighthouse, your validator signing key\(s\) are s
 
 Run the following command to import your validator keys from the eth2deposit-cli tool directory.
 
-Enter your keystore's password to import accounts.
+Enter your **keystore password** to import accounts.
 
 ```bash
 lighthouse account validator import --network pyrmont --directory=$HOME/eth2deposit-cli/validator_keys
@@ -967,7 +967,7 @@ sudo chmod 700 /var/lib/nimbus
 
 The following command will import your validator keys.
 
-Enter your keystore's password to import accounts.
+Enter your **keystore password** to import accounts.
 
 ```bash
 cd $HOME/git/nimbus-eth2
@@ -1221,13 +1221,20 @@ rm /var/lib/teku/validator_keys/deposit_data*
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
 
-Store your validator's password in a file. 
+Store your **keystore password** in a file and make it read-only. This is required so that Teku can decrypt and load your validators.
 
-Update your password between the quotation marks after `echo`.
+Update your **keystore password** between the quotation marks after `echo`.
 
 ```bash
-echo 'my_password_goes_here' > $HOME/validators-password.txt
+echo 'my_keystore_password' > $HOME/validators-password.txt
 sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
+sudo chmod 600 /etc/teku/validators-password.txt
+```
+
+Clear the bash history in order to remove traces of keystore password.
+
+```bash
+shred -u ~/.bash_history && touch ~/.bash_history
 ```
 
 Generate your Teku Config file.
@@ -1411,7 +1418,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 ## 🎩 4.3. Import validator key
 
-Accept terms of use, accept default wallet location, enter a new password to encrypt your wallet and enter the password for your imported accounts.
+Accept terms of use, accept default wallet location, enter a new prysm-only password to encrypt your local prysm wallet and enter the **keystore password** for your imported accounts.
 
 ```bash
 $HOME/prysm/prysm.sh validator accounts import --pyrmont --keys-dir=$HOME/eth2deposit-cli/validator_keys
@@ -1534,11 +1541,17 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 
 ## 🧬 4.5. Start the validator <a id="9-start-the-validator"></a>
 
-Store your validator's password in a file and make it read-only.
+Store your **keystore password** in a file and make it read-only. This is required so that Prysm can decrypt and load your validators.
 
 ```bash
 echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
 sudo chmod 600 $HOME/.eth2validators/validators-password.txt
+```
+
+Clear the bash history in order to remove traces of keystore password.
+
+```bash
+shred -u ~/.bash_history && touch ~/.bash_history
 ```
 
 Your choice of running a validator manually from command line or automatically with systemd.
@@ -1720,7 +1733,7 @@ yarn run cli account validator import \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
 
-Enter your keystore's password to import accounts. 
+Enter your **keystore password** to import accounts. 
 
 Confirm your keys were imported properly.
 

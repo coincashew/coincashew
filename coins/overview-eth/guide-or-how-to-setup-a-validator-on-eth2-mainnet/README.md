@@ -181,6 +181,10 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 
 2. Follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
 
+{% hint style="warning" %}
+\*\*\*\*🚧 **Caution**: Only deposit the 32 ETH per validator if you are confident your ETH1 node and ETH2 validator will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
+{% endhint %}
+
 3. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
 
 4. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
@@ -1287,7 +1291,7 @@ rm /var/lib/teku/validator_keys/deposit_data*
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
 
-Store your **keystore password** in a file and make it read-only. 
+Store your **keystore password** in a file and make it read-only. This is required so that Teku can decrypt and load your validators.
 
 Update your **keystore password** between the quotation marks after `echo`.
 
@@ -1641,7 +1645,7 @@ sudo systemctl stop beacon-chain
 
 ## 🧬 4.5. Start the validator <a id="9-start-the-validator"></a>
 
-Store your **keystore password** in a file and make it read-only. This is required so that your prysm can decrypt and load your validators.
+Store your **keystore password** in a file and make it read-only. This is required so that Prysm can decrypt and load your validators.
 
 ```bash
 echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
