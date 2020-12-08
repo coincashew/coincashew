@@ -2318,12 +2318,12 @@ Append the applicable job snippet for your eth1 node to the end of **prometheus.
 
 {% tab title="Nethermind" %}
 ```bash
-   - job_name: 'nethermind'
+  - job_name: 'nethermind'
     scrape_interval: 15s
     scrape_timeout: 10s
     honor_labels: true
     static_configs:
-    - targets: ['localhost:9091']
+      - targets: ['localhost:9091']
 ```
 
 Nethermind monitoring requires [Prometheus Pushgateway](https://github.com/prometheus/pushgateway). Install with the following command.
