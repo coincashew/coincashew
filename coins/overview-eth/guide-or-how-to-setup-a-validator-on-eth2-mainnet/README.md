@@ -406,7 +406,7 @@ Simply copy/paste the following.
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
-Description     = openethereum eth1 service
+Description     = besu eth1 service
 Wants           = network-online.target
 After           = network-online.target 
 
@@ -463,7 +463,8 @@ Review the latest release at [https://github.com/NethermindEth/nethermind/releas
 Automatically download the latest linux release, un-zip and cleanup.
 
 ```bash
-mkdir $HOME/nethermind 
+mkdir $HOME/nethermind
+chmod 775 $HOME/nethermind
 cd $HOME/nethermind
 curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
 unzip -o nethermind*.zip
@@ -479,7 +480,7 @@ Simply copy/paste the following.
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
-Description     = openethereum eth1 service
+Description     = nethermind eth1 service
 Wants           = network-online.target
 After           = network-online.target 
 
@@ -515,6 +516,10 @@ sudo systemctl enable eth1
 ```text
 sudo systemctl start eth1
 ```
+
+{% hint style="info" %}
+**Note about Metric Error messages**: You will see these until prometheus pushergateway is setup in section 6. `Error in MetricPusher: System.Net.Http.HttpRequestException: Connection refused`
+{% endhint %}
 {% endtab %}
 
 {% tab title="Minimum Hardware Setup \(Infura\)" %}
