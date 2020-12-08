@@ -141,10 +141,16 @@ wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.1.0/eth
 Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
 
 ```bash
-sha256sum eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
-# SHA256 should be
-# 2107f26f954545f423530e3501ae616c222b6bf77774a4f2743effb8fe4bcbe7
+echo "2107f26f954545f423530e3501ae616c222b6bf77774a4f2743effb8fe4bcbe7 *eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz" | shasum -a 256 --check
 ```
+
+Example valid output:
+
+> eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz: OK
+
+{% hint style="danger" %}
+Only proceed if the sha256 check passes with **OK**!
+{% endhint %}
 
 Extract the archive.
 
