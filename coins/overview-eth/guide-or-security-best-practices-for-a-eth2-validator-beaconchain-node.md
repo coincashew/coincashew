@@ -538,6 +538,15 @@ sudo netstat -tulpn
         soon as power is available. In the BIOS settings, change the <b>Restore on AC / Power Loss</b> or <b>After Power Loss</b> setting
         to always on. Better yet, install an Uninterruptable Power Supply (UPS).</td>
     </tr>
+    <tr>
+      <td style="text-align:left">Clear the bash history</td>
+      <td style="text-align:left">
+        <p>When pressing the up-arrow key, you can see prior commands which may contain
+          sensitive data. To clear this, run the following:</p>
+        <p><code>shred -u ~/.bash_history &amp;&amp; touch ~/.bash_history</code>
+        </p>
+      </td>
+    </tr>
   </tbody>
 </table>
 
