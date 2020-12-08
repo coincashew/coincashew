@@ -1928,12 +1928,6 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 Remember, Teku and Nimbus combines both clients into one process.
 {% endhint %}
 
-{% hint style="success" %}
-Congratulations. Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
-
-Use [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) to create alerts and track your validator's performance.
-{% endhint %}
-
 ## 🕒5. Time Synchronization
 
 {% hint style="info" %}
@@ -2375,7 +2369,17 @@ For a video demo, watch [MohamedMansour's eth2 education videos](https://www.you
 20. Click **CREATE** to finish.
 
 {% hint style="success" %}
-🎉Congrats on setting up your validator! You're good to go on eth2.0.
+Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
+
+Use [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) to create alerts and track your validator's performance.
+{% endhint %}
+
+{% hint style="info" %}
+Be sure to review the [Checklist \| How to confirm a healthy functional ETH2 validator.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
+{% endhint %}
+
+{% hint style="success" %}
+🎉Congrats on setting up your testnet validator! You're good to go and try mainnet eth2.0.
 
 Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
 

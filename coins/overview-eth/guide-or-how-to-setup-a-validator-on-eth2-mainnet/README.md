@@ -790,6 +790,28 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 ### 🛠 Some helpful systemd commands
 
+#### 🗄 Viewing and filtering logs
+
+```bash
+#view and follow the log
+journalctl --unit=beacon-chain -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=beacon-chain --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=beacon-chain --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
 #### ✅ Check whether the beacon chain is active
 
 ```text
@@ -812,19 +834,6 @@ sudo systemctl reload-or-restart beacon-chain
 
 ```text
 sudo systemctl stop beacon-chain
-```
-
-#### 🗄 Viewing and filtering logs
-
-```bash
-#view and follow the log
-journalctl --unit=beacon-chain -f
-#view log since yesterday
-journalctl --unit=beacon-chain --since=yesterday
-#view log since today
-journalctl --unit=beacon-chain --since=today
-#view log between a date
-journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
 ## 🧬 4.6. Start the validator
@@ -902,6 +911,28 @@ Nice work. Your validator is now managed by the reliability and robustness of sy
 
 ### 🛠 Some helpful systemd commands
 
+#### 🗄 Viewing and filtering logs
+
+```bash
+#view and follow the log
+journalctl --unit=validator -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=validator --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=validator --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
 #### ✅ Check whether the validator is active
 
 ```text
@@ -924,19 +955,6 @@ sudo systemctl reload-or-restart validator
 
 ```text
 sudo systemctl stop validator
-```
-
-#### 🗄 Viewing and filtering logs
-
-```bash
-#view and follow the log
-journalctl --unit=validator -f
-#view log since yesterday
-journalctl --unit=validator --since=yesterday
-#view log since today
-journalctl --unit=validator --since=today
-#view log between a date
-journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 {% endtab %}
 
@@ -1123,6 +1141,28 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 ### 🛠 Some helpful systemd commands
 
+#### 🗄 Viewing and filtering logs
+
+```bash
+#view and follow the log
+journalctl --unit=beacon-chain -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=beacon-chain --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=beacon-chain --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
 #### ✅ Check whether the beacon chain is active
 
 ```text
@@ -1145,19 +1185,6 @@ sudo systemctl reload-or-restart beacon-chain
 
 ```text
 sudo systemctl stop beacon-chain
-```
-
-#### 🗄 Viewing and filtering logs
-
-```bash
-#view and follow the log
-journalctl --unit=beacon-chain -f
-#view log since yesterday
-journalctl --unit=beacon-chain --since=yesterday
-#view log since today
-journalctl --unit=beacon-chain --since=today
-#view log between a date
-journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 {% endtab %}
 
@@ -1409,6 +1436,28 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 ### 🛠 Some helpful systemd commands
 
+#### 🗄 Viewing and filtering logs
+
+```bash
+#view and follow the log
+journalctl --unit=beacon-chain -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=beacon-chain --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=beacon-chain --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
 #### ✅ Check whether the beacon chain is active
 
 ```text
@@ -1431,19 +1480,6 @@ sudo systemctl reload-or-restart beacon-chain
 
 ```text
 sudo systemctl stop beacon-chain
-```
-
-#### 🗄 Viewing and filtering logs
-
-```bash
-#view and follow the log
-journalctl --unit=beacon-chain -f
-#view log since yesterday
-journalctl --unit=beacon-chain --since=yesterday
-#view log since today
-journalctl --unit=beacon-chain --since=today
-#view log between a date
-journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 {% endtab %}
 
@@ -1556,6 +1592,28 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 ### 🛠 Some helpful systemd commands
 
+#### 🗄 Viewing and filtering logs
+
+```bash
+#view and follow the log
+journalctl --unit=beacon-chain -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=beacon-chain --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=beacon-chain --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
 #### ✅ Check whether the beacon chain is active
 
 ```text
@@ -1578,19 +1636,6 @@ sudo systemctl reload-or-restart beacon-chain
 
 ```text
 sudo systemctl stop beacon-chain
-```
-
-#### 🗒 Viewing and filtering logs
-
-```bash
-#view and follow the log
-journalctl --unit=beacon-chain -f
-#view log since yesterday
-journalctl --unit=beacon-chain --since=yesterday
-#view log since today
-journalctl --unit=beacon-chain --since=today
-#view log between a date
-journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
 ## 🧬 4.5. Start the validator <a id="9-start-the-validator"></a>
@@ -1673,6 +1718,28 @@ sudo systemctl start validator
 
 ### 🛠 Some helpful systemd commands
 
+#### 🗄 Viewing and filtering logs
+
+```bash
+#view and follow the log
+journalctl --unit=validator -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=validator --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=validator --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
 #### ✅ Check whether the validator is active
 
 ```text
@@ -1695,19 +1762,6 @@ sudo systemctl reload-or-restart validator
 
 ```text
 sudo systemctl stop validator
-```
-
-#### 🗄 Viewing and filtering logs
-
-```bash
-#view and follow the log
-journalctl --unit=validator -f
-#view log since yesterday
-journalctl --unit=validator --since=yesterday
-#view log since today
-journalctl --unit=validator --since=today
-#view log between a date
-journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
 Verify that your **validator public key** appears in the logs.
@@ -1879,6 +1933,28 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 ### 🛠 Some helpful systemd commands
 
+#### 🗄 Viewing and filtering logs
+
+```bash
+#view and follow the log
+journalctl --unit=beacon-chain -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=beacon-chain --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=beacon-chain --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
 #### ✅ Check whether the beacon chain is active
 
 ```text
@@ -1901,19 +1977,6 @@ sudo systemctl reload-or-restart beacon-chain
 
 ```text
 sudo systemctl stop beacon-chain
-```
-
-#### 🗄 Viewing and filtering logs
-
-```bash
-#view and follow the log
-journalctl --unit=beacon-chain -f
-#view log since yesterday
-journalctl --unit=beacon-chain --since=yesterday
-#view log since today
-journalctl --unit=beacon-chain --since=today
-#view log between a date
-journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
 ## 🧬 4.5. Start the validator
@@ -1994,6 +2057,28 @@ Nice work. Your validator is now managed by the reliability and robustness of sy
 
 ### 🛠 Some helpful systemd commands
 
+#### 🗄 Viewing and filtering logs
+
+```bash
+#view and follow the log
+journalctl --unit=validator -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=validator --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=validator --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
 #### ✅ Check whether the validator is active
 
 ```text
@@ -2017,19 +2102,6 @@ sudo systemctl reload-or-restart validator
 ```text
 sudo systemctl stop validator
 ```
-
-#### 🗄 Viewing and filtering logs
-
-```bash
-#view and follow the log
-journalctl --unit=validator -f
-#view log since yesterday
-journalctl --unit=validator --since=yesterday
-#view log since today
-journalctl --unit=validator --since=today
-#view log between a date
-journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
-```
 {% endtab %}
 {% endtabs %}
 
@@ -2039,12 +2111,6 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 **Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
 
 Remember, Teku and Nimbus combines both clients into one process.
-{% endhint %}
-
-{% hint style="success" %}
-Congratulations. Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
-
-Use [https://beaconcha.in/](https://beaconcha.in/) to create alerts and track your validator's performance.
 {% endhint %}
 
 ## 🕒5. Time Synchronization
@@ -2486,6 +2552,16 @@ For a video demo, watch [MohamedMansour's eth2 education videos](https://www.you
 18. Select desired notifications.
 19. Click **TEST** to verify your notifications are setup correctly.
 20. Click **CREATE** to finish.
+
+{% hint style="success" %}
+Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
+
+Use [https://beaconcha.in/](https://beaconcha.in/) to create alerts and track your validator's performance.
+{% endhint %}
+
+{% hint style="info" %}
+Be sure to review the [Checklist \| How to confirm a healthy functional ETH2 validator.](checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
+{% endhint %}
 
 {% hint style="success" %}
 🎉Congrats on setting up your validator! You're good to go on eth2.0.
