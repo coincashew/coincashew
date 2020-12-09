@@ -209,6 +209,10 @@ sudo passwd -u root
 SSH, the secure shell, is often used to access remote Linux systems. Because we often use it to connect with computers containing important data, it’s recommended to add another security layer. Here comes the two factor authentication \(_2FA_\).
 {% endhint %}
 
+{% hint style="warning" %}
+**Note**: If you are enabling 2FA on a remote machine that you access over SSH you need to follow **steps 2 and 3** of [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-18-04) to make 2FA work.
+{% endhint %}
+
 ```text
 sudo apt install libpam-google-authenticator -y
 ```
