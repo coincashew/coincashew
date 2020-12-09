@@ -267,6 +267,10 @@ You may have noticed the giant QR code that appeared during the process, underne
 
 Now, open Google Authenticator on your phone and add your secret key to make two factor authentication work.
 
+{% hint style="info" %}
+If you are enabling 2FA on a remote machine that you access over SSH you need to follow steps 2 and 3 of [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-18-04) to make 2FA work.
+{% endhint %}
+
 ## 🧩 Secure Shared Memory
 
 {% hint style="info" %}
