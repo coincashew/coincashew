@@ -8,6 +8,20 @@ description: Quick steps to secure your node.
 Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
 {% endhint %}
 
+## 🤖 Pre-requisites
+
+* Ubuntu Server or Ubuntu Desktop installed
+* SSH server installed
+* a SSH client or terminal window access
+
+In case you need to install SSH server, refer to:
+
+{% embed url="https://www.simplified.guide/ubuntu/install-ssh-server" %}
+
+In case you need a SSH client for your operating system, refer to:
+
+{% embed url="https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/" %}
+
 ## 🧙♂ Create a non-root user with sudo privileges
 
 {% hint style="info" %}
@@ -18,6 +32,8 @@ SSH to your server
 
 ```bash
 ssh username@server.public.ip.address
+# example
+# ssh myUsername@77.22.161.10
 ```
 
 Create a new user called cardano
@@ -145,7 +161,9 @@ ssh cardano@server.public.ip.address -p <custom port number>
 {% endtabs %}
 
 {% hint style="info" %}
-Alternatively, you might need to use 
+Alternatively, you might need to use the following. 
+
+Add the `-p <port#>` flag if you used a custom SSH port.
 
 ```bash
 ssh -i <path to your SSH_key_name.pub> cardano@server.public.ip.address
@@ -254,7 +272,27 @@ Now, open Google Authenticator on your phone and add your secret key to make two
 ## 🧩 Secure Shared Memory
 
 {% hint style="info" %}
-One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.
+One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory. 
+
+To learn more about secure shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
+{% endhint %}
+
+{% hint style="warning" %}
+### One exceptional case
+
+There may be a reason for you needing to have that memory space mounted in read/write mode \(such as a specific server application like **Chrome** that requires such access to the shared memory or standard applications like Google Chrome\). In this case, use the following line for the fstab file with instructions below.
+
+```text
+none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
+```
+
+The above line will mount the shared memory with read/write access but without permission to execute programs, change the UID of running programs, or to create block or character devices in the namespace. This a net security improvement over default settings.
+
+### Use with caution
+
+With some trial and error, you may discover some applications\(**like Chrome**\) do not work with shared memory in read-only mode. For the highest security and if compatible with your applications, it is a worthwhile endeavor to implement this secure shared memory setting.
+
+Source: [techrepublic.com](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/)
 {% endhint %}
 
 Edit `/etc/fstab`
@@ -347,8 +385,29 @@ If you want to maintain a secure server, you should validate the listening netwo
 
 ```text
 netstat -tulpn
+```
+
+```text
 ss -tulpn
 ```
+
+{% hint style="success" %}
+Congrats on completing the guide. ✨ 
+
+Did you find our guide useful? Send us a signal with a tip and we'll keep updating it. 
+
+It really energizes us to keep creating the best crypto guides. 
+
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+
+Any feedback and all pull requests much appreciated. 🌛 
+
+Hang out and chat with fellow stake pool operators on Discord @
+
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃 
+
+Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
+{% endhint %}
 
 ## 🚀 References
 

@@ -77,8 +77,8 @@ cd cardano-node
 ```bash
 git fetch --tags --all
 git pull
-# Replace tag 1.23.0 with the version/branch you'd like to build
-git checkout 1.23.0
+# Replace tag 1.24.2 with the version/branch you'd like to build
+git checkout 1.24.2
 
 echo -e "package cardano-crypto-praos\n  flags: -external-libsodium-vrf" > cabal.project.local
 $CNODE_HOME/scripts/cabal-build-all.sh
@@ -255,5 +255,23 @@ On the Guild LiveView screen, press `P` to view the peer list. You should see th
 
 {% hint style="danger" %}
 \*\*\*\*🔥 **Critical Security Reminder:** Relay nodes must not contain any **`operational certifications`, `vrf`, `skey` or `cold`** ``**keys**.
+{% endhint %}
+
+{% hint style="success" %}
+Congrats on completing the guide. ✨ 
+
+Did you find our guide useful? Send us a signal with a tip and we'll keep updating it. 
+
+It really energizes us to keep creating the best crypto guides. 
+
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+
+Any feedback and all pull requests much appreciated. 🌛 
+
+Hang out and chat with fellow stake pool operators on Discord @
+
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃 
+
+Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}
 

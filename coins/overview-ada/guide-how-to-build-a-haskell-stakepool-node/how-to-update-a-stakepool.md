@@ -1,7 +1,13 @@
 # How to update a Stakepool
 
+## 🎉 ∞ Pre-Announcements
+
+{% hint style="info" %}
+Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+{% endhint %}
+
 {% hint style="success" %}
-Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. 🙏 
+As of Dec 9 2020, this guide is written for **mainnet** with **release v.1.24.2** 😁 
 {% endhint %}
 
 ## 📡 1. How to perform an update
@@ -13,13 +19,39 @@ To update with `$HOME/git/cardano-node` as the current binaries directory, copy 
 ```bash
 cd $HOME/git
 rm -rf cardano-node-old/
-rsync -av cardano-node/ cardano-node2/
+git clone https://github.com/input-output-hk/cardano-node.git cardano-node2
 cd cardano-node2/
 ```
 
 {% hint style="danger" %}
 Read the patch notes for any other special updates or dependencies that may be required for the latest release.
 {% endhint %}
+
+{% tabs %}
+{% tab title="v1.24.2 Notes" %}
+This release provides support for the upcoming Allegra and Mary hard forks and the new features they bring.
+
+* The Allegra hard fork adds some features needed to support the Catalyst treasury scheme. It extends the existing multi-sig script language with predicates for time, via the slot number. It allows, for example, to make a script address that is not spendable until a certain point in time.
+* The Mary hard fork adds multi-asset support. This is comparable to ERC20 and ERC721 tokens, but supported natively in the UTxO ledger. This is part of the Goguen feature set. It is a very significant feature and will have implications for all Cardano wallet implementations, including exchanges.
+
+Stake Pool Operators \(SPOs\) and Exchanges should update their node config \( `mainnet-config.json`\) "options" section with an extra entry:
+
+```text
+  "options": {
+    "mapBackends": {
+      "cardano.node.resources": [
+        "EKGViewBK"
+      ],
+```
+{% endtab %}
+
+{% tab title="v1.23.0 Notes" %}
+This release includes a substantial amount of internal changes to support the upcoming Allegra and Mary hard forks and the new features they bring. This is _not_ the final release before the Allegra hard fork, but it does include the bulk of the functionality for both Allegra and Mary hard forks.
+
+* The Allegra hard fork adds some features needed to support the Catalyst treasury scheme. It extends the existing multi-sig script language with predicates for time, via the slot number. It allows, for example, to make an address not spendable until a certain point in time.
+* The Mary hard fork adds multi-asset support. This is comparable to ERC20 and ERC721 tokens, but supported natively in the UTxO ledger. This is part of the Goguen feature set. It is a very significant feature and will have implications for all Cardano wallet implementations, including exchanges.
+
+Another notable change in this release is an adjustment to the pool ranking that will benefit small pools that have not yet made many blocks. We have adjusted the initial Bayesian prior so that instead of assuming new pools will perform at some less-than-perfect average level, we assume they will perform more-or-less perfectly. This prior is still updated based on the actual performance history, so pools that perform poorly will still drop in ranking. This change will especially benefit small pools that have produce few blocks so far, because they have very little performance history and so their score will be more influenced by the initial prior.
 
 ### Release v1.23.0 New Dependencies
 
@@ -77,6 +109,8 @@ Starting with version 1.23.0, `vrf.skey` permission checking has been implemente
 cd $NODE_HOME
 chmod 400 vrf.skey
 ```
+{% endtab %}
+{% endtabs %}
 
 ### Compiling the new binaries
 
@@ -84,11 +118,12 @@ Remove the old binaries and rebuild the latest binaries. Run the following comma
 
 ```bash
 cd $HOME/git/cardano-node2
-rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
+rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.2
 git clean -fd
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.23.0 && git pull
+git checkout tags/1.24.2 && git pull
 cabal configure -O0 -w ghc-8.10.2
+echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 cabal build cardano-node cardano-cli
 ```
 
@@ -137,6 +172,13 @@ sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardan
 sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
 ```
 
+Verify your **cardano-cli** and **cardano-node** were copied successfully and updated to the expected version.
+
+```bash
+cardano-node version
+cardano-cli version
+```
+
 {% hint style="success" %}
 Now restart your node to use the updated binaries.
 {% endhint %}
@@ -173,6 +215,24 @@ mv cardano-node2/ cardano-node/
 
 {% hint style="danger" %}
 **Reminder**: Don't forget to update your **air-gapped offline machine \(cold environment\)** with the new Cardano binaries.
+{% endhint %}
+
+{% hint style="success" %}
+Congrats on completing the guide. ✨ 
+
+Did you find our guide useful? Send us a signal with a tip and we'll keep updating it. 
+
+It really energizes us to keep creating the best crypto guides. 
+
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+
+Any feedback and all pull requests much appreciated. 🌛 
+
+Hang out and chat with fellow stake pool operators on Discord @
+
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃 
+
+Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}
 
 ## 🤯 2. In case of problems
