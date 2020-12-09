@@ -554,6 +554,10 @@ sudo netstat -tulpn
   </tbody>
 </table>
 
+{% hint style="info" %}
+Be sure to review the [Checklist \| How to confirm a healthy functional ETH2 validator.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
+{% endhint %}
+
 ## 🤖 Start staking by building a validator
 
 ### Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) and here for our [Testnet guide](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).

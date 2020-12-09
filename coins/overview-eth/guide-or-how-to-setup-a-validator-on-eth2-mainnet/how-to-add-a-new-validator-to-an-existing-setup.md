@@ -32,6 +32,10 @@ Using the eth2deposit-cli tool, you can add more validators by creating a new de
 **Security recommendation reminder**: For best security practices, key management and other activities where you type your 24 word mnemonic seed should be completed on an air-gapped offline cold machine booted from USB drive.
 {% endhint %}
 
+{% hint style="danger" %}
+Reminder to use the same **keystore password.**
+{% endhint %}
+
 {% tabs %}
 {% tab title="Build from source code" %}
 ```bash
