@@ -209,10 +209,6 @@ sudo passwd -u root
 SSH, the secure shell, is often used to access remote Linux systems. Because we often use it to connect with computers containing important data, it’s recommended to add another security layer. Here comes the two factor authentication \(_2FA_\).
 {% endhint %}
 
-{% hint style="warning" %}
-**Note**: If you are enabling 2FA on a remote machine that you access over SSH you need to follow **steps 2 and 3** of [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-18-04) to make 2FA work.
-{% endhint %}
-
 ```text
 sudo apt install libpam-google-authenticator -y
 ```
@@ -272,6 +268,10 @@ It will ask you a series of questions, here is a recommended configuration:
 You may have noticed the giant QR code that appeared during the process, underneath are your emergency scratch codes to be used if you don’t have access to your phone: write them down on paper and keep them in a safe place.
 
 Now, open Google Authenticator on your phone and add your secret key to make two factor authentication work.
+
+{% hint style="danger" %}
+**Note**: If you are enabling 2FA on a remote machine that you access over SSH you need to follow **steps 2 and 3** of [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-18-04) to make 2FA work.
+{% endhint %}
 
 ## 🧩 Secure Shared Memory
 
