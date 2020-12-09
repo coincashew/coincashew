@@ -169,10 +169,10 @@ Configure build options.
 cabal configure -O0 -w ghc-8.10.2
 ```
 
-Update the cabal config, project settings, and reset build folder.echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" &gt; cabal.project.local  
-
+Update the cabal config, project settings, and reset build folder.
 
 ```bash
+echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 sed -i $HOME/.cabal/config -e "s/overwrite-policy:/overwrite-policy: always/g"
 rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.10.2
 ```
