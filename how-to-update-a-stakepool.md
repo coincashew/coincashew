@@ -33,7 +33,7 @@ cd cardano-node2/
   
 ・Maryハードフォークはマルチアセットサポートを追加します。これはERC20及びERC721トークン相当しますが、UTｘO元帳でネイティブにサポートされます。これはGoguen機能セットの一部です。これは非常に重要な機能であり、交換を含む全てのカルダノウォレットの実装に影響します。  
   
-ステークプールオペレーター(SPO)と取引所は、ノード構成の「オプション」セクションを下記のエントリーで更新する必要があります。
+ステークプールオペレーター(SPO)と取引所は、ノード構成の「オプション」セクションを下記のエントリーで更新する必要がありますので、後ほどmainnet-config.jsonを更新します。
 ```bash
   "options": {
     "mapBackends": {
@@ -41,7 +41,62 @@ cd cardano-node2/
         "EKGViewBK"
       ],
 ```
+
+### mainnet-config.jsonのアップデート  
+  
+* 既存のファイルをバックアップします。
+```bash
+cd $NODE_HOME
+mv mainnet-config.json mainnet-config-bk.json
+ ```
+
+* 最新のmainnet-config.jsonをダウンロードします。
+```bash
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
+```
+値を変更します。  
+* TraceBlockFetchDecisionsを「true」に変更します。
+```bash
+sed -i ${NODE_CONFIG}-config.json \
+    -e "s/TraceBlockFetchDecisions\": false/Tra
+ ```
+### ログファイルを作成するように設定する
+ ```bash
+nano mainnet-config.json
+ ```
+* defaultScribesを下記のように書き換える
+ ```bash
+  "defaultScribes": [
+    [
+      "FileSK",
+      "logs/node.json"
+    ],
+    [
+      "StdoutSK",
+      "stdout"
+    ]
+  ],
+```
+* setupScribesを下記のように書き換える
+ ```bash
+   "setupScribes": [
+    {
+      "scFormat": "ScJson",
+      "scKind": "FileSK",
+      "scName": "logs/node.json"
+    },
+    {
+      "scFormat": "ScText",
+      "scKind": "StdoutSK",
+      "scName": "stdout",
+      "scRotation": null
+    }
+  ]
+ ```
+  
+ Ctrl+Oでファイルを保存し、Ctrl+Xで閉じる
 {% endtab %}
+
 
 
 {% tab title="1.21.1からバージョンアップする場合" %} このリリースには、今後のアレグラとメアリーのハードフォークとそれらがもたらす新機能をサポートするためのかなりの量の内部変更が含まれています。これはAllegraハードフォーク前の最終リリースではありませんが、AllegraとMaryの両方のハードフォークの機能の大部分が含まれています。  
