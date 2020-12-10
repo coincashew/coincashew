@@ -41,60 +41,6 @@ cd cardano-node2/
         "EKGViewBK"
       ],
 ```
-
-### mainnet-config.jsonのアップデート  
-  
-* 既存のファイルをバックアップします。
-```bash
-cd $NODE_HOME
-mv mainnet-config.json mainnet-config-bk.json
- ```
-
-* 最新のmainnet-config.jsonをダウンロードします。
-```bash
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
-```
-値を変更します。  
-* TraceBlockFetchDecisionsを「true」に変更します。
-```bash
-sed -i ${NODE_CONFIG}-config.json \
-    -e "s/TraceBlockFetchDecisions\": false/Tra
- ```
-### ログファイルを作成するように設定する
- ```bash
-nano mainnet-config.json
- ```
-* defaultScribesを下記のように書き換える
- ```bash
-  "defaultScribes": [
-    [
-      "FileSK",
-      "logs/node.json"
-    ],
-    [
-      "StdoutSK",
-      "stdout"
-    ]
-  ],
-```
-* setupScribesを下記のように書き換える
- ```bash
-   "setupScribes": [
-    {
-      "scFormat": "ScJson",
-      "scKind": "FileSK",
-      "scName": "logs/node.json"
-    },
-    {
-      "scFormat": "ScText",
-      "scKind": "StdoutSK",
-      "scName": "stdout",
-      "scRotation": null
-    }
-  ]
- ```
-  
- Ctrl+Oでファイルを保存し、Ctrl+Xで閉じる
 {% endtab %}
 
 
@@ -230,6 +176,60 @@ $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") 
 ```bash
 $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") version
 ```
+
+### mainnet-config.jsonのアップデート  
+  
+* 既存のファイルをバックアップします。
+```bash
+cd $NODE_HOME
+mv mainnet-config.json mainnet-config-bk.json
+ ```
+
+* 最新のmainnet-config.jsonをダウンロードします。
+```bash
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
+```
+値を変更します。  
+* TraceBlockFetchDecisionsを「true」に変更します。
+```bash
+sed -i ${NODE_CONFIG}-config.json \
+    -e "s/TraceBlockFetchDecisions\": false/Tra
+ ```
+### ログファイルを作成するように設定する
+ ```bash
+nano mainnet-config.json
+ ```
+* defaultScribesを下記のように書き換える
+ ```bash
+  "defaultScribes": [
+    [
+      "FileSK",
+      "logs/node.json"
+    ],
+    [
+      "StdoutSK",
+      "stdout"
+    ]
+  ],
+```
+* setupScribesを下記のように書き換える
+ ```bash
+   "setupScribes": [
+    {
+      "scFormat": "ScJson",
+      "scKind": "FileSK",
+      "scName": "logs/node.json"
+    },
+    {
+      "scFormat": "ScText",
+      "scKind": "StdoutSK",
+      "scName": "stdout",
+      "scRotation": null
+    }
+  ]
+ ```
+  
+ Ctrl+Oでファイルを保存し、Ctrl+Xで閉じる
 
 {% hint style="danger" %}
 バイナリーファイルを更新する前に、ノードを停止して下さい。
