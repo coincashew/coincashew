@@ -196,7 +196,7 @@ $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node")
 * 既存のファイルをバックアップします。
 ```bash
 cd $NODE_HOME
-mv mainnet-config.json mainnet-config-bk.json
+cp mainnet-config.json mainnet-config-bk.json
  ```
 
 * 最新のmainnet-config.jsonをダウンロードします。
