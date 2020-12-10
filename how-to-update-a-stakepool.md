@@ -169,7 +169,7 @@ LiveViewの代わりにノードを監視するコミュニティ製の監視ツ
 
 ```bash
 cd $HOME/git/cardano-node2/
-rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
+rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.2
 git clean -fd
 git fetch --all --recurse-submodules --tags
 git checkout tags/1.24.2 && git pull
