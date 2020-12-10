@@ -3,6 +3,17 @@ description: >-
   最新ノードをソースコードからビルドするには、数分～数時間かかる場合があります。その間プールを停止させるとブロック生成のチャンスが失われ、委任者に迷惑がかかります。プール停止時間を最小限に抑えた方法でアップデートするよう心がけましょう。
 ---
 
+## 🚀 このマニュアルに関する問い合わせ先
+
+{% hint style="success" %}
+このマニュアルは役に立ちましたか？ 不明な点がある場合は、下記までご連絡下さい。
+
+・コミュニティ：[Cardano SPO Japanese Guild](https://discord.com/invite/3HnVHs3)
+
+・Twitter：[@btbfpark](https://twitter.com/btbfpark)
+
+・Twitter：[@X\_StakePool\_XSP](https://twitter.com/X_StakePool_XSP)
+
 {% hint style="success" %} 2020年12月11日時点でこのガイドは v.1.24.2に対応しています。 😁 {% endhint %}
 
 # ステークプールを更新する方法
@@ -398,3 +409,27 @@ sudo systemctl start cardano-node
 
 次のマニュアル [カルダノステークプール構築手順](./)1～3を実行する。
 
+## 👏 5. 寄付とクレジット表記
+
+{% hint style="info" %}
+このマニュアル制作に携わった全ての方に、感謝申し上げます。 快く翻訳を承諾して頂いた、[CoinCashew](https://www.coincashew.com/)には敬意を表します。
+この活動をサポートして頂ける方は、是非寄付をよろしくお願い致します。
+{% endhint %}
+
+### CoinCashew ADAアドレス
+```bash
+addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
+```
+
+### X StakePoolへの寄付  
+ 
+カルダノ分散化、日本コミュニティ発展の為に日本語化させて頂きました。私達をサポート頂ける方は当プールへ委任頂けますと幸いです。  
+* Ticker：XSP  
+Pool ID↓  
+```bash
+788898a81174665316af96880459dcca053f7825abb1b0db9a433630
+```
+* ADAアドレス
+```bash
+addr1q85kms3xw788pzxcr8g8d4umxjcr57w55k2gawnpwzklu97sc26z2lhct48alhew43ry674692u2eynccsyt9qexxsesjzz8qp
+```
