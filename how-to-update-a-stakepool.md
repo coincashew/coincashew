@@ -201,6 +201,7 @@ cp mainnet-config.json mainnet-config-bk.json
 
 * 最新のmainnet-config.jsonをダウンロードします。
 ```bash
+NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g')
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 ```
 値を変更します。  
