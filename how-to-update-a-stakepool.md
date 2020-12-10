@@ -193,8 +193,8 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 * TraceBlockFetchDecisionsを「true」に変更します。
 ```bash
 sed -i ${NODE_CONFIG}-config.json \
-    -e "s/TraceBlockFetchDecisions\": false/Tra
- ```
+    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
+```
 ### ログファイルを作成するように設定する
  ```bash
 nano mainnet-config.json
