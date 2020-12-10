@@ -27,6 +27,30 @@ cd cardano-node2/
 最新のリリースに必要となる他の更新や依存関係については、パッチノートを参照して下さい。
 {% endhint %}
 
+{% tabs %} {% tab title="v1.24.2メモ" %} このリリースは、今後のアレグラとメアリーのハードフォークとそれらがもたらす新機能のサポートを提供します。
+
+・Allegraハードフォークは、Catalyst財務スキームをサポートするために必要ないくつかの機能を追加します。スロット番号を介して、既存のマルチシグスクリプト言語を時間の述語で拡張します。これにより、例えば特定の時点までの使用できないスクリプトアドレスを作成できます。  
+  
+・Maryハードフォークはマルチアセットサポートを追加します。これはERC20及びERC721トークン相当しますが、UTｘO元帳でネイティブにサポートされます。これはGoguen機能セットの一部です。これは非常に重要な機能であり、交換を含む全てのカルダノウォレットの実装に影響します。  
+  
+ステークプールオペレーター(SPO)と取引所は、ノード構成の「オプション」セクションを下記のエントリーで更新する必要があります。
+
+  "options": {
+    "mapBackends": {
+      "cardano.node.resources": [
+        "EKGViewBK"
+      ],
+{% endtab %}
+
+
+{% tab title="v1.23.0ノート" %} このリリースには、今後のアレグラとメアリーのハードフォークとそれらがもたらす新機能をサポートするためのかなりの量の内部変更が含まれています。これはAllegraハードフォーク前の最終リリースではありませんが、AllegraとMaryの両方のハードフォークの機能の大部分が含まれています。  
+  
+・Allegraハードフォークは、Catalyst財務スキームをサポートするために必要ないくつかの機能を追加します。スロット番号を介して、既存のマルチシグスクリプト言語を時間の述語で拡張します。これにより、例えば特定の時点までの使用できないスクリプトアドレスを作成できます。  
+  
+・Maryハードフォークはマルチアセットサポートを追加します。これはERC20及びERC721トークン相当しますが、UTｘO元帳でネイティブにサポートされます。これはGoguen機能セットの一部です。これは非常に重要な機能であり、交換を含む全てのカルダノウォレットの実装に影響します。  
+  
+このリリースでもう１つ注目せうべき変更は、まだ多くのブロックを作成していない小さなプールに役立つプールランキングの調整です。新しいプールが完全でない平均レベルで実行されると想定する代わりに、多かれ少なかれ完全に実行されると想定するように初期ベイジアン事前確率を調整しました。この事前情報は、実際のパフォーマンス履歴に基づいて引き続き更新されるため、パフォーマンスの低いプールはランキングで低下します。この変更はパフォーマンス履歴がほとんどなく、スコアが最初の事前設定の影響を大きく受けるため、これまでにブロックがほとんど生成されていない小さなプールに特に役に立ちます。  
+  
 ### v1.23.0リリースに伴う新しい依存関係
 
 GHC バージョン8.10.2をインストールします。
@@ -111,12 +135,17 @@ cd $NODE_HOME
 chmod 400 vrf.skey
 ```
 
+
+
 #### gLiveViewをインストールします（任意）
 
 LiveViewの代わりにノードを監視するコミュニティ製の監視ツールです。  
 (メモリー使用率が高くなることに注意して下さい)
 
 [インストールはこちらを参照してください](./#18-13-gliveview-node-status-monitoring)
+
+
+{% endtab %} {% endtabs %}
 
 ### 新しいバイナリーファイルをコンパイルする
 
@@ -127,8 +156,9 @@ cd $HOME/git/cardano-node2/
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 git clean -fd
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.23.0 && git pull
+git checkout tags/1.24.2 && git pull
 cabal configure -O0 -w ghc-8.10.2
+echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 cabal build cardano-node cardano-cli
 ```
 
@@ -173,8 +203,17 @@ sudo systemctl stop cardano-node
 
 ```bash
 sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
+```
+```bash
 sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
 ```
+
+バージョンを確認します。
+```bash
+cardano-node version
+cardano-cli version
+```
+
 
 {% hint style="success" %}
 ノードを再起動して、更新されたバイナリーを使用します。
