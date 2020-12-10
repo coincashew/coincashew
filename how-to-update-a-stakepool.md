@@ -14,6 +14,8 @@ description: >-
 
 ・Twitter：[@X\_StakePool\_XSP](https://twitter.com/X_StakePool_XSP)
 
+{% endhint %}
+
 {% hint style="success" %} 2020年12月11日時点でこのガイドは v.1.24.2に対応しています。 😁 {% endhint %}
 
 # ステークプールを更新する方法
