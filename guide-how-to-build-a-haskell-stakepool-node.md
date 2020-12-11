@@ -2945,7 +2945,7 @@ nano env
 
 ```bash
 CCLI="/usr/local/bin/cardano-cli"
-CNODE_HOME=/home/user/cardano-my-node
+CNODE_HOME=/home/<user_name>/cardano-my-node
 CNODE_PORT=<ノードのポート番号>
 CONFIG="${CNODE_HOME}/mainnet-config.json"
 SOCKET="${CNODE_HOME}/db/socket"
