@@ -79,7 +79,7 @@ Ctrl+C
 ```
 ※別セッション内(tmux)でノードを終了させないと、ノード再起動時の同期が遅い  
 
-### 別セッション内(tmux)でのノード再起動
+### 別セッション内(tmux)でのノード起動
 ```text
 cd $NODE_HOME
 ./startRelayNode1.sh
