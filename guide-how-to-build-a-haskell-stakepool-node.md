@@ -1754,7 +1754,14 @@ Pooltool.ioでリクエストが承認されたら、その都度get\_buddies.sh
 \*\*\*\*🔥 **重要な確認事項:** ブロックを生成するには、「TXs processed」が増加していることを確認する必要があります。万一、増加していない場合にはトポロジーファイルの内容を再確認して下さい。「peers」数はリレーノードが他ノードと接続している数を表しています。
 {% endhint %}
 
-![](.gitbook/assets/ada-tx-processed.png)
+### 🛠 gLiveView ノードステータスモニターをインストールします
+
+{% hint style="info" %}
+[gLiveViewいストール手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
+{% endhint %}
+
+
+![](.gitbook\assets\gliveview-core.png)
 
 {% hint style="danger" %}
 \*\*\*\*🛑 **注意事項**r: ブロックプロデューサーノードを実行するためには、以下の３つのファイルが必要です。このファイルが揃っていない場合や起動時に指定されていない場合はブロックが生成できません。
