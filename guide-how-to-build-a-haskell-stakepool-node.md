@@ -1761,7 +1761,7 @@ Pooltool.ioでリクエストが承認されたら、その都度get\_buddies.sh
 {% endhint %}
 
 
-![](.gitbook\assets\gliveview-core.png)
+![](https://gblobscdn.gitbook.com/assets%2F-M5KYnWuA6dS_nKYsmfV%2F-MGldUPmEkJqK1vDLzOT%2F-MGlehnIvBsYqfb4KGvG%2Fgliveview-core.png?alt=media&token=9954ab81-26ae-4e7a-bfdf-d3b73c82d1ec)
 
 {% hint style="danger" %}
 \*\*\*\*🛑 **注意事項**r: ブロックプロデューサーノードを実行するためには、以下の３つのファイルが必要です。このファイルが揃っていない場合や起動時に指定されていない場合はブロックが生成できません。
