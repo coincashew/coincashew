@@ -12,7 +12,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-このマニュアルは、Shelleyメインネット用にVer1.23.0を用いて作成されています。  
+このマニュアルは、2020年12月11日の時点で、v1.24.2に対応しています。  
 [ドキュメント更新情報はこちら](README.md)
 {% endhint %}
 
@@ -22,8 +22,8 @@ description: >-
 
 カルダノステークプールを運営するには、以下のスキルを必要とします。
 
-* カルダノノードを正常にセットアップ、実行、維持する運用スキル
-* 24時間365日ノードを維持することへの取り組み
+* カルダノノードを継続的にセットアップ、実行、維持する運用スキル
+* ノードを24時間年中無休で維持するというコミット
 * システム運用スキル
 * サーバ管理スキル \(運用および保守\).
 * 開発と運用経験 \(DevOps\)
@@ -165,9 +165,8 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.23.0
+git checkout tags/1.24.2
 ```
-
 Cabalのビルドオプションを構成します。
 ```bash
 cabal configure -O0 -w ghc-8.10.2
@@ -446,7 +445,7 @@ chmod +x startRelayNode1.sh
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
-cardano-cli shelley node key-gen-KES \
+cardano-cli node key-gen-KES \
     --verification-key-file kes.vkey \
     --signing-key-file kes.skey
 ```
@@ -477,7 +476,7 @@ pushd $HOME/cold-keys
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley node key-gen \
+cardano-cli node key-gen \
     --cold-verification-key-file node.vkey \
     --cold-signing-key-file node.skey \
     --operational-certificate-issue-counter node.counter
@@ -508,7 +507,7 @@ echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-slotNo=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
+slotNo=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
 echo slotNo: ${slotNo}
 ```
 {% endtab %}
@@ -544,7 +543,7 @@ echo startKesPeriod: ${startKesPeriod}
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley node issue-op-cert \
+cardano-cli node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file $HOME/cold-keys/node.skey \
     --operational-certificate-issue-counter $HOME/cold-keys/node.counter \
@@ -561,7 +560,7 @@ VRFペアキーを作成します。
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley node key-gen-VRF \
+cardano-cli node key-gen-VRF \
     --verification-key-file vrf.vkey \
     --signing-key-file vrf.skey
 ```
@@ -633,7 +632,7 @@ cd $NODE_HOME
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query protocol-parameters \
+cardano-cli query protocol-parameters \
     --mainnet \
     --out-file params.json
 ```
@@ -665,7 +664,7 @@ paymentキーは支払い用アドレスに使用され、stakeキーはプー�
 ### On エアギャップオフラインマシン,
 ###
 cd $NODE_HOME
-cardano-cli shelley address key-gen \
+cardano-cli address key-gen \
     --verification-key-file payment.vkey \
     --signing-key-file payment.skey
 ```
@@ -676,7 +675,7 @@ cardano-cli shelley address key-gen \
 ###
 ### On エアギャップオフラインマシン,
 ###
-cardano-cli shelley stake-address key-gen \
+cardano-cli stake-address key-gen \
     --verification-key-file stake.vkey \
     --signing-key-file stake.skey
 ```
@@ -687,7 +686,7 @@ cardano-cli shelley stake-address key-gen \
 ###
 ### On エアギャップオフラインマシン,
 ###
-cardano-cli shelley stake-address build \
+cardano-cli stake-address build \
     --stake-verification-key-file stake.vkey \
     --out-file stake.addr \
     --mainnet
@@ -699,7 +698,7 @@ cardano-cli shelley stake-address build \
 ###
 ### On エアギャップオフラインマシン,
 ###
-cardano-cli shelley address build \
+cardano-cli address build \
     --payment-verification-key-file payment.vkey \
     --stake-verification-key-file stake.vkey \
     --out-file payment.addr \
@@ -968,7 +967,7 @@ cat payment.addr
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query utxo \
+cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet
 ```
@@ -990,7 +989,7 @@ cardano-cli shelley query utxo \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```text
-cardano-cli shelley stake-address registration-certificate \
+cardano-cli stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
     --out-file stake.cert
 ```
@@ -1003,7 +1002,7 @@ ttlパラメータを設定するには、最新のスロット番号を取得�
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-currentSlot=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -1014,7 +1013,7 @@ echo Current Slot: $currentSlot
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query utxo \
+cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -1064,7 +1063,7 @@ build-rawトランザクションコマンドを実行します。
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction build-raw \
+cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+0 \
     --ttl $(( ${currentSlot} + 10000)) \
@@ -1080,7 +1079,7 @@ cardano-cli shelley transaction build-raw \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-fee=$(cardano-cli shelley transaction calculate-min-fee \
+fee=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -1113,7 +1112,7 @@ echo Change Output: ${txOut}
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction build-raw \
+cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --ttl $(( ${currentSlot} + 10000)) \
@@ -1131,7 +1130,7 @@ paymentとstakeの秘密鍵でトランザクションファイルに署名し�
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley transaction sign \
+cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
@@ -1148,7 +1147,7 @@ cardano-cli shelley transaction sign \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction submit \
+cardano-cli transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -1187,7 +1186,7 @@ EOF
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
+cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
 ```
 {% endtab %}
 {% endtabs %}
@@ -1254,7 +1253,7 @@ minPoolCostは 340000000 lovelace \(340 ADA\)です。
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley stake-pool registration-certificate \
+cardano-cli stake-pool registration-certificate \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 100000000 \
@@ -1281,7 +1280,7 @@ cardano-cli shelley stake-pool registration-certificate \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley stake-address delegation-certificate \
+cardano-cli stake-address delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --out-file deleg.cert
@@ -1305,7 +1304,7 @@ cardano-cli shelley stake-address delegation-certificate \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-currentSlot=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -1316,7 +1315,7 @@ echo Current Slot: $currentSlot
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query utxo \
+cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -1362,7 +1361,7 @@ build-rawトランザクションコマンドを実行します。
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction build-raw \
+cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+$(( ${total_balance} - ${poolDeposit}))  \
     --ttl $(( ${currentSlot} + 10000)) \
@@ -1379,7 +1378,7 @@ cardano-cli shelley transaction build-raw \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-fee=$(cardano-cli shelley transaction calculate-min-fee \
+fee=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -1412,7 +1411,7 @@ echo txOut: ${txOut}
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction build-raw \
+cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --ttl $(( ${currentSlot} + 10000)) \
@@ -1431,7 +1430,7 @@ cardano-cli shelley transaction build-raw \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley transaction sign \
+cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file $HOME/cold-keys/node.skey \
@@ -1449,7 +1448,7 @@ cardano-cli shelley transaction sign \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction submit \
+cardano-cli transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -1463,7 +1462,7 @@ cardano-cli shelley transaction submit \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley stake-pool id --verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
+cardano-cli stake-pool id --verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
 cat stakepoolid.txt
 ```
 {% endtab %}
@@ -1476,7 +1475,7 @@ cat stakepoolid.txt
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query ledger-state --mainnet | grep publicKey | grep $(cat stakepoolid.txt)
+cardano-cli query ledger-state --mainnet | grep publicKey | grep $(cat stakepoolid.txt)
 ```
 {% endtab %}
 {% endtabs %}
@@ -1532,7 +1531,7 @@ NWMAGIC=\$(jq -r .networkMagic < \$GENESIS_JSON)
 export PATH="\${CNODE_BIN}:\${PATH}"
 export CARDANO_NODE_SOCKET_PATH="\${CNODE_HOME}/db/socket"
 
-blockNo=\$(cardano-cli shelley query tip \${NETWORK_IDENTIFIER} | jq -r .blockNo )
+blockNo=\$(cardano-cli query tip \${NETWORK_IDENTIFIER} | jq -r .blockNo )
 
 # Note:
 # ノードをIPv4/IPv6デュアルスタックネットワーク構成で実行している場合
@@ -1783,7 +1782,7 @@ CERT=\${DIRECTORY}/node.cert
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query stake-address-info \
+cardano-cli query stake-address-info \
  --address $(cat stake.addr) \
  --mainnet
 ```
@@ -2033,7 +2032,7 @@ addr1q85kms3xw788pzxcr8g8d4umxjcr57w55k2gawnpwzklu97sc26z2lhct48alhew43ry674692u
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
-slotNo=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
+slotNo=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 startKesPeriod=${kesPeriod}
@@ -2046,7 +2045,7 @@ echo startKesPeriod: ${startKesPeriod}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
-cardano-cli shelley node key-gen-KES \
+cardano-cli node key-gen-KES \
     --verification-key-file kes.vkey \
     --signing-key-file kes.skey
 ```
@@ -2062,7 +2061,7 @@ kes.vkeyをコールド環境にコピーします。
 ```bash
 cd $NODE_HOME
 chmod u+rwx $HOME/cold-keys
-cardano-cli shelley node issue-op-cert \
+cardano-cli node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file $HOME/cold-keys/node.skey \
     --operational-certificate-issue-counter $HOME/cold-keys/node.counter \
@@ -2158,7 +2157,7 @@ poolMetaData.jsonを変更する場合は、メタデータファイルのハッ
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```text
-cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
+cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
 ```
 {% endtab %}
 {% endtabs %}
@@ -2174,7 +2173,7 @@ cardano-cli shelley stake-pool metadata-hash --pool-metadata-file poolMetaData.j
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley stake-pool registration-certificate \
+cardano-cli stake-pool registration-certificate \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 1000000000 \
@@ -2201,7 +2200,7 @@ cardano-cli shelley stake-pool registration-certificate \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```text
-cardano-cli shelley stake-address delegation-certificate \
+cardano-cli stake-address delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --out-file deleg.cert
@@ -2216,7 +2215,7 @@ ttlパラメータを設定するには、最新のスロット番号を取得�
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-currentSlot=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -2227,7 +2226,7 @@ echo Current Slot: $currentSlot
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query utxo \
+cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -2262,7 +2261,7 @@ build-rawトランザクションコマンドを実行します。
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction build-raw \
+cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
     --ttl $(( ${currentSlot} + 10000)) \
@@ -2279,7 +2278,7 @@ cardano-cli shelley transaction build-raw \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-fee=$(cardano-cli shelley transaction calculate-min-fee \
+fee=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -2308,7 +2307,7 @@ echo txOut: ${txOut}
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction build-raw \
+cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --ttl $(( ${currentSlot} + 10000)) \
@@ -2327,7 +2326,7 @@ cardano-cli shelley transaction build-raw \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley transaction sign \
+cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file $HOME/cold-keys/node.skey \
@@ -2345,7 +2344,7 @@ cardano-cli shelley transaction sign \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction submit \
+cardano-cli transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -2357,7 +2356,7 @@ cardano-cli shelley transaction submit \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query ledger-state --mainnet --out-file ledger-state.json
+cardano-cli query ledger-state --mainnet --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}
@@ -2504,7 +2503,7 @@ sudo systemctl start cardano-node
 tmux a
 ```
 
-#### 🚧 ライブモニターをバックグラウンド実行に切り替え、コマンドラインを表示します。
+#### 🚧 セッションをバックグラウンド実行に切り替え、コマンドラインを表示します。
 
 ```text
 press Ctrl + b + d
@@ -2592,7 +2591,7 @@ sed -i ${NODE_CONFIG}-config.json \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-currentSlot=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -2625,7 +2624,7 @@ echo destinationAddress: $destinationAddress
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query utxo \
+cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -2656,7 +2655,7 @@ build-rawトランザクションコマンドを実行します。
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction build-raw \
+cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+0 \
     --tx-out ${destinationAddress}+0 \
@@ -2672,7 +2671,7 @@ cardano-cli shelley transaction build-raw \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-fee=$(cardano-cli shelley transaction calculate-min-fee \
+fee=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 2 \
@@ -2701,7 +2700,7 @@ echo Change Output: ${txOut}
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction build-raw \
+cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --tx-out ${destinationAddress}+${amountToSend} \
@@ -2719,7 +2718,7 @@ cardano-cli shelley transaction build-raw \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley transaction sign \
+cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --mainnet \
@@ -2735,7 +2734,7 @@ cardano-cli shelley transaction sign \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction submit \
+cardano-cli transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -2747,7 +2746,7 @@ cardano-cli shelley transaction submit \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query utxo \
+cardano-cli query utxo \
     --address ${destinationAddress} \
     --mainnet
 ```
@@ -2868,7 +2867,7 @@ cd pooltool.io/leaderLogs
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query ledger-state --mainnet --out-file ledger.json
+cardano-cli query ledger-state --mainnet --out-file ledger.json
 ```
 {% endtab %}
 {% endtabs %}
@@ -2918,8 +2917,57 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 ### 🕒 18.13 gLiveView ノードステータスモニター
 
 {% hint style="info" %}
-絶賛翻訳中！！
+gLiveViewは重要なノードステータス情報を表示表示し、systemdサービスとうまく連携します。1.23.0から正式にLiveViewが削除されgLiveViewは代替ツールとして利用できます。このツールを作成した [Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview) の功績によるものです。
 {% endhint %}
+
+Guild LiveViewをインストールします。
+
+```bash
+cd $NODE_HOME
+sudo apt install tcptraceroute -y
+curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
+curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
+chmod 755 gLiveView.sh
+```
+
+**env** ファイルによってファイル構成を指定できます。  
+該当箇所の　**#**　を削除し、ご自身の環境に合わせたパスに書き換えます
+```bash
+nano env
+```
+
+```bash
+CCLI="/usr/local/bin/cardano-cli"
+CNODE_HOME=/home/user/cardano-my-node
+CNODE_PORT=<ノードのポート番号>
+CONFIG="${CNODE_HOME}/mainnet-config.json"
+SOCKET="${CNODE_HOME}/db/socket"
+TOPOLOGY="${CNODE_HOME}/mainnet-topology.json"
+LOG_DIR="${CNODE_HOME}/logs"
+DB_DIR="${CNODE_HOME}/db"
+```
+
+bcインストール
+```bash
+sudo apt-get install bc
+```
+
+
+Run Guild Liveview.
+
+```text
+./gLiveView.sh
+```
+{% hint style="info" %}
+ノードは別途起動しておく必要があります  
+リレー／BPは自動判別されます。  
+リレーノードでは基本情報に加え、トポロジー接続状況を確認できます。  
+BPノードでは基本情報に加え、KES有効期限、ブロック生成状況を確認できます。
+{% endhint %}
+
+![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
+
+For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
 
 ## 🌜 19. ステークプールを廃止する。
@@ -2940,7 +2988,7 @@ echo epochLength: ${epochLength}
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-slotNo=$(cardano-cli shelley query tip --mainnet | jq -r '.slotNo')
+slotNo=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
 echo slotNo: ${slotNo}
 ```
 {% endtab %}
@@ -2982,7 +3030,7 @@ echo eMax: ${eMax}
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley stake-pool deregistration-certificate \
+cardano-cli stake-pool deregistration-certificate \
 --cold-verification-key-file $HOME/cold-keys/node.vkey \
 --epoch $((${epoch} + 1)) \
 --out-file pool.dereg
@@ -2998,7 +3046,7 @@ echo pool will retire at end of epoch: $((${epoch} + 1))
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query utxo \
+cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -3033,7 +3081,7 @@ build-rawトランザクションコマンドを実行します。
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction build-raw \
+cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
     --ttl $(( ${slotNo} + 10000)) \
@@ -3049,7 +3097,7 @@ cardano-cli shelley transaction build-raw \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-fee=$(cardano-cli shelley transaction calculate-min-fee \
+fee=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -3078,7 +3126,7 @@ echo txOut: ${txOut}
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction build-raw \
+cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --ttl $(( ${slotNo} + 10000)) \
@@ -3096,7 +3144,7 @@ cardano-cli shelley transaction build-raw \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli shelley transaction sign \
+cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file $HOME/cold-keys/node.skey \
@@ -3113,7 +3161,7 @@ cardano-cli shelley transaction sign \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley transaction submit \
+cardano-cli transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -3131,7 +3179,7 @@ cardano-cli shelley transaction submit \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli shelley query ledger-state --mainnet --out-file ledger-state.json
+cardano-cli query ledger-state --mainnet --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}
