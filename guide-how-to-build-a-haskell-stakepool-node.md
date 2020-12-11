@@ -1757,7 +1757,7 @@ Pooltool.ioでリクエストが承認されたら、その都度get\_buddies.sh
 ### 🛠 gLiveView ノードステータスモニターをインストールします
 
 {% hint style="info" %}
-[gLiveViewいストール手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
+[gLiveViewストール手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
 {% endhint %}
 
 
