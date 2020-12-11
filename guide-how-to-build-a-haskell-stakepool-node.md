@@ -2969,12 +2969,15 @@ Run Guild Liveview.
 **ノードは別途起動しておく必要があります**
 リレー／BPは自動判別されます。  
 リレーノードでは基本情報に加え、トポロジー接続状況を確認できます。  
-BPノードでは基本情報に加え、KES有効期限、ブロック生成状況を確認できます。
+BPノードでは基本情報に加え、KES有効期限、ブロック生成状況を確認できます。  
+
+[p]リレーノート用リモートピア分析について
+ピアにpingを送信する際ICMPpingを使用します。リモートピアのファイアウォールがICMPトラフィックを受け付ける場合のみ機能します。
 {% endhint %}
 
 ![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
 
-For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
+詳しくは開発元のドキュメントを参照してください [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
 
 ## 🌜 19. ステークプールを廃止する。
