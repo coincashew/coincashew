@@ -120,6 +120,7 @@ Remove the old binaries and rebuild the latest binaries. Run the following comma
 cd $HOME/git/cardano-node2
 cabal clean
 cabal update
+rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.2
 git clean -fd
 git fetch --all --recurse-submodules --tags
