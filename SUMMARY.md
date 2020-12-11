@@ -9,4 +9,4 @@
 * [ノード起動スクリプトを別セッションで起動する方法](how-to-session-window.md)
 * [外部リレーノードのセットアップ\(翻訳中\)](how-to-setup-an-external-relay-node.md)
 * [スロットリーダーログを抽出する](https://github.com/btbf/cardano-leader-logs/blob/main/README.md)
-
+* [gLiveviewインストール手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
