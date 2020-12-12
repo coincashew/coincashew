@@ -33,7 +33,7 @@ description: >-
 ```bash
 cd $HOME/git
 rm -rf cardano-node-old/
-rsync -av cardano-node/ cardano-node2/
+git clone https://github.com/input-output-hk/cardano-node.git cardano-node2
 cd cardano-node2/
 ```
 
@@ -168,7 +168,10 @@ LiveViewの代わりにノードを監視するコミュニティ製の監視ツ
 古いバイナリーを削除し、最新のバイナリーを再構築します。次のコマンドを実行して、最新のバイナリをプルしてビルドします。必要に応じて、チェックアウト **tag** または **branch** を変更して下さい。
 
 ```bash
-cd $HOME/git/cardano-node2/
+cd $HOME/git/cardano-node2
+cabal clean
+cabal update
+rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.2
 git clean -fd
 git fetch --all --recurse-submodules --tags
