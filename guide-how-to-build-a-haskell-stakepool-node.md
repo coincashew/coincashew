@@ -94,7 +94,7 @@ Linuxサーバのコマンドや、ノード起動などお試しテストでや
 ```bash
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
+sudo apt-get install git jq bc automake tmux rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ wget libncursesw5 libtool autoconf -y
 ```
 
 次に、Libsodiumをインストールします。
