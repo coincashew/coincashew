@@ -2952,6 +2952,7 @@ SOCKET="${CNODE_HOME}/db/socket"
 TOPOLOGY="${CNODE_HOME}/mainnet-topology.json"
 LOG_DIR="${CNODE_HOME}/logs"
 DB_DIR="${CNODE_HOME}/db"
+EKG_PORT=12788
 ```
 
 bcインストール
