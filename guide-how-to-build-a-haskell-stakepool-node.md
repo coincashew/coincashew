@@ -419,18 +419,22 @@ chmod +x startRelayNode1.sh
 ✨ **ヒント**: 複数のノードをセットアップする場合、同期が完了したDBディレクトリを他のサーバにコピーすることにより、同期時間を節約することができます。
 {% endhint %}
 
-{% hint style="success" %}
-gLiveViewを設定し視覚的に同期状況を確認しましょう。  
-[gLiveView設定手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
-{% endhint %}
 
-スクリプトをサービスとして登録し、自動起動設定と別セッションで起動するように設定しましょう
+このままでは、画面を閉じるとノードが終了してしまうので、スクリプトをサービスとして登録し、自動起動設定と別セッションで起動するように設定しましょう
 
 {% hint style="info" %}
 [自動起動と別セッション起動手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#186-systemdsbisudeno)
 {% endhint %}
 
 
+### 🛠 gLiveView ノードステータスモニターをインストールします
+
+{% hint style="info" %}
+[gLiveViewストール手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
+{% endhint %}
+
+
+![](https://gblobscdn.gitbook.com/assets%2F-M5KYnWuA6dS_nKYsmfV%2F-MGldUPmEkJqK1vDLzOT%2F-MGlehnIvBsYqfb4KGvG%2Fgliveview-core.png?alt=media&token=9954ab81-26ae-4e7a-bfdf-d3b73c82d1ec)
 
 ## ⚙ 9. ブロックプロデューサーキーを生成する。
 
@@ -1755,10 +1759,15 @@ Pooltool.ioでリクエストが承認されたら、その都度get\_buddies.sh
 \*\*\*\*🔥 **重要な確認事項:** ブロックを生成するには、「TXs processed」が増加していることを確認する必要があります。万一、増加していない場合にはトポロジーファイルの内容を再確認して下さい。「peers」数はリレーノードが他ノードと接続している数を表しています。
 {% endhint %}
 
-### 🛠 gLiveView ノードステータスモニターをインストールします
+**🛠 gLiveView で確認**
+
+```bash
+cd $NODE_HOME
+./gLiveView.sh
+```
 
 {% hint style="info" %}
-[gLiveViewストール手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
+「Txs processed」が増加しているか確認する
 {% endhint %}
 
 
