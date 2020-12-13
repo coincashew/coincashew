@@ -420,7 +420,8 @@ chmod +x startRelayNode1.sh
 {% endhint %}
 
 {% hint style="success" %}
-おめでとうございます！ライブビューモニターが表示され、「slot」の数値が増えて行けば同期が始まっています。
+gLiveViewを設定し視覚的に同期状況を確認しましょう。
+[gLiveView設定手順](guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
 {% endhint %}
 
 スクリプトをサービスとして登録し、自動起動設定と別セッションで起動するように設定しましょう
