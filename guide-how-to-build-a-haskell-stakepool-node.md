@@ -423,10 +423,10 @@ chmod +x startRelayNode1.sh
 おめでとうございます！ライブビューモニターが表示され、「slot」の数値が増えて行けば同期が始まっています。
 {% endhint %}
 
-スクリプトを別セッションで起動する方法は、以下の内容を実施して下さい。
+スクリプトをサービスとして登録し、自動起動設定と別セッションで起動するように設定しましょう
 
 {% hint style="info" %}
-[ノード起動スクリプトを別セッションで起動する方法](how-to-session-window.md)
+[自動起動と別セッション起動手順](guide-how-to-build-a-haskell-stakepool-node#186-systemdsbisudeno)
 {% endhint %}
 
 
