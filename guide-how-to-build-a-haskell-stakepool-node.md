@@ -421,13 +421,13 @@ chmod +x startRelayNode1.sh
 
 {% hint style="success" %}
 gLiveViewを設定し視覚的に同期状況を確認しましょう。  
-[gLiveView設定手順](guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
+[gLiveView設定手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
 {% endhint %}
 
 スクリプトをサービスとして登録し、自動起動設定と別セッションで起動するように設定しましょう
 
 {% hint style="info" %}
-[自動起動と別セッション起動手順](guide-how-to-build-a-haskell-stakepool-node#186-systemdsbisudeno)
+[自動起動と別セッション起動手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#186-systemdsbisudeno)
 {% endhint %}
 
 
