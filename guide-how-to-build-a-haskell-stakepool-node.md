@@ -420,7 +420,7 @@ chmod +x startRelayNode1.sh
 {% endhint %}
 
 {% hint style="success" %}
-gLiveViewを設定し視覚的に同期状況を確認しましょう。
+gLiveViewを設定し視覚的に同期状況を確認しましょう。  
 [gLiveView設定手順](guide-how-to-build-a-haskell-stakepool-node#1813-gliveview-ndosuttasumonit)
 {% endhint %}
 
