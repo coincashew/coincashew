@@ -2924,7 +2924,7 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 ### 🕒 18.13 gLiveView ノードステータスモニター
 
 {% hint style="info" %}
-gLiveViewは重要なノードステータス情報を表示表示し、systemdサービスとうまく連携します。1.23.0から正式にLiveViewが削除されgLiveViewは代替ツールとして利用できます。このツールを作成した [Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview) の功績によるものです。
+gLiveViewは重要なノードステータス情報を表示し、systemdサービスとうまく連携します。1.23.0から正式にLiveViewが削除されgLiveViewは代替ツールとして利用できます。このツールを作成した [Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview) の功績によるものです。
 {% endhint %}
 
 Guild LiveViewをインストールします。
