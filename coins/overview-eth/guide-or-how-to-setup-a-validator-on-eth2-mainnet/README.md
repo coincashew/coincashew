@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of Dec 8 2020, this guide is updated for **mainnet.** 😁 
+As of Dec 14 2020, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
 #### ✨ For the testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
@@ -1524,6 +1524,10 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 Accept terms of use, accept default wallet location, enter a new prysm-only password to encrypt your local prysm wallet files and enter the **keystore password** for your imported accounts.
 
+{% hint style="info" %}
+If you wish, you can use the same password for the **keystore** and **prysm**.
+{% endhint %}
+
 ```bash
 $HOME/prysm/prysm.sh validator accounts import --mainnet --keys-dir=$HOME/eth2deposit-cli/validator_keys
 ```
@@ -1654,7 +1658,7 @@ sudo systemctl stop beacon-chain
 
 ## 🧬 4.5. Start the validator <a id="9-start-the-validator"></a>
 
-Store your **keystore password** in a file and make it read-only. This is required so that Prysm can decrypt and load your validators.
+Store your **prysm-only password** in a file and make it read-only. This is required so that Prysm can decrypt and load your validators.
 
 ```bash
 echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
