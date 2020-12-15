@@ -78,13 +78,11 @@ description: >-
 
 もしノードインストールを初めからやり直したい場合は[項目18.2](guide-how-to-build-a-haskell-stakepool-node.md#182-resetting-the-installation)で、リセットの方法を確認して下さい。
 
-  
 ### 🧱 試しにノードを起動してみたい方へ
 
 Linuxサーバのコマンドや、ノード起動などお試しテストでやってみたい方は、項目の1，2，3，5，7，8をやってみましょう！  
 この項目はブロックチェーンには直接的に影響がないので、たとえ間違ったコマンドを送信してもネットワークには問題ございません。
 
-  
 ## 🏭 1. CabalとGHCをインストールします
 
 ターミナルを起動し、以下のコマンドを入力しましょう！
@@ -168,6 +166,7 @@ git fetch --all --recurse-submodules --tags
 git checkout tags/1.24.2
 ```
 Cabalのビルドオプションを構成します。
+
 ```bash
 cabal configure -O0 -w ghc-8.10.2
 ```
@@ -429,8 +428,6 @@ chmod +x startRelayNode1.sh
 [ノード起動スクリプトを別セッションで起動する方法](how-to-session-window.md)
 {% endhint %}
 
-
-
 ## ⚙ 9. ブロックプロデューサーキーを生成する。
 
 ブロックプロデューサーノードでは [Shelley台帳仕様書](https://hydra.iohk.io/build/2473732/download/1/ledger-spec.pdf)で定義されている、３つのキーを生成する必要があります。
@@ -568,7 +565,8 @@ cardano-cli node key-gen-VRF \
 {% endtabs %}
 
 vrfキーのアクセス権を読み取り専用に更新します。
-```
+
+```text
 chmod 400 vrf.skey
 ```
 
@@ -1594,9 +1592,9 @@ rm crontab-fragment.txt
 リレーノードIPがトポロジーフェッチリストに登録される、4時間後に以下のセクションを実行して下さい。
 {% endhint %}
 
-トポロジーファイルを更新する`relay-topology_pull.sh`スクリプトを作成します。 コマンドラインに送信する際に、**自身のブロックプロデューサーのIPアドレスとポート番号に書き換えて下さい**  
-  
-※お知り合いのノードや自ノードが複数ある場合は、IOHKノード情報の後に "|" で区切ってIPアドレス:ポート番号:Valency の形式で追加できます。  
+トポロジーファイルを更新する`relay-topology_pull.sh`スクリプトを作成します。 コマンドラインに送信する際に、**自身のブロックプロデューサーのIPアドレスとポート番号に書き換えて下さい**
+
+※お知り合いのノードや自ノードが複数ある場合は、IOHKノード情報の後に "\|" で区切ってIPアドレス:ポート番号:Valency の形式で追加できます。
 
 ```bash
 ###
@@ -1982,10 +1980,7 @@ killall -s 2 cardano-node
 11. 9でダウンロードしたJSONファイルをアップロードします。
 12. **Import**ボタンをクリックします。
 
-
 ![Grafana system health dashboard](https://gblobscdn.gitbook.com/assets%2F-M5KYnWuA6dS_nKYsmfV%2F-MJFWbLTL5oVQ3taFexL%2F-MJFX9deFAhN4ks6OQCL%2Fdashboard-kaze.jpg?alt=media&token=f28e434a-fcbf-40d7-8844-4ff8a36a0005)
-
-
 
 {% hint style="success" %}
 おめでとうございます！これで基本的な設定は完了です。 次の項目は、運用中の便利なコマンドや保守のヒントが書かれています。
@@ -2011,6 +2006,7 @@ Pool ID↓
 ```bash
 788898a81174665316af96880459dcca053f7825abb1b0db9a433630
 ```
+
 * ADAアドレス
 ```bash
 addr1q85kms3xw788pzxcr8g8d4umxjcr57w55k2gawnpwzklu97sc26z2lhct48alhew43ry674692u2eynccsyt9qexxsesjzz8qp
@@ -2059,8 +2055,8 @@ cardano-cli node key-gen-KES \
 {% endtab %}
 {% endtabs %}
 
-kes.vkeyをコールド環境にコピーします。  
-  
+kes.vkeyをコールド環境にコピーします。
+
 次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;"startKesPeriod"&gt;に入力してからコマンドを送信してください。
 
 {% tabs %}
@@ -2095,7 +2091,7 @@ killall -s 2 cardano-node
 {% endtab %}
 
 {% tab title="ブロックプロデューサーノードsystemctl" %}
-```
+```text
 sudo systemctl reload-or-restart cardano-node
 ```
 {% endtab %}
@@ -2446,7 +2442,7 @@ Restart=always
 RestartSec=5
 
 [Install]
-WantedBy	= multi-user.target
+WantedBy    = multi-user.target
 EOF
 ```
 {% endtab %}
@@ -2476,7 +2472,7 @@ Restart=always
 RestartSec=5
 
 [Install]
-WantedBy	= multi-user.target
+WantedBy    = multi-user.target
 EOF
 ```
 {% endtab %}
@@ -2774,13 +2770,11 @@ cardano-cli query utxo \
 絶賛翻訳中！！
 {% endhint %}
 
-
 ### 🔓 18.11 報酬を請求する
 
 {% hint style="info" %}
 絶賛翻訳中！！
 {% endhint %}
-
 
 ### 🕒 18.12 スロットリーダースケジュール - ブロック生成時期を確認する
 
@@ -2853,7 +2847,7 @@ pip3 --version
 {% endtab %}
 {% endtabs %}
 
- [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) から、leaderLogスクリプトのクローンを作成します。
+[papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) から、leaderLogスクリプトのクローンを作成します。
 
 {% hint style="info" %}
 このLeaderLogsツールの公式サイトは次の通りです。 [こちら](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md)
@@ -2880,7 +2874,7 @@ cardano-cli query ledger-state --mainnet --out-file ledger.json
 {% endtabs %}
 
 プールのシグマ値を計算します。シグマ値はステーク値を表します。  
-${NODE_HOME}にstakepoolid.txtがあるか確認してください。無い場合は[13の手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#13-sutkuprugashiteirukashimasu)に沿ってファイルを生成してください。  
+${NODE\_HOME}にstakepoolid.txtがあるか確認してください。無い場合は[13の手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#13-sutkuprugashiteirukashimasu)に沿ってファイルを生成してください。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -2979,7 +2973,6 @@ BPノードでは基本情報に加え、KES有効期限、ブロック生成状
 ![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
 
 詳しくは開発元のドキュメントを参照してください [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
-
 
 ## 🌜 19. ステークプールを廃止する。
 

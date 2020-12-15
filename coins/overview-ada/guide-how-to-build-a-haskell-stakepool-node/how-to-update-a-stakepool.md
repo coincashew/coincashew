@@ -26,9 +26,9 @@ description: >-
 
 ## 📡 1. ノードバージョンアップデート手順
 
- `cardano-node`は常に更新されており、バージョンがアップデートされるたびにプールサーバでも作業が必要です。 [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) をフォローし最新情報を取得しましょう。
+`cardano-node`は常に更新されており、バージョンがアップデートされるたびにプールサーバでも作業が必要です。 [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) をフォローし最新情報を取得しましょう。
 
-現在の `$HOME/git/cardano-node` ディレクトリに更新する場合は、ディレクトリ全体を新しい場所へコピーしてバックアップを作成します。(ロールバックする際に必要となります)
+現在の `$HOME/git/cardano-node` ディレクトリに更新する場合は、ディレクトリ全体を新しい場所へコピーしてバックアップを作成します。\(ロールバックする際に必要となります\)
 
 ```bash
 cd $HOME/git
@@ -112,10 +112,11 @@ sed -i mainnet-config.json \
 
 ```bash
 nano mainnet-config.json
- ```
- 以下を該当する部分に貼り付けます。
+```
 
- ```
+以下を該当する部分に貼り付けます。
+
+```text
   "defaultScribes": [
     [
       "FileSK",
@@ -127,7 +128,8 @@ nano mainnet-config.json
     ]
   ],
 ```
-```
+
+```text
    "setupScribes": [
     {
       "scFormat": "ScJson",
@@ -141,11 +143,12 @@ nano mainnet-config.json
       "scRotation": null
     }
   ]
- ```
+```
 
 #### vrf.skeyのパーミッションを変更する（ブロックプロデューサーの場合のみ）
 
 バージョン1.23.0より、vrf.skeyパーミッションチェックが実装され、所有者読み取り専用権限に設定することでノードを起動できます。
+
 ```
 cd $NODE_HOME
 chmod 400 vrf.skey
@@ -156,9 +159,9 @@ chmod 400 vrf.skey
 #### gLiveViewをインストールします（任意）
 
 LiveViewの代わりにノードを監視するコミュニティ製の監視ツールです。  
-(メモリー使用率が高くなることに注意して下さい)
+\(メモリー使用率が高くなることに注意して下さい\)
 
-[インストールはこちらを参照してください](./#18-13-gliveview-node-status-monitoring)
+[インストールはこちらを参照してください](/#18-13-gliveview-node-status-monitoring)
 
 
 {% endtab %} {% endtabs %}
@@ -265,13 +268,13 @@ killall -s 2 cardano-node
 {% endtab %}
 
 {% tab title="リレーノード1" %}
-```
+```text
 killall -s 2 cardano-node
 ```
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl stop cardano-node
 ```
 {% endtab %}
@@ -306,14 +309,14 @@ cd $NODE_HOME
 {% endtab %}
 
 {% tab title="リレーノード" %}
-```
+```text
 cd $NODE_HOME
 ./startRelayNode1.sh
 ```
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl start cardano-node
 ```
 {% endtab %}
@@ -341,6 +344,7 @@ rm -rf db
 ```
 
 ### 📂 4.2 バックアップから前バージョンへロールバックする
+
 最新バージョンに問題がある場合は、以前のバージョンへ戻しましょう。
 
 {% hint style="danger" %}
@@ -355,13 +359,13 @@ killall -s 2 cardano-node
 {% endtab %}
 
 {% tab title="リレーノード1" %}
-```
+```text
 killall -s 2 cardano-node
 ```
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl stop cardano-node
 ```
 {% endtab %}
@@ -409,7 +413,7 @@ cd $NODE_HOME
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl start cardano-node
 ```
 {% endtab %}
@@ -417,7 +421,7 @@ sudo systemctl start cardano-node
 
 ### 🤖 4.3 上手く行かない場合は、ソースコードから再構築
 
-次のマニュアル [カルダノステークプール構築手順](./)1～3を実行する。
+次のマニュアル [カルダノステークプール構築手順](/)1～3を実行する。
 
 ## 👏 5. 寄付とクレジット表記
 
