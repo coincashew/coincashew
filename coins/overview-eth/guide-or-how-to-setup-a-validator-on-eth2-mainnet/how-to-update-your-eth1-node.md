@@ -19,14 +19,14 @@ From time to time, be sure to update to the latest ETH1 releases to enjoy new im
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-# This can take some time.
+# This can take a few minutes.
 sudo systemctl stop validator beacon-chain eth1
 ```
 {% endtab %}
 
 {% tab title="Nimbus \| Teku" %}
 ```bash
-# This can take some time.
+# This can take a few minutes.
 sudo systemctl stop beacon-chain eth1
 ```
 {% endtab %}
