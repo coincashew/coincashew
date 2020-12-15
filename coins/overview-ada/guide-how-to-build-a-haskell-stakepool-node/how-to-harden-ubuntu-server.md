@@ -128,6 +128,10 @@ PermitEmptyPasswords no
 
 **Optional**: Locate **Port** and customize it your **random** port.
 
+{% hint style="info" %}
+Use a **random** port \# from 1024 thru 49141. [Check for possible conflicts. ](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
+{% endhint %}
+
 ```bash
 Port <port number>
 ```

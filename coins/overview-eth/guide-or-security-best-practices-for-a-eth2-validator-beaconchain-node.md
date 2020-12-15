@@ -28,7 +28,7 @@ Make a habit of logging to your server using a non-root account. This will preve
 🔥**Tip**: Do NOT routinely use the root account. Use `su` or `sudo`,  always.
 {% endhint %}
 
-SSH to your server
+SSH to your server with your SSH client
 
 ```bash
 ssh username@server.public.ip.address
@@ -127,6 +127,10 @@ PermitEmptyPasswords no
 ```
 
 **Optional**: Locate **Port** and customize it your **random** port.
+
+{% hint style="info" %}
+Use a **random** port \# from 1024 thru 49141. [Check for possible conflicts. ](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
+{% endhint %}
 
 ```bash
 Port <port number>
