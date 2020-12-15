@@ -3501,6 +3501,68 @@ Finally, verify your validator's attestations are working with public block expl
 
 Enter your validator's pubkey to view its status.
 
+### ✨ 8.11 How to improve validator attestation effectiveness
+
+#### Strategy \#1: Increase eth2 beacon chain peer count
+
+{% hint style="info" %}
+This change will result in increased bandwidth and memory usage. Tweak and tailor appropriately for your hardware. 
+
+_Kudos to_ [_Rémy Roy_](https://www.reddit.com/user/remyroy/) _for this strat._
+{% endhint %}
+
+Edit your `beacon-chain.service` unit file \(except for Teku\).
+
+```bash
+sudo nano /etc/systemd/system/beacon-chain.service
+```
+
+Add the following flag to increase peers on the `ExecStart` line. 
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+--target-peers 100
+# Example
+# lighthouse bn --target-peers 100 --staking --metrics --network pyrmont
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+```bash
+--max-peers=100
+# Example
+# /usr/bin/nimbus_beacon_node --network=pyrmont --max-peers=100
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+# Edit teku.yaml
+sudo nano /etc/teku/teku.yaml
+
+# add the following line to teku.yaml and save the file
+p2p-peer-upper-bound: 100
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+--p2p-max-peers=100
+# Example
+# prysm.sh beacon-chain --pyrmont --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+```bash
+--network.maxPeers 100
+# Example
+# yarn run cli beacon --network.maxPeers 100 --network pyrmont
+```
+{% endtab %}
+{% endtabs %}
+
 ## 🌇 9. Join the community on Discord and Reddit
 
 ### 📱 Discord
