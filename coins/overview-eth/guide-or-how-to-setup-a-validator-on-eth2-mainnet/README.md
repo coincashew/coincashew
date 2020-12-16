@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of Dec 14 2020, this guide is updated for **mainnet.** 😁 
+As of Dec 15 2020, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
 #### ✨ For the testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
@@ -1583,6 +1583,16 @@ Restart         = on-failure
 WantedBy    = multi-user.target
 EOF
 ```
+
+{% hint style="info" %}
+\*\*\*\*🔥 **Prysm Pro Tip:** On the **ExecStart** line, adding the `--fallback-web3provider` flag allows for a backup eth1 node. Make sure the endpoint does not end with a trailing slash or`/` Remove it.
+
+```bash
+--fallback-web3provider=<http://<alternate eth1 node>
+# Example
+# --fallback-web3provider=https://nodes.mewapi.io/rpc/eth
+```
+{% endhint %}
 
 Move the unit file to `/etc/systemd/system` 
 
@@ -3692,7 +3702,7 @@ Enter your validator's pubkey to view its status.
 
 ### ✨ 8.11 How to improve validator attestation effectiveness
 
-#### Strategy \#1: Increase eth2 beacon chain peer count
+#### 👨👩👧👧 Strategy \#1: Increase eth2 beacon chain peer count
 
 {% hint style="info" %}
 This change will result in increased bandwidth and memory usage. Tweak and tailor appropriately for your hardware. 
@@ -3748,6 +3758,43 @@ p2p-peer-upper-bound: 100
 --network.maxPeers 100
 # Example
 # yarn run cli beacon --network.maxPeers 100 --network mainnet
+```
+{% endtab %}
+{% endtabs %}
+
+Reload the updated unit file and restart the beacon-chain process to complete this change.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart beacon-chain
+```
+
+#### 👨💻 Strategy \#2: Increase eth1 uptime by using a failover eth1 node
+
+{% hint style="info" %}
+Especially useful during eth1 upgrades, when your primary node is temporarily unavailable.
+{% endhint %}
+
+Edit your `beacon-chain.service` unit file.
+
+```bash
+sudo nano /etc/systemd/system/beacon-chain.service
+```
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+--eth1-endpoints <http://alternate eth1 endpoints>
+# Example
+# --eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+--fallback-web3provider=<http://<alternate eth1 node>
+# Example
+# --fallback-web3provider=https://nodes.mewapi.io/rpc/eth
 ```
 {% endtab %}
 {% endtabs %}
