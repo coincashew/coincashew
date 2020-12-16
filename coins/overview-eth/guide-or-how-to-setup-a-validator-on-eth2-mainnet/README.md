@@ -3574,23 +3574,12 @@ sudo systemctl restart beacon-chain
 From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
 {% endhint %}
 
-Stop your eth2 beacon chain, validator, and eth1 node processes.
+Stop your eth1 node process.
 
-{% tabs %}
-{% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
 # This can take a few minutes.
-sudo systemctl stop validator beacon-chain eth1
+sudo systemctl stop eth1
 ```
-{% endtab %}
-
-{% tab title="Nimbus \| Teku" %}
-```bash
-# This can take a few minutes.
-sudo systemctl stop beacon-chain eth1
-```
-{% endtab %}
-{% endtabs %}
 
 Update the eth1 node package or binaries.
 
@@ -3673,21 +3662,11 @@ rm nethermind*linux*.zip
 {% endtab %}
 {% endtabs %}
 
-Start your eth2 beacon chain, validator, and eth1 node processes.
+Start your eth1 node process.
 
-{% tabs %}
-{% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl start eth1 beacon-chain validator
+sudo systemctl start eth1
 ```
-{% endtab %}
-
-{% tab title="Nimbus \| Teku" %}
-```
-sudo systemctl start eth1 beacon-chain
-```
-{% endtab %}
-{% endtabs %}
 
 Check the logs to verify the services are working properly and ensure there are no errors.
 
@@ -3772,6 +3751,13 @@ p2p-peer-upper-bound: 100
 ```
 {% endtab %}
 {% endtabs %}
+
+Reload the updated unit file and restart the beacon-chain process to complete this change.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart beacon-chain
+```
 
 ## 🌇 9. Join the community on Discord and Reddit
 

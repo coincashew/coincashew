@@ -14,29 +14,18 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 
 From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
 
-1. Stop your eth2 beacon chain, validator, and eth1 node processes.
+1. Stop your eth1 node process.
 
-{% tabs %}
-{% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
 # This can take a few minutes.
-sudo systemctl stop validator beacon-chain eth1
+sudo systemctl stop eth1
 ```
-{% endtab %}
-
-{% tab title="Nimbus \| Teku" %}
-```bash
-# This can take a few minutes.
-sudo systemctl stop beacon-chain eth1
-```
-{% endtab %}
-{% endtabs %}
 
 2. Update the eth1 node package or binaries.
 
 {% tabs %}
 {% tab title="Geth" %}
-Review the latest release at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
+Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
 
 ```bash
 sudo apt update
@@ -113,21 +102,11 @@ rm nethermind*linux*.zip
 {% endtab %}
 {% endtabs %}
 
-3. Start your eth2 beacon chain, validator, and eth1 node processes.
+3. Start your eth1 node process.
 
-{% tabs %}
-{% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl start eth1 beacon-chain validator
+sudo systemctl start eth1
 ```
-{% endtab %}
-
-{% tab title="Nimbus \| Teku" %}
-```
-sudo systemctl start eth1 beacon-chain
-```
-{% endtab %}
-{% endtabs %}
 
 4. Check the logs to verify the services are working properly and ensure there are no errors.
 
