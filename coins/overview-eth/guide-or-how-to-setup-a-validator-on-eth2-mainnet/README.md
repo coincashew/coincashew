@@ -763,6 +763,8 @@ EOF
 # Example:
 --eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
 ```
+
+💸 Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
 {% endhint %}
 
 Move the unit file to `/etc/systemd/system` 
@@ -1592,6 +1594,8 @@ EOF
 # Example
 # --fallback-web3provider=https://nodes.mewapi.io/rpc/eth
 ```
+
+💸 Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
 {% endhint %}
 
 Move the unit file to `/etc/systemd/system` 
@@ -3800,6 +3804,10 @@ Add the following flag on the `ExecStart` line.
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="info" %}
+💸 Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+{% endhint %}
 
 Reload the updated unit file and restart the beacon-chain process to complete this change.
 
