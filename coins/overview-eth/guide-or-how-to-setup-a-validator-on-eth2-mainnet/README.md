@@ -3781,6 +3781,8 @@ Edit your `beacon-chain.service` unit file.
 sudo nano /etc/systemd/system/beacon-chain.service
 ```
 
+Add the following flag on the `ExecStart` line. 
+
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
