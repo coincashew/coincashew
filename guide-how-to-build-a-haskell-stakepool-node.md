@@ -2885,7 +2885,7 @@ cd pooltool.io/leaderLogs
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli query ledger-state --mainnet --out-file ledger.json
+cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger.json
 ```
 {% endtab %}
 {% endtabs %}
