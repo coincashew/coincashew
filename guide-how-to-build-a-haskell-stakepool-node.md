@@ -640,6 +640,7 @@ cd $NODE_HOME
 ```bash
 cardano-cli query protocol-parameters \
     --mainnet \
+    --allegra-era \
     --out-file params.json
 ```
 {% endtab %}
@@ -975,7 +976,8 @@ cat payment.addr
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mainnet
+    --mainnet \
+    --allegra-era
 ```
 {% endtab %}
 {% endtabs %}
@@ -1021,7 +1023,8 @@ echo Current Slot: $currentSlot
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mainnet > fullUtxo.out
+    --mainnet \
+    --allegra-era > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -1323,7 +1326,8 @@ echo Current Slot: $currentSlot
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mainnet > fullUtxo.out
+    --mainnet \
+    --allegra-era > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -1481,7 +1485,7 @@ cat stakepoolid.txt
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli query ledger-state --mainnet | grep publicKey | grep $(cat stakepoolid.txt)
+cardano-cli query ledger-state --mainnet --allegra-era | grep publicKey | grep $(cat stakepoolid.txt)
 ```
 {% endtab %}
 {% endtabs %}
@@ -1802,7 +1806,8 @@ CERT=\${DIRECTORY}/node.cert
 ```bash
 cardano-cli query stake-address-info \
  --address $(cat stake.addr) \
- --mainnet
+ --mainnet \
+ --allegra-era
 ```
 {% endtab %}
 {% endtabs %}
@@ -2182,7 +2187,9 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 登録証明書トランザクションを作成します。
 
-複数のリレーノードを設定する場合は [**項目12**](guide-how-to-build-a-haskell-stakepool-node.md#12-register-your-stake-pool) を参考にパラメーターを指定して下さい。
+複数のリレーノードを設定する場合は [**項目12**](guide-how-to-build-a-haskell-stakepool-node.md#12-register-your-stake-pool) を参考にパラメーターを指定して下さい。  
+  
+**poolMetaDataHash.txt** をエアギャップオフラインマシンへコピーします。
 
 {% hint style="warning" %}
 **metadata-url**は64文字以下にする必要があります。
@@ -2246,7 +2253,8 @@ echo Current Slot: $currentSlot
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mainnet > fullUtxo.out
+    --mainnet \
+    --allegra-era > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -2374,7 +2382,7 @@ cardano-cli transaction submit \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli query ledger-state --mainnet --out-file ledger-state.json
+cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}
@@ -2644,7 +2652,8 @@ echo destinationAddress: $destinationAddress
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mainnet > fullUtxo.out
+    --mainnet \
+    --allegra-era > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -2766,7 +2775,8 @@ cardano-cli transaction submit \
 ```bash
 cardano-cli query utxo \
     --address ${destinationAddress} \
-    --mainnet
+    --mainnet \
+    --allegra-era
 ```
 {% endtab %}
 {% endtabs %}
@@ -3070,7 +3080,8 @@ echo pool will retire at end of epoch: $((${epoch} + 1))
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mainnet > fullUtxo.out
+    --mainnet \
+    --allegra-era > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -3201,7 +3212,7 @@ cardano-cli transaction submit \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli query ledger-state --mainnet --out-file ledger-state.json
+cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}
