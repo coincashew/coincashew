@@ -1492,12 +1492,12 @@ EOF
 ```
 
 {% hint style="info" %}
-🔥 **Prysm Pro Tip:** On the **ExecStart** line, adding the `--fallback-web3provider` flag allows for a backup eth1 node. Make sure the endpoint does not end with a trailing slash or`/` Remove it.
+🔥 **Prysm Pro Tip:** On the **ExecStart** line, adding the `--fallback-web3provider` flag allows for a backup eth1 node. May repeat flag multiple times. Make sure the endpoint does not end with a trailing slash or`/` Remove it.
 
 ```bash
---fallback-web3provider=<http://<alternate eth1 node>
-# Example
-# --fallback-web3provider=https://nodes.mewapi.io/rpc/eth
+--fallback-web3provider=<http://<alternate eth1 provider one> --fallback-web3provider=<http://<alternate eth1 provider two>
+# Example, repeat flag for multiple eth1 providers
+# --fallback-web3provider=https://nodes.mewapi.io/rpc/eth --fallback-web3provider=https://mainnet.infura.io/v3/YOUR-PROJECT-ID
 ```
 
 💸 Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
@@ -3496,6 +3496,10 @@ Enter your validator's pubkey to view its status.
 
 ### ✨ 8.11 How to improve validator attestation effectiveness
 
+{% hint style="info" %}
+Learn about [attestation effectiveness from Attestant.io](https://www.attestant.io/posts/defining-attestation-effectiveness/)
+{% endhint %}
+
 #### 👨👩👧👧 Strategy \#1: Increase eth2 beacon chain peer count
 
 {% hint style="info" %}
@@ -3588,9 +3592,9 @@ Add the following flag on the `ExecStart` line.
 
 {% tab title="Prysm" %}
 ```bash
---fallback-web3provider=<http://<alternate eth1 node>
-# Example
-# --fallback-web3provider=https://nodes.mewapi.io/rpc/eth
+--fallback-web3provider=<http://<alternate eth1 provider one> --fallback-web3provider=<http://<alternate eth1 provider two>
+# Example, repeat flag for multiple eth1 providers
+# --fallback-web3provider=https://nodes.mewapi.io/rpc/eth --fallback-web3provider=https://mainnet.infura.io/v3/YOUR-PROJECT-ID
 ```
 {% endtab %}
 {% endtabs %}
