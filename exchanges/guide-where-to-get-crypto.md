@@ -41,6 +41,7 @@ This guide is for you.
 | [FixedFloat.com](https://fixedfloat.com/?ref=cn8rt3qa) | Lightning cryptocurrency exchange |
 | [ChangeAngel.io](https://changeangel.io/) | Non-Custodial Swap Exchange Service |
 | [SwapSwop.io](https://swapswop.io/) | Exchange cryptocurrency anonymously without registration. |
+| [StealthEX.io](https://stealthex.io/) | Exchange and nothing more. Limitless, custody-free cryptocurrency exchange. |
 
 ## 🌌 Decentralized Exchanges - No Registration Required
 

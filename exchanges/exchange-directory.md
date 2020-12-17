@@ -31,6 +31,7 @@
 | [ChangeAngel.io](https://changeangel.io/) | Non-Custodial Swap Exchange Service |
 | [SwapSwop.io](https://swapswop.io/) | Exchange cryptocurrency anonymously without registration. |
 | [InstaEx.io](https://instaex.io) | Privacy first - no Google Analytics, Accounts or KYC |
+| [StealthEX.io](https://stealthex.io/) | Exchange and nothing more. Limitless, custody-free cryptocurrency exchange. |
 
 ## 🌌 Decentralized Exchanges
 
