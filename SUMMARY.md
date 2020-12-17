@@ -105,6 +105,7 @@
     * [How to update your eth1 node](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-update-your-eth1-node.md)
     * [How to add a new validator to an existing setup](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-add-a-new-validator-to-an-existing-setup.md)
     * [How to run a slasher](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-run-a-slasher.md)
+    * [How to setup dynamic DNS \(DDNS\)](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-setup-dynamic-dns-ddns.md)
   * [Guide \| Security Best Practices for a ETH2 validator beaconchain node](coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
   * [Guide \| How to setup a validator on ETH2 testnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
   * [Guide: How to stake on ETH2 Mainnet with Lighthouse on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-lighthouse.md)
