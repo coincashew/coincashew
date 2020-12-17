@@ -108,6 +108,7 @@
     * [How to setup dynamic DNS \(DDNS\)](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-setup-dynamic-dns-ddns.md)
   * [Guide \| Security Best Practices for a ETH2 validator beaconchain node](coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
   * [Guide \| How to setup a validator on ETH2 testnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
+  * [Guide \| Eth2 staking on RaspberryPi 4 with Prysm](https://d-u-a-l-i-s.medium.com/eth2-staking-on-raspberrypi-4-with-prysm-f5d5d3d7a73c)
   * [Guide: How to stake on ETH2 Mainnet with Lighthouse on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-lighthouse.md)
   * [Guide: How to stake on ETH2 Mainnet with Teku on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md)
   * [Guide: How to stake on ETH2 Mainnet with Nimbus on Ubuntu](coins/overview-eth/guide-how-to-stake-on-eth2-with-nimbus.md)
