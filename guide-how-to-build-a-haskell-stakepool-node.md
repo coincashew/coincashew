@@ -661,10 +661,10 @@ paymentキーは支払い用アドレスに使用され、stakeキーはプー�
 * トランザクションの送信
 {% endhint %}
 
-２つのペアキーを作成するには、２通りの方法があります。最適な方法を選択してください。
 
-{% tabs %}
-{% tab title="Cardano-CLIを使用する方法" %}
+
+<!-- {% tabs %}
+{% tab title="Cardano-CLIを使用する方法" %} -->
 支払い用アドレスのペアキーを作成します。: `payment.skey` & `payment.vkey`
 
 ```bash
@@ -714,9 +714,9 @@ cardano-cli address build \
 ```
 
 **※プール運営開始後に、上記の処理を実行するとアドレスが上書きされるので注意してください。**
-{% endtab %}
+ <!--{% endtab %} -->
 
-{% tab title="Mnemonic Method" %}
+<!-- {% tab title="Mnemonic Method" %}
 {% hint style="info" %}
 このプロセスを提案してくれた [ilap](https://gist.github.com/ilap/3fd57e39520c90f084d25b0ef2b96894)のクレジット表記です。
 {% endhint %}
@@ -915,7 +915,7 @@ rm -rf $NODE_HOME/cardano-wallet-shelley-2020.7.28
 いかがでしょうか？ウォレットでプール報酬を確認することが可能になりました。
 {% endhint %}
 {% endtab %}
-{% endtabs %}
+{% endtabs %}-->
 
 次のステップは、あなたの支払いアドレスに送金する手順です。
 
