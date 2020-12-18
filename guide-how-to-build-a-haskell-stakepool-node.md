@@ -716,7 +716,7 @@ cardano-cli address build \
 **※プール運営開始後に、上記の処理を実行するとアドレスが上書きされるので注意してください。**
 {% endtab %}
 
-<!-- {% tab title="Mnemonic Method" %}
+{% tab title="Mnemonic Method" %}
 {% hint style="info" %}
 このプロセスを提案してくれた [ilap](https://gist.github.com/ilap/3fd57e39520c90f084d25b0ef2b96894)のクレジット表記です。
 {% endhint %}
@@ -915,7 +915,7 @@ rm -rf $NODE_HOME/cardano-wallet-shelley-2020.7.28
 いかがでしょうか？ウォレットでプール報酬を確認することが可能になりました。
 {% endhint %}
 {% endtab %}
-{% endtabs %}-->
+{% endtabs %}
 
 次のステップは、あなたの支払いアドレスに送金する手順です。
 
