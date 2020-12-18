@@ -714,7 +714,7 @@ cardano-cli address build \
 ```
 
 **※プール運営開始後に、上記の処理を実行するとアドレスが上書きされるので注意してください。**
- <!--{% endtab %} -->
+<!--{% endtab %} -->
 
 <!-- {% tab title="Mnemonic Method" %}
 {% hint style="info" %}
