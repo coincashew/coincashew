@@ -624,6 +624,7 @@ Wait for the block-producing node to start syncing before continuing if you get 
 ```bash
 cardano-cli query protocol-parameters \
     --mainnet \
+    --allegra-era \
     --out-file params.json
 ```
 {% endtab %}
@@ -955,6 +956,7 @@ Before continuing, your nodes must be fully synchronized to the blockchain. Othe
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
+    --allegra-era \
     --mainnet
 ```
 {% endtab %}
@@ -1000,6 +1002,7 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
+    --allegra-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -1042,7 +1045,7 @@ Registration of a stake address certificate \(keyDeposit\) costs 2000000 lovelac
 Run the build-raw transaction command
 
 {% hint style="info" %}
-The **ttl** value must be greater than the current tip. In this example, we use current slot + 10000.
+The **invalid-hereafter** value must be greater than the current tip. In this example, we use current slot + 10000.
 {% endhint %}
 
 {% tabs %}
@@ -1051,9 +1054,10 @@ The **ttl** value must be greater than the current tip. In this example, we use 
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+0 \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --out-file tx.tmp \
+    --allegra-era \
     --certificate stake.cert
 ```
 {% endtab %}
@@ -1100,9 +1104,10 @@ Build your transaction which will register your stake address.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file stake.cert \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -1315,6 +1320,7 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
+    --allegra-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -1362,10 +1368,11 @@ The **ttl** value must be greater than the current tip. In this example, we use 
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+$(( ${total_balance} - ${poolDeposit}))  \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
+    --allegra-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -1412,10 +1419,11 @@ Build the transaction.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -1473,7 +1481,7 @@ Now that you have your stake pool ID,  verify it's included in the blockchain.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query ledger-state --mainnet | grep publicKey | grep $(cat stakepoolid.txt)
+cardano-cli query ledger-state --mainnet --allegra-era | grep publicKey | grep $(cat stakepoolid.txt)
 ```
 {% endtab %}
 {% endtabs %}
@@ -1795,6 +1803,7 @@ After the epoch is over and assuming you successfully minted blocks, check with 
 ```bash
 cardano-cli query stake-address-info \
  --address $(cat stake.addr) \
+ --allegra-era \
  --mainnet
 ```
 {% endtab %}
@@ -2295,6 +2304,7 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
+    --allegra-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -2322,7 +2332,7 @@ echo Number of UTXOs: ${txcnt}
 Run the build-raw transaction command.
 
 {% hint style="info" %}
-The **ttl** value must be greater than the current tip. In this example, we use current slot + 10000. 
+The **invalid-hereafter** value must be greater than the current tip. In this example, we use current slot + 10000. 
 {% endhint %}
 
 {% tabs %}
@@ -2331,10 +2341,11 @@ The **ttl** value must be greater than the current tip. In this example, we use 
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
+    --allegra-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -2377,10 +2388,11 @@ Build the transaction.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -2423,7 +2435,7 @@ Changes take effect next epoch. After the next epoch transition, verify that you
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query ledger-state --mainnet --out-file ledger-state.json
+cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}
@@ -2653,7 +2665,6 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 sed -i ${NODE_CONFIG}-config.json \
-    -e "s/SimpleView/LiveView/g" \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
 ```
 
@@ -2701,6 +2712,7 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
+    --allegra-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -2734,8 +2746,9 @@ cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+0 \
     --tx-out ${destinationAddress}+0 \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
+    --allegra-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -2779,8 +2792,9 @@ cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --tx-out ${destinationAddress}+${amountToSend} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -2823,6 +2837,7 @@ Check if the funds arrived.
 ```bash
 cardano-cli query utxo \
     --address ${destinationAddress} \
+    --allegra-era \
     --mainnet
 ```
 {% endtab %}
@@ -2868,6 +2883,7 @@ Set the amount to send in lovelaces. ✨ Remember **1 ADA** = **1,000,000 lovela
 ```bash
 rewardBalance=$(cardano-cli query stake-address-info \
     --mainnet \
+    --allegra-era \
     --address $(cat stake.addr) | jq -r ".[0].rewardAccountBalance")
 echo rewardBalance: $rewardBalance
 ```
@@ -2892,6 +2908,7 @@ Find your payment.addr balance, utxos and build the withdrawal string.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
+    --allegra-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -2926,9 +2943,10 @@ Run the build-raw transaction command.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+0 \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --withdrawal ${withdrawalString} \
+    --allegra-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -2971,9 +2989,10 @@ Build your transaction.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --withdrawal ${withdrawalString} \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -3017,6 +3036,7 @@ Check if the funds arrived.
 ```bash
 cardano-cli query utxo \
     --address ${destinationAddress} \
+    --allegra-era \
     --mainnet
 ```
 {% endtab %}
@@ -3118,7 +3138,7 @@ Query the ledger state.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query ledger-state --mainnet --out-file ledger.json
+cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger.json
 ```
 {% endtab %}
 {% endtabs %}
@@ -3258,6 +3278,7 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
+    --allegra-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -3294,9 +3315,10 @@ The **ttl** value must be greater than the current tip. In this example, we use 
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --ttl $(( ${slotNo} + 10000)) \
+    --invalid-hereafter $(( ${slotNo} + 10000)) \
     --fee 0 \
     --certificate-file pool.dereg \
+    --allegra-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -3339,9 +3361,10 @@ Build the transaction.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${slotNo} + 10000)) \
+    --invalid-hereafter $(( ${slotNo} + 10000)) \
     --fee ${fee} \
     --certificate-file pool.dereg \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -3389,7 +3412,7 @@ After the retirement epoch, you can verify that the pool was successfully retire
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query ledger-state --mainnet --out-file ledger-state.json
+cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}

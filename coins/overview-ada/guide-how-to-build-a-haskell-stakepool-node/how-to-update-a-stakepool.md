@@ -152,6 +152,12 @@ sudo systemctl stop cardano-node
 ```
 {% endtab %}
 
+{% tab title="cnode" %}
+```
+sudo systemctl stop cnode
+```
+{% endtab %}
+
 {% tab title="block producer node" %}
 ```bash
 killall -s 2 cardano-node
@@ -190,6 +196,12 @@ Now restart your node to use the updated binaries.
 {% tab title="systemd" %}
 ```
 sudo systemctl start cardano-node
+```
+{% endtab %}
+
+{% tab title="cnode" %}
+```
+sudo systemctl start cnode
 ```
 {% endtab %}
 
@@ -258,6 +270,18 @@ Stop your node before updating the binaries.
 {% endhint %}
 
 {% tabs %}
+{% tab title="systemd" %}
+```
+sudo systemctl stop cardano-node
+```
+{% endtab %}
+
+{% tab title="cnode" %}
+```
+sudo systemctl stop cnode
+```
+{% endtab %}
+
 {% tab title="block producer node" %}
 ```bash
 killall -s 2 cardano-node
@@ -267,12 +291,6 @@ killall -s 2 cardano-node
 {% tab title="relaynode1" %}
 ```
 killall -s 2 cardano-node
-```
-{% endtab %}
-
-{% tab title="systemd" %}
-```
-sudo systemctl stop cardano-node
 ```
 {% endtab %}
 {% endtabs %}
@@ -304,6 +322,18 @@ Now restart your node to use the updated binaries.
 {% endhint %}
 
 {% tabs %}
+{% tab title="systemd" %}
+```
+sudo systemctl start cardano-node
+```
+{% endtab %}
+
+{% tab title="cnode" %}
+```
+sudo systemctl start cnode
+```
+{% endtab %}
+
 {% tab title="block producer node" %}
 ```bash
 cd $NODE_HOME
@@ -315,12 +345,6 @@ cd $NODE_HOME
 ```bash
 cd $NODE_HOME
 ./startRelayNode1.sh
-```
-{% endtab %}
-
-{% tab title="systemd" %}
-```
-sudo systemctl start cardano-node
 ```
 {% endtab %}
 {% endtabs %}
