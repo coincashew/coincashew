@@ -272,6 +272,7 @@ After           = network-online.target
 User            = $(whoami)
 ExecStart       = $(echo $HOME)/openethereum/openethereum
 Restart         = on-failure
+RestartSec      = 3
 
 [Install]
 WantedBy    = multi-user.target
@@ -342,6 +343,7 @@ After           = network-online.target
 User            = $(whoami)
 ExecStart       = /usr/bin/geth --http --metrics --pprof
 Restart         = on-failure
+RestartSec      = 3
 
 [Install]
 WantedBy    = multi-user.target
@@ -423,6 +425,7 @@ After           = network-online.target
 User            = $(whoami)
 ExecStart       = $(echo $HOME)/besu/bin/besu --metrics-enabled --rpc-http-enabled --data-path="$HOME/.besu"
 Restart         = on-failure
+RestartSec      = 3
 
 [Install]
 WantedBy    = multi-user.target
@@ -497,6 +500,7 @@ After           = network-online.target
 User            = $(whoami)
 ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --baseDbPath $HOME/.nethermind --Metrics.Enabled true --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
 Restart         = on-failure
+RestartSec      = 3
 
 [Install]
 WantedBy    = multi-user.target
