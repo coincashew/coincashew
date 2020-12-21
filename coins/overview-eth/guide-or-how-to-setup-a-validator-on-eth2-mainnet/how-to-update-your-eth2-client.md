@@ -18,6 +18,10 @@ When a new release is cut, you will want to update to the latest stable release.
 Always review the **git logs** with command**`git log`** or **release notes** before updating. There may be changes requiring your attention.
 {% endhint %}
 
+{% hint style="success" %}
+\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+{% endhint %}
+
 1. Select your ETH2 client.
 
 {% tabs %}

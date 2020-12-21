@@ -12,6 +12,10 @@ description: >-
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
+{% hint style="success" %}
+\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+{% endhint %}
+
 From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
 
 1. Stop your eth1 node process.

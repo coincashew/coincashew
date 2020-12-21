@@ -2621,6 +2621,10 @@ When a new release is cut, you will want to update to the latest stable release.
 Always review the **git logs with command`git log`** or **release notes** before updating. There may be changes requiring your attention.
 {% endhint %}
 
+{% hint style="success" %}
+\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+{% endhint %}
+
 Select your ETH2 client.
 
 {% tabs %}
@@ -3588,6 +3592,10 @@ sudo systemctl restart beacon-chain
 From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
 {% endhint %}
 
+{% hint style="success" %}
+\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+{% endhint %}
+
 Stop your eth1 node process.
 
 ```bash
@@ -3819,6 +3827,12 @@ Reload the updated unit file and restart the beacon-chain process to complete th
 sudo systemctl daemon-reload
 sudo systemctl restart beacon-chain
 ```
+
+#### ⚙ Strategy \#3: Perform updates or reboots during the longest attestation gap
+
+Learn how to at the following quick guide.
+
+{% page-ref page="how-to-find-longest-attestation-slot-gap.md" %}
 
 ## 🌇 9. Join the community on Discord and Reddit
 

@@ -3610,6 +3610,12 @@ sudo systemctl daemon-reload
 sudo systemctl restart beacon-chain
 ```
 
+#### ⚙ Strategy \#3: Perform updates or reboots during the longest attestation gap
+
+Learn how to at the following quick guide.
+
+{% page-ref page="guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-find-longest-attestation-slot-gap.md" %}
+
 ## 🌇 9. Join the community on Discord and Reddit
 
 ### 📱 Discord
