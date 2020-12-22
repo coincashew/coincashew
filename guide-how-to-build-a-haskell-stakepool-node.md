@@ -1231,16 +1231,16 @@ minPoolCostは 340000000 lovelace \(340 ADA\)です。
 **DNSレコードに1つのエントリーの場合**
 
 ```bash
-    --single-host-pool-relay relaynode1.myadapoolnamerocks.com\
+    --single-host-pool-relay <your first relay node public IP address> \
     --pool-relay-port 6000 \
-    --single-host-pool-relay relaynode2.myadapoolnamerocks.com\
+    --single-host-pool-relay <your first relay node public IP address> \
     --pool-relay-port 6000 \
 ```
 
 **ラウンドロビンDNSベース** [**SRV DNS record**](https://support.dnsimple.com/articles/srv-record/)の場合
 
 ```bash
-    --multi-host-pool-relay relayNodes.myadapoolnamerocks.com\
+    --multi-host-pool-relay <your first relay node public IP address> \
     --pool-relay-port 6000 \
 ```
 
