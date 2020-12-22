@@ -54,6 +54,13 @@ Sample Output showing the longest gap in seconds, \# of slots and time range.
 >
 > 120.0 seconds \(10 slots\), from 13:37:35 until 13:39:35
 
+{% hint style="warning" %}
+\*\*\*\*🔥 **Script Usage Caveats**: 
+
+* This version does not include block proposals, although the odds of having one scheduled are really low of course. 
+* Block proposal duties are only known for the current epoch, whereas attestation duties are known for the current and next one.
+{% endhint %}
+
 {% hint style="success" %}
 Nice work. Now you now the best gap to avoid missing any validator duties.
 {% endhint %}
