@@ -1233,7 +1233,7 @@ minPoolCostは 340000000 lovelace \(340 ADA\)です。
 ```bash
     --single-host-pool-relay <your first relay node public IP address> \
     --pool-relay-port 6000 \
-    --single-host-pool-relay <your first relay node public IP address> \
+    --single-host-pool-relay <your Second relay node public IP address> \
     --pool-relay-port 6000 \
 ```
 
