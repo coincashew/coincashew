@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet
 
 {% hint style="success" %}
-As of Dec 17 2020, this guide is updated for **testnet Pyrmont.** 😁
+As of Dec 21 2020, this guide is updated for **testnet Pyrmont.** 😁
 {% endhint %}
 
 #### ✨ For the mainnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
@@ -2244,11 +2244,13 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 8. Click **Save & Test**
 9. **Download and save** your ETH2 Client's json file. \[ [Lighthouse BC ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Lighthouse VC](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/ValidatorClient.json) \| [Teku](https://grafana.com/api/dashboards/13457/revisions/2/download)[ ](https://grafana.com/api/dashboards/12522/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
 10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| OpenEthereum \]
-11. Click **Create +** icon &gt; **Import**
-12. Add the ETH2 client's dashboard via **Upload JSON file**
-13. If needed, select Prometheus as **Data Source**.
-14. Click the **Import** button.
-15. Repeat steps 11-14 for the ETH1 client dashboard.
+11. **Download and save** a [node-exporter dashboard](https://grafana.com/api/dashboards/11074/revisions/9/download) for general system monitoring
+12. Click **Create +** icon &gt; **Import**
+13. Add the ETH2 client's dashboard via **Upload JSON file**
+14. If needed, select Prometheus as **Data Source**.
+15. Click the **Import** button.
+16. Repeat steps 12-15 for the ETH1 client dashboard.
+17. Repeat steps 12-15 for the node-exporter dashboard.
 
 {% hint style="info" %}
 \*\*\*\*🔥 **Troubleshooting common Grafana issues**: 
@@ -2316,6 +2318,22 @@ Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://githu
 
 {% tab title="OpenEthereum" %}
 Work in progress
+{% endtab %}
+{% endtabs %}
+
+#### Example of Node-Exporter Dashboard
+
+{% tabs %}
+{% tab title="Node-Exporter Dashboard by starsliao" %}
+**General system monitoring**
+
+Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
+
+![](../../.gitbook/assets/node-exporter.png)
+
+![](../../.gitbook/assets/node-exporter2.png)
+
+Credits: [starsliao](https://grafana.com/grafana/dashboards/11074)
 {% endtab %}
 {% endtabs %}
 
