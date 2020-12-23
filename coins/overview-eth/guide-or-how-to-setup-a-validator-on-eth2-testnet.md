@@ -80,6 +80,22 @@ If you need to install Metamask, refer to
 
 {% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
+### 🧩 High Level Validator Node Overview
+
+{% hint style="info" %}
+At the end of this guide, you will build a machine that hosts three main components: a validator client, a beacon chain client and an eth1 node.
+
+**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
+
+**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
+
+**Eth1 node** - Supplies incoming validator deposits from the eth1 mainnet chain to the beacon chain client.
+
+Note: Teku and Nimbus combines both clients into one process.
+{% endhint %}
+
+![How eth2 fits together featuring Leslie the eth2 Rhino, the mascot named after American computer scientist Leslie Lamport](../../.gitbook/assets/eth2network.png)
+
 ## 🌱 1. Obtain testnet ETH
 
 {% hint style="info" %}
@@ -1960,14 +1976,6 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 ```
 {% endtab %}
 {% endtabs %}
-
-{% hint style="info" %}
-**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
-
-**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
-
-Remember, Teku and Nimbus combines both clients into one process.
-{% endhint %}
 
 ## 🕒5. Time Synchronization
 
