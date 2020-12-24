@@ -263,7 +263,7 @@ cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF
     "Producers": [
       {
         "addr": "<RELAYNODE1'S PUBLIC IP ADDRESS>",
-        "port": 6000,
+        "port": 3001,
         "valency": 1
       }
     ]
