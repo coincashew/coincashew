@@ -66,6 +66,11 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
       <td style="text-align:left">Refer to <a href="./#8-6-reduce-network-bandwidth-usage">the mainnet guide.</a>
       </td>
     </tr>
+    <tr>
+      <td style="text-align:left">Eth1 node redundancy</td>
+      <td style="text-align:left">Refer to <a href="./#strategy-2-eth1-redundancy">the mainnet guide.</a>
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -190,6 +195,11 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
         </p>
         <p><code>sudo systemctl start validator</code>
         </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Beacon-node redundancy</td>
+      <td style="text-align:left">Refer to <a href="./#strategy-4-beacon-node-redundancy">the mainnet guide.</a>
       </td>
     </tr>
   </tbody>

@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of Dec 21 2020, this guide is updated for **mainnet.** 😁 
+As of Dec 24 2020, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
 #### ✨ For the testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
@@ -3810,7 +3810,7 @@ sudo systemctl daemon-reload
 sudo systemctl restart beacon-chain
 ```
 
-#### 👨💻 Strategy \#2: Increase eth1 uptime by using a failover eth1 node
+#### 👨💻 Strategy \#2: Eth1 redundancy
 
 {% hint style="info" %}
 Especially useful during eth1 upgrades, when your primary node is temporarily unavailable.
@@ -3858,6 +3858,42 @@ sudo systemctl restart beacon-chain
 Learn how to at the following quick guide.
 
 {% page-ref page="how-to-find-longest-attestation-slot-gap.md" %}
+
+#### ⛓ Strategy \#4: Beacon node redundancy
+
+{% hint style="info" %}
+Allows the VC \(validator client\) to connect to multiple BN \(beacon nodes\). This means your validator client can use multiple BNs. Whenever a BN fails to respond, the VC will try again with the next BN.
+
+Must install a BN of the same eth2 client on another server.
+
+Currently only works for Lighthouse.
+{% endhint %}
+
+Edit your `beacon-chain.service` unit file.
+
+```bash
+sudo nano /etc/systemd/system/beacon-chain.service
+```
+
+Add the following flag on the `ExecStart` line. 
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+--beacon-nodes <BEACON-NODE ENDPOINTS>
+# Example, separate endpoints with commas.
+# lighthouse vc --beacon-nodes http://localhost:5052,http://192.168.1.100:5052
+# If localhost is not responsive (perhaps during an update), the VC will attempt to use 192.168.1.100 instead.
+```
+{% endtab %}
+{% endtabs %}
+
+Reload the updated unit file and restart the beacon-chain process to complete this change.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart beacon-chain
+```
 
 ## 🌇 9. Join the community on Discord and Reddit
 
