@@ -3869,10 +3869,10 @@ Must install a BN of the same eth2 client on another server.
 Currently only works for Lighthouse.
 {% endhint %}
 
-Edit your `beacon-chain.service` unit file.
+Edit your `validator.service` unit file.
 
 ```bash
-sudo nano /etc/systemd/system/beacon-chain.service
+sudo nano /etc/systemd/system/validator.service
 ```
 
 Add the following flag on the `ExecStart` line. 
@@ -3888,11 +3888,11 @@ Add the following flag on the `ExecStart` line.
 {% endtab %}
 {% endtabs %}
 
-Reload the updated unit file and restart the beacon-chain process to complete this change.
+Reload the updated unit file and restart the validator process to complete this change.
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart beacon-chain
+sudo systemctl restart validator
 ```
 
 ## 🌇 9. Join the community on Discord and Reddit
