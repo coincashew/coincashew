@@ -3328,9 +3328,9 @@ On the separate machine hosting the beacon-chain, update the beacon-chain unit f
 ```bash
 # edit beacon-chain unit file
 nano /etc/systemd/system/beacon-chain.service
-# add the --eth1-endpoint parameter
+# add the --eth1-endpoints parameter
 # example
-# --eth1-endpoint=http://192.168.10.22
+# --eth1-endpoints=http://192.168.10.22
 ```
 {% endtab %}
 
