@@ -120,6 +120,7 @@ wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alph
 wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/cntools.library
 wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/env
 wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/logMonitor.sh
+wget -N https://raw.githubusercontent.com/btbf/coincashew/master/guild-tools/blocks.sh
 ```
 
 ### パーミッションを設定する
