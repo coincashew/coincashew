@@ -3,13 +3,13 @@
 
 ######## Global tasks ###########################################
 
-. /home/btbf/cardano-my-node/env
+. /home/<user_name>/cardano-my-node/scripts/env
 
 # get cntools config parameters
-. "${CNODE_HOME}"/cntools.config
+. "${CNODE_HOME}"/scripts/cntools.config
 
 # get helper functions from library file
-. "${CNODE_HOME}"/cntools.library
+. "${CNODE_HOME}"/scripts/cntools.library
 
 
 # General exit handler

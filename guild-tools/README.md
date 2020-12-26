@@ -181,7 +181,7 @@ nano blocks.sh
 ```
 ファイル内上部にある**user_name**を変更します。
 ```bash
-. /home/<user_name>/cardano-my-node/env
+. /home/<user_name>/cardano-my-node/scripts/env
 ```
 
 ## 4.サービスファイル4種類を作成・登録します。
@@ -210,7 +210,7 @@ RestartSec=20
 User=$(whoami)
 WorkingDirectory=$NODE_HOME
 ExecStart=/usr/bin/tmux new -d -s cncli
-ExecStartPost=/usr/bin/tmux send-keys -t cncli $NODE_HOME/cncli.sh Space sync Enter
+ExecStartPost=/usr/bin/tmux send-keys -t cncli $NODE_HOME/scripts/cncli.sh Space sync Enter
 ExecStop=/usr/bin/tmux kill-session -t cncli
 KillSignal=SIGINT
 RestartKillSignal=SIGINT
@@ -244,7 +244,7 @@ RestartSec=20
 User=$(whoami)
 WorkingDirectory=$NODE_HOME
 ExecStart=/usr/bin/tmux new -d -s validate
-ExecStartPost=/usr/bin/tmux send-keys -t validate $NODE_HOME/cncli.sh Space validate Enter
+ExecStartPost=/usr/bin/tmux send-keys -t validate $NODE_HOME/scripts/cncli.sh Space validate Enter
 ExecStop=/usr/bin/tmux kill-session -t validate
 KillSignal=SIGINT
 RestartKillSignal=SIGINT
@@ -278,7 +278,7 @@ RestartSec=20
 User=$(whoami)
 WorkingDirectory=$NODE_HOME
 ExecStart=/usr/bin/tmux new -d -s leaderlog
-ExecStartPost=/usr/bin/tmux send-keys -t leaderlog $NODE_HOME/cncli.sh Space leaderlog Enter
+ExecStartPost=/usr/bin/tmux send-keys -t leaderlog $NODE_HOME/scripts/cncli.sh Space leaderlog Enter
 ExecStop=/usr/bin/tmux kill-session -t leaderlog
 KillSignal=SIGINT
 RestartKillSignal=SIGINT
@@ -312,7 +312,7 @@ RestartSec=20
 User=$(whoami)
 WorkingDirectory=$NODE_HOME
 ExecStart=/usr/bin/tmux new -d -s logmonitor
-ExecStartPost=/usr/bin/tmux send-keys -t logmonitor $NODE_HOME/logmonitor.sh Enter
+ExecStartPost=/usr/bin/tmux send-keys -t logmonitor $NODE_HOME/scripts/logmonitor.sh Enter
 ExecStop=/usr/bin/tmux kill-session -t logmonitor
 KillSignal=SIGINT
 RestartKillSignal=SIGINT
@@ -370,7 +370,7 @@ tmux a -t cncli
 ## 6.過去のブロック生成実績をDBに登録します。
 
 ```bash
-cd $NODE_HOME
+cd $NODE_HOME/scripts
 ./cncli.sh init
 ```
 
@@ -400,6 +400,6 @@ sudo systemctl stop cnode-logmonitor.service
 ## 8.ブロックログを表示する
 
 ```bash
-cd $NODE_HOME
+cd $NODE_HOME/scripts
 ./blocks.sh
 ```
