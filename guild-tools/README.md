@@ -12,8 +12,7 @@ description: >-
 ## 🎉 ∞ お知らせ
 
 {% hint style="info" %}
-このツールは海外ギルドオペレーター制作の[CNCLI By AndrewWestberg](https://github.com/AndrewWestberg/cncli)、[logmonitor by Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/logmonitor)、[Guild LiveView](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)、[BLOCK LOG for CNTools](https://cardano-community.github.io/guild-operators/#/Scripts/cntools)を組み合わせたツールとなっております。  
-カスタマイズするにあたり、開発者の[AHLNET(AHL)](https://twitter.com/olaahlman)にご協力頂きました。ありがとうございます。
+このツールは海外ギルドオペレーター制作の[CNCLI By AndrewWestberg](https://github.com/AndrewWestberg/cncli)、[logmonitor by Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/logmonitor)、[Guild LiveView](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)、[BLOCK LOG for CNTools](https://cardano-community.github.io/guild-operators/#/Scripts/cntools)を組み合わせたツールとなっております。カスタマイズするにあたり、開発者の[AHLNET(AHL)](https://twitter.com/olaahlman)にご協力頂きました。ありがとうございます。
 {% endhint %}
 
 
@@ -83,8 +82,8 @@ cargo install --path . --force
 cncli --version
 ```
 
-* **
-以下はバージョンアップがリリースされた場合に実行してください  
+{% hint style="info" %}
+**以下は最新版がリリースされた場合に実行してください**  
 
 cncli旧バージョンからの更新手順
 
@@ -96,7 +95,7 @@ git checkout <最新タグ名>
 cargo install --path . --force
 cncli --version
 ```
-* **
+{% endhint %}
 
 ## 🏁 2. sqlite3をインストールする
 ```bash
@@ -179,12 +178,12 @@ POOL_VRF_VKEY="${CNODE_HOME}/vrf.vkey"
 ```bash
 nano blocks.sh
 ```
-ファイル内上部にある<user_name>を変更します。
+ファイル内上部にある**user_name**を変更します。
 ```bash
 . /home/<user_name>/cardano-my-node/env
 ```
 
-## 4.サービスファイルを作成・登録します。
+## 4.サービスファイル4種類を作成・登録します。
 
 ```bash
 cd $NODE_HOME
@@ -356,7 +355,7 @@ sudo systemctl enable cnode-logmonitor.service
 
 ## 5.ブロックチェーンとDBを同期する
 
-**cncli-sync**サービスを開始し、ログ画面を表示する
+**cncli-sync**サービスを開始し、ログ画面を表示します
 ```bash
 sudo systemctl start cnode-cncli-sync.service
 tmux a -t cncli
