@@ -3,10 +3,6 @@ description: >-
   このマニュアルでは、海外ギルドオペレーター制作のツールを組み合わせてブロックログを表示させるプログラムとなっております。  
 ---
 
-{% hint style="danger" %}
-🛑 **2020/12/27　まだ製作中です** 🚧
-{% endhint %}
-
 # ステークプールブロックログ導入手順
 
 ## 🎉 ∞ お知らせ
@@ -135,6 +131,7 @@ wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alph
 wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/cntools.library
 wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/env
 wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/logMonitor.sh
+wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
 wget -N https://raw.githubusercontent.com/btbf/coincashew/master/guild-tools/blocks.sh
 ```
 
@@ -142,6 +139,7 @@ wget -N https://raw.githubusercontent.com/btbf/coincashew/master/guild-tools/blo
 ```bash
 chmod 755 cncli.sh
 chmod 755 logMonitor.sh
+chmod 755 gLiveView.sh
 chmod 755 blocks.sh
 ```
 
@@ -434,7 +432,7 @@ sudo systemctl stop cnode-logmonitor.service
 {% endhint %}
 
 
-### 各種ログ画面を確認します。
+### 3プログラムのログ画面を確認します。
 {% tabs %}
 
 {% tab title="validate" %}
