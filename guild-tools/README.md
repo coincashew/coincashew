@@ -43,7 +43,7 @@ description: >-
 * **env** (設定ファイル)
 * **gLiveView.sh** (ノード監視ツール)
  
- {% hint style="info" %}
+{% hint style="info" %}
 12/27以前に日本語マニュアルの18.13項目で**gLiveView.sh** と **env**をダウンロード済みの方も、こちらで再度設定をお願いします。  
 （ダウンロードフォルダを変更しておりますので、$NODE_HOME直下のファイルは削除していただいて構いません）
 {% endhint %}
