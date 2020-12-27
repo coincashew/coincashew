@@ -83,7 +83,7 @@ sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev l
 cd $HOME/git
 git clone https://github.com/AndrewWestberg/cncli
 cd cncli
-git checkout v0.5.1
+git checkout v0.5.2
 cargo install --path . --force
 ```
 
@@ -101,7 +101,7 @@ cncli旧バージョンからの更新手順
 rustup update
 cd $HOME/git/cncli
 git fetch --all --prune
-git checkout v0.5.1
+git checkout v0.5.2
 cargo install --path . --force
 cncli --version
 ```
