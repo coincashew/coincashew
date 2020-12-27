@@ -1768,7 +1768,7 @@ Pooltool.ioでリクエストが承認されたら、その都度get\_buddies.sh
 **🛠 gLiveView で確認**
 
 ```bash
-cd $NODE_HOME
+cd $NODE_HOME/scripts
 ./gLiveView.sh
 ```
 
@@ -2952,7 +2952,7 @@ gLiveViewは重要なノードステータス情報を表示し、systemdサー�
 Guild LiveViewをインストールします。
 
 ```bash
-cd $NODE_HOME
+cd $NODE_HOME/scripts
 sudo apt install tcptraceroute -y
 curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
 curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env

@@ -90,7 +90,7 @@ say "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   say "すべてのエポックのブロックのサマリー、または特定のエポックのブロック生成実績を表示できます"
   select_opt "[s] Summary" "[e] Epoch" "[Esc] Cancel"
   case $? in
-    0) echo && read -r -p "入力した数字分の直近エポックサマリーを表示します (Enterで直近10エポック表示): " epoch_enter
+    0) echo && read -r -p "直近エポックサマリーを表示します (空Enterで直近10エポック、「2」なら直近2エポック): " epoch_enter
        epoch_enter=${epoch_enter:-10}
        if ! [[ ${epoch_enter} =~ ^[0-9]+$ ]]; then
          say "\n${FG_RED}ERROR${NC}: not a number"

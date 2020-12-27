@@ -42,6 +42,12 @@ description: >-
 * **cntools.library**
 * **env**
 * **service.sh**
+* **gLiveView.sh** 
+ 
+ {% hint style="info" %}
+12/27以前に日本語マニュアルの18.13項目で**gLiveView.sh** と **env**をダウンロード済みの方も、こちらで再度設定をお願いします。  
+（ダウンロードフォルダを変更しておりますので、$NODE_HOME直下のファイルは削除していただいて構いません）
+{% endhint %}
 
 ## 🏁 1. CNCLIをインストールする
 
@@ -431,10 +437,11 @@ sudo systemctl stop cnode-logmonitor.service
 ```bash
 tmux a -t validate
 ```
+以下表示なら正常です。
 ```
 ~ CNCLI Block Validation started ~
 ```
-という表示なら正常です。  
+  
 Ctrl+b d でバックグラウンド実行に切り替えます(デタッチ)
 {% endtab %}
 
@@ -448,12 +455,11 @@ Ctrl+b d でバックグラウンド実行に切り替えます(デタッチ)
 tmux a -t leaderlog
 ```
 
+以下の表示なら正常です。
 ```
 ~ CNCLI Leaderlog started ~
 Shelley transition epoch found: 208
 ```
-という表示なら正常です。  
-
 Ctrl+b d でバックグラウンド実行に切り替えます(デタッチ)
 {% endtab %}
 
@@ -467,11 +473,12 @@ Ctrl+b d でバックグラウンド実行に切り替えます(デタッチ)
 tmux a -t logmonitor
 ```
 
+以下の表示なら正常です。  
+
 ```
 ~~ LOG MONITOR STARTED ~~
 monitoring logs/node.json for traces
 ```
-という表示なら正常です。  
 Ctrl+b d でバックグラウンド実行に切り替えます(デタッチ)
 {% endtab %}
 
@@ -484,4 +491,11 @@ Ctrl+b d でバックグラウンド実行に切り替えます(デタッチ)
 ```bash
 cd $NODE_HOME/scripts
 ./blocks.sh
+```
+
+## 🏁 9.gLiveViewでブロック生成サマリを確認する
+
+```bash
+cd $NODE_HOME/scripts
+./gLiveView.sh
 ```
