@@ -134,12 +134,14 @@ chmod 755 blocks.sh
 
 ### 設定ファイルを編集する
 
+envファイルを編集します
+
 ```bash
 nano env
 ```
 
 ファイル内上部にある設定値を変更します。  
-先頭の **#** を外し、ご自身の環境に合わせパスやファイル名、ポート番号を設定します。  
+先頭の **#** を外し、ご自身の環境に合わせ**user_name**パスやファイル名、ポート番号を設定します。  
 下記以外の**#**がついている項目はそのままで良い、または今回のプログラムでは使わないです。
 ```bash
 CCLI="/usr/local/bin/cardano-cli"
@@ -162,21 +164,24 @@ POOL_VRF_VK_FILENAME="vrf.vkey"
 POOL_VRF_SK_FILENAME="vrf.skey"
 ```
 
+cncli.shファイルを編集します。
 
 ```bash
 nano cncli.sh
 ```
 
 ファイル内上部にある設定値を変更します。  
-先頭の **#** を外し、ご自身の環境に合わせプールIDやファイル名を設定します。
+先頭の **#** を外し、ご自身の環境に合わせ**user_name**、プールIDやファイル名を設定します。
 
 ```bash
 [[ -z "${CNODE_HOME}" ]] && CNODE_HOME="/home/<user_name>/cardano-my-node"
 
-POOL_ID=""
+POOL_ID="<Pool-ID>"
 POOL_VRF_SKEY="${CNODE_HOME}/vrf.skey"
 POOL_VRF_VKEY="${CNODE_HOME}/vrf.vkey"
 ```
+
+blocks.shファイルを編集します。
 
 ```bash
 nano blocks.sh
@@ -186,7 +191,7 @@ nano blocks.sh
 . /home/<user_name>/cardano-my-node/scripts/env
 ```
 
-## 4.サービスファイル4種類を作成・登録します。
+## 🏁 4.サービスファイル4種類を作成・登録します。
 
 ```bash
 cd $NODE_HOME
@@ -314,7 +319,7 @@ RestartSec=20
 User=$(whoami)
 WorkingDirectory=$NODE_HOME
 ExecStart=/usr/bin/tmux new -d -s logmonitor
-ExecStartPost=/usr/bin/tmux send-keys -t logmonitor $NODE_HOME/scripts/logmonitor.sh Enter
+ExecStartPost=/usr/bin/tmux send-keys -t logmonitor $NODE_HOME/scripts/logMonitor.sh Enter
 ExecStop=/usr/bin/tmux kill-session -t logmonitor
 KillSignal=SIGINT
 RestartKillSignal=SIGINT
@@ -331,7 +336,9 @@ EOF
 {% endtab %}
 {% endtabs %}
 
-### サービスファイルをシステムフォルダにコピーして権限を付与します。
+### サービスファイルをシステムフォルダにコピーして権限を付与します。  
+
+**1行づつコマンドに貼り付けてください**
 ```bash
 sudo cp $NODE_HOME/service/cnode-cncli-sync.service /etc/systemd/system/cnode-cncli-sync.service
 sudo cp $NODE_HOME/service/cnode-cncli-validate.service /etc/systemd/system/cnode-cncli-validate.service
@@ -356,7 +363,7 @@ sudo systemctl enable cnode-cncli-leaderlog.service
 sudo systemctl enable cnode-logmonitor.service
 ```
 
-## 5.ブロックチェーンとDBを同期する
+## 🏁 5.ブロックチェーンとDBを同期する
 
 **cncli-sync**サービスを開始し、ログ画面を表示します
 ```bash
@@ -366,22 +373,41 @@ tmux a -t cncli
 
 {% hint style="info" %}
 「100.00% synced」になるまで待ちます。  
-元の画面に戻る場合(デタッチ)は、Ctrl+bを押した後に d を押します
+100%になったら、Ctrl+bを押した後に d を押し元の画面に戻ります(バックグラウンド実行に切り替え)
 {% endhint %}
 
-## 6.過去のブロック生成実績をDBに登録します。
+## 🏁 6.過去のブロック生成実績をDBに登録します。
 
 ```bash
 cd $NODE_HOME/scripts
 ./cncli.sh init
 ```
 
-## 7.残りのサービスをスタートします
+## 🏁 7.残りのサービスをスタートします 
+
+**1行づつコマンドに貼り付けてください**
+
 ```bash
 sudo systemctl start cnode-cncli-validate.service
 sudo systemctl start cnode-cncli-leaderlog.service
 sudo systemctl start cnode-logmonitor.service
 ```
+
+tmux起動確認
+
+```bash
+tmux ls
+```
+
+{% hint style="info" %}
+5つの画面がバックグラウンドで起動中であればOKです
+* cnode  
+* cncli
+* leaderlog
+* logmonitor
+* validate
+{% endhint %}
+
 
 {% hint style="info" %}
 ### 各種ログ画面を表示する方法
@@ -402,7 +428,7 @@ sudo systemctl stop cnode-logmonitor.service
 ```
 {% endhint %}
 
-## 8.ブロックログを表示する
+## 🏁 8.ブロックログを表示する
 
 ```bash
 cd $NODE_HOME/scripts
