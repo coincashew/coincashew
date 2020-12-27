@@ -503,6 +503,9 @@ cd $NODE_HOME/scripts
 echo $LANG
 ```
 
+![](.gitbook/assets/blocklog.JPG)
+
+
 {% hint style="info" %}
 ブロックステータス:  
 * **Leader**   - ブロック生成予定スロット  
