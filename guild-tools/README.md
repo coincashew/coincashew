@@ -136,7 +136,7 @@ wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/mast
 wget -N https://raw.githubusercontent.com/btbf/coincashew/master/guild-tools/blocks.sh
 ```
 
-###  パーミッションを設定する
+###  3-1.パーミッションを設定する
 ```bash
 chmod 755 cncli.sh
 chmod 755 logMonitor.sh
@@ -144,7 +144,7 @@ chmod 755 gLiveView.sh
 chmod 755 blocks.sh
 ```
 
-###  設定ファイルを編集する
+###  3-2.設定ファイルを編集する
 
 envファイルを編集します
 
@@ -346,7 +346,7 @@ EOF
 {% endtab %}
 {% endtabs %}
 
-###  サービスファイルをシステムフォルダにコピーして権限を付与します。  
+###  4-1サービスファイルをシステムフォルダにコピーして権限を付与します。  
 
 **1行づつコマンドに貼り付けてください**
 ```bash
@@ -363,7 +363,7 @@ sudo chmod 644 /etc/systemd/system/cnode-cncli-leaderlog.service
 sudo chmod 644 /etc/systemd/system/cnode-logmonitor.service
 ```
 
-###  サービスファイルを有効化します
+###  4-2サービスファイルを有効化します
 
 ```bash
 sudo systemctl daemon-reload
@@ -420,7 +420,7 @@ tmux ls
 
 
 {% hint style="info" %}
-###  各種サービスをストップする方法
+###  7-1.各種サービスをストップする方法
 
 ```bash
 sudo systemctl stop cnode-cncli-sync.service
@@ -431,7 +431,7 @@ sudo systemctl stop cnode-logmonitor.service
 {% endhint %}
 
 
-###  3プログラムのログ画面を確認します。
+###  7-2.　3プログラムのログ画面を確認します。
 {% tabs %}
 
 {% tab title="validate" %}
