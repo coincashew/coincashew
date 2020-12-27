@@ -382,6 +382,8 @@ sudo systemctl start cnode-cncli-validate.service
 sudo systemctl start cnode-cncli-leaderlog.service
 sudo systemctl start cnode-logmonitor.service
 ```
+
+{% hint style="info" %}
 ### 各種ログ画面を表示する方法
 
 ```bash
@@ -398,6 +400,7 @@ sudo systemctl stop cnode-cncli-validate.service
 sudo systemctl stop cnode-cncli-leaderlog.service
 sudo systemctl stop cnode-logmonitor.service
 ```
+{% endhint %}
 
 ## 8.ブロックログを表示する
 
