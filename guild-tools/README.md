@@ -410,14 +410,6 @@ tmux ls
 
 
 {% hint style="info" %}
-### 各種ログ画面を表示する方法
-
-```bash
-tmux a -t cncli
-tmux a -t validate
-tmux a -t leaderlog
-tmux a -t logmonitor
-```
 ### 各種サービスをストップする方法
 
 ```bash
@@ -427,6 +419,65 @@ sudo systemctl stop cnode-cncli-leaderlog.service
 sudo systemctl stop cnode-logmonitor.service
 ```
 {% endhint %}
+
+
+### 各種ログ画面を確認します。
+{% tabs %}
+
+{% tab title="validate" %}
+{% hint style="info" %}
+こちらのプログラムは生成したブロックが、ブロックチェーン上に記録されているか照合するためのプログラムです
+{% endhint %}
+```bash
+tmux a -t validate
+```
+```
+~ CNCLI Block Validation started ~
+```
+という表示なら正常です。  
+Ctrl+b d でバックグラウンド実行に切り替えます(デタッチ)
+{% endtab %}
+
+{% tab title="leaderlog" %}
+
+{% hint style="info" %}
+こちらのプログラムはスロットリーダーを自動的に算出するプログラムです。  
+次エポックの1.5日前になると自動的に次エポックのスロットリーダーが算出されます。
+{% endhint %}
+```bash
+tmux a -t leaderlog
+```
+
+```
+~ CNCLI Leaderlog started ~
+Shelley transition epoch found: 208
+```
+という表示なら正常です。  
+
+Ctrl+b d でバックグラウンド実行に切り替えます(デタッチ)
+{% endtab %}
+
+
+{% tab title="logmonitor" %}
+
+{% hint style="info" %}
+こちらのプログラムはプールのノードログからブロック生成結果を抽出します。
+{% endhint %}
+```bash
+tmux a -t logmonitor
+```
+
+```
+~~ LOG MONITOR STARTED ~~
+monitoring logs/node.json for traces
+```
+という表示なら正常です。  
+Ctrl+b d でバックグラウンド実行に切り替えます(デタッチ)
+{% endtab %}
+
+{% endtabs %}
+
+
 
 ## 🏁 8.ブロックログを表示する
 
