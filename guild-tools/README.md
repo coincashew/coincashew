@@ -116,6 +116,7 @@ sqlite3 --version
 ```bash
 cd $NODE_HOME
 mkdir scripts
+cd $NODE_HOME/scripts
 wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/cncli.sh
 wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/cntools.config
 wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/alpha/scripts/cnode-helper-scripts/cntools.library
