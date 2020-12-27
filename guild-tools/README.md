@@ -82,6 +82,8 @@ source $HOME/.cargo/env
 sudo apt-get update -y
 sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
 cd $HOME/git
+git clone https://github.com/AndrewWestberg/cncli
+cd cncli
 git checkout <最新タグ名>
 cargo install --path . --force
 cncli --version
