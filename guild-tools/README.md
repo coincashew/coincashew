@@ -498,13 +498,7 @@ cd $NODE_HOME/scripts
 ./blocks.sh
 ```
 
-メニュー項目が文字化けする場合は、システム文字コードが「UTF-8」であることを確認してください。  
-```bash
-echo $LANG
-```
-
 ![](.gitbook/assets/blocklog.JPG)
-
 
 {% hint style="info" %}
 ブロックステータス:  
@@ -518,6 +512,12 @@ echo $LANG
 * **Stolen**    - 別のプールに有効なブロックが登録されているため、スロットバトルに敗北した可能性  
 * **Invalid**   - プールはブロックの作成に失敗しました。base64でエンコードされたエラーメッセージ。次のコードでデコードできます 'echo <base64 hash> | base64 -d | jq -r' 
 {% endhint %}
+
+メニュー項目が文字化けする場合は、システム文字コードが「UTF-8」であることを確認してください。  
+```bash
+echo $LANG
+```
+
 
 ## 🏁 9.gLiveViewでブロック生成サマリを確認する
 
