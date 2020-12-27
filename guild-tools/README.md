@@ -420,7 +420,7 @@ tmux ls
 
 
 {% hint style="info" %}
-###  7-1.各種サービスをストップする方法
+###  ●各種サービスをストップする方法
 
 ```bash
 sudo systemctl stop cnode-cncli-sync.service
@@ -431,7 +431,7 @@ sudo systemctl stop cnode-logmonitor.service
 {% endhint %}
 
 
-###  7-2.　3プログラムのログ画面を確認します。
+###  7-1.　3プログラムのログ画面を確認します。
 {% tabs %}
 
 {% tab title="validate" %}
