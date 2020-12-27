@@ -33,16 +33,15 @@ description: >-
 
 ### インストール及びダウンロードツール内容
 
-* **CNCLI (依存プログラム含む)**
-* **sqlite3**
-* **logmonitor.sh**
-* **block.sh**
-* **cncli.sh**
-* **cntools.config**
-* **cntools.library**
-* **env**
-* **service.sh**
-* **gLiveView.sh** 
+* **CNCLI (依存プログラム含む)**　(コミュニティ製Cardano CLI)
+* **sqlite3** (データベースソフト)
+* **logmonitor.sh** (ノードログ抽出プログラム)
+* **block.sh**　(ブロックログ表示ブログラム)
+* **cncli.sh**　(CNCLI操作用プログラム)
+* **cntools.config** (設定ファイル)
+* **cntools.library**　(ライブラリファイル)
+* **env** (設定ファイル)
+* **gLiveView.sh** (ノード監視ツール)
  
  {% hint style="info" %}
 12/27以前に日本語マニュアルの18.13項目で**gLiveView.sh** と **env**をダウンロード済みの方も、こちらで再度設定をお願いします。  
