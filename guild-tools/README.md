@@ -96,7 +96,7 @@ cncli旧バージョンからの更新手順
 
 ```bash
 rustup update
-cd $HOME/git
+cd $HOME/git/cncli
 git fetch --all --prune
 git checkout <最新タグ名>
 cargo install --path . --force
