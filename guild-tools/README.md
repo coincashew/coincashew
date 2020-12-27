@@ -456,7 +456,8 @@ Ctrl+b d でバックグラウンド実行に切り替えます(デタッチ)
 tmux a -t leaderlog
 ```
 
-以下の表示なら正常です。
+以下の表示なら正常です。  
+スケジュール予定がある場合、表示されるまでに5分ほどかかります。
 ```
 ~ CNCLI Leaderlog started ~
 Shelley transition epoch found: 208
