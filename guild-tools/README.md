@@ -65,7 +65,7 @@ rustupをインストールします-デフォルトのインストールを続�
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-1) Proceed with installation (default)  1を入力していEntar
+1) Proceed with installation (default)  1を入力していEnter
 
 ```bash
 source $HOME/.cargo/env
