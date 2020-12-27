@@ -498,7 +498,7 @@ cd $NODE_HOME/scripts
 ./blocks.sh
 ```
 
-![](.gitbook/assets/blocklog.JPG)
+![](../gitbook/assets/blocklog.JPG)
 
 {% hint style="info" %}
 ブロックステータス:  
