@@ -13,21 +13,21 @@ description: >-
 
 
 ## 🏁 0. 前提条件
-### 稼働ノード
+###  稼働ノード
 * **BPノード限定**
 
-### 0.1 稼働要件
+###  稼働要件
 * ４つのサービス(プログラム)をsystemd × tmuxにて常駐させます。
 * ブロックチェーン同期用DBを新しく設置します(sqlite3)
 * 日本語マニュアルのフォルダ構成に合わせて作成されています。
 
-### ハードウェア最小構成
+###  ハードウェア最小構成
 * **オペレーティング・システム:** 64-bit Linux \(Ubuntu 20.04 LTS\)
 * **プロセッサー:** 1.6GHz以上(ステークプールまたはリレーの場合は2Ghz以上)の2つ以上のコアを備えたIntelまたはAMD x86プロセッサー
 * **メモリ**：8GB  
 * **SSD**：50GB以上
 
-### インストール及びダウンロードツール内容
+###  インストール及びダウンロードツール内容
 
 * **CNCLI (依存プログラム含む)**　(コミュニティ製Cardano CLI)
 * **sqlite3** (データベースソフト)
@@ -135,7 +135,7 @@ wget -N https://raw.githubusercontent.com/cardano-community/guild-operators/mast
 wget -N https://raw.githubusercontent.com/btbf/coincashew/master/guild-tools/blocks.sh
 ```
 
-### パーミッションを設定する
+###  パーミッションを設定する
 ```bash
 chmod 755 cncli.sh
 chmod 755 logMonitor.sh
@@ -143,7 +143,7 @@ chmod 755 gLiveView.sh
 chmod 755 blocks.sh
 ```
 
-### 設定ファイルを編集する
+###  設定ファイルを編集する
 
 envファイルを編集します
 
@@ -169,8 +169,6 @@ BLOCKLOG_DIR="${CNODE_HOME}/guild-db/blocklog"
 BLOCKLOG_TZ="Asia/Tokyo"
 POOL_FOLDER="${CNODE_HOME}"
 POOL_ID_FILENAME="stakepoolid.txt"
-POOL_HOTKEY_VK_FILENAME="kes.vkey"
-POOL_HOTKEY_SK_FILENAME="kes.skey"
 POOL_VRF_VK_FILENAME="vrf.vkey"
 POOL_VRF_SK_FILENAME="vrf.skey"
 ```
@@ -347,7 +345,7 @@ EOF
 {% endtab %}
 {% endtabs %}
 
-### サービスファイルをシステムフォルダにコピーして権限を付与します。  
+###  サービスファイルをシステムフォルダにコピーして権限を付与します。  
 
 **1行づつコマンドに貼り付けてください**
 ```bash
@@ -364,7 +362,7 @@ sudo chmod 644 /etc/systemd/system/cnode-cncli-leaderlog.service
 sudo chmod 644 /etc/systemd/system/cnode-logmonitor.service
 ```
 
-### サービスファイルを有効化します
+###  サービスファイルを有効化します
 
 ```bash
 sudo systemctl daemon-reload
@@ -421,7 +419,7 @@ tmux ls
 
 
 {% hint style="info" %}
-### 各種サービスをストップする方法
+###  各種サービスをストップする方法
 
 ```bash
 sudo systemctl stop cnode-cncli-sync.service
@@ -432,7 +430,7 @@ sudo systemctl stop cnode-logmonitor.service
 {% endhint %}
 
 
-### 3プログラムのログ画面を確認します。
+###  3プログラムのログ画面を確認します。
 {% tabs %}
 
 {% tab title="validate" %}
