@@ -68,6 +68,8 @@ rustupをインストールします-デフォルトのインストールを続�
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
+1) Proceed with installation (default)  1を入力していEntar
+
 ```bash
 source $HOME/.cargo/env
 rustup install stable
@@ -84,8 +86,12 @@ sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev l
 cd $HOME/git
 git clone https://github.com/AndrewWestberg/cncli
 cd cncli
-git checkout <最新タグ名>
+git checkout v0.5.1
 cargo install --path . --force
+```
+
+CNCLIのバージョンを確認します。
+```bash
 cncli --version
 ```
 
@@ -98,7 +104,7 @@ cncli旧バージョンからの更新手順
 rustup update
 cd $HOME/git/cncli
 git fetch --all --prune
-git checkout <最新タグ名>
+git checkout v0.5.1
 cargo install --path . --force
 cncli --version
 ```
