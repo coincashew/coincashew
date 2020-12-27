@@ -499,6 +499,11 @@ cd $NODE_HOME/scripts
 ./blocks.sh
 ```
 
+メニュー項目が文字化けする場合は、システム文字コードが「UTF-8」であることを確認してください。  
+```bash
+echo $LANG
+```
+
 {% hint style="info" %}
 ブロックステータス:  
 * **Leader**   - ブロック生成予定スロット  
