@@ -640,8 +640,7 @@ EOF
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cd $NODE_HOME
-./startBlockProducingNode.sh
+sudo systemctl start cardano-node
 ```
 {% endtab %}
 {% endtabs %}
