@@ -413,32 +413,47 @@ chmod +x startRelayNode1.sh
 {% endtabs %}
 
 {% hint style="info" %}
-🛑 ノードを停止するには「Ctrl」+「c」を押すか、次のコマンドを実行します。 `killall -s 2 cardano-node`
+🛑 ノードを停止するには「Ctrl」+「c」を押します。
 {% endhint %}
 
 {% hint style="info" %}
 ✨ **ヒント**: 複数のノードをセットアップする場合、同期が完了したDBディレクトリを他のサーバにコピーすることにより、同期時間を節約することができます。
 {% endhint %}
 
-### 自動起動と別セッション起動を設定する
+一旦ノードを停止します。
+```
+Ctrl+C
+```
 
-このままでは、画面を閉じるとノードが終了してしまうので、スクリプトをサービスとして登録し、自動起動設定と別セッションで起動するように設定しましょう
+### 🛠 8-1.自動起動とバックグラウンド起動を設定する(systemd＋tmux)
+
+先程のスクリプトだけでは、ターミナル画面を閉じるとノードが終了してしまうので、スクリプトをサービスとして登録し、自動起動設定と別セッションで起動するように設定しましょう
 
 {% hint style="info" %}
-[自動起動と別セッション起動手順](guide-how-to-build-a-haskell-stakepool-node.md#186-systemdsbisudeno)
+[自動起動とバックグラウンド起動設定手順](guide-how-to-build-a-haskell-stakepool-node.md#186-systemdsbisudeno)
 {% endhint %}
 
 
-### 🛠 gLiveView ノードステータスモニターをインストールします
+
+### 🛠 8-2.gLiveView ノードステータスモニターをインストールします
+
+現在のcardano-nodeはログが流れる画面で、何が表示されているのかよくわかりません。  
+それを視覚的に確認できるツールが**gLiveView**です。
 
 {% hint style="info" %}
 [gLiveViewストール手順](guide-how-to-build-a-haskell-stakepool-node.md#1813-gliveview-ndosuttasumonit)
 {% endhint %}
 
-
 ![](https://gblobscdn.gitbook.com/assets%2F-M5KYnWuA6dS_nKYsmfV%2F-MGldUPmEkJqK1vDLzOT%2F-MGlehnIvBsYqfb4KGvG%2Fgliveview-core.png?alt=media&token=9954ab81-26ae-4e7a-bfdf-d3b73c82d1ec)
 
+この画面が表示され、ノードが同期したら準備完了です。
+
+
 ## ⚙ 9. ブロックプロデューサーキーを生成する。
+
+{% hint style="info" %}
+以下の項目を実施する前にノードが起動しているか確認してください。
+{% endhint %}
 
 ブロックプロデューサーノードでは [Shelley台帳仕様書](https://hydra.iohk.io/build/2473732/download/1/ledger-spec.pdf)で定義されている、３つのキーを生成する必要があります。
 
@@ -579,12 +594,13 @@ vrfキーのアクセス権を読み取り専用に更新します。
 chmod 400 vrf.skey
 ```
 
-新しいターミナルウィンドウを開き、次のコマンドを実行してノードを停止します。
+次のコマンドを実行して一旦ノードを停止します。  
+（以下のコマンドは、8-1を実施している前提のコマンドです）
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-killall -s 2 cardano-node
+sudo systemctl stop cardano-node
 ```
 {% endtab %}
 {% endtabs %}
@@ -1637,8 +1653,7 @@ chmod +x relay-topology_pull.sh
 ###
 ### On relaynode1
 ###
-killall -s 2 cardano-node
-./startRelayNode1.sh
+sudo systemctl reload-or-restart cardano-node
 ```
 
 {% hint style="warning" %}
@@ -1751,8 +1766,7 @@ chmod +x get_buddies.sh
 ###
 ### On relaynode1
 ###
-killall -s 2 cardano-node
-./startRelayNode1.sh
+sudo systemctl reload-or-restart cardano-node
 ```
 
 {% hint style="info" %}
@@ -1970,16 +1984,14 @@ sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
-killall -s 2 cardano-node
-./startBlockProducingNode.sh
+sudo systemctl reload-or-restart cardano-node
 ```
 {% endtab %}
 
 {% tab title="リレーノード1" %}
 ```bash
 cd $NODE_HOME
-killall -s 2 cardano-node
-./startRelayNode1.sh
+sudo systemctl reload-or-restart cardano-node
 ```
 {% endtab %}
 {% endtabs %}
@@ -2105,9 +2117,7 @@ chmod a-rwx $HOME/cold-keys
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cd $NODE_HOME
-killall -s 2 cardano-node
-./startBlockProducingNode.sh
+sudo systemctl reload-or-restart cardano-node
 ```
 {% endtab %}
 
