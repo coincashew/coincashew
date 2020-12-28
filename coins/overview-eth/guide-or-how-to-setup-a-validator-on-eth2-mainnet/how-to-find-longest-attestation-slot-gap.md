@@ -19,7 +19,7 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 
 * python3
 * validator index number\(s\) -- Lookup on [https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
-* Works with **Lighthouse** or **Teku** currently
+* Works with **Lighthouse / Teku / Prysm** currently
 
 {% hint style="success" %}
 ✨ Kudos to **pietjepuk2** on Discord for authoring this process.
@@ -35,10 +35,22 @@ sudo apt update && sudo apt-get install python3
 
 2. Download [pietjepuk2](https://gist.github.com/pietjepuk2)'s `get_validator_duties.py` python script.
 
-```text
+{% tabs %}
+{% tab title="Lighthouse \| Teku" %}
+```bash
 cd $HOME
 wget https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63150/raw/cc874b3035f97495416353f203d70477b31ab05d/get_validator_duties.py
 ```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+cd $HOME
+# modified by mohamedmansour for prysm
+wget https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd
+```
+{% endtab %}
+{% endtabs %}
 
 3. Enter your validator index numbers as parameters to the python script.
 
@@ -88,4 +100,7 @@ Hang out and chat with fellow stakers on Discord @
 ## 🧩 Reference Material
 
 {% embed url="https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63150/raw/cc874b3035f97495416353f203d70477b31ab05d/get\_validator\_duties.py" %}
+
+[https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd](https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd
+)
 
