@@ -382,10 +382,6 @@ With any new installation, ufw is disabled by default. Enable it with the follow
 * Port 3000 tcp for Grafana
 * Port 9090 tcp for Prometheus export data \(optional\)
 
-{% hint style="warning" %}
-**Reminder**: Please do not expose the Prometheus endpoint to the public internet unless you understand your actions!
-{% endhint %}
-
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
@@ -394,7 +390,6 @@ sudo ufw allow 9000/tcp
 sudo ufw allow 9000/udp
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
-sudo ufw allow 3000/tcp
 sudo ufw enable
 sudo ufw status numbered
 ```
@@ -407,7 +402,6 @@ sudo ufw allow 13000/tcp
 sudo ufw allow 12000/udp
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
-sudo ufw allow 3000/tcp
 sudo ufw enable
 sudo ufw status numbered
 ```
@@ -420,7 +414,6 @@ sudo ufw allow 9000/tcp
 sudo ufw allow 9000/udp
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
-sudo ufw allow 3000/tcp
 sudo ufw enable
 sudo ufw status numbered
 ```
@@ -433,7 +426,6 @@ sudo ufw allow 9000/tcp
 sudo ufw allow 9000/udp
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
-sudo ufw allow 3000/tcp
 sudo ufw enable
 sudo ufw status numbered
 ```
@@ -446,12 +438,24 @@ sudo ufw allow 30607/tcp
 sudo ufw allow 9000/udp
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
-sudo ufw allow 3000/tcp
 sudo ufw enable
 sudo ufw status numbered
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="danger" %}
+Do not expose Grafana \(port 3000\) and Prometheus endpoint \(port 9090\) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
+{% endhint %}
+
+Only use open the following ports on local home staking setups behind a home router's firewall.
+
+\*\*\*\*🔥 **It is dangerous to open these ports on a VPS/cloud node.**
+
+```bash
+sudo ufw allow 3000/tcp
+sudo ufw allow 9090/tcp
+```
 
 Confirm the settings are in effect.
 
