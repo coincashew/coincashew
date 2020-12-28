@@ -2116,12 +2116,6 @@ chmod a-rwx $HOME/cold-keys
 この手順を完了するには、ブロックプロデューサーノードを停止して再起動します。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-sudo systemctl reload-or-restart cardano-node
-```
-{% endtab %}
-
 {% tab title="ブロックプロデューサーノードsystemctl" %}
 ```
 sudo systemctl reload-or-restart cardano-node
