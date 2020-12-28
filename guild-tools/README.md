@@ -5,6 +5,10 @@ description: >-
 
 # ステークプールブロックログ導入手順
 
+{% hint style="info" %}
+最終更新日：12/28 AM11:30
+{% endhint %}
+
 ## 🎉 ∞ お知らせ
 
 {% hint style="info" %}
@@ -142,6 +146,7 @@ chmod 755 cncli.sh
 chmod 755 logMonitor.sh
 chmod 755 gLiveView.sh
 chmod 755 blocks.sh
+chmod 400 vrf.vkey
 ```
 
 ###  3-2.設定ファイルを編集する
