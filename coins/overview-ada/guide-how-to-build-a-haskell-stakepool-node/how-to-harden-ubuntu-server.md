@@ -28,6 +28,10 @@ In case you need a SSH client for your operating system, refer to:
 Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command rm can wipe your entire server if run incorrectly using by a root user.
 {% endhint %}
 
+{% hint style="warning" %}
+\*\*\*\*🔥 **Tip**: Do NOT routinely use the root account. Use `su` or `sudo`, always.
+{% endhint %}
+
 SSH to your server
 
 ```bash
@@ -339,6 +343,14 @@ sudo nano /etc/fail2ban/jail.local
 
 Add the following lines to the bottom of the file.
 
+{% hint style="info" %}
+🔥 **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local machine, local IP range or local domain, separated by spaces.
+
+```text
+# Exampleignoreip = 192.168.1.0/24 127.0.0.1/8 
+```
+{% endhint %}
+
 ```bash
 [sshd]
 enabled = true
@@ -346,6 +358,8 @@ port = <22 or your random port number>
 filter = sshd
 logpath = /var/log/auth.log
 maxretry = 3
+# whitelisted IP addresses
+ignoreip = <list of whitelisted IP address, your local daily laptop/pc>
 ```
 
 Save/close file. 
@@ -364,7 +378,8 @@ With any new installation, ufw is disabled by default. Enable it with the follow
 
 * Port 22 \(or your random port \#\) TCP for SSH connection
 * Port 6000 TCP for p2p traffic
-* Port 3000 TCP for Grafana web server \(if hosted on this node\)
+* Port 3000 TCP for Grafana web server \(if hosted on current node\)
+* Port 9090 tcp for Prometheus export data \(optional, if hosted on current node\)
 
 ```bash
 ufw allow <22 or your random port number>/tcp
@@ -372,6 +387,19 @@ ufw allow 6000/tcp
 ufw allow 3000/tcp
 ufw enable
 ufw status numbered
+```
+
+{% hint style="danger" %}
+Do not expose Grafana \(port 3000\) and Prometheus endpoint \(port 9090\) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
+{% endhint %}
+
+Only open the following ports on nodes behind a network firewall.
+
+\*\*\*\*🔥 **It is dangerous to open these ports on a VPS/cloud node.**
+
+```bash
+sudo ufw allow 3000/tcp
+sudo ufw allow 9090/tcp
 ```
 
 Confirm the settings are in effect. 
@@ -386,6 +414,18 @@ Confirm the settings are in effect.
 > [ 5] 3000/tcp (v6)              ALLOW IN    Anywhere (v6)
 > [ 6] 6000/tcp (v6)              ALLOW IN    Anywhere (v6)
 > ```
+
+**\[ Optional but recommended \]** Whitelisting \(or permitting connections from a specific IP\) can be setup via the following command.
+
+```bash
+sudo ufw allow from <your local daily laptop/pc>
+# Example
+# sudo ufw allow from 192.168.50.22
+```
+
+{% hint style="info" %}
+ 🎊 **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
+{% endhint %}
 
 ## 🔭 Verify Listening Ports
 
