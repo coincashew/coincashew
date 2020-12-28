@@ -7,13 +7,17 @@ description: >-
 # How to setup WireGuard
 
 {% hint style="info" %}
-Assuming you have a block producer setup and relay node setup, this guide helps you secure and encrypt your network traffic between the two nodes with WireGuard. This minimizes the chances that your block producer is attacked or hacked. Only the relay node is public facing online and the block producer can only communicate with the relay node.
+Assuming you have a local node \(i.e. block producer / validator client / local laptop\) and remote node \(i.e. relay node / beacon-chain node / VPS\), this guide helps you secure and encrypt your network traffic between the two machines with WireGuard. 
+
+This greatly minimizes the chances that your local node is attacked and minimizes the attack surface of the remote node by not requiring you to open ports for services such as Grafana. 
+
+Only the remote node is public internet facing online and the local machine can only communicate with the remote node.
 {% endhint %}
 
 ## 🐣 1. Install Wireguard
 
 {% tabs %}
-{% tab title="BlockProducer and RelayNode1" %}
+{% tab title="local and remote node" %}
 ```bash
 sudo apt install linux-headers-$(uname -r)
 sudo add-apt-repository ppa:wireguard/wireguard
@@ -26,64 +30,68 @@ sudo apt-get install wireguard -y
 ##  🗝 2. Setup Public / Private Keypair
 
 {% tabs %}
-{% tab title="BlockProducer" %}
+{% tab title="local and remote node" %}
 ```bash
 sudo su
 
 cd /etc/wireguard
 umask 077
-wg genkey | tee blockproducer-privatekey | wg pubkey > blockproducer-publickey
-wg genkey | tee relaynode1-privatekey | wg pubkey > relaynode1-publickey
+wg genkey | tee localnode-privatekey | wg pubkey > localnode-publickey
+wg genkey | tee remotenode-privatekey | wg pubkey > remotenode-publickey
 ```
 {% endtab %}
 {% endtabs %}
 
 ## 🤖 3. Configure Wireguard
 
-Create a `wg0.conf` configuration file in  `/etc/wireguard` directory. Update your Private and Public Keys accordingly. Change the Endpoint to your RelayNode's public IP or DNS address.
+Create a `wg0.conf` configuration file in  `/etc/wireguard` directory. 
+
+Update your Private and Public Keys accordingly. 
+
+Change the Endpoint to your remote node public IP or DNS address.
 
 {% tabs %}
-{% tab title="BlockProducer" %}
+{% tab title="local node" %}
 ```bash
-# blockproducer WireGuard Configuration
+# local node WireGuard Configuration
 [Interface]
-# blockproducer address
+# local node address
 Address = 10.0.0.1/32
-# blockproducer private key
-PrivateKey = SJ6ygM3csa36...+pO4XW1QU0B2M=
-# blockproducer wireguard listening port
+# local node private key
+PrivateKey = <i.e. SJ6ygM3csa36...+pO4XW1QU0B2M=>
+# local node wireguard listening port
 ListenPort = 51820
 SaveConfig = true
 
-# RelayNode1
+# remote node
 [Peer]
-# relaynode1's publickey
-PublicKey = Rq7QEe2g3qIjDftMu...knBGS9mvJDCa4WQg=
-# relaynode1's public ip address or dns address
-Endpoint = relay.mydomainname.com:51820
-# relaynode1's interface address
+# remote node's publickey
+PublicKey = <i.e. Rq7QEe2g3qIjDftMu...knBGS9mvJDCa4WQg=>
+# remote node's public ip address or dns address
+Endpoint = remotenode.mydomainname.com:51820
+# remote node's interface address
 AllowedIPs = 10.0.0.2/32
 # send a handshake every 21 seconds
 PersistentKeepalive = 21
 ```
 {% endtab %}
 
-{% tab title="RelayNode1" %}
+{% tab title="remote node" %}
 ```bash
-# RelayNode1 WireGuard Configuration
+# remote node WireGuard Configuration
 [Interface]
 Address = 10.0.0.2/32
-PrivateKey = cF3OjVhtKJAY/rQ...LFi7ASWg=
+PrivateKey = <i.e. cF3OjVhtKJAY/rQ...LFi7ASWg=>
 ListenPort = 51820
 SaveConfig = true
 
-# BlockProducer
+# local node
 [Peer]
-# blockproducer's public key
-PublicKey = rZLBzslvFtEJ...JdfX4XSwk=
-# blockproducer's public ip address or dns address
+# local node's public key
+PublicKey = <i.e. rZLBzslvFtEJ...JdfX4XSwk=>
+# local node's public ip address or dns address
 Endpoint = 12.34.56.78:51820
-# blockproducer's interface address
+# local node's interface address
 AllowedIPs = 10.0.0.1/32
 PersistentKeepalive = 21
 ```
@@ -93,7 +101,7 @@ PersistentKeepalive = 21
 #### 🧱 Configure your firewall / port forwarding to allow port 51820 udp traffic to your node.
 
 {% tabs %}
-{% tab title="BlockProducer" %}
+{% tab title="local node" %}
 ```bash
 ufw allow 51820/udp
 # check the firewall rules
@@ -101,8 +109,8 @@ ufw verbose
 ```
 {% endtab %}
 
-{% tab title="RelayNode1" %}
-```
+{% tab title="remote node" %}
+```bash
 ufw allow 51820/udp
 # check the firewall rules
 ufw verbose
@@ -113,13 +121,13 @@ ufw verbose
 ## 🔗 4. Setup autostart with systemd
 
 {% hint style="info" %}
-Setup systemd on both your block producer and relaynode.
+Setup systemd on both your local node and remote node.
 {% endhint %}
 
 Add the service to systemd.
 
 {% tabs %}
-{% tab title="BlockProducer and RelayNode1" %}
+{% tab title="local and remote node" %}
 ```text
 sudo systemctl enable wg-quick@wg0.service
 sudo systemctl daemon-reload
@@ -130,7 +138,7 @@ sudo systemctl daemon-reload
 Start wireguard.
 
 {% tabs %}
-{% tab title="BlockProducer and RelayNode1" %}
+{% tab title="local and remote node" %}
 ```text
 sudo systemctl start wg-quick@wg0
 ```
@@ -140,7 +148,7 @@ sudo systemctl start wg-quick@wg0
 Check the status.
 
 {% tabs %}
-{% tab title="BlockProducer and RelayNode1" %}
+{% tab title="local and remote node" %}
 ```text
 sudo systemctl status wg-quick@wg0
 ```
@@ -152,7 +160,7 @@ sudo systemctl status wg-quick@wg0
 Check the status of the interfaces by running `wg`
 
 {% tabs %}
-{% tab title="BlockProducer and RelayNode1" %}
+{% tab title="local and remote node" %}
 ```bash
 sudo wg
 
@@ -175,18 +183,22 @@ sudo wg
 Verify ping works between nodes.
 
 {% tabs %}
-{% tab title="BlockProducer" %}
+{% tab title="local node" %}
 ```text
 ping 10.0.0.2
 ```
 {% endtab %}
 
-{% tab title="RelayNode1" %}
+{% tab title="remote node" %}
 ```
 ping 10.0.0.1
 ```
 {% endtab %}
 {% endtabs %}
+
+{% tabs %}
+{% tab title="Cardano" %}
+### Cardano Specific Configuration
 
 Update and/or review your topology.json file to ensure the "addr" matches this new tunneled IP address, and not the usual public node IP address.
 
@@ -195,9 +207,19 @@ Update and/or review your topology.json file to ensure the "addr" matches this n
 
 > topology.json on relaynode1   
 > { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
+{% endtab %}
+
+{% tab title="ETH2" %}
+### ETH2 Validator Specific Configuration
+
+Update and/or review your validator's configuration and ensure it connects to the beacon-chain's new tunneled IP address, and not the usual public node IP address.
+
+In this example, the beacon-chain is the remote node with IP address `10.0.0.2`
+{% endtab %}
+{% endtabs %}
 
 {% hint style="success" %}
-Congrats! Wireguard is working!
+Wireguard setup is complete.
 {% endhint %}
 
 ## 🛑 6. Stop and disable Wireguard
