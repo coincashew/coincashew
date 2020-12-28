@@ -11,7 +11,7 @@ Assuming you have a local node \(i.e. block producer / validator client / local 
 
 This greatly minimizes the chances that your local node is attacked and minimizes the attack surface of the remote node by not requiring you to open ports for services such as Grafana. 
 
-Only the remote node is public internet facing online and the local machine can only communicate with the remote node.
+Only the remote node is public internet facing online and the local machine can access the remote node's internal services, such as Grafana.
 {% endhint %}
 
 ## 🐣 1. Install Wireguard
