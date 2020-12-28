@@ -1986,14 +1986,12 @@ sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cd $NODE_HOME
 sudo systemctl reload-or-restart cardano-node
 ```
 {% endtab %}
 
 {% tab title="リレーノード1" %}
 ```bash
-cd $NODE_HOME
 sudo systemctl reload-or-restart cardano-node
 ```
 {% endtab %}
