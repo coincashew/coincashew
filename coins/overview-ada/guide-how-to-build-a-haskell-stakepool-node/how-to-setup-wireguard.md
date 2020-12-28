@@ -215,6 +215,8 @@ Update and/or review your topology.json file to ensure the "addr" matches this n
 Update and/or review your validator's configuration and ensure it connects to the beacon-chain's new tunneled IP address, and not the usual public node IP address.
 
 In this example, the beacon-chain is the remote node with IP address `10.0.0.2`
+
+To access Grafana from your local machine, enter into the browser `http://10.0.0.2:3000`
 {% endtab %}
 {% endtabs %}
 
