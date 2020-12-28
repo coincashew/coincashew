@@ -448,7 +448,7 @@ sudo ufw status numbered
 Do not expose Grafana \(port 3000\) and Prometheus endpoint \(port 9090\) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
 {% endhint %}
 
-Only use open the following ports on local home staking setups behind a home router's firewall.
+Only open the following ports on local home staking setups behind a home router firewall or other network firewall.
 
 \*\*\*\*🔥 **It is dangerous to open these ports on a VPS/cloud node.**
 
