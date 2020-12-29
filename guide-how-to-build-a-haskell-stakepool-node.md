@@ -12,7 +12,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-このマニュアルは、2020年12月18日の時点で、v1.24.2に対応しています。  
+このマニュアルは、2020年12月30日の時点guide version 3.0.0、カルダノノードv1.24.2に対応しています。  
 (CLIコマンド修正済み)  
 [ドキュメント更新情報はこちら](README.md)
 {% endhint %}
@@ -601,7 +601,7 @@ Guild LiveViewをインストールします。
 
 ```bash
 cd $NODE_HOME/scripts
-sudo apt install tcptraceroute -y
+sudo apt install bc tcptraceroute -y
 curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
 curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
 chmod 755 gLiveView.sh
@@ -625,12 +625,6 @@ DB_DIR="${CNODE_HOME}/db"
 EKG_PORT=12788
 ```
 
-bcインストール
-```bash
-sudo apt-get install bc
-```
-
-
 Run Guild Liveview.
 
 ```text
@@ -650,10 +644,6 @@ BPノードでは基本情報に加え、KES有効期限、ブロック生成状
 
 詳しくは開発元のドキュメントを参照してください [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
-
-
-![](https://gblobscdn.gitbook.com/assets%2F-M5KYnWuA6dS_nKYsmfV%2F-MGldUPmEkJqK1vDLzOT%2F-MGlehnIvBsYqfb4KGvG%2Fgliveview-core.png?alt=media&token=9954ab81-26ae-4e7a-bfdf-d3b73c82d1ec)
-
 この画面が表示され、ノードが同期したら準備完了です。
 
 
@@ -664,7 +654,8 @@ BPノードでは基本情報に加え、KES有効期限、ブロック生成状
 ```
 tmux a -t cnode
 ```
-ログが流れていればノードが起動しています
+ログが流れていればノードが起動しています。
+Ctrl+B を押したあとにdを押すと前の画面に戻ります。
 {% endhint %}
 
 ブロックプロデューサーノードでは [Shelley台帳仕様書](https://hydra.iohk.io/build/2473732/download/1/ledger-spec.pdf)で定義されている、３つのキーを生成する必要があります。
