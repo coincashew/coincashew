@@ -1,40 +1,77 @@
-# 外部阅读材料
+---
+description: >-
+  一个用于分散应用程序的全球开放源码平台。 在以太空，你可以写代码来控制数字值，运行就像编程一样，而且在世界任何地方都可以访问。
+---
 
-## 🧬 Ethereum 2.0 \(Serenity\) 基础
+# Ethereum: ETH
 
-{% 嵌入的 url="https://ethos.dev/beacon-chain/" %}
+## ![](../../.gitbook/assets/eth.png) 一般数据
 
-{% 嵌入的 url="https://github.com/etherum/eth2.0-specs” %}
+| 站点  | 标题                                                                                                     |
+|:--- |:------------------------------------------------------------------------------------------------------ |
+| 网址  | [https://www.etherum.org/。](https://www.ethereum.org/)                                                 |
+| 源代码 | [https://github.com/ethereum](https://github.com/ethereum)                                             |
+| 白纸  | [https://github.com/ethereum/wiki/wiki/White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper) |
 
-{% 嵌入的 url="https://medalla.launchpad.efum.org/faq" %}
+## 🙋 Social Media and Community
 
-{% 嵌入的 url="https://notes.efum.org/@serenity/handbook" %}
+| 社区        | 链接                                                                        |
+|:--------- |:------------------------------------------------------------------------- |
+| 🐦 Twitter | [https://twitter.com/etherum](https://twitter.com/ethereum)               |
+| Reddit    | [https://reddit.com/r/eyesum](https://reddit.com/r/ethereum)              |
+| 官方论坛      | [https://forum.etherum.org/](https://forum.ethereum.org/)                 |
+| Gitter    | [https://gitter.im/orgs/eferum/房间](https://gitter.im/orgs/ethereum/rooms) |
 
-{% embed url="https://www.adiasg.me/2020/03/31/casper-ffg-explaniner.html" %}
+## 🔃 Block Explorers
 
-{% 嵌入的 url="https://hackmd.io/@benjaminion/eth2\_info" %}
+| 站点                                                |
+|:------------------------------------------------- |
+| [Etherscan.io](https://etherscan.io/)             |
+| [Blockchair.com](https://blockchair.com/ethereum) |
+| [Ethplorer.io](https://ethplorer.io/)             |
+| [Etherchain.org](https://etherchain.org/)         |
+| [信标.in](https://beaconcha.in/)                    |
 
-{% 嵌入的 url="https://benjaminion.xyz/eth2-annotated-spec/" %}
+## :bar_chat: 海图和价格
 
-{% 嵌入的 url="https://notes.efum.org/@vbuterin/rkhCgQteN" %}
+| 站点            | 链接                                                                                                    |
+|:------------- |:----------------------------------------------------------------------------------------------------- |
+| CoinPaprika   | [https://coinpaprika.com/coin/eth-efum/](https://coinpaprika.com/coin/eth-ethereum/)                  |
+| CoinMarketCAp | [https://coinmarketcap.com/currencies/etherum/](https://coinmarketcap.com/currencies/ethereum/)       |
+| CoinGecko     | [https://www.coingecko.com/en/coins/eyesum](https://www.coingecko.com/en/coins/ethereum)              |
+| LiveCoinWatch | [https://www.livecoinwatch.com/price/Etheresum-ETH](https://www.livecoinwatch.com/price/Ethereum-ETH) |
 
-## :ro火箭：Staking Validators：投标者和Attesters
+## 💰 钱包
 
-{% hint style="info" %}
-验证器是虚拟的，已被stakers激活。 在 PoW，用户购买硬件成为矿工。 在 Ethereum 2.0 中，用户订购ETH 以激活和控制验证器。 -- [**ethos.dev**](https://ethos.dev/beacon-chain/)\*\*\*\*
-{% endhint %}
+{% page-ref 页面="../../wallets/desktop wallets/mycrypto-etherum.md" %}
 
-{% 嵌入的 url="https://med.com/chainsafe-systems/8-things-every-eth2-validator-should-kust-staking-94df41701487" %}
+{% page-ref page="../../wallets/browser-wallets/metmask-etherum.md" %}
 
-{% 嵌入的 url="https://ethos.dev/beacon-chain/\#rews-penalties" %}
+{% page-ref page="../../wallets/mobile-wallets/expus-multi-chain-assets.md" %}
 
-{% 嵌入的 url="https://eferumprice.org/eth-2-calculator/" %}
+{% page-ref页面="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
 
-{% embed url="https://www.attestant.io/posts/evaluating-staking-services/" %}
+{% page-ref page="../../wallets/desktop wallets/atomic-multi-currency.md" %}
 
-## 👩:laptop_compute: 开发课程
+{% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
 
-{% 嵌入的 url="https://cryptozombies.io/en/course" %}
+{% page-ref 页面="../../wallets/hardware-wallets/trezor.io-wallet/" %}
 
-{% 嵌入的 url="https://cryptoeconomics.study/" %}
+{% page-ref页面="../../wallets/hardware-wallets/keepy-wallet/" %}
+
+{% page-ref页面="../../wallets/mobile-wallets/argent-etherum.md" %}
+
+{% page-ref页面="../../wallets/mobile-wallets/status-eyseum.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/pillar-eferum-btc.md" %}
+
+{% page-ref page="./" %}
+
+{% page-ref page="../../wallets/mobile-wallets/enjin-multi-currency.md" %}
+
+{% page-ref页面="../../wallets/mobile-wallets/trustwallet-multicury.md" %}
+
+{% page-ref页面="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+
+
 
