@@ -42,7 +42,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 
 * **Two separate servers:** 1 for block producer node, 1 for relay node
 * **One air-gapped offline machine \(cold environment\)**
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
+* **Operating system:** 64-bit Linux \(i.e. Ubuntu Server 20.04 LTS\)
 * **Processor:** An Intel or AMD x86 processor with two or more cores, at 1.6GHz or faster \(2GHz or faster for a stake pool or relay\)
 * **Memory:** 4GB of RAM \(8GB for a relay or stake pool\)
 * **Storage:** 10GB of free storage \(20GB for a stake pool\)
