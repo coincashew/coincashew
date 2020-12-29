@@ -1,40 +1,77 @@
-# 外部読書資料
+---
+description: >-
+  分散型アプリケーション用のグローバルなオープンソースプラットフォーム。 Ethereumでは、デジタル値を制御するコードを書くことができ、プログラミングされた通りに正確に動作し、世界中のどこにでもアクセスできます。
+---
 
-## 🧬 Ethereum 2.0 \(Serenity\)基礎
+# Ethereum: ETH
 
-{% embed url="https://ethos.dev/beacon-chain/" %}
+## ![](../../.gitbook/assets/eth.png) 一般データ
 
-{% embed url="https://github.com/etherum/eth2.0-specs" %}
+| サイト     | タイトル                                                                                                   |
+|:------- |:------------------------------------------------------------------------------------------------------ |
+| ウェブサイト  | [https://www.etherum.org/](https://www.ethereum.org/)                                                  |
+| ソースコード： | [https://github.com/ethereum](https://github.com/ethereum)                                             |
+| ホワイト パー | [https://github.com/ethereum/wiki/wiki/White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper) |
 
-{% embed url="https://medalla.launchpad.ethereum.org/faq" %}
+## 🙋 ソーシャルメディアとコミュニティ
 
-{% embed url="https://notes.ethereum.org/@serenity/handbook" %}
+| コミュニティ    | リンク                                                                            |
+|:--------- |:------------------------------------------------------------------------------ |
+| 🐦 Twitter | [https://twitter.com/etherum](https://twitter.com/ethereum)                    |
+| Reddit    | [https://reddit.com/r/etherum](https://reddit.com/r/ethereum)                  |
+| 公式フォーラム   | [https://forum.etherum.org/](https://forum.ethereum.org/)                      |
+| Gitter    | [https://gitter.im/orgs/ethereum/rooms](https://gitter.im/orgs/ethereum/rooms) |
 
-{% embed url="https://www.adiasg.me/2020/03/31/casper-ffg-intrepler.html" %}
+## 🔃 ブロックエクスプローラー
 
-{% embed url="https://hackmd.io/@benjaminion/eth2\_info" %}
+| サイト                                               |
+|:------------------------------------------------- |
+| [Etherscan.io](https://etherscan.io/)             |
+| [Blockchair.com](https://blockchair.com/ethereum) |
+| [Ethplorer.io](https://ethplorer.io/)             |
+| [Etherchain.org](https://etherchain.org/)         |
+| [ビーコンチャイン](https://beaconcha.in/)                 |
 
-{% embed url="https://benjaminion.xyz/eth2-annotated-spec/" %}
+## 📊 チャートと価格
 
-{% embed url="https://notes.etherum.org/@vbuterin/rkhCgQteN" %}
+| サイト           | リンク                                                                                                  |
+|:------------- |:---------------------------------------------------------------------------------------------------- |
+| CoinPaprika   | [https://coinpaprika.com/coin/eth-ethereum/](https://coinpaprika.com/coin/eth-ethereum/)             |
+| CoinMarketCap | [https://coinmarketcap.com/currencies/ethereum/](https://coinmarketcap.com/currencies/ethereum/)     |
+| CoinGecko     | [https://www.coingecko.com/en/coins/ethereum](https://www.coingecko.com/en/coins/ethereum)           |
+| LiveCoinWatch | [https://www.livecoinwatch.com/price/Ethereum-ETH](https://www.livecoinwatch.com/price/Ethereum-ETH) |
 
-## 🚀 ステーキングバリデータ: 提案者と<unk>
+## 💰 ウォレット
 
-{% hint style="info" %}
-バリデーターは仮想で、ステーカーによって有効化されます。 PoWでは、ユーザーは鉱夫になるためにハードウェアを購入します。 Ethereum 2.0では、ユーザーはETHを有効化してバリデータを制御します。 -- [**ethos.dev**](https://ethos.dev/beacon-chain/)\*\*\*\*
-{% endhint %}
+{% page-ref page="../../wallets/desktop-wallets/mycrypto-ethereum.md" %}
 
-{% embed url="https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-nounter-before-staking-94df41701487" %}
+{% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
-{% embed url="https://ethos.dev/beacon-chain/\#rewards-punties" %}
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
 
-{% embed url="https://etherumprice.org/eth-2-calculator/" %}
+{% page-ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
 
-{% embed url="https://www.attestant.io/posts/evaluating-staking-services/" %}
+{% page-ref page="../../wallets/desktop-wallets/atomic-multi-currency.md" %}
 
-## 👩💻 開発コース
+{% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
 
-{% embed url="https://cryptozombies.io/en/course" %}
+{% page-ref page="../../wallets/hardware-wallets/trezor.io-wallet/" %}
 
-{% embed url="https://cryptoeconomics.study/" %}
+{% page-ref page="../../wallets/hardware-wallets/keepkey-wallet/" %}
+
+{% page-ref page="../../wallets/mobile-wallets/argent-ethereum.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/status-ethereum.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/pillar-ethereum-btc.md" %}
+
+{% page-ref page="./" %}
+
+{% page-ref page="../../wallets/mobile-wallets/enjin-multi-currency.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+
+
 
