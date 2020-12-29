@@ -1,0 +1,1029 @@
+---
+description: >-
+  Γίνετε επικυρωτής και βοηθήστε να εξασφαλίσετε eth2, ένα blockchain proof-of-stake. Οποιοσδήποτε με 32 ETH μπορεί να συμμετάσχει.
+---
+
+# Οδηγός: Πώς να ποντάρετε στο ETH2 Mainnet με Prysm στο Ubuntu
+
+{% hint style="danger" %}
+**Nov 24 2020 Update**: Ο [νέος οδηγός mainnet βρίσκεται εδώ](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+
+Οι παρακάτω οδηγίες είναι πλέον παρωχημένες και μόνο για αναφορά.
+{% endhint %}
+
+
+
+
+
+
+
+
+
+
+
+{% hint style="info" %}
+[Το Prysm](https://github.com/prysmaticlabs/prysm) είναι η εφαρμογή του πρωτοκόλλου Ethereum 2.0 με έμφαση στη χρηστικότητα, την ασφάλεια και την αξιοπιστία. Το Prysm αναπτύσσεται από [Prysmatic Labs](https://prysmaticlabs.com/), μια εταιρεία με μοναδική εστίαση στην ανάπτυξη του πελάτη τους. Το Prysm είναι γραμμένο στο Go και κυκλοφορεί με άδεια GPL-3.0.
+{% endhint %}
+
+## 🏁 0. Προϋποθέσεις
+
+### 👩💻 Δεξιότητες για τη λειτουργία ενός eth2 επικυρωτή και κόμβου beacon
+
+Ως επικυρωτής για eth2, θα έχετε συνήθως τις ακόλουθες ικανότητες:
+
+* επιχειρησιακές γνώσεις σχετικά με τον τρόπο δημιουργίας, λειτουργίας και συντήρησης ενός κόμβου και επικυρωτή eth2 συνεχώς
+* δέσμευση για διατήρηση του επικυρωτή σας 24/7/365
+* βασικές δεξιότητες λειτουργικού συστήματος
+* έχουν μάθει τα απαραίτητα παρακολουθώντας ['Εισαγωγή στην Εθ2 & Λήψη για αρχάριους' από τον Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
+* έχουν περάσει ή είναι ενεργά εγγεγραμμένοι στο [Μάστερ της Εθ2 Μελέτη](https://ethereumstudymaster.com/)
+* and have read the [8 Πράγματα Κάθε επικυρωτής Eth2 πρέπει να γνωρίζει.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
+
+### 🎗 **Ελάχιστες απαιτήσεις εγκατάστασης**
+
+* **Λειτουργικό σύστημα:** 64-bit Linux \(δηλ. Ubuntu 20.04 LTS\)
+* **Επεξεργαστής:** Διπλός πυρήνας CPU, Intel Core i5-760 ή AMD FX-8100 ή καλύτερη
+* **Memory:** 8GB RAM
+* **Αποθήκευση:** SSD 20GB
+* **Internet:** Ευρυζωνική σύνδεση στο διαδίκτυο με ταχύτητες τουλάχιστον 1 Mbps.
+* **Ισχύς:** Αξιόπιστη ηλεκτρική ενέργεια.
+* **υπόλοιπο ETH:** τουλάχιστον 32 ETH και κάποιο ETH για τέλη συναλλαγής καταθέσεων
+* **Πορτοφόλι**: Η Metamask εγκαταστάθηκε
+
+### 🏋♂ Συνιστώμενη Εγκατάσταση Υλικού
+
+* **Λειτουργικό σύστημα:** 64-bit Linux \(δηλ. Ubuntu 20.04 LTS\)
+* **Επεξεργαστής:** Quad core CPU, Intel Core i7-4770 ή AMD FX-8310 ή καλύτερη
+* **Μνήμη:** μνήμη 16 GB ή περισσότερο
+* **Αποθήκευση:** 1TB SSD ή περισσότερα
+* **Internet:** Ευρυζωνικές συνδέσεις στο διαδίκτυο με ταχύτητες τουλάχιστον 10 Mbps
+* **Ισχύς:** Αξιόπιστη ηλεκτρική ενέργεια με αδιάλειπτη παροχή ηλεκτρικού ρεύματος \(UPS\)
+* **υπόλοιπο ETH:** τουλάχιστον 32 ETH και κάποιο ETH για τέλη συναλλαγής καταθέσεων
+* **Πορτοφόλι**: Η Metamask εγκαταστάθηκε
+
+{% hint style="warning" %}
+✨ **Pro Validator Tip**: Σας συνιστούμε να ξεκινήσετε με ένα ολοκαίνουργιο παράδειγμα ενός OS, VM και / ή μηχανής. Αποφυγή πονοκεφάλων ΔΕΝ επαναχρησιμοποίηση κλειδιών testnet, πορτοφολιών ή βάσεων δεδομένων για τον mainnet επικυρωτή.
+{% endhint %}
+
+### 🔓 Συνιστώμενες eth2 Βέλτιστες Πρακτικές Ασφαλείας
+
+Αν χρειάζεστε ιδέες ή μια υπενθύμιση για το πώς να ασφαλίσετε τον επικυρωτή σας, ανατρέξτε στο
+
+{% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+
+### 🛠 Setup Ubuntu
+
+Αν χρειάζεται να εγκαταστήσετε το Ubuntu, ανατρέξτε στο
+
+{% page- ref page="../overview-xtz/guide- how-to-setup-a-baker/install- ubuntu.md" %}
+
+### 🎭 Ρύθμιση Μεταμάσκα
+
+Αν χρειαστεί να εγκαταστήσετε το Metamask, ανατρέξτε στο
+
+{% page- ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
+
+## 🌱 1. Αγορά/ανταλλαγή ή ενοποίηση ETH
+
+{% hint style="info" %}
+Κάθε 32 ETH σας επιτρέπει να κάνετε 1 επικυρωτή. Μπορείτε να εκτελέσετε χιλιάδες επικυρωτές με τον κόμβο του φάρου σας.
+{% endhint %}
+
+Το ETH \(ή πολλαπλάσια των 32 ETH\) θα πρέπει να ενοποιηθεί σε μια ενιαία διεύθυνση προσβάσιμη με Metamask.
+
+Αν χρειαστεί να αγοράσετε/ανταλλάξετε ή να συμπληρώσετε το ETH σας σε πολλαπλάσιο του 32, ελέγξτε το:
+
+{% page-ref page="guide-how-to-buy-eth.md" %}
+
+## 👩💻 2. Εγγραφείτε για να είστε επικυρωτής στο Launchpad
+
+1. Εγκαταστήστε εξαρτήσεις, το εργαλείο κατάθεσης θετικών θεμελίων ethereum και να δημιουργήσει τα δύο σύνολα των ζευγών κλειδιών.
+
+{% hint style="info" %}
+Κάθε επικυρωτής θα έχει δύο σύνολα ζευγών κλειδιών. Ένα **κλειδί υπογραφής** και ένα **κλειδί απόσυρσης.** Αυτά τα πλήκτρα προέρχονται από μία μόνο μνημονική φράση. [Μάθετε περισσότερα για τα κλειδιά.](https://blog.ethereum.org/2020/05/21/keys/)
+{% endhint %}
+
+Έχετε την επιλογή να κατεβάσετε το προκατασκευασμένο [ethereum ίδρυμα εργαλείο κατάθεσης](https://github.com/ethereum/eth2.0-deposit-cli) ή να το χτίσετε από την πηγή.
+
+{% tabs %}
+{% tab title="Pre-built eth2deposit-cli" %}
+Κατεβάστε το eth2deposit-cli.
+
+```bash
+cd $HOME
+wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.0.0/eth2deposit-cli-9310de0-linux-amd64.tar.gz
+```
+
+Επαληθεύστε το SHA256 Checksum ταιριάζει με το άθροισμα ελέγχου στην [σελίδα απελευθερώσεων](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
+
+```bash
+sha256sum eth2deposit-cli-9310de0-linux-amd64.tar.gz 
+# SHA256 πρέπει να είναι
+# b09da136895a7f77a4b430924ea2ae5827fa47b2bf444c4ea6fcfac5b04b8c8a
+```
+
+Εξαγωγή αρχείου
+
+```text
+tar -xvf eth2deposit-cli-9310de0-linux-amd64.tar.gz
+cd eth2deposit-cli-9310de0-linux-amd64
+```
+
+Κάντε ένα νέο μνημονικό.
+
+```text
+./κατάθεση νέο-μνημονικό --chain mainnet
+```
+{% endtab %}
+
+{% tab title="Build from source code" %}
+Εγκατάσταση εξαρτήσεων.
+
+```text
+sudo apt update
+sudo apt install python3-pip git -y
+```
+
+Λήψη πηγαίου κώδικα και εγκατάσταση.
+
+```text
+mkdir ~/git
+cd ~/git
+git clone https://github.com/ethereum/eth2.0-deposit-cli.git
+cd eth2.0-deposit-cli
+sudo ./deposit.sh install
+```
+
+Κάντε ένα νέο μνημονικό.
+
+```text
+./deposit.sh new-mnemonic --chain mainnet
+```
+{% endtab %}
+
+{% tab title="Advanced - Most Secure" %}
+{% hint style="warning" %}
+🔥**\[ Προαιρετική \] Pro Συμβουλή Ασφαλείας**: Εκτελέστε το εργαλείο eth2deposit-cli και δημιουργήστε τον **μνημονικό σπόρο σας** για τα κλειδιά επικύρωσής σας σε μια **μηχανή εκτός σύνδεσης με αέρα**.
+
+Μπορείτε να αντιγράψετε μέσω του κλειδιού USB τα προ-ενσωματωμένα δυαδικά eth2deposit-cli από μια online μηχανή σε μια μηχανή χωρίς αέρα χωρίς σύνδεση.
+
+* Προστατεύει από επιθέσεις καταγραφής κλειδιών, επιθέσεις κακόβουλου λογισμικού/ιού και άλλες επιθέσεις τείχους προστασίας ή ασφάλειας.
+* Φυσικά απομονωμένο από το υπόλοιπο του δικτύου σας.
+* Δεν πρέπει να έχετε σύνδεση δικτύου, ενσύρματη ή ασύρματη.
+* Δεν είναι ένα VM σε ένα μηχάνημα με μια σύνδεση δικτύου.
+* Μάθετε περισσότερα για το [air-gapping στο wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29).
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+1. Ακολουθήστε τις οδηγίες και επιλέξτε έναν κωδικό πρόσβασης. Σημειώστε τη μνημονική σας και κρατήστε αυτό το ασφαλές και **χωρίς σύνδεση**.
+2. Ακολουθήστε τα βήματα στο [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) παραβλέποντας τα βήματα που μόλις ολοκληρώσατε. Μελετήστε το υλικό επισκόπησης της φάσης 0 της eth2. Η κατανόηση της eth2 είναι το κλειδί για την επιτυχία!
+3. Πίσω στην ιστοσελίδα launchpad, ανεβάστε το`deposit_data-##########.json` που βρέθηκε στον κατάλογο `validator_keys`.
+4. Συνδεθείτε στο launchpad με το πορτοφόλι Metamask σας, αναθεωρήστε και αποδεχτείτε όρους.
+5. Επιβεβαιώστε τη συναλλαγή\(s\). Υπάρχει μια συναλλαγή κατάθεσης 32 ETH για κάθε επικυρωτή.
+
+{% hint style="info" %}
+Η συναλλαγή σας στέλνει και καταθέτει το ETH σας στην [επίσημη διεύθυνση κατάθεσης σύμβασης ETH2. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
+
+**Έλεγχος**, _διπλός έλεγχος_, _**τριπλός έλεγχος**_ ότι η επίσημη διεύθυνση κατάθεσης σύμβασης Εθ2 είναι σωστή.[`0x000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
+{% endhint %}
+
+{% hint style="danger" %}
+Σιγουρευτείτε ότι γράφετε ή καταγράφετε το μνημονικό σας σπόρο **χωρίς σύνδεση**. _Δεν υπάρχει email. Δεν νεφελώνονται._
+
+Κάντε **αντίγραφα ασφαλείας εκτός σύνδεσης**, όπως σε ένα κλειδί USB, από το **`επικυρωτή_κλειδιά σας`** \`\`directory.
+{% endhint %}
+
+## 🛸 3. Install a ETH1 node
+
+{% hint style="info" %}
+Το Ethereum 2.0 απαιτεί σύνδεση με το Ethereum 1.0, προκειμένου να παρακολουθούνται οι καταθέσεις 32 ETH επικυρωτή. Φιλοξενία του δικού σας κόμβου Ethereum 1.0 είναι ο καλύτερος τρόπος για να μεγιστοποιήσετε την αποκέντρωση και να ελαχιστοποιήσετε την εξάρτηση από τρίτους όπως η Infura.
+{% endhint %}
+
+{% hint style="warning" %}
+Τα επόμενα βήματα υποθέτουν ότι έχετε ολοκληρώσει τον [οδηγό ασφαλείας βέλτιστων πρακτικών](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
+{% endhint %}
+
+Η επιλογή σας είτε του [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **ή** [**εγκύκλιος**](https://www.nethermind.io/)**.**
+
+{% tabs %}
+{% tab title="OpenEthereum \(Parity\)" %}
+#### 🤖 Εγκαταστήστε και εκτελέστε το OpenEthereum.
+
+```text
+mkdir ~/openethereum && cd ~/openethereum
+wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.zip
+unzip openethereum*.zip
+chmod +x openethereum
+rm openethereum*.zip
+```
+
+"⚙ **Ρύθμιση και ρύθμιση του συστήματος**
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις παραμέτρων `eth1.service`.
+
+```bash
+γάτα > $HOME/eth1. ervice << EOF 
+[Unit]
+Description = openethereum eth1 service
+Wants = network-online. arget
+After = network-online. arget 
+
+[Service]
+User = $(whoami)
+WorkingDirectory= /home/$(whoami)/openethereum
+ExecStart = /home/$(whoami)/openethereum/openethereum --chain foundation
+Restart = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+Μετακινήστε το αρχείο μονάδας στο `/etc/systemd/system` και δώστε του τα δικαιώματα.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable eth1
+```
+
+#### ⛓ Ξεκινήστε το OpenEthereum στο mainnet.
+
+```text
+sudo systemctl έναρξη eth1
+```
+{% endtab %}
+
+{% tab title="Geth" %}
+#### 🧬 Εγκατάσταση από το αποθετήριο.
+
+```text
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt-get update -y
+sudo apt-get install ethereum -y
+```
+
+⚙ **Ρύθμιση και ρύθμιση του συστήματος**
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις παραμέτρων `eth1.service`.
+
+```bash
+γάτα > $HOME/eth1. ervice << EOF 
+[Unit]
+Description = geth eth1 service
+Wants = network-online. arget
+After = network-online. arget 
+
+[Service]
+User = $(whoami)
+ExecStart = /usr/bin/geth --rpc --http
+Επανεκκίνηση = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+Μετακινήστε το αρχείο μονάδας στο `/etc/systemd/system` και δώστε του τα δικαιώματα.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable eth1
+```
+
+#### ⛓ Ξεκινήστε να παίρνετε στο mainnet.
+
+```text
+sudo systemctl έναρξη eth1
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+#### 🧬 Εγκαταστήστε την εξάρτηση java.
+
+```text
+sudo apt install openjdk-11-jdk
+```
+
+#### 🌜 Λήψη και αποσυμπίεση Besu.
+
+```text
+cd
+wget -O besu.tar.gz https://bintray.com/hyperledger-org/besu-repo/download_file?file_path=besu-1.5.0.tar.gz
+tar -xvf besu.tar.gz
+rm besu.tar.gz
+mv besu-1.5.0 besu
+```
+
+⚙ **Ρύθμιση και ρύθμιση του συστήματος**
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις παραμέτρων `eth1.service`.
+
+```bash
+γάτα > $HOME/eth1. ervice << EOF 
+[Unit]
+Description = openethereum eth1 service
+Wants = network-online. arget
+After = network-online. arget 
+
+[Service]
+User = $(whoami)
+WorkingDirectory= /home/$(whoami)/besu/bin
+ExecStart = /home/$(whoami)/besu/bin/besu --data-path="$HOME/. thereum_besu"
+Επανεκκίνηση = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+Μετακινήστε το αρχείο μονάδας στο `/etc/systemd/system` και δώστε του τα δικαιώματα.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable eth1
+```
+
+#### ⛓ Ξεκινήστε besu στο mainnet.
+
+```text
+sudo systemctl έναρξη eth1
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+#### ⚙ Εγκαταστήστε εξαρτήσεις.
+
+```text
+sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
+```
+
+#### 🌜 Κατεβάστε και αποσυμπιέστε Ολλανδία.
+
+```text
+mkdir ~/nethermind && cd ~/nethermind
+wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
+unzip nethermind.zip
+rm nethermind.zip
+```
+
+#### 🛸 Έναρξη Ολλανδία.
+
+```text
+./Nethermind.Launcher
+```
+
+* Επιλέξτε `Κόμβο Ethereum`
+* Επιλέξτε `Ethereum (mainnet)` και στη συνέχεια επιλέξτε `Γρήγορο συγχρονισμό`
+* Ναι για ενεργοποίηση του web3 / JSON RPC
+* Αποδοχή προεπιλεγμένης IP
+* Παράλειψη εγγραφής ethstats
+{% endtab %}
+
+{% tab title="Minimum Hardware Setup" %}
+{% hint style="info" %}
+Το Infura είναι κατάλληλο για περιορισμένες ρυθμίσεις χώρου στο δίσκο. Πάντα να τρέχετε τον δικό σας πλήρη κόμβο eth1 όταν είναι δυνατό.
+{% endhint %}
+
+Εγγραφείτε για ένα κλειδί πρόσβασης API στο [https://infura.io/](https://infura.io/)
+
+1. Εγγραφείτε για δωρεάν λογαριασμό.
+2. Επιβεβαιώστε τη διεύθυνση email σας.
+3. Επισκεφθείτε τον πίνακα ελέγχου σας [https://infura.io/dashboard](https://infura.io/dashboard)
+4. Δημιουργήστε ένα έργο, δώστε του ένα όνομα.
+5. Επιλέξτε **Mainnet** ως ENDPOINT
+6. Αντιγράψτε το κλειδί API σας.
+7. Ενημερώστε την παράμετρο **http-web3provider** στην ενότητα **εκκίνησης αλυσίδας beacon**.
+
+```bash
+#παράδειγμα παράμετρος
+--http-web3provider=https://infura.io/v3/<YOUR_API_KEY>
+```
+{% endtab %}
+{% endtabs %}
+
+
+
+{% hint style="info" %}
+Ο συγχρονισμός του eth1 κόμβου θα μπορούσε να διαρκέσει έως και 24 ώρες.
+{% endhint %}
+
+{% hint style="success" %}
+Ο εθνικός σας κόμβος είναι πλήρως συγχρονισμένος όταν εμφανιστούν αυτά τα γεγονότα.
+
+* **`OpenEthereum:`** `Imported #<block number>`
+* **`Geth:`** `Εισαγόμενο νέο τμήμα αλυσίδας`
+* **`Besu:`** `Εισήχθησαν #<block number>`
+* **`Nethermind:`** `Δεν συγχρονίζει πλέον τις Παλιές Κεφαλίδες`
+{% endhint %}
+
+#### 🛠 Χρήσιμες εντολές eth1.service
+
+√ 🗒 **Για να δείτε και να ακολουθήσετε eth1 κούτσουρα**
+
+```text
+journalctl -u eth1 -f
+```
+
+🗒 **Για να σταματήσετε την υπηρεσία eth1**
+
+```text
+sudo systemctl stop eth1
+```
+
+{% hint style="danger" %}
+🛑 **Πριν συνεχίσετε τον υπόλοιπο οδηγό, σας συνιστούμε να περιμένετε μέχρι να πλησιάσετε την 1η Δεκ καθώς ο κώδικας Prysm ετοιμάζεται γρήγορα για το mainnet.**🚧
+{% endhint %}
+
+## 💡 4. Install Prysm
+
+```bash
+mkdir ~/prysm && cd ~/prysm 
+curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh 
+```
+
+{% hint style="info" %}
+Το Prysm είναι πελάτης Ethereum 2.0 και διατίθεται σε δύο συστατικά.
+
+**Πελάτης αλυσίδας Beacon** - Υπεύθυνος για τη διαχείριση της κατάστασης της αλυσίδας φάρου, ανακάτεμα επικυρωτή, και πολλά άλλα.
+
+**Πρόγραμμα επικύρωσης** - Υπεύθυνος για την παραγωγή νέων μπλοκ και βεβαιώσεων στην αλυσίδα του φάρου και αλυσίδες θραύσης.
+{% endhint %}
+
+## 🔥 5. Ρύθμιση προώθησης θύρας και/ή τείχους προστασίας
+
+Ειδικά για τις ρυθμίσεις δικτύωσης ή τις ρυθμίσεις παρόχου σύννεφου, [βεβαιωθείτε ότι οι θύρες του τείχους προστασίας του επικυρωτή σας είναι ανοιχτές και προσβάσιμες.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+
+* **Ο κόμβος αλυσιδωτής αλυσίδας Prysm** θα χρησιμοποιεί τη θύρα 12000 για udp και 13000 για tcp
+* **eth1** κόμβος απαιτεί θύρα 30303 για tcp και udp
+
+{% hint style="info" %}
+✨ **Συμβουλή προώθησης θύρας:** Θα χρειαστεί να προωθήσετε και να ανοίξετε θύρες στον επικυρωτή σας. Επιβεβαιώστε ότι δουλεύει με [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) ή [https://canyouseeme.org/](https://canyouseeme.org/).
+{% endhint %}
+
+## 🎩 6. Εισαγωγή κλειδιού επικύρωσης
+
+Επιλέξτε τη σωστή εντολή ανάλογα με το πώς εγκαταστήσατε το **eth2deposit-cli.**
+
+{% tabs %}
+{% tab title="Pre-built eth2deposit-cli" %}
+```bash
+$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/eth2deposit-cli-9310de0-linux-amd64/validator_keys
+```
+{% endtab %}
+
+{% tab title="Built from source code" %}
+```bash
+$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/git/eth2.0-deposit-cli/validator_keys
+```
+{% endtab %}
+{% endtabs %}
+
+Αποδεχτείτε την προεπιλεγμένη τοποθεσία πορτοφολιού, εισάγετε έναν νέο κωδικό πρόσβασης για να κρυπτογραφήσετε το πορτοφόλι σας και εισαγάγετε τον κωδικό πρόσβασης για τους εισαγόμενους λογαριασμούς σας.
+
+{% hint style="danger" %}
+**ΠΡΟΕΙΔΟΠΟΙΗΣΗ**: ΜΗΝ ΧΡΗΣΙΜΟΠΟΙΗΣΕΤΕ ΤΑ ΚΑΤΑΓΩΓΙΚΑ ΣΤΟΙΧΕΙΑ ΠΟΥ ΠΡΕΠΕΙ ΝΑ ΙΣΧΥΟΥΝ ΜΕ ΑΛΛΟ CLIENT, Ή ΝΑ ΠΑΙΧΝΕΤΕ ΣΤΟΙΧΕΙΗ.
+{% endhint %}
+
+## 🏂 7. Ξεκινήστε την αλυσίδα φάρου
+
+{% hint style="warning" %}
+Αν συμμετείχατε σε κάποιο από τα πρώτα δοκιμαστικά δίχτυα, θα πρέπει να καθαρίσετε τη βάση δεδομένων.
+
+```bash
+$HOME/prysm/prysm.sh beacon-chain --clear-db
+```
+{% endhint %}
+
+Η επιλογή σας να εκτελέσετε μια αλυσίδα beacon και επικυρωτή χειροκίνητα από τη γραμμή εντολών ή αυτόματα με το σύστημα.
+
+{% tabs %}
+{% tab title="Systemd - Automated" %}
+#### 🍰 Οφέλη από τη χρήση του συστήματος για την αλυσίδα φάρου και τον επικυρωτή σας <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Αυτόματη εκκίνηση της αλυσίδας φάρου σας όταν ο υπολογιστής επανεκκινήσει λόγω συντήρησης, διακοπής ρεύματος, κλπ.
+2. Αυτόματη επανεκκίνηση των διεργασιών αλυσιδωτής αλυσίδας φάρου.
+3. Μεγιστοποιήστε την αλυσίδα φάρος σας up-time και τις επιδόσεις.
+
+#### 🛠 Οδηγίες Εγκατάστασης
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα αρχείο **μονάδας** για να ορίσετε τις ρυθμίσεις`beacon-chain.service`.
+
+```bash
+γάτα > $HOME/αλυσίδα φάρου. ervice << EOF 
+# Η υπηρεσία αλυσίδας eth2 beacon (μέρος του συστήματος)
+# αρχείο: /etc/systemd/system/beacon-chain. ervice 
+
+[Unit]
+Description = υπηρεσία αλυσίδας eth2 beacon
+Θέλει = δίκτυο-online. arget
+After = network-online. arget 
+
+[Service]
+User = $(whoami)
+Environment = "ClientIP=$(curl -s v4. dent.me)"
+WorkingDirectory= /home/$(whoami)/prysm
+ExecStart = /home/$(whoami)/prysm/prysm.sh beacon-chain --p2p-host-ip=${ClientIP} --monitoring-host="0.0.0. " --http-web3provider=http://127.0.0. :8545 --accept-terms-of-use 
+Restart = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+{% hint style="info" %}
+Geth χρήστες μπορούν να επιτύχουν υψηλότερη απόδοση με
+
+```bash
+--http-web3provider=$HOME/.ethereum/geth.ipc
+```
+{% endhint %}
+
+Μετακινήστε το αρχείο μονάδας στο `/etc/systemd/system` και δώστε του τα δικαιώματα.
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση και στη συνέχεια να ξεκινήσετε την υπηρεσία κόμβου beacon.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable beacon-chain
+sudo systemctl start beacon-chain
+```
+
+{% hint style="success" %}
+Ωραία δουλειά. Η αλυσίδα φάρου σας τώρα διαχειρίζεται από την αξιοπιστία και την ευρωστία του συστήματος. Παρακάτω είναι μερικές εντολές για τη χρήση του συστήματος.
+{% endhint %}
+
+### 🛠 Μερικές χρήσιμες εντολές συστήματος
+
+#### ✅ Ελέγξτε αν η αλυσίδα του φάρου είναι ενεργή
+
+```text
+sudo systemctl is-active beacon-chain
+```
+
+#### 🔎 Δείτε την κατάσταση της αλυσίδας φάρου
+
+```text
+sudo systemctl κατάσταση beacon-chain
+```
+
+#### 🔄 Επανεκκίνηση της αλυσίδας φάρου
+
+```text
+sudo systemctl reload-or-restart beacon-chain
+```
+
+#### 🛑 Διακοπή της αλυσίδας φάρου
+
+```text
+sudo systemctl stop beacon-chain
+```
+
+#### 🗒 Αρχεία καταγραφής προβολής και φιλτραρίσματος
+
+```bash
+journalctl --unit=beacon-chain --since=χθες
+journalctl --unit=beacon-chain --since=today
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+Σε ένα νέο τερματικό, ξεκινήστε την αλυσίδα φάρο.
+
+```bash
+$HOME/prysm/prysm.sh beacon-chain \
+--p2p-host-ip=$(curl -s v4.ident.me) \
+--http-web3provider="http://127.0.0.1:8545"
+--monitoring-host="0.0.0.0" \
+--accept-terms-of-use
+```
+
+{% hint style="info" %}
+Geth χρήστες μπορούν να επιτύχουν υψηλότερη απόδοση με
+
+```bash
+--http-web3provider=$HOME/.ethereum/geth.ipc
+```
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+## 🧬 8. Εκκίνηση του επικυρωτή <a id="9-start-the-validator"></a>
+
+Αποθηκεύστε τον κωδικό πρόσβασης του επικυρωτή σας σε ένα αρχείο και κάντε τον μόνο για ανάγνωση.
+
+```bash
+echo "my_password_goes_here" > $HOME/.eth2validators/validators-password.txt
+sudo chmod 600 $HOME/.eth2validators/validators-password.txt
+```
+
+Η επιλογή σας να εκτελέσετε έναν επικυρωτή χειροκίνητα από τη γραμμή εντολών ή αυτόματα με το σύστημα.
+
+{% tabs %}
+{% tab title="Systemd - Automated" %}
+#### 🍰 Οφέλη από τη χρήση του συστήματος για τον επικυρωτή σας <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Αυτόματη εκκίνηση του επικυρωτή σας όταν ο υπολογιστής επανεκκινήσει λόγω συντήρησης, διακοπής ρεύματος, κλπ.
+2. Αυτόματη επανεκκίνηση διεργασιών επικύρωσης.
+3. Μεγιστοποιήστε το χρόνο και τις επιδόσεις του επικυρωτή.
+
+#### 🛠 Οδηγίες Εγκατάστασης
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις`επικυρωτή.service`.
+
+```bash
+γάτα > $HOME/validator. ervice << EOF 
+# Η υπηρεσία επικύρωσης eth2 (μέρος του συστήματος)
+# αρχείο: /etc/systemd/system/validator. ervice 
+
+[Unit]
+Description = eth2 validator service
+Wants = network-online. arget beacon-chain.service
+After = network-online. arget 
+
+[Service]
+User = $(whoami)
+WorkingDirectory= /home/$(whoami)/prysm
+ExecStart = /home/$(whoami)/prysm/prysm. h validator --accept-terms-of-use --wallet-password-file /home/$(whoami)/.eth2validators/validators-password. xt
+Επανεκκίνηση = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+Μετακινήστε το αρχείο μονάδας στο `/etc/systemd/system` και δώστε του τα δικαιώματα.
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση και στη συνέχεια ξεκινήστε τον επικυρωτή σας.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable validator
+sudo systemctl start validator
+```
+
+### 🛠 Μερικές χρήσιμες εντολές συστήματος
+
+#### ✅ Ελέγξτε αν ο επικυρωτής είναι ενεργός
+
+```text
+sudo systemctl is-active validator
+```
+
+#### 🔎 Δείτε την κατάσταση του επικυρωτή
+
+```text
+sudo systemctl status validator
+```
+
+#### 🔄 Επανεκκίνηση του επικυρωτή
+
+```text
+sudo systemctl reload-or-restart validator
+```
+
+#### 🛑 Διακοπή του επικυρωτή
+
+```text
+sudo systemctl stop validator
+```
+
+#### 🗄 Αρχεία καταγραφής προβολής και φιλτραρίσματος
+
+```bash
+journalctl --unit=validator --since=χθες
+journalctl --unit=validator --since=today
+journalctl --unit=validator --since='2020-12-01 00:00'--until='2020-12-02 12:00:00' --until='2020-12-02 12:00:00'
+```
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+Σε ένα νέο τερματικό, ξεκινήστε τον επικυρωτή.
+
+```bash
+$HOME/prysm/prysm.sh validator \
+--accept-terms-of-use \
+--wallet-password-file /home/$(whoami)/.eth2validators/validators-password.txt
+```
+{% endtab %}
+{% endtabs %}
+
+Επαληθεύστε ότι το **δημόσιο κλειδί επικυρωτή** εμφανίζεται στα αρχεία καταγραφής. Παράδειγμα παρακάτω:
+
+```text
+INFO Ενεργοποιημένος επικυρωτής voting_pubkey: 0x2374.....7121
+```
+
+{% hint style="info" %}
+**Πρόγραμμα επικύρωσης** - Υπεύθυνος για την παραγωγή νέων μπλοκ και βεβαιώσεων στην αλυσίδα του φάρου και αλυσίδες θραύσης.
+
+**Πελάτης αλυσίδας Beacon** - Υπεύθυνος για τη διαχείριση της κατάστασης της αλυσίδας φάρου, ανακάτεμα επικυρωτή, και πολλά άλλα.
+{% endhint %}
+
+{% hint style="success" %}
+Συγχαρητήρια. Μόλις το beacon-chain σου συγχρονίζεται, επικυρωτής επάνω και τρέχει, απλά περιμένεις για ενεργοποίηση. Αυτή η διαδικασία διαρκεί έως και 24 ώρες. Όταν έχετε ανατεθεί, ο επικυρωτής σας θα αρχίσει να δημιουργεί και να ψηφίζει μπλοκ, ενώ κερδίζει ETH staking rewards.
+
+Χρησιμοποιήστε [beaconcha.in](https://beaconcha.in/) και [καταχωρήστε ένα λογαριασμό](https://beaconcha.in/register) για να δημιουργήσετε ειδοποιήσεις και να παρακολουθείτε τις επιδόσεις του επικυρωτή.
+{% endhint %}
+
+## 🕒 9. Συγχρονισμός Ώρας
+
+{% hint style="info" %}
+Επειδή η αλυσίδα beacon βασίζεται σε ακριβείς χρόνους για να εκτελέσει βεβαιώσεις και μπλοκ παραγωγής, ο χρόνος του υπολογιστή σας πρέπει να είναι ακριβής σε πραγματικό χρόνο NTP ή NTS μέσα στο 0. δευτερόλεπτα.
+{% endhint %}
+
+Ρύθμιση **Chrony** με τον ακόλουθο οδηγό.
+
+{% hint style="info" %}
+ο χρονισμός είναι μια εφαρμογή του Πρωτοκόλλου Ώρα Δικτύου και βοηθά να κρατήσει την ώρα του υπολογιστή σας συγχρονισμένη με NTP.
+{% endhint %}
+
+## 🔎 10. Παρακολούθηση του επικυρωτή σας με Grafana και Prometheus
+
+Το Prometheus είναι μια πλατφόρμα παρακολούθησης που συλλέγει μετρήσεις από τους στόχους που παρακολουθούνται με απόξεση μετρικών σημείων HTTP σε αυτούς τους στόχους. [Η επίσημη τεκμηρίωση είναι διαθέσιμη εδώ.](https://prometheus.io/docs/introduction/overview/) Η Grafana είναι ένας πίνακας ελέγχου που χρησιμοποιείται για την απεικόνιση των συλλεγόμενων δεδομένων.
+
+### 🐣 10.1 Εγκατάσταση
+
+Εγκαταστήστε prometheus και prometheus node exporter.
+
+```text
+sudo apt-get install -y prometheus prometheus-node-exporter
+```
+
+Εγκατάσταση grafana.
+
+```bash
+wget -q -O - https://packages.grafana.com/gpg.key śsudo apt-key add -
+echo "deb https://packages.grafana.com/oss/deb stable main" > grafana. ist
+sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
+sudo apt-get update && sudo apt-get install -y grafana
+```
+
+Ενεργοποιήστε τις υπηρεσίες έτσι ώστε να ξεκινούν αυτόματα.
+
+```bash
+sudo systemctl enable grafana-server.service
+sudo systemctl enable prometheus.service
+sudo systemctl enable prometheus-node-exporter.service
+```
+
+Ενημέρωση **prometheus.yml** που βρίσκεται στο `/etc/prometheus/prometheus.yml`
+
+```bash
+γάτα > $HOME/prometheus.yml << EOF
+καθολικό:
+  scrape_interval: 15s # Από προεπιλογή, απόξεση στόχων κάθε 15 δευτερόλεπτα.
+
+  # Επισύναψη αυτών των ετικετών σε οποιαδήποτε χρονολογική σειρά ή ειδοποιήσεις κατά την επικοινωνία με
+  # εξωτερικά συστήματα (ομοσπονδία, απομακρυσμένη αποθήκευση, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+
+# Μια διαμόρφωση απόξεσης που περιέχει ακριβώς ένα τελικό σημείο για ξύσμα:
+# Εδώ είναι ο ίδιος ο Prometheus.
+scrape_configs:
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['localhost:9100']
+  - job_name: 'validator'
+    static_configs:
+      - targets: ['localhost:8081']
+  - job_name: 'beacon node'
+    static_configs:
+      - στόχοι: ['localhost:8080']
+  - job_name: 'slasher'
+    static_configs:
+      - targets: ['localhost:8082']
+EOF
+sudo mv $HOME/prometheus. ml /etc/prometheus/prometheus.yml
+```
+
+Τέλος, επανεκκινήστε τις υπηρεσίες.
+
+```bash
+sudo systemctl restart grafana-server.service
+sudo systemctl restart prometheus.service
+sudo systemctl restart prometheus-node-exporter.service
+```
+
+Βεβαιωθείτε ότι οι υπηρεσίες εκτελούνται σωστά:
+
+```text
+sudo systemctl status grafana-server.service prometheus.service υπηρεσία prometheus-node-exporter.service
+```
+
+{% hint style="info" %}
+💡 **Υπενθύμιση**: Βεβαιωθείτε ότι η θύρα 3000 είναι ανοικτή στο τείχος προστασίας και/ή θύρα προωθείται αν σκοπεύετε να δείτε πληροφορίες παρακολούθησης από διαφορετικό μηχάνημα.
+{% endhint %}
+
+### 📶 10.2 Ρύθμιση Πίνακες Γραφικών
+
+1. Ανοίξτε το [http://localhost:3000](http://localhost:3000) ή [http://&lt;your](http://<your) validator's ip address&gt;:3000 στο τοπικό σας πρόγραμμα περιήγησης.
+2. Συνδεθείτε με **διαχειριστή** / **διαχειριστή**
+3. Αλλαγή κωδικού πρόσβασης
+4. Κάντε κλικ στο εικονίδιο **εργαλείων διαμόρφωσης** και μετά **Προσθήκη πηγής δεδομένων**
+5. Επιλέξτε **Prometheus**
+6. Όρισε **όνομα** σε **"Prometheus**"
+7. Όρισε **URL** στο [http://localhost:9090](http://localhost:9090)
+8. Κάντε κλικ στο **Αποθήκευση & Δοκιμή**
+9. **Λήψη και αποθήκευση** αυτού του [**αρχείου json**](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)**.** Ή αν έχετε περισσότερους από 10 επικυρωτές, χρησιμοποιήστε αυτό το [αρχείο json](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json).
+10. Κάντε κλικ στο εικονίδιο **Δημιουργία +** &gt; **Εισαγωγή**
+11. Προσθήκη πίνακα ελέγχου από **Ανεβάστε αρχείο JSON**
+12. Κάντε κλικ στο κουμπί **Εισαγωγή**.
+
+![Ταμπλό Prysm](../../.gitbook/assets/prysm_dash.png)
+
+### ⚠ 10.3 Ειδοποιήσεις Ειδοποίησης Εγκατάστασης
+
+{% hint style="info" %}
+Ρυθμίστε τις ειδοποιήσεις για να ειδοποιηθείτε αν οι επικυρωτές σας πάνε εκτός σύνδεσης.
+{% endhint %}
+
+Ενημερωθείτε για προβλήματα με τους επικυρωτές σας. Επιλέξτε μεταξύ email, telegram, discord ή slack.
+
+{% tabs %}
+{% tab title="Email Notifications" %}
+1. Επισκεφθείτε το [https://beaconcha.in/](https://beaconcha.in/)
+2. Εγγραφείτε ****για έναν **λογαριασμό**
+3. Επιβεβαιώστε το **email σας**
+4. Αναζητήστε τη δημόσια διεύθυνση του **επικυρωτή σας**
+5. Προσθέστε τους επικυρωτές στη λίστα παρακολούθησής σας κάνοντας κλικ στο **σύμβολο σελιδοδεικτών**.
+{% endtab %}
+
+{% tab title="Telegram Notifications" %}
+1. Στο μενού της Grafana, επιλέξτε **κανάλια ειδοποιήσεων** κάτω από το εικονίδιο καμπάνα. ![](../../.gitbook/assets/gra-noti.png)
+2. Κάντε κλικ στο **Προσθήκη καναλιού**.
+3. Δώστε στο κανάλι ειδοποίησης ένα **όνομα**.
+4. Επιλέξτε **Telegram** από τη λίστα Τύπου.
+5. Για να ολοκληρώσετε τις **ρυθμίσεις API Telegram**, απαιτείται ένα κανάλι Telegram και ένα bot. Για οδηγίες σχετικά με τη δημιουργία ενός bot με `@Botfather`, ανατρέξτε [σε αυτή την ενότητα](https://core.telegram.org/bots#6-botfather) της τεκμηρίωσης του Telegram.
+6. Μόλις ολοκληρωθεί, προσκαλέστε το bot στο νέο κανάλι.
+{% endtab %}
+
+{% tab title="Discord Notifications" %}
+1. Στο μενού της Grafana, επιλέξτε **κανάλια ειδοποιήσεων** κάτω από το εικονίδιο καμπάνα. ![](../../.gitbook/assets/gra-noti.png)
+2. Κάντε κλικ στο **Προσθήκη καναλιού**.
+3. Προσθέστε ένα **όνομα** στο κανάλι ειδοποιήσεων.
+4. Επιλέξτε **Discord** από τη λίστα Τύπου.
+5. Για να ολοκληρώσετε τη ρύθμιση, απαιτείται ένας διακομιστής Discord \(και ένα διαθέσιμο κανάλι κειμένου\), καθώς και μια διεύθυνση URL Webhook. Για οδηγίες σχετικά με τη ρύθμιση ενός Webhooks του Discord, ανατρέξτε [σε αυτή την ενότητα](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) της τεκμηρίωσής του.
+6. Εισάγετε το URL **Webhook** στον πίνακα ρυθμίσεων ειδοποιήσεων του Discord.
+7. Κάντε κλικ στο **Send Test**, το οποίο θα ωθήσει ένα μήνυμα επιβεβαίωσης στο κανάλι του Discord.
+{% endtab %}
+
+{% tab title="Slack Notifications" %}
+1. Στο μενού της Grafana, επιλέξτε **κανάλια ειδοποιήσεων** κάτω από το εικονίδιο καμπάνα. ![](../../.gitbook/assets/gra-noti.png)
+2. Κάντε κλικ στο **Προσθήκη καναλιού**.
+3. Προσθέστε ένα **όνομα** στο κανάλι ειδοποιήσεων.
+4. Επιλέξτε **Slack** από τη λίστα Τύπου.
+5. Για οδηγίες σχετικά με τη ρύθμιση των εισερχόμενων Webhooks, ανατρέξτε [σε αυτή την ενότητα](https://api.slack.com/messaging/webhooks) της τεκμηρίωσής τους.
+6. Εισάγετε τη διεύθυνση URL Slack Incoming Webhook στο πεδίο **URL**.
+7. Κάντε κλικ στο κουμπί **Αποστολή δοκιμής**, το οποίο θα ωθήσει ένα μήνυμα επιβεβαίωσης στο κανάλι Slack .
+{% endtab %}
+{% endtabs %}
+
+{% hint style="success" %}
+🎉 Συγχαρητήρια για τη ρύθμιση του επικυρωτή σας! Είστε καλοί να πάτε στο eth2.0.
+
+Μήπως θα βρείτε τον οδηγό μας χρήσιμο? Ενημερώστε μας με μια συμβουλή και θα συνεχίσουμε να την ενημερώνουμε.
+
+Χρησιμοποιήστε το [cointr.ee για να βρείτε τις διευθύνσεις δωρεάς μας ](https://cointr.ee/coincashew). 🙌
+
+Οποιαδήποτε ανατροφοδότηση και όλα τα αιτήματα έλξης εκτιμάται πολύ. 😃
+
+Τερματίστε και συνομιλήστε με άλλους stakers στο τηλεγράφημα @ [https://t.me/coincashew](https://t.me/coincashew)🌛
+{% endhint %}
+
+## 🧙♂ 11. Ενημέρωση Prysm
+
+Επανεκκινήστε την αλυσίδα beacon και τον επικυρωτή σύμφωνα με τις κανονικές διαδικασίες λειτουργίας.
+
+{% tabs %}
+{% tab title="Systemd - Automated" %}
+```text
+sudo systemctl reload-or-restart beacon-chain
+sudo systemctl reload-or-restart validator
+```
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+```bash
+#Control C για να βγείτε τόσο από την αλυσίδα beacon-chain όσο και από τις διαδικασίες επικύρωσης 
+#Πατήστε επάνω βέλος και εισάγετε για επανεκκίνηση.
+```
+{% endtab %}
+{% endtabs %}
+
+## 🧩 12. Υλικό Αναφοράς
+
+Εκτιμήστε τη σκληρή δουλειά που γίνεται από τους λεπτούς λαούς στους ακόλουθους συνδέσμους που χρησίμευσε ως θεμέλιο για τη δημιουργία αυτού του οδηγού.
+
+{% embed url="https://discord.gg/KSA7rPr" %}
+
+{% embed url="https://launchpad.ethereum.org/" caption="" %}
+
+{% embed url="https://prylabs.net/participate" %}
+
+{% embed url="https://docs.prylabs.network/docs/getting-started/" %}
+
+## 🎉 13. Σύνδεσμοι Μπόνους
+
+### 🌰 CoinCashew Οδηγοί για άλλους πελάτες ETH2
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-lighthouse.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-nimbus.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-lodestar.md" %}
+
+### 🧱 ETH2 Block Explorers
+
+{% embed url="https://beaconcha.in" caption="" %}
+
+{% embed url="https://beaconscan.com" caption="" %}
+
+### 🗒 Τελευταίες Πληροφορίες Eth2
+
+{% embed url="https://www.reddit.com/r/ethstaker" caption="" %}
+
+{% embed url="https://blog.ethereum.org" caption="" %}
+
+{% embed url="http://invite.gg/ethstaker" caption="" %}
+
+{% embed url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
+
+## 🔥 14. Επιπλέον Χρήσιμες Συμβουλές
+
+### 🛑 14.1 Εθελοντική έξοδος από έναν επικυρωτή
+
+{% hint style="info" %}
+Χρησιμοποιήστε αυτήν την εντολή για να σηματοδοτήσετε τις προθέσεις σας για να σταματήσετε την επικύρωση με τον επικυρωτή σας. Αυτό σημαίνει ότι δεν θέλετε πλέον να ποντάρετε με τον επικυρωτή σας και θέλετε να απενεργοποιήσετε τον κόμβο.
+
+* Η εθελοντική έξοδος διαρκεί τουλάχιστον 2048 εποχές \(ή ~9days\). Υπάρχει μια ουρά εξόδου και μια καθυστέρηση πριν ο επικυρωτής σας τερματίσει τελικά.
+* Μόλις ένας επικυρωτής τερματιστεί στη φάση 0, αυτό δεν είναι αναστρέψιμο και δεν μπορείτε πλέον να επανεκκινήσετε την επικύρωση ξανά.
+* Τα κεφάλαιά σας δεν θα είναι διαθέσιμα για ανάληψη μέχρι τη φάση 1.5 ή αργότερα.
+* Αφού ο επικυρωτής σας φύγει από την ουρά εξόδου και είναι πραγματικά έξω, είναι ασφαλές να απενεργοποιήσετε τον κόμβο και τον επικυρωτή του φάρου σας.
+{% endhint %}
+
+```bash
+$HOME/prysm/prysm.sh λογαριασμοί επικυρωτή εθελοντικά-έξοδος
+```
+
+### 🔐 14.2 Επαληθεύστε τη μνημονική φράση σας
+
+Χρησιμοποιώντας το εργαλείο eth2deposit-cli, βεβαιωθείτε ότι μπορείτε να αναγεννήσετε τα ίδια ζεύγη πλήκτρων eth2 επαναφέροντας το `validator_keys σας`
+
+```bash
+./deposit existing-mnemonic --chain mainnet
+```
+
+{% hint style="info" %}
+Όταν το **pubkey** είναι πανομοιότυπο, αυτό σημαίνει ότι το αρχείο **keystore** επαληθεύσατε σωστά τη μνημονική φράση σας. Άλλα πεδία θα είναι διαφορετικά λόγω της αλάτισης.
+{% endhint %}
+
+### 🤖 14.3 Προσθήκη πρόσθετων επικυρωτών
+
+Χρησιμοποιώντας το εργαλείο eth2deposit-cli, μπορείτε να προσθέσετε περισσότερους επικυρωτές δημιουργώντας ένα νέο αρχείο δεδομένων κατάθεσης και `validator_keys`
+
+Για παράδειγμα, σε περίπτωση που αρχικά δημιουργήσαμε 3 επικυρωτές, αλλά τώρα θέλουμε να προσθέσουμε 5 περισσότερους επικυρωτές, θα μπορούσαμε να χρησιμοποιήσουμε την ακόλουθη εντολή.
+
+```bash
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+```
+
+Ολοκληρώστε τα βήματα της μεταφόρτωσης του `deposit_data-#########.json` στην σελίδα εκκίνησης .
+
