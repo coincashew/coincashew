@@ -1,77 +1,40 @@
----
-description: >-
-  Globaali avoimen lähdekoodin alusta hajautetuille sovelluksille. Ethereumin avulla voit kirjoittaa digitaalista arvoa ohjaavaa koodia, joka toimii juuri ohjelmoituina, ja se on käytettävissä kaikkialla maailmassa.
----
+# Ulkoinen Lukumateriaali
 
-# Ethereum: ETH
+## 🧬 Ethereum 2.0 \(Serenity\) Perusteet
 
-## ![](../../.gitbook/assets/eth.png) Yleiset Tiedot
+{% upotettu url="https://ethos.dev/beacon-chain/" %}
 
-| Sivusto     | Otsikko                                                                                                |
-|:----------- |:------------------------------------------------------------------------------------------------------ |
-| Sivusto     | [https://www.ethereum.org/](https://www.ethereum.org/)                                                 |
-| Lähdekoodi  | [https://github.com/ethereum](https://github.com/ethereum)                                             |
-| Valkopaperi | [https://github.com/ethereum/wiki/wiki/White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper) |
+{% upotettu url="https://github.com/ethereum/eth2.0-specs" %}
 
-## 🙋 Sosiaalinen media ja yhteisö
+{% upotettu url="https://medalla.launchpad.ethereum.org/faq" %}
 
-| Yhteisö             | Linkki                                                                         |
-|:------------------- |:------------------------------------------------------------------------------ |
-| 🐦 Twitter           | [https://twitter.com/ethereum](https://twitter.com/ethereum)                   |
-| Reddit              | [https://reddit.com/r/ethereum](https://reddit.com/r/ethereum)                 |
-| Viralliset Foorumit | [https://forum.ethereum.org/](https://forum.ethereum.org/)                     |
-| Gitter              | [https://gitter.im/orgs/ethereum/rooms](https://gitter.im/orgs/ethereum/rooms) |
+{% upotettu url="https://notes.ethereum.org/@serenity/handbook" %}
 
-## 🔃 Estä Tutkijat
+{% upotettu url="https://www.adiasg.me/2020/03/31/casper-ffg-explainer.html" %}
 
-| Sivusto                                           |
-|:------------------------------------------------- |
-| [Etherscan.io](https://etherscan.io/)             |
-| [Blockchair.com](https://blockchair.com/ethereum) |
-| [Ethplorer.io](https://ethplorer.io/)             |
-| [Etherchain.org](https://etherchain.org/)         |
-| [beaconcha.in](https://beaconcha.in/)             |
+{% upotettu url="https://hackmd.io/@benjaminion/eth2\_info" %}
 
-## 📊 Kartat ja hinnoittelu
+{% upotettu url="https://benjaminion.xyz/eth2-annotated-spec/" %}
 
-| Sivusto       | Linkki                                                                                               |
-|:------------- |:---------------------------------------------------------------------------------------------------- |
-| CoinPaprika   | [https://coinpaprika.com/coin/eth-ethereum/](https://coinpaprika.com/coin/eth-ethereum/)             |
-| CoinMarketCap | [https://coinmarketcap.com/currencies/ethereum/](https://coinmarketcap.com/currencies/ethereum/)     |
-| CoinGecko     | [https://www.coingecko.com/fi/coins/ethereum](https://www.coingecko.com/en/coins/ethereum)           |
-| LiveCoinWatch | [https://www.livecoinwatch.com/price/Ethereum-ETH](https://www.livecoinwatch.com/price/Ethereum-ETH) |
+{% upotettu url="https://notes.ethereum.org/@vbuterin/rkhCgQteN" %}
 
-## 💰 Lompakot
+## 🚀 Staking Validators: Proposers and Attesters
 
-{% page-ref page="../../wallets/desktop-wallets/mycrypto-ethereum.md" %}
+{% hint style="info" %}
+Validoijat ovat virtuaalisia ja ne aktivoituvat stakereilla. PoW:ssa käyttäjät ostavat laitteiston kaivostyöläisiksi. Vuonna Ethereum 2.0, käyttäjät panokset ETH aktivoida ja ohjata validaattorit. -- [**ethos.dev**](https://ethos.dev/beacon-chain/)\*\*\*\*
+{% endhint %}
 
-{% page-ref page="../../lompakot/selain-lompakot/metamask-ethereum.md" %}
+{% upotettu url="https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-prior staking-94df41701487" %}
 
-{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+{% upotettu url="https://ethos.dev/beacon-chain/\#rewards-penalties" %}
 
-{% page-ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+{% upotettu url="https://ethereumprice.org/eth-2-calculator/" %}
 
-{% page-ref page="../../wallets/desktop-wallets/atomic-multi-currency.md" %}
+{% embed url="https://www.attestant.io/posts/evaluating-staking-services/" %}
 
-{% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
+## 👩💻 Kehityskurssit
 
-{% page-ref page="../../wallets/hardware-wallets/trezor.io-wallet/" %}
+{% upotettu url="https://cryptozombies.io/fi/course" %}
 
-{% page-ref page="../../lompakot/laitteistolompakot/säilytyslompakko/" %}
-
-{% page-ref page="../../wallets/mobile-wallets/argent-ethereum.md" %}
-
-{% page-ref page="../../wallets/mobile-wallets/status-ethereum.md" %}
-
-{% page-ref page="../../wallets/mobile-wallets/pillar-ethereum-btc.md" %}
-
-{% sivu-ref sivu="./" %}
-
-{% page-ref page="../../wallets/mobile-wallets/enjin-multi-currency.md" %}
-
-{% page-ref page="../../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
-
-{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
-
-
+{% upotettu url="https://cryptoeconomics.study/" %}
 
