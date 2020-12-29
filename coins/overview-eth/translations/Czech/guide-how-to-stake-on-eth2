@@ -1,0 +1,1030 @@
+---
+description: >-
+  Staňte se ověřovatelem a pomozte zabezpečit eth2, důkaz o sázkovém blockchainu. Každý, kdo má 32 ETH, se může připojit.
+---
+
+# Příručka: Jak se podílet na ETH2 Mainnet s Prysm na Ubuntu
+
+{% hint style="danger" %}
+**Aktualizace 24 2020**: [nový mainnet návod je umístěn zde](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+
+Níže uvedené pokyny jsou nyní zastaralé a pouze pro odkazování.
+{% endhint %}
+
+
+
+
+
+
+
+
+
+
+
+{% hint style="info" %}
+[Prysm](https://github.com/prysmaticlabs/prysm) je implementace Ethereum 2.0 protokolu Go se zaměřením na použitelnost, bezpečnost a spolehlivost. Prysm vyvíjí [Prysmatic Labs](https://prysmaticlabs.com/), společnost s jediným zaměřením na vývoj svého klienta. Prysm je napsán v aplikaci Go a uvolněn pod licencí GPL-3.0.
+{% endhint %}
+
+## 🏁 0. Předpoklady
+
+### :feman:💻 Dovednosti pro provoz eth2 validátoru a majáku
+
+Jako validátor eth2 budete mít obvykle následující schopnosti:
+
+* provozní znalosti o tom, jak neustále zřizovat, provozovat a udržovat uzel et2 majáku a validátora.
+* závazek zachovat ověřovatele 24/7/365
+* základní znalosti operačního systému
+* se naučit základy sledováním ['Úvod do Eth2 & Pohání pro začátečníka' od Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
+* prošla nebo je aktivně zapsána do [hlavního studijního kurzu Eth2](https://ethereumstudymaster.com/)
+* a přečtěte si [8 věcí každý ověřovatel et2 by měl vědět.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
+
+### 🎗 **Minimální požadavky na nastavení**
+
+* **Operační systém:** 64-bit Linux \(tj. Ubuntu 20.04 LTS\)
+* **Processor:** Dual core CPU, Intel Core i5-760 nebo AMD FX-8100 nebo lepší
+* **Memory:** 8GB RAM
+* **Úložiště:** 20GB SSD
+* **Internet:** Širokopásmové internetové připojení s rychlostí nejméně 1 Mbps.
+* **Energie:** Spolehlivá elektrická energie.
+* **Zůstatek ETH:** nejméně 32 ETH a některá ETH pro poplatky za vkladové transakce
+* **Peněženka**: Metamask nainstalován
+
+### 🏋♂ Doporučené hardwarové nastavení
+
+* **Operační systém:** 64-bit Linux \(tj. Ubuntu 20.04 LTS\)
+* **Processor:** Quad core CPU, Intel Core i7–4770 nebo AMD FX-8310 nebo lepší
+* **Paměť:** 16 GB RAM nebo více
+* **Úložiště:** 1TB SSD nebo více
+* **Internet:** širokopásmové internetové připojení o rychlosti nejméně 10 Mbps
+* **Napájení:** Spolehlivá elektrická energie s nepřerušitelným napájením \(UPS\)
+* **Zůstatek ETH:** nejméně 32 ETH a některá ETH pro poplatky za vkladové transakce
+* **Peněženka**: Metamask nainstalován
+
+{% hint style="warning" %}
+✨ **Pro Validator Tip**: Vysoce doporučujeme začít se zbrusu novou instancí OS, VM a/nebo zařízení. Vyhněte se hlavám nepoužíváním testnetových klíčů, peněženek nebo databází pro ověření mainnetu.
+{% endhint %}
+
+### 🔓 Doporučené osvědčené postupy pro eth2 validátor zabezpečení
+
+Pokud potřebujete nápady nebo upomínku, jak zabezpečit svého ověřovatele, podívejte se na
+
+{% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+
+### 🛠 Setup Ubuntu
+
+Pokud potřebujete nainstalovat Ubuntu, podívejte se na:
+
+{% stránky-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+
+### 🎭 Nastavte Metamask
+
+Pokud potřebujete nainstalovat Metamask, podívejte se na
+
+{% strana-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
+
+## 🌱 1. Koupit/výměna nebo konsolidace ETH
+
+{% hint style="info" %}
+Každých 32 ETH vlastníte vám umožňuje vytvořit 1 validátor. Můžete spustit tisíce validátorů s vaším uzlem.
+{% endhint %}
+
+Vaše ETH \(nebo násobky 32 ETH\) by měly být sloučeny do jediné adresy přístupné s Metamaskem.
+
+Pokud potřebujete si koupit/vyměnit nebo doplnit ETH na více než 32, podívejte se:
+
+{% page-ref page="guide-how-to-buy-eth.md" %}
+
+## 👩💻 2. Přihlaste se k ověření na Launchpad
+
+1. Nainstalujte závislosti, nástroj základů ethereum a vygenerujte dvě sady klíčů.
+
+{% hint style="info" %}
+Každý ověřovatel bude mít dvě sady klíčů. **podepisovací klíč** a **klíč pro výběr.** Tyto klíče jsou odvozeny z jediné mnemomonické fráze. [Dozvědět se více o klíčích.](https://blog.ethereum.org/2020/05/21/keys/)
+{% endhint %}
+
+Máte možnost stáhnout předpostavený [nástroj pro stanovení nadací ethereum](https://github.com/ethereum/eth2.0-deposit-cli) nebo jej postavit ze zdroje.
+
+{% tabs %}
+{% tab title="Pre-built eth2deposit-cli" %}
+Stáhněte si eth2vklad-cli.
+
+```bash
+cd $HOME
+wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.0.0/eth2deposit-cli-9310de0-linux-amd64.tar.gz
+```
+
+Ověřte SHA256 Kontrolní součet odpovídá kontrolnímu součtu na [vydání](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
+
+```bash
+sha256sum eth2deposit-cli-9310de0-linux-amd64.tar.gz 
+# SHA256 should be
+# b09da136895a7f77a4b430924ea2ae5827fa47b2bf444c4ea6fcfac5b04b8c8a
+```
+
+Extrahovat archiv.
+
+```text
+tar -xvf eth2deposit-cli-9310de0-linux-amd64.tar.gz
+cd eth2deposit-cli-9310de0-linux-amd64
+```
+
+Vytvoř nový mnemon.
+
+```text
+./vložit nový mnemot --chain mainnet
+```
+{% endtab %}
+
+{% tab title="Build from source code" %}
+Instalovat závislosti.
+
+```text
+sudo apt update
+sudo apt install python3-pip git -y
+```
+
+Stáhnout zdrojový kód a nainstalovat.
+
+```text
+mkdir ~/git
+cd ~/git
+git klone https://github.com/ethereum/eth2.0-deposit-cli.git
+cd eth2.0-deposit-cli
+sudo ./deposit.sh install
+```
+
+Vytvoř nový mnemon.
+
+```text
+./deposit.sh new-mnemonic --chain mainnet
+```
+{% endtab %}
+
+{% tab title="Advanced - Most Secure" %}
+{% hint style="warning" %}
+🔥**\[ Volitelný \] Pro Security Tip**: Spusťte eth2deposit-cli nástroj a vygenerujte svůj **mnemotický Seed** pro vaše validátorové klíče na **vzduchově zaskočené offline počítači**.
+
+Předpostavené binárky etheth2deposit-cli můžete zkopírovat přes USB klíč z online počítače do počítače se vzduchem zarytým offline.
+
+* Chrání proti útokům na klíčový protokol, útokům na malware/virus a dalším útokům na firewall nebo bezpečnost
+* Fyzicky izolované od zbytku vaší sítě.
+* Nesmí mít síťové připojení, kabelové nebo bezdrátové připojení.
+* Není VM na počítači se síťovým připojením.
+* Přečtěte si více o [vzduchových mezerách na wikipedii](https://en.wikipedia.org/wiki/Air_gap_%28networking%29).
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+1. Sledujte výzvy a vyberte heslo. Napište si své mnemotechnické a nechte tuto bezpečnou a **offline**.
+2. Postupujte podle kroků na [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) při přeskočení kroků, které jste právě dokončili. Provede se studie přehledu eth2 fáze 0. Pochopení eth2 je klíčem k úspěchu!
+3. Zpět na webu spouštěcího seznamu, nahrajte váš`deposit_data-#####.json` nalezen v adresáři `validator_keys`.
+4. Připojte se k launchpadu pomocí vaší peněženky Metamask, zkontrolujte a přijměte podmínky.
+5. Potvrďte obchod\(s\). Pro každého validátora existuje jedna vkladová transakce ve výši 32 ETH.
+
+{% hint style="info" %}
+Vaše transakce posílá a ukládá vaši ETH na oficiální adresu [vkladové smlouvy. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
+
+**Zkontrolujte**, _dvakrát zkontrolovat_, _**trojnásobná kontrola**_ , že oficiální adresa smlouvy o vkladu Eth2 je správná.[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
+{% endhint %}
+
+{% hint style="danger" %}
+Nezapomeňte zapsat nebo zaznamenat svůj mnemonický seed **offline**. _Není e-mail. Není mrak._
+
+Vytvořte **offline zálohování**, například pro USB klíč, vašeho **`validator_keys`** \`\`adresáře.
+{% endhint %}
+
+## 🛸 3. Install a ETH1 node
+
+{% hint style="info" %}
+Ethereum 2.0 vyžaduje připojení k Ethereu 1.0, aby bylo možné monitorovat uložení 32 ověřovatelů ETH. Hostování vašeho vlastního Ethereum 1.0 uzlu je nejlepší způsob, jak maximalizovat decentralizaci a minimalizovat závislost na třetích stranách, jako je Infura.
+{% endhint %}
+
+{% hint style="warning" %}
+Následné kroky předpokládají, že jste dokončili [příručku pro zabezpečení osvědčených postupů](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
+{% endhint %}
+
+Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/)**.**
+
+{% tabs %}
+{% title="OpenEthereum \(Parity\)" %}
+#### 🤖 Nainstalujte a spusťte OpenEthereum.
+
+```text
+mkdir ~/openethereum && cd ~/openethereum
+wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
+unzip openethereum*.zip
+chmod +x openethereum
+rm openethereum*.zip
+```
+
+<unk> :rychlostní stupeň: **Nastavte a nastavte systém**
+
+Spusťte následující pro vytvoření **souboru jednotek** pro definování konfigurace `eth1.service`.
+
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = openethereum eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+WorkingDirectory= /home/$(whoami)/openethereum
+ExecStart       = /home/$(whoami)/openethereum/openethereum --chain foundation
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Přesuňte soubor jednotky na `/etc/systemd/system` a udělte mu oprávnění.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Spusťte následující pro zapnutí automatického startu při spuštění.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl povolit eth1
+```
+
+#### ⛓ Spustit OpenEthereum na mainnet.
+
+```text
+sudo systemctl start eth1
+```
+{% endtab %}
+
+{% tab title="Geth" %}
+#### 🧬 Nainstalujte z repozitáře.
+
+```text
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt-get update -y
+sudo apt-get install ethereum -y
+```
+
+⚙ **Nastavení a konfigurace systému**
+
+Spusťte následující pro vytvoření **souboru jednotek** pro definování konfigurace `eth1.service`.
+
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = geth eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = /usr/bin/geth --rpc --http
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Přesuňte soubor jednotky na `/etc/systemd/system` a udělte mu oprávnění.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Spusťte následující pro zapnutí automatického startu při spuštění.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl povolit eth1
+```
+
+#### ⛓ Začít získat na mainnet.
+
+```text
+sudo systemctl start eth1
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+#### 🧬 Nainstalujte java závislost.
+
+```text
+sudo apt install openjdk-11-jdk
+```
+
+#### 🌜 Stáhněte a rozbalte Besu.
+
+```text
+cd
+wget -O besu.tar.gz https://bintray.com/hyperledger-org/besu-repo/download_file?file_path=besu-1.5.0.tar.gz
+tar -xvf besu.tar.gz
+rm besu.tar.gz
+mv besu-1.5.0 besu
+```
+
+⚙ **Nastavení a konfigurace systému**
+
+Spusťte následující pro vytvoření **souboru jednotek** pro definování konfigurace `eth1.service`.
+
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = openethereum eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+WorkingDirectory= /home/$(whoami)/besu/bin
+ExecStart       = /home/$(whoami)/besu/bin/besu --data-path="$HOME/.ethereum_besu"
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Přesuňte soubor jednotky na `/etc/systemd/system` a udělte mu oprávnění.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Spusťte následující pro zapnutí automatického startu při spuštění.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl povolit eth1
+```
+
+#### ⛓ Start besu na mainnet.
+
+```text
+sudo systemctl start eth1
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+#### ⚙ Nainstalujte závislosti.
+
+```text
+sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
+```
+
+#### 🌜 Stáhněte a rozbalte Nethermd.
+
+```text
+mkdir ~/nethermind && cd ~/nethermind
+wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
+unzip nethermind.zip
+rm nethermind.zip 
+ rm nethermind.zip
+```
+
+#### 🛸 Spustit Nethermed.
+
+```text
+./Nethermind.Launcher
+```
+
+* Vyberte `Ethereum uzel`
+* Vyberte `Ethereum (mainnet)` a poté vyberte `Rychlá synchronizace`
+* Ano pro povolení web3 / JSON RPC
+* Přijmout výchozí IP
+* Přeskočit registraci etstatů
+{% endtab %}
+
+{% tab title="Minimum Hardware Setup" %}
+{% hint style="info" %}
+Společnost Infura je vhodná pro nastavení omezeného prostoru na disku. Vždy spustit svůj vlastní eth1 uzel, pokud je to možné.
+{% endhint %}
+
+Zaregistrujte se pro API přístupový klíč na [https://infura.io/](https://infura.io/)
+
+1. Přihlaste se k účtu zdarma.
+2. Potvrďte svou e-mailovou adresu.
+3. Navštivte váš dashboard [https://infura.io/dashboard](https://infura.io/dashboard)
+4. Vytvořte projekt, zadejte mu název.
+5. Vyberte **Mainnet** jako ENDPOINT
+6. Zkopírujte svůj API klíč.
+7. Aktualizujte parametr **http-web3provider** v sekci **pro začátek majáku**.
+
+```bash
+#příklad parametr
+--http-web3provider=https://infura.io/v3/<YOUR_API_KEY>
+```
+{% endtab %}
+{% endtabs %}
+
+
+
+{% hint style="info" %}
+Synchronizace eth1 uzlu může trvat až 24 hodin.
+{% endhint %}
+
+{% hint style="success" %}
+Váš eth1 uzel je plně synchronizován, když k těmto událostem dojde.
+
+* **`OpenEthereum:`** `Imported #<block number>`
+* **`Změna:`** `Importovaný nový řetězový segment`
+* **`Besu:`** `Importováno #<block number>`
+* **`Nečerud:`** `již nesynchronizuje staré hlavičky`
+{% endhint %}
+
+#### 🛠 Nápověda et1.service příkazy
+
+<unk> 🗒 **Pro zobrazení a sledování eth1 logů**
+
+```text
+žuralctl -u eth1 -f
+```
+
+🗒 **Pro zastavení služby eth1**
+
+```text
+sudo systemctl stop eth1
+```
+
+{% hint style="danger" %}
+🛑 **Před pokračováním zbytku této příručky, Doporučujeme počkat až do 1. prosince jako Prysm kód se rychle připravuje na mainnet.**🚧
+{% endhint %}
+
+## 💡 4. Install Prysm
+
+```bash
+mkdir ~/prysm && cd ~/prysm 
+curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh 
+```
+
+{% hint style="info" %}
+Prysm je Ethereum 2.0 klient a přichází ve dvou komponentách.
+
+**Majákový řetězový klient** - Odpovědný za řízení stavu řetězce majáků, ověřovatele zamíchání a další.
+
+**Validátor klient** - odpovědný za výrobu nových bloků a atestací v řetězovém řetězci majáků a úlomků.
+{% endhint %}
+
+## 🔥 5. Konfigurace přesměrování portu a/nebo firewall
+
+Specifické pro nastavení sítě nebo nastavení poskytovatele cloudu, [ujistěte se, že porty vašeho validátora firewallu jsou otevřené a dosažitelné.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+
+* **Prysm majákový uzel** bude používat port 12000 pro udp a port 13000 pro tcp
+* **eth1** uzel vyžaduje port 30303 pro tcp a udp
+
+{% hint style="info" %}
+✨ **Tip:** Budete muset přeposílat a otevřít porty vašemu ověřovateli. Ověřte, zda pracuje s [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) nebo [https://canyouseeme.org/](https://canyouseeme.org/).
+{% endhint %}
+
+## 🎩 6. Importovat ověřovací klíč
+
+Vyberte správný příkaz v závislosti na tom, jak jste nainstalovali **eth2deposit-cli.**
+
+{% tabs %}
+{% tab title="Pre-built eth2deposit-cli" %}
+```bash
+$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/eth2deposit-cli-9310de0-linux-amd64/validator_keys
+```
+{% endtab %}
+
+{% tab title="Built from source code" %}
+```bash
+$HOME/prysm/prysm.sh validátor účtů importovat --keys-dir=$HOME/git/eth2.0-deposit-cli/validator_keys
+```
+{% endtab %}
+{% endtabs %}
+
+Přijmout výchozí umístění peněženky, zadejte nové heslo pro zašifrování peněženky a zadejte heslo pro vaše importované účty.
+
+{% hint style="danger" %}
+**VAROVÁNÍ**: NEPOUŽÍVEJTE ORIGINÁLNÍ KEYSTOCE NA HODNOCENÍ S JINÝM KLIENTEM NEBO VÁM VE VÁM SLASHED.
+{% endhint %}
+
+## 🏂 7. Začít řetězec majáků
+
+{% hint style="warning" %}
+Pokud jste se zúčastnili některého z předchozích testovacích sítí, musíte vymazat databázi.
+
+```bash
+$HOME/prysm/prysm.sh beacon-chain --clear-db
+```
+{% endhint %}
+
+Váš výběr běží na řetězec majáku a validátor ručně z příkazové řádky nebo automaticky se systémem.
+
+{% tabs %}
+{% tab title="Systemd - Automated" %}
+#### 🍰 Výhody z používání systému pro řetězec a validátor majáku <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Automaticky spustit řetězec majáku, když počítač restartuje z důvodu údržby, výpadku napájení atd.
+2. Automaticky restartovat havarované řetězce majáků.
+3. Maximalizujte svůj maják a jeho výkon.
+
+#### 🛠 Pokyny k nastavení
+
+Spusťte následující pro vytvoření **souboru jednotek** pro definování konfigurace`beacon-chain.service`.
+
+```bash
+kočka > $HOME/maják řetězu. ervice << EOF 
+# Služba et2 majáků (součást systému)
+# soubor: /etc/systemd/system/beacon-chain. ervice 
+
+[Unit]
+Popis = eth2 majáková řetězová služba
+Chcete = síť-online. arget
+Po = síti online. arget 
+
+[Service]
+Uživatel = $(whoami)
+Životní prostředí = "ClientIP=$(curl -s v4. dent.me)"
+WorkingDirectory= /home/$(whoami)/prysm
+ExecStart = /home/$(whoami)/prysm/prysm.sh beacon-chain --p2p-host-ip=${ClientIP} --monitoring-host="0.0. " --http-web3provider=http://127.0.0. :8545 --accept-terms-of-use 
+Restart = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+{% hint style="info" %}
+Zubní uživatelé mohou dosáhnout vyššího výkonu
+
+```bash
+--http-web3provider=$HOME/.ethereum/geth.ipc
+```
+{% endhint %}
+
+Přesuňte soubor jednotky na `/etc/systemd/system` a udělte mu oprávnění.
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+
+Spusťte následující pro zapnutí automatického startu při startu a poté spusťte službu majákového uzlu.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl povolit beacon-chain
+sudo systemctl start beacon-chain
+```
+
+{% hint style="success" %}
+Dobrá práce. Váš řetězec majáků je nyní řízen spolehlivostí a odolností systému. Níže jsou některé příkazy pro použití systému.
+{% endhint %}
+
+### 🛠 Některé nápomocné systémové příkazy
+
+#### ✅ Zkontrolujte, zda je řetězec majáku aktivní
+
+```text
+sudo systemctl is-aktivní majákový řetězec
+```
+
+#### 🔎 Zobrazit stav řetězce majáku
+
+```text
+sudo systemctl status beacon-chain
+```
+
+#### 🔄 Restartování řetězce majáků
+
+```text
+sudo systemctl reload-or reRestart-stop-chain
+```
+
+#### 🛑 Zastavuji řetězec majáků
+
+```text
+řetězová vazba se sudo systemctl
+```
+
+#### 🗒 Zobrazení a filtrování logů
+
+```bash
+journalctl --unit=beacon-chain --since=včera
+journalctl --unit=beacon-chain --since=today
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+V novém terminálu začněte řetězec majáků.
+
+```bash
+$HOME/prysm/prysm.sh beacon-chain \
+--p2p-host-ip=$(curl -s v4.ident.me) \
+--http-web3provider="http://127.0.0.1:8545"
+--monitoring-host="0.0.0" \
+--accept-terms-of-use
+```
+
+{% hint style="info" %}
+Zubní uživatelé mohou dosáhnout vyššího výkonu
+
+```bash
+--http-web3provider=$HOME/.ethereum/geth.ipc
+```
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+## 🧬 8. Spustit ověřovatele <a id="9-start-the-validator"></a>
+
+Heslo ověřovatele uložte do souboru a učiněte jej pouze pro čtení.
+
+```bash
+echo "my_password_goes_here" > $HOME/.eth2validators/validators-password.txt
+sudo chmod 600 $HOME/.eth2validators/validators-password.txt
+```
+
+Volba validátora ručně z příkazové řádky nebo automaticky se systémem.
+
+{% tabs %}
+{% tab title="Systemd - Automated" %}
+#### 🍰 Výhody z používání systému pro vašeho validátora <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Automaticky spustit validátor, když počítač restartuje kvůli údržbě, výpadku napájení atd.
+2. Automaticky restartovat procesy validátora.
+3. Maximalizujte čas a výkon svého ověřovatele.
+
+#### 🛠 Pokyny k nastavení
+
+Spusťte následující pro vytvoření **souboru jednotek** pro definování konfigurace`validator.service`.
+
+```bash
+kočka > $HOME/validator. ervice << EOF 
+# Služba validátoru eth2 (součást systému)
+# souboru: /etc/systemd/system/validator. ervice 
+
+[Unit]
+Popis = služba eth2 validátoru
+Chcete = network-online. arget beacon-chain.service
+After = network-online. arget 
+
+[Service]
+Uživatel = $(whoami)
+WorkingDirectory= /home/$(whoami)/prysm
+ExecStart = /home/$(whoami)/prysm/prysm. h validator --accept-terms-of-use --wallet-password-file /home/$(whoami)/.eth2validators/validators-password. xt
+Restart = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+Přesuňte soubor jednotky na `/etc/systemd/system` a udělte mu oprávnění.
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+
+Spusťte následující pro zapnutí automatického startu při startu a pak spusťte svůj validátor.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl aktivuje validátor
+sudo systemctl start validator
+```
+
+### 🛠 Některé nápomocné systémové příkazy
+
+#### ✅ Zkontrolujte, zda je validátor aktivní
+
+```text
+sudo systemctl is-aktivní validátor
+```
+
+#### 🔎 Zobrazit stav validátora
+
+```text
+sudo systemctl status validator
+```
+
+#### 🔄 Restartování ověřovatele
+
+```text
+sudo systemctl validátor opětovného načtení nebo restartu
+```
+
+#### 🛑 Zastavuji validátora
+
+```text
+sudo systemctl stop validator
+```
+
+#### 🗄 Zobrazení a filtrování logů
+
+```bash
+journalctl --unit=validator --since=včera
+journalctl --unit=validator --since=today
+journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+V novém terminálu spusťte validátora.
+
+```bash
+$HOME/prysm/prysm.sh validator \
+--accept-terms-of-use \
+--wallet-password-file /home/$(whoami)/.eth2validators/validators-password.txt
+```
+{% endtab %}
+{% endtabs %}
+
+Ověřte, zda se veřejný klíč **validátoru** zobrazí v logech. Příklad níže:
+
+```text
+INFO aktivoval validátora_pubkey: 0x2374.....7121
+```
+
+{% hint style="info" %}
+**Validátor klient** - odpovědný za výrobu nových bloků a atestací v řetězovém řetězci majáků a úlomků.
+
+**Majákový řetězový klient** - Odpovědný za řízení stavu řetězce majáků, ověřovatele zamíchání a další.
+{% endhint %}
+
+{% hint style="success" %}
+Blahopřeji. Jakmile je tvůj majákový řetězec synchronizován, ověřovatel je spuštěn, jen čekáš na aktivaci. Tento proces trvá až 24 hodin. Až budete přiřazeni, váš validátor začne vytvářet a hlasovat o blocích při získávání odměn ETH.
+
+Použijte [majaconcha.in](https://beaconcha.in/) a [zaregistrujte účet](https://beaconcha.in/register) pro vytváření upozornění a sledování výkonu vašeho ověřovatele.
+{% endhint %}
+
+## 🕒 9. Synchronizace času
+
+{% hint style="info" %}
+Protože řetězec majáků se při provádění atestací a výroby bloků spoléhá na přesné časy, čas vašeho počítače musí být přesný ke skutečnému NTP nebo NTS v průběhu 0. vteřin.
+{% endhint %}
+
+Nastavte **Chrony** s následujícím návodem.
+
+{% hint style="info" %}
+chrony je implementací síťového časového protokolu a pomáhá udržovat čas vašeho počítače synchronizovaný s NTP.
+{% endhint %}
+
+## 🔎 10. Sledujte svého validátora s Grafanou a Prometheusem
+
+Prometheus je monitorovací platforma, která sbírá metriky ze sledovaných cílů tím, že seškrábne metrické koncové body HTTP pro tyto cíle. [Zde je k dispozici oficiální dokumentace.](https://prometheus.io/docs/introduction/overview/) Grafana je nástěnka používaná k vizualizaci shromážděných dat.
+
+### 🐣 10.1 Instalace
+
+Nainstalujte prometheus a prometheus node exporter.
+
+```text
+sudo apt-get install -y prometheus prometheus-node-exporter
+```
+
+Nainstalujte grafana.
+
+```bash
+wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+echo "deb https://packages.grafana.com/oss/deb stable main" > grafana. ist
+sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
+sudo apt-get update && sudo apt-get install -y grafana
+```
+
+Povolte služby, aby začaly automaticky.
+
+```bash
+sudo systemctl enable grafana-server.service
+sudo systemctl enable prometheus.service
+sudo systemctl enable prometheus-node-exporter.service
+```
+
+Aktualizace **prometheus.yml** umístěná v `/etc/prometheus/prometheus.yml`
+
+```bash
+kočka > $HOME/prometheus.yml << EOF
+globálně:
+  scrape_interval: 15 s # Standardně scrape target každých 15 sekund.
+
+  # Při komunikaci s
+  # externími systémy (federací, vzdáleným úložištěm, Alertmanagerem) připojte tyto popisky ke každé časové řadě nebo upozorněním.
+  external_labels:
+    monitor: 'codelab-monitor'
+
+# Konfigurace scrapu obsahující přesně jeden koncový bod ke šrotu:
+# Zde je to Prometheus sám.
+scrape_configs:
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['localhost:9100']
+  - job_name: 'validator'
+    static_configs:
+      - targets: ['localhost:8081']
+  - job_name: 'beacon node'
+    static_configs:
+      - targets: ['localhost:8080']
+  - job_name: 'slasher'
+    static_configs:
+      - cíl: ['localhost:8082']
+EOF
+sudo mv $HOME/prometheus. ml /etc/prometheus/prometheus.yml
+```
+
+A konečně, restartujte služby.
+
+```bash
+sudo systemctl restart grafana-server.service
+sudo systemctl restart prometheus.service
+sudo systemctl restart prometheus-node-exporter.service
+```
+
+Ověřte, zda služby fungují správně:
+
+```text
+sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
+```
+
+{% hint style="info" %}
+💡 **Připomenutí**: Ujistěte se, že port 3000 je otevřen na firewall a/nebo port předán pokud chcete zobrazit informace o monitorování z jiného stroje.
+{% endhint %}
+
+### 📶 10.2 Nastavení Grafany Dashboardů
+
+1. Otevřete [http://localhost:3000](http://localhost:3000) nebo [http://&lt;your](http://<your) validator's ip address&gt;:3000 ve vašem místním prohlížeči.
+2. Přihlásit se s **admin** / **admin**
+3. Změnit heslo
+4. Klikněte na ikonu **konfigurace** a pak **přidat zdroj dat**
+5. Vyberte **Prometheus**
+6. Nastavte **Název** na **"Prometheus**"
+7. Nastavte **URL** na [http://localhost:9090](http://localhost:9090)
+8. Klepněte na tlačítko **Uložit & Test**
+9. **Stáhnout a uložit** tento soubor [**json**](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)**.** Nebo pokud máte více než 10 validátorů, použijte tento soubor [json](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json).
+10. Klikněte na **Vytvořit +** ikonu &gt; **Import**
+11. Přidat nástěnku **Nahrát JSON soubor**
+12. Klikněte na tlačítko **Import**.
+
+![Prysm nástěnka](../../.gitbook/assets/prysm_dash.png)
+
+### ⚠ 10.3 Nastavení upozornění
+
+{% hint style="info" %}
+Nastavte upozornění, abyste mohli být upozorněni, pokud se vaši validátoři odpojí.
+{% endhint %}
+
+Získejte oznámení o problémech s vašimi ověřovateli. Vyberte si mezi e-mailem, telegramem, discordem nebo slackem.
+
+{% tabs %}
+{% tab title="Email Notifications" %}
+1. Navštivte [https://beaconcha.in/](https://beaconcha.in/)
+2. Zaregistrujte se ****pro **účet**
+3. Ověřte svůj **e-mail**
+4. Hledat veřejnou adresu **ověřovatele**
+5. Přidejte do seznamu sledovaných uživatelů kliknutím na **záložku**.
+{% endtab %}
+
+{% tab title="Telegram Notifications" %}
+1. V menu Grafany vyberte **Oznamovací kanály** pod ikonou zvonu. ![](../../.gitbook/assets/gra-noti.png)
+2. Klikněte na **Přidat kanál**.
+3. Dejte kanálu oznámení **název**.
+4. Vyberte **Telegram** ze seznamu typu.
+5. Pro dokončení **nastavení API Telegram**je vyžadován kanál Telegram a bot. Pokyny k nastavení bota s `@Botfather`naleznete v [této části](https://core.telegram.org/bots#6-botfather) dokumentace Telegram.
+6. Po dokončení pozvěte bota na nově vytvořený kanál.
+{% endtab %}
+
+{% tab title="Discord Notifications" %}
+1. V menu Grafany vyberte **Oznamovací kanály** pod ikonou zvonu. ![](../../.gitbook/assets/gra-noti.png)
+2. Klikněte na **Přidat kanál**.
+3. Přidat **název** do kanálu oznámení.
+4. Vyberte **Discord** ze seznamu typů.
+5. Pro dokončení nastavení je vyžadován Discord server \(a textový kanál k dispozici), stejně jako Webhook URL. Pokyny k nastavení Discordu Webhooků naleznete v [této sekci](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) jejich dokumentace.
+6. Zadejte webhook **URL** v panelu nastavení Discordu oznámení.
+7. Klepněte na tlačítko **Odeslat test**, který bude odeslat potvrzovací zprávu do kanálu Discord.
+{% endtab %}
+
+{% tab title="Slack Notifications" %}
+1. V menu Grafany vyberte **Oznamovací kanály** pod ikonou zvonu. ![](../../.gitbook/assets/gra-noti.png)
+2. Klikněte na **Přidat kanál**.
+3. Přidat **název** do kanálu oznámení.
+4. Vyberte **Slack** ze seznamu typů.
+5. Pokyny k nastavení příchozích Webhooků ze Slacku naleznete v [této části](https://api.slack.com/messaging/webhooks) jejich dokumentace.
+6. Zadejte Slack příchozí URL adresu Webhook do pole **URL**.
+7. Klikněte **Odeslat test**, který bude odeslat potvrzovací zprávu do kanálu Slack.
+{% endtab %}
+{% endtabs %}
+
+{% hint style="success" %}
+🎉 Gratulujeme při nastavení vašeho validátora! Jste dobré jít na eth2.0.
+
+Považovali jste náš průvodce za užitečný? Dejte nám vědět pomocí špičky a my ji budeme neustále aktualizovat.
+
+Použijte [cointr.ee k nalezení našich adres pro dar ](https://cointr.ee/coincashew). 🙌
+
+Jakákoliv zpětná vazba a všechny požadavky na natažení byly oceněny. 😃
+
+povězte se a chatujte s kolegy na telegram @ [https://t.me/coincashew](https://t.me/coincashew)🌛
+{% endhint %}
+
+## 🧙♂ 11. Aktualizace Prysm
+
+Restartujte řetězec a validátor majáku podle normálních provozních postupů.
+
+{% tabs %}
+{% tab title="Systemd - Automated" %}
+```text
+sudo systemctl reload-or-restart-stop-chain
+sudo systemctl reload-orrestart validator
+```
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+```bash
+#Control C to exit both your beacon-chain and validator processes 
+#Zmáčkněte šipku nahoru a enter to pro restartování.
+```
+{% endtab %}
+{% endtabs %}
+
+## 🧩 12. Referenční materiál
+
+Ocenit tvrdou práci vykonanou pěknými lidmi na následujících odkazech, které sloužily jako základ pro vytvoření tohoto průvodce.
+
+{% embed url="https://discord.gg/KSA7rPr" %}
+
+{% embed url="https://launchpad.ethereum.org/" caption="" %}
+
+{% embed url="https://prylabs.net/participate" %}
+
+{% embed url="https://docs.prylabs.network/docs/getting-started/" %}
+
+## 🎉 13. Bonusové odkazy
+
+### 🌰 CoinCashew průvodci pro ostatní ETH2 klienty
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-lighthouse.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-nimbus.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-lodestar.md" %}
+
+### 🧱 ETH2 blokové průzkumníky
+
+{% embed url="https://beaconcha.in" caption="" %}
+
+{% embed url="https://beaconscan.com" caption="" %}
+
+### 🗒 Nejnovější informace z Eth2
+
+{% embed url="https://www.reddit.com/r/ethstaker" caption="" %}
+
+{% embed url="https://blog.ethereum.org" caption="" %}
+
+{% embed url="http://invite.gg/ethstaker" caption="" %}
+
+{% vložené url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
+
+## 🔥 14. Další užitečné tipy
+
+### 🛑 14.1 Dobrovolné ukončení ověřovatele
+
+{% hint style="info" %}
+Použijte tento příkaz k signalizaci svých záměrů k ukončení ověřování pomocí svého ověřovatele. To znamená, že už nechcete hrát s vaším validátorem a chcete vypnout váš uzel.
+
+* Dobrovolné ukončení trvá minimálně 2048 epochů \(nebo ~9 dní\). Je zde fronta pro ukončení a zpoždění před konečným ukončením validátora.
+* Jakmile je validátor ukončen ve fázi 0, je to nevratné a již nemůžete znovu restartovat validaci.
+* Vaše finanční prostředky nebudou k dispozici pro výběr až do fáze 1.5 nebo novější.
+* Poté, co váš validátor opustí frontu a je skutečně ukončen, je bezpečné vypnout váš uzel majáku a validátor.
+{% endhint %}
+
+```bash
+$HOME/prysm/prysm.sh validátor účtů dobrovolně ukončí
+```
+
+### 🔐 14.2 Ověřte vaše mnemomonické fráze
+
+Pomocí nástroje eth2deposit-cli se ujistěte, že můžete regenerovat stejné páry kláves eth2 obnovením Vašich `validator_keys`
+
+```bash
+./vklad existing-mnemonic --chain mainnet
+```
+
+{% hint style="info" %}
+Když je **pubkey** identický, znamená to, že jste správně ověřili váš **soubor s klíčem**. Ostatní pole se budou lišit kvůli solení.
+{% endhint %}
+
+### 🤖 14.3 Přidejte další validátory
+
+Pomocí nástroje eth2deposit-cli můžete přidat další validátory vytvořením nového souboru údajů o vkladu a `validator_keys`
+
+Například, v případě, že jsme původně vytvořili 3 validátory, ale nyní si přejeme přidat 5 dalších validátorů, mohli bychom použít následující příkaz.
+
+```bash
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+```
+
+Dokončete kroky nahrání `deposit_data-#########.json` na web spouštěcí klávesnice.
+
