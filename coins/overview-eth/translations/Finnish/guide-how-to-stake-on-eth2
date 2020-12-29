@@ -1,0 +1,1029 @@
+---
+description: >-
+  Ryhdy validaattoriksi ja auta turvaamaan eth2, proof-of-stake-blockchain. Kuka tahansa, jolla on 32 ETH, voi liittyä.
+---
+
+# Opas: Miten panostaa ETH2 Mainnet with Prysm on Ubuntu
+
+{% hint style="danger" %}
+**marras 24 2020 Update**: The [new mainnet guide is here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+
+Alla olevat ohjeet ovat nyt vanhentuneita ja vain viitteellisiä.
+{% endhint %}
+
+
+
+
+
+
+
+
+
+
+
+{% hint style="info" %}
+[Prysm](https://github.com/prysmaticlabs/prysm) on Go täytäntöönpano Ethereum 2.0 protokolla jossa keskitytään käytettävyyteen, turvallisuuteen ja luotettavuuteen. Prysmin on kehittänyt [Prysmatic Labs](https://prysmaticlabs.com/), yritys, joka keskittyy yksinomaan asiakkaidensa kehittämiseen. Prysm on kirjoitettu Go ja julkaistu GPL-3.0 lisenssillä.
+{% endhint %}
+
+## 🏁 0. Edellytykset
+
+### 👩laptop_computer: Skills for operating a eth2 validator and beacon node
+
+Koska varmentaja et2, sinulla on tyypillisesti seuraavat kyvyt:
+
+* toiminnallinen tietämys et2-majakan solmun ja varmentajan perustamisesta, ylläpitämisestä ja ylläpidosta jatkuvasti
+* sitoutuminen ylläpitämään valididaattoria 24/7/365
+* käyttöjärjestelmän perustaidot
+* ovat oppineet olennaiset katsomalla ['Intro Eth2 & Staking for Beginner' Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
+* ovat läpäisseet tai ovat aktiivisesti osallistuneet [Eth2-tutkimuksen maisterikurssiin](https://ethereumstudymaster.com/)
+* ja ovat lukeneet [8 Asiat Jokainen Eth2-validaattori pitäisi tietää.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
+
+### 🎗 **Vähimmäisasennusvaatimukset**
+
+* **Käyttöjärjestelmä:** 64-bittinen Linux \(ts. Ubuntu 20.04 LTS\)
+* **Prosessori:** Dual core CPU, Intel Core i5–760 tai AMD FX-8100 tai parempi
+* **Memory:** 8GB RAM
+* **Tallennustila:** 20GB SSD
+* **Internet:** Laajakaistayhteys vähintään 1 Mbit/s nopeuksilla.
+* **Teho:** Luotettava sähkövoima.
+* **ETH-saldo:** vähintään 32 ETH ja jotkut ETH talletusten siirtohinnoissa
+* **Lompakko**: Metamaski asennettu
+
+### 🏋♂ Suositeltava Laitteiston Asennus
+
+* **Käyttöjärjestelmä:** 64-bittinen Linux \(ts. Ubuntu 20.04 LTS\)
+* **Prosessori:** Quad core CPU, Intel Core i7–4770 tai AMD FX-8310 tai parempi
+* **Muisti:** 16 GB RAM tai enemmän
+* **Varastointi:** 1TB SSD tai enemmän
+* **Internet:** Laajakaistayhteydet vähintään 10 Mbit/s nopeuksilla
+* **Teho:** Luotettava sähkövirta keskeytymättömällä virtalähteellä \(UPS\)
+* **ETH-saldo:** vähintään 32 ETH ja jotkut ETH talletusten siirtohinnoissa
+* **Lompakko**: Metamaski asennettu
+
+{% hint style="warning" %}
+✨ **Pro Validator Tip**: Suosittelemme, että aloitat uuden käyttöjärjestelmän, VM:n ja/tai koneen instanssin. Vältä päänsärkyä EI käytä uudelleen testnet-avaimia, lompakkoja tai tietokantoja mainnet validatorille.
+{% endhint %}
+
+### 🔓 Suositeltu eth2 validator Turvallisuus Parhaat käytännöt
+
+Jos tarvitset ideoita tai muistutuksen siitä, miten voit turvata varmentajasi
+
+{% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+
+### 🛠 Setup Ubuntu
+
+Jos sinun täytyy asentaa Ubuntu, katso
+
+{% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+
+### 🎭 Asennusnaamio
+
+Jos sinun täytyy asentaa Metamask, katso
+
+{% page-ref page="../../lompakot/selain-lompakot/metamask-ethereum.md" %}
+
+## 🌱 1. Ostaa/vaihtaa tai konsolidoida ETH
+
+{% hint style="info" %}
+Joka 32 ETH omistat voit tehdä 1 validaattori. Voit ajaa tuhansia validoijia majakan solmun avulla.
+{% endhint %}
+
+ETH \(tai 32 ETH:n kerran) tulee koota yhdeksi Metamaskilla saavutettavaksi osoitteeksi.
+
+Jos sinun täytyy ostaa/vaihtaa tai huiputtaa ETH useita 32, katso että:
+
+{% page-ref page="guide-how-to-buy-eth.md" %}
+
+## 👩💻 2. Ilmoittaudu osoitteeseen Launchpad
+
+1. Asenna riippuvuudet, ethereum säätiö talletus työkalu ja luoda kaksi sarjaa avainparia.
+
+{% hint style="info" %}
+Jokaisella validaattorilla on kaksi avainparia. A **allekirjoitusavain** ja **peruutusavain.** Nämä avaimet on johdettu yhdestä mnemonisesta lauseesta. [Lue lisää avaimista.](https://blog.ethereum.org/2020/05/21/keys/)
+{% endhint %}
+
+Sinulla on mahdollisuus ladata valmiiksi rakennettu [ethereum säätiö talletus työkalu](https://github.com/ethereum/eth2.0-deposit-cli) tai rakentaa sen lähteestä.
+
+{% tabs %}
+{% tab title="Pre-built eth2deposit-cli" %}
+Lataa eth2deposit-cli.
+
+```bash
+cd $HOME
+wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.0.0/eth2deposit-cli-9310de0-linux-amd64.tar.gz
+```
+
+Vahvista SHA256 tarkistussumma vastaa tarkistussummaa [julkaisusivulla](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
+
+```bash
+sha256sum eth2deposit-cli-9310de0-linux-amd64.tar.gz 
+# SHA256 pitäisi olla
+# b09da136895a7f77a4b430924ea2ae5827fa47b2bf444c4ea6fcfac5b04b8c8a
+```
+
+Pura arkisto.
+
+```text
+tar -xvf eth2deposit-cli-9310de0-linux-amd64.tar.gz
+cd eth2deposit-cli-9310de0-linux-amd64
+```
+
+Tee uusi mnemonic.
+
+```text
+./deposit new-mnemonic --chain mainnet
+```
+{% endtab %}
+
+{% tab title="Build from source code" %}
+Asenna riippuvuudet.
+
+```text
+sudo apt update
+sudo apt install python3-pip git -y
+```
+
+Lataa lähdekoodi ja asenna.
+
+```text
+mkdir ~/git
+cd ~/git
+git clone https://github.com/ethereum/eth2.0-deposit-cli.git
+cd eth2.0-deposit-cli
+sudo ./deposit.sh install
+```
+
+Tee uusi mnemonic.
+
+```text
+./deposit.sh new-mnemonic --chain mainnet
+```
+{% endtab %}
+
+{% tab title="Advanced - Most Secure" %}
+{% hint style="warning" %}
+🔥**\[ Valinnainen \] Pro Security Tip**: Suorita eth2deposit-cli -työkalu ja luo **mnemonic seed** validator näppäimillesi **air-gapped offline kone**.
+
+Voit kopioida USB-avaimen kautta valmiiksi rakennettu eth2deposit-cli binaries online kone lento-gapped offline kone.
+
+* Suojaa avainten hakkuuhyökkäyksiltä, haittaohjelmiin/virukseen perustuvilta hyökkäyksiltä ja muilta palomuuri- tai turvallisuusräjähteiltä.
+* Fyysisesti eristetty muusta verkostostasi.
+* Ei saa olla verkkoyhteyttä, langatonta tai langatonta yhteyttä.
+* Ei ole VM koneessa, jossa on verkkoyhteys.
+* Lue lisää [ilma-gapping wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29).
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+1. Seuraa kehotteita ja valitse salasana. Kirjoita mnemonic alas ja pidä tämä turvallinen ja **offline**.
+2. Seuraa ohjeita osoitteessa [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) ohittaen vaiheet, jotka olet jo suorittanut. Tutki e2 vaiheen 0 yleiskatsausmateriaalia. Et2 ymmärtäminen on avain onnistumiseen!
+3. Takaisin launchpad -sivustolle, lataa`deposit_data-#######.json` löytyi `validator_keys` -hakemistosta.
+4. Yhdistä launchpadiin Metamask-lompakon avulla, tarkista ja hyväksy termejä.
+5. Vahvista tapahtuma\(s\). Jokaiselle varmentajalle on olemassa yksi 32 ETH:n talletus.
+
+{% hint style="info" %}
+Tapahtumasi lähettää ja tallettaa ETH:si [viralliseen ETH2-talletussopimuksen osoitteeseen. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
+
+**Tarkista**, _tarkista_, _**Kolmikko tarkistus**_ siitä, että virallinen Eth2-talletussopimuksen osoite on oikea.[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
+{% endhint %}
+
+{% hint style="danger" %}
+Muista kirjoittaa tai tallentaa mnemonic seed **offline**. _Ei sähköpostia. Ei pilvi._
+
+Tee **offline-varmuuskopioita**, kuten USB-avaimelle, **`validator_keys`** \`\`\`\``-hakemistosta.
+{% endhint %}
+
+## 🛸 3. Install a ETH1 node
+
+{% hint style="info" %}
+Ethereum 2.0 edellyttää yhteyttä Ethereum 1.0, jotta voidaan seurata 32 ETH validator talletuksia. Hosting oman Ethereum 1.0 solmun on paras tapa maksimoida hajauttaminen ja minimoida riippuvuus kolmansien osapuolten, kuten Infura.
+{% endhint %}
+
+{% hint style="warning" %}
+Seuraavissa vaiheissa oletetaan, että olet suorittanut [parhaiden käytäntöjen tietoturvaoppaan](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
+{% endhint %}
+
+Valintasi joko [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **tai** [**Nethermind**](https://www.nethermind.io/)**.**
+
+{% tabs %}
+{% välilehti title="OpenEthereum \(Parity\)" %}
+#### 🤖 Asenna ja suorita OpenEthereum.
+
+```text
+mkdir ~/openethereum && cd ~/openethereum
+wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
+unzip openethereum*.zip
+chmod +x openethereum
+rm openethereum*.zip
+```
+
+¶ ⚙ **Aseta ja määritä järjestelmä**
+
+Suorita seuraavat luodaksesi **yksikön tiedoston** määrittääksesi `eth1.service` -asetuksen.
+
+```bash
+kissa > $HOME/eth1. ervice << EOF 
+[Unit]
+Kuvaus = openethereum eth1 palvelu
+Haluaa = verkko-verkossa. arget
+After = verkko-verkossa. arget 
+
+[Service]
+Käyttäjä = $(whoami)
+Työhakemisto= /home/$(whoami)/openethereum
+ExecStart = /home/$(whoami)/openethereum/openethereum --chain foundation
+Restart = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+Siirrä yksikkö tiedosto `/etc/systemd/system` ja anna sille käyttöoikeudet.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Suorita seuraavat toiminnot, jotta käynnistys voidaan ottaa käyttöön käynnistysajankohdalla.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl otetaan käyttöön eth1
+```
+
+#### ⛓ Aloita OpenEthereum mainnetissa.
+
+```text
+sudo systemctl alkaa eth1
+```
+{% endtab %}
+
+{% tab title="Geth" %}
+#### 🧬 Asenna reposta.
+
+```text
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt-get update -y
+sudo apt-get install ethereum -y
+```
+
+⚙ **Aseta ja määritä järjestelmä**
+
+Suorita seuraavat luodaksesi **yksikön tiedoston** määrittääksesi `eth1.service` -asetuksen.
+
+```bash
+kissa > $HOME/eth1. ervice << EOF 
+[Unit]
+Kuvaus = geth eth1 palvelu
+Haluaa = verkko-verkossa. arget
+After = verkko-verkossa. arget 
+
+[Service]
+Käyttäjä = $(whoami)
+ExecStart = /usr/bin/geth --rpc --http
+Uudelleenkäynnistys = epäonnistuminen
+
+[Install]
+Haluttu = usean käyttäjän. arget
+EOF
+```
+
+Siirrä yksikkö tiedosto `/etc/systemd/system` ja anna sille käyttöoikeudet.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Suorita seuraavat toiminnot, jotta käynnistys voidaan ottaa käyttöön käynnistysajankohdalla.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl otetaan käyttöön eth1
+```
+
+#### ⛓ Aloita geth mainnet.
+
+```text
+sudo systemctl alkaa eth1
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+#### 🧬 Asenna java riippuvuus.
+
+```text
+sudo apt install openjdk-11-jdk
+```
+
+#### 🌜 Lataa ja pura Besu.
+
+```text
+cd
+wget -O besu.tar.gz https://bintray.com/hyperledger-org/besu-repo/download_file?file_path=besu-1.5.0.tar.gz
+tar -xvf besu.tar.gz
+rm besu.tar.gz
+mv besu-1.5.0 besu
+```
+
+⚙ **Aseta ja määritä järjestelmä**
+
+Suorita seuraavat luodaksesi **yksikön tiedoston** määrittääksesi `eth1.service` -asetuksen.
+
+```bash
+kissa > $HOME/eth1. ervice << EOF 
+[Unit]
+Kuvaus = openethereum eth1 palvelu
+Haluaa = verkko-verkossa. arget
+After = verkko-verkossa. arget 
+
+[Service]
+Käyttäjä = $(whoami)
+TyöskentelyDirectory= /home/$(whoami)/besu/bin
+ExecStart = /home/$(whoami)/besu/bin/besu --data-path="$HOME/. thereum_besu"
+Uudelleenkäynnistys = epäonnistuminen
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+Siirrä yksikkö tiedosto `/etc/systemd/system` ja anna sille käyttöoikeudet.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Suorita seuraavat toiminnot, jotta käynnistys voidaan ottaa käyttöön käynnistysajankohdalla.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl otetaan käyttöön eth1
+```
+
+#### ⛓ Aloita besu mainnetissa.
+
+```text
+sudo systemctl alkaa eth1
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+#### ⚙ Asenna riippuvuudet.
+
+```text
+sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
+```
+
+#### 🌜 Lataa ja unzip Nethermind.
+
+```text
+mkdir ~/nethermind && cd ~/nethermind
+wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
+unzip nethermind.zip
+rm nethermind.zip
+```
+
+#### 🛸 Launch Nethermind.
+
+```text
+./Nethermind.Launcher
+```
+
+* Valitse `Ethereum Node`
+* Valitse `Ethereum (mainnet)` ja valitse `Fast sync`
+* Kyllä ottaa web3 / JSON RPC käyttöön
+* Hyväksy oletus IP
+* Ohita ethstats rekisteröinti
+{% endtab %}
+
+{% tab title="Minimum Hardware Setup" %}
+{% hint style="info" %}
+Infura soveltuu rajoitetuille levytilan kokoonpanoille. Käytä aina omaa eth1-solmuasi aina kun mahdollista.
+{% endhint %}
+
+Kirjaudu sisään API-avaimeen osoitteessa [https://infura.io/](https://infura.io/)
+
+1. Kirjaudu sisään ilmaiselle tilille.
+2. Vahvista sähköpostiosoitteesi.
+3. Vieraile hallintapaneelissasi [https://infura.io/dashboard](https://infura.io/dashboard)
+4. Luo projekti, anna sille nimi.
+5. Valitse **Mainnet** ENDPOINT
+6. Kopioi API-avaimesi.
+7. Päivitä parametri **http-web3provider** **käynnistä majakan ketjun** osassa.
+
+```bash
+#example parameter
+--http-web3provider=https://infura.io/v3/<YOUR_API_KEY>
+```
+{% endtab %}
+{% endtabs %}
+
+
+
+{% hint style="info" %}
+eth1-solmun synkronointi voi kestää jopa 24 tuntia.
+{% endhint %}
+
+{% hint style="success" %}
+eth1-palvelimesi on täysin synkronoitu, kun näitä tapahtumia esiintyy.
+
+* **`OpenEthereum:`** `Imported #<block number>`
+* **`Geth:`** `Tuotu uusi ketjusegmentti`
+* **`Besu:`** `Tuonti #<block number>`
+* **`Alankomaat:`** `Ei enää vanhojen otsikoiden synkronointia`
+{% endhint %}
+
+#### 🛠 Hyödyllisiä eth1.service komentoja
+
+¶ 🗒 **Katsele ja seuraa eth1 lokeja**
+
+```text
+journalctl -u eth1 -f
+```
+
+🗒 **Lopeta eth1 palvelu**
+
+```text
+sudo systemctl stop eth1
+```
+
+{% hint style="danger" %}
+🛑 **Ennen kuin jatkat tämän oppaan loppua, suosittelemme, että odotat kunnes lähempänä 1. joulukuuta, kun Prysm-koodi valmistautuu nopeasti mainnettiin.**🚧
+{% endhint %}
+
+## 💡 4. Install Prysm
+
+```bash
+mkdir ~/prysm && cd ~/prysm 
+curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh 
+```
+
+{% hint style="info" %}
+Prysm on Ethereum 2.0 asiakas ja se tulee kaksi osaa.
+
+**Majakan ketjuasiakas** - Vastaa majakan ketjun tilan hallinnasta, validaattorin sekoittamisesta ja paljon muuta.
+
+**Validoija asiakas** - Vastaa uusien lohkojen ja todistusten tuottamisesta majakkaketjuissa ja -ketjuissa.
+{% endhint %}
+
+## 🔥 5. Määrittele portin huolinta ja/tai palomuuri
+
+Erityiset verkko-asetusten tai pilvipalvelujen tarjoajan asetukset, [varmista, että varmentajasi palomuuriportit ovat avoimia ja saavutettavissa.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+
+* **Prysm majakkaketju solmu** käyttää porttia 12000 uudp ja portti 13000 tcp
+* **eth1** solmu vaatii portin 30303 tcp ja udp
+
+{% hint style="info" %}
+✨ **Portti Eteenpäin Vinkki:** Sinun täytyy välittää ja avata portteja validoijallesi. Varmista, että se toimii [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) tai [https://canyouseeme.org/](https://canyouseeme.org/) -sivustolla.
+{% endhint %}
+
+## 🎩 6. Tuo validator avain
+
+Valitse oikea komento sen mukaan, miten asensit **eth2deposit-cli.**
+
+{% tabs %}
+{% tab title="Pre-built eth2deposit-cli" %}
+```bash
+$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/eth2deposit-cli-9310de0-linux-amd64/validator_keys
+```
+{% endtab %}
+
+{% tab title="Built from source code" %}
+```bash
+$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/git/eth2.0-deposit-cli/validator_keys
+```
+{% endtab %}
+{% endtabs %}
+
+Hyväksy lompakon oletussijainti, kirjoita uusi salasana salataksesi lompakkosi ja syötä tuotujen tilien salasana.
+
+{% hint style="danger" %}
+**VAROITUS**: ÄLÄ KÄYTTÄÄ ALKUPERÄISIN OLEVIA TIETOJA MUIDEN CLIENTTIEN TAI SINÄ LÄHETTÄVÄT ALKUPERÄISKAT.
+{% endhint %}
+
+## 🏂 7. Aloita majakan ketju
+
+{% hint style="warning" %}
+Jos olet osallistunut johonkin aikaisemmista testiverkoista, sinun on poistettava tietokanta.
+
+```bash
+$HOME/prysm/prysm.sh majakka-ketju --clear-db
+```
+{% endhint %}
+
+Valitset lähetinketjun ja varmentajan käytön manuaalisesti komentoriviltä tai automaattisesti järjestelmän kanssa.
+
+{% tabs %}
+{% tab title="Systemd - Automated" %}
+#### 🍰 Järjestelmän käytön edut majakkaketjuun ja validaattoriin <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Käynnistä automaattisesti majakan ketju, kun tietokone käynnistyy uudelleen ylläpidon, katkoksen jne. vuoksi.
+2. Käynnistä automaattisesti uudelleen kaatuneet majakan ketjuprosessit.
+3. Maksimoi majakka ketjun käyttöaika ja suorituskyky.
+
+#### 🛠 Asennusohjeet
+
+Suorita seuraavat luodaksesi **yksikön tiedoston** määrittääksesi`beacon-chain.service` -asetukset.
+
+```bash
+kissa > $HOME/majakkaketju. ervice << EOF 
+# eth2 majakka ketju palvelu (osa järjestelmää)
+# tiedosto: /etc/systemd/system/beacon-chain. ervice 
+
+[Unit]
+Kuvaus = eth2 majakkaketju palvelu
+Haluaa = verkko-verkossa. arget
+After = verkko-verkossa. arget 
+
+[Service]
+Käyttäjä = $(whoami)
+Ympäristö = "ClientIP=$(curl -s v4. dent.me)"
+Työkansio= /home/$(whoami)/prysm
+ExecStart = /home/$(whoami)/prysm/prysm.sh beacon-chain --p2p-host-ip=${ClientIP} --monitoring-host="0.0.0. " --http-web3provider=http://127.0.0. :8545 --accept-terms-of-use 
+Restart = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+{% hint style="info" %}
+Geth käyttäjät voivat saavuttaa paremman suorituskyvyn
+
+```bash
+--http-web3provider=$HOME/.ethereum/geth.ipc
+```
+{% endhint %}
+
+Siirrä yksikkö tiedosto `/etc/systemd/system` ja anna sille käyttöoikeudet.
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+
+Suorita seuraava ottaaksesi automaattisen käynnistyksen käyttöön käynnistyksen yhteydessä ja aloittaaksesi sen jälkeen majakan palvelun.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl mahdollistaa beacon-chain
+sudo systemctl käynnistä beacon-chain
+```
+
+{% hint style="success" %}
+Kiva työ. Teidän majakkaketjua hallinnoi nyt järjestelmän luotettavuus ja varmuus. Alla on joitakin komentoja järjestelmän käyttöön.
+{% endhint %}
+
+### 🛠 Joitakin hyödyllisiä järjestelmäkomentoja
+
+#### :white_heavy_check◄ : Tarkista, onko majakan ketju aktiivinen
+
+```text
+sudo systemctl is-aktiivinen majakkaketju
+```
+
+#### 🔎 Näytä majakan ketjun tila
+
+```text
+sudo systemctl status beacon-chain
+```
+
+#### 🔄 Uudelleenkäynnistetään majakan ketju
+
+```text
+sudo systemctl reload-or restart beacon-chain
+```
+
+#### 🛑 Majakan ketjun pysäyttäminen
+
+```text
+sudo systemctl stop beacon-chain
+```
+
+#### 🗒 Katselu ja suodatus lokit
+
+```bash
+journalctl --unit=beacon-chain --since=yesterday
+journalctl --unit=beacon-chain --since=today
+journalctl --unit=beacon-chain --since='2020-12-01 00:00' --until='2020-12-02 12:00:00'
+```
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+Uudessa terminaalissa aloita majakan ketju.
+
+```bash
+$HOME/prysm/prysm.sh beacon-chain \
+--p2p-host-ip=$(curl -s v4.ident.me) \
+--http-web3provider="http://127.0.0.0.1:8545"
+--monitoring-host="0.0.0" \
+--accept-terms-of-use
+```
+
+{% hint style="info" %}
+Geth käyttäjät voivat saavuttaa paremman suorituskyvyn
+
+```bash
+--http-web3provider=$HOME/.ethereum/geth.ipc
+```
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+## 🧬 8. Aloita varmentaja <a id="9-start-the-validator"></a>
+
+Tallenna varmentajan salasana tiedostoon ja tee se vain luku -tilassa.
+
+```bash
+echo "my_password_goes_here" > $HOME/.eth2validators/validators-password.txt
+sudo chmod 600 $HOME/.eth2validators/validators-password.txt
+```
+
+Valitset valmentajan käytön manuaalisesti komentoriviltä tai automaattisesti järjestelmän kanssa.
+
+{% tabs %}
+{% tab title="Systemd - Automated" %}
+#### 🍰 Järjestelmän käytön edut validaattorille <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Käynnistä valididaattori automaattisesti, kun tietokone käynnistyy uudelleen ylläpidon, virrankatkaisun jne. vuoksi.
+2. Käynnistä kaatuneet validaattori automaattisesti uudelleen.
+3. Maksimoi validaattorisi käyttöaika ja suorituskyky.
+
+#### 🛠 Asennusohjeet
+
+Suorita seuraavat luodaksesi **yksikön tiedoston** määrittääksesi`validator.service` -asetuksen.
+
+```bash
+kissa > $HOME/validator. ervice << EOF 
+# eth2 validator palvelu (osa järjestelmää)
+# tiedosto: /etc/systemd/system/validator. ervice 
+
+[Unit]
+Kuvaus = eth2 validator palvelu
+Haluaa = verkko-verkossa. arget beacon-chain.service
+After = verkko-verkossa. arget 
+
+[Service]
+Käyttäjä = $(whoami)
+TyöDirectory= /home/$(whoami)/prysm
+ExecStart = /home/$(whoami)/prysm/prysm. h validator --accept-terms-of-use --wallet-password-file /home/$(whoami)/.eth2validators/validators-password. xt
+Uudelleenkäynnistys = epäonnistuminen
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+Siirrä yksikkö tiedosto `/etc/systemd/system` ja anna sille käyttöoikeudet.
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+
+Suorita seuraava ottaaksesi automaattinen käynnistys käyttöön käynnistyksen yhteydessä ja käynnistääksesi sen jälkeen.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl mahdollistaa validator
+sudo systemctl start validator
+```
+
+### 🛠 Joitakin hyödyllisiä järjestelmäkomentoja
+
+#### :white_heavy_checkě: Tarkista, onko validaattori aktiivinen
+
+```text
+sudo systemctl is-aktiivinen validaattori
+```
+
+#### 🔎 Näytä validatorin tila
+
+```text
+sudo systemctl status validator
+```
+
+#### 🔄 validaattorin käynnistäminen uudelleen
+
+```text
+sudo systemctl reload-or restart validator
+```
+
+#### 🛑 Varmentajan pysäyttäminen
+
+```text
+sudo systemctl stop validator
+```
+
+#### 🗄 Katselu ja suodatus lokit
+
+```bash
+journalctl --unit=validator --since=yesterday
+journalctl --unit=validator --since=today
+journalctl --unit=validator --since='2020-12-01 00:00' --until='2020-12-02 12:00:00'
+```
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+Käynnistä uudessa päätteessä validoija.
+
+```bash
+$HOME/prysm/prysm.sh validator \
+--accept-terms-of-use \
+--wallet-password-file /home/$(whoami)/.eth2validators/validators-password.txt
+```
+{% endtab %}
+{% endtabs %}
+
+Varmista, että **validaattorisi julkinen avain** näkyy lokeissa. Esimerkki jäljempänä:
+
+```text
+INFO Enabled validator voting_pubkey: 0x2374.....7121
+```
+
+{% hint style="info" %}
+**Validoija asiakas** - Vastaa uusien lohkojen ja todistusten tuottamisesta majakkaketjuissa ja -ketjuissa.
+
+**Majakan ketjuasiakas** - Vastaa majakan ketjun tilan hallinnasta, validaattorin sekoittamisesta ja paljon muuta.
+{% endhint %}
+
+{% hint style="success" %}
+Onnittelut. Kun majakkaketju on synkronoitu, varidaattori ylös ja käynnissä, odotat vain aktivointia. Tämä prosessi kestää jopa 24 tuntia. Kun olet määritetty, sinun varmentaja alkaa luoda ja äänestää lohkojen samalla, kun ansaita ETH panostamalla palkintoja.
+
+Käytä [beaconcha.in](https://beaconcha.in/) ja [rekisteröi tili](https://beaconcha.in/register) luodaksesi hälytyksiä ja seurataksesi validaattorin suorituskykyä.
+{% endhint %}
+
+## 🕒 9. Ajan Synkronointi
+
+{% hint style="info" %}
+Koska majakka ketju riippuu tarkkoja aikoja suorittaa todistuksia ja tuottaa lohkoja, tietokoneen ajan on oltava tarkka todellisen NTP tai NTS ajan sisällä 0. sekuntia.
+{% endhint %}
+
+Aseta **Chrony** seuraavalla oppaalla.
+
+{% hint style="info" %}
+chrony on toteutus Network Time Protocol ja auttaa pitämään tietokoneen ajan synkronoitu NTP.
+{% endhint %}
+
+## 🔎 10. Varmentajan seuranta Grafanan ja Prometheuksen kanssa
+
+Prometheus on seuranta-alusta, joka kerää mittareita seuratuista kohteista kartoittamalla mittareita HTTP-päätepisteitä näissä kohteissa. [Virallinen dokumentaatio on saatavilla täällä.](https://prometheus.io/docs/introduction/overview/) Grafana on kojelauta, jota käytetään kerättyjen tietojen visualisointiin.
+
+### 🐣 10.1 Asennus
+
+Asenna prometheus ja prometheus node viejä.
+
+```text
+sudo apt-get install -y prometheus prometheus-node-viejä
+```
+
+Asenna grafana.
+
+```bash
+wget -q -O - https://packages.grafana.com/gpg.key ☐ sudo apt-key add -
+echo "deb https://packages.grafana.com/oss/deb stable main" > grafana. ist
+sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
+sudo apt-get update && sudo apt-get install -y grafana
+```
+
+Ota palvelut käyttöön, jotta ne käynnistyvät automaattisesti.
+
+```bash
+sudo systemctl mahdollistaa grafana-server.service
+sudo systemctl mahdollistaa prometheus.service
+sudo systemctl mahdollistaa prometheus-node-exporter.service
+```
+
+Päivitys **prometheus.yml** sijaitsee `/etc/prometheus/prometheus.yml`
+
+```bash
+kissa > $HOME/prometheus.yml << EOF
+global:
+  scrape_interval: 15s # Oletuksena kaakaota tavoitteet 15 sekunnin välein.
+
+  # Liitä nämä tunnisteet mihin tahansa aikasarjaan tai hälytyksiin kommunikoidessaan
+  # ulkoisen järjestelmän kanssa (liittovaltio, etävarastointi, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+
+# Kaavi konfiguraatio, joka sisältää täsmälleen yhden päätepisteen:
+# Tässä se itse on Prometheus.
+scrape_configs:
+  - job_name: 'node_exporter'
+    static_configs:
+      - kohteet: ['localhost:9100']
+  - job_name: 'validator'
+    static_configs:
+      - kohteet: ['localhost:8081']
+  - job_name: 'beacon node'
+    static_configs:
+      - kohteet: ['localhost:8080']
+  - job_name: 'slasher'
+    static_configs:
+      - kohteet: ['localhost:8082']
+EOF
+sudo mv $HOME/prometheus. ml /etc/prometheus/prometheus.yml
+```
+
+Lopuksi käynnistä palvelut uudelleen.
+
+```bash
+sudo systemctl restart grafana-server.service
+sudo systemctl restart prometheus.service
+sudo systemctl restart prometheus-node-exporter.service
+```
+
+Varmista, että palvelut toimivat asianmukaisesti:
+
+```text
+sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
+```
+
+{% hint style="info" %}
+💡 **Muistutus**: Varmista, että portti 3000 on auki palomuurilla ja/tai siirrolla, jos aiot katsoa eri koneen seurantatietoja.
+{% endhint %}
+
+### 📶 10.2 Grafana Dashboardien asettaminen
+
+1. Avaa [http://localhost:3000](http://localhost:3000) tai [http://&lt;your](http://<your) validator's ip address&gt;:3000 paikallisessa selaimessasi.
+2. Kirjaudu **admin** / **admin**
+3. Vaihda salasana
+4. Klikkaa **konfiguraatiovaihdetta** kuvaketta, sitten **Lisää datalähde**
+5. Valitse **Prometheus**
+6. Aseta **nimi** **"Prometheus**"
+7. Aseta **URL** osoitteeseen [http://localhost:9090](http://localhost:9090)
+8. Klikkaa **Tallenna & Testaa**
+9. **Lataa ja tallenna** tämä [**json tiedosto**](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)**.** Tai jos sinulla on enemmän kuin 10 validaattoria, käytä tätä [json tiedostoa](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json).
+10. Klikkaa **Luo +** kuvake &gt; **Tuo**
+11. Lisää kojelauta **Lataa JSON tiedosto**
+12. Napsauta **Tuo** painiketta.
+
+![Prysm dashboard](../../.gitbook/assets/prysm_dash.png)
+
+### ⚠ 10.3 Aseta Hälytysilmoitukset
+
+{% hint style="info" %}
+Aseta hälytykset saadaksesi ilmoituksen, jos vahvistimet menevät offline-tilassa.
+{% endhint %}
+
+Saat ilmoituksen ongelmista sinun validoijien kanssa. Valitse sähköposti, sähkeet, epäsopu tai löysä.
+
+{% tabs %}
+{% tab title="Email Notifications" %}
+1. Vieraile [https://beaconcha.in/](https://beaconcha.in/)
+2. Rekisteröidy **** **tilille**
+3. Vahvista **sähköpostiosoitteesi**
+4. Etsi **validaattorisi julkinen osoite**
+5. Lisää validaattorit seurantalistallesi klikkaamalla **kirjanmerkki symbolia**.
+{% endtab %}
+
+{% tab title="Telegram Notifications" %}
+1. Valitse Grafanan valikosta **Ilmoituskanavat** kellon kuvakkeen alla. ![](../../.gitbook/assets/gra-noti.png)
+2. Klikkaa **Lisää kanava**.
+3. Anna ilmoituskanava **nimi**.
+4. Valitse **Telegram** tyyppi luettelosta.
+5. Jotta **Telegram API asetukset**, Telegram kanava ja botti ovat pakollisia. Ohjeet botin asettamisesta käyttäen `@Botfather`, katso [tässä osassa](https://core.telegram.org/bots#6-botfather) Telegram-dokumentaatio.
+6. Kun botti on valmis, kutsu botti äskettäin luotuun kanavaan.
+{% endtab %}
+
+{% tab title="Discord Notifications" %}
+1. Valitse Grafanan valikosta **Ilmoituskanavat** kellon kuvakkeen alla. ![](../../.gitbook/assets/gra-noti.png)
+2. Klikkaa **Lisää kanava**.
+3. Lisää **nimi** ilmoituskanavalle.
+4. Valitse **Discord** Tyyppiluettelosta.
+5. Valitsemisen suorittamiseksi tarvitaan Discord-palvelin \(ja käytettävissä oleva tekstikanava\) sekä Webhookin URL-osoite. Ohjeet Discordin verkkokoukkujen perustamisesta, katso [tässä osiossa](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) niiden dokumentaatio.
+6. Syötä Webhook **URL** Discordin ilmoitusasetuspaneelissa.
+7. Napsauta **Lähetä Testi**, joka painaa vahvistusviestin Discord-kanavalle.
+{% endtab %}
+
+{% tab title="Slack Notifications" %}
+1. Valitse Grafanan valikosta **Ilmoituskanavat** kellon kuvakkeen alla. ![](../../.gitbook/assets/gra-noti.png)
+2. Klikkaa **Lisää kanava**.
+3. Lisää **nimi** ilmoituskanavalle.
+4. Valitse **Löysä** tyyppi luettelosta.
+5. Ohjeet Slackin saapuvien Webhokkien perustamisesta, katso [tässä osiossa](https://api.slack.com/messaging/webhooks) heidän dokumentaatiostaan.
+6. Syötä Slack-saapuvan Webhook URL-osoite **URL** -kenttään.
+7. Napsauta **Lähetä Testi**, joka painaa vahvistusviestin Slack-kanavaan.
+{% endtab %}
+{% endtabs %}
+
+{% hint style="success" %}
+🎉 Onnea kun asetat validaattorin! Sinun on hyvä mennä eth2.0.
+
+Oliko oppaamme sinulle hyödyllinen? Kerro meille vinkki ja me jatkuvasti päivittää sitä.
+
+Käytä [cointr.ee löytääksesi lahjoituksemme ](https://cointr.ee/coincashew)osoitteet. 🙌
+
+Kaikki palaute ja kaikki vetopyynnöt arvostetaan. 😃
+
+Keskustele muiden panostajien kanssa telegramissa @ [https://t.me/coincashew](https://t.me/coincashew)🌛
+{% endhint %}
+
+## 🧙♂ 11. Päivitetään Prysmiä
+
+Käynnistä uudelleen majakan ketju ja validaattori tavanomaisten toimintatapojen mukaan.
+
+{% tabs %}
+{% tab title="Systemd - Automated" %}
+```text
+sudo systemctl reload-or restart beacon-chain
+sudo systemctl reload-or restart validator
+```
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+```bash
+#Control C poistua sekä majakkaketju ja valididaattori prosessit 
+#Paina nuolta ylös ja käynnistä uudelleen.
+```
+{% endtab %}
+{% endtabs %}
+
+## 🧩 12. Viitemateriaali
+
+Arvostaa hienojen ihmisten tekemää kovaa työtä seuraavilla linkeillä, jotka toimivat perustana tämän oppaan luomiselle.
+
+{% upotettu url="https://discord.gg/KSA7rPr" %}
+
+{% upotettu url="https://launchpad.ethereum.org/" caption="" %}
+
+{% upotettu url="https://prylabs.net/participate" %}
+
+{% upotettu url="https://docs.prylabs.network/docs/getting-started/" %}
+
+## 🎉 13. Bonus Linkit
+
+### 🌰 CoinCashew oppaita muille ETH2 asiakkaille
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-lighthouse.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-nimbus.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-lodestar.md" %}
+
+### 🧱 ETH2 Block Explorers
+
+{% upotettu url="https://beaconcha.in" caption="" %}
+
+{% upotettu url="https://beaconscan.com" caption="" %}
+
+### 🗒 Viimeisimmät Eth2 Tiedot
+
+{% upotettu url="https://www.reddit.com/r/ethstaker" caption="" %}
+
+{% upotettu url="https://blog.ethereum.org" caption="" %}
+
+{% upotettu url="http://invite.gg/ethstaker" caption="" %}
+
+{% upotettu url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
+
+## 🔥 14. Lisää Hyödyllisiä Vinkkejä
+
+### 🛑 14.1 Vapaaehtoinen poistuminen varidaattorista
+
+{% hint style="info" %}
+Käytä tätä komentoa ilmoittaaksesi aikomuksesi lopettaa validoinnin validoijallasi. Tämä tarkoittaa, että et halua enää vakiinnuttaa validaattoria ja haluat poistaa solmun käytöstä.
+
+* Vapaaehtoinen poistuminen kestää vähintään 2048 aikakautta \(tai ~9 päivää\). Poistumisjono on olemassa ja viivästys ennen kuin varmentaja on lopullisesti poistettu.
+* Kun varmentaja poistuu vaiheessa 0, tämä ei ole palautettavissa ja et voi enää aloittaa validointia uudelleen.
+* Varoja ei voi peruuttaa ennen kuin vaihe 1.5 tai uudempi.
+* Kun validaattori lähtee poistumisjonosta ja poistuu paikalta, on turvallista sammuttaa majakan solmun ja validoijan.
+{% endhint %}
+
+```bash
+$HOME/prysm/prysm.sh varidaattoritilit vapaaehtoisesta poistumisesta
+```
+
+### 🔐 14.2 Tarkista mnemoninen lause
+
+Varmista et2deposit-cli -työkalun avulla, että voit uudistaa samat eth2-näppäinparit palauttamalla `validator_keys`
+
+```bash
+./deposit existing-mnemonic --chain mainnet
+```
+
+{% hint style="info" %}
+Kun **pubkey** on identtinen, tämä tarkoittaa **avaimen tiedoston** olet vahvistanut mnemonisen lauseen. Muut kentät ovat erilaisia, koska suolaus.
+{% endhint %}
+
+### 🤖 14.3 Lisää lisää validaattoreita
+
+Käyttämällä eth2deposit-cli työkalua, voit lisätä enemmän validaattorit luomalla uuden talletustiedot tiedosto ja `validator_keys`
+
+Esimerkiksi, jos alun perin loimme 3 validaattoria, mutta nyt haluamme lisätä 5 enemmän validaattoreita, voisimme käyttää seuraavaa komentoa.
+
+```bash
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+```
+
+Saatetaan päätökseen vaiheet, joissa `deposit_data-#######.json` ladataan käynnistysalustalle.
+
