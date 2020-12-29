@@ -1,40 +1,77 @@
-# Externí materiál pro čtení
+---
+description: >-
+  Globální, open-source platforma pro decentralizované aplikace. Na Ethereu můžete psát kód, který ovládá digitální hodnotu, běží přesně jak naprogramovaný, a je dostupný kdekoli na světě.
+---
 
-## 🧬 Ethereum 2.0 \(Serenity\) Základy
+# Ethereum: ETH
 
-{% ražené url="https://ethos.dev/beacon-chain/" %}
+## ![](../../.gitbook/assets/eth.png) Obecná data
 
-{% embed url="https://github.com/ethereum/eth2.0-specs" %}
+| Stránka        | Hlava 1 – Celkem                                                                                       |
+|:-------------- |:------------------------------------------------------------------------------------------------------ |
+| Webová stránka | [https://www.ethereum.org/](https://www.ethereum.org/)                                                 |
+| Zdrojový kód   | [https://github.com/ethereum](https://github.com/ethereum)                                             |
+| Bílý epaper    | [https://github.com/ethereum/wiki/wiki/White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper) |
 
-{% embed url="https://medalla.launchpad.ethereum.org/faq" %}
+## 🙋 Sociální média a komunita
 
-{% embed url="https://notes.ethereum.org/@serenity/handbook" %}
+| Komunita       | Odkaz                                                                          |
+|:-------------- |:------------------------------------------------------------------------------ |
+| 🐦 Twitter      | [https://twitter.com/ethereum](https://twitter.com/ethereum)                   |
+| Reddit         | [https://reddit.com/r/ethereum](https://reddit.com/r/ethereum)                 |
+| Oficiální fóra | [https://forum.ethereum.org/](https://forum.ethereum.org/)                     |
+| Gitter         | [https://gitter.im/orgs/ethereum/rooms](https://gitter.im/orgs/ethereum/rooms) |
 
-{% zapalených url="https://www.adiasg.me/2020/03/31/casper-ffg-vysvětainer.html" %}
+## 🔃 Blokovat Průzkumníky
 
-{% embed url="https://hackmd.io/@benjaminion/eth2\_info" %}
+| Stránka                                           |
+|:------------------------------------------------- |
+| [Etherscan.io](https://etherscan.io/)             |
+| [Blockchair.com](https://blockchair.com/ethereum) |
+| [Ethplorer.io](https://ethplorer.io/)             |
+| [Etherchain.org](https://etherchain.org/)         |
+| [beakoncha.in](https://beaconcha.in/)             |
 
-{% ražené url="https://benjaminion.xyz/eth2-annotated-spec/" %}
+## 📊 Grafy a ceny
 
-{% embed url="https://notes.ethereum.org/@vbuterin/rkhCgQteN" %}
+| Stránka       | Odkaz                                                                                                |
+|:------------- |:---------------------------------------------------------------------------------------------------- |
+| CoinPaprika   | [https://coinpaprika.com/coin/eth-ethereum/](https://coinpaprika.com/coin/eth-ethereum/)             |
+| CoinMarketCap | [https://coinmarketcap.com/currencies/ethereum/](https://coinmarketcap.com/currencies/ethereum/)     |
+| CoinGecke     | [https://www.coingecko.com/en/coins/ethereum](https://www.coingecko.com/en/coins/ethereum)           |
+| LiveCoinWatch | [https://www.livecoinwatch.com/price/Ethereum-ETH](https://www.livecoinwatch.com/price/Ethereum-ETH) |
 
-## 🚀 Vytváření ověřovatelů: Návrhy a testery
+## 💰 Peněženky
 
-{% hint style="info" %}
-Validátory jsou virtuální a jsou aktivovány kádinkami. V PoW si uživatelé kupují hardware na těžaře. V Ethereum 2.0 uživatelé sázejí ETH na aktivaci a ovládání ověřovatelů. -- [**ethos.dev**](https://ethos.dev/beacon-chain/)\*\*\*\*
-{% endhint %}
+{% strana-ref page="../../wallets/desktop-wallets/mycrypto-ethereum.md" %}
 
-{% embed url="https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487" %}
+{% strana-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
-{% ražené url="https://ethos.dev/beacon-chain/\#rewards-penalties" %}
+{% stránka_ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
 
-{% embed url="https://ethereumprice.org/eth-2-calculator/" %}
+{% strana-ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
 
-{% zapalené url="https://www.attestant.io/posts/evaluating-staking-services/" %}
+{% stránka_ref page="../../wallets/desktop-wallets/atomic-multi-currency.md" %}
 
-## :feman:💻 Vývojové kurzy
+{% strana-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
 
-{% embed url="https://cryptozombies.io/en/course" %}
+{% stránky-ref page="../../wallets/hardware-wallets/trezor.io-wallet/" %}
 
-{% embed url="https://cryptoeconomics.study/" %}
+{% strana-ref page="../../wallets/hardware-wallets/keepkey-wallet/" %}
+
+{% strana-ref page="../../wallets/mobile-wallets/argent-ethereum.md" %}
+
+{% strana-ref page="../../wallets/mobile-wallets/status-ethereum.md" %}
+
+{% strana-ref page="../../wallets/mobile-wallets/pillar-ethereum-btc.md" %}
+
+{% stránky-ref stránka="./" %}
+
+{% strana-ref page="../../wallets/mobile-wallets/enjin-multi-currency.md" %}
+
+{% strana-ref page="../../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
+
+{% stránka_ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+
+
 
