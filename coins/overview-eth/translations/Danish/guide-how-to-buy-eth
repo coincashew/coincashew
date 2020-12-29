@@ -1,0 +1,18 @@
+# Guide: Sådan køber du ETH
+
+## 🔥 1. Få nogle penge ind i krypto
+
+{% side-ref page="../../exchanges/guide-where-to-get-crypto.md" %}
+
+## 💱 2. Konverter på Exchange
+
+| Websted                                                             | Pairs             | Placering  | KYC Påkrævet?      |
+|:------------------------------------------------------------------- |:----------------- |:---------- |:------------------ |
+| [Binance](https://www.binance.com/en/trade/ETH_BTC?ref=)            | BTC-BNB-BUSD-USDT | Globalt    | Nej. 2°/dag.       |
+| [CoinEx](https://www.coinex.com/exchange?currency=btc&dest=eth)     | BCH-BTC-USDT      | Hongkong   | Nr. 10.000USD/dag. |
+| [Kucoin](https://www.kucoin.com/#/trade/ETH-USDT?rcode=)            | BTC-USDT          | Seychelles | Nej. 2°/dag.       |
+| [Huobi](https://www.hbg.com/en-us/exchange/?s=xtz_btc&invite_code=) | BTC-ETH-USDT      | Singapore  | Nej.               |
+| [Bitfinex](https://www.bitfinex.com/t/ETH:UST)                      | BTC-USD           | Hongkong   | Nej.               |
+| [Møntbase](https://pro.coinbase.com/trade/ETH-USDC)                 | BTC-USD           | USA        | Ja                 |
+| [Kraken](https://www.kraken.com/)                                   | USD-EUR-BTC-ETH   | USA        | Ja                 |
+
