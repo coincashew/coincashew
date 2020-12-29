@@ -1,0 +1,1477 @@
+---
+description: >-
+  Werden Sie ein Validator und sichern Sie eth2, eine Proof-of-Stop-Blockchain. Jeder mit 32 ETH kann beitreten.
+---
+
+# Leitfaden: Wie man am ETH2 Mainnet mit Prysm auf Ubuntu wettet
+
+{% hint style="danger" %}
+**Nov 24 2020 Update**: Die [neue Mainnetanleitung befindet sich hier](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+
+Untenstehende Anweisungen sind jetzt veraltet und nur noch für Referenzen.
+{% endhint %}
+
+
+
+
+
+
+
+
+
+
+
+{% hint style="info" %}
+[Prysm](https://github.com/prysmaticlabs/prysm) ist eine Go-Implementierung des Ethereum 2.0-Protokolls mit einem Schwerpunkt auf Benutzerfreundlichkeit, Sicherheit und Zuverlässigkeit. Prysm wird von [Prysmatic Labs](https://prysmaticlabs.com/)entwickelt, einem Unternehmen mit dem alleinigen Schwerpunkt auf der Entwicklung seines Kunden. Prysm ist in Go geschrieben und unter einer GPL-3.0 Lizenz veröffentlicht.
+{% endhint %}
+
+## 🏁 0. Voraussetzungen
+
+### 👩💻 Fertigkeiten für den Betrieb eines eth2-Validators und Leuchtsignals
+
+Als Validator für eth2 haben Sie in der Regel folgende Fähigkeiten:
+
+* betriebliches Wissen darüber, wie ein eth2-Leuchtsignalknoten und -Validator kontinuierlich aufgebaut, ausgeführt und gepflegt werden kann
+* eine Verpflichtung, Ihren Validator 24/7/365 beizubehalten
+* grundlegende Betriebssystem-Fähigkeiten
+* hast das Wesentliche gelernt, indem du ['Einführung in Eth2 & Absteckung für Anfänger' von Superphiz ansieht](https://www.youtube.com/watch?v=tpkpW031RCI)
+* haben den
+
+Eth2-Masterkurs bestanden oder ist aktiv eingeschrieben für den [ Eth2-Masterkurs](https://ethereumstudymaster.com/)</li> 
+  
+  * und lesen Sie die [8 Dinge, die jeder Eth2 Validator wissen sollte.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)</ul> 
+
+
+
+### 🎗 **Minimale Setup-Anforderungen**
+
+* **Betriebssystem:** 64-Bit Linux \(i.e. Ubuntu 20.04 LTS\)
+* **Prozessor:** Dual Core CPU, Intel Core i5–760 oder AMD FX-8100 oder besser
+* **Memory:** 8GB RAM
+* **Speicher:** 20GB SSD
+* **Internet:** Breitbandverbindung mit Geschwindigkeiten von mindestens 1 Mbit/s.
+* **Power:** Zuverlässige elektrische Leistung.
+* **ETH-Kontostand:** mindestens 32 ETH und einige ETH gegen Einzahlungsgebühren
+* **Wallet**: Metamask installiert
+
+
+
+### 🏋♂ Empfohlene Hardware-Einrichtung
+
+* **Betriebssystem:** 64-Bit Linux \(i.e. Ubuntu 20.04 LTS\)
+* **Prozessor:** Quad Core CPU, Intel Core i7–4770 oder AMD FX-8310 oder höher
+* **Speicher:** 16 GB RAM oder mehr
+* **Speicher:** 1TB SSD oder mehr
+* **Internet:** Breitband-Internetverbindungen mit Geschwindigkeiten von mindestens 10 Mbit/s
+* **Strom:** Verlässliche elektrische Energie mit ununterbrochener Stromversorgung \(UPS\)
+* **ETH-Kontostand:** mindestens 32 ETH und einige ETH gegen Einzahlungsgebühren
+* **Wallet**: Metamask installiert
+
+{% hint style="warning" %}
+
+✨ **Pro Validator Tipp**: Sehr zu empfehlen ist eine brandneue Instanz von OS, VM und/oder Maschine. Vermeiden Sie Kopfschmerzen, indem Sie KEINE testnet-Schlüssel, Brieftaschen oder Datenbanken für Ihren Mainnet-Validator wiederverwenden. 
+
+{% endhint %}
+
+
+
+### :ungesperrt: Empfohlene eth2 Sicherheitsüberprüfung Best Practices
+
+Wenn Sie Ideen oder eine Erinnerung benötigen, wie Sie Ihren Validator sichern können, schauen Sie auf
+
+{% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+
+
+
+### 🛠 Setup Ubuntu
+
+Wenn Sie Ubuntu installieren müssen, schauen Sie auf
+
+{% Seiten-Ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+
+
+
+### 🎭 Metamask einrichten
+
+Wenn Sie Metamask installieren müssen, schauen Sie auf
+
+{% Seitenref page="../../Wallets/Browser-Wallets/metamask-ethereum.md" %}
+
+
+
+## 🌱 1. ETH kaufen/tauschen oder festigen
+
+{% hint style="info" %}
+
+Jede 32 ETH die Sie besitzen, erlaubt Ihnen 1 Validator zu machen. Sie können Tausende von Validatoren mit Ihrem Leuchtfeuerknoten ausführen. 
+
+{% endhint %}
+
+Ihr ETH \(oder mehrere 32 ETH\) sollte zu einer einzigen Adresse zusammengefasst werden, die mit Metamask erreichbar ist.
+
+Wenn Sie Ihre ETH kaufen/tauschen oder auf ein Vielfaches von 32 aufstocken möchten, schauen Sie sich an:
+
+{% page-ref page="guide-how-to-buy-eth.md" %}
+
+
+
+## 👩💻 2. Melde dich als Validator am Launchpad an
+
+1. Installieren Sie Abhängigkeiten und das Einlagenwerkzeug von ethereum und generieren Sie Ihre zwei Schlüsselpaare.
+
+{% hint style="info" %}
+
+Jeder Validator wird zwei Schlüsselpaare haben. Ein **Signaturschlüssel** und ein **Aushebungsschlüssel.** Diese Schlüssel werden aus einer einzigen mnemonischen Phrase abgeleitet. [Erfahren Sie mehr über Schlüssel.](https://blog.ethereum.org/2020/05/21/keys/) 
+
+{% endhint %}
+
+Sie haben die Wahl, das vorgefertigte [Athereum Foundation Deposit-Tool](https://github.com/ethereum/eth2.0-deposit-cli) herunterzuladen oder es aus der Quelle zu bauen.
+
+{% tabs %}
+
+
+
+{% tab title="Pre-built eth2deposit-cli" %}
+
+eth2deposit-cli.
+
+
+
+```bash
+cd $HOME
+wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.0.0/eth2deposit-cli-9310de0-linux-amd64.tar.gz
+```
+
+
+Überprüfen Sie die SHA256 Prüfsumme mit der Prüfsumme auf der [Release-Seite](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
+
+
+
+```bash
+sha256sum eth2deposit-cli-9310de0-linux-amd64.tar.gz 
+# SHA256 sollte
+# b09da136895a7f77a4b430924ea2ae5827fa47b2bf444c4ea6fcfac5b04b8c8a sein
+```
+
+
+Archiv entpacken.
+
+
+
+```text
+tar -xvf eth2deposit-cli-9310de0-linux-amd64.tar.gz
+cd eth2deposit-cli-9310de0-linux-amd64
+```
+
+
+Erstelle eine neue Mnemonik.
+
+
+
+```text
+./depositnew-mnemonic --chain mainnet
+```
+
+
+{% endtab %}
+
+{% tab title="Build from source code" %}
+
+Abhängigkeiten installieren.
+
+
+
+```text
+sudo apt update
+sudo apt install python3-pip git -y
+```
+
+
+Quellcode herunterladen und installieren.
+
+
+
+```text
+mkdir ~/git
+cd ~/git
+git clone https://github.com/ethereum/eth2.0-deposit-cli.git
+cd eth2.0-deposit-cli
+sudo ./deposit.sh install
+```
+
+
+Erstelle eine neue Mnemonik.
+
+
+
+```text
+./deposit.sh new-mnemonic --chain mainnet
+```
+
+
+{% endtab %}
+
+{% tab title="Advanced - Most Secure" %}
+
+
+
+{% hint style="warning" %}
+
+🔥**\[ Optionaler \] Pro Security Tipp**: Führen Sie das eth2deposit-cli Tool aus und erzeugen Sie Ihren **mnemonischen Seed** für Ihre Validatorschlüssel auf einer **luftgegapped Offline-Maschine**.
+
+Sie können die vorgefertigten eth2deposit-cli Binärdateien über den USB-Schlüssel von einem Online-Rechner auf eine Air-Gapped Offline-Maschine kopieren.
+
+* Schützt vor Schlüsselprotokollierungsangriffen, Malware/Viren-basierten Attacken und anderen Firewall-oder Sicherheits-Exploiten.
+* Körperlich isoliert vom Rest Ihres Netzwerks.
+* Muss keine Netzwerkverbindung, kabellos oder drahtlos haben.
+* Ist kein VM auf einem Rechner mit einer Netzwerkverbindung.
+* Erfahren Sie mehr über [Luftgapping bei Wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29). 
+  
+  {% endhint %}
+  
+  
+  
+  {% endtab %}
+  
+  
+  
+  {% endtabs %}
+
+1. Folgen Sie den Eingabeaufforderungen und wählen Sie ein Passwort. Notieren Sie Ihre Mnemonik und bewahren Sie dies sicher und **offline**.
+2. Folgen Sie den Schritten [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) während Sie die Schritte überspringen, die Sie gerade abgeschlossen haben. Studieren Sie das Übersichtsmaterial der eth2 Phase 0. eth2 zu verstehen ist der Schlüssel zum Erfolg!
+3. Laden Sie Ihr`deposit_data-###########.json` im `validator_keys` Verzeichnis hoch.
+4. Verbinden Sie sich mit dem Launchpad mit Ihrer Metamask Wallet, überprüfen und akzeptieren Sie die Bedingungen.
+5. Bestätigen Sie die Transaktion\(s\). Für jeden Validator gibt es eine Einzahlungstransaktion von 32 ETH.
+
+{% hint style="info" %}
+
+Ihre Transaktion sendet und hinterlegt Ihre ETH an die [-offizielle ETH2-Einzahlungsvertragsadresse. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
+
+**Überprüfe**, _doppelte Überprüfung_, _**Triple-Check**_ dass die offizielle eth2-Einzahlungsvertragsadresse korrekt ist.[`0x000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa) 
+
+{% endhint %}
+
+{% hint style="danger" %}
+
+Schreiben Sie Ihren mnemonischen Seed **offline** auf. _Keine E-Mail. Nicht Cloud._
+
+Machen Sie **Offline-Sicherungen**, zum Beispiel zu einem USB-Schlüssel, von Ihrem **`validator_keys`** \`\`Verzeichnis. 
+
+{% endhint %}
+
+
+
+## 🛸 3. Install a ETH1 node
+
+{% hint style="info" %}
+
+Ethereum 2.0 benötigt eine Verbindung zu Ethereum 1.0, um 32 ETH Validator Depots zu überwachen. Das Hosting Ihres eigenen Ethereum 1.0 Knotens ist der beste Weg, um die Dezentralisierung zu maximieren und die Abhängigkeit von Dritten wie Infura zu minimieren. 
+
+{% endhint %}
+
+{% hint style="warning" %}
+
+Die folgenden Schritte gehen davon aus, dass Sie den [Best-Practice-Sicherheits-Leitfaden](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md) abgeschlossen haben. 
+
+{% endhint %}
+
+Ihre Wahl zwischen entweder [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Hole**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **oder** [**Bitte**](https://www.nethermind.io/)**.**
+
+{% tabs %}
+
+
+
+{% tab title="OpenEthereum \(Parity\)" %}
+
+
+#### 🤖 Installieren und starten Sie OpenEthereum.
+
+
+
+```text
+mkdir ~/openethereum && cd ~/openethereum
+wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
+unzip openethereum*.zip
+chmod +x openethereum
+rm openethereum*.zip
+```
+
+
+<unk> ⚙ **Systemd einrichten und konfigurieren**
+
+Führen Sie folgendes aus, um eine **-Einheitsdatei** zu erstellen, um Ihre `eth1.service` Konfiguration zu definieren.
+
+
+
+```bash
+Katze > $HOME/eth1. ervice << EOF 
+[Unit]
+Description = openethereum eth1 service
+Wants = network-online. arget
+After = network-online. arget 
+
+[Service]
+User = $(whoami)
+WorkingDirectory= /home/$(whoami)/openethereum
+ExecStart = /home/$(whoami)/openethereum/openethereum --chain Foundation
+Neustart = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+
+Verschiebe die Einheitendatei nach `/etc/systemd/system` und erteile ihr Berechtigungen.
+
+
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+
+
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+
+Führen Sie folgendes aus, um den Autostart beim Booten zu aktivieren.
+
+
+
+```text
+sudo systemctl Daemon-neu laden
+sudo systemctl eth1 aktivieren
+```
+
+
+
+
+#### ⛓ Starten Sie OpenEthereum auf mainnet.
+
+
+
+```text
+sudo systemctl Start eth1
+```
+
+
+{% endtab %}
+
+{% tab title="Geth" %}
+
+
+#### 🧬 Installieren aus dem Projektarchiv.
+
+
+
+```text
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt-get update -y
+sudo apt-get install ethereum -y
+```
+
+
+⚙ **System einrichten und konfigurieren**
+
+Führen Sie folgendes aus, um eine **-Einheitsdatei** zu erstellen, um Ihre `eth1.service` Konfiguration zu definieren.
+
+
+
+```bash
+Katze > $HOME/eth1. ervice << EOF 
+[Unit]
+Description = geth eth1 service
+Wants = network-online. arget
+After = network-online. arget 
+
+[Service]
+User = $(whoami)
+ExecStart = /usr/bin/geth --rpc --http
+Neustart = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+
+Verschiebe die Einheitendatei nach `/etc/systemd/system` und erteile ihr Berechtigungen.
+
+
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+
+Führen Sie folgendes aus, um den Autostart beim Booten zu aktivieren.
+
+
+
+```text
+sudo systemctl Daemon-neu laden
+sudo systemctl eth1 aktivieren
+```
+
+
+
+
+#### ⛓ Start auf mainnet.
+
+
+
+```text
+sudo systemctl Start eth1
+```
+
+
+{% endtab %}
+
+{% tab title="Besu" %}
+
+
+#### 🧬 Java-Abhängigkeit installieren.
+
+
+
+```text
+sudo apt install openjdk-11-jdk
+```
+
+
+
+
+#### 🌜 Download und entpacken Besu.
+
+
+
+```text
+cd
+wget -O besu.tar.gz https://bintray.com/hyperledger-org/besu-repo/download_file?file_path=besu-1.5.0.tar.gz
+tar -xvf besu.tar.gz
+rm besu.tar.gz
+mv besu-1.5.0 besu
+```
+
+
+⚙ **System einrichten und konfigurieren**
+
+Führen Sie folgendes aus, um eine **-Einheitsdatei** zu erstellen, um Ihre `eth1.service` Konfiguration zu definieren.
+
+
+
+```bash
+Katze > $HOME/eth1. ervice << EOF 
+[Unit]
+Description = openethereum eth1 service
+Wants = network-online. arget
+After = network-online. arget 
+
+[Service]
+User = $(whoami)
+WorkingDirectory= /home/$(whoami)/besu/bin
+ExecStart = /home/$(whoami)/besu/bin/besu --data-path="$HOME/. thereum_besu"
+Neustart = on-failure
+
+[Install]
+WantedBy = Multi-User. arget
+EOF
+```
+
+
+Verschiebe die Einheitendatei nach `/etc/systemd/system` und erteile ihr Berechtigungen.
+
+
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+
+Führen Sie folgendes aus, um den Autostart beim Booten zu aktivieren.
+
+
+
+```text
+sudo systemctl Daemon-neu laden
+sudo systemctl eth1 aktivieren
+```
+
+
+
+
+#### ⛓ Beginnen Sie mit besu auf mainnet.
+
+
+
+```text
+sudo systemctl Start eth1
+```
+
+
+{% endtab %}
+
+{% tab title="Nethermind" %}
+
+
+#### ⚙ Installations-Abhängigkeiten
+
+
+
+```text
+sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
+```
+
+
+
+
+#### 🌜 Download und entpacken Nethermind.
+
+
+
+```text
+mkdir ~/nethermind && cd ~/nethermind
+wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
+unzip nethermind.zip
+rm nethermind.zip
+```
+
+
+
+
+#### 🛸 Starte Nethermind.
+
+
+
+```text
+./Nethermind.Launcher
+```
+
+
+* Wählen Sie `Ätherumknoten`
+* Wähle `Ethereum (mainnet)` und wähle `Schnelle Synchronisierung`
+* Ja zum Aktivieren von web3 / JSON RPC
+* Standard IP akzeptieren
+* Echtstat-Registrierung überspringen 
+  
+  {% endtab %}
+
+{% tab title="Minimum Hardware Setup" %}
+
+
+
+{% hint style="info" %}
+
+Infura ist für die Einrichtung von begrenztem Speicherplatz geeignet. Führen Sie wenn möglich immer Ihren eigenen Eth1-Knoten aus. 
+
+{% endhint %}
+
+Registrieren Sie sich für einen API-Zugangsschlüssel unter [https://infura.io/](https://infura.io/)
+
+1. Registrieren Sie sich für ein kostenloses Konto.
+2. Bestätigen Sie Ihre E-Mail-Adresse.
+3. Besuche dein Dashboard [https://infura.io/Dashboard](https://infura.io/dashboard)
+4. Erstellen Sie ein Projekt, geben Sie ihm einen Namen.
+5. **Mainnet** als ENDPOINT auswählen
+6. Kopieren Sie Ihren API-Schlüssel.
+7. Aktualisieren Sie den Parameter **http-web3provider** in der **Start-Leuchtfeuerkette** Abschnitt.
+
+
+
+```bash
+#Beispiel Parameter
+--http-web3provider=https://infura.io/v3/<YOUR_API_KEY>
+```
+
+
+{% endtab %}
+
+
+
+{% endtabs %}
+
+{% hint style="info" %}
+
+Das Synchronisieren des Eth1-Knotens kann bis zu 24 Stunden dauern. 
+
+{% endhint %}
+
+{% hint style="success" %}
+
+Ihr eth1-Knoten ist vollständig synchronisiert, wenn diese Ereignisse auftreten.
+
+* **`OpenEthereum:`** `Imported #<block number>`
+* **`Geth:`** `Neues Kettensegment importiert`
+* **`Besu:`** `Importiert #<block number>`
+* **`Nethermind:`** `Alte Kopfzeilen nicht mehr synchronisieren` 
+  
+  {% endhint %}
+
+
+
+#### 🛠 Hilfreiche eth1.service Befehle
+
+<unk> 🗒 **Um eth1-Logs anzuzeigen und zu folgen**
+
+
+
+```text
+journalctl -u eth1 -f
+```
+
+
+🗒 **um eth1 Service anzuhalten**
+
+
+
+```text
+sudo systemctl stoppen eth1
+```
+
+
+{% hint style="danger" %}
+
+🛑 **bevor Sie den Rest dieser Anleitung fortsetzen, wir empfehlen Ihnen, bis zum 1. Dezember zu warten, da der Prysm-Code sich schnell auf das Mainnetz vorbereitet.**🚧 
+
+{% endhint %}
+
+
+
+## 💡 4. Install Prysm
+
+
+
+```bash
+mkdir ~/prysm && cd ~/prysm 
+curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh 
+```
+
+
+{% hint style="info" %}
+
+Prysm ist ein Ethereum 2.0 Client und kommt in zwei Komponenten.
+
+**Leuchtfeuer-Kette Client** - Verantwortlich für die Verwaltung des Status der Leuchtfeuerkette, Validator Shuffling und mehr.
+
+**Validator-Client** - Verantwortlich für die Erstellung neuer Blöcke und Bescheinigungen in der Leuchtfeuer- und Splitterkette. 
+
+{% endhint %}
+
+
+
+## 🔥 5. Portweiterleitung und/oder Firewall konfigurieren
+
+Konkret auf Ihre Netzwerkeinstellungen oder Cloud-Provider-Einstellungen, [stellen Sie sicher, dass die Firewall-Ports Ihres Validators geöffnet und erreichbar sind.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+
+* **Prysm Leuchtsignalknoten** wird Port 12000 für udp und Port 13000 für tcp verwenden
+* **eth1** Knoten benötigt Port 30303 für tcp und udp
+
+{% hint style="info" %}
+
+✨ **Port-Weiterleitung-Tipp.** Sie müssen Ports an Ihren Validator weiterleiten und öffnen. Verifiziere es mit [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) oder [https://canyouseeme.org/](https://canyouseeme.org/). 
+
+{% endhint %}
+
+
+
+## 🎩 6. Validatorschlüssel importieren
+
+Wählen Sie den korrekten Befehl je nachdem, wie Sie **eth2deposit-cli.**
+
+{% tabs %}
+
+
+
+{% tab title="Pre-built eth2deposit-cli" %}
+
+
+```bash
+$HOME/prysm/prysm.sh Validator-Konten importieren --keys-dir=$HOME/eth2deposit-cli-9310de0-linux-amd64/validator_keys
+```
+
+
+{% endtab %}
+
+{% tab title="Built from source code" %}
+
+
+```bash
+$HOME/prysm/prysm.sh Validator-Konten importieren --keys-dir=$HOME/git/eth2.0-deposit-cli/validator_keys
+```
+
+
+{% endtab %}
+
+
+
+{% endtabs %}
+
+Akzeptieren Sie den Standard-Wallet-Standort, geben Sie ein neues Passwort ein, um Ihre Wallet zu verschlüsseln und geben Sie das Passwort für Ihre importierten Konten ein.
+
+{% hint style="danger" %}
+
+**WARNUNG**: BENUTZEN SIE DIE ORIGINALEN KEYSTORES NICHT BENUTZEN MIT ANDEREN CLIENT, ODER SIE WIRD BESCHRÄNKT. 
+
+{% endhint %}
+
+
+
+## 🏂 7. Starte die Bake Kette
+
+{% hint style="warning" %}
+
+Wenn Sie an einem der vorherigen Testnetze teilgenommen haben, müssen Sie die Datenbank löschen.
+
+
+
+```bash
+$HOME/prysm/prysm.sh Leuchtsignalkette --clear-db
+```
+
+
+{% endhint %}
+
+Ihre Wahl, eine Leuchtfeuerkette und einen Validator manuell von der Kommandozeile oder automatisch mit dem System auszuführen.
+
+{% tabs %}
+
+
+
+{% tab title="Systemd - Automated" %}
+
+
+#### 🍰 Vorteile der Verwendung von systemd für Ihre Leuchtfeuerkette und Validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Starte automatisch die Leuchtfeuerkette, wenn der Computer aufgrund von Wartung, Stromausfall usw. neu startet.
+2. Starte automatisch abgestürzte Leuchtsignalketten-Prozesse neu.
+3. Maximieren Sie Ihre Leuchtfeuerkette Uptime und Performance.
+
+
+
+#### 🛠 Setup-Anweisungen
+
+Führen Sie folgendes aus, um eine **-Einheitsdatei** zu erstellen, um Ihre`Beacon-chain.service` Konfiguration zu definieren.
+
+
+
+```bash
+cat > $HOME/beacon-chain. ervice << EOF 
+# Der eth2 Leuchtfeuerketten-Service (Teil des Systems)
+# Datei: /etc/systemd/system/beacon-chain. ervice 
+
+[Unit]
+Description = eth2 beacon chain service
+Wants = network-online. arget
+After = network-online. arget 
+
+[Service]
+User = $(whoami)
+Environment = "ClientIP=$(curl -s v4. dent.me)"
+WorkingDirectory= /home/$(whoami)/prysm
+ExecStart = /home/$(whoami)/prysm/prysm.sh beacon-chain --p2p-host-ip=${ClientIP} --monitoring-host="0.0.0. " --http-web3provider=http://127.0.0. :8545 --accept-terms-of-use 
+Neustart = on-failure
+
+[Install]
+WantedBy = multi-user. arget
+EOF
+```
+
+
+{% hint style="info" %}
+
+Geth Benutzer können höhere Leistung erreichen mit 
+
+
+
+```bash
+--http-web3provider=$HOME/.ethereum/geth.ipc
+```
+
+
+{% endhint %}
+
+Verschiebe die Einheitendatei nach `/etc/systemd/system` und erteile ihr Berechtigungen.
+
+
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+
+
+Führen Sie das folgende aus, um den automatischen Start beim Booten zu aktivieren und dann den Dienst für den Leuchtfeuerknoten zu starten.
+
+
+
+```text
+sudo systemctl Daemon-neu laden
+sudo systemctl aktivieren Bake Kette
+sudo systemctl Start Leuchtsignalkette
+```
+
+
+{% hint style="success" %}
+
+Gute Arbeit. Ihre Leuchtfeuerkette wird nun durch die Zuverlässigkeit und Robustheit des Systems gesteuert. Unten finden Sie einige Befehle für die Verwendung von Systemd. 
+
+{% endhint %}
+
+
+
+### 🛠 Einige hilfreiche System-Befehle
+
+
+
+#### ✅ Prüfen Sie, ob die Bake Kette aktiv ist
+
+
+
+```text
+sudo systemctl ist aktive Bake Kette
+```
+
+
+
+
+#### 🔎 Zeigt den Status der Leuchtfeuerkette an
+
+
+
+```text
+sudo systemctl Status Beacon-Kette
+```
+
+
+
+
+#### 🔄 Starte die Bake Kette neu
+
+
+
+```text
+sudo systemctl reload-or restart beacon-chain
+```
+
+
+
+
+#### 🛑 Stoppe die Bake Kette
+
+
+
+```text
+sudo systemctl stoppen Bake Kette
+```
+
+
+
+
+#### 🗒 Protokolle anschauen und filtern
+
+
+
+```bash
+journalctl --unit=beacon-chain --since=gestern
+journalctl --unit=beacon-chain --since=heute
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
+
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+
+In einem neuen Terminal starten Sie die Leuchtfeuerkette.
+
+
+
+```bash
+$HOME/prysm/prysm.sh beacon-chain \
+--p2p-host-ip=$(curl -s v4.ident.me) \
+--http-web3provider="http://127.0.0.1:8545"
+--monitoring-host="0.0.0" \
+--accept-terms-of-use
+```
+
+
+{% hint style="info" %}
+
+Geth Benutzer können höhere Leistung erreichen mit 
+
+
+
+```bash
+--http-web3provider=$HOME/.ethereum/geth.ipc
+```
+
+
+{% endhint %}
+
+
+
+{% endtab %}
+
+
+
+{% endtabs %}
+
+
+
+## 🧬 8. Validator starten <a id="9-start-the-validator"></a>
+
+Speichern Sie das Passwort Ihres Validators in einer Datei und machen Sie es schreibgeschützt.
+
+
+
+```bash
+echo "my_password_goes_here" > $HOME/.eth2validators/validators-password.txt
+sudo chmod 600 $HOME/.eth2validators/validators-password.txt
+```
+
+
+Ihre Wahl, einen Validator manuell von der Kommandozeile oder automatisch mit dem System auszuführen.
+
+{% tabs %}
+
+
+
+{% tab title="Systemd - Automated" %}
+
+
+#### 🍰 Vorteile der Verwendung von systemd für Ihren Validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Starten Sie Ihren Validator, wenn der Computer aufgrund von Wartung, Stromausfall usw. neu startet.
+2. Automatisch abgestürzte Validator-Prozesse neu starten.
+3. Maximieren Sie Ihre Validierungszeit und -leistung.
+
+
+
+#### 🛠 Setup-Anweisungen
+
+Führen Sie folgendes aus, um eine **-Einheitsdatei** zu erstellen, um Ihre`Validator.service` Konfiguration zu definieren.
+
+
+
+```bash
+Katze > $HOME/validator. ervice << EOF 
+# Der eth2 Validator Service (Teil des Systems)
+# Datei: /etc/systemd/system/validator. ervice 
+
+[Unit]
+Description = eth2 validator service
+Wants = network-online. arget beacon-chain.service
+After = network-online. arget 
+
+[Service]
+User = $(whoami)
+WorkingDirectory= /home/$(whoami)/prysm
+ExecStart = /home/$(whoami)/prysm/prysm. h validator --accept-terms-of-use --wallet-password-file /home/$(whoami)/.eth2validators/validators-passwort. xt
+Neustart = on-failure
+
+[Install]
+WantedBy = Multi-User. arget
+EOF
+```
+
+
+Verschiebe die Einheitendatei nach `/etc/systemd/system` und erteile ihr Berechtigungen.
+
+
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+
+
+Führen Sie das folgende aus, um den automatischen Start beim Booten zu aktivieren und dann Ihren Validator zu starten.
+
+
+
+```text
+sudo systemctl Daemon-neu laden
+sudo systemctl aktivieren Validator
+sudo systemctl start validator
+```
+
+
+
+
+### 🛠 Einige hilfreiche System-Befehle
+
+
+
+#### ✅ Prüfen Sie, ob der Validator aktiv ist
+
+
+
+```text
+sudo systemctl ist aktiver Validator
+```
+
+
+
+
+#### 🔎 Den Status des Validators anzeigen
+
+
+
+```text
+sudo systemctl status validator
+```
+
+
+
+
+#### 🔄 Starten des Validators
+
+
+
+```text
+sudo systemctl reload-or-restart Validator
+```
+
+
+
+
+#### 🛑 Stoppt den Validator
+
+
+
+```text
+sudo systemctl stop validator
+```
+
+
+
+
+#### 🗄 Protokolle anschauen und filtern
+
+
+
+```bash
+journalctl --unit=validator --since=gestern
+journalctl --unit=validator --since=heute
+journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
+
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+
+Starten Sie in einem neuen Terminal den Validator.
+
+
+
+```bash
+$HOME/prysm/prysm.sh Validator \
+--accept-terms-of-use \
+--wallet-password-file /home/$(whoami)/.eth2validators/validators-password.txt
+```
+
+
+{% endtab %}
+
+
+
+{% endtabs %}
+
+Vergewissern Sie sich, dass Ihr öffentlicher **Validator** in den Protokollen erscheint. Beispiel unten:
+
+
+
+```text
+INFO Aktivierter Validator voting_pubkey: 0x2374.....7121
+```
+
+
+{% hint style="info" %}
+
+**Validator-Client** - Verantwortlich für die Erstellung neuer Blöcke und Bescheinigungen in der Leuchtfeuer- und Splitterkette.
+
+**Leuchtfeuer-Kette Client** - Verantwortlich für die Verwaltung des Status der Leuchtfeuerkette, Validator Shuffling und mehr. 
+
+{% endhint %}
+
+{% hint style="success" %}
+
+Herzlichen Glückwunsch. Sobald Ihre Leuchtfeuerkette synchronisiert ist, warten Sie einfach auf die Aktivierung. Dieser Prozess dauert bis zu 24 Stunden. Wenn du zugewiesen bist, beginnt dein Validator mit der Erstellung und Abstimmung von Blöcken, während du ETH-Absteckbelohnungen erhältst.
+
+Verwenden Sie [beaconcha.in](https://beaconcha.in/) und [registrieren Sie ein Konto](https://beaconcha.in/register) , um Benachrichtigungen zu erstellen und die Leistung Ihres Validators zu verfolgen. 
+
+{% endhint %}
+
+
+
+## 🕒 9. Zeitsynchronisierung
+
+{% hint style="info" %}
+
+Weil die Leuchtfeuerkette auf genaue Zeiten angewiesen ist, um Bescheinigungen durchzuführen und Blöcke zu produzieren, Die Zeit Ihres Computers muss genau auf die tatsächliche NTP oder NTS Zeit innerhalb von 0 sein. Sekunden. 
+
+{% endhint %}
+
+Richte **Chrony** mit folgender Anleitung ein.
+
+{% hint style="info" %}
+
+Chrony ist eine Implementierung des Network Time Protocol und hilft die Zeit Ihres Computers mit NTP zu synchronisieren. 
+
+{% endhint %}
+
+
+
+## 🔎 10. Überwachen Sie Ihren Validator mit Grafana und Prometheus
+
+Prometheus ist eine Überwachungsplattform, die Metriken von überwachten Zielen sammelt, indem sie HTTP-Endpunkte für diese Ziele abtrennt. [Offizielle Dokumentation ist hier verfügbar.](https://prometheus.io/docs/introduction/overview/) Grafana ist ein Dashboard, mit dem die gesammelten Daten visualisiert werden können.
+
+
+
+### 🐣 10.1 Installation
+
+Installieren Sie Prometheus und Prometheus Knotenexporteur.
+
+
+
+```text
+sudo apt-get install -y prometheus prometheus-node-exporter
+```
+
+
+Grafana installieren.
+
+
+
+```bash
+wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+echo "deb https://packages.grafana.com/oss/deb stable main" > grafana. ist
+sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
+sudo apt-get update && sudo apt-get install -y grafana
+```
+
+
+Dienste aktivieren, damit sie automatisch starten.
+
+
+
+```bash
+sudo systemctl aktivieren Sie grafana-server.service
+sudo systemctl aktivieren prometheus.service
+sudo systemctl aktivieren prometheus-node-exporter.service
+```
+
+
+**prometheus.yml** aktualisiert in `/etc/prometheus/prometheus.yml`
+
+
+
+```bash
+cat > $HOME/prometheus.yml << EOF
+global:
+  scrape_interval: 15s # Scrape Ziele standardmäßig alle 15 Sekunden.
+
+  # Fügen Sie diese Labels bei der Kommunikation mit
+  # externen Systemen (Verband, Remote Storage, Alertmanager) an jede Zeitreihe oder Alarmmeldungen an.
+  external_labels:
+    Monitor: 'codelab-monitor'
+
+# Eine Scrape-Konfiguration, die genau einen zu verschrobenden Endpunkt enthält:
+# Hier ist es Prometheus selbst.
+scrape_configs:
+  - job_name: 'node_exporter'
+    static_configs:
+      - Ziele: ['localhost:9100']
+  - job_name: 'validator'
+    static_configs:
+      - Ziele: ['localhost:8081']
+  - job_name: 'beacon node'
+    static_configs:
+      - Ziele: ['localhost:808080']
+  - job_name: 'slasher'
+    static_configs:
+      - Ziele: ['localhost:8082']
+EOF
+sudo mv $HOME/prometheus. ml /etc/prometheus/prometheus.yml
+```
+
+
+Schließlich starten Sie die Dienste neu.
+
+
+
+```bash
+sudo systemctl Neustart grafana-server.service
+sudo systemctl Neustart prometheus.service
+sudo systemctl Neustart prometheus-node-exporter.service
+```
+
+
+Vergewissern Sie sich, dass die Dienste ordnungsgemäß laufen:
+
+
+
+```text
+sudo systemctl Status grafana-server.service prometheus.service prometheus-node-exporter.service
+```
+
+
+{% hint style="info" %}
+
+💡 **Erinnerung**: Stellen Sie sicher, dass Port 3000 auf der Firewall und/oder dem Port weitergeleitet ist, wenn Sie die Überwachungsinformationen von einem anderen Rechner sehen möchten. 
+
+{% endhint %}
+
+
+
+### 📶 10.2 Grafana-Dashboards einrichten
+
+1. Öffnen Sie [http://localhost:3000](http://localhost:3000) oder [http://&lt;your](http://<your) validator's ip address&gt;:3000 in Ihrem lokalen Browser.
+2. Anmelden mit **admin** / **admin**
+3. Passwort ändern
+4. Klicken Sie auf das **-Konfigurations-Zahnrad** und dann **Datenquelle hinzufügen**
+5. **Prometheus** auswählen
+6. Setze **Name** auf **"Prometheus**"
+7. Setze **URL** auf [http://localhost:9090](http://localhost:9090)
+8. Klicken Sie auf **Speichern & Test**
+9. **Downloaden und speichern Sie** diese [**json Datei**](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)**.** Oder wenn Sie mehr als 10 Validatoren haben, verwenden Sie diese [json Datei](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json).
+10. Klicken Sie auf **Erstellen +** Symbol &gt; **Importieren**
+11. Dashboard hinzufügen durch **JSON-Datei hochladen**
+12. Klicken Sie auf den **Import** Button.
+
+![Prysm-Dashboard](../../.gitbook/assets/prysm_dash.png)
+
+
+
+### :warnung: 10.3 Benachrichtigungseinstellungen
+
+{% hint style="info" %}
+
+Einrichten Sie Warnungen, um benachrichtigt zu werden, wenn Ihre Validatoren offline gehen. 
+
+{% endhint %}
+
+Melden Sie sich über Probleme mit Ihren Validatoren. Wählen Sie zwischen E-Mail, Telegramm, Zwietracht oder Slack.
+
+{% tabs %}
+
+
+
+{% tab title="Email Notifications" %}
+
+1. Besuche [https://beaconcha.in/](https://beaconcha.in/)
+2. ****für ein **-Konto registrieren**
+3. Bestätigen Sie Ihre **E-Mail**
+4. Suche nach der öffentlichen Adresse des **Validators**
+5. Füge Validatoren zu deiner Watchlist hinzu, indem du auf das **Lesezeichensymbol** klickst. 
+   
+   {% endtab %}
+
+{% tab title="Telegram Notifications" %}
+
+1. Wähle im Menü von Grafana **Benachrichtigungskanäle** unter dem Glockensymbol aus. ![](../../.gitbook/assets/gra-noti.png) 
+2. Klicken Sie auf **Kanal hinzufügen**.
+3. Geben Sie dem Benachrichtigungskanal einen **Namen**.
+4. Wählen Sie **Telegram** aus der Typliste.
+5. Um die **Telegram-API-Einstellungen**abzuschließen, sind ein Telegrammkanal und Bot erforderlich. Anweisungen zum Einrichten eines Bots mit `@Botfather`finden Sie [in diesem Abschnitt](https://core.telegram.org/bots#6-botfather) der Telegram-Dokumentation.
+6. Nach Fertigstellung laden Sie den Bot in den neu erstellten Kanal ein. 
+   
+   {% endtab %}
+
+{% tab title="Discord Notifications" %}
+
+1. Wähle im Menü von Grafana **Benachrichtigungskanäle** unter dem Glockensymbol aus. ![](../../.gitbook/assets/gra-noti.png) 
+2. Klicken Sie auf **Kanal hinzufügen**.
+3. Fügen Sie dem Benachrichtigungskanal einen **-Namen** hinzu.
+4. Wähle **Discord** aus der Typliste.
+5. Um das Setup abzuschließen, sind ein Discord Server \(und ein Textkanal\) sowie eine Webhook URL erforderlich. Für Anweisungen zum Einrichten eines Discords Webhooks, siehe [diesen Abschnitt](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) ihrer Dokumentation.
+6. Gib die Webhook **URL** in die Discord Benachrichtigungseinstellungen ein.
+7. Klicke **Sende Test**, was eine Bestätigungsnachricht an den Discord Channel weiterleitet. 
+   
+   {% endtab %}
+
+{% tab title="Slack Notifications" %}
+
+1. Wähle im Menü von Grafana **Benachrichtigungskanäle** unter dem Glockensymbol aus. ![](../../.gitbook/assets/gra-noti.png) 
+2. Klicken Sie auf **Kanal hinzufügen**.
+3. Fügen Sie dem Benachrichtigungskanal einen **-Namen** hinzu.
+4. Wählen Sie **Slack** aus der Typliste.
+5. Für Anweisungen zum Einrichten eines Slack's eingehenden Webhooks lesen Sie [diesen Abschnitt](https://api.slack.com/messaging/webhooks) ihrer Dokumentation.
+6. Geben Sie die Slack eingehende Webhook URL in das Feld **URL** ein.
+7. Klicke **Test**senden und schicke eine Bestätigungsnachricht an den Slack-Kanal. 
+   
+   {% endtab %}
+   
+   
+   
+   {% endtabs %}
+
+{% hint style="success" %}
+
+🎉 Glückwunsch zum Einrichten Ihres Validators! Du bist gut auf eth2.0 zu gehen.
+
+Haben Sie unsere Anleitung für nützlich erachtet? Lassen Sie es uns mit einem Tipp wissen und wir werden es ständig aktualisieren.
+
+Nutze [cointr.ee um unsere Adressen ](https://cointr.ee/coincashew)zu finden. 🙌 
+
+Jedes Feedback und alle Pull-Requests sehr zu schätzen. 😃 
+
+Hang aus und chatte mit anderen Stakern im Telegramm @ [https://t.me/coincashew](https://t.me/coincashew)🌛 
+
+{% endhint %}
+
+
+
+## 🧙♂ 11. Prysm aktualisieren
+
+Starten Sie die Leuchtfeuerkette und den Validator gemäß den normalen Betriebsprozeduren neu.
+
+{% tabs %}
+
+
+
+{% tab title="Systemd - Automated" %}
+
+
+```text
+sudo systemctl reload-or-restart beacon-chain
+sudo systemctl reload-or-restart validator
+```
+
+
+{% endtab %}
+
+{% tab title="CLI - Manual" %}
+
+
+```bash
+#Steuere C, um sowohl deine Bake Kette als auch den Validator zu beenden. 
+#Drücke Pfeil nach oben und gib zum Neustart ein.
+```
+
+
+{% endtab %}
+
+
+
+{% endtabs %}
+
+
+
+## 🧩 12. Referenzmaterial
+
+Würden Sie die harte Arbeit der feinen Leute an den folgenden Links, die als Grundlage für die Erstellung dieses Leitfadens dienten.
+
+{% embed url="https://discord.gg/KSA7rPr" %}
+
+{% embed url="https://launchpad.ethereum.org/" caption="" %}
+
+{% embed url="https://prylabs.net/participate" %}
+
+{% embed url="https://docs.prylabs.network/docs/getting-started/" %}
+
+
+
+## 🎉 13. Bonus-Links
+
+
+
+### :Kastani: CoinCashew Anleitungen für andere ETH2-Kunden
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-lighthouse.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-nimbus.md" %}
+
+{% page-ref page="guide-how-to-stake-on-eth2-with-lodestar.md" %}
+
+
+
+### 🧱 ETH2 Block-Entdecker
+
+{% embed url="https://beaconcha.in" caption="" %}
+
+{% embed url="https://beaconscan.com" caption="" %}
+
+
+
+### 🗒 Letzte Eth2 Info
+
+{% embed url="https://www.reddit.com/r/ethstaker" caption="" %}
+
+{% embed url="https://blog.ethereum.org" caption="" %}
+
+{% embed url="http://invite.gg/ethstaker" caption="" %}
+
+{% embed url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
+
+
+
+## 🔥 14. Zusätzliche nützliche Tipps
+
+
+
+### 🛑 14.1 Freiwillig beenden einen Validator
+
+{% hint style="info" %}
+
+Verwenden Sie diesen Befehl, um Ihre Absichten zu signalisieren, um die Validierung mit Ihrem Validator zu beenden. Das bedeutet, dass Sie nicht mehr mit Ihrem Validator spielen wollen und Ihren Knoten ausschalten möchten.
+
+* Das freiwillige Ausscheiden benötigt mindestens 2048 Epochen \(oder ~9Tage\). Es gibt eine Warteschlange zum Beenden und eine Verzögerung, bevor Ihr Validator endgültig beendet wird.
+* Sobald ein Validator in Phase 0 beendet ist, ist dies nicht umkehrbar und Sie können die Validierung nicht mehr neu starten.
+* Ihr Guthaben ist erst nach der Auszahlung in Phase 1.5 oder später verfügbar.
+* Nachdem Ihr Validator die Queue verlassen hat und wirklich beendet ist, ist es sicher, Ihren Leuchtsignalknoten und den Validator auszuschalten. 
+  
+  {% endhint %}
+
+
+
+```bash
+$HOME/prysm/prysm.sh Validator-Konten freiwillig beenden
+```
+
+
+
+
+### 🔐 14.2 Überprüfen Sie Ihre mnemonische Phrase
+
+Mit Hilfe des eth2deposit-cli Tools stellen Sie sicher, dass Sie die gleichen eth2-Schlüsselpaare regenerieren können, indem Sie Ihre `validator_keys` wiederherstellen 
+
+
+
+```bash
+./depositing-mnemonic --chain mainnet
+```
+
+
+{% hint style="info" %}
+
+Wenn der **Pubkey** identisch ist, bedeutet dies Ihre **Keystore-Datei** die Sie korrekt Ihre mnemonische Phrase überprüft haben. Andere Felder werden durch Salzen anders sein. 
+
+{% endhint %}
+
+
+
+### 🤖 14.3 Zusätzliche Validatoren hinzufügen
+
+Mit dem eth2deposit-cli Tool können Sie weitere Validatoren hinzufügen, indem Sie eine neue Einlagendatei und `validator_keys` erstellen
+
+Zum Beispiel, wenn wir ursprünglich 3 Validatoren erstellt haben, aber jetzt 5 weitere Validatoren hinzufügen möchten, können wir den folgenden Befehl verwenden.
+
+
+
+```bash
+./depositing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+```
+
+
+Vervollständige die Schritte zum Hochladen der `deposit_data-#########.json` auf die Startseite.
+
