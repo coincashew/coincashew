@@ -1,40 +1,77 @@
-# مواد القراءة الخارجية
+---
+description: >-
+  منصة عالمية مفتوحة المصدر للتطبيقات اللامركزية. في إيثيريوم، يمكنك كتابة التعليمات البرمجية التي تتحكم بالقيمة الرقمية، وتعمل بالضبط كما هو مبرمج، ويمكن الوصول إليها في أي مكان في العالم.
+---
 
-## 🧬 إيثيريوم 2.0 \(Serenity\) أساسيات
+# Ethereum: ETH
 
-{% تضمين url="https://ethos.dev/beacon-chain/" %}
+## ![](../../.gitbook/assets/eth.png) بيانات عامة
 
-{% تضمين url="https://github.com/ethereum/eth2.0-specs" %}
+| الموقع        | العنوان                                                                                                |
+|:------------- |:------------------------------------------------------------------------------------------------------ |
+| الموقع        | [https://www.ethereum.org/](https://www.ethereum.org/)                                                 |
+| الكود المصدري | [https://github.com/ethereum](https://github.com/ethereum)                                             |
+| ورق بيضاء     | [https://github.com/ethereum/wiki/wiki/White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper) |
 
-{% ضم url="https://medalla.launchpad.ethereum.org/faq" %}
+## 🙋 وسائل التواصل الاجتماعي والمجتمع
 
-{% ضم url="https://notes.ethereum.org/@serenity/handbook" %}
+| المجتمع           | رابط                                                                           |
+|:----------------- |:------------------------------------------------------------------------------ |
+| 🐦 تويتر           | [https://twitter.com/ethereum](https://twitter.com/ethereum)                   |
+| ريديت             | [https://reddit.com/r/ethereum](https://reddit.com/r/ethereum)                 |
+| المنتديات الرسمية | [https://forum.ethereum.org//](https://forum.ethereum.org/)                    |
+| Gitter            | [https://gitter.im/orgs/ethereum/rooms](https://gitter.im/orgs/ethereum/rooms) |
 
-{% تضمين url="https://www.adiasg.me/2020/03/31/casper-ffg-explainer.html" %}
+## 🔃 كتلة مستكشفي
 
-{% تضمين url="https://hackmd.io/@benjaminion/eth2\_info" %}
+| الموقع                                            |
+|:------------------------------------------------- |
+| [Etherscan.io](https://etherscan.io/)             |
+| [Blockchair.com](https://blockchair.com/ethereum) |
+| [Ethplorer.io](https://ethplorer.io/)             |
+| [Etherchain.org](https://etherchain.org/)         |
+| [منارة](https://beaconcha.in/)                    |
 
-{% مضمنة url="https://benjaminion.xyz/eth2-annotated-spec/" %}
+## 📊 مخططات وتسعير
 
-{% ضم url="https://notes.ethereum.org/@vbuterin/rkhCgQteN" %}
+| الموقع        | رابط                                                                                                 |
+|:------------- |:---------------------------------------------------------------------------------------------------- |
+| CoinPaprika   | [https://coinpaprika.com/coin/eth-ethereum/](https://coinpaprika.com/coin/eth-ethereum/)             |
+| CoinMarketCap | [https://coinmarketcap.com/currencies/ethereum/](https://coinmarketcap.com/currencies/ethereum/)     |
+| كوينجيكو      | [https://www.coingecko.com/en/coins/ethereum](https://www.coingecko.com/en/coins/ethereum)           |
+| LiveCoinWatch | [https://www.livecoinwatch.com/price/Ethereum-ETH](https://www.livecoinwatch.com/price/Ethereum-ETH) |
 
-## 🚀 مصفقي ستاك: مقدمي العروض والمحتجزين
+## :money_حقيبة: محافظ
 
-{% hint style="info" %}
-المصادقون افتراضيون ويتم تنشيطهم من قبل المصانع. في PoW، يشتري المستخدمون الأجهزة ليصبحوا تعدين. في إيثيريوم 2.0، يهمك المستخدمون ETH لتفعيل التحققات والتحكم فيها. -- [**ethos.dev**](https://ethos.dev/beacon-chain/)\*\*\*\*
-{% endhint %}
+{% صفحة - ref صفحة ="../../wallets/desktop-wallets/mycrypto-ethereum.md" %}
 
-{% مضمنة url="https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-bepre-staking-94df41701487" %}
+{% صفحة-ref صفحة="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
-{% تضمين url="https://ethos.dev/beacon-chain/\#regis-penalties" %}
+{% صفحة - ref صفحة ="../../wallets/Mobile-wallets/exodus-multichain-assets.md" %}
 
-{% تضمين url="https://ethereumprice.org/eth-2-calculator/" %}
+{% صفحة - ref صفحة ="../../wallets/Mobile-wallets/coinomi-multichain-assets.md" %}
 
-{% تضمين url="https://www.attestant.io/posts/evaluating-staking-services/" %}
+{% صفحة-ref صفحة="../../wallets/desktop-wallets/atomic-multicurrency.md" %}
 
-## 👩💻 دورات التطوير
+{% صفحة-ref صفحة="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
 
-{% تضمين url="https://cryptozombies.io/en/course" %}
+{% صفحة-ref صفحة="../../wallets/hardware-wallets/trezor.io-wallet/" %}
 
-{% تضمين url="https://cryptoeconomics.study/" %}
+{% صفحة - ref صفحة ="../../wallets/hardware-wallets/keepkey-wallet/" %}
+
+{% صفحة-ref صفحة="../../wallets/Mobile-wallets/argent-ethereum.md" %}
+
+{% صفحة - ref صفحة="../../wallets/Mobile-wallets/status-ethereum.md" %}
+
+{% صفحة-ref صفحة="../../wallets/Mobile-wallets/pillar-ethereum-btc.md" %}
+
+{% صفحة-ref صفحة="./" %}
+
+{% صفحة - ref صفحة ="../../wallets/Mobile-wallets/enjin-متعدد العملات.md" %}
+
+{% صفحة-ref صفحة="../../wallets/Mobile-wallets/trustwallet-متعدد العملات.md" %}
+
+{% صفحة - ref صفحة ="../../wallets/Mobile-wallets/guarda-multichain-assets.md" %}
+
+
 
