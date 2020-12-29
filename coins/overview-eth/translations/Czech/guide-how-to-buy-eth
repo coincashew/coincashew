@@ -1,0 +1,18 @@
+# Průvodce: Jak koupit ETH
+
+## 🔥 1. Získejte nějaké peníze do krypto
+
+{% strana-ref page="../../exchanges/guide-where-to-get-crypto.md" %}
+
+## 💱 2. Převést na směnu
+
+| Stránka                                                             | Pairs             | Poloha                 | Vyžaduje se KYC? |
+|:------------------------------------------------------------------- |:----------------- |:---------------------- |:---------------- |
+| [Binance](https://www.binance.com/en/trade/ETH_BTC?ref=)            | BTC-BNB-BUSD-USDT | Globální               | 2<unk> /den.     |
+| [CoinEx](https://www.coinex.com/exchange?currency=btc&dest=eth)     | BCH-BTC-USDT      | Hongkong               | 10,000USD/den.   |
+| [Kucoin](https://www.kucoin.com/#/trade/ETH-USDT?rcode=)            | BTC-USDT          | Seychelles             | 2<unk> /den.     |
+| [Huobi](https://www.hbg.com/en-us/exchange/?s=xtz_btc&invite_code=) | BTC-ETH-USDT      | Singapur               | Ne.              |
+| [Bitfinex](https://www.bitfinex.com/t/ETH:UST)                      | BTC-USD           | Hongkong               | Ne.              |
+| [Barevné hlinky](https://pro.coinbase.com/trade/ETH-USDC)           | BTC-USD           | Spojené státy americké | Ano              |
+| [Kraken](https://www.kraken.com/)                                   | USD-EUR-BTC-ETH   | Spojené státy americké | Ano              |
+
