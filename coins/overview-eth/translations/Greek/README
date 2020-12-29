@@ -1,77 +1,40 @@
----
-description: >-
-  Μια καθολική, ανοικτού κώδικα πλατφόρμα αποκεντρωμένων εφαρμογών. Στο Ethereum, μπορείτε να γράψετε κώδικα που ελέγχει την ψηφιακή αξία, τρέχει ακριβώς όπως προγραμματίστηκε, και είναι προσβάσιμο οπουδήποτε στον κόσμο.
----
+# Εξωτερικό Υλικό Ανάγνωσης
 
-# Ethereum: ETH
+## 🧬 Ethereum 2.0 \(Serenity\) Fundamentals
 
-## ![](../../.gitbook/assets/eth.png) Γενικά Δεδομένα
+{% embed url="https://ethos.dev/beacon-chain/" %}
 
-| Ιστοσελίδα      | Τίτλος                                                                                                 |
-|:--------------- |:------------------------------------------------------------------------------------------------------ |
-| Ιστοσελίδα      | [https://www.ethereum.org/](https://www.ethereum.org/)                                                 |
-| Πηγαίος Κωδικός | [https://github.com/ethereum](https://github.com/ethereum)                                             |
-| Λευκή Βίβλος    | [https://github.com/ethereum/wiki/wiki/White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper) |
+{% embed url="https://github.com/ethereum/eth2.0-specs" %}
 
-## 🙋 Κοινωνικά ΜΜΕ και Κοινότητα
+{% embed url="https://medalla.launchpad.ethereum.org/faq" %}
 
-| Κοινότητα      | Σύνδεσμος                                                                      |
-|:-------------- |:------------------------------------------------------------------------------ |
-| 🐦 Twitter      | [https://twitter.com/ethereum](https://twitter.com/ethereum)                   |
-| Reddit         | [https://reddit.com/r/ethereum](https://reddit.com/r/ethereum)                 |
-| Επίσημα Φόρουμ | [https://forum.ethereum.org/](https://forum.ethereum.org/)                     |
-| Gitter         | [https://gitter.im/orgs/ethereum/rooms](https://gitter.im/orgs/ethereum/rooms) |
+{% embed url="https://notes.ethereum.org/@serenity/handbook" %}
 
-## 🔃 Εξερευνητές Μπλοκ
+{% embed url="https://www.adiasg.me/2020/03/31/casper-ffg-explainer.html" %}
 
-| Ιστοσελίδα                                        |
-|:------------------------------------------------- |
-| [Etherscan.io](https://etherscan.io/)             |
-| [Blockchair.com](https://blockchair.com/ethereum) |
-| [Ethplorer.io](https://ethplorer.io/)             |
-| [Etherchain.org](https://etherchain.org/)         |
-| [beaconcha.in](https://beaconcha.in/)             |
+{% embed url="https://hackmd.io/@benjaminion/eth2\_info" %}
 
-## 📊 Γραφήματα και Τιμολόγηση
+{% embed url="https://benjaminion.xyz/eth2-annotated-spec/" %}
 
-| Ιστοσελίδα    | Σύνδεσμος                                                                                           |
-|:------------- |:--------------------------------------------------------------------------------------------------- |
-| CoinPaprika   | [https://coinpaprika.com/coin/eth-ethereum/](https://coinpaprika.com/coin/eth-ethereum/)            |
-| CoinMarketCap | [https://coinmarketcap.com/currencies/ethereum/](https://coinmarketcap.com/currencies/ethereum/)    |
-| CoinGecko     | [https://www.coingecko.com/el/coins/ethereum](https://www.coingecko.com/en/coins/ethereum)          |
-| LiveCoinWatch | [https://www.livecoinwatch.com/τιμή/Ethereum-ETH](https://www.livecoinwatch.com/price/Ethereum-ETH) |
+{% embed url="https://notes.ethereum.org/@vbuterin/rkhCgQteN" %}
 
-## 💰 Πορτοφόλια
+## 🚀 Staking Validators: Proposers and Attesters
 
-{% page-ref page="../../wallets/desktop-wallets/mycrypto-ethereum.md" %}
+{% hint style="info" %}
+Οι επικυρωτές είναι εικονικές και ενεργοποιούνται από στοιχήματα. Στο PoW, οι χρήστες αγοράζουν υλικό για να γίνουν ανθρακωρύχοι. Στο Ethereum 2.0, οι χρήστες στοιχηματίζουν ETH για να ενεργοποιήσουν και να ελέγξουν τους επικυρωτές. -- [**ethos.dev**](https://ethos.dev/beacon-chain/)\*\*\*\*
+{% endhint %}
 
-{% page- ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
+{% embed url="https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487" %}
 
-{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+{% embed url="https://ethos.dev/beacon-chain/\#rewards-penalties" %}
 
-{% page- ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+{% embed url="https://ethereumprice.org/eth-2-calculator/" %}
 
-{% page- ref page="../../wallets/desktop-wallets/atomic-multi-currency.md" %}
+{% embed url="https://www.attestant.io/posts/evaluating-staking-services/" %}
 
-{% page- ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
+## 👩💻 Μαθήματα Ανάπτυξης
 
-{% page- ref page="../../wallets/hardware-wallets/trezor.io- wallet/" %}
+{% embed url="https://cryptozombies.io/en/course" %}
 
-{% page- ref page="../../wallets/hardware- wallets/keepkey-wallet/" %}
-
-{% page- ref page="../../wallets/mobile-wallets/argent- ethereum.md" %}
-
-{% page- ref page="../../wallets/mobile-wallets/status-ethereum.md" %}
-
-{% page- ref page="../../wallets/mobile-wallets/pillar- ethereum-btc.md" %}
-
-{% page- ref page="./" %}
-
-{% page- ref page="../../wallets/mobile-wallets/enjin-multi-currency.md" %}
-
-{% page- ref page="../../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
-
-{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
-
-
+{% embed url="https://cryptoeconomics.study/" %}
 
