@@ -1,0 +1,40 @@
+# Externt läsmaterial
+
+## 🧬 Ethereum 2.0 \(Serenity\) Grunderna
+
+{% inbäddad url="https://ethos.dev/beacon-chain/" %}
+
+{% bädda in url="https://github.com/ethereum/eth2.0-specs" %}
+
+{% inbäddad url="https://medalla.launchpad.ethereum.org/faq" %}
+
+{% inbäddad url="https://notes.ethereum.org/@serenity/handbook" %}
+
+{% inbäddad url="https://www.adiasg.me/2020/03/31/casper-ffg-explainer.html" %}
+
+{% inbäddad url="https://hackmd.io/@benjaminion/eth2\_info" %}
+
+{% inbäddad url="https://benjaminion.xyz/eth2-annotated-spec/" %}
+
+{% inbäddad url="https://notes.ethereum.org/@vbuterin/rkhCgQteN" %}
+
+## 🚀 Staking Validators: Förslag och Attesters
+
+{% hint style="info" %}
+Validators är virtuella och aktiveras av stakers. I PoW köper användare hårdvara för att bli gruvarbetare. I Ethereum 2.0 satsar användare ETH för att aktivera och styra validatorer. -- [**ethos.dev**](https://ethos.dev/beacon-chain/)\*\*\*\*
+{% endhint %}
+
+{% inbäddad url="https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487" %}
+
+{% inbäddad url="https://ethos.dev/beacon-chain/\#rewards-penalties" %}
+
+{% inbäddad url="https://ethereumprice.org/eth-2-miniräknare/" %}
+
+{% inbäddad url="https://www.attestant.io/posts/evaluating-staking-services/" %}
+
+## 👩💻 Utvecklingskurser
+
+{% inbäddad url="https://cryptozombies.io/course" %}
+
+{% inbäddad url="https://cryptoeconomics.study/" %}
+
