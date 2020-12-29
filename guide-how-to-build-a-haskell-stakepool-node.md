@@ -435,9 +435,155 @@ Ctrl+C
 
 先程のスクリプトだけでは、ターミナル画面を閉じるとノードが終了してしまうので、スクリプトをサービスとして登録し、自動起動設定と別セッションで起動するように設定しましょう
 
-{% hint style="info" %}
-[自動起動とバックグラウンド起動設定手順](guide-how-to-build-a-haskell-stakepool-node.md#186-systemdsbisudeno)
+#### 🍰 ステークプールにsystemdを使用するメリット
+
+1. メンテナンスや停電など、自動的にコンピュータが再起動したときステークプールを自動起動します。
+2. クラッシュしたステークプールプロセスを自動的に再起動します。
+3. ステークプールの稼働時間とパフォーマンスをレベルアップさせます。
+
+#### 🛠 セットアップ手順
+
+始める前にステークプールが停止しているか確認してください。
+
+```bash
+killall -s 2 cardano-node
+```
+
+以下のコードを実行して、ユニットファイルを作成します。
+
+{% tabs %}
+{% tab title="ブロックプロデューサーノード" %}
+```bash
+cat > $NODE_HOME/cardano-node.service << EOF 
+# The Cardano node service (part of systemd)
+# file: /etc/systemd/system/cardano-node.service 
+
+[Unit]
+Description     = Cardano node service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+Type            = forking
+WorkingDirectory= $NODE_HOME
+ExecStart       = /usr/bin/tmux new -d -s cnode
+ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startBlockProducingNode.sh Enter 
+KillSignal=SIGINT
+RestartKillSignal=SIGINT
+TimeoutStopSec=2
+LimitNOFILE=32768
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy	= multi-user.target
+EOF
+```
+{% endtab %}
+
+{% tab title="リレーノード1" %}
+```bash
+cat > $NODE_HOME/cardano-node.service << EOF 
+# The Cardano node service (part of systemd)
+# file: /etc/systemd/system/cardano-node.service 
+
+[Unit]
+Description     = Cardano node service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+Type            = forking
+WorkingDirectory= $NODE_HOME
+ExecStart       = /usr/bin/tmux new -d -s cnode
+ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startRelayNode1.sh Enter 
+KillSignal=SIGINT
+RestartKillSignal=SIGINT
+TimeoutStopSec=2
+LimitNOFILE=32768
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy	= multi-user.target
+EOF
+```
+{% endtab %}
+{% endtabs %}
+
+`/etc/systemd/system`にユニットファイルをコピーして、権限を付与します。
+
+```bash
+sudo cp $NODE_HOME/cardano-node.service /etc/systemd/system/cardano-node.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/cardano-node.service
+```
+
+次のコマンドを実行して、OS起動時にサービスの自動起動を有効にします。
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable cardano-node
+sudo systemctl start cardano-node
+```
+
+{% hint style="success" %}
+以下は、systemdを有効活用するためのコマンドです。
 {% endhint %}
+
+\*\*\*\*⛓ **システム起動後に、ログモニターを表示します**
+
+```text
+tmux a -t cnode
+```
+
+**バックグラウンド起動中のセッション(別画面)を確認する**
+
+```text
+tmux ls
+```
+
+#### 🚧 セッションをバックグラウンド実行に切り替え、コマンドラインを表示します。
+
+```text
+press Ctrl + b を押した後、すぐに d (デタッチ)
+```
+
+#### ✅ ノードが実行されているか確認します。
+
+```text
+sudo systemctl is-active cardano-node
+```
+
+#### 🔎 ノードのステータスを表示します。
+
+```text
+sudo systemctl status cardano-node
+```
+
+#### 🔄 ノードサービスを再起動します。
+
+```text
+sudo systemctl reload-or-restart cardano-node
+```
+
+#### 🛑 ノードサービスを停止します。
+
+```text
+sudo systemctl stop cardano-node
+```
+
+#### 🗄 ログのフィルタリング
+
+```bash
+journalctl --unit=cardano-node --since=yesterday
+journalctl --unit=cardano-node --since=today
+journalctl --unit=cardano-node --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
+```
 
 
 
@@ -446,9 +592,65 @@ Ctrl+C
 現在のcardano-nodeはログが流れる画面で、何が表示されているのかよくわかりません。  
 それを視覚的に確認できるツールが**gLiveView**です。
 
+
 {% hint style="info" %}
-[gLiveViewストール手順](guide-how-to-build-a-haskell-stakepool-node.md#1813-gliveview-ndosuttasumonit)
+gLiveViewは重要なノードステータス情報を表示し、systemdサービスとうまく連携します。1.23.0から正式にLiveViewが削除されgLiveViewは代替ツールとして利用できます。このツールを作成した [Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview) の功績によるものです。
 {% endhint %}
+
+Guild LiveViewをインストールします。
+
+```bash
+cd $NODE_HOME/scripts
+sudo apt install tcptraceroute -y
+curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
+curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
+chmod 755 gLiveView.sh
+```
+
+**env** ファイルによってファイル構成を指定できます。  
+該当箇所の　**#**　を削除し、ご自身の環境に合わせたパスに書き換えます
+```bash
+nano env
+```
+
+```bash
+CCLI="/usr/local/bin/cardano-cli"
+CNODE_HOME=/home/<user_name>/cardano-my-node
+CNODE_PORT=<ノードのポート番号>
+CONFIG="${CNODE_HOME}/mainnet-config.json"
+SOCKET="${CNODE_HOME}/db/socket"
+TOPOLOGY="${CNODE_HOME}/mainnet-topology.json"
+LOG_DIR="${CNODE_HOME}/logs"
+DB_DIR="${CNODE_HOME}/db"
+EKG_PORT=12788
+```
+
+bcインストール
+```bash
+sudo apt-get install bc
+```
+
+
+Run Guild Liveview.
+
+```text
+./gLiveView.sh
+```
+{% hint style="info" %}
+**このツールを立ち上げてもノードは起動しません。ノードは別途起動しておく必要があります**  
+リレー／BPは自動判別されます。  
+リレーノードでは基本情報に加え、トポロジー接続状況を確認できます。  
+BPノードでは基本情報に加え、KES有効期限、ブロック生成状況を確認できます。  
+
+[p]リレーノード用リモートピア分析について
+ピアにpingを送信する際ICMPpingを使用します。リモートピアのファイアウォールがICMPトラフィックを受け付ける場合のみ機能します。
+{% endhint %}
+
+![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
+
+詳しくは開発元のドキュメントを参照してください [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
+
+
 
 ![](https://gblobscdn.gitbook.com/assets%2F-M5KYnWuA6dS_nKYsmfV%2F-MGldUPmEkJqK1vDLzOT%2F-MGlehnIvBsYqfb4KGvG%2Fgliveview-core.png?alt=media&token=9954ab81-26ae-4e7a-bfdf-d3b73c82d1ec)
 
@@ -2439,157 +2641,7 @@ rsync -avzhe “ssh -p <SSH-PORT>” <PATH TO LOCAL PC DESTINATION> <USERNAME>@<
 >
 > `rsync -avzhe "ssh -p 12345" ./node.cert myusername@6.1.2.3:/home/myusername/cardano-my-node/node.cert`
 
-### 🏃♂ 18.6 「systemd」サービスでの自動起動設定
 
-#### 🍰 ステークプールにsystemdを使用するメリット
-
-1. メンテナンスや停電など、自動的にコンピュータが再起動したときステークプールを自動起動します。
-2. クラッシュしたステークプールプロセスを自動的に再起動します。
-3. ステークプールの稼働時間とパフォーマンスをレベルアップさせます。
-
-#### 🛠 セットアップ手順
-
-始める前にステークプールが停止しているか確認してください。
-
-```bash
-killall -s 2 cardano-node
-```
-
-以下のコードを実行して、ユニットファイルを作成します。
-
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-cat > $NODE_HOME/cardano-node.service << EOF 
-# The Cardano node service (part of systemd)
-# file: /etc/systemd/system/cardano-node.service 
-
-[Unit]
-Description     = Cardano node service
-Wants           = network-online.target
-After           = network-online.target 
-
-[Service]
-User            = $(whoami)
-Type            = forking
-WorkingDirectory= $NODE_HOME
-ExecStart       = /usr/bin/tmux new -d -s cnode
-ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startBlockProducingNode.sh Enter 
-KillSignal=SIGINT
-RestartKillSignal=SIGINT
-TimeoutStopSec=2
-LimitNOFILE=32768
-Restart=always
-RestartSec=5
-
-[Install]
-WantedBy	= multi-user.target
-EOF
-```
-{% endtab %}
-
-{% tab title="リレーノード1" %}
-```bash
-cat > $NODE_HOME/cardano-node.service << EOF 
-# The Cardano node service (part of systemd)
-# file: /etc/systemd/system/cardano-node.service 
-
-[Unit]
-Description     = Cardano node service
-Wants           = network-online.target
-After           = network-online.target 
-
-[Service]
-User            = $(whoami)
-Type            = forking
-WorkingDirectory= $NODE_HOME
-ExecStart       = /usr/bin/tmux new -d -s cnode
-ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startRelayNode1.sh Enter 
-KillSignal=SIGINT
-RestartKillSignal=SIGINT
-TimeoutStopSec=2
-LimitNOFILE=32768
-Restart=always
-RestartSec=5
-
-[Install]
-WantedBy	= multi-user.target
-EOF
-```
-{% endtab %}
-{% endtabs %}
-
-`/etc/systemd/system`にユニットファイルをコピーして、権限を付与します。
-
-```bash
-sudo cp $NODE_HOME/cardano-node.service /etc/systemd/system/cardano-node.service
-```
-
-```bash
-sudo chmod 644 /etc/systemd/system/cardano-node.service
-```
-
-次のコマンドを実行して、OS起動時にサービスの自動起動を有効にします。
-
-```text
-sudo systemctl daemon-reload
-sudo systemctl enable cardano-node
-sudo systemctl start cardano-node
-```
-
-{% hint style="success" %}
-以下は、systemdを有効活用するためのコマンドです。
-{% endhint %}
-
-\*\*\*\*⛓ **システム起動後に、ログモニターを表示します**
-
-```text
-tmux a -t cnode
-```
-
-**バックグラウンド起動中のセッション(別画面)を確認する**
-
-```text
-tmux ls
-```
-
-#### 🚧 セッションをバックグラウンド実行に切り替え、コマンドラインを表示します。
-
-```text
-press Ctrl + b を押した後、すぐに d (デタッチ)
-```
-
-#### ✅ ノードが実行されているか確認します。
-
-```text
-sudo systemctl is-active cardano-node
-```
-
-#### 🔎 ノードのステータスを表示します。
-
-```text
-sudo systemctl status cardano-node
-```
-
-#### 🔄 ノードサービスを再起動します。
-
-```text
-sudo systemctl reload-or-restart cardano-node
-```
-
-#### 🛑 ノードサービスを停止します。
-
-```text
-sudo systemctl stop cardano-node
-```
-
-#### 🗄 ログのフィルタリング
-
-```bash
-journalctl --unit=cardano-node --since=yesterday
-journalctl --unit=cardano-node --since=today
-journalctl --unit=cardano-node --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
-```
 
 ### ✅ 18.7 ITNキーでステークプールティッカーを確認する。
 
@@ -2822,11 +2874,198 @@ cardano-cli query utxo \
 {% endhint %}
 
 
-### 🔓 18.11 報酬を請求する
+### 🍰 18.11 報酬を請求する
+
+ステークプールの報酬を請求する例を見ていきます。
 
 {% hint style="info" %}
-絶賛翻訳中！！
+報酬は `stake.addr` アドレスに蓄積されていきます。
 {% endhint %}
+
+まずはじめにブロックチェーンの先頭 **tip** を見つけて **invalid-hereafter** パラメーターを適切に設定します、。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+echo Current Slot: $currentSlot
+```
+{% endtab %}
+{% endtabs %}
+
+ラブレースで送る金額を設定します。 ✨ **1 ADA** = **1,000,000 lovelaces.**と覚えましょう
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+rewardBalance=$(cardano-cli query stake-address-info \
+    --mainnet \
+    --allegra-era \
+    --address $(cat stake.addr) | jq -r ".[0].rewardAccountBalance")
+echo rewardBalance: $rewardBalance
+```
+{% endtab %}
+{% endtabs %}
+
+報酬の移動先となるアドレスを設定します。このアドレスには取引手数料を支払うための残高が必要です。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+destinationAddress=$(cat payment.addr)
+echo destinationAddress: $destinationAddress
+```
+{% endtab %}
+{% endtabs %}
+
+あなたの payment.addr の残高, utxos をみつけて、引き出し文字を作成します。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cardano-cli query utxo \
+    --address $(cat payment.addr) \
+    --allegra-era \
+    --mainnet > fullUtxo.out
+
+tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
+
+cat balance.out
+
+tx_in=""
+total_balance=0
+while read -r utxo; do
+    in_addr=$(awk '{ print $1 }' <<< "${utxo}")
+    idx=$(awk '{ print $2 }' <<< "${utxo}")
+    utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
+    total_balance=$((${total_balance}+${utxo_balance}))
+    echo TxHash: ${in_addr}#${idx}
+    echo ADA: ${utxo_balance}
+    tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
+done < balance.out
+txcnt=$(cat balance.out | wc -l)
+echo Total ADA balance: ${total_balance}
+echo Number of UTXOs: ${txcnt}
+
+withdrawalString="$(cat stake.addr)+${rewardBalance}"
+```
+{% endtab %}
+{% endtabs %}
+
+build-raw transactionコマンドを実行します。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cardano-cli transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+0 \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --fee 0 \
+    --withdrawal ${withdrawalString} \
+    --allegra-era \
+    --out-file tx.tmp
+```
+{% endtab %}
+{% endtabs %}
+
+現在の最低料金を計算します。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+fee=$(cardano-cli transaction calculate-min-fee \
+    --tx-body-file tx.tmp \
+    --tx-in-count ${txcnt} \
+    --tx-out-count 1 \
+    --mainnet \
+    --witness-count 2 \
+    --byron-witness-count 0 \
+    --protocol-params-file params.json | awk '{ print $1 }')
+echo fee: $fee
+```
+{% endtab %}
+{% endtabs %}
+
+変更出力を計算します。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+txOut=$((${total_balance}-${fee}+${rewardBalance}))
+echo Change Output: ${txOut}
+```
+{% endtab %}
+{% endtabs %}
+
+トランザクションをビルドします。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cardano-cli transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+${txOut} \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --fee ${fee} \
+    --withdrawal ${withdrawalString} \
+    --allegra-era \
+    --out-file tx.raw
+```
+{% endtab %}
+{% endtabs %}
+
+**tx.raw** を **コールド環境**にコピーします。
+
+支払いとステークの秘密鍵の両方を使用していトランザクションに署名します。
+
+{% tabs %}
+{% tab title="air-gapped offline machine" %}
+```bash
+cardano-cli transaction sign \
+    --tx-body-file tx.raw \
+    --signing-key-file payment.skey \
+    --signing-key-file stake.skey \
+    --mainnet \
+    --out-file tx.signed
+```
+{% endtab %}
+{% endtabs %}
+
+**tx.signed** を **ホット環境**にコピーします
+
+署名されたトランザクションを送信します。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cardano-cli transaction submit \
+    --tx-file tx.signed \
+    --mainnet
+```
+{% endtab %}
+{% endtabs %}
+
+資金が到着したか確認します。
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cardano-cli query utxo \
+    --address ${destinationAddress} \
+    --allegra-era \
+    --mainnet
+```
+{% endtab %}
+{% endtabs %}
+
+更新されたラブレースの残高と報酬を表示します。
+
+```text
+                           TxHash                                 TxIx        Lovelace
+----------------------------------------------------------------------------------------
+100322a39d02c2ead....  
+```
 
 
 ### 🕒 18.12 スロットリーダースケジュール - ブロック生成時期を確認する
@@ -2968,146 +3207,74 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 2020-10-01 00:19:55 ==> Leader for slot 161212, Cumulative epoch blocks: 3
 ```
 
-### 🕒 18.13 gLiveView ノードステータスモニター
-
-{% hint style="info" %}
-gLiveViewは重要なノードステータス情報を表示し、systemdサービスとうまく連携します。1.23.0から正式にLiveViewが削除されgLiveViewは代替ツールとして利用できます。このツールを作成した [Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview) の功績によるものです。
-{% endhint %}
-
-Guild LiveViewをインストールします。
-
-```bash
-cd $NODE_HOME/scripts
-sudo apt install tcptraceroute -y
-curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
-curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
-chmod 755 gLiveView.sh
-```
-
-**env** ファイルによってファイル構成を指定できます。  
-該当箇所の　**#**　を削除し、ご自身の環境に合わせたパスに書き換えます
-```bash
-nano env
-```
-
-```bash
-CCLI="/usr/local/bin/cardano-cli"
-CNODE_HOME=/home/<user_name>/cardano-my-node
-CNODE_PORT=<ノードのポート番号>
-CONFIG="${CNODE_HOME}/mainnet-config.json"
-SOCKET="${CNODE_HOME}/db/socket"
-TOPOLOGY="${CNODE_HOME}/mainnet-topology.json"
-LOG_DIR="${CNODE_HOME}/logs"
-DB_DIR="${CNODE_HOME}/db"
-EKG_PORT=12788
-```
-
-bcインストール
-```bash
-sudo apt-get install bc
-```
-
-
-Run Guild Liveview.
-
-```text
-./gLiveView.sh
-```
-{% hint style="info" %}
-**このツールを立ち上げてもノードは起動しません。ノードは別途起動しておく必要があります**  
-リレー／BPは自動判別されます。  
-リレーノードでは基本情報に加え、トポロジー接続状況を確認できます。  
-BPノードでは基本情報に加え、KES有効期限、ブロック生成状況を確認できます。  
-
-[p]リレーノード用リモートピア分析について
-ピアにpingを送信する際ICMPpingを使用します。リモートピアのファイアウォールがICMPトラフィックを受け付ける場合のみ機能します。
-{% endhint %}
-
-![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
-
-詳しくは開発元のドキュメントを参照してください [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
-
 
 ## 🌜 19. ステークプールを廃止する。
 
-エポックごとのスロットを出力します。
+現在のエポックを計算します。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="block producer node" %}
 ```bash
-epochLength=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.epochLength')
-echo epochLength: ${epochLength}
-```
-{% endtab %}
-{% endtabs %}
-
-現在のスロット番号を出力します。
-
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-slotNo=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
-echo slotNo: ${slotNo}
-```
-{% endtab %}
-{% endtabs %}
-
-スロット番号をepochLengthで割って、現在のエポックを計算します。
-
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-epoch=$(( $((${slotNo} / ${epochLength})) + 1))
+startTimeGenesis=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r .systemStart)
+startTimeSec=$(date --date=${startTimeGenesis} +%s)
+currentTimeSec=$(date -u +%s)
+epochLength=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r .epochLength)
+epoch=$(( (${currentTimeSec}-${startTimeSec}) / ${epochLength} ))
 echo current epoch: ${epoch}
 ```
 {% endtab %}
 {% endtabs %}
 
-eMaxを出力します。
+プールが引退できる最も早くて最も遅い引退エポックを見つけます。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="block producer node" %}
 ```bash
 eMax=$(cat $NODE_HOME/params.json | jq -r '.eMax')
 echo eMax: ${eMax}
+
+minRetirementEpoch=$(( ${epoch} + 1 ))
+maxRetirementEpoch=$(( ${epoch} + ${eMax} ))
+
+echo earliest epoch for retirement is: ${minRetirementEpoch}
+echo latest epoch for retirement is: ${maxRetirementEpoch}
 ```
 {% endtab %}
 {% endtabs %}
 
 {% hint style="info" %}
-\*\*\*\*🚧 **例**: エポックが39でeMaxが18の場合
+\*\*\*\*🚧 **例**: エポック39でeMax18の場合,
 
-* 最も早くリタイアできるエポック40 \( 現在のエポック  + 1\).
-* 通常のリタイアできるエポック \( eMax + 現在のエポック\). 
+* 最も早いポックは 40 \( 現在のエポック  + 1\).
+* 最も遅いエポックは 57 \( eMax + 現在のエポック\). 
 
-最も早くリタイアするやり方を記載しています。
+エポック40で一刻も早く引退したいと思っていることにしておきましょう。
 {% endhint %}
 
-登録解除証明書を作成して、 `pool.dereg.`の名前で保存します。
+登録解除証明書 `pool.dereg.`を作成し、「エポックを希望のリタイアメントエポック(通常は最も早いエポック)に更新する」として保存します。
 
 {% tabs %}
-{% tab title="エアギャップオフラインマシン" %}
+{% tab title="air-gapped offline machine" %}
 ```bash
 cardano-cli stake-pool deregistration-certificate \
 --cold-verification-key-file $HOME/cold-keys/node.vkey \
---epoch $((${epoch} + 1)) \
+--epoch <retirementEpoch> \
 --out-file pool.dereg
-echo pool will retire at end of epoch: $((${epoch} + 1))
 ```
 {% endtab %}
 {% endtabs %}
 
-**pool.dereg**をブロックプロデューサーへコピーします。
+**pool.dereg** を **ホット環境**にコピーします。
 
-残高と **UTXOs**を出力します。
+残高と **UTXOs**を見つけます。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="block producer node" %}
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mainnet \
-    --allegra-era > fullUtxo.out
+    --allegra-era \
+    --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -3131,30 +3298,27 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-build-rawトランザクションコマンドを実行します。
-
-{% hint style="info" %}
-**ttl**の値は、現在のスロット番号よりも大きくなければなりません。この例では現在のスロット番号＋10000を使用します。
-{% endhint %}
+build-raw transactionコマンドを実行します。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="block producer node" %}
 ```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --ttl $(( ${slotNo} + 10000)) \
+    --invalid-hereafter $(( ${slotNo} + 10000)) \
     --fee 0 \
     --certificate-file pool.dereg \
+    --allegra-era \
     --out-file tx.tmp
 ```
 {% endtab %}
 {% endtabs %}
 
-最低手数料を計算します。
+最低料金を計算します。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="block producer node" %}
 ```bash
 fee=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.tmp \
@@ -3169,10 +3333,10 @@ echo fee: $fee
 {% endtab %}
 {% endtabs %}
 
-計算結果を出力します。
+変更出力を計算します。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="block producer node" %}
 ```bash
 txOut=$((${total_balance}-${fee}))
 echo txOut: ${txOut}
@@ -3180,28 +3344,29 @@ echo txOut: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-トランザクションファイルを構築します。
+トランザクションをビルドします。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="block producer node" %}
 ```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${slotNo} + 10000)) \
+    --invalid-hereafter $(( ${slotNo} + 10000)) \
     --fee ${fee} \
     --certificate-file pool.dereg \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
 {% endtabs %}
 
-**tx.raw**をコールド環境へコピーします。
+**tx.raw** を **コールド環境**へコピーします。
 
-トランザクションに署名します。
+Sign the transaction. 
 
 {% tabs %}
-{% tab title="エアギャップオフラインマシン" %}
+{% tab title="air-gapped offline machine" %}
 ```bash
 cardano-cli transaction sign \
     --tx-body-file tx.raw \
@@ -3213,12 +3378,12 @@ cardano-cli transaction sign \
 {% endtab %}
 {% endtabs %}
 
-**tx.signed**をブロックプロデューサーにコピーします。
+**tx.signed** を **ホット環境**へコピーします
 
-トランザクションを送信します。
+トランザクションに署名します。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="block producer node" %}
 ```bash
 cardano-cli transaction submit \
     --tx-file tx.signed \
@@ -3228,15 +3393,15 @@ cardano-cli transaction submit \
 {% endtabs %}
 
 {% hint style="success" %}
-プールは、指定されたエポックの終わりに廃止されます。この例ではエポック40の終わりに廃止されます。
-
-もし気が変わってプールを続ける場合には、エポック40が終了する前に、新しい登録証明書を作成すれば、登録解除証明書が無効となります。
+プールは指定されたエポックの終了時にリタイアします。この例はエポック40の終わりにリタイアが発生します。  
+  
+もし心変わりがある場合は、エポック40が終了する前に新しい登録証明書を作成して送信できます。これにより登録解除証明書が無効になります。
 {% endhint %}
 
-リタイアエポック後、次のクエリでプールが正常に廃止されたことを確認出来ます。 廃止されている場合は、空の結果を表示します。
+リタイアエポックのあと、空の結果を返す次のクエリを使用して、プールが正常にリタイアされたことを確認できます。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="block producer node" %}
 ```bash
 cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
