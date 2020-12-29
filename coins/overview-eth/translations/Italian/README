@@ -1,40 +1,77 @@
-# Materiale Di Lettura Esterna
+---
+description: >-
+  Una piattaforma open source globale per applicazioni decentralizzate. Su Ethereum, è possibile scrivere codice che controlla il valore digitale, funziona esattamente come programmato, ed è accessibile ovunque nel mondo.
+---
 
-## 🧬 Ethereum 2.0 \(Serenity\) Fundamentals
+# Ethereum: ETH
 
-{% embed url="https://ethos.dev/beacon-chain/" %}
+## ![](../../.gitbook/assets/eth.png) Dati Generali
 
-{% embed url="https://github.com/ethereum/eth2.0-specs" %}
+| Sito            | Titolo                                                                                                 |
+|:--------------- |:------------------------------------------------------------------------------------------------------ |
+| Sito            | [https://www.ethereum.org/](https://www.ethereum.org/)                                                 |
+| Codice Sorgente | [https://github.com/ethereum](https://github.com/ethereum)                                             |
+| Whitepaper      | [https://github.com/ethereum/wiki/wiki/White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper) |
 
-{% embed url="https://medalla.launchpad.ethereum.org/faq" %}
+## 🙋 Social Media e Community
 
-{% embed url="https://notes.ethereum.org/@serenity/handbook" %}
+| Community       | Link                                                                           |
+|:--------------- |:------------------------------------------------------------------------------ |
+| 🐦 Twitter       | [https://twitter.com/ethereum](https://twitter.com/ethereum)                   |
+| Reddit          | [https://reddit.com/r/ethereum](https://reddit.com/r/ethereum)                 |
+| Forum Ufficiali | [https://forum.ethereum.org/](https://forum.ethereum.org/)                     |
+| Gitter          | [https://gitter.im/orgs/ethereum/rooms](https://gitter.im/orgs/ethereum/rooms) |
 
-{% embed url="https://www.adiasg.me/2020/03/31/casper-ffg-explainer.html" %}
+## 🔃 Esploratori
 
-{% embed url="https://hackmd.io/@benjaminion/eth2\_info" %}
+| Sito                                              |
+|:------------------------------------------------- |
+| [Etherscan.io](https://etherscan.io/)             |
+| [Blockchair.com](https://blockchair.com/ethereum) |
+| [Ethplorer.io](https://ethplorer.io/)             |
+| [Etherchain.org](https://etherchain.org/)         |
+| [beaconcha.in](https://beaconcha.in/)             |
 
-{% embed url="https://benjaminion.xyz/eth2-annotated-spec/" %}
+## 📊 Grafici e Prezzi
 
-{% embed url="https://notes.ethereum.org/@vbuterin/rkhCgQteN" %}
+| Sito          | Link                                                                                                 |
+|:------------- |:---------------------------------------------------------------------------------------------------- |
+| CoinPaprika   | [https://coinpaprika.com/coin/eth-ethereum/](https://coinpaprika.com/coin/eth-ethereum/)             |
+| CoinMarketCap | [https://coinmarketcap.com/currencies/ethereum/](https://coinmarketcap.com/currencies/ethereum/)     |
+| CoinGecko     | [https://www.coingecko.com/en/coins/ethereum](https://www.coingecko.com/en/coins/ethereum)           |
+| LiveCoinWatch | [https://www.livecoinwatch.com/price/Ethereum-ETH](https://www.livecoinwatch.com/price/Ethereum-ETH) |
 
-## 🚀 Validatori di Staking: Propositori e Attori
+## 💰 Portafogli
 
-{% hint style="info" %}
-I validatori sono virtuali e sono attivati dagli staker. In PoW, gli utenti acquistano hardware per diventare minatori. In Ethereum 2.0, gli utenti puntano ETH per attivare e controllare validatori. -- [**ethos.dev**](https://ethos.dev/beacon-chain/)\*\*\*\*
-{% endhint %}
+{% page-ref page="../../wallets/desktop-wallets/mycrypto-ethereum.md" %}
 
-{% embed url="https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487" %}
+{% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
-{% embed url="https://ethos.dev/beacon-chain/\#rewards-penalties" %}
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
 
-{% embed url="https://ethereumprice.org/eth-2-calculator/" %}
+{% page-ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
 
-{% embed url="https://www.attestant.io/posts/evaluating-staking-services/" %}
+{% page-ref page="../../wallets/desktop-wallets/atomic-multi-currency.md" %}
 
-## 👩💻 Corsi Di Sviluppo
+{% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
 
-{% embed url="https://cryptozombies.io/en/course" %}
+{% page-ref page="../../wallets/hardware-wallets/trezor.io-wallet/" %}
 
-{% embed url="https://cryptoeconomics.study/" %}
+{% page-ref page="../../wallets/hardware-wallets/keepkey-wallet/" %}
+
+{% page-ref page="../../wallets/mobile-wallets/argent-ethereum.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/status-ethereum.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/pillar-ethereum-btc.md" %}
+
+{% page-ref page="./" %}
+
+{% page-ref page="../../wallets/mobile-wallets/enjin-multi-currency.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+
+
 
