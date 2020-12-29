@@ -37,7 +37,7 @@ description: >-
 
 ### 🎗 ステークプールハードウェア要件\(最小構成\)
 
-* **２つのサーバー:** ブロックプロデューサーノード用1台、 リレーノード用2台
+* **２つのサーバー:** ブロックプロデューサーノード用1台、 リレーノード用1台
 * **エアギャップオフラインマシン1台 \(コールド環境\)**
 * **オペレーティング・システム:** 64-bit Linux \(Ubuntu 20.04 LTS\)
 * **プロセッサー:** 1.6GHz以上(ステークプールまたはリレーの場合は2Ghz以上)の2つ以上のコアを備えたIntelまたはAMD x86プロセッサー
@@ -94,7 +94,11 @@ Linuxサーバのコマンドや、ノード起動などお試しテストでや
 
 ```bash
 sudo apt-get update -y
+```
+```bash
 sudo apt-get upgrade -y
+```
+```bash
 sudo apt-get install git jq bc automake tmux rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ wget libncursesw5 libtool autoconf -y
 ```
 
@@ -168,7 +172,9 @@ cd cardano-node
 git fetch --all --recurse-submodules --tags
 git checkout tags/1.24.2
 ```
+
 Cabalのビルドオプションを構成します。
+
 ```bash
 cabal configure -O0 -w ghc-8.10.2
 ```
@@ -1086,7 +1092,7 @@ echo keyDeposit: $keyDeposit
 build-rawトランザクションコマンドを実行します。
 
 {% hint style="info" %}
-**ttl**の値は、現在のスロット番号よりも大きくなければなりません。この例では現在のスロット番号＋10000を使用します。
+**invalid-hereafter**の値は、現在のスロット番号よりも大きくなければなりません。この例では現在のスロット番号＋10000を使用します。
 {% endhint %}
 
 {% tabs %}
@@ -1095,9 +1101,10 @@ build-rawトランザクションコマンドを実行します。
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+0 \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --out-file tx.tmp \
+    --allegra-era \
     --certificate stake.cert
 ```
 {% endtab %}
@@ -1144,9 +1151,10 @@ echo Change Output: ${txOut}
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file stake.cert \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -1385,7 +1393,7 @@ echo poolDeposit: $poolDeposit
 build-rawトランザクションコマンドを実行します。
 
 {% hint style="info" %}
-**ttl**の値は、現在のスロット番号よりも大きくなければなりません。この例では、現在のスロット+10000を使用します。
+**invalid-hereafter**の値は、現在のスロット番号よりも大きくなければなりません。この例では、現在のスロット+10000を使用します。
 {% endhint %}
 
 {% tabs %}
@@ -1394,10 +1402,11 @@ build-rawトランザクションコマンドを実行します。
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+$(( ${total_balance} - ${poolDeposit}))  \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
+    --allegra-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -1444,10 +1453,11 @@ echo txOut: ${txOut}
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -2296,10 +2306,11 @@ build-rawトランザクションコマンドを実行します。
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
+    --allegra-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -2342,10 +2353,11 @@ echo txOut: ${txOut}
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -2698,8 +2710,9 @@ cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+0 \
     --tx-out ${destinationAddress}+0 \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
+    --allegra-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -2743,8 +2756,9 @@ cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --tx-out ${destinationAddress}+${amountToSend} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
+    --allegra-era \
     --out-file tx.raw
 ```
 {% endtab %}
