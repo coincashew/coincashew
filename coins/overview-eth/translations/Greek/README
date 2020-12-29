@@ -1,40 +1,3982 @@
-# Εξωτερικό Υλικό Ανάγνωσης
+---
+description: >-
+  Γίνετε επικυρωτής και βοηθήστε να εξασφαλίσετε eth2, ένα blockchain proof-of-stake. Οποιοσδήποτε με 32 ETH μπορεί να συμμετάσχει.
+---
 
-## 🧬 Ethereum 2.0 \(Serenity\) Fundamentals
+# Guide \| How to setup a validator on ETH2 mainnet
 
-{% embed url="https://ethos.dev/beacon-chain/" %}
-
-{% embed url="https://github.com/ethereum/eth2.0-specs" %}
-
-{% embed url="https://medalla.launchpad.ethereum.org/faq" %}
-
-{% embed url="https://notes.ethereum.org/@serenity/handbook" %}
-
-{% embed url="https://www.adiasg.me/2020/03/31/casper-ffg-explainer.html" %}
-
-{% embed url="https://hackmd.io/@benjaminion/eth2\_info" %}
-
-{% embed url="https://benjaminion.xyz/eth2-annotated-spec/" %}
-
-{% embed url="https://notes.ethereum.org/@vbuterin/rkhCgQteN" %}
-
-## 🚀 Staking Validators: Proposers and Attesters
-
-{% hint style="info" %}
-Οι επικυρωτές είναι εικονικές και ενεργοποιούνται από στοιχήματα. Στο PoW, οι χρήστες αγοράζουν υλικό για να γίνουν ανθρακωρύχοι. Στο Ethereum 2.0, οι χρήστες στοιχηματίζουν ETH για να ενεργοποιήσουν και να ελέγξουν τους επικυρωτές. -- [**ethos.dev**](https://ethos.dev/beacon-chain/)\*\*\*\*
+{% hint style="success" %}
+As of Dec 24 2020, this guide is updated for **mainnet.** 😁
 {% endhint %}
 
-{% embed url="https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487" %}
+#### ✨ For the testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
 
-{% embed url="https://ethos.dev/beacon-chain/\#rewards-penalties" %}
+\*\*\*\*🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
 
-{% embed url="https://ethereumprice.org/eth-2-calculator/" %}
+{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
-{% embed url="https://www.attestant.io/posts/evaluating-staking-services/" %}
+## 🏁 0. Προϋποθέσεις
 
-## 👩💻 Μαθήματα Ανάπτυξης
+### 👩💻Skills for operating a eth2 validator and beacon node
 
-{% embed url="https://cryptozombies.io/en/course" %}
+Ως επικυρωτής για eth2, θα έχετε συνήθως τις ακόλουθες ικανότητες:
 
-{% embed url="https://cryptoeconomics.study/" %}
+* επιχειρησιακές γνώσεις σχετικά με τον τρόπο δημιουργίας, λειτουργίας και συντήρησης ενός κόμβου και επικυρωτή eth2 συνεχώς
+* a long term commitment to maintain your validator 24/7/365
+* βασικές δεξιότητες λειτουργικού συστήματος
+
+### 👨💻 Experience required to be a successful validator
+
+* έχουν μάθει τα απαραίτητα παρακολουθώντας ['Εισαγωγή στην Εθ2 & Λήψη για αρχάριους' από τον Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
+* έχουν περάσει ή είναι ενεργά εγγεγραμμένοι στο [Μάστερ της Εθ2 Μελέτη](https://ethereumstudymaster.com/)
+* and have read the [8 Πράγματα Κάθε επικυρωτής Eth2 πρέπει να γνωρίζει.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
+
+### 🎗 **Ελάχιστες απαιτήσεις εγκατάστασης**
+
+* **Λειτουργικό σύστημα:** 64-bit Linux \(δηλ. Ubuntu 20.04 LTS Server or Desktop\)
+* **Επεξεργαστής:** Διπλός πυρήνας CPU, Intel Core i5-760 ή AMD FX-8100 ή καλύτερη
+* **Memory:** 8GB RAM
+* **Αποθήκευση:** SSD 20GB
+* **Internet:** Ευρυζωνική σύνδεση στο διαδίκτυο με ταχύτητες τουλάχιστον 1 Mbps.
+* **Ισχύς:** Αξιόπιστη ηλεκτρική ενέργεια.
+* **υπόλοιπο ETH:** τουλάχιστον 32 ETH και κάποιο ETH για τέλη συναλλαγής καταθέσεων
+* **Πορτοφόλι**: Η Metamask εγκαταστάθηκε
+
+### 🏋♂ Συνιστώμενη Εγκατάσταση Υλικού
+
+* **Λειτουργικό σύστημα:** 64-bit Linux \(δηλ. Ubuntu 20.04 LTS Server or Desktop\)
+* **Επεξεργαστής:** Quad core CPU, Intel Core i7-4770 ή AMD FX-8310 ή καλύτερη
+* **Memory:** 16GB RAM or more
+* **Αποθήκευση:** 1TB SSD ή περισσότερα
+* **Internet:** Broadband internet connections with speeds at least 10 Mbps without data limit.
+* **Ισχύς:** Αξιόπιστη ηλεκτρική ενέργεια με αδιάλειπτη παροχή ηλεκτρικού ρεύματος \(UPS\)
+* **υπόλοιπο ETH:** τουλάχιστον 32 ETH και κάποιο ETH για τέλη συναλλαγής καταθέσεων
+* **Πορτοφόλι**: Η Metamask εγκαταστάθηκε
+
+{% hint style="success" %}
+✨ **Pro Validator Tip**: Σας συνιστούμε να ξεκινήσετε με ένα ολοκαίνουργιο παράδειγμα ενός OS, VM και / ή μηχανής. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
+{% endhint %}
+
+### 🔓 Συνιστώμενες eth2 Βέλτιστες Πρακτικές Ασφαλείας
+
+Αν χρειάζεστε ιδέες ή μια υπενθύμιση για το πώς να ασφαλίσετε τον επικυρωτή σας, ανατρέξτε στο
+
+{% page-ref page="../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+
+### 🛠 Setup Ubuntu
+
+If you need to install Ubuntu Server, refer to
+
+{% embed url="https://ubuntu.com/tutorials/install-ubuntu-server\#1-overview" %}
+
+Or Ubuntu Desktop,
+
+{% page-ref page="../../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+
+### 🎭 Ρύθμιση Μεταμάσκα
+
+Αν χρειαστεί να εγκαταστήσετε το Metamask, ανατρέξτε στο
+
+{% page-ref page="../../../wallets/browser-wallets/metamask-ethereum.md" %}
+
+### 🧩 High Level Validator Node Overview
+
+{% hint style="info" %}
+At the end of this guide, you will build a node that hosts three main components: a validator client, a beacon chain client and an eth1 node.
+
+**Πρόγραμμα επικύρωσης** - Υπεύθυνος για την παραγωγή νέων μπλοκ και βεβαιώσεων στην αλυσίδα του φάρου και αλυσίδες θραύσης.
+
+**Πελάτης αλυσίδας Beacon** - Υπεύθυνος για τη διαχείριση της κατάστασης της αλυσίδας φάρου, ανακάτεμα επικυρωτή, και πολλά άλλα.
+
+**Eth1 node** - Supplies incoming validator deposits from the eth1 mainnet chain to the beacon chain client.
+
+Note: Teku and Nimbus combines both clients into one process.
+{% endhint %}
+
+![How eth2 fits together featuring Leslie the eth2 Rhino, the mascot named after American computer scientist Leslie Lamport](../../../.gitbook/assets/eth2network.png)
+
+## 🌱 1. Αγορά/ανταλλαγή ή ενοποίηση ETH
+
+{% hint style="info" %}
+Κάθε 32 ETH σας επιτρέπει να κάνετε 1 επικυρωτή. Μπορείτε να εκτελέσετε χιλιάδες επικυρωτές με τον κόμβο του φάρου σας.
+{% endhint %}
+
+Το ETH \(ή πολλαπλάσια των 32 ETH\) θα πρέπει να ενοποιηθεί σε μια ενιαία διεύθυνση προσβάσιμη με Metamask.
+
+Αν χρειαστεί να αγοράσετε/ανταλλάξετε ή να συμπληρώσετε το ETH σας σε πολλαπλάσιο του 32, ελέγξτε το:
+
+{% page-ref page="../guide-how-to-buy-eth.md" %}
+
+## 👩💻 2. Εγγραφείτε για να είστε επικυρωτής στο Launchpad
+
+1. Εγκαταστήστε εξαρτήσεις, το εργαλείο κατάθεσης θετικών θεμελίων ethereum και να δημιουργήσει τα δύο σύνολα των ζευγών κλειδιών.
+
+{% hint style="info" %}
+Κάθε επικυρωτής θα έχει δύο σύνολα ζευγών κλειδιών. Ένα **κλειδί υπογραφής** και ένα **κλειδί απόσυρσης.** Αυτά τα πλήκτρα προέρχονται από μία μόνο μνημονική φράση. [Μάθετε περισσότερα για τα κλειδιά.](https://blog.ethereum.org/2020/05/21/keys/)
+{% endhint %}
+
+Έχετε την επιλογή να κατεβάσετε το προκατασκευασμένο [ethereum ίδρυμα εργαλείο κατάθεσης](https://github.com/ethereum/eth2.0-deposit-cli) ή να το χτίσετε από την πηγή.
+
+{% tabs %}
+{% tab title="Build from source code" %}
+Εγκατάσταση εξαρτήσεων.
+
+```text
+sudo apt update
+sudo apt install python3-pip git -y
+```
+
+Λήψη πηγαίου κώδικα και εγκατάσταση.
+
+```text
+cd $HOME
+git clone https://github.com/ethereum/eth2.0-deposit-cli.git eth2deposit-cli
+cd eth2deposit-cli
+sudo ./deposit.sh install
+```
+
+Κάντε ένα νέο μνημονικό.
+
+```text
+./deposit.sh new-mnemonic --chain mainnet
+```
+{% endtab %}
+
+{% tab title="Pre-built eth2deposit-cli" %}
+Κατεβάστε το eth2deposit-cli.
+
+```bash
+cd $HOME
+wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.1.0/eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
+```
+
+Επαληθεύστε το SHA256 Checksum ταιριάζει με το άθροισμα ελέγχου στην [σελίδα απελευθερώσεων](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
+
+```bash
+echo "2107f26f954545f423530e3501ae616c222b6bf77774a4f2743effb8fe4bcbe7 *eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz" | shasum -a 256 --check
+```
+
+Example valid output:
+
+> eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz: OK
+
+{% hint style="danger" %}
+Only proceed if the sha256 check passes with **OK**!
+{% endhint %}
+
+Εξαγωγή αρχείου
+
+```text
+tar -xvf eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
+mv eth2deposit-cli-ed5a6d3-linux-amd64 eth2deposit-cli
+rm eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
+cd eth2deposit-cli
+```
+
+Κάντε ένα νέο μνημονικό.
+
+```text
+./κατάθεση νέο-μνημονικό --chain mainnet
+```
+{% endtab %}
+
+{% tab title="Advanced - Most Secure" %}
+{% hint style="warning" %}
+🔥**\[ Optional \] Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
+{% endhint %}
+
+Follow this [ethstaker.cc](https://ethstaker.cc/) exclusive for the low down on making a bootable usb.
+
+### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
+
+{% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
+
+### Part 2 - Install Ubuntu 20.04 from the USB Drive
+
+{% embed url="https://www.youtube.com/watch?v=C97\_6MrufCE" %}
+
+You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
+{% endtab %}
+{% endtabs %}
+
+2. Follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Σημειώστε τη μνημονική σας και κρατήστε αυτό το ασφαλές και **χωρίς σύνδεση**.
+
+{% hint style="warning" %}
+\*\*\*\*🚧 **Caution**: Only deposit the 32 ETH per validator if you are confident your ETH1 node and ETH2 validator will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
+{% endhint %}
+
+3. Ακολουθήστε τα βήματα στο [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) παραβλέποντας τα βήματα που μόλις ολοκληρώσατε. Μελετήστε το υλικό επισκόπησης της φάσης 0 της eth2. Η κατανόηση της eth2 είναι το κλειδί για την επιτυχία!
+
+4. Πίσω στην ιστοσελίδα launchpad, ανεβάστε το`deposit_data-##########.json` που βρέθηκε στον κατάλογο `validator_keys`.
+
+5. Συνδεθείτε στο launchpad με το πορτοφόλι Metamask σας, αναθεωρήστε και αποδεχτείτε όρους.
+
+6. Επιβεβαιώστε τη συναλλαγή\(s\). Υπάρχει μια συναλλαγή κατάθεσης 32 ETH για κάθε επικυρωτή.
+
+{% hint style="info" %}
+Η συναλλαγή σας στέλνει και καταθέτει το ETH σας στην [επίσημη διεύθυνση κατάθεσης σύμβασης ETH2. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
+
+**Έλεγχος**, _διπλός έλεγχος_, _**τριπλός έλεγχος**_ ότι η επίσημη διεύθυνση κατάθεσης σύμβασης Εθ2 είναι σωστή.[`0x000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
+{% endhint %}
+
+{% hint style="danger" %}
+\*\*\*\*🔥 **Critical Crypto Reminder:** **Keep your mnemonic, keep your ETH.** 🚀
+
+* Write down your mnemonic seed **offline**. _Δεν υπάρχει email. Δεν νεφελώνονται._
+* Multiple copies are better. _Best stored in a_ [_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
+* The withdrawal keys will be generated from this mnemonic in the future.
+* Make **offline backups**, such as to a USB key, of your **`validator_keys`** directory.
+{% endhint %}
+
+## 🛸 3. Install a ETH1 node
+
+{% hint style="info" %}
+Το Ethereum 2.0 απαιτεί σύνδεση με το Ethereum 1.0, προκειμένου να παρακολουθούνται οι καταθέσεις 32 ETH επικυρωτή. Φιλοξενία του δικού σας κόμβου Ethereum 1.0 είναι ο καλύτερος τρόπος για να μεγιστοποιήσετε την αποκέντρωση και να ελαχιστοποιήσετε την εξάρτηση από τρίτους όπως η Infura.
+{% endhint %}
+
+{% hint style="warning" %}
+The subsequent steps assume you have completed the [best practices security guide. ](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+
+🛑 Do not run your processes as **ROOT** user. 😱
+{% endhint %}
+
+Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/) **or** [**Infura**](https://infura.io/)**.**
+
+{% tabs %}
+{% tab title="OpenEthereum \(Parity\)" %}
+{% hint style="info" %}
+**OpenEthereum** - It's ****goal is to be the fastest, lightest, and most secure Ethereum client using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
+{% endhint %}
+
+#### ⚙ Install dependencies
+
+```text
+sudo apt-get update
+sudo apt-get install curl jq unzip -y
+```
+
+#### 🤖 Install OpenEthereum
+
+Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
+
+Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
+
+```bash
+mkdir $HOME/openethereum
+cd $HOME/openethereum
+curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux | xargs wget -q --show-progress
+unzip -o openethereum*.zip
+chmod +x openethereum
+rm openethereum*.zip
+```
+
+"⚙ **Ρύθμιση και ρύθμιση του συστήματος**
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις παραμέτρων `eth1.service`.
+
+Simply copy/paste the following.
+
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = openethereum eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/openethereum/openethereum
+Restart         = on-failure
+RestartSec      = 3
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+{% hint style="info" %}
+**Nimbus Specific Configuration**: Add the following flag to the **ExecStart** line.
+
+```bash
+--ws-origins=all
+```
+{% endhint %}
+
+Μετακινήστε το αρχείο μονάδας στο `/etc/systemd/system` και δώστε του τα δικαιώματα.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable eth1
+```
+
+#### ⛓ Start OpenEthereum
+
+```text
+sudo systemctl έναρξη eth1
+```
+{% endtab %}
+
+{% tab title="Geth" %}
+{% hint style="info" %}
+**Geth** - Go Ethereum is one of the three original implementations \(along with C++ and Python\) of the Ethereum protocol. It is written in **Go**, fully open source and licensed under the GNU LGPL v3.
+{% endhint %}
+
+Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
+
+#### 🧬 Install from the repository
+
+```text
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt-get update -y
+sudo apt-get install ethereum -y
+```
+
+⚙ **Ρύθμιση και ρύθμιση του συστήματος**
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις παραμέτρων `eth1.service`.
+
+Simply copy/paste the following.
+
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = geth eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = /usr/bin/geth --http --metrics --pprof
+Restart         = on-failure
+RestartSec      = 3
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+{% hint style="info" %}
+**Nimbus Specific Configuration**: Add the following flag to the **ExecStart** line.
+
+```bash
+--ws
+```
+{% endhint %}
+
+Μετακινήστε το αρχείο μονάδας στο `/etc/systemd/system` και δώστε του τα δικαιώματα.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable eth1
+```
+
+#### ⛓ Start geth
+
+```text
+sudo systemctl έναρξη eth1
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+{% hint style="info" %}
+**Hyperledger Besu** is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
+{% endhint %}
+
+#### 🧬 Install java dependency
+
+```text
+sudo apt update
+sudo apt install openjdk-11-jdk -y
+```
+
+#### 🌜 Download and unzip Besu
+
+Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
+
+File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo)
+
+```text
+cd
+wget -O besu.tar.gz https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz
+tar -xvf besu.tar.gz
+rm besu.tar.gz
+mv besu* besu
+```
+
+⚙ **Ρύθμιση και ρύθμιση του συστήματος**
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις παραμέτρων `eth1.service`.
+
+Simply copy/paste the following.
+
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = besu eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/besu/bin/besu --metrics-enabled --rpc-http-enabled --data-path="$HOME/.besu"
+Restart         = on-failure
+RestartSec      = 3
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Μετακινήστε το αρχείο μονάδας στο `/etc/systemd/system` και δώστε του τα δικαιώματα.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable eth1
+```
+
+#### ⛓ Start besu
+
+```text
+sudo systemctl έναρξη eth1
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+{% hint style="info" %}
+**Nethermind** is a flagship Ethereum client all about performance and flexibility. Built on **.NET** core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
+{% endhint %}
+
+#### ⚙ Install dependencies
+
+```text
+sudo apt-get update
+sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
+```
+
+#### 🌜 Download and unzip Nethermind
+
+Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
+
+Automatically download the latest linux release, un-zip and cleanup.
+
+```bash
+mkdir $HOME/nethermind
+chmod 775 $HOME/nethermind
+cd $HOME/nethermind
+curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+unzip -o nethermind*.zip
+rm nethermind*linux*.zip
+```
+
+⚙ **Ρύθμιση και ρύθμιση του συστήματος**
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις παραμέτρων `eth1.service`.
+
+Simply copy/paste the following.
+
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = nethermind eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --baseDbPath $HOME/.nethermind --Metrics.Enabled true --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
+Restart         = on-failure
+RestartSec      = 3
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Μετακινήστε το αρχείο μονάδας στο `/etc/systemd/system` και δώστε του τα δικαιώματα.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable eth1
+```
+
+#### ⛓ Start Nethermind
+
+```text
+sudo systemctl έναρξη eth1
+```
+
+{% hint style="info" %}
+**Note about Metric Error messages**: You will see these until prometheus pushergateway is setup in section 6. `Error in MetricPusher: System.Net.Http.HttpRequestException: Connection refused`
+{% endhint %}
+{% endtab %}
+
+{% tab title="Minimum Hardware Setup \(Infura\)" %}
+{% hint style="info" %}
+Το Infura είναι κατάλληλο για περιορισμένες ρυθμίσεις χώρου στο δίσκο. Πάντα να τρέχετε τον δικό σας πλήρη κόμβο eth1 όταν είναι δυνατό.
+{% endhint %}
+
+Εγγραφείτε για ένα κλειδί πρόσβασης API στο [https://infura.io/](https://infura.io/)
+
+1. Εγγραφείτε για δωρεάν λογαριασμό.
+2. Επιβεβαιώστε τη διεύθυνση email σας.
+3. Επισκεφθείτε τον πίνακα ελέγχου σας [https://infura.io/dashboard](https://infura.io/dashboard)
+4. Δημιουργήστε ένα έργο, δώστε του ένα όνομα.
+5. Επιλέξτε **Mainnet** ως ENDPOINT
+6. Follow the specific configuration for your eth2 client found below.
+
+{% hint style="success" %}
+Alternatively use a free Ethereum node at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+{% endhint %}
+
+## Nimbus Specific Configuration
+
+1. When creating your systemd's **unit file**, update the `--web-url` parameter with this endpoint.
+2. Copy the websocket endpoint. Starts with `wss://`
+3. Save this for step 4, configuring your eth2 node.
+
+```bash
+#example
+--web3-url=<your wss:// infura endpoint>
+```
+
+## Teku Specific Configuration
+
+1. After creating the `teku.yaml` located in `/etc/teku/teku.yaml`, update the `--eth1-endpoint` parameter with this endpoint.
+2. Copy the http endpoint. Starts with `http://`
+3. Save this for step 4, configuring your eth2 node.
+
+```bash
+#example
+eth1-endpoint: <your https:// infura endpoint>
+```
+
+## Lighthouse Specific Configuration
+
+1. When creating your **beacon chain systemd** **unit file**, add the `--eth1-endpoint` parameter with this endpoint.
+2. Copy the **https** endpoint. Starts with `https://`
+3. Save this for step 4, configuring your eth2 node.
+
+```bash
+#example
+--eth1-endpoint=<your https:// infura endpoint>
+```
+
+## Prysm Specific Configuration
+
+1. When creating your **beacon chain systemd unit file**, update the `--http-web3provider` parameter with this endpoint.
+2. Copy the **https** endpoint. Starts with `https://`
+3. Save this for step 4, configuring your eth2 node.
+
+```bash
+#example
+--http-web3provider=<your https:// infura endpoint>
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+Syncing an eth1 node can take up to 1 week. On high-end machines with gigabit internet, expect syncing to take less than a day.
+{% endhint %}
+
+{% hint style="success" %}
+Ο εθνικός σας κόμβος είναι πλήρως συγχρονισμένος όταν εμφανιστούν αυτά τα γεγονότα.
+
+* **`OpenEthereum:`** `Imported #<block number>`
+* **`Geth:`** `Εισαγόμενο νέο τμήμα αλυσίδας`
+* **`Besu:`** `Εισήχθησαν #<block number>`
+* **`Nethermind:`** `Δεν συγχρονίζει πλέον τις Παλιές Κεφαλίδες`
+{% endhint %}
+
+#### 🛠 Χρήσιμες εντολές eth1.service
+
+√ 🗒 **Για να δείτε και να ακολουθήσετε eth1 κούτσουρα**
+
+```text
+journalctl -u eth1 -f
+```
+
+🗒 **Για να σταματήσετε την υπηρεσία eth1**
+
+```text
+sudo systemctl stop eth1
+```
+
+## 🌜 4. Configure a ETH2 beacon chain node and validator
+
+Your choice of [Lighthouse](https://github.com/sigp/lighthouse), [Nimbus](https://github.com/status-im/nimbus-eth2), [Teku](https://consensys.net/knowledge-base/ethereum-2/teku/), [Prysm](https://github.com/prysmaticlabs/prysm) or [Lodestar](https://lodestar.chainsafe.io/).
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+{% hint style="info" %}
+[Lighthouse](https://github.com/sigp/lighthouse) is an Eth2.0 client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io/), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
+{% endhint %}
+
+## ⚙ 4.1. Install rust dependency
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Enter '1' to proceed with the default install.
+
+Update your environment variables.
+
+```bash
+echo export PATH="$HOME/.cargo/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
+```
+
+Install rust dependencies.
+
+```text
+sudo apt-get update
+sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev
+```
+
+## 💡 4.2. Build Lighthouse from source
+
+```bash
+mkdir ~/git
+cd ~/git
+git clone https://github.com/sigp/lighthouse.git
+cd lighthouse
+git fetch --all && git checkout stable && git pull
+make
+```
+
+{% hint style="info" %}
+In case of compilation errors, run the following sequence.
+
+```text
+rustup update
+cargo clean
+make
+```
+{% endhint %}
+
+{% hint style="info" %}
+This build process may take a few minutes.
+{% endhint %}
+
+Verify lighthouse was installed properly by checking the version number.
+
+```text
+lighthouse --version
+```
+
+## 🎩 4.3. Εισαγωγή κλειδιού επικύρωσης
+
+{% hint style="info" %}
+When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `$HOME/.lighthouse/mainnet/validators` folder.
+{% endhint %}
+
+Run the following command to import your validator keys from the eth2deposit-cli tool directory.
+
+Enter your **keystore password** to import accounts.
+
+```bash
+lighthouse account validator import --network mainnet --directory=$HOME/eth2deposit-cli/validator_keys
+```
+
+Verify the accounts were imported successfully.
+
+```bash
+lighthouse account_manager validator list --network mainnet
+```
+
+{% hint style="danger" %}
+**ΠΡΟΕΙΔΟΠΟΙΗΣΗ**: ΜΗΝ ΧΡΗΣΙΜΟΠΟΙΗΣΕΤΕ ΤΑ ΚΑΤΑΓΩΓΙΚΑ ΣΤΟΙΧΕΙΑ ΠΟΥ ΠΡΕΠΕΙ ΝΑ ΙΣΧΥΟΥΝ ΜΕ ΑΛΛΟ CLIENT, Ή ΝΑ ΠΑΙΧΝΕΤΕ ΣΤΟΙΧΕΙΗ.
+{% endhint %}
+
+## 🔥 4.4. Ρύθμιση προώθησης θύρας και/ή τείχους προστασίας
+
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+
+* **Lighthouse beacon chain** requires port 9000 for tcp and udp
+* **eth1** κόμβος απαιτεί θύρα 30303 για tcp και udp
+
+{% hint style="info" %}
+✨ **Συμβουλή προώθησης θύρας:** Θα χρειαστεί να προωθήσετε και να ανοίξετε θύρες στον επικυρωτή σας. Επιβεβαιώστε ότι δουλεύει με [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) ή [https://canyouseeme.org/](https://canyouseeme.org/).
+{% endhint %}
+
+## ⛓ 4.5. Ξεκινήστε την αλυσίδα φάρου
+
+#### 🍰 Benefits of using systemd for your beacon chain <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Αυτόματη εκκίνηση της αλυσίδας φάρου σας όταν ο υπολογιστής επανεκκινήσει λόγω συντήρησης, διακοπής ρεύματος, κλπ.
+2. Αυτόματη επανεκκίνηση των διεργασιών αλυσιδωτής αλυσίδας φάρου.
+3. Μεγιστοποιήστε την αλυσίδα φάρος σας up-time και τις επιδόσεις.
+
+#### 🛠 Setup Instructions for Systemd
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα αρχείο **μονάδας** για να ορίσετε τις ρυθμίσεις`beacon-chain.service`. Simply copy and paste.
+
+```bash
+cat > $HOME/beacon-chain.service << EOF 
+# The eth2 beacon chain service (part of systemd)
+# file: /etc/systemd/system/beacon-chain.service 
+
+[Unit]
+Description     = eth2 beacon chain service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(which lighthouse) bn --staking --metrics --network mainnet
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+{% hint style="info" %}
+\*\*\*\*🔥 **Lighthouse Pro Tip:** On the **ExecStart** line, adding the `--eth1-endpoints` flag allows for redundant eth1 nodes. Separate with comma. Make sure the endpoint does not end with a trailing slash or`/` Remove it.
+
+```bash
+# Example:
+--eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
+```
+
+💸 Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+{% endhint %}
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση και στη συνέχεια να ξεκινήσετε την υπηρεσία κόμβου beacon.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable beacon-chain
+sudo systemctl start beacon-chain
+```
+
+{% hint style="info" %}
+**Troubleshooting common issues**:
+
+_The beacon chain couldn't connect to the :8545 service?_
+
+* In the beacon chain unit file under \[Service\], add, "`ExecStartPre = /bin/sleep 30`" so that it waits 30 seconds for eth1 node to startup before connecting.
+
+_CRIT Invalid eth1 chain id. Please switch to correct chain id._
+
+* Allow your eth1 node to fully sync to mainnet.
+{% endhint %}
+
+{% hint style="success" %}
+Ωραία δουλειά. Η αλυσίδα φάρου σας τώρα διαχειρίζεται από την αξιοπιστία και την ευρωστία του συστήματος. Παρακάτω είναι μερικές εντολές για τη χρήση του συστήματος.
+{% endhint %}
+
+### 🛠 Μερικές χρήσιμες εντολές συστήματος
+
+#### 🗄 Αρχεία καταγραφής προβολής και φιλτραρίσματος
+
+```bash
+#view and follow the log
+journalctl --unit=beacon-chain -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=beacon-chain --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=beacon-chain --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
+#### ✅ Ελέγξτε αν η αλυσίδα του φάρου είναι ενεργή
+
+```text
+sudo systemctl is-active beacon-chain
+```
+
+#### 🔎 Δείτε την κατάσταση της αλυσίδας φάρου
+
+```text
+sudo systemctl κατάσταση beacon-chain
+```
+
+#### 🔄 Επανεκκίνηση της αλυσίδας φάρου
+
+```text
+sudo systemctl reload-or-restart beacon-chain
+```
+
+#### 🛑 Διακοπή της αλυσίδας φάρου
+
+```text
+sudo systemctl stop beacon-chain
+```
+
+## 🧬 4.6. Εκκίνηση του επικυρωτή
+
+#### 🚀 Setup Graffiti and POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes.
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
+#### 🍰 Οφέλη από τη χρήση του συστήματος για τον επικυρωτή σας <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Αυτόματη εκκίνηση του επικυρωτή σας όταν ο υπολογιστής επανεκκινήσει λόγω συντήρησης, διακοπής ρεύματος, κλπ.
+2. Αυτόματη επανεκκίνηση διεργασιών επικύρωσης.
+3. Μεγιστοποιήστε το χρόνο και τις επιδόσεις του επικυρωτή.
+
+#### 🛠 Setup Instructions for Systemd
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις`επικυρωτή.service`. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" --metrics 
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση και στη συνέχεια ξεκινήστε τον επικυρωτή σας.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable validator
+sudo systemctl start validator
+```
+
+{% hint style="success" %}
+Ωραία δουλειά. Your validator is now managed by the reliability and robustness of systemd. Παρακάτω είναι μερικές εντολές για τη χρήση του συστήματος.
+{% endhint %}
+
+### 🛠 Μερικές χρήσιμες εντολές συστήματος
+
+#### 🗄 Αρχεία καταγραφής προβολής και φιλτραρίσματος
+
+```bash
+#view and follow the log
+journalctl --unit=validator -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=validator --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=validator --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
+#### ✅ Ελέγξτε αν ο επικυρωτής είναι ενεργός
+
+```text
+sudo systemctl is-active validator
+```
+
+#### 🔎 Δείτε την κατάσταση του επικυρωτή
+
+```text
+sudo systemctl status validator
+```
+
+#### 🔄 Επανεκκίνηση του επικυρωτή
+
+```text
+sudo systemctl reload-or-restart validator
+```
+
+#### 🛑 Διακοπή του επικυρωτή
+
+```text
+sudo systemctl stop validator
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+{% hint style="info" %}
+[Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im/) by the same name. Nimbus \(Apache 2\) is written in Nim, a language with Python-like syntax that compiles to C.
+{% endhint %}
+
+## ⚙ 4.1. Build Nimbus from source
+
+Εγκατάσταση εξαρτήσεων.
+
+```text
+sudo apt-get update
+sudo apt-get install curl build-essential git -y
+```
+
+Install and build Nimbus.
+
+```bash
+mkdir ~/git 
+cd ~/git
+git clone https://github.com/status-im/nimbus-eth2
+cd nimbus-eth2
+make NIMFLAGS="-d:insecure" nimbus_beacon_node
+```
+
+{% hint style="info" %}
+The build process may take a few minutes.
+{% endhint %}
+
+Verify Nimbus was installed properly by displaying the help.
+
+```bash
+cd $HOME/git/nimbus-eth2/build
+./nimbus_beacon_node --help
+```
+
+Copy the binary file to `/usr/bin`
+
+```bash
+sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/bin
+```
+
+## 🎩 4.2. Εισαγωγή κλειδιού επικύρωσης <a id="6-import-validator-key"></a>
+
+Create a directory structure to store nimbus data.
+
+```bash
+sudo mkdir -p /var/lib/nimbus
+```
+
+Take ownership of this directory and set the correct permission level.
+
+```bash
+sudo chown $(whoami):$(whoami) /var/lib/nimbus
+sudo chmod 700 /var/lib/nimbus
+```
+
+The following command will import your validator keys.
+
+Enter your **keystore password** to import accounts.
+
+```bash
+cd $HOME/git/nimbus-eth2
+build/nimbus_beacon_node deposits import --data-dir=/var/lib/nimbus $HOME/eth2deposit-cli/validator_keys
+```
+
+Now you can verify the accounts were imported successfully by doing a directory listing.
+
+```bash
+ll /var/lib/nimbus/validators
+```
+
+You should see a folder named for each of your validator's pubkey.
+
+{% hint style="info" %}
+When you import your keys into Nimbus, your validator signing key\(s\) are stored in the `/var/lib/nimbus` folder, under `secrets` and `validators.`
+
+The `secrets` folder contains the common secret that gives you access to all your validator keys.
+
+The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). Keystores are used by validators as a method for exchanging keys.
+
+For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/keys/).
+{% endhint %}
+
+{% hint style="danger" %}
+**ΠΡΟΕΙΔΟΠΟΙΗΣΗ**: ΜΗΝ ΧΡΗΣΙΜΟΠΟΙΗΣΕΤΕ ΤΑ ΚΑΤΑΓΩΓΙΚΑ ΣΤΟΙΧΕΙΑ ΠΟΥ ΠΡΕΠΕΙ ΝΑ ΙΣΧΥΟΥΝ ΜΕ ΑΛΛΟ CLIENT, Ή ΝΑ ΠΑΙΧΝΕΤΕ ΣΤΟΙΧΕΙΗ.
+{% endhint %}
+
+## 🔥 4.3. Ρύθμιση προώθησης θύρας και/ή τείχους προστασίας
+
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+
+* **Nimbus beacon chain node** will use port 9000 for tcp and udp
+* **eth1** κόμβος απαιτεί θύρα 30303 για tcp και udp
+
+{% hint style="info" %}
+✨ **Συμβουλή προώθησης θύρας:** Θα χρειαστεί να προωθήσετε και να ανοίξετε θύρες στον επικυρωτή σας. Επιβεβαιώστε ότι δουλεύει με [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) ή [https://canyouseeme.org/](https://canyouseeme.org/).
+{% endhint %}
+
+## 🏂 4.4. Start the beacon chain and validator
+
+{% hint style="info" %}
+Nimbus combines both the beacon chain and validator into one process.
+{% endhint %}
+
+#### 🚀 Setup Graffiti and POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes.
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
+#### 🍰 Οφέλη από τη χρήση του συστήματος για την αλυσίδα φάρου και τον επικυρωτή σας <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Αυτόματη εκκίνηση της αλυσίδας φάρου σας όταν ο υπολογιστής επανεκκινήσει λόγω συντήρησης, διακοπής ρεύματος, κλπ.
+2. Αυτόματη επανεκκίνηση των διεργασιών αλυσιδωτής αλυσίδας φάρου.
+3. Μεγιστοποιήστε την αλυσίδα φάρος σας up-time και τις επιδόσεις.
+
+#### 🛠 Οδηγίες Εγκατάστασης
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα αρχείο **μονάδας** για να ορίσετε τις ρυθμίσεις`beacon-chain.service`. Simply copy and paste.
+
+```bash
+cat > $HOME/beacon-chain.service << EOF 
+# The eth2 beacon chain service (part of systemd)
+# file: /etc/systemd/system/beacon-chain.service 
+
+[Unit]
+Description     = eth2 beacon chain service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+Type            = simple
+User            = $(whoami)
+WorkingDirectory= /var/lib/nimbus
+ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node --network=mainnet --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log'
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+{% hint style="warning" %}
+Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum and Infura ETH1 nodes are verified compatible.
+{% endhint %}
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση και στη συνέχεια να ξεκινήσετε την υπηρεσία κόμβου beacon.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable beacon-chain
+sudo systemctl start beacon-chain
+```
+
+{% hint style="success" %}
+Ωραία δουλειά. Η αλυσίδα φάρου σας τώρα διαχειρίζεται από την αξιοπιστία και την ευρωστία του συστήματος. Παρακάτω είναι μερικές εντολές για τη χρήση του συστήματος.
+{% endhint %}
+
+### 🛠 Μερικές χρήσιμες εντολές συστήματος
+
+#### 🗄 Αρχεία καταγραφής προβολής και φιλτραρίσματος
+
+```bash
+#view and follow the log
+journalctl --unit=beacon-chain -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=beacon-chain --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=beacon-chain --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
+#### ✅ Ελέγξτε αν η αλυσίδα του φάρου είναι ενεργή
+
+```text
+sudo systemctl is-active beacon-chain
+```
+
+#### 🔎 Δείτε την κατάσταση της αλυσίδας φάρου
+
+```text
+sudo systemctl κατάσταση beacon-chain
+```
+
+#### 🔄 Επανεκκίνηση της αλυσίδας φάρου
+
+```text
+sudo systemctl reload-or-restart beacon-chain
+```
+
+#### 🛑 Διακοπή της αλυσίδας φάρου
+
+```text
+sudo systemctl stop beacon-chain
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+{% hint style="info" %}
+[PegaSys Teku](https://consensys.net/knowledge-base/ethereum-2/teku/) \(formerly known as Artemis\) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net/) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
+{% endhint %}
+
+## ⚙ 4.1 Build Teku from source
+
+Install git.
+
+```text
+sudo apt-get install git -y
+```
+
+Install Java 11.
+
+For **Ubuntu 20.x**, use the following
+
+```
+sudo apt update
+sudo apt install openjdk-11-jdk -y
+```
+
+For **Ubuntu 18.x**, use the following
+
+```text
+sudo add-apt-repository ppa:linuxuprising/java
+sudo apt update
+sudo apt install oracle-java11-set-default -y
+```
+
+Verify Java 11+ is installed.
+
+```bash
+java --version
+```
+
+Install and build Teku.
+
+```bash
+mkdir ~/git
+cd ~/git
+git clone https://github.com/ConsenSys/teku.git
+cd teku
+./gradlew distTar installDist
+```
+
+{% hint style="info" %}
+This build process may take a few minutes.
+{% endhint %}
+
+Verify Teku was installed properly by displaying the version.
+
+```bash
+cd $HOME/git/teku/build/install/teku/bin
+./teku --version
+```
+
+Copy the teku binary file to `/usr/bin/teku`
+
+```bash
+sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
+```
+
+## 🔥 4.2. Ρύθμιση προώθησης θύρας και/ή τείχους προστασίας
+
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+
+* **Teku beacon chain node** will use port 9000 for tcp and udp
+* **eth1** κόμβος απαιτεί θύρα 30303 για tcp και udp
+
+{% hint style="info" %}
+\*\*\*\*✨ **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Επιβεβαιώστε ότι δουλεύει με [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) ή [https://canyouseeme.org/](https://canyouseeme.org/).
+{% endhint %}
+
+## 🏂 4.3. Configure the beacon chain and validator
+
+{% hint style="info" %}
+Teku combines both the beacon chain and validator into one process.
+{% endhint %}
+
+Setup a directory structure for Teku.
+
+```bash
+sudo mkdir -p /var/lib/teku
+sudo mkdir -p /etc/teku
+sudo chown $(whoami):$(whoami) /var/lib/teku
+```
+
+ Copy your `validator_files` directory to the data directory we created above and remove the extra deposit\_data file.
+
+```bash
+cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
+rm /var/lib/teku/validator_keys/deposit_data*
+```
+
+{% hint style="danger" %}
+**ΠΡΟΕΙΔΟΠΟΙΗΣΗ**: ΜΗΝ ΧΡΗΣΙΜΟΠΟΙΗΣΕΤΕ ΤΑ ΚΑΤΑΓΩΓΙΚΑ ΣΤΟΙΧΕΙΑ ΠΟΥ ΠΡΕΠΕΙ ΝΑ ΙΣΧΥΟΥΝ ΜΕ ΑΛΛΟ CLIENT, Ή ΝΑ ΠΑΙΧΝΕΤΕ ΣΤΟΙΧΕΙΗ.
+{% endhint %}
+
+Store your **keystore password** in a file and make it read-only. This is required so that Teku can decrypt and load your validators.
+
+Update your **keystore password** between the quotation marks after `echo`.
+
+```bash
+echo 'my_password_goes_here' > $HOME/validators-password.txt
+sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
+sudo chmod 600 /etc/teku/validators-password.txt
+```
+
+#### 🚀 Setup Graffiti and POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes.
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
+Generate your Teku Config file. Simply copy and paste.
+
+```bash
+cat > $HOME/teku.yaml << EOF
+# network
+network: "mainnet"
+
+# p2p
+p2p-enabled: true
+p2p-port: 9000
+# validators
+validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
+validators-graffiti: "${MY_GRAFFITI}"
+
+# Eth 1
+eth1-endpoint: "http://localhost:8545"
+
+# metrics
+metrics-enabled: true
+metrics-port: 8008
+
+# database
+data-path: "$(echo $HOME)/tekudata"
+data-storage-mode: "archive"
+
+# rest api
+rest-api-port: 5051
+rest-api-docs-enabled: true
+rest-api-enabled: true
+
+# logging
+log-include-validator-duties-enabled: true
+log-destination: CONSOLE
+EOF
+```
+
+Move the config file to `/etc/teku`
+
+```bash
+sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
+```
+
+## 🎩 4.4 Import validator key
+
+{% hint style="info" %}
+When specifying directories for your validator-keys, Teku expects to find identically named keystore and password files.
+
+For example `keystore-m_12221_3600_1_0_0-11222333.json` and `keystore-m_12221_3600_1_0_0-11222333.txt`
+{% endhint %}
+
+Create a corresponding password file for every one of your validators.
+
+```bash
+for f in /var/lib/teku/validator_keys/keystore*.json; do cp /etc/teku/validators-password.txt /var/lib/teku/validator_keys/$(basename $f .json).txt; done
+```
+
+Verify that your validator's keystore and validator's passwords are present by checking the following directory.
+
+```bash
+ll /var/lib/teku/validator_keys
+```
+
+## 🏁 4.5. Start the beacon chain and validator
+
+Use **systemd** to manage starting and stopping teku.
+
+#### 🍰 Οφέλη από τη χρήση του συστήματος για την αλυσίδα φάρου και τον επικυρωτή σας <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Αυτόματη εκκίνηση της αλυσίδας φάρου σας όταν ο υπολογιστής επανεκκινήσει λόγω συντήρησης, διακοπής ρεύματος, κλπ.
+2. Αυτόματη επανεκκίνηση των διεργασιών αλυσιδωτής αλυσίδας φάρου.
+3. Μεγιστοποιήστε την αλυσίδα φάρος σας up-time και τις επιδόσεις.
+
+#### 🛠 Οδηγίες Εγκατάστασης
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα αρχείο **μονάδας** για να ορίσετε τις ρυθμίσεις`beacon-chain.service`.
+
+```bash
+cat > $HOME/beacon-chain.service << EOF
+# The eth2 beacon chain service (part of systemd)
+# file: /etc/systemd/system/beacon-chain.service 
+
+[Unit]
+Description     = eth2 beacon chain service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = /usr/bin/teku/bin/teku -c /etc/teku/teku.yaml
+Restart         = on-failure
+Environment     = JAVA_OPTS=-Xmx5g
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση και στη συνέχεια να ξεκινήσετε την υπηρεσία κόμβου beacon.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable beacon-chain
+sudo systemctl start beacon-chain
+```
+
+{% hint style="success" %}
+Ωραία δουλειά. Η αλυσίδα φάρου σας τώρα διαχειρίζεται από την αξιοπιστία και την ευρωστία του συστήματος. Παρακάτω είναι μερικές εντολές για τη χρήση του συστήματος.
+{% endhint %}
+
+### 🛠 Μερικές χρήσιμες εντολές συστήματος
+
+#### 🗄 Αρχεία καταγραφής προβολής και φιλτραρίσματος
+
+```bash
+#view and follow the log
+journalctl --unit=beacon-chain -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=beacon-chain --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=beacon-chain --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
+#### ✅ Ελέγξτε αν η αλυσίδα του φάρου είναι ενεργή
+
+```text
+sudo systemctl is-active beacon-chain
+```
+
+#### 🔎 Δείτε την κατάσταση της αλυσίδας φάρου
+
+```text
+sudo systemctl κατάσταση beacon-chain
+```
+
+#### 🔄 Επανεκκίνηση της αλυσίδας φάρου
+
+```text
+sudo systemctl reload-or-restart beacon-chain
+```
+
+#### 🛑 Διακοπή της αλυσίδας φάρου
+
+```text
+sudo systemctl stop beacon-chain
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+{% hint style="info" %}
+[Το Prysm](https://github.com/prysmaticlabs/prysm) είναι η εφαρμογή του πρωτοκόλλου Ethereum 2.0 με έμφαση στη χρηστικότητα, την ασφάλεια και την αξιοπιστία. Το Prysm αναπτύσσεται από [Prysmatic Labs](https://prysmaticlabs.com/), μια εταιρεία με μοναδική εστίαση στην ανάπτυξη του πελάτη τους. Το Prysm είναι γραμμένο στο Go και κυκλοφορεί με άδεια GPL-3.0.
+{% endhint %}
+
+## ⚙ 4.1. Install Prysm
+
+```bash
+mkdir ~/prysm && cd ~/prysm 
+curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh 
+```
+
+## 🔥 4.2. Ρύθμιση προώθησης θύρας και/ή τείχους προστασίας
+
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+
+* **Ο κόμβος αλυσιδωτής αλυσίδας Prysm** θα χρησιμοποιεί τη θύρα 12000 για udp και 13000 για tcp
+* **eth1** κόμβος απαιτεί θύρα 30303 για tcp και udp
+
+{% hint style="info" %}
+✨ **Συμβουλή προώθησης θύρας:** Θα χρειαστεί να προωθήσετε και να ανοίξετε θύρες στον επικυρωτή σας. Επιβεβαιώστε ότι δουλεύει με [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) ή [https://canyouseeme.org/](https://canyouseeme.org/).
+{% endhint %}
+
+## 🎩 4.3. Εισαγωγή κλειδιού επικύρωσης
+
+Accept terms of use, accept default wallet location, enter a new prysm-only password to encrypt your local prysm wallet files and enter the **keystore password** for your imported accounts.
+
+{% hint style="info" %}
+If you wish, you can use the same password for the **keystore** and **prysm**.
+{% endhint %}
+
+```bash
+$HOME/prysm/prysm.sh validator accounts import --mainnet --keys-dir=$HOME/eth2deposit-cli/validator_keys
+```
+
+Verify your validators imported successfully.
+
+```bash
+$HOME/prysm/prysm.sh validator accounts list --mainnet
+```
+
+Confirm your validator's pubkeys are listed.
+
+> \#Example output:
+> 
+> Showing 1 validator account View the eth1 deposit transaction data for your accounts by running \`validator accounts list --show-deposit-data
+> 
+> Account 0 \| pens-brother-heat   
+> \[validating public key\] 0x2374.....7121
+
+{% hint style="danger" %}
+**ΠΡΟΕΙΔΟΠΟΙΗΣΗ**: ΜΗΝ ΧΡΗΣΙΜΟΠΟΙΗΣΕΤΕ ΤΑ ΚΑΤΑΓΩΓΙΚΑ ΣΤΟΙΧΕΙΑ ΠΟΥ ΠΡΕΠΕΙ ΝΑ ΙΣΧΥΟΥΝ ΜΕ ΑΛΛΟ CLIENT, Ή ΝΑ ΠΑΙΧΝΕΤΕ ΣΤΟΙΧΕΙΗ.
+{% endhint %}
+
+## 🏂 4.4. Ξεκινήστε την αλυσίδα φάρου
+
+#### 🍰 Οφέλη από τη χρήση του συστήματος για την αλυσίδα φάρου και τον επικυρωτή σας <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Αυτόματη εκκίνηση της αλυσίδας φάρου σας όταν ο υπολογιστής επανεκκινήσει λόγω συντήρησης, διακοπής ρεύματος, κλπ.
+2. Αυτόματη επανεκκίνηση των διεργασιών αλυσιδωτής αλυσίδας φάρου.
+3. Μεγιστοποιήστε την αλυσίδα φάρος σας up-time και τις επιδόσεις.
+
+#### 🛠 Οδηγίες Εγκατάστασης
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα αρχείο **μονάδας** για να ορίσετε τις ρυθμίσεις`beacon-chain.service`. Simply copy and paste.
+
+```bash
+cat > $HOME/beacon-chain.service << EOF 
+# The eth2 beacon chain service (part of systemd)
+# file: /etc/systemd/system/beacon-chain.service 
+
+[Unit]
+Description     = eth2 beacon chain service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+Type            = simple
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --p2p-max-peers=75 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+{% hint style="info" %}
+\*\*\*\*🔥 **Prysm Pro Tip:** On the **ExecStart** line, adding the `--fallback-web3provider` flag allows for a backup eth1 node. May use flag multiple times. Make sure the endpoint does not end with a trailing slash or`/` Remove it.
+
+```bash
+--fallback-web3provider=<http://<alternate eth1 provider one> --fallback-web3provider=<http://<alternate eth1 provider two>
+# Example
+# --fallback-web3provider=https://nodes.mewapi.io/rpc/eth --fallback-web3provider=https://mainnet.infura.io/v3/YOUR-PROJECT-ID
+```
+
+💸 Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+{% endhint %}
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση και στη συνέχεια να ξεκινήσετε την υπηρεσία κόμβου beacon.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable beacon-chain
+sudo systemctl start beacon-chain
+```
+
+{% hint style="success" %}
+Ωραία δουλειά. Η αλυσίδα φάρου σας τώρα διαχειρίζεται από την αξιοπιστία και την ευρωστία του συστήματος. Παρακάτω είναι μερικές εντολές για τη χρήση του συστήματος.
+{% endhint %}
+
+### 🛠 Μερικές χρήσιμες εντολές συστήματος
+
+#### 🗄 Αρχεία καταγραφής προβολής και φιλτραρίσματος
+
+```bash
+#view and follow the log
+journalctl --unit=beacon-chain -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=beacon-chain --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=beacon-chain --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
+#### ✅ Ελέγξτε αν η αλυσίδα του φάρου είναι ενεργή
+
+```text
+sudo systemctl is-active beacon-chain
+```
+
+#### 🔎 Δείτε την κατάσταση της αλυσίδας φάρου
+
+```text
+sudo systemctl κατάσταση beacon-chain
+```
+
+#### 🔄 Επανεκκίνηση της αλυσίδας φάρου
+
+```text
+sudo systemctl reload-or-restart beacon-chain
+```
+
+#### 🛑 Διακοπή της αλυσίδας φάρου
+
+```text
+sudo systemctl stop beacon-chain
+```
+
+## 🧬 4.5. Εκκίνηση του επικυρωτή <a id="9-start-the-validator"></a>
+
+Store your **prysm-only password** in a file and make it read-only. This is required so that Prysm can decrypt and load your validators.
+
+```bash
+echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
+sudo chmod 600 $HOME/.eth2validators/validators-password.txt
+```
+
+#### 🚀 Setup Graffiti and POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes.
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
+Η επιλογή σας να εκτελέσετε έναν επικυρωτή χειροκίνητα από τη γραμμή εντολών ή αυτόματα με το σύστημα.
+
+#### 🍰 Οφέλη από τη χρήση του συστήματος για τον επικυρωτή σας <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Αυτόματη εκκίνηση του επικυρωτή σας όταν ο υπολογιστής επανεκκινήσει λόγω συντήρησης, διακοπής ρεύματος, κλπ.
+2. Αυτόματη επανεκκίνηση διεργασιών επικύρωσης.
+3. Μεγιστοποιήστε το χρόνο και τις επιδόσεις του επικυρωτή.
+
+#### 🛠 Setup Instructions for systemd
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις`επικυρωτή.service`. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --mainnet --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση και στη συνέχεια ξεκινήστε τον επικυρωτή σας.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable validator
+sudo systemctl start validator
+```
+
+### 🛠 Μερικές χρήσιμες εντολές συστήματος
+
+#### 🗄 Αρχεία καταγραφής προβολής και φιλτραρίσματος
+
+```bash
+#view and follow the log
+journalctl --unit=validator -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=validator --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=validator --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
+#### ✅ Ελέγξτε αν ο επικυρωτής είναι ενεργός
+
+```text
+sudo systemctl is-active validator
+```
+
+#### 🔎 Δείτε την κατάσταση του επικυρωτή
+
+```text
+sudo systemctl status validator
+```
+
+#### 🔄 Επανεκκίνηση του επικυρωτή
+
+```text
+sudo systemctl reload-or-restart validator
+```
+
+#### 🛑 Διακοπή του επικυρωτή
+
+```text
+sudo systemctl stop validator
+```
+
+Επαληθεύστε ότι το **δημόσιο κλειδί επικυρωτή** εμφανίζεται στα αρχεία καταγραφής.
+
+```bash
+journalctl --unit=validator --since=today
+# Example below
+# INFO Enabled validator       voting_pubkey: 0x2374.....7121
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+{% hint style="info" %}
+\*\*\*\*[**Lodestar** ](https://lodestar.chainsafe.io/)**is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
+{% endhint %}
+
+{% hint style="danger" %}
+Lodestar may not be fully functional and stable yet.
+{% endhint %}
+
+## ⚙ 4.1 Build Lodestar from source
+
+Install curl and git.
+
+```bash
+sudo apt-get install git curl -y
+```
+
+Install yarn.
+
+```bash
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
+sudo apt install yarn
+```
+
+Confirm yarn is installed properly.
+
+```bash
+yarn --version
+# Should output version >= 1.22.4
+```
+
+Install nodejs.
+
+```text
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+Confirm nodejs is installed properly.
+
+```bash
+nodejs -v
+# Should output version >= v12.18.3
+```
+
+Install and build Lodestar.
+
+```bash
+mkdir ~/git
+cd ~/git
+git clone https://github.com/chainsafe/lodestar.git
+cd lodestar
+yarn install
+yarn run build
+```
+
+{% hint style="info" %}
+This build process may take a few minutes.
+{% endhint %}
+
+Verify Lodestar was installed properly by displaying the help menu.
+
+```text
+yarn run cli --help
+```
+
+## 🔥 4.2. Ρύθμιση προώθησης θύρας και/ή τείχους προστασίας
+
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+
+* **Lodestar beacon chain node** will use port 30607 for tcp and port 9000 for udp peer discovery.
+* **eth1** κόμβος απαιτεί θύρα 30303 για tcp και udp
+
+{% hint style="info" %}
+\*\*\*\*✨ **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Επιβεβαιώστε ότι δουλεύει με [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) ή [https://canyouseeme.org/](https://canyouseeme.org/).
+{% endhint %}
+
+## 🎩 4.3. Εισαγωγή κλειδιού επικύρωσης
+
+```bash
+yarn run cli account validator import \
+  --network mainnet \
+  --directory $HOME/eth2deposit-cli/validator_keys
+```
+
+Enter your **keystore password** to import accounts.
+
+Confirm your keys were imported properly.
+
+```text
+yarn run cli account validator list --network mainnet
+```
+
+{% hint style="danger" %}
+**ΠΡΟΕΙΔΟΠΟΙΗΣΗ**: ΜΗΝ ΧΡΗΣΙΜΟΠΟΙΗΣΕΤΕ ΤΑ ΚΑΤΑΓΩΓΙΚΑ ΣΤΟΙΧΕΙΑ ΠΟΥ ΠΡΕΠΕΙ ΝΑ ΙΣΧΥΟΥΝ ΜΕ ΑΛΛΟ CLIENT, Ή ΝΑ ΠΑΙΧΝΕΤΕ ΣΤΟΙΧΕΙΗ.
+{% endhint %}
+
+## 🏂 4.4. Start the beacon chain and validator
+
+Run the beacon chain automatically with systemd.
+
+#### 🍰 Benefits of using systemd for your beacon chain <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Αυτόματη εκκίνηση της αλυσίδας φάρου σας όταν ο υπολογιστής επανεκκινήσει λόγω συντήρησης, διακοπής ρεύματος, κλπ.
+2. Αυτόματη επανεκκίνηση των διεργασιών αλυσιδωτής αλυσίδας φάρου.
+3. Μεγιστοποιήστε την αλυσίδα φάρος σας up-time και τις επιδόσεις.
+
+#### 🛠 Οδηγίες Εγκατάστασης
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα αρχείο **μονάδας** για να ορίσετε τις ρυθμίσεις`beacon-chain.service`. Simply copy and paste.
+
+```bash
+cat > $HOME/beacon-chain.service << EOF 
+# The eth2 beacon chain service (part of systemd)
+# file: /etc/systemd/system/beacon-chain.service 
+
+[Unit]
+Description     = eth2 beacon chain service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+WorkingDirectory= $(echo $HOME)/git/lodestar
+ExecStart       = yarn run cli beacon --network mainnet --eth1.providerUrl http://localhost:8545 --metrics.serverPort 8008
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση και στη συνέχεια να ξεκινήσετε την υπηρεσία κόμβου beacon.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable beacon-chain
+sudo systemctl start beacon-chain
+```
+
+{% hint style="success" %}
+Ωραία δουλειά. Η αλυσίδα φάρου σας τώρα διαχειρίζεται από την αξιοπιστία και την ευρωστία του συστήματος. Παρακάτω είναι μερικές εντολές για τη χρήση του συστήματος.
+{% endhint %}
+
+### 🛠 Μερικές χρήσιμες εντολές συστήματος
+
+#### 🗄 Αρχεία καταγραφής προβολής και φιλτραρίσματος
+
+```bash
+#view and follow the log
+journalctl --unit=beacon-chain -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=beacon-chain --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=beacon-chain --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
+#### ✅ Ελέγξτε αν η αλυσίδα του φάρου είναι ενεργή
+
+```text
+sudo systemctl is-active beacon-chain
+```
+
+#### 🔎 Δείτε την κατάσταση της αλυσίδας φάρου
+
+```text
+sudo systemctl κατάσταση beacon-chain
+```
+
+#### 🔄 Επανεκκίνηση της αλυσίδας φάρου
+
+```text
+sudo systemctl reload-or-restart beacon-chain
+```
+
+#### 🛑 Διακοπή της αλυσίδας φάρου
+
+```text
+sudo systemctl stop beacon-chain
+```
+
+## 🧬 4.5. Εκκίνηση του επικυρωτή
+
+#### 🚀 Setup Graffiti and POAP
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes.
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
+Run the validator automatically with systemd.
+
+#### 🍰 Οφέλη από τη χρήση του συστήματος για τον επικυρωτή σας <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+
+1. Αυτόματη εκκίνηση του επικυρωτή σας όταν ο υπολογιστής επανεκκινήσει λόγω συντήρησης, διακοπής ρεύματος, κλπ.
+2. Αυτόματη επανεκκίνηση διεργασιών επικύρωσης.
+3. Μεγιστοποιήστε το χρόνο και τις επιδόσεις του επικυρωτή.
+
+#### 🛠 Οδηγίες Εγκατάστασης
+
+Εκτελέστε τα παρακάτω για να δημιουργήσετε ένα **αρχείο μονάδας** για να ορίσετε τις ρυθμίσεις`επικυρωτή.service`. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+WorkingDirectory= $(echo $HOME)/git/lodestar
+ExecStart       = yarn run cli validator run --network mainnet --graffiti "${MY_GRAFFITI}"
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+
+Εκτελέστε τα παρακάτω για να ενεργοποιήσετε την αυτόματη εκκίνηση κατά την εκκίνηση και στη συνέχεια ξεκινήστε τον επικυρωτή σας.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable validator
+sudo systemctl start validator
+```
+
+{% hint style="success" %}
+Ωραία δουλειά. Your validator is now managed by the reliability and robustness of systemd. Παρακάτω είναι μερικές εντολές για τη χρήση του συστήματος.
+{% endhint %}
+
+### 🛠 Μερικές χρήσιμες εντολές συστήματος
+
+#### 🗄 Αρχεία καταγραφής προβολής και φιλτραρίσματος
+
+```bash
+#view and follow the log
+journalctl --unit=validator -f
+```
+
+```bash
+#view log since yesterday
+journalctl --unit=validator --since=yesterday
+```
+
+```bash
+#view log since today
+journalctl --unit=validator --since=today
+```
+
+```bash
+#view log between a date
+journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+```
+
+#### ✅ Ελέγξτε αν ο επικυρωτής είναι ενεργός
+
+```text
+sudo systemctl is-active validator
+```
+
+#### 🔎 Δείτε την κατάσταση του επικυρωτή
+
+```text
+sudo systemctl status validator
+```
+
+#### 🔄 Επανεκκίνηση του επικυρωτή
+
+```text
+sudo systemctl reload-or-restart validator
+```
+
+#### 🛑 Διακοπή του επικυρωτή
+
+```text
+sudo systemctl stop validator
+```
+{% endtab %}
+{% endtabs %}
+
+## 🕒5. Συγχρονισμός Ώρας
+
+{% hint style="info" %}
+Επειδή η αλυσίδα beacon βασίζεται σε ακριβείς χρόνους για να εκτελέσει βεβαιώσεις και μπλοκ παραγωγής, ο χρόνος του υπολογιστή σας πρέπει να είναι ακριβής σε πραγματικό χρόνο NTP ή NTS μέσα στο 0. δευτερόλεπτα.
+{% endhint %}
+
+Ρύθμιση **Chrony** με τον ακόλουθο οδηγό.
+
+{% page-ref page="../../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md" %}
+
+{% hint style="info" %}
+ο χρονισμός είναι μια εφαρμογή του Πρωτοκόλλου Ώρα Δικτύου και βοηθά να κρατήσει την ώρα του υπολογιστή σας συγχρονισμένη με NTP.
+{% endhint %}
+
+## 🔎6. Παρακολούθηση του επικυρωτή σας με Grafana και Prometheus
+
+Το Prometheus είναι μια πλατφόρμα παρακολούθησης που συλλέγει μετρήσεις από τους στόχους που παρακολουθούνται με απόξεση μετρικών σημείων HTTP σε αυτούς τους στόχους. [Η επίσημη τεκμηρίωση είναι διαθέσιμη εδώ.](https://prometheus.io/docs/introduction/overview/) Η Grafana είναι ένας πίνακας ελέγχου που χρησιμοποιείται για την απεικόνιση των συλλεγόμενων δεδομένων.
+
+### 🐣 6.1 Installation
+
+Εγκαταστήστε prometheus και prometheus node exporter.
+
+```text
+sudo apt-get install -y prometheus prometheus-node-exporter
+```
+
+Εγκατάσταση grafana.
+
+```bash
+wget -q -O - https://packages.grafana.com/gpg.key śsudo apt-key add -
+echo "deb https://packages.grafana.com/oss/deb stable main" > grafana. ist
+sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
+sudo apt-get update && sudo apt-get install -y grafana
+```
+
+Ενεργοποιήστε τις υπηρεσίες έτσι ώστε να ξεκινούν αυτόματα.
+
+```bash
+sudo systemctl enable grafana-server.service prometheus.service prometheus-node-exporter.service
+```
+
+Create the **prometheus.yml** config file. Choose the tab for your eth2 client. Simply copy and paste.
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+γάτα > $HOME/prometheus.yml << EOF
+καθολικό:
+  scrape_interval: 15s # Από προεπιλογή, απόξεση στόχων κάθε 15 δευτερόλεπτα.
+
+  # Επισύναψη αυτών των ετικετών σε οποιαδήποτε χρονολογική σειρά ή ειδοποιήσεις κατά την επικοινωνία με
+  # εξωτερικά συστήματα (ομοσπονδία, απομακρυσμένη αποθήκευση, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+
+# Μια διαμόρφωση απόξεσης που περιέχει ακριβώς ένα τελικό σημείο για ξύσμα:
+# Εδώ είναι ο ίδιος ο Prometheus.
+scrape_configs:
+   - job_name: 'node_exporter'
+     static_configs:
+       - targets: ['localhost:9100']
+   - job_name: 'nodes'
+     metrics_path: /metrics    
+     static_configs:
+       - targets: ['localhost:5054']
+   - job_name: 'validators'
+     metrics_path: /metrics
+     static_configs:
+       - targets: ['localhost:5064']
+EOF
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+```bash
+γάτα > $HOME/prometheus.yml << EOF
+καθολικό:
+  scrape_interval: 15s # Από προεπιλογή, απόξεση στόχων κάθε 15 δευτερόλεπτα.
+
+  # Επισύναψη αυτών των ετικετών σε οποιαδήποτε χρονολογική σειρά ή ειδοποιήσεις κατά την επικοινωνία με
+  # εξωτερικά συστήματα (ομοσπονδία, απομακρυσμένη αποθήκευση, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+
+# Μια διαμόρφωση απόξεσης που περιέχει ακριβώς ένα τελικό σημείο για ξύσμα:
+# Εδώ είναι ο ίδιος ο Prometheus.
+scrape_configs:
+   - job_name: 'node_exporter'
+     static_configs:
+       - targets: ['localhost:9100']
+   - job_name: 'nodes'
+     metrics_path: /metrics    
+     static_configs:
+       - targets: ['localhost:8008']
+EOF
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+γάτα > $HOME/prometheus.yml << EOF
+καθολικό:
+  scrape_interval: 15s # Από προεπιλογή, απόξεση στόχων κάθε 15 δευτερόλεπτα.
+
+  # Επισύναψη αυτών των ετικετών σε οποιαδήποτε χρονολογική σειρά ή ειδοποιήσεις κατά την επικοινωνία με
+  # εξωτερικά συστήματα (ομοσπονδία, απομακρυσμένη αποθήκευση, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+
+# Μια διαμόρφωση απόξεσης που περιέχει ακριβώς ένα τελικό σημείο για ξύσμα:
+# Εδώ είναι ο ίδιος ο Prometheus.
+scrape_configs:
+   - job_name: 'node_exporter'
+     static_configs:
+       - targets: ['localhost:9100']
+   - job_name: 'nodes'
+     metrics_path: /metrics    
+     static_configs:
+       - targets: ['localhost:8008']
+EOF
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+γάτα > $HOME/prometheus.yml << EOF
+καθολικό:
+  scrape_interval: 15s # Από προεπιλογή, απόξεση στόχων κάθε 15 δευτερόλεπτα.
+
+  # Επισύναψη αυτών των ετικετών σε οποιαδήποτε χρονολογική σειρά ή ειδοποιήσεις κατά την επικοινωνία με
+  # εξωτερικά συστήματα (ομοσπονδία, απομακρυσμένη αποθήκευση, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+
+# Μια διαμόρφωση απόξεσης που περιέχει ακριβώς ένα τελικό σημείο για ξύσμα:
+# Εδώ είναι ο ίδιος ο Prometheus.
+scrape_configs:
+   - job_name: 'node_exporter'
+     static_configs:
+       - targets: ['localhost:9100']
+   - job_name: 'validator'
+     static_configs:
+       - targets: ['localhost:8081']
+   - job_name: 'beacon node'
+     static_configs:
+       - targets: ['localhost:8080']
+   - job_name: 'slasher'
+     static_configs:
+       - targets: ['localhost:8082']
+EOF
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+```bash
+cat > $HOME/prometheus.yml << EOF   
+scrape_configs:
+   - job_name: 'node_exporter'
+     static_configs:
+       - targets: ['localhost:9100']
+   - job_name: 'Lodestar'
+     metrics_path: /metrics    
+     static_configs:
+       - targets: ['localhost:8008']
+EOF
+```
+{% endtab %}
+{% endtabs %}
+
+Setup prometheus for your **eth1 node**. Start by editing **prometheus.yml**
+
+```bash
+nano $HOME/prometheus.yml
+```
+
+Append the applicable job snippet for your eth1 node to the end of **prometheus.yml**. Save the file.
+
+{% hint style="warning" %}
+**Spacing matters**. Ensure all `job_name` snippets are in alignment.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Geth" %}
+```bash
+   - job_name: 'geth'
+     scrape_interval: 15s
+     scrape_timeout: 10s
+     metrics_path: /debug/metrics/prometheus
+     scheme: http
+     static_configs:
+     - targets: ['localhost:6060']
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+```bash
+   - job_name: 'besu'
+     scrape_interval: 15s
+     scrape_timeout: 10s
+     metrics_path: /metrics
+     scheme: http
+     static_configs:
+     - targets:
+       - localhost:9545
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+```bash
+   - job_name: 'nethermind'
+     scrape_interval: 15s
+     scrape_timeout: 10s
+     honor_labels: true
+     static_configs:
+       - targets: ['localhost:9091']
+```
+
+Nethermind monitoring requires [Prometheus Pushgateway](https://github.com/prometheus/pushgateway). Install with the following command.
+
+```bash
+sudo apt-get install -y prometheus-pushgateway
+```
+
+{% hint style="info" %}
+Pushgateway listens for data from Nethermind on port 9091.
+{% endhint %}
+{% endtab %}
+
+{% tab title="OpenEthereum" %}
+```bash
+Work in progress
+```
+{% endtab %}
+{% endtabs %}
+
+Move it to `/etc/prometheus/prometheus.yml`
+
+```bash
+sudo mv $HOME/prometheus.yml /etc/prometheus/prometheus.yml
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/prometheus/prometheus.yml
+```
+
+Τέλος, επανεκκινήστε τις υπηρεσίες.
+
+```bash
+sudo systemctl restart grafana-server.service prometheus.service prometheus-node-exporter.service
+```
+
+Βεβαιωθείτε ότι οι υπηρεσίες εκτελούνται σωστά:
+
+```text
+sudo systemctl status grafana-server.service prometheus.service υπηρεσία prometheus-node-exporter.service
+```
+
+{% hint style="info" %}
+💡 **Υπενθύμιση**: Βεβαιωθείτε ότι η θύρα 3000 είναι ανοικτή στο τείχος προστασίας και/ή θύρα προωθείται αν σκοπεύετε να δείτε πληροφορίες παρακολούθησης από διαφορετικό μηχάνημα.
+{% endhint %}
+
+### 📶 6.2 Setting up Grafana Dashboards
+
+1. Open [http://localhost:3000](http://localhost:3000) or http://&lt;your validator's ip address&gt;:3000 in your local browser.
+2. Συνδεθείτε με **διαχειριστή** / **διαχειριστή**
+3. Αλλαγή κωδικού πρόσβασης
+4. Κάντε κλικ στο εικονίδιο **εργαλείων διαμόρφωσης** και μετά **Προσθήκη πηγής δεδομένων**
+5. Επιλέξτε **Prometheus**
+6. Όρισε **όνομα** σε **"Prometheus**"
+7. Όρισε **URL** στο [http://localhost:9090](http://localhost:9090)
+8. Κάντε κλικ στο **Αποθήκευση & Δοκιμή**
+9. **Download and save** your ETH2 Client's json file. \[ [Lighthouse BC ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Lighthouse VC](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/ValidatorClient.json) \| [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
+10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| OpenEthereum \]
+11. **Download and save** a [node-exporter dashboard](https://grafana.com/api/dashboards/11074/revisions/9/download) for general system monitoring
+12. Κάντε κλικ στο εικονίδιο **Δημιουργία +** &gt; **Εισαγωγή**
+13. Add the ETH2 client dashboard via **Upload JSON file**
+14. If needed, select Prometheus as **Data Source**.
+15. Κάντε κλικ στο κουμπί **Εισαγωγή**.
+16. Repeat steps 12-15 for the ETH1 client dashboard.
+17. Repeat steps 12-15 for the node-exporter dashboard.
+
+{% hint style="info" %}
+\*\*\*\*🔥 **Troubleshooting common Grafana issues**:
+
+_The dashboards do not display eth1 node data._
+
+* In the **eth1 unit file** under located at `/etc/systemd/system/eth1.service`,  make sure your eth1 node/geth is started with the correct parameters so that reporting metrics and pprof http server are enabled.
+  * Example:`ExecStartPre = /usr/bin/geth --http --metrics --pprof`
+{% endhint %}
+
+#### Example of Grafana Dashboards for each ETH2 client.
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+![Beacon Chain dashboard by sigp](../../../.gitbook/assets/lhm.png)
+
+![Validator Client dashboard by sigp](../../../.gitbook/assets/lighthouse-validator.png)
+
+Credits: [https://github.com/sigp/lighthouse-metrics/](https://github.com/sigp/lighthouse-metrics/)
+{% endtab %}
+
+{% tab title="Nimbus" %}
+![Dashboard by status-im](../../../.gitbook/assets/nim_dashboard.png)
+
+Credits: [https://github.com/status-im/nimbus-eth2/](https://github.com/status-im/nimbus-eth2/)
+{% endtab %}
+
+{% tab title="Teku" %}
+![Teku by PegaSys Engineering](../../../.gitbook/assets/teku.dash.png)
+
+Credits: [https://grafana.com/grafana/dashboards/13457](https://grafana.com/grafana/dashboards/13457)
+{% endtab %}
+
+{% tab title="Prysm" %}
+![Prysm dashboard by GuillaumeMiralles](../../../.gitbook/assets/prysm_dash.png)
+
+Credits: [https://github.com/GuillaumeMiralles/prysm-grafana-dashboard](https://github.com/GuillaumeMiralles/prysm-grafana-dashboard)
+{% endtab %}
+
+{% tab title="Lodestar" %}
+Work in progress.
+{% endtab %}
+{% endtabs %}
+
+#### Example of Grafana Dashboards for each ETH1 node.
+
+{% tabs %}
+{% tab title="Geth" %}
+![Dashboard by karalabe](../../../.gitbook/assets/geth-dash.png)
+
+Credits: [https://gist.github.com/karalabe/e7ca79abdec54755ceae09c08bd090cd](https://gist.github.com/karalabe/e7ca79abdec54755ceae09c08bd090cd)
+{% endtab %}
+
+{% tab title="Besu" %}
+![](../../../.gitbook/assets/besu-dash.png)
+
+Credits: [https://grafana.com/dashboards/10273](https://grafana.com/dashboards/10273)
+{% endtab %}
+
+{% tab title="Nethermind" %}
+![](../../../.gitbook/assets/nethermind-dash.png)
+
+Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://github.com/NethermindEth/metrics-infrastructure)
+{% endtab %}
+
+{% tab title="OpenEthereum" %}
+Work in progress
+{% endtab %}
+{% endtabs %}
+
+#### Example of Node-Exporter Dashboard
+
+{% tabs %}
+{% tab title="Node-Exporter Dashboard by starsliao" %}
+**General system monitoring**
+
+Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
+
+![](../../../.gitbook/assets/node-exporter.png)
+
+![](../../../.gitbook/assets/node-exporter2.png)
+
+Credits: [starsliao](https://grafana.com/grafana/dashboards/11074)
+{% endtab %}
+{% endtabs %}
+
+### ⚠ 6.3 Setup Alert Notifications
+
+{% hint style="info" %}
+Ρυθμίστε τις ειδοποιήσεις για να ειδοποιηθείτε αν οι επικυρωτές σας πάνε εκτός σύνδεσης.
+{% endhint %}
+
+Ενημερωθείτε για προβλήματα με τους επικυρωτές σας. Επιλέξτε μεταξύ email, telegram, discord ή slack.
+
+{% tabs %}
+{% tab title="Email Notifications" %}
+1. Επισκεφθείτε το [https://beaconcha.in/](https://beaconcha.in/)
+2. Sign up for an account.
+3. Επιβεβαιώστε το **email σας**
+4. Αναζητήστε τη δημόσια διεύθυνση του **επικυρωτή σας**
+5. Προσθέστε τους επικυρωτές στη λίστα παρακολούθησής σας κάνοντας κλικ στο **σύμβολο σελιδοδεικτών**.
+{% endtab %}
+
+{% tab title="Telegram Notifications" %}
+1. Στο μενού της Grafana, επιλέξτε **κανάλια ειδοποιήσεων** κάτω από το εικονίδιο καμπάνα.
+2. Κάντε κλικ στο **Προσθήκη καναλιού**.
+3. Δώστε στο κανάλι ειδοποίησης ένα **όνομα**.
+4. Επιλέξτε **Telegram** από τη λίστα Τύπου.
+5. To complete the **Telegram API settings**, a **Telegram channel** and **bot** are required. Για οδηγίες σχετικά με τη δημιουργία ενός bot με `@Botfather`, ανατρέξτε [σε αυτή την ενότητα](https://core.telegram.org/bots#6-botfather) της τεκμηρίωσης του Telegram. You need to create a BOT API token.
+6. Create a new telegram group.
+7. Invite the bot to your new group.
+8. Type at least 1 message into the group to initialize it.
+9. Visit [`https://api.telegram.org/botXXX:YYY/getUpdates`](https://api.telegram.org/botXXX:YYY/getUpdates) where `XXX:YYY` is your BOT API Token.
+10. In the JSON response, find and copy the **Chat ID**. Find it between **chat** and **title**. _Example of Chat ID_:  `-1123123123`
+
+    ```text
+    "chat":{"id":-123123123,"title":
+    ```
+
+11. Paste the **Chat ID** into the corresponding field in **Grafana**.
+12. **Save and test** the notification channel for your alerts.
+13. Now you can create custom alerts from your dashboards. [Visit here to learn how to create alerts.](https://grafana.com/docs/grafana/latest/alerting/create-alerts/)
+{% endtab %}
+
+{% tab title="Discord Notifications" %}
+1. Στο μενού της Grafana, επιλέξτε **κανάλια ειδοποιήσεων** κάτω από το εικονίδιο καμπάνα.
+2. Κάντε κλικ στο **Προσθήκη καναλιού**.
+3. Προσθέστε ένα **όνομα** στο κανάλι ειδοποιήσεων.
+4. Επιλέξτε **Discord** από τη λίστα Τύπου.
+5. Για να ολοκληρώσετε τη ρύθμιση, απαιτείται ένας διακομιστής Discord \(και ένα διαθέσιμο κανάλι κειμένου\), καθώς και μια διεύθυνση URL Webhook. Για οδηγίες σχετικά με τη ρύθμιση ενός Webhooks του Discord, ανατρέξτε [σε αυτή την ενότητα](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) της τεκμηρίωσής του.
+6. Εισάγετε το URL **Webhook** στον πίνακα ρυθμίσεων ειδοποιήσεων του Discord.
+7. Κάντε κλικ στο **Send Test**, το οποίο θα ωθήσει ένα μήνυμα επιβεβαίωσης στο κανάλι του Discord.
+{% endtab %}
+
+{% tab title="Slack Notifications" %}
+1. Στο μενού της Grafana, επιλέξτε **κανάλια ειδοποιήσεων** κάτω από το εικονίδιο καμπάνα.
+2. Κάντε κλικ στο **Προσθήκη καναλιού**.
+3. Προσθέστε ένα **όνομα** στο κανάλι ειδοποιήσεων.
+4. Επιλέξτε **Slack** από τη λίστα Τύπου.
+5. Για οδηγίες σχετικά με τη ρύθμιση των εισερχόμενων Webhooks, ανατρέξτε [σε αυτή την ενότητα](https://api.slack.com/messaging/webhooks) της τεκμηρίωσής τους.
+6. Εισάγετε τη διεύθυνση URL Slack Incoming Webhook στο πεδίο **URL**.
+7. Κάντε κλικ στο κουμπί **Αποστολή δοκιμής**, το οποίο θα ωθήσει ένα μήνυμα επιβεβαίωσης στο κανάλι Slack .
+{% endtab %}
+{% endtabs %}
+
+### 🌊 6.4 Monitoring with Uptime Check by Google Cloud
+
+{% hint style="info" %}
+Who watches the watcher? With an external 3rd party tool like Uptime Check, you can have greater reassurance your validator is functioning in case of disasters such as power failure, hardware failure or internet outage. In these scenarios, the previously mentioned monitoring by Prometheus and Grafana would likely cease to function as well.
+
+Credits to [Mohamed Mansour for inspiring this how-to guide](https://www.youtube.com/watch?v=txgOVDTemPQ).
+{% endhint %}
+
+Here's how to setup a no-cost monitoring service called Uptime Check by Google.
+
+{% hint style="info" %}
+For a video demo, watch [MohamedMansour's eth2 education videos](https://www.youtube.com/watch?v=txgOVDTemPQ). Please support his [GITCOIN grant](https://gitcoin.co/grants/1709/video-educational-grant). 🙏
+{% endhint %}
+
+1. Visit [cloud.google.com](https://cloud.google.com/)
+2. Search for **Monitoring** in the search field.
+3. Click **Select a Project to Start Monitoring**.
+4. Click **New Project.**
+5. **Name** your project and click **Create.**
+6. From the notifications menu, select your new project.
+7. On the right column, there's a Monitoring Card. Click **Go to Monitoring**.
+8. On the left menu, click **Uptime checks** and then **CREATE UPTIME CHECK.**
+9. Type in a title i.e. _**Geth node**_
+10. Select protocol as _**TCP**_
+11. Enter your public IP address and port number. i.e. ip=**7.55.6.3** and port=**30303**
+12. Select your desired frequency to check i.e. **5 minutes.**
+13. Choose the region closest to you to check from. Click Next.
+14. Create a Notification Channel. Click **Manage Notification Channels.**
+15. Choose your desired settings. Pick from any or all of Slack, Webhook, Email or SMS.
+16. Go back to Create Uptime Check window.
+17. Within the notifications field, click the refresh button to load your new notification channels.
+18. Select desired notifications.
+19. Click **TEST** to verify your notifications are setup correctly.
+20. Click **CREATE** to finish.
+
+{% hint style="success" %}
+Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
+
+Use [https://beaconcha.in/](https://beaconcha.in/) to create alerts and track your validator's performance.
+{% endhint %}
+
+{% hint style="info" %}
+Be sure to review the [Checklist \| How to confirm a healthy functional ETH2 validator.](checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
+{% endhint %}
+
+{% hint style="success" %}
+🎉Congrats on setting up your validator! Είστε καλοί να πάτε στο eth2.0.
+
+Μήπως θα βρείτε τον οδηγό μας χρήσιμο? Send us a signal with a tip and we'll keep updating it.
+
+Χρησιμοποιήστε το [cointr.ee για να βρείτε τις διευθύνσεις δωρεάς μας ](https://cointr.ee/coincashew). 🙏
+
+Οποιαδήποτε ανατροφοδότηση και όλα τα αιτήματα έλξης εκτιμάται πολύ. 🌛
+
+Hang out and chat with fellow stakers on Discord @
+
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+{% endhint %}
+
+## 🧙♂7. Update a ETH2 client
+
+When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your eth2 beacon chain and validator.
+
+{% hint style="info" %}
+Always review the **git logs with command`git log`** or **release notes** before updating. There may be changes requiring your attention.
+{% endhint %}
+
+{% hint style="success" %}
+\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+{% endhint %}
+
+Select your ETH2 client.
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+Review release notes and check for breaking changes/features.
+
+[https://github.com/sigp/lighthouse/releases](https://github.com/sigp/lighthouse/releases)
+
+Pull the latest source and build it.
+
+```bash
+cd $HOME/git/lighthouse
+git fetch --all && git checkout stable && git pull
+make
+```
+
+Verify the build completed by checking the new version number.
+
+```bash
+lighthouse --version
+```
+
+Επανεκκινήστε την αλυσίδα beacon και τον επικυρωτή σύμφωνα με τις κανονικές διαδικασίες λειτουργίας.
+
+```text
+sudo systemctl reload-or-restart beacon-chain validator
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+Review release notes and check for breaking changes/features.
+
+[https://github.com/status-im/nimbus-eth2/releases](https://github.com/status-im/nimbus-eth2/releases)
+
+Pull the latest source and build it.
+
+```bash
+cd $HOME/git/nimbus-eth2
+git pull && make update
+make NIMFLAGS="-d:insecure" nimbus_beacon_node
+```
+
+Verify the build completed by checking the new version number.
+
+```bash
+cd $HOME/git/nimbus-eth2/build
+./nimbus_beacon_node --version
+```
+
+Stop, copy new binary, and restart beacon chain and validator as per normal operating procedures.
+
+```bash
+sudo systemctl stop beacon-chain
+sudo rm /usr/bin/nimbus_beacon_node
+sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/bin
+sudo systemctl reload-or-restart beacon-chain
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+Review release notes and check for breaking changes/features.
+
+[https://github.com/ConsenSys/teku/releases](https://github.com/ConsenSys/teku/releases)
+
+Pull the latest source and build it.
+
+```bash
+cd $HOME/git/teku
+git pull
+./gradlew distTar installDist
+```
+
+Verify the build completed by checking the new version number.
+
+```bash
+cd $HOME/git/teku/build/install/teku/bin
+./teku --version
+```
+
+Επανεκκινήστε την αλυσίδα beacon και τον επικυρωτή σύμφωνα με τις κανονικές διαδικασίες λειτουργίας.
+
+```bash
+sudo systemctl stop beacon-chain
+sudo rm -rf /usr/bin/teku
+sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
+sudo systemctl reload-or-restart beacon-chain
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+Review release notes and check for breaking changes/features. [https://github.com/prysmaticlabs/prysm/releases](https://github.com/prysmaticlabs/prysm/releases)
+
+```bash
+#Simply restart the processes
+sudo systemctl reload-or-restart beacon-chain validator
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+Review release notes and check for breaking changes/features.
+
+[https://github.com/ChainSafe/lodestar/releases](https://github.com/ChainSafe/lodestar/releases)
+
+Pull the latest source and build it.
+
+```bash
+cd $HOME/git/lodestar
+git pull
+yarn install
+yarn run build
+```
+
+Verify the build completed by checking the new version number.
+
+```bash
+yarn run cli --version
+```
+
+Επανεκκινήστε την αλυσίδα beacon και τον επικυρωτή σύμφωνα με τις κανονικές διαδικασίες λειτουργίας.
+
+```text
+sudo systemctl reload-or-restart beacon-chain validator
+```
+{% endtab %}
+{% endtabs %}
+
+Check the logs to verify the services are working properly and ensure there are no errors.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl status beacon-chain validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl κατάσταση beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+## 🔥8. Επιπλέον Χρήσιμες Συμβουλές
+
+### 🛑 8.1 Voluntary exit a validator
+
+{% hint style="info" %}
+Χρησιμοποιήστε αυτήν την εντολή για να σηματοδοτήσετε τις προθέσεις σας για να σταματήσετε την επικύρωση με τον επικυρωτή σας. Αυτό σημαίνει ότι δεν θέλετε πλέον να ποντάρετε με τον επικυρωτή σας και θέλετε να απενεργοποιήσετε τον κόμβο.
+
+* Η εθελοντική έξοδος διαρκεί τουλάχιστον 2048 εποχές \(ή ~9days\). Υπάρχει μια ουρά εξόδου και μια καθυστέρηση πριν ο επικυρωτής σας τερματίσει τελικά.
+* Μόλις ένας επικυρωτής τερματιστεί στη φάση 0, αυτό δεν είναι αναστρέψιμο και δεν μπορείτε πλέον να επανεκκινήσετε την επικύρωση ξανά.
+* Τα κεφάλαιά σας δεν θα είναι διαθέσιμα για ανάληψη μέχρι τη φάση 1.5 ή αργότερα.
+* Αφού ο επικυρωτής σας φύγει από την ουρά εξόδου και είναι πραγματικά έξω, είναι ασφαλές να απενεργοποιήσετε τον κόμβο και τον επικυρωτή του φάρου σας.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+lighthouse account validator exit \
+--keystore $HOME/.lighthouse/mainnet/validators \
+--beacon-node http://localhost:5052 \
+--network mainnet
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+teku voluntary-exit \
+--epoch=<epoch number to exit> \
+--beacon-node-api-endpoint=http://127.0.0.1:5051 \
+--validator-keys=<path to keystore.json>:<path to password.txt file>
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+```bash
+build/nimbus_beacon_node deposits exit --validator=<VALIDATOR_PUBLIC_KEY> --data-dir=/var/lib/nimbus
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+$HOME/prysm/prysm.sh λογαριασμοί επικυρωτή εθελοντικά-έξοδος
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+```bash
+#TO BE DETERMINED
+```
+{% endtab %}
+{% endtabs %}
+
+### 🗝 8.2 Verify your mnemonic phrase
+
+Χρησιμοποιώντας το εργαλείο eth2deposit-cli, βεβαιωθείτε ότι μπορείτε να αναγεννήσετε τα ίδια ζεύγη πλήκτρων eth2 επαναφέροντας το `validator_keys σας`
+
+```bash
+cd $HOME/eth2deposit-cli 
+./deposit.sh existing-mnemonic --chain mainnet
+```
+
+{% hint style="info" %}
+When the **pubkey** in both **keystore files** are **identical,** this means your mnemonic phrase is veritably correct. Άλλα πεδία θα είναι διαφορετικά λόγω της αλάτισης.
+{% endhint %}
+
+### 🤖8.3 Add additional validators
+
+Backup and move your existing `validator_key` directory and append the date to the end.
+
+```bash
+# Adjust your eth2deposit-cli directory accordingly
+cd $HOME/eth2deposit-cli
+# Renames and append the date to the existing validator_key directory
+mv validator_key validator_key_$(date +"%Y%d%m-%H%M%S")
+# Optional: you can also delete this folder since it can be regenerated.
+```
+
+{% hint style="info" %}
+Χρησιμοποιώντας το εργαλείο eth2deposit-cli, μπορείτε να προσθέσετε περισσότερους επικυρωτές δημιουργώντας ένα νέο αρχείο δεδομένων κατάθεσης και `validator_keys`
+{% endhint %}
+
+2. For example, in case we originally created **3 validators** but now wish to **add 5 more validators**, we could use the following command. Select the tab depending on how you acquired [**eth2deposit tool**](https://github.com/ethereum/eth2.0-deposit-cli).
+
+{% hint style="warning" %}
+**Security recommendation reminder**: For best security practices, key management and other activities where you type your 24 word mnemonic seed should be completed on an air-gapped offline cold machine booted from USB drive.
+{% endhint %}
+
+{% hint style="danger" %}
+Reminder to use the same **keystore password.**
+{% endhint %}
+
+{% tabs %}
+{% tab title="Build from source code" %}
+```bash
+# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+```
+{% endtab %}
+
+{% tab title="Pre-built eth2deposit-cli binaries" %}
+```bash
+# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+```
+{% endtab %}
+
+{% tab title="Advanced - Most Secure" %}
+{% hint style="warning" %}
+🔥**Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
+{% endhint %}
+
+Follow this [ethstaker.cc](https://ethstaker.cc/) exclusive for the low down on making a bootable usb.
+
+### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
+
+{% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
+
+### Part 2 - Install Ubuntu 20.04 from the USB Drive
+
+{% embed url="https://www.youtube.com/watch?v=C97\_6MrufCE" %}
+
+You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
+
+Run the existing-mnemonic command in the previous tabs.
+{% endtab %}
+{% endtabs %}
+
+3. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org/) and making your corresponding 32 ETH deposit transactions.
+
+4. Finish by stopping your validator, importing the new validator key\(s\), restarting your validator and verifying the logs ensuring everything still works without error. [Review steps 2 and onward of the main guide if you need a refresher.](./#2-signup-to-be-a-validator-at-the-launchpad)
+
+5. Finally, verify your **existing** validator's attestations are working with public block explorer such as
+
+[https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
+
+Enter your validator's pubkey to view its status.
+
+{% hint style="info" %}
+Your additional validators are now in the activation queue waiting their turn. Check your estimated activation time at [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app/)
+{% endhint %}
+
+### 💸 8.4 Switch / migrate Eth2 clients with slash protection
+
+{% hint style="info" %}
+The key takeaway in this process is to avoid running two eth2 clients simultaneously. You want to avoid being punished by a slashing penalty, which causes a loss of ether.
+{% endhint %}
+
+#### 🛑 8.4.1 Stop old beacon chain and old validator.
+
+In order to export the slashing database, the validator needs to be stopped.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl stop beacon-chain validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl stop beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+#### 💽 8.4.2 Export slashing database \(Optional\)
+
+{% hint style="info" %}
+[EIP-3076](https://eips.ethereum.org/EIPS/eip-3076) implements a standard to safety migrate validator keys between eth2 clients. This is the exported contents of the slashing database.
+{% endhint %}
+
+Update the export .json file location and name.
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+lighthouse account validator slashing-protection export <lighthouse_interchange.json>
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+To be implemented
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+teku slashing-protection export --to=<FILE>
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+To be implemented
+{% endtab %}
+
+{% tab title="Lodestar" %}
+To be implemented
+{% endtab %}
+{% endtabs %}
+
+#### 🚧 8.4.3 Setup and install new validator / beacon chain
+
+Now you need to setup/install your new validator **but do not start running the systemd processes**. Be sure to thoroughly follow your new validator's  [Section 4. Configure a ETH2 beacon chain and validator.](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md#4-configure-a-eth2-beacon-chain-node-and-validator) You will need to build/install the client, configure port forwarding/firewalls, and new systemd unit files.
+
+{% hint style="warning" %}
+\*\*\*\*✨ **Pro Tip**: During the process of re-importing validator keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two eth2 clients with same validator keys at the same time.
+{% endhint %}
+
+{% hint style="danger" %}
+🛑 **Critical Step**: Do not start any **systemd processes** until either you have **imported the slashing database** or you have **waited at least 13 minutes or two epochs**.
+{% endhint %}
+
+#### 📂 8.4.4 Import slashing database \(Optional\)
+
+Using your new eth2 client, run the following command and update the relevant path to import your slashing database from 2 steps ago.
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+lighthouse account validator slashing-protection import <my_interchange.json>
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+To be implemented
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+teku slashing-protection import --from=<FILE>
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+To be implemented
+{% endtab %}
+
+{% tab title="Lodestar" %}
+To be implemented
+{% endtab %}
+{% endtabs %}
+
+#### 🌠 8.4.5 Start new validator and new beacon chain
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl start beacon-chain validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl start beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+#### 🔥 8.4.6 Verify functionality
+
+Check the logs to verify the services are working properly and ensure there are no errors.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl status beacon-chain validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl κατάσταση beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+Finally, verify your validator's attestations are working with public block explorer such as
+
+[https://beaconcha.in/](https://beaconcha.in/)
+
+Enter your validator's pubkey to view its status.
+
+#### 🧯 8.4.7 Update Monitoring with Prometheus and Grafana
+
+[Review section 6](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md#6-monitoring-your-validator-with-grafana-and-prometheus) and change your `prometheus.yml`. Ensure prometheus is connected to your new eth2 client's metrics port. You will also want to import your new eth2 client's dashboard.
+
+### 🖥 8.5 Use all available LVM disk space
+
+During installation of Ubuntu Server, a common issue arises where your hard drive's space is not fully available for use.
+
+```bash
+# View your disk drives
+sudo -s lvm
+
+# Change the logical volume filesystem path if required
+lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+
+#exit lvextend
+exit
+
+# Resize file system to use the new available space in the logical volume
+resize2fs /dev/ubuntu-vg/ubuntu-lv
+
+## Verify new available space
+df -h
+
+# Example output of a 2TB drive where 25% is used
+# Filesystem                         Size   Used Avail Use% Mounted on
+# /dev/ubuntu-vg/ubuntu-lv           2000G  500G  1500G  25% /
+```
+
+**Source reference**:
+
+{% embed url="https://askubuntu.com/questions/1106795/ubuntu-server-18-04-lvm-out-of-space-with-improper-default-partitioning" %}
+
+### 🚦 8.6 Reduce network bandwidth usage
+
+{% hint style="info" %}
+Hosting your own ETH1 node can consume hundreds of gigabytes of data per day. Because data plans can be limited or costly, you might desire to slow down data usage but still maintain good connectivity to the network.
+{% endhint %}
+
+Edit your eth1.service unit file.
+
+```bash
+sudo nano /etc/systemd/system/eth1.service
+```
+
+Add the following flag to limit the number of peers on the `ExecStart` line.
+
+{% tabs %}
+{% tab title="Geth" %}
+```bash
+--maxpeers 10
+# Example
+# ExecStart       = /usr/bin/geth --maxpeers 10 --http --ws
+```
+{% endtab %}
+
+{% tab title="OpenEthereum \(Parity\)" %}
+```bash
+--max-peers 10
+# Example
+# ExecStart       = <home directory>/openethereum/openethereum --max-peers 10
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+```bash
+--max-peers 10
+# Example
+# ExecStart       = <home directory>/besu/bin/besu --max-peers 10 --rpc-http-enabled
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+```bash
+--Network.ActivePeersMaxCount 10
+# Example
+# ExecStart       = <home directory>/nethermind/Nethermind.Runner --Network.ActivePeersMaxCount 10 --JsonRpc.Enabled true
+```
+{% endtab %}
+{% endtabs %}
+
+Finally, reload the new unit file and restart the eth1 node.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart eth1
+```
+
+### 📂 8.7 Important directory locations
+
+{% hint style="info" %}
+In case you need to locate your validator keys, database directories or other important files.
+{% endhint %}
+
+#### Eth2 Client files and locations
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+# Validator Keys
+~/.lighthouse/mainnet/validators
+
+# Beacon Chain Data
+~/.lighthouse/mainnet/beacon
+
+# List of all validators and passwords
+~/.lighthouse/mainnet/validators/validator_definitions.yml
+
+#Slash protection db
+~/.lighthouse/mainnet/validators/slashing_protection.sqlite
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+```bash
+# Validator Keys
+/var/lib/nimbus/validators
+
+# Beacon Chain Data
+/var/lib/nimbus/db
+
+#Slash protection db
+/var/lib/nimbus/validators/slashing_protection.sqlite3
+
+#Logs
+/var/lib/nimbus/beacon.log
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+# Validator Keys
+/var/lib/teku
+
+# Beacon Chain Data
+~/tekudata/beacon
+
+#Slash protection db
+~/tekudata/validator/slashprotection
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+# Validator Keys
+~/.eth2validators/prysm-wallet-v2/direct
+
+# Beacon Chain Data
+~/.eth2/beaconchaindata
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+TBD
+{% endtab %}
+{% endtabs %}
+
+#### Eth1 node files and locations
+
+{% tabs %}
+{% tab title="Geth" %}
+```bash
+# database location
+$HOME/.ethereum
+```
+{% endtab %}
+
+{% tab title="OpenEthereum \(Parity\)" %}
+```bash
+# database location
+$HOME/.local/share/openethereum
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+```bash
+# database location
+$HOME/.besu/database
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+```bash
+#database location
+$HOME/.nethermind/nethermind_db/mainnet
+```
+{% endtab %}
+{% endtabs %}
+
+### 🌏 8.8 Hosting ETH1 node on a different machine
+
+{% hint style="info" %}
+Hosting your own ETH1 node on a different machine than where your beacon-chain and validator resides, can allow some extra modularity and flexibility.
+{% endhint %}
+
+On the eth1 node machine, edit your eth1.service unit file.
+
+```bash
+sudo nano /etc/systemd/system/eth1.service
+```
+
+Add the following flag to allow remote incoming http and or websocket api requests on the `ExecStart` line.
+
+{% hint style="info" %}
+If not using websockets, there's no need to include ws parameters. Only Nimbus requires websockets.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Geth" %}
+```bash
+--http.addr 0.0.0.0 --ws.addr 0.0.0.0
+# Example
+# ExecStart       = /usr/bin/geth --http.addr 0.0.0.0 --ws.addr 0.0.0.0 --http --ws
+```
+{% endtab %}
+
+{% tab title="OpenEthereum \(Parity\)" %}
+```bash
+--jsonrpc-interface=all --ws-interface=all
+# Example
+# ExecStart       = <home directory>/openethereum/openethereum --jsonrpc-interface=all --ws-interface=all
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+```bash
+--rpc-http-host=0.0.0.0 --rpc-ws-enabled --rpc-ws-host=0.0.0.0
+# Example
+# ExecStart       = <home directory>/besu/bin/besu --rpc-http-host=0.0.0.0 --rpc-ws-enabled --rpc-ws-host=0.0.0.0 --rpc-http-enabled
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+```bash
+--JsonRpc.Host 0.0.0.0 --WebSocketsEnabled
+# Example
+# ExecStart       = <home directory>/nethermind/Nethermind.Runner --JsonRpc.Host 0.0.0.0 --WebSocketsEnabled --JsonRpc.Enabled true
+```
+{% endtab %}
+{% endtabs %}
+
+Reload the new unit file and restart the eth1 node.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart eth1
+```
+
+On the separate machine hosting the beacon-chain, update the beacon-chain unit file with the eth1 node's IP address.
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+# edit beacon-chain unit file
+nano /etc/systemd/system/beacon-chain.service
+# add the --eth1-endpoints parameter
+# example
+# --eth1-endpoints=http://192.168.10.22
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+```bash
+# edit beacon chain unit file
+nano /etc/systemd/system/beacon-chain.service
+# modify the --web-url parameter
+# example
+# --web3-url=ws://192.168.10.22
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+# edit teku.yaml
+nano /etc/teku/teku.yaml
+# change the eth1-endpoint
+# example
+# eth1-endpoint: "http://192.168.10.20:8545"
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+# edit beacon-chain unit file
+nano /etc/systemd/system/beacon-chain.service
+# add the --http-web3provider parameter
+# example
+# --http-web3provider=http://192.168.10.20:8545
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+```
+tbd.
+```
+{% endtab %}
+{% endtabs %}
+
+Reload the updated unit file and restart the beacon-chain.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart beacon-chain
+```
+
+### 🎊 8.9 Add or change POAP graffiti flag
+
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn an early beacon chain validator POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>`  between the single quotes.
+
+```bash
+MY_GRAFFITI='<my POAP string or message>'
+# Examples
+# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
+# MY_GRAFFITI='eth2 rulez!'
+```
+
+{% hint style="info" %}
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
+{% endhint %}
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+Run the following to re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" 
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+Run the following to re-create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/beacon-chain.service << EOF 
+# The eth2 beacon chain service (part of systemd)
+# file: /etc/systemd/system/beacon-chain.service 
+
+[Unit]
+Description     = eth2 beacon chain service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+Type            = simple
+User            = $(whoami)
+WorkingDirectory= /var/lib/nimbus
+ExecStart       = /usr/bin/nimbus_beacon_node --network=mainnet --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+{% hint style="warning" %}
+Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum and Infura ETH1 nodes are verified compatible.
+{% endhint %}
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
+```
+
+Update file permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/beacon-chain.service
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+Re-generate your Teku Config file. Simply copy and paste.
+
+```bash
+cat > $HOME/teku.yaml << EOF
+# network
+network: "mainnet"
+
+# p2p
+p2p-enabled: true
+p2p-port: 9000
+# validators
+validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
+validators-graffiti: "${MY_GRAFFITI}"
+
+# Eth 1
+eth1-endpoint: "http://localhost:8545"
+
+# metrics
+metrics-enabled: true
+metrics-categories: ["BEACON","LIBP2P","NETWORK"]
+metrics-port: 8008
+
+# database
+data-path: "$(echo $HOME)/tekudata"
+data-storage-mode: "archive"
+
+# rest api
+rest-api-port: 5051
+rest-api-docs-enabled: true
+rest-api-enabled: true
+
+# logging
+log-include-validator-duties-enabled: true
+log-destination: CONSOLE
+EOF
+```
+
+Move the config file to `/etc/teku`
+
+```bash
+sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+Re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --mainnet --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+ Update its permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+Run the following to re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+
+```bash
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
+
+[Unit]
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+WorkingDirectory= $(echo $HOME)/git/lodestar
+ExecStart       = yarn run cli validator run --network mainnet --graffiti "${MY_GRAFFITI}"
+Restart         = on-failure
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system`
+
+```bash
+sudo mv $HOME/validator.service /etc/systemd/system/validator.service
+```
+
+ Update its permissions.
+
+```bash
+sudo chmod 644 /etc/systemd/system/validator.service
+```
+{% endtab %}
+{% endtabs %}
+
+Reload the updated unit file and restart the validator process for your graffiti to take effect.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart validator
+```
+{% endtab %}
+
+{% tab title="Teku \| Nimbus" %}
+```
+sudo systemctl daemon-reload
+sudo systemctl restart beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+### 📦 8.10 Update a ETH1 node - Geth / OpenEthereum / Besu / Nethermind
+
+{% hint style="info" %}
+From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
+{% endhint %}
+
+{% hint style="success" %}
+\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+{% endhint %}
+
+Stop your eth1 node process.
+
+```bash
+# This can take a few minutes.
+sudo systemctl stop eth1
+```
+
+Update the eth1 node package or binaries.
+
+{% tabs %}
+{% tab title="Geth" %}
+Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+{% endtab %}
+
+{% tab title="OpenEthereum \(Parity\)" %}
+Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
+
+Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
+
+```bash
+cd $HOME
+# backup previous openethereum version in case of rollback
+mv openethereum openethereum_backup_$(date +"%Y%d%m-%H%M%S")
+# store new version in openethreum directory
+mkdir openethereum && cd openethereum
+# download latest version
+curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+# unzip
+unzip openethereum*.zip
+# add execute permission
+chmod +x openethereum
+# cleanup
+rm openethereum*.zip
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
+
+File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo)
+
+Manually find the desired file from above repo and modify the `wget` command with the URL.
+
+> Example: 
+> 
+> wget -O besu.tar.gz [https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
+
+```bash
+cd $HOME
+# backup previous besu version in case of rollback
+mv besu besu_backup_$(date +"%Y%d%m-%H%M%S")
+# download latest besu
+wget -O besu.tar.gz <https URL to latest tax.gz linux file>
+# untar
+tar -xvf besu.tar.gz
+# cleanup
+rm besu.tar.gz
+# rename besu to standard folder location
+mv besu* besu
+```
+{% endtab %}
+
+{% tab title="Nethermind" %}
+Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
+
+Automatically download the latest linux release, un-zip and cleanup.
+
+```bash
+cd $HOME
+# backup previous nethermind version in case of rollback
+mv nethermind nethermind_backup_$(date +"%Y%d%m-%H%M%S")
+# store new version in nethermind directory
+mkdir nethermind && cd nethermind 
+# download latest version
+curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+# unzip
+unzip -o nethermind*.zip
+# cleanup
+rm nethermind*linux*.zip
+```
+{% endtab %}
+{% endtabs %}
+
+Start your eth1 node process.
+
+```bash
+sudo systemctl έναρξη eth1
+```
+
+Check the logs to verify the services are working properly and ensure there are no errors.
+
+{% tabs %}
+{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+```bash
+sudo systemctl status eth1 status beacon-chain validator
+```
+{% endtab %}
+
+{% tab title="Nimbus \| Teku" %}
+```
+sudo systemctl status eth1 beacon-chain
+```
+{% endtab %}
+{% endtabs %}
+
+Finally, verify your validator's attestations are working with public block explorer such as
+
+[https://beaconcha.in/](https://beaconcha.in/)
+
+Enter your validator's pubkey to view its status.
+
+### ✨ 8.11 How to improve validator attestation effectiveness
+
+{% hint style="info" %}
+Learn about [attestation effectiveness from Attestant.io](https://www.attestant.io/posts/defining-attestation-effectiveness/)
+{% endhint %}
+
+#### 👨👩👧👧 Strategy \#1: Increase eth2 beacon chain peer count
+
+{% hint style="info" %}
+This change will result in increased bandwidth and memory usage. Tweak and tailor appropriately for your hardware.
+
+_Kudos to_ [_Rémy Roy_](https://www.reddit.com/user/remyroy/) _for this strat._
+{% endhint %}
+
+Edit your `beacon-chain.service` unit file \(except for Teku\).
+
+```bash
+sudo nano /etc/systemd/system/beacon-chain.service
+```
+
+Add the following flag to increase peers on the `ExecStart` line.
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+--target-peers 100
+# Example
+# lighthouse bn --target-peers 100 --staking --metrics --network mainnet
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+```bash
+--max-peers=100
+# Example
+# /usr/bin/nimbus_beacon_node --network=mainnet --max-peers=100
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+# Edit teku.yaml
+sudo nano /etc/teku/teku.yaml
+
+# add the following line to teku.yaml and save the file
+p2p-peer-upper-bound: 100
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+--p2p-max-peers=100
+# Example
+# prysm.sh beacon-chain --mainnet --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+```bash
+--network.maxPeers 100
+# Example
+# yarn run cli beacon --network.maxPeers 100 --network mainnet
+```
+{% endtab %}
+{% endtabs %}
+
+Reload the updated unit file and restart the beacon-chain process to complete this change.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart beacon-chain
+```
+
+#### 👨💻 Strategy \#2: Eth1 redundancy
+
+{% hint style="info" %}
+Especially useful during eth1 upgrades, when your primary node is temporarily unavailable.
+{% endhint %}
+
+Edit your `beacon-chain.service` unit file.
+
+```bash
+sudo nano /etc/systemd/system/beacon-chain.service
+```
+
+Add the following flag on the `ExecStart` line.
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+--eth1-endpoints <http://alternate eth1 endpoints>
+# Example, separate endpoints with commas.
+# --eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+--fallback-web3provider=<http://<alternate eth1 provider one> --fallback-web3provider=<http://<alternate eth1 provider two>
+# Example, repeat flag for multiple eth1 providers
+# --fallback-web3provider=https://nodes.mewapi.io/rpc/eth --fallback-web3provider=https://mainnet.infura.io/v3/YOUR-PROJECT-ID
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+💸 Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+{% endhint %}
+
+Reload the updated unit file and restart the beacon-chain process to complete this change.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart beacon-chain
+```
+
+#### ⚙ Strategy \#3: Perform updates or reboots during the longest attestation gap
+
+Learn how to at the following quick guide.
+
+{% page-ref page="how-to-find-longest-attestation-slot-gap.md" %}
+
+#### ⛓ Strategy \#4: Beacon node redundancy
+
+{% hint style="info" %}
+Allows the VC \(validator client\) to connect to multiple BN \(beacon nodes\). This means your validator client can use multiple BNs. Whenever a BN fails to respond, the VC will try again with the next BN.
+
+Must install a BN of the same eth2 client on another server.
+
+Currently only works for Lighthouse.
+{% endhint %}
+
+Edit your `validator.service` unit file.
+
+```bash
+sudo nano /etc/systemd/system/validator.service
+```
+
+Add the following flag on the `ExecStart` line.
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+--beacon-nodes <BEACON-NODE ENDPOINTS>
+# Example, separate endpoints with commas.
+# lighthouse vc --beacon-nodes http://localhost:5052,http://192.168.1.100:5052
+# If localhost is not responsive (perhaps during an update), the VC will attempt to use 192.168.1.100 instead.
+```
+{% endtab %}
+{% endtabs %}
+
+Reload the updated unit file and restart the validator process to complete this change.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart validator
+```
+
+## 🌇 9. Join the community on Discord and Reddit
+
+### 📱 Discord
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+{% embed url="https://discord.gg/cyAszAh" %}
+{% endtab %}
+
+{% tab title="Nimbus" %}
+{% embed url="https://discord.gg/XRxWahP" %}
+{% endtab %}
+
+{% tab title="Teku" %}
+{% embed url="https://discord.gg/7hPv2T6" %}
+{% endtab %}
+
+{% tab title="Prysm" %}
+{% embed url="https://discord.gg/XkyZSSk4My" %}
+{% endtab %}
+
+{% tab title="Lodestar" %}
+{% embed url="https://discord.gg/aMxzVcr" %}
+{% endtab %}
+
+{% tab title="CoinCashew" %}
+{% embed url="https://discord.gg/w8Bx8W2HPW" %}
+{% endtab %}
+{% endtabs %}
+
+### 🌍 Reddit r/ethStaker
+
+{% embed url="https://www.reddit.com/r/ethstaker/" %}
+
+## 🧩10. Υλικό Αναφοράς
+
+Εκτιμήστε τη σκληρή δουλειά που γίνεται από τους λεπτούς λαούς στους ακόλουθους συνδέσμους που χρησίμευσε ως θεμέλιο για τη δημιουργία αυτού του οδηγού.
+
+{% embed url="https://launchpad.ethereum.org/" %}
+
+{% embed url="https://pegasys.tech/teku-ethereum-2-for-enterprise/" %}
+
+{% embed url="https://docs.teku.pegasys.tech/en/latest/HowTo/Get-Started/Build-From-Source/" %}
+
+{% embed url="https://lighthouse-book.sigmaprime.io/intro.html" caption="" %}
+
+{% embed url="https://status-im.github.io/nimbus-eth2/intro.html" %}
+
+{% embed url="https://prylabs.net/participate" %}
+
+{% embed url="https://docs.prylabs.network/docs/getting-started/" %}
+
+{% embed url="https://chainsafe.github.io/lodestar/installation/" %}
+
+## 🎉11. Bonus links
+
+### 🧱 ETH2 Block Explorers
+
+{% embed url="https://beaconcha.in/" %}
+
+{% embed url="https://beaconscan.com/" caption="" %}
+
+### 🗒 Τελευταίες Πληροφορίες Eth2
+
+{% embed url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
+
+{% embed url="https://www.reddit.com/r/ethstaker" caption="" %}
+
+{% embed url="https://blog.ethereum.org/" caption="" %}
+
+### 👨👩👧👦 Additional ETH2 Community Guides
+
+{% embed url="https://someresat.medium.com/" %}
+
+{% embed url="https://github.com/metanull-operator/eth2-ubuntu" %}
+
+{% embed url="https://agstakingco.gitbook.io/eth-2-0-staking-guide-medalla/" %}
+
+#### Hardware Staking Guide [https://www.reddit.com/r/ethstaker/comments/j3mlup/a\_slightly\_updated\_look\_at\_hardware\_for\_staking/](https://www.reddit.com/r/ethstaker/comments/j3mlup/a_slightly_updated_look_at_hardware_for_staking/)
+
+{% embed url="https://medium.com/@RaymondDurk/how-to-stake-for-ethereum-2-0-with-dappnode-231fa7689c02" %}
+
+{% embed url="https://kb.beaconcha.in/" %}
+
+
 
