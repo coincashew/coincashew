@@ -1,14 +1,14 @@
 ---
 description: >-
-  Scenario: How do I figure out and confirm that everything is working properly (eth 1 node in sync, eth 2 beacon chain in sync, eth 2 beacon node able to communicate with eth 1 node, etc etc.
+  场景：如何找到并确认一切都正常工作 (在同步中的第一个节点) eths 2 信标链在同义词，eth 2 信标节点能够与eth1 节点等通信。
 ---
 
-# Checklist \| How to confirm a healthy functional ETH2 validator
+# 清单 \| 如何确认健康的 ETH2 验证器
 
-## ⏩ Quick steps guide
+## :快速前进按钮：快速步骤指南
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+以下步骤与我们的 [主机指南](./) 一致。 您可能需要酌情调整文件名称和目录位置。 核心概念保持不变。
 {% endhint %}
 
 ### 🚀 Eth1 Node Checklist
@@ -16,37 +16,37 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Concern</th>
-      <th style="text-align:left">Solution</th>
+      <th style="text-align:left">关注</th>
+      <th style="text-align:left">解答</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left">Eth1 in sync</td>
+      <td style="text-align:left">Eth1 同步中</td>
       <td style="text-align:left">
-        <p>Ensure your node&apos;s block number matches the tip block of a <a href="http://etherscan.io/">public block explorer</a>.
-          Find your eth1&apos;s block # with command <code>journalctl -fu eth1 </code>
+        <p>请确保您的节点&apos;s 块编号匹配一个 <a href="http://etherscan.io/">公开块浏览器</a> 的小块块。
+          找到你的 eth1&apos;s 块# 命令 <code>journalctl -fu eth1 </code>
         </p>
-        <p><b><code>Example log output:</code></b><code>INFO [12-06|14:50:05.314] Imported new chain ... number=11301130</code>
+        <p><b><code>示例日志输出：</code></b><code>INFO [12-06|14:50:05.314] 导入了新链... 数字=11301130</code>
         </p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Ports open</td>
+      <td style="text-align:left">端口打开</td>
       <td style="text-align:left">
-        <p>Confirm ports are reachable with an external port checker such as</p>
-        <p><a href="https://www.yougetsignal.com/tools/open-ports/">https://www.yougetsignal.com/tools/open-ports/</a> 
+        <p>确认端口可以通过外部端口检查器访问，如：</p>
+        <p><a href="https://www.yougetsignal.com/tools/open-ports/">https://www.yugetsignal.com/tools/open-ports/</a> 
         </p>
-        <p>Find <a href="../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall">Port # information here</a>.</p>
+        <p>在这里找到 <a href="../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall">端口 # 信息</a>。</p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Check eth1 logs for errors</td>
-      <td style="text-align:left">Use the command <code>journalctl -fu eth1</code>
+      <td style="text-align:left">检查 eth1 日志中的错误</td>
+      <td style="text-align:left">使用命令 <code>journalctl -fu eth1</code>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to stop/start eth1 node</td>
+      <td style="text-align:left">了解如何停止/启动 eth1 节点</td>
       <td style="text-align:left">
         <p><code>sudo systemctl stop eth1</code>
         </p>
@@ -55,71 +55,71 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to update my eth1 node</td>
-      <td style="text-align:left">Refer to this <a href="how-to-update-your-eth1-node.md">quick guide.</a>
+      <td style="text-align:left">了解如何更新我的 eth1 节点</td>
+      <td style="text-align:left">参考此 <a href="how-to-update-your-eth1-node.md">快速指南。</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Reduce bandwidth usage</td>
-      <td style="text-align:left">Refer to <a href="./#8-6-reduce-network-bandwidth-usage">the mainnet guide.</a>
+      <td style="text-align:left">减少带宽使用</td>
+      <td style="text-align:left">参考主网指南 <a href="./#8-6-reduce-network-bandwidth-usage">。</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Eth1 node redundancy</td>
-      <td style="text-align:left">Refer to <a href="./#strategy-2-eth1-redundancy">the mainnet guide.</a>
+      <td style="text-align:left">Eth1 节点冗余性</td>
+      <td style="text-align:left">参考主网指南 <a href="./#strategy-2-eth1-redundancy">。</a>
       </td>
     </tr>
   </tbody>
 </table>
 
-### 🧬 Eth2 Beacon Chain Checklist
+### 🧬 Eth2 信标链清单
 
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Concern</th>
-      <th style="text-align:left">Solution</th>
+      <th style="text-align:left">关注</th>
+      <th style="text-align:left">解答</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left">Installed latest stable release</td>
-      <td style="text-align:left">Refer to <a href="how-to-update-your-eth2-client.md">how to update eth2 client.</a>
+      <td style="text-align:left">已安装最新稳定版本</td>
+      <td style="text-align:left">参考 <a href="how-to-update-your-eth2-client.md">如何更新 eth2 客户端。</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Beacon chain client can connect to Eth1 node</td>
+      <td style="text-align:left">信标链客户端可以连接到Eth1节点</td>
       <td style="text-align:left">
-        <p>Check for a response with the command:<code>curl -H &quot;Content-Type: application/json&quot; -X POST --data &apos;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;web3_clientVersion&quot;,&quot;params&quot;:[],&quot;id&quot;:67}&apos; http://localhost:8545  </code>
+        <p>检查命令的响应：<code>curl -H &quot;Content-Type: application/json&quot; -X POST --data &apos;P&quot;jsonrpc&quot;:&quot;2.&quot;&quot;方法&quot;&quot;web3_client版本&quot;&quot;params&quot;:[],&quot;id&quot;:67}&apos; http://localhost:8545  </code>
         </p>
-        <p>You should receive a response similar to:</p>
+        <p>您应该收到一个类似于以下的响应：</p>
         <p><code>{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:67,&quot;result&quot;:&quot;Geth/v1.9.24-stable-cc05b050/linux-amd64/go1.15.5&quot;}</code>
         </p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Beacon chain is sync&apos;d to mainnet</td>
-      <td style="text-align:left">Ensure your block number matches the slot# of a <a href="https://beaconcha.in/">public block explorer</a>.
-        Find your eth2&apos;s beacon chain slot # with in logs with command <code>journalctl -fu beacon-chain</code>
+      <td style="text-align:left">信标链正在同步&apos;d 到主网</td>
+      <td style="text-align:left">确保您的方块号码匹配 <a href="https://beaconcha.in/">公开方块探索器的</a> 的槽位。
+        找到你的 eth2&apos;s 信标链栏位 # ，带有命令 <code>journalctl -fu beacon-chain</code>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Check beacon chain logs for errors</td>
-      <td style="text-align:left">Use the command <code>journalctl -fu beacon-chain</code>
+      <td style="text-align:left">检查信标链日志是否有错误</td>
+      <td style="text-align:left">使用命令 <code>journalctl -fu beacon-chain</code>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Ports open</td>
+      <td style="text-align:left">端口打开</td>
       <td style="text-align:left">
-        <p>Confirm ports are reachable with an external port checker such as</p>
+        <p>确认端口可以通过外部端口检查器访问，如：</p>
         <p><a href="https://www.yougetsignal.com/tools/open-ports/">https://www.yougetsignal.com/tools/open-ports/</a> or
           <a
-          href="https://canyouseeme.org/">https://canyouseeme.org/</a>.</p>
-        <p> <a href="../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall">Click here for Port # information</a>.</p>
+          href="https://canyouseeme.org/">https://canyousee.org/</a>。</p>
+        <p> <a href="../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall">点击这里获取端口 # 信息</a>。</p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to stop/start beacon-chain</td>
+      <td style="text-align:left">了解如何停止/启动信标链。</td>
       <td style="text-align:left">
         <p><code>sudo systemctl stop beacon-chain</code>
         </p>
@@ -128,13 +128,13 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to update my beacon chain</td>
-      <td style="text-align:left">Refer to this <a href="how-to-update-your-eth2-client.md">quick guide.</a>
+      <td style="text-align:left">了解如何更新我的信标链接</td>
+      <td style="text-align:left">参考此 <a href="how-to-update-your-eth2-client.md">快速指南。</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Join Discord</td>
-      <td style="text-align:left">Refer to <a href="../guide-how-to-stake-on-eth2-with-lighthouse.md#14-bonus-links">the mainnet guide</a>
+      <td style="text-align:left">加入Discord</td>
+      <td style="text-align:left">参考 <a href="../guide-how-to-stake-on-eth2-with-lighthouse.md#14-bonus-links">主网指南</a>
       </td>
     </tr>
   </tbody>
@@ -145,49 +145,49 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Concern</th>
-      <th style="text-align:left">Solution</th>
+      <th style="text-align:left">关注</th>
+      <th style="text-align:left">解答</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left">Verify keystores are properly imported</td>
-      <td style="text-align:left">Refer to the mainnet guide&apos;s section on <a href="./#4-configure-a-eth2-beacon-chain-node-and-validator">importing keys.</a>
+      <td style="text-align:left">验证密钥库已正确导入</td>
+      <td style="text-align:left">请参阅关于导入密钥 <a href="./#4-configure-a-eth2-beacon-chain-node-and-validator">的主机指南&apos;s部分。</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Check validator logs for errors</td>
-      <td style="text-align:left">Use the command <code>journalctl -fu validator</code>
+      <td style="text-align:left">检查验证日志的错误</td>
+      <td style="text-align:left">使用命令 <code>journalctl -fu validator</code>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Verify attestations are working</td>
-      <td style="text-align:left">Check your validators pubkey against a <a href="https://beaconscan.com/">public block explorer.</a>
+      <td style="text-align:left">验证认知正在运行</td>
+      <td style="text-align:left">对照 <a href="https://beaconscan.com/">公开方块探索者检查您的验证器的 pubkey</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Setup a graffiti flag / <a href="https://poap.fun/">POAP</a>
+      <td style="text-align:left">设置一个涂鸦标志 / <a href="https://poap.fun/">POAP</a>
       </td>
-      <td style="text-align:left">Refer to <a href="./#8-9-add-or-change-poap-graffiti-flag">the mainnet guide.</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Verified my mnemonic phrase can be restored.</td>
-      <td style="text-align:left">Refer to <a href="./#8-2-verify-your-mnemonic-phrase">the mainnet guide.</a>
+      <td style="text-align:left">参考主网指南 <a href="./#8-9-add-or-change-poap-graffiti-flag">。</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to add more validators</td>
-      <td style="text-align:left">Refer to this <a href="how-to-add-a-new-validator-to-an-existing-setup.md">quick guide.</a>
+      <td style="text-align:left">验证我的助记词可以恢复。</td>
+      <td style="text-align:left">参考主网指南 <a href="./#8-2-verify-your-mnemonic-phrase">。</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to update my validator</td>
-      <td style="text-align:left">Refer to this <a href="how-to-update-your-eth2-client.md">quick guide.</a>
+      <td style="text-align:left">了解如何添加更多验证器</td>
+      <td style="text-align:left">参考此 <a href="how-to-add-a-new-validator-to-an-existing-setup.md">快速指南。</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Know how to stop/start validator</td>
+      <td style="text-align:left">了解如何更新我的验证程序</td>
+      <td style="text-align:left">参考此 <a href="how-to-update-your-eth2-client.md">快速指南。</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">知道如何停止/启动验证器</td>
       <td style="text-align:left">
         <p><code>sudo systemctl stop validator</code>
         </p>
@@ -196,61 +196,61 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Beacon-node redundancy</td>
-      <td style="text-align:left">Refer to <a href="./#strategy-4-beacon-node-redundancy">the mainnet guide.</a>
+      <td style="text-align:left">信标节点冗余性</td>
+      <td style="text-align:left">参考主网指南 <a href="./#strategy-4-beacon-node-redundancy">。</a>
       </td>
     </tr>
   </tbody>
 </table>
 
-### 🧱 Validator Node Security Checklist
+### 🧱 验证器节点安全清单
 
-| Concern                                          | Solution                                                                                                                                                                                 |
-|:------------------------------------------------ |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Secure the root account                          | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#create-a-non-root-user-with-sudo-privileges)               |
-| Connect with SSH Keys Only                       | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#disable-ssh-password-authentication-and-use-ssh-keys-only) |
-| Harden SSH on a random port                      | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#disable-ssh-password-authentication-and-use-ssh-keys-only) |
-| Setup 2-FA for SSH \(Optional\)                | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#setup-two-factor-authentication-for-ssh-optional)          |
-| Secure the Shared Memory                         | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#secure-shared-memory)                                      |
-| Setup a firewall                                 | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)                                   |
-| Setup port forwarding on my router               | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)                                   |
-| Setup intrusion-prevention monitoring            | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#install-fail-2-ban)                                        |
-| Whitelisted my local machine in the ufw firewall | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)                                   |
-| Whitelisted my local machine in Fail2ban         | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#install-fail-2-ban)                                        |
-| Verify the listening ports                       | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#verify-listening-ports)                                    |
+| 关注                       | 解答                                                                                                                                                     |
+|:------------------------ |:------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 保护根账户                    | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#create-a-non-root-user-with-sudo-privileges)               |
+| 仅连接 SSH 密钥               | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#disable-ssh-password-authentication-and-use-ssh-keys-only) |
+| 随机端口 Harden SSH          | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#disable-ssh-password-authentication-and-use-ssh-keys-only) |
+| 设置 2-FA 为 SSH \(可选\)   | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#setup-two-factor-authentication-for-ssh-optional)          |
+| 保护共享内存                   | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#secure-shared-memory)                                      |
+| 设置防火墙                    | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)                                   |
+| 在我的路由器上设置端口转发            | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)                                   |
+| 设置入侵预防监测                 | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#install-fail-2-ban)                                        |
+| 白名单了我的本地机器在 ufw 防火墙      | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)                                   |
+| 在 Fail2ban 中将我的本地机器加入白名单 | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#install-fail-2-ban)                                        |
+| 验证监听端口                   | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#verify-listening-ports)                                    |
 
-### 🚦 Validator Node Maintenance and Best Practices Checklist
+### 🚦 验证器节点维护和最佳做法清单
 
-| Concern                                                  | Solution                                                                                                                                                                                                                                                                        |
-|:-------------------------------------------------------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Enabled automatic OS patching                            | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#update-your-system)                                                                                                                               |
-| Setup chrony or other NTP time sync service              | Refer to [the mainnet guide.](./#5-time-synchronization)                                                                                                                                                                                                                        |
-| Setup Prometheus and Grafana Monitoring/Alerts/Dashboard | Refer to [the mainnet guide.](./#6-2-setting-up-grafana-dashboards)                                                                                                                                                                                                             |
-| Understand how to handle a power outage                  | In case of power outage, you want your validator machine to restart as soon as power is available. In the BIOS settings, change the **Restore on AC / Power Loss** or **After Power Loss** setting to always on. Better yet, install an Uninterruptable Power Supply \(UPS\). |
-| Understand how to migrate eth2 clients                   | Refer to the [mainnet guide.](./#8-4-switch-migrate-eth2-clients-with-slash-protection)                                                                                                                                                                                         |
-| Understand how to voluntary exit                         | Refer to the [mainnet guide.](./#8-1-voluntary-exit-a-validator)                                                                                                                                                                                                                |
-| Used all available LVM disk space                        | Refer to the [mainnet guide.](./#8-5-use-all-available-lvm-disk-space)                                                                                                                                                                                                          |
-| Understand important directory locations                 | Refer to the [mainnet guide.](./#8-7-important-directory-locations)                                                                                                                                                                                                             |
+| 关注                                | 解答                                                                                                              |
+|:--------------------------------- |:--------------------------------------------------------------------------------------------------------------- |
+| 启用操作系统自动补丁                        | 参考 [最佳安全做法文档。](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#update-your-system) |
+| 设置时间或其它NTP时间同步服务                  | 参考主网指南 [。](./#5-time-synchronization)                                                                           |
+| 设置 Prometheus 和 Grafana 监测/警报控制面板 | 参考主网指南 [。](./#6-2-setting-up-grafana-dashboards)                                                                |
+| 了解如何处理停电问题                        | 在停电的情况下，你想要验证机在电力可用后立即重新启动。 在 BIOS 设置中，在失电后更改 **还原的 AC/功率损失** 或 **在失电后** 设置永远开启。 更好的是，安装一个不可中断的电源\(UPS\)。     |
+| 了解如何迁移eth2客户端                     | 请参阅 [主网指南。](./#8-4-switch-migrate-eth2-clients-with-slash-protection)                                           |
+| 了解如何自愿退出                          | 请参阅 [主网指南。](./#8-1-voluntary-exit-a-validator)                                                                  |
+| 使用所有可用的 LVM 磁盘空间                  | 请参阅 [主网指南。](./#8-5-use-all-available-lvm-disk-space)                                                            |
+| 了解重要的目录位置                         | 请参阅 [主网指南。](./#8-7-important-directory-locations)                                                               |
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 通过构建一个验证器来开始舞蹈。 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 为我们的 [主要指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 访问此处，为我们的 [测试网指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet) 访问此处。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+恭喜您完成了指南。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+你觉得我们的指南有用吗？ 向我们发送一个带有提示的信息，我们将不断更新它。
 
-It really energizes us to keep creating the best crypto guides.
+它真正激励我们继续创建最好的加密指南。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+使用 [cointr.ee 找到我们的捐赠](https://cointr.ee/coincashew) 个地址。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+任何反馈和所有拉取请求都非常感激。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+在 Discord 上挂起并与他人聊天 @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+通过[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :grinning_face_with_big_eyes：
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **2020-12 更新**: 感谢所有 [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) 贡献者 您可以通过 [二次供资](https://vitalik.ca/general/2019/12/07/quadratic.html) 做出贡献并产生重大影响。 融资已完成！ 谢谢！:folded_hands：
 
