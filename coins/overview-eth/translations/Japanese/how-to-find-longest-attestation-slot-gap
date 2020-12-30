@@ -1,31 +1,31 @@
 ---
-description: Find the best slot gap to avoid missing any validator duties.
+description: 最適なスロットギャップを見つけて、バリデーターの任務を逃さないようにしましょう。
 ---
 
-# How to find longest attestation slot gap
+# 最長認証スロットギャップを見つける方法
 
-## ⏩ Quick steps guide
+## ⏩ クイックステップガイド
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+以下の手順は [mainnet ガイド](./) に沿っています。 適切な場合は、ファイル名とディレクトリの場所を調整する必要があります。 コアコンセプトは同じままです。
 {% endhint %}
 
-### 🗡 Why do I want to calculate the longest attestation slot gap?
+### 🗡 最長認証スロットギャップを計算したいのはなぜですか?
 
-* Your validators are assigned duties to attest and propose blocks.
-* Understanding the schedule of your validator's duties better, you can find the best time to plan eth1/eth2 updates, system reboots or outages.
+* 検証者はブロックを証明し提案するための職務を割り当てられます。
+* 検証者の職務のスケジュールをよりよく理解し、eth1/eth2 の更新、システムの再起動または停止を計画する最もよい時期を見つけることができる。
 
-### 🤖 Pre-requisites
+### 🤖 事前要件
 
 * python3
-* validator index number\(s\) -- Lookup on [https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
-* Works with **Lighthouse / Teku / Prysm** currently
+* validator index number\(s\) -- ルックアップ [https://beaconcha.in/](https://beaconcha.in/) または [https://beaconscan.com/](https://beaconscan.com/)
+* **灯台/テク/プリズム** で動作中
 
 {% hint style="success" %}
-✨ Kudos to **pietjepuk2** on Discord for authoring this process.
+✨ このプロセスを作成するためにDiscordの **pietjepuk2** に褒めてください。
 {% endhint %}
 
-### 🚧 How to Run the Validator Duties script
+### 🚧 Validator Duties スクリプトの実行方法
 
 1. Install python3
 
@@ -33,7 +33,7 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 sudo apt update && sudo apt-get install python3
 ```
 
-2. Download [pietjepuk2](https://gist.github.com/pietjepuk2)'s `get_validator_duties.py` python script.
+2. [pietjepuk2](https://gist.github.com/pietjepuk2)の `get_validator_duties.py` python スクリプトをダウンロードしてください。
 
 {% tabs %}
 {% tab title="Lighthouse \| Teku" %}
@@ -47,12 +47,12 @@ wget https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63
 ```bash
 cd $HOME
 # modified by mohamedmansour for prysm
-wget https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd
+wget https://gist.githubusercontent.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd/raw/d48a3f0948cf2ae8cf571b42d50f80d66841118f/get_validator_duties.py
 ```
 {% endtab %}
 {% endtabs %}
 
-3. Enter your validator index numbers as parameters to the python script.
+3. Pythonスクリプトのパラメータとしてバリデータインデックス番号を入力します。
 
 ```bash
 python3 get_validator_duties.py <validator index number(s)>
@@ -60,44 +60,44 @@ python3 get_validator_duties.py <validator index number(s)>
 # python3 get_validator_duties.py 1000 1001 1002 1003
 ```
 
-Sample Output showing the longest gap in seconds, \# of slots and time range.
+サンプル出力は、秒単位で最も長いギャップを示し、スロットと時間範囲の \# です。
 
-> Longest gap \(first\):
+> 最長間隔 \(最初\):
 > 
-> 120.0 seconds \(10 slots\), from 13:37:35 until 13:39:35
+> 120.0 秒 \(10 スロット\), 13:37:35 から 13:39:35
 
 {% hint style="warning" %}
 \*\*\*\*🔥 **Script Usage Caveats**:
 
-* This version does not include block proposals, although the odds of having one scheduled are really low of course.
-* Block proposal duties are only known for the current epoch, whereas attestation duties are known for the current and next one.
+* このバージョンにはブロック提案は含まれていませんが、スケジュールされている確率はもちろん非常に低いです。
+* ブロック提案業務は現在の時代のみが知られていますが、認証業務は現在と次の業務で知られています。
 {% endhint %}
 
 {% hint style="success" %}
-Nice work. Now you now the best gap to avoid missing any validator duties.
+よくやった。 今、あなたは今、任意のバリデータの義務を欠落しないようにするための最良のギャップ。
 {% endhint %}
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 バリデータを作成してステークを開始 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 私たちの [メインネットガイド](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 、 [テストネットガイド](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet)についてはこちらをご覧ください。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+おめでとうございます。ガイドが完成しました。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+私たちのガイドが役に立ちましたか？ ヒント付きのシグナルを送信してください。アップデートを続けます。
 
-It really energizes us to keep creating the best crypto guides.
+最高の暗号ガイドを作成し続けることは、本当に私たちに力を与えてくれます。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+[coint.eeを使用して、寄付](https://cointr.ee/coincashew) アドレスを見つけてください。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+どんなフィードバックとすべてのプルリクエストは非常に高く評価されます。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Discordで仲間のステーカーとチャットしましょう @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+<unk>[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-## 🧩 Reference Material
+## 🧩 リファレンス資料
 
 {% embed url="https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63150/raw/cc874b3035f97495416353f203d70477b31ab05d/get\_validator\_duties.py" %}
 [https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd ](https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd)
