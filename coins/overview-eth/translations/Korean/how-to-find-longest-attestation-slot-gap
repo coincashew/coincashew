@@ -47,7 +47,7 @@ wget https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63
 ```bash
 cd $HOME
 # modified by mohamedmansour for prysm
-wget https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd
+wget https://gist.githubusercontent.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd/raw/d48a3f0948cf2ae8cf571b42d50f80d66841118f/get_validator_duties.py
 ```
 {% endtab %}
 {% endtabs %}
