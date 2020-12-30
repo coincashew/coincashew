@@ -541,3 +541,13 @@ echo $LANG
 cd $NODE_HOME/scripts
 ./gLiveView.sh
 ```
+
+{% hint style="info" %}
+スクリプトへのパスを通し、任意の単語で起動出来るようにする。
+```bash
+alias blocks='$NODE_HOME/scripts/blocks.sh' >> $HOME/.bashrc
+source $HOME/.bashrc
+```
+
+blocksという単語を入力するだけで、どこからでも起動できます。
+{% endhint %}
