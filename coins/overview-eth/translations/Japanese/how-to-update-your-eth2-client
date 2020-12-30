@@ -1,49 +1,49 @@
 ---
 description: >-
-  Scenario: In discord, you see an alert that your eth2 client just announced a new release. How best to update?
+  シナリオ: discordでは、eth2クライアントが新しいリリースを発表したという警告が表示されます。 アップデート方法は？
 ---
 
-# How to update your eth2 client
+# eth2クライアントを更新する方法
 
-## ⏩ Quick steps guide
+## ⏩ クイックステップガイド
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+以下の手順は [mainnet ガイド](./) に沿っています。 適切な場合は、ファイル名とディレクトリの場所を調整する必要があります。 コアコンセプトは同じままです。
 {% endhint %}
 
-When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your eth2 beacon chain and validator.
+新しいリリースがカットされた場合は、最新の安定リリースに更新したいと思います。 以下に、eth2ビーコンチェーンとバリデータを更新する方法を示します。
 
 {% hint style="info" %}
-Always review the **git logs** with command**`git log`** or **release notes** before updating. There may be changes requiring your attention.
+更新する前に、 **git ログ** をコマンド**`git ログ`** または **リリース ノート** で常に確認してください。 注意が必要な変更があるかもしれません。
 {% endhint %}
 
 {% hint style="success" %}
-\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+\*\*\*🔥 **Pro tip**: 最長の認証ギャップと重複するように更新を計画します。 [こちらをご覧ください。](how-to-find-longest-attestation-slot-gap.md)
 {% endhint %}
 
-1. Select your ETH2 client.
+1. ETH2クライアントを選択します。
 
 {% tabs %}
 {% tab title="Lighthouse" %}
-Review release notes and check for breaking changes/features.
+リリースノートを確認し、破損している変更/機能を確認してください。
 
-[https://github.com/sigp/lighthouse/releases](https://github.com/sigp/lighthouse/releases)
+[https://github.com/sigp/lightouse/releases](https://github.com/sigp/lighthouse/releases)
 
-Pull the latest source and build it.
+最新のソースを取得してビルドします。
 
 ```bash
-cd $HOME/git/lighthouse
+cd $HOME/git/灯台
 git fetch --all && git checkout stable && git pull
 make
 ```
 
-Verify the build completed by checking the new version number.
+新しいバージョン番号を確認してビルドが完了したことを確認します。
 
 ```bash
-lighthouse --version
+lighouse --version
 ```
 
-Restart beacon chain and validator as per normal operating procedures.
+通常の操作手順に従ってビーコンチェーンとバリデータを再起動します。
 
 ```text
 sudo systemctl reload-or-restart beacon-chain validator
@@ -51,11 +51,11 @@ sudo systemctl reload-or-restart beacon-chain validator
 {% endtab %}
 
 {% tab title="Nimbus" %}
-Review release notes and check for breaking changes/features.
+リリースノートを確認し、破損している変更/機能を確認してください。
 
 [https://github.com/status-im/nimbus-eth2/releases](https://github.com/status-im/nimbus-eth2/releases)
 
-Pull the latest source and build it.
+最新のソースを取得してビルドします。
 
 ```bash
 cd $HOME/git/nimbus-eth2
@@ -63,29 +63,29 @@ git pull && make update
 make NIMFLAGS="-d:insecure" nimbus_beacon_node
 ```
 
-Verify the build completed by checking the new version number.
+新しいバージョン番号を確認してビルドが完了したことを確認します。
 
 ```bash
 cd $HOME/git/nimbus-eth2/build
 ./nimbus_beacon_node --version
 ```
 
-Stop, copy new binary, and restart beacon chain and validator as per normal operating procedures.
+通常の操作手順に従って、新しいバイナリをコピーし、ビーコンチェーンとバリデータを再起動します。
 
 ```bash
 sudo systemctl stop beacon-chain
 sudo rm /usr/bin/nimbus_beacon_node
 sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/bin
-sudo systemctl reload-or-restart beacon-chain
+sudo systemctl reload-or-rerestart beacon-chain
 ```
 {% endtab %}
 
 {% tab title="Teku" %}
-Review release notes and check for breaking changes/features.
+リリースノートを確認し、破損している変更/機能を確認してください。
 
 [https://github.com/ConsenSys/teku/releases](https://github.com/ConsenSys/teku/releases)
 
-Pull the latest source and build it.
+最新のソースを取得してビルドします。
 
 ```bash
 cd $HOME/git/teku
@@ -93,14 +93,14 @@ git pull
 ./gradlew distTar installDist
 ```
 
-Verify the build completed by checking the new version number.
+新しいバージョン番号を確認してビルドが完了したことを確認します。
 
 ```bash
 cd $HOME/git/teku/build/install/teku/bin
-./teku --version
+./teku -version
 ```
 
-Restart beacon chain and validator as per normal operating procedures.
+通常の操作手順に従ってビーコンチェーンとバリデータを再起動します。
 
 ```bash
 sudo systemctl stop beacon-chain
@@ -111,22 +111,22 @@ sudo systemctl reload-or-restart beacon-chain
 {% endtab %}
 
 {% tab title="Prysm" %}
-Review release notes and check for breaking changes/features.
+リリースノートを確認し、破損している変更/機能を確認してください。
 
 [https://github.com/prysmaticlabs/prysm/releases](https://github.com/prysmaticlabs/prysm/releases)
 
 ```bash
-#Simply restart the processes
+#プロセス
 sudo systemctl reload-or-restart beacon-chain validator
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-Review release notes and check for breaking changes/features.
+リリースノートを確認し、破損している変更/機能を確認してください。
 
 [https://github.com/ChainSafe/lodestar/releases](https://github.com/ChainSafe/lodestar/releases)
 
-Pull the latest source and build it.
+最新のソースを取得してビルドします。
 
 ```bash
 cd $HOME/git/lodestar
@@ -135,13 +135,13 @@ yarn install
 yarn run build
 ```
 
-Verify the build completed by checking the new version number.
+新しいバージョン番号を確認してビルドが完了したことを確認します。
 
 ```bash
 yarn run cli --version
 ```
 
-Restart beacon chain and validator as per normal operating procedures.
+通常の操作手順に従ってビーコンチェーンとバリデータを再起動します。
 
 ```text
 sudo systemctl reload-or-restart beacon-chain validator
@@ -149,7 +149,7 @@ sudo systemctl reload-or-restart beacon-chain validator
 {% endtab %}
 {% endtabs %}
 
-2. Check the logs to verify the services are working properly and ensure there are no errors.
+2. ログを確認して、サービスが正常に動作していることを確認し、エラーがないことを確認してください。
 
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
@@ -158,40 +158,40 @@ sudo systemctl status beacon-chain validator
 ```
 {% endtab %}
 
-{% tab title=" Nimbus \| Teku" %}
+{% tab title== " Nimbus \| Teku" %}
 ```
 sudo systemctl status beacon-chain
 ```
 {% endtab %}
 {% endtabs %}
 
-3. Finally, verify your validator's attestations are working with public block explorer such as
+3. 最後に、検証者の認証がパブリックブロックエクスプローラで動作していることを確認してください。
 
-[https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
+[https://beaconcha.in/](https://beaconcha.in/) または [https://beaconscan.com/](https://beaconscan.com/)
 
-Enter your validator's pubkey to view its status.
+ステータスを表示するには、バリデータのパブキーを入力してください。
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 バリデータを作成してステークを開始 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 私たちの [メインネットガイド](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 、 [テストネットガイド](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet)についてはこちらをご覧ください。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+おめでとうございます。ガイドが完成しました。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+私たちのガイドが役に立ちましたか？ ヒント付きのシグナルを送信してください。アップデートを続けます。
 
-It really energizes us to keep creating the best crypto guides.
+最高の暗号ガイドを作成し続けることは、本当に私たちに力を与えてくれます。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+[coint.eeを使用して、寄付](https://cointr.ee/coincashew) アドレスを見つけてください。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+どんなフィードバックとすべてのプルリクエストは非常に高く評価されます。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Discordで仲間のステーカーとチャットしましょう @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+<unk>[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. 資金調達完了！ ありがとうございます!🙏
 
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
+{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-constashew" %}
 
