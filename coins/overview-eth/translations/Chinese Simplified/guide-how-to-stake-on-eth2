@@ -1,14 +1,14 @@
 ---
 description: >-
-  Become a validator and help secure eth2, a proof-of-stake blockchain. Anyone with 32 ETH can join.
+  成为一个验证程序并帮助保护伦理2，一个验证的股份区块链。 任何拥有32 ETH的人都可以加入。
 ---
 
-# Guide: How to stake on ETH2 Mainnet with Prysm on Ubuntu
+# 指南：如何在Ubuntu与 Prysm 的ETH2 Mainnet
 
 {% hint style="danger" %}
-**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+**202020年11月24日更新**: [新主网指南位于这里](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)。
 
-Instructions below are now deprecated and for reference only.
+下面的指示现在已经废弃，仅供参考。
 {% endhint %}
 
 
@@ -22,138 +22,138 @@ Instructions below are now deprecated and for reference only.
 
 
 {% hint style="info" %}
-[Prysm](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com/), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
+[Prysm](https://github.com/prysmaticlabs/prysm) 是一个 Ethereum 2.0 协议的实现，以可用性、安全性和可靠性为重点。 Prysm是由 [Prysmatic Labs](https://prysmaticlabs.com/)开发的，是一家完全关注客户发展的公司。 Prysm是以 Go 写的，并在 GPL 3.0 许可下发布。
 {% endhint %}
 
-## 🏁 0. Prerequisites
+## 🏁 0. 必备条件
 
-### 👩💻 Skills for operating a eth2 validator and beacon node
+### 👩:laptop_compute: 操作eth2 验证器和信标节点的技能
 
-As a validator for eth2, you will typically have the following abilities:
+作为伦理2的验证器，您通常具有以下能力：
 
-* operational knowledge of how to set up, run and maintain a eth2 beacon node and validator continuously
-* a commitment to maintain your validator 24/7/365
-* basic operating system skills
-* have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
-* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com/)
-* and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
+* 操作如何持续设置、运行和维护一个 eth2 信标节点和验证器
+* 承诺保持您的验证程序24/7/365
+* 基本操作系统技能
+* 通过观看 [Superphiz的“民族简介” & Staking for Beginners](https://www.youtube.com/watch?v=tpkpW031RCI)
+* 已通过或正在积极参与 [Eth2 Study Master课程](https://ethereumstudymaster.com/)
+* 并且已经阅读了 [8 件每个E2 验证器应该知道的事情。](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
-### 🎗 **Minimum Setup Requirements**
+### :emergder_ribbbon: **最低安装要求**
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **Processor:** Dual core CPU, Intel Core i5–760 or AMD FX-8100 or better
+* **操作系统：** 64 位 Linux \(即) Ubuntu 20.04 LTS\)
+* **处理器：** 双重核心CPU, Intel Core i5-760 或 AMD FX-8100 或更高版本
 * **Memory:** 8GB RAM
-* **Storage:** 20GB SSD
-* **Internet:** Broadband internet connection with speeds at least 1 Mbps.
-* **Power:** Reliable electrical power.
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
-* **Wallet**: Metamask installed
+* **存储:** 20GB SSD
+* **Internet:** 宽带互联网连接，速度至少为 1 Mbps.
+* **能量：** 可靠的电力。
+* **ETH余额：** 至少32 ETH和一些ETH存款交易费
+* **钱包**: 已安装 Metamask
 
-### 🏋♂ Recommended Hardware Setup
+### :person_提升重量:♂ 推荐硬件设置
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
-* **Memory:** 16 GB RAM or more
-* **Storage:** 1TB SSD or more
-* **Internet:** Broadband internet connections with speeds at least 10 Mbps
-* **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
-* **Wallet**: Metamask installed
+* **操作系统：** 64 位 Linux \(即) Ubuntu 20.04 LTS\)
+* **处理器：** 四核心CPU，Intel Core i7- 4770 或 AMD FX-8310 或更好的
+* **内存：** 16 GB 内存或更多
+* **存储:** 1TB SSD 或更多
+* **Internet:** 宽带互联网连接，速度至少 10 Mbps
+* **电源:** 可靠的电源和不间断电源\(UPS\)
+* **ETH余额：** 至少32 ETH和一些ETH存款交易费
+* **钱包**: 已安装 Metamask
 
 {% hint style="warning" %}
-✨ **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your mainnet validator.
+:sparkles： **Pro Validator 提示**: 高度推荐您以一个全新的 OS、VM 和/或机器实例开始。 避免为您的主机验证器重新使用测试网键、钱包或数据库。
 {% endhint %}
 
-### 🔓 Recommended eth2 validator Security Best Practices
+### 🔓 推荐eth2 验证器安全最佳做法
 
-If you need ideas or a reminder on how to secure your validator, refer to
+如果您需要关于如何保护您的验证程序的想法或提醒，请参阅：
 
 {% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
 
 ### 🛠 Setup Ubuntu
 
-If you need to install Ubuntu, refer to
+如果您需要安装 Ubuntu, 请参考
 
-{% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+{% page-ref page="../overview.xtz/guide-how to setup-a-baker/install-ubuntu.md" %}
 
-### 🎭 Setup Metamask
+### 🎭 设置Metamask
 
-If you need to install Metamask, refer to
+如果您需要安装Metamask，请参阅：
 
-{% page-ref page="../../wallets/browser-wallets/metmask-etherum.md" %}
+{% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
-## 🌱 1. Buy/exchange or consolidate ETH
+## 🌱 1. 购买/交换或合并ETH
 
 {% hint style="info" %}
-Every 32 ETH you own allows you to make 1 validator. You can run thousands of validators with your beacon node.
+您拥有的每32个ETH允许您制作1个验证器。 您可以用您的信标节点运行数千个验证器。
 {% endhint %}
 
-Your ETH \(or multiples of 32 ETH\) should be consolidated into a single address accessible with Metamask.
+您的ETH \(或32ETH的倍数)应合并成一个可与Metamask访问的单一地址。
 
-If you need to buy/exchange or top up your ETH to a multiple of 32, check out:
+如果您需要购买/交换或充值您的ETH到32倍，请查看：
 
 {% page-ref page="guide-how-to-buy-eth.md" %}
 
-## 👩💻 2. Signup to be a validator at the Launchpad
+## 👩💻 2. 注册为 Launchpad 的验证程序
 
-1. Install dependencies, the ethereum foundation deposit tool and generate your two sets of key pairs.
+1. 安装依赖，etherum基金会存款工具和生成两套密钥。
 
 {% hint style="info" %}
-Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
+每个验证器将有两组密钥对。 一个 **签名密钥** 和 **提款密钥。** 这些密钥来自单词句。 [了解更多关于密钥的信息](https://blog.ethereum.org/2020/05/21/keys/)
 {% endhint %}
 
-You have the choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source.
+您可以选择下载预构建的 [etherum基础存款工具](https://github.com/ethereum/eth2.0-deposit-cli) 或从源代码构建它。
 
 {% tabs %}
 {% tab title="Pre-built eth2deposit-cli" %}
-Download eth2deposit-cli.
+下载 eth2dosit-cli。
 
 ```bash
 cd $HOME
-wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.0.0/eth2deposit-cli-9310de0-linux-amd64.tar.gz
+wget https://github.com/etherum/eth2.0-dosit-cli/releases/download/v1.0.0/eth2dosit-cli-9310de0-Linux-amd64.tar.gz
 ```
 
-Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
+验证 SHA256 校验和与 [发布页面](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0) 的校验和匹配。
 
 ```bash
-sha256sum eth2deposit-cli-9310de0-linux-amd64.tar.gz 
-# SHA256 should be
+sha256sum eth2dosit-cli-9310dew-linux-amd64.tar.gz 
+# SHA256 应该是
 # b09da136895a7f77a4b430924ea2ae5827fa47b2bf444c4ea6fcfac5b04b8c8a
 ```
 
-Extract the archive.
+解压缩归档。
 
 ```text
 tar -xvf eth2deposit-cli-9310de0-linux-amd64.tar.gz
 cd eth2deposit-cli-9310de0-linux-amd64
 ```
 
-Make a new mnemonic.
+制作一个新的 mnemonic。
 
 ```text
-./deposit new-mnemonic --chain mainnet
+./consein new-mnemonic --chain mainnet
 ```
 {% endtab %}
 
 {% tab title="Build from source code" %}
-Install dependencies.
+安装依赖项。
 
 ```text
 sudo apt update
 sudo apt install python3-pip git -y
 ```
 
-Download source code and install.
+下载源代码并安装。
 
 ```text
 mkdir ~/git
 cd ~/git
-git clone https://github.com/ethereum/eth2.0-deposit-cli.git
-cd eth2.0-deposit-cli
-sudo ./deposit.sh install
+git clone https://github.com/etherum/eth2.0-存款-cli.git
+cd eth2.0-存款-cli
+sudo ./den.sh 安装
 ```
 
-Make a new mnemonic.
+制作一个新的 mnemonic。
 
 ```text
 ./deposit.sh new-mnemonic --chain mainnet
@@ -162,64 +162,64 @@ Make a new mnemonic.
 
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-🔥**\[ Optional \] Pro Security Tip**: Run the eth2deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine**.
+🔥**\[ Optional \] Pro Security 提示**: 运行 eth2sorit-cli 工具并在一个 **空格脱机机机上生成您的 **mnemonic 种子** 用于验证器密钥**
 
-You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine.
+您可以通过 USB 键将预制的 eth2矿床-cli 二进制片机从在线机器复制到空格脱机机。
 
-* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits.
-* Physically isolated from the rest of your network.
-* Must not have a network connection, wired or wireless.
-* Is not a VM on a machine with a network connection.
-* Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29).
+* 保护免受密钥记录攻击、基于恶意/病毒的攻击和其他防火墙或安全爆炸。
+* 与您的网络其他部分实际隔离。
+* 必须没有网络连接，有线或无线。
+* 不是网络连接的机器上的 VM
+* 在维基百科了解更多关于 [空调](https://en.wikipedia.org/wiki/Air_gap_%28networking%29) 的信息。
 {% endhint %}
 {% endtab %}
 {% endtabs %}
 
-1. Follow the prompts and pick a password. Write down your mnemonic and keep this safe and **offline**.
-2. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
-3. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
-4. Connect to the launchpad with your Metamask wallet, review and accept terms.
-5. Confirm the transaction\(s\). There's one deposit transaction of 32 ETH for each validator.
+1. 跟随提示并选择密码。 请写下您的助记符并保持这个安全并且 **离线**。
+2. 跳过您刚刚完成的步骤时，请在 [https://launchpad.eferum.org/](https://launchpad.ethereum.org/) 上按照这些步骤。 研究eth2阶段0概览材料。 了解eth2是成功的关键！
+3. 返回启动板网站，上传您的`deposit_data-#########.json` 在 `validator_key` 目录中找到。
+4. 使用您的Metamask钱包连接到启动板，审查并接受条款。
+5. 确认交易\(s\)。 每个验证器有一个32个ETH的存款交易。
 
 {% hint style="info" %}
-Your transaction is sending and depositing your ETH to the [official ETH2 deposit contract address. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
+您的交易是将您的ETH发送到 [官方ETH2 存款合同地址。 ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
 
-**Check**, _double-check_, _**triple-check**_ that the official Eth2 deposit contract address is correct.[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
+**检查**, _两次检查_, _**三次检查**_ 官方的 Eth2 存款合同地址是否正确。[`0x000000219ab540356cB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
 {% endhint %}
 
 {% hint style="danger" %}
-Be sure to write down or record your mnemonic seed **offline**. _Not email. Not cloud._
+请务必写下或录制您的助记种子 **离线**。 _不是电子邮件。 未云。_
 
-Make **offline backups**, such as to a USB key, of your **`validator_keys`** \`\`directory.
+让 **脱机备份**, 例如您的 **的 USB 密钥。`validator_key`** \`\`directory.
 {% endhint %}
 
 ## 🛸 3. Install a ETH1 node
 
 {% hint style="info" %}
-Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
+以太坊2.0需要连接到以太坊1.0，才能监视32个ETH验证器存款。 托管您自己的Ethereum 1.0 节点是最大限度地下放权力和尽量减少对因富拉等第三方依赖的最佳途径。
 {% endhint %}
 
 {% hint style="warning" %}
-The subsequent steps assume you have completed the [best practices security guide](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
+随后的步骤假定您已完成了 [最佳做法安全指南](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)。
 {% endhint %}
 
-Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/)**.**
+您的选择 [**OpenEthereum**](https://www.parity.io/ethereum/)**** [**Geth**](https://geth.ethereum.org/)**,** [**别斯库**](https://besu.hyperledger.org/) **或** [**荷兰**](https://www.nethermind.io/)**.**
 
 {% tabs %}
-{% tab title="OpenEthereum \(Parity\)" %}
-#### 🤖 Install and run OpenEthereum.
+{% tab title="OpenEtherum\(parity\)" %}
+#### 🤖 安装并运行 OpenEtherum.
 
 ```text
-mkdir ~/openethereum && cd ~/openethereum
-wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
-unzip openethereum*.zip
-chmod +x openethereum
-rm openethereum*.zip
+mkdir ~/openetherum && cd ~/openeysethum
+wget https://github.com/openetherum/openetherum/releases/download/v3.0.1/openetherum-linux-v3.0.1.zip
+unzip openetherum*.zip
+chmod +x openenethereum
+rm openeumeneum *.zip
 ```
 
-​ ⚙ **Setup and configure systemd**
+⚙ **设置并配置 systemd**
 
-Run the following to create a **unit file** to define your `eth1.service` configuration.
+运行下面的操作来创建一个 **单元文件** 来定义您的 `E1.service` 配置。
 
 ```bash
 cat > $HOME/eth1.service << EOF 
@@ -239,7 +239,7 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+移动单位文件到 `/etc/system/system/system` 并授予它权限。
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
@@ -249,32 +249,32 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-Run the following to enable auto-start at boot time.
+运行以下以启用启动时自动启动。
 
 ```text
 sudo systemctl daemon-reload
-sudo systemctl enable eth1
+sudo systemctl 启用eth1
 ```
 
-#### ⛓ Start OpenEthereum on mainnet.
+#### :chains：在主机上启动 OpenEthereum
 
 ```text
-sudo systemctl start eth1
+sudo systemctl 起始eth1
 ```
 {% endtab %}
 
 {% tab title="Geth" %}
-#### 🧬 Install from the repository.
+#### 🧬 从资源库安装。
 
 ```text
-sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo additional apt-reposite-y pa:etherum/eysuthum
 sudo apt-get update -y
-sudo apt-get install ethereum -y
+sudo apt-get install etherum -y
 ```
 
-⚙ **Setup and configure systemd**
+⚙ **设置并配置 systemd**
 
-Run the following to create a **unit file** to define your `eth1.service` configuration.
+运行下面的操作来创建一个 **单元文件** 来定义您的 `E1.service` 配置。
 
 ```bash
 cat > $HOME/eth1.service << EOF 
@@ -293,47 +293,47 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+移动单位文件到 `/etc/system/system/system` 并授予它权限。
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-Run the following to enable auto-start at boot time.
+运行以下以启用启动时自动启动。
 
 ```text
 sudo systemctl daemon-reload
-sudo systemctl enable eth1
+sudo systemctl 启用eth1
 ```
 
-#### ⛓ Start geth on mainnet.
+#### :chains：从主机上开始游戏。
 
 ```text
-sudo systemctl start eth1
+sudo systemctl 起始eth1
 ```
 {% endtab %}
 
 {% tab title="Besu" %}
-#### 🧬 Install java dependency.
+#### 🧬 安装 java 依赖关系。
 
 ```text
 sudo apt install openjdk-11-jdk
 ```
 
-#### 🌜 Download and unzip Besu.
+#### :last_quarter_moon_face：下载并解压别斯。
 
 ```text
 cd
-wget -O besu.tar.gz https://bintray.com/hyperledger-org/besu-repo/download_file?file_path=besu-1.5.0.tar.gz
+wget -O besu.tar.gz https://biny.com/hyledger-org/besu-repo/download_file?file_path=besu-1.5.0.tar.gz
 tar -xvf besu.tar.gz
 rm besu.tar.gz
 mv besu-1.5.0 besu
 ```
 
-⚙ **Setup and configure systemd**
+⚙ **设置并配置 systemd**
 
-Run the following to create a **unit file** to define your `eth1.service` configuration.
+运行下面的操作来创建一个 **单元文件** 来定义您的 `E1.service` 配置。
 
 ```bash
 cat > $HOME/eth1.service << EOF 
@@ -353,73 +353,73 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+移动单位文件到 `/etc/system/system/system` 并授予它权限。
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-Run the following to enable auto-start at boot time.
+运行以下以启用启动时自动启动。
 
 ```text
 sudo systemctl daemon-reload
-sudo systemctl enable eth1
+sudo systemctl 启用eth1
 ```
 
-#### ⛓ Start besu on mainnet.
+#### :chains：在主网上开始Besu。
 
 ```text
-sudo systemctl start eth1
+sudo systemctl 起始eth1
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
-#### ⚙ Install dependencies.
+#### ⚙ 安装依赖项。
 
 ```text
-sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
+sudo apt-get 更新 && sudo apt-get install libsnappy-dev libc6-dev unzip -y
 ```
 
-#### 🌜 Download and unzip Nethermind.
+#### :last_quarter_moon_face：下载并解压缩荷兰的想法。
 
 ```text
 mkdir ~/nethermind && cd ~/nethermind
-wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
+wget -O nethermind.zip https://nethdev.blob.core.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
 unzip nethermind.zip
 rm nethermind.zip
 ```
 
-#### 🛸 Launch Nethermind.
+#### 🛸 launching Netherlands.
 
 ```text
 ./Nethermind.Launcher
 ```
 
-* Select `Ethereum Node`
-* Select `Ethereum (mainnet)` then select `Fast sync`
-* Yes to enable web3 / JSON RPC
-* Accept default IP
-* Skip ethstats registration
+* 选择 `以太节点`
+* 选择 `Ethereum (mainnet)` 然后选择 `快速同步`
+* 是要启用 web3 / JSON RPC
+* 接受默认IP
+* 跳过族裔统计注册
 {% endtab %}
 
 {% tab title="Minimum Hardware Setup" %}
 {% hint style="info" %}
-Infura is suitable for limited disk space setups. Always run your own full eth1 node when possible.
+Infura适合有限的磁盘空间设置。 在可能时总是运行您自己的完整的 eth1 节点。
 {% endhint %}
 
-Sign up for an API access key at [https://infura.io/](https://infura.io/)
+在 [https://infura.io/](https://infura.io/) 注册API访问密钥
 
-1. Sign up for a free account.
-2. Confirm your email address.
-3. Visit your dashboard [https://infura.io/dashboard](https://infura.io/dashboard)
-4. Create a project, give it a name.
-5. Select **Mainnet** as the ENDPOINT
-6. Copy your API key.
-7. Update the parameter **http-web3provider** in the **start beacon chain** section.
+1. 注册免费帐户。
+2. 确认您的电子邮件地址。
+3. 访问您的仪表板 [https://infura.io/控制面板](https://infura.io/dashboard)
+4. 创建一个项目，给它一个名称。
+5. 选择 **Mainnet** 作为ENDPOINT
+6. 复制您的 API 密钥。
+7. 在 **开始信标链** 部分中更新参数 **http-web3provider**
 
 ```bash
-#example parameter
+#example 参数
 --http-web3provider=https://infura.io/v3/<YOUR_API_KEY>
 ```
 {% endtab %}
@@ -428,34 +428,34 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 
 
 {% hint style="info" %}
-Syncing the eth1 node could take up to 24 hour.
+同步 eth1 节点可能需要 24 小时。
 {% endhint %}
 
 {% hint style="success" %}
-Your eth1 node is fully sync'd when these events occur.
+发生这些事件时，您的 eth1 节点已完全同步。
 
 * **`OpenEthereum:`** `Imported #<block number>`
-* **`Geth:`** `Imported new chain segment`
-* **`Besu:`** `Imported #<block number>`
-* **`Nethermind:`** `No longer syncing Old Headers`
+* **`Geth：`** `导入了新链段`
+* **`此外:`** `导入的 #<block number>`
+* **`荷兰：`** `不再同步旧头`
 {% endhint %}
 
-#### 🛠 Helpful eth1.service commands
+#### 🛠 帮助的 eth1.service 命令
 
-​​ 🗒 **To view and follow eth1 logs**
+:spiral_notepad： **查看并关注eth1日志**
 
 ```text
 journalctl -u eth1 -f
 ```
 
-🗒 **To stop eth1 service**
+:spiral_notepad： **停止eth1服务**
 
 ```text
 sudo systemctl stop eth1
 ```
 
 {% hint style="danger" %}
-🛑 **Before continuing the rest of this guide, we recommend you wait until closer to Dec 1st as the Prysm code is rapidly preparing for mainnet.** 🚧
+🛑 **在继续本指南其余部分之前, 我们建议您等待更接近十二月一日，因为Prysm代码正在快速准备主网。**🚧
 {% endhint %}
 
 ## 💡 4. Install Prysm
@@ -466,71 +466,71 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 ```
 
 {% hint style="info" %}
-Prysm is a Ethereum 2.0 client and it comes in two components.
+Prysm 是 Ethereum 2.0 客户端，分为两个组件。
 
-**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
+**信标链客户端** - 负责管理信标链状态、验证器随机排序等等。
 
-**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
+**验证器客户端** - 负责在信标链和碎片链中生成新区块和认证。
 {% endhint %}
 
-## 🔥 5. Configure port forwarding and/or firewall
+## 🔥 5. 配置端口转发和/或防火墙
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+针对您的网络设置或云端提供商设置， [确保您的验证器防火墙端口是打开和可访问的。](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
-* **Prysm beacon chain node** will use port 12000 for udp and port 13000 for tcp
-* **eth1** node requires port 30303 for tcp and udp
+* **Prysm 信标链节点** 将使用端口 12000 用于udp 和 tcp 端口13000
+* **eth1** 节点需要 tcp 和 udp 的 30303 端口
 
 {% hint style="info" %}
-✨ **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
+:sparkles： **端口转发提示：** 您需要转发并打开端口到您的验证器。 验证它使用 [https://www.yugetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) 或 [https://canyousee.org/](https://canyouseeme.org/)。
 {% endhint %}
 
-## 🎩 6. Import validator key
+## 🎩 6. 导入验证器密钥
 
-Choose the correct command depending on how you installed **eth2deposit-cli.**
+选择正确的命令，取决于您如何安装 **eth2存款-cli**
 
 {% tabs %}
 {% tab title="Pre-built eth2deposit-cli" %}
 ```bash
-$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/eth2deposit-cli-9310de0-linux-amd64/validator_keys
+$HOME/prysm/prysm.sh 验证帐户导入 --keys-dir=$HOME/ eth2存款-cli-9310deb0-Linux-amd64/validator_keys
 ```
 {% endtab %}
 
 {% tab title="Built from source code" %}
 ```bash
-$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/git/eth2.0-deposit-cli/validator_keys
+$HOME/prysm/prysm.sh 验证帐户导入 --keys-dir=$HOME/git/eth2.0-存款-cli/validator_keys
 ```
 {% endtab %}
 {% endtabs %}
 
-Accept default wallet location, enter a new password to encrypt your wallet and enter the password for your imported accounts.
+接受默认的钱包位置，输入新密码来加密你的钱包，并为你的导入帐户输入密码。
 
 {% hint style="danger" %}
-**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+**警告**: 不要使用普通钥匙。不要使用其他密钥。或者你想要使用其他密钥。
 {% endhint %}
 
-## 🏂 7. Start the beacon chain
+## 🏂 7. 启动信标链。
 
 {% hint style="warning" %}
-If you participated in any of the prior test nets, you need to clear the database.
+如果您参与了任何先前的测试网，您需要清除该数据库。
 
 ```bash
-$HOME/prysm/prysm.sh beacon-chain --clear-db
+$HOME/prysm/prysm.sh 信标-chain --cleardb
 ```
 {% endhint %}
 
-Your choice of running a beacon chain and validator manually from command line or automatically with systemd.
+您选择从命令行手动运行信标链和验证器或与系统自动运行。
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
-#### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+#### 🍰 为您的信标链和验证器使用系统的利益 <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
-1. Auto-start your beacon chain when the computer reboots due to maintenance, power outage, etc.
-2. Automatically restart crashed beacon chain processes.
-3. Maximize your beacon chain up-time and performance.
+1. 在计算机因维修、停电等而重启时自动启动信标链。
+2. 自动重启崩溃信标链流程。
+3. 最大限度地提高您的信标链的持续时间和性能。
 
-#### 🛠 Setup Instructions
+#### 🛠 设置说明
 
-Run the following to create a **unit file** to define your`beacon-chain.service` configuration.
+运行以下以创建一个 **单元文件** 来定义您的`信标链。服务` 配置。
 
 ```bash
 cat > $HOME/beacon-chain.service << EOF 
@@ -555,266 +555,266 @@ EOF
 ```
 
 {% hint style="info" %}
-Geth users can achieve higher performance with
+Geth用户可以通过以下方式实现更高的性能：
 
 ```bash
---http-web3provider=$HOME/.ethereum/geth.ipc
+--http-web3provider=$HOME/.therum/geth.ipc
 ```
 {% endhint %}
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+移动单位文件到 `/etc/system/system/system` 并授予它权限。
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
-sudo chmod 644 /etc/systemd/system/beacon-chain.service
+sudo chmod 644 /etc/system/system/beacon-chain.service
 ```
 
-Run the following to enable auto-start at boot time and then start your beacon node service.
+运行以下以启用启动时自动启动，然后启动您的信标节点服务。
 
 ```text
 sudo systemctl daemon-reload
-sudo systemctl enable beacon-chain
-sudo systemctl start beacon-chain
+sudo systemctl 启用信标-chain
+sudo systemctl start 信标-chain
 ```
 
 {% hint style="success" %}
-Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+好工作。 您的信标链现在由系统的可靠性和强度管理。 下面是一些使用系统的命令。
 {% endhint %}
 
-### 🛠 Some helpful systemd commands
+### 🛠 一些有用的systemd 命令
 
-#### ✅ Check whether the beacon chain is active
-
-```text
-sudo systemctl is-active beacon-chain
-```
-
-#### 🔎 View the status of the beacon chain
+#### :whit_heavy_check_mark: 检查信标链是否激活
 
 ```text
-sudo systemctl status beacon-chain
+sudo systemctl is-acon-chain
 ```
 
-#### 🔄 Restarting the beacon chain
+#### 🔎 查看信标链的状态
 
 ```text
-sudo systemctl reload-or-restart beacon-chain
+sudo systemctl 状态信标
 ```
 
-#### 🛑 Stopping the beacon chain
+#### :countrockwise_arrows_buton: 重新启动信标链。
 
 ```text
-sudo systemctl stop beacon-chain
+sudo systemctl 重新加载或重新启动信标
 ```
 
-#### 🗒 Viewing and filtering logs
+#### 🛑 停止信标链中
+
+```text
+sudo systemctl stop 信标-chain
+```
+
+#### 🗒 查看和过滤日志
 
 ```bash
-journalctl --unit=beacon-chain --since=yesterday
-journalctl --unit=beacon-chain --since=today
-journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+journalctl --unit=beacon-chain --sun=昨天
+journalctl --unit=beacon-chain --sun=tay
+journalctl --unit=beacon-chain --sin='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 {% endtab %}
 
 {% tab title="CLI - Manual" %}
-In a new terminal, start the beacon chain.
+在一个新终端中启动信标链。
 
 ```bash
-$HOME/prysm/prysm.sh beacon-chain \
---p2p-host-ip=$(curl -s v4.ident.me) \
---http-web3provider="http://127.0.0.1:8545"
---monitoring-host="0.0.0.0" \
---accept-terms-of-use
+$HOME/prysm/prysm.sh 信标链\
+--p2p-host-ip=$(curl -s v4.ident.me)
+--http-web3provider="http://127.0.1:8545"
+--monitoring-host="0.0.0.0"
+--accept-terms of use
 ```
 
 {% hint style="info" %}
-Geth users can achieve higher performance with
+Geth用户可以通过以下方式实现更高的性能：
 
 ```bash
---http-web3provider=$HOME/.ethereum/geth.ipc
+--http-web3provider=$HOME/.therum/geth.ipc
 ```
 {% endhint %}
 {% endtab %}
 {% endtabs %}
 
-## 🧬 8. Start the validator <a id="9-start-the-validator"></a>
+## 🧬 8. 启动验证程序 <a id="9-start-the-validator"></a>
 
-Store your validator's password in a file and make it read-only.
+将您的验证密码存储在一个文件中，并使其成为只读。
 
 ```bash
 echo "my_password_goes_here" > $HOME/.eth2validators/validators-password.txt
 sudo chmod 600 $HOME/.eth2validators/validators-password.txt
 ```
 
-Your choice of running a validator manually from command line or automatically with systemd.
+您选择从命令行手动运行验证器或与系统自动运行。
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
-#### 🍰 Benefits of using systemd for your validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+#### 🍰 使用系统给您的验证器带来的利益 <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
-1. Auto-start your validator when the computer reboots due to maintenance, power outage, etc.
-2. Automatically restart crashed validator processes.
-3. Maximize your validator up-time and performance.
+1. 因维护、停电等原因重启计算机时自动启动验证程序。
+2. 自动重启验证进程崩溃了。
+3. 最大化您的验证程序的上传时间和性能。
 
-#### 🛠 Setup Instructions
+#### 🛠 设置说明
 
-Run the following to create a **unit file** to define your`validator.service` configuration.
+运行以下以创建一个 **单元文件** 来定义您的`验证服务` 配置。
 
 ```bash
-cat > $HOME/validator.service << EOF 
-# The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+cat > $HOME/validator。 ervice << EOF 
+# eth2 validator service (part of system)
+# 文件：/etc/systemd/system/validator。 ervice 
 
 [Unit]
-Description     = eth2 validator service
-Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+描述 = eth2 validator 服务
+Wants = 网络在线。 arget 信标-chain.service
+After = network-online。 arget 
 
 [Service]
-User            = $(whoami)
-WorkingDirectory= /home/$(whoami)/prysm
-ExecStart       = /home/$(whoami)/prysm/prysm.sh validator --accept-terms-of-use --wallet-password-file /home/$(whoami)/.eth2validators/validators-password.txt
-Restart         = on-failure
+用户 = $(whoami)
+WorkingDirectory= /home/$(whoami)/ prysm
+ExecStart = /home/$(whoami)/prysm/prysm. h validator --accept-terms of use --wallet-passward-file /home/$(whoami)/.eth2validators/validators-password xt
+重启 = 发生故障
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy = 多用户。 arget
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+移动单位文件到 `/etc/system/system/system` 并授予它权限。
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
 sudo chmod 644 /etc/systemd/system/validator.service
 ```
 
-Run the following to enable auto-start at boot time and then start your validator.
+运行以下以启用启动时自动启动，然后启动您的验证器。
 
 ```text
 sudo systemctl daemon-reload
-sudo systemctl enable validator
+sudo systemctl 启用验证器
 sudo systemctl start validator
 ```
 
-### 🛠 Some helpful systemd commands
+### 🛠 一些有用的systemd 命令
 
-#### ✅ Check whether the validator is active
+#### :whit_heavy_check_mark: 检查验证器是否激活
 
 ```text
-sudo systemctl is-active validator
+sudo systemctl is-activated validator
 ```
 
-#### 🔎 View the status of the validator
+#### 🔎 查看验证器状态
 
 ```text
 sudo systemctl status validator
 ```
 
-#### 🔄 Restarting the validator
+#### :countrockwise_arrows_buton: 重新启动验证器
 
 ```text
-sudo systemctl reload-or-restart validator
+sudo systemctl 重新加载或重新启动验证器
 ```
 
-#### 🛑 Stopping the validator
+#### 🛑 停止验证器
 
 ```text
 sudo systemctl stop validator
 ```
 
-#### 🗄 Viewing and filtering logs
+#### 🗄 查看和过滤日志
 
 ```bash
-journalctl --unit=validator --since=yesterday
-journalctl --unit=validator --since=today
-journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+journalctl --unit=validator --sin=昨天
+journalctl --un=validator --sin=tay
+journalctl --unit=validator --sin='2020-12-01 00:00' --until='2020-12-02 12:00:00'
 ```
 {% endtab %}
 
 {% tab title="CLI - Manual" %}
-In a new terminal, start the validator.
+在新的终端中，启动验证器。
 
 ```bash
 $HOME/prysm/prysm.sh validator \
---accept-terms-of-use \
+--accept-terms of use \
 --wallet-password-file /home/$(whoami)/.eth2validators/validators-password.txt
 ```
 {% endtab %}
 {% endtabs %}
 
-Verify that your **validator public key** appears in the logs. Example below:
+验证您的 **验证器公钥** 是否出现在日志中。 下面示例：
 
 ```text
-INFO Enabled validator       voting_pubkey: 0x2374.....7121
+INFO 启用验证器投票 pubkey: 0x2374...7121
 ```
 
 {% hint style="info" %}
-**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
+**验证器客户端** - 负责在信标链和碎片链中生成新区块和认证。
 
-**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
+**信标链客户端** - 负责管理信标链状态、验证器随机排序等等。
 {% endhint %}
 
 {% hint style="success" %}
-Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 24 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards.
+恭喜。 一旦您的信标链已同步，验证器已上传并运行，您只需等待激活。 这个过程需要长达24小时。 当您被指派时，您的验证器将开始创建并投票方块，同时获得ETH staking 奖励
 
-Use [beaconcha.in](https://beaconcha.in/) and [register an account](https://beaconcha.in/register) to create alerts and track your validator's performance.
+使用 [信标。in](https://beaconcha.in/) and [注册一个帐户](https://beaconcha.in/register) 来创建警报并跟踪您的验证器性能。
 {% endhint %}
 
-## 🕒 9. Time Synchronization
+## 🕒 9. 时间同步
 
 {% hint style="info" %}
-Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
+因为信标链依靠准确的时间来进行证明和制作区块， 您的计算机时间必须准确到实际NTP 或 NTS 时间在 0 之间。 秒。
 {% endhint %}
 
-Setup **Chrony** with the following guide.
+安装 **Chrony** 带有以下指南。
 
 {% hint style="info" %}
-chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
+时间是网络时间协议的执行，有助于使您的计算机时间与NTP保持同步。
 {% endhint %}
 
-## 🔎 10. Monitoring your validator with Grafana and Prometheus
+## 🔎 10. 用Grafana 和 Prometheus 监视您的验证器
 
-Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
+Prometheus 是一个监测平台，它通过拆卸关于这些目标的计量标准HTTP端点，从受监测的目标收集计量。 [官方文档可在这里获取](https://prometheus.io/docs/introduction/overview/) Grafana 是一个用于可视化收集数据的仪表盘。
 
-### 🐣 10.1 Installation
+### 🐣 10.1 安装
 
-Install prometheus and prometheus node exporter.
+安装 prometheus 和 prometheus 节点导出器。
 
 ```text
-sudo apt-get install -y prometheus prometheus-node-exporter
+sudo apt-get install -y promeus promeus-node-exporter
 ```
 
-Install grafana.
+安装Grafana。
 
 ```bash
-wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
-echo "deb https://packages.grafana.com/oss/deb stable main" > grafana.list
+wget -q -O - https://pack.grafana.com/gpg.key | sudo apt-key added -
+echo "deb https://packes.grafana.com/oss/deb stable main" > grafana. ist
 sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
 sudo apt-get update && sudo apt-get install -y grafana
 ```
 
-Enable services so they start automatically.
+启用服务以便自动启动。
 
 ```bash
-sudo systemctl enable grafana-server.service
+sudo systemctl 启用gramana-server.service
 sudo systemctl enable prometheus.service
-sudo systemctl enable prometheus-node-exporter.service
+sudo systemctl enablish prometheus-node-exportter.service
 ```
 
-Update **prometheus.yml** located in `/etc/prometheus/prometheus.yml`
+更新 **promeus.yml** 分别位于 `/etc/prometheus.yml`
 
 ```bash
 cat > $HOME/prometheus.yml << EOF
-global:
-  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+global：
+  scrape_interval: 15s # 默认情况下，扫描每15秒。
 
-  # Attach these labels to any time series or alerts when communicating with
-  # external systems (federation, remote storage, Alertmanager).
-  external_labels:
-    monitor: 'codelab-monitor'
+  # 在与
+  # 外部系统通信时将这些标签附加到任何时间序列或警报(排序、远程存储、警报管理器)。
+  外部标签：
+    显示器：'codelab-monitor'
 
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
+# 一个包含到scrape的一个端点的扫描配置：
+# 这里是Prometheus本身。
 scrape_configs:
   - job_name: 'node_exporter'
     static_configs:
@@ -824,141 +824,141 @@ scrape_configs:
       - targets: ['localhost:8081']
   - job_name: 'beacon node'
     static_configs:
-      - targets: ['localhost:8080']
+      - targets: ['localhost:808080']
   - job_name: 'slasher'
     static_configs:
       - targets: ['localhost:8082']
 EOF
-sudo mv $HOME/prometheus.yml /etc/prometheus/prometheus.yml
+sudo mv $HOME/promethus. ml /etc/promeus/prometheus.yml
 ```
 
-Finally, restart the services.
+最后，重新启动服务。
 
 ```bash
-sudo systemctl restart grafana-server.service
-sudo systemctl restart prometheus.service
-sudo systemctl restart prometheus-node-exporter.service
+sudo systemctl 重启 gravana-server.service
+sudo systemctl 重启 prometheus.service
+sudo systemctl 重启 prometheus-node-exportter.service
 ```
 
-Verify that the services are running properly:
+验证服务运行正常：
 
 ```text
-sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
+sudo systemctl status grafana-server.service prometheus.service prometheus-node-exportter.service
 ```
 
 {% hint style="info" %}
-💡 **Reminder**: Ensure port 3000 is open on the firewall and/or port forwarded if you intend to view monitoring info from a different machine.
+💡 **提醒**: 如果您打算从另一台机器查看监视信息，请确保在防火墙和/或转发端口上打开3000端口。
 {% endhint %}
 
-### 📶 10.2 Setting up Grafana Dashboards
+### :nava_bars: 10.2 设置 Grafana 仪表板
 
-1. Open [http://localhost:3000](http://localhost:3000) or [http://&lt;your](http://<your) validator's ip address&gt;:3000 in your local browser.
-2. Login with **admin** / **admin**
-3. Change password
-4. Click the **configuration gear** icon, then **Add data Source**
-5. Select **Prometheus**
-6. Set **Name** to **"Prometheus**"
-7. Set **URL** to [http://localhost:9090](http://localhost:9090)
-8. Click **Save & Test**
-9. **Download and save** this [**json file**](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)**.** Or if you have more than 10 validators, use this [json file](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json).
-10. Click **Create +** icon &gt; **Import**
-11. Add dashboard by **Upload JSON file**
-12. Click the **Import** button.
+1. 在您的本地浏览器中打开 [http://localhost:3000](http://localhost:3000) 或 [http://&lt;your](http://<your) validator's ip address&gt;:3000。
+2. 使用 **管理员** / **管理员登录**
+3. 更改密码
+4. 点击 **配置设备** 图标，然后 **添加数据源**
+5. 选择 **Prometheus**
+6. 将 **名称** 设置为 **"Prometheus**"
+7. 将 **URL** 设置为 [http://localhost:9090](http://localhost:9090)
+8. 点击 **保存 & 测试**
+9. **下载并保存** 此 [**json 文件**](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)**.** 或者如果您拥有超过 10 个验证程序，请使用此 [json 文件](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json)。
+10. 点击 **创建 +** 图标 &gt; **导入**
+11. 通过 **添加仪表板上传 JSON 文件**
+12. 点击 **导入** 按钮。
 
-![Prysm dashboard](../../.gitbook/assets/prysm_dash.png)
+![Prysm 仪表板](../../.gitbook/assets/prysm_dash.png)
 
-### ⚠ 10.3 Setup Alert Notifications
+### ⚠ 10.3 安装提醒通知
 
 {% hint style="info" %}
-Setup alerts to get notified if your validators go offline.
+设置提醒以在您的验证器离线时获得通知。
 {% endhint %}
 
-Get notified of problems with your validators. Choose between email, telegram, discord or slack.
+获取验证程序问题的通知。 选择电子邮件、电报、不和或是slack。
 
 {% tabs %}
 {% tab title="Email Notifications" %}
-1. Visit [https://beaconcha.in/](https://beaconcha.in/)
-2. Sign Up ****for an **account**
-3. Verify your **email**
-4. Search for your **validator's public address**
-5. Add validators to your watchlist by clicking the **bookmark symbol**.
+1. 访问 [https://信标.in/](https://beaconcha.in/)
+2. 注册 ****为一个 **帐户**
+3. 验证您的 **电子邮件**
+4. 搜索您的 **验证器的公开地址**
+5. 点击 **书签符号** 将验证器添加到您的观察列表。
 {% endtab %}
 
 {% tab title="Telegram Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png)
-2. Click on **Add channel**.
-3. Give the notification channel a **name**.
-4. Select **Telegram** from the Type list.
-5. To complete the **Telegram API settings**, a Telegram channel and bot are required. For instructions on setting up a bot with `@Botfather`, see [this section](https://core.telegram.org/bots#6-botfather) of the Telegram documentation.
-6. Once completed, invite the bot to the newly created channel.
+1. 在 Grafana 菜单中，在铃声图标下选择 **个通知频道**。 ![](../../.gitbook/assets/gra-noti.png)
+2. 点击 **添加频道**。
+3. 给通知频道一个 **名称**。
+4. 从类型列表中选择 **Telegram**。
+5. 要完成 **Telegram API 設定**，需要一个 Telegram 頻道和機器人。 关于使用 `@Botfather`的机器人设置的说明，请参阅 [Telegram 文档的](https://core.telegram.org/bots#6-botfather) 部分。
+6. 完成后，邀请机器人进入新创建的频道。
 {% endtab %}
 
 {% tab title="Discord Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png)
-2. Click on **Add channel**.
-3. Add a **name** to the notification channel.
-4. Select **Discord** from the Type list.
-5. To complete the set up, a Discord server \(and a text channel available\) as well as a Webhook URL are required. For instructions on setting up a Discord's Webhooks, see [this section](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) of their documentation.
-6. Enter the Webhook **URL** in the Discord notification settings panel.
-7. Click **Send Test**, which will push a confirmation message to the Discord channel.
+1. 在 Grafana 菜单中，在铃声图标下选择 **个通知频道**。 ![](../../.gitbook/assets/gra-noti.png)
+2. 点击 **添加频道**。
+3. 在通知频道中添加 **名称**。
+4. 从类型列表中选择 **Discord**。
+5. 要完成设置，需要一个 Discord 服务器 \(和文本频道可用\) 和 Webhook URL。 For instructions on setting up a Discord's Webhooks, see [this section](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) of their documentation.
+6. 在 Discord 通知设置面板中输入 Webhook **URL**。
+7. 点击 **发送测试**, 以便将确认消息推送到 Discord 频道。
 {% endtab %}
 
 {% tab title="Slack Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png)
-2. Click on **Add channel**.
-3. Add a **name** to the notification channel.
-4. Select **Slack** from the Type list.
-5. For instructions on setting up a Slack's Incoming Webhooks, see [this section](https://api.slack.com/messaging/webhooks) of their documentation.
-6. Enter the Slack Incoming Webhook URL in the **URL** field.
-7. Click **Send Test**, which will push a confirmation message to the Slack channel.
+1. 在 Grafana 菜单中，在铃声图标下选择 **个通知频道**。 ![](../../.gitbook/assets/gra-noti.png)
+2. 点击 **添加频道**。
+3. 在通知频道中添加 **名称**。
+4. 从类型列表中选择 **Slack**。
+5. 关于设置Slack传入Webhooks的指示，请参阅 [他们的文档](https://api.slack.com/messaging/webhooks) 部分。
+6. 输入 **URL** 字段中的 Slack 传入的 Webhook URL。
+7. 点击 **发送测试**, 以便将确认消息推送到 Slack 频道。
 {% endtab %}
 {% endtabs %}
 
 {% hint style="success" %}
-🎉 Congrats on setting up your validator! You're good to go on eth2.0.
+:party_poper: 恭喜您设置验证器！ 你很高兴继续使用 eth2.0 。
 
-Did you find our guide useful? Let us know with a tip and we'll keep updating it.
+你觉得我们的指南有用吗？ 让我们知道一个小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小，我们会不断更新它。
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙌
+使用 [cointr.ee 找到我们的捐赠 ](https://cointr.ee/coincashew)个地址。 🙌
 
-Any feedback and all pull requests much appreciated. 😃
+任何反馈和所有拉取请求都非常感激。 😃
 
-Hang out and chat with fellow stakers on telegram @ [https://t.me/coincashew](https://t.me/coincashew) 🌛
+在电报@上挂起并与他人聊天 [https://t.me/coincashew](https://t.me/coincashew) :first_quarter_moon_face
 {% endhint %}
 
-## 🧙♂ 11. Updating Prysm
+## 🧙♂ 11. 正在更新Prysm
 
-Restart beacon chain and validator as per normal operating procedures.
+按照正常操作程序重新启动信标链和验证器。
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
 ```text
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl 重新加载或重新启动信标链
+sudo systemctl 重新加载或重新启动验证器
 ```
 {% endtab %}
 
 {% tab title="CLI - Manual" %}
 ```bash
-#Control C to exit both your beacon-chain and validator processes 
-#Press up arrow and enter to restart.
+#Control C 退出信标链和验证器进程 
+#按上箭头进入重启。
 ```
 {% endtab %}
 {% endtabs %}
 
-## 🧩 12. Reference Material
+## 🧩 12. 参考材料
 
-Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
+赞赏优秀民俗在以下链接所做的艰苦工作，以此作为编写本指南的基础。
 
-{% embed url="https://discord.gg/KSA7rPr" %}
+{% 嵌入的 url="https://discord.gg/KSA7rPr" %}
 
-{% embed url="https://launchpad.ethereum.org/" caption="" %}
+{% 嵌入的 url="https://launchpad.eysum.org/" caption="" %}
 
-{% embed url="https://prylabs.net/participate" %}
+{% 嵌入的 url="https://prylabs.net/participate" %}
 
-{% embed url="https://docs.prylabs.network/docs/getting-started/" %}
+{% 嵌入的 url="https://docs.prylabs.network/docs/getting-started/" %}
 
-## 🎉 13. Bonus Links
+## 🎉 13. 红包链接
 
 ### 🌰 CoinCashew Guides for other ETH2 Clients
 
@@ -970,60 +970,60 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 {% page-ref page="guide-how-to-stake-on-eth2-with-lodestar.md" %}
 
-### 🧱 ETH2 Block Explorers
+### 🧱 ETH2 区块浏览器
 
-{% embed url="https://beaconcha.in" caption="" %}
+{% 嵌入的 url="https://信标.in" 标题="" %}
 
-{% embed url="https://beaconscan.com" caption="" %}
+{% 嵌入的 url="https://信标scan.com" 标题="" %}
 
-### 🗒 Latest Eth2 Info
+### 🗒 最新Eth2 信息
 
 {% embed url="https://www.reddit.com/r/ethstaker" caption="" %}
 
-{% embed url="https://blog.ethereum.org" caption="" %}
+{% 嵌入的 url="https://blog.eferum.org" 字幕="" %}
 
-{% embed url="http://invite.gg/ethstaker" caption="" %}
+{% 嵌入的 url="http://invite.gg/ethstaker" 字幕="" %}
 
-{% embed url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
+{% 嵌入的 url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
 
-## 🔥 14. Additional Useful Tips
+## 🔥 14. 其他有用的提示
 
-### 🛑 14.1 Voluntary exit a validator
+### 🛑 14.1 自愿退出验证器
 
 {% hint style="info" %}
-Use this command to signal your intentions to stop validating with your validator. This means you no longer want to stake with your validator and want to turn off your node.
+使用此命令表示您打算停止与您的验证器验证。 这意味着您不再想要与您的验证器关联，想要关闭您的节点。
 
-* Voluntary exiting takes a minimum of 2048 epochs \(or ~9days\). There is a queue to exit and a delay before your validator is finally exited.
-* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again.
-* Your funds will not be available for withdrawal until phase 1.5 or later.
-* After your validator leaves the exit queue and is truely exited, it is safe to turn off your beacon node and validator.
+* 自愿退出至少需要 2048 epochs \(或~9days \)。 在您的验证程序最终退出之前，有一个要退出的队列和延迟。
+* 一旦验证器在阶段0退出，这是不可逆转的，您无法重新开始验证。
+* 您的资金将在1.5或更高阶段前无法提款。
+* 在您的验证器离开出口队列并真正退出后，关闭您的信标节点和验证器是安全的。
 {% endhint %}
 
 ```bash
-$HOME/prysm/prysm.sh validator accounts voluntary-exit
+$HOME/prysm/prysm.sh 验证帐户自愿退出
 ```
 
-### 🔐 14.2 Verify your mnemonic phrase
+### 🔐 14.2 验证您的助记词
 
-Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`
+使用 eth2seosit-cli 工具来恢复您的 `validator_key` 以确保您可以重新生成相同的 eth2 键对。
 
 ```bash
-./deposit existing-mnemonic --chain mainnet
+./存款 existing-mnemonic --chain mainnet
 ```
 
 {% hint style="info" %}
-When the **pubkey** is identical, this means your **keystore file** you correctly verified your mnemonic phrase. Other fields will be different because of salting.
+当 **pubkey** 相同时，这意味着您的 **密钥存储文件** 您正确地验证了您的密语句。 其他字段因为打折而不同。
 {% endhint %}
 
-### 🤖 14.3 Add additional validators
+### 🤖 14.3 添加额外的验证器
 
-Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
+使用 eth2dosit-cli 工具，您可以通过创建新的存款数据文件和 `validator_keys` 来添加更多的验证器
 
-For example, in case we originally created 3 validators but now wish to add 5 more validators, we could use the following command.
+例如，如果我们最初创建了3个验证器，但现在希望添加5个验证器，我们可以使用以下命令。
 
 ```bash
-./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+./life existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
 
-Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site.
+完成上传 `deposit_data-#########.json` 到发射台站的步骤。
 
