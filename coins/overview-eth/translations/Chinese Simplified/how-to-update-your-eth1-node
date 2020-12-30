@@ -1,34 +1,34 @@
 ---
 description: >-
-  Scenario: In discord, you see an alert that your eth1 node just announced a new release. How best to update?
+  剧情场景：在不一致时，你看到了一个警告，你的 eth1 节点刚刚宣布了一个新的释放。 如何最好地更新？
 ---
 
-# How to update your eth1 node
+# 如何更新您的 eth1 节点
 
-## ⏩ Quick steps guide
+## :快速前进按钮：快速步骤指南
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+以下步骤与我们的 [主机指南](./) 一致。 您可能需要酌情调整文件名称和目录位置。 核心概念保持不变。
 {% endhint %}
 
 {% hint style="success" %}
-\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+\*\*\*🔥 **Pro tip**: 计划你的更新与最长的验证差距重叠。 [学习如何在这里。](how-to-find-longest-attestation-slot-gap.md)
 {% endhint %}
 
-From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
+不时更新最新的ETH1版本，以享受新的改进和功能。
 
-1. Stop your eth1 node process.
+1. 停止您的 eth1 节点进程。
 
 ```bash
-# This can take a few minutes.
+# 这可能需要几分钟。
 sudo systemctl stop eth1
 ```
 
-2. Update the eth1 node package or binaries.
+2. 更新 eth1 节点包或二进制文件。
 
 {% tabs %}
 {% tab title="Geth" %}
-Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
+在 [https://github.com/efecum/go-thereyum/releases](https://github.com/ethereum/go-ethereum/releases) 查看最新版本说明
 
 ```bash
 sudo apt update
@@ -36,66 +36,66 @@ sudo apt upgrade -y
 ```
 {% endtab %}
 
-{% tab title="OpenEthereum \(Parity\)" %}
-Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
+{% tab title="OpenEtherum\(parity\)" %}
+查看最新版本： [https://github.com/openetherum/openetherum/releases](https://github.com/openethereum/openethereum/releases)
 
-Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
+自动下载最新的 linux 版本，un-zip，添加执行权限并清理。
 
 ```bash
 cd $HOME
-# backup previous openethereum version in case of rollback
+# 备份之前的 openeyum版本的回滚
 mv openethereum openethereum_backup_$(date +"%Y%d%m-%H%M%S")
-# store new version in openethreum directory
+# 在openethum 目录中存储新版本
 mkdir openethereum && cd openethereum
-# download latest version
+# 下载最新版本
 curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
 # unzip
 unzip openethereum*.zip
-# add execute permission
+# 添加执行权限
 chmod +x openethereum
-# cleanup
+# 清理
 rm openethereum*.zip
 ```
 {% endtab %}
 
 {% tab title="Besu" %}
-Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
+查看最新版本： [https://github.com/hyledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
-File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo)
+文件可以从 [https://dl.bintry.com/hyledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo) 下载。
 
-Manually find the desired file from above repo and modify the `wget` command with the URL.
+手动从上方找到所需的文件并使用 URL 修改 `wget` 命令。
 
-> Example: 
+> 示例： 
 > 
-> wget -O besu.tar.gz [https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
+> wget -O besu.tar.gz [https://dl.bintry.com/hyledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
 
 ```bash
 cd $HOME
-# backup previous besu version in case of rollback
+# 备份以前的贝苏版本的回滚
 mv besu besu_backup_$(date +"%Y%d%m-%H%M%S")
-# download latest besu
-wget -O besu.tar.gz <https URL to latest tax.gz linux file>
+# 下载最新的besu
+wget -O besu. ar.gz <https URL to latest tax.gz linux file>
 # untar
 tar -xvf besu.tar.gz
-# cleanup
-rm besu.tar.gz
-# rename besu to standard folder location
+# 清理
+rm besu. ar.gz
+# 重命名besu 到标准文件夹位置
 mv besu* besu
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
-Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
+查看最新版本： [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
 
-Automatically download the latest linux release, un-zip and cleanup.
+自动下载最新的 Linux 版本，un-zip 和清理。
 
 ```bash
 cd $HOME
-# backup previous nethermind version in case of rollback
+# 备份先前的下心灵版本的回滚
 mv nethermind nethermind_backup_$(date +"%Y%d%m-%H%M%S")
-# store new version in nethermind directory
+# 将新版本存储在下心目录
 mkdir nethermind && cd nethermind 
-# download latest version
+# 下载最新版本
 curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
 # unzip
 unzip -o nethermind*.zip
@@ -105,13 +105,13 @@ rm nethermind*linux*.zip
 {% endtab %}
 {% endtabs %}
 
-3. Start your eth1 node process.
+3. 开始您的 eth1 节点进程。
 
 ```bash
 sudo systemctl start eth1
 ```
 
-4. Check the logs to verify the services are working properly and ensure there are no errors.
+4. 检查日志以验证服务正常工作，并确保没有错误。
 
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
@@ -127,33 +127,33 @@ sudo systemctl status eth1 beacon-chain
 {% endtab %}
 {% endtabs %}
 
-5. Finally, verify your validator's attestations are working with public block explorer such as
+5. 最后，验证你的验证器的注释正在与公共区块浏览器合作，例如：
 
-[https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
+[https://信标.in/](https://beaconcha.in/) or [https://信标onscan.com/](https://beaconscan.com/)
 
-Enter your validator's pubkey to view its status.
+输入您的验证器的 pubkey 查看其状态。
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 通过构建一个验证器来开始舞蹈。 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 为我们的 [主要指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 访问此处，为我们的 [测试网指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet) 访问此处。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+恭喜您完成了指南。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+你觉得我们的指南有用吗？ 向我们发送一个带有提示的信息，我们将不断更新它。
 
-It really energizes us to keep creating the best crypto guides.
+它真正激励我们继续创建最好的加密指南。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+使用 [cointr.ee 找到我们的捐赠](https://cointr.ee/coincashew) 个地址。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+任何反馈和所有拉取请求都非常感激。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+在 Discord 上挂起并与他人聊天 @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+通过[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :grinning_face_with_big_eyes：
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **2020-12 更新**: 感谢所有 [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) 贡献者 您可以通过 [二次供资](https://vitalik.ca/general/2019/12/07/quadratic.html) 做出贡献并产生重大影响。 融资已完成！ 谢谢！:folded_hands：
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
