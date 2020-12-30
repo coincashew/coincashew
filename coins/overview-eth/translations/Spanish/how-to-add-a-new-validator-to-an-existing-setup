@@ -1,111 +1,111 @@
 ---
 description: >-
-  Scenario: Genesis block is long passed and now you would like to add more validators with your existing mnemonic seed.
+  Escenario: El bloque Génesis se ha pasado mucho y ahora le gustaría añadir más validadores con su semilla de mnemónica existente.
 ---
 
-# How to add a new validator to an existing setup
+# Cómo agregar un nuevo validador a una configuración existente
 
-## ⏩ Quick steps guide
+## ⏩ Guía de pasos rápidos
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+Los siguientes pasos se alinean con nuestra [guía de red principal](./). Es posible que necesite ajustar los nombres de archivos y ubicaciones de directorios cuando sea apropiado. Los conceptos básicos siguen siendo los mismos.
 {% endhint %}
 
-1. Backup and move your existing `validator_key` directory and append the date to the end.
+1. Copia de seguridad y mueve el directorio `validator_key` existente y añade la fecha al final.
 
 ```bash
-# Adjust your eth2deposit-cli directory accordingly
+# Ajusta tu directorio eth2deposit-cli en consecuencia
 cd $HOME/eth2deposit-cli
-# Renames and append the date to the existing validator_key directory
+# Cambia los nombres y añade la fecha al directorio validator_key existente
 mv validator_key validator_key_$(date +"%Y%d%m-%H%M%S")
-# Optional: you can also delete this folder since it can be regenerated.
+# Opcional: también puedes eliminar esta carpeta ya que puede regenerarse.
 ```
 
 {% hint style="info" %}
-Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
+Usando la herramienta eth2deposit-cli, puede agregar más validadores creando un nuevo archivo de datos de depósito y `validator_keys`
 {% endhint %}
 
-2. For example, in case we originally created **3 validators** but now wish to **add 5 more validators**, we could use the following command. Select the tab depending on how you acquired [**eth2deposit tool**](https://github.com/ethereum/eth2.0-deposit-cli).
+2. Por ejemplo, en caso de que originalmente creamos **3 validadores** pero ahora queremos **añadir 5 validadores más**, podríamos usar el siguiente comando. Seleccione la pestaña en función de cómo adquirió [**eth2deposit tool**](https://github.com/ethereum/eth2.0-deposit-cli).
 
 {% hint style="warning" %}
-**Security recommendation reminder**: For best security practices, key management and other activities where you type your 24 word mnemonic seed should be completed on an air-gapped offline cold machine booted from USB drive.
+**Recordatorio de recomendación de seguridad**: Para mejores prácticas de seguridad, La gestión de claves y otras actividades en las que escriba su semilla mnemónica de 24 palabras deben completarse en una máquina fría sin conexión desconectada arrancada desde una unidad USB.
 {% endhint %}
 
 {% hint style="danger" %}
-Reminder to use the same **keystore password.**
+Recordatorio de usar la misma **contraseña del almacén de claves.**
 {% endhint %}
 
 {% tabs %}
 {% tab title="Build from source code" %}
 ```bash
-# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+# Genera a partir de 5 validadores más mnemónicos existentes cuando 3 ya estaban hechos previamente
 ./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
 {% endtab %}
 
 {% tab title="Pre-built eth2deposit-cli binaries" %}
 ```bash
-# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+# Genera a partir de 5 validadores más mnemónicos existentes cuando 3 ya estaban hechos anteriormente
 ./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
 {% endtab %}
 
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-🔥**Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
+🔥**Pro Security Tip**: Ejecute la herramienta **eth2deposit-cli** y genere su **semilla mnemónica** para sus claves de validador en una **máquina sin conexión conectada desde usb**.
 {% endhint %}
 
-Follow this [ethstaker.cc](https://ethstaker.cc/) exclusive for the low down on making a bootable usb.
+Siga este [ethstaker.cc](https://ethstaker.cc/) exclusivo para la baja al hacer una usb arrancable.
 
-### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
+### Parte 1 - Crear una unidad USB de arranque Ubuntu 20.04
 
-{% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
+{% embed url="https://www.youtube.com/watch?v=DTR3PzRtYU" %}
 
-### Part 2 - Install Ubuntu 20.04 from the USB Drive
+### Parte 2 - Instalar Ubuntu 20.04 desde la unidad USB
 
-{% embed url="https://www.youtube.com/watch?v=C97\_6MrufCE" %}
+{% embed url="https://www.youtube.com/watch?v=C97\_6► ufCE" %}
 
-You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
+Usted puede copiar a través de USB key los binarios eth2deposit-cli preconstruidos de una máquina en línea a una máquina sin conexión, desconectada, arrancada de usb. Asegúrese de desconectar el cable ethernet y/o WIFI.
 
-Run the existing-mnemonic command in the previous tabs.
+Ejecuta el comando existente en las pestañas anteriores.
 {% endtab %}
 {% endtabs %}
 
-3. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org/) and making your corresponding 32 ETH deposit transactions.
+3. Completa los pasos para subir el `deposit_data-#######. son` al sitio [oficial de la plataforma de lanzamiento Eth2](https://launchpad.ethereum.org/) y hacen sus transacciones de depósito ETH correspondientes.
 
-4. Finish by stopping your validator, importing the new validator key\(s\), restarting your validator and verifying the logs ensuring everything still works without error. [Review steps 2 and onward of the main guide if you need a refresher.](./#2-signup-to-be-a-validator-at-the-launchpad)
+4. Termina deteniendo el validador, importando la nueva clave del validador\(s\), reiniciando el validador y verificando los registros asegurándose de que todo funcione sin error. [Revise los pasos 2 y posteriores de la guía principal si necesita un refrescador.](./#2-signup-to-be-a-validator-at-the-launchpad)
 
-5. Finally, verify your **existing** validator's attestations are working with public block explorer such as
+5. Finalmente, verifique que los verificaciones de su validador **existente** están trabajando con el explorador de bloques público como
 
-[https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
+[https://beaconcha.in/](https://beaconcha.in/) o [https://beaconscan.com/](https://beaconscan.com/)
 
-Enter your validator's pubkey to view its status.
+Introduzca la pubkey de su validador para ver su estado.
 
 {% hint style="info" %}
-Your additional validators are now in the activation queue waiting their turn. Check your estimated activation time at [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app/)
+Tus validadores adicionales están ahora en la cola de activación esperando su turno. Comprueba el tiempo estimado de activación en [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app/)
 {% endhint %}
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 Empieza a apostar construyendo un validador <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visita aquí para nuestra guía [Mainnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) y aquí para nuestra [guía de Testnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+Felicidades por completar la guía. ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+¿Encontraste útil nuestra guía? Envíenos una señal con un consejo y seguiremos actualizándola.
 
-It really energizes us to keep creating the best crypto guides.
+Realmente nos da energía para seguir creando las mejores guías criptográficas.
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+Usa [cointr.ee para encontrar nuestras direcciones de donación](https://cointr.ee/coincashew). 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+Cualquier comentario y todas las solicitudes de extracción son muy apreciadas. 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Descubra y chatee con otros interesados en Discord @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **Actualización 2020-12**: Gracias a todos los colaboradores de [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) , donde usted puede contribuir a través de [fondos cuadráticos](https://vitalik.ca/general/2019/12/07/quadratic.html) y hacer un gran impacto. ¡Financiación completa! Gracias!🙏
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
