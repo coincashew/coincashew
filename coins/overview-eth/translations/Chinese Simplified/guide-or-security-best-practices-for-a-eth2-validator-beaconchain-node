@@ -1,74 +1,74 @@
 ---
-description: Quick steps to secure your node.
+description: 快速保护节点的步骤。
 ---
 
-# Guide \| Security Best Practices for a ETH2 validator beaconchain node
+# 指南 \| ETH2 验证信标链节点的安全最佳做法
 
-## 🤖 Pre-requisites
+## 🤖 前提条件
 
-* Ubuntu Server or Ubuntu Desktop installed
-* SSH server installed
-* a SSH client or terminal window access
+* 已安装 Ubuntu 服务器或 Ubuntu 桌面
+* 已安装 SSH 服务器
+* 一个 SSH 客户端或终端窗口访问
 
-In case you need to install SSH server, refer to:
+如果您需要安装 SSH 服务器，请参考：
 
-{% embed url="https://www.simplified.guide/ubuntu/install-ssh-server" %}
+{% 嵌入的 url="https://www.simportfied.guide/ubuntu/install-sh-server" %}
 
-In case you need a SSH client for your operating system, refer to:
+如果您的操作系统需要一个 SSH 客户端，请参考：
 
-{% embed url="https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/" %}
+{% 嵌入的 url="https://www.howtogeek.com/311287/how-connect-to-an-ssh-server-from-windows-macos-or linux/" %}
 
-## 🧙♂Create a non-root user with sudo privileges
+## 🧙:♂创建一个非根用户，拥有sudo 权限
 
 {% hint style="info" %}
-Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command `rm` can wipe your entire server if run incorrectly using by a root user.
+使用非根帐户登录到您的服务器的习惯。 如果发生错误，这将防止文件被意外删除。 例如，如果root 用户错误地运行，命令 `rm` 可以擦除整个服务器。
 {% endhint %}
 
 {% hint style="danger" %}
-🔥**Tip**: Do NOT routinely use the root account. Use `su` or `sudo`,  always.
+🔥**提示**: 不要经常使用根帐户。 使用 `su` 或 `sudo`, 总是.
 {% endhint %}
 
-SSH to your server with your SSH client
+通过您的 SSH 客户端到您的服务器
 
 ```bash
 ssh username@server.public.ip.address
-# example
+# 示例
 # ssh myUsername@77.22.161.10
 ```
 
-Create a new user called ethereum
+创建一个叫做etherum的新用户
 
 ```text
 sudo useradd -m -s /bin/bash ethereum
 ```
 
-Set the password for ethereum user
+设置etherum用户密码
 
 ```text
 sudo passwd ethereum
 ```
 
-Add ethereum to the sudo group
+将etherum添加到sudo组
 
 ```text
 sudo usermod -aG sudo ethereum
 ```
 
-## 🔐 **Disable SSH password Authentication and Use SSH Keys only**
+## 🔐 **禁用 SSH 密码验证并仅使用 SSH 密钥**
 
 {% hint style="info" %}
-The basic rules of hardening SSH are:
+加强SSH的基本规则是：
 
-* No password for SSH access \(use private key\)
-* Don't allow root to SSH \(the appropriate users should SSH in, then `su` or `sudo`\)
-* Use `sudo` for users so commands are logged
-* Log unauthorized login attempts \(and consider software to block/ban users who try to access your server too many times, like fail2ban\)
-* Lock down SSH to only the ip range your require \(if you feel like it\)
+* 没有访问SSH 的密码 \(使用私钥\)
+* 不允许 SSH \(适当用户应该在 SSH 中，然后 `su` 或 `sudo`\)
+* 对用户使用 `sudo` 以便命令被记录
+* 记录未经授权的登录尝试 \(并考虑软件到屏蔽/封禁用户，他们试图访问您的服务器太多次，如失败2ban\)
+* 锁定SSH 到只需要的 IP 范围\(如果你觉得它喜欢它\)
 {% endhint %}
 
-Create a new SSH key pair on your local machine. Run this on your local machine. You will be asked to type a file name in which to save the key. This will be your **keyname**.
+在您的本地机器上创建新的 SSH 密钥对。 在您的本地机器上运行它。 您将被要求输入要保存密钥的文件名。 这将是您的 **关键名**。
 
-Your choice of [ED25519 or RSA](https://goteleport.com/blog/comparing-ssh-keys/) public key algorithm.
+您选择 [ED25519 或 RSA](https://goteleport.com/blog/comparing-ssh-keys/) 公钥算法。
 
 {% tabs %}
 {% tab title="ED25519" %}
@@ -84,71 +84,71 @@ ssh-keygen -t rsa -b 4096
 {% endtab %}
 {% endtabs %}
 
-Transfer the public key to your remote node. Update **keyname.pub** appropriately.
+将公钥传输到您的远程节点。 正确更新 **keyname.pub**。
 
 ```bash
 ssh-copy-id -i $HOME/.ssh/keyname.pub ethereum@server.public.ip.address
 ```
 
-Login with your new ethereum user
+使用您的新用户登录
 
 ```text
 ssh ethereum@server.public.ip.address
 ```
 
-Disable root login and password based login. Edit the `/etc/ssh/sshd_config file`
+禁用基于根登录和密码的登录。 编辑 `/etc/ssh/sshd_config 文件`
 
 ```text
 sudo nano /etc/ssh/sshd_config
 ```
 
-Locate **ChallengeResponseAuthentication** and update to no
+找到 **个挑战响应身份验证** 并更新为 no
 
 ```text
 ChallengeResponseAuthentication no
 ```
 
-Locate **PasswordAuthentication** update to no
+找到 **个密码认证** 更新至无
 
 ```text
 PasswordAuthentication no
 ```
 
-Locate **PermitRootLogin** and update to no
+找到 **PermitRoot登录** 并更新为无
 
 ```text
 PermitRootLogin no
 ```
 
-Locate **PermitEmptyPasswords** and update to no
+找到 **PermittemptyPasswords** 并更新为 no
 
 ```text
 PermitEmptyPasswords no
 ```
 
-**Optional**: Locate **Port** and customize it your **random** port.
+**可选的**: 定位 **端口** 并自定义您的 **随机** 端口。
 
 {% hint style="info" %}
-Use a **random** port \# from 1024 thru 49141. [Check for possible conflicts. ](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
+使用 **随机** 端口 \# 从 1024 推送到49141 。 [检查可能发生的冲突。 ](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
 {% endhint %}
 
 ```bash
 Port <port number>
 ```
 
-Validate the syntax of your new SSH configuration.
+验证您新的 SSH 配置的语法。
 
 ```text
 sudo sshd -t
 ```
 
-If no errors with the syntax validation, reload the SSH process
+如果语法验证没有错误，则重新加载 SSH 进程
 
 ```text
 sudo service sshd reload
 ```
 
-Verify the login still works
+验证登录仍然工作
 
 {% tabs %}
 {% tab title="Standard SSH Port 22" %}
@@ -165,17 +165,17 @@ ssh ethereum@server.public.ip.address -p <custom port number>
 {% endtabs %}
 
 {% hint style="info" %}
-Alternatively, you might need to use. Add the `-p <port#>` flag if you used a custom SSH port.
+或者，您可能需要使用。 如果您使用了自定义 SSH 端口，添加 `-p <port#>` 标记。
 
 ```bash
 ssh -i <path to your SSH_key_name.pub> ethereum@server.public.ip.address
 ```
 {% endhint %}
 
-## 🤖 **Update your system**
+## 🤖 **更新你的系统**
 
 {% hint style="warning" %}
-It's critically important to keep your system up-to-date with the latest patches to prevent intruders from accessing your system.
+非常重要的是，要使您的系统跟上最新的补丁，以防止闯入者访问您的系统。
 {% endhint %}
 
 ```bash
@@ -184,161 +184,161 @@ sudo apt-get autoremove
 sudo apt-get autoclean
 ```
 
-Enable automatic updates so you don't have to manually install them.
+启用自动更新，您不必手动安装。
 
 ```text
 sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-## 🐻 Disable root account
+## 🐻 禁用根帐户
 
-System admins should not frequently log in as root in order to maintain server security. Instead, you can use sudo execute that require low-level privileges.
+系统管理员不应经常以 root 身份登录以维护服务器安全。 相反，您可以使用 sudo 执行要求低级特权。
 
 ```bash
-# To disable the root account, simply use the -l option.
+# 要禁用根帐户，只需使用 -l 选项。
 sudo passwd -l root
 ```
 
 ```bash
-# If for some valid reason you need to re-enable the account, simply use the -u option.
+# 如果由于某些有效的原因，您需要重新启用帐户，只需使用 -u 选项。
 sudo passwd -u root
 ```
 
-## 🛠 Setup Two Factor Authentication for SSH \[Optional\]
+## 🛠 设置 SSH 的两步验证 \[可选\]
 
 {% hint style="info" %}
-SSH, the secure shell, is often used to access remote Linux systems. Because we often use it to connect with computers containing important data, it’s recommended to add another security layer. Here comes the two factor authentication \(_2FA_\).
+SSH是安全的外壳，经常用于访问远程Linux系统。 因为我们经常使用它来连接包含重要数据的计算机，建议添加另一个安全层。 这里是双重身份验证 \(_2FA_\)。
 {% endhint %}
 
 ```text
 sudo apt install libpam-google-authenticator -y
 ```
 
-To make SSH use the Google Authenticator PAM module, edit the `/etc/pam.d/sshd` file:
+要使用 Google 身份验证器 PAM 模块，编辑 `/etc/pam.d/sshd` 文件：
 
 ```text
 sudo nano /etc/pam.d/sshd
 ```
 
-Add the following line:
+增加以下行：
 
 ```text
 auth required pam_google_authenticator.so
 ```
 
-Now you need to restart the `sshd` daemon using:
+现在您需要重启 `sshd` 守护程序使用：
 
 ```text
 sudo systemctl restart sshd.service
 ```
 
-Modify `/etc/ssh/sshd_config`
+修改 `/etc/ssh/sshd_config`
 
 ```text
 sudo nano /etc/ssh/sshd_config
 ```
 
-Locate **ChallengeResponseAuthentication** and update to yes
+找到 **个挑战响应身份验证** 并更新为 yes
 
 ```text
 ChallengeResponseAuthentication yes
 ```
 
-Locate **UsePAM** and update to yes
+找到 **UsePAM** 并更新为是的
 
 ```text
 UsePAM yes
 ```
 
-Save the file and exit.
+保存文件并退出。
 
-Run the **google-authenticator** command.
+运行 **Google 身份验证器** 命令。
 
 ```text
 google-authenticator
 ```
 
-It will ask you a series of questions, here is a recommended configuration:
+它会向您提出一系列问题，这里是推荐的配置：
 
-* Make tokens “time-base”": yes
-* Update the `.google_authenticator` file: yes
-* Disallow multiple uses: yes
-* Increase the original generation time limit: no
-* Enable rate-limiting: yes
+* 让令牌“时间基础”：“是”
+* 更新 `.google_author` 文件：是
+* 不允许多次使用：是
+* 增加最初生成时间限制：无
+* 启用频率限制：是
 
-You may have noticed the giant QR code that appeared during the process, underneath are your emergency scratch codes to be used if you don’t have access to your phone: write them down on paper and keep them in a safe place.
+您可能已经注意到过程中出现的巨型二维码。 下面是如果您无法访问您的手机时将使用的紧急验证码：将其写在纸上，并将其保存在一个安全的地方。
 
-Now, open Google Authenticator on your phone and add your secret key to make two factor authentication work.
+现在在您的手机上打开谷歌身份验证器并添加您的密钥以使两步验证正常。
 
 {% hint style="danger" %}
 **Note**: If you are enabling 2FA on a remote machine that you access over SSH you need to follow **steps 2 and 3** of [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-18-04) to make 2FA work.
 {% endhint %}
 
-## 🧩 Secure Shared Memory
+## 🧩 安全共享内存
 
 {% hint style="info" %}
-One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.
+您应该做的第一件事是保护系统上共享的 [内存](https://www.lifewire.com/what-is-random-access-memory-ram-2618159)。 如果您不清楚，共享内存可以用于攻击运行中的服务。 因此，确保系统内存的这一部分。
 
-To learn more about secure shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
+要了解更多关于安全共享内存的信息，请阅读 [techRepublic.com文章](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/)。
 {% endhint %}
 
 {% hint style="warning" %}
-### One exceptional case
+### 一个例外情况
 
-There may be a reason for you needing to have that memory space mounted in read/write mode \(such as a specific server application like **DappNode** that requires such access to the shared memory or standard applications like Google Chrome\). In this case, use the following line for the fstab file with instructions below.
+您可能有理由需要将内存空间挂载在读/写模式\(例如一个 **DappNode** 这样的特定服务器应用程序需要此种访问共享内存或诸如Google Chrome\等标准应用程序)。 在这种情况下，使用 fstab 文件的下列行，并在下面加以说明。
 
 ```text
 none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
 ```
 
-The above line will mount the shared memory with read/write access but without permission to execute programs, change the UID of running programs, or to create block or character devices in the namespace. This a net security improvement over default settings.
+上面的行将挂载共享内存，带有读/写访问权限，但没有执行程序的权限。 更改运行程序的 UID 或在命名空间中创建方块或字符设备。 这是默认设置的净安全性改进。
 
-### Use with caution
+### 谨慎使用
 
-With some trial and error, you may discover some applications\(**like DappNode**\) do not work with shared memory in read-only mode. For the highest security and if compatible with your applications, it is a worthwhile endeavor to implement this secure shared memory setting.
+有一些试用版和错误，您可能会发现一些应用程序\(**像DappNode**\) 在只读模式下无法使用共享内存。 为了最高的安全性，如果与您的应用程序兼容，执行此安全共享内存设置是值得努力的。
 
-Source: [techrepublic.com](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/)
+资料来源： [techRepublic.com](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/)
 {% endhint %}
 
-Edit `/etc/fstab`
+编辑 `/etc/fstab`
 
 ```text
 sudo nano /etc/fstab
 ```
 
-Insert the following line to the bottom of the file and save/close. This sets shared memory into read-only mode.
+插入以下行到文件底部并保存/关闭. 将共享内存设置为只读模式。
 
 ```text
 tmpfs    /run/shm    tmpfs    ro,noexec,nosuid    0 0
 ```
 
-Reboot the node in order for changes to take effect.
+重启节点以使更改生效。
 
 ```text
 sudo reboot
 ```
 
-## ⛓**Install Fail2ban**
+## :chains：**安装失败2ban**
 
 {% hint style="info" %}
-Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address \(within a specified amount of time\), fail2ban blocks access from that IP address.
+Fail2ban 是一个防止侵入的系统，用于监测日志文件和搜索与失败登录尝试相对应的特定模式。 如果从指定的 IP 地址\(在指定时间内\)检测到一定数量的失败登录， 失败2封禁方块从该IP地址访问。
 {% endhint %}
 
 ```text
 sudo apt-get install fail2ban -y
 ```
 
-Edit a config file that monitors SSH logins.
+编辑监视SSH登录的配置文件。
 
 ```text
 sudo nano /etc/fail2ban/jail.local
 ```
 
-Add the following lines to the bottom of the file.
+将以下行添加到文件底部。
 
 {% hint style="info" %}
-🔥 **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local machine, local IP range or local domain, separated by spaces.
+🔥 **将IP地址提示**: `忽略` 参数接受IP地址 您可以指定允许连接的 IP 范围或 DNS 主机. 这是您想要指定本地机器，本地IP范围或本地域名，用空格隔开。
 
 ```bash
 # Example
@@ -357,30 +357,30 @@ maxretry = 3
 ignoreip = <list of whitelisted IP address, your local daily laptop/pc>
 ```
 
-Save/close file.
+保存/关闭文件。
 
-Restart fail2ban for settings to take effect.
+重启失败2封禁以使设置生效。
 
 ```text
 sudo systemctl restart fail2ban
 ```
 
-## 🧱**Configure your Firewall**
+## 🧱**配置你的防火墙**
 
-The standard UFW firewall can be used to control network access to your node.
+标准的 UFW 防火墙可以用来控制您节点的网络访问。
 
-With any new installation, ufw is disabled by default. Enable it with the following settings.
+任何新安装都将禁用 ufw 默认。 通过以下设置启用它。
 
-* Port 22 \(or your random port \#\) TCP for SSH connection
-* Ports for p2p traffic
-  * Lighthouse uses port 9000 tcp/udp
-  * Teku uses port 9000 tcp/udp
-  * Prysm uses port 13000 tcp and port 12000 udp
-  * Nimbus uses port 9000 tcp/udp
-  * Lodestar uses port 30607 tcp and port 9000 udp
-* Port 30303 tcp/udp eth1 node
-* Port 3000 tcp for Grafana
-* Port 9090 tcp for Prometheus export data \(optional\)
+* 端口 22 \(或您的随机端口 \#\) SSH 连接
+* P2p 流量的端口
+  * 灯塔使用端口 9000 tcp/udp
+  * Teku 使用端口 9000 tcp/udp
+  * Prysm使用端口 13000 tcp 和 12000 udp
+  * Nimbus使用端口 9000 tcp/udp
+  * Lodestar使用端口 30607 tcp 和 9000 udp
+* 端口 303 tcp/udp eth1 节点
+* Grafana 的 3000 tcp 端口
+* Prometheus导出数据的端口 900 tcp \(optional\)
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -445,19 +445,19 @@ sudo ufw status numbered
 {% endtabs %}
 
 {% hint style="danger" %}
-Do not expose Grafana \(port 3000\) and Prometheus endpoint \(port 9090\) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
+不要将Grafana \(porter 3000\) 和 Prometheus 端点 \(端口 90\) 泄露到公共互联网，因为这会引起新的攻击表面！ 一个安全的解决方案将是通过 Wireguard 的 ssh 隧道访问Grafana 。
 {% endhint %}
 
-Only open the following ports on local home staking setups behind a home router firewall or other network firewall.
+仅在家庭路由器防火墙或其他网络防火墙后的本地主楼安装端口打开以下端口。
 
-\*\*\*\*🔥 **It is dangerous to open these ports on a VPS/cloud node.**
+\*\*\*🔥 **在 VPS/cloud 节点上打开这些端口是危险的。**
 
 ```bash
 sudo ufw allow 3000/tcp
 sudo ufw allow 9090/tcp
 ```
 
-Confirm the settings are in effect.
+确认设置已生效。
 > ```csharp
      To                         Action      From
      --                         ------      ----
@@ -483,7 +483,7 @@ Confirm the settings are in effect.
 # eth1 node
 ```
 
-**\[ Optional but recommended \]** Whitelisting \(or permitting connections from a specific IP\) can be setup via the following command.
+**\[ 可选但推荐\]** 白名单\(或允许从特定IP\进行连接) 可以通过以下命令进行设置。
 
 ```bash
 sudo ufw allow from <your local daily laptop/pc>
@@ -492,78 +492,78 @@ sudo ufw allow from <your local daily laptop/pc>
 ```
 
 {% hint style="info" %}
- 🎊 **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
+ 🎊 **端口转发提示:** 您需要转发并打开端口到您的验证器。 验证它使用 [https://www.yugetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) 或 [https://canyousee.org/](https://canyouseeme.org/)。
 {% endhint %}
 
-## 📞 Verify Listening Ports
+## :phone_receiver: 验证监听端口
 
-If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
+如果你想要维护一个安全的服务器，你应该每次一次验证监听网络端口。 这将为您提供有关您网络的基本信息。
 
 ```bash
 sudo ss -tulpn
-# Example output. Ensure the port numbers look right.
-# Netid  State    Recv-Q  Send-Q    Local Address:Port   Peer Address:Port   Process
-# tcp    LISTEN   0       128       127.0.0.1:5052       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=22))
-# tcp    LISTEN   0       128       127.0.0.1:5054       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=23))
-# tcp    LISTEN   0       1024      0.0.0.0:9000         0.0.0.0:*           users:(("lighthouse",pid=12160,fd=21))
-# udp    UNCONN   0       0         *:30303              *:*                 users:(("geth",pid=22117,fd=158))
-# tcp    LISTEN   0       4096      *:30303              *:*                 users:(("geth",pid=22117,fd=156))
+# 示例输出。 确保端口号是正确的。
+# Netid State Recv-Q Send-Q Local Address:Port Peer Address:Port Process
+# tcp ListeN 0128 127. 0.0.1:5052 0.0.0。 * 用户:("灯塔",pid=12160) d=22)
+tcp LISTEN 0 128 127。 0.1:5054 0.0.0.0：* 用户:("灯塔",pid=12160) d=23)
+# tcp LISTEN 0 1024 0。 0.0:9000 0.0.0。 * 用户:("灯塔",pid=12160) d=21)
+# udp UNCONN 0 *：30303 *：users:("geth", id=22117。 d=158)
+# tcp LISTEN 0 4096 *：30303 *：users:("geth", id=22117,fd=156))
 ```
 
-Alternatively you can use `netstat`
+或者，您可以使用 `netstat`
 
 ```bash
 sudo netstat -tulpn
-# Example output. Ensure the port numbers look right.
-# Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
-# tcp        0      0 127.0.0.1:5052          0.0.0.0:*               LISTEN      12160/lighthouse
-# tcp        0      0 127.0.0.1:5054          0.0.0.0:*               LISTEN      12160/lighthouse
-# tcp        0      0 0.0.0.0:9000            0.0.0.0:*               LISTEN      12160/lighthouse
-# tcp6       0      0 :::30303                :::*                    LISTEN      22117/geth
-# udp6       0      0 :::30303                :::*                    LISTEN      22117/geth
+# 示例输出。 确保端口号是正确的。
+# Proto Recv-Q Send-Q 本地地址异常地址状态 PID/程序名
+# tcp 0 0 127。 0.0.1:5052 0.0.0。 * * ISTEN 12160/lightthouse
+# tcp 0 0 127。 0。 :5054 0.0.0。 * * ISTEN 12160/lightthouse
+# tcp 0 0 0。 0.0:9000 0.0.0。 * * LISTEN 12160/lightthouse
+# tcp6 0 0 0 ::::::::30303 :::* LISTEN 22117/geth
+# udp6 0 0 :::30303 :*::* LISTEN 22117/geth
 ```
 
-## 👩🚀 **Use** system user accounts - Principle of Least Privilege \[Advanced Users / Optional\]
+## 👩🚀 **使用** 系统用户帐户 - 最少特权原则 \[高级用户/可选\]
 
 {% hint style="info" %}
-**Recommended for Advanced Users Only**
+**仅推荐高级用户**
 
-**Principle of Least Privilege**: Each eth2 process is assigned a _system user account_ and runs under the least amount of privileges required in order to function. This best practice protects against a scenario where a vulnerability or exploit discovered in a specific process might enable access other system processes.
+**特权最少的原则**: 每个eth2 进程都被分配一个 _系统用户帐户_ 并且运行的权限最少是运行的权限才能正常运行。 这种最佳做法保护人们免受在某一特定过程中发现的脆弱性或剥削可能使人们能够进入其他系统过程的情况。
 {% endhint %}
 
 ```bash
-# creates system user account for eth1 service
+# 为eth1 服务创建系统用户帐户
 sudo adduser --system --no-create-home eth1
 
-# creates system user account for validator service
+# 为验证服务创建系统用户帐户
 sudo adduser --system --no-create-home validator
 
-# creates system user account for beacon-chain service
+# 为信标链服务创建系统用户帐户
 sudo adduser --system --no-create-home beacon-chain
 
-# creates system user account for slasher
+# 为slasher 创建系统用户帐户
 sudo adduser --system --no-create-home slasher
 ```
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **Caveats For Advanced Users**
+\*\*\*🔥 **为高级用户提供的护法**
 
-If you decide to use **system user accounts**, remember to replace the **systemd unit files** with the corresponding users.
+如果您决定使用 **系统用户帐户**，请记住用相应的用户替换 **系统单位文件**。
 
 ```bash
-# Example of beacon-chain.service unit file
-User            = beacon-chain
+# 信标链的示例。服务单元文件
+用户 = 信标链。
 ```
 
-Furthermore, ensure the correct **file ownership** is assigned to your **system user account** where applicable.
+此外，确保正确的 **文件所有权** 已经分配给您的 **系统用户帐户**。
 
 ```bash
-# Example of prysm validator's password file
+# prysm 验证器密码文件示例
 sudo chown validator:validator -R $HOME/.eth2validators/validators-password.txt
 ```
 {% endhint %}
 
-## ✨ Additional validator node best practices
+## :sparkls: 额外验证节点最佳做法
 
 <table>
   <thead>
@@ -574,27 +574,27 @@ sudo chown validator:validator -R $HOME/.eth2validators/validators-password.txt
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left">Networking</td>
+      <td style="text-align:left">建立网络</td>
       <td style="text-align:left">
         <p></p>
-        <p>Assign static internal IPs to both your validator node and daily laptop/PC.
-          This is useful in conjunction with ufw and Fail2ban&apos;s whitelisting
-          feature. Typically, this can be configured in your router&apos;s settings.
-          Consult your router&apos;s manual for instructions.</p>
+        <p>将静态内部IP分配给您的验证器节点和每日笔记本/PC。
+          这与ufw 和 Fail2ban&apos;s 白名单
+          功能是有用的。 通常，这可以在您的路由器&apos;s设置中进行配置。
+          请参考您的路由器&apos;s 手册了解说明。</p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Power Outage</td>
-      <td style="text-align:left">In case of power outage, you want your validator machine to restart as
-        soon as power is available. In the BIOS settings, change the <b>Restore on AC / Power Loss</b> or <b>After Power Loss</b> setting
-        to always on. Better yet, install an Uninterruptable Power Supply (UPS).</td>
+      <td style="text-align:left">电源故障</td>
+      <td style="text-align:left">在停电的情况下，你想要你的验证机器在
+        可用时重新启动。 在 BIOS 设置中，更改电源丢失时的 <b>还原</b> 或 <b>电源丢失后</b> 设置
+        以便继续开启。 更好的是，安装一个不可中断的电源(UPS)。</td>
     </tr>
     <tr>
-      <td style="text-align:left">Clear the bash history</td>
+      <td style="text-align:left">清除基础历史记录</td>
       <td style="text-align:left">
-        <p>When pressing the up-arrow key, you can see prior commands which may contain
-          sensitive data. To clear this, run the following:</p>
-        <p><code>shred -u ~/.bash_history &amp;&amp; touch ~/.bash_history</code>
+        <p>当按下上箭头键时，您可以看到先前的命令可能包含
+          个敏感数据。 若要清除此项，请运行以下操作：</p>
+        <p><code>shred -u ~/.bash_history &amp;&amp; tount ~/.bash_history</code>
         </p>
       </td>
     </tr>
@@ -602,48 +602,48 @@ sudo chown validator:validator -R $HOME/.eth2validators/validators-password.txt
 </table>
 
 {% hint style="info" %}
-Be sure to review the [Checklist \| How to confirm a healthy functional ETH2 validator.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
+请务必查看 [清单 \| 如何确认一个健康的 ETH2 验证器。](guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
 {% endhint %}
 
-## 🤖 Start staking by building a validator
+## 🤖 通过构建一个验证器来开始舞蹈。
 
-### Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) and here for our [Testnet guide](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
+### 为我们的 [主要指南](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) 访问此处，为我们的 [测试网指南](guide-or-how-to-setup-a-validator-on-eth2-testnet.md) 访问此处。
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+恭喜您完成了指南。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+你觉得我们的指南有用吗？ 向我们发送一个带有提示的信息，我们将不断更新它。
 
-It really energizes us to keep creating the best crypto guides.
+它真正激励我们继续创建最好的加密指南。
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏
+使用 [cointr.ee 找到我们的捐赠 ](https://cointr.ee/coincashew)个地址。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+任何反馈和所有拉取请求都非常感激。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+在 Discord 上挂起并与他人聊天 @
 
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **2020-12 更新**: 感谢所有 [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) 贡献者 您可以通过 [二次供资](https://vitalik.ca/general/2019/12/07/quadratic.html) 做出贡献并产生重大影响。 融资已完成！ 谢谢！:folded_hands：
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
-## 🚀 References
+## 🚀 参考
 
-{% embed url="https://medium.com/@BaneBiddix/how-to-harden-your-ubuntu-18-04-server-ffc4b6658fe7" caption="" %}
+{% embed url="https://med.com/@BaneBiddix/howto harden-ubuntu-18-04-server-ffc4b6658fe7" caption="" %}
 
-{% embed url="https://linux-audit.com/ubuntu-server-hardening-guide-quick-and-secure/" caption="" %}
+{% 嵌入的 url="https://linux-audit.com/ubuntu-server-hardening-guide-Quice-and-secure/" caption="" %}
 
-{% embed url="https://www.digitalocean.com/community/tutorials/how-to-harden-openssh-on-ubuntu-18-04" caption="" %}
+{% embed url="https://www.digitalocean.com/community/tutorials/how to harden-openssh-on-ubuntu-18-04" caption="" %}
 
-{% embed url="https://ubuntu.com/tutorials/configure-ssh-2fa\#1-overview" caption="" %}
+{% 嵌入的 url="https://ubuntu.com/tutorials/configure-ssh-2fa\#1-overview.”标题="" %}
 
-{% embed url="https://linuxize.com/post/install-configure-fail2ban-on-ubuntu-20-04/" %}
+{% 嵌入的 url="https://linuxize.com/post/install-configure-fail2ban-on-ubuntu-20-04/" %}
 
 [https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3\#file-ubuntu-hardening-md](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3#file-ubuntu-hardening-md)
 
-{% embed url="https://www.lifewire.com/harden-ubuntu-server-security-4178243" caption="" %}
+{% 嵌入的 url="https://www.lifewire.com/harden-ubuntu-server-security,4178243"字幕="" %}
 
-{% embed url="https://www.ubuntupit.com/best-linux-hardening-security-tips-a-comprehensive-checklist/" caption="" %}
+{% 嵌入的 url="https://www.ubuntupit.com/best-linux-hardening-security-tips-a-complesive-checklist/" caption="" %}
 
