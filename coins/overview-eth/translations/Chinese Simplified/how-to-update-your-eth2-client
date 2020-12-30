@@ -1,35 +1,35 @@
 ---
 description: >-
-  Scenario: In discord, you see an alert that your eth2 client just announced a new release. How best to update?
+  剧情场景：在不一致中，您看到了一个警告，您的 eth2 客户端刚刚宣布了一个新的版本。 如何最好地更新？
 ---
 
-# How to update your eth2 client
+# 如何更新您的 eth2 客户端
 
-## ⏩ Quick steps guide
+## :快速前进按钮：快速步骤指南
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+以下步骤与我们的 [主机指南](./) 一致。 您可能需要酌情调整文件名称和目录位置。 核心概念保持不变。
 {% endhint %}
 
-When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your eth2 beacon chain and validator.
+当新版本被剪切时，您将想要更新到最新的稳定版本。 下面展示了如何更新您的 eth2 信标链和验证器。
 
 {% hint style="info" %}
-Always review the **git logs** with command**`git log`** or **release notes** before updating. There may be changes requiring your attention.
+更新前总是查看 **git 日志** 命令**`git 日志`** 或 **版本说明** 可能需要你们注意的变化。
 {% endhint %}
 
 {% hint style="success" %}
-\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+\*\*\*🔥 **Pro tip**: 计划你的更新与最长的验证差距重叠。 [学习如何在这里。](how-to-find-longest-attestation-slot-gap.md)
 {% endhint %}
 
-1. Select your ETH2 client.
+1. 选择您的 ETH2 客户端。
 
 {% tabs %}
 {% tab title="Lighthouse" %}
-Review release notes and check for breaking changes/features.
+查看发行笔记并检查断开的更改/功能。
 
-[https://github.com/sigp/lighthouse/releases](https://github.com/sigp/lighthouse/releases)
+[https://github.com/sigp/lightthouse/releases](https://github.com/sigp/lighthouse/releases)
 
-Pull the latest source and build it.
+拉取最新的源并构建它。
 
 ```bash
 cd $HOME/git/lighthouse
@@ -37,13 +37,13 @@ git fetch --all && git checkout stable && git pull
 make
 ```
 
-Verify the build completed by checking the new version number.
+通过检查新版本号来验证构建完成。
 
 ```bash
 lighthouse --version
 ```
 
-Restart beacon chain and validator as per normal operating procedures.
+按照正常操作程序重新启动信标链和验证器。
 
 ```text
 sudo systemctl reload-or-restart beacon-chain validator
@@ -51,11 +51,11 @@ sudo systemctl reload-or-restart beacon-chain validator
 {% endtab %}
 
 {% tab title="Nimbus" %}
-Review release notes and check for breaking changes/features.
+查看发行笔记并检查断开的更改/功能。
 
 [https://github.com/status-im/nimbus-eth2/releases](https://github.com/status-im/nimbus-eth2/releases)
 
-Pull the latest source and build it.
+拉取最新的源并构建它。
 
 ```bash
 cd $HOME/git/nimbus-eth2
@@ -63,14 +63,14 @@ git pull && make update
 make NIMFLAGS="-d:insecure" nimbus_beacon_node
 ```
 
-Verify the build completed by checking the new version number.
+通过检查新版本号来验证构建完成。
 
 ```bash
 cd $HOME/git/nimbus-eth2/build
 ./nimbus_beacon_node --version
 ```
 
-Stop, copy new binary, and restart beacon chain and validator as per normal operating procedures.
+停止、复制新二进制并按照正常操作程序重启信标链和验证器。
 
 ```bash
 sudo systemctl stop beacon-chain
@@ -81,11 +81,11 @@ sudo systemctl reload-or-restart beacon-chain
 {% endtab %}
 
 {% tab title="Teku" %}
-Review release notes and check for breaking changes/features.
+查看发行笔记并检查断开的更改/功能。
 
 [https://github.com/ConsenSys/teku/releases](https://github.com/ConsenSys/teku/releases)
 
-Pull the latest source and build it.
+拉取最新的源并构建它。
 
 ```bash
 cd $HOME/git/teku
@@ -93,14 +93,14 @@ git pull
 ./gradlew distTar installDist
 ```
 
-Verify the build completed by checking the new version number.
+通过检查新版本号来验证构建完成。
 
 ```bash
 cd $HOME/git/teku/build/install/teku/bin
 ./teku --version
 ```
 
-Restart beacon chain and validator as per normal operating procedures.
+按照正常操作程序重新启动信标链和验证器。
 
 ```bash
 sudo systemctl stop beacon-chain
@@ -111,22 +111,22 @@ sudo systemctl reload-or-restart beacon-chain
 {% endtab %}
 
 {% tab title="Prysm" %}
-Review release notes and check for breaking changes/features.
+查看发行笔记并检查断开的更改/功能。
 
 [https://github.com/prysmaticlabs/prysm/releases](https://github.com/prysmaticlabs/prysm/releases)
 
 ```bash
-#Simply restart the processes
-sudo systemctl reload-or-restart beacon-chain validator
+#只需重新启动进程
+sudo systemctl 重新加载或重新启动信标链验证器
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-Review release notes and check for breaking changes/features.
+查看发行笔记并检查断开的更改/功能。
 
 [https://github.com/ChainSafe/lodestar/releases](https://github.com/ChainSafe/lodestar/releases)
 
-Pull the latest source and build it.
+拉取最新的源并构建它。
 
 ```bash
 cd $HOME/git/lodestar
@@ -135,13 +135,13 @@ yarn install
 yarn run build
 ```
 
-Verify the build completed by checking the new version number.
+通过检查新版本号来验证构建完成。
 
 ```bash
 yarn run cli --version
 ```
 
-Restart beacon chain and validator as per normal operating procedures.
+按照正常操作程序重新启动信标链和验证器。
 
 ```text
 sudo systemctl reload-or-restart beacon-chain validator
@@ -149,7 +149,7 @@ sudo systemctl reload-or-restart beacon-chain validator
 {% endtab %}
 {% endtabs %}
 
-2. Check the logs to verify the services are working properly and ensure there are no errors.
+2. 检查日志以验证服务正常工作，并确保没有错误。
 
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
@@ -165,33 +165,33 @@ sudo systemctl status beacon-chain
 {% endtab %}
 {% endtabs %}
 
-3. Finally, verify your validator's attestations are working with public block explorer such as
+3. 最后，验证你的验证器的注释正在与公共区块浏览器合作，例如：
 
-[https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
+[https://信标.in/](https://beaconcha.in/) or [https://信标onscan.com/](https://beaconscan.com/)
 
-Enter your validator's pubkey to view its status.
+输入您的验证器的 pubkey 查看其状态。
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 通过构建一个验证器来开始舞蹈。 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 为我们的 [主要指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 访问此处，为我们的 [测试网指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet) 访问此处。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+恭喜您完成了指南。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+你觉得我们的指南有用吗？ 向我们发送一个带有提示的信息，我们将不断更新它。
 
-It really energizes us to keep creating the best crypto guides.
+它真正激励我们继续创建最好的加密指南。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+使用 [cointr.ee 找到我们的捐赠](https://cointr.ee/coincashew) 个地址。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+任何反馈和所有拉取请求都非常感激。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+在 Discord 上挂起并与他人聊天 @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+通过[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :grinning_face_with_big_eyes：
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **2020-12 更新**: 感谢所有 [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) 贡献者 您可以通过 [二次供资](https://vitalik.ca/general/2019/12/07/quadratic.html) 做出贡献并产生重大影响。 融资已完成！ 谢谢！:folded_hands：
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
