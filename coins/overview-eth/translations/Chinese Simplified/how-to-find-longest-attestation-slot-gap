@@ -1,31 +1,31 @@
 ---
-description: Find the best slot gap to avoid missing any validator duties.
+description: 找出最好的栏位缺口，以避免丢失任何验证器的职责。
 ---
 
-# How to find longest attestation slot gap
+# 如何找到最长的证明栏位间距
 
-## ⏩ Quick steps guide
+## :快速前进按钮：快速步骤指南
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+以下步骤与我们的 [主机指南](./) 一致。 您可能需要酌情调整文件名称和目录位置。 核心概念保持不变。
 {% endhint %}
 
-### 🗡 Why do I want to calculate the longest attestation slot gap?
+### 🗡 我为什么要计算最长的证明栏位差距？
 
-* Your validators are assigned duties to attest and propose blocks.
-* Understanding the schedule of your validator's duties better, you can find the best time to plan eth1/eth2 updates, system reboots or outages.
+* 您的验证程序被赋予验证和提出模块的职责。
+* 更好地理解您验证程序任务的时间安排，您可以找到最好的时间来规划eth1/eth2更新，系统重启或停用。
 
-### 🤖 Pre-requisites
+### 🤖 前提条件
 
 * python3
-* validator index number\(s\) -- Lookup on [https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
-* Works with **Lighthouse / Teku / Prysm** currently
+* 验证器索引编号\(s\) -- 在 [https://bearaconcha.in/](https://beaconcha.in/) 或 [https://bearaconscan.com/](https://beaconscan.com/)
+* 使用 **Lightthouse / Teku / Prysm**
 
 {% hint style="success" %}
 ✨ Kudos to **pietjepuk2** on Discord for authoring this process.
 {% endhint %}
 
-### 🚧 How to Run the Validator Duties script
+### 🚧 如何运行验证器义务脚本
 
 1. Install python3
 
@@ -33,10 +33,10 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 sudo apt update && sudo apt-get install python3
 ```
 
-2. Download [pietjepuk2](https://gist.github.com/pietjepuk2)'s `get_validator_duties.py` python script.
+2. 下载 [pietjepuk2](https://gist.github.com/pietjepuk2)'s `get_validator_duties.py` python 脚本。
 
 {% tabs %}
-{% tab title="Lighthouse \| Teku" %}
+{% tab title="灯塔\| Teku" %}
 ```bash
 cd $HOME
 wget https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63150/raw/cc874b3035f97495416353f203d70477b31ab05d/get_validator_duties.py
@@ -47,12 +47,12 @@ wget https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63
 ```bash
 cd $HOME
 # modified by mohamedmansour for prysm
-wget https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd
+wget https://gist.githubusercontent.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd/raw/d48a3f0948cf2ae8cf571b42d50f80d66841118f/get_validator_duties.py
 ```
 {% endtab %}
 {% endtabs %}
 
-3. Enter your validator index numbers as parameters to the python script.
+3. 输入您的验证器索引编号作为python脚本的参数。
 
 ```bash
 python3 get_validator_duties.py <validator index number(s)>
@@ -60,44 +60,44 @@ python3 get_validator_duties.py <validator index number(s)>
 # python3 get_validator_duties.py 1000 1001 1002 1003
 ```
 
-Sample Output showing the longest gap in seconds, \# of slots and time range.
+示例输出以秒为单位显示最长的间隙，\# 的箱位和时间范围。
 
-> Longest gap \(first\):
+> 最长的间距 \(第一个\)：
 > 
-> 120.0 seconds \(10 slots\), from 13:37:35 until 13:39:35
+> 120.0 秒\(10 slots\)，从 13:37:35 到 13:39:35
 
 {% hint style="warning" %}
 \*\*\*\*🔥 **Script Usage Caveats**:
 
-* This version does not include block proposals, although the odds of having one scheduled are really low of course.
-* Block proposal duties are only known for the current epoch, whereas attestation duties are known for the current and next one.
+* 这个版本不包括区块建议，尽管有一个排定计划的可能性确实很小。
+* 方块提案义务仅为当前时间段所知道，而验证义务则为当前和下一个时间段所知。
 {% endhint %}
 
 {% hint style="success" %}
-Nice work. Now you now the best gap to avoid missing any validator duties.
+好工作。 现在你可以避免丢失任何验证器的责任。
 {% endhint %}
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 通过构建一个验证器来开始舞蹈。 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 为我们的 [主要指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 访问此处，为我们的 [测试网指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet) 访问此处。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+恭喜您完成了指南。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+你觉得我们的指南有用吗？ 向我们发送一个带有提示的信息，我们将不断更新它。
 
-It really energizes us to keep creating the best crypto guides.
+它真正激励我们继续创建最好的加密指南。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+使用 [cointr.ee 找到我们的捐赠](https://cointr.ee/coincashew) 个地址。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+任何反馈和所有拉取请求都非常感激。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+在 Discord 上挂起并与他人聊天 @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+通过[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :grinning_face_with_big_eyes：
 {% endhint %}
 
-## 🧩 Reference Material
+## 🧩 参考材料
 
 {% embed url="https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63150/raw/cc874b3035f97495416353f203d70477b31ab05d/get\_validator\_duties.py" %}
 [https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd ](https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd)
