@@ -1,34 +1,34 @@
 ---
 description: >-
-  Scenario: In discord, you see an alert that your eth1 node just announced a new release. How best to update?
+  Escenario: En discord, usted ve una alerta que su nodo et1 acaba de anunciar una nueva versión. ¿Cómo actualizar?
 ---
 
-# How to update your eth1 node
+# Cómo actualizar su nodo eth1
 
-## ⏩ Quick steps guide
+## ⏩ Guía de pasos rápidos
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+Los siguientes pasos se alinean con nuestra [guía de red principal](./). Es posible que necesite ajustar los nombres de archivos y ubicaciones de directorios cuando sea apropiado. Los conceptos básicos siguen siendo los mismos.
 {% endhint %}
 
 {% hint style="success" %}
-\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+\*\*\*\*🔥 **Consejo Pro**: planifica tu actualización para solaparte con la mayor brecha de verificación. [Aprende cómo aquí.](how-to-find-longest-attestation-slot-gap.md)
 {% endhint %}
 
-From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
+De vez en cuando, asegúrese de actualizar a las últimas versiones de ETH1 para disfrutar de nuevas mejoras y características.
 
-1. Stop your eth1 node process.
+1. Detenga su proceso de nodo eth1.
 
 ```bash
-# This can take a few minutes.
+# Esto puede tardar unos minutos.
 sudo systemctl stop eth1
 ```
 
-2. Update the eth1 node package or binaries.
+2. Actualizar el paquete de nodos eth1 o binarios.
 
 {% tabs %}
 {% tab title="Geth" %}
-Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
+Revise las últimas notas de la versión en [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
 
 ```bash
 sudo apt update
@@ -37,81 +37,81 @@ sudo apt upgrade -y
 {% endtab %}
 
 {% tab title="OpenEthereum \(Parity\)" %}
-Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
+Revise la última versión en [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
 
-Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
+Descargar automáticamente la última versión de linux, un-zip, añadir permisos de ejecución y limpieza.
 
 ```bash
 cd $HOME
-# backup previous openethereum version in case of rollback
-mv openethereum openethereum_backup_$(date +"%Y%d%m-%H%M%S")
-# store new version in openethreum directory
+# copia de seguridad anterior de openethereum versión anterior en caso de rollback
+mv openethereum_backup_$(date +"%Y%d%m-%H%M%S")
+# almacena una nueva versión en el directorio openethreum
 mkdir openethereum && cd openethereum
 # download latest version
-curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux | xargs wget -q --show-progress
 # unzip
-unzip openethereum*.zip
+unzip openethereum*. ip
 # add execute permission
 chmod +x openethereum
-# cleanup
+# limpieza
 rm openethereum*.zip
 ```
 {% endtab %}
 
 {% tab title="Besu" %}
-Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
+Revise la última versión en [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
-File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo)
+El archivo se puede descargar desde [https://dl.bintray.com/hyperledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo)
 
-Manually find the desired file from above repo and modify the `wget` command with the URL.
+Encuentre manualmente el archivo deseado desde el repositorio anterior y modifique el comando `wget` con la URL.
 
-> Example: 
+> Ejemplo: 
 > 
 > wget -O besu.tar.gz [https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
 
 ```bash
 cd $HOME
-# backup previous besu version in case of rollback
+# copia de seguridad anterior de la versión besu en caso de cancelación
 mv besu besu_backup_$(date +"%Y%d%m-%H%M%S")
-# download latest besu
-wget -O besu.tar.gz <https URL to latest tax.gz linux file>
+# descargar la última besu
+wget -O besu. ar.gz <https URL to latest tax.gz linux file>
 # untar
 tar -xvf besu.tar.gz
-# cleanup
-rm besu.tar.gz
-# rename besu to standard folder location
+# limpieza
+rm besu. ar.gz
+# renombra besu a la ubicación de la carpeta estándar
 mv besu* besu
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
-Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
+Revise la última versión en [https://github.com/)[video] mindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
 
-Automatically download the latest linux release, un-zip and cleanup.
+Descargue automáticamente la última versión de linux, des-zip y limpieza.
 
 ```bash
 cd $HOME
-# backup previous nethermind version in case of rollback
-mv nethermind nethermind_backup_$(date +"%Y%d%m-%H%M%S")
-# store new version in nethermind directory
+# copia de seguridad anterior de la versión nethermind en caso de rollback
+mv nethermind_backup_$(date +"%Y%d%m-%H%M%S")
+# almacenar nueva versión en el directorio nethermind
 mkdir nethermind && cd nethermind 
-# download latest version
-curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+# descargar la última versión
+curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | . rowser_download_url" | grep linux | xargs wget -q --show-progress
 # unzip
 unzip -o nethermind*.zip
-# cleanup
+# limpieza
 rm nethermind*linux*.zip
 ```
 {% endtab %}
 {% endtabs %}
 
-3. Start your eth1 node process.
+3. Inicie su proceso de nodo eth1.
 
 ```bash
 sudo systemctl start eth1
 ```
 
-4. Check the logs to verify the services are working properly and ensure there are no errors.
+4. Marque los registros para verificar que los servicios están funcionando correctamente y asegurarse de que no hay errores.
 
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
@@ -127,33 +127,33 @@ sudo systemctl status eth1 beacon-chain
 {% endtab %}
 {% endtabs %}
 
-5. Finally, verify your validator's attestations are working with public block explorer such as
+5. Finalmente, verifique que los certificados de su validador están trabajando con el explorador de bloques público como
 
-[https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
+[https://beaconcha.in/](https://beaconcha.in/) o [https://beaconscan.com/](https://beaconscan.com/)
 
-Enter your validator's pubkey to view its status.
+Introduzca la pubkey de su validador para ver su estado.
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 Empieza a apostar construyendo un validador <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visita aquí para nuestra guía [Mainnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) y aquí para nuestra [guía de Testnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+Felicidades por completar la guía. ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+¿Encontraste útil nuestra guía? Envíenos una señal con un consejo y seguiremos actualizándola.
 
-It really energizes us to keep creating the best crypto guides.
+Realmente nos da energía para seguir creando las mejores guías criptográficas.
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+Usa [cointr.ee para encontrar nuestras direcciones de donación](https://cointr.ee/coincashew). 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+Cualquier comentario y todas las solicitudes de extracción son muy apreciadas. 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Descubra y chatee con otros interesados en Discord @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **Actualización 2020-12**: Gracias a todos los colaboradores de [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) , donde usted puede contribuir a través de [fondos cuadráticos](https://vitalik.ca/general/2019/12/07/quadratic.html) y hacer un gran impacto. ¡Financiación completa! Gracias!🙏
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
