@@ -9,18 +9,18 @@ description: >-
 
 | 站点  | 标题                                                                                                     |
 |:--- |:------------------------------------------------------------------------------------------------------ |
-| 网址  | [https://www.etherum.org/。](https://www.ethereum.org/)                                                 |
+| 网址  | [https://www.ethereum.org/](https://www.ethereum.org/)                                                 |
 | 源代码 | [https://github.com/ethereum](https://github.com/ethereum)                                             |
 | 白纸  | [https://github.com/ethereum/wiki/wiki/White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper) |
 
 ## 🙋 Social Media and Community
 
-| 社区        | 链接                                                                        |
-|:--------- |:------------------------------------------------------------------------- |
-| 🐦 Twitter | [https://twitter.com/etherum](https://twitter.com/ethereum)               |
-| Reddit    | [https://reddit.com/r/eyesum](https://reddit.com/r/ethereum)              |
-| 官方论坛      | [https://forum.etherum.org/](https://forum.ethereum.org/)                 |
-| Gitter    | [https://gitter.im/orgs/eferum/房间](https://gitter.im/orgs/ethereum/rooms) |
+| 社区        | 链接                                                                             |
+|:--------- |:------------------------------------------------------------------------------ |
+| 🐦 Twitter | [https://twitter.com/ethereum](https://twitter.com/ethereum)                   |
+| Reddit    | [https://reddit.com/r/ethereum](https://reddit.com/r/ethereum)                 |
+| 官方论坛      | [https://forum.ethereum.org/](https://forum.ethereum.org/)                     |
+| Gitter    | [https://gitter.im/orgs/ethereum/rooms](https://gitter.im/orgs/ethereum/rooms) |
 
 ## 🔃 Block Explorers
 
@@ -30,48 +30,48 @@ description: >-
 | [Blockchair.com](https://blockchair.com/ethereum) |
 | [Ethplorer.io](https://ethplorer.io/)             |
 | [Etherchain.org](https://etherchain.org/)         |
-| [信标.in](https://beaconcha.in/)                    |
+| [beaconcha.in](https://beaconcha.in/)             |
 
 ## :bar_chat: 海图和价格
 
-| 站点            | 链接                                                                                                    |
-|:------------- |:----------------------------------------------------------------------------------------------------- |
-| CoinPaprika   | [https://coinpaprika.com/coin/eth-efum/](https://coinpaprika.com/coin/eth-ethereum/)                  |
-| CoinMarketCAp | [https://coinmarketcap.com/currencies/etherum/](https://coinmarketcap.com/currencies/ethereum/)       |
-| CoinGecko     | [https://www.coingecko.com/en/coins/eyesum](https://www.coingecko.com/en/coins/ethereum)              |
-| LiveCoinWatch | [https://www.livecoinwatch.com/price/Etheresum-ETH](https://www.livecoinwatch.com/price/Ethereum-ETH) |
+| 站点            | 链接                                                                                                   |
+|:------------- |:---------------------------------------------------------------------------------------------------- |
+| CoinPaprika   | [https://coinpaprika.com/coin/eth-ethereum/](https://coinpaprika.com/coin/eth-ethereum/)             |
+| CoinMarketCAp | [https://coinmarketcap.com/currencies/ethereum/](https://coinmarketcap.com/currencies/ethereum/)     |
+| CoinGecko     | [https://www.coingecko.com/en/coins/ethereum](https://www.coingecko.com/en/coins/ethereum)           |
+| LiveCoinWatch | [https://www.livecoinwatch.com/price/Ethereum-ETH](https://www.livecoinwatch.com/price/Ethereum-ETH) |
 
 ## 💰 钱包
 
-{% page-ref 页面="../../wallets/desktop wallets/mycrypto-etherum.md" %}
+{% page-ref page="../../wallets/desktop-wallets/mycrypto-ethereum.md" %}
 
-{% page-ref page="../../wallets/browser-wallets/metmask-etherum.md" %}
+{% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
-{% page-ref page="../../wallets/mobile-wallets/expus-multi-chain-assets.md" %}
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
 
-{% page-ref页面="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+{% page-ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
 
-{% page-ref page="../../wallets/desktop wallets/atomic-multi-currency.md" %}
+{% page-ref page="../../wallets/desktop-wallets/atomic-multi-currency.md" %}
 
 {% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
 
-{% page-ref 页面="../../wallets/hardware-wallets/trezor.io-wallet/" %}
+{% page-ref page="../../wallets/hardware-wallets/trezor.io-wallet/" %}
 
-{% page-ref页面="../../wallets/hardware-wallets/keepy-wallet/" %}
+{% page-ref page="../../wallets/hardware-wallets/keepkey-wallet/" %}
 
-{% page-ref页面="../../wallets/mobile-wallets/argent-etherum.md" %}
+{% page-ref page="../../wallets/mobile-wallets/argent-ethereum.md" %}
 
-{% page-ref页面="../../wallets/mobile-wallets/status-eyseum.md" %}
+{% page-ref page="../../wallets/mobile-wallets/status-ethereum.md" %}
 
-{% page-ref page="../../wallets/mobile-wallets/pillar-eferum-btc.md" %}
+{% page-ref page="../../wallets/mobile-wallets/pillar-ethereum-btc.md" %}
 
 {% page-ref page="./" %}
 
 {% page-ref page="../../wallets/mobile-wallets/enjin-multi-currency.md" %}
 
-{% page-ref页面="../../wallets/mobile-wallets/trustwallet-multicury.md" %}
+{% page-ref page="../../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
 
-{% page-ref页面="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
 
 
 
