@@ -1,55 +1,55 @@
 ---
 description: >-
-  Running slasher is completely optional and yet can help protect the chain and earn you extra ETH.
+  运行飞毛腿是完全可选的，但可以帮助保护链，赚取你额外的 ETH。
 ---
 
-# How to run a slasher
+# 如何运行激光器
 
-## ⏩ Quick steps guide
+## :快速前进按钮：快速步骤指南
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+以下步骤与我们的 [主机指南](./) 一致。 您可能需要酌情调整文件名称和目录位置。 核心概念保持不变。
 {% endhint %}
 
-### 🗡 What is a Slasher?
+### 🗡 什么是斜角？
 
-* Validators might commit slashable transactions such as
-  * **Double Voting**: signs more than one block in same epoch
-  * **Surround Votes**: signs two contradictory attestations
-* A slasher will submit proof of the above offenses into a block proposal.
-* Running a slashing helps protect and keeps the network healthy.
-* If your slasher successfully detects an offense and is lucky enough to include proof of the offense into your scheduled block proposal, your validator earns extra ETH.
+* 验证器可能会提交可沙射线交易，例如：
+  * **双重投票**: 在同一纪元中标记多个块
+  * **环绕投票**: 签署两个相互矛盾的语句
+* 侦破员将把上述违法行为的证据提交给一个区块提案。
+* 运行斜杠有助于保护和保持网络健康。
+* 如果您的吸血鬼成功地检测到犯罪并且幸运地将犯罪证据纳入您的预定区块提案， 您的验证器获得额外的 ETH。
 
 {% hint style="warning" %}
-Slashers tend to be resource intensive and is currently recommended for advanced users only.
+斜杠往往是资源密集型的，目前只推荐给高级用户。
 {% endhint %}
 
-### 🤖 Minimum Slasher System Requirements
+### :robot_face：最低闪光系统要求
 
-* Quad-core or more CPU
+* 四核或多个CPU
 * 16+ GB RAM
 * 256GB+ SSD HD
 
-### 🚧 How to Configure the Slasher
+### 🚧 How to configure the Slasher
 
-Slasher functionality is currently available in Lighthouse or Prysm.
+Slasher的功能目前可以在 Lightthouse 或 Prysm 使用。
 
 {% tabs %}
 {% tab title="Lighthouse " %}
 ```bash
-# Edit your beacon-chain unit file
+# 编辑您的信标链单元文件
 sudo nano /etc/systemd/system/beacon-chain.service
 
-# Append the following slasher flag to ExecStart
+# 在 ExecStart
 --slasher --debug-level debug
 
-# Example of what your ExecStart should look like.
+# 你的 ExecStart 应该看起来像的示例。
 # lighthouse bn --staking --metrics --network mainnet --slasher --debug-level debug
 
-# Reload the new unit file
+# 重新加载新的设备文件
 sudo systemctl daemon-reload
 
-# Restart your beacon-chain
+# 重新启动你的信标链
 sudo systemctl restart beacon-chain
 ```
 {% endtab %}
@@ -79,9 +79,9 @@ EOF
 sudo mv $HOME/slasher.service /etc/systemd/system/slasher.service
 
 # Update file permissions.
-sudo chmod 644 /etc/systemd/system/slasher.service
+sudo chmod 644 /etc/system/slasher.service
 
-# Enable auto-start at boot time and then start your slasher service.
+# 启用启动时自动启动，然后启动您的slasher服务。
 sudo systemctl daemon-reload
 sudo systemctl enable slasher
 sudo systemctl start slasher
@@ -90,40 +90,40 @@ sudo systemctl start slasher
 {% endtabs %}
 
 {% hint style="success" %}
-Nice work. You're running a slasher now. 🗡 🤖 🔪
+好工作。 你现在正在运行一把刀。 🗡 🤖 🔪
 {% endhint %}
 
 {% hint style="info" %}
-Be sure to familiarize yourself with the [reference material for detailed official slasher documentation.](how-to-run-a-slasher.md#reference-material)
+一定要熟悉详细的官方化验室文档的 [参考材料。](how-to-run-a-slasher.md#reference-material)
 {% endhint %}
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 通过构建一个验证器来开始舞蹈。 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 为我们的 [主要指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 访问此处，为我们的 [测试网指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet) 访问此处。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+恭喜您完成了指南。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+你觉得我们的指南有用吗？ 向我们发送一个带有提示的信息，我们将不断更新它。
 
-It really energizes us to keep creating the best crypto guides.
+它真正激励我们继续创建最好的加密指南。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+使用 [cointr.ee 找到我们的捐赠](https://cointr.ee/coincashew) 个地址。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+任何反馈和所有拉取请求都非常感激。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+在 Discord 上挂起并与他人聊天 @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+通过[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :grinning_face_with_big_eyes：
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **2020-12 更新**: 感谢所有 [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) 贡献者 您可以通过 [二次供资](https://vitalik.ca/general/2019/12/07/quadratic.html) 做出贡献并产生重大影响。 融资已完成！ 谢谢！:folded_hands：
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
-## 🧩 Reference Material
+## 🧩 参考材料
 
-{% embed url="https://docs.prylabs.network/docs/prysm-usage/slasher/" %}
+{% 嵌入的 url="https://docs.prylabs.network/docs/prysm-usage/slasher/" %}
 
-{% embed url="https://lighthouse-book.sigmaprime.io/slasher.html" %}
+{% 嵌入的 url="https://lightthouse-book.sigmaprime.io/slasher.html" %}
 
