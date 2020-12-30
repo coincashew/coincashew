@@ -1,35 +1,35 @@
 ---
 description: >-
-  Scenario: In discord, you see an alert that your eth2 client just announced a new release. How best to update?
+  Escenario: En discord, usted ve una alerta que su cliente eth2 acaba de anunciar una nueva versión. ¿Cómo actualizar?
 ---
 
-# How to update your eth2 client
+# Cómo actualizar su cliente eth2
 
-## ⏩ Quick steps guide
+## ⏩ Guía de pasos rápidos
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+Los siguientes pasos se alinean con nuestra [guía de red principal](./). Es posible que necesite ajustar los nombres de archivos y ubicaciones de directorios cuando sea apropiado. Los conceptos básicos siguen siendo los mismos.
 {% endhint %}
 
-When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your eth2 beacon chain and validator.
+Cuando se corta una nueva versión, querrá actualizar a la última versión estable. A continuación le muestra cómo actualizar su cadena de baliza eth2 y validador.
 
 {% hint style="info" %}
-Always review the **git logs** with command**`git log`** or **release notes** before updating. There may be changes requiring your attention.
+Revisa siempre **git logs** con el comando**`git log`** o **release notes** antes de actualizar. Puede haber cambios que requieran su atención.
 {% endhint %}
 
 {% hint style="success" %}
-\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+\*\*\*\*🔥 **Consejo Pro**: planifica tu actualización para solaparte con la mayor brecha de verificación. [Aprende cómo aquí.](how-to-find-longest-attestation-slot-gap.md)
 {% endhint %}
 
-1. Select your ETH2 client.
+1. Seleccione su cliente ETH2.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
-Review release notes and check for breaking changes/features.
+Revise las notas de la versión y compruebe si se rompen cambios/características.
 
 [https://github.com/sigp/lighthouse/releases](https://github.com/sigp/lighthouse/releases)
 
-Pull the latest source and build it.
+Desplegar el último código fuente y construirlo.
 
 ```bash
 cd $HOME/git/lighthouse
@@ -37,13 +37,13 @@ git fetch --all && git checkout stable && git pull
 make
 ```
 
-Verify the build completed by checking the new version number.
+Verifique la versión completada comprobando el número de la nueva versión.
 
 ```bash
 lighthouse --version
 ```
 
-Restart beacon chain and validator as per normal operating procedures.
+Reinicie la cadena de baliza y el validador según los procedimientos operativos normales.
 
 ```text
 sudo systemctl reload-or-restart beacon-chain validator
@@ -51,11 +51,11 @@ sudo systemctl reload-or-restart beacon-chain validator
 {% endtab %}
 
 {% tab title="Nimbus" %}
-Review release notes and check for breaking changes/features.
+Revise las notas de la versión y compruebe si se rompen cambios/características.
 
 [https://github.com/status-im/nimbus-eth2/releases](https://github.com/status-im/nimbus-eth2/releases)
 
-Pull the latest source and build it.
+Desplegar el último código fuente y construirlo.
 
 ```bash
 cd $HOME/git/nimbus-eth2
@@ -63,14 +63,14 @@ git pull && make update
 make NIMFLAGS="-d:insecure" nimbus_beacon_node
 ```
 
-Verify the build completed by checking the new version number.
+Verifique la versión completada comprobando el número de la nueva versión.
 
 ```bash
 cd $HOME/git/nimbus-eth2/build
 ./nimbus_beacon_node --version
 ```
 
-Stop, copy new binary, and restart beacon chain and validator as per normal operating procedures.
+Detiene, copie el nuevo binario y reinicie la cadena de baliza y el validador según los procedimientos operativos normales.
 
 ```bash
 sudo systemctl stop beacon-chain
@@ -81,11 +81,11 @@ sudo systemctl reload-or-restart beacon-chain
 {% endtab %}
 
 {% tab title="Teku" %}
-Review release notes and check for breaking changes/features.
+Revise las notas de la versión y compruebe si se rompen cambios/características.
 
 [https://github.com/ConsenSys/teku/releases](https://github.com/ConsenSys/teku/releases)
 
-Pull the latest source and build it.
+Desplegar el último código fuente y construirlo.
 
 ```bash
 cd $HOME/git/teku
@@ -93,40 +93,40 @@ git pull
 ./gradlew distTar installDist
 ```
 
-Verify the build completed by checking the new version number.
+Verifique la versión completada comprobando el número de la nueva versión.
 
 ```bash
 cd $HOME/git/teku/build/install/teku/bin
 ./teku --version
 ```
 
-Restart beacon chain and validator as per normal operating procedures.
+Reinicie la cadena de baliza y el validador según los procedimientos operativos normales.
 
 ```bash
 sudo systemctl stop beacon-chain
 sudo rm -rf /usr/bin/teku
-sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
+sudo cp -r $HOME/git/teku/build/teku /usr/bin/teku
 sudo systemctl reload-or-restart beacon-chain
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
-Review release notes and check for breaking changes/features.
+Revise las notas de la versión y compruebe si se rompen cambios/características.
 
 [https://github.com/prysmaticlabs/prysm/releases](https://github.com/prysmaticlabs/prysm/releases)
 
 ```bash
-#Simply restart the processes
+#Simplemente reinicie los procesos
 sudo systemctl reload-or-restart beacon-chain validator
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-Review release notes and check for breaking changes/features.
+Revise las notas de la versión y compruebe si se rompen cambios/características.
 
 [https://github.com/ChainSafe/lodestar/releases](https://github.com/ChainSafe/lodestar/releases)
 
-Pull the latest source and build it.
+Desplegar el último código fuente y construirlo.
 
 ```bash
 cd $HOME/git/lodestar
@@ -135,13 +135,13 @@ yarn install
 yarn run build
 ```
 
-Verify the build completed by checking the new version number.
+Verifique la versión completada comprobando el número de la nueva versión.
 
 ```bash
 yarn run cli --version
 ```
 
-Restart beacon chain and validator as per normal operating procedures.
+Reinicie la cadena de baliza y el validador según los procedimientos operativos normales.
 
 ```text
 sudo systemctl reload-or-restart beacon-chain validator
@@ -149,7 +149,7 @@ sudo systemctl reload-or-restart beacon-chain validator
 {% endtab %}
 {% endtabs %}
 
-2. Check the logs to verify the services are working properly and ensure there are no errors.
+2. Marque los registros para verificar que los servicios están funcionando correctamente y asegurarse de que no hay errores.
 
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
@@ -165,33 +165,33 @@ sudo systemctl status beacon-chain
 {% endtab %}
 {% endtabs %}
 
-3. Finally, verify your validator's attestations are working with public block explorer such as
+3. Finalmente, verifique que los certificados de su validador están trabajando con el explorador de bloques público como
 
-[https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
+[https://beaconcha.in/](https://beaconcha.in/) o [https://beaconscan.com/](https://beaconscan.com/)
 
-Enter your validator's pubkey to view its status.
+Introduzca la pubkey de su validador para ver su estado.
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 Empieza a apostar construyendo un validador <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visita aquí para nuestra guía [Mainnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) y aquí para nuestra [guía de Testnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+Felicidades por completar la guía. ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+¿Encontraste útil nuestra guía? Envíenos una señal con un consejo y seguiremos actualizándola.
 
-It really energizes us to keep creating the best crypto guides.
+Realmente nos da energía para seguir creando las mejores guías criptográficas.
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+Usa [cointr.ee para encontrar nuestras direcciones de donación](https://cointr.ee/coincashew). 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+Cualquier comentario y todas las solicitudes de extracción son muy apreciadas. 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Descubra y chatee con otros interesados en Discord @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **Actualización 2020-12**: Gracias a todos los colaboradores de [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) , donde usted puede contribuir a través de [fondos cuadráticos](https://vitalik.ca/general/2019/12/07/quadratic.html) y hacer un gran impacto. ¡Financiación completa! Gracias!🙏
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
