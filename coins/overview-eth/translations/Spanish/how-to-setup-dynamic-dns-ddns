@@ -1,93 +1,93 @@
 ---
 description: >-
-  Problem: My validator is running behind a dynamic IP address and this causes connectivity issues with other validators when my dynamic IP address changes.
+  Problema: Mi validador se está ejecutando detrás de una dirección IP dinámica y esto causa problemas de conectividad con otros validadores cuando mi dirección IP dinámica cambia.
 ---
 
-# How to setup dynamic DNS \(DDNS\)
+# Cómo configurar DNS dinámico \(DDNS\)
 
-## ⏩ Quick steps guide
-
-{% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
-{% endhint %}
-
-### 🗡 Why do I need a dynamic DNS service?
-
-* Most internet connections are through a dynamic IP address and can change weekly or even daily.
-* Frequent IP changes can make it difficult to host services such as a validator.
-* As a workaround, you can use a DDNS \(Dynamic DNS\) service.
-* Using a subdomain \(i.e. mySubDomain.duckdns.org\), you relate this to your latest dynamic IP address.
-* Periodically, say every 5 minutes, your computer updates a subdomain with your latest dynamic IP address.
-* Other validators or users would find you via the subdomain, instead of IP address.
+## ⏩ Guía de pasos rápidos
 
 {% hint style="info" %}
-There are many [alternative DDNS services](https://hackerspad.net/software/duck-dns/#alternatives) but seldom do they accept crypto donations like [Duck DNS](https://www.duckdns.org/).
+Los siguientes pasos se alinean con nuestra [guía de red principal](./). Es posible que necesite ajustar los nombres de archivos y ubicaciones de directorios cuando sea apropiado. Los conceptos básicos siguen siendo los mismos.
 {% endhint %}
 
-### 🤖 Minimum System Requirements
+### 🗡 ¿Por qué necesito un servicio DNS dinámico?
+
+* La mayoría de las conexiones a Internet son a través de una dirección IP dinámica y pueden cambiar semanalmente o incluso diariamente.
+* Los frecuentes cambios de IP pueden dificultar el alojamiento de servicios como un validador.
+* Como un workaround, puede utilizar un servicio DDNS \(Dynamic DNS\).
+* Usando un subdominio \(es decir, mySubDomain.duckdns.org\), usted relaciona esto con su última dirección IP dinámica.
+* Peridicamente, digamos cada 5 minutos, su computadora actualiza un subdominio con su última dirección IP dinámica.
+* Otros validadores o usuarios lo encontrarán a través del subdominio, en lugar de la dirección IP.
+
+{% hint style="info" %}
+Hay muchos [servicios DDNS alternativos](https://hackerspad.net/software/duck-dns/#alternatives) pero rara vez aceptan criptomonedas como [Duck DNS](https://www.duckdns.org/).
+{% endhint %}
+
+### 🤖 Requisitos mínimos del sistema
 
 * Linux cron
 
-### 🚧 How to Configure the DDNS
+### 🚧 Cómo configurar el DDNS
 
-For the purpose of this tutorial, we will be using [DuckDNS.org](https://www.duckdns.org/install.jsp)
+Para el propósito de este tutorial, usaremos [DuckDNS.org](https://www.duckdns.org/install.jsp)
 
-1. Sign in and create an account with your preferred social media login.
+1. Inicia sesión y crea una cuenta con tus redes sociales preferidas.
 
-2. Follow the instructions on[ how to setup duckdns for linux cron.](https://www.duckdns.org/install.jsp)
+2. Sigue las instrucciones sobre[ cómo configurar duckdns para linux cron.](https://www.duckdns.org/install.jsp)
 
-3. Configure the **beacon-chain** to use your new DDNS subdomain.
+3. Configure la cadena **beacon-chain** para usar su nuevo subdominio DDN.
 
 {% tabs %}
 {% tab title="Prysm" %}
 ```bash
-# Edit your beacon-chain unit file
+# Edite su archivo de unidad de beacon-chain
 sudo nano /etc/systemd/system/beacon-chain.service
 
-# Append the following flag to ExecStart
+# Añade la siguiente bandera a ExecStart
 --p2p-host-dns <SUBDOMAIN>
 
-# Example of what ExecStart could look like.
+# Ejemplo de cómo podría ser ExecStart.
 # prysm.sh beacon-chain --mainnet --p2p-host-dns mySubDomain.duckdns.org
 
-# Reload the new unit file
+# Recargar el nuevo archivo unitario
 sudo systemctl daemon-reload
 
-# Restart your beacon-chain
+# Reinicie su beacon-chain
 sudo systemctl restart beacon-chain
 ```
 {% endtab %}
 {% endtabs %}
 
 {% hint style="success" %}
-Nice work. You're running a DDNS now.
+Buen trabajo. Ahora estás ejecutando un DDN.
 {% endhint %}
 
 {% hint style="info" %}
-Be sure to familiarize yourself with the [official docs and faqs.](https://www.duckdns.org/faqs.jsp)
+Asegúrate de familiarizarte con los [documentos oficiales y faqs.](https://www.duckdns.org/faqs.jsp)
 {% endhint %}
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 Empieza a apostar construyendo un validador <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visita aquí para nuestra guía [Mainnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) y aquí para nuestra [guía de Testnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+Felicidades por completar la guía. ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+¿Encontraste útil nuestra guía? Envíenos una señal con un consejo y seguiremos actualizándola.
 
-It really energizes us to keep creating the best crypto guides.
+Realmente nos da energía para seguir creando las mejores guías criptográficas.
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+Usa [cointr.ee para encontrar nuestras direcciones de donación](https://cointr.ee/coincashew). 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+Cualquier comentario y todas las solicitudes de extracción son muy apreciadas. 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Descubra y chatee con otros interesados en Discord @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-## 🧩 Reference Material
+## 🧩 Material de referencia
 
 {% embed url="https://www.duckdns.org/install.jsp" %}
 
