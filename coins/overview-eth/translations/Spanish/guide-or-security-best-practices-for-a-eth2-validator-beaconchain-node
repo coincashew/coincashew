@@ -1,74 +1,74 @@
 ---
-description: Quick steps to secure your node.
+description: Pasos rápidos para asegurar el nodo.
 ---
 
-# Guide \| Security Best Practices for a ETH2 validator beaconchain node
+# Guía \| Mejores prácticas de seguridad para un nodo beaconchain de validador ETH2
 
-## 🤖 Pre-requisites
+## 🤖 Requisitos previos
 
-* Ubuntu Server or Ubuntu Desktop installed
-* SSH server installed
-* a SSH client or terminal window access
+* Servidor Ubuntu o Ubuntu instalado
+* Servidor SSH instalado
+* un cliente SSH o acceso a la ventana de terminal
 
-In case you need to install SSH server, refer to:
+En caso de que necesite instalar el servidor SSH, refiérase a:
 
 {% embed url="https://www.simplified.guide/ubuntu/install-ssh-server" %}
 
-In case you need a SSH client for your operating system, refer to:
+En caso de que necesite un cliente SSH para su sistema operativo, refiérase a:
 
 {% embed url="https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/" %}
 
-## 🧙♂Create a non-root user with sudo privileges
+## 🧙♂Crear un usuario no root con privilegios de sudo
 
 {% hint style="info" %}
-Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command `rm` can wipe your entire server if run incorrectly using by a root user.
+Haz un hábito de iniciar sesión en tu servidor usando una cuenta que no sea root. Esto evitará la eliminación accidental de archivos si comete un error. Por ejemplo, el comando `rm` puede borrar todo el servidor si se ejecuta incorrectamente usando un usuario raíz.
 {% endhint %}
 
 {% hint style="danger" %}
-🔥**Tip**: Do NOT routinely use the root account. Use `su` or `sudo`,  always.
+🔥**Consejo**: NO use rutinamente la cuenta raíz. Usa `su` o `sudo`, siempre.
 {% endhint %}
 
-SSH to your server with your SSH client
+SSH a su servidor con su cliente SSH
 
 ```bash
 ssh username@server.public.ip.address
-# example
+# ejemplo
 # ssh myUsername@77.22.161.10
 ```
 
-Create a new user called ethereum
+Crear un nuevo usuario llamado ethereum
 
 ```text
 sudo useradd -m -s /bin/bash ethereum
 ```
 
-Set the password for ethereum user
+Establecer la contraseña para el usuario de ethereum
 
 ```text
 sudo passwd ethereum
 ```
 
-Add ethereum to the sudo group
+Añadir ethereum al grupo de sudo
 
 ```text
 sudo usermod -aG sudo ethereum
 ```
 
-## 🔐 **Disable SSH password Authentication and Use SSH Keys only**
+## 🔐 **Deshabilita la autenticación de contraseña SSH y solo utiliza claves SSH**
 
 {% hint style="info" %}
-The basic rules of hardening SSH are:
+Las reglas básicas del endurecimiento del SSH son:
 
-* No password for SSH access \(use private key\)
-* Don't allow root to SSH \(the appropriate users should SSH in, then `su` or `sudo`\)
-* Use `sudo` for users so commands are logged
-* Log unauthorized login attempts \(and consider software to block/ban users who try to access your server too many times, like fail2ban\)
-* Lock down SSH to only the ip range your require \(if you feel like it\)
+* No hay contraseña para el acceso SSH \(usar clave privada\)
+* No permitir root a SSH \(los usuarios apropiados deberían SSH, entonces `su` o `sudo`\)
+* Utilice `sudo` para los usuarios para que los comandos sean registrados
+* Registrar intentos de inicio de sesión no autorizados (y considerar software bloquear/banear a los usuarios que intentan acceder a su servidor demasiadas veces, como fail2ban\)
+* Bloquear SSH a sólo el rango ip que necesita \(si lo siente\)
 {% endhint %}
 
-Create a new SSH key pair on your local machine. Run this on your local machine. You will be asked to type a file name in which to save the key. This will be your **keyname**.
+Crear un nuevo par de claves SSH en su máquina local. Ejecute esto en su máquina local. Se le pedirá que escriba un nombre de archivo en el que guardar la clave. Este será tu nombre de clave ****.
 
-Your choice of [ED25519 or RSA](https://goteleport.com/blog/comparing-ssh-keys/) public key algorithm.
+Su elección del algoritmo de clave pública [ED25519 o RSA](https://goteleport.com/blog/comparing-ssh-keys/).
 
 {% tabs %}
 {% tab title="ED25519" %}
@@ -84,71 +84,71 @@ ssh-keygen -t rsa -b 4096
 {% endtab %}
 {% endtabs %}
 
-Transfer the public key to your remote node. Update **keyname.pub** appropriately.
+Transfiere la clave pública a su nodo remoto. Actualiza **nombreclave.pub** apropiadamente.
 
 ```bash
 ssh-copy-id -i $HOME/.ssh/keyname.pub ethereum@server.public.ip.address
 ```
 
-Login with your new ethereum user
+Inicia sesión con tu nuevo usuario de ethereum
 
 ```text
 ssh ethereum@server.public.ip.address
 ```
 
-Disable root login and password based login. Edit the `/etc/ssh/sshd_config file`
+Desactivar el usuario root y el inicio de sesión basado en contraseña. Edita el archivo `/etc/ssh/sshd_config`
 
 ```text
-sudo nano /etc/ssh/sshd_config
+sudo nano /ssh/sshd_config
 ```
 
-Locate **ChallengeResponseAuthentication** and update to no
+Localice **ChallengeResponseAuthentication** y actualice a no ser
 
 ```text
 ChallengeResponseAuthentication no
 ```
 
-Locate **PasswordAuthentication** update to no
+Localizar **PasswordAuthentication** sin actualizar
 
 ```text
 PasswordAuthentication no
 ```
 
-Locate **PermitRootLogin** and update to no
+Localice **PermitRootLogin** y actualice a cero
 
 ```text
 PermitRootLogin no
 ```
 
-Locate **PermitEmptyPasswords** and update to no
+Localice **PermitEmptyPasswords** y actualice a ninguna
 
 ```text
 PermitEmptyPasswords no
 ```
 
-**Optional**: Locate **Port** and customize it your **random** port.
+**Opcional**: Localice **Puerto** y personalice su **puerto** aleatorio.
 
 {% hint style="info" %}
-Use a **random** port \# from 1024 thru 49141. [Check for possible conflicts. ](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
+Usa un **puerto** aleatorio \# desde 1024 hasta 49141. [Comprobar posibles conflictos. ](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
 {% endhint %}
 
 ```bash
 Port <port number>
 ```
 
-Validate the syntax of your new SSH configuration.
+Validar la sintaxis de su nueva configuración SSH.
 
 ```text
 sudo sshd -t
 ```
 
-If no errors with the syntax validation, reload the SSH process
+Si no hay errores con la validación de sintaxis, vuelva a cargar el proceso SSH
 
 ```text
 sudo service sshd reload
 ```
 
-Verify the login still works
+Verificar el inicio de sesión todavía funciona
 
 {% tabs %}
 {% tab title="Standard SSH Port 22" %}
@@ -165,17 +165,17 @@ ssh ethereum@server.public.ip.address -p <custom port number>
 {% endtabs %}
 
 {% hint style="info" %}
-Alternatively, you might need to use. Add the `-p <port#>` flag if you used a custom SSH port.
+Alternativamente, puede que necesite usar. Agrega la bandera `-p <port#>` si usaste un puerto SSH personalizado.
 
 ```bash
 ssh -i <path to your SSH_key_name.pub> ethereum@server.public.ip.address
 ```
 {% endhint %}
 
-## 🤖 **Update your system**
+## 🤖 **Actualiza tu sistema**
 
 {% hint style="warning" %}
-It's critically important to keep your system up-to-date with the latest patches to prevent intruders from accessing your system.
+Es de vital importancia mantener su sistema actualizado con los últimos parches para evitar que los intrusos accedan a su sistema.
 {% endhint %}
 
 ```bash
@@ -184,164 +184,164 @@ sudo apt-get autoremove
 sudo apt-get autoclean
 ```
 
-Enable automatic updates so you don't have to manually install them.
+Active las actualizaciones automáticas para que no tenga que instalarlas manualmente.
 
 ```text
 sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-## 🐻 Disable root account
+## 🐻 Desactivar cuenta de root
 
-System admins should not frequently log in as root in order to maintain server security. Instead, you can use sudo execute that require low-level privileges.
+Los administradores del sistema no deberían iniciar sesión como root con frecuencia para mantener la seguridad del servidor. En su lugar, puede usar la ejecución de sudo que requiera privilegios de bajo nivel.
 
 ```bash
-# To disable the root account, simply use the -l option.
+# Para desactivar la cuenta de root, simplemente utilice la opción -l.
 sudo passwd -l root
 ```
 
 ```bash
-# If for some valid reason you need to re-enable the account, simply use the -u option.
+# Si por alguna razón válida, necesita volver a activar la cuenta, simplemente utilice la opción -u.
 sudo passwd -u root
 ```
 
-## 🛠 Setup Two Factor Authentication for SSH \[Optional\]
+## 🛠 Configurar la autenticación de dos factores para SSH \[Opcional\]
 
 {% hint style="info" %}
-SSH, the secure shell, is often used to access remote Linux systems. Because we often use it to connect with computers containing important data, it’s recommended to add another security layer. Here comes the two factor authentication \(_2FA_\).
+SSH, el intérprete de comandos seguro, se utiliza a menudo para acceder a sistemas Linux remotos. Debido a que a menudo lo usamos para conectar con ordenadores que contienen datos importantes, se recomienda añadir otra capa de seguridad. Aquí viene la autenticación de doble factor \(_2FA_\).
 {% endhint %}
 
 ```text
 sudo apt install libpam-google-authenticator -y
 ```
 
-To make SSH use the Google Authenticator PAM module, edit the `/etc/pam.d/sshd` file:
+Para hacer que SSH utilice el módulo de Google Authenticator PAM, edite el archivo `mañ/pam.d/sshd`:
 
 ```text
 sudo nano /etc/pam.d/sshd
 ```
 
-Add the following line:
+Añadir la siguiente línea:
 
 ```text
 auth required pam_google_authenticator.so
 ```
 
-Now you need to restart the `sshd` daemon using:
+Ahora necesita reiniciar el daemon `sshd` utilizando:
 
 ```text
 sudo systemctl restart sshd.service
 ```
 
-Modify `/etc/ssh/sshd_config`
+Modificar `mañana/ssh/sshd_config`
 
 ```text
 sudo nano /etc/ssh/sshd_config
 ```
 
-Locate **ChallengeResponseAuthentication** and update to yes
+Localice **ChallengeResponseAuthentication** y actualice a sí
 
 ```text
 ChallengeResponseAuthentication yes
 ```
 
-Locate **UsePAM** and update to yes
+Localice **UsePAM** y actualice a sí
 
 ```text
 UsePAM yes
 ```
 
-Save the file and exit.
+Guardar el archivo y salir.
 
-Run the **google-authenticator** command.
+Ejecuta el comando **google-autenticator**.
 
 ```text
 google-authenticator
 ```
 
-It will ask you a series of questions, here is a recommended configuration:
+Te hará una serie de preguntas, aquí tienes una configuración recomendada:
 
-* Make tokens “time-base”": yes
-* Update the `.google_authenticator` file: yes
-* Disallow multiple uses: yes
-* Increase the original generation time limit: no
-* Enable rate-limiting: yes
+* Hacer fichas "base de tiempo": sí
+* Actualizar el archivo `.google_autenticator` : sí
+* No permitir múltiples usos: sí
+* Aumentar el límite de tiempo de generación original: sin
+* Habilitar limitación de velocidad: sí
 
-You may have noticed the giant QR code that appeared during the process, underneath are your emergency scratch codes to be used if you don’t have access to your phone: write them down on paper and keep them in a safe place.
+Puede que hayas notado el gigante código QR que apareció durante el proceso, Debajo están tus códigos de emergencia para usar si no tienes acceso a tu teléfono: anotalos en el papel y manténgalos en un lugar seguro.
 
-Now, open Google Authenticator on your phone and add your secret key to make two factor authentication work.
+Ahora, abre Google Authenticator en tu teléfono y añade tu clave secreta para hacer que la autenticación de dos factores funcione.
 
 {% hint style="danger" %}
-**Note**: If you are enabling 2FA on a remote machine that you access over SSH you need to follow **steps 2 and 3** of [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-18-04) to make 2FA work.
+**Nota**: Si está habilitando 2FA en una máquina remota a la que accede a través de SSH, necesita seguir **los pasos 2 y 3** de [este tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-18-04) para hacer que 2FA funcione.
 {% endhint %}
 
-## 🧩 Secure Shared Memory
+## 🧩 Memoria segura compartida
 
 {% hint style="info" %}
-One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.
+Una de las primeras cosas que debería hacer es asegurar la [memoria compartida](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) usada en el sistema. Si no lo sabe, la memoria compartida puede ser usada en un ataque contra un servicio en ejecución. Por esto, asegure esa porción de la memoria del sistema.
 
-To learn more about secure shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
+Para obtener más información sobre memorias seguras compartidas, lea este [artículo de techrepublic.com](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
 {% endhint %}
 
 {% hint style="warning" %}
-### One exceptional case
+### Un caso excepcional
 
-There may be a reason for you needing to have that memory space mounted in read/write mode \(such as a specific server application like **DappNode** that requires such access to the shared memory or standard applications like Google Chrome\). In this case, use the following line for the fstab file with instructions below.
+Puede haber una razón para que necesites montar ese espacio de memoria en modo de lectura/escritura \(como una aplicación de servidor específica como **DappNode** que requiere dicho acceso a la memoria compartida o aplicaciones estándar como Google Chrome\). En este caso, utilice la siguiente línea para el archivo fstab con las instrucciones siguientes.
 
 ```text
 none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
 ```
 
-The above line will mount the shared memory with read/write access but without permission to execute programs, change the UID of running programs, or to create block or character devices in the namespace. This a net security improvement over default settings.
+La línea anterior montará la memoria compartida con acceso de lectura/escritura pero sin permiso para ejecutar programas, cambiar el UID de los programas en ejecución, o para crear bloques o dispositivos de caracteres en el espacio de nombres. Esto es una mejora de seguridad neta sobre la configuración predeterminada.
 
-### Use with caution
+### Usar con precaución
 
-With some trial and error, you may discover some applications\(**like DappNode**\) do not work with shared memory in read-only mode. For the highest security and if compatible with your applications, it is a worthwhile endeavor to implement this secure shared memory setting.
+Con un poco de prueba y error, puede descubrir algunas aplicaciones\(**como DappNode**\) no funcionan con memoria compartida en modo de solo lectura. Para la máxima seguridad y si es compatible con sus aplicaciones, vale la pena intentar implementar este ajuste seguro de memoria compartida.
 
-Source: [techrepublic.com](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/)
+Fuente: [techrepublic.com](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/)
 {% endhint %}
 
-Edit `/etc/fstab`
+Editar `/fstab`
 
 ```text
 sudo nano /etc/fstab
 ```
 
-Insert the following line to the bottom of the file and save/close. This sets shared memory into read-only mode.
+Inserte la siguiente línea en la parte inferior del archivo y guarde/cierre. Esto establece la memoria compartida en modo de sólo lectura.
 
 ```text
 tmpfs    /run/shm    tmpfs    ro,noexec,nosuid    0 0
 ```
 
-Reboot the node in order for changes to take effect.
+Reiniciar el nodo para que los cambios surtan efecto.
 
 ```text
 sudo reboot
 ```
 
-## ⛓**Install Fail2ban**
+## ⛓**Instalar Fail2ban**
 
 {% hint style="info" %}
-Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address \(within a specified amount of time\), fail2ban blocks access from that IP address.
+Fail2ban es un sistema de prevención de intrusiones que monitoriza los archivos de registro y busca patrones particulares que corresponden a un intento de inicio de sesión fallido. Si se detecta un cierto número de inicios de sesión fallidos desde una dirección IP específica \(dentro de una cantidad especificada de tiempo\), fail2ban bloquea el acceso desde esa dirección IP.
 {% endhint %}
 
 ```text
 sudo apt-get install fail2ban -y
 ```
 
-Edit a config file that monitors SSH logins.
+Editar un archivo de configuración que monitorice las conexiones SSH.
 
 ```text
 sudo nano /etc/fail2ban/jail.local
 ```
 
-Add the following lines to the bottom of the file.
+Agregue las siguientes líneas al final del archivo.
 
 {% hint style="info" %}
-🔥 **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local machine, local IP range or local domain, separated by spaces.
+🔥 **Consejo de direcciones IP de lista blanca**: El parámetro `ignoreip` acepta direcciones IP, Rangos IP o hosts DNS que puede especificar para poder conectarse. Aquí es donde desea especificar su máquina local, rango IP local o dominio local, separados por espacios.
 
 ```bash
-# Example
+# Ejemplo
 ignoreip = 192.168.1.0/24 127.0.0.1/8 
 ```
 {% endhint %}
@@ -349,38 +349,38 @@ ignoreip = 192.168.1.0/24 127.0.0.1/8
 ```bash
 [sshd]
 enabled = true
-port = <22 or your random port number>
+puerto = <22 o su número de puerto al azar>
 filter = sshd
-logpath = /var/log/auth.log
+logpath = /var/log/auth. og
 maxretry = 3
-# whitelisted IP addresses
+# direcciones IP en la lista blanca
 ignoreip = <list of whitelisted IP address, your local daily laptop/pc>
 ```
 
-Save/close file.
+Guardar/cerrar archivo.
 
-Restart fail2ban for settings to take effect.
+Reiniciar fail2ban para que la configuración surta efecto.
 
 ```text
 sudo systemctl restart fail2ban
 ```
 
-## 🧱**Configure your Firewall**
+## 🧱**Configura tu cortafuegos**
 
-The standard UFW firewall can be used to control network access to your node.
+El firewall estándar UFW se puede utilizar para controlar el acceso a la red a su nodo.
 
-With any new installation, ufw is disabled by default. Enable it with the following settings.
+Con cualquier instalación nueva, ufw está desactivado por defecto. Habilitarlo con los siguientes ajustes.
 
-* Port 22 \(or your random port \#\) TCP for SSH connection
-* Ports for p2p traffic
-  * Lighthouse uses port 9000 tcp/udp
-  * Teku uses port 9000 tcp/udp
-  * Prysm uses port 13000 tcp and port 12000 udp
-  * Nimbus uses port 9000 tcp/udp
-  * Lodestar uses port 30607 tcp and port 9000 udp
-* Port 30303 tcp/udp eth1 node
-* Port 3000 tcp for Grafana
-* Port 9090 tcp for Prometheus export data \(optional\)
+* Puerto 22 \(o su puerto aleatorio \#\) TCP para conexión SSH
+* Puertos para tráfico p2p
+  * Faro utiliza el puerto 9000 tcp/udp
+  * Teku utiliza el puerto 9000 tcp/udp
+  * Prysm utiliza el puerto 13000 tcp y el puerto 12000 udp
+  * Nimbus utiliza el puerto 9000 tcp/udp
+  * Lodestar utiliza el puerto 30607 tcp y el puerto 9000 udp
+* Nodo 30303 tcp/udp eth1
+* Puerto 3000 tcp para Grafana
+* Puerto 9090 tcp para datos de exportación de Prometheus \(opcional\)
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -445,19 +445,19 @@ sudo ufw status numbered
 {% endtabs %}
 
 {% hint style="danger" %}
-Do not expose Grafana \(port 3000\) and Prometheus endpoint \(port 9090\) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
+No exponga Grafana \(puerto 3000\) y Prometheus endpoint \(puerto 9090\) al internet público ya que esto invita a una nueva superficie de ataque! Una solución segura sería acceder a Grafana a través de un túnel ssh con Wireguard.
 {% endhint %}
 
-Only open the following ports on local home staking setups behind a home router firewall or other network firewall.
+Sólo abre los siguientes puertos en la configuración local de apuestas, detrás de un cortafuegos del router doméstico u otro cortafuegos de red.
 
-\*\*\*\*🔥 **It is dangerous to open these ports on a VPS/cloud node.**
+\*\*\*\*🔥 **Es peligroso abrir estos puertos en un nodo VPS/nube.**
 
 ```bash
 sudo ufw allow 3000/tcp
 sudo ufw allow 9090/tcp
 ```
 
-Confirm the settings are in effect.
+Confirme que los ajustes están en efecto.
 > ```csharp
      To                         Action      From
      --                         ------      ----
@@ -483,7 +483,7 @@ Confirm the settings are in effect.
 # eth1 node
 ```
 
-**\[ Optional but recommended \]** Whitelisting \(or permitting connections from a specific IP\) can be setup via the following command.
+**\[ Opcional pero recomendado \]** Se puede configurar la lista blanca \(o permitir conexiones desde una IP específica) mediante el siguiente comando.
 
 ```bash
 sudo ufw allow from <your local daily laptop/pc>
@@ -492,78 +492,78 @@ sudo ufw allow from <your local daily laptop/pc>
 ```
 
 {% hint style="info" %}
- 🎊 **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
+ 🎊 **Consejo de reenvío de puertos:** Tendrás que reenviar y abrir puertos a tu validador. Verifique que está trabajando con [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) o [https://canyouseeme.org/](https://canyouseeme.org/).
 {% endhint %}
 
-## 📞 Verify Listening Ports
+## :✫ hone_receiver: Verificar puertos de escucha
 
-If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
+Si desea mantener un servidor seguro, debe validar los puertos de red escuchando de vez en cuando. Esto le proporcionará información esencial sobre su red.
 
 ```bash
 sudo ss -tulpn
-# Example output. Ensure the port numbers look right.
-# Netid  State    Recv-Q  Send-Q    Local Address:Port   Peer Address:Port   Process
-# tcp    LISTEN   0       128       127.0.0.1:5052       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=22))
-# tcp    LISTEN   0       128       127.0.0.1:5054       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=23))
-# tcp    LISTEN   0       1024      0.0.0.0:9000         0.0.0.0:*           users:(("lighthouse",pid=12160,fd=21))
-# udp    UNCONN   0       0         *:30303              *:*                 users:(("geth",pid=22117,fd=158))
-# tcp    LISTEN   0       4096      *:30303              *:*                 users:(("geth",pid=22117,fd=156))
+# Ejemplo de salida. Asegúrate de que los números de puerto se vean bien.
+# Estado Netid Recv-Q Send-Q Dirección Local:Port Peer Address:Port Process
+# tcp LISTEN 0 128 127. .0.1:5052 0.0.0. :* usuarios:(("faro",pid=12160, d=22))
+# LISTEN tcp 0 128 127. .0.1:5054 0. .0.0:* usuarios:(("faro",pid=12160, d=23))
+# Tcp LISTEN 0 1024 0. .0.0:9000 0.0.0. :* usuarios:(("faro",pid=12160, d=21))
+# udp UNCONN 0 *:30303 *:* usuarios:(("geth", id=22117, d=158))
+# Tcp LISTEN 0 4096 *:30303 *:* users:(("geth", id=22117,fd=156))
 ```
 
-Alternatively you can use `netstat`
+También puedes usar `netstat`
 
 ```bash
 sudo netstat -tulpn
-# Example output. Ensure the port numbers look right.
-# Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
-# tcp        0      0 127.0.0.1:5052          0.0.0.0:*               LISTEN      12160/lighthouse
-# tcp        0      0 127.0.0.1:5054          0.0.0.0:*               LISTEN      12160/lighthouse
-# tcp        0      0 0.0.0.0:9000            0.0.0.0:*               LISTEN      12160/lighthouse
-# tcp6       0      0 :::30303                :::*                    LISTEN      22117/geth
-# udp6       0      0 :::30303                :::*                    LISTEN      22117/geth
+# Ejemplo de salida. Asegúrate de que los números de puerto se vean bien.
+# Proto Recv-Q Enviar-Q Dirección Local Dirección Foránea PID/Nombre del programa
+# tcp 0 0 127. .0.1:5052 0.0.0. :* LISTEN 12160/faro
+# tcp 0 0 127. .0. :5054 0.0.0. :* LISTEN 12160/faro
+# tcp 0 0 0. .0.0:9000 0.0.0. :* LISTEN 12160/faro
+# tcp6 0 0 :::30303 :::* LISTEN 22117/geth
+# udp6 0 0 :::30303 :::* LISTEN 22117/geth
 ```
 
-## 👩🚀 **Use** system user accounts - Principle of Least Privilege \[Advanced Users / Optional\]
+## 👩🚀 **Usar** cuentas de usuario del sistema - Principio de Privilegio Mínimo \[Usuarios Avanzados / Opcional\]
 
 {% hint style="info" %}
-**Recommended for Advanced Users Only**
+**Recomendado solo para usuarios avanzados**
 
-**Principle of Least Privilege**: Each eth2 process is assigned a _system user account_ and runs under the least amount of privileges required in order to function. This best practice protects against a scenario where a vulnerability or exploit discovered in a specific process might enable access other system processes.
+**Principio de Menos Privilegio**: Cada proceso eth2 tiene asignado una _cuenta de usuario del sistema_ y se ejecuta bajo la menor cantidad de privilegios requeridos para funcionar. Esta mejor práctica protege contra un escenario donde una vulnerabilidad o explotación descubierta en un proceso específico podría permitir el acceso a otros procesos del sistema.
 {% endhint %}
 
 ```bash
-# creates system user account for eth1 service
+# crea una cuenta de usuario del sistema para el servicio eth1
 sudo adduser --system --no-create-home eth1
 
-# creates system user account for validator service
+# crea una cuenta de usuario del sistema para el servicio de validación
 sudo adduser --system --no-create-home validator
 
-# creates system user account for beacon-chain service
+# crea una cuenta de usuario del sistema para el servicio beacon-chain
 sudo adduser --system --no-create-home beacon-chain
 
-# creates system user account for slasher
+# crea una cuenta de usuario del sistema para la barra diagonal
 sudo adduser --system --no-create-home slasher
 ```
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **Caveats For Advanced Users**
+\*\*\*\*🔥 **Advertencias para Usuarios Avanzados**
 
-If you decide to use **system user accounts**, remember to replace the **systemd unit files** with the corresponding users.
+Si decide utilizar **cuentas de usuario del sistema**, recuerde reemplazar los **archivos de unidad del sistema** por los usuarios correspondientes.
 
 ```bash
-# Example of beacon-chain.service unit file
+# Ejemplo de archivo de unidad beacon-chain.service
 User            = beacon-chain
 ```
 
-Furthermore, ensure the correct **file ownership** is assigned to your **system user account** where applicable.
+Además, asegúrese de que la propiedad correcta del **archivo** está asignada a su **cuenta de usuario del sistema** cuando corresponda.
 
 ```bash
-# Example of prysm validator's password file
+# Ejemplo del archivo de contraseña del validador del prysm
 sudo chown validator:validator -R $HOME/.eth2validators/validators-password.txt
 ```
 {% endhint %}
 
-## ✨ Additional validator node best practices
+## ✨ Buenas prácticas adicionales del nodo validador
 
 <table>
   <thead>
@@ -574,26 +574,26 @@ sudo chown validator:validator -R $HOME/.eth2validators/validators-password.txt
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left">Networking</td>
+      <td style="text-align:left">Redes</td>
       <td style="text-align:left">
         <p></p>
-        <p>Assign static internal IPs to both your validator node and daily laptop/PC.
-          This is useful in conjunction with ufw and Fail2ban&apos;s whitelisting
-          feature. Typically, this can be configured in your router&apos;s settings.
-          Consult your router&apos;s manual for instructions.</p>
+        <p>Asigne direcciones IP internas estáticas tanto a su nodo validador como a su ordenador portátil/portátil diario.
+          Esto es útil junto con la función ufw y Fail2ban&apos;s de la lista blanca
+. Normalmente, esto se puede configurar en la configuración de tu enrutador&apos;s.
+          Consulte el manual de su enrutador&apos;s para obtener instrucciones.</p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Power Outage</td>
-      <td style="text-align:left">In case of power outage, you want your validator machine to restart as
-        soon as power is available. In the BIOS settings, change the <b>Restore on AC / Power Loss</b> or <b>After Power Loss</b> setting
-        to always on. Better yet, install an Uninterruptable Power Supply (UPS).</td>
+      <td style="text-align:left">Fuente de energía</td>
+      <td style="text-align:left">En caso de avería de corriente, desea que su máquina validadora se reinicie tan
+        como esté disponible la energía. In the BIOS settings, change the <b>Restore on AC / Power Loss</b> or <b>After Power Loss</b> setting
+        to always on. Mejor aún, instale un suministro de energía ininterrumpido (UPS).</td>
     </tr>
     <tr>
-      <td style="text-align:left">Clear the bash history</td>
+      <td style="text-align:left">Borrar el historial de bash</td>
       <td style="text-align:left">
-        <p>When pressing the up-arrow key, you can see prior commands which may contain
-          sensitive data. To clear this, run the following:</p>
+        <p>Al presionar la tecla de flecha hacia arriba, puedes ver comandos anteriores que pueden contener
+          datos sensibles. Para aclarar esto, ejecute lo siguiente:</p>
         <p><code>shred -u ~/.bash_history &amp;&amp; touch ~/.bash_history</code>
         </p>
       </td>
@@ -602,34 +602,34 @@ sudo chown validator:validator -R $HOME/.eth2validators/validators-password.txt
 </table>
 
 {% hint style="info" %}
-Be sure to review the [Checklist \| How to confirm a healthy functional ETH2 validator.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
+Asegúrese de revisar la [Lista de verificación \| Cómo confirmar un validador funcional y saludable ETH2.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
 {% endhint %}
 
-## 🤖 Start staking by building a validator
+## 🤖 Empieza a apostar construyendo un validador
 
-### Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) and here for our [Testnet guide](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
+### Visita aquí para nuestra guía [Mainnet](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) y aquí para nuestra [guía de Testnet](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+Felicidades por completar la guía. ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+¿Encontraste útil nuestra guía? Envíenos una señal con un consejo y seguiremos actualizándola.
 
-It really energizes us to keep creating the best crypto guides.
+Realmente nos da energía para seguir creando las mejores guías criptográficas.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏
+Usa [cointr.ee para encontrar nuestras direcciones de donación ](https://cointr.ee/coincashew). 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+Cualquier comentario y todas las solicitudes de extracción son muy apreciadas. 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Descubra y chatee con otros interesados en Discord @
 
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **Actualización 2020-12**: Gracias a todos los colaboradores de [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) , donde usted puede contribuir a través de [fondos cuadráticos](https://vitalik.ca/general/2019/12/07/quadratic.html) y hacer un gran impacto. ¡Financiación completa! Gracias!🙏
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
-## 🚀 References
+## 🚀 Referencias
 
 {% embed url="https://medium.com/@BaneBiddix/how-to-harden-your-ubuntu-18-04-server-ffc4b6658fe7" caption="" %}
 
@@ -645,5 +645,5 @@ Hang out and chat with fellow stakers on Discord @
 
 {% embed url="https://www.lifewire.com/harden-ubuntu-server-security-4178243" caption="" %}
 
-{% embed url="https://www.ubuntupit.com/best-linux-hardening-security-tips-a-comprehensive-checklist/" caption="" %}
+{% embed url="https://www.ubuntupit.com/best-linux-hardening-security-tips-a-► ensive-checklist/" caption="" %}
 
