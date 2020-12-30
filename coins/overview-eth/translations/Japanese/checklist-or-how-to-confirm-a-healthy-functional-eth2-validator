@@ -1,14 +1,14 @@
 ---
 description: >-
-  Scenario: How do I figure out and confirm that everything is working properly (eth 1 node in sync, eth 2 beacon chain in sync, eth 2 beacon node able to communicate with eth 1 node, etc etc.
+  シナリオ: すべてが正常に動作していることを確認するにはどうすればよいですか(同期中の eth 1 ノード)。 eth2ビーコンチェーンの同期、eth2ビーコンノードの同期、eth1ノードなどと通信できるノード。
 ---
 
-# Checklist \| How to confirm a healthy functional ETH2 validator
+# Checklist \| 健全な機能ETH2バリデータを確認する方法
 
-## ⏩ Quick steps guide
+## ⏩ クイックステップガイド
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+以下の手順は [mainnet ガイド](./) に沿っています。 適切な場合は、ファイル名とディレクトリの場所を調整する必要があります。 コアコンセプトは同じままです。
 {% endhint %}
 
 ### 🚀 Eth1 Node Checklist
@@ -16,37 +16,37 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Concern</th>
-      <th style="text-align:left">Solution</th>
+      <th style="text-align:left">懸念事項</th>
+      <th style="text-align:left">解決策</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left">Eth1 in sync</td>
+      <td style="text-align:left">Eth1 in sync,</td>
       <td style="text-align:left">
-        <p>Ensure your node&apos;s block number matches the tip block of a <a href="http://etherscan.io/">public block explorer</a>.
+        <p>ノード&apos;s ブロック番号が <a href="http://etherscan.io/">公開ブロックエクスプローラ</a> の先端ブロックと一致していることを確認します。
           Find your eth1&apos;s block # with command <code>journalctl -fu eth1 </code>
         </p>
-        <p><b><code>Example log output:</code></b><code>INFO [12-06|14:50:05.314] Imported new chain ... number=11301130</code>
+        <p><b><code>ログ出力の例:</code></b><code>INFO [12-06|14:50:05.314] インポートされた新しいチェーン ... 番号=11301130</code>
         </p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Ports open</td>
+      <td style="text-align:left">ポートが開いています</td>
       <td style="text-align:left">
-        <p>Confirm ports are reachable with an external port checker such as</p>
+        <p>Confirm ports are reachable with a external port checker</p>
         <p><a href="https://www.yougetsignal.com/tools/open-ports/">https://www.yougetsignal.com/tools/open-ports/</a> 
         </p>
-        <p>Find <a href="../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall">Port # information here</a>.</p>
+        <p><a href="../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall">ポート番号の情報はこちら</a>.</p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Check eth1 logs for errors</td>
-      <td style="text-align:left">Use the command <code>journalctl -fu eth1</code>
+      <td style="text-align:left">エラーがないかeth1ログを確認してください</td>
+      <td style="text-align:left">コマンド <code>journalctl -fuのeth1</code> を使用する
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to stop/start eth1 node</td>
+      <td style="text-align:left">eth1 ノードを停止/開始する方法を理解する</td>
       <td style="text-align:left">
         <p><code>sudo systemctl stop eth1</code>
         </p>
@@ -55,18 +55,18 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to update my eth1 node</td>
-      <td style="text-align:left">Refer to this <a href="how-to-update-your-eth1-node.md">quick guide.</a>
+      <td style="text-align:left">eth1 ノードを更新する方法を理解する</td>
+      <td style="text-align:left">この <a href="how-to-update-your-eth1-node.md">クイックガイド</a>を参照してください。
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Reduce bandwidth usage</td>
-      <td style="text-align:left">Refer to <a href="./#8-6-reduce-network-bandwidth-usage">the mainnet guide.</a>
+      <td style="text-align:left">帯域幅の使用量を減らす</td>
+      <td style="text-align:left"><a href="./#8-6-reduce-network-bandwidth-usage">メインネットガイド</a> を参照のこと。
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Eth1 node redundancy</td>
-      <td style="text-align:left">Refer to <a href="./#strategy-2-eth1-redundancy">the mainnet guide.</a>
+      <td style="text-align:left">Eth1 node冗長性</td>
+      <td style="text-align:left"><a href="./#strategy-2-eth1-redundancy">メインネットガイド</a> を参照のこと。
       </td>
     </tr>
   </tbody>
@@ -77,49 +77,49 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Concern</th>
-      <th style="text-align:left">Solution</th>
+      <th style="text-align:left">懸念事項</th>
+      <th style="text-align:left">解決策</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left">Installed latest stable release</td>
-      <td style="text-align:left">Refer to <a href="how-to-update-your-eth2-client.md">how to update eth2 client.</a>
+      <td style="text-align:left">最新の安定リリースをインストールしました</td>
+      <td style="text-align:left">eth2 クライアントの更新方法については、 <a href="how-to-update-your-eth2-client.md">を参照してください。</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Beacon chain client can connect to Eth1 node</td>
+      <td style="text-align:left">ビーコンチェーンクライアントはEth1ノードに接続できます</td>
       <td style="text-align:left">
         <p>Check for a response with the command:<code>curl -H &quot;Content-Type: application/json&quot; -X POST --data &apos;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;web3_clientVersion&quot;,&quot;params&quot;:[],&quot;id&quot;:67}&apos; http://localhost:8545  </code>
         </p>
-        <p>You should receive a response similar to:</p>
+        <p>次のような返信を受け取る必要があります：</p>
         <p><code>{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:67,&quot;result&quot;:&quot;Geth/v1.9.24-stable-cc05b050/linux-amd64/go1.15.5&quot;}</code>
         </p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Beacon chain is sync&apos;d to mainnet</td>
-      <td style="text-align:left">Ensure your block number matches the slot# of a <a href="https://beaconcha.in/">public block explorer</a>.
-        Find your eth2&apos;s beacon chain slot # with in logs with command <code>journalctl -fu beacon-chain</code>
+      <td style="text-align:left">ビーコンチェーンは&apos;d を mainnet に同期しています</td>
+      <td style="text-align:left">ブロック番号が <a href="https://beaconcha.in/">パブリックブロックエクスプローラー</a> のスロット番号と一致することを確認します。
+        あなたのeth2&apos;s beacon chain slot # with logs with command <code>journalctl -fubeacon-chain</code>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Check beacon chain logs for errors</td>
-      <td style="text-align:left">Use the command <code>journalctl -fu beacon-chain</code>
+      <td style="text-align:left">ビーコンチェーンログにエラーがないか確認する</td>
+      <td style="text-align:left"><code>journalctl -fuビーコンチェーン</code> を使用する
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Ports open</td>
+      <td style="text-align:left">ポートが開いています</td>
       <td style="text-align:left">
-        <p>Confirm ports are reachable with an external port checker such as</p>
-        <p><a href="https://www.yougetsignal.com/tools/open-ports/">https://www.yougetsignal.com/tools/open-ports/</a> or
+        <p>Confirm ports are reachable with a external port checker</p>
+        <p><a href="https://www.yougetsignal.com/tools/open-ports/">https://www.yougetsignal.com/tools/open-ports/</a> または
           <a
           href="https://canyouseeme.org/">https://canyouseeme.org/</a>.</p>
-        <p> <a href="../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall">Click here for Port # information</a>.</p>
+        <p> <a href="../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall">ポート番号情報</a> についてはこちらをクリックしてください。</p>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to stop/start beacon-chain</td>
+      <td style="text-align:left">ビーコンチェーンを停止/開始する方法を理解する</td>
       <td style="text-align:left">
         <p><code>sudo systemctl stop beacon-chain</code>
         </p>
@@ -128,12 +128,12 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to update my beacon chain</td>
-      <td style="text-align:left">Refer to this <a href="how-to-update-your-eth2-client.md">quick guide.</a>
+      <td style="text-align:left">ビーコンチェーンを更新する方法を理解する</td>
+      <td style="text-align:left">この <a href="how-to-update-your-eth2-client.md">クイックガイド</a>を参照してください。
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Join Discord</td>
+      <td style="text-align:left">Discord に参加</td>
       <td style="text-align:left">Refer to <a href="../guide-how-to-stake-on-eth2-with-lighthouse.md#14-bonus-links">the mainnet guide</a>
       </td>
     </tr>
@@ -145,49 +145,49 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Concern</th>
-      <th style="text-align:left">Solution</th>
+      <th style="text-align:left">懸念事項</th>
+      <th style="text-align:left">解決策</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left">Verify keystores are properly imported</td>
+      <td style="text-align:left">キーストアが正しくインポートされたことを確認します</td>
       <td style="text-align:left">Refer to the mainnet guide&apos;s section on <a href="./#4-configure-a-eth2-beacon-chain-node-and-validator">importing keys.</a>
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Check validator logs for errors</td>
-      <td style="text-align:left">Use the command <code>journalctl -fu validator</code>
+      <td style="text-align:left">エラーのバリデーターログを確認する</td>
+      <td style="text-align:left">コマンド <code>journalctl -fuのバリデータ</code> を使用する
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Verify attestations are working</td>
-      <td style="text-align:left">Check your validators pubkey against a <a href="https://beaconscan.com/">public block explorer.</a>
+      <td style="text-align:left">認証が機能していることを確認します</td>
+      <td style="text-align:left"><a href="https://beaconscan.com/">パブリックブロックエクスプローラ</a>に対してバリデーターのパブキーを確認してください。
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Setup a graffiti flag / <a href="https://poap.fun/">POAP</a>
+      <td style="text-align:left">グラフィティフラグの設定 / <a href="https://poap.fun/">POAP</a>
       </td>
-      <td style="text-align:left">Refer to <a href="./#8-9-add-or-change-poap-graffiti-flag">the mainnet guide.</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Verified my mnemonic phrase can be restored.</td>
-      <td style="text-align:left">Refer to <a href="./#8-2-verify-your-mnemonic-phrase">the mainnet guide.</a>
+      <td style="text-align:left"><a href="./#8-9-add-or-change-poap-graffiti-flag">メインネットガイド</a> を参照のこと。
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to add more validators</td>
-      <td style="text-align:left">Refer to this <a href="how-to-add-a-new-validator-to-an-existing-setup.md">quick guide.</a>
+      <td style="text-align:left">私のニーモニックフレーズを確認することができます。</td>
+      <td style="text-align:left"><a href="./#8-2-verify-your-mnemonic-phrase">メインネットガイド</a> を参照のこと。
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Understand how to update my validator</td>
-      <td style="text-align:left">Refer to this <a href="how-to-update-your-eth2-client.md">quick guide.</a>
+      <td style="text-align:left">バリデーターを追加する方法を理解する</td>
+      <td style="text-align:left">この <a href="how-to-add-a-new-validator-to-an-existing-setup.md">クイックガイド</a>を参照してください。
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Know how to stop/start validator</td>
+      <td style="text-align:left">バリデータの更新方法を理解する</td>
+      <td style="text-align:left">この <a href="how-to-update-your-eth2-client.md">クイックガイド</a>を参照してください。
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">検証を停止/開始する方法を知る</td>
       <td style="text-align:left">
         <p><code>sudo systemctl stop validator</code>
         </p>
@@ -196,8 +196,8 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
       </td>
     </tr>
     <tr>
-      <td style="text-align:left">Beacon-node redundancy</td>
-      <td style="text-align:left">Refer to <a href="./#strategy-4-beacon-node-redundancy">the mainnet guide.</a>
+      <td style="text-align:left">ビーコンノード冗長性</td>
+      <td style="text-align:left"><a href="./#strategy-4-beacon-node-redundancy">メインネットガイド</a> を参照のこと。
       </td>
     </tr>
   </tbody>
@@ -205,52 +205,52 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 
 ### 🧱 Validator Node Security Checklist
 
-| Concern                                          | Solution                                                                                                                                                                                 |
-|:------------------------------------------------ |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Secure the root account                          | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#create-a-non-root-user-with-sudo-privileges)               |
-| Connect with SSH Keys Only                       | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#disable-ssh-password-authentication-and-use-ssh-keys-only) |
-| Harden SSH on a random port                      | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#disable-ssh-password-authentication-and-use-ssh-keys-only) |
-| Setup 2-FA for SSH \(Optional\)                | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#setup-two-factor-authentication-for-ssh-optional)          |
-| Secure the Shared Memory                         | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#secure-shared-memory)                                      |
-| Setup a firewall                                 | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)                                   |
-| Setup port forwarding on my router               | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)                                   |
-| Setup intrusion-prevention monitoring            | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#install-fail-2-ban)                                        |
-| Whitelisted my local machine in the ufw firewall | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)                                   |
-| Whitelisted my local machine in Fail2ban         | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#install-fail-2-ban)                                        |
-| Verify the listening ports                       | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#verify-listening-ports)                                    |
+| 懸念事項                                | 解決策                                                                                                                                                                  |
+|:----------------------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| rootアカウントを保護する                      | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#create-a-non-root-user-with-sudo-privileges) を参照してください。               |
+| SSHキーのみで接続                          | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#disable-ssh-password-authentication-and-use-ssh-keys-only) を参照してください。 |
+| ランダムなポートでSSHをHardenする               | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#disable-ssh-password-authentication-and-use-ssh-keys-only) を参照してください。 |
+| SSH 用の 2-FA をセットアップします \(オプション\'  | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#setup-two-factor-authentication-for-ssh-optional) を参照してください。          |
+| 共有メモリの保護                            | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#secure-shared-memory) を参照してください。                                      |
+| ファイアウォールのセットアップ                     | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall) を参照してください。                                   |
+| ルーターのポート転送設定                        | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall) を参照してください。                                   |
+| 侵入防止監視のセットアップ                       | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#install-fail-2-ban) を参照してください。                                        |
+| ufw ファイアウォールでローカルマシンをホワイトリストに登録しました | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall) を参照してください。                                   |
+| Fail2ban でローカルマシンをホワイトリストに登録しました    | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#install-fail-2-ban) を参照してください。                                        |
+| リスニングポートを確認する                       | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#verify-listening-ports) を参照してください。                                    |
 
-### 🚦 Validator Node Maintenance and Best Practices Checklist
+### 🚦 バリデータ ノード メンテナンスとベスト プラクティスのチェック
 
-| Concern                                                  | Solution                                                                                                                                                                                                                                                                        |
-|:-------------------------------------------------------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Enabled automatic OS patching                            | Refer to the [best security practices document.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#update-your-system)                                                                                                                               |
-| Setup chrony or other NTP time sync service              | Refer to [the mainnet guide.](./#5-time-synchronization)                                                                                                                                                                                                                        |
-| Setup Prometheus and Grafana Monitoring/Alerts/Dashboard | Refer to [the mainnet guide.](./#6-2-setting-up-grafana-dashboards)                                                                                                                                                                                                             |
-| Understand how to handle a power outage                  | In case of power outage, you want your validator machine to restart as soon as power is available. In the BIOS settings, change the **Restore on AC / Power Loss** or **After Power Loss** setting to always on. Better yet, install an Uninterruptable Power Supply \(UPS\). |
-| Understand how to migrate eth2 clients                   | Refer to the [mainnet guide.](./#8-4-switch-migrate-eth2-clients-with-slash-protection)                                                                                                                                                                                         |
-| Understand how to voluntary exit                         | Refer to the [mainnet guide.](./#8-1-voluntary-exit-a-validator)                                                                                                                                                                                                                |
-| Used all available LVM disk space                        | Refer to the [mainnet guide.](./#8-5-use-all-available-lvm-disk-space)                                                                                                                                                                                                          |
-| Understand important directory locations                 | Refer to the [mainnet guide.](./#8-7-important-directory-locations)                                                                                                                                                                                                             |
+| 懸念事項                                         | 解決策                                                                                                                                                                 |
+|:-------------------------------------------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 自動OSパッチ適用を有効にしました                            | [ベストなセキュリティ実践の文書](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#update-your-system) を参照してください。                                       |
+| 時系列またはその他のNTP時刻同期サービスのセットアップ                 | [メインネットガイド](./#5-time-synchronization) を参照のこと。                                                                                                                      |
+| PrometheusとGrafanaモニタリング/アラート/ダッシュボードのセットアップ | [メインネットガイド](./#6-2-setting-up-grafana-dashboards) を参照のこと。                                                                                                           |
+| 停電の処理方法を理解する                                 | 停電の場合は、電源が利用可能になったらすぐにバリデータマシンを再起動する必要があります。 BIOS設定で、 **Restore on AC / Power Loss** または **After Power Loss** の設定を常にオンに変更します。 もっと良いことに、無停止電源\(UPS\)をインストールしてください。 |
+| eth2 クライアントを移行する方法を理解する                      | [メインネットガイド](./#8-4-switch-migrate-eth2-clients-with-slash-protection) を参照のこと。                                                                                       |
+| 自発的出口の方法を理解する                                | [メインネットガイド](./#8-1-voluntary-exit-a-validator) を参照のこと。                                                                                                              |
+| 利用可能なすべての LVM ディスク領域を使用                      | [メインネットガイド](./#8-5-use-all-available-lvm-disk-space) を参照のこと。                                                                                                        |
+| 重要なディレクトリの場所を理解する                            | [メインネットガイド](./#8-7-important-directory-locations) を参照のこと。                                                                                                           |
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 バリデータを作成してステークを開始 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 私たちの [メインネットガイド](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 、 [テストネットガイド](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet)についてはこちらをご覧ください。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+おめでとうございます。ガイドが完成しました。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+私たちのガイドが役に立ちましたか？ ヒント付きのシグナルを送信してください。アップデートを続けます。
 
-It really energizes us to keep creating the best crypto guides.
+最高の暗号ガイドを作成し続けることは、本当に私たちに力を与えてくれます。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+[coint.eeを使用して、寄付](https://cointr.ee/coincashew) アドレスを見つけてください。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+どんなフィードバックとすべてのプルリクエストは非常に高く評価されます。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Discordで仲間のステーカーとチャットしましょう @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+<unk>[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. 資金調達完了！ ありがとうございます!🙏
 
