@@ -1,31 +1,31 @@
 ---
-description: Find the best slot gap to avoid missing any validator duties.
+description: Encuentre el mejor hueco de la ranura para evitar que falten obligaciones de validador.
 ---
 
-# How to find longest attestation slot gap
+# Cómo encontrar la ranura de verificación más larga
 
-## ⏩ Quick steps guide
+## ⏩ Guía de pasos rápidos
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+Los siguientes pasos se alinean con nuestra [guía de red principal](./). Es posible que necesite ajustar los nombres de archivos y ubicaciones de directorios cuando sea apropiado. Los conceptos básicos siguen siendo los mismos.
 {% endhint %}
 
-### 🗡 Why do I want to calculate the longest attestation slot gap?
+### 🗡 ¿Por qué quiero calcular la mayor brecha en la franja horaria de certificación?
 
-* Your validators are assigned duties to attest and propose blocks.
-* Understanding the schedule of your validator's duties better, you can find the best time to plan eth1/eth2 updates, system reboots or outages.
+* Sus validadores tienen asignadas tareas para atestiguar y proponer bloques.
+* Entendiendo el horario de las tareas de su validador, puede encontrar el mejor momento para planificar las actualizaciones eth1/eth2, reinicios del sistema o interrupciones.
 
-### 🤖 Pre-requisites
+### 🤖 Requisitos previos
 
 * python3
-* validator index number\(s\) -- Lookup on [https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
-* Works with **Lighthouse / Teku / Prysm** currently
+* validator index number\(s\) -- Búsqueda en [https://beaconcha.in/](https://beaconcha.in/) o [https://beaconscan.com/](https://beaconscan.com/)
+* Funciona con **Lighthouse / Teku / Prysm** actualmente
 
 {% hint style="success" %}
-✨ Kudos to **pietjepuk2** on Discord for authoring this process.
+✨ Kudos a **pietjepuk2** en Discord por crear este proceso.
 {% endhint %}
 
-### 🚧 How to Run the Validator Duties script
+### 🚧 Cómo ejecutar el script Validator Duties
 
 1. Install python3
 
@@ -33,10 +33,10 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 sudo apt update && sudo apt-get install python3
 ```
 
-2. Download [pietjepuk2](https://gist.github.com/pietjepuk2)'s `get_validator_duties.py` python script.
+2. Descarga [pietjepuk2](https://gist.github.com/pietjepuk2)de `get_validator_duties.py` script python.
 
 {% tabs %}
-{% tab title="Lighthouse \| Teku" %}
+{% tab title="Faro \| Teku" %}
 ```bash
 cd $HOME
 wget https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63150/raw/cc874b3035f97495416353f203d70477b31ab05d/get_validator_duties.py
@@ -47,12 +47,12 @@ wget https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63
 ```bash
 cd $HOME
 # modified by mohamedmansour for prysm
-wget https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd
+wget https://gist.githubusercontent.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd/raw/d48a3f0948cf2ae8cf571b42d50f80d66841118f/get_validator_duties.py
 ```
 {% endtab %}
 {% endtabs %}
 
-3. Enter your validator index numbers as parameters to the python script.
+3. Introduzca los números de índice del validador como parámetros en el script python.
 
 ```bash
 python3 get_validator_duties.py <validator index number(s)>
@@ -60,44 +60,44 @@ python3 get_validator_duties.py <validator index number(s)>
 # python3 get_validator_duties.py 1000 1001 1002 1003
 ```
 
-Sample Output showing the longest gap in seconds, \# of slots and time range.
+Ejemplo de salida que muestra el hueco más largo en segundos, \# de intervalos y rango de tiempo.
 
-> Longest gap \(first\):
+> Hueco más largo \(primero\):
 > 
-> 120.0 seconds \(10 slots\), from 13:37:35 until 13:39:35
+> 120.0 segundos \\(10 ranuras\\), de 13:37:35 a 13:39:35
 
 {% hint style="warning" %}
 \*\*\*\*🔥 **Script Usage Caveats**:
 
-* This version does not include block proposals, although the odds of having one scheduled are really low of course.
-* Block proposal duties are only known for the current epoch, whereas attestation duties are known for the current and next one.
+* Esta versión no incluye propuestas de bloques, aunque las probabilidades de tener una programada son muy bajas, por supuesto.
+* Los derechos de aduana de las propuestas de bloques sólo se conocen por la época actual, mientras que los derechos de certificación son conocidos por los actuales y los siguientes.
 {% endhint %}
 
 {% hint style="success" %}
-Nice work. Now you now the best gap to avoid missing any validator duties.
+Buen trabajo. Ahora usted ahora el mejor hueco para evitar que falten obligaciones de validador.
 {% endhint %}
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 Empieza a apostar construyendo un validador <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visita aquí para nuestra guía [Mainnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) y aquí para nuestra [guía de Testnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+Felicidades por completar la guía. ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+¿Encontraste útil nuestra guía? Envíenos una señal con un consejo y seguiremos actualizándola.
 
-It really energizes us to keep creating the best crypto guides.
+Realmente nos da energía para seguir creando las mejores guías criptográficas.
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+Usa [cointr.ee para encontrar nuestras direcciones de donación](https://cointr.ee/coincashew). 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+Cualquier comentario y todas las solicitudes de extracción son muy apreciadas. 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Descubra y chatee con otros interesados en Discord @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-## 🧩 Reference Material
+## 🧩 Material de referencia
 
 {% embed url="https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63150/raw/cc874b3035f97495416353f203d70477b31ab05d/get\_validator\_duties.py" %}
 [https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd ](https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd)
