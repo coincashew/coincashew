@@ -545,7 +545,7 @@ cd $NODE_HOME/scripts
 {% hint style="info" %}
 スクリプトへのパスを通し、任意の単語で起動出来るようにする。
 ```bash
-alias blocks='$NODE_HOME/scripts/blocks.sh' >> $HOME/.bashrc
+echo alias blocks="$NODE_HOME/scripts/blocks.sh" >> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
