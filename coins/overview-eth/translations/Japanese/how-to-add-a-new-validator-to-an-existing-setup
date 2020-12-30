@@ -1,17 +1,17 @@
 ---
 description: >-
-  Scenario: Genesis block is long passed and now you would like to add more validators with your existing mnemonic seed.
+  シナリオ: Genesis ブロックが長い間渡され、既存のニーモニックシードでバリデータを追加したいと考えています。
 ---
 
-# How to add a new validator to an existing setup
+# 既存のセットアップに新しいバリデータを追加する方法
 
-## ⏩ Quick steps guide
+## ⏩ クイックステップガイド
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+以下の手順は [mainnet ガイド](./) に沿っています。 適切な場合は、ファイル名とディレクトリの場所を調整する必要があります。 コアコンセプトは同じままです。
 {% endhint %}
 
-1. Backup and move your existing `validator_key` directory and append the date to the end.
+1. 既存の `validator_key` ディレクトリをバックアップし、最後に日付を追加します。
 
 ```bash
 # Adjust your eth2deposit-cli directory accordingly
@@ -22,90 +22,90 @@ mv validator_key validator_key_$(date +"%Y%d%m-%H%M%S")
 ```
 
 {% hint style="info" %}
-Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
+eth2deposit-cli ツールを使用して、新しい入金データファイルと `validator_keys` を作成することで、バリデータをさらに追加できます。
 {% endhint %}
 
-2. For example, in case we originally created **3 validators** but now wish to **add 5 more validators**, we could use the following command. Select the tab depending on how you acquired [**eth2deposit tool**](https://github.com/ethereum/eth2.0-deposit-cli).
+2. 例えば、我々がもともと **3 バリデータ** を作成した場合、 **さらに5つのバリデータを追加したい**、 次のコマンドを使うことができます [**eth2depositツール**](https://github.com/ethereum/eth2.0-deposit-cli) の取得方法に応じてタブを選択します。
 
 {% hint style="warning" %}
-**Security recommendation reminder**: For best security practices, key management and other activities where you type your 24 word mnemonic seed should be completed on an air-gapped offline cold machine booted from USB drive.
+**セキュリティ推奨通知**: セキュリティのベストプラクティスのために、 24語のニーモニックシードを入力するキー管理やその他のアクティビティは、USBドライブから起動されたエアーラップされたオフラインのコールドマシン上で完了する必要があります。
 {% endhint %}
 
 {% hint style="danger" %}
-Reminder to use the same **keystore password.**
+同じ **キーストアのパスワード**を使用するように通知します。
 {% endhint %}
 
 {% tabs %}
 {% tab title="Build from source code" %}
 ```bash
-# Generate from an existing mnemonic 5 more validators when 3 were previously already made
-./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+# 3 が既に作成されている場合、既存の mnemonic 5 個以上のバリデータから生成する
+./deposit.sh existing-mnemonic --validator_index 3 --num_validators 5 --chain mainnet
 ```
 {% endtab %}
 
 {% tab title="Pre-built eth2deposit-cli binaries" %}
 ```bash
-# Generate from an existing mnemonic 5 more validators when 3 were previously already made
-./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+# 既存の mnemonic 5 個以上のバリデータから 3 個以前に作成された場合に生成する
+./deposition-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
 {% endtab %}
 
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-🔥**Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
+🔥**Pro Security Tip**: **eth2deposit-cli ツール** を実行し、 **mnemonic seed** を **usb から起動したエアーギャップ付きオフラインマシン上でバリデータキーに生成します。**.
 {% endhint %}
 
-Follow this [ethstaker.cc](https://ethstaker.cc/) exclusive for the low down on making a bootable usb.
+起動可能な usb を作る際に、この [ethstaker.cc](https://ethstaker.cc/) をローダウン専用にフォローしてください。
 
-### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
+### パート1 - Ubuntu 20.04 USBブート可能なドライブを作成
 
-{% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
+{% embed url="https://www.youtube.com/watch?v=DTR3PzRtYU" %}
 
-### Part 2 - Install Ubuntu 20.04 from the USB Drive
+### パート2 - USBドライブからUbuntu 20.04をインストールします
 
 {% embed url="https://www.youtube.com/watch?v=C97\_6MrufCE" %}
 
-You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
+USBキーを介して、USBから起動されたエアラップされたオフラインマシンにオンラインマシンから、事前に構築されたeth2deposit-cliバイナリをコピーすることができます。 イーサネットケーブルおよび/またはWi-Fiを取り外してください。
 
-Run the existing-mnemonic command in the previous tabs.
+前のタブで existing-mnemonic コマンドを実行します。
 {% endtab %}
 {% endtabs %}
 
-3. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org/) and making your corresponding 32 ETH deposit transactions.
+3. `deposit_data-#######をアップロードする手順を完了します。 息子 <code>` [公式の Eth2 ローンチパッドサイト](https://launchpad.ethereum.org/) にアクセスし、対応する 32 ETHの入金取引を行います。
 
-4. Finish by stopping your validator, importing the new validator key\(s\), restarting your validator and verifying the logs ensuring everything still works without error. [Review steps 2 and onward of the main guide if you need a refresher.](./#2-signup-to-be-a-validator-at-the-launchpad)
+4. Finish by stopping your validator, importing the new validator key\(s\), restarting your validator and verifying the logs confirming everything still work without error. [リフレッシュが必要な場合は、メインガイドのステップ2を確認してください。](./#2-signup-to-be-a-validator-at-the-launchpad)
 
-5. Finally, verify your **existing** validator's attestations are working with public block explorer such as
+5. 最後に、 **既存の** バリデーターの認証がパブリックブロックエクスプローラーのように動作していることを確認してください。
 
-[https://beaconcha.in/](https://beaconcha.in/) or [https://beaconscan.com/](https://beaconscan.com/)
+[https://beaconcha.in/](https://beaconcha.in/) または [https://beaconscan.com/](https://beaconscan.com/)
 
-Enter your validator's pubkey to view its status.
+ステータスを表示するには、バリデータのパブキーを入力してください。
 
 {% hint style="info" %}
-Your additional validators are now in the activation queue waiting their turn. Check your estimated activation time at [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app/)
+追加のバリデータは、アクティベーションキューにあります。 推定のアクティベーション時間は [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app/) で確認してください。
 {% endhint %}
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 バリデータを作成してステークを開始 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 私たちの [メインネットガイド](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 、 [テストネットガイド](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet)についてはこちらをご覧ください。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+おめでとうございます。ガイドが完成しました。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+私たちのガイドが役に立ちましたか？ ヒント付きのシグナルを送信してください。アップデートを続けます。
 
-It really energizes us to keep creating the best crypto guides.
+最高の暗号ガイドを作成し続けることは、本当に私たちに力を与えてくれます。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+[coint.eeを使用して、寄付](https://cointr.ee/coincashew) アドレスを見つけてください。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+どんなフィードバックとすべてのプルリクエストは非常に高く評価されます。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Discordで仲間のステーカーとチャットしましょう @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+<unk>[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. 資金調達完了！ ありがとうございます!🙏
 
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
+{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-constashew" %}
 
