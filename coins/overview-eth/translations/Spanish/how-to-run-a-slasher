@@ -1,87 +1,87 @@
 ---
 description: >-
-  Running slasher is completely optional and yet can help protect the chain and earn you extra ETH.
+  El rasguñador en ejecución es completamente opcional y, sin embargo, puede ayudar a proteger la cadena y ganar ETH.
 ---
 
-# How to run a slasher
+# Cómo ejecutar una barra
 
-## ⏩ Quick steps guide
+## ⏩ Guía de pasos rápidos
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+Los siguientes pasos se alinean con nuestra [guía de red principal](./). Es posible que necesite ajustar los nombres de archivos y ubicaciones de directorios cuando sea apropiado. Los conceptos básicos siguen siendo los mismos.
 {% endhint %}
 
-### 🗡 What is a Slasher?
+### 🗡 ¿Qué es un Slasher?
 
-* Validators might commit slashable transactions such as
-  * **Double Voting**: signs more than one block in same epoch
-  * **Surround Votes**: signs two contradictory attestations
-* A slasher will submit proof of the above offenses into a block proposal.
-* Running a slashing helps protect and keeps the network healthy.
-* If your slasher successfully detects an offense and is lucky enough to include proof of the offense into your scheduled block proposal, your validator earns extra ETH.
+* Los validadores pueden enviar transacciones slashable como
+  * **Doble votación**: señala más de un bloque en el mismo epoche
+  * **Votos envolventes**: firma dos certificados contradictorios
+* Un corredor presentará la prueba de las infracciones arriba mencionadas en una propuesta de bloque.
+* Ejecutar un corte ayuda a proteger y mantener la red sana.
+* Si su barra detecta con éxito una ofensa y tiene la suerte de incluir la prueba de la ofensa en su propuesta de bloque programada, tu validador gana ETH.
 
 {% hint style="warning" %}
-Slashers tend to be resource intensive and is currently recommended for advanced users only.
+Slashers tienden a ser intensivos en recursos y actualmente se recomienda sólo para usuarios avanzados.
 {% endhint %}
 
-### 🤖 Minimum Slasher System Requirements
+### 🤖 Requisitos mínimos del sistema de Slasher
 
-* Quad-core or more CPU
+* Cuad-core o más CPU
 * 16+ GB RAM
-* 256GB+ SSD HD
+* SSD HD de 256GB+
 
-### 🚧 How to Configure the Slasher
+### 🚧 Cómo configurar el Slasher
 
-Slasher functionality is currently available in Lighthouse or Prysm.
+La funcionalidad de Slasher está actualmente disponible en Faro o Prysm.
 
 {% tabs %}
 {% tab title="Lighthouse " %}
 ```bash
-# Edit your beacon-chain unit file
-sudo nano /etc/systemd/system/beacon-chain.service
+# Edite su archivo de unidad de beacon-chain
+sudo nano /etc/systemd/system/beacon-chain. ervice
 
-# Append the following slasher flag to ExecStart
+# Añade la siguiente bandera barrera a ExecStart
 --slasher --debug-level debug
 
-# Example of what your ExecStart should look like.
+# Ejemplo de cómo debería ser tu ExecStart.
 # lighthouse bn --staking --metrics --network mainnet --slasher --debug-level debug
 
-# Reload the new unit file
+# Recarga el nuevo archivo de unidad
 sudo systemctl daemon-reload
 
-# Restart your beacon-chain
+# Reinicia tu beacon-chain
 sudo systemctl restart beacon-chain
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
 ```bash
-# Create a new slasher unit file
+# Crear un nuevo archivo de unidad de barras
 cat > $HOME/slasher.service << EOF 
-# The eth2 slasher service (part of systemd)
+# El servicio de barras eth2 (parte del sistema)
 # file: /etc/systemd/system/slasher.service 
 
 [Unit]
-Description     = eth2 slasher service
-Wants           = network-online.target
-After           = network-online.target 
+Description  = servicio de barrido eth2
+Wants = network-online.target
+After = network-online.target
 
 [Service]
-User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh slasher --mainnet
-Restart         = on-failure
+User = $(whoami)
+ExecStart = $(echo $HOME)/prysm/prysm.sh slasher --mainnet
+Restart = on-failure
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy = multi-user.target
 EOF
 
-# Move the unit file to /etc/systemd/system 
-sudo mv $HOME/slasher.service /etc/systemd/system/slasher.service
+# Mover el archivo de unidad a /etc/systemd/system 
+sudo mv $HOME/slasher.service /etc/systemd/slasher.service
 
-# Update file permissions.
+# Actualizar los permisos de archivo.
 sudo chmod 644 /etc/systemd/system/slasher.service
 
-# Enable auto-start at boot time and then start your slasher service.
+# Habilitar auto-start al inicio y luego iniciar el servicio de barras.
 sudo systemctl daemon-reload
 sudo systemctl enable slasher
 sudo systemctl start slasher
@@ -90,38 +90,38 @@ sudo systemctl start slasher
 {% endtabs %}
 
 {% hint style="success" %}
-Nice work. You're running a slasher now. 🗡 🤖 🔪
+Buen trabajo. Estás ejecutando una barra ahora. 🗡 🤖 🔪
 {% endhint %}
 
 {% hint style="info" %}
-Be sure to familiarize yourself with the [reference material for detailed official slasher documentation.](how-to-run-a-slasher.md#reference-material)
+Asegúrate de familiarizarte con el material de referencia [para obtener una documentación oficial detallada de la barra.](how-to-run-a-slasher.md#reference-material)
 {% endhint %}
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 Empieza a apostar construyendo un validador <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visita aquí para nuestra guía [Mainnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) y aquí para nuestra [guía de Testnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+Felicidades por completar la guía. ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+¿Encontraste útil nuestra guía? Envíenos una señal con un consejo y seguiremos actualizándola.
 
-It really energizes us to keep creating the best crypto guides.
+Realmente nos da energía para seguir creando las mejores guías criptográficas.
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+Usa [cointr.ee para encontrar nuestras direcciones de donación](https://cointr.ee/coincashew). 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+Cualquier comentario y todas las solicitudes de extracción son muy apreciadas. 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Descubra y chatee con otros interesados en Discord @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+🎊 **Actualización 2020-12**: Gracias a todos los colaboradores de [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) , donde usted puede contribuir a través de [fondos cuadráticos](https://vitalik.ca/general/2019/12/07/quadratic.html) y hacer un gran impacto. ¡Financiación completa! Gracias!🙏
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
-## 🧩 Reference Material
+## 🧩 Material de referencia
 
 {% embed url="https://docs.prylabs.network/docs/prysm-usage/slasher/" %}
 
