@@ -1,93 +1,93 @@
 ---
 description: >-
-  Problem: My validator is running behind a dynamic IP address and this causes connectivity issues with other validators when my dynamic IP address changes.
+  问题：当我的动态IP地址发生变化时，我的验证器正在运行在动态IP地址后面，这会导致与其他验证器的连接问题。
 ---
 
-# How to setup dynamic DNS \(DDNS\)
+# 如何设置动态DNS \(DDNS\)
 
-## ⏩ Quick steps guide
-
-{% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
-{% endhint %}
-
-### 🗡 Why do I need a dynamic DNS service?
-
-* Most internet connections are through a dynamic IP address and can change weekly or even daily.
-* Frequent IP changes can make it difficult to host services such as a validator.
-* As a workaround, you can use a DDNS \(Dynamic DNS\) service.
-* Using a subdomain \(i.e. mySubDomain.duckdns.org\), you relate this to your latest dynamic IP address.
-* Periodically, say every 5 minutes, your computer updates a subdomain with your latest dynamic IP address.
-* Other validators or users would find you via the subdomain, instead of IP address.
+## :快速前进按钮：快速步骤指南
 
 {% hint style="info" %}
-There are many [alternative DDNS services](https://hackerspad.net/software/duck-dns/#alternatives) but seldom do they accept crypto donations like [Duck DNS](https://www.duckdns.org/).
+以下步骤与我们的 [主机指南](./) 一致。 您可能需要酌情调整文件名称和目录位置。 核心概念保持不变。
 {% endhint %}
 
-### 🤖 Minimum System Requirements
+### 🗡 为什么我需要动态的DNS服务？
+
+* 大多数互联网连接都是通过动态IP地址进行的，每周甚至每天都有变化。
+* 频繁的 IP 更改可能会使主机服务（如验证器）变得困难。
+* 作为工作区，您可以使用 DDNS \(Dynamic DNS\) 服务。
+* 使用子域\(例如mySubDomain.duckdns.org\)，您将此与您最新的动态IP地址相关联。
+* 每隔5分钟，您的计算机定期更新一个子域，包含您最新的动态IP地址。
+* 其他验证器或用户会通过子域而不是IP地址找到您。
+
+{% hint style="info" %}
+有许多 [个替代的 DDNS 服务](https://hackerspad.net/software/duck-dns/#alternatives) 但他们很少接受诸如 [Duck DNS](https://www.duckdns.org/) 之类的加密捐款。
+{% endhint %}
+
+### 🤖 最小系统要求
 
 * Linux cron
 
-### 🚧 How to Configure the DDNS
+### 🚧 How to configure DDNS
 
-For the purpose of this tutorial, we will be using [DuckDNS.org](https://www.duckdns.org/install.jsp)
+为了本教程的目的，我们将使用 [DuckDNSorg](https://www.duckdns.org/install.jsp)
 
-1. Sign in and create an account with your preferred social media login.
+1. 登录并使用您喜欢的社交媒体登录创建帐户。
 
-2. Follow the instructions on[ how to setup duckdns for linux cron.](https://www.duckdns.org/install.jsp)
+2. 按照[ 上的说明来设置 linux cron的 truckdns](https://www.duckdns.org/install.jsp)
 
-3. Configure the **beacon-chain** to use your new DDNS subdomain.
+3. 配置 **信标链** 来使用您新的 DDNS 子域。
 
 {% tabs %}
 {% tab title="Prysm" %}
 ```bash
-# Edit your beacon-chain unit file
+# 编辑您的信标链单元文件
 sudo nano /etc/systemd/system/beacon-chain.service
 
-# Append the following flag to ExecStart
+# 在 ExecStart
 --p2p-host-dns <SUBDOMAIN>
 
-# Example of what ExecStart could look like.
+# ExecStart 可以看起来的示例。
 # prysm.sh beacon-chain --mainnet --p2p-host-dns mySubDomain.duckdns.org
 
-# Reload the new unit file
+# 重新加载新的单元文件
 sudo systemctl daemon-reload
 
-# Restart your beacon-chain
+# 重新启动您的信标链
 sudo systemctl restart beacon-chain
 ```
 {% endtab %}
 {% endtabs %}
 
 {% hint style="success" %}
-Nice work. You're running a DDNS now.
+好工作。 您正在运行一个 DDNS
 {% endhint %}
 
 {% hint style="info" %}
-Be sure to familiarize yourself with the [official docs and faqs.](https://www.duckdns.org/faqs.jsp)
+务必熟悉 [官方文档和常见问题。](https://www.duckdns.org/faqs.jsp)
 {% endhint %}
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 通过构建一个验证器来开始舞蹈。 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 为我们的 [主要指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 访问此处，为我们的 [测试网指南](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet) 访问此处。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+恭喜您完成了指南。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+你觉得我们的指南有用吗？ 向我们发送一个带有提示的信息，我们将不断更新它。
 
-It really energizes us to keep creating the best crypto guides.
+它真正激励我们继续创建最好的加密指南。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+使用 [cointr.ee 找到我们的捐赠](https://cointr.ee/coincashew) 个地址。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+任何反馈和所有拉取请求都非常感激。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+在 Discord 上挂起并与他人聊天 @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+通过[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :grinning_face_with_big_eyes：
 {% endhint %}
 
-## 🧩 Reference Material
+## 🧩 参考材料
 
-{% embed url="https://www.duckdns.org/install.jsp" %}
+{% 嵌入的 url="https://www.duckdns.org/install.jsp" %}
 
