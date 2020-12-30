@@ -1,14 +1,14 @@
 ---
 description: >-
-  Become a validator and help secure eth2, a proof-of-stake blockchain. Anyone with 32 ETH can join.
+  Conviértete en un validador y ayuda a asegurar eth2, una cadena de bloques de pruebas. Cualquiera con 32 ETH puede unirse.
 ---
 
-# Guide: How to stake on ETH2 Mainnet with Prysm on Ubuntu
+# Guía: Cómo participar en ETH2 Mainnet con Prysm en Ubuntu
 
 {% hint style="danger" %}
-**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+**Nov 24 2020 Update**: La nueva guía [mainnet se encuentra aquí](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
 
-Instructions below are now deprecated and for reference only.
+Las instrucciones a continuación ahora están obsoletas y sólo son de referencia.
 {% endhint %}
 
 
@@ -22,113 +22,113 @@ Instructions below are now deprecated and for reference only.
 
 
 {% hint style="info" %}
-[Prysm](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com/), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
+[Prysm](https://github.com/prysmaticlabs/prysm) es una implementación de Ethereum 2.0 protocolo con enfoque en usabilidad, seguridad y fiabilidad. Prysm es desarrollado por [Prysmatic Labs](https://prysmaticlabs.com/), una empresa con el único enfoque en el desarrollo de su cliente. Prysm está escrito en Go y publicado bajo una licencia GPL-3.0.
 {% endhint %}
 
-## 🏁 0. Prerequisites
+## 🏁 0. Prerrequisitos
 
-### 👩💻 Skills for operating a eth2 validator and beacon node
+### 👩💻 Habilidades para operar un validador eth2 y nodo baliza
 
-As a validator for eth2, you will typically have the following abilities:
+Como validador de eth2, normalmente tendrás las siguientes habilidades:
 
-* operational knowledge of how to set up, run and maintain a eth2 beacon node and validator continuously
-* a commitment to maintain your validator 24/7/365
-* basic operating system skills
-* have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
-* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com/)
-* and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
+* conocimiento operativo de cómo configurar, ejecutar y mantener un nodo y validador de baliza eth2 continuamente
+* un compromiso para mantener su validador 24/7/365
+* habilidades básicas del sistema operativo
+* han aprendido lo esencial viendo ['Introducción a la Eth2 & Staking for Beginners' por Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
+* han pasado o está inscrito activamente en el [curso de estudios de Eth2](https://ethereumstudymaster.com/)
+* y han leído la [8 Cosas que cada validador de Eth2 debería saber.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
-### 🎗 **Minimum Setup Requirements**
+### 🎗 **Requisitos mínimos de configuración**
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **Processor:** Dual core CPU, Intel Core i5–760 or AMD FX-8100 or better
+* **Sistema operativo:** Linux de 64-bit \\(i.e. Ubuntu 20.04 LTS\)
+* **Procesador:** Dual core CPU, Intel Core i5–760 o AMD FX-8100 o mejor
 * **Memory:** 8GB RAM
-* **Storage:** 20GB SSD
-* **Internet:** Broadband internet connection with speeds at least 1 Mbps.
-* **Power:** Reliable electrical power.
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
-* **Wallet**: Metamask installed
+* **Almacenamiento:** 20GB SSD
+* **Internet:** Conexión a Internet de banda ancha con velocidades de al menos 1 Mbps.
+* **Poder:** Energía eléctrica fiable.
+* **Saldo ETH:** al menos 32 ETH y algunos ETH por comisiones de depósito
+* **Cartera**: Metamask instalado
 
-### 🏋♂ Recommended Hardware Setup
+### 🏋♂ Configuración recomendada de hardware
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
-* **Memory:** 16 GB RAM or more
-* **Storage:** 1TB SSD or more
-* **Internet:** Broadband internet connections with speeds at least 10 Mbps
-* **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
-* **Wallet**: Metamask installed
+* **Sistema operativo:** Linux de 64-bit \\(i.e. Ubuntu 20.04 LTS\)
+* **Procesador:** Quad core CPU, Intel Core i7–4770 o AMD FX-8310 o mejor
+* **Memoria:** RAM de 16 GB o más
+* **Almacenamiento:** SSD de 1TB o más
+* **Internet:** Conexiones a Internet de banda ancha con velocidades de al menos 10 Mbps
+* **Poder:** Energía eléctrica fiable con alimentación ininterrumpida \(UPS\)
+* **Saldo ETH:** al menos 32 ETH y algunos ETH por comisiones de depósito
+* **Cartera**: Metamask instalado
 
 {% hint style="warning" %}
-✨ **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your mainnet validator.
+✨ **Consejo del validador Pro**: Te recomendamos que comences con una nueva instancia de un sistema operativo, máquina virtual y/o máquina. Evite los dolores de cabeza no reutilizar claves de red de pruebas, billeteras, o bases de datos para su validador de red principal.
 {% endhint %}
 
-### 🔓 Recommended eth2 validator Security Best Practices
+### 🔓 Mejores prácticas recomendadas para validadores eth2
 
-If you need ideas or a reminder on how to secure your validator, refer to
+Si necesita ideas o un recordatorio sobre cómo asegurar su validador, consulte
 
 {% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
 
 ### 🛠 Setup Ubuntu
 
-If you need to install Ubuntu, refer to
+Si necesita instalar Ubuntu, consulte
 
 {% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
 
-### 🎭 Setup Metamask
+### 🎭 Configurar Metamask
 
-If you need to install Metamask, refer to
+Si necesita instalar Metamask, consulte
 
 {% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
-## 🌱 1. Buy/exchange or consolidate ETH
+## 🌱 1. Comprar/intercambiar o consolidar ETH
 
 {% hint style="info" %}
-Every 32 ETH you own allows you to make 1 validator. You can run thousands of validators with your beacon node.
+Cada 32 ETH que tengas te permite hacer 1 validador. Puede ejecutar miles de validadores con su nodo faro.
 {% endhint %}
 
-Your ETH \(or multiples of 32 ETH\) should be consolidated into a single address accessible with Metamask.
+Su ETH \(o múltiplos de 32 ETH\) debe consolidarse en una sola dirección accesible con Metamask.
 
-If you need to buy/exchange or top up your ETH to a multiple of 32, check out:
+Si necesita comprar/intercambiar o recargar su ETH a un múltiplo de 32, eche un vistazo:
 
 {% page-ref page="guide-how-to-buy-eth.md" %}
 
-## 👩💻 2. Signup to be a validator at the Launchpad
+## 👩💻 2. Regístrate para ser un validador en el Launchpad
 
-1. Install dependencies, the ethereum foundation deposit tool and generate your two sets of key pairs.
+1. Instale dependencias, la herramienta de depósito de la fundación ethereum y genere sus dos conjuntos de pares de claves.
 
 {% hint style="info" %}
-Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
+Cada validador tendrá dos conjuntos de pares de claves. Una **clave de firma** y una **clave de retiro.** Estas claves se derivan de una sola frase mnemónica. [Más información sobre claves.](https://blog.ethereum.org/2020/05/21/keys/)
 {% endhint %}
 
-You have the choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source.
+Tienes la opción de descargar la [herramienta de depósito de cimientos ethereum](https://github.com/ethereum/eth2.0-deposit-cli) preconstruida o construirla desde la fuente.
 
 {% tabs %}
 {% tab title="Pre-built eth2deposit-cli" %}
-Download eth2deposit-cli.
+Descargar eth2deposit-cli.
 
 ```bash
 cd $HOME
 wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.0.0/eth2deposit-cli-9310de0-linux-amd64.tar.gz
 ```
 
-Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
+Verifique que la suma de verificación SHA256 coincide con la suma de verificación en la página de [lanzamientos](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
 
 ```bash
 sha256sum eth2deposit-cli-9310de0-linux-amd64.tar.gz 
-# SHA256 should be
+# SHA256 debe ser
 # b09da136895a7f77a4b430924ea2ae5827fa47b2bf444c4ea6fcfac5b04b8c8a
 ```
 
-Extract the archive.
+Extraer el archivo.
 
 ```text
 tar -xvf eth2deposit-cli-9310de0-linux-amd64.tar.gz
 cd eth2deposit-cli-9310de0-linux-amd64
 ```
 
-Make a new mnemonic.
+Crea una nueva mnemónica.
 
 ```text
 ./deposit new-mnemonic --chain mainnet
@@ -136,14 +136,14 @@ Make a new mnemonic.
 {% endtab %}
 
 {% tab title="Build from source code" %}
-Install dependencies.
+Instalar dependencias.
 
 ```text
 sudo apt update
 sudo apt install python3-pip git -y
 ```
 
-Download source code and install.
+Descargar código fuente e instalar.
 
 ```text
 mkdir ~/git
@@ -153,7 +153,7 @@ cd eth2.0-deposit-cli
 sudo ./deposit.sh install
 ```
 
-Make a new mnemonic.
+Crea una nueva mnemónica.
 
 ```text
 ./deposit.sh new-mnemonic --chain mainnet
@@ -162,52 +162,52 @@ Make a new mnemonic.
 
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-🔥**\[ Optional \] Pro Security Tip**: Run the eth2deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine**.
+🔥**\[ Optional \] Consejo de seguridad Pro**: Ejecute la herramienta eth2deposit-cli y genere su **semilla mnemónica** para sus claves de validador en una **máquina sin conexión**.
 
-You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine.
+Puede copiar a través de USB key los binarios eth2deposit-cli preconstruidos de una máquina online a una máquina sin conexión.
 
-* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits.
-* Physically isolated from the rest of your network.
-* Must not have a network connection, wired or wireless.
-* Is not a VM on a machine with a network connection.
-* Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29).
+* Protege contra ataques de registro de claves, ataques basados en malware/virus y otras vulnerabilidades de seguridad o cortafuegos.
+* Aislado físicamente del resto de su red.
+* No debe tener una conexión de red, cableada o inalámbrica.
+* No es una máquina virtual en una máquina con conexión de red.
+* Obtenga más información sobre [en la wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29).
 {% endhint %}
 {% endtab %}
 {% endtabs %}
 
-1. Follow the prompts and pick a password. Write down your mnemonic and keep this safe and **offline**.
-2. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
-3. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
-4. Connect to the launchpad with your Metamask wallet, review and accept terms.
-5. Confirm the transaction\(s\). There's one deposit transaction of 32 ETH for each validator.
+1. Siga las instrucciones y elija una contraseña. Escribe tu mnemónico y mantén esto seguro y **sin conexión**.
+2. Sigue los pasos en [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) mientras te saltas los pasos que ya has completado. Estudiar el material general de la fase eth2 0. ¡Entender eth2 es la clave del éxito!
+3. Volver al sitio web de launchpad, sube tu`deposit_data-#######.json` encontrado en el directorio `validator_keys`.
+4. Conéctate al Launchpad con tu cartera Metamask, revisa y acepta los términos.
+5. Confirmar la transacción\(s\). Hay una transacción de depósito de 32 ETH para cada validador.
 
 {% hint style="info" %}
 Your transaction is sending and depositing your ETH to the [official ETH2 deposit contract address. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
 
-**Check**, _double-check_, _**triple-check**_ that the official Eth2 deposit contract address is correct.[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
+**Compruebe**, _doble verificación_, _**cheque triple**_ que la dirección oficial del contrato de depósito Eth2 es correcta.[`0x000000219ab540356cB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
 {% endhint %}
 
 {% hint style="danger" %}
-Be sure to write down or record your mnemonic seed **offline**. _Not email. Not cloud._
+Asegúrese de escribir o registrar su semilla mnemónica **sin conexión**. _No es correo electrónico. No en la nube._
 
-Make **offline backups**, such as to a USB key, of your **`validator_keys`** \`\`directory.
+Hacer **copias de seguridad sin conexión**, como una clave USB, de su **`validator_keys`** \`\`\`directory.
 {% endhint %}
 
 ## 🛸 3. Install a ETH1 node
 
 {% hint style="info" %}
-Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
+Ethereum 2.0 requiere una conexión a Ethereum 1.0 para monitorear los depósitos de 32 validadores ETH. Alojamiento de su propio nodo Ethereum 1.0 es la mejor manera de maximizar la descentralización y minimizar la dependencia de terceros como Infura.
 {% endhint %}
 
 {% hint style="warning" %}
-The subsequent steps assume you have completed the [best practices security guide](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
+Los siguientes pasos asumen que ha completado la [guía de seguridad de buenas prácticas](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
 {% endhint %}
 
-Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/)**.**
+Tu elección de [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **o** [**mente**](https://www.nethermind.io/)**.**
 
 {% tabs %}
-{% tab title="OpenEthereum \(Parity\)" %}
-#### 🤖 Install and run OpenEthereum.
+{% tab title="OpenEthereum \(Paridad\)" %}
+#### 🤖 Instalar y ejecutar OpenEthereum.
 
 ```text
 mkdir ~/openethereum && cd ~/openethereum
@@ -217,29 +217,29 @@ chmod +x openethereum
 rm openethereum*.zip
 ```
 
-​ ⚙ **Setup and configure systemd**
+**Configurar y configurar el sistema**
 
-Run the following to create a **unit file** to define your `eth1.service` configuration.
+Ejecute lo siguiente para crear un **archivo de unidad** para definir su configuración `eth1.service`.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+gato > $HOME/eth1. ervice << EOF 
 [Unit]
-Description     = openethereum eth1 service
-Wants           = network-online.target
-After           = network-online.target 
+Descripción = openethereum eth1 servicio
+Quiere = network-online. Destinar
+Después = red en línea. objetivo 
 
 [Service]
-User            = $(whoami)
+usuario = $(whoami)
 WorkingDirectory= /home/$(whoami)/openethereum
-ExecStart       = /home/$(whoami)/openethereum/openethereum --chain foundation
-Restart         = on-failure
+ExecStart = /home/$(whoami)/openethereum/openethereum --chain foundation
+Reiniciar = on-failure
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy = multi-usuario. objetivo
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Mueva el archivo de unidad a `p/systemd/system` y otorgue permisos.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
@@ -249,22 +249,22 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-Run the following to enable auto-start at boot time.
+Ejecute lo siguiente para habilitar auto-inicio en el momento de arranque.
 
 ```text
-sudo systemctl daemon-reload
-sudo systemctl enable eth1
+sudo systemctl daemon-recarga
+sudo systemctl habilitar eth1
 ```
 
-#### ⛓ Start OpenEthereum on mainnet.
+#### ⛓ Iniciar OpenEthereum en mainnet.
 
 ```text
-sudo systemctl start eth1
+sudo systemctl inicia eth1
 ```
 {% endtab %}
 
 {% tab title="Geth" %}
-#### 🧬 Install from the repository.
+#### 🧬 Instalar desde el repositorio.
 
 ```text
 sudo add-apt-repository -y ppa:ethereum/ethereum
@@ -272,56 +272,56 @@ sudo apt-get update -y
 sudo apt-get install ethereum -y
 ```
 
-⚙ **Setup and configure systemd**
+⚙ **Configurar y configurar el sistema**
 
-Run the following to create a **unit file** to define your `eth1.service` configuration.
+Ejecute lo siguiente para crear un **archivo de unidad** para definir su configuración `eth1.service`.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+gato > $HOME/eth1. ervice << EOF 
 [Unit]
-Description     = geth eth1 service
-Wants           = network-online.target
-After           = network-online.target 
+Descripción = geth eth1 servicio
+Quiere = network-online. Destinar
+Después = red en línea. Destet 
 
 [Service]
-User            = $(whoami)
-ExecStart       = /usr/bin/geth --rpc --http
-Restart         = on-failure
+Usuario = $(whoami)
+ExecStart = /usr/bin/geth --rpc --http
+Reiniciar = on-failure
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy = multi-usuario. objetivo
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Mueva el archivo de unidad a `p/systemd/system` y otorgue permisos.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-Run the following to enable auto-start at boot time.
+Ejecute lo siguiente para habilitar auto-inicio en el momento de arranque.
 
 ```text
-sudo systemctl daemon-reload
-sudo systemctl enable eth1
+sudo systemctl daemon-recarga
+sudo systemctl habilitar eth1
 ```
 
-#### ⛓ Start geth on mainnet.
+#### ⛓ Comenzar geth en mainnet.
 
 ```text
-sudo systemctl start eth1
+sudo systemctl inicia eth1
 ```
 {% endtab %}
 
 {% tab title="Besu" %}
-#### 🧬 Install java dependency.
+#### 🧬 Instalar dependencia de java.
 
 ```text
 sudo apt install openjdk-11-jdk
 ```
 
-#### 🌜 Download and unzip Besu.
+#### 🌜 Descargar y descomprimir Besu.
 
 ```text
 cd
@@ -331,57 +331,57 @@ rm besu.tar.gz
 mv besu-1.5.0 besu
 ```
 
-⚙ **Setup and configure systemd**
+⚙ **Configurar y configurar el sistema**
 
-Run the following to create a **unit file** to define your `eth1.service` configuration.
+Ejecute lo siguiente para crear un **archivo de unidad** para definir su configuración `eth1.service`.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+gato > $HOME/eth1. ervice << EOF 
 [Unit]
-Description     = openethereum eth1 service
-Wants           = network-online.target
-After           = network-online.target 
+Descripción = openethereum eth1 servicio
+Quiere = network-online. Destinar
+Después = red en línea. objetivo 
 
 [Service]
-User            = $(whoami)
+usuario = $(whoami)
 WorkingDirectory= /home/$(whoami)/besu/bin
-ExecStart       = /home/$(whoami)/besu/bin/besu --data-path="$HOME/.ethereum_besu"
-Restart         = on-failure
+ExecStart = /home/$(whoami)/besu/bin/besu --data-path="$HOME/. thereum_besu"
+Reinicio = "on-fail"
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy = multi-usuario. objetivo
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Mueva el archivo de unidad a `p/systemd/system` y otorgue permisos.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-Run the following to enable auto-start at boot time.
+Ejecute lo siguiente para habilitar auto-inicio en el momento de arranque.
 
 ```text
-sudo systemctl daemon-reload
-sudo systemctl enable eth1
+sudo systemctl daemon-recarga
+sudo systemctl habilitar eth1
 ```
 
-#### ⛓ Start besu on mainnet.
+#### ⛓ Iniciar besu en mainnet.
 
 ```text
-sudo systemctl start eth1
+sudo systemctl inicia eth1
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
-#### ⚙ Install dependencies.
+#### ⚙ Instalar dependencias.
 
 ```text
 sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
 ```
 
-#### 🌜 Download and unzip Nethermind.
+#### 🌜 Descargar y descomprimir la mente.
 
 ```text
 mkdir ~/nethermind && cd ~/nethermind
@@ -390,33 +390,33 @@ unzip nethermind.zip
 rm nethermind.zip
 ```
 
-#### 🛸 Launch Nethermind.
+#### 🛸 Lanzamiento mente.
 
 ```text
-./Nethermind.Launcher
+./mind.Launcher
 ```
 
-* Select `Ethereum Node`
-* Select `Ethereum (mainnet)` then select `Fast sync`
-* Yes to enable web3 / JSON RPC
-* Accept default IP
-* Skip ethstats registration
+* Seleccione `Ethereum Node`
+* Selecciona `Ethereum (mainnet)` y luego selecciona `Sincronización rápida`
+* Sí para activar web3 / JSON RPC
+* Aceptar IP por defecto
+* Omitir registro de etstats
 {% endtab %}
 
 {% tab title="Minimum Hardware Setup" %}
 {% hint style="info" %}
-Infura is suitable for limited disk space setups. Always run your own full eth1 node when possible.
+Infura es adecuada para configuraciones de espacio limitado. Ejecute siempre su propio nodo eth1 completo cuando sea posible.
 {% endhint %}
 
-Sign up for an API access key at [https://infura.io/](https://infura.io/)
+Regístrate para obtener una clave de acceso API en [https://infura.io/](https://infura.io/)
 
-1. Sign up for a free account.
-2. Confirm your email address.
-3. Visit your dashboard [https://infura.io/dashboard](https://infura.io/dashboard)
-4. Create a project, give it a name.
-5. Select **Mainnet** as the ENDPOINT
-6. Copy your API key.
-7. Update the parameter **http-web3provider** in the **start beacon chain** section.
+1. Regístrese para obtener una cuenta gratuita.
+2. Confirme su dirección de correo electrónico.
+3. Visita tu panel de control [https://infura.io/dashboard](https://infura.io/dashboard)
+4. Crear un proyecto, darle un nombre.
+5. Seleccione **Mainnet** como ENDPOINT
+6. Copie su clave API.
+7. Actualizar el parámetro **http-web3provider** en la sección **start beacon chain**.
 
 ```bash
 #example parameter
@@ -428,34 +428,34 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 
 
 {% hint style="info" %}
-Syncing the eth1 node could take up to 24 hour.
+La sincronización del nodo eth1 podría tardar hasta 24 horas.
 {% endhint %}
 
 {% hint style="success" %}
-Your eth1 node is fully sync'd when these events occur.
+Su nodo eth1 está completamente sincronizado cuando se producen estos eventos.
 
 * **`OpenEthereum:`** `Imported #<block number>`
-* **`Geth:`** `Imported new chain segment`
-* **`Besu:`** `Imported #<block number>`
-* **`Nethermind:`** `No longer syncing Old Headers`
+* **`Geth:`** `Importado nuevo segmento de cadena`
+* **`Besu:`** `Importado #<block number>`
+* **`mente:`** `Ya no sincronizando Cabeceras Antiguas`
 {% endhint %}
 
-#### 🛠 Helpful eth1.service commands
+#### 🛠 Comandos útiles de eth1.service
 
-​​ 🗒 **To view and follow eth1 logs**
+🗒 **Para ver y seguir los registros eth1**
 
 ```text
 journalctl -u eth1 -f
 ```
 
-🗒 **To stop eth1 service**
+🗒 **Para detener el servicio eth1**
 
 ```text
-sudo systemctl stop eth1
+parada de sistema sudo eth1
 ```
 
 {% hint style="danger" %}
-🛑 **Before continuing the rest of this guide, we recommend you wait until closer to Dec 1st as the Prysm code is rapidly preparing for mainnet.** 🚧
+🛑 **Antes de continuar con el resto de esta guía, te recomendamos que esperes hasta el 1 de Diciembre ya que el código Prysm se está preparando rápidamente para mainnet.**🚧
 {% endhint %}
 
 ## 💡 4. Install Prysm
@@ -466,158 +466,158 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 ```
 
 {% hint style="info" %}
-Prysm is a Ethereum 2.0 client and it comes in two components.
+Prysm es un cliente de Ethereum 2.0 y viene en dos componentes.
 
-**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
+**Cliente de la cadena Beacon** - Responible para gestionar el estado de la cadena beacon, el desplazamiento del validador, y más.
 
-**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
+**Cliente validador** - Responible por producir nuevos bloques y certificaciones en la cadena del faro y las cadenas de fragmentos.
 {% endhint %}
 
-## 🔥 5. Configure port forwarding and/or firewall
+## 🔥 5. Configurar desvío de puertos y/o firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Específicamente para su configuración de red o configuración de proveedores de nube, [asegúrese de que los puertos firewall de su validador están abiertos y alcanzables.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
-* **Prysm beacon chain node** will use port 12000 for udp and port 13000 for tcp
-* **eth1** node requires port 30303 for tcp and udp
+* **Prysm beacon chain node** usará el puerto 12000 para udp y el puerto 13000 para tcp
+* **eth1** node requiere el puerto 30303 para tcp y udp
 
 {% hint style="info" %}
-✨ **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
+✨ **Consejo de reenvío de puertos:** Tendrás que redirigir y abrir puertos a tu validador. Verifique que está trabajando con [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) o [https://canyouseeme.org/](https://canyouseeme.org/).
 {% endhint %}
 
-## 🎩 6. Import validator key
+## 🎩 6. Importar clave de validador
 
-Choose the correct command depending on how you installed **eth2deposit-cli.**
+Elija el comando correcto dependiendo de cómo haya instalado **eth2deposit-cli.**
 
 {% tabs %}
 {% tab title="Pre-built eth2deposit-cli" %}
 ```bash
-$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/eth2deposit-cli-9310de0-linux-amd64/validator_keys
+$HOME/prysm/prysm.sh validador cuentas importar --keys-dir=$HOME/eth2deposit-cli-9310de0-linux-amd64/validator_keys
 ```
 {% endtab %}
 
 {% tab title="Built from source code" %}
 ```bash
-$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/git/eth2.0-deposit-cli/validator_keys
+$HOMEimportar cuentas de validadores /prysm/prysm.sh --keys-dir=$HOME/git/eth2.0-deposit-cli/validator_keys
 ```
 {% endtab %}
 {% endtabs %}
 
-Accept default wallet location, enter a new password to encrypt your wallet and enter the password for your imported accounts.
+Acepte la ubicación predeterminada de la cartera, introduzca una nueva contraseña para cifrar su cartera e introduzca la contraseña para sus cuentas importadas.
 
 {% hint style="danger" %}
-**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+**ADVERTENCIA**: NO UTILICE LOS KEYSTORES ORIGINALES PARA VALIDAR CON OTROS CLIENTOS, O USTED SERÁ SLASHADO.
 {% endhint %}
 
-## 🏂 7. Start the beacon chain
+## 🏂 7. Iniciar la cadena del faro
 
 {% hint style="warning" %}
-If you participated in any of the prior test nets, you need to clear the database.
+Si participó en cualquiera de las redes de prueba anteriores, debe borrar la base de datos.
 
 ```bash
 $HOME/prysm/prysm.sh beacon-chain --clear-db
 ```
 {% endhint %}
 
-Your choice of running a beacon chain and validator manually from command line or automatically with systemd.
+Su elección de ejecutar una cadena de baliza y validador manualmente desde la línea de comandos o automáticamente con el sistema.
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
 #### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
-1. Auto-start your beacon chain when the computer reboots due to maintenance, power outage, etc.
-2. Automatically restart crashed beacon chain processes.
-3. Maximize your beacon chain up-time and performance.
+1. Iniciar automáticamente su cadena de faros cuando el ordenador se reinicia debido al mantenimiento, interrupción de energía, etc.
+2. Reinicie automáticamente los procesos de la cadena de baliza bloqueada.
+3. Maximice su tiempo de actividad y rendimiento de la cadena de balizas.
 
-#### 🛠 Setup Instructions
+#### 🛠 Instrucciones de configuración
 
-Run the following to create a **unit file** to define your`beacon-chain.service` configuration.
+Ejecute lo siguiente para crear un **archivo de unidad** para definir su configuración`beacon-chain.service`.
 
 ```bash
-cat > $HOME/beacon-chain.service << EOF 
-# The eth2 beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+cat > $HOME/beacon-chain. ervice << EOF 
+# El servicio de cadena de beacon eth2 (parte del sistema)
+# archivo: /etc/systemd/system/beacon-chain. ervice 
 
 [Unit]
-Description     = eth2 beacon chain service
-Wants           = network-online.target
-After           = network-online.target 
+Descripción = eth2 beacon chain service
+Wants = network-online. Destinar
+After = network-online. objetivo 
 
 [Service]
-User            = $(whoami)
-Environment     = "ClientIP=$(curl -s v4.ident.me)"
+Usuario = $(whoami)
+Entorno = "ClientIP=$(curl -s v4. dent.me)"
 WorkingDirectory= /home/$(whoami)/prysm
-ExecStart       = /home/$(whoami)/prysm/prysm.sh beacon-chain --p2p-host-ip=${ClientIP} --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
-Restart         = on-failure
+ExecStart = /home/$(whoami)/prysm/prysm.sh beacon-chain --p2p-host-ip=${ClientIP} --monitoring-host="0.0.0. " --http-web3provider=http://127.0.0. :8545 --accept-terms-of-use 
+Restart = on-failure
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy = multi-usuario. objetivo
 EOF
 ```
 
 {% hint style="info" %}
-Geth users can achieve higher performance with
+Los usuarios de Geth pueden lograr un mayor rendimiento con
 
 ```bash
 --http-web3provider=$HOME/.ethereum/geth.ipc
 ```
 {% endhint %}
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Mueva el archivo de unidad a `p/systemd/system` y otorgue permisos.
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
-sudo chmod 644 /etc/systemd/system/beacon-chain.service
+sudo chmod 644 mañ/systemd/system/beacon-chain.service
 ```
 
-Run the following to enable auto-start at boot time and then start your beacon node service.
+Ejecute lo siguiente para habilitar auto-start al momento de arranque y luego inicie su servicio de nodo beacon.
 
 ```text
 sudo systemctl daemon-reload
-sudo systemctl enable beacon-chain
+sudo systemctl habilita beacon-chain
 sudo systemctl start beacon-chain
 ```
 
 {% hint style="success" %}
-Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+Buen trabajo. Su cadena de faros está ahora gestionada por la fiabilidad y robustez del sistema. Debajo hay algunos comandos para usar el sistema.
 {% endhint %}
 
-### 🛠 Some helpful systemd commands
+### 🛠 Algunos comandos útiles del sistema
 
-#### ✅ Check whether the beacon chain is active
-
-```text
-sudo systemctl is-active beacon-chain
-```
-
-#### 🔎 View the status of the beacon chain
+#### ✅ Comprueba si la cadena de baliza está activa
 
 ```text
-sudo systemctl status beacon-chain
+sudo systemctl está activo beacon-chain
 ```
 
-#### 🔄 Restarting the beacon chain
+#### 🔎 Ver el estado de la cadena del faro
 
 ```text
-sudo systemctl reload-or-restart beacon-chain
+sudo systemctl estado cadena beacon-becon
 ```
 
-#### 🛑 Stopping the beacon chain
+#### 🔄 Reiniciando la cadena del faro
+
+```text
+sudo systemctl recargar-o-reiniciar cadena beacon-
+```
+
+#### 🛑 Detener la cadena del faro
 
 ```text
 sudo systemctl stop beacon-chain
 ```
 
-#### 🗒 Viewing and filtering logs
+#### 🗒 Ver y filtrar registros
 
 ```bash
-journalctl --unit=beacon-chain --since=yesterday
-journalctl --unit=beacon-chain --since=today
-journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+journalctl --unit=beacon-chain --íe=ayer
+journalctl --unit=beacon-chain --íe=hoy
+journalctl --unit=beacon-chain --íe='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 {% endtab %}
 
 {% tab title="CLI - Manual" %}
-In a new terminal, start the beacon chain.
+En una nueva terminal, inicie la cadena del faro.
 
 ```bash
 $HOME/prysm/prysm.sh beacon-chain \
@@ -628,7 +628,7 @@ $HOME/prysm/prysm.sh beacon-chain \
 ```
 
 {% hint style="info" %}
-Geth users can achieve higher performance with
+Los usuarios de Geth pueden lograr un mayor rendimiento con
 
 ```bash
 --http-web3provider=$HOME/.ethereum/geth.ipc
@@ -637,184 +637,184 @@ Geth users can achieve higher performance with
 {% endtab %}
 {% endtabs %}
 
-## 🧬 8. Start the validator <a id="9-start-the-validator"></a>
+## 🧬 8. Iniciar el validador <a id="9-start-the-validator"></a>
 
-Store your validator's password in a file and make it read-only.
+Almacena la contraseña de tu validador en un archivo y hazla de sólo lectura.
 
 ```bash
 echo "my_password_goes_here" > $HOME/.eth2validators/validators-password.txt
 sudo chmod 600 $HOME/.eth2validators/validators-password.txt
 ```
 
-Your choice of running a validator manually from command line or automatically with systemd.
+Su elección de ejecutar un validador manualmente desde la línea de comandos o automáticamente con el sistema.
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
-#### 🍰 Benefits of using systemd for your validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+#### 🍰 Beneficios de usar systemd para su validador <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
-1. Auto-start your validator when the computer reboots due to maintenance, power outage, etc.
-2. Automatically restart crashed validator processes.
-3. Maximize your validator up-time and performance.
+1. Iniciar automáticamente el validador cuando el ordenador se reinicia debido al mantenimiento, interrupción de energía, etc.
+2. Reiniciar automáticamente los procesos validadores bloqueados.
+3. Maximice su validador a tiempo de espera y rendimiento.
 
-#### 🛠 Setup Instructions
+#### 🛠 Instrucciones de configuración
 
-Run the following to create a **unit file** to define your`validator.service` configuration.
+Ejecute lo siguiente para crear un **archivo de unidad** para definir su configuración`validator.service`.
 
 ```bash
-cat > $HOME/validator.service << EOF 
-# The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+cat > $HOME/validador. ervice << EOF 
+# El servicio de validación eth2 (parte del sistema)
+# archivo: /etc/systemd/system/validator. ervice 
 
 [Unit]
-Description     = eth2 validator service
-Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+Descripción = servicio de validadores eth2
+Quiere = network-online. objetivo beacon-chain.service
+After = network-online. objetivo 
 
 [Service]
-User            = $(whoami)
+usuario = $(whoami)
 WorkingDirectory= /home/$(whoami)/prysm
-ExecStart       = /home/$(whoami)/prysm/prysm.sh validator --accept-terms-of-use --wallet-password-file /home/$(whoami)/.eth2validators/validators-password.txt
-Restart         = on-failure
+ExecStart = /home/$(whoami)/prysm/prysm. h validator --accept-terms-of-use --wallet-password-file /home/$(whoami)/.eth2validators/validators-password. xt
+Reinicio = en falla
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy = multiusuario. objetivo
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Mueva el archivo de unidad a `p/systemd/system` y otorgue permisos.
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
 sudo chmod 644 /etc/systemd/system/validator.service
 ```
 
-Run the following to enable auto-start at boot time and then start your validator.
+Ejecute lo siguiente para habilitar auto-inicio al momento de arranque y luego inicie su validador.
 
 ```text
 sudo systemctl daemon-reload
-sudo systemctl enable validator
+sudo systemctl habilitar validator
 sudo systemctl start validator
 ```
 
-### 🛠 Some helpful systemd commands
+### 🛠 Algunos comandos útiles del sistema
 
-#### ✅ Check whether the validator is active
+#### ✅ Comprueba si el validador está activo
 
 ```text
-sudo systemctl is-active validator
+sudo systemctl es validador activo
 ```
 
-#### 🔎 View the status of the validator
+#### 🔎 Ver el estado del validador
 
 ```text
 sudo systemctl status validator
 ```
 
-#### 🔄 Restarting the validator
+#### 🔄 Reiniciando el validador
 
 ```text
-sudo systemctl reload-or-restart validator
+validador de sudo systemctl recargar o reiniciar
 ```
 
-#### 🛑 Stopping the validator
+#### 🛑 Detener el validador
 
 ```text
 sudo systemctl stop validator
 ```
 
-#### 🗄 Viewing and filtering logs
+#### :file_gabinet: Ver y filtrar registros
 
 ```bash
-journalctl --unit=validator --since=yesterday
-journalctl --unit=validator --since=today
-journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+journalctl --unit=validator --e=ayer
+journalctl --unit=validator --i=hoy
+journalctl --unit=validator --e='2020-12-01 00:00:00' --until='2020-12-02 12:00'
 ```
 {% endtab %}
 
 {% tab title="CLI - Manual" %}
-In a new terminal, start the validator.
+En un nuevo terminal, inicie el validador.
 
 ```bash
-$HOME/prysm/prysm.sh validator \
+$HOME/prysm/prysm.sh validador \
 --accept-terms-of-use \
 --wallet-password-file /home/$(whoami)/.eth2validators/validators-password.txt
 ```
 {% endtab %}
 {% endtabs %}
 
-Verify that your **validator public key** appears in the logs. Example below:
+Verifica que tu **clave pública del validador** aparezca en los registros. Ejemplo a continuación:
 
 ```text
-INFO Enabled validator       voting_pubkey: 0x2374.....7121
+INFO Activado validator voting_pubkey: 0x2374.....7121
 ```
 
 {% hint style="info" %}
-**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
+**Cliente validador** - Responible por producir nuevos bloques y certificaciones en la cadena del faro y las cadenas de fragmentos.
 
-**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
+**Cliente de la cadena Beacon** - Responible para gestionar el estado de la cadena beacon, el desplazamiento del validador, y más.
 {% endhint %}
 
 {% hint style="success" %}
-Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 24 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards.
+Enhorabuena. Una vez que tu beacon-chain esté sincronizado, validador activo y corriendo, sólo esperas a la activación. Este proceso tarda hasta 24 horas. Cuando te asignes, tu validador comenzará a crear y votar bloques mientras ganas ETH apuestando recompensas.
 
-Use [beaconcha.in](https://beaconcha.in/) and [register an account](https://beaconcha.in/register) to create alerts and track your validator's performance.
+Usa [beaconcha.in](https://beaconcha.in/) y [registra una cuenta](https://beaconcha.in/register) para crear alertas y rastrear el rendimiento de tu validador.
 {% endhint %}
 
-## 🕒 9. Time Synchronization
+## 🕒 9. Sincronización de tiempo
 
 {% hint style="info" %}
-Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
+Debido a que la cadena de faros depende de tiempos precisos para realizar certificaciones y producir bloques, el tiempo de su computadora debe ser exacto a tiempo real NTP o NTS dentro de 0. segundos.
 {% endhint %}
 
-Setup **Chrony** with the following guide.
+Configurar **Chrony** con la siguiente guía.
 
 {% hint style="info" %}
-chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
+chrony es una implementación del Protocolo de Tiempo de Red y ayuda a mantener el tiempo de su computadora sincronizado con NTP.
 {% endhint %}
 
-## 🔎 10. Monitoring your validator with Grafana and Prometheus
+## 🔎 10. Monitoreando a tu validador con Grafana y Prometeo
 
-Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
+Prometheus es una plataforma de monitoreo que recolecta métricas de objetivos monitorizados mediante la eliminación de métricas HTTP en estos objetivos. [La documentación oficial está disponible aquí.](https://prometheus.io/docs/introduction/overview/) Grafana es un panel utilizado para visualizar los datos recolectados.
 
-### 🐣 10.1 Installation
+### 🐣 Instalación 10.1
 
-Install prometheus and prometheus node exporter.
+Instale prometheus y prometheus node exporter.
 
 ```text
-sudo apt-get install -y prometheus prometheus-node-exporter
+sudo apt-get install -y prometheus prometheub node-exporter
 ```
 
-Install grafana.
+Instalar grafana.
 
 ```bash
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
-echo "deb https://packages.grafana.com/oss/deb stable main" > grafana.list
-sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
+echo "deb https://packages.grafana.com/oss/deb stable main" > grafana. ist
+sudo mv grafana.list.es/apt/sources.list.d/grafana.list
 sudo apt-get update && sudo apt-get install -y grafana
 ```
 
-Enable services so they start automatically.
+Habilita los servicios para que se inicien automáticamente.
 
 ```bash
-sudo systemctl enable grafana-server.service
-sudo systemctl enable prometheus.service
-sudo systemctl enable prometheus-node-exporter.service
+sudo systemctl habilita grafana-server.service
+sudo systemctl habilitar prometheus.service
+sudo systemctl habilitar prometheichard node-exporter.service
 ```
 
-Update **prometheus.yml** located in `/etc/prometheus/prometheus.yml`
+Actualización **prometheus.yml** ubicada en `mañana/prometheus/prometheus.yml`
 
 ```bash
 cat > $HOME/prometheus.yml << EOF
 global:
-  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  scrape_interval: 15 # por defecto, scrape objetivos cada 15 segundos.
 
-  # Attach these labels to any time series or alerts when communicating with
-  # external systems (federation, remote storage, Alertmanager).
+  # Adjuntar estas etiquetas a cualquier serie de tiempo o alertas al comunicarse con
+  # sistemas externos (federación, almacenamiento remoto, administrador de alertas).
   external_labels:
     monitor: 'codelab-monitor'
 
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
+# Una configuración de scrape que contiene exactamente un endpoint a scrape:
+# Aquí está Prometheus.
 scrape_configs:
   - job_name: 'node_exporter'
     static_configs:
@@ -829,126 +829,126 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:8082']
 EOF
-sudo mv $HOME/prometheus.yml /etc/prometheus/prometheus.yml
+sudo mv $HOME/prometheus. ml/prometheus/prometheus.yml
 ```
 
-Finally, restart the services.
+Por último, reinicie los servicios.
 
 ```bash
 sudo systemctl restart grafana-server.service
 sudo systemctl restart prometheus.service
-sudo systemctl restart prometheus-node-exporter.service
+sudo systemctl restart prometheoo node-exporter.service
 ```
 
-Verify that the services are running properly:
+Verificar que los servicios se están ejecutando correctamente:
 
 ```text
-sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
+sudo systemctl status grafana-server.service prometheus.service prometheub node-exporter.service
 ```
 
 {% hint style="info" %}
-💡 **Reminder**: Ensure port 3000 is open on the firewall and/or port forwarded if you intend to view monitoring info from a different machine.
+💡 **Recordatorio**: Asegúrate de que el puerto 3000 esté abierto en el cortafuegos y/o el puerto reenviado si tienes la intención de ver la información de monitoreo desde una máquina diferente.
 {% endhint %}
 
-### 📶 10.2 Setting up Grafana Dashboards
+### 📶 10.2 Configurando Grafana Dashboards
 
-1. Open [http://localhost:3000](http://localhost:3000) or [http://&lt;your](http://<your) validator's ip address&gt;:3000 in your local browser.
-2. Login with **admin** / **admin**
-3. Change password
-4. Click the **configuration gear** icon, then **Add data Source**
-5. Select **Prometheus**
-6. Set **Name** to **"Prometheus**"
-7. Set **URL** to [http://localhost:9090](http://localhost:9090)
-8. Click **Save & Test**
-9. **Download and save** this [**json file**](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)**.** Or if you have more than 10 validators, use this [json file](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json).
-10. Click **Create +** icon &gt; **Import**
-11. Add dashboard by **Upload JSON file**
-12. Click the **Import** button.
+1. Abre [http://localhost:3000](http://localhost:3000) o [http://&lt;your](http://<your) validator's ip address&gt;:3000 en tu navegador local.
+2. Iniciar sesión con **admin** / **admin**
+3. Cambiar contraseña
+4. Haga clic en el icono **del equipo de configuración** , luego **Añadir fuente de datos**
+5. Seleccione **Prometeo**
+6. Establezca **Nombre** a **"Prometheus**"
+7. Establecer **URL** a [http://localhost:9090](http://localhost:9090)
+8. Haga clic en **Guardar & Prueba**
+9. **Descargue y guarde** este [**archivo json**](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)**.** O si tienes más de 10 validadores, usa este [archivo json](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json).
+10. Haga clic en **Crear +** icono &gt; **Importar**
+11. Añadir panel a través de **Subir archivo JSON**
+12. Haga clic en el botón **Importar**
 
-![Prysm dashboard](../../.gitbook/assets/prysm_dash.png)
+![Tablero Prysm](../../.gitbook/assets/prysm_dash.png)
 
-### ⚠ 10.3 Setup Alert Notifications
+### ⚠ 10.3 Configurar notificaciones de alerta
 
 {% hint style="info" %}
-Setup alerts to get notified if your validators go offline.
+Configurar alertas para recibir notificaciones si sus validadores se quedan sin conexión.
 {% endhint %}
 
-Get notified of problems with your validators. Choose between email, telegram, discord or slack.
+Recibe notificaciones de problemas con tus validadores. Elija entre correo electrónico, telegram, discord o slack.
 
 {% tabs %}
 {% tab title="Email Notifications" %}
-1. Visit [https://beaconcha.in/](https://beaconcha.in/)
-2. Sign Up ****for an **account**
-3. Verify your **email**
-4. Search for your **validator's public address**
-5. Add validators to your watchlist by clicking the **bookmark symbol**.
+1. Visita [https://beaconcha.in/](https://beaconcha.in/)
+2. Regístrate ****para obtener una cuenta de ****
+3. Verifique su **correo electrónico**
+4. Busca la dirección pública de tu validador ****
+5. Añade validadores a tu lista de seguimiento haciendo clic en el **símbolo del marcador**.
 {% endtab %}
 
 {% tab title="Telegram Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png)
-2. Click on **Add channel**.
-3. Give the notification channel a **name**.
-4. Select **Telegram** from the Type list.
-5. To complete the **Telegram API settings**, a Telegram channel and bot are required. For instructions on setting up a bot with `@Botfather`, see [this section](https://core.telegram.org/bots#6-botfather) of the Telegram documentation.
-6. Once completed, invite the bot to the newly created channel.
+1. En el menú de Grafana, seleccione **Canales de notificación** debajo del icono de la campana. ![](../../.gitbook/assets/gra-noti.png)
+2. Haga clic en **Añadir canal**.
+3. Dale al canal de notificación un **nombre**.
+4. Seleccione **Telegram** de la lista Tipos.
+5. Para completar la **configuración de la API de Telegram**, se requiere un canal de Telegram y un bot. Para instrucciones sobre cómo configurar un bot con `@Botfather`, vea [esta sección](https://core.telegram.org/bots#6-botfather) de la documentación de Telegram.
+6. Una vez completado, invita al bot al canal recién creado.
 {% endtab %}
 
 {% tab title="Discord Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png)
-2. Click on **Add channel**.
-3. Add a **name** to the notification channel.
-4. Select **Discord** from the Type list.
-5. To complete the set up, a Discord server \(and a text channel available\) as well as a Webhook URL are required. For instructions on setting up a Discord's Webhooks, see [this section](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) of their documentation.
-6. Enter the Webhook **URL** in the Discord notification settings panel.
-7. Click **Send Test**, which will push a confirmation message to the Discord channel.
+1. En el menú de Grafana, seleccione **Canales de notificación** debajo del icono de la campana. ![](../../.gitbook/assets/gra-noti.png)
+2. Haga clic en **Añadir canal**.
+3. Añade un **nombre** al canal de notificación.
+4. Selecciona **Discord** de la lista de tipos.
+5. Para completar la configuración, se requiere un servidor de Discord \(y un canal de texto disponible\) así como una URL de Webhook. Para obtener instrucciones sobre cómo configurar un Webhook de Discord, consulte [esta sección](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) de su documentación.
+6. Introduzca el Webhook **URL** en el panel de configuración de notificación de Discord.
+7. Haz clic en **Enviar prueba**, que enviará un mensaje de confirmación al canal de Discord.
 {% endtab %}
 
 {% tab title="Slack Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png)
-2. Click on **Add channel**.
-3. Add a **name** to the notification channel.
-4. Select **Slack** from the Type list.
-5. For instructions on setting up a Slack's Incoming Webhooks, see [this section](https://api.slack.com/messaging/webhooks) of their documentation.
-6. Enter the Slack Incoming Webhook URL in the **URL** field.
-7. Click **Send Test**, which will push a confirmation message to the Slack channel.
+1. En el menú de Grafana, seleccione **Canales de notificación** debajo del icono de la campana. ![](../../.gitbook/assets/gra-noti.png)
+2. Haga clic en **Añadir canal**.
+3. Añade un **nombre** al canal de notificación.
+4. Selecciona **Slack** de la lista Tipos.
+5. Para obtener instrucciones sobre cómo configurar un webhook entrante de Slack, consulte [esta sección](https://api.slack.com/messaging/webhooks) de su documentación.
+6. Introduzca la URL de Slack Incoming Webhook en el campo **URL**.
+7. Haga clic en **Enviar prueba**, que enviará un mensaje de confirmación al canal de Slack.
 {% endtab %}
 {% endtabs %}
 
 {% hint style="success" %}
-🎉 Congrats on setting up your validator! You're good to go on eth2.0.
+🎉 ¡Felicidades por configurar tu validador! Es bueno ir a eth2.0.
 
-Did you find our guide useful? Let us know with a tip and we'll keep updating it.
+¿Encontraste útil nuestra guía? Háganos saber con un consejo y seguiremos actualizándolo.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙌
+Usa [cointr.ee para encontrar nuestras direcciones de donación ](https://cointr.ee/coincashew). 🙌
 
-Any feedback and all pull requests much appreciated. 😃
+Cualquier comentario y todas las solicitudes de extracción son muy apreciadas. 😃
 
-Hang out and chat with fellow stakers on telegram @ [https://t.me/coincashew](https://t.me/coincashew) 🌛
+Descubra y hable con otros jugadores en telegram @ [https://t.me/coincashew](https://t.me/coincashew)🌛
 {% endhint %}
 
-## 🧙♂ 11. Updating Prysm
+## 🧙♂ 11. Actualizando Prysm
 
-Restart beacon chain and validator as per normal operating procedures.
+Reinicie la cadena de baliza y el validador según los procedimientos operativos normales.
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
 ```text
 sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl reload-o-restart validator
 ```
 {% endtab %}
 
 {% tab title="CLI - Manual" %}
 ```bash
-#Control C to exit both your beacon-chain and validator processes 
-#Press up arrow and enter to restart.
+#Controla C para salir de tus procesos de cadena de balizas y validadores 
+#Pulsa la flecha hacia arriba y entra para reiniciar.
 ```
 {% endtab %}
 {% endtabs %}
 
-## 🧩 12. Reference Material
+## 🧩 12. Material de referencia
 
-Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
+Apreciar el duro trabajo realizado por la gente fina en los siguientes enlaces que sirvieron de base para la creación de esta guía.
 
 {% embed url="https://discord.gg/KSA7rPr" %}
 
@@ -958,9 +958,9 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 {% embed url="https://docs.prylabs.network/docs/getting-started/" %}
 
-## 🎉 13. Bonus Links
+## 🎉 13. Enlaces extras
 
-### 🌰 CoinCashew Guides for other ETH2 Clients
+### 🌰 Guías de CoinCashew para otros clientes de ETH2
 
 {% page-ref page="guide-how-to-stake-on-eth2-with-lighthouse.md" %}
 
@@ -970,13 +970,13 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 {% page-ref page="guide-how-to-stake-on-eth2-with-lodestar.md" %}
 
-### 🧱 ETH2 Block Explorers
+### 🧱 Exploradores de Bloques ETH2
 
 {% embed url="https://beaconcha.in" caption="" %}
 
 {% embed url="https://beaconscan.com" caption="" %}
 
-### 🗒 Latest Eth2 Info
+### 🗒 Última información de Eth2
 
 {% embed url="https://www.reddit.com/r/ethstaker" caption="" %}
 
@@ -986,44 +986,44 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 {% embed url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
 
-## 🔥 14. Additional Useful Tips
+## 🔥 14. Consejos útiles adicionales
 
-### 🛑 14.1 Voluntary exit a validator
+### 🛑 14.1 Salir voluntariamente de un validador
 
 {% hint style="info" %}
-Use this command to signal your intentions to stop validating with your validator. This means you no longer want to stake with your validator and want to turn off your node.
+Utiliza este comando para indicar tus intenciones de dejar de validar con tu validador. Esto significa que ya no quieres apostar con tu validador y quieres apagar tu nodo.
 
-* Voluntary exiting takes a minimum of 2048 epochs \(or ~9days\). There is a queue to exit and a delay before your validator is finally exited.
-* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again.
-* Your funds will not be available for withdrawal until phase 1.5 or later.
-* After your validator leaves the exit queue and is truely exited, it is safe to turn off your beacon node and validator.
+* La salida voluntaria toma un mínimo de 2048 epochs \(o ~9días\). Hay una cola para salir y un retraso antes de que el validador se cierre por fin.
+* Una vez que un validador haya terminado en la fase 0, esto no es revertible y ya no puede volver a validar de nuevo.
+* Sus fondos no estarán disponibles para su retiro hasta la fase 1.5 o posterior.
+* Después de que su validador salga de la cola de salida y esté realmente cerrado, es seguro apagar su nodo y validador.
 {% endhint %}
 
 ```bash
-$HOME/prysm/prysm.sh validator accounts voluntary-exit
+$HOMEcuentas de validadores /prysm/prysm.sh de salida voluntaria
 ```
 
-### 🔐 14.2 Verify your mnemonic phrase
+### 🔐 14.2 Verifique su frase mnemónica
 
-Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`
+Utilizando la herramienta eth2deposit-cli, asegúrese de que puede regenerar los mismos pares de claves eth2 restaurando sus `validator_keys`
 
 ```bash
 ./deposit existing-mnemonic --chain mainnet
 ```
 
 {% hint style="info" %}
-When the **pubkey** is identical, this means your **keystore file** you correctly verified your mnemonic phrase. Other fields will be different because of salting.
+Cuando la **pubkey** es idéntica, esto significa que el archivo **keystore** verificó correctamente su frase mnemónica. Otros campos serán diferentes debido a la salazón.
 {% endhint %}
 
-### 🤖 14.3 Add additional validators
+### 🤖 14.3 Añadir validadores adicionales
 
-Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
+Usando la herramienta eth2deposit-cli, puede agregar más validadores creando un nuevo archivo de datos de depósito y `validator_keys`
 
-For example, in case we originally created 3 validators but now wish to add 5 more validators, we could use the following command.
+Por ejemplo, en caso de que originalmente creamos 3 validadores pero ahora queremos añadir 5 validadores más, podríamos usar el siguiente comando.
 
 ```bash
 ./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
 
-Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site.
+Completa los pasos para subir el `deposit_data-#########.json` al sitio del pad de lanzamiento.
 
