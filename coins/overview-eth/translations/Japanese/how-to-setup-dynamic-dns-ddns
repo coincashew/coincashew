@@ -1,42 +1,42 @@
 ---
 description: >-
-  Problem: My validator is running behind a dynamic IP address and this causes connectivity issues with other validators when my dynamic IP address changes.
+  問題: 私のバリデータは、動的なIPアドレスの後ろで実行されており、動的なIPアドレスが変更されると、他のバリデータとの接続の問題が発生します。
 ---
 
-# How to setup dynamic DNS \(DDNS\)
+# 動的DNS \(DDNS\) のセットアップ方法
 
-## ⏩ Quick steps guide
-
-{% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
-{% endhint %}
-
-### 🗡 Why do I need a dynamic DNS service?
-
-* Most internet connections are through a dynamic IP address and can change weekly or even daily.
-* Frequent IP changes can make it difficult to host services such as a validator.
-* As a workaround, you can use a DDNS \(Dynamic DNS\) service.
-* Using a subdomain \(i.e. mySubDomain.duckdns.org\), you relate this to your latest dynamic IP address.
-* Periodically, say every 5 minutes, your computer updates a subdomain with your latest dynamic IP address.
-* Other validators or users would find you via the subdomain, instead of IP address.
+## ⏩ クイックステップガイド
 
 {% hint style="info" %}
-There are many [alternative DDNS services](https://hackerspad.net/software/duck-dns/#alternatives) but seldom do they accept crypto donations like [Duck DNS](https://www.duckdns.org/).
+以下の手順は [mainnet ガイド](./) に沿っています。 適切な場合は、ファイル名とディレクトリの場所を調整する必要があります。 コアコンセプトは同じままです。
 {% endhint %}
 
-### 🤖 Minimum System Requirements
+### 🗡 ダイナミックDNSサービスが必要なのはなぜですか?
+
+* ほとんどのインターネット接続は動的なIPアドレスを介しており、毎週または毎日変更することができます。
+* 頻繁な IP の変更は、バリデータなどのサービスのホストを困難にする可能性があります。
+* 回避策として、DDNS(Dynamic DNS)サービスを利用できます。
+* サブドメイン \(すなわち、mySubDomain.duckdns.org\) を使用して、これを最新の動的IPアドレスと関連付けます。
+* 5分ごとに、最新の動的IPアドレスを使用してサブドメインを更新します。
+* 他のバリデータやユーザーは、IPアドレスの代わりにサブドメインを介してあなたを見つけるでしょう。
+
+{% hint style="info" %}
+多くの [代替のDDNSサービス](https://hackerspad.net/software/duck-dns/#alternatives) がありますが、めったに [Duck DNS](https://www.duckdns.org/)のような暗号化寄付を受け入れません。
+{% endhint %}
+
+### 🤖 システム要件
 
 * Linux cron
 
-### 🚧 How to Configure the DDNS
+### 🚧 DDNSを設定する方法
 
-For the purpose of this tutorial, we will be using [DuckDNS.org](https://www.duckdns.org/install.jsp)
+このチュートリアルでは、 [DuckDNS.org](https://www.duckdns.org/install.jsp) を使用します。
 
-1. Sign in and create an account with your preferred social media login.
+1. サインインし、お好みのソーシャルメディアのログインでアカウントを作成します。
 
-2. Follow the instructions on[ how to setup duckdns for linux cron.](https://www.duckdns.org/install.jsp)
+2. [ linux cronのダックドンを設定する方法についての指示に従ってください。](https://www.duckdns.org/install.jsp)
 
-3. Configure the **beacon-chain** to use your new DDNS subdomain.
+3. 新しい DDNSサブドメインを使用するには、 **beacon-chain** を設定します。
 
 {% tabs %}
 {% tab title="Prysm" %}
@@ -48,46 +48,46 @@ sudo nano /etc/systemd/system/beacon-chain.service
 --p2p-host-dns <SUBDOMAIN>
 
 # Example of what ExecStart could look like.
-# prysm.sh beacon-chain --mainnet --p2p-host-dns mySubDomain.duckdns.org
+# prysm.sh beacon-chain --mainnet -p2p-host-dns mySubDomain.duckdns. rg
 
-# Reload the new unit file
+# 新しいユニットファイルをリロードする
 sudo systemctl daemon-reload
 
-# Restart your beacon-chain
+# ビーコンチェーンを再起動する
 sudo systemctl restart beacon-chain
 ```
 {% endtab %}
 {% endtabs %}
 
 {% hint style="success" %}
-Nice work. You're running a DDNS now.
+よくやった。 現在DDNSを実行しています。
 {% endhint %}
 
 {% hint style="info" %}
-Be sure to familiarize yourself with the [official docs and faqs.](https://www.duckdns.org/faqs.jsp)
+[公式ドキュメントとFAQ](https://www.duckdns.org/faqs.jsp)に慣れてください。
 {% endhint %}
 
-## 🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+## 🤖 バリデータを作成してステークを開始 <a id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### 私たちの [メインネットガイド](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) 、 [テストネットガイド](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet)についてはこちらをご覧ください。 <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨
+おめでとうございます。ガイドが完成しました。 ✨
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
+私たちのガイドが役に立ちましたか？ ヒント付きのシグナルを送信してください。アップデートを続けます。
 
-It really energizes us to keep creating the best crypto guides.
+最高の暗号ガイドを作成し続けることは、本当に私たちに力を与えてくれます。
 
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
+[coint.eeを使用して、寄付](https://cointr.ee/coincashew) アドレスを見つけてください。 🙏
 
-Any feedback and all pull requests much appreciated. 🌛
+どんなフィードバックとすべてのプルリクエストは非常に高く評価されます。 🌛
 
-Hang out and chat with fellow stakers on Discord @
+Discordで仲間のステーカーとチャットしましょう @
 
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
+<unk>[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
 {% endhint %}
 
-## 🧩 Reference Material
+## 🧩 リファレンス資料
 
 {% embed url="https://www.duckdns.org/install.jsp" %}
 
