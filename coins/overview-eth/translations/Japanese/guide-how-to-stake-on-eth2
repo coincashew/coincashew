@@ -1,14 +1,14 @@
 ---
 description: >-
-  Become a validator and help secure eth2, a proof-of-stake blockchain. Anyone with 32 ETH can join.
+  検証者になり、eth2、プルーフ・オブ・ステーク・ブロックチェーンの安全性を確保するのに役立ちます。 ETH32をお持ちの方なら誰でも参加できます。
 ---
 
-# Guide: How to stake on ETH2 Mainnet with Prysm on Ubuntu
+# ガイド:Ubuntu上でPrysmでETH2 Mainnetを投資する方法
 
 {% hint style="danger" %}
-**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+**Nov 24 2020 Update**: [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
 
-Instructions below are now deprecated and for reference only.
+以下の手順は廃止予定となり、参照のみになりました。
 {% endhint %}
 
 
@@ -22,98 +22,98 @@ Instructions below are now deprecated and for reference only.
 
 
 {% hint style="info" %}
-[Prysm](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com/), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
+[Prysm](https://github.com/prysmaticlabs/prysm) は、使いやすさ、セキュリティ、および信頼性に焦点を当てた、Ethereum 2.0プロトコルのGo実装です。 Prysmは、クライアントの開発に唯一の焦点を当てている [Prysmatic Labs](https://prysmaticlabs.com/)によって開発されました。 PrismはGoに書かれており、GPL-3.0ライセンスの下でリリースされています。
 {% endhint %}
 
-## 🏁 0. Prerequisites
+## 🏁 0. 前提条件
 
-### 👩💻 Skills for operating a eth2 validator and beacon node
+### 👩💻 eth2 バリデータとビーコンノードを操作するためのスキル
 
-As a validator for eth2, you will typically have the following abilities:
+eth2 のバリデータとして、通常、以下のような能力があります。
 
-* operational knowledge of how to set up, run and maintain a eth2 beacon node and validator continuously
-* a commitment to maintain your validator 24/7/365
-* basic operating system skills
-* have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
-* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com/)
-* and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
+* eth2ビーコンノードと検証器の設置方法、実行、維持方法に関する運用上の知識
+* 24時間年中無休のバリデータを維持するという約束です
+* 基本的なオペレーティングシステムのスキル
+* has known beginners for Beginners' by Superphiz ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
+* [Eth2 Study Master course](https://ethereumstudymaster.com/) に合格または登録されています
+* そして、 [8 Things Every Eth2 validatorが知っておくべきである](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
-### 🎗 **Minimum Setup Requirements**
+### 🎗 **最低設定要件**
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **Processor:** Dual core CPU, Intel Core i5–760 or AMD FX-8100 or better
+* **オペレーティングシステム:** 64 ビット Linux \(i.) Ubuntu 20.04 LTS\)
+* **プロセッサ:** デュアルコア CPU、Intel Core i5–760 または AMD FX-8100 以上
 * **Memory:** 8GB RAM
-* **Storage:** 20GB SSD
-* **Internet:** Broadband internet connection with speeds at least 1 Mbps.
-* **Power:** Reliable electrical power.
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
-* **Wallet**: Metamask installed
+* **ストレージ:** 20GB SSD
+* **インターネット:** 少なくとも1 Mbpsの速度でブロードバンドのインターネット接続。
+* **電力:** 信頼性の高い電力。
+* **ETH残高:** 少なくとも32 ETHといくつかのETHをデポジット取引手数料として
+* **ウォレット**: メタマスクがインストールされました
 
-### 🏋♂ Recommended Hardware Setup
+### 🏋♂ 推奨ハードウェア設定
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
-* **Memory:** 16 GB RAM or more
-* **Storage:** 1TB SSD or more
-* **Internet:** Broadband internet connections with speeds at least 10 Mbps
-* **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
-* **Wallet**: Metamask installed
+* **オペレーティングシステム:** 64 ビット Linux \(i.) Ubuntu 20.04 LTS\)
+* **プロセッサ:** クワッドコア CPU、Intel Core i7-4770 または AMD FX-8310 以上
+* **メモリ:** 16 GB RAM 以上
+* **ストレージ:** 1TB SSD 以上
+* **インターネット:** 10Mbps以上の速度でブロードバンドインターネット接続
+* **電源:** 無停電電源\(UPS\) による信頼性の高い電力
+* **ETH残高:** 少なくとも32 ETHといくつかのETHをデポジット取引手数料として
+* **ウォレット**: メタマスクがインストールされました
 
 {% hint style="warning" %}
-✨ **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your mainnet validator.
+✨ **Pro Validator Tip**: OS、VM、またはマシンの新しいインスタンスから始めることを強くお勧めします。 mainnet バリデータに testnet キー、財布、データベースを再利用しないことで、頭痛を避けます。
 {% endhint %}
 
-### 🔓 Recommended eth2 validator Security Best Practices
+### 🔓 推奨されるeth2バリデータセキュリティのベストプラクティス。
 
-If you need ideas or a reminder on how to secure your validator, refer to
+バリデータを保護するためのアイデアやリマインダーが必要な場合は、こちらを参照してください
 
 {% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
 
 ### 🛠 Setup Ubuntu
 
-If you need to install Ubuntu, refer to
+Ubuntuをインストールする必要がある場合は、
 
 {% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
 
-### 🎭 Setup Metamask
+### 🎭 メタマスクの設定
 
-If you need to install Metamask, refer to
+メタマスクをインストールする必要がある場合は、
 
 {% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
 
-## 🌱 1. Buy/exchange or consolidate ETH
+## 🌱 1. ETHの購入/交換/統合
 
 {% hint style="info" %}
-Every 32 ETH you own allows you to make 1 validator. You can run thousands of validators with your beacon node.
+あなたが所有するすべての32ETHは、1バリデータを作成することができます。 ビーコンノードで何千ものバリデータを実行できます。
 {% endhint %}
 
-Your ETH \(or multiples of 32 ETH\) should be consolidated into a single address accessible with Metamask.
+ETH \(または32 ETHの倍数) は、Metamask でアクセス可能な単一のアドレスに統合する必要があります。
 
-If you need to buy/exchange or top up your ETH to a multiple of 32, check out:
+ETHを購入/交換する必要がある場合、もしくはETHを32の倍数に補充する必要がある場合は、以下をご覧ください:
 
 {% page-ref page="guide-how-to-buy-eth.md" %}
 
-## 👩💻 2. Signup to be a validator at the Launchpad
+## 👩💻 2. Launchpadでバリデータにサインアップする
 
-1. Install dependencies, the ethereum foundation deposit tool and generate your two sets of key pairs.
+1. 依存関係、イーサリアム財団デポジットツールをインストールし、キーペアのあなたの2セットを生成します。
 
 {% hint style="info" %}
-Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
+各バリデータには2つのキーペアがあります。 **署名キー** と **引き出しキー** これらのキーは 1 つのニーモニックフレーズから派生します。 [キーについての詳細はこちら](https://blog.ethereum.org/2020/05/21/keys/)
 {% endhint %}
 
-You have the choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source.
+ビルド済みの [イーサリアム財団デポジットツール](https://github.com/ethereum/eth2.0-deposit-cli) をダウンロードするか、ソースからビルドするかを選択できます。
 
 {% tabs %}
 {% tab title="Pre-built eth2deposit-cli" %}
-Download eth2deposit-cli.
+eth2deposit-cliをダウンロード
 
 ```bash
 cd $HOME
-wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.0.0/eth2deposit-cli-9310de0-linux-amd64.tar.gz
+wget https://github.com/eth2.0-deposit-cli/releases/download/v1.0.0/eth2deposit-cli-9310de0-linux-amd64.tar.gz
 ```
 
-Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
+SHA256 チェックサムが、 [リリース ページ](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0) のチェックサムと一致することを確認します。
 
 ```bash
 sha256sum eth2deposit-cli-9310de0-linux-amd64.tar.gz 
@@ -121,14 +121,14 @@ sha256sum eth2deposit-cli-9310de0-linux-amd64.tar.gz
 # b09da136895a7f77a4b430924ea2ae5827fa47b2bf444c4ea6fcfac5b04b8c8a
 ```
 
-Extract the archive.
+アーカイブを展開します。
 
 ```text
 tar -xvf eth2deposit-cli-9310de0-linux-amd64.tar.gz
 cd eth2deposit-cli-9310de0-linux-amd64
 ```
 
-Make a new mnemonic.
+新しいニーモニックを作ります。
 
 ```text
 ./deposit new-mnemonic --chain mainnet
@@ -136,24 +136,24 @@ Make a new mnemonic.
 {% endtab %}
 
 {% tab title="Build from source code" %}
-Install dependencies.
+依存関係のインストール
 
 ```text
 sudo apt update
 sudo apt install python3-pip git -y
 ```
 
-Download source code and install.
+ソースコードをダウンロードしてインストールします。
 
 ```text
 mkdir ~/git
 cd ~/git
-git clone https://github.com/ethereum/eth2.0-deposit-cli.git
+git clone https://github.com/eth2.0-deposit-cli.git
 cd eth2.0-deposit-cli
 sudo ./deposit.sh install
 ```
 
-Make a new mnemonic.
+新しいニーモニックを作ります。
 
 ```text
 ./deposit.sh new-mnemonic --chain mainnet
@@ -162,64 +162,64 @@ Make a new mnemonic.
 
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-🔥**\[ Optional \] Pro Security Tip**: Run the eth2deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine**.
+🔥**\[ Optional \] Pro Security Tip**: eth2deposit-cli ツールを実行し、 **エアーが接続されたオフラインマシン** でバリデータキーの **ニーモニックシード** を生成します。
 
-You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine.
+USBキーを介して、オンラインマシンからエアーラップされたオフラインマシンに組み込まれたeth2deposit-cli バイナリをコピーできます。
 
-* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits.
-* Physically isolated from the rest of your network.
-* Must not have a network connection, wired or wireless.
-* Is not a VM on a machine with a network connection.
-* Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29).
+* キーロギング攻撃、マルウェア/ウイルスベースの攻撃、その他のファイアウォールやセキュリティエクスプロイトから保護します。
+* ネットワークの他の部分から物理的に分離されます。
+* ネットワーク接続、有線または無線接続を使用しないでください。
+* ネットワーク接続のあるマシン上のVMではありません。
+* [wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29) での空気ギャップについてもっと詳しく知る。
 {% endhint %}
 {% endtab %}
 {% endtabs %}
 
-1. Follow the prompts and pick a password. Write down your mnemonic and keep this safe and **offline**.
-2. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
-3. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
-4. Connect to the launchpad with your Metamask wallet, review and accept terms.
-5. Confirm the transaction\(s\). There's one deposit transaction of 32 ETH for each validator.
+1. 指示に従って、パスワードを選択します。 あなたのニーモニックを書き留めて、この安全と **オフライン**を維持してください。
+2. [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) の手順に従って、完了したばかりの手順をスキップします。 eth2フェーズ0の概要材料を研究する。 eth2を理解することが成功の鍵です!
+3. `validator_keys` ディレクトリにある `deposit_data-#########.json` をアップロードします。
+4. メタマスクウォレット、レビューと受け入れ条件でランチパッドに接続します。
+5. トランザクションを確認\(s\). バリデーターごとに32ETHのデポジットトランザクションがあります。
 
 {% hint style="info" %}
-Your transaction is sending and depositing your ETH to the [official ETH2 deposit contract address. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
+あなたの取引はあなたのETHを [公式ETH2入金契約アドレスに送金します。 ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
 
 **Check**, _double-check_, _**triple-check**_ that the official Eth2 deposit contract address is correct.[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
 {% endhint %}
 
 {% hint style="danger" %}
-Be sure to write down or record your mnemonic seed **offline**. _Not email. Not cloud._
+書き留めるか、ニーモニックシード **オフライン**を記録してください。 _電子メールではありません。 クラウドではありません。_
 
-Make **offline backups**, such as to a USB key, of your **`validator_keys`** \`\`directory.
+****オフラインバックアップ **`validator_keys`** \`\`ディレクトリのUSBキーなどを作成します。
 {% endhint %}
 
 ## 🛸 3. Install a ETH1 node
 
 {% hint style="info" %}
-Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
+Ethereum 2.0は、32 ETHバリデータデポジットを監視するためにEthereum 1.0への接続が必要です。 独自のEthereum 1.0ノードをホストすることは、分散化を最大化し、Infuraなどの第三者への依存を最小限に抑える最良の方法です。
 {% endhint %}
 
 {% hint style="warning" %}
-The subsequent steps assume you have completed the [best practices security guide](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
+その後の手順は、 [ベストプラクティスのセキュリティガイド](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md) を完了したと仮定します。
 {% endhint %}
 
 Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/)**.**
 
 {% tabs %}
 {% tab title="OpenEthereum \(Parity\)" %}
-#### 🤖 Install and run OpenEthereum.
+#### 🤖 OpenEthereumをインストールして実行します。
 
 ```text
-mkdir ~/openethereum && cd ~/openethereum
-wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
-unzip openethereum*.zip
-chmod +x openethereum
-rm openethereum*.zip
+mkdir ~/openetherum && cd ~/openethereum
+wget https://github.com/openetherum/openetherum/releases/download/v3.0.1/openeterum-linux-v3.0.1.zip
+unzip openeterum*zip
+chmod +x openethereum*.zip
+rm openetherum*.zip
 ```
 
-​ ⚙ **Setup and configure systemd**
+<unk> ⚙ **systemdの設定と設定**
 
-Run the following to create a **unit file** to define your `eth1.service` configuration.
+**eth1.service** の設定を定義する `ユニットファイル` を作成するには、以下を実行します。
 
 ```bash
 cat > $HOME/eth1.service << EOF 
@@ -239,7 +239,7 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+ユニットファイルを `/etc/systemd/system` に移動し、アクセス許可を与えます。
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
@@ -249,14 +249,14 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-Run the following to enable auto-start at boot time.
+起動時に自動起動を有効にするには、以下を実行します。
 
 ```text
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
-#### ⛓ Start OpenEthereum on mainnet.
+#### ⛓ mainnetでOpenEthereumを開始します。
 
 ```text
 sudo systemctl start eth1
@@ -264,7 +264,7 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Geth" %}
-#### 🧬 Install from the repository.
+#### 🧬 リポジトリからインストールします。
 
 ```text
 sudo add-apt-repository -y ppa:ethereum/ethereum
@@ -272,9 +272,9 @@ sudo apt-get update -y
 sudo apt-get install ethereum -y
 ```
 
-⚙ **Setup and configure systemd**
+⚙ **systemdの設定と設定**
 
-Run the following to create a **unit file** to define your `eth1.service` configuration.
+**eth1.service** の設定を定義する `ユニットファイル` を作成するには、以下を実行します。
 
 ```bash
 cat > $HOME/eth1.service << EOF 
@@ -293,21 +293,21 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+ユニットファイルを `/etc/systemd/system` に移動し、アクセス許可を与えます。
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-Run the following to enable auto-start at boot time.
+起動時に自動起動を有効にするには、以下を実行します。
 
 ```text
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
-#### ⛓ Start geth on mainnet.
+#### ⛓ mainnet でgeth を開始します。
 
 ```text
 sudo systemctl start eth1
@@ -315,13 +315,13 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Besu" %}
-#### 🧬 Install java dependency.
+#### 🧬 Java の依存関係をインストールします。
 
 ```text
 sudo apt install openjdk-11-jdk
 ```
 
-#### 🌜 Download and unzip Besu.
+#### 🌜 Besuをダウンロードして解凍します。
 
 ```text
 cd
@@ -331,9 +331,9 @@ rm besu.tar.gz
 mv besu-1.5.0 besu
 ```
 
-⚙ **Setup and configure systemd**
+⚙ **systemdの設定と設定**
 
-Run the following to create a **unit file** to define your `eth1.service` configuration.
+**eth1.service** の設定を定義する `ユニットファイル` を作成するには、以下を実行します。
 
 ```bash
 cat > $HOME/eth1.service << EOF 
@@ -353,21 +353,21 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+ユニットファイルを `/etc/systemd/system` に移動し、アクセス許可を与えます。
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-Run the following to enable auto-start at boot time.
+起動時に自動起動を有効にするには、以下を実行します。
 
 ```text
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
-#### ⛓ Start besu on mainnet.
+#### ⛓ mainnet でbesuを開始します。
 
 ```text
 sudo systemctl start eth1
@@ -375,48 +375,48 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Nethermind" %}
-#### ⚙ Install dependencies.
+#### ⚙ 依存関係をインストールします。
 
 ```text
 sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
 ```
 
-#### 🌜 Download and unzip Nethermind.
+#### 🌜 ネザーマインドをダウンロードして解凍します。
 
 ```text
 mkdir ~/nethermind && cd ~/nethermind
-wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
+wget -O nethermind.zip https://netdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
 unzip nethermind.zip
 rm nethermind.zip
 ```
 
-#### 🛸 Launch Nethermind.
+#### 🛸 ネザーマインドを起動します。
 
 ```text
-./Nethermind.Launcher
+./Netherminde.Launcher
 ```
 
-* Select `Ethereum Node`
-* Select `Ethereum (mainnet)` then select `Fast sync`
-* Yes to enable web3 / JSON RPC
-* Accept default IP
-* Skip ethstats registration
+* `イーサリアムノード`を選択
+* `Ethereum (mainnet)` を選択し、 `Fast sync` を選択します
+* Web3 / JSON RPCを有効にする
+* 既定のIPを承認する
+* ethstatsの登録をスキップ
 {% endtab %}
 
 {% tab title="Minimum Hardware Setup" %}
 {% hint style="info" %}
-Infura is suitable for limited disk space setups. Always run your own full eth1 node when possible.
+無限のディスク領域の設定に適しています。 可能な場合は、常に独自のフルeth1ノードを実行します。
 {% endhint %}
 
-Sign up for an API access key at [https://infura.io/](https://infura.io/)
+[https://infura.io/](https://infura.io/) の API アクセスキーにサインアップ
 
-1. Sign up for a free account.
-2. Confirm your email address.
-3. Visit your dashboard [https://infura.io/dashboard](https://infura.io/dashboard)
-4. Create a project, give it a name.
-5. Select **Mainnet** as the ENDPOINT
-6. Copy your API key.
-7. Update the parameter **http-web3provider** in the **start beacon chain** section.
+1. 無料アカウントにサインアップします。
+2. メールアドレスを確認してください。
+3. ダッシュボード [https://infura.io/dashboard](https://infura.io/dashboard) をご覧ください
+4. プロジェクトを作成し、名前を付けます。
+5. ENDPOINTとして **Mainnet** を選択します
+6. API キーをコピーします。
+7. **beacon chain** セクションのパラメータ **http-web3provider** を更新する。
 
 ```bash
 #example parameter
@@ -428,27 +428,27 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 
 
 {% hint style="info" %}
-Syncing the eth1 node could take up to 24 hour.
+eth1ノードの同期には最大24時間かかる場合があります。
 {% endhint %}
 
 {% hint style="success" %}
-Your eth1 node is fully sync'd when these events occur.
+eth1 ノードは、これらのイベントが発生したときに完全に同期されます。
 
 * **`OpenEthereum:`** `Imported #<block number>`
-* **`Geth:`** `Imported new chain segment`
-* **`Besu:`** `Imported #<block number>`
-* **`Nethermind:`** `No longer syncing Old Headers`
+* **`Geth:`** `新しいチェーンセグメントをインポート`
+* **`Besu:`** `インポート済み #<block number>`
+* **`Nethermind:`** `古いヘッダを同期しなくなりました`
 {% endhint %}
 
-#### 🛠 Helpful eth1.service commands
+#### 🛠 eth1.service commands
 
-​​ 🗒 **To view and follow eth1 logs**
+<unk> <unk> 🗒 **eth1ログを表示してフォローする**
 
 ```text
 journalctl -u eth1 -f
 ```
 
-🗒 **To stop eth1 service**
+🗒 **eth1 サービスを停止するには**
 
 ```text
 sudo systemctl stop eth1
@@ -466,71 +466,71 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 ```
 
 {% hint style="info" %}
-Prysm is a Ethereum 2.0 client and it comes in two components.
+PrysmはEthereum 2.0クライアントであり、2つのコンポーネントがあります。
 
-**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
+**Beacon chain client** - Beacon chain, validator shufflingなどの状態の管理を担当。
 
-**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
+**Validator クライアント** - ビーコンチェーンとシャードチェーンで新しいブロックと認証を生成する責任を負う。
 {% endhint %}
 
-## 🔥 5. Configure port forwarding and/or firewall
+## 🔥 5. ポート転送やファイアウォールの設定
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+ネットワーク設定またはクラウドプロバイダ設定に固有の [バリデータのファイアウォールポートがオープンで到達可能であることを確認してください。](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
-* **Prysm beacon chain node** will use port 12000 for udp and port 13000 for tcp
-* **eth1** node requires port 30303 for tcp and udp
+* **Prysm beacon chain node** は udp にポート 12000 を tcp に使用する
+* **eth1** 節点は、tcpとudp のポート30303が必要です
 
 {% hint style="info" %}
-✨ **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
+✨ **ポート転送 ヒント:** ポートをバリデータに転送して開く必要があります。 [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) または [https://canyouseeme.org/](https://canyouseeme.org/) で動作していることを確認してください。
 {% endhint %}
 
-## 🎩 6. Import validator key
+## 🎩 6. バリデータキーをインポート
 
-Choose the correct command depending on how you installed **eth2deposit-cli.**
+**eth2deposit-cliのインストール方法に応じて正しいコマンドを選択します。**
 
 {% tabs %}
 {% tab title="Pre-built eth2deposit-cli" %}
 ```bash
-$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/eth2deposit-cli-9310de0-linux-amd64/validator_keys
+$HOME/prysm/prysm.sh バリデータアカウントのインポート --keys-dir=$HOME/eth2deposit-cli-9310de0-linux-amd64/validator_keys
 ```
 {% endtab %}
 
 {% tab title="Built from source code" %}
 ```bash
-$HOME/prysm/prysm.sh validator accounts import --keys-dir=$HOME/git/eth2.0-deposit-cli/validator_keys
+$HOME/prysm/prysm.sh バリデータアカウントのインポート --keys-dir=$HOME/git/eth2.0-deposit-cli/validator_keys
 ```
 {% endtab %}
 {% endtabs %}
 
-Accept default wallet location, enter a new password to encrypt your wallet and enter the password for your imported accounts.
+デフォルトのウォレットの場所を承認し、新しいパスワードを入力してウォレットを暗号化し、インポートしたアカウントのパスワードを入力します。
 
 {% hint style="danger" %}
-**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+**警告**: 他のリンクを有効にするためには、元のキーを使用しないでください。さもないと、SLASHEDを取得します。
 {% endhint %}
 
-## 🏂 7. Start the beacon chain
+## 🏂 7. ビーコンチェーンを開始する
 
 {% hint style="warning" %}
-If you participated in any of the prior test nets, you need to clear the database.
+以前のテストネットに参加した場合は、データベースをクリアする必要があります。
 
 ```bash
-$HOME/prysm/prysm.sh beacon-chain --clear-db
+$HOME/prysm/prysm.sh beacon-chain -clear-db
 ```
 {% endhint %}
 
-Your choice of running a beacon chain and validator manually from command line or automatically with systemd.
+ビーコンチェーンとバリデータをコマンドラインから手動で実行するか、自動的にシステムで実行するかを選択します。
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
-#### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+#### 🍰 あなたのビーコンチェーンとバリデータに systemd を使用する利点 <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
-1. Auto-start your beacon chain when the computer reboots due to maintenance, power outage, etc.
-2. Automatically restart crashed beacon chain processes.
-3. Maximize your beacon chain up-time and performance.
+1. メンテナンス、停電などによるコンピュータの再起動時にビーコンチェーンを自動起動します。
+2. クラッシュしたビーコンチェーンプロセスを自動的に再起動します。
+3. ビーコンチェーンの稼働時間とパフォーマンスを最大化します。
 
-#### 🛠 Setup Instructions
+#### 🛠 セットアップ手順
 
-Run the following to create a **unit file** to define your`beacon-chain.service` configuration.
+**beacon-chain.service** の設定を定義するために、次のように`ユニットファイル` を作成します。
 
 ```bash
 cat > $HOME/beacon-chain.service << EOF 
@@ -555,21 +555,21 @@ EOF
 ```
 
 {% hint style="info" %}
-Geth users can achieve higher performance with
+Geth ユーザーは以下でより高いパフォーマンスを達成できます。
 
 ```bash
 --http-web3provider=$HOME/.ethereum/geth.ipc
 ```
 {% endhint %}
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+ユニットファイルを `/etc/systemd/system` に移動し、アクセス許可を与えます。
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
 ```
 
-Run the following to enable auto-start at boot time and then start your beacon node service.
+起動時に自動起動を有効にし、ビーコンノードサービスを開始するには、以下を実行します。
 
 ```text
 sudo systemctl daemon-reload
@@ -578,46 +578,46 @@ sudo systemctl start beacon-chain
 ```
 
 {% hint style="success" %}
-Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+よくやった。 あなたのビーコンチェーンは、システムの信頼性と堅牢性によって管理されています。 systemdを使用するためのコマンドを以下に示します。
 {% endhint %}
 
-### 🛠 Some helpful systemd commands
+### 🛠 systemd コマンドをいくつか使います。
 
-#### ✅ Check whether the beacon chain is active
+#### ✅ビーコンチェーンがアクティブかどうかを確認します
 
 ```text
 sudo systemctl is-active beacon-chain
 ```
 
-#### 🔎 View the status of the beacon chain
+#### 🔎 ビーコンチェーンの状態を表示
 
 ```text
 sudo systemctl status beacon-chain
 ```
 
-#### 🔄 Restarting the beacon chain
+#### 🔄 ビーコンチェーンを再起動する
 
 ```text
 sudo systemctl reload-or-restart beacon-chain
 ```
 
-#### 🛑 Stopping the beacon chain
+#### 🛑 ビーコンチェーンを停止します
 
 ```text
 sudo systemctl stop beacon-chain
 ```
 
-#### 🗒 Viewing and filtering logs
+#### 🗒 ログを表示およびフィルタリングする
 
 ```bash
 journalctl --unit=beacon-chain --since=yesterday
 journalctl --unit=beacon-chain --since=today
-journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+journctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 {% endtab %}
 
 {% tab title="CLI - Manual" %}
-In a new terminal, start the beacon chain.
+新しい端末でビーコンチェーンを開始します。
 
 ```bash
 $HOME/prysm/prysm.sh beacon-chain \
@@ -628,7 +628,7 @@ $HOME/prysm/prysm.sh beacon-chain \
 ```
 
 {% hint style="info" %}
-Geth users can achieve higher performance with
+Geth ユーザーは以下でより高いパフォーマンスを達成できます。
 
 ```bash
 --http-web3provider=$HOME/.ethereum/geth.ipc
@@ -637,28 +637,28 @@ Geth users can achieve higher performance with
 {% endtab %}
 {% endtabs %}
 
-## 🧬 8. Start the validator <a id="9-start-the-validator"></a>
+## 🧬 8. バリデータを開始する <a id="9-start-the-validator"></a>
 
-Store your validator's password in a file and make it read-only.
+バリデータのパスワードをファイルに保存し、読み取り専用にします。
 
 ```bash
 echo "my_password_goes_here" > $HOME/.eth2validators/validators-password.txt
 sudo chmod 600 $HOME/.eth2validators/validators-password.txt
 ```
 
-Your choice of running a validator manually from command line or automatically with systemd.
+コマンドラインから手動で、またはsystemdで自動的にバリデータを実行することができます。
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
-#### 🍰 Benefits of using systemd for your validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
+#### 🍰 バリデータに systemd を使用する利点 <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
-1. Auto-start your validator when the computer reboots due to maintenance, power outage, etc.
-2. Automatically restart crashed validator processes.
-3. Maximize your validator up-time and performance.
+1. メンテナンス、停電などによりコンピュータが再起動すると、バリデータを自動的に開始します。
+2. クラッシュしたバリデータプロセスを自動的に再起動します。
+3. バリデータの稼働時間とパフォーマンスを最大化します。
 
-#### 🛠 Setup Instructions
+#### 🛠 セットアップ手順
 
-Run the following to create a **unit file** to define your`validator.service` configuration.
+**validator.service** の設定を定義する`ユニットファイル` を作成するには、以下を実行します。
 
 ```bash
 cat > $HOME/validator.service << EOF 
@@ -681,14 +681,14 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+ユニットファイルを `/etc/systemd/system` に移動し、アクセス許可を与えます。
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
 sudo chmod 644 /etc/systemd/system/validator.service
 ```
 
-Run the following to enable auto-start at boot time and then start your validator.
+起動時に自動起動を有効にし、バリデータを開始するには、以下を実行します。
 
 ```text
 sudo systemctl daemon-reload
@@ -696,43 +696,43 @@ sudo systemctl enable validator
 sudo systemctl start validator
 ```
 
-### 🛠 Some helpful systemd commands
+### 🛠 systemd コマンドをいくつか使います。
 
-#### ✅ Check whether the validator is active
+#### ✅バリデータが有効かどうかを確認します
 
 ```text
 sudo systemctl is-active validator
 ```
 
-#### 🔎 View the status of the validator
+#### 🔎 バリデータの状態を表示
 
 ```text
 sudo systemctl status validator
 ```
 
-#### 🔄 Restarting the validator
+#### 🔄 バリデータを再起動する
 
 ```text
 sudo systemctl reload-or-restart validator
 ```
 
-#### 🛑 Stopping the validator
+#### 🛑 バリデータの停止
 
 ```text
 sudo systemctl stop validator
 ```
 
-#### 🗄 Viewing and filtering logs
+#### :file_cabiet: ログの表示とフィルタリングを行う
 
 ```bash
 journalctl --unit=validator --since=yesterday
 journalctl --unit=validator --since=today
-journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
+journctl --unit=validator --since='2020-12-01 00:00:00' -until='2020-12-02 12:00:00:00'
 ```
 {% endtab %}
 
 {% tab title="CLI - Manual" %}
-In a new terminal, start the validator.
+新しい端末で、バリデータを開始します。
 
 ```bash
 $HOME/prysm/prysm.sh validator \
@@ -742,49 +742,49 @@ $HOME/prysm/prysm.sh validator \
 {% endtab %}
 {% endtabs %}
 
-Verify that your **validator public key** appears in the logs. Example below:
+**バリデータ公開キー** がログに表示されることを確認します。 以下の例：
 
 ```text
-INFO Enabled validator       voting_pubkey: 0x2374.....7121
+INFO Enabled validator voting_pubkey: 0x2374.....7121
 ```
 
 {% hint style="info" %}
-**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
+**Validator クライアント** - ビーコンチェーンとシャードチェーンで新しいブロックと認証を生成する責任を負う。
 
-**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
+**Beacon chain client** - Beacon chain, validator shufflingなどの状態の管理を担当。
 {% endhint %}
 
 {% hint style="success" %}
-Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 24 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards.
+おめでとうございます ビーコンチェーンの同期、検証、実行が完了したら、アクティベーションを待つだけです。 このプロセスには24時間かかります。 割り当てられると、ETH投資報酬を獲得しながら、バリデーターはブロックの作成と投票を開始します。
 
-Use [beaconcha.in](https://beaconcha.in/) and [register an account](https://beaconcha.in/register) to create alerts and track your validator's performance.
+[beaconcha.in](https://beaconcha.in/) を使用して [アカウント](https://beaconcha.in/register) を登録してアラートを作成し、バリデータのパフォーマンスを追跡します。
 {% endhint %}
 
-## 🕒 9. Time Synchronization
+## 🕒 9. 時刻同期
 
 {% hint style="info" %}
-Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
+ビーコンチェーンは認証を行い、ブロックを生成するために正確な時間に依存しています。 あなたのコンピュータの時間は0以内に実際のNTPまたはNTS時間に対して正確でなければなりません。 秒
 {% endhint %}
 
-Setup **Chrony** with the following guide.
+以下のガイドで **Chrony** をセットアップしてください。
 
 {% hint style="info" %}
-chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
+chronyはNetwork Time Protocolの実装であり、コンピュータの時刻をNTPと同期させるのに役立ちます。
 {% endhint %}
 
-## 🔎 10. Monitoring your validator with Grafana and Prometheus
+## 🔎 10. GrafanaとPrometheusでバリデータを監視する
 
-Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
+Prometheusは、これらのターゲットのメトリックHTTPエンドポイントをスクレイピングすることによって、監視対象からメトリックを収集する監視プラットフォームです。 [公式ドキュメントはこちらから入手できます。](https://prometheus.io/docs/introduction/overview/) Grafana は収集されたデータを視覚化するために使用されるダッシュボードです。
 
-### 🐣 10.1 Installation
+### 🐣 10.1 インストール
 
-Install prometheus and prometheus node exporter.
+prometheusとprometheusノードエクスポーターをインストールします。
 
 ```text
 sudo apt-get install -y prometheus prometheus-node-exporter
 ```
 
-Install grafana.
+Grafanaをインストールします。
 
 ```bash
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
@@ -793,7 +793,7 @@ sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
 sudo apt-get update && sudo apt-get install -y grafana
 ```
 
-Enable services so they start automatically.
+自動的に起動するようにサービスを有効にします。
 
 ```bash
 sudo systemctl enable grafana-server.service
@@ -801,20 +801,20 @@ sudo systemctl enable prometheus.service
 sudo systemctl enable prometheus-node-exporter.service
 ```
 
-Update **prometheus.yml** located in `/etc/prometheus/prometheus.yml`
+**prometheus.yml** を `/etc/prometheus/prometheus.yml にある` に更新する
 
 ```bash
 cat > $HOME/prometheus.yml << EOF
 global:
-  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  scrape_interval: 15s # デフォルトでは、15秒ごとにターゲットをスクレイプします。
 
-  # Attach these labels to any time series or alerts when communicating with
-  # external systems (federation, remote storage, Alertmanager).
+  #
+  # 外部システム (フェデレーション、リモートストレージ、Alertmanager) との通信時に、これらのラベルを任意の時系列またはアラートに接続します。
   external_labels:
     monitor: 'codelab-monitor'
 
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
+# スクレイプするエンドポイントを含むスクレイプ構成:
+# ここではプロメテウスそのものです。
 scrape_configs:
   - job_name: 'node_exporter'
     static_configs:
@@ -832,7 +832,7 @@ EOF
 sudo mv $HOME/prometheus.yml /etc/prometheus/prometheus.yml
 ```
 
-Finally, restart the services.
+最後に、サービスを再起動します。
 
 ```bash
 sudo systemctl restart grafana-server.service
@@ -840,95 +840,95 @@ sudo systemctl restart prometheus.service
 sudo systemctl restart prometheus-node-exporter.service
 ```
 
-Verify that the services are running properly:
+サービスが正常に実行されていることを確認します:
 
 ```text
 sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
 {% hint style="info" %}
-💡 **Reminder**: Ensure port 3000 is open on the firewall and/or port forwarded if you intend to view monitoring info from a different machine.
+💡 **リマインダー**: 別のマシンから監視情報を表示する場合は、ファイアウォールやポート転送時にポート3000が開いていることを確認します。
 {% endhint %}
 
-### 📶 10.2 Setting up Grafana Dashboards
+### :antera_bars: 10.2 Grafana ダッシュボードの設定
 
-1. Open [http://localhost:3000](http://localhost:3000) or [http://&lt;your](http://<your) validator's ip address&gt;:3000 in your local browser.
-2. Login with **admin** / **admin**
-3. Change password
-4. Click the **configuration gear** icon, then **Add data Source**
-5. Select **Prometheus**
-6. Set **Name** to **"Prometheus**"
-7. Set **URL** to [http://localhost:9090](http://localhost:9090)
-8. Click **Save & Test**
+1. ローカルブラウザで [http://localhost:3000](http://localhost:3000) または [http://&lt;your](http://<your) validator's ip address&gt;:3000 を開きます。
+2. **admin** / **admin** でログイン
+3. パスワードの変更
+4. **設定歯車** アイコンをクリックし、 **データソースを追加**
+5. **Prometheus** を選択してください
+6. **の名前** を **"Prometheus** " に設定する
+7. **URL** を [http://localhost:9090 に設定](http://localhost:9090)
+8. **保存 & テスト** をクリックします
 9. **Download and save** this [**json file**](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)**.** Or if you have more than 10 validators, use this [json file](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json).
-10. Click **Create +** icon &gt; **Import**
-11. Add dashboard by **Upload JSON file**
-12. Click the **Import** button.
+10. **Create +** icon &gt; **Import**
+11. **アップロードJSONファイル**でダッシュボードを追加
+12. **インポート** ボタンをクリックします。
 
-![Prysm dashboard](../../.gitbook/assets/prysm_dash.png)
+![Prysm ダッシュボード](../../.gitbook/assets/prysm_dash.png)
 
-### ⚠ 10.3 Setup Alert Notifications
+### ⚠ 10.3 アラート通知の設定
 
 {% hint style="info" %}
-Setup alerts to get notified if your validators go offline.
+バリデータがオフラインになった場合に通知を受け取るためのアラートを設定します。
 {% endhint %}
 
-Get notified of problems with your validators. Choose between email, telegram, discord or slack.
+バリデータに関する問題の通知を受け取ります。 電子メール、電報、discord、またはスラックのいずれかを選択します。
 
 {% tabs %}
 {% tab title="Email Notifications" %}
-1. Visit [https://beaconcha.in/](https://beaconcha.in/)
-2. Sign Up ****for an **account**
-3. Verify your **email**
-4. Search for your **validator's public address**
-5. Add validators to your watchlist by clicking the **bookmark symbol**.
+1. [https://beaconcha.in/](https://beaconcha.in/) をご覧ください
+2. **** **アカウント**に登録する
+3. **メールアドレス** を確認してください
+4. **バリデータの公開アドレス**を検索する
+5. **ブックマーク** をクリックして、ウォッチリストにバリデーターを追加します。
 {% endtab %}
 
 {% tab title="Telegram Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png)
-2. Click on **Add channel**.
-3. Give the notification channel a **name**.
-4. Select **Telegram** from the Type list.
-5. To complete the **Telegram API settings**, a Telegram channel and bot are required. For instructions on setting up a bot with `@Botfather`, see [this section](https://core.telegram.org/bots#6-botfather) of the Telegram documentation.
-6. Once completed, invite the bot to the newly created channel.
+1. Grafanaのメニューで、ベルアイコンの下にある **通知チャンネル** を選択します。 ![](../../.gitbook/assets/gra-noti.png)
+2. **Add channel** をクリックします。
+3. 通知チャンネルに **の名前** を付けます。
+4. タイプリストから **テレグラム** を選択します。
+5. **Telegram APIの設定**を完了するには、TelegramチャンネルとBotが必要です。 `@Botfather`でボットをセットアップする方法については、Telegramのドキュメントの [このセクション](https://core.telegram.org/bots#6-botfather) を参照してください。
+6. 完了したら、ボットを新しく作成したチャンネルに招待します。
 {% endtab %}
 
 {% tab title="Discord Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png)
-2. Click on **Add channel**.
-3. Add a **name** to the notification channel.
-4. Select **Discord** from the Type list.
-5. To complete the set up, a Discord server \(and a text channel available\) as well as a Webhook URL are required. For instructions on setting up a Discord's Webhooks, see [this section](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) of their documentation.
-6. Enter the Webhook **URL** in the Discord notification settings panel.
-7. Click **Send Test**, which will push a confirmation message to the Discord channel.
+1. Grafanaのメニューで、ベルアイコンの下にある **通知チャンネル** を選択します。 ![](../../.gitbook/assets/gra-noti.png)
+2. **Add channel** をクリックします。
+3. 通知チャンネルに **の名前** を追加します。
+4. タイプリストから **Discord** を選択します。
+5. 設定を完了するには、Discordサーバーの\(およびテキストチャンネルが利用可能\)とWebhookのURLが必要です。 Discordの Webhook の設定方法については、ドキュメントの [このセクション](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) を参照してください。
+6. Discordの通知設定パネルにWebhook **URL** を入力します。
+7. **Send Test**をクリックすると、Discordチャンネルに確認メッセージが送信されます。
 {% endtab %}
 
 {% tab title="Slack Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png)
-2. Click on **Add channel**.
-3. Add a **name** to the notification channel.
-4. Select **Slack** from the Type list.
-5. For instructions on setting up a Slack's Incoming Webhooks, see [this section](https://api.slack.com/messaging/webhooks) of their documentation.
-6. Enter the Slack Incoming Webhook URL in the **URL** field.
-7. Click **Send Test**, which will push a confirmation message to the Slack channel.
+1. Grafanaのメニューで、ベルアイコンの下にある **通知チャンネル** を選択します。 ![](../../.gitbook/assets/gra-noti.png)
+2. **Add channel** をクリックします。
+3. 通知チャンネルに **の名前** を追加します。
+4. **リストから** を選択します。
+5. Slack の Incoming Webhooks のセットアップ方法については、ドキュメントの [このセクション](https://api.slack.com/messaging/webhooks) を参照してください。
+6. Slack Incoming Webhook URL を **URL** フィールドに入力します。
+7. **Send Test**をクリックすると、Slackチャンネルに確認メッセージが送信されます。
 {% endtab %}
 {% endtabs %}
 
 {% hint style="success" %}
-🎉 Congrats on setting up your validator! You're good to go on eth2.0.
+🎉 バリデータの設定おめでとうございます！ あなたはeth2.0に行くのが良いです。
 
-Did you find our guide useful? Let us know with a tip and we'll keep updating it.
+私たちのガイドが役に立ちましたか？ ヒントを教えてください。アップデートを続けます。
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙌
+[coint.eeを使用して、寄付 ](https://cointr.ee/coincashew)アドレスを見つけてください。 🙌
 
-Any feedback and all pull requests much appreciated. 😃
+どんなフィードバックとすべてのプルリクエストは非常に高く評価されます。 😃
 
-Hang out and chat with fellow stakers on telegram @ [https://t.me/coincashew](https://t.me/coincashew) 🌛
+テレグラム@ [https://t.me/counterashew](https://t.me/coincashew) :first_quaret_moon_face:
 {% endhint %}
 
-## 🧙♂ 11. Updating Prysm
+## 🧙♂ 11. プライムを更新中
 
-Restart beacon chain and validator as per normal operating procedures.
+通常の操作手順に従ってビーコンチェーンとバリデータを再起動します。
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
@@ -940,27 +940,27 @@ sudo systemctl reload-or-restart validator
 
 {% tab title="CLI - Manual" %}
 ```bash
-#Control C to exit both your beacon-chain and validator processes 
-#Press up arrow and enter to restart.
+#コントロールCはビーコンチェーンとバリデータープロセスの両方を終了します 
+#矢印キーを押して再起動します。
 ```
 {% endtab %}
 {% endtabs %}
 
-## 🧩 12. Reference Material
+## 🧩 12. 参照資料
 
-Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
+このガイドを作成するための基礎となった以下のリンクで、立派な人々によって行われたハードワークを感謝します。
 
 {% embed url="https://discord.gg/KSA7rPr" %}
 
-{% embed url="https://launchpad.ethereum.org/" caption="" %}
+{% embed url="https://launchpad.etherum.org/" caption="" %}
 
-{% embed url="https://prylabs.net/participate" %}
+{% embed url="https://prylabs.net/participate " %}
 
 {% embed url="https://docs.prylabs.network/docs/getting-started/" %}
 
-## 🎉 13. Bonus Links
+## 🎉 13. ボーナスリンク
 
-### 🌰 CoinCashew Guides for other ETH2 Clients
+### :chestrnut: CoinCashewガイド 他のETH2クライアントのための
 
 {% page-ref page="guide-how-to-stake-on-eth2-with-lighthouse.md" %}
 
@@ -976,54 +976,54 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 {% embed url="https://beaconscan.com" caption="" %}
 
-### 🗒 Latest Eth2 Info
+### 🗒最新のEth2情報
 
 {% embed url="https://www.reddit.com/r/ethstaker" caption="" %}
 
-{% embed url="https://blog.ethereum.org" caption="" %}
+{% embed url="https://blog.etherum.org" caption="" %}
 
-{% embed url="http://invite.gg/ethstaker" caption="" %}
+{% embed url="http://invitegg/ethstaker" caption="" %}
 
 {% embed url="https://hackmd.io/@benjaminion/eth2\_news/" caption="" %}
 
-## 🔥 14. Additional Useful Tips
+## 🔥 14. 追加の役に立つヒント
 
-### 🛑 14.1 Voluntary exit a validator
+### 🛑 14.1 バリデータを任意に終了する
 
 {% hint style="info" %}
-Use this command to signal your intentions to stop validating with your validator. This means you no longer want to stake with your validator and want to turn off your node.
+このコマンドを使用して、バリデーターで検証を停止する意図を知らせます。 これは、もはやあなたのバリデータとステークしたくなくなり、ノードをオフにしたいことを意味します。
 
-* Voluntary exiting takes a minimum of 2048 epochs \(or ~9days\). There is a queue to exit and a delay before your validator is finally exited.
-* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again.
-* Your funds will not be available for withdrawal until phase 1.5 or later.
-* After your validator leaves the exit queue and is truely exited, it is safe to turn off your beacon node and validator.
+* 自発的な終了は、最低2048エポック\(または〜9日間\)かかります。 終了するキューがあり、バリデータが最終的に終了するまでの遅延があります。
+* フェーズ0でバリデータを終了すると、元に戻すことができなくなり、再度バリデーションを再開することはできません。
+* あなたの資金は、フェーズ1.5以降まで引き出しできません。
+* あなたのバリデータが終了キューを離れ、本当に終了したら、ビーコンノードとバリデータをオフにしても安全です。
 {% endhint %}
 
 ```bash
-$HOME/prysm/prysm.sh validator accounts voluntary-exit
+$HOME/prysm/prysm.sh バリデーターアカウントを自発的に終了
 ```
 
-### 🔐 14.2 Verify your mnemonic phrase
+### 🔐 14.2 ニーモニックフレーズを確認
 
-Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`
+eth2deposit-cli ツールを使用して、 `validator_keys` を復元して同じeth2キーペアを再生成できるようにします。
 
 ```bash
 ./deposit existing-mnemonic --chain mainnet
 ```
 
 {% hint style="info" %}
-When the **pubkey** is identical, this means your **keystore file** you correctly verified your mnemonic phrase. Other fields will be different because of salting.
+**pubkey** が同一である場合、これはあなたの **キーストアファイル** を正しく確認したことを意味します。 塩漬けのために他のフィールドは異なるでしょう。
 {% endhint %}
 
-### 🤖 14.3 Add additional validators
+### 🤖 14.3 バリデーターを追加する
 
-Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
+eth2deposit-cli ツールを使用して、新しい入金データファイルと `validator_keys` を作成することで、バリデータをさらに追加できます。
 
-For example, in case we originally created 3 validators but now wish to add 5 more validators, we could use the following command.
+たとえば、もともと3つのバリデータを作成しましたが、さらに5つのバリデータを追加したい場合は、以下のコマンドを使用できます。
 
 ```bash
 ./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
 
-Complete the steps of uploading the `deposit_data-#########.json` to the launch pad site.
+`deposit_data-#########.json` を発射台サイトにアップロードする手順を完了します。
 
