@@ -216,7 +216,7 @@ The subsequent steps assume you have completed the [best practices security guid
 🛑 Do not run your processes as **ROOT** user. 😱 
 {% endhint %}
 
-Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/) **or** [**Infura**](https://infura.io/)**.**
+Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/), [**Infura**](https://infura.io/) **or** [**Chainstack**](https://chainstack.com/)**.**
 
 {% tabs %}
 {% tab title="OpenEthereum \(Parity\)" %}
@@ -1089,7 +1089,7 @@ EOF
 ```
 
 {% hint style="warning" %}
-Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum and Infura ETH1 nodes are verified compatible.
+Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum, Infura and Chainstack ETH1 nodes are verified compatible.
 {% endhint %}
 
 Move the unit file to `/etc/systemd/system` 
@@ -3245,7 +3245,7 @@ EOF
 ```
 
 {% hint style="warning" %}
-Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum and Infura ETH1 nodes are verified compatible.
+Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum, Infura and Chainstack ETH1 nodes are verified compatible.
 {% endhint %}
 
 Move the unit file to `/etc/systemd/system` 
