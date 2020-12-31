@@ -745,7 +745,6 @@ echo startKesPeriod: ${startKesPeriod}
 
 **kes.vkey** をコールド環境にコピーします。
 
-**startKesPeriod**の値を適宜変更します。
 
 {% hint style="warning" %}
 [バージョン 1.19.0](https://github.com/input-output-hk/cardano-node/issues/1742)ではstartKesPeriodの値を\(kesPeriod-1\)に設定する必要があります。
@@ -754,6 +753,8 @@ echo startKesPeriod: ${startKesPeriod}
 {% hint style="info" %}
 ステークプールオペレータは、プールを実行する権限があることを確認するための運用証明書を発行する必要があります。証明書には、オペレータの署名が含まれプールに関する情報（アドレス、キーなど）が含まれます。
 {% endhint %}
+
+**<startKesPeriod>**の部分を上記で算出した数値（startKesPeriod:＊＊）に置き換えます。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -2290,6 +2291,8 @@ cardano-cli node key-gen-KES \
 kes.vkeyをコールド環境にコピーします。  
   
 次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;"startKesPeriod"&gt;に入力してからコマンドを送信してください。
+
+**<startKesPeriod>**の部分を上記で算出した数値（startKesPeriod:＊＊）に置き換えます。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
