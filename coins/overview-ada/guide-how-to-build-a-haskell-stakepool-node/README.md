@@ -1905,10 +1905,10 @@ As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pul
 {% endtabs %}
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **Critical step:** In order to be a functional stake pool ready to mint blocks, you must see the **TXs processed** number increasing. If not, review your topology file and ensure your relay buddies are well connected and ideally, minted some blocks.
+\*\*\*\*🔥 **Critical step:** In order to be a functional stake pool ready to mint blocks, you must see the **Processed  TX** number increasing in gLiveView. If not, review your topology file and ensure your **peers** \(or relay buddies\) are well connected and ideally, minted some blocks.
 {% endhint %}
 
-![](../../../.gitbook/assets/ada-tx-processed.png)
+![Processed TX must be positive in gLiveView. Must also have in / out connections.](../../../.gitbook/assets/in-out-connections.png)
 
 {% hint style="danger" %}
 \*\*\*\*🛑 **Critical Key Security Reminde**r: The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer. Namely, the following three files.
