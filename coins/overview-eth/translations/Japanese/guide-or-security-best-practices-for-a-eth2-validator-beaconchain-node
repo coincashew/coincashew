@@ -379,8 +379,6 @@ sudo systemctl restart fail2ban
   * Nimbus はポート 9000 tcp/udp を使用しています
   * ロデスタルはポート30607 tcpとポート9000udpを使用しています
 * ポート 30303 tcp/udp eth1 ノード
-* Grafana の 3,000 tcp ポート
-* Prometheusエクスポートデータのポート9090 tcp（任意）
 
 {% tabs %}
 {% tab title="Lighthouse" %}
