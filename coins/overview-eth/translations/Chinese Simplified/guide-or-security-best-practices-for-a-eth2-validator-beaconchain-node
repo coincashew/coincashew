@@ -379,8 +379,6 @@ sudo systemctl restart fail2ban
   * Nimbus使用端口 9000 tcp/udp
   * Lodestar使用端口 30607 tcp 和 9000 udp
 * 端口 303 tcp/udp eth1 节点
-* Grafana 的 3000 tcp 端口
-* Prometheus导出数据的端口 900 tcp \(optional\)
 
 {% tabs %}
 {% tab title="Lighthouse" %}
