@@ -379,8 +379,6 @@ Con cualquier instalación nueva, ufw está desactivado por defecto. Habilitarlo
   * Nimbus utiliza el puerto 9000 tcp/udp
   * Lodestar utiliza el puerto 30607 tcp y el puerto 9000 udp
 * Nodo 30303 tcp/udp eth1
-* Puerto 3000 tcp para Grafana
-* Puerto 9090 tcp para datos de exportación de Prometheus \(opcional\)
 
 {% tabs %}
 {% tab title="Lighthouse" %}
