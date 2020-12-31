@@ -194,6 +194,7 @@ nano cncli.sh
 POOL_ID="<Pool-ID>"
 POOL_VRF_SKEY="${CNODE_HOME}/vrf.skey"
 POOL_VRF_VKEY="${CNODE_HOME}/vrf.vkey"
+BATCH_AUTO_UPDATE=Y
 ```
 
 blocks.shファイルを編集します。
