@@ -600,6 +600,7 @@ gLiveViewは重要なノードステータス情報を表示し、systemdサー�
 Guild LiveViewをインストールします。
 
 ```bash
+mkdir $NODE_HOME/scripts
 cd $NODE_HOME/scripts
 sudo apt install bc tcptraceroute -y
 curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
@@ -608,24 +609,13 @@ chmod 755 gLiveView.sh
 ```
 
 **env** ファイルによってファイル構成を指定できます。  
-該当箇所の　**#**　を削除し、ご自身の環境に合わせたパスに書き換えます
 ```bash
-nano env
+sed -i env \
+    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
+    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
 
-```bash
-CCLI="/usr/local/bin/cardano-cli"
-CNODE_HOME=/home/<user_name>/cardano-my-node
-CNODE_PORT=<ノードのポート番号>
-CONFIG="${CNODE_HOME}/mainnet-config.json"
-SOCKET="${CNODE_HOME}/db/socket"
-TOPOLOGY="${CNODE_HOME}/mainnet-topology.json"
-LOG_DIR="${CNODE_HOME}/logs"
-DB_DIR="${CNODE_HOME}/db"
-EKG_PORT=12788
-```
-
-Run Guild Liveview.
+Guild Liveviewを起動します。
 
 ```text
 ./gLiveView.sh
