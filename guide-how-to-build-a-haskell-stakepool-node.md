@@ -2402,6 +2402,10 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
+cd $NODE_HOME
+```
+
+```bash
 cardano-cli stake-pool registration-certificate \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
