@@ -118,6 +118,13 @@ git checkout v0.5.5
 cargo install --path . --force
 cncli --version
 ```
+
+```bash
+sudo systemctl start cnode-cncli-sync.service
+sudo systemctl start cnode-cncli-validate.service
+sudo systemctl start cnode-cncli-leaderlog.service
+sudo systemctl start cnode-logmonitor.service
+```
 {% endhint %}
 
 ## 🏁 2. sqlite3をインストールする
