@@ -570,8 +570,8 @@ echo alias glive="$NODE_HOME/scripts/gLiveView.sh" >> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
-単語を入力するだけで、どこからでも起動できます。
-blocks・・・blocks.sh
-glive・・・gLiveView.sh
+単語を入力するだけで、どこからでも起動できます。  
+blocks・・・blocks.sh  
+glive・・・gLiveView.sh  
 
 {% endhint %}
