@@ -743,7 +743,7 @@ echo startKesPeriod: ${startKesPeriod}
 
 これにより、プール運用証明書を生成することができます。
 
-**kes.vkey** をコールド環境にコピーします。
+**kes.vkey** をエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
 
 {% hint style="warning" %}
@@ -769,7 +769,7 @@ cardano-cli node issue-op-cert \
 {% endtab %}
 {% endtabs %}
 
-**node.cert** をホット環境\(ブロックプロデューサーノード\)にコピーします。
+**node.cert** をブロックプロデューサノードのcardano-my-nodeディレクトリにコピーします。
 
 VRFペアキーを作成します。
 
@@ -1132,7 +1132,7 @@ rm -rf $NODE_HOME/cardano-wallet-shelley-2020.7.28
 
 次のステップは、あなたの支払いアドレスに送金する手順です。
 
-**payment.addr** をホット環境（ブロックプロデューサーノード）にコピーします。
+**payment.addr** をブロックプロデューサノードのcardano-my-nodeディレクトリにコピーします。
 
 {% tabs %}
 {% tab title="メインネット" %}
@@ -1222,7 +1222,7 @@ cardano-cli stake-address registration-certificate \
 {% endtab %}
 {% endtabs %}
 
-**stake.cert** をブロックプロデューサーノードにコピーします。
+**stake.cert** をブロックプロデューサーノードのcardano-my-nodeディレクトリにコピーします。
 ttlパラメータを設定するには、最新のスロット番号を取得する必要があります。
 
 {% tabs %}
@@ -1352,7 +1352,7 @@ cardano-cli transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-**tx.raw**をコールド環境にコピーします。
+**tx.raw**をエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
 paymentとstakeの秘密鍵でトランザクションファイルに署名します。
 
@@ -1369,7 +1369,7 @@ cardano-cli transaction sign \
 {% endtab %}
 {% endtabs %}
 
-**tx.signed**をブロックプロデューサーノードにコピーします。
+**tx.signed**をブロックプロデューサーノードcardano-my-nodeディレクトリにコピーします。
 
 署名されたトランザクションを送信します。
 
@@ -1482,7 +1482,7 @@ minPoolCostは 340000000 lovelace \(340 ADA\)です。
 **metadata-url**は64文字以内とし、あなたの環境に合わせて修正してください。
 {% endhint %}
 
-ブロックプロデューサーノードにある**vrf.vkey**をエアギャップオフラインマシンにコピーします。
+ブロックプロデューサーノードにある**vrf.vkey**をエアギャップオフラインマシンcardano-my-nodeディレクトリにコピーします。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -1522,7 +1522,7 @@ cardano-cli stake-address delegation-certificate \
 {% endtab %}
 {% endtabs %}
 
-**pool.cert**と**deleg.cert**をブロックプロデューサーノードにコピーします。
+**pool.cert**と**deleg.cert**をブロックプロデューサーノードcardano-my-nodeディレクトリにコピーします。
 
 {% hint style="info" %}
 自分のプールに資金を預けることを**Pledge\(誓約\)**と呼ばれます
@@ -1660,7 +1660,7 @@ cardano-cli transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-**tx.raw**をコールド環境へコピーします。
+**tx.raw**をエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
 トランザクションに署名します。
 
@@ -1678,7 +1678,7 @@ cardano-cli transaction sign \
 {% endtab %}
 {% endtabs %}
 
-**tx.signed**ブロックプロデューサーノードにコピーします。
+**tx.signed**ブロックプロデューサーノードcardano-my-nodeディレクトリにコピーします。
 
 トランザクションを送信します。
 
@@ -1705,7 +1705,7 @@ cat stakepoolid.txt
 {% endtab %}
 {% endtabs %}
 
-**stakepoolid.txt**をブロックプロデューサーノードへコピーします。
+**stakepoolid.txt**をブロックプロデューサーノードcardano-my-nodeディレクトリにコピーします。
 
 このファイルを用いて、自分のステークプールがブロックチェーンに登録されているか確認します。
 
@@ -2301,7 +2301,7 @@ cardano-cli node key-gen-KES \
 {% endtab %}
 {% endtabs %}
 
-kes.vkeyをコールド環境にコピーします。  
+kes.vkeyをエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。 
   
 次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;"startKesPeriod"&gt;に入力してからコマンドを送信してください。
 
@@ -2324,7 +2324,7 @@ chmod a-rwx $HOME/cold-keys
 {% endtabs %}
 
 {% hint style="danger" %}
-**node.cert** をブロックプロデューサーノードにコピーします。
+**node.cert** をブロックプロデューサーノードのcardano-my-nodeディレクトリにコピーします。
 {% endhint %}
 
 この手順を完了するには、ブロックプロデューサーノードを停止して再起動します。
@@ -2409,7 +2409,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 複数のリレーノードを設定する場合は [**項目12**](guide-how-to-build-a-haskell-stakepool-node.md#12-register-your-stake-pool) を参考にパラメーターを指定して下さい。  
   
-**poolMetaDataHash.txt** をエアギャップオフラインマシンへコピーします。
+**poolMetaDataHash.txt** をエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
 {% hint style="warning" %}
 **metadata-url**は64文字以下にする必要があります。
@@ -2457,7 +2457,7 @@ cardano-cli stake-address delegation-certificate \
 {% endtab %}
 {% endtabs %}
 
-**pool.cert**と**deleg.cert** をブロックプロデューサーにコピーします。
+**pool.cert**と**deleg.cert** をブロックプロデューサーのcardano-my-nodeディレクトリにコピーします。
 
 ttlパラメータを設定するには、最新のスロット番号を取得する必要があります。
 
@@ -2571,7 +2571,7 @@ cardano-cli transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-**tx.raw** をコールド環境にコピーします。
+**tx.raw** をエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
 トランザクションに署名します。
 
@@ -2589,7 +2589,7 @@ cardano-cli transaction sign \
 {% endtab %}
 {% endtabs %}
 
-**tx.signed**ををブロックプロデューサーノードにコピーします。
+**tx.signed**ををブロックプロデューサーノードのcardano-my-nodeディレクトリにコピーします。
 
 トランザクションを送信します。
 
@@ -2822,7 +2822,7 @@ cardano-cli transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-**tx.raw** をコールド環境にコピーします。
+**tx.raw** をエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
 トランザクションに署名します。
 
@@ -2838,7 +2838,7 @@ cardano-cli transaction sign \
 {% endtab %}
 {% endtabs %}
 
-**tx.signed** をブロックプロデューサーノードにコピーします。
+**tx.signed** をブロックプロデューサーノードのcardano-my-nodeディレクトリにコピーします。
 
 署名されたトランザクションを送信します。
 
@@ -3037,7 +3037,7 @@ cardano-cli transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-**tx.raw** を **コールド環境**にコピーします。
+**tx.raw** を **エアギャップオフラインマシン**のcardano-my-nodeディレクトリにコピーします。
 
 支払いとステークの秘密鍵の両方を使用していトランザクションに署名します。
 
@@ -3054,7 +3054,7 @@ cardano-cli transaction sign \
 {% endtab %}
 {% endtabs %}
 
-**tx.signed** を **ホット環境**にコピーします
+**tx.signed** を **ブロックプロデューサノード**のcardano-my-nodeディレクトリにコピーします。
 
 署名されたトランザクションを送信します。
 
@@ -3235,7 +3235,7 @@ cardano-cli transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-**tx.raw** を **コールド環境**にコピーします。
+**tx.raw** を **エアギャップオフラインマシン**のcardano-my-nodeディレクトリにコピーします。
 
 支払いとステークの秘密鍵の両方を使用していトランザクションに署名します。
 
@@ -3252,7 +3252,7 @@ cardano-cli transaction sign \
 {% endtab %}
 {% endtabs %}
 
-**tx.signed** を **ホット環境**にコピーします
+**tx.signed** を **ブロックプロデューサノード**のcardano-my-nodeディレクトリにコピーします。
 
 署名されたトランザクションを送信します。
 
@@ -3485,7 +3485,7 @@ cardano-cli stake-pool deregistration-certificate \
 {% endtab %}
 {% endtabs %}
 
-**pool.dereg** を **ホット環境**にコピーします。
+**pool.dereg** を **ブロックプロデューサノード**のcardano-my-nodeディレクトリにコピーします。
 
 残高と **UTXOs**を見つけます。
 
@@ -3582,7 +3582,7 @@ cardano-cli transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-**tx.raw** を **コールド環境**へコピーします。
+**tx.raw** を **エアギャップオフラインマシン**のcardano-my-nodeディレクトリにコピーします。
 
 Sign the transaction. 
 
@@ -3599,7 +3599,7 @@ cardano-cli transaction sign \
 {% endtab %}
 {% endtabs %}
 
-**tx.signed** を **ホット環境**へコピーします
+**tx.signed** を **ブロックプロデューサノード**のcardano-my-nodeディレクトリにコピーします。
 
 トランザクションに署名します。
 
