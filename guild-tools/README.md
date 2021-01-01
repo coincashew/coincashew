@@ -155,6 +155,7 @@ chmod 400 vrf.vkey
 envファイルを編集します
 
 ```bash
+cd scripts
 nano env
 ```
 
