@@ -3068,7 +3068,7 @@ cardano-cli query utxo \
 {% endtab %}
 
 {% tab title="任意のアドレスに送金する手順" %}
-まずはじめにブロックチェーンの先頭 **tip** を見つけて **invalid-hereafter** パラメーターを適切に設定します。
+現在のスロットNoを算出します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサノード" %}
