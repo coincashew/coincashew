@@ -105,6 +105,8 @@ cncli旧バージョンからの更新手順
 サービスを止める
 ```bash
 sudo systemctl stop cnode-cncli-sync.service
+```
+```bash
 sudo systemctl stop cnode-cncli-validate.service
 sudo systemctl stop cnode-cncli-leaderlog.service
 sudo systemctl stop cnode-logmonitor.service
