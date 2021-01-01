@@ -566,8 +566,12 @@ cd $NODE_HOME/scripts
 スクリプトへのパスを通し、任意の単語で起動出来るようにする。
 ```bash
 echo alias blocks="$NODE_HOME/scripts/blocks.sh" >> $HOME/.bashrc
+echo alias glive="$NODE_HOME/scripts/gLiveView.sh" >> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
-blocksという単語を入力するだけで、どこからでも起動できます。
+単語を入力するだけで、どこからでも起動できます。
+blocks・・・blocks.sh
+glive・・・gLiveView.sh
+
 {% endhint %}
