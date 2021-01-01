@@ -61,7 +61,7 @@ local stratum 10
 設定を有効にするには、Chronyを再起動します。
 
 ```text
-systemctl restart chronyd.service
+sudo systemctl restart chronyd.service
 ```
 
 ## 🤖 2. ヘルプコマンド
