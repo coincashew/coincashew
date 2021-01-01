@@ -3068,7 +3068,192 @@ cardano-cli query utxo \
 {% endtab %}
 
 {% tab title="任意のアドレスに送金する手順" %}
+まずはじめにブロックチェーンの先頭 **tip** を見つけて **invalid-hereafter** パラメーターを適切に設定します。
 
+{% tabs %}
+{% tab title="ブロックプロデューサノード" %}
+```bash
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+echo Current Slot: $currentSlot
+```
+{% endtab %}
+{% endtabs %}
+
+{% tabs %}
+{% tab title="ブロックプロデューサノード" %}
+```bash
+destinationAddress=<入金先アドレスを指定する>
+echo destinationAddress: $destinationAddress
+```
+{% endtab %}
+{% endtabs %}
+
+報酬アドレス残高参照
+
+{% tabs %}
+{% tab title="ブロックプロデューサノード" %}
+```bash
+rewardBalance=$(cardano-cli query stake-address-info \
+    --mainnet \
+    --allegra-era \
+    --address $(cat stake.addr) | jq -r ".[0].rewardAccountBalance")
+echo rewardBalance: $rewardBalance
+```
+{% endtab %}
+{% endtabs %}
+
+
+あなたの payment.addr の残高を参照します。
+
+{% tabs %}
+{% tab title="ブロックプロデューサノード" %}
+```bash
+cardano-cli query utxo \
+    --address $(cat payment.addr) \
+    --mainnet \
+    --allegra-era > fullUtxo.out
+
+tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
+
+cat balance.out
+
+tx_in=""
+total_balance=0
+while read -r utxo; do
+    in_addr=$(awk '{ print $1 }' <<< "${utxo}")
+    idx=$(awk '{ print $2 }' <<< "${utxo}")
+    utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
+    total_balance=$((${total_balance}+${utxo_balance}))
+    echo TxHash: ${in_addr}#${idx}
+    echo ADA: ${utxo_balance}
+    tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
+done < balance.out
+txcnt=$(cat balance.out | wc -l)
+echo Total ADA balance: ${total_balance}
+echo Number of UTXOs: ${txcnt}
+
+withdrawalString="$(cat stake.addr)+${rewardBalance}"
+echo ${withdrawalString}
+```
+{% endtab %}
+{% endtabs %}
+
+build-raw transactionコマンドを実行します。
+
+{% tabs %}
+{% tab title="ブロックプロデューサノード" %}
+```bash
+cardano-cli transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+0 \
+    --tx-out ${destinationAddress}+0 \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --fee 0 \
+    --withdrawal ${withdrawalString} \
+    --allegra-era \
+    --out-file tx.tmp
+```
+{% endtab %}
+{% endtabs %}
+
+現在の最低料金を計算します。
+
+{% tabs %}
+{% tab title="ブロックプロデューサノード" %}
+```bash
+fee=$(cardano-cli transaction calculate-min-fee \
+    --tx-body-file tx.tmp \
+    --tx-in-count ${txcnt} \
+    --tx-out-count 2 \
+    --mainnet \
+    --witness-count 2 \
+    --byron-witness-count 0 \
+    --protocol-params-file params.json | awk '{ print $1 }')
+echo fee: $fee
+```
+{% endtab %}
+{% endtabs %}
+
+変更出力を計算します。
+
+{% tabs %}
+{% tab title="ブロックプロデューサノード" %}
+```bash
+txOut=$((${total_balance}-${fee}))
+echo Change Output: ${txOut}
+```
+{% endtab %}
+{% endtabs %}
+
+トランザクションをビルドします。
+
+{% tabs %}
+{% tab title="ブロックプロデューサノード" %}
+```bash
+cardano-cli transaction build-raw \
+    ${tx_in} \
+    --tx-out $(cat payment.addr)+${txOut} \
+    --tx-out ${destinationAddress}+${rewardBalance} \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --fee ${fee} \
+    --withdrawal ${withdrawalString} \
+    --allegra-era \
+    --out-file tx.raw
+```
+{% endtab %}
+{% endtabs %}
+
+**tx.raw** を **コールド環境**にコピーします。
+
+支払いとステークの秘密鍵の両方を使用していトランザクションに署名します。
+
+{% tabs %}
+{% tab title="air-gapped offline machine" %}
+```bash
+cardano-cli transaction sign \
+    --tx-body-file tx.raw \
+    --signing-key-file payment.skey \
+    --signing-key-file stake.skey \
+    --mainnet \
+    --out-file tx.signed
+```
+{% endtab %}
+{% endtabs %}
+
+**tx.signed** を **ホット環境**にコピーします
+
+署名されたトランザクションを送信します。
+
+{% tabs %}
+{% tab title="ブロックプロデューサノード" %}
+```bash
+cardano-cli transaction submit \
+    --tx-file tx.signed \
+    --mainnet
+```
+{% endtab %}
+{% endtabs %}
+
+資金が到着したか確認します。
+
+{% tabs %}
+{% tab title="ブロックプロデューサノード" %}
+```bash
+cardano-cli query utxo \
+    --address ${destinationAddress} \
+    --allegra-era \
+    --mainnet
+```
+{% endtab %}
+{% endtabs %}
+
+更新されたラブレースの残高と報酬を表示します。
+
+```text
+                           TxHash                                 TxIx        Lovelace
+----------------------------------------------------------------------------------------
+100322a39d02c2ead....  
+```
 {% endtab %}
 {% endtabs %}
 
