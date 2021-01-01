@@ -2874,8 +2874,8 @@ cardano-cli query utxo \
 1.payment.addrへ送金する方法は[こちら](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#18-11-1-paymentaddrhesuru)
 
 2.任意のアドレスへ送金する方法は[こちら](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#18-11-2-noadoresuhesuru)
-{% endhint %}      
-        
+{% endhint %}
+***
 #### 18.11.1 payment.addrへ送金する方法
 
 ステークプールの報酬を請求する例を見ていきます。
