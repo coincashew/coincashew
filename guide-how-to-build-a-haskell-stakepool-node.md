@@ -2872,13 +2872,18 @@ cardano-cli query utxo \
 ステークプールの報酬を請求する例を見ていきます。
 
 {% hint style="info" %}
-報酬は `stake.addr` アドレスに蓄積されていきます。
+報酬は `stake.addr` アドレスに蓄積されていきます。  
+１回のトランザクションで引き出せる金額は残高全額のみです。(分割して引き出すことはできません)
 {% endhint %}
 
-まずはじめにブロックチェーンの先頭 **tip** を見つけて **invalid-hereafter** パラメーターを適切に設定します、。
+{% tabs %}
+
+{% tab title="payment.addrに送金する手順" %}
+
+まずはじめにブロックチェーンの先頭 **tip** を見つけて **invalid-hereafter** パラメーターを適切に設定します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
 echo Current Slot: $currentSlot
@@ -2889,7 +2894,7 @@ echo Current Slot: $currentSlot
 ラブレースで送る金額を設定します。 ✨ **1 ADA** = **1,000,000 lovelaces.**と覚えましょう
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 rewardBalance=$(cardano-cli query stake-address-info \
     --mainnet \
@@ -2903,7 +2908,7 @@ echo rewardBalance: $rewardBalance
 報酬の移動先となるアドレスを設定します。このアドレスには取引手数料を支払うための残高が必要です。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 destinationAddress=$(cat payment.addr)
 echo destinationAddress: $destinationAddress
@@ -2914,7 +2919,7 @@ echo destinationAddress: $destinationAddress
 あなたの payment.addr の残高, utxos をみつけて、引き出し文字を作成します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
@@ -2948,7 +2953,7 @@ withdrawalString="$(cat stake.addr)+${rewardBalance}"
 build-raw transactionコマンドを実行します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
@@ -2965,7 +2970,7 @@ cardano-cli transaction build-raw \
 現在の最低料金を計算します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 fee=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.tmp \
@@ -2983,7 +2988,7 @@ echo fee: $fee
 変更出力を計算します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 txOut=$((${total_balance}-${fee}+${rewardBalance}))
 echo Change Output: ${txOut}
@@ -2994,7 +2999,7 @@ echo Change Output: ${txOut}
 トランザクションをビルドします。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
@@ -3030,7 +3035,7 @@ cardano-cli transaction sign \
 署名されたトランザクションを送信します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 cardano-cli transaction submit \
     --tx-file tx.signed \
@@ -3042,7 +3047,7 @@ cardano-cli transaction submit \
 資金が到着したか確認します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 cardano-cli query utxo \
     --address ${destinationAddress} \
@@ -3060,6 +3065,13 @@ cardano-cli query utxo \
 100322a39d02c2ead....  
 ```
 
+{% endtab %}
+
+{% tab title="任意のアドレスに送金する手順" %}
+
+{% endtab %}
+{% endtabs %}
+
 
 ### 🕒 18.12 スロットリーダースケジュール - ブロック生成時期を確認する
 
@@ -3074,7 +3086,7 @@ vrf.skeyおよびstakepoolid.txtをcardano-my-nodeへコピーして下さい。
 Pythonがインストールされているか確認してくださ。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 python3 --version
 ```
@@ -3084,7 +3096,7 @@ python3 --version
 バージョン情報が表示されていない場合は、以下を実行しPython3をインストールします。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```text
 sudo apt-get update
 sudo apt-get install -y software-properties-common
@@ -3098,7 +3110,7 @@ sudo apt-get install -y python3.9
 pipがインストールされているか確認して下さい。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 pip3 --version
 ```
@@ -3108,7 +3120,7 @@ pip3 --version
 バージョン情報が表示されない場合は、以下を実行して下さい。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 sudo apt-get install -y python3-pip
 ```
@@ -3206,7 +3218,7 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 現在のエポックを計算します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 startTimeGenesis=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r .systemStart)
 startTimeSec=$(date --date=${startTimeGenesis} +%s)
@@ -3221,7 +3233,7 @@ echo current epoch: ${epoch}
 プールが引退できる最も早くて最も遅い引退エポックを見つけます。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 eMax=$(cat $NODE_HOME/params.json | jq -r '.eMax')
 echo eMax: ${eMax}
@@ -3262,7 +3274,7 @@ cardano-cli stake-pool deregistration-certificate \
 残高と **UTXOs**を見つけます。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
@@ -3294,7 +3306,7 @@ echo Number of UTXOs: ${txcnt}
 build-raw transactionコマンドを実行します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
@@ -3311,7 +3323,7 @@ cardano-cli transaction build-raw \
 最低料金を計算します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 fee=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.tmp \
@@ -3329,7 +3341,7 @@ echo fee: $fee
 変更出力を計算します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 txOut=$((${total_balance}-${fee}))
 echo txOut: ${txOut}
@@ -3340,7 +3352,7 @@ echo txOut: ${txOut}
 トランザクションをビルドします。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
@@ -3376,7 +3388,7 @@ cardano-cli transaction sign \
 トランザクションに署名します。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 cardano-cli transaction submit \
     --tx-file tx.signed \
@@ -3394,7 +3406,7 @@ cardano-cli transaction submit \
 リタイアエポックのあと、空の結果を返す次のクエリを使用して、プールが正常にリタイアされたことを確認できます。
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="ブロックプロデューサノード" %}
 ```bash
 cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
