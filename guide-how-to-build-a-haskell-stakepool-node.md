@@ -3079,6 +3079,8 @@ echo Current Slot: $currentSlot
 {% endtab %}
 {% endtabs %}
 
+入金先アドレスを指定します。
+
 {% tabs %}
 {% tab title="ブロックプロデューサノード" %}
 ```bash
