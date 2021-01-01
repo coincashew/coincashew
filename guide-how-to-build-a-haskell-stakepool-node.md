@@ -3042,7 +3042,7 @@ cardano-cli transaction build-raw \
 支払いとステークの秘密鍵の両方を使用していトランザクションに署名します。
 
 {% tabs %}
-{% tab title="air-gapped offline machine" %}
+{% tab title="エアギャップオフラインマシン" %}
 ```bash
 cardano-cli transaction sign \
     --tx-body-file tx.raw \
@@ -3240,7 +3240,7 @@ cardano-cli transaction build-raw \
 支払いとステークの秘密鍵の両方を使用していトランザクションに署名します。
 
 {% tabs %}
-{% tab title="air-gapped offline machine" %}
+{% tab title="エアギャップオフラインマシン" %}
 ```bash
 cardano-cli transaction sign \
     --tx-body-file tx.raw \
@@ -3475,7 +3475,7 @@ echo latest epoch for retirement is: ${maxRetirementEpoch}
 登録解除証明書 `pool.dereg.`を作成し、「エポックを希望のリタイアメントエポック(通常は最も早いエポック)に更新する」として保存します。
 
 {% tabs %}
-{% tab title="air-gapped offline machine" %}
+{% tab title="エアギャップオフラインマシン" %}
 ```bash
 cardano-cli stake-pool deregistration-certificate \
 --cold-verification-key-file $HOME/cold-keys/node.vkey \
@@ -3587,7 +3587,7 @@ cardano-cli transaction build-raw \
 Sign the transaction. 
 
 {% tabs %}
-{% tab title="air-gapped offline machine" %}
+{% tab title="エアギャップオフラインマシン" %}
 ```bash
 cardano-cli transaction sign \
     --tx-body-file tx.raw \
