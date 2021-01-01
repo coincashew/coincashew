@@ -146,6 +146,7 @@ chmod 755 cncli.sh
 chmod 755 logMonitor.sh
 chmod 755 gLiveView.sh
 chmod 755 blocks.sh
+cd ../
 chmod 400 vrf.vkey
 ```
 
