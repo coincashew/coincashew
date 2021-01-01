@@ -2891,8 +2891,6 @@ echo Current Slot: $currentSlot
 {% endtab %}
 {% endtabs %}
 
-ラブレースで送る金額を設定します。 ✨ **1 ADA** = **1,000,000 lovelaces.**と覚えましょう
-
 {% tabs %}
 {% tab title="ブロックプロデューサノード" %}
 ```bash
@@ -2904,6 +2902,7 @@ echo rewardBalance: $rewardBalance
 ```
 {% endtab %}
 {% endtabs %}
+✨ **1 ADA** = **1,000,000 lovelaces.**と覚えましょう  
 
 報酬の移動先となるアドレスを設定します。このアドレスには取引手数料を支払うための残高が必要です。
 
