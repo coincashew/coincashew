@@ -2891,7 +2891,8 @@ cardano-cli query utxo \
 
     
 {% hint style="danger" %}
-入力ミスなどで送金が失敗しても責任は負えません。自己責任のもと実施下さい。
+入力ミスなどで送金が失敗しても責任は負えません。自己責任のもと実施下さい。  
+**payment.skey**と**stake.skey**は必ずオフライン環境で保管してください。  
 {% endhint %}
 
 
