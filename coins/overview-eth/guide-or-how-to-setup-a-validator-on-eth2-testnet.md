@@ -563,6 +563,10 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 5. Select **Goerli** as the ENDPOINT
 6. Follow the specific configuration for your eth2 client found below.
 
+{% hint style="success" %}
+Alternatively use a free testnet Ethereum node such as [Chainstack ](https://chainstack.com)at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+{% endhint %}
+
 ## Nimbus Specific Configuration
 
 1. When creating your systemd's **unit file**, update the `--web-url` parameter with this endpoint. 

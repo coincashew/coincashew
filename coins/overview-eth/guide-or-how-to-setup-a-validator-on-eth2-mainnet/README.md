@@ -553,7 +553,7 @@ sudo systemctl start eth1
 
 {% tab title="Minimum Hardware Setup \(Infura\)" %}
 {% hint style="info" %}
-Infura is suitable for limited disk space setups. Always run your own full eth1 node when possible.
+Infura is suitable for limited disk space setups. Always run your own full eth1 node when possible. 
 {% endhint %}
 
 Sign up for an API access key at [https://infura.io/](https://infura.io/)
@@ -566,7 +566,7 @@ Sign up for an API access key at [https://infura.io/](https://infura.io/)
 6. Follow the specific configuration for your eth2 client found below.
 
 {% hint style="success" %}
-Alternatively use a free Ethereum node at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+Alternatively use a free Ethereum node such as [Chainstack ](https://chainstack.com)at [https://ethereumnodes.com/](https://ethereumnodes.com/)
 {% endhint %}
 
 ## Nimbus Specific Configuration
