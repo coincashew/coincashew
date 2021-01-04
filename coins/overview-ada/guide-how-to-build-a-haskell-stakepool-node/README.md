@@ -40,7 +40,7 @@ description: >-
 * **２つのサーバー:** ブロックプロデューサーノード用1台、 リレーノード用1台
 * **エアギャップオフラインマシン1台 \(コールド環境\)**
 * **オペレーティング・システム:** 64-bit Linux \(Ubuntu 20.04 LTS\)
-* **プロセッサー:** 1.6GHz以上(ステークプールまたはリレーの場合は2Ghz以上)の2つ以上のコアを備えたIntelまたはAMD x86プロセッサー
+* **プロセッサー:** 1.6GHz以上\(ステークプールまたはリレーの場合は2Ghz以上\)の2つ以上のコアを備えたIntelまたはAMD x86プロセッサー
 * **メモリー:** 4GB RAM（リレーまたはステークプールでは8GB）
 * **ストレージ:** 24GB SSD
 * **インターネット:** 10 Mbps以上のブロードバンド回線.
@@ -200,6 +200,7 @@ cabal build cardano-cli cardano-node
 ```bash
 sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
 ```
+
 ```bash
 sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
 ```
@@ -224,7 +225,7 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 ```
 
-以下のコードを実行し **config.json**ファイルを更新します。  
+以下のコードを実行し **config.json**ファイルを更新します。
 
 * TraceBlockFetchDecisionsを「true」に変更します。
 
@@ -249,8 +250,6 @@ source $HOME/.bashrc
 {% hint style="info" %}
 一方で、リレーノードはキーを所有していないため、ブロック生成はできません。その代わり、他のリレーノードとの繋がりを持ち最新スロットを取得します。
 {% endhint %}
-
-![](.gitbook/assets/producer-relay-diagram.png)
 
 {% hint style="success" %}
 このマニュアルでは、2つのサーバー上に1ノードづつ構築します。1つのノードはブロックプロデューサーノード、もう1つのノードはリレーノード1という名前のリレーノードになります。
@@ -628,16 +627,12 @@ BPノードでは基本情報に加え、KES有効期限、ブロック生成状
 ピアにpingを送信する際ICMPpingを使用します。リモートピアのファイアウォールがICMPトラフィックを受け付ける場合のみ機能します。
 {% endhint %}
 
-<<<<<<< HEAD
 ![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
 
 詳しくは開発元のドキュメントを参照してください [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
 この画面が表示され、ノードが同期したら準備完了です。
 
-
-=======
->>>>>>> 25a32016bd864cd597dfd109d6b7b33be0cafa7a
 ## ⚙ 9. ブロックプロデューサーキーを生成する。
 
 {% hint style="info" %}
@@ -1426,9 +1421,9 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 ```
 {% endtab %}
 {% endtabs %}
-  
+
 **poolMetaDataHash.txt**をエアギャップオフラインマシンへコピーしてください  
-**poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。  
+**poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。
 
 最小プールコストを出力します。
 
@@ -1881,8 +1876,6 @@ sudo systemctl reload-or-restart cardano-node
 {% tab title="Pooltool.ioで更新する場合" %}
 ※非推奨※ 1. [https://pooltool.io/](https://pooltool.io/)へアクセスします。 2. アカウントを作成してログインします。 3. あなたのステークプールを探します。 4. **Pool Details** &gt; **Manage** &gt; **CLAIM THIS POOL**をクリックします。 5. プール名とプールURLがある場合は入力します。 6. あなたのリレーノード情報を入力します。
 
-![](.gitbook/assets/ada-relay-setup-mainnet.png)
-
 プライベートノードには、自身のブロックプロデューサーノードと、IOHKのノード情報を入力して下さい。
 
 IOHKのノードアドレスは:
@@ -2006,7 +1999,6 @@ cd $NODE_HOME/scripts
 {% hint style="info" %}
 「Txs processed」が増加しているか確認する
 {% endhint %}
-
 
 ![](https://gblobscdn.gitbook.com/assets%2F-M5KYnWuA6dS_nKYsmfV%2F-MGldUPmEkJqK1vDLzOT%2F-MGlehnIvBsYqfb4KGvG%2Fgliveview-core.png?alt=media&token=9954ab81-26ae-4e7a-bfdf-d3b73c82d1ec)
 
@@ -2213,7 +2205,7 @@ sudo systemctl reload-or-restart cardano-node
 
 ### 📶 16.2 Grafanaダッシュボードの設定
 
-1. リレーノード1で、ローカルブラウザから [http://localhost:3000](http://localhost:3000) または http://&lt;リレーノードIPアドレス&gt;:3000 を開きます。 事前に 3000番ポートを開いておく必要があります。
+1. リレーノード1で、ローカルブラウザから [http://localhost:3000](http://localhost:3000) または [http://&lt;リレーノードIPアドレス&gt;:3000](http://<リレーノードIPアドレス>:3000) を開きます。 事前に 3000番ポートを開いておく必要があります。
 2. ログイン名・PWは次のとおりです。 **admin** / **admin**
 3. パスワードを変更します。
 4. 左メニューの歯車アイコンから データソースを追加します。
@@ -2235,35 +2227,38 @@ sudo systemctl reload-or-restart cardano-node
 ## 👏 17. 寄付とクレジット表記
 
 {% hint style="info" %}
-このマニュアル制作に携わった全ての方に、感謝申し上げます。 快く翻訳を承諾して頂いた、[CoinCashew](https://www.coincashew.com/)には敬意を表します。
-この活動をサポートして頂ける方は、是非寄付をよろしくお願い致します。
+このマニュアル制作に携わった全ての方に、感謝申し上げます。 快く翻訳を承諾して頂いた、[CoinCashew](https://www.coincashew.com/)には敬意を表します。 この活動をサポートして頂ける方は、是非寄付をよろしくお願い致します。
 {% endhint %}
 
 ### CoinCashew ADAアドレス
+
 ```bash
 addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
 ```
 
-### X StakePoolへの寄付  
- 
-カルダノ分散化、日本コミュニティ発展の為に日本語化させて頂きました。私達をサポート頂ける方は当プールへ委任頂けますと幸いです。  
+### X StakePoolへの寄付
+
+カルダノ分散化、日本コミュニティ発展の為に日本語化させて頂きました。私達をサポート頂ける方は当プールへ委任頂けますと幸いです。
+
 * Ticker：XSP  
-Pool ID↓  
-```bash
-788898a81174665316af96880459dcca053f7825abb1b0db9a433630
-```
+  Pool ID↓
+
+  ```bash
+  788898a81174665316af96880459dcca053f7825abb1b0db9a433630
+  ```
 
 * ADAアドレス
-```bash
-addr1q85kms3xw788pzxcr8g8d4umxjcr57w55k2gawnpwzklu97sc26z2lhct48alhew43ry674692u2eynccsyt9qexxsesjzz8qp
-```
-  
-  
+
+  ```bash
+  addr1q85kms3xw788pzxcr8g8d4umxjcr57w55k2gawnpwzklu97sc26z2lhct48alhew43ry674692u2eynccsyt9qexxsesjzz8qp
+  ```
+
 ### 全ての協力者
+
 * 👏 Antonie of CNT for being awesomely helpful with Youtube content and in telegram.
 * 👏 Special thanks to Kaze-Stake for the pull requests and automatic script contributions.
-* 👏 The Legend of ₳da [TLOA] for translating this guide to Spanish.
-* 👏 X-StakePool [BTBF] for translating this guide to Japanese.
+* 👏 The Legend of ₳da \[TLOA\] for translating this guide to Spanish.
+* 👏 X-StakePool \[BTBF\] for translating this guide to Japanese.
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
 
@@ -2301,13 +2296,8 @@ cardano-cli node key-gen-KES \
 {% endtab %}
 {% endtabs %}
 
-<<<<<<< HEAD
 kes.vkeyをエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。 
-  
-=======
-kes.vkeyをコールド環境にコピーします。
 
->>>>>>> 25a32016bd864cd597dfd109d6b7b33be0cafa7a
 次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;"startKesPeriod"&gt;に入力してからコマンドを送信してください。
 
 **<startKesPeriod>**の部分を上記で算出した数値（startKesPeriod:＊＊）に置き換えます。
@@ -2721,7 +2711,6 @@ echo amountToSend: $amountToSend
 {% endtab %}
 {% endtabs %}
 
-<<<<<<< HEAD
 送金先のアドレスを設定します。
 
 {% tabs %}
@@ -2729,11 +2718,6 @@ echo amountToSend: $amountToSend
 ```bash
 destinationAddress=addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
 echo destinationAddress: $destinationAddress
-=======
-[Install]
-WantedBy    = multi-user.target
-EOF
->>>>>>> 25a32016bd864cd597dfd109d6b7b33be0cafa7a
 ```
 {% endtab %}
 {% endtabs %}
@@ -2752,7 +2736,6 @@ tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
 cat balance.out
 
-<<<<<<< HEAD
 tx_in=""
 total_balance=0
 while read -r utxo; do
@@ -2767,11 +2750,6 @@ done < balance.out
 txcnt=$(cat balance.out | wc -l)
 echo Total ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
-=======
-[Install]
-WantedBy    = multi-user.target
-EOF
->>>>>>> 25a32016bd864cd597dfd109d6b7b33be0cafa7a
 ```
 {% endtab %}
 {% endtabs %}
@@ -3314,8 +3292,7 @@ cardano-cli query utxo \
 {% endhint %}
 
 以下はリレーノードでも使用できます。  
-vrf.skeyおよびstakepoolid.txtをcardano-my-nodeへコピーして下さい。  
-
+vrf.skeyおよびstakepoolid.txtをcardano-my-nodeへコピーして下さい。
 
 Pythonがインストールされているか確認してくださ。
 
@@ -3445,68 +3422,6 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 2020-10-01 00:12:22 ==> Leader for slot 131313, Cumulative epoch blocks: 2
 2020-10-01 00:19:55 ==> Leader for slot 161212, Cumulative epoch blocks: 3
 ```
-
-<<<<<<< HEAD
-=======
-### 🕒 18.13 gLiveView ノードステータスモニター
-
-{% hint style="info" %}
-gLiveViewは重要なノードステータス情報を表示表示し、systemdサービスとうまく連携します。1.23.0から正式にLiveViewが削除されgLiveViewは代替ツールとして利用できます。このツールを作成した [Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview) の功績によるものです。
-{% endhint %}
-
-Guild LiveViewをインストールします。
-
-```bash
-cd $NODE_HOME
-sudo apt install tcptraceroute -y
-curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
-curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
-chmod 755 gLiveView.sh
-```
-
-**env** ファイルによってファイル構成を指定できます。  
-該当箇所の　**#**　を削除し、ご自身の環境に合わせたパスに書き換えます
-```bash
-nano env
-```
-
-```bash
-CCLI="/usr/local/bin/cardano-cli"
-CNODE_HOME=/home/<user_name>/cardano-my-node
-CNODE_PORT=<ノードのポート番号>
-CONFIG="${CNODE_HOME}/mainnet-config.json"
-SOCKET="${CNODE_HOME}/db/socket"
-TOPOLOGY="${CNODE_HOME}/mainnet-topology.json"
-LOG_DIR="${CNODE_HOME}/logs"
-DB_DIR="${CNODE_HOME}/db"
-EKG_PORT=12788
-```
-
-bcインストール
-```bash
-sudo apt-get install bc
-```
-
-
-Run Guild Liveview.
-
-```text
-./gLiveView.sh
-```
-{% hint style="info" %}
-**このツールを立ち上げてもノードは起動しません。ノードは別途起動しておく必要があります**  
-リレー／BPは自動判別されます。  
-リレーノードでは基本情報に加え、トポロジー接続状況を確認できます。  
-BPノードでは基本情報に加え、KES有効期限、ブロック生成状況を確認できます。  
-
-[p]リレーノード用リモートピア分析について
-ピアにpingを送信する際ICMPpingを使用します。リモートピアのファイアウォールがICMPトラフィックを受け付ける場合のみ機能します。
-{% endhint %}
-
-![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
-
-詳しくは開発元のドキュメントを参照してください [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
->>>>>>> 25a32016bd864cd597dfd109d6b7b33be0cafa7a
 
 ## 🌜 19. ステークプールを廃止する。
 
