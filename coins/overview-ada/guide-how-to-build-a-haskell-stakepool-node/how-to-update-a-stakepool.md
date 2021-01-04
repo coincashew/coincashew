@@ -29,9 +29,9 @@ description: >-
 
 ### 📡 1. ノードバージョンアップデート手順
 
- `cardano-node`は常に更新されており、バージョンがアップデートされるたびにプールサーバでも作業が必要です。 [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) をフォローし最新情報を取得しましょう。
+`cardano-node`は常に更新されており、バージョンがアップデートされるたびにプールサーバでも作業が必要です。 [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) をフォローし最新情報を取得しましょう。
 
-現在の `$HOME/git/cardano-node` ディレクトリに更新する場合は、ディレクトリ全体を新しい場所へコピーしてバックアップを作成します。(ロールバックする際に必要となります)
+現在の `$HOME/git/cardano-node` ディレクトリに更新する場合は、ディレクトリ全体を新しい場所へコピーしてバックアップを作成します。\(ロールバックする際に必要となります\)
 
 ```bash
 cd $HOME/git
@@ -44,8 +44,6 @@ cd cardano-node2/
 最新のリリースに必要となる他の更新や依存関係については、パッチノートを参照して下さい。
 {% endhint %}
 
-{% tabs %}
-{% tab title="v1.23.0からバージョンアップする場合" %}
 このリリースは、今後のアレグラとメアリーのハードフォークとそれらがもたらす新機能のサポートを提供します。
 
 ・Allegraハードフォークは、Catalyst財務スキームをサポートするために必要ないくつかの機能を追加します。スロット番号を介して、既存のマルチシグスクリプト言語を時間の述語で拡張します。これにより、例えば特定の時点までの使用できないスクリプトアドレスを作成できます。
@@ -61,9 +59,9 @@ cd cardano-node2/
         "EKGViewBK"
       ],
 ```
-{% endtab %}
 
-{% tab title="1.21.1からバージョンアップする場合" %}
+
+
 このリリースには、今後のアレグラとメアリーのハードフォークとそれらがもたらす新機能をサポートするためのかなりの量の内部変更が含まれています。これはAllegraハードフォーク前の最終リリースではありませんが、AllegraとMaryの両方のハードフォークの機能の大部分が含まれています。
 
 ・Allegraハードフォークは、Catalyst財務スキームをサポートするために必要ないくつかの機能を追加します。スロット番号を介して、既存のマルチシグスクリプト言語を時間の述語で拡張します。これにより、例えば特定の時点までの使用できないスクリプトアドレスを作成できます。
@@ -116,10 +114,11 @@ sed -i mainnet-config.json \
 
 ```bash
 nano mainnet-config.json
- ```
- 以下を該当する部分に貼り付けます。
+```
 
- ```
+以下を該当する部分に貼り付けます。
+
+```text
   "defaultScribes": [
     [
       "FileSK",
@@ -131,7 +130,8 @@ nano mainnet-config.json
     ]
   ],
 ```
-```
+
+```text
    "setupScribes": [
     {
       "scFormat": "ScJson",
@@ -145,13 +145,13 @@ nano mainnet-config.json
       "scRotation": null
     }
   ]
- ```
+```
 
 **vrf.skeyのパーミッションを変更する（ブロックプロデューサーの場合のみ）**
 
 バージョン1.23.0より、vrf.skeyパーミッションチェックが実装され、所有者読み取り専用権限に設定することでノードを起動できます。
 
-```
+```text
 cd $NODE_HOME
 chmod 400 vrf.skey
 ```
@@ -159,10 +159,9 @@ chmod 400 vrf.skey
 **gLiveViewをインストールします（任意）**
 
 LiveViewの代わりにノードを監視するコミュニティ製の監視ツールです。  
-(メモリー使用率が高くなることに注意して下さい)
+\(メモリー使用率が高くなることに注意して下さい\)
 
-
-[インストールはこちらを参照してください](./#18-13-gliveview-node-status-monitoring)
+[インストールはこちらを参照してください](/#18-13-gliveview-node-status-monitoring)
 
 #### 新しいバイナリーファイルをコンパイルする
 
@@ -278,13 +277,13 @@ killall -s 2 cardano-node
 {% endtab %}
 
 {% tab title="リレーノード1" %}
-```
+```text
 killall -s 2 cardano-node
 ```
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl stop cardano-node
 ```
 {% endtab %}
@@ -320,14 +319,14 @@ cd $NODE_HOME
 {% endtab %}
 
 {% tab title="リレーノード" %}
-```
+```text
 cd $NODE_HOME
 ./startRelayNode1.sh
 ```
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl start cardano-node
 ```
 {% endtab %}
@@ -370,13 +369,13 @@ killall -s 2 cardano-node
 {% endtab %}
 
 {% tab title="リレーノード1" %}
-```
+```text
 killall -s 2 cardano-node
 ```
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl stop cardano-node
 ```
 {% endtab %}
@@ -424,7 +423,7 @@ cd $NODE_HOME
 {% endtab %}
 
 {% tab title="systemd" %}
-```
+```text
 sudo systemctl start cardano-node
 ```
 {% endtab %}
@@ -432,7 +431,7 @@ sudo systemctl start cardano-node
 
 #### 🤖 4.3 上手く行かない場合は、ソースコードから再構築
 
-次のマニュアル [カルダノステークプール構築手順](./)1～3を実行する。
+次のマニュアル [カルダノステークプール構築手順](/)1～3を実行する。
 
 ### 👏 5. 寄付とクレジット表記
 
@@ -450,9 +449,9 @@ addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwa
 
 カルダノ分散化、日本コミュニティ発展の為に日本語化させて頂きました。私達をサポート頂ける方は当プールへ委任頂けますと幸いです。
 
-* Ticker：XSP  
+* Ticker：XSP
 
-  Pool ID↓  
+  Pool ID↓
 
   ```bash
   788898a81174665316af96880459dcca053f7825abb1b0db9a433630
