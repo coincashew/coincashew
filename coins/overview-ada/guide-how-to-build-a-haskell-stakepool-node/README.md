@@ -1116,7 +1116,7 @@ You should see output similar to this. This is your unspent transaction output \
 Create a certificate, `stake.cert`, using the `stake.vkey`
 
 {% tabs %}
-{% tab title="block producer node" %}
+{% tab title="air-gapped offline machine" %}
 ```text
 cardano-cli stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
@@ -1124,6 +1124,8 @@ cardano-cli stake-address registration-certificate \
 ```
 {% endtab %}
 {% endtabs %}
+
+Copy **stake.cert** to your **hot environment.**
 
 You need to find the **tip** of the blockchain to set the **invalid-hereafter** parameter properly.
 
