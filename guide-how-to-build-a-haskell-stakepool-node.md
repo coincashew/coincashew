@@ -2721,7 +2721,7 @@ echo amountToSend: $amountToSend
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-destinationAddress=addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
+destinationAddress=<送金先アドレス>
 echo destinationAddress: $destinationAddress
 ```
 {% endtab %}
