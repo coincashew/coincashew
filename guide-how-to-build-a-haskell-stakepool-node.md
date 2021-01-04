@@ -2694,7 +2694,7 @@ sed -i ${NODE_CONFIG}-config.json \
 
 **10 ADA** を payment.addrから自分のアドレスへ送信する例です 🙃
 
-まずは、最新のスロット番号を取得し **ttl** パラメータを正しく設定します。
+まずは、最新のスロット番号を取得し **invalid-hereafter** パラメータを正しく設定します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
