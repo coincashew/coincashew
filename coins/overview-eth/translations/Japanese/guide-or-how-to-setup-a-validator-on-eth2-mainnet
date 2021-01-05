@@ -226,7 +226,7 @@ Ethereum 2.0は、32 ETHバリデータデポジットを監視するためにEt
 
 <p spaces-before="0">{% endhint %}</p>
 
-<p spaces-before="0">Your choice of either <a href="https://www.parity.io/ethereum/"><strong x-id="1">OpenEthereum</strong></a><strong x-id="1">,</strong> <a href="https://geth.ethereum.org/"><strong x-id="1">Geth</strong></a><strong x-id="1">,</strong> <a href="https://besu.hyperledger.org/"><strong x-id="1">Besu</strong></a><strong x-id="1">,</strong> <a href="https://www.nethermind.io/"><strong x-id="1">Nethermind</strong></a> <strong x-id="1">or</strong> <a href="https://infura.io/"><strong x-id="1">Infura</strong></a><strong x-id="1">.</strong></p>
+<p spaces-before="0">Your choice of either <a href="https://www.parity.io/ethereum/"><strong x-id="1">OpenEthereum</strong></a><strong x-id="1">,</strong> <a href="https://geth.ethereum.org/"><strong x-id="1">Geth</strong></a><strong x-id="1">,</strong> <a href="https://besu.hyperledger.org/"><strong x-id="1">Besu</strong></a><strong x-id="1">,</strong> <a href="https://www.nethermind.io/"><strong x-id="1">Nethermind</strong></a>, <a href="https://infura.io/"><strong x-id="1">Infura</strong></a> <strong x-id="1">or</strong> <a href="https://chainstack.com/"><strong x-id="1">Chainstack</strong></a><strong x-id="1">.</strong></p>
 
 <p spaces-before="0">{% tabs %}</p>
 
@@ -1110,7 +1110,7 @@ EOF
 ```
 
 {% hint style="warning" %}
-Nimbus は ETH1 ノードの websocket 接続 \("ws://" と "wss://"\' のみをサポートしています。 Geth, OpenEthereum, Infura ETH1ノードの互換性が検証されています。
+Nimbus は ETH1 ノードの websocket 接続 \("ws://" と "wss://"\' のみをサポートしています。 Geth, OpenEthereum, Infura and Chainstack ETH1 nodes are verified compatible.
 {% endhint %}
 
 ユニットファイルを `/etc/systemd/system に移動します`
@@ -3266,7 +3266,7 @@ EOF
 ```
 
 {% hint style="warning" %}
-Nimbus は ETH1 ノードの websocket 接続 \("ws://" と "wss://"\' のみをサポートしています。 Geth, OpenEthereum, Infura ETH1ノードの互換性が検証されています。
+Nimbus は ETH1 ノードの websocket 接続 \("ws://" と "wss://"\' のみをサポートしています。 Geth, OpenEthereum, Infura and Chainstack ETH1 nodes are verified compatible.
 {% endhint %}
 
 ユニットファイルを `/etc/systemd/system に移動します`
