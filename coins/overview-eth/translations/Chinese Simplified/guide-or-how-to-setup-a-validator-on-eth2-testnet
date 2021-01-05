@@ -562,6 +562,10 @@ Infura适合有限的磁盘空间设置。 在可能时总是运行您自己的�
 5. 选择 **Goerli** 作为ENDPOINT
 6. 按照下面您的 eth2 客户端的特定配置。
 
+{% hint style="success" %}
+Alternatively use a free testnet Ethereum node such as [Chainstack ](https://chainstack.com)at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+{% endhint %}
+
 ## Nimbus 特定配置
 
 1. 当创建您的系统的 **单元文件**, 更新 `--web-url` 带此端点的参数。
@@ -700,7 +704,7 @@ lightthouse --版本
 ## 🎩 4.3. 导入验证器密钥
 
 {% hint style="info" %}
-当您将您的密钥导入到 Lightthouse时，您的验证签名密钥\(s\) 存储在 `$HOME/.lightthouse/prymont/validators` 文件夹中。
+When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `$HOME/.lighthouse/prymont/validators` folder.
 {% endhint %}
 
 运行下面的命令从Eth2dosit-cli工具目录导入您的验证器密钥。
@@ -781,7 +785,7 @@ EOF
 sudo mv $HOME/信标-chain.service /etc/system/system/beacon-chain.service
 ```
 
-授予它权限。
+Give it permissions.
 
 ```bash
 sudo chmod 644 /etc/system/system/beacon-chain.service
@@ -839,12 +843,12 @@ journalctl --unit=beacon-chain --sin='202020-12-01 00:00:00' --until='202020-12-
 ```
 
 {% hint style="info" %}
-`--metrics` 标志允许在5054号端口上报告并将通过 Prometheus 进行监测。
+The `--metrics` flag enables reporting on port 5054 and will be monitored with Prometheus.
 {% endhint %}
 
 ## 🧬 4.6. 启动验证程序
 
-使用系统自动运行验证器。
+Running the validator automatically with systemd.
 
 #### 🍰 使用系统给您的验证器带来的利益 <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -1039,7 +1043,7 @@ ll /var/lib/nimbus/validators
 Nimbus将信标链和验证器合并为一个过程。
 {% endhint %}
 
-使用系统自动运行信标链和验证器。
+Running the beacon chain and validator automatically with systemd.
 
 #### 🍰 为您的信标链和验证器使用系统的利益 <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -1258,7 +1262,7 @@ sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
 sudo chmod 600 /etc/teku/validators-password.txt
 ```
 
-清除基础历史记录以移除密钥存储密码的痕迹。
+Clear the bash history in order to remove traces of keystore password.
 
 ```bash
 shred -u ~/.bash_history && tount ~/.bash_history
@@ -1445,7 +1449,7 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 
 ## 🎩 4.3. 导入验证器密钥
 
-接受使用条款、接受默认的钱包位置 输入一个新的 prysm-only 密码来加密您的本地prysm 钱包文件，并为您导入的帐户输入 **密钥存储密码**
+Accept terms of use, accept default wallet location, enter a new prysm-only password to encrypt your local prysm wallet and enter the **keystore password** for your imported accounts.
 
 {% hint style="info" %}
 如果您愿意，您可以对 **密钥店** 和 **prysm** 使用相同的密码。
@@ -1508,7 +1512,7 @@ EOF
 ```
 
 {% hint style="info" %}
-🔥 **Prysm Pro 提示:** 在 **ExecStart** 行上，添加了 `--fallback-web3provider` 标志允许备份eth1节点。 可以重复多次标记。 请确保端点不会以尾随斜杠或`/` 移除它。
+🔥 **Prysm Pro Tip:** On the **ExecStart** line, adding the `--fallback-web3provider` flag allows for a backup eth1 node. May repeat flag multiple times. 请确保端点不会以尾随斜杠或`/` 移除它。
 
 ```bash
 --fallback-web3provider=<http://<alternate eth1 provider one> --fallback-web3provider=<http://<alternate eth1 provider two>
@@ -1525,7 +1529,7 @@ EOF
 sudo mv $HOME/信标-chain.service /etc/system/system/beacon-chain.service
 ```
 
-授予它权限。
+Give it permissions.
 
 ```bash
 sudo chmod 644 /etc/system/system/beacon-chain.service
@@ -1584,14 +1588,14 @@ journalctl --unit=beacon-chain --sin='202020-12-01 00:00:00' --until='202020-12-
 
 ## 🧬 4.5. 启动验证程序 <a id="9-start-the-validator"></a>
 
-在文件中保存您的 **prysm 密码** 并使其成为只读。 这是必需的，以便Prysm能够解密并加载您的验证程序。
+Store your **prysm password** in a file and make it read-only. 这是必需的，以便Prysm能够解密并加载您的验证程序。
 
 ```bash
 echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
 sudo chmod 600 $HOME/.eth2validators/validators-password.txt
 ```
 
-清除基础历史记录以移除密钥存储密码的痕迹。
+Clear the bash history in order to remove traces of keystore password.
 
 ```bash
 shred -u ~/.bash_history && tount ~/.bash_history
@@ -2250,7 +2254,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 7. 将 **URL** 设置为 [http://localhost:9090](http://localhost:9090)
 8. 点击 **保存 & 测试**
 9. **下载并保存** 您的ETH2 Client json 文件。 \[ [Lightthouse BC ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Lightthouse VC](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/ValidatorClient.json) \| [Teku](https://grafana.com/api/dashboards/13457/revisions/2/download)[ ](https://grafana.com/api/dashboards/12522/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validator](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
-10. **下载并保存** 你的ETH1 Client json 文件 \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Netherlands ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| OpenEtherum \]
+10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| [OpenEthereum ](https://raw.githubusercontent.com/dappnode/DAppNodePackage-openethereum/master/openethereum-grafana-dashboard.json)\]
 11. **下载并保存** a [节点导出仪表板](https://grafana.com/api/dashboards/11074/revisions/9/download) 用于一般系统监测
 12. 点击 **创建 +** 图标 &gt; **导入**
 13. 通过 **上传JSON 文件** 添加ETH2 客户端的仪表板
@@ -2441,7 +2445,7 @@ _仪表板不显示eth1节点数据。_
 {% hint style="success" %}
 一旦您的信标链已同步，验证器已上传并运行，您只需等待激活。 此过程可能需要 24 + 个小时。 当你被指派时，你的验证器将开始创建和投票块，同时获得预订奖励。
 
-使用 [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) 创建警报并跟踪您的验证器性能。
+Use [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) to create alerts and track your validator's performance.
 {% endhint %}
 
 {% hint style="info" %}
@@ -2449,7 +2453,7 @@ _仪表板不显示eth1节点数据。_
 {% endhint %}
 
 {% hint style="success" %}
-🎉Congrats on setting your testnet validator! 你很高兴去尝试主网eth2.0
+🎉Congrats on setting up your testnet validator! You're good to go and try mainnet eth2.0.
 
 你觉得我们的指南有用吗？ 向我们发送一个带有提示的信息，我们将不断更新它。
 
@@ -2457,7 +2461,7 @@ _仪表板不显示eth1节点数据。_
 
 任何反馈和所有拉取请求都非常感激。 🌛
 
-在 Discord @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :grinning_face_with_big_eyes：
+Hang out and chat with fellow stakers on Discord @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
 
 ## 🧙♂7. Update a ETH2 client
@@ -2474,7 +2478,7 @@ _仪表板不显示eth1节点数据。_
 {% tab title="Lighthouse" %}
 查看发行笔记并检查断开的更改/功能。
 
-[https://github.com/sigp/lightthouse/releases](https://github.com/sigp/lighthouse/releases)
+[https://github.com/sigp/lighthouse/releases](https://github.com/sigp/lighthouse/releases)
 
 拉取最新的源并构建它。
 
@@ -2985,7 +2989,7 @@ sudo systemctl 重启 eth1
 ### 📂 8.7 重要的目录位置
 
 {% hint style="info" %}
-如果您需要找到您的验证器密钥或数据库目录。
+In case you need to locate your validator keys or database directories.
 {% endhint %}
 
 {% tabs %}
@@ -3516,7 +3520,7 @@ sudo systemctl 状态 eth1 信标-chain
 
 最后，验证你的验证器的注释正在与公共区块浏览器合作，例如：
 
-[https://信标.in/](https://beaconcha.in/)
+[https://beaconcha.in/](https://beaconcha.in/)
 
 输入您的验证器的 pubkey 查看其状态。
 
@@ -3640,7 +3644,7 @@ sudo systemctl 重启 信标链。
 
 学习如何在下面的快速指南。
 
-{% page-ref page="guide-or how to setup-a-validator-on-eth2-mainnet/how to find-long-testation-slot-gap.md" %}
+{% page-ref page="guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-find-longest-attestation-slot-gap.md" %}
 
 #### ⚙ Strategy \#4：信标节点冗余性
 
@@ -3716,7 +3720,7 @@ sudo systemctl 重启验证器
 
 赞赏优秀民俗在以下链接所做的艰苦工作，以此作为编写本指南的基础。
 
-{% 嵌入的 url="https://pyrmont.launchpad.eysum.org/" %}
+{% embed url="https://pyrmont.launchpad.ethereum.org/" %}
 
 {% 嵌入的 url="https://pegasys.tech/teku-thero-2-for-enterprise/" %}
 
@@ -3736,7 +3740,7 @@ sudo systemctl 重启验证器
 
 ### 🧱 ETH2 区块浏览器
 
-{% 嵌入的 url="https://pyrmont.beaconcha.in/" %}
+{% embed url="https://pyrmont.beaconcha.in/" %}
 
 {% 嵌入的 url="https://信标onscan.com/" 标题="" %}
 
