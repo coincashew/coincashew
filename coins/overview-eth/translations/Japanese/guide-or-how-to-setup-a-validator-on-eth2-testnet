@@ -584,6 +584,10 @@ sudo systemctl start eth1
 5. ENDPOINTとして **Goerli** を選択する
 6. 以下にあるeth2クライアントの特定の設定に従ってください。
 
+{% hint style="success" %}
+Alternatively use a free testnet Ethereum node such as [Chainstack ](https://chainstack.com)at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+{% endhint %}
+
 ## ニンバス特有の設定
 
 1. システムの **ユニットファイル**を作成するときは、このエンドポイントで `--web-url` パラメータを更新します。
@@ -722,7 +726,7 @@ lighouse --version
 ## 🎩 4.3. バリデータキーをインポート
 
 {% hint style="info" %}
-Lighthouseにキーをインポートすると、バリデータ署名キー\(s\)は `$HOME/.lightouse/prymont/validators` フォルダに保存されます。
+When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `$HOME/.lighthouse/prymont/validators` folder.
 {% endhint %}
 
 以下のコマンドを実行して、validator キーを eth2deposit-cli ツールディレクトリからインポートします。
@@ -803,7 +807,7 @@ EOF
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
 ```
 
-アクセス許可を与えます。
+Give it permissions.
 
 ```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
@@ -861,12 +865,12 @@ journctl ----unit=beacon-chain --since='202020-12-02 12:00:00:00' -since='202020
 ```
 
 {% hint style="info" %}
-`--metrics` フラグは、ポート5054のレポートを有効にし、Prometheusで監視します。
+The `--metrics` flag enables reporting on port 5054 and will be monitored with Prometheus.
 {% endhint %}
 
 ## 🧬 4.6. バリデータを開始する
 
-systemdで自動的にバリデータを実行します。
+Running the validator automatically with systemd.
 
 #### 🍰 バリデータに systemd を使用する利点 <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -1061,7 +1065,7 @@ When you import your keys into Nimbus, your validator signing key\(s\) are store
 Nimbusはビーコンチェーンとバリデータの両方を1つのプロセスに統合します。
 {% endhint %}
 
-自動的にビーコンチェーンとバリデータをシステムdで実行します。
+Running the beacon chain and validator automatically with systemd.
 
 #### 🍰 あなたのビーコンチェーンとバリデータに systemd を使用する利点 <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -1280,7 +1284,7 @@ sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
 sudo chmod 600 /etc/teku/validators-password.txt
 ```
 
-キーストアパスワードの痕跡を削除するには、bash 履歴をクリアします。
+Clear the bash history in order to remove traces of keystore password.
 
 ```bash
 shred -u ~/.bash_history && touch ~/.bash_history
@@ -1467,7 +1471,7 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 
 ## 🎩 4.3. バリデータキーをインポート
 
-利用規約に同意し、既定のウォレットの場所に同意する ローカルのプライズムウォレットを暗号化し、インポートされたアカウントの **キーストアのパスワード** を入力するには、新しいプライズムのみの新しいパスワードを入力してください。
+Accept terms of use, accept default wallet location, enter a new prysm-only password to encrypt your local prysm wallet and enter the **keystore password** for your imported accounts.
 
 {% hint style="info" %}
 必要に応じて、 **keystore** と **prysm** に同じパスワードを使用できます。
@@ -1530,7 +1534,7 @@ EOF
 ```
 
 {% hint style="info" %}
-🔥 **Prysm Pro Tip:** On the **ExecStart** line, adding the `--fallback-web3provider` flag allows for a backup eth1 node. フラグを複数回繰り返すことができます。 エンドポイントが末尾のスラッシュで終わらないこと、または`/` それを削除してください。
+🔥 **Prysm Pro Tip:** On the **ExecStart** line, adding the `--fallback-web3provider` flag allows for a backup eth1 node. May repeat flag multiple times. エンドポイントが末尾のスラッシュで終わらないこと、または`/` それを削除してください。
 
 ```bash
 --fallback-web3provider=<http://<alternate eth1 provider one> --fallback-web3provider=<http://<alternate eth1 provider two>
@@ -1547,7 +1551,7 @@ EOF
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
 ```
 
-アクセス許可を与えます。
+Give it permissions.
 
 ```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
@@ -1606,14 +1610,14 @@ journctl ----unit=beacon-chain --since='202020-12-02 12:00:00:00' -since='202020
 
 ## 🧬 4.5. バリデータを開始する <a id="9-start-the-validator"></a>
 
-**prysm パスワード** をファイルに保存し、読み取り専用にします。 プリズムがバリデータを復号してロードできるようにするには、これが必要です。
+Store your **prysm password** in a file and make it read-only. プリズムがバリデータを復号してロードできるようにするには、これが必要です。
 
 ```bash
 echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
 sudo chmod 600 $HOME/.eth2validators/validators-password.txt
 ```
 
-キーストアパスワードの痕跡を削除するには、bash 履歴をクリアします。
+Clear the bash history in order to remove traces of keystore password.
 
 ```bash
 shred -u ~/.bash_history && touch ~/.bash_history
@@ -2272,7 +2276,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 7. **URL** を [http://localhost:9090 に設定](http://localhost:9090)
 8. **保存 & テスト** をクリックします
 9. **ETH2クライアントのjsonファイルを** ダウンロードして保存します。 \[ [Lighthouse BC ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [Lighthouse VC](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/ValidatorClient.json) \| [Teku](https://grafana.com/api/dashboards/13457/revisions/2/download)[ ](https://grafana.com/api/dashboards/12522/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
-10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| OpenEthereum \]
+10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| [OpenEthereum ](https://raw.githubusercontent.com/dappnode/DAppNodePackage-openethereum/master/openethereum-grafana-dashboard.json)\]
 11. **Download and save** a [node-exporter dashboard](https://grafana.com/api/dashboards/11074/revisions/9/download) for general system monitoring
 12. **Create +** icon &gt; **Import**
 13. **アップロードJSONファイル**からETH2クライアントのダッシュボードを追加します
@@ -2463,7 +2467,7 @@ GoogleのUptime Checkという無償監視サービスのセットアップ方�
 {% hint style="success" %}
 ビーコンチェーンの同期、検証、実行が完了したら、アクティベーションを待つだけです。 このプロセスには24時間以上かかることがあります。 あなたが割り当てられると、あなたのバリデーターはステーク報酬を獲得しながらブロックの作成と投票を開始します。
 
-[https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) を使用してアラートを作成し、バリデータのパフォーマンスを追跡します。
+Use [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) to create alerts and track your validator's performance.
 {% endhint %}
 
 {% hint style="info" %}
@@ -2471,7 +2475,7 @@ GoogleのUptime Checkという無償監視サービスのセットアップ方�
 {% endhint %}
 
 {% hint style="success" %}
-🎉testnet バリデーターの設定おめでとうございます！ あなたは行って、メインネットeth2.0を試してみて良いです。
+🎉Congrats on setting up your testnet validator! You're good to go and try mainnet eth2.0.
 
 私たちのガイドが役に立ちましたか？ ヒント付きのシグナルを送信してください。アップデートを続けます。
 
@@ -2479,7 +2483,7 @@ GoogleのUptime Checkという無償監視サービスのセットアップ方�
 
 どんなフィードバックとすべてのプルリクエストは非常に高く評価されます。 🌛
 
-Discord @ で仲間のステーカーとチャットしましょう [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
+Hang out and chat with fellow stakers on Discord @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
 
 ## 🧙♂7. Update a ETH2 client
@@ -2496,7 +2500,7 @@ ETH2クライアントを選択します。
 {% tab title="Lighthouse" %}
 リリースノートを確認し、破損している変更/機能を確認してください。
 
-[https://github.com/sigp/lightouse/releases](https://github.com/sigp/lighthouse/releases)
+[https://github.com/sigp/lighthouse/releases](https://github.com/sigp/lighthouse/releases)
 
 最新のソースを取得してビルドします。
 
@@ -3007,7 +3011,7 @@ sudo systemctl restart eth1
 ### 📂 8.7 重要なディレクトリ場所
 
 {% hint style="info" %}
-バリデータキーまたはデータベースディレクトリを見つける必要がある場合。
+In case you need to locate your validator keys or database directories.
 {% endhint %}
 
 {% tabs %}
@@ -3662,7 +3666,7 @@ sudo systemctl restart beacon-chain
 
 以下のクイックガイドをご覧ください。
 
-{% page-ref page="guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-find-longest-attest-slot-gap.md" %}
+{% page-ref page="guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-find-longest-attestation-slot-gap.md" %}
 
 #### ⚙ ストラテジー \#4: ビーコンノード冗長性
 
