@@ -1699,7 +1699,7 @@ cardano-cli transaction submit \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli stake-pool id --verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
+cardano-cli stake-pool id --cold-verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
 cat stakepoolid.txt
 ```
 {% endtab %}
