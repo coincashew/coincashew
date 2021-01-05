@@ -562,6 +562,10 @@ Regístrate para obtener una clave de acceso API en [https://infura.io/](https:/
 5. Seleccione **Goerli** como ENDPOINT
 6. Siga la configuración específica para su cliente eth2 que se encuentra a continuación.
 
+{% hint style="success" %}
+Alternatively use a free testnet Ethereum node such as [Chainstack ](https://chainstack.com)at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+{% endhint %}
+
 ## Configuración específica de Nimbus
 
 1. Al crear el **archivo de unidad**de su sistema, actualice el parámetro `--web-url` con este punto final.
@@ -700,7 +704,7 @@ lighthouse --version
 ## 🎩 4.3. Importar clave de validador
 
 {% hint style="info" %}
-Cuando importas tus claves en Lighthouse, las claves de tu validador\(s\) se almacenan en la carpeta `$HOME/.lighthouse/prymont/validators`.
+When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `$HOME/.lighthouse/prymont/validators` folder.
 {% endhint %}
 
 Ejecute el siguiente comando para importar sus claves de validador desde el directorio de herramientas eth2deposit-cli.
@@ -781,7 +785,7 @@ Mover el archivo de unidad a `p/systemd/system`
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
 ```
 
-Ofrezca permisos.
+Give it permissions.
 
 ```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
@@ -839,12 +843,12 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 ```
 
 {% hint style="info" %}
-La bandera `--metrics` permite reportar en el puerto 5054 y será monitoreada con Prometheus.
+The `--metrics` flag enables reporting on port 5054 and will be monitored with Prometheus.
 {% endhint %}
 
 ## 🧬 4.6. Iniciar el validador
 
-Ejecutar el validador automáticamente con el sistema.
+Running the validator automatically with systemd.
 
 #### 🍰 Beneficios de usar systemd para su validador <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -876,7 +880,7 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Mueva el archivo de unidad a `/etc/systemd/system` y otorgue permisos.
+Mueva el archivo de unidad a `p/systemd/system` y otorgue permisos.
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
@@ -1039,7 +1043,7 @@ Específicamente para su configuración de red o configuración de proveedores d
 Nimbus combina tanto la cadena de baliza como el validador en un solo proceso.
 {% endhint %}
 
-Ejecutar la cadena beacon y el validador automáticamente con el sistema.
+Running the beacon chain and validator automatically with systemd.
 
 #### 🍰 Benefits of using systemd for your beacon chain and validator <a id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -1077,7 +1081,7 @@ EOF
 Nimbus sólo soporta conexiones websocket \("ws://" y "wss://"\) para el nodo ETH1. Los nodos Geth, OpenEthereum e Infura ETH1 son compatibles.
 {% endhint %}
 
-Mover el archivo de unidad a `/etc/systemd/system`
+Mover el archivo de unidad a `p/systemd/system`
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
@@ -1258,7 +1262,7 @@ sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
 sudo chmod 600 /etc/teku/validators-password.txt
 ```
 
-Borra el historial de bash para eliminar los rastros de la contraseña del almacén de claves.
+Clear the bash history in order to remove traces of keystore password.
 
 ```bash
 shred -u ~/.bash_history && touch ~/.bash_history
@@ -1300,7 +1304,7 @@ log-destination: CONSOLE
 EOF
 ```
 
-Mover el archivo de configuración a `/etc/teku`
+Mover el archivo de configuración a `mañ/teku`
 
 ```bash
 sudo mv $HOME/teku.yaml /teku/teku.yaml
@@ -1445,7 +1449,7 @@ Específicamente para su configuración de red o configuración de proveedores d
 
 ## 🎩 4.3. Importar clave de validador
 
-Aceptar los términos de uso, aceptar la ubicación predeterminada de la cartera introduzca una nueva contraseña de solo prysm-only para cifrar su cartera local de prysm e introduzca la **contraseña del almacén de claves** para sus cuentas importadas.
+Accept terms of use, accept default wallet location, enter a new prysm-only password to encrypt your local prysm wallet and enter the **keystore password** for your imported accounts.
 
 {% hint style="info" %}
 Si lo desea, puede utilizar la misma contraseña para el almacén de claves **** y **prysm**.
@@ -1508,7 +1512,7 @@ EOF
 ```
 
 {% hint style="info" %}
-🔥 **Prysm Pro Tip:** En la línea **ExecStart** , agregando la bandera `--fallback-web3provider` permite un nodo eth1 de copia de seguridad. Puede repetir la bandera varias veces. Asegúrate de que el endpoint no termina con una barra final o`/` Quitarlo.
+🔥 **Prysm Pro Tip:** On the **ExecStart** line, adding the `--fallback-web3provider` flag allows for a backup eth1 node. May repeat flag multiple times. Asegúrate de que el endpoint no termina con una barra final o`/` Quitarlo.
 
 ```bash
 --fallback-web3provider=<http://<alternate eth1 provider one> --fallback-web3provider=<http://<alternate eth1 provider two>
@@ -1525,7 +1529,7 @@ Mover el archivo de unidad a `p/systemd/system`
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
 ```
 
-Ofrezca permisos.
+Give it permissions.
 
 ```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
@@ -1584,14 +1588,14 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 
 ## 🧬 4.5. Iniciar el validador <a id="9-start-the-validator"></a>
 
-Almacena tu **contraseña del prysm** en un archivo y hazla de solo lectura. Esto es necesario para que Prysm pueda descifrar y cargar sus validadores.
+Store your **prysm password** in a file and make it read-only. Esto es necesario para que Prysm pueda descifrar y cargar sus validadores.
 
 ```bash
 echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
 sudo chmod 600 $HOME/.eth2validators/validators-password.txt
 ```
 
-Borra el historial de bash para eliminar los rastros de la contraseña del almacén de claves.
+Clear the bash history in order to remove traces of keystore password.
 
 ```bash
 shred -u ~/.bash_history && tocar ~/.bash_history
@@ -2250,7 +2254,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 7. Establecer **URL** a [http://localhost:9090](http://localhost:9090)
 8. Haga clic en **Guardar & Prueba**
 9. **Descargue y guarde** el archivo json de su Cliente ETH2. \[ [Faro BC ](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\| [CV faro](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/ValidatorClient.json) \| [Teku](https://grafana.com/api/dashboards/13457/revisions/2/download)[ ](https://grafana.com/api/dashboards/12522/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prisma ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prisma &gt; 10 Validadores](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \]
-10. **Descargue y guarde** el archivo json de su cliente ETH1 \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [a la mente ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| OpenEthereum \]
+10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| [OpenEthereum ](https://raw.githubusercontent.com/dappnode/DAppNodePackage-openethereum/master/openethereum-grafana-dashboard.json)\]
 11. **Descargue y ahorre** un panel [exportador de nodos](https://grafana.com/api/dashboards/11074/revisions/9/download) para monitorización general del sistema
 12. Haga clic en **Crear +** icono &gt; **Importar**
 13. Agregue el panel de control del cliente ETH2 a través de **Subir archivo JSON**
@@ -2441,7 +2445,7 @@ Para una demostración de vídeo, ve [vídeos educativos de MohamedMansour's eth
 {% hint style="success" %}
 Una vez que su cadena de beacon está sincronizada, validador en funcionamiento, sólo espera la activación. Este proceso puede tardar más de 24 horas. Cuando te asignes, tu validador comenzará a crear y votar bloques mientras ganas las recompensas.
 
-Usa [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) para crear alertas y rastrear el rendimiento de tu validador.
+Use [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) to create alerts and track your validator's performance.
 {% endhint %}
 
 {% hint style="info" %}
@@ -2449,7 +2453,7 @@ Asegúrese de revisar la [Lista de verificación \| Cómo confirmar un validador
 {% endhint %}
 
 {% hint style="success" %}
-🎉¡Felicidades por configurar tu validador de testnet! Es bueno ir y probar mainnet eth2.0.
+🎉Congrats on setting up your testnet validator! You're good to go and try mainnet eth2.0.
 
 ¿Encontraste útil nuestra guía? Envíenos una señal con un consejo y seguiremos actualizándola.
 
@@ -2457,7 +2461,7 @@ Usa [cointr.ee para encontrar nuestras direcciones de donación ](https://cointr
 
 Cualquier comentario y todas las solicitudes de extracción son muy apreciadas. 🌛
 
-Descubra y hable con otros jugadores en Discord @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
+Hang out and chat with fellow stakers on Discord @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
 
 ## 🧙♂7. Update a ETH2 client
@@ -2599,7 +2603,7 @@ sudo systemctl reload-or-restart validator
 Marque los registros para verificar que los servicios están funcionando correctamente y asegurarse de que no hay errores.
 
 {% tabs %}
-{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+{% tab title="Faro \| Prisma \| Lodestar" %}
 ```bash
 sudo systemctl status beacon-chain validator
 ```
@@ -2765,7 +2769,7 @@ La clave de despegue en este proceso es evitar ejecutar dos clientes eth2 simult
 Para exportar la base de datos de barras, es necesario detener el validador.
 
 {% tabs %}
-{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+{% tab title="Faro \| Prisma \| Lodestar" %}
 ```bash
 sudo systemctl stop beacon-chain validator
 ```
@@ -2857,7 +2861,7 @@ A implementar
 #### 🌠 8.4.5 Iniciar nuevo validador y nueva cadena de baliza
 
 {% tabs %}
-{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+{% tab title="Faro \| Prisma \| Lodestar" %}
 ```bash
 sudo systemctl start beacon-chain validator
 ```
@@ -2875,7 +2879,7 @@ sudo systemctl start beacon-chain
 Marque los registros para verificar que los servicios están funcionando correctamente y asegurarse de que no hay errores.
 
 {% tabs %}
-{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+{% tab title="Faro \| Prisma \| Lodestar" %}
 ```bash
 sudo systemctl status beacon-chain validator
 ```
@@ -2985,7 +2989,7 @@ sudo systemctl restart eth1
 ### 📂 8.7 Ubicaciones de directorios importantes
 
 {% hint style="info" %}
-En caso de que necesite localizar sus claves de validador o directorios de base de datos.
+In case you need to locate your validator keys or database directories.
 {% endhint %}
 
 {% tabs %}
@@ -3206,7 +3210,7 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Mover el archivo de unidad a `/etc/systemd/system`
+Mover el archivo de unidad a `p/systemd/system`
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
@@ -3366,7 +3370,7 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Mover el archivo de unidad a `/etc/systemd/system`
+Mover el archivo de unidad a `p/systemd/system`
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
@@ -3383,7 +3387,7 @@ sudo chmod 644 /etc/systemd/validator.service
 Recarga el archivo de unidad actualizado y reinicia el proceso del validador para que tu graffiti surta efecto.
 
 {% tabs %}
-{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+{% tab title="Faro \| Prisma \| Lodestar" %}
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl restart validator
@@ -3501,7 +3505,7 @@ sudo systemctl start eth1
 Marque los registros para verificar que los servicios están funcionando correctamente y asegurarse de que no hay errores.
 
 {% tabs %}
-{% tab title="Lighthouse \| Prysm \| Lodestar" %}
+{% tab title="Faro \| Prisma \| Lodestar" %}
 ```bash
 sudo systemctl status eth1 status beacon-chain validator
 ```
