@@ -215,7 +215,7 @@ cd eth2deposit-cli
 🛑 不要以 **ROOT** 用户身份运行您的进程。 😱
 {% endhint %}
 
-您的选择 [**OpenEthereum**](https://www.parity.io/ethereum/)**** [**Geth**](https://geth.ethereum.org/)**,** [**别斯库**](https://besu.hyperledger.org/)**,** [**荷兰**](https://www.nethermind.io/) **或** [**Infura**](https://infura.io/)**.**
+Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/), [**Infura**](https://infura.io/) **or** [**Chainstack**](https://chainstack.com/)**.**
 
 {% tabs %}
 {% tab title="OpenEtherum\(parity\)" %}
@@ -1088,7 +1088,7 @@ EOF
 ```
 
 {% hint style="warning" %}
-Nimbus只支持 ETH1 节点的 websocket 连接\("ws://" 和 "wss://"\")。 Geth, OpenEthereum 和 Infura ETH1 节点是验证兼容的。
+Nimbus只支持 ETH1 节点的 websocket 连接\("ws://" 和 "wss://"\")。 Geth, OpenEthereum, Infura and Chainstack ETH1 nodes are verified compatible.
 {% endhint %}
 
 移动单位文件到 `/etc/system/system/system`
@@ -3244,7 +3244,7 @@ EOF
 ```
 
 {% hint style="warning" %}
-Nimbus只支持 ETH1 节点的 websocket 连接\("ws://" 和 "wss://"\")。 Geth, OpenEthereum 和 Infura ETH1 节点是验证兼容的。
+Nimbus只支持 ETH1 节点的 websocket 连接\("ws://" 和 "wss://"\")。 Geth, OpenEthereum, Infura and Chainstack ETH1 nodes are verified compatible.
 {% endhint %}
 
 移动单位文件到 `/etc/system/system/system`
