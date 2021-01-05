@@ -215,7 +215,7 @@ The subsequent steps assume you have completed the [best practices security guid
 🛑 No ejecute sus procesos como usuario de **ROOT**. 😱
 {% endhint %}
 
-Tu elección de [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**espíritu**](https://www.nethermind.io/) **o** [**Infura**](https://infura.io/)**.**
+Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/), [**Infura**](https://infura.io/) **or** [**Chainstack**](https://chainstack.com/)**.**
 
 {% tabs %}
 {% tab title="OpenEthereum \(Paridad\)" %}
@@ -1089,7 +1089,7 @@ EOF
 ```
 
 {% hint style="warning" %}
-Nimbus sólo soporta conexiones websocket \("ws://" y "wss://"\) para el nodo ETH1. Los nodos Geth, OpenEthereum e Infura ETH1 son compatibles.
+Nimbus sólo soporta conexiones websocket \("ws://" y "wss://"\) para el nodo ETH1. Geth, OpenEthereum, Infura and Chainstack ETH1 nodes are verified compatible.
 {% endhint %}
 
 Mover el archivo de unidad a `p/systemd/system`
@@ -3249,7 +3249,7 @@ EOF
 ```
 
 {% hint style="warning" %}
-Nimbus sólo soporta conexiones websocket \("ws://" y "wss://"\) para el nodo ETH1. Los nodos Geth, OpenEthereum e Infura ETH1 son compatibles.
+Nimbus sólo soporta conexiones websocket \("ws://" y "wss://"\) para el nodo ETH1. Geth, OpenEthereum, Infura and Chainstack ETH1 nodes are verified compatible.
 {% endhint %}
 
 Mover el archivo de unidad a `p/systemd/system`
