@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet
 
 {% hint style="success" %}
-As of Dec 24 2020, this guide is updated for **testnet Pyrmont.** 😁
+As of Jan 5 2021, this guide is updated for **testnet Pyrmont.** 😁
 {% endhint %}
 
 #### ✨ For the mainnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
@@ -286,7 +286,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli
+ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli --metrics --metrics-port=6060
 Restart         = on-failure
 RestartSec      = 3
 
@@ -1995,6 +1995,10 @@ Setup **Chrony** with the following guide.
 chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
 {% endhint %}
 
+{% hint style="warning" %}
+Running multiple time synchronization services is known to cause issues. Ensure only either Chrony or only 1 NTP service is running.
+{% endhint %}
+
 ## 🔎6. Monitoring your validator with Grafana and Prometheus
 
 Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
@@ -2211,7 +2215,13 @@ Pushgateway listens for data from Nethermind on port 9091.
 
 {% tab title="OpenEthereum" %}
 ```bash
-Work in progress
+   - job_name: 'openethereum'
+     scrape_interval: 15s
+     scrape_timeout: 10s
+     metrics_path: /metrics
+     scheme: http
+     static_configs:
+     - targets: ['localhost:6060']
 ```
 {% endtab %}
 {% endtabs %}
@@ -2329,7 +2339,7 @@ Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://githu
 {% endtab %}
 
 {% tab title="OpenEthereum" %}
-Work in progress
+![Credits to dappnode](../../.gitbook/assets/openethereum-dashboard.png)
 {% endtab %}
 {% endtabs %}
 
