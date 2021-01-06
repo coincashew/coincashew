@@ -6,7 +6,7 @@ description: >-
 # Guía \| Cómo configurar un validador en la red de pruebas ETH2
 
 {% hint style="success" %}
-A partir del 24 de diciembre de 2020, esta guía se actualiza para **Pyrmont de testnet.**😁
+As of Jan 5 2021, this guide is updated for **testnet Pyrmont.** 😁
 {% endhint %}
 
 #### ✨ Para la guía de red principal, [por favor haga clic aquí](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
@@ -285,7 +285,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli
+ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli --metrics --metrics-port=6060
 Restart         = on-failure
 RestartSec      = 3
 
@@ -1994,6 +1994,10 @@ Configurar **Chrony** con la siguiente guía.
 chrony es una implementación del Protocolo de Tiempo de Red y ayuda a mantener el tiempo de su computadora sincronizado con NTP.
 {% endhint %}
 
+{% hint style="warning" %}
+Running multiple time synchronization services is known to cause issues. Ensure only either Chrony or only 1 NTP service is running.
+{% endhint %}
+
 ## 🔎6. Monitoreando a tu validador con Grafana y Prometeo
 
 Prometheus es una plataforma de monitoreo que recolecta métricas de objetivos monitorizados mediante la eliminación de métricas HTTP en estos objetivos. [La documentación oficial está disponible aquí.](https://prometheus.io/docs/introduction/overview/) Grafana es un panel utilizado para visualizar los datos recolectados.
@@ -2210,7 +2214,13 @@ Pushgateway escucha los datos de la mente en el puerto 9091.
 
 {% tab title="OpenEthereum" %}
 ```bash
-Trabajo en curso
+   - job_name: 'openethereum'
+     scrape_interval: 15s
+     scrape_timeout: 10s
+     metrics_path: /metrics
+     scheme: http
+     static_configs:
+     - targets: ['localhost:6060']
 ```
 {% endtab %}
 {% endtabs %}
@@ -2328,7 +2338,7 @@ Créditos: [https://github.com/)[video] mindEth/metrics-infrastructure](https://
 {% endtab %}
 
 {% tab title="OpenEthereum" %}
-Trabajo en curso
+![Credits to dappnode](../../.gitbook/assets/openethereum-dashboard.png)
 {% endtab %}
 {% endtabs %}
 
