@@ -6,7 +6,7 @@ description: >-
 # 指南 \| 如何在 ETH2 测试网上设置验证器
 
 {% hint style="success" %}
-截至2020年12月24日，本指南已更新为 **testnet Pyrmont。** :beaming_face_with_smiling_eyes：
+As of Jan 5 2021, this guide is updated for **testnet Pyrmont.** 😁
 {% endhint %}
 
 #### ✨ For the mainnet guide, [请点击这里](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
@@ -285,7 +285,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli
+ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli --metrics --metrics-port=6060
 Restart         = on-failure
 RestartSec      = 3
 
@@ -1994,6 +1994,10 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 时间是网络时间协议的执行，有助于使您的计算机时间与NTP保持同步。
 {% endhint %}
 
+{% hint style="warning" %}
+Running multiple time synchronization services is known to cause issues. Ensure only either Chrony or only 1 NTP service is running.
+{% endhint %}
+
 ## 🔎6. 用Grafana 和 Prometheus 监视您的验证器
 
 Prometheus 是一个监测平台，它通过拆卸关于这些目标的计量标准HTTP端点，从受监测的目标收集计量。 [官方文档可在这里获取](https://prometheus.io/docs/introduction/overview/) Grafana 是一个用于可视化收集数据的仪表盘。
@@ -2210,7 +2214,13 @@ sudo apt-get install -y promeus-pus-pus网关
 
 {% tab title="OpenEthereum" %}
 ```bash
-正在进行的工作
+   - job_name: 'openethereum'
+     scrape_interval: 15s
+     scrape_timeout: 10s
+     metrics_path: /metrics
+     scheme: http
+     static_configs:
+     - targets: ['localhost:6060']
 ```
 {% endtab %}
 {% endtabs %}
@@ -2328,7 +2338,7 @@ _仪表板不显示eth1节点数据。_
 {% endtab %}
 
 {% tab title="OpenEthereum" %}
-正在进行的工作
+![Credits to dappnode](../../.gitbook/assets/openethereum-dashboard.png)
 {% endtab %}
 {% endtabs %}
 
