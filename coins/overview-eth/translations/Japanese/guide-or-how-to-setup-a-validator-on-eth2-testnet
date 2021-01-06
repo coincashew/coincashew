@@ -6,7 +6,7 @@ description: >-
 # ガイド \| ETH2 testnet でバリデータをセットアップする方法
 
 {% hint style="success" %}
-2020年12月24日現在、このガイドは **testnet Pyrmontのために更新されています。**😁
+As of Jan 5 2021, this guide is updated for **testnet Pyrmont.** 😁
 {% endhint %}
 
 #### ✨ メインネットガイドについては、 [こちら](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) をクリックしてください。
@@ -307,7 +307,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli
+ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli --metrics --metrics-port=6060
 Restart         = on-failure
 RestartSec      = 3
 
@@ -2016,6 +2016,10 @@ journctl ---unit=validator --since='202020-12-01 00-01 00:00:00' -until='2020202
 chronyはNetwork Time Protocolの実装であり、コンピュータの時刻をNTPと同期させるのに役立ちます。
 {% endhint %}
 
+{% hint style="warning" %}
+Running multiple time synchronization services is known to cause issues. Ensure only either Chrony or only 1 NTP service is running.
+{% endhint %}
+
 ## 🔎6. GrafanaとPrometheusでバリデータを監視する
 
 Prometheusは、これらのターゲットのメトリックHTTPエンドポイントをスクレイピングすることによって、監視対象からメトリックを収集する監視プラットフォームです。 [公式ドキュメントはこちらから入手できます。](https://prometheus.io/docs/introduction/overview/) Grafana は収集されたデータを視覚化するために使用されるダッシュボードです。
@@ -2232,7 +2236,13 @@ Pushgateway は、ネザーマインドからポート9091のデータをリッ�
 
 {% tab title="OpenEthereum" %}
 ```bash
-作業中
+   - job_name: 'openethereum'
+     scrape_interval: 15s
+     scrape_timeout: 10s
+     metrics_path: /metrics
+     scheme: http
+     static_configs:
+     - targets: ['localhost:6060']
 ```
 {% endtab %}
 {% endtabs %}
@@ -2350,7 +2360,7 @@ Credits: [https://github.com/NethermindEth/metrics-インフラストラクチ�
 {% endtab %}
 
 {% tab title="OpenEthereum" %}
-作業中
+![Credits to dappnode](../../.gitbook/assets/openethereum-dashboard.png)
 {% endtab %}
 {% endtabs %}
 
