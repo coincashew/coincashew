@@ -696,9 +696,9 @@ cardano-cli node key-gen \
     --cold-verification-key-file node.vkey \
     --cold-signing-key-file node.skey \
     --operational-certificate-issue-counter node.counter
-    chmod 550 node.vkey
-    chmod 550 node.skey
-    chmod 550 node.counter
+    chmod 400 node.vkey
+    chmod 400 node.skey
+    chmod 400 node.counter
 ```
 {% endtab %}
 {% endtabs %}
@@ -935,12 +935,12 @@ cardano-cli address build \
 ###
 ### On エアギャップオフラインマシン,
 ###
-chmod 550 payment.vkey
-chmod 550 payment.skey
-chmod 550 stake.vkey
-chmod 550 stake.skey
-chmod 550 stake.addr
-chmod 550 payment.addr
+chmod 400 payment.vkey
+chmod 400 payment.skey
+chmod 400 stake.vkey
+chmod 400 stake.skey
+chmod 400 stake.addr
+chmod 400 payment.addr
 ```
 
 
