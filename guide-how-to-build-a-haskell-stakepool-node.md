@@ -696,9 +696,10 @@ cardano-cli node key-gen \
     --cold-verification-key-file node.vkey \
     --cold-signing-key-file node.skey \
     --operational-certificate-issue-counter node.counter
-    chmod 400 node.vkey
-    chmod 400 node.skey
-    chmod 400 node.counter
+
+chmod 400 node.vkey
+chmod 400 node.skey
+chmod 400 node.counter
 ```
 {% endtab %}
 {% endtabs %}
