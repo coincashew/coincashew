@@ -696,6 +696,9 @@ cardano-cli node key-gen \
     --cold-verification-key-file node.vkey \
     --cold-signing-key-file node.skey \
     --operational-certificate-issue-counter node.counter
+    chmod 550 node.vkey
+    chmod 550 node.skey
+    chmod 550 node.counter
 ```
 {% endtab %}
 {% endtabs %}
@@ -926,6 +929,20 @@ cardano-cli address build \
     --out-file payment.addr \
     --mainnet
 ```
+
+上書きされないようパーミッションを変更する。
+```bash
+###
+### On エアギャップオフラインマシン,
+###
+chmod 550 payment.vkey
+chmod 550 payment.skey
+chmod 550 stake.vkey
+chmod 550 stake.skey
+chmod 550 stake.addr
+chmod 550 payment.addr
+```
+
 
 **※プール運営開始後に、上記の処理を実行するとアドレスが上書きされるので注意してください。**
 {% endtab %}
