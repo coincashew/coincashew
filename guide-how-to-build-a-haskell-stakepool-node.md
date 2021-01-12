@@ -2322,7 +2322,7 @@ cardano-cli node key-gen-KES \
 
 kes.vkeyをエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。 
   
-次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;"startKesPeriod"&gt;に入力してからコマンドを送信してください。
+次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;startKesPeriod&gt;の箇所に置き換えてからコマンドを送信してください。
 
 **&lt;startKesPeriod&gt;**の部分を上記で算出した数値（startKesPeriodの値）に置き換えます。
 
