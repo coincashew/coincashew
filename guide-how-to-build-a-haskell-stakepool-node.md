@@ -2324,7 +2324,7 @@ kes.vkeyをエアギャップオフラインマシンのcardano-my-nodeディレ
   
 次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;"startKesPeriod"&gt;に入力してからコマンドを送信してください。
 
-**<startKesPeriod>**の部分を上記で算出した数値（startKesPeriod:＊＊）に置き換えます。
+**&lt;startKesPeriod&gt;**の部分を上記で算出した数値（startKesPeriodの値）に置き換えます。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
