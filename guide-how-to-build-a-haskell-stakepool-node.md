@@ -2313,12 +2313,9 @@ echo startKesPeriod: ${startKesPeriod}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
-chmod 700 kes.skey
 cardano-cli node key-gen-KES \
     --verification-key-file kes.vkey \
     --signing-key-file kes.skey
-chmod 400 kes.vkey
-chmod 400 kes.skey
 ```
 {% endtab %}
 {% endtabs %}
