@@ -36,7 +36,7 @@ As of Jan 5 2021, this guide is updated for **testnet Pyrmont.** 😁
 * **操作系统：** 64 位 Linux \(即) Ubuntu 20.04 LTS 服务器或桌面\)
 * **处理器：** 双重核心CPU, Intel Core i5-760 或 AMD FX-8100 或更高版本
 * **Memory:** 8GB RAM
-* **存储:** 20GB SSD
+* **Storage:** 128GB SSD
 * **Internet:** 宽带互联网连接，速度至少为 1 Mbps.
 * **能量：** 可靠的电力。
 * **ETH 余额：** 至少 32 goerli ETH 和一些ETH 的存款交易费
