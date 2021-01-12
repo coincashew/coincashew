@@ -36,7 +36,7 @@ Como validador de eth2, normalmente tendrás las siguientes habilidades:
 * **Sistema operativo:** Linux de 64-bit \\(i.e. Servidor LTS o escritorio Ubuntu 20.04\)
 * **Procesador:** Dual core CPU, Intel Core i5–760 o AMD FX-8100 o mejor
 * **Memory:** 8GB RAM
-* **Almacenamiento:** 20GB SSD
+* **Storage:** 128GB SSD
 * **Internet:** Conexión a Internet de banda ancha con velocidades de al menos 1 Mbps.
 * **Poder:** Energía eléctrica fiable.
 * **Saldo ETH:** al menos 32 goerli ETH y algunos ETH por tasas de depósito
