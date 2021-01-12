@@ -759,7 +759,7 @@ echo startKesPeriod: ${startKesPeriod}
 ステークプールオペレータは、プールを実行する権限があることを確認するための運用証明書を発行する必要があります。証明書には、オペレータの署名が含まれプールに関する情報（アドレス、キーなど）が含まれます。
 {% endhint %}
 
-**<startKesPeriod>**の部分を上記で算出した数値（startKesPeriod:＊＊）に置き換えます。
+**＜startKesPeriod＞**の部分を上記で算出した数値（startKesPeriodの値）に置き換えます。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
