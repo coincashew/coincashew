@@ -87,7 +87,7 @@ sudo apt-get install automake build-essential pkg-config libffi-dev libgmp-dev l
 cd $HOME/git
 git clone https://github.com/AndrewWestberg/cncli
 cd cncli
-git checkout v0.5.5
+git checkout v0.6.0
 cargo install --path . --force
 ```
 
@@ -116,7 +116,7 @@ sudo systemctl stop cnode-logmonitor.service
 rustup update
 cd $HOME/git/cncli
 git fetch --all --prune
-git checkout v0.5.5
+git checkout v0.6.0
 cargo install --path . --force
 cncli --version
 ```
