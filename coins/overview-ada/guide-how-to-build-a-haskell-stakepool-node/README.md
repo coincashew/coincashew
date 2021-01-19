@@ -2179,6 +2179,7 @@ Discord community located @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w
 * 👏 [X-StakePool \[BTBF\] for translating this guide to Japanese.](https://github.com/btbf/coincashew/blob/master/guide-how-to-build-a-haskell-stakepool-node.md)
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
+* 👏 QCPOL for the script and service to update node's height on pooltool.io.
 
 #### 💸 Tip Jar Donators
 
