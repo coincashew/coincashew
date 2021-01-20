@@ -1772,8 +1772,8 @@ cat > $NODE_HOME/topologyUpdater.sh << EOF
 # shellcheck disable=SC2086,SC2034
  
 USERNAME=$(whoami)
-CNODE_PORT=6000 # must match your relay node port as set in the startup command
-CNODE_HOSTNAME="CHANGE ME"  # optional. must resolve to the IP you are requesting from
+CNODE_PORT=6000 # 自身のリレーノードポート番号を記入
+CNODE_HOSTNAME="CHANGE ME"  # リレーノードのIPアドレスを記入
 CNODE_BIN="/usr/local/bin"
 CNODE_HOME=$NODE_HOME
 CNODE_LOG_DIR="\${CNODE_HOME}/logs"
@@ -1790,8 +1790,8 @@ export CARDANO_NODE_SOCKET_PATH="\${CNODE_HOME}/db/socket"
 blockNo=\$(/usr/local/bin/cardano-cli query tip \${NETWORK_IDENTIFIER} | jq -r .blockNo )
  
 # Note:
-# if you run your node in IPv4/IPv6 dual stack network configuration and want announced the
-# IPv4 address only please add the -4 parameter to the curl command below  (curl -4 -s ...)
+# ノードをIPv4/IPv6デュアルスタックネットワーク構成で実行している場合
+# IPv4で実行するには、以下の curl コマンドに -4 パラメータを追加してください (curl -4 -s ...)
 if [ "\${CNODE_HOSTNAME}" != "CHANGE ME" ]; then
   T_HOSTNAME="&hostname=\${CNODE_HOSTNAME}"
 else
