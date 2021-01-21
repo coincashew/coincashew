@@ -1773,7 +1773,7 @@ cat > $NODE_HOME/topologyUpdater.sh << EOF
  
 USERNAME=$(whoami)
 CNODE_PORT=6000 # 自身のリレーノードポート番号を記入
-CNODE_HOSTNAME="CHANGE ME"  # リレーノードのIPアドレスを記入
+CNODE_HOSTNAME="CHANGE ME"  # リレーノードのIPアドレスまたはDNSアドレスを記入
 CNODE_BIN="/usr/local/bin"
 CNODE_HOME=$NODE_HOME
 CNODE_LOG_DIR="\${CNODE_HOME}/logs"
