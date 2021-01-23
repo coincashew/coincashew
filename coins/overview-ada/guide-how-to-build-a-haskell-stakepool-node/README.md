@@ -2179,6 +2179,7 @@ Discord community located @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w
 * 👏 [X-StakePool \[BTBF\] for translating this guide to Japanese.](https://github.com/btbf/coincashew/blob/master/guide-how-to-build-a-haskell-stakepool-node.md)
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
+* 👏 QCPOL for the script and service to update node's height on pooltool.io.
 
 #### 💸 Tip Jar Donators
 
@@ -3177,6 +3178,63 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 2020-10-01 00:12:22 ==> Leader for slot 131313, Cumulative epoch blocks: 2
 2020-10-01 00:19:55 ==> Leader for slot 161212, Cumulative epoch blocks: 3
 ```
+
+### 🔝 18.13 Update your node's height on pooltool.io
+
+{% hint style="info" %}
+Credits to [QCPOL](https://cardano.stakepool.quebec) for this addition and credits to [papacarp](https://github.com/papacarp/pooltool.io/tree/master/sendmytip/shell/systemd) which this script is based on.
+{% endhint %}
+
+When browsing pools on [pooltool.io](https://pooltool.io/), you'll notice that there's a column named `height`. It shows the node's current block and let your (future) delegators know that your node is running and up to date. 
+
+{% tabs %}
+{% tab title="block producer node" %}
+
+If your block producer doesn't have Internet access, you can use a relay node.
+
+#### Installing the script
+
+```bash
+cd $NODE_HOME
+wget https://cardano.stakepool.quebec/scripts/qcpolsendmytip.sh
+md5sum qcpolsendmytip.sh
+```
+
+To make sure the file is genuine, the md5 hash should be `797d8ed5755eb506a42d57255290e8b2`. If it's not, stop here and delete the file with `rm qcpolsendmytip.sh`.
+
+You will need your pooltool.io API key (shown in your profile after registering). 
+
+```bash
+sed -i qcpolsendmytip.sh -e "s|CFG_MY_POOL_ID|$(cat stakepoolid.txt)|"
+sed -i qcpolsendmytip.sh -e "s/CFG_MY_API_KEY/<YOUR POOLTOOL API KEY HERE>/"
+sed -i qcpolsendmytip.sh -e "s|CFG_MY_NODE_SOCKET_PATH|$NODE_HOME/db/socket|"
+chmod +x qcpolsendmytip.sh
+```
+
+#### Installing the service (systemd)
+
+```bash
+cd $NODE_HOME
+wget https://cardano.stakepool.quebec/services/qcpolsendmytip.service
+md5sum qcpolsendmytip.service
+```
+
+To make sure the file is genuine, the md5 hash should be `f848641fdc2692ee538e082bada44c2c`. If it's not, stop here and delete the file with `rm qcpolsendmytip.service`.
+
+```bash
+sed -i qcpolsendmytip.service -e "s|CFG_WORKING_DIRECTORY|$NODE_HOME|g"
+sed -i qcpolsendmytip.service -e "s|CFG_USER|$(whoami)|"
+sudo mv qcpolsendmytip.service /etc/systemd/system/qcpolsendmytip.service
+sudo chmod 644 /etc/systemd/system/qcpolsendmytip.service
+sudo systemctl daemon-reload
+sudo systemctl enable qcpolsendmytip
+sudo systemctl start qcpolsendmytip
+```
+
+{% endtab %}
+{% endtabs %}
+
+If everything was setup correctly, you should see your pool's height updated on pooltool.io.
 
 ## 🌜 19. Retire your stake pool
 
