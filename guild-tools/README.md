@@ -418,6 +418,47 @@ cd $NODE_HOME/scripts
 ./cncli.sh init
 ```
 
+### ログファイルを作成するように設定する
+ ```bash
+nano mainnet-config.json
+ ```
+* defaultScribesを下記のように書き換える
+ ```bash
+  "defaultScribes": [
+    [
+      "FileSK",
+      "logs/node.json"
+    ],
+    [
+      "StdoutSK",
+      "stdout"
+    ]
+  ],
+```
+* setupScribesを下記のように書き換える
+ ```bash
+   "setupScribes": [
+    {
+      "scFormat": "ScJson",
+      "scKind": "FileSK",
+      "scName": "logs/node.json"
+    },
+    {
+      "scFormat": "ScText",
+      "scKind": "StdoutSK",
+      "scName": "stdout",
+      "scRotation": null
+    }
+  ]
+ ```
+Ctrl+Oでファイルを保存し、Ctrl+Xで閉じる
+
+ノードを再起動する
+```bash
+sudo systemctl reload-or-restart cardano-node
+```
+
+
 ## 🏁 7.残りのサービスをスタートします 
 
 **1行づつコマンドに貼り付けてください**
