@@ -2179,7 +2179,6 @@ Discord community located @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w
 * 👏 [X-StakePool \[BTBF\] for translating this guide to Japanese.](https://github.com/btbf/coincashew/blob/master/guide-how-to-build-a-haskell-stakepool-node.md)
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
-* 👏 QCPOL for the script and service to update node's height on pooltool.io.
 
 #### 💸 Tip Jar Donators
 
@@ -3182,17 +3181,16 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 ### 🔝 18.13 Update your node's height on pooltool.io
 
 {% hint style="info" %}
-Credits to [QCPOL](https://cardano.stakepool.quebec) for this addition and credits to [papacarp](https://github.com/papacarp/pooltool.io/tree/master/sendmytip/shell/systemd) which this script is based on.
+Credits to [QCPOL](https://cardano.stakepool.quebec/) for this addition and credits to [papacarp](https://github.com/papacarp/pooltool.io/tree/master/sendmytip/shell/systemd) which this script is based on.
 {% endhint %}
 
-When browsing pools on [pooltool.io](https://pooltool.io/), you'll notice that there's a column named `height`. It shows the node's current block and let your (future) delegators know that your node is running and up to date. 
+When browsing pools on [pooltool.io](https://pooltool.io/), you'll notice that there's a column named `height`. It shows the node's current block and let your \(future\) delegators know that your node is running and up to date.
 
 {% tabs %}
 {% tab title="block producer node" %}
-
 If your block producer doesn't have Internet access, you can use a relay node.
 
-#### Installing the script
+**Installing the script**
 
 ```bash
 cd $NODE_HOME
@@ -3202,7 +3200,7 @@ md5sum qcpolsendmytip.sh
 
 To make sure the file is genuine, the md5 hash should be `797d8ed5755eb506a42d57255290e8b2`. If it's not, stop here and delete the file with `rm qcpolsendmytip.sh`.
 
-You will need your pooltool.io API key (shown in your profile after registering). 
+You will need your pooltool.io API key \(shown in your profile after registering\).
 
 ```bash
 sed -i qcpolsendmytip.sh -e "s|CFG_MY_POOL_ID|$(cat stakepoolid.txt)|"
@@ -3211,7 +3209,7 @@ sed -i qcpolsendmytip.sh -e "s|CFG_MY_NODE_SOCKET_PATH|$NODE_HOME/db/socket|"
 chmod +x qcpolsendmytip.sh
 ```
 
-#### Installing the service (systemd)
+**Installing the service \(systemd\)**
 
 ```bash
 cd $NODE_HOME
@@ -3230,11 +3228,12 @@ sudo systemctl daemon-reload
 sudo systemctl enable qcpolsendmytip
 sudo systemctl start qcpolsendmytip
 ```
-
 {% endtab %}
 {% endtabs %}
 
 If everything was setup correctly, you should see your pool's height updated on pooltool.io.
+
+![Your pool&apos;s tip on pooltool.io](../../../.gitbook/assets/tip.png)
 
 ## 🌜 19. Retire your stake pool
 
