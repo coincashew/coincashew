@@ -418,7 +418,7 @@ cd $NODE_HOME/scripts
 ./cncli.sh init
 ```
 
-### ログファイルを作成するように設定する
+### 6-1.ログファイルを作成するように設定する
  ```bash
 nano mainnet-config.json
  ```
