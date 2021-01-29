@@ -16,7 +16,7 @@ description: >-
 
 {% endhint %}
 
-{% hint style="success" %} 2020年12月11日時点でこのガイドは v.1.24.2に対応しています。 😁 {% endhint %}
+{% hint style="success" %} 2021年1月30日時点でこのガイドは v.1.25.1に対応しています。 😁 {% endhint %}
 
 # ステークプールを更新する方法
 
@@ -175,7 +175,7 @@ cabal update
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.2
 git clean -fd
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.24.2 && git pull
+git checkout tags/1.25.1 && git pull
 cabal configure -O0 -w ghc-8.10.2
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 cabal build cardano-node cardano-cli
