@@ -18,13 +18,12 @@ description: >-
 
 {% hint style="success" %} 2021年1月30日時点でこのガイドは v.1.25.1に対応しています。 😁 {% endhint %}
 
-# ステークプールを更新する方法
+# 📡 1. ノードバージョンアップデート手順
 
 {% hint style="info" %}
 このマニュアルは、[X Stake Pool](https://xstakepool.com)オペレータの[BTBF](https://twitter.com/btbfpark)が[CoinCashew](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node#9-register-your-stakepool)より許可を得て、日本語翻訳しております。
 {% endhint %}
 
-## 📡 1. ノードバージョンアップデート手順
 
  `cardano-node`は常に更新されており、バージョンがアップデートされるたびにプールサーバでも作業が必要です。 [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) をフォローし最新情報を取得しましょう。
 
@@ -164,7 +163,7 @@ LiveViewの代わりにノードを監視するコミュニティ製の監視ツ
 
 {% endtab %} {% endtabs %}
 -->
-### 新しいバイナリーファイルをコンパイルする
+## 1-1.新しいバイナリーファイルをコンパイルする
 
 古いバイナリーを削除し、最新のバイナリーを再構築します。次のコマンドを実行して、最新のバイナリをプルしてビルドします。必要に応じて、チェックアウト **tag** または **branch** を変更して下さい。
 
@@ -182,7 +181,10 @@ cabal build cardano-node cardano-cli
 ```
 
 {% hint style="info" %}
-コンピュータの処理能力によっては、ビルドプロセスに数分から数時間かかる場合があります。
+コンピュータの処理能力によっては、ビルドプロセスに数分から数時間かかる場合があります。  
+ビルド中の表示で、以下が表示されてから次に進むまで、結構時間かかります。
+'hackage.haskell.org'! Falling back to older state (2021-01-09T22:55:53Z).
+Resolving dependencies...
 {% endhint %}
 
 **cardano-cli** と **cardano-node** が希望のバージョンに更新されたことを確認して下さい。
@@ -194,7 +196,7 @@ $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") 
 $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") version
 ```
 
-### mainnet-config.jsonのアップデート  
+## 1-2.mainnet-config.jsonのアップデート  
   
 * 既存のファイルをバックアップします。
 ```bash
@@ -217,7 +219,7 @@ sed -i ${NODE_CONFIG}-config.json \
 sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g" 
 ```
 
-### ログファイルを作成するように設定する
+## 1-3.ログファイルを作成するように設定する
  ```bash
 nano mainnet-config.json
  ```
@@ -295,6 +297,30 @@ cd $HOME/git
 mv cardano-node/ cardano-node-old/
 mv cardano-node2/ cardano-node/
 ```
+
+## 1-4. gLiveViewをアップデートする
+
+```bash
+cd $NODE_HOME/scripts
+./gLiveView.sh
+```
+アップデートメッセージを処理する
+```
+The static content from env file does not match with guild-operators repository, do you want to download the updated file? [y|n]
+と表示されたら　"y" を押下  
+  
+A new version of Guild LiveView is available
+Installed Version : v1.18.0
+Available Version : v1.19.2
+
+Press 'u' to update to latest version, or any other key to continue
+と表示されたら　"u" を押下
+```
+gLiveViewを再起動する
+```bash
+./gLiveView.sh
+```
+
 
 ## 🤯 2. 問題が発生した場合
 
