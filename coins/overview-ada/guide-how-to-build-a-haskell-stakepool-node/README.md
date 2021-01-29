@@ -3198,7 +3198,7 @@ wget https://cardano.stakepool.quebec/scripts/qcpolsendmytip.sh
 md5sum qcpolsendmytip.sh
 ```
 
-To make sure the file is genuine, the md5 hash should be `797d8ed5755eb506a42d57255290e8b2`. If it's not, stop here and delete the file with `rm qcpolsendmytip.sh`.
+To make sure the file is genuine, the md5 hash should be `d3118127e917bfbd45f642a0786a2241`. If it's not, stop here and delete the file with `rm qcpolsendmytip.sh`.
 
 You will need your pooltool.io API key \(shown in your profile after registering\).
 
