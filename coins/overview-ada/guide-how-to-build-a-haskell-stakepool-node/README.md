@@ -3236,6 +3236,22 @@ sudo systemctl start qcpolsendmytip
 
 If everything was setup correctly, you should see your pool's height updated on pooltool.io.
 
+{% hint style="warning" %}
+If the script uses too much CPU on your machine, you can lower the frequency it checks for new blocks. Simply change **0.5** in the following script by a value that works for you. The value is in seconds. The original value of the script is **0.1**. 
+
+```bash
+cd $NODE_HOME
+sed -i qcpolsendmytip.sh -e "s/sleep.*/sleep 0.5/"
+```
+
+Then restart the service:
+
+```bash
+sudo systemctl restart qcpolsendmytip
+```
+
+{% endhint %}
+
 ## 🌜 19. Retire your stake pool
 
 Calculate the current epoch.
