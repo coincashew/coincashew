@@ -309,6 +309,8 @@ cd $NODE_HOME/scripts
 The static content from env file does not match with guild-operators repository, do you want to download the updated file? [y|n]
 と表示されたら　"y" を押下  
   
+-------------------
+   
 A new version of Guild LiveView is available
 Installed Version : v1.18.0
 Available Version : v1.19.2
