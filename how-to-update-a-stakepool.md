@@ -41,6 +41,7 @@ cd cardano-node2/
 最新のリリースに必要となる他の更新や依存関係については、パッチノートを参照して下さい。
 {% endhint %}
 
+<!-- 
 {% tabs %} {% tab title="v1.23.0からバージョンアップする場合" %} このリリースは、今後のアレグラとメアリーのハードフォークとそれらがもたらす新機能のサポートを提供します。
 
 ・Allegraハードフォークは、Catalyst財務スキームをサポートするために必要ないくつかの機能を追加します。スロット番号を介して、既存のマルチシグスクリプト言語を時間の述語で拡張します。これにより、例えば特定の時点までの使用できないスクリプトアドレスを作成できます。  
@@ -162,7 +163,7 @@ LiveViewの代わりにノードを監視するコミュニティ製の監視ツ
 
 
 {% endtab %} {% endtabs %}
-
+-->
 ### 新しいバイナリーファイルをコンパイルする
 
 古いバイナリーを削除し、最新のバイナリーを再構築します。次のコマンドを実行して、最新のバイナリをプルしてビルドします。必要に応じて、チェックアウト **tag** または **branch** を変更して下さい。
@@ -171,7 +172,6 @@ LiveViewの代わりにノードを監視するコミュニティ製の監視ツ
 cd $HOME/git/cardano-node2
 cabal clean
 cabal update
-rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.2
 git clean -fd
 git fetch --all --recurse-submodules --tags
@@ -257,25 +257,11 @@ nano mainnet-config.json
 バイナリーファイルを更新する前に、ノードを停止して下さい。
 {% endhint %}
 
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-killall -s 2 cardano-node
-```
-{% endtab %}
 
-{% tab title="リレーノード1" %}
-```
-killall -s 2 cardano-node
-```
-{% endtab %}
-
-{% tab title="systemd" %}
 ```
 sudo systemctl stop cardano-node
 ```
-{% endtab %}
-{% endtabs %}
+
 
 **cardano-cli** と **cardano-node** ファイルをbinディレクトリにコピーします。
 
@@ -297,27 +283,10 @@ cardano-cli version
 ノードを再起動して、更新されたバイナリーを使用します。
 {% endhint %}
 
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-cd $NODE_HOME
-./startBlockProducingNode.sh
-```
-{% endtab %}
 
-{% tab title="リレーノード" %}
-```
-cd $NODE_HOME
-./startRelayNode1.sh
-```
-{% endtab %}
-
-{% tab title="systemd" %}
 ```
 sudo systemctl start cardano-node
 ```
-{% endtab %}
-{% endtabs %}
 
 最後に、前バージョンで使用していたバイナリフォルダをリネームし、バックアップとして保持します。最新バージョンを構築したフォルダをcardano-nodeとして使用します。
 
