@@ -12,6 +12,8 @@ description: Bitcoin is an innovative payment network and a new kind of money.
 | Source Code | [https://github.com/bitcoin/bitcoin](https://github.com/bitcoin/bitcoin) |
 | Whitepaper | [https://bitcoin.org/bitcoin.pdf](https://bitcoin.org/bitcoin.pdf) |
 
+{% file src="../../.gitbook/assets/bitcoin.pdf" caption="Bitcoin Whitepaper" %}
+
 ## 🙋 Social Media and Community
 
 | Community | Link |
