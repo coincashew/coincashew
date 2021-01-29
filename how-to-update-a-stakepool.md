@@ -299,7 +299,7 @@ mv cardano-node2/ cardano-node/
 ```
 
 ## 1-4. Grafana各種パネル設定値を修正する
-各種パネルの「Edit」で設定画面を開き、以下パラメーターに変更する
+各種パネルの「Edit」で設定画面を開き、以下パラメーターに変更する  
 (以下はコマンドラインで実行するコマンドではありませんのでご注意ください)
 ```
 Epoch → cardano_node_metrics_epoch_int  
