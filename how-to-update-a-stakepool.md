@@ -307,7 +307,11 @@ slot → cardano_node_metrics_slotInEpoch_int
 Block Height → cardano_node_metrics_blockNum_int  
 Peers → cardano_node_metrics_connectedPeers_int  
 Chain Density → cardano_node_metrics_density_real  
+Current period → cardano_node_metrics_currentKESPeriod_int  
+Expiry period → cardano_node_metrics_operationalCertificateExpiryKESPeriod_int  
+Remaining　→ cardano_node_metrics_remainingKESPeriods_int  
 ```
+
 ## 1-5. gLiveViewをアップデートする
 
 ```bash
