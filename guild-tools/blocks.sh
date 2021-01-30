@@ -259,7 +259,7 @@ find "${TMP_FOLDER:?}" -type f -not \( -name 'protparams.json' -o -name '.dialog
        done
        ;;
     1) [[ $(sqlite3 "${BLOCKLOG_DB}" "SELECT EXISTS(SELECT 1 FROM blocklog WHERE epoch=$((current_epoch+1)) LIMIT 1);" 2>/dev/null) -eq 1 ]] && println "DEBUG" "\n${FG_YELLOW}次エポック[$((current_epoch+1))]のスロットリーダースケジュールが表示可能になっています${NC}"
-       echo && sleep 0.1 && read -r -p "Enter epoch to list (enter for current): " epoch_enter 2>&6 && println "LOG" "表示したいエポックを入力してください (空Enterで現在のエポックを表示): ${epoch_enter}"
+       echo && sleep 0.1 && read -r -p "表示したいエポックを入力してください (空Enterで現在のエポックを表示): " epoch_enter 2>&6 && println "LOG" "表示したいエポックを入力してください (空Enterで現在のエポックを表示): ${epoch_enter}"
        [[ -z "${epoch_enter}" ]] && epoch_enter=${current_epoch}
        if [[ $(sqlite3 "${BLOCKLOG_DB}" "SELECT EXISTS(SELECT 1 FROM blocklog WHERE epoch=${epoch_enter} LIMIT 1);" 2>/dev/null) -eq 0 ]]; then
          println "No blocks in epoch ${epoch_enter}"
