@@ -374,7 +374,7 @@ find "${TMP_FOLDER:?}" -type f -not \( -name 'protparams.json' -o -name '.dialog
          esac
        done
        ;;
-    2) continue ;;
+    2) myExit 0 "BLOCKS TOOL closed!" ;;
   esac
 
   waitForInput && continue
