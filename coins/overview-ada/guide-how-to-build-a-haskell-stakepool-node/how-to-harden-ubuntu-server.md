@@ -169,13 +169,14 @@ ssh cardano@server.public.ip.address -p <custom port number>
 {% endtabs %}
 
 {% hint style="info" %}
-Alternatively, you might need to use the following. 
+Alternatively, you might need to use the following: 
 
 Add the `-p <port#>` flag if you used a custom SSH port.
 
 ```bash
-ssh -i <path to your SSH_key_name.pub> cardano@server.public.ip.address
+ssh -i <path to your SSH_key_name> cardano@server.public.ip.address
 ```
+Use the ssh key name without the .pub extension
 {% endhint %}
 
 ## \*\*\*\*🤖 **Update your system**
