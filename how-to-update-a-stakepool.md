@@ -301,16 +301,17 @@ mv cardano-node2/ cardano-node/
 ## 1-4. Grafana各種パネル設定値を修正する
 各種パネルの「Edit」で設定画面を開き、以下パラメーターに変更する  
 (以下はコマンドラインで実行するコマンドではありませんのでご注意ください)
-```
-Epoch → cardano_node_metrics_epoch_int  
-slot → cardano_node_metrics_slotInEpoch_int  
-Block Height → cardano_node_metrics_blockNum_int  
-Peers → cardano_node_metrics_connectedPeers_int  
-Chain Density → cardano_node_metrics_density_real  
-Current period → cardano_node_metrics_currentKESPeriod_int  
-Expiry period → cardano_node_metrics_operationalCertificateExpiryKESPeriod_int  
-Remaining　→ cardano_node_metrics_remainingKESPeriods_int  
-```
+
+|  パネル名  |  パラメーター  |
+| ---- | ---- |
+|  Epoch  |  cardano_node_metrics_epoch_int  |
+|  slot  |  cardano_node_metrics_slotInEpoch_int  |
+|  Block Height  |  cardano_node_metrics_blockNum_int  |
+|  Peers  |  cardano_node_metrics_connectedPeers_int  |
+|  Chain Density  |  cardano_node_metrics_density_real  |
+|  Current period  |  cardano_node_metrics_currentKESPeriod_int  |
+|  Expiry period  |  cardano_node_metrics_operationalCertificateExpiryKESPeriod_int  |
+|  Remaining  |  cardano_node_metrics_remainingKESPeriods_int  |
 
 ## 1-5. gLiveViewをアップデートする
 
