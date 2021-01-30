@@ -140,6 +140,7 @@ if [[ "$CNTOOLS_PATCH_VERSION" -eq 999  ]]; then
 fi
 
 # Do some checks when run in connected mode
+<<COMMENT_OUT
 if [[ ${CNTOOLS_MODE} = "CONNECTED" ]]; then
   # check to see if there are any updates available
   clear
@@ -189,7 +190,7 @@ if [[ ${CNTOOLS_MODE} = "CONNECTED" ]]; then
     println "ERROR" "\n${FG_RED}ERROR${NC}: failed to download cntools.library from GitHub, unable to perform version check!"
     waitForInput "press any key to proceed"
   fi
-
+COMMENT_OUT
   # Validate protocol parameters
   if grep -q "Network.Socket.connect" <<< "${PROT_PARAMS}"; then
     myExit 1 "${FG_YELLOW}WARN${NC}: node socket path wrongly configured or node not running, please verify that socket set in env file match what is used to run the node\n\n\
