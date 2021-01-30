@@ -166,7 +166,7 @@ find "${TMP_FOLDER:?}" -type f -not \( -name 'protparams.json' -o -name '.dialog
 
   clear
   println "DEBUG" "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-  println " >> BLOCKS"
+  println " >> BLOCKS TOOL @ Developed by Guild Operators & Cutomized by BTBF"
   println "DEBUG" "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
   if [[ ! -f "${BLOCKLOG_DB}" ]]; then
@@ -181,11 +181,11 @@ find "${TMP_FOLDER:?}" -type f -not \( -name 'protparams.json' -o -name '.dialog
     waitForInput && continue
   fi
   current_epoch=$(getEpoch)
-  println "DEBUG" "Current epoch: ${FG_CYAN}${current_epoch}${NC}\n"
-  println "DEBUG" "Show a block summary for all epochs or a detailed view for a specific epoch?"
-  select_opt "[s] Summary" "[e] Epoch" "[Esc] Cancel"
+  println "DEBUG" "現在のエポック: ${FG_CYAN}${current_epoch}${NC}\n"
+  println "DEBUG" "すべてのエポックのブロックのサマリー、または特定のエポックのブロック生成実績を表示できます"
+  select_opt "[s] 実績概要" "[e] エポック詳細" "[Esc] Cancel"
   case $? in
-    0) echo && sleep 0.1 && read -r -p "Enter number of epochs to show (enter for 10): " epoch_enter 2>&6 && println "LOG" "Enter number of epochs to show (enter for 10): ${epoch_enter}"
+    0) echo && sleep 0.1 && read -r -p "直近エポックサマリーを表示します (空Enterで直近10エポック、「2」なら直近2エポック): " epoch_enter 2>&6 && println "LOG" "直近エポックサマリーを表示します (空Enterで直近10エポック、「2」なら直近2エポック): ${epoch_enter}"
        epoch_enter=${epoch_enter:-10}
        if ! [[ ${epoch_enter} =~ ^[0-9]+$ ]]; then
          println "ERROR" "\n${FG_RED}ERROR${NC}: not a number"
@@ -195,10 +195,10 @@ find "${TMP_FOLDER:?}" -type f -not \( -name 'protparams.json' -o -name '.dialog
        while true; do
          clear
          println "DEBUG" "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-         println " >> BLOCKS"
+         println " >> BLOCKS TOOL @ Developed by Guild Operators & Cutomized by BTBF"
          println "DEBUG" "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
          current_epoch=$(getEpoch)
-         println "DEBUG" "Current epoch: ${FG_CYAN}${current_epoch}${NC}\n"
+         println "DEBUG" "現在のエポック: ${FG_CYAN}${current_epoch}${NC}\n"
          if [[ ${view} -eq 1 ]]; then
            [[ $(sqlite3 "${BLOCKLOG_DB}" "SELECT EXISTS(SELECT 1 FROM blocklog WHERE epoch=$((current_epoch+1)) LIMIT 1);" 2>/dev/null) -eq 1 ]] && ((current_epoch++))
            first_epoch=$(( current_epoch - epoch_enter ))
@@ -232,19 +232,19 @@ find "${TMP_FOLDER:?}" -type f -not \( -name 'protparams.json' -o -name '.dialog
            printf '|' >&3; printf "%$((5+6+ideal_len+luck_len+7+9+6+7+6+7+27+2))s" | tr " " "=" >&3; printf '|\n' >&3
          else
            println "OFF" "Block Status:\n"
-           println "OFF" "Leader    - Scheduled to make block at this slot"
-           println "OFF" "Ideal     - Expected/Ideal number of blocks assigned based on active stake (sigma)"
-           println "OFF" "Luck      - Leader slots assigned vs Ideal slots for this epoch"
-           println "OFF" "Adopted   - Block created successfully"
-           println "OFF" "Confirmed - Block created validated to be on-chain with the certainty"
-           println "OFF" "            set in 'cncli.sh' for 'CONFIRM_BLOCK_CNT'"
-           println "OFF" "Missed    - Scheduled at slot but no record of it in cncli DB and no"
-           println "OFF" "            other pool has made a block for this slot"
-           println "OFF" "Ghosted   - Block created but marked as orphaned and no other pool has made"
-           println "OFF" "            a valid block for this slot, height battle or block propagation issue"
-           println "OFF" "Stolen    - Another pool has a valid block registered on-chain for the same slot"
-           println "OFF" "Invalid   - Pool failed to create block, base64 encoded error message"
-           println "OFF" "            can be decoded with 'echo <base64 hash> | base64 -d | jq -r'"
+           println "OFF" "Leader    - ブロック生成予定スロット"
+           println "OFF" "Ideal     - アクティブステーク（シグマ）に基づいて割り当てられたブロック数の期待値/理想値"
+           println "OFF" "Luck      - 期待値における実際に割り当てられたスロットリーダー数のパーセンテージ"
+           println "OFF" "Adopted   - ブロック生成成功"
+           println "OFF" "Confirmed - 生成したブロックのうち確実にオンチェーンであることが検証されたブロック"
+           println "OFF" "            'cncli.sh' にて 'CONFIRM_BLOCK_CNT' と表示されているもの"
+           println "OFF" "Missed    - スロットでスケジュールされているが、 cncli DB には記録されておらず"
+           println "OFF" "            他のプールがこのスロットのためにブロックを作った可能性"
+           println "OFF" "Ghosted   - ブロックは作成されましたが「Orpah(孤立ブロック)」となっております。"
+           println "OFF" "            スロットバトル・ハイトバトルで敗北したか、ブロック伝播の問題で有効なブロックになっていません"
+           println "OFF" "Stolen    - IOHK OBFT NODEによってブロックが生成された可能性"
+           println "OFF" "Invalid   - プールはブロックの作成に失敗しました。"
+           println "OFF" "            次のコードでデコードできます 'echo  | base64 -d | jq -r' "
          fi
          echo
          
@@ -269,7 +269,7 @@ find "${TMP_FOLDER:?}" -type f -not \( -name 'protparams.json' -o -name '.dialog
        while true; do
          clear
          println "DEBUG" "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-         println " >> BLOCKS"
+         println " >> BLOCKS TOOL @ Developed by Guild Operators & Cutomized by BTBF"
          println "DEBUG" "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
          current_epoch=$(getEpoch)
          println "DEBUG" "Current epoch: ${FG_CYAN}${current_epoch}${NC}\n"
@@ -346,19 +346,19 @@ find "${TMP_FOLDER:?}" -type f -not \( -name 'protparams.json' -o -name '.dialog
            printf '|' >&3; printf "%$((${#leader_cnt}+status_len+block_len+slot_len+slot_in_epoch_len+at_len+size_len+hash_len+23))s" | tr " " "=" >&3; printf '|\n' >&3
          elif [[ ${view} -eq 4 ]]; then
            println "OFF" "Block Status:\n"
-           println "OFF" "Leader    - Scheduled to make block at this slot"
-           println "OFF" "Ideal     - Expected/Ideal number of blocks assigned based on active stake (sigma)"
-           println "OFF" "Luck      - Leader slots assigned vs Ideal slots for this epoch"
-           println "OFF" "Adopted   - Block created successfully"
-           println "OFF" "Confirmed - Block created validated to be on-chain with the certainty"
-           println "OFF" "            set in 'cncli.sh' for 'CONFIRM_BLOCK_CNT'"
-           println "OFF" "Missed    - Scheduled at slot but no record of it in cncli DB and no"
-           println "OFF" "            other pool has made a block for this slot"
-           println "OFF" "Ghosted   - Block created but marked as orphaned and no other pool has made"
-           println "OFF" "            a valid block for this slot, height battle or block propagation issue"
-           println "OFF" "Stolen    - Another pool has a valid block registered on-chain for the same slot"
-           println "OFF" "Invalid   - Pool failed to create block, base64 encoded error message"
-           println "OFF" "            can be decoded with 'echo <base64 hash> | base64 -d | jq -r'"
+           println "OFF" "Leader    - ブロック生成予定スロット"
+           println "OFF" "Ideal     - アクティブステーク（シグマ）に基づいて割り当てられたブロック数の期待値/理想値"
+           println "OFF" "Luck      - 期待値における実際に割り当てられたスロットリーダー数のパーセンテージ"
+           println "OFF" "Adopted   - ブロック生成成功"
+           println "OFF" "Confirmed - 生成したブロックのうち確実にオンチェーンであることが検証されたブロック"
+           println "OFF" "            'cncli.sh' にて 'CONFIRM_BLOCK_CNT' と表示されているもの"
+           println "OFF" "Missed    - スロットでスケジュールされているが、 cncli DB には記録されておらず"
+           println "OFF" "            他のプールがこのスロットのためにブロックを作った可能性"
+           println "OFF" "Ghosted   - ブロックは作成されましたが「Orpah(孤立ブロック)」となっております。"
+           println "OFF" "            スロットバトル・ハイトバトルで敗北したか、ブロック伝播の問題で有効なブロックになっていません"
+           println "OFF" "Stolen    - IOHK OBFT NODEによってブロックが生成された可能性"
+           println "OFF" "Invalid   - プールはブロックの作成に失敗しました。"
+           println "OFF" "            次のコードでデコードできます 'echo  | base64 -d | jq -r' "
          fi
          echo
          
