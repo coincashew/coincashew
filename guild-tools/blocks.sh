@@ -380,7 +380,6 @@ find "${TMP_FOLDER:?}" -type f -not \( -name 'protparams.json' -o -name '.dialog
   waitForInput && continue
 
 
-esac # main OPERATION
 done # main loop
 }
 
