@@ -3195,6 +3195,7 @@ If your block producer doesn't have Internet access, you can use a relay node.
 ```bash
 cd $NODE_HOME
 wget https://cardano.stakepool.quebec/scripts/qcpolsendmytip.sh
+sed -i -e 's/\r$//' qcpolsendmytip.sh
 md5sum qcpolsendmytip.sh
 ```
 
@@ -3214,6 +3215,7 @@ chmod +x qcpolsendmytip.sh
 ```bash
 cd $NODE_HOME
 wget https://cardano.stakepool.quebec/services/qcpolsendmytip.service
+sed -i -e 's/\r$//' qcpolsendmytip.service
 md5sum qcpolsendmytip.service
 ```
 
