@@ -114,8 +114,16 @@ git checkout 66f017f1
 ./configure
 make
 sudo make install
+
+```
+
+{% hint style="info" %}
+Debian OS pool operators: extra lib linking may be required.
+
+```bash
 sudo ln -s /usr/local/lib/libsodium.so.23.3.0 /usr/lib/libsodium.so.23
 ```
+{% endhint %}
 
 Install Cabal.
 
@@ -582,6 +590,14 @@ sed -i env \
     -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
     -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
+
+{% hint style="warning" %}
+A node must reach epoch 208 \(Shelley launch\) before **gLiveView.sh** can start tracking the node syncing. You can track the node syncing using `journalctl` before epoch 208.
+
+```text
+journalctl --unit=cardano-node --follow
+```
+{% endhint %}
 
 Run gLiveView to monitor the progress of the sync'ing of the blockchain.
 
@@ -3254,7 +3270,8 @@ If everything was setup correctly, you should see your pool's height updated on 
 ![Your pool&apos;s tip on pooltool.io](../../../.gitbook/assets/tip.png)
 
 {% hint style="warning" %}
-If the script uses too much CPU on your machine, you can lower the frequency it checks for new blocks. Simply change **0.5** in the following script by a value that works for you. The value is in seconds. The original value of the script is **0.1**. 
+**Tip:** If the script uses too much CPU on your machine, you can lower the frequency it checks for new blocks. Simply change **0.5** in the following script by a value that works for you. The value is in seconds. The original value of the script is **0.1**.
+{% endhint %}
 
 ```bash
 cd $NODE_HOME
@@ -3266,7 +3283,8 @@ Then restart the service:
 ```bash
 sudo systemctl restart qcpolsendmytip
 ```
-{% endhint %}
+
+
 
 ## 🌜 19. Retire your stake pool
 
