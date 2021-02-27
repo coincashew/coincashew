@@ -3152,37 +3152,13 @@ cd pooltool.io/leaderLogs
 {% endtab %}
 {% endtabs %}
 
-Query the ledger state.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger.json
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate your pool's sigma. Sigma represents your pool's share of the active stake.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-sigmaValue=$(python3 getSigma.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) | tail -n 1 | awk '{ print $2 }')
-echo Sigma: ${sigmaValue}
-```
-{% endtab %}
-{% endtabs %}
-
-A sigma value should look like `0.000029302885338621295`
-
-Calculate your slot leader schedule.
+Calculate your slot leader schedule for the latest current epoch.
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
 python3 leaderLogs.py \
 --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) \
---sigma ${sigmaValue} \
 --tz America/Los_Angeles \
 --vrf-skey ${NODE_HOME}/vrf.skey
 ```
@@ -3190,11 +3166,20 @@ python3 leaderLogs.py \
 {% endtabs %}
 
 {% hint style="info" %}
-\*\*\*\*🤖 **Pro Tip**: 1.5 days before the end of the current epoch, you can find the next epoch's schedule by appending the `--next` argument.
+Set the timezone name to format the schedule's times properly. Use the --tz option. \[Default: America/Los\_Angeles\]'\) [Refer to the official documentation for more info.](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md#arguments-1)
 {% endhint %}
 
-{% hint style="info" %}
-Set the timezone name to format the schedule's times properly. Use the --tz option. \[Default: America/Los\_Angeles\]'\) [Refer to the official documentation for more info.](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md#arguments-1)
+{% hint style="success" %}
+\*\*\*\*🤖 **Pro Tip**: 1.5 days before the end of the current epoch, you can find the next epoch's schedule.
+
+🤖 **Pro Tip \#2**: Add the flag **--epoch &lt;INTEGER \#&gt;** to find a specific epoch's slot schedule.
+
+🤖 **Pro Tip \#3**: Ensure your slot leader scripts are up to date.
+
+```bash
+cd $HOME/git/pooltool.io/leaderLogs
+git pull
+```
 {% endhint %}
 
 If your pool is scheduled to mint blocks, you should hopefully see output similar to this. Listed by date and time, this is your slot leader schedule or in other words, when your pool is eligible to mint a block.

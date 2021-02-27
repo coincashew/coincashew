@@ -56,7 +56,7 @@ This release uses a new cabal snapshot so could be rather resource intensive whe
 5. Add dashboard by **Upload JSON file**
 6. Change **Name**/**uid** or click the **Import \(Overwrite\)** button 
 
-**2. Update mainnet-config file**
+**2. Update mainnet-config file on all relays and block producer nodes.**
 
 ```bash
 cd ${NODE_HOME}
