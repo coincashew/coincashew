@@ -178,6 +178,19 @@ ssh -i <path to your SSH_key_name.pub> cardano@server.public.ip.address
 ```
 {% endhint %}
 
+**Optional**: Make logging in easier by updating your local ssh config.
+
+To simplify the ssh command needed to log in to your server, consider updating your local `$HOME/.ssh/config` file:
+
+```bash
+Host cardano-server
+  User cardano
+  HostName <server.public.ip.address>
+  Port <custom port number>
+```
+
+This will allow you to log in with `ssh cardano-server` rather than needing to pass through all ssh parameters explicitly.
+
 ## \*\*\*\*🤖 **Update your system**
 
 {% hint style="warning" %}

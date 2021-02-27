@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 8,
+  "id": 3,
   "links": [],
   "panels": [
     {
@@ -57,10 +57,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "cardano_node_ChainDB_metrics_epoch_int{instance=\"localhost:12798\"}",
+          "expr": "cardano_node_metrics_epoch_int{instance=\"localhost:12798\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -123,7 +123,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -235,7 +235,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -331,7 +331,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "targets": [
         {
           "expr": "cardano_node_metrics_txsProcessedNum_int",
@@ -387,10 +387,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "cardano_node_ChainDB_metrics_slotInEpoch_int",
+          "expr": "cardano_node_metrics_slotInEpoch_int",
           "interval": "",
           "legendFormat": "{{alias}}",
           "refId": "A"
@@ -453,7 +453,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -549,7 +549,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -646,7 +646,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "targets": [
         {
           "expr": "rts_gc_wall_ms / (1000)",
@@ -702,10 +702,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "cardano_node_ChainDB_metrics_blockNum_int",
+          "expr": "cardano_node_metrics_blockNum_int",
           "interval": "",
           "legendFormat": "{{alias}}",
           "refId": "A"
@@ -771,7 +771,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -879,7 +879,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "pointradius": 0.5,
       "points": false,
       "renderer": "flot",
@@ -988,10 +988,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "cardano_node_BlockFetchDecision_peers_connectedPeers_int",
+          "expr": "cardano_node_metrics_connectedPeers_int",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1045,10 +1045,10 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "cardano_node_ChainDB_metrics_density_real * 100",
+          "expr": "cardano_node_metrics_density_real * 100",
           "instant": false,
           "interval": "",
           "legendFormat": "{{alias}}",
@@ -1113,10 +1113,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "cardano_node_Forge_metrics_currentKESPeriod_int",
+          "expr": "cardano_node_metrics_currentKESPeriod_int",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -1124,7 +1124,7 @@
           "refId": "A"
         },
         {
-          "expr": "cardano_node_Forge_metrics_operationalCertificateExpiryKESPeriod_int",
+          "expr": "cardano_node_metrics_operationalCertificateExpiryKESPeriod_int",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -1132,7 +1132,7 @@
           "refId": "B"
         },
         {
-          "expr": "cardano_node_Forge_metrics_remainingKESPeriods_int",
+          "expr": "cardano_node_metrics_remainingKESPeriods_int",
           "format": "time_series",
           "hide": true,
           "instant": true,
@@ -1141,7 +1141,7 @@
           "refId": "C"
         },
         {
-          "expr": "(cardano_node_Forge_metrics_remainingKESPeriods_int * 1.5)",
+          "expr": "(cardano_node_metrics_remainingKESPeriods_int * 1.5)",
           "format": "time_series",
           "instant": true,
           "interval": "",

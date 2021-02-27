@@ -3284,8 +3284,6 @@ Then restart the service:
 sudo systemctl restart qcpolsendmytip
 ```
 
-
-
 ## 🌜 19. Retire your stake pool
 
 Calculate the current epoch.

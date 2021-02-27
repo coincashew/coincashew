@@ -31,3 +31,24 @@
 
 10. Use this tinyurl URL`--metadata-url` in your stakepool registration transaction.
 
+11. Download your json with `wget` from your git.io url
+
+```bash
+cd $NODE_HOME
+wget -O poolMetaData.json <your git.io link>
+```
+
+{% hint style="info" %}
+This step may be required because git.io may change the json file by removing spaces and new lines.
+{% endhint %}
+
+12. Generate the updated pool metadata hash
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
+```
+{% endtab %}
+{% endtabs %}
+

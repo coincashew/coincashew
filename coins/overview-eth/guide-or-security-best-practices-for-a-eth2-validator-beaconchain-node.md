@@ -172,11 +172,11 @@ ssh -i <path to your SSH_key_name.pub> ethereum@server.public.ip.address
 ```
 {% endhint %}
 
-## **Optional**: Update your local ssh config
+**Optional**: Make logging in easier by updating your local ssh config.
 
 To simplify the ssh command needed to log in to your server, consider updating your local `$HOME/.ssh/config` file:
 
-```
+```bash
 Host ethereum-server
   User ethereum
   HostName <server.public.ip.address>
