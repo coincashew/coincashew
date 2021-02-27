@@ -23,6 +23,19 @@ Type your **password** when prompted.
 {% endhint %}
 
 ```bash
+cd $HOME
+wget https://sh.rustup.rs/rustup-init.sh
+chmod +x rustup-init.sh
+./rustup-init.sh --profile minimal --default-toolchain 1.44.0 -y
+
+source $HOME/.cargo/env
+
+wget https://raw.githubusercontent.com/zcash/zcash/master/zcutil/fetch-params.sh
+chmod +x fetch-params.sh
+./fetch-params.sh
+```
+
+```bash
 wget https://github.com/ocaml/opam/releases/download/2.0.3/opam-2.0.3-x86_64-linux
 sudo cp opam-2.0.3-x86_64-linux /usr/local/bin/opam
 sudo chmod a+x /usr/local/bin/opam

@@ -204,7 +204,7 @@ Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ET
 The subsequent steps assume you have completed the [best practices security guide](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
 {% endhint %}
 
-Your choice of either [**Infura** ](https://infura.io/), [**Chainstack** ](https://chainstack.com/) or [**Geth**](https://geth.ethereum.org/)**.** [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/) ****coming soon.
+Your choice of either [**Infura** ](https://infura.io/)or [**Geth**](https://geth.ethereum.org/)**.** [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/) ****coming soon.
 
 {% hint style="info" %}
 Currently, only **Geth and Infura** are verified to work with Nimbus.

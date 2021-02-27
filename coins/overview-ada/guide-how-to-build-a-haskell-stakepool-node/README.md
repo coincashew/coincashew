@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of Dec 28 2020, this is **guide version 3.0.0** and written for **cardano mainnet** with **release v.1.24.2** 😁 
+As of Feb 27 2020, this is **guide version 3.1.0** and written for **cardano mainnet** with **release v.1.25.1** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -43,13 +43,13 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **Two separate servers:** 1 for block producer node, 1 for relay node
 * **One air-gapped offline machine \(cold environment\)**
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu Server 20.04 LTS\)
-* **Processor:** An Intel or AMD x86 processor with two or more cores, at 1.6GHz or faster \(2GHz or faster for a stake pool or relay\)
-* **Memory:** 4GB of RAM \(8GB for a relay or stake pool\)
-* **Storage:** 10GB of free storage \(20GB for a stake pool\)
+* **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
+* **Memory:** 8GB of RAM
+* **Storage:** 20GB of free storage
 * **Internet:** Broadband internet connection with speeds at least 10 Mbps.
 * **Data Plan**: at least 1GB per hour. 720GB per month.
 * **Power:** Reliable electrical power
-* **ADA balance:** at least 505 ADA
+* **ADA balance:** at least 505 ADA for pool deposit and transaction fees
 
 ### 🏋♂ Recommended Future-proof Stake Pool Hardware Setup
 
@@ -57,7 +57,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **One air-gapped offline machine \(cold environment\)**
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** 4 core or higher CPU
-* **Memory:** 8GB+ RAM
+* **Memory:** 8GB+ of RAM
 * **Storage:** 256GB+ SSD
 * **Internet:** Broadband internet connections with speeds at least 100 Mbps
 * **Data Plan**: Unlimited
@@ -170,7 +170,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.24.2
+git checkout tags/1.25.1
 ```
 
 Configure build options.
@@ -227,7 +227,7 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 ```
 
-Run the following to modify **config.json** and 
+Run the following to modify **mainnet-config.json** and 
 
 * update TraceBlockFetchDecisions to "true"
 
@@ -235,6 +235,10 @@ Run the following to modify **config.json** and
 sed -i ${NODE_CONFIG}-config.json \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
 ```
+
+{% hint style="info" %}
+\*\*\*\*✨ **Tip for relay nodes**: It's possible to reduce memory and cpu usage by setting "TraceMemPool" to "false" in **mainnet-config.json**
+{% endhint %}
 
 Update **.bashrc** shell variables.
 
@@ -1641,10 +1645,10 @@ With your stake pool ID, now you can find your data on block explorers such as [
 Shelley has been launched without peer-to-peer \(p2p\) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
 {% endhint %}
 
-There are two ways to configure your topology files.
+Configure your topology files.
 
 * **topologyUpdate.sh method** is automated and works after 4 hours. 
-* **Pooltool.io method** gives you control over who your nodes connect to.
+* ~~**\[ Retired \] Pooltool.io method** gives you control over who your nodes connect to.~~
 
 {% tabs %}
 {% tab title="topologyUpdater.sh Method" %}
@@ -1779,7 +1783,7 @@ Don't forget to restart your relay nodes after every time you fetch the topology
 {% endhint %}
 {% endtab %}
 
-{% tab title="Pooltool.io Method" %}
+{% tab title="\[ Retired \] Pooltool.io Method" %}
 1. Visit [https://pooltool.io/](https://pooltool.io/)
 2. Create an account and login
 3. Search for your stakepool id
@@ -2132,7 +2136,7 @@ sudo systemctl restart cardano-node
 6. Set **Name** to **"Prometheus**"
 7. Set **URL** to **http://localhost:9090**
 8. Click **Save & Test**
-9. **Download and save** this [**json file.**](https://raw.githubusercontent.com/coincashew/files/main/grafana-monitor-cardano-nodes-by-kaze.json)\*\*\*\*
+9. **Download and save** this [**json file**](https://raw.githubusercontent.com/coincashew/coincashew/master/.gitbook/assets/grafana-monitor-cardano-nodes-by-kaze.json)**.**
 10. Click **Create +** icon &gt; **Import**
 11. Add dashboard by **Upload JSON file**
 12. Click the **Import** button.
@@ -2179,6 +2183,7 @@ Discord community located @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w
 * 👏 [X-StakePool \[BTBF\] for translating this guide to Japanese.](https://github.com/btbf/coincashew/blob/master/guide-how-to-build-a-haskell-stakepool-node.md)
 * 👏 Chris of OMEGA \| CODEX for security improvements.
 * 👏 Raymond of GROW for topologyUpdater improvements and being awesome.
+* 👏 QCPOL for the script and service to update node's height on pooltool.io.
 
 #### 💸 Tip Jar Donators
 
@@ -2206,6 +2211,7 @@ Discord community located @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w
 * 🌟 SQUID
 * 🌟 TREE
 * ⭐ SAvvY
+* ⭐ QCPOL 
 
 ### 📚 17.5 Reference Material
 
@@ -2660,7 +2666,8 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 sed -i ${NODE_CONFIG}-config.json \
-    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
+    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
+	  -e "s/127.0.0.1/0.0.0.0/g" 
 ```
 
 ### 💸 18.9 Send a simple transaction example
@@ -3156,10 +3163,18 @@ Calculate your slot leader schedule.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-python3 leaderLogs.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) --sigma ${sigmaValue} --vrf-skey ${NODE_HOME}/vrf.skey
+python3 leaderLogs.py \
+--pool-id $(cat ${NODE_HOME}/stakepoolid.txt) \
+--sigma ${sigmaValue} \
+--tz America/Los_Angeles \
+--vrf-skey ${NODE_HOME}/vrf.skey
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="info" %}
+\*\*\*\*🤖 **Pro Tip**: 1.5 days before the end of the current epoch, you can find the next epoch's schedule by appending the `--next` argument.
+{% endhint %}
 
 {% hint style="info" %}
 Set the timezone name to format the schedule's times properly. Use the --tz option. \[Default: America/Los\_Angeles\]'\) [Refer to the official documentation for more info.](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md#arguments-1)
@@ -3325,6 +3340,17 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
+Find the **tip** of the blockchain to set the **invalid-hereafter** parameter properly.
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+echo Current Slot: $currentSlot
+```
+{% endtab %}
+{% endtabs %}
+
 Run the build-raw transaction command.
 
 {% tabs %}
@@ -3333,7 +3359,7 @@ Run the build-raw transaction command.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --invalid-hereafter $(( ${slotNo} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --certificate-file pool.dereg \
     --allegra-era \
@@ -3379,7 +3405,7 @@ Build the transaction.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${slotNo} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file pool.dereg \
     --allegra-era \

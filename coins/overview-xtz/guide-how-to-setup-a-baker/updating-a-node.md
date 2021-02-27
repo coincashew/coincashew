@@ -12,15 +12,31 @@ To update with `~/tezos` as the current binaries directory, copy the whole Tezos
 
 ```text
 cd
-rsync -av tezos/ tezos2
+git clone https://gitlab.com/tezos/tezos tezos2
 ```
+
+{% hint style="info" %}
+Tezos Version 8.0 aka Edo requires the installation of the Rust framework and zcash params. Install with the following.
+
+```bash
+wget https://sh.rustup.rs/rustup-init.sh
+chmod +x rustup-init.sh
+./rustup-init.sh --profile minimal --default-toolchain 1.44.0 -y
+
+source $HOME/.cargo/env
+
+wget https://raw.githubusercontent.com/zcash/zcash/master/zcutil/fetch-params.sh
+chmod +x fetch-params.sh
+./fetch-params.sh
+```
+{% endhint %}
 
 Change to the new directory and rebuild the latest binaries. Run the following command to pull and build the latest Tezos binaries.
 
 ```text
 cd ~/tezos2
-git clean -fd
-git fetch && git checkout latest-release && git pull && make build-deps && eval $(opam env) && make
+git checkout latest-release
+make build-deps && eval $(opam env) && make
 ```
 
 {% hint style="danger" %}

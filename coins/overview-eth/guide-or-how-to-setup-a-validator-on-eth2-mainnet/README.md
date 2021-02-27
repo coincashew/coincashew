@@ -396,6 +396,14 @@ sudo systemctl enable eth1
 ```text
 sudo systemctl start eth1
 ```
+
+{% hint style="info" %}
+**Geth Tip**: When is my geth node synched?
+
+1. Attach to the geth console with:`geth attach` [`http://127.0.0.1:8545`](http://127.0.0.1:8545)\`\`
+2. Type the following:`eth.syncing`
+3. If it returns false, your geth node is synched.
+{% endhint %}
 {% endtab %}
 
 {% tab title="Besu" %}

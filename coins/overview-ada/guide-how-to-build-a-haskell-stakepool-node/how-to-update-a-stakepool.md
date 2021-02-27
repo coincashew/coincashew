@@ -7,7 +7,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of Dec 9 2020, this guide is written for **mainnet** with **release v.1.24.2** 😁 
+As of Feb 27 2021, this guide is written for **mainnet** with **release v.1.25.1** 😁 
 {% endhint %}
 
 ## 📡 1. How to perform an update
@@ -28,6 +28,61 @@ Read the patch notes for any other special updates or dependencies that may be r
 {% endhint %}
 
 {% tabs %}
+{% tab title="v1.25.1 Notes" %}
+**Full release notes:** [https://github.com/input-output-hk/cardano-node/releases/tag/1.25.1](https://github.com/input-output-hk/cardano-node/releases/tag/1.25.1)
+
+This release is expected to be the final release for the upcoming Mary hard fork, and everyone _**must**_ upgrade to this \(or a later\) version to cross the Mary hard fork.
+
+The Mary hard fork introduces native token functionality to Cardano. This is directly useful and is also one of the significant building blocks for the later Goguen smart contracts.
+
+Stake Pool Operators \(SPOs\) and Exchanges should take note that the metric namespace has undergone consolidation, so all metrics now reside in `cardano.node.metrics`:
+
+* cardano.node.Forge.metrics.\* -&gt; cardano.node.metrics.Forge.\*
+* cardano.node.ChainDB.metrics.\* -&gt; cardano.node.metrics.ChainDB.\*
+* cardano.node.BlockFetchDecision.connectedPeers -&gt; cardano.node.metrics.connectedPeers
+
+The node configs require no changes, but allow dropping entries that became redundant: wherever `cardano.node.Forge.metrics.*`, `cardano.node.ChainDB.metrics.*` or `cardano.node.BlockFetchDecision.connectedPeers` were mentioned, those entries can be removed. Only `cardano.node.metric` needs to remain. Please see [\#2281](https://github.com/input-output-hk/cardano-node/pull/2281) for further details.
+
+This release uses a new cabal snapshot so could be rather resource intensive when building for the first time.
+
+### 🛑 Release v1.25.1 New Dependencies
+
+#### 1. Update Grafana monitoring dashboard to use new metrics
+
+1. On relaynode1 \(or server with grafana\), open [http://localhost:3000](http://localhost:3000) 
+2. Login to grafana
+3. **Download and save** this [**updated json file**](https://raw.githubusercontent.com/coincashew/coincashew/master/.gitbook/assets/grafana-monitor-cardano-nodes-by-kaze.json)**.**
+4. Click **Create +** icon &gt; **Import**
+5. Add dashboard by **Upload JSON file**
+6. Change **Name**/**uid** or click the **Import \(Overwrite\)** button 
+
+**2. Update mainnet-config file**
+
+```bash
+cd ${NODE_HOME}
+# Download a current mainnet config
+NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g')
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/mainnet-config.json
+# Update config settings back to stock. Add any custom changes as needed.
+sed -i mainnet-config.json \
+    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
+  	-e "s/127.0.0.1/0.0.0.0/g" 
+```
+
+#### **3. Update** gLiveView
+
+```bash
+cd ${NODE_HOME}
+curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
+curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
+chmod 755 gLiveView.sh
+# Update env file with the stake pools configuration.
+sed -i env \
+    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
+    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
+```
+{% endtab %}
+
 {% tab title="v1.24.2 Notes" %}
 This release provides support for the upcoming Allegra and Mary hard forks and the new features they bring.
 
@@ -124,7 +179,7 @@ rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.2
 git clean -fd
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.24.2 && git pull
+git checkout tags/1.25.1 && git pull
 cabal configure -O0 -w ghc-8.10.2
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 cabal build cardano-node cardano-cli
@@ -213,7 +268,7 @@ cd $NODE_HOME
 {% endtab %}
 
 {% tab title="relaynode1" %}
-```
+```bash
 cd $NODE_HOME
 ./startRelayNode1.sh
 ```
@@ -229,7 +284,7 @@ mv cardano-node2/ cardano-node/
 ```
 
 {% hint style="danger" %}
-**Reminder**: Don't forget to update your **air-gapped offline machine \(cold environment\)** with the new Cardano binaries.
+\*\*\*\*🤖 **Important Reminder**: Don't forget to update your **air-gapped offline machine \(cold environment\)** with the new **Cardano CLI** binaries.
 {% endhint %}
 
 {% hint style="success" %}
