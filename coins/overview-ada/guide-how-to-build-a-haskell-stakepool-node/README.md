@@ -3210,10 +3210,11 @@ If your block producer doesn't have Internet access, you can use a relay node.
 ```bash
 cd $NODE_HOME
 wget https://cardano.stakepool.quebec/scripts/qcpolsendmytip.sh
+sed -i -e 's/\r$//' qcpolsendmytip.sh
 md5sum qcpolsendmytip.sh
 ```
 
-To make sure the file is genuine, the md5 hash should be `797d8ed5755eb506a42d57255290e8b2`. If it's not, stop here and delete the file with `rm qcpolsendmytip.sh`.
+To make sure the file is genuine, the md5 hash should be `d3118127e917bfbd45f642a0786a2241`. If it's not, stop here and delete the file with `rm qcpolsendmytip.sh`.
 
 You will need your pooltool.io API key \(shown in your profile after registering\).
 
@@ -3229,6 +3230,7 @@ chmod +x qcpolsendmytip.sh
 ```bash
 cd $NODE_HOME
 wget https://cardano.stakepool.quebec/services/qcpolsendmytip.service
+sed -i -e 's/\r$//' qcpolsendmytip.service
 md5sum qcpolsendmytip.service
 ```
 
@@ -3249,6 +3251,21 @@ sudo systemctl start qcpolsendmytip
 If everything was setup correctly, you should see your pool's height updated on pooltool.io.
 
 ![Your pool&apos;s tip on pooltool.io](../../../.gitbook/assets/tip.png)
+
+{% hint style="warning" %}
+If the script uses too much CPU on your machine, you can lower the frequency it checks for new blocks. Simply change **0.5** in the following script by a value that works for you. The value is in seconds. The original value of the script is **0.1**. 
+
+```bash
+cd $NODE_HOME
+sed -i qcpolsendmytip.sh -e "s/sleep.*/sleep 0.5/"
+```
+
+Then restart the service:
+
+```bash
+sudo systemctl restart qcpolsendmytip
+```
+{% endhint %}
 
 ## 🌜 19. Retire your stake pool
 
