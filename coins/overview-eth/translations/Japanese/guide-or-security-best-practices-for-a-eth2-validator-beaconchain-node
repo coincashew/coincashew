@@ -172,10 +172,23 @@ ssh -i <path to your SSH_key_name.pub> ethereum@server.public.ip.address
 ```
 {% endhint %}
 
-## 🤖 **システムを更新**
+**Optional**: Make logging in easier by updating your local ssh config.
+
+To simplify the ssh command needed to log in to your server, consider updating your local `$HOME/.ssh/config` file:
+
+```bash
+Host ethereum-server
+  User ethereum
+  HostName <server.public.ip.address>
+  Port <custom port number>
+```
+
+This will allow you to log in with `ssh ethereum-server` rather than needing to pass through all ssh parameters explicitly.
+
+## 🤖 **Update your system**
 
 {% hint style="warning" %}
-侵入者がシステムにアクセスするのを防ぐために、システムを最新のパッチで最新の状態に保つことは非常に重要です。
+It's critically important to keep your system up-to-date with the latest patches to prevent intruders from accessing your system.
 {% endhint %}
 
 ```bash
@@ -184,82 +197,82 @@ sudo apt-get autoremove
 sudo apt-get autoclean
 ```
 
-自動更新を有効にすると、手動でインストールする必要がなくなります。
+Enable automatic updates so you don't have to manually install them.
 
 ```text
 sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-## 🐻 root アカウントを無効にする
+## 🐻 Disable root account
 
-システム管理者はサーバーのセキュリティを維持するために頻繁に root でログインしないでください。 代わりに、低レベルの権限を必要とする sudo の実行を使用できます。
+System admins should not frequently log in as root in order to maintain server security. Instead, you can use sudo execute that require low-level privileges.
 
 ```bash
-# root アカウントを無効にするには、単純に -l オプションを使用します。
+# To disable the root account, simply use the -l option.
 sudo passwd -l root
 ```
 
 ```bash
-# 何らかの正当な理由でアカウントを再度有効にする必要がある場合は、単純に -u オプションを使用します。
+# If for some valid reason you need to re-enable the account, simply use the -u option.
 sudo passwd -u root
 ```
 
-## 🛠 SSH の 2 要素認証 \[Optional\] をセットアップ
+## 🛠 Setup Two Factor Authentication for SSH \[Optional\]
 
 {% hint style="info" %}
-セキュアシェルであるSSHは、リモートLinuxシステムにアクセスするためによく使用されます。 重要なデータを含むコンピュータに接続するためによく使用されるため、別のセキュリティ層を追加することをお勧めします。 ここに二要素認証 \(_2FA_ \) があります。
+SSH, the secure shell, is often used to access remote Linux systems. Because we often use it to connect with computers containing important data, it’s recommended to add another security layer. Here comes the two factor authentication \(_2FA_\).
 {% endhint %}
 
 ```text
 sudo apt install libpam-google-authenticator -y
 ```
 
-SSH を使用するには、Google Authenticator PAM モジュールを使用します。 `/etc/pam.d/sshd` ファイルを編集します。
+To make SSH use the Google Authenticator PAM module, edit the `/etc/pam.d/sshd` file:
 
 ```text
 sudo nano /etc/pam.d/sshd
 ```
 
-次の行を追加:
+Add the following line:
 
 ```text
-認証が必要です pam_google_authenticator.so
+auth required pam_google_authenticator.so
 ```
 
-次に、 `sshd` デーモンを使用して再起動する必要があります。
+Now you need to restart the `sshd` daemon using:
 
 ```text
 sudo systemctl restart sshd.service
 ```
 
-`/etc/ssh/sshd_config を修正`
+Modify `/etc/ssh/sshd_config`
 
 ```text
 sudo nano /etc/ssh/sshd_config
 ```
 
-**ChallengeResponseAuthentication** を探し、「はい」に更新します
+Locate **ChallengeResponseAuthentication** and update to yes
 
 ```text
 ChallengeResponseAuthentication yes
 ```
 
-**UsePAM** を見つけて「はい」に更新します
+Locate **UsePAM** and update to yes
 
 ```text
-UsePAM はい
+UsePAM yes
 ```
 
-ファイルを保存して終了します。
+Save the file and exit.
 
-**google-authenticator** コマンドを実行します。
+Run the **google-authenticator** command.
 
 ```text
 google-authenticator
 ```
 
-一連の質問がありますが、ここでは推奨される設定です:
+It will ask you a series of questions, here is a recommended configuration:
 
 * トークン「タイムベース」を作成します：はい
 * `.google_authenticator` ファイルを更新する: yes
@@ -267,81 +280,81 @@ google-authenticator
 * 元の生成時間制限を増やします: いいえ
 * レート制限を有効にする: はい
 
-プロセス中に現れた巨大なQRコードに気づいたかもしれません。 下には携帯電話にアクセスできない場合に使用する緊急スクラッチコードがあります。紙に書いて安全な場所に保管してください。
+You may have noticed the giant QR code that appeared during the process, underneath are your emergency scratch codes to be used if you don’t have access to your phone: write them down on paper and keep them in a safe place.
 
-今度は、携帯電話でGoogle認証システムを開き、2要素認証を動作させるために秘密鍵を追加します。
+Now, open Google Authenticator on your phone and add your secret key to make two factor authentication work.
 
 {% hint style="danger" %}
-**注**: SSH 経由でアクセスするリモートマシンで 2 要素認証を有効にしている場合は、 **このチュートリアル** の [手順 2 と 3](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-18-04) に従って、2要素認証を機能させる必要があります。
+**Note**: If you are enabling 2FA on a remote machine that you access over SSH you need to follow **steps 2 and 3** of [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-18-04) to make 2FA work.
 {% endhint %}
 
-## 🧩 セキュア共有メモリ
+## 🧩 Secure Shared Memory
 
 {% hint style="info" %}
-最初にすべきことの1つは、システムで使用されている共有 [メモリ](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) を保護することです。 気づいていない場合は、実行中のサービスに対する攻撃で共有メモリを使用できます。 このため、システムメモリのその部分を確保してください。
+One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.
 
-セキュアな共有メモリについての詳細は、 [techrepublic.com の記事](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/) をご覧ください。
+To learn more about secure shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
 {% endhint %}
 
 {% hint style="warning" %}
 ### 1つの例外的なケース
 
-読み取り/書き込みモードでメモリ領域をマウントする必要がある理由があるかもしれません \(例えば、共有メモリやGoogle Chromeのような標準的なアプリケーションへのアクセスを必要とする **DappNode** のような特定のサーバーアプリケーションなど)。 この場合、以下の手順で fstab ファイルに次の行を使用します。
+There may be a reason for you needing to have that memory space mounted in read/write mode \(such as a specific server application like **DappNode** that requires such access to the shared memory or standard applications like Google Chrome\). In this case, use the following line for the fstab file with instructions below.
 
 ```text
-none /run/shm tmpfs rw,noexec,nosuid,nodev 0
+none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
 ```
 
-上記の行は、共有メモリを読み取り/書き込みアクセスでマウントしますが、プログラムを実行する許可なしにマウントします。 実行中のプログラムの UID を変更するか、名前空間でブロックや文字デバイスを作成します。 これは、デフォルト設定よりもネットセキュリティの改善です。
+The above line will mount the shared memory with read/write access but without permission to execute programs, change the UID of running programs, or to create block or character devices in the namespace. This a net security improvement over default settings.
 
 ### 注意して使用する
 
-With some trial and error, you may discover some applications\(**like DappNode**\) do not work with shared memory in read-only mode. 最高のセキュリティとアプリケーションと互換性がある場合は、このセキュアな共有メモリ設定を実装する価値があります。
+With some trial and error, you may discover some applications\(**like DappNode**\) do not work with shared memory in read-only mode. For the highest security and if compatible with your applications, it is a worthwhile endeavor to implement this secure shared memory setting.
 
-ソース: [techrepublic.com](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/)
+Source: [techrepublic.com](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/)
 {% endhint %}
 
-`/etc/fstab` を編集する
+Edit `/etc/fstab`
 
 ```text
 sudo nano /etc/fstab
 ```
 
-ファイルの一番下に次の行を挿入し、保存/閉じます。 共有メモリを読み取り専用モードに設定します。
+Insert the following line to the bottom of the file and save/close. This sets shared memory into read-only mode.
 
 ```text
-tmpfs /run/shm tmpfs ro,noexec,nosuid 0
+tmpfs    /run/shm    tmpfs    ro,noexec,nosuid    0 0
 ```
 
-変更を有効にするには、ノードを再起動します。
+Reboot the node in order for changes to take effect.
 
 ```text
 sudo reboot
 ```
 
-## ⛓**Fail2ban のインストール**
+## ⛓**Install Fail2ban**
 
 {% hint style="info" %}
-Fail2ban はログファイルを監視し、失敗したログイン試行に対応する特定のパターンを検索する侵入防止システムです。 特定の数の失敗したログインが特定のIPアドレスから検出された場合、 \(指定された時間以内に\) fail2ban はそのIPアドレスからのアクセスをブロックします。
+Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address \(within a specified amount of time\), fail2ban blocks access from that IP address.
 {% endhint %}
 
 ```text
 sudo apt-get install fail2ban -y
 ```
 
-SSH ログインを監視する設定ファイルを編集します。
+Edit a config file that monitors SSH logins.
 
 ```text
 sudo nano /etc/fail2ban/jail.local
 ```
 
-ファイルの一番下に次の行を追加します。
+Add the following lines to the bottom of the file.
 
 {% hint style="info" %}
-🔥 **IPアドレスヒント**: `ignoreip` パラメータはIPアドレスを受け付けます 接続を許可するIP範囲またはDNSホストを指定できます。 これは、ローカルマシン、ローカルIP範囲、またはローカルドメインをスペースで区切って指定する場所です。
+🔥 **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local machine, local IP range or local domain, separated by spaces.
 
 ```bash
-# 例
+# Example
 ignoreip = 192.168.1.0/24 127.0.0.1/8 
 ```
 {% endhint %}
@@ -357,19 +370,19 @@ maxretry = 3
 ignoreip = <list of whitelisted IP address, your local daily laptop/pc>
 ```
 
-ファイルを保存/閉じる
+Save/close file.
 
-設定を有効にするには、fail2ban を再起動してください。
+Restart fail2ban for settings to take effect.
 
 ```text
 sudo systemctl restart fail2ban
 ```
 
-## 🧱**ファイアウォールを設定**
+## 🧱**Configure your Firewall**
 
-標準的な UFW ファイアウォールを使用してノードへのネットワークアクセスを制御できます。
+The standard UFW firewall can be used to control network access to your node.
 
-新しいインストールでは、ufw はデフォルトで無効になっています。 次の設定で有効にします。
+With any new installation, ufw is disabled by default. Enable it with the following settings.
 
 * ポート 22 \(またはランダムポート \#\) SSH 接続のための TCP
 * p2p トラフィックのポート
@@ -401,7 +414,7 @@ sudo ufw allow 12000/udp
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
 sudo ufw enable
-sudo ufw status number@@7
+sudo ufw status numbered
 ```
 {% endtab %}
 
@@ -437,25 +450,25 @@ sudo ufw allow 9000/udp
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
 sudo ufw enable
-sudo ufw status number@@7 sudo ufw number
+sudo ufw status numbered
 ```
 {% endtab %}
 {% endtabs %}
 
 {% hint style="danger" %}
-Grafana \(ポート 3000\)とPrometheus endpoint \(ポート 9090\\)をパブリックインターネットに公開しないでください。 安全な解決策は、Wireguardでsshトンネルを介してGrafanaにアクセスすることです。
+Do not expose Grafana \(port 3000\) and Prometheus endpoint \(port 9090\) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
 {% endhint %}
 
-ホームルータのファイアウォールまたは他のネットワークファイアウォールの背後にあるローカルホームステーキングセットアップで、次のポートのみを開きます。
+Only open the following ports on local home staking setups behind a home router firewall or other network firewall.
 
-\*\*\*\*🔥 **VPS/クラウドノードでこれらのポートを開くのは危険です。**
+\*\*\*\*🔥 **It is dangerous to open these ports on a VPS/cloud node.**
 
 ```bash
 sudo ufw allow 3000/tcp
 sudo ufw allow 9090/tcp
 ```
 
-設定が有効であることを確認します。
+Confirm the settings are in effect.
 > ```csharp
      To                         Action      From
      --                         ------      ----
@@ -481,7 +494,7 @@ sudo ufw allow 9090/tcp
 # eth1 node
 ```
 
-**\[ 任意で推奨される \]** \(または特定のIPからの接続を許可する) ホワイトリストは以下のコマンドで設定することができます。
+**\[ Optional but recommended \]** Whitelisting \(or permitting connections from a specific IP\) can be setup via the following command.
 
 ```bash
 sudo ufw allow from <your local daily laptop/pc>
@@ -490,16 +503,16 @@ sudo ufw allow from <your local daily laptop/pc>
 ```
 
 {% hint style="info" %}
- 🎊 **ポート転送のヒント:** ポートをバリデータに転送して開く必要があります。 [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) または [https://canyouseeme.org/](https://canyouseeme.org/) で動作していることを確認してください。
+ 🎊 **Port Forwarding Tip:** You'll need to forward and open ports to your validator. [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) または [https://canyouseeme.org/](https://canyouseeme.org/) で動作していることを確認してください。
 {% endhint %}
 
-## 📞 リスニングポートを確認
+## 📞 Verify Listening Ports
 
-安全なサーバーを維持したい場合は、たまにリスニングネットワークポートを検証する必要があります。 これにより、ネットワークに関する重要な情報が提供されます。
+If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
 
 ```bash
 sudo ss -tulpn
-# 出力の例。 ポート番号が正しく見えることを確認します。
+# Example output. ポート番号が正しく見えることを確認します。
 # Netid  State    Recv-Q  Send-Q    Local Address:Port   Peer Address:Port   Process
 # tcp    LISTEN   0       128       127.0.0.1:5052       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=22))
 # tcp    LISTEN   0       128       127.0.0.1:5054       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=23))
@@ -508,11 +521,11 @@ sudo ss -tulpn
 # tcp    LISTEN   0       4096      *:30303              *:*                 users:(("geth",pid=22117,fd=156))
 ```
 
-`netstat` を使用することもできます。
+Alternatively you can use `netstat`
 
 ```bash
 sudo netstat -tulpn
-# 出力例。 ポート番号が正しく見えることを確認します。
+# Example output. ポート番号が正しく見えることを確認します。
 # Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
 # tcp        0      0 127.0.0.1:5052          0.0.0.0:*               LISTEN      12160/lighthouse
 # tcp        0      0 127.0.0.1:5054          0.0.0.0:*               LISTEN      12160/lighthouse
@@ -521,47 +534,47 @@ sudo netstat -tulpn
 # udp6       0      0 :::30303                :::*                    LISTEN      22117/geth
 ```
 
-## 👩🚀 **** システムユーザーアカウントを使用する - 少なくとも特権の原理 \[上級ユーザー/オプション\]
+## 👩🚀 **Use** system user accounts - Principle of Least Privilege \[Advanced Users / Optional\]
 
 {% hint style="info" %}
-**上級ユーザーのみに推奨します**
+**Recommended for Advanced Users Only**
 
-**最小特権の原則**: 各eth2プロセスには _システムユーザーアカウント_ が割り当てられ、機能するために必要な最小限の権限で実行されます。 このベストプラクティスは、特定のプロセスで発見された脆弱性やエクスプロイトによって他のシステムプロセスにアクセスできる可能性があるシナリオから保護します。
+**Principle of Least Privilege**: Each eth2 process is assigned a _system user account_ and runs under the least amount of privileges required in order to function. This best practice protects against a scenario where a vulnerability or exploit discovered in a specific process might enable access other system processes.
 {% endhint %}
 
 ```bash
 # creates system user account for eth1 service
-sudo adduser --system -no-create-home eth1
+sudo adduser --system --no-create-home eth1
 
 # creates system user account for validator service
-sudo adduser --system -no-create-home validator
+sudo adduser --system --no-create-home validator
 
 # creates system user account for beacon-chain service
-sudo adduser ---no-create-home beacon-chain
+sudo adduser --system --no-create-home beacon-chain
 
 # creates system user account for slasher
-sudo adduser ---no-create-home slasher
+sudo adduser --system --no-create-home slasher
 ```
 
 {% hint style="danger" %}
-\*\*\*🔥 **上級ユーザーへの注意**
+\*\*\*\*🔥 **Caveats For Advanced Users**
 
-**システムユーザー アカウント**を使用することにした場合は、 **systemd ユニット ファイル** を対応するユーザーに置き換えることを忘れないでください。
+If you decide to use **system user accounts**, remember to replace the **systemd unit files** with the corresponding users.
 
 ```bash
-# beacon-chain.service unit file
-User = beacon-chain
+# Example of beacon-chain.service unit file
+User            = beacon-chain
 ```
 
-さらに、該当する場合は **システムユーザアカウント** に正しい **ファイル所有権** が割り当てられていることを確認してください。
+Furthermore, ensure the correct **file ownership** is assigned to your **system user account** where applicable.
 
 ```bash
-# prysm バリデータのパスワードファイルの例
+# Example of prysm validator's password file
 sudo chown validator:validator -R $HOME/.eth2validators/validators-password.txt
 ```
 {% endhint %}
 
-## ✨ 追加のバリデータノードのベストプラクティス
+## ✨ Additional validator node best practices
 
 <table>
   <thead>
@@ -603,7 +616,7 @@ sudo chown validator:validator -R $HOME/.eth2validators/validators-password.txt
 必ず [チェックリスト\| 健全な機能ETH2バリデータを確認する方法を確認してください。](guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
 {% endhint %}
 
-## 🤖 バリデータを作成してステークを開始
+## 🤖 Start staking by building a validator
 
 ### 私たちの [メインネットガイド](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) 、 [テストネットガイド](guide-or-how-to-setup-a-validator-on-eth2-testnet.md)についてはこちらをご覧ください。
 
@@ -627,7 +640,7 @@ Discordで仲間のステーカーとチャットしましょう @
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-constashew" %}
 
-## 🚀 参照
+## 🚀 References
 
 {% embed url="https://medium.com/@BaneBiddix/how-to-harden-your-ubuntu-18-04-server-ffc4b6658fe7" caption="" %}
 
@@ -643,5 +656,5 @@ Discordで仲間のステーカーとチャットしましょう @
 
 {% embed url="https://www.lifewire.com/harden-ubuntu-server-security-4178243" caption="" %}
 
-{% embed url="https://www.ubuntupit.com/best-linux-hardening-security-tips-a-compreverive-checklist/" caption="" %}
+{% embed url="https://www.ubuntupit.com/best-linux-hardening-security-tips-a-comprehensive-checklist/" caption="" %}
 
