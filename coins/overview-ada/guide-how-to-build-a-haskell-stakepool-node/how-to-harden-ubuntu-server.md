@@ -440,6 +440,36 @@ sudo ufw allow from <your local daily laptop/pc>
  🎊 **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
 {% endhint %}
 
+#### 🧱 Extra Hardening Rules for your Block Producer Node
+
+Only your Relay Node\(s\) should be permitted access to your Block Producer Node.
+
+```bash
+sudo ufw allow proto tcp from <RELAY NODE IP> to any port <BLOCK PRODUCER PORT>
+# Example
+# sudo ufw allow proto tcp from 18.58.3.31 to any port 6000
+```
+
+#### 🧱 Extra Hardening Rules for your Relay Node\(s\)
+
+In order to protect your Relay Node\(s\) from a novel "DoS/Syn" attack, [**Michael Fazio**](https://github.com/michaeljfazio) created iptables entry which restricts connections to a given destination port to 5 connections from the same IP. 
+
+Replace `<RELAY NODE PORT>` with your public relay port, replace the 5 with your preferred connection limit.
+
+```bash
+iptables -I INPUT -p tcp -m tcp --dport <RELAY NODE PORT> --tcp-flags FIN,SYN,RST,ACK SYN -m connlimit --connlimit-above 5 --connlimit-mask 32 --connlimit-saddr -j REJECT --reject-with tcp-reset
+```
+
+{% hint style="warning" %}
+Set the connection limit high enough so that your internal relay/block producer node topology remains functional.
+{% endhint %}
+
+You can check you current connections with a sorted list. Change the relay node port number, if needed.
+
+```bash
+sudo netstat -enp | grep ":6000" | awk {'print $5'} | cut -d ':' -f 1 | sort | uniq -c | sort
+```
+
 ## 🔭 Verify Listening Ports
 
 If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.

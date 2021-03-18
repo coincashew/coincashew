@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of Feb 27 2020, this is **guide version 3.1.0** and written for **cardano mainnet** with **release v.1.25.1** 😁 
+As of Mar 18 2020, this is **guide version 3.1.1** and written for **cardano mainnet** with **release v.1.25.1** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
