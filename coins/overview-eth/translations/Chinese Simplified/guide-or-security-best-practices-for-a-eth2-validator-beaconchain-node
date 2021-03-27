@@ -165,7 +165,7 @@ ssh ethereum@server.public.ip.address -p <custom port number>
 {% endtabs %}
 
 {% hint style="info" %}
-或者，您可能需要使用。 如果您使用了自定义 SSH 端口，添加 `-p <port#>` 标记。
+Alternatively, you might need to add the `-p <port#>` flag if you used a custom SSH port.
 
 ```bash
 ssh -i <path to your SSH_key_name.pub> ethereum@server.public.ip.address
