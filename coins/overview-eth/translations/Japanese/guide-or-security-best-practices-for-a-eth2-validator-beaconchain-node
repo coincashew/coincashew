@@ -165,7 +165,7 @@ ssh etherum@server.public.ip.address -p <custom port number>
 {% endtabs %}
 
 {% hint style="info" %}
-あるいは、使用する必要がある場合があります。 カスタム SSH ポートを使用する場合は、 `-p <port#>` フラグを追加します。
+Alternatively, you might need to add the `-p <port#>` flag if you used a custom SSH port.
 
 ```bash
 ssh -i <path to your SSH_key_name.pub> ethereum@server.public.ip.address
