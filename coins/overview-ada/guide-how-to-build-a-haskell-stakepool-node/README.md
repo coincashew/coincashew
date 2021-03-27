@@ -12,9 +12,10 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-このマニュアルは、カルダノノードv1.24.2に対応しています。\(CLIコマンド修正済み\)  
+このマニュアルは、カルダノノードv1.25.1に対応しています。(CLIコマンド修正済み)    
+
 [ドキュメント更新情報はこちら](README.md)  
-最終更新日：2021年1月2日の時点guide version 3.0.1
+最終更新日：2021年3月19日の時点guide version 3.3.2「Mary-era 対応！」
 {% endhint %}
 
 ## 🏁 0. 前提条件
@@ -40,8 +41,9 @@ description: >-
 * **２つのサーバー:** ブロックプロデューサーノード用1台、 リレーノード用1台
 * **エアギャップオフラインマシン1台 \(コールド環境\)**
 * **オペレーティング・システム:** 64-bit Linux \(Ubuntu 20.04 LTS\)
-* **プロセッサー:** 1.6GHz以上\(ステークプールまたはリレーの場合は2Ghz以上\)の2つ以上のコアを備えたIntelまたはAMD x86プロセッサー
-* **メモリー:** 4GB RAM（リレーまたはステークプールでは8GB）
+* **プロセッサー:** 1.6GHz以上(ステークプールまたはリレーの場合は2Ghz以上)の2つ以上のコアを備えたIntelまたはAMD x86プロセッサー
+* **メモリー:** 6GB RAM（リレーまたはステークプールでは8GB）
+
 * **ストレージ:** 24GB SSD
 * **インターネット:** 10 Mbps以上のブロードバンド回線.
 * **データプラン**: 1時間あたり1GBの帯域. 1ヶ月あたり720GB.
@@ -61,29 +63,26 @@ description: >-
 * **電力:** 無停電電源装置\(UPS\)による電源管理
 * **ADA残高:** ステークプールに対する保証金をご自身で定める分
 
-### 🔓 ステークプールの推奨セキュリティ設定
+### 🔓 Ubuntuセットアップガイド
 
-ステークプールのサーバを強化するには、以下の内容を実施して下さい。
-
-{% hint style="info" %}
-[Ubuntuサーバーのセキュリティを強化する手順](how-to-harden-ubuntu-server.md)
-{% endhint %}
-
-### 🛠 Ubuntuセットアップガイド
+ステークプールのサーバ初期設定とセキュリティ強化するには、以下の内容を実施して下さい。
 
 {% hint style="info" %}
-絶賛翻訳中
+[Ubuntuサーバー初期設定(+セキュリティ設定)](how-to-harden-ubuntu-server.md)
 {% endhint %}
+
 
 ### 🧱 ノードを再構築したい場合
 
 もしノードインストールを初めからやり直したい場合は[項目18.2](guide-how-to-build-a-haskell-stakepool-node.md#182-resetting-the-installation)で、リセットの方法を確認して下さい。
 
+  
 ### 🧱 試しにノードを起動してみたい方へ
 
-Linuxサーバのコマンドや、ノード起動などお試しテストでやってみたい方は、項目の1，2，3，5，7，8をやってみましょう！  
+Linuxサーバのコマンドや、ノード起動などお試しテストでやってみたい方は、項目の1，2，3，4, 5をやってみましょう！  
 この項目はブロックチェーンには直接的に影響がないので、たとえ間違ったコマンドを送信してもネットワークには問題ございません。
 
+  
 ## 🏭 1. CabalとGHCをインストールします
 
 ターミナルを起動し、以下のコマンドを入力しましょう！
@@ -170,7 +169,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.24.2
+git checkout tags/1.25.1
 ```
 
 Cabalのビルドオプションを構成します。
@@ -243,139 +242,13 @@ echo export CARDANO_NODE_SOCKET_PATH="$NODE_HOME/db/socket" >> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
-## 🔮 4. ブロックプロデューサーノードを構築する
-
-{% hint style="info" %}
-ブロックプロデューサーノードは、ブロック生成に必要なペアキー \(cold keys, KES hot keys and VRF hot keys\)を用いて起動します。リレーノードのみに接続します。
-{% endhint %}
-
-{% hint style="info" %}
-一方で、リレーノードはキーを所有していないため、ブロック生成はできません。その代わり、他のリレーノードとの繋がりを持ち最新スロットを取得します。
-{% endhint %}
-
-{% hint style="success" %}
-このマニュアルでは、2つのサーバー上に1ノードづつ構築します。1つのノードはブロックプロデューサーノード、もう1つのノードはリレーノード1という名前のリレーノードになります。
-{% endhint %}
-
-{% hint style="danger" %}
-**topology.json** ファイルの構成について
-
-* リレーノードでは、パプリックノード \(IOHKや他のリレーノード\) 及び、自身の
-
-  ブロックプロデューサーノード情報を記述します。
-
-* ブロックプロデューサーノードでは、自身のリレーノード情報のみ記述します。
-{% endhint %}
-
-自身のブロックプロデューサーノード上で以下のコマンドを実行します。 「addr」にはリレーノードのパプリックIPアドレスを記述します。
-
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF 
- {
-    "Producers": [
-      {
-        "addr": "<リレーノード1のパブリックIPアドレス>",
-        "port": 6000,
-        "valency": 1
-      }
-    ]
-  }
-EOF
-```
-{% endtab %}
-{% endtabs %}
-
-## 🛸 5. リレーノードを構築します。
-
-{% hint style="warning" %}
-🚧 リレーサーバを増設する場合は、**リレーノードN**として1～3の手順を同様にセットアップします。
-{% endhint %}
-
-自身のリレーノード上で以下のコマンドを実行します。 「addr」には自身のブロックプロデューサーノードのパプリックIPアドレスを記述します。 **IOHKのノード情報は削除しないで下さい**
-
-{% tabs %}
-{% tab title="relaynode1" %}
-```bash
-cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF 
- {
-    "Producers": [
-      {
-        "addr": "<ブロックプロデューサーノードのパブリックIPアドレス>",
-        "port": 6000,
-        "valency": 1
-      },
-      {
-        "addr": "relays-new.cardano-mainnet.iohk.io",
-        "port": 3001,
-        "valency": 2
-      }
-    ]
-  }
-EOF
-```
-{% endtab %}
-{% endtabs %}
-
-{% hint style="info" %}
-Valencyが0の場合、アドレスは無視されます。
-{% endhint %}
-
-{% hint style="danger" %}
-\*\*\*\*✨ **ポート開放について:** ブロックプロデューサーノード上で、ここで設定したポート番号を開放してください。
-{% endhint %}
-
-## 🔏 6. エアギャップオフラインマシンを構成する
-
-{% hint style="info" %}
-エアギャップオフラインマシンは「コールド環境」と呼ばれ、インターネットに接続しない独立したオフライン環境のことです。
-
-* キーロギング攻撃、マルウエア／ウイルスベースの攻撃、その他ファイアウォールやセキュリティーの悪用から保護します。
-* 有線・無線のインターネットには接続しないでください。
-* ネットワーク上にあるVMマシンではありません。
-* エアギャップについて更に詳しく知りたい場合は、[こちら](https://ja.wikipedia.org/wiki/%E3%82%A8%E3%82%A2%E3%82%AE%E3%83%A3%E3%83%83%E3%83%97)を参照下さい。
-{% endhint %}
-
-エアギャップオフラインマシン上で手順1～2をセットアップした後、以下のパスを環境変数にセットします。
-
-{% tabs %}
-{% tab title="エアギャップオフラインマシン" %}
-```bash
-echo export NODE_HOME=$HOME/cardano-my-node >> $HOME/.bashrc
-source $HOME/.bashrc
-mkdir -p $NODE_HOME
-```
-{% endtab %}
-{% endtabs %}
-
-{% hint style="danger" %}
-最も安全な構成を維持するには、USBなどを利用してホット環境とコールド環境間でファイルを物理的に移動することが望ましいです。
-{% endhint %}
-
-## 🤖 7. ノード起動スクリプトを作成する。
+## 🤖 4. ノード起動スクリプトを作成する。
 
 起動スクリプトには、ディレクトリ、ポート番号、DBパス、構成ファイルパス、トポロジーファイルパスなど、カルダノノードを実行するために必要な変数が含まれています。
 
 全行をコピーしコマンドラインに送信します。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-cat > $NODE_HOME/startBlockProducingNode.sh << EOF 
-#!/bin/bash
-DIRECTORY=\$NODE_HOME
-PORT=6000
-HOSTADDR=0.0.0.0
-TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
-DB_PATH=\${DIRECTORY}/db
-SOCKET_PATH=\${DIRECTORY}/db/socket
-CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
-cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
-EOF
-```
-{% endtab %}
-
 {% tab title="リレーノード1" %}
 ```bash
 cat > $NODE_HOME/startRelayNode1.sh << EOF 
@@ -391,15 +264,39 @@ cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-pa
 EOF
 ```
 {% endtab %}
+
+{% tab title="ブロックプロデューサーノード" %}
+```bash
+cat > $NODE_HOME/startBlockProducingNode.sh << EOF 
+#!/bin/bash
+DIRECTORY=\$NODE_HOME
+PORT=6000
+HOSTADDR=0.0.0.0
+TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
+DB_PATH=\${DIRECTORY}/db
+SOCKET_PATH=\${DIRECTORY}/db/socket
+CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
+cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
+EOF
+```
+{% endtab %}
 {% endtabs %}
 
-## ✅ 8. ノードを起動します。
+## ✅ 5. ノードを起動します。
 
-ターミナルウィンドウを新規に立ち上げます。
-
-起動スクリプトに実行権限を付与し、ブロックチェーンの同期を開始します。
+起動スクリプトに実行権限を付与し、ブロックチェーンの同期を開始します。 
+   
+**リレーノードから実施します。**
 
 {% tabs %}
+{% tab title="リレーノード" %}
+```bash
+cd $NODE_HOME
+chmod +x startRelayNode1.sh
+./startRelayNode1.sh
+```
+{% endtab %}
+
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
 cd $NODE_HOME
@@ -407,15 +304,13 @@ chmod +x startBlockProducingNode.sh
 ./startBlockProducingNode.sh
 ```
 {% endtab %}
-
-{% tab title="relaynode1" %}
-```bash
-cd $NODE_HOME
-chmod +x startRelayNode1.sh
-./startRelayNode1.sh
-```
-{% endtab %}
 {% endtabs %}
+
+{% hint style="info" %}
+slot番号などが表示され、勢いよくログが流れていたら起動成功です  
+ただ、このままでは画面を閉じるとノードが終了するので次の工程に移ってください。
+{% endhint %}
+
 
 {% hint style="info" %}
 🛑 ノードを停止するには「Ctrl」+「c」を押します。
@@ -431,7 +326,7 @@ chmod +x startRelayNode1.sh
 Ctrl+C
 ```
 
-### 🛠 8-1.自動起動とバックグラウンド起動を設定する\(systemd＋tmux\)
+### 🛠 5-1.自動起動とバックグラウンド起動を設定する(systemd＋tmux)
 
 先程のスクリプトだけでは、ターミナル画面を閉じるとノードが終了してしまうので、スクリプトをサービスとして登録し、自動起動設定と別セッションで起動するように設定しましょう
 
@@ -452,23 +347,23 @@ killall -s 2 cardano-node
 以下のコードを実行して、ユニットファイルを作成します。
 
 {% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
+{% tab title="リレーノード1" %}
 ```bash
-cat > $NODE_HOME/cardano-node.service << EOF 
+cat > $NODE_HOME/cardano-node.service << EOF
 # The Cardano node service (part of systemd)
-# file: /etc/systemd/system/cardano-node.service 
+# file: /etc/systemd/system/cardano-node.service
 
 [Unit]
 Description     = Cardano node service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
 Type            = forking
 WorkingDirectory= $NODE_HOME
 ExecStart       = /usr/bin/tmux new -d -s cnode
-ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startBlockProducingNode.sh Enter 
+ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startRelayNode1.sh Enter
 KillSignal=SIGINT
 RestartKillSignal=SIGINT
 TimeoutStopSec=2
@@ -482,23 +377,23 @@ EOF
 ```
 {% endtab %}
 
-{% tab title="リレーノード1" %}
+{% tab title="ブロックプロデューサーノード" %}
 ```bash
-cat > $NODE_HOME/cardano-node.service << EOF 
+cat > $NODE_HOME/cardano-node.service << EOF
 # The Cardano node service (part of systemd)
-# file: /etc/systemd/system/cardano-node.service 
+# file: /etc/systemd/system/cardano-node.service
 
 [Unit]
 Description     = Cardano node service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
 Type            = forking
 WorkingDirectory= $NODE_HOME
 ExecStart       = /usr/bin/tmux new -d -s cnode
-ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startRelayNode1.sh Enter 
+ExecStartPost   = /usr/bin/tmux send-keys -t cnode $NODE_HOME/startBlockProducingNode.sh Enter
 KillSignal=SIGINT
 RestartKillSignal=SIGINT
 TimeoutStopSec=2
@@ -531,8 +426,12 @@ sudo systemctl enable cardano-node
 sudo systemctl start cardano-node
 ```
 
-{% hint style="success" %}
-以下は、systemdを有効活用するためのコマンドです。
+[5-2.gLiveView ノードステータスモニターをインストールします](./guide-how-to-build-a-haskell-stakepool-node.md#5-2-gliveview-ndosuttasumonitwoinsutrushimasu)に進んでください。
+
+
+{% hint style="danger" %}
+以下は、systemdを有効活用するためのコマンドです。  
+必要に応じで実行するようにし、一連の流れで実行しないでください
 {% endhint %}
 
 \*\*\*\*⛓ **システム起動後に、ログモニターを表示します**
@@ -585,7 +484,8 @@ journalctl --unit=cardano-node --since=today
 journalctl --unit=cardano-node --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
 ```
 
-### 🛠 8-2.gLiveView ノードステータスモニターをインストールします
+
+### 🛠 5-2.gLiveView ノードステータスモニターをインストールします
 
 現在のcardano-nodeはログが流れる画面で、何が表示されているのかよくわかりません。  
 それを視覚的に確認できるツールが**gLiveView**です。
@@ -605,7 +505,8 @@ curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operato
 chmod 755 gLiveView.sh
 ```
 
-**env** ファイルによってファイル構成を指定できます。
+**env** ファイルによってファイル構成を指定できます。  
+ノードのポート番号を6000以外に設定している場合は、envファイルを開いて修正してください。   
 
 ```bash
 sed -i env \
@@ -628,11 +529,130 @@ BPノードでは基本情報に加え、KES有効期限、ブロック生成状
 \[p\]リレーノード用リモートピア分析について ピアにpingを送信する際ICMPpingを使用します。リモートピアのファイアウォールがICMPトラフィックを受け付ける場合のみ機能します。
 {% endhint %}
 
+![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
+
 詳しくは開発元のドキュメントを参照してください [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
 この画面が表示され、ノードが同期したら準備完了です。
 
-## ⚙ 9. ブロックプロデューサーキーを生成する。
+
+## 🔮 6. ブロックプロデューサーノードを構築する
+{% hint style="info" %}
+手順１～5までをブロックプロデューサー用サーバーで実施してから、以下を実施します。
+{% endhint %}
+
+
+{% hint style="info" %}
+ブロックプロデューサーノードは、ブロック生成に必要なペアキー \(cold keys, KES hot keys and VRF hot keys\)を用いて起動します。リレーノードのみに接続します。
+{% endhint %}
+
+{% hint style="info" %}
+一方で、リレーノードはキーを所有していないため、ブロック生成はできません。その代わり、他のリレーノードとの繋がりを持ち最新スロットを取得します。
+{% endhint %}
+
+![](.gitbook/assets/producer-relay-diagram.png)
+
+{% hint style="success" %}
+このマニュアルでは、2つのサーバー上に1ノードづつ構築します。1つのノードはブロックプロデューサーノード、もう1つのノードはリレーノード1という名前のリレーノードになります。
+{% endhint %}
+
+{% hint style="danger" %}
+**topology.json** ファイルの構成について
+
+* リレーノードでは、パプリックノード \(IOHKや他のリレーノード\) 及び、自身の
+
+  ブロックプロデューサーノード情報を記述します。
+
+* ブロックプロデューサーノードでは、自身のリレーノード情報のみ記述します。
+{% endhint %}
+
+**「＊」はBPノードのパプリックIPアドレス**に置き換えて下さい
+
+{% tabs %}
+{% tab title="リレーノード" %}
+```bash
+cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF 
+ {
+    "Producers": [
+      {
+        "addr": "relays-new.cardano-mainnet.iohk.io",
+        "port": 3001,
+        "valency": 2
+      },
+      {
+        "addr": "***.**.**.**",
+        "port": 6000,
+        "valency": 1
+      }
+    ]
+  }
+EOF
+```
+{% endtab %}
+{% endtabs %}
+
+
+リレーノードを再起動する
+```
+sudo systemctl reload-or-restart cardano-node
+```
+
+
+自身のブロックプロデューサーノード上で以下のコマンドを実行します。 **「＊」はリレーノードのパプリックIPアドレス**に置き換えてください。
+
+{% tabs %}
+{% tab title="ブロックプロデューサーノード" %}
+```bash
+cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF 
+ {
+    "Producers": [
+      {
+        "addr": "***.**.**.**",
+        "port": 6000,
+        "valency": 1
+      }
+    ]
+  }
+EOF
+```
+{% endtab %}
+{% endtabs %}
+
+BPノードを再起動する
+```
+sudo systemctl reload-or-restart cardano-node
+```
+
+## 🔏 7. エアギャップオフラインマシンを構成する
+
+{% hint style="info" %}
+エアギャップオフラインマシンは「コールド環境」と呼ばれコンピュータネットワークにおいてセキュリティを高める方法の一つ。 安全にしたいコンピュータやネットワークを、インターネットや安全でないLANといったネットワークから物理的に隔離することを指す。
+
+* キーロギング攻撃、マルウエア／ウイルスベースの攻撃、その他ファイアウォールやセキュリティーの悪用から保護します。
+* 有線・無線のインターネットには接続しないでください。
+* ネットワーク上にあるVMマシンではありません。
+* エアギャップについて更に詳しく知りたい場合は、[こちら](https://ja.wikipedia.org/wiki/%E3%82%A8%E3%82%A2%E3%82%AE%E3%83%A3%E3%83%83%E3%83%97)を参照下さい。
+{% endhint %}
+
+エアギャップオフラインマシン上で手順1～2をセットアップした後、以下のパスを環境変数にセットします。
+
+{% tabs %}
+{% tab title="エアギャップオフラインマシン" %}
+```bash
+echo export NODE_HOME=$HOME/cardano-my-node >> $HOME/.bashrc
+source $HOME/.bashrc
+mkdir -p $NODE_HOME
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="danger" %}
+最も安全な構成を維持するには、USBなどを利用してホット環境とコールド環境間でファイルを物理的に移動することが望ましいです。
+{% endhint %}
+
+
+## ⚙ 8. ブロックプロデューサーキーを生成する。
+
 
 {% hint style="info" %}
 以下の項目を実施する前にノードが起動しているか確認してください。
@@ -691,6 +711,9 @@ cardano-cli node key-gen \
     --cold-verification-key-file node.vkey \
     --cold-signing-key-file node.skey \
     --operational-certificate-issue-counter node.counter
+
+chmod 400 node.vkey
+chmod 400 node.skey
 ```
 {% endtab %}
 {% endtabs %}
@@ -708,7 +731,7 @@ cardano-cli node key-gen \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-pushd +1
+cd $NODE_HOME
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 ```
@@ -741,19 +764,17 @@ echo startKesPeriod: ${startKesPeriod}
 
 **kes.vkey** をエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
-{% hint style="warning" %}
-[バージョン 1.19.0](https://github.com/input-output-hk/cardano-node/issues/1742)ではstartKesPeriodの値を\(kesPeriod-1\)に設定する必要があります。
-{% endhint %}
 
 {% hint style="info" %}
 ステークプールオペレータは、プールを実行する権限があることを確認するための運用証明書を発行する必要があります。証明書には、オペレータの署名が含まれプールに関する情報（アドレス、キーなど）が含まれます。
 {% endhint %}
 
-の部分を上記で算出した数値（startKesPeriod:＊＊）に置き換えます。
+**＜startKesPeriod＞**の部分を上記で算出した数値（startKesPeriodの値）に置き換えます。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
+cd $NODE_HOME
 cardano-cli node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file $HOME/cold-keys/node.skey \
@@ -771,6 +792,7 @@ VRFペアキーを作成します。
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
+cd $NODE_HOME
 cardano-cli node key-gen-VRF \
     --verification-key-file vrf.vkey \
     --signing-key-file vrf.skey
@@ -779,8 +801,7 @@ cardano-cli node key-gen-VRF \
 {% endtabs %}
 
 vrfキーのアクセス権を読み取り専用に更新します。
-
-```text
+```
 chmod 400 vrf.skey
 ```
 
@@ -831,7 +852,7 @@ sudo systemctl start cardano-node
 {% endtab %}
 {% endtabs %}
 
-## 🔐 10. 各種アドレス用のキーを作成します。\(payment／stake用アドレス\)
+## 🔐 9. 各種アドレス用のキーを作成します。\(payment／stake用アドレス\)
 
 {% hint style="danger" %}
 ステークプール登録後、やり直しは出来ません。
@@ -848,9 +869,10 @@ sudo systemctl start cardano-node
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
+cd $NODE_HOME
 cardano-cli query protocol-parameters \
     --mainnet \
-    --allegra-era \
+    --mary-era \
     --out-file params.json
 ```
 {% endtab %}
@@ -871,13 +893,11 @@ paymentキーは支払い用アドレスに使用され、stakeキーはプー�
 {% endhint %}
 
 {% tabs %}
-{% tab title="Cardano-CLIを使用する方法" %}
+{% tab title="エアギャップオフラインマシン" %}
+以下は、エアギャップオフラインマシンで行ってください。
 支払い用アドレスのペアキーを作成します。: `payment.skey` & `payment.vkey`
 
 ```bash
-###
-### On エアギャップオフラインマシン,
-###
 cd $NODE_HOME
 cardano-cli address key-gen \
     --verification-key-file payment.vkey \
@@ -887,9 +907,6 @@ cardano-cli address key-gen \
 ステークアドレス用のペアキーを作成します。 `stake.skey` & `stake.vkey`
 
 ```bash
-###
-### On エアギャップオフラインマシン,
-###
 cardano-cli stake-address key-gen \
     --verification-key-file stake.vkey \
     --signing-key-file stake.skey
@@ -898,9 +915,6 @@ cardano-cli stake-address key-gen \
 ステークアドレス検証キーから、ステークアドレスファイルを作成します。 `stake.addr`
 
 ```bash
-###
-### On エアギャップオフラインマシン,
-###
 cardano-cli stake-address build \
     --stake-verification-key-file stake.vkey \
     --out-file stake.addr \
@@ -910,15 +924,23 @@ cardano-cli stake-address build \
 ステークアドレスに委任する支払い用アドレスを作成します。
 
 ```bash
-###
-### On エアギャップオフラインマシン,
-###
 cardano-cli address build \
     --payment-verification-key-file payment.vkey \
     --stake-verification-key-file stake.vkey \
     --out-file payment.addr \
     --mainnet
 ```
+
+上書きされないようパーミッションを変更する。
+```bash
+chmod 400 payment.vkey
+chmod 400 payment.skey
+chmod 400 stake.vkey
+chmod 400 stake.skey
+chmod 400 stake.addr
+chmod 400 payment.addr
+```
+
 
 **※プール運営開始後に、上記の処理を実行するとアドレスが上書きされるので注意してください。**
 {% endtab %}
@@ -938,7 +960,7 @@ cardano-cli address build \
 次のコードを実行し。支払いアドレスを表示させ、このアドレスに送金します。
 
 ```bash
-cat payment.addr
+echo "$(cat payment.addr)"
 ```
 {% endtab %}
 
@@ -952,7 +974,7 @@ cat payment.addr
 次のコードを実行し。支払いアドレスを表示させます。
 
 ```text
-cat payment.addr
+echo "$(cat payment.addr)"
 ```
 {% endtab %}
 
@@ -962,7 +984,7 @@ cat payment.addr
 次のコードを実行し。支払いアドレスを表示させます。
 
 ```text
-cat payment.addr
+echo "$(cat payment.addr)"
 ```
 
 このアドレスを上記ページのリクエスト欄に貼り付けます。
@@ -985,7 +1007,7 @@ cat payment.addr
 cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet \
-    --allegra-era
+    --mary-era
 ```
 {% endtab %}
 {% endtabs %}
@@ -998,7 +1020,7 @@ cardano-cli query utxo \
 100322a39d02c2ead....                                              0        1000000000
 ```
 
-## 👩💻 11. ステークアドレスを登録します。
+## 👩 10. ステークアドレスを登録します。
 
 {% hint style="danger" %}
 ステークプール登録後、やり直しは出来ません。
@@ -1008,7 +1030,8 @@ cardano-cli query utxo \
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
-```text
+```bash
+cd $NODE_HOME
 cardano-cli stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
     --out-file stake.cert
@@ -1021,6 +1044,7 @@ cardano-cli stake-address registration-certificate \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
+cd $NODE_HOME
 currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
@@ -1035,7 +1059,7 @@ echo Current Slot: $currentSlot
 cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet \
-    --allegra-era > fullUtxo.out
+    --mary-era > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -1089,7 +1113,7 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --out-file tx.tmp \
-    --allegra-era \
+    --mary-era \
     --certificate stake.cert
 ```
 {% endtab %}
@@ -1139,7 +1163,7 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file stake.cert \
-    --allegra-era \
+    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -1152,6 +1176,7 @@ paymentとstakeの秘密鍵でトランザクションファイルに署名し�
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
+cd $NODE_HOME
 cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
@@ -1176,7 +1201,12 @@ cardano-cli transaction submit \
 {% endtab %}
 {% endtabs %}
 
-## 📄 12. ステークプールを登録します。
+## 📄 11. ステークプールを登録します。
+
+{% hint style="warning" %}
+こちらの手順は初回プール登録時のみ有効です。  
+プール登録後にメタ情報、誓約、固定費、変動費、リレー情報を変更する場合は、[18.4](./guide-how-to-build-a-haskell-stakepool-node.md#184-prumetayamarginno)の変更手順を実施してください。
+{% endhint %}
 
 {% hint style="warning" %}
 ステークプール登録には**500ADA**の登録料が必要です。  
@@ -1186,19 +1216,16 @@ payment.addrに入金されている必要があります。
 JSONファイルを作成してプールのメタデータを作成します。
 
 {% hint style="warning" %}
-**ticker**名の長さは3～5文字にする必要があります。文字はA-Zと0-9のみで構成する必要があります。
-{% endhint %}
-
-{% hint style="warning" %}
-**description**の長さは255文字以内となります。
+下記は参考フォーマットとなります。ご自身のプール名、Ticker名に書き換えてから、ターミナルで実行してください。
 {% endhint %}
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
+cd $NODE_HOME
 cat > poolMetaData.json << EOF
 {
-"name": "MyPoolName",
+"name": "MyPoolName", 
 "description": "My pool description",
 "ticker": "MPN",
 "homepage": "https://myadapoolnamerocks.com"
@@ -1207,6 +1234,11 @@ EOF
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="warning" %}
+**ticker**名の長さは3～5文字にする必要があります。文字はA-Zと0-9のみで構成する必要があります。  
+**description**の長さは255文字以内(255byte)となります。（ひらがな、漢字、カタカナは1文字2byte）
+{% endhint %}
 
 メタデータファイルのハッシュ値を計算します。
 
@@ -1219,7 +1251,11 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 {% endtabs %}
 
 **poolMetaDataHash.txt**をエアギャップオフラインマシンへコピーしてください  
-**poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。
+
+**poolMetaData.json**をあなたの公開用WEBサーバへアップロードしてください。  
+WEBサーバ(ホームページ)をまた持っていない場合は、[Githubでホストする方法](./how-to-upload-poolmetadata.json-to-github.md)を参照して下さい。  
+
+
 
 最小プールコストを出力します。
 
@@ -1238,48 +1274,17 @@ minPoolCostは 340000000 lovelace \(340 ADA\)です。
 
 ステークプールの登録証明書を作成します。 **メタデータのURL**と**リレーノード情報**を追記し構成します。リレーノード構成にはDNSベースまたはIPベースのどちらかを選択できます。
 
-{% hint style="info" %}
-ノード管理を簡単にするために、DNSベースのリレー設定をお勧めします。 もしリレーサーバを変更する場合、IPアドレスが変わるため、その都度登録証明書を再送する必要がありますがDNSベースで登録しておけば、IPアドレスが変更になってもお使いのドメイン管理画面にてIPアドレスを変更するだけで完了します。
-{% endhint %}
-
-{% hint style="info" %}
-#### \*\*\*\*✨ **複数のリレーノードを構成する記述方法**
-
-**DNSレコードに1つのエントリーの場合**
-
-```bash
-    --single-host-pool-relay <your first relay node public IP address> \
-    --pool-relay-port 6000 \
-    --single-host-pool-relay <your Second relay node public IP address> \
-    --pool-relay-port 6000 \
-```
-
-**ラウンドロビンDNSベース** [**SRV DNS record**](https://support.dnsimple.com/articles/srv-record/)の場合
-
-```bash
-    --multi-host-pool-relay <your first relay node public IP address> \
-    --pool-relay-port 6000 \
-```
-
-**IPアドレス, 1ノード1IPアドレスの場合**
-
-```bash
-    --pool-relay-port 6000 \
-    --pool-relay-ipv4 <your first relay node public IP address> \
-    --pool-relay-port 6000 \
-    --pool-relay-ipv4 <your second relay node public IP address> \
-```
-{% endhint %}
-
 {% hint style="warning" %}
 **metadata-url**は64文字以内とし、あなたの環境に合わせて修正してください。
 {% endhint %}
 
-ブロックプロデューサーノードにある**vrf.vkey**をエアギャップオフラインマシンcardano-my-nodeディレクトリにコピーします。
+ブロックプロデューサーノードにある**vrf.vkey**をエアギャップオフラインマシンcardano-my-nodeディレクトリにコピーします。　　
 
+pool.certを作成する
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
+cd $NODE_HOME
 cardano-cli stake-pool registration-certificate \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
@@ -1289,7 +1294,7 @@ cardano-cli stake-pool registration-certificate \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
     --mainnet \
-    --single-host-pool-relay <dns based relay, example ~ relaynode1.myadapoolnamerocks.com> \
+    --pool-relay-ipv4 <リレーノードのパプリックIPへ書き換え> \
     --pool-relay-port 6000 \
     --metadata-url <poolMetaData.jsonをアップロードしたURLを記述> \
     --metadata-hash $(cat poolMetaDataHash.txt) \
@@ -1300,6 +1305,41 @@ cardano-cli stake-pool registration-certificate \
 
 {% hint style="info" %}
 ここでは345ADAの固定費と15%のプールマージン、100ADAの誓約を設定しています。 ご自身の設定値に変更してください。
+{% endhint %}
+
+
+{% hint style="info" %}
+上記のpool.cert作成時、自身のリレー情報を以下の3パターンの記述方法があります。
+ノード管理を簡単にするために、DNSベースのリレー設定をお勧めします。 もしリレーサーバを変更する場合、IPアドレスが変わるため、その都度登録証明書を再送する必要がありますがDNSベースで登録しておけば、IPアドレスが変更になってもお使いのドメイン管理画面にてIPアドレスを変更するだけで完了します。
+{% endhint %}
+
+{% hint style="info" %}
+#### \*\*\*\*✨ **複数のリレーノードを構成する記述方法**
+
+**DNSレコードに1つのエントリーの場合**
+
+```bash
+    --single-host-pool-relay <your first relay node address> \
+    --pool-relay-port 6000 \
+    --single-host-pool-relay <your Second relay node address> \
+    --pool-relay-port 6000 \
+```
+
+**ラウンドロビンDNSベース** [**SRV DNS record**](https://support.dnsimple.com/articles/srv-record/)の場合
+
+```bash
+    --multi-host-pool-relay <your first relay node address> \
+    --pool-relay-port 6000 \
+```
+
+**IPアドレス, 1ノード1IPアドレスの場合**
+
+```bash
+    --pool-relay-port 6000 \
+    --pool-relay-ipv4 <リレーノードのパプリックIPへ書き換え> \
+    --pool-relay-port 6000 \
+    --pool-relay-ipv4 <リレーノードのパプリックIPへ書き換え> \
+```
 {% endhint %}
 
 ステークプールにステークを誓約するファイルを作成します。
@@ -1345,7 +1385,7 @@ echo Current Slot: $currentSlot
 cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet \
-    --allegra-era > fullUtxo.out
+    --mary-era > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -1396,7 +1436,7 @@ cardano-cli transaction build-raw \
     --fee 0 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
-    --allegra-era \
+    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -1421,7 +1461,7 @@ echo fee: $fee
 {% endtabs %}
 
 {% hint style="info" %}
-残高が、手数料コスト+minPoolCostよりも大きいことを確認してください。小さい場合は機能しません。
+payment.addrの残高が、手数料コスト+poolDeposit(500ADA)よりも大きいことを確認してください。小さい場合は機能しません。
 {% endhint %}
 
 計算結果を出力します。
@@ -1447,7 +1487,7 @@ cardano-cli transaction build-raw \
     --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
-    --allegra-era \
+    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -1460,6 +1500,7 @@ cardano-cli transaction build-raw \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
+cd $NODE_HOME
 cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
@@ -1485,15 +1526,14 @@ cardano-cli transaction submit \
 {% endtab %}
 {% endtabs %}
 
-## 🐣 13. ステークプールが機能しているか確認します。
+## 🐣 12. ステークプールが機能しているか確認します。
 
 ステークプールIDは以下のように出力できます。
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
-cardano-cli stake-pool id --verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
-cat stakepoolid.txt
+cardano-cli stake-pool id --cold-verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
 ```
 {% endtab %}
 {% endtabs %}
@@ -1501,53 +1541,46 @@ cat stakepoolid.txt
 **stakepoolid.txt**をブロックプロデューサーノードcardano-my-nodeディレクトリにコピーします。
 
 このファイルを用いて、自分のステークプールがブロックチェーンに登録されているか確認します。
-
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-cardano-cli query ledger-state --mainnet --allegra-era | grep publicKey | grep $(cat stakepoolid.txt)
 ```
-{% endtab %}
-{% endtabs %}
+cat stakepoolid.txt
+```
+表示されたPoolIDであなたのステークプールがブロックチェーンに登録されているか、次のサイトで確認することが出来ます。  
+ [https://pooltool.io/](https://pooltool.io/)
+
+## ⚙ 13. トポロジーファイルを構成する。
 
 {% hint style="info" %}
-文字列による戻り値が返ってきた場合は、正常に登録されています 👏
+この項目はリレーノードで実施します。  
+**リレーノードが起動しているか確認してください** 例）tmux a -t cnode
 {% endhint %}
-
-あなたのステークプールを次のサイトで確認することが出来ます。 [https://pooltool.io/](https://pooltool.io/)
-
-## ⚙ 14. トポロジーファイルを構成する。
 
 {% hint style="info" %}
-バージョン1.21.1ではP2P\(ピア・ツー・ピア\)ノードを自動検出しないため、手動でトポロジーを構成する必要があります。この手順をスキップすると生成したブロックがブロックチェーン外で孤立するため、必須の設定項目となります。
+バージョン1.25.1ではP2P\(ピア・ツー・ピア\)ノードを自動検出しないため、手動でトポロジーを構成する必要があります。この手順をスキップすると生成したブロックがブロックチェーン外で孤立するため、必須の設定項目となります。
 {% endhint %}
-
-トポロジーファイルを構成するには、２つの方法があります。
-
-* **topologyUpdate.shメソッドは**自動化されており、設定から4時間後に機能します。 
-* **Pooltool.ioメソッドは** 接続先を選択できる代わりに、毎回手動で設定する必要があります。
 
 {% tabs %}
 {% tab title="topologyUpdater.shで更新する場合" %}
 ### 🚀 topologyUpdater.shを使用してリレーノードを公開する
 
 {% hint style="info" %}
-この方法を提案して頂いた [GROWPOOL](https://twitter.com/PoolGrow) および [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) へのクレジット表記。
+この方法を提案して頂いた [GROWPOOL](https://twitter.com/PoolGrow) および [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater) へのクレジット表記。
 {% endhint %}
 
 ノード情報をトポロジーフェッチリストに公開するスクリプト「`topologyUpdater.sh`」を作成します。
+7行目の"CHANGE ME"をリレーノードのIPアドレスに変えます。  
+※26行目の"CHANGE ME"はそのままでお願いします。  
+  
+以下コードをリレー用サーバで実施してください。  
+  
 
 ```bash
-###
-### On relaynode1
-###
 cat > $NODE_HOME/topologyUpdater.sh << EOF
 #!/bin/bash
 # shellcheck disable=SC2086,SC2034
-
+ 
 USERNAME=$(whoami)
 CNODE_PORT=6000 # 自身のリレーノードポート番号を記入
-CNODE_HOSTNAME="CHANGE ME"  # リレーノードのIPアドレスを記入
+CNODE_HOSTNAME="CHANGE ME"  # リレーノードのIPアドレスまたはDNSアドレスを記入
 CNODE_BIN="/usr/local/bin"
 CNODE_HOME=$NODE_HOME
 CNODE_LOG_DIR="\${CNODE_HOME}/logs"
@@ -1557,12 +1590,12 @@ CNODE_VALENCY=1   # optional for multi-IP hostnames
 NWMAGIC=\$(jq -r .networkMagic < \$GENESIS_JSON)
 [[ "\${NETWORKID}" = "Mainnet" ]] && HASH_IDENTIFIER="--mainnet" || HASH_IDENTIFIER="--testnet-magic \${NWMAGIC}"
 [[ "\${NWMAGIC}" = "764824073" ]] && NETWORK_IDENTIFIER="--mainnet" || NETWORK_IDENTIFIER="--testnet-magic \${NWMAGIC}"
-
+ 
 export PATH="\${CNODE_BIN}:\${PATH}"
 export CARDANO_NODE_SOCKET_PATH="\${CNODE_HOME}/db/socket"
-
-blockNo=\$(cardano-cli query tip \${NETWORK_IDENTIFIER} | jq -r .blockNo )
-
+ 
+blockNo=\$(/usr/local/bin/cardano-cli query tip \${NETWORK_IDENTIFIER} | jq -r .blockNo )
+ 
 # Note:
 # ノードをIPv4/IPv6デュアルスタックネットワーク構成で実行している場合
 # IPv4で実行するには、以下の curl コマンドに -4 パラメータを追加してください (curl -4 -s ...)
@@ -1575,8 +1608,8 @@ fi
 if [ ! -d \${CNODE_LOG_DIR} ]; then
   mkdir -p \${CNODE_LOG_DIR};
 fi
-
-curl -s "https://api.clio.one/htopology/v1/?port=\${CNODE_PORT}&blockNo=\${blockNo}&valency=\${CNODE_VALENCY}&magic=\${NWMAGIC}\${T_HOSTNAME}" | tee -a \$CNODE_LOG_DIR/topologyUpdater_lastresult.json
+ 
+curl -4 -s "https://api.clio.one/htopology/v1/?port=\${CNODE_PORT}&blockNo=\${blockNo}&valency=\${CNODE_VALENCY}&magic=\${NWMAGIC}\${T_HOSTNAME}" | tee -a \$CNODE_LOG_DIR/topologyUpdater_lastresult.json
 EOF
 ```
 
@@ -1619,19 +1652,47 @@ crontab -l | cat - crontab-fragment.txt >crontab.txt && crontab crontab.txt
 rm crontab-fragment.txt
 ```
 
+> no crontab for ~~
+というメッセージが表示されることがありますが、Cron初回設定時に表示されるメッセージとなりますので、問題ありません。
+
+```
+crontab -l
+```
+以下が返り値として表示されればOK。
+> "22 * * * * /home/***/cardano-my-node/topologyUpdater.sh"
+
+
 {% hint style="success" %}
 4時間の間で4回スクリプトが実行された後に、ノードがオンライン状態で有ることが認められた場合にノードIPがトポロジーフェッチリストに登録されます。
 {% endhint %}
 
+### トポロジーフェッチリストに登録されたか確認する
+
+```bash
+cd $NODE_HOME/logs
+cat topologyUpdater_lastresult.json
+```
+
+以下の内容が表示されていれば登録成功  
+resultcodeが400番台・500番台の場合は、サーバ設定に問題があります。
+```
+{ "resultcode": "201", "datetime":"2021-01-10 18:30:06", "clientIp": "000.000.000.000", "iptype": 4, "msg": "nice to meet you" }
+{ "resultcode": "203", "datetime":"2021-01-10 19:30:03", "clientIp": "000.000.000.000", "iptype": 4, "msg": "welcome to the topology" }
+{ "resultcode": "204", "datetime":"2021-01-10 20:30:04", "clientIp": "000.000.000.000", "iptype": 4, "msg": "glad you're staying with us" }
+```
+
+
+
 ### 🤹♀ リレーノードトポロジーファイルを更新する
 
 {% hint style="danger" %}
-リレーノードIPがトポロジーフェッチリストに登録される、4時間後に以下のセクションを実行して下さい。
+リレーノードIPがトポロジーフェッチリストに登録されたことを確認後、以下のセクションを実行して下さい。
 {% endhint %}
 
-トポロジーファイルを更新する`relay-topology_pull.sh`スクリプトを作成します。 コマンドラインに送信する際に、**自身のブロックプロデューサーのIPアドレスとポート番号に書き換えて下さい**
-
-※お知り合いのノードや自ノードが複数ある場合は、IOHKノード情報の後に "\|" で区切ってIPアドレス:ポート番号:Valency の形式で追加できます。
+トポロジーファイルを更新する`relay-topology_pull.sh`スクリプトを作成します。 コマンドラインに送信する際に、**自身のブロックプロデューサーのIPアドレスとポート番号に書き換えて下さい**  
+  
+※お知り合いのノードや自ノードが複数ある場合は、IOHKノード情報の後に "|" で区切ってIPアドレス:ポート番号:Valency の形式で追加できます。  
+> 例）|relays-new.cardano-mainnet.iohk.io:3001:2|relay1-eu.xstakepool.com:3001:1|00.000.000.00:3001:1
 
 ```bash
 ###
@@ -1641,16 +1702,18 @@ cat > $NODE_HOME/relay-topology_pull.sh << EOF
 #!/bin/bash
 BLOCKPRODUCING_IP=<BLOCK PRODUCERS PUBLIC IP ADDRESS>
 BLOCKPRODUCING_PORT=6000
-curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:1|relays-new.cardano-mainnet.iohk.io:3001:2"
+PEERS=18
+curl -4 -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=\${PEERS}&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:1|relays-new.cardano-mainnet.iohk.io:3001:2"
 EOF
 ```
 
-shファイルに権限を追加し実行します。
+shファイルに権限を追加し、relay-topology_pull.shを実行して新しいトポロジーファイル\(mainnet-topology.json\)を生成します。
 
 ```bash
 ###
 ### On relaynode1
 ###
+cd $NODE_HOME
 chmod +x relay-topology_pull.sh
 ./relay-topology_pull.sh
 ```
@@ -1669,6 +1732,7 @@ sudo systemctl reload-or-restart cardano-node
 {% endhint %}
 {% endtab %}
 
+<!-- 
 {% tab title="Pooltool.ioで更新する場合" %}
 ※非推奨※ 1. [https://pooltool.io/](https://pooltool.io/)へアクセスします。 2. アカウントを作成してログインします。 3. あなたのステークプールを探します。 4. **Pool Details** &gt; **Manage** &gt; **CLAIM THIS POOL**をクリックします。 5. プール名とプールURLがある場合は入力します。 6. あなたのリレーノード情報を入力します。
 
@@ -1779,7 +1843,9 @@ sudo systemctl reload-or-restart cardano-node
 Pooltool.ioでリクエストが承認されたら、その都度get\_buddies.shスクリプトを実行して、最新のトポロジーファイルに更新して下さい。その後ステークプールを再起動します。
 {% endhint %}
 {% endtab %}
+-->
 {% endtabs %}
+
 
 {% hint style="danger" %}
 \*\*\*\*🔥 **重要な確認事項:** ブロックを生成するには、「TXs processed」が増加していることを確認する必要があります。万一、増加していない場合にはトポロジーファイルの内容を再確認して下さい。「peers」数はリレーノードが他ノードと接続している数を表しています。
@@ -1817,26 +1883,26 @@ CERT=\${DIRECTORY}/node.cert
 おめでとうございます！ステークプールが登録され、ブロックを作成する準備が出来ました。
 {% endhint %}
 
-## 🎇 15. ステークプール報酬を確認する
+## 🎇 14. ステークプール報酬を確認する
 
-ブロックが正常に生成できた後、エポック終了後に報酬を確認しましょう！
-
+ブロックが正常に生成できた後、エポック終了後に報酬を確認しましょう！  
+エアギャップにある **stake.addr**をBPのcardano-my-nodeフォルダへコピーしてください
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
 cardano-cli query stake-address-info \
  --address $(cat stake.addr) \
  --mainnet \
- --allegra-era
+ --mary-era
 ```
 {% endtab %}
 {% endtabs %}
 
-## 🔮 16. 監視ツール「Prometheus」および「Grafana Dashboard」のセットアップ
+## 🔮 15. 監視ツール「Prometheus」および「Grafana Dashboard」のセットアップ
 
 プロメテウスはターゲットに指定したメトリックHTTPエンドポイントをスクレイピングし、情報を収集する監視ツールです。[オフィシャルドキュメントはこちら](https://prometheus.io/docs/introduction/overview/) グラファナは収集されたデータを視覚的に表示させるダッシュボードツールです。
 
-### 🐣 16.1 インストール
+### 🐣 15.1 インストール
 
 「prometheus」および「prometheus node exporter」をインストールします。 この手順では、リレーノード1でprometheusとGrafana本体を稼働させ、リレーノード1およびブロックプロデューサーノードの情報を取得する手順です。
 
@@ -1923,8 +1989,14 @@ scrape_configs:
 
     static_configs:
       - targets: ['localhost:9100']
-      - targets: ['<ブロックプロデューサーIPアドレス>:9100']
-      - targets: ['<ブロックプロデューサーIPアドレス>:12798']
+        labels:
+          alias: 'relaynode1'
+          type:  'system'
+      - targets: ['ブロックプロデューサーIPアドレス:9100']
+        labels:
+          alias: 'block-producing-node'
+          type:  'system'
+      - targets: ['ブロックプロデューサーIPアドレス:12798']
         labels:
           alias: 'block-producing-node'
           type:  'cardano-node'
@@ -1933,6 +2005,14 @@ scrape_configs:
           alias: 'relaynode1'
           type:  'cardano-node'
 EOF
+```
+{% endtab %}
+{% endtabs %}
+
+prometheus.ymlを移動します
+{% tabs %}
+{% tab title="リレーノード1" %}
+```bash
 sudo mv prometheus.yml /etc/prometheus/prometheus.yml
 ```
 {% endtab %}
@@ -1999,22 +2079,25 @@ sudo systemctl reload-or-restart cardano-node
 {% endtab %}
 {% endtabs %}
 
-### 📶 16.2 Grafanaダッシュボードの設定
+## 📶 16 Grafanaダッシュボードの設定
 
 1. リレーノード1で、ローカルブラウザから [http://localhost:3000](http://localhost:3000) または [http://&lt;リレーノードIPアドレス&gt;:3000](http://<リレーノードIPアドレス>:3000) を開きます。 事前に 3000番ポートを開いておく必要があります。
 2. ログイン名・PWは次のとおりです。 **admin** / **admin**
 3. パスワードを変更します。
 4. 左メニューの歯車アイコンから データソースを追加します。
 5. 「Add data source」をクリックし、「Prometheus」を選択します。
-6. 名前は **Prometheus**"としてください。
+6. 名前は **Prometheus**としてください。
 7. **URL** を [http://localhost:9090](http://localhost:9090)に設定します。
 8. **Save & Test**をクリックします。
-9. 次の[JSONファイル](https://raw.githubusercontent.com/coincashew/files/main/grafana-monitor-cardano-nodes-by-kaze.json)をダウンロードします。
+9. 次の[JSONファイル](https://raw.githubusercontent.com/btbf/coincashew/master/guild-tools/grafana-monitor-cardano-nodes-by-kaze.json)を開き、内容を全選択してコピーします。
 10. 左メニューから**Create +** iconを選択 &gt; **Import**をクリックします。
-11. 9でダウンロードしたJSONファイルをアップロードします。
-12. **Import**ボタンをクリックします。
+11. 9でコピーした内容を「Import via panel json」に貼り付けます
+12. **Load**ボタンをクリックし、次の画面で***Import**ボタンをクリックします。
+
 
 ![Grafana system health dashboard](https://gblobscdn.gitbook.com/assets%2F-M5KYnWuA6dS_nKYsmfV%2F-MJFWbLTL5oVQ3taFexL%2F-MJFX9deFAhN4ks6OQCL%2Fdashboard-kaze.jpg?alt=media&token=f28e434a-fcbf-40d7-8844-4ff8a36a0005)
+
+
 
 {% hint style="success" %}
 おめでとうございます！これで基本的な設定は完了です。 次の項目は、運用中の便利なコマンドや保守のヒントが書かれています。
@@ -2038,11 +2121,10 @@ addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwa
 
 * Ticker：XSP  
 
-  Pool ID↓  
-
-  ```bash
-  788898a81174665316af96880459dcca053f7825abb1b0db9a433630
-  ```
+Pool ID↓  
+```bash
+788898a81174665316af96880459dcca053f7825abb1b0db9a433630
+```
 
 * ADAアドレス
 
@@ -2093,11 +2175,13 @@ cardano-cli node key-gen-KES \
 {% endtab %}
 {% endtabs %}
 
-kes.vkeyをエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
-次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;"startKesPeriod"&gt;に入力してからコマンドを送信してください。
+kes.vkeyをエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。 
+  
+次のコマンドで、新しい `node.cert`ファイルを作成します。このときstartKesPeriodの値を下記の&lt;startKesPeriod&gt;の箇所に置き換えてからコマンドを送信してください。
 
-の部分を上記で算出した数値（startKesPeriod:＊＊）に置き換えます。
+**&lt;startKesPeriod&gt;**の部分を上記で算出した数値（startKesPeriodの値）に置き換えます。
+
 
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
@@ -2123,11 +2207,21 @@ chmod a-rwx $HOME/cold-keys
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノードsystemctl" %}
-```text
+```
 sudo systemctl reload-or-restart cardano-node
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="info" %}
+**●ブロックログを導入している場合は、各種サービスを再起動してください**
+```
+sudo systemctl reload-or-restart cnode-cncli-sync.service
+sudo systemctl reload-or-restart cnode-cncli-validate.service
+sudo systemctl reload-or-restart cnode-cncli-leaderlog.service
+sudo systemctl reload-or-restart cnode-logmonitor.service
+```
+{% endhint %}
 
 {% hint style="info" %}
 \*\*\*\*✨ **ヒント:** ホットキーを作成したら、コールドキーへのアクセス件を変更しセキュリティを向上させることができます。これによって誤削除、誤った編集などから保護できます。
@@ -2187,11 +2281,12 @@ echo minPoolCost: ${minPoolCost}
 minPoolCost は340000000 lovelace \(340 ADA\)です。 `--pool-cost`は最低でもこの値以上に指定します。
 {% endhint %}
 
-poolMetaData.jsonを変更する場合は、メタデータファイルのハッシュを再計算し、更新されたpoolMetaData.jsonをWEBサーバへアップロードしてください。 詳細については [項目9](guide-how-to-build-a-haskell-stakepool-node.md#9-register-your-stakepool)を参照して下さい。
+poolMetaData.jsonを変更する場合は、メタデータファイルのハッシュを再計算し、更新されたpoolMetaData.jsonをWEBサーバへアップロードしてください。 詳細については [項目11](guide-how-to-build-a-haskell-stakepool-node.md#11-sutkupruwoshimasu)を参照して下さい。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```text
+cd $NODE_HOME
 cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
 ```
 {% endtab %}
@@ -2199,7 +2294,9 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 登録証明書トランザクションを作成します。
 
-複数のリレーノードを設定する場合は [**項目12**](guide-how-to-build-a-haskell-stakepool-node.md#12-register-your-stake-pool) を参考にパラメーターを指定して下さい。
+
+複数のリレーノードを設定する場合は [**こちら**](guide-how-to-build-a-haskell-stakepool-node.md#norirndowosuru) を参考にパラメーターを指定して下さい。  
+  
 
 **poolMetaDataHash.txt** をエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
@@ -2223,7 +2320,7 @@ cardano-cli stake-pool registration-certificate \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
     --mainnet \
-    --single-host-pool-relay <dns based relay, example ~ relaynode1.myadapoolnamerocks.com> \
+    --pool-relay-ipv4 <リレーノードのパプリックIPへ書き換え> \
     --pool-relay-port 6000 \
     --metadata-url <url where you uploaded poolMetaData.json> \
     --metadata-hash $(cat poolMetaDataHash.txt) \
@@ -2256,6 +2353,7 @@ ttlパラメータを設定するには、最新のスロット番号を取得�
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
+cd $NODE_HOME
 currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
 echo Current Slot: $currentSlot
 ```
@@ -2270,7 +2368,7 @@ echo Current Slot: $currentSlot
 cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet \
-    --allegra-era > fullUtxo.out
+    --mary-era > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -2310,7 +2408,7 @@ cardano-cli transaction build-raw \
     --fee 0 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
-    --allegra-era \
+    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -2357,7 +2455,7 @@ cardano-cli transaction build-raw \
     --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
-    --allegra-era \
+    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -2370,6 +2468,7 @@ cardano-cli transaction build-raw \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
+cd $NODE_HOME
 cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
@@ -2400,7 +2499,7 @@ cardano-cli transaction submit \
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger-state.json
+cardano-cli query ledger-state --mainnet --mary-era --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}
@@ -2480,11 +2579,11 @@ sed -i ${NODE_CONFIG}-config.json \
     -e "s/127.0.0.1/0.0.0.0/g"
 ```
 
-### 💸 18.9 簡単なトランザクションの例を送信します。
+### 💸 18.9 簡単なトランザクション送信の例をご紹介します
 
 **10 ADA** を payment.addrから自分のアドレスへ送信する例です 🙃
 
-まずは、最新のスロット番号を取得し **ttl** パラメータを正しく設定します。
+まずは、最新のスロット番号を取得し **invalid-hereafter** パラメータを正しく設定します。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -2511,7 +2610,7 @@ echo amountToSend: $amountToSend
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
 ```bash
-destinationAddress=addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwazvtvnn22sl84tgkyq7guw7q
+destinationAddress=<送金先アドレス>
 echo destinationAddress: $destinationAddress
 ```
 {% endtab %}
@@ -2525,7 +2624,7 @@ echo destinationAddress: $destinationAddress
 cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet \
-    --allegra-era > fullUtxo.out
+    --mary-era > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -2560,7 +2659,7 @@ cardano-cli transaction build-raw \
     --tx-out ${destinationAddress}+0 \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
-    --allegra-era \
+    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -2606,7 +2705,7 @@ cardano-cli transaction build-raw \
     --tx-out ${destinationAddress}+${amountToSend} \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
-    --allegra-era \
+    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -2650,7 +2749,7 @@ cardano-cli transaction submit \
 cardano-cli query utxo \
     --address ${destinationAddress} \
     --mainnet \
-    --allegra-era
+    --mary-era
 ```
 {% endtab %}
 {% endtabs %}
@@ -2710,7 +2809,7 @@ echo Current Slot: $currentSlot
 ```bash
 rewardBalance=$(cardano-cli query stake-address-info \
     --mainnet \
-    --allegra-era \
+    --mary-era \
     --address $(cat stake.addr) | jq -r ".[0].rewardAccountBalance")
 echo rewardBalance: $rewardBalance
 ```
@@ -2737,7 +2836,7 @@ echo destinationAddress: $destinationAddress
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --allegra-era \
+    --mary-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -2775,7 +2874,7 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --withdrawal ${withdrawalString} \
-    --allegra-era \
+    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -2821,7 +2920,7 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --withdrawal ${withdrawalString} \
-    --allegra-era \
+    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -2865,7 +2964,7 @@ cardano-cli transaction submit \
 ```bash
 cardano-cli query utxo \
     --address ${destinationAddress} \
-    --allegra-era \
+    --mary-era \
     --mainnet
 ```
 {% endtab %}
@@ -2914,9 +3013,10 @@ echo destinationAddress: $destinationAddress
 {% tabs %}
 {% tab title="ブロックプロデューサノード" %}
 ```bash
+cd $NODE_HOME
 rewardBalance=$(cardano-cli query stake-address-info \
     --mainnet \
-    --allegra-era \
+    --mary-era \
     --address $(cat stake.addr) | jq -r ".[0].rewardAccountBalance")
 echo rewardBalance: $rewardBalance
 ```
@@ -2931,7 +3031,7 @@ echo rewardBalance: $rewardBalance
 cardano-cli query utxo \
     --address $(cat payment.addr) \
     --mainnet \
-    --allegra-era > fullUtxo.out
+    --mary-era > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -2970,7 +3070,7 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --withdrawal ${withdrawalString} \
-    --allegra-era \
+    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -3017,7 +3117,7 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --withdrawal ${withdrawalString} \
-    --allegra-era \
+    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -3030,6 +3130,7 @@ cardano-cli transaction build-raw \
 {% tabs %}
 {% tab title="エアギャップオフラインマシン" %}
 ```bash
+cd $NODE_HOME
 cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
@@ -3061,7 +3162,7 @@ cardano-cli transaction submit \
 ```bash
 cardano-cli query utxo \
     --address ${destinationAddress} \
-    --allegra-era \
+    --mary-era \
     --mainnet
 ```
 {% endtab %}
@@ -3075,143 +3176,16 @@ cardano-cli query utxo \
 100322a39d02c2ead....
 ```
 
+
+
+
 ### 🕒 18.12 スロットリーダースケジュール - ブロック生成時期を確認する
 
 {% hint style="info" %}
-🔥 **ヒント**: スロットリーダーのスケジュールを計算できます。これによりステークプールがブロックを生成する時期がわかるため、メンテナンススケジュールを組み立てるのに役立ちます。このプロセスを開発したのは [Andrew Westberg @amw7](https://twitter.com/amw7) \(JorManagerの開発者およびBCSHステークプールの皆さまです\)
+[ブロックログツール](./guild-tools/README.md) を導入する
 {% endhint %}
 
-以下はリレーノードでも使用できます。  
-vrf.skeyおよびstakepoolid.txtをcardano-my-nodeへコピーして下さい。
 
-Pythonがインストールされているか確認してくださ。
-
-{% tabs %}
-{% tab title="ブロックプロデューサノード" %}
-```bash
-python3 --version
-```
-{% endtab %}
-{% endtabs %}
-
-バージョン情報が表示されていない場合は、以下を実行しPython3をインストールします。
-
-{% tabs %}
-{% tab title="ブロックプロデューサノード" %}
-```text
-sudo apt-get update
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt-get update
-sudo apt-get install -y python3.9
-```
-{% endtab %}
-{% endtabs %}
-
-pipがインストールされているか確認して下さい。
-
-{% tabs %}
-{% tab title="ブロックプロデューサノード" %}
-```bash
-pip3 --version
-```
-{% endtab %}
-{% endtabs %}
-
-バージョン情報が表示されない場合は、以下を実行して下さい。
-
-{% tabs %}
-{% tab title="ブロックプロデューサノード" %}
-```bash
-sudo apt-get install -y python3-pip
-```
-{% endtab %}
-{% endtabs %}
-
-タイムゾーンを処理するpytzをインストールします。
-
-```bash
-pip3 install pytz
-```
-
-pythonとpipが正しくインストールされたことを確認してください。
-
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-python3 --version
-pip3 --version
-```
-{% endtab %}
-{% endtabs %}
-
-[papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) から、leaderLogスクリプトのクローンを作成します。
-
-{% hint style="info" %}
-このLeaderLogsツールの公式サイトは次の通りです。 [こちら](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md)
-{% endhint %}
-
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-cd $HOME/git
-git clone https://github.com/papacarp/pooltool.io
-cd pooltool.io/leaderLogs
-```
-{% endtab %}
-{% endtabs %}
-
-元帳を抽出します
-
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger.json
-```
-{% endtab %}
-{% endtabs %}
-
-プールのシグマ値を計算します。シグマ値はステーク値を表します。  
-${NODE\_HOME}にstakepoolid.txtがあるか確認してください。無い場合は[13の手順](https://dev.xstakepool.com/guide-how-to-build-a-haskell-stakepool-node#13-sutkuprugashiteirukashimasu)に沿ってファイルを生成してください。
-
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-sigmaValue=$(python3 getSigma.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) | tail -n 1 | awk '{ print $2 }')
-echo Sigma: ${sigmaValue}
-```
-{% endtab %}
-{% endtabs %}
-
-シグマ値は次のような形式で表示されます `0.000029302885338621295`
-
-スロットリーダースケジュールを計算します。
-
-{% tabs %}
-{% tab title="ブロックプロデューサーノード" %}
-```bash
-python3 leaderLogs.py --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) --sigma ${sigmaValue} --vrf-skey ${NODE_HOME}/vrf.skey --tz Asia/Tokyo
-```
-{% endtab %}
-{% endtabs %}
-
-{% hint style="info" %}
-タイムゾーン名を設定して、スケジュールの時刻を適切にフォーマットできます。 --tz オプション \[デフォルト: America/Los\_Angeles\]'\) [詳細は開発元ドキュメントを参照してください](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md#arguments-1)  
-ここでは、BTBFが独自に日本時間に設定しています。--tz Asia/Tokyo
-{% endhint %}
-
-プールがブロックを生成するようスケジュールされている場合は、以下のような形式で表示されます。
-
-{% hint style="danger" %}
-スロットリーダースケジュールは機密情報扱いにする必要があります。この情報を公開するとサーバーを攻撃される可能性がありますので、ご注意下さい。
-{% endhint %}
-
-```bash
-Checking leadership log for Epoch 222 [ d Param: 0.6 ]
-2020-10-01 00:11:10 ==> Leader for slot 121212, Cumulative epoch blocks: 1
-2020-10-01 00:12:22 ==> Leader for slot 131313, Cumulative epoch blocks: 2
-2020-10-01 00:19:55 ==> Leader for slot 161212, Cumulative epoch blocks: 3
-```
 
 ## 🌜 19. ステークプールを廃止する。
 
@@ -3278,7 +3252,7 @@ cardano-cli stake-pool deregistration-certificate \
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --allegra-era \
+    --mary-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -3314,7 +3288,7 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${slotNo} + 10000)) \
     --fee 0 \
     --certificate-file pool.dereg \
-    --allegra-era \
+    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -3360,7 +3334,7 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${slotNo} + 10000)) \
     --fee ${fee} \
     --certificate-file pool.dereg \
-    --allegra-era \
+    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -3408,7 +3382,7 @@ cardano-cli transaction submit \
 {% tabs %}
 {% tab title="ブロックプロデューサノード" %}
 ```bash
-cardano-cli query ledger-state --mainnet --allegra-era --out-file ledger-state.json
+cardano-cli query ledger-state --mainnet --mary-era --out-file ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}
