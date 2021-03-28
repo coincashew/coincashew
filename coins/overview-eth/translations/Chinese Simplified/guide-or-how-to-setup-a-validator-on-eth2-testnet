@@ -6,7 +6,7 @@ description: >-
 # 指南 \| 如何在 ETH2 测试网上设置验证器
 
 {% hint style="success" %}
-As of Jan 5 2021, this guide is updated for **testnet Pyrmont.** 😁
+As of Mar 29 2021, this guide is updated for **testnet Prater.** 😁
 {% endhint %}
 
 #### ✨ For the mainnet guide, [请点击这里](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
@@ -140,7 +140,7 @@ sudo ./deposit.sh 安装
 制作一个新的 mnemonic。
 
 ```text
-./deposit.sh new-mnemonic --chain pyrmont
+./deposit.sh new-mnemonic --chain prater
 ```
 {% endtab %}
 
@@ -178,7 +178,7 @@ cd eth2deposit-cli
 制作一个新的 mnemonic。
 
 ```text
-./置新的 mnemonic --chain pyrmont
+./deposit new-mnemonic --chain prater
 ```
 {% endtab %}
 
@@ -206,17 +206,17 @@ cd eth2deposit-cli
 {% endhint %}
 
 1. 跟随提示并选择 **密钥存储密码**。 此密码将加密您的密钥存储文件。 请写下您的助记符并保持这个安全并且 **离线**。
-2. 跳过您刚刚完成的步骤时，请点击 [https://pyrmont.launchpad.efasum.org/](https://pyrmont.launchpad.ethereum.org/) 研究eth2阶段0概览材料。 了解eth2是成功的关键！
+2. Follow the steps at [https://prater.launchpad.ethereum.org](https://prater.launchpad.ethereum.org/en/) while skipping over the steps you already just completed. 研究eth2阶段0概览材料。 了解eth2是成功的关键！
 3. 返回启动板网站，上传您的`deposit_data-#########.json` 在 `validator_key` 目录中找到。
 4. 使用您的Metamask钱包连接到启动板，审查并接受条款。
 5. 确认交易\(s\)。 每个验证器有一个32个ETH的存款交易。
 
 {% hint style="info" %}
-您的交易正在发送和存入您的ETH到pyrmont ETH2 存款合同地址。
+Your transaction is sending and depositing your ETH to the prater ETH2 deposit contract address.
 
-**检查**, _两次检查_, _**三次检查**_ pyrmont Eth2 存款合同地址是否正确。
+**Check**, _double-check_, _**triple-check**_ that the prater Eth2 deposit contract address is correct.
 
-[0x8c5fecdC472E27Bc447696F431E425D02dd46a8c](https://goerli.etherscan.io/address/0x8c5fecdc472e27bc447696f431e425d02dd46a8c)
+ [`0xff50ed3d0ec03aC01D4C79aAd74928BFF48a7b2b`](https://goerli.etherscan.io/address/0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b)\`\`
 {% endhint %}
 
 {% hint style="danger" %}
@@ -357,6 +357,7 @@ User            = $(whoami)
 ExecStart       = /usr/bin/geth --http --goerli --metrics --pprof
 Restart         = on-failure
 RestartSec      = 3
+TimeoutSec      = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -712,13 +713,13 @@ When you import your keys into Lighthouse, your validator signing key\(s\) are s
 输入您的 **密钥商店密码** 来导入帐户。
 
 ```bash
-lightthouse 帐户验证器导入 --network pyrmont --directory=$HOME/eth2存款-client/validator_keys
+lighthouse account validator import --network prater --directory=$HOME/eth2deposit-cli/validator_keys
 ```
 
 验证帐户已成功导入。
 
 ```bash
-lightthouse account_manager validator list --network pyrmont
+lighthouse account_manager validator list --network prater
 ```
 
 {% hint style="danger" %}
@@ -760,7 +761,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) bn --staking --metrics --network pyrmont
+ExecStart       = $(which lighthouse) bn --staking --validator-monitor-auto --metrics --network prater
 Restart         = on-failure
 
 [Install]
@@ -872,7 +873,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network pyrmont --metrics
+ExecStart       = $(which lighthouse) vc --network prater --metrics
 Restart         = on-failure
 
 [Install]
@@ -1069,7 +1070,7 @@ After           = network-online.target
 Type            = simple
 User            = $(whoami)
 WorkingDirectory= /var/lib/nimbus
-ExecStart       = /usr/bin/nimbus_beacon_node --network=pyrmont --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
+ExecStart       = /usr/bin/nimbus_beacon_node --network=prater --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
 Restart         = on-failure
 
 [Install]
@@ -1271,16 +1272,16 @@ shred -u ~/.bash_history && tount ~/.bash_history
 生成您的 Teku 配置文件。
 
 ```bash
-cat > $HOME/teku。 aml << EOF
-# 网络
-网络: "pyrmont"
+cat > $HOME/teku.yaml << EOF
+# network
+network: "prater"
 
 # p2p
 p2p-enabled: true
 p2p-port: 9000
-# 验证器
-validator-keys: "/var/lib/teku/validator_keys:"/var/lib/teku/validator_keys"
-validators-graffiti: "Teku validator & Coinashew. om”
+# validators
+validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
+validators-graffiti: "Teku validator & CoinCashew.com"
 
 # Eth 1
 eth1-endpoint: "http://localhost:8545"
@@ -1289,18 +1290,18 @@ eth1-endpoint: "http://localhost:8545"
 metrics-enabled: true
 metrics-port: 8008
 
-# 数据库
-data path: "$(echo $HOME)/tekudata"
-data storage-mode: "archive"
+# database
+data-path: "$(echo $HOME)/tekudata"
+data-storage-mode: "archive"
 
-# restest api
+# rest api
 rest-api-port: 5051
-rest-api-docs-enabed: trine
-rest-api-enabed: true
+rest-api-docs-enabled: true
+rest-api-enabled: true
 
-# 日志记录
-log-include-validator-dutis-enabed: true
-log-destin: CONSOLE
+# logging
+log-include-validator-duties-enabled: true
+log-destination: CONSOLE
 EOF
 ```
 
@@ -1456,13 +1457,13 @@ Accept terms of use, accept default wallet location, enter a new prysm-only pass
 {% endhint %}
 
 ```bash
-$HOME/prysm/prysm.sh 验证帐户导入 --pyrmont --keys-dir=$HOME/ eth2存款-cli/validator_keys
+$HOME/prysm/prysm.sh validator accounts import --prater --keys-dir=$HOME/eth2deposit-cli/validator_keys
 ```
 
 验证已成功导入。
 
 ```bash
-$HOME/prysm/prysm.sh 验证帐户列表 --pyrmont     
+$HOME/prysm/prysm.sh validator accounts list --prater
 ```
 
 确认您的验证程序的 pubkeys 已列出。
@@ -1503,7 +1504,7 @@ After           = network-online.target
 [Service]
 Type            = simple
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --p2p-max-peers=75 --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --prater --p2p-max-peers=45 --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]
@@ -1614,22 +1615,22 @@ shred -u ~/.bash_history && tount ~/.bash_history
 运行以下以创建一个 **单元文件** 来定义您的`验证服务` 配置。
 
 ```bash
-cat > $HOME/validator。 ervice << EOF 
-# eth2 validator service (part of system)
-# 文件：/etc/systemd/system/validator。 ervice 
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
 
 [Unit]
-描述 = eth2 validator 服务
-Wants = 网络在线。 arget 信标-chain.service
-After = network-online。 arget 
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
 
 [Service]
-用户 = $(whoami)
-ExecStart = $(echo $HOME)/prysm/prysm。 h validator --pyrmont --accept-terms of use --wallet-password-file $(echo $HOME)/. th2validators/validators-password xt
-重启 = 发生故障
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --prater --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+Restart         = on-failure
 
 [Install]
-WantedBy = 多用户。 arget
+WantedBy    = multi-user.target
 EOF
 ```
 
@@ -2368,7 +2369,7 @@ _仪表板不显示eth1节点数据。_
 
 {% tabs %}
 {% tab title="Email Notifications" %}
-1. 访问 [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+1. Visit https://prater.beaconcha.in/
 2. 注册一个帐户。
 3. 验证您的 **电子邮件**
 4. 搜索您的 **验证器的公开地址**
@@ -2455,7 +2456,7 @@ _仪表板不显示eth1节点数据。_
 {% hint style="success" %}
 一旦您的信标链已同步，验证器已上传并运行，您只需等待激活。 此过程可能需要 24 + 个小时。 当你被指派时，你的验证器将开始创建和投票块，同时获得预订奖励。
 
-Use [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) to create alerts and track your validator's performance.
+Use https://prater.beaconcha.in/ to create alerts and track your validator's performance.
 {% endhint %}
 
 {% hint style="info" %}
@@ -2507,8 +2508,7 @@ lightthouse --版本
 按照正常操作程序重新启动信标链和验证器。
 
 ```text
-sudo systemctl 重新加载或重新启动信标链
-sudo systemctl 重新加载或重新启动验证器
+sudo systemctl 重新加载或重新启动信标链验证器
 ```
 {% endtab %}
 
@@ -2604,8 +2604,7 @@ yarn 运行 cli --version
 按照正常操作程序重新启动信标链和验证器。
 
 ```text
-sudo systemctl 重新加载或重新启动信标链
-sudo systemctl 重新加载或重新启动验证器
+sudo systemctl 重新加载或重新启动信标链验证器
 ```
 {% endtab %}
 {% endtabs %}
@@ -2642,10 +2641,10 @@ sudo systemctl 状态信标
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-lightthouse 帐户验证器退出
---keystore $HOME/.lightthouse/pyrmont/validators \
+lighthouse account validator exit \
+--keystore $HOME/.lighthouse/prater/validators \
 --beacon-node http://localhost:5052 \
---network pyrmont
+--network prater
 ```
 {% endtab %}
 
@@ -2682,8 +2681,8 @@ $HOME/prysm/prysm.sh 验证帐户自愿退出
 使用 eth2seosit-cli 工具来恢复您的 `validator_key` 以确保您可以重新生成相同的 eth2 键对。
 
 ```bash
-cd $HOME/eth2dosit-cli 
-./deposit.sh existing-mnemonic --chain pyrmont
+cd $HOME/eth2deposit-cli 
+./deposit.sh existing-mnemonic --chain prater
 ```
 
 {% hint style="info" %}
@@ -2721,15 +2720,15 @@ mv validator_key validator_key_$(date +"%Y%d%m-%H%M%S")
 {% tabs %}
 {% tab title="Build from source code" %}
 ```bash
-# 从一个现有的 mnemonic 5 校验器生成额外的 3 之前已生成
-./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
+# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain prater
 ```
 {% endtab %}
 
 {% tab title="Pre-built eth2deposit-cli binaries" %}
 ```bash
-# 从一个现有的 mnemonic 5 多余的验证器生成，当3个验证器先前已生成
-./存款现有的-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
+# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain prater
 ```
 {% endtab %}
 
@@ -2760,7 +2759,7 @@ mv validator_key validator_key_$(date +"%Y%d%m-%H%M%S")
 
 5. 最后，验证你的 **现有的** 验证器证明正在与公共区块浏览器合作，例如：
 
-[https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+https://prater.beaconcha.in/
 
 输入您的验证器的 pubkey 查看其状态。
 
@@ -2904,7 +2903,7 @@ sudo systemctl 状态信标
 
 最后，验证你的验证器的注释正在与公共区块浏览器合作，例如：
 
-[https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+https://prater.beaconcha.in/
 
 输入您的验证器的 pubkey 查看其状态。
 
@@ -3005,17 +3004,17 @@ In case you need to locate your validator keys or database directories.
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-# 验证器密钥
-~/.lightthouse/pyrmont/validators
+# Validator Keys
+~/.lighthouse/prater/validators
 
-# 信标链数据
-~/.lightthouse/pyrmont/信标
+# Beacon Chain Data
+~/.lighthouse/prater/beacon
 
-# 所有验证器和密码的列表
-~/. ightthouse/pyrmont/validators/validator_definitions.yml
+# List of all validators and passwords
+~/.lighthouse/prater/validators/validator_definitions.yml
 
 #Slash protection db
-~/.lightthouse/pyrmont/validators/slash_protection.sqlite
+~/.lighthouse/prater/validators/slashing_protection.sqlite
 ```
 {% endtab %}
 
@@ -3201,22 +3200,22 @@ MY_GRAFFITI='<my POAP string or message>
 运行以下操作以重新创建一个 **单元文件** 来定义您的`验证服务` 配置。 只复制和粘贴。
 
 ```bash
-cat > $HOME/validator。 ervice << EOF 
-# eth2 validator service (part of system)
-# 文件：/etc/systemd/system/validator。 ervice 
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
 
 [Unit]
-描述 = eth2 validator 服务
-Wants = 网络在线。 arget 信标链。 ervice
-After = network-online。 arget 
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
 
 [Service]
-用户 = $(whoami)
-ExecStart = $(Lightthouse) vc --network pyrmont --graffiti "${MY_GRAFFITI}" 
-重启 = 发生故障
+User            = $(whoami)
+ExecStart       = $(which lighthouse) vc --network prater --graffiti "${MY_GRAFFITI}" 
+Restart         = on-failure
 
 [Install]
-WantedBy = 多用户。 arget
+WantedBy    = multi-user.target
 EOF
 ```
 
@@ -3561,15 +3560,15 @@ Sudo nano /etc/system/system/beacon-chain.service
 ```bash
 --target-peers 100
 # Example
-# lighthouse bn --target-peers 100 --staking --metrics --network pyrmont
+# lighthouse bn --target-peers 100 --staking --metrics --network prater
 ```
 {% endtab %}
 
 {% tab title="Nimbus" %}
 ```bash
 --max-peers=100
-# 示例
-# /usr/bin/nimbus_beacon_node --network=pyrmont --max-peers=100
+# Example
+# /usr/bin/nimbus_beacon_node --network=prater --max-peers=100
 ```
 {% endtab %}
 
@@ -3586,16 +3585,16 @@ p2p-peer-up-bound: 100
 {% tab title="Prysm" %}
 ```bash
 --p2p-max-peers=100
-# 示例
-# prysm.sh 信标-chain --pyrmont --p2p-max-peers=100 --http-web3provider=http://127.0.1:8545 --accept-terms of use 
+# Example
+# prysm.sh beacon-chain --prater --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 ```bash
 --network.maxPeers 100
-# 示例
-# yarn 运行cli 信标--network.maxPeers 100 --network pyrmont
+# Example
+# yarn run cli beacon --network.maxPeers 100 --network prater
 ```
 {% endtab %}
 {% endtabs %}
@@ -3730,7 +3729,7 @@ sudo systemctl 重启验证器
 
 赞赏优秀民俗在以下链接所做的艰苦工作，以此作为编写本指南的基础。
 
-{% embed url="https://pyrmont.launchpad.ethereum.org/" %}
+{% embed url="https://prater.launchpad.ethereum.org/" %}
 
 {% 嵌入的 url="https://pegasys.tech/teku-thero-2-for-enterprise/" %}
 
@@ -3750,7 +3749,7 @@ sudo systemctl 重启验证器
 
 ### 🧱 ETH2 区块浏览器
 
-{% embed url="https://pyrmont.beaconcha.in/" %}
+{% embed url="https://prater.beaconcha.in/" %}
 
 {% 嵌入的 url="https://信标onscan.com/" 标题="" %}
 
