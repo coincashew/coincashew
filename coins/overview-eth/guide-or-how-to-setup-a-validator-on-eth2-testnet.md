@@ -1778,7 +1778,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 ```bash
 yarn run cli account validator import \
-  --testnet pyrmont \
+  --testnet prater \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
 
@@ -1787,7 +1787,7 @@ Enter your **keystore password** to import accounts.
 Confirm your keys were imported properly.
 
 ```text
-yarn run cli account validator list --testnet pyrmont
+yarn run cli account validator list --testnet prater
 ```
 
 {% hint style="danger" %}
@@ -1821,7 +1821,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli beacon --testnet pyrmont --eth1.providerUrl http://localhost:8545 --metrics.serverPort 8008
+ExecStart       = yarn run cli beacon --testnet prater --eth1.providerUrl http://localhost:8545 --metrics.enabled true --metrics.serverPort 8008
 Restart         = on-failure
 
 [Install]
@@ -1914,7 +1914,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --testnet pyrmont
+ExecStart       = yarn run cli validator run --testnet prater
 Restart         = on-failure
 
 [Install]

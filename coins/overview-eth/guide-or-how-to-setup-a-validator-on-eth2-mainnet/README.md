@@ -1835,16 +1835,12 @@ journalctl --unit=validator --since=today
 \*\*\*\*[**Lodestar** ](https://lodestar.chainsafe.io/)**is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
-{% hint style="danger" %}
-Lodestar may not be fully functional and stable yet.
-{% endhint %}
-
 ## ⚙ 4.1 Build Lodestar from source
 
 Install curl and git.
 
 ```bash
-sudo apt-get install git curl -y
+sudo apt-get install gcc g++ make git curl -y
 ```
 
 Install yarn.
@@ -1853,7 +1849,7 @@ Install yarn.
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update
-sudo apt install yarn
+sudo apt install yarn -y
 ```
 
 Confirm yarn is installed properly.
@@ -1884,7 +1880,7 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/chainsafe/lodestar.git
 cd lodestar
-yarn install
+yarn install --ignore-optional
 yarn run build
 ```
 
@@ -1895,7 +1891,7 @@ This build process may take a few minutes.
 Verify Lodestar was installed properly by displaying the help menu.
 
 ```text
-yarn run cli --help
+./lodestar --help
 ```
 
 ## 🔥 4.2. Configure port forwarding and/or firewall
@@ -1912,7 +1908,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 ## 🎩 4.3. Import validator key
 
 ```bash
-yarn run cli account validator import \
+./lodestar account validator import \
   --network mainnet \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
@@ -1922,7 +1918,7 @@ Enter your **keystore password** to import accounts.
 Confirm your keys were imported properly.
 
 ```text
-yarn run cli account validator list --network mainnet
+./lodestar account validator list --network mainnet
 ```
 
 {% hint style="danger" %}
@@ -1956,7 +1952,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli beacon --network mainnet --eth1.providerUrl http://localhost:8545 --metrics.serverPort 8008
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar beacon --network mainnet --eth1.providerUrl http://localhost:8545 --metrics.enabled true --metrics.serverPort 8008
 Restart         = on-failure
 
 [Install]
@@ -2080,7 +2076,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --network mainnet --graffiti "${MY_GRAFFITI}"
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar validator --network mainnet --graffiti "${MY_GRAFFITI}"
 Restart         = on-failure
 
 [Install]
@@ -2778,14 +2774,14 @@ Pull the latest source and build it.
 ```bash
 cd $HOME/git/lodestar
 git pull
-yarn install
+yarn install --ignore-optional
 yarn run build
 ```
 
 Verify the build completed by checking the new version number.
 
 ```bash
-yarn run cli --version
+./lodestar --help
 ```
 
 Restart beacon chain and validator as per normal operating procedures.
@@ -2858,7 +2854,7 @@ $HOME/prysm/prysm.sh validator accounts voluntary-exit
 
 {% tab title="Lodestar" %}
 ```bash
-#TO BE DETERMINED
+./lodestar account validator voluntary-exit --publicKey 0xF00
 ```
 {% endtab %}
 {% endtabs %}
@@ -3002,11 +2998,15 @@ teku slashing-protection export --to=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-To be implemented
+```bash
+prysm.sh validator slashing-protection export --datadir=/path/to/your/wallet --slashing-protection-export-dir=/path/to/desired/outputdir
+```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-To be implemented
+```bash
+./lodestar account validator slashing-protection export --network mainnet --file interchange.json
+```
 {% endtab %}
 {% endtabs %}
 
@@ -3044,11 +3044,15 @@ teku slashing-protection import --from=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-To be implemented
+```bash
+prysm.sh validator slashing-protection import --datadir=/path/to/your/wallet --slashing-protection-json-file=/path/to/desiredimportfile
+```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-To be implemented
+```bash
+./lodestar account validator slashing-protection import --network mainnet --file interchange.json
+```
 {% endtab %}
 {% endtabs %}
 
@@ -3245,7 +3249,16 @@ In case you need to locate your validator keys, database directories or other im
 {% endtab %}
 
 {% tab title="Lodestar" %}
-TBD
+```bash
+# Validator Keystores
+$rootDir/keystores
+
+# Validator Secrets
+$rootDir/secrets
+
+# Validator DB Data
+$rootDir/validator-db
+```
 {% endtab %}
 {% endtabs %}
 
@@ -3384,8 +3397,12 @@ nano /etc/systemd/system/beacon-chain.service
 {% endtab %}
 
 {% tab title="Lodestar" %}
-```
-tbd.
+```bash
+# edit beacon-chain unit file
+nano /etc/systemd/system/beacon-chain.service
+# add the --eth1.providerUrl parameter
+# example
+# --eth1.providerUrl http://192.168.10.20:8545
 ```
 {% endtab %}
 {% endtabs %}
@@ -3590,7 +3607,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --network mainnet --graffiti "${MY_GRAFFITI}"
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar validator --network mainnet --graffiti "${MY_GRAFFITI}"
 Restart         = on-failure
 
 [Install]
@@ -3817,7 +3834,7 @@ p2p-peer-upper-bound: 100
 ```bash
 --network.maxPeers 100
 # Example
-# yarn run cli beacon --network.maxPeers 100 --network mainnet
+# ./lodestar beacon --network.maxPeers 100 --network mainnet
 ```
 {% endtab %}
 {% endtabs %}
