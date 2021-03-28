@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of Jan 5 2021, this guide is updated for **mainnet.** 😁 
+As of March 29 2021, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
 #### ✨ For the testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
@@ -360,6 +360,7 @@ User            = $(whoami)
 ExecStart       = /usr/bin/geth --http --metrics --pprof
 Restart         = on-failure
 RestartSec      = 3
+TimeoutSec      = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -772,7 +773,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) bn --staking --metrics --network mainnet
+ExecStart       = $(which lighthouse) bn --staking --validator-monitor-auto --metrics --network mainnet
 Restart         = on-failure
 
 [Install]
@@ -1602,7 +1603,7 @@ After           = network-online.target
 [Service]
 Type            = simple
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --p2p-max-peers=75 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --p2p-max-peers=45 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]
