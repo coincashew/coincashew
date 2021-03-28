@@ -6,7 +6,7 @@ description: >-
 # Guía \| Cómo configurar un validador en la red de pruebas ETH2
 
 {% hint style="success" %}
-As of Jan 5 2021, this guide is updated for **testnet Pyrmont.** 😁
+As of Mar 29 2021, this guide is updated for **testnet Prater.** 😁
 {% endhint %}
 
 #### ✨ Para la guía de red principal, [por favor haga clic aquí](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
@@ -140,7 +140,7 @@ sudo ./deposit.sh install
 Crea una nueva mnemónica.
 
 ```text
-./deposit.sh new-mnemonic --chain pyrmont
+./deposit.sh new-mnemonic --chain prater
 ```
 {% endtab %}
 
@@ -178,7 +178,7 @@ cd eth2deposit-cli
 Crea una nueva mnemónica.
 
 ```text
-./deposit new-mnemonic --chain pyrmont
+./deposit new-mnemonic --chain prater
 ```
 {% endtab %}
 
@@ -206,17 +206,17 @@ Usted puede copiar a través de USB key los binarios eth2deposit-cli preconstrui
 {% endhint %}
 
 1. Siga las instrucciones y elija una **contraseña del almacén de claves**. Esta contraseña encripta los archivos de su almacén de claves. Escribe tu mnemónico y mantén esto seguro y **sin conexión**.
-2. Sigue los pasos en [https://pyrmont.launchpad.ethereum.org/](https://pyrmont.launchpad.ethereum.org/) mientras te saltas los pasos que ya has completado. Estudiar el material general de la fase eth2 0. ¡Entender eth2 es la clave del éxito!
+2. Follow the steps at [https://prater.launchpad.ethereum.org](https://prater.launchpad.ethereum.org/en/) while skipping over the steps you already just completed. Estudiar el material general de la fase eth2 0. ¡Entender eth2 es la clave del éxito!
 3. Volver al sitio web de launchpad, sube tu`deposit_data-#######.json` encontrado en el directorio `validator_keys`.
 4. Conéctate al Launchpad con tu cartera Metamask, revisa y acepta los términos.
 5. Confirmar la transacción\(s\). Hay una transacción de depósito de 32 ETH para cada validador.
 
 {% hint style="info" %}
-Su transacción está enviando y depositando su ETH a la dirección del contrato de depósito ETH2.
+Your transaction is sending and depositing your ETH to the prater ETH2 deposit contract address.
 
-**Compruebe**, _compruebe dos veces_, _**compruebe tres veces**_ que la dirección del contrato de depósito de Pyrmont Eth2 es correcta.
+**Check**, _double-check_, _**triple-check**_ that the prater Eth2 deposit contract address is correct.
 
-[0x8c5fecdC472E27Bc447696F431E425D02dd46a8c](https://goerli.etherscan.io/address/0x8c5fecdc472e27bc447696f431e425d02dd46a8c)
+ [`0xff50ed3d0ec03aC01D4C79aAd74928BFF48a7b2b`](https://goerli.etherscan.io/address/0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b)\`\`
 {% endhint %}
 
 {% hint style="danger" %}
@@ -357,6 +357,7 @@ User            = $(whoami)
 ExecStart       = /usr/bin/geth --http --goerli --metrics --pprof
 Restart         = on-failure
 RestartSec      = 3
+TimeoutSec      = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -712,13 +713,13 @@ Ejecute el siguiente comando para importar sus claves de validador desde el dire
 Introduzca su **contraseña de keystore** para importar cuentas.
 
 ```bash
-lighthouse account validator import --network pyrmont --directory=$HOME/eth2deposit-cli/validator_keys
+lighthouse account validator import --network prater --directory=$HOME/eth2deposit-cli/validator_keys
 ```
 
 Verifique que las cuentas se han importado correctamente.
 
 ```bash
-lighthouse account_manager validator list --network pyrmont
+lighthouse account_manager validator list --network prater
 ```
 
 {% hint style="danger" %}
@@ -760,7 +761,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) bn --staking --metrics --network pyrmont
+ExecStart       = $(which lighthouse) bn --staking --validator-monitor-auto --metrics --network prater
 Restart         = on-failure
 
 [Install]
@@ -872,7 +873,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network pyrmont --metrics
+ExecStart       = $(which lighthouse) vc --network prater --metrics
 Restart         = on-failure
 
 [Install]
@@ -1069,7 +1070,7 @@ After           = network-online.target
 Type            = simple
 User            = $(whoami)
 WorkingDirectory= /var/lib/nimbus
-ExecStart       = /usr/bin/nimbus_beacon_node --network=pyrmont --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
+ExecStart       = /usr/bin/nimbus_beacon_node --network=prater --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
 Restart         = on-failure
 
 [Install]
@@ -1273,7 +1274,7 @@ Genera tu archivo de configuración Teku.
 ```bash
 cat > $HOME/teku.yaml << EOF
 # network
-network: "pyrmont"
+network: "prater"
 
 # p2p
 p2p-enabled: true
@@ -1456,13 +1457,13 @@ Si lo desea, puede utilizar la misma contraseña para el almacén de claves ****
 {% endhint %}
 
 ```bash
-$HOME/prysm/prysm.sh validator accounts import --pyrmont --keys-dir=$HOME/eth2deposit-cli/validator_keys
+$HOME/prysm/prysm.sh validator accounts import --prater --keys-dir=$HOME/eth2deposit-cli/validator_keys
 ```
 
 Verifique sus validadores importados con éxito.
 
 ```bash
-$HOME/prysm/prysm.sh validator accounts list --pyrmont     
+$HOME/prysm/prysm.sh validator accounts list --prater
 ```
 
 Confirme que las pubkeys de su validador están listadas.
@@ -1503,7 +1504,7 @@ After           = network-online.target
 [Service]
 Type            = simple
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --p2p-max-peers=75 --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --prater --p2p-max-peers=45 --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]
@@ -1625,7 +1626,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --pyrmont --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --prater --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
 Restart         = on-failure
 
 [Install]
@@ -2368,7 +2369,7 @@ Recibe notificaciones de problemas con tus validadores. Elija entre correo elect
 
 {% tabs %}
 {% tab title="Email Notifications" %}
-1. Visita [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+1. Visit https://prater.beaconcha.in/
 2. Regístrate en una cuenta.
 3. Verifique su **correo electrónico**
 4. Busca la dirección pública de tu validador ****
@@ -2455,7 +2456,7 @@ Para una demostración de vídeo, ve [vídeos educativos de MohamedMansour's eth
 {% hint style="success" %}
 Una vez que su cadena de beacon está sincronizada, validador en funcionamiento, sólo espera la activación. Este proceso puede tardar más de 24 horas. Cuando te asignes, tu validador comenzará a crear y votar bloques mientras ganas las recompensas.
 
-Use [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) to create alerts and track your validator's performance.
+Use https://prater.beaconcha.in/ to create alerts and track your validator's performance.
 {% endhint %}
 
 {% hint style="info" %}
@@ -2507,8 +2508,7 @@ faro --version
 Reinicie la cadena de baliza y el validador según los procedimientos operativos normales.
 
 ```text
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl recargar-o-reiniciar validador beacon-chain
 ```
 {% endtab %}
 
@@ -2604,8 +2604,7 @@ yarn run cli --version
 Reinicie la cadena de baliza y el validador según los procedimientos operativos normales.
 
 ```text
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl recargar-o-reiniciar validador beacon-chain
 ```
 {% endtab %}
 {% endtabs %}
@@ -2643,9 +2642,9 @@ Utiliza este comando para indicar tus intenciones de dejar de validar con tu val
 {% tab title="Lighthouse" %}
 ```bash
 lighthouse account validator exit \
---keystore $HOME/.lighthouse/pyrmont/validators \
+--keystore $HOME/.lighthouse/prater/validators \
 --beacon-node http://localhost:5052 \
---network pyrmont
+--network prater
 ```
 {% endtab %}
 
@@ -2683,7 +2682,7 @@ Utilizando la herramienta eth2deposit-cli, asegúrese de que puede regenerar los
 
 ```bash
 cd $HOME/eth2deposit-cli 
-./deposit.sh existing-mnemonic --chain pyrmont
+./deposit.sh existing-mnemonic --chain prater
 ```
 
 {% hint style="info" %}
@@ -2721,15 +2720,15 @@ Recordatorio de usar la misma **contraseña del almacén de claves.**
 {% tabs %}
 {% tab title="Build from source code" %}
 ```bash
-# Genera a partir de 5 validadores más mnemónicos existentes cuando 3 ya estaban hechos previamente
-./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
+# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain prater
 ```
 {% endtab %}
 
 {% tab title="Pre-built eth2deposit-cli binaries" %}
 ```bash
-# Genera a partir de 5 validadores más mnemónicos existentes cuando 3 ya estaban hechos anteriormente
-./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
+# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain prater
 ```
 {% endtab %}
 
@@ -2760,7 +2759,7 @@ Ejecuta el comando existente en las pestañas anteriores.
 
 5. Finalmente, verifique que los verificaciones de su validador **existente** están trabajando con el explorador de bloques público como
 
-[https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+https://prater.beaconcha.in/
 
 Introduzca la pubkey de su validador para ver su estado.
 
@@ -2904,7 +2903,7 @@ sudo systemctl status beacon-chain
 
 Finalmente, verifique que los certificados de su validador están trabajando con el explorador de bloques público como
 
-[https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+https://prater.beaconcha.in/
 
 Introduzca la pubkey de su validador para ver su estado.
 
@@ -3005,17 +3004,17 @@ In case you need to locate your validator keys or database directories.
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-# Llaves del validador
-~/.lighthouse/pyrmont/validators
+# Validator Keys
+~/.lighthouse/prater/validators
 
-# Datos de cadena del faro
-~/.lighthouse/pyrmont/beacon
+# Beacon Chain Data
+~/.lighthouse/prater/beacon
 
-# Lista de todos los validadores y contraseñas
-~/.lighthouse/pyrmont/validators/validator_definitions.yml
+# List of all validators and passwords
+~/.lighthouse/prater/validators/validator_definitions.yml
 
-#Db de protección Slash
-~/.lighthouse/pyrmont/validators/slashing_protection.sqlite
+#Slash protection db
+~/.lighthouse/prater/validators/slashing_protection.sqlite
 ```
 {% endtab %}
 
@@ -3212,7 +3211,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network pyrmont --graffiti "${MY_GRAFFITI}" 
+ExecStart       = $(which lighthouse) vc --network prater --graffiti "${MY_GRAFFITI}" 
 Restart         = on-failure
 
 [Install]
@@ -3561,15 +3560,15 @@ Añade la siguiente bandera para aumentar los contactos en la línea `ExecStart`
 ```bash
 --target-peers 100
 # Example
-# lighthouse bn --target-peers 100 --staking --metrics --network pyrmont
+# lighthouse bn --target-peers 100 --staking --metrics --network prater
 ```
 {% endtab %}
 
 {% tab title="Nimbus" %}
 ```bash
 --max-peers=100
-# Ejemplo
-# /usr/bin/nimbus_beacon_node --network=pyrmont --max-peers=100
+# Example
+# /usr/bin/nimbus_beacon_node --network=prater --max-peers=100
 ```
 {% endtab %}
 
@@ -3586,16 +3585,16 @@ p2p-peer-upper-bound: 100
 {% tab title="Prysm" %}
 ```bash
 --p2p-max-peers=100
-# Ejemplo
-# prysm.sh beacon-chain --pyrmont --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+# Example
+# prysm.sh beacon-chain --prater --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 ```bash
 --network.maxPeers 100
-# Ejemplo
-# yarn run cli beacon --network.maxPeers 100 --network pyrmont
+# Example
+# yarn run cli beacon --network.maxPeers 100 --network prater
 ```
 {% endtab %}
 {% endtabs %}
@@ -3730,7 +3729,7 @@ sudo systemctl restart validator
 
 Apreciar el duro trabajo realizado por la gente fina en los siguientes enlaces que sirvieron de base para la creación de esta guía.
 
-{% embed url="https://pyrmont.launchpad.ethereum.org/" %}
+{% embed url="https://prater.launchpad.ethereum.org/" %}
 
 {% embed url="https://pegasys.tech/teku-ethereum-2-for-world-e/" %}
 
@@ -3750,7 +3749,7 @@ Apreciar el duro trabajo realizado por la gente fina en los siguientes enlaces q
 
 ### 🧱 Exploradores de Bloques ETH2
 
-{% embed url="https://pyrmont.beaconcha.in/" %}
+{% embed url="https://prater.beaconcha.in/" %}
 
 {% embed url="https://beaconscan.com/" caption="" %}
 
