@@ -6,7 +6,7 @@ description: >-
 # ガイド \| ETH2 testnet でバリデータをセットアップする方法
 
 {% hint style="success" %}
-As of Jan 5 2021, this guide is updated for **testnet Pyrmont.** 😁
+As of Mar 29 2021, this guide is updated for **testnet Prater.** 😁
 {% endhint %}
 
 #### ✨ メインネットガイドについては、 [こちら](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) をクリックしてください。
@@ -140,7 +140,7 @@ sudo ./deposit.sh install
 新しいニーモニックを作ります。
 
 ```text
-./deposit.sh new-mnemonic --chain pyrmont
+./deposit.sh new-mnemonic --chain prater
 ```
 {% endtab %}
 
@@ -178,7 +178,7 @@ cd eth2deposit-cli
 新しいニーモニックを作ります。
 
 ```text
-./deposit new-mnemonic --chain pyrmont
+./deposit new-mnemonic --chain prater
 ```
 {% endtab %}
 
@@ -206,17 +206,17 @@ USBキーを介して、USBから起動されたエアラップされたオフ�
 {% endhint %}
 
 1. プロンプトに従って、 **キーストアのパスワード** を選択します。 このパスワードはキーストアファイルを暗号化します。 あなたのニーモニックを書き留めて、この安全と **オフライン**を維持してください。
-2. [https://pyrmont.launchpad.ethereum.org/](https://pyrmont.launchpad.ethereum.org/) の手順に従ってください。 eth2フェーズ0の概要材料を研究する。 eth2を理解することが成功の鍵です!
+2. Follow the steps at [https://prater.launchpad.ethereum.org](https://prater.launchpad.ethereum.org/en/) while skipping over the steps you already just completed. eth2フェーズ0の概要材料を研究する。 eth2を理解することが成功の鍵です!
 3. `validator_keys` ディレクトリにある `deposit_data-#########.json` をアップロードします。
 4. メタマスクウォレット、レビューと受け入れ条件でランチパッドに接続します。
 5. トランザクションを確認\(s\). バリデーターごとに32ETHのデポジットトランザクションがあります。
 
 {% hint style="info" %}
-あなたの取引はあなたのETHをpyrmont ETH2入金契約アドレスに送金し、入金します。
+Your transaction is sending and depositing your ETH to the prater ETH2 deposit contract address.
 
-****, _ダブルチェック_, _**トリプルチェック**_ pyrmont Eth2デポジットコントラクトアドレスが正しいことを確認します。
+**Check**, _double-check_, _**triple-check**_ that the prater Eth2 deposit contract address is correct.
 
-[0x8c5fecdC472E27Bc447696F431E425D02dd46a8c](https://goerli.etherscan.io/address/0x8c5fecdc472e27bc447696f431e425d02dd46a8c)
+ [`0xff50ed3d0ec03aC01D4C79aAd74928BFF48a7b2b`](https://goerli.etherscan.io/address/0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b)\`\`
 {% endhint %}
 
 {% hint style="danger" %}
@@ -379,6 +379,7 @@ User            = $(whoami)
 ExecStart       = /usr/bin/geth --http --goerli --metrics --pprof
 Restart         = on-failure
 RestartSec      = 3
+TimeoutSec      = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -734,13 +735,13 @@ When you import your keys into Lighthouse, your validator signing key\(s\) are s
 **キーストアのパスワード** を入力してアカウントをインポートします。
 
 ```bash
-灯台アカウントのバリデータのインポート --network pyrmont --directory=$HOME/eth2deposit-cli/validator_keys
+lighthouse account validator import --network prater --directory=$HOME/eth2deposit-cli/validator_keys
 ```
 
 アカウントが正常にインポートされたことを確認します。
 
 ```bash
-灯台account_manager バリデータリスト --network pyrmont
+lighthouse account_manager validator list --network prater
 ```
 
 {% hint style="danger" %}
@@ -782,7 +783,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) bn --staking --metrics --network pyrmont
+ExecStart       = $(which lighthouse) bn --staking --validator-monitor-auto --metrics --network prater
 Restart         = on-failure
 
 [Install]
@@ -894,7 +895,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network pyrmont --metrics
+ExecStart       = $(which lighthouse) vc --network prater --metrics
 Restart         = on-failure
 
 [Install]
@@ -1091,7 +1092,7 @@ After           = network-online.target
 Type            = simple
 User            = $(whoami)
 WorkingDirectory= /var/lib/nimbus
-ExecStart       = /usr/bin/nimbus_beacon_node --network=pyrmont --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
+ExecStart       = /usr/bin/nimbus_beacon_node --network=prater --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
 Restart         = on-failure
 
 [Install]
@@ -1295,7 +1296,7 @@ Teku設定ファイルを生成します。
 ```bash
 cat > $HOME/teku.yaml << EOF
 # network
-network: "pyrmont"
+network: "prater"
 
 # p2p
 p2p-enabled: true
@@ -1478,13 +1479,13 @@ Accept terms of use, accept default wallet location, enter a new prysm-only pass
 {% endhint %}
 
 ```bash
-$HOME/prysm/prysm.sh バリデータアカウントのインポート --pyrmont -keys-dir=$HOME/eth2deposit-cli/validator_keys
+$HOME/prysm/prysm.sh validator accounts import --prater --keys-dir=$HOME/eth2deposit-cli/validator_keys
 ```
 
 インポートされたバリデータの確認に成功しました。
 
 ```bash
-$HOME/prysm/prysm.sh バリデータアカウントリスト --pyrmont     
+$HOME/prysm/prysm.sh validator accounts list --prater
 ```
 
 バリデータのパブキーがリストされていることを確認します。
@@ -1525,7 +1526,7 @@ After           = network-online.target
 [Service]
 Type            = simple
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --p2p-max-peers=75 --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --prater --p2p-max-peers=45 --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]
@@ -1647,7 +1648,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --pyrmont --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --prater --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
 Restart         = on-failure
 
 [Install]
@@ -2390,7 +2391,7 @@ CPU、メモリ、ディスクIO、ネットワーク、温度およびその他
 
 {% tabs %}
 {% tab title="Email Notifications" %}
-1. [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) をご覧ください
+1. Visit https://prater.beaconcha.in/
 2. アカウントにサインアップします。
 3. **メールアドレス** を確認してください
 4. **バリデータの公開アドレス**を検索する
@@ -2477,7 +2478,7 @@ GoogleのUptime Checkという無償監視サービスのセットアップ方�
 {% hint style="success" %}
 ビーコンチェーンの同期、検証、実行が完了したら、アクティベーションを待つだけです。 このプロセスには24時間以上かかることがあります。 あなたが割り当てられると、あなたのバリデーターはステーク報酬を獲得しながらブロックの作成と投票を開始します。
 
-Use [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) to create alerts and track your validator's performance.
+Use https://prater.beaconcha.in/ to create alerts and track your validator's performance.
 {% endhint %}
 
 {% hint style="info" %}
@@ -2529,8 +2530,7 @@ lighouse --version
 通常の操作手順に従ってビーコンチェーンとバリデータを再起動します。
 
 ```text
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl reload-or-restart beacon-chain validator
 ```
 {% endtab %}
 
@@ -2626,8 +2626,7 @@ yarn run cli --version
 通常の操作手順に従ってビーコンチェーンとバリデータを再起動します。
 
 ```text
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl reload-or-restart beacon-chain validator
 ```
 {% endtab %}
 {% endtabs %}
@@ -2664,10 +2663,10 @@ sudo systemctl status beacon-chain
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-lightthouse account validator exit \
---keystore $HOME/.lighothouse/pyrmont/validators \
+lighthouse account validator exit \
+--keystore $HOME/.lighthouse/prater/validators \
 --beacon-node http://localhost:5052 \
---network pyrmont
+--network prater
 ```
 {% endtab %}
 
@@ -2705,7 +2704,7 @@ eth2deposit-cli ツールを使用して、 `validator_keys` を復元して同�
 
 ```bash
 cd $HOME/eth2deposit-cli 
-./deposit.sh existing-mnemonic --chain pyrmont
+./deposit.sh existing-mnemonic --chain prater
 ```
 
 {% hint style="info" %}
@@ -2743,15 +2742,15 @@ eth2deposit-cli ツールを使用して、新しい入金データファイル�
 {% tabs %}
 {% tab title="Build from source code" %}
 ```bash
-# 既存のニーモニックから 5 個以上のバリデータを生成する 3 が既に作成されている場合
-./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
+# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain prater
 ```
 {% endtab %}
 
 {% tab title="Pre-built eth2deposit-cli binaries" %}
 ```bash
-# 既存のニーモニックから生成する 5 つ以上のバリデータが 3 以前に作成されたときに
-./deposition-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
+# Generate from an existing mnemonic 5 more validators when 3 were previously already made
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain prater
 ```
 {% endtab %}
 
@@ -2782,7 +2781,7 @@ USBキーを介して、USBから起動されたエアラップされたオフ�
 
 5. 最後に、 **既存の** バリデーターの認証がパブリックブロックエクスプローラーのように動作していることを確認してください。
 
-[https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+https://prater.beaconcha.in/
 
 ステータスを表示するには、バリデータのパブキーを入力してください。
 
@@ -2926,7 +2925,7 @@ sudo systemctl status beacon-chain
 
 最後に、検証者の認証がパブリックブロックエクスプローラで動作していることを確認してください。
 
-[https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+https://prater.beaconcha.in/
 
 ステータスを表示するには、バリデータのパブキーを入力してください。
 
@@ -3028,16 +3027,16 @@ In case you need to locate your validator keys or database directories.
 {% tab title="Lighthouse" %}
 ```bash
 # Validator Keys
-~/.lighthouse/pyrmont/validators
+~/.lighthouse/prater/validators
 
 # Beacon Chain Data
-~/.lighthouse/pyrmont/beacon
+~/.lighthouse/prater/beacon
 
 # List of all validators and passwords
-~/.lighthouse/pyrmont/validators/validator_definitions.yml
+~/.lighthouse/prater/validators/validator_definitions.yml
 
 #Slash protection db
-~/.lighthouse/pyrmont/validators/slashing_protection.sqlite
+~/.lighthouse/prater/validators/slashing_protection.sqlite
 ```
 {% endtab %}
 
@@ -3234,7 +3233,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network pyrmont --graffiti "${MY_GRAFFITI}" 
+ExecStart       = $(which lighthouse) vc --network prater --graffiti "${MY_GRAFFITI}" 
 Restart         = on-failure
 
 [Install]
@@ -3583,15 +3582,15 @@ sudo nano /etc/systemd/system/beacon-chain.service
 ```bash
 --target-peers 100
 # Example
-# lighthouse bn --target-peers 100 --staking --metrics --network pyrmont
+# lighthouse bn --target-peers 100 --staking --metrics --network prater
 ```
 {% endtab %}
 
 {% tab title="Nimbus" %}
 ```bash
 --max-peers=100
-# 例
-# /usr/bin/nimbus_beacon_node --network=pyrmont --max-peers=100
+# Example
+# /usr/bin/nimbus_beacon_node --network=prater --max-peers=100
 ```
 {% endtab %}
 
@@ -3608,16 +3607,16 @@ p2p-peer-upper-bound: 100
 {% tab title="Prysm" %}
 ```bash
 --p2p-max-peers=100
-# 例
-# prysm.sh beaccon-chain --pyrmont --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+# Example
+# prysm.sh beacon-chain --prater --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 ```bash
 --network.maxPeers 100
-# 例
-# yarn run cli beacon --network.maxPeers 100 --network pyrmont
+# Example
+# yarn run cli beacon --network.maxPeers 100 --network prater
 ```
 {% endtab %}
 {% endtabs %}
@@ -3752,7 +3751,7 @@ sudo systemctl restart validator
 
 このガイドを作成するための基礎となった以下のリンクで、立派な人々によって行われたハードワークを感謝します。
 
-{% embed url="https://pyrmont.launchpad.ethereum.org/" %}
+{% embed url="https://prater.launchpad.ethereum.org/" %}
 
 {% embed url="https://pegasys.tech/teku-ethereum-2-for-enterprise/" %}
 
@@ -3772,7 +3771,7 @@ sudo systemctl restart validator
 
 ### 🧱 ETH2 Block Explorers
 
-{% embed url="https://pyrmont.beaconcha.in/" %}
+{% embed url="https://prater.beaconcha.in/" %}
 
 {% embed url="https://beaconscan.com/" caption="" %}
 
