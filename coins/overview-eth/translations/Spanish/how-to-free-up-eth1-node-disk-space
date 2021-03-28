@@ -1,0 +1,128 @@
+---
+description: >-
+  eth1 nodes grow quickly. Run this process to prune the blockchain and free up space.
+---
+
+# How to free up eth1 node disk space with pruning
+
+## Quick steps guide
+
+{% hint style="info" %}
+Los siguientes pasos se alinean con nuestra [guía de red principal](./). Es posible que necesite ajustar los nombres de archivos y ubicaciones de directorios cuando sea apropiado. Los conceptos básicos siguen siendo los mismos.
+{% endhint %}
+
+### 🗡 Why do I want to prune my eth1 node?
+
+* Free up gigs of precious disk space. Typically 200gb or more is common.
+
+### 🤖 Requisitos previos
+
+* Works with **geth** currently
+* Ensure at least 30+ GB of free disk space is available otherwise database corruption may occur.
+
+### 🚧 How to prune a eth1 node
+
+{% hint style="info" %}
+Ensure adequate failover or backup eth1 nodes are configured for use with your beacon-chain node before proceeding. geth is offline and unavailable during this process.
+{% endhint %}
+
+1. Note how much disk space is currently used and stop the eth1 node
+
+```text
+df
+sudo service eth1 stop
+```
+
+2. Backup your current eth1 unit file
+
+```bash
+cp /etc/systemd/system/eth1.service /etc/systemd/system/eth1.service_backup
+```
+
+3. Add the prune command to the ExecStart line.
+
+{% tabs %}
+{% tab title="Geth" %}
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = geth eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = /usr/bin/geth snapshot prune-state
+Restart         = on-failure
+RestartSec      = 3
+TimeoutSec      = 300
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+{% endtab %}
+{% endtabs %}
+
+4. Move the unit file to /etc/systemd/system, give it proper permissions and reload.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+sudo systemctl daemon-reload
+```
+
+5. Start the pruning process and monitor it's process.
+
+{% hint style="warning" %}
+🔥 **Pruning Caveats**:
+
+* Pruning can take a few hours or longer depending on your node's disk speed performance.
+{% endhint %}
+
+```bash
+sudo service eth1 start
+journalctl -fu eth1
+```
+
+6. Once the pruning is finished, restore the original service file and restart the eth1 service.
+
+```bash
+mv /etc/systemd/system/eth1.service_backup /etc/systemd/system/eth1.service
+sudo systemctl daemon-reload
+sudo service eth1 restart
+```
+
+7. Compare the disk space of the node after pruning.
+
+```bash
+df
+```
+
+{% hint style="success" %}
+Buen trabajo. Enjoy the extra disk breathing room.
+{% endhint %}
+
+## 🤖 Empieza a apostar construyendo un validador <a id="start-staking-by-building-a-validator"></a>
+
+### Visita aquí para nuestra guía [Mainnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) y aquí para nuestra [guía de Testnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+
+{% hint style="success" %}
+Felicidades por completar la guía. ✨
+
+¿Encontraste útil nuestra guía? Envíenos una señal con un consejo y seguiremos actualizándola.
+
+Realmente nos da energía para seguir creando las mejores guías criptográficas.
+
+Usa [cointr.ee para encontrar nuestras direcciones de donación](https://cointr.ee/coincashew). 🙏
+
+Cualquier comentario y todas las solicitudes de extracción son muy apreciadas. 🌛
+
+Descubra y chatee con otros interesados en Discord @
+
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)😃
+{% endhint %}
+
