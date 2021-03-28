@@ -2781,7 +2781,7 @@ yarn run build
 Verify the build completed by checking the new version number.
 
 ```bash
-./lodestar --help
+./lodestar --version
 ```
 
 Restart beacon chain and validator as per normal operating procedures.
