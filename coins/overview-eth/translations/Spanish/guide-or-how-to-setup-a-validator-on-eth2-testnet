@@ -1700,16 +1700,12 @@ INFO Activado validator voting_pubkey: 0x2374.....7121
 **Lodestar es una implementación de Typescript** de la especificación oficial [Ethereum 2.0](https://github.com/ethereum/eth2.0-specs) por el equipo [ChainSafe.io](https://lodestar.chainsafe.io/). Además del cliente de la cadena beacon, el equipo también está trabajando en 22 paquetes y bibliotecas. Puede encontrar una lista completa [aquí](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Por último, El equipo de Lodestar lidera el espacio Eth2 en investigación y desarrollo de clientes ligeros y ha recibido financiación de EF y Moloch DAO para este propósito.
 {% endhint %}
 
-{% hint style="danger" %}
-Lodestar puede no ser totalmente funcional y estable todavía.
-{% endhint %}
-
 ## ⚙ 4.1 Construir Lodestar desde la fuente
 
 Instalar curl y git.
 
 ```bash
-sudo apt-get install git curl -y
+sudo apt-get install gcc g++ make git curl -y
 ```
 
 Instalar yarn.
@@ -1718,7 +1714,7 @@ Instalar yarn.
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update
-sudo apt install yarn
+sudo apt install yarn -y
 ```
 
 Confirme que yarn está instalado correctamente.
@@ -1748,7 +1744,7 @@ Instalar y construir Lodestar.
 cd ~/git
 git clone https://github.com/chainsafe/lodestar.git
 cd lodestar
-yarn install
+yarn install --ignore-optional
 yarn run build
 ```
 
@@ -1759,7 +1755,7 @@ Este proceso de compilación puede tardar unos minutos.
 Verifique que Lodestar se ha instalado correctamente mostrando el menú de ayuda.
 
 ```text
-yarn run cli --help
+./lodestar --help
 ```
 
 ## 🔥 4.2. Configurar desvío de puertos y/o firewall
@@ -1776,8 +1772,8 @@ Específicamente para su configuración de red o configuración de proveedores d
 ## 🎩 4.3. Importar clave de validador
 
 ```bash
-yarn run cli account validator import \
-  --testnet pyrmont \
+./lodestar account validator import \
+  --testnet prater \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
 
@@ -1786,7 +1782,7 @@ Introduzca su **contraseña de keystore** para importar cuentas.
 Confirme que sus claves fueron importadas correctamente.
 
 ```text
-yarn run cli account validator list --testnet pyrmont
+./lodestar account validator list --testnet prater
 ```
 
 {% hint style="danger" %}
@@ -1820,7 +1816,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli beacon --testnet pyrmont --eth1.providerUrl http://localhost:8545 --metrics.serverPort 8008
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar --testnet prater --eth1.providerUrl http://localhost:8545 --metrics.enabled true --metrics.serverPort 8008
 Restart         = on-failure
 
 [Install]
@@ -1913,7 +1909,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --testnet pyrmont
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar validator --testnet prater
 Restart         = on-failure
 
 [Install]
@@ -2591,14 +2587,14 @@ Desplegar el último código fuente y construirlo.
 ```bash
 cd $HOME/git/lodestar
 git pull
-yarn install
+yarn install --ignore-optional
 yarn run build
 ```
 
 Verifique la versión completada comprobando el número de la nueva versión.
 
 ```bash
-yarn run cli --version
+./lodestar --version
 ```
 
 Reinicie la cadena de baliza y el validador según los procedimientos operativos normales.
@@ -2817,11 +2813,15 @@ teku slashing-protection export --to=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-A implementar
+```bash
+prysm.sh validator slashing-protection export --datadir=/path/to/your/wallet --slashing-protection-export-dir=/path/to/desired/outputdir
+```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-A implementar
+```bash
+./lodestar account validator slashing-protection export --network mainnet --file interchange.json
+```
 {% endtab %}
 {% endtabs %}
 
@@ -2844,7 +2844,7 @@ Usando su nuevo cliente eth2, ejecute el siguiente comando y actualice la ruta r
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-lighthouse account validator slashing-protection import <my_interchange.json>
+importación de protección de barras para validadores de cuenta faro <my_interchange.json>
 ```
 {% endtab %}
 
@@ -2854,16 +2854,20 @@ A implementar
 
 {% tab title="Teku" %}
 ```bash
-teku slashing-protection import --from=<FILE>
+la importación de protección de barras --from=<FILE>
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
-A implementar
+```bash
+prysm.sh validator slashing-protection import --datadir=/path/to/your/wallet --slashing-protection-json-file=/path/to/desiredimportfile
+```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-A implementar
+```bash
+./lodestar account validator slashing-protection import --network mainnet --file interchange.json
+```
 {% endtab %}
 {% endtabs %}
 
@@ -2872,13 +2876,13 @@ A implementar
 {% tabs %}
 {% tab title="Faro \| Prisma \| Lodestar" %}
 ```bash
-sudo systemctl start beacon-chain validator
+sudo systemctl inicia validador de beacon-chain
 ```
 {% endtab %}
 
 {% tab title="Nimbus \| Teku" %}
 ```
-sudo systemctl start beacon-chain
+sudo systemctl inicia beacon-chain
 ```
 {% endtab %}
 {% endtabs %}
@@ -2890,13 +2894,13 @@ Marque los registros para verificar que los servicios están funcionando correct
 {% tabs %}
 {% tab title="Faro \| Prisma \| Lodestar" %}
 ```bash
-sudo systemctl status beacon-chain validator
+validador de estado del sistema de sudo beacon-chain
 ```
 {% endtab %}
 
 {% tab title="Nimbus \| Teku" %}
 ```
-sudo systemctl status beacon-chain
+sudo systemctl estado cadena beacon-becon
 ```
 {% endtab %}
 {% endtabs %}
@@ -2966,23 +2970,23 @@ Añade la siguiente bandera para limitar el número de pares en la línea `ExecS
 {% tab title="OpenEthereum \(Paridad\)" %}
 ```bash
 --max-peers 10
-# Ejemplo
-# ExecStart = $(echo $HOME)/openethereum/openethereum --max-peers 10 --chain goerli
+# Example
+# ExecStart       = $(echo $HOME)/openethereum/openethereum --max-peers 10 --chain goerli
 ```
 {% endtab %}
 
 {% tab title="Besu" %}
 ```bash
 --max-peers 10
-# Ejemplo
-# ExecStart = <home directory>/besu/bin/besu --max-peers 10 --rpc-http-enabled --network=goerli
+# Example
+# ExecStart       = <home directory>/besu/bin/besu --max-peers 10 --rpc-http-enabled --network=goerli
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
 ```bash
 --Network.ActivePeersMaxCount 10
-# Ejemplo
+# Example
 # ExecStart       = <home directory>/nethermind/Nethermind.Runner --Network.ActivePeersMaxCount 10 --config goerli --JsonRpc.Enabled true
 ```
 {% endtab %}
@@ -2992,7 +2996,7 @@ Por último, vuelva a cargar el nuevo archivo de unidad y reinicie el nodo eth1.
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart eth1
+sudo systemctl reiniciar eth1
 ```
 
 ### 📂 8.7 Ubicaciones de directorios importantes
@@ -3058,7 +3062,16 @@ In case you need to locate your validator keys or database directories.
 {% endtab %}
 
 {% tab title="Lodestar" %}
-TBD
+```bash
+# Validator Keystores
+$rootDir/keystores
+
+# Validator Secrets
+$rootDir/secrets
+
+# Validator DB Data
+$rootDir/validator-db
+```
 {% endtab %}
 {% endtabs %}
 
@@ -3093,15 +3106,17 @@ Si no se usan websockets, no es necesario incluir los parámetros ws. Sólo Nimb
 ```bash
 --jsonrpc-interface=all --ws-interface=all
 # Ejemplo
-# ExecStart       = <home directory>/openethereum/openethereum --jsonrpc-interface=all --ws-interface=all
+# Ejemplo 
+ # Ejemplo = <home directory>/openethereum/openethereum --jsonrpc-interface=all --ws-interface=all
 ```
 {% endtab %}
 
 {% tab title="Besu" %}
 ```bash
---rpc-http-host=0.0.0.0 --rpc-ws-enabled --rpc-ws-host=0.0.0.0
+--rpc-http-host=0.0.0 --rpc-ws-enabled --rpc-ws-host=0.0.0
 # Ejemplo
-# ExecStart       = <home directory>/besu/bin/besu --rpc-http-host=0.0.0.0 --rpc-ws-enabled --rpc-ws-host=0.0.0.0 --rpc-http-enabled
+# Ejemplo 
+ # ExecStart = <home directory>/besu/bin/besu --rpc-http-host=0.0.0 --rpc-ws-enabled --rpc-ws-host=0.0.0.0 --rpc-http-enabled
 ```
 {% endtab %}
 
@@ -3109,7 +3124,8 @@ Si no se usan websockets, no es necesario incluir los parámetros ws. Sólo Nimb
 ```bash
 --JsonRpc.Host 0.0.0 --WebSocketsActivado
 # Ejemplo
-# ExecStart       = <home directory>/nethermind/Nethermind.Runner --JsonRpc.Host 0.0.0.0 --WebSocketsEnabled --JsonRpc.Enabled true
+# Ejemplo 
+ # ExecStart = <home directory>/nethermind/)[video] mind.Runner --JsonRpc.Host 0.0.0.0 --WebSocketsEnabled --JsonRpc.Enabled true
 ```
 {% endtab %}
 {% endtabs %}
@@ -3118,7 +3134,7 @@ Recarga el nuevo archivo de unidad y reinicia el nodo eth1.
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart eth1
+sudo systemctl reiniciar eth1
 ```
 
 En la máquina separada que aloja la cadena beacon-chain, actualice el archivo de unidad beacon-chain con la dirección IP del nodo eth1.
@@ -3137,7 +3153,7 @@ nano /etc/systemd/system/beacon-chain.service
 {% tab title="Nimbus" %}
 ```bash
 # edit beacon chain file
-nano /etc/systemd/system/beacon-chain.service
+nano (0)[video] /systemd/system/beacon-chain.service
 # modificar el parámetro --web-url
 # ejemplo
 # --web3-url=ws://192.168.10.22
@@ -3147,7 +3163,7 @@ nano /etc/systemd/system/beacon-chain.service
 {% tab title="Teku" %}
 ```bash
 # edit teku.yaml
-nano /etc/teku/teku.yaml
+nano (0)[video] /teku/teku.yaml
 # cambia el eth1-endpoint
 # ejemplo
 # eth1-endpoint: "http://192.168.10.20:8545"
@@ -3157,7 +3173,7 @@ nano /etc/teku/teku.yaml
 {% tab title="Prysm" %}
 ```bash
 # edit beacon-chain unit file
-nano /etc/systemd/system/beacon-chain.service
+nano (0)[video] /systemd/system/beacon-chain.service
 # add the --http-web3provider parameter
 # example
 # --http-web3provider=http://192.168.10.20:8545
@@ -3165,8 +3181,12 @@ nano /etc/systemd/system/beacon-chain.service
 {% endtab %}
 
 {% tab title="Lodestar" %}
-```
-tbd.
+```bash
+# edit beacon-chain unit file
+nano /etc/systemd/system/beacon-chain.service
+# add the --eth1.providerUrl parameter
+# example
+# --eth1.providerUrl http://192.168.10.20:8545
 ```
 {% endtab %}
 {% endtabs %}
@@ -3175,7 +3195,7 @@ Recarga el archivo de unidad actualizado y reinicia la cadena beacon-chain.
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart beacon-chain
+sudo systemctl reiniciar beacon-chain
 ```
 
 ### 🎊 8.9 Añadir o cambiar la bandera graffiti POAP
@@ -3249,7 +3269,7 @@ After           = network-online.target
 Type            = simple
 User            = $(whoami)
 WorkingDirectory= /var/lib/nimbus
-ExecStart       = /usr/bin/nimbus_beacon_node --network=pyrmont --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
+ExecStart       = /usr/bin/nimbus_beacon_node --network=prater --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
 Restart         = on-failure
 
 [Install]
@@ -3270,7 +3290,7 @@ sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
 Actualizar permisos de archivo.
 
 ```bash
-sudo chmod 644 /etc/systemd/system/beacon-chain.service
+sudo chmod 644 c/systemd/beacon-chain.service
 ```
 {% endtab %}
 
@@ -3280,7 +3300,7 @@ Vuelva a generar su archivo de configuración Teku. Simplemente copie y pegue.
 ```bash
 cat > $HOME/teku.yaml << EOF
 # network
-network: "pyrmont"
+network: "prater"
 
 # p2p
 p2p-enabled: true
@@ -3334,7 +3354,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --pyrmont --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --prater --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
 Restart         = on-failure
 
 [Install]
@@ -3351,7 +3371,7 @@ sudo mv $HOME/validator.service /etc/systemd/system/validator.service
  Actualizar sus permisos.
 
 ```bash
-sudo chmod 644 /etc/systemd/system/validator.service
+sudo chmod 644 c/systemd/validator.service
 ```
 {% endtab %}
 
@@ -3371,7 +3391,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --network pyrmont --graffiti "${MY_GRAFFITI}"
+ExecStart       = yarn run cli validator run --network prater --graffiti "${MY_GRAFFITI}"
 Restart         = on-failure
 
 [Install]
@@ -3388,7 +3408,7 @@ sudo mv $HOME/validator.service /etc/systemd/system/validator.service
  Actualizar sus permisos.
 
 ```bash
-sudo chmod 644 /etc/systemd/validator.service
+sudo chmod 644 c/systemd/validator.service
 ```
 {% endtab %}
 {% endtabs %}
@@ -3399,14 +3419,14 @@ Recarga el archivo de unidad actualizado y reinicia el proceso del validador par
 {% tab title="Faro \| Prisma \| Lodestar" %}
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart validator
+validator de reinicio del sistema sudo
 ```
 {% endtab %}
 
 {% tab title="Teku \| Nimbus" %}
 ```
 sudo systemctl daemon-reload
-sudo systemctl restart beacon-chain
+sudo systemctl reiniciar beacon-chain
 ```
 {% endtab %}
 {% endtabs %}
@@ -3421,7 +3441,7 @@ Detenga su proceso de nodo eth1.
 
 ```bash
 # Esto puede tardar unos minutos.
-sudo systemctl stop eth1
+parada de sistema sudo eth1
 ```
 
 Actualizar el paquete de nodos eth1 o binarios.
@@ -3432,7 +3452,7 @@ Revise las últimas notas de la versión en [https://github.com/ethereum/go-ethe
 
 ```bash
 sudo apt update
-sudo apt upgrade -y
+sudo actualización apt -y
 ```
 {% endtab %}
 
@@ -3448,9 +3468,9 @@ mv openethereum_backup_$(date +"%Y%d%m-%H%M%S")
 # almacena una nueva versión en el directorio openethreum
 mkdir openethereum && cd openethereum
 # download latest version
-curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux | xargs wget -q --show-progress
+curl -s https://api. ithub.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux | xargs wget -q --show-progress
 # unzip
-unzip openethereum*.zip
+unzip openethereum*. ip
 # add execute permission
 chmod +x openethereum
 # limpieza
@@ -3496,7 +3516,7 @@ mv nethermind_backup_$(date +"%Y%d%m-%H%M%S")
 # almacenar nueva versión en el directorio nethermind
 mkdir nethermind && cd nethermind 
 # descargar la última versión
-curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+curl -s https://api. ithub.com/repos/)[video] mindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | . rowser_download_url" | grep linux | xargs wget -q --show-progress
 # unzip
 unzip -o nethermind*.zip
 # limpieza
@@ -3508,7 +3528,7 @@ rm nethermind*linux*.zip
 Inicie su proceso de nodo eth1.
 
 ```bash
-sudo systemctl start eth1
+sudo systemctl inicia eth1
 ```
 
 Marque los registros para verificar que los servicios están funcionando correctamente y asegurarse de que no hay errores.
@@ -3516,7 +3536,7 @@ Marque los registros para verificar que los servicios están funcionando correct
 {% tabs %}
 {% tab title="Faro \| Prisma \| Lodestar" %}
 ```bash
-sudo systemctl status eth1 status beacon-chain validator
+validador de estado de estado del sistema eth1 beacon-chain de estado sudo
 ```
 {% endtab %}
 
@@ -3603,7 +3623,7 @@ Recarga el archivo de unidad actualizado y reinicia el proceso beacon-chain para
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart beacon-chain
+sudo systemctl reiniciar beacon-chain
 ```
 
 #### 👨💻 Estrategia \#2: Redundancia de nodos Eth1
@@ -3624,7 +3644,7 @@ Añade la siguiente bandera en la línea `ExecStart`.
 {% tab title="Lighthouse" %}
 ```bash
 --eth1-endpoints <http://alternate eth1 endpoints>
-# Ejemplo
+# Example
 # --eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
 ```
 {% endtab %}
@@ -3646,7 +3666,7 @@ Recarga el archivo de unidad actualizado y reinicia el proceso beacon-chain para
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart beacon-chain
+sudo systemctl reiniciar beacon-chain
 ```
 
 #### ⚙ Estrategia \#3: Realizar actualizaciones o reinicios durante el espacio de verificación más largo
@@ -3688,7 +3708,7 @@ Recarga el archivo de unidad actualizado y reinicia el proceso del validador par
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart validator
+validator de reinicio del sistema sudo
 ```
 
 ## 🌇 9. Únete a la comunidad en Discord y Reddit
