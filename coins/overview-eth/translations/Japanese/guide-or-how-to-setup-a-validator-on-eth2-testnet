@@ -1722,16 +1722,12 @@ INFO Enabled validator voting_pubkey: 0x2374.....7121
 **Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. ビーコンチェーンクライアントに加えて、チームは22のパッケージとライブラリにも取り組んでいます。 完全なリストは [こちら](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g) にあります。 最後に ロデスタチームは、軽いクライアントの研究開発においてEth2スペースを率いており、この目的のためにEFとMoloch DAOから資金を受けています。
 {% endhint %}
 
-{% hint style="danger" %}
-ロデスタはまだ完全に機能し、安定していない可能性があります。
-{% endhint %}
-
 ## ⚙ 4.1 ソースからロデスタを作る
 
 curl と git をインストールします。
 
 ```bash
-sudo apt-get install git curl -y
+sudo apt-get install gcc g++ make git curl -y
 ```
 
 yarnをインストールします。
@@ -1740,7 +1736,7 @@ yarnをインストールします。
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update
-sudo apt install yarn
+sudo apt install yarn -y
 ```
 
 yarn が正しくインストールされていることを確認します。
@@ -1770,7 +1766,7 @@ Lodestarをインストールしてビルドします。
 cd ~/git
 git clone https://github.com/chainsafe/lodestar.git
 cd lodestar
-yarn install
+yarn install --ignore-optional
 yarn run build
 ```
 
@@ -1781,7 +1777,7 @@ yarn run build
 ヘルプメニューを表示してロデスタが正しくインストールされていることを確認します。
 
 ```text
-yarn run cli --help
+./lodestar --help
 ```
 
 ## 🔥 4.2. ポート転送やファイアウォールの設定
@@ -1798,8 +1794,8 @@ yarn run cli --help
 ## 🎩 4.3. バリデータキーをインポート
 
 ```bash
-yarn run cli account validator import \
-  --testnet pyrmont \
+./lodestar account validator import \
+  --testnet prater \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
 
@@ -1808,7 +1804,7 @@ yarn run cli account validator import \
 キーが正しくインポートされたことを確認します。
 
 ```text
-yarn run cli account validator list --testnet pyrmont
+./lodestar account validator list --testnet prater
 ```
 
 {% hint style="danger" %}
@@ -1842,7 +1838,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli beacon --testnet pyrmont --eth1.providerUrl http://localhost:8545 --metrics.serverPort 8008
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar --testnet prater --eth1.providerUrl http://localhost:8545 --metrics.enabled true --metrics.serverPort 8008
 Restart         = on-failure
 
 [Install]
@@ -1935,7 +1931,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --testnet pyrmont
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar validator --testnet prater
 Restart         = on-failure
 
 [Install]
@@ -2613,14 +2609,14 @@ sudo systemctl reload-or-restart beacon-chain validator
 ```bash
 cd $HOME/git/lodestar
 git pull
-yarn install
+yarn install --ignore-optional
 yarn run build
 ```
 
 新しいバージョン番号を確認してビルドが完了したことを確認します。
 
 ```bash
-yarn run cli --version
+./lodestar --version
 ```
 
 通常の操作手順に従ってビーコンチェーンとバリデータを再起動します。
@@ -2839,11 +2835,15 @@ teku slashing-protection export --to=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-実装するには
+```bash
+prysm.sh validator slashing-protection export --datadir=/path/to/your/wallet --slashing-protection-export-dir=/path/to/desired/outputdir
+```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-実装するには
+```bash
+./lodestar account validator slashing-protection export --network mainnet --file interchange.json
+```
 {% endtab %}
 {% endtabs %}
 
@@ -2881,11 +2881,15 @@ tekuスラッシング保護 import --from=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-実装するには
+```bash
+prysm.sh validator slashing-protection import --datadir=/path/to/your/wallet --slashing-protection-json-file=/path/to/desiredimportfile
+```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-実装するには
+```bash
+./lodestar account validator slashing-protection import --network mainnet --file interchange.json
+```
 {% endtab %}
 {% endtabs %}
 
@@ -2988,16 +2992,16 @@ sudo nano /etc/systemd/system/eth1.service
 {% tab title="OpenEthereum \(Parity\)" %}
 ```bash
 --max-peers 10
-# 例
-# ExecStart = $(echo $HOME)/openethereum/openeterum --max-peers 10 --chain goerli
+# Example
+# ExecStart       = $(echo $HOME)/openethereum/openethereum --max-peers 10 --chain goerli
 ```
 {% endtab %}
 
 {% tab title="Besu" %}
 ```bash
 --max-peers 10
-# 例
-# ExecStart = <home directory>/besu/bin/besu --max-peers 10 --rpc-http-enabled --network=goerli
+# Example
+# ExecStart       = <home directory>/besu/bin/besu --max-peers 10 --rpc-http-enabled --network=goerli
 ```
 {% endtab %}
 
@@ -3005,7 +3009,7 @@ sudo nano /etc/systemd/system/eth1.service
 ```bash
 --Network.ActivePeersMaxCount 10
 # Example
-# ExecStart = <home directory>/nethermind/Nethermind.Runner --Network.ActivePeersMaxCount 10 --config goerli -JsonRpc.Enabled true
+# ExecStart       = <home directory>/nethermind/Nethermind.Runner --Network.ActivePeersMaxCount 10 --config goerli --JsonRpc.Enabled true
 ```
 {% endtab %}
 {% endtabs %}
@@ -3080,7 +3084,16 @@ In case you need to locate your validator keys or database directories.
 {% endtab %}
 
 {% tab title="Lodestar" %}
-TBD
+```bash
+# Validator Keystores
+$rootDir/keystores
+
+# Validator Secrets
+$rootDir/secrets
+
+# Validator DB Data
+$rootDir/validator-db
+```
 {% endtab %}
 {% endtabs %}
 
@@ -3187,8 +3200,12 @@ nano /etc/systemd/system/beacon-chain.service
 {% endtab %}
 
 {% tab title="Lodestar" %}
-```
-tbdだ
+```bash
+# edit beacon-chain unit file
+nano /etc/systemd/system/beacon-chain.service
+# add the --eth1.providerUrl parameter
+# example
+# --eth1.providerUrl http://192.168.10.20:8545
 ```
 {% endtab %}
 {% endtabs %}
@@ -3271,7 +3288,7 @@ After           = network-online.target
 Type            = simple
 User            = $(whoami)
 WorkingDirectory= /var/lib/nimbus
-ExecStart       = /usr/bin/nimbus_beacon_node --network=pyrmont --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
+ExecStart       = /usr/bin/nimbus_beacon_node --network=prater --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
 Restart         = on-failure
 
 [Install]
@@ -3302,7 +3319,7 @@ Teku設定ファイルを再生成します。 コピーして貼り付けるだ
 ```bash
 cat > $HOME/teku.yaml << EOF
 # network
-network: "pyrmont"
+network: "prater"
 
 # p2p
 p2p-enabled: true
@@ -3356,7 +3373,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --pyrmont --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --prater --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
 Restart         = on-failure
 
 [Install]
@@ -3393,7 +3410,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --network pyrmont --graffiti "${MY_GRAFFITI}"
+ExecStart       = yarn run cli validator run --network prater --graffiti "${MY_GRAFFITI}"
 Restart         = on-failure
 
 [Install]
@@ -3646,8 +3663,8 @@ sudo nano /etc/systemd/system/beacon-chain.service
 {% tab title="Lighthouse" %}
 ```bash
 --eth1-endpoints <http://alternate eth1 endpoints>
-# 例
-# --eth1-endpoints http://localhost:8545,http://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
+# Example
+# --eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
 ```
 {% endtab %}
 
