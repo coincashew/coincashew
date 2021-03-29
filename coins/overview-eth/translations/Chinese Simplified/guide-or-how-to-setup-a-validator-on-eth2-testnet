@@ -1700,25 +1700,21 @@ INFO 启用验证器投票 pubkey: 0x2374...7121
 **Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. 除了信标链客户外，该小组还在22个软件包和图书馆工作。 完整的列表可以在这里找到 [](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g)。 末尾。 Lodestar小组正在领导Eth2空间的轻型客户研究和开发，并为此目的从EF和Moloch DAO获得资金。
 {% endhint %}
 
-{% hint style="danger" %}
-Lodestar可能尚未完全运作和稳定。
-{% endhint %}
-
 ## ⚙ 4.1 从源代码构建Lodestar
 
 安装曲线和吉特。
 
 ```bash
-sudo apt-get install git curl -y
+sudo apt-get install gcc g++ make git curl -y
 ```
 
 安装 yarn。
 
 ```bash
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key 添加 -
-echo "deb https://dl.yarnpkg. om/debian/stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update
-sudo apt install yarn
+sudo apt install yarn -y
 ```
 
 确认 yarn 已正确安装。
@@ -1748,8 +1744,8 @@ nodejs -v
 cd ~/git
 git clone https://github.com/chainsafe/lodestar.git
 cd lodestar
-yarn install
-yarn run building
+yarn install --ignore-optional
+yarn run build
 ```
 
 {% hint style="info" %}
@@ -1759,7 +1755,7 @@ yarn run building
 通过显示帮助菜单来验证Lodestar已正确安装。
 
 ```text
-yarn 运行 cli --help
+./lodestar --help
 ```
 
 ## 🔥 4.2. 配置端口转发和/或防火墙
@@ -1776,9 +1772,9 @@ yarn 运行 cli --help
 ## 🎩 4.3. 导入验证器密钥
 
 ```bash
-yarn 运行cli 帐户验证器导入
-  --testnet pyrmont \
-  --directory $HOME/eth2dosit-cli/validator_keys
+./lodestar account validator import \
+  --testnet prater \
+  --directory $HOME/eth2deposit-cli/validator_keys
 ```
 
 输入您的 **密钥商店密码** 来导入帐户。
@@ -1786,7 +1782,7 @@ yarn 运行cli 帐户验证器导入
 确认您的密钥已正确导入。
 
 ```text
-yarn 运行cli 帐户验证器列表 --testnet pyrmont
+./lodestar account validator list --testnet prater
 ```
 
 {% hint style="danger" %}
@@ -1820,7 +1816,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli beacon --testnet pyrmont --eth1.providerUrl http://localhost:8545 --metrics.serverPort 8008
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar --testnet prater --eth1.providerUrl http://localhost:8545 --metrics.enabled true --metrics.serverPort 8008
 Restart         = on-failure
 
 [Install]
@@ -1901,23 +1897,23 @@ journalctl --unit=beacon-chain --sin='202020-12-01 00:00:00' --until='202020-12-
 运行以下以创建一个 **单元文件** 来定义您的`验证服务` 配置。
 
 ```bash
-cat > $HOME/validator。 ervice << EOF 
-# eth2 validator service (part of system)
-# 文件：/etc/systemd/system/validator。 ervice 
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
 
 [Unit]
-描述 = eth2 validator 服务
-Wants = 网络在线。 arget 信标-chain.service
-After = network-online。 arget 
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
 
 [Service]
-User = $(whoami)
+User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart = yarn run cli validator run --testnet pyrmont
-Restart = on-fail
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar validator --testnet prater
+Restart         = on-failure
 
 [Install]
-WantedBy = multural. arget
+WantedBy    = multi-user.target
 EOF
 ```
 
@@ -2589,16 +2585,16 @@ sudo systemctl 重新加载或重新启动信标链验证器
 拉取最新的源并构建它。
 
 ```bash
-cd $HOME/git/logestar
-git 拉取
-yarn installing
-yarn 运行 building
+cd $HOME/git/lodestar
+git pull
+yarn install --ignore-optional
+yarn run build
 ```
 
 通过检查新版本号来验证构建完成。
 
 ```bash
-yarn 运行 cli --version
+./lodestar --version
 ```
 
 按照正常操作程序重新启动信标链和验证器。
@@ -2817,11 +2813,15 @@ teku slashing-protection 导出 --to=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-待执行
+```bash
+prysm.sh validator slashing-protection export --datadir=/path/to/your/wallet --slashing-protection-export-dir=/path/to/desired/outputdir
+```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-待执行
+```bash
+./lodestar account validator slashing-protection export --network mainnet --file interchange.json
+```
 {% endtab %}
 {% endtabs %}
 
@@ -2859,11 +2859,15 @@ teku slashing-protection importer --from=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-待执行
+```bash
+prysm.sh validator slashing-protection import --datadir=/path/to/your/wallet --slashing-protection-json-file=/path/to/desiredimportfile
+```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-待执行
+```bash
+./lodestar account validator slashing-protection import --network mainnet --file interchange.json
+```
 {% endtab %}
 {% endtabs %}
 
@@ -2966,24 +2970,24 @@ sudo nano /etc/systemd/system/eth1.service
 {% tab title="OpenEtherum\(parity\)" %}
 ```bash
 --max-peers 10
-# 示例
-# ExecStart = $(echo $HOME)/openetherum/openeythum --max-peers 10 --chain goerli
+# Example
+# ExecStart       = $(echo $HOME)/openethereum/openethereum --max-peers 10 --chain goerli
 ```
 {% endtab %}
 
 {% tab title="Besu" %}
 ```bash
 --max-peers 10
-# 例如
-# ExecStart = <home directory>/besu/besu --max-peers 10 --rpc-http-enable --network=goerli
+# Example
+# ExecStart       = <home directory>/besu/bin/besu --max-peers 10 --rpc-http-enabled --network=goerli
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
 ```bash
 --Network.ActivePeersMaxCount 10
-# 示例
-# ExecStart = <home directory>/nethermind/Nethermind.Runner --Network.ActivePeersMaxCount 10 --config goerli --JsonRpc.Enabled true
+# Example
+# ExecStart       = <home directory>/nethermind/Nethermind.Runner --Network.ActivePeersMaxCount 10 --config goerli --JsonRpc.Enabled true
 ```
 {% endtab %}
 {% endtabs %}
@@ -3058,7 +3062,16 @@ In case you need to locate your validator keys or database directories.
 {% endtab %}
 
 {% tab title="Lodestar" %}
-待办事项
+```bash
+# Validator Keystores
+$rootDir/keystores
+
+# Validator Secrets
+$rootDir/secrets
+
+# Validator DB Data
+$rootDir/validator-db
+```
 {% endtab %}
 {% endtabs %}
 
@@ -3165,8 +3178,12 @@ nano /etc/systemd/system/beacon-chain.service
 {% endtab %}
 
 {% tab title="Lodestar" %}
-```
-tbd。
+```bash
+# edit beacon-chain unit file
+nano /etc/systemd/system/beacon-chain.service
+# add the --eth1.providerUrl parameter
+# example
+# --eth1.providerUrl http://192.168.10.20:8545
 ```
 {% endtab %}
 {% endtabs %}
@@ -3249,7 +3266,7 @@ After           = network-online.target
 Type            = simple
 User            = $(whoami)
 WorkingDirectory= /var/lib/nimbus
-ExecStart       = /usr/bin/nimbus_beacon_node --network=pyrmont --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
+ExecStart       = /usr/bin/nimbus_beacon_node --network=prater --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
 Restart         = on-failure
 
 [Install]
@@ -3280,7 +3297,7 @@ sudo chmod 644 /etc/system/system/beacon-chain.service
 ```bash
 cat > $HOME/teku.yaml << EOF
 # network
-network: "pyrmont"
+network: "prater"
 
 # p2p
 p2p-enabled: true
@@ -3323,22 +3340,22 @@ sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
 重新创建一个 **单元文件** 来定义您的`验证服务` 配置。 只复制和粘贴。
 
 ```bash
-cat > $HOME/validator。 ervice << EOF 
-# eth2 validator service (part of system)
-# 文件：/etc/systemd/system/validator。 ervice 
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
 
 [Unit]
-描述 = eth2 validator 服务
-Wants = 网络在线。 arget 信标-chain.service
-After = network-online。 arget 
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
 
 [Service]
-用户 = $(whoami)
-ExecStart = $(echo $HOME)/prysm/prysm。 h validator --pyrmont --graffiti "${MY_GRAFFITI}" --accept-terms of use --wallet-password-file $(echo $HOME)/. th2validators/validators-password xt
-重启 = 发生故障
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --prater --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+Restart         = on-failure
 
 [Install]
-WantedBy = 多用户。 arget
+WantedBy    = multi-user.target
 EOF
 ```
 
@@ -3359,23 +3376,23 @@ sudo chmod 644 /etc/systemd/system/validator.service
 运行以下操作以重新创建一个 **单元文件** 来定义您的`验证服务` 配置。 只复制和粘贴。
 
 ```bash
-cat > $HOME/validator。 ervice << EOF 
-# eth2 validator service (part of system)
-# 文件：/etc/systemd/system/validator。 ervice 
+cat > $HOME/validator.service << EOF 
+# The eth2 validator service (part of systemd)
+# file: /etc/systemd/system/validator.service 
 
 [Unit]
-描述 = eth2 validator 服务
-Wants = 网络在线。 arget 信标-chain.service
-After = network-online。 arget 
+Description     = eth2 validator service
+Wants           = network-online.target beacon-chain.service
+After           = network-online.target 
 
 [Service]
-用户 = $(whoami)
+User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart = yarn runn runn cli validator run --network pyrmont --graffiti "${MY_GRAFFITI}"
-Restart = 失败
+ExecStart       = yarn run cli validator run --network prater --graffiti "${MY_GRAFFITI}"
+Restart         = on-failure
 
 [Install]
-WantedBy = multius. arget
+WantedBy    = multi-user.target
 EOF
 ```
 
@@ -3624,8 +3641,8 @@ Sudo nano /etc/system/system/beacon-chain.service
 {% tab title="Lighthouse" %}
 ```bash
 --eth1-endpoints <http://alternate eth1 endpoints>
-# 示例
-# --eth1-endpoints http://localhost:8545,https://nodes.mewapio/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
+# Example
+# --eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
 ```
 {% endtab %}
 
