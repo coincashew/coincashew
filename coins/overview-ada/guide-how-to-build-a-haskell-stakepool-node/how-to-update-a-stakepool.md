@@ -53,16 +53,29 @@ To mitigate downtime:
 
 ### 🛑 Release v1.26.1 New Dependencies
 
-#### 1. Install GHC 8.10.4 and Cabal 3.4.0.0
+#### 1. Install GHC 8.10.4 and Cabal 3.4.0.0 and update dependencies
+
+```bash
+sudo apt-get -y install pkg-config libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev
+```
+
+```bash
+sudo apt-get -y install build-essential curl libgmp-dev libffi-dev libncurses-dev libtinfo5
+```
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+```
+
+```bash
 ghcup upgrade
 ghcup install ghc 8.10.4
 ghcup set ghc 8.10.4
 # Verify 8.10.4 is installed
 ghc --version  
+```
 
+```bash
 ghcup install cabal 3.4.0.0
 ghcup set cabal 3.4.0.0
 # Verify 3.4.0.0 is installed
