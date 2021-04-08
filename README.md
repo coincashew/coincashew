@@ -9,7 +9,10 @@
 {% endhint %}
 
 {% hint style="info" %}
-\*\*\*\*🔥 **HOT TOPIC:** Learn to setup your own [ETH2 Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+\*\*\*\*🔥 **HOT TOPICS** 
+
+* Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
+* Learn to setup your own [ETH2 Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
 
 ## 🙋♀ I would like to ...
