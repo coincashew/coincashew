@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of Mar 27 2020, this is **guide version 3.1.2** and written for **cardano mainnet** with **release v.1.25.1** 😁 
+As of April 7 2020, this is **guide version 3.2.0** and written for **cardano mainnet** with **release v.1.26.1** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -114,7 +114,6 @@ git checkout 66f017f1
 ./configure
 make
 sudo make install
-
 ```
 
 {% hint style="info" %}
@@ -128,23 +127,17 @@ sudo ln -s /usr/local/lib/libsodium.so.23.3.0 /usr/lib/libsodium.so.23
 Install Cabal.
 
 ```bash
-cd
-wget https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
-tar -xf cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
-rm cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz cabal.sig
-mkdir -p $HOME/.local/bin
-mv cabal $HOME/.local/bin/
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+ghcup upgrade
+ghcup install cabal 3.4.0.0
+ghcup set cabal 3.4.0.0
 ```
 
 Install GHC.
 
 ```bash
-wget https://downloads.haskell.org/ghc/8.10.2/ghc-8.10.2-x86_64-deb9-linux.tar.xz
-tar -xf ghc-8.10.2-x86_64-deb9-linux.tar.xz
-rm ghc-8.10.2-x86_64-deb9-linux.tar.xz
-cd ghc-8.10.2
-./configure
-sudo make install
+ghcup install ghc 8.10.4
+ghcup set ghc 8.10.4
 ```
 
 Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE\_HOME**. The [cluster configuration](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) is set by **$NODE\_CONFIG** and **$NODE\_BUILD\_NUM**. 
@@ -158,16 +151,28 @@ echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/car
 source $HOME/.bashrc
 ```
 
+{% hint style="info" %}
+💡 **How to use this Guide on TestNet**
+
+Simply replace every instance of ****CLI parameter
+
+ `--mainnet` 
+
+with 
+
+`--testnet-magic 1097911063`
+{% endhint %}
+
 Update cabal and verify the correct versions were installed successfully.
 
 ```bash
 cabal update
-cabal -V
-ghc -V
+cabal --version
+ghc --version
 ```
 
 {% hint style="info" %}
-Cabal library should be version 3.2.0.0 and GHC should be version 8.10.2
+Cabal library should be version 3.4.0.0 and GHC should be version 8.10.4
 {% endhint %}
 
 ## 🏗 2. Build the node from source code
@@ -179,13 +184,13 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.25.1
+git checkout tags/1.26.1
 ```
 
 Configure build options.
 
 ```text
-cabal configure -O0 -w ghc-8.10.2
+cabal configure -O0 -w ghc-8.10.4
 ```
 
 Update the cabal config, project settings, and reset build folder.
@@ -193,7 +198,7 @@ Update the cabal config, project settings, and reset build folder.
 ```bash
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 sed -i $HOME/.cabal/config -e "s/overwrite-policy:/overwrite-policy: always/g"
-rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.10.2
+rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.10.4
 ```
 
 Build the cardano-node from source code.
@@ -607,7 +612,7 @@ Run gLiveView to monitor the progress of the sync'ing of the blockchain.
 
 Sample output of gLiveView.
 
-![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
+![](../../../.gitbook/assets/glive.png)
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
@@ -697,7 +702,7 @@ Before continuing, your node must be fully synchronized to the blockchain. Other
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-slotNo=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+slotNo=$(cardano-cli query tip --mainnet | jq -r '.slot')
 echo slotNo: ${slotNo}
 ```
 {% endtab %}
@@ -823,7 +828,6 @@ Wait for the block-producing node to start syncing before continuing if you get 
 ```bash
 cardano-cli query protocol-parameters \
     --mainnet \
-    --mary-era \
     --out-file params.json
 ```
 {% endtab %}
@@ -992,7 +996,7 @@ echo
 
 # XPrv/XPub conversion to normal private and public key, keep in mind the 
 # keypars are not a valind Ed25519 signing keypairs.
-TESTNET_MAGIC="--testnet-magic 42"
+TESTNET_MAGIC="--testnet-magic 1097911063"
 MAINNET_MAGIC="--mainnet"
 MAGIC="\$MAINNET_MAGIC"
 
@@ -1118,7 +1122,6 @@ Before continuing, your nodes must be fully synchronized to the blockchain. Othe
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mary-era \
     --mainnet
 ```
 {% endtab %}
@@ -1153,7 +1156,7 @@ You need to find the **tip** of the blockchain to set the **invalid-hereafter** 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -1166,7 +1169,6 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mary-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -1221,7 +1223,6 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --out-file tx.tmp \
-    --mary-era \
     --certificate stake.cert
 ```
 {% endtab %}
@@ -1271,7 +1272,6 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file stake.cert \
-    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -1471,7 +1471,7 @@ You need to find the **tip** of the blockchain to set the **invalid-hereafter** 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -1484,7 +1484,6 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mary-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -1536,7 +1535,6 @@ cardano-cli transaction build-raw \
     --fee 0 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
-    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -1587,7 +1585,6 @@ cardano-cli transaction build-raw \
     --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
-    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -1645,7 +1642,7 @@ Now that you have your stake pool ID,  verify it's included in the blockchain.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query ledger-state --mainnet --mary-era | grep publicKey | grep $(cat stakepoolid.txt)
+cardano-cli query ledger-state --mainnet | grep publicKey | grep $(cat stakepoolid.txt)
 ```
 {% endtab %}
 {% endtabs %}
@@ -1665,7 +1662,6 @@ Shelley has been launched without peer-to-peer \(p2p\) node discovery so that me
 Configure your topology files.
 
 * **topologyUpdate.sh method** is automated and works after 4 hours. 
-* ~~**\[ Retired \] Pooltool.io method** gives you control over who your nodes connect to.~~
 
 {% tabs %}
 {% tab title="topologyUpdater.sh Method" %}
@@ -1696,12 +1692,12 @@ NETWORKID=\$(jq -r .networkId \$GENESIS_JSON)
 CNODE_VALENCY=1   # optional for multi-IP hostnames
 NWMAGIC=\$(jq -r .networkMagic < \$GENESIS_JSON)
 [[ "\${NETWORKID}" = "Mainnet" ]] && HASH_IDENTIFIER="--mainnet" || HASH_IDENTIFIER="--testnet-magic \${NWMAGIC}"
-[[ "\${NWMAGIC}" = "764824073" ]] && NETWORK_IDENTIFIER="--mainnet" || NETWORK_IDENTIFIER="--testnet-magic \${NWMAGIC}"
+[[ "\${NWMAGIC}" = "1097911063" ]] && NETWORK_IDENTIFIER="--mainnet" || NETWORK_IDENTIFIER="--testnet-magic \${NWMAGIC}"
  
 export PATH="\${CNODE_BIN}:\${PATH}"
 export CARDANO_NODE_SOCKET_PATH="\${CNODE_HOME}/db/socket"
  
-blockNo=\$(/usr/local/bin/cardano-cli query tip \${NETWORK_IDENTIFIER} | jq -r .blockNo )
+blockNo=\$(/usr/local/bin/cardano-cli query tip \${NETWORK_IDENTIFIER} | jq -r .block )
  
 # Note:
 # if you run your node in IPv4/IPv6 dual stack network configuration and want announced the
@@ -1772,7 +1768,7 @@ cat > $NODE_HOME/relay-topology_pull.sh << EOF
 #!/bin/bash
 BLOCKPRODUCING_IP=<BLOCK PRODUCERS PUBLIC IP ADDRESS>
 BLOCKPRODUCING_PORT=6000
-curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:1|relays-new.cardano-mainnet.iohk.io:3001:2"
+curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP},\${BLOCKPRODUCING_PORT},1|relays-new.cardano-mainnet.iohk.io,3001,2"
 EOF
 ```
 
@@ -1797,132 +1793,6 @@ sudo systemctl restart cardano-node
 
 {% hint style="warning" %}
 Don't forget to restart your relay nodes after every time you fetch the topology!
-{% endhint %}
-{% endtab %}
-
-{% tab title="\[ Retired \] Pooltool.io Method" %}
-1. Visit [https://pooltool.io/](https://pooltool.io/)
-2. Create an account and login
-3. Search for your stakepool id
-4. Click ➡ **Pool Details** &gt; **Manage** &gt; **CLAIM THIS POOL**
-5. Fill in your pool name and pool URL if you have one.
-6. Fill in your **Private Nodes** and **Your Relays** as follows.
-
-![](../../../.gitbook/assets/ada-relay-setup-mainnet.png)
-
-{% hint style="info" %}
-You can find your public IP with [https://www.whatismyip.com/](https://www.whatismyip.com/) or
-
-```text
-curl http://ifconfig.me/ip
-```
-{% endhint %}
-
-Add requests for nodes or "buddies" to each of your relay nodes. Make sure you include the IOHK node and your private nodes.
-
-IOHK's node address is:
-
-```text
-relays-new.cardano-mainnet.iohk.io
-```
-
-IOHK's node port is:
-
-```text
-3001
-```
-
-For example, on relaynode1's buddies you should add **requests** for
-
-* your private BlockProducingNode
-* IOHK's node
-* and any other buddy/friendly nodes your can find or know
-
-{% hint style="info" %}
-A relay node connection is not established until there is a request and an approval.
-{% endhint %}
-
-For **relaynode1**, create a get\_buddies.sh script to update your topology.json file.
-
-```bash
-###
-### On relaynode1
-###
-cat > $NODE_HOME/get_buddies.sh << EOF 
-#!/usr/bin/env bash
-
-# YOU CAN PASS THESE STRINGS AS ENVIRONMENTAL VARIABLES, OR EDIT THEM IN THE SCRIPT HERE
-if [ -z "\$PT_MY_POOL_ID" ]; then
-## CHANGE THESE TO SUIT YOUR POOL TO YOUR POOL ID AS ON THE EXPLORER
-PT_MY_POOL_ID="XXXXXXXX"
-fi
-
-if [ -z "\$PT_MY_API_KEY" ]; then
-## GET THIS FROM YOUR ACCOUNT PROFILE PAGE ON POOLTOOL WEBSITE
-PT_MY_API_KEY="XXXXXXXX"
-fi
-
-if [ -z "\$PT_MY_NODE_ID" ]; then
-## GET THIS FROM YOUR POOL MANAGE TAB ON POOLTOOL WEBSITE
-PT_MY_NODE_ID="XXXXXXXX"
-fi
-
-if [ -z "\$PT_TOPOLOGY_FILE" ]; then
-## SET THIS TO THE LOCATION OF YOUR TOPOLOGY FILE THAT YOUR NODE USES
-PT_TOPOLOGY_FILE="$NODE_HOME/${NODE_CONFIG}-topology.json"
-fi
-
-JSON="\$(jq -n --compact-output --arg MY_API_KEY "\$PT_MY_API_KEY" --arg MY_POOL_ID "\$PT_MY_POOL_ID" --arg MY_NODE_ID "\$PT_MY_NODE_ID" '{apiKey: \$MY_API_KEY, nodeId: \$MY_NODE_ID, poolId: \$MY_POOL_ID}')"
-echo "Packet Sent: \$JSON"
-RESPONSE="\$(curl -s -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "\$JSON" "https://api.pooltool.io/v0/getbuddies")"
-SUCCESS="\$(echo \$RESPONSE | jq '.success')"
-if [ \$SUCCESS ]; then
-  echo "Success"
-  echo \$RESPONSE | jq '. | {Producers: .message}' > \$PT_TOPOLOGY_FILE
-  echo "Topology saved to \$PT_TOPOLOGY_FILE.  Note topology will only take effect next time you restart your node"
-else
-  echo "Failure "
-  echo \$RESPONSE | jq '.message'
-fi
-EOF
-```
-
-For each of your relay nodes, update the following variables from pooltool.io into your get\_buddies.sh file
-
-* PT\_MY\_POOL\_ID 
-* PT\_MY\_API\_KEY 
-* PT\_MY\_NODE\_ID
-
-Update your get\_buddies.sh scripts with this information.
-
-{% hint style="info" %}
-Use **nano** to edit your files. 
-
-`nano $NODE_HOME/relaynode1/get_buddies.sh`
-{% endhint %}
-
-Add execute permissions to these scripts. Run the scripts to update your topology files.
-
-```bash
-###
-### On relaynode1
-###
-cd $NODE_HOME
-chmod +x get_buddies.sh
-./get_buddies.sh
-```
-
-Stop and then restart your stakepool in order for the new topology settings to take effect.
-
-```bash
-###
-### On relaynode1
-###
-sudo systemctl restart cardano-node
-```
-
-{% hint style="info" %}
-As your REQUESTS are approved, you must re-run the get\_buddies.sh script to pull the latest topology data. Restart your relay nodes afterwards.
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -1965,7 +1835,6 @@ After the epoch is over and assuming you successfully minted blocks, check with 
 ```bash
 cardano-cli query stake-address-info \
  --address $(cat stake.addr) \
- --mary-era \
  --mainnet
 ```
 {% endtab %}
@@ -2182,7 +2051,7 @@ Thank you for supporting Cardano and us! Please use the below cointr.ee link. �
 
 ### 😁 17.2 Thank yous
 
-Thanks to all 17000+ of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
+Thanks to all 50000+ of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
 
 ### \*\*\*\*💬 17**.3 Telegram and Discord Chat Channel**
 
@@ -2264,7 +2133,7 @@ When it's time to issue a new operational certificate, run the following to find
 {% tab title="block producer node" %}
 ```bash
 cd $NODE_HOME
-slotNo=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+slotNo=$(cardano-cli query tip --mainnet | jq -r '.slot')
 slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
 startKesPeriod=${kesPeriod}
@@ -2455,7 +2324,7 @@ You need to find the **tip** of the blockchain to set the **invalid-hereafter** 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -2468,7 +2337,6 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mary-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -2509,7 +2377,6 @@ cardano-cli transaction build-raw \
     --fee 0 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
-    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -2556,7 +2423,6 @@ cardano-cli transaction build-raw \
     --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
-    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -2599,7 +2465,7 @@ Changes take effect in two epochs. After the next epoch transition, verify that 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query ledger-state --mainnet --mary-era --out-file ledger-state.json
+cardano-cli query ledger-state --mainnet > ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}
@@ -2696,7 +2562,7 @@ First, find the **tip** of the blockchain to set the **invalid-hereafter** param
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -2731,7 +2597,6 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mary-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -2767,7 +2632,6 @@ cardano-cli transaction build-raw \
     --tx-out ${destinationAddress}+0 \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
-    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -2813,7 +2677,6 @@ cardano-cli transaction build-raw \
     --tx-out ${destinationAddress}+${amountToSend} \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
-    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -2856,7 +2719,6 @@ Check if the funds arrived.
 ```bash
 cardano-cli query utxo \
     --address ${destinationAddress} \
-    --mary-era \
     --mainnet
 ```
 {% endtab %}
@@ -2889,7 +2751,7 @@ First, find the **tip** of the blockchain to set the **invalid-hereafter** param
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -2902,7 +2764,6 @@ Set the amount to send in lovelaces. ✨ Remember **1 ADA** = **1,000,000 lovela
 ```bash
 rewardBalance=$(cardano-cli query stake-address-info \
     --mainnet \
-    --mary-era \
     --address $(cat stake.addr) | jq -r ".[0].rewardAccountBalance")
 echo rewardBalance: $rewardBalance
 ```
@@ -2927,7 +2788,6 @@ Find your payment.addr balance, utxos and build the withdrawal string.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mary-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -2965,7 +2825,6 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --withdrawal ${withdrawalString} \
-    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -3011,7 +2870,6 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --withdrawal ${withdrawalString} \
-    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -3055,7 +2913,6 @@ Check if the funds arrived.
 ```bash
 cardano-cli query utxo \
     --address ${destinationAddress} \
-    --mary-era \
     --mainnet
 ```
 {% endtab %}
@@ -3354,7 +3211,7 @@ You need to find the **tip** of the blockchain to set the **invalid-hereafter** 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -3367,7 +3224,6 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mary-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -3403,7 +3259,6 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --certificate-file pool.cert \
-    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -3449,7 +3304,6 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file pool.cert \
-    --mary-era \
     --out-file tx-pool.raw
 ```
 {% endtab %}
@@ -3629,7 +3483,6 @@ Find your balance and **UTXOs**.
 ```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --mary-era \
     --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
@@ -3659,7 +3512,7 @@ Find the **tip** of the blockchain to set the **invalid-hereafter** parameter pr
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -3676,7 +3529,6 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --certificate-file pool.dereg \
-    --mary-era \
     --out-file tx.tmp
 ```
 {% endtab %}
@@ -3722,7 +3574,6 @@ cardano-cli transaction build-raw \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file pool.dereg \
-    --mary-era \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -3770,7 +3621,7 @@ After the retirement epoch, you can verify that the pool was successfully retire
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query ledger-state --mainnet --mary-era --out-file ledger-state.json
+cardano-cli query ledger-state --mainnet > ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}

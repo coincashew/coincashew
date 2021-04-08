@@ -7,7 +7,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of Feb 27 2021, this guide is written for **mainnet** with **release v.1.25.1** 😁 
+As of April 7 2021, this guide is written for **mainnet** with **release v.1.26.1** 😁 
 {% endhint %}
 
 ## 📡 1. How to perform an update
@@ -28,6 +28,93 @@ Read the patch notes for any other special updates or dependencies that may be r
 {% endhint %}
 
 {% tabs %}
+{% tab title="v1.26.1 Notes" %}
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.26.1**](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.1)\*\*\*\*
+
+This release includes significant performance improvements and numerous other minor improvements and feature additions. In particular the reward calculation pause is eliminated, and the CPU load for relays handling lots of incoming transactions should be significantly reduced.  
+The focus of the current development work is on completing and integrating support for the Alonzo era. This release includes many of the internal changes but does not yet include support for the new era.
+
+* Note that this release will automatically perform a DB migration on the first startup after the update. The **migration should take 10-20 minutes** however it can take up to 60 minutes depending on your CPU. If this is a problem for your use, then see below for steps to mitigate this.
+* The format of the `cardano-cli query tip` query has changed - see release notes for the CLI below.
+* The `cardano-cli query ledger-state` query now produces a binary file if `--out-file` is specified. If required \(e.g. for use in `cncli`\), JSON output can be obtained by omitting this parameter, and redirecting the standard output to a file
+
+#### Steps to mitigate downtime for this update
+
+This release will automatically perform a DB migration on the first startup after the update. The migration should take 10-20 minutes however it can take up to 60 minutes depending on your CPU.
+
+To mitigate downtime:
+
+1. Update a non-production mainnet node
+2. Take a DB snapshot
+3. Stop production node
+4. Backup and replace DB with snapshot
+5. Restart production node on 1.26.1
+6. Repeat steps 3-5 for all production nodes
+
+### 🛑 Release v1.26.1 New Dependencies
+
+#### 1. Install GHC 8.10.4 and Cabal 3.4.0.0
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+ghcup upgrade
+ghcup install ghc 8.10.4
+ghcup set ghc 8.10.4
+# Verify 8.10.4 is installed
+ghc --version  
+
+ghcup install cabal 3.4.0.0
+ghcup set cabal 3.4.0.0
+# Verify 3.4.0.0 is installed
+cabal --version 
+```
+
+#### 2. Update variables for topologyUpdater.sh on relay nodes
+
+`.blockNo` was changed to `.block`
+
+```bash
+cd $NODE_HOME
+sed -i topologyUpdater.sh \
+  -e "s/jq -r .blockNo/jq -r .block/g"
+```
+
+**3. Update gLiveView**
+
+```bash
+cd ${NODE_HOME}
+curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
+curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
+chmod 755 gLiveView.sh
+# Update env file with the stake pools configuration.
+sed -i env \
+    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
+    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
+```
+
+**4. If used, update relay-topology\_pull.sh on relay nodes**
+
+Change the delimiter between IP/Port/Valency from `:` to `,`
+
+```bash
+cd $NODE_HOME
+nano relay-topology_pull.sh
+# Example where changing the delimiter from : to , is required
+# curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP},\${BLOCKPRODUCING_PORT},1|relays-new.cardano-mainnet.iohk.io,3001,2"
+```
+
+#### 5. If used, update qcpolsendmytip.sh on block producer core node
+
+Various variables changed.
+
+```bash
+cd $NODE_HOME
+sed -i qcpolsendmytip.sh \
+  -e "s/jq -r '.slotNo, .headerHash, .blockNo'/jq -r '.slot, .hash, .block'/g"
+sudo systemctl restart qcpolsendmytip
+```
+{% endtab %}
+
 {% tab title="v1.25.1 Notes" %}
 **Full release notes:** [https://github.com/input-output-hk/cardano-node/releases/tag/1.25.1](https://github.com/input-output-hk/cardano-node/releases/tag/1.25.1)
 
@@ -173,14 +260,12 @@ Remove the old binaries and rebuild the latest binaries. Run the following comma
 
 ```bash
 cd $HOME/git/cardano-node2
-cabal clean
 cabal update
-rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.6.5
 rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.2
-git clean -fd
+rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.4
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.25.1 && git pull
-cabal configure -O0 -w ghc-8.10.2
+git checkout tags/1.26.1
+cabal configure -O0 -w ghc-8.10.4
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 cabal build cardano-node cardano-cli
 ```

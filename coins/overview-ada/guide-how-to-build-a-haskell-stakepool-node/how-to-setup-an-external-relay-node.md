@@ -77,8 +77,8 @@ cd cardano-node
 ```bash
 git fetch --tags --all
 git pull
-# Replace tag 1.24.2 with the version/branch you'd like to build
-git checkout 1.24.2
+# Replace tag 1.26.1 with the version/branch you'd like to build
+git checkout 1.26.1
 
 echo -e "package cardano-crypto-praos\n  flags: -external-libsodium-vrf" > cabal.project.local
 $CNODE_HOME/scripts/cabal-build-all.sh
@@ -199,7 +199,7 @@ Run Guild Liveview.
 
 Sample output of Guild Live View
 
-![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
+![](../../../.gitbook/assets/glive.png)
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
