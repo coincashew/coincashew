@@ -69,7 +69,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 
 Answer **NO** to installing haskell-language-server \(HLS\).
 
-Answer **YES** to automatically add the required PATH variable to "/home/hello/.bashrc".
+Answer **YES** to automatically add the required PATH variable to ".bashrc".
 
 ```bash
 ghcup upgrade
