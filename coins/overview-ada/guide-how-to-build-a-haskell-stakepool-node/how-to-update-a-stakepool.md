@@ -3,7 +3,7 @@
 ## 🎉 ∞ Pre-Announcements
 
 {% hint style="info" %}
-Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+🎊 This latest update brought to you by the generous donations by [**BEBOP stake pool**](https://bebopadapool.com/). If you found this helpful, consider using [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
 {% endhint %}
 
 {% hint style="success" %}
