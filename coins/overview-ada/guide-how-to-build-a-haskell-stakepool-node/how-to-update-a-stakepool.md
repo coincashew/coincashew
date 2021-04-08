@@ -72,6 +72,7 @@ Answer **NO** to installing haskell-language-server \(HLS\).
 Answer **YES** to automatically add the required PATH variable to ".bashrc".
 
 ```bash
+source ~/.bashrc
 ghcup upgrade
 ghcup install ghc 8.10.4
 ghcup set ghc 8.10.4
