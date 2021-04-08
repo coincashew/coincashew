@@ -168,6 +168,7 @@
   * [External Reading Material](coins/overview-xtz/external-reading-material.md)
 * [Chainlink: LINK](coins/link.md)
 * [Monero: XMR](coins/overview-xmr/README.md)
+  * [Guide \| How to run your own Monero node](coins/overview-xmr/guide-or-how-to-run-a-full-node.md)
   * [Guide: How to mine Monero](coins/overview-xmr/guide-how-to-mine-xmr.md)
   * [Create a XMR paper wallet](https://moneroaddress.org/)
   * [External Reading Material](coins/overview-xmr/external-reading-material/README.md)
