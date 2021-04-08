@@ -163,12 +163,7 @@ limit-rate-down=1048576 # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s;
 {% hint style="info" %}
 **Configuration File Comments**
 
-* Remove this if you want to store full blockchain
-
-```bash
-prune-blockchain=false
-```
-
+* Modify `prune-blockchain` to `false` if you want to store full blockchain
 * `rpc-restricted-bind-ip/port flags`enable restricted access to your node but allow full RPC from other Monero wallets on your LAN.
 * Limit the upload speed in case you have a data cap: `limit-rate-up=8192` \(in kB/s\). Conversely, if you have an unlimited data plan, consider increasing the upload speeds to better support the Monero network. A node can typically use up to 1TB traffic per month.
 {% endhint %}
