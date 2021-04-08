@@ -137,6 +137,7 @@
     * [How to upload poolMetaData.json to Github](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-upload-poolmetadata.json-to-github.md)
     * [How to update a Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-update-a-stakepool.md)
     * [How to setup an external passive relay node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-an-external-relay-node.md)
+    * [How to Monitor Security with OSSEC server and Slack](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-monitor-security-with-ossec-server-and-slack.md)
     * [How to fix the Mnemonic staking balance bug](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-fix-the-mnemonic-staking-balance-bug.md)
     * [How to delegate to a Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-delegate-to-a-stakepool.md)
   * [Guide: How to buy ADA](coins/overview-ada/guide-how-to-buy-ada.md)
