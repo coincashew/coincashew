@@ -124,7 +124,19 @@ sudo ln -s /usr/local/lib/libsodium.so.23.3.0 /usr/lib/libsodium.so.23
 ```
 {% endhint %}
 
-Install Cabal.
+Install Cabal and dependencies.
+
+```bash
+sudo apt-get -y install pkg-config libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev build-essential curl libgmp-dev libffi-dev libncurses-dev libtinfo5
+```
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+```
+
+Answer **NO** to installing haskell-language-server \(HLS\).
+
+Answer **YES** to automatically add the required PATH variable to ".bashrc".
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
