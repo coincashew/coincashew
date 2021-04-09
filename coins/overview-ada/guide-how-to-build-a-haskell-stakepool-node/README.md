@@ -474,6 +474,7 @@ TimeoutStopSec=2
 LimitNOFILE=32768
 Restart=always
 RestartSec=5
+SyslogIdentifier=cardano-node
 
 [Install]
 WantedBy	= multi-user.target
@@ -503,6 +504,7 @@ TimeoutStopSec=2
 LimitNOFILE=32768
 Restart=always
 RestartSec=5
+SyslogIdentifier=cardano-node
 
 [Install]
 WantedBy	= multi-user.target
