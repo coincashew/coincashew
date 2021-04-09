@@ -388,18 +388,16 @@ In this case, we want to track all IPs that have more than 2 connections at the 
     </localfile>
 ```
 
-Finally, we want a tracer for errors in topologyUpdater log. Suppose that you put your topologyUpdater log in `/home/cardano/logs/topologyUpdate_lastresults.json`, we will add a section like this one
+Save and close this file. Finally, we want a tracer for errors in topologyUpdater log. We can log its output directly to syslog by adding this line at the top of the script
 
-```xml
-    <localfile>
-      <log_format>syslog</log_format>
-      <location>/home/cardano/logs/topologyUpdate_lastresults.json</location>
-    </localfile>
+```bash
+#!/bin/bash
+
+exec 1> >(logger -s -t $(basename $0)) 2>&1  # this little line automagically logs all output to syslog!
+
 ```
 
-to enable monitoring of this log. Save and close this file. At this point OSSEC will know that it needs to look at this file.
-
-We will also add a decoder to let OSSEC know the correct interpretation of this file. Open the `decoder.xml` file
+Save and close this file. We will also add a decoder to let OSSEC know the correct interpretation of this file. Open the `decoder.xml` file
 
 ```bash
 sudo nano /var/ossec/etc/decoder.xml
@@ -412,7 +410,7 @@ and add these lines at the end
 <!-- { "resultcode": "502", "datetime":"2021-04-07 08:15:50", "clientIp": "8.8.8.8", "msg": "invalid blockNo []" } -->
 <!-- { "resultcode": "504", "datetime":"2021-04-07 08:19:59", "clientIp": "8.8.8.8", "iptype": 4, "msg": "one request per hour please" } -->
 <decoder name="topologyupdater">
-  <prematch>\{ "resultcode"</prematch>
+  <program_name>topologyUpdater.sh</program_name>
 </decoder>
 
 <decoder name="topologyupdater-ip">
@@ -430,6 +428,16 @@ and add these lines at the end
 </decoder>
 ```
 
+If you are using Systemd scripts for your cardano node and have a `SyslogIdentifier=cardano-node` line in it, we can also add this decoder line to identify the node logs
+
+```xml
+<decoder name="cardano-node">
+  <program_name>cardano-node</program_name>
+</decoder>
+```
+
+And later we will see rules to filter by severity. Save and close this file.
+
 Now let's check that everything works. Run this command
 
 ```bash
@@ -439,16 +447,16 @@ sudo /var/ossec/bin/ossec-logtest
 and paste this test line then press ENTER. The line should be recognized and decoded, such as in this example
 
 ```json
-{ "resultcode": "502", "datetime":"2021-04-07 08:15:50", "clientIp": "8.8.8.8", "msg": "invalid blockNo []" }
+Apr  9 15:01:17 topologyUpdater.sh: { "resultcode": "502", "datetime":"2021-04-07 08:15:50", "clientIp": "8.8.8.8", "msg": "invalid blockNo []" }
 ```
 
 The result show be like this one
 
 ```
 **Phase 1: Completed pre-decoding.
-       full event: '{ "resultcode": "502", "datetime":"2021-04-07 08:15:50", "clientIp": "8.8.8.8", "msg": "invalid blockNo []" }'
-       hostname: 'relaynode1'
-       program_name: '(null)'
+       full event: 'Apr  9 15:01:17 topologyUpdater.sh: { "resultcode": "502", "datetime":"2021-04-07 08:15:50", "clientIp": "8.8.8.8", "msg": "invalid blockNo []" }'
+       hostname: 'relaynode2'
+       program_name: 'topologyUpdater.sh'
        log: '{ "resultcode": "502", "datetime":"2021-04-07 08:15:50", "clientIp": "8.8.8.8", "msg": "invalid blockNo []" }'
 
 **Phase 2: Completed decoding.
@@ -493,7 +501,7 @@ Next, we will configure a rule with high severity to keep track of the incoming 
   </rule>
 ```
 
-Finally, we also want to track errors on topologyUpdater so we will add these lines at the end after the `</group>` line. Here we are creating a new group for our topologyUpdate decoder, which by default has an alert level of 0 and an alert level of 4 for invalid block errors (usually when the node is not working) and level of 3 (low level notification) when topologyUpdater performs more than one request per hour.
+We also want to track errors on topologyUpdater so we will add these lines at the end after the `</group>` line. Here we are creating a new group for our topologyUpdate decoder, which by default has an alert level of 0 and an alert level of 4 for invalid block errors (usually when the node is not working) and level of 3 (low level notification) when topologyUpdater performs more than one request per hour.
 
 ```xml
  <group name="syslog,topologyupdater,">
@@ -522,20 +530,43 @@ Finally, we also want to track errors on topologyUpdater so we will add these li
 </group>
 ```
 
-Save and close this file and restart OSSEC. If you let it run for an hour or so, you'll see that you will get a lot of notifications to your OSSEC channel. For example, for some reasons cardano node logs to syslog with very long lines and these generate a high severity warning because they might be a signal for a potential attack. To avoid this we will make a change in the `mainnet-config.json` file.
+Finally, we will add a last group for the cardano node logs
 
-```bash
-sed -i ${NODE_CONFIG}-config.json \
-    -e "s/minSeverity\": \"Info\"/minSeverity\": \"Notice\"/g"
+```xml
+<group name="syslog,cardano-node">
+
+  <rule id="120000" level="0" noalert="1">
+     <decoded_as>cardano-node</decoded_as>
+     <description>cardano-node grouped.</description>
+  </rule>
+
+  <rule id="120001" level="0">
+     <if_sid>120000</if_sid>
+     <match>Info</match>
+     <description></description>
+  </rule>
+  
+  <rule id="120002" level="0">
+     <if_sid>120000</if_sid>
+     <match>Notice</match>
+     <description></description>
+  </rule>
+
+  <rule id="120003" level="5">
+     <if_sid>120000</if_sid>
+     <match>Warning</match>
+     <description></description>
+  </rule>
+
+  <rule id="120004" level="7">
+     <if_sid>120000</if_sid>
+     <match>Error</match>
+     <description></description>
+  </rule>
+</group>
 ```
 
-Now restart your cardano node 
-
-```bash
-sudo systemctl restart cardano-node
-```
-
-and you should enjoy a calmer environment.
+Save and close this file and restart OSSEC. If you let it run for an hour or so, you'll see that you will get a lot of notifications to your OSSEC channel. For example, you may want to adjust the level of the cardano-node rules above, even shutting down some of them by setting the level to 0.
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨ 
