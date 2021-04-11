@@ -14,15 +14,6 @@ As of April 7 2021, this guide is written for **mainnet** with **release v.1.26.
 
 From time to time, there will be new versions of `cardano-node`. Follow the [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) by enabling **notifications** with the watch functionality.
 
-To update with `$HOME/git/cardano-node` as the current binaries directory, copy the whole cardano-node directory to a new place so that you have a backup.
-
-```bash
-cd $HOME/git
-rm -rf cardano-node-old/
-git clone https://github.com/input-output-hk/cardano-node.git cardano-node2
-cd cardano-node2/
-```
-
 {% hint style="danger" %}
 Read the patch notes for any other special updates or dependencies that may be required for the latest release.
 {% endhint %}
@@ -274,7 +265,16 @@ chmod 400 vrf.skey
 
 ### Compiling the new binaries
 
-Remove the old binaries and rebuild the latest binaries. Run the following command to pull and build the latest binaries. Change the checkout **tag** or **branch** as needed.
+To update with `$HOME/git/cardano-node` as the current binaries directory, clone a new git repo named `cardano-node2` so that you have a backup in case of rollback. Remove the old binaries.
+
+```bash
+cd $HOME/git
+rm -rf cardano-node-old/
+git clone https://github.com/input-output-hk/cardano-node.git cardano-node2
+cd cardano-node2/
+```
+
+Run the following command to pull and build the latest binaries. Change the checkout **tag** or **branch** as needed.
 
 ```bash
 cd $HOME/git/cardano-node2

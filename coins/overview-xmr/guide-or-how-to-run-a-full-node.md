@@ -44,10 +44,19 @@ As of early 2021, a pruned node uses 32GB and a full node uses 96GB of storage s
 Full Public Node with port 18089, a restricted RPC port.
 
 ```bash
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow ssh
 # Allow monerod p2p port
 sudo ufw allow 18080
 # Allow monerod restricted RPC port
 sudo ufw allow 18089
+# Enable firewall
+sudo ufw enable
+# Verify status
+sudo ufw status numbered
 ```
 
 Setup service accounts.
@@ -134,24 +143,21 @@ max-log-file-size=0 # Prevent monerod from managing the log files; we want logro
 p2p-bind-ip=0.0.0.0 # Bind to all interfaces (the default)
 p2p-bind-port=18080 # Bind to default port
 public-node=true # Advertises the RPC-restricted port over p2p peer lists
-confirm-external-bind=true  # Open node (confirm)
 
 # rpc settings
 rpc-restricted-bind-ip=0.0.0.0
 rpc-restricted-bind-port=18089
-restricted-rpc=true
 
 # i2p settings
 tx-proxy=i2p,127.0.0.1:8060
 
-
 # node settings
 prune-blockchain=true
 db-sync-mode=safe # Slow but reliable db writes
-enforce-dns-checkpointing=1
+enforce-dns-checkpointing=true
 enable-dns-blocklist=true # Block known-malicious nodes
 no-igd=true # Disable UPnP port mapping
-no-zmq=1 # ZMQ configuration
+no-zmq=true # ZMQ configuration
 
 # bandwidth settings
 out-peers=32 # This will enable much faster sync and tx awareness; the default 8 is suboptimal nowadays
@@ -164,6 +170,7 @@ limit-rate-down=1048576 # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s;
 **Configuration File Comments**
 
 * Modify `prune-blockchain` to `false` if you want to store full blockchain
+* Modify `public-node` to `false` if you do not want other users to use your node.
 * `rpc-restricted-bind-ip/port flags`enable restricted access to your node but allow full RPC from other Monero wallets on your LAN.
 * Limit the upload speed in case you have a data cap: `limit-rate-up=8192` \(in kB/s\). Conversely, if you have an unlimited data plan, consider increasing the upload speeds to better support the Monero network. A node can typically use up to 1TB traffic per month.
 {% endhint %}

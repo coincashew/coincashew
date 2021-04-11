@@ -390,13 +390,20 @@ With any new installation, ufw is disabled by default. Enable it with the follow
 * Port 22 \(or your random port \#\) TCP for SSH connection
 * Port 6000 TCP for p2p traffic
 * Port 3000 TCP for Grafana web server \(if applicable\)
-* Port 9100 tcp for Prometheus export data
+* Port 9100 tcp for Prometheus node data
 * Port 12798 tcp for Prometheus cardano-node metrics data
 
 ```bash
-sudo ufw allow <22 or your random port number>/tcp
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
+# Allow cardano-node p2p port
 sudo ufw allow 6000/tcp
+# Enable firewall
 sudo ufw enable
+# Verify status
 sudo ufw status numbered
 ```
 
@@ -409,8 +416,11 @@ Only open the following ports on nodes behind a network firewall.
 \*\*\*\*🔥 **It may be dangerous to open these ports on a VPS/cloud node.**
 
 ```bash
+# Allow grafana web server port
 sudo ufw allow 3000/tcp
+# Allow prometheus endpoint port
 sudo ufw allow 9100/tcp
+# Allow prometheus cardano-node metric data port
 sudo ufw allow 12798/tcp
 ```
 
