@@ -2047,6 +2047,10 @@ sudo systemctl restart cardano-node
 Congratulations. You're basically done. More great operational and maintenance tips below.
 {% endhint %}
 
+{% hint style="info" %}
+🍰 Be sure to review the [stake pool operator's best practice checklist](./#18-15-stake-pool-operators-best-practices-checklist) to ensure a smooth sailing with your pool.
+{% endhint %}
+
 ## 👏 17. Thank yous, Telegram and reference material
 
 ### 😊 17.1 Donation Tip Jar
