@@ -5,12 +5,13 @@ description: Guide to monitor your node security with OSSEC and Slack.
 # How to Monitor Security with OSSEC server and Slack
 
 {% hint style="info" %}
-This guide was contributed by [Billionaire Pool](www.billionairepool.com). If you find this guide useful, please consider staking to it (**BIL** ticker). Thank you 🙏 
+This guide was contributed by [Billionaire Pool](www.billionairepool.com). If you find this guide useful, please consider staking to it \(**BIL** ticker\). Thank you 🙏
 {% endhint %}
 
 {% hint style="info" %}
-The guide is kindly hosted by our Coincashew friends. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+The guide is kindly hosted by our Coincashew friends. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏
 {% endhint %}
+
 ## 🤖 Pre-requisites
 
 * Ubuntu Server or Ubuntu Desktop installed
@@ -37,17 +38,17 @@ Some packages will be required for the installation. You will need
 
 On Ubuntu run this command to install them
 
-```
+```text
 sudo apt install libz-dev libssl-dev libpcre2-dev build-essential libevent-dev
 ```
 
 ## 🛸 Download OSSEC
 
-First of all, we will need to get a fresh copy of OSSEC. We will download it from github and then checkout the latest stable version
+First of all, we will need to get a fresh copy of OSSEC. We will download it from github and then checkout the latest stable version.
 
-Go to this page and find out the latest version number
+Go to this page and find out the latest version number.
 
-{% embed url="https://github.com/ossec/ossec-hids/releases" %}
+{% embed url="https://github.com/ossec/ossec-hids/releases" caption="" %}
 
 Then, login to your server and
 
@@ -71,16 +72,16 @@ sudo ./install.sh
 
 The installation script will prompt you with some questions. We start with installation language
 
-```
+```text
   (en/br/cn/de/el/es/fr/hu/it/jp/nl/pl/ru/sr/tr) [en]:
 ```
 
-Here we will use this language so press ENTER. 
+Here we will use this language so press ENTER.
 
-```
+```text
 You are about to start the installation process of the OSSEC HIDS.
  You must have a C compiler pre-installed in your system.
- 
+
   - System: Linux ubuntu 4.19.0-16-arm64
   - User: root
   - Host: ubuntu
@@ -91,15 +92,15 @@ You are about to start the installation process of the OSSEC HIDS.
 
 Press ENTER to start the installation process
 
-```
+```text
 1- What kind of installation do you want (server, agent, local, hybrid or help)? local
 
-  - Local installation chosen.  
+  - Local installation chosen.
 ```
 
 Type **local** for local installation
 
-```
+```text
 2- Setting up the installation environment.
 
  - Choose where to install the OSSEC HIDS [/var/ossec]: 
@@ -107,9 +108,9 @@ Type **local** for local installation
     - Installation will be made at  /var/ossec .
 ```
 
-ENTER for default location. For safety reasons, this location will be accessible only to root user. You don't want anyone to read and potetianlly find ways to exploit information about your OSSEC configuration.
+ENTER for default location. For safety reasons, this location will be accessible only to root user. You don't want anyone to read and potentially find ways to exploit information about your OSSEC configuration.
 
-```
+```text
 3- Configuring the OSSEC HIDS.
 
   3.1- Do you want e-mail notification? (y/n) [y]: n
@@ -117,7 +118,7 @@ ENTER for default location. For safety reasons, this location will be accessible
 
 Type **n** and ENTER. We will have slack notifications so there's no need to turn on mail notifications. If you want it anyway, you will need to provide an email address with a valid SMTP server.
 
-```
+```text
   3.2- Do you want to run the integrity check daemon? (y/n) [y]:
 
    - Running syscheck (integrity check daemon).
@@ -125,22 +126,22 @@ Type **n** and ENTER. We will have slack notifications so there's no need to tur
 
 Press ENTER to confirm. You will want to have an integrity check daemon to checksum important files and monitor any change.
 
-```
+```text
   3.3- Do you want to run the rootkit detection engine? (y/n) [y]: 
 
    - Running rootcheck (rootkit detection).
 ```
 
-Press ENTER to confirm. Rootkits are malicious software designed to allow illicit access to protected parts of the system. This detection is tipically achieved looking for virus "signatures", by integrity checking and by monitoring system usage.
+Press ENTER to confirm. Rootkits are malicious software designed to allow illicit access to protected parts of the system. This detection is typically achieved looking for virus "signatures", by integrity checking and by monitoring system usage.
 
-```
+```text
   3.4- Active response allows you to execute a specific 
        command based on the events received. For example,
        you can block an IP address or disable access for
        a specific user.  
        More information at:
        http://www.ossec.net/en/manual.html#active-response
-       
+
    - Do you want to enable active response? (y/n) [y]: 
 
      - Active response enabled.
@@ -148,7 +149,7 @@ Press ENTER to confirm. Rootkits are malicious software designed to allow illici
 
 This will be a key step for our Slack setup. We want active response to get immediately notified of all threats. Press ENTER.
 
-```
+```text
    - By default, we can enable the host-deny and the 
      firewall-drop responses. The first one will add
      a host to the /etc/hosts.deny and the second one
@@ -170,7 +171,7 @@ This will be a key step for our Slack setup. We want active response to get imme
 
 OSSEC can provide a firewall drop rule for local firewall in response to high level threats. Optionally, you can whitelist the addresses that you use to connect to the server.
 
-```
+```text
   3.6- Setting the configuration to analyze the following logs:
     -- /var/log/messages
     -- /var/log/auth.log
@@ -183,11 +184,11 @@ OSSEC can provide a firewall drop rule for local firewall in response to high le
    by visiting us online at http://www.ossec.net .
 
    --- Press ENTER to continue ---
-```                            
+```
 
 Configuration is done. The script reminds you that some log files will be monitored by default. We will add specific folders and files later. Press ENTER to start to compile and install OSSEC.
 
-```
+```text
 5- Installing the system
 
  - System is Debian (Ubuntu or derivative).
@@ -215,10 +216,13 @@ Configuration is done. The script reminds you that some log files will be monito
     ---  Press ENTER to finish (maybe more information below). ---
 ```
 
+{% hint style="success" %}
 Congratulations! You just completed the installation.
-## Create a new service for OSSEC autostart
+{% endhint %}
 
-Now we want OSSEC to run automatically at startup. To achieve this, we will create a SystemD service
+## ✨ Create a new service for OSSEC autostart
+
+Now we want OSSEC to run automatically at startup. To achieve this, we will create a systemd service.
 
 ```bash
 cd $HOME
@@ -247,11 +251,11 @@ Go to your Slack workspace and create a **private** channel for each of the serv
 
 We will first create a Slack App for the OSSEC service. Go to this page
 
-https://api.slack.com/apps?new_app=1
+[https://api.slack.com/apps?new\_app=1](https://api.slack.com/apps?new_app=1)
 
 and click **Create New App**. Enter `OSSEC` as a name and select your workspace. Next click on the OSSEC app to view the API information.
 
-Next click on **Add features and functionality** and **Incoming Webhooks**. Here we will add an new webhook for the server. Click on **Add New Webhook to Workspace** and select the channel you want to post to. 
+Next click on **Add features and functionality** and **Incoming Webhooks**. Here we will add an new webhook for the server. Click on **Add New Webhook to Workspace** and select the channel you want to post to.
 
 Then copy the **WebHook URL** from webhooks page.
 
@@ -264,7 +268,8 @@ SITE="https://hooks.slack.com/services/<some token string>" # The WebHook URL yo
 ```
 
 We are ready to configure OSSEC with our Slack information.
-## Let OSSEC talk to your Slack API
+
+## 👾 Let OSSEC talk to your Slack API
 
 OSSEC uses a bash script to forward its notifications to Slack. We will first configure this
 
@@ -296,7 +301,7 @@ sudo nano /var/ossec/etc/ossec.conf
 
 and add these lines at the end of the commands section
 
-```xml
+```markup
   <!-- SLACK -->                
   <command>                             
     <name>ossec-slack</name>
@@ -304,17 +309,17 @@ and add these lines at the end of the commands section
     <expect></expect> <!-- no expect args required -->
     <timeout_allowed>no<timeout_allowed>
   </command>  
-  
+
   <active-response>
     <command>ossec-slack</command>
     <location>local</location>
     <level>3</level>
   </active-response>
-```         
+```
 
-Current level of notifications for this command is 3. This means that you will be notified for example of all succedded events, such as ssh logins or sudo commands. This ensures a very good level of protection, but if you think that these notifications are not useful, you can adjust the level. I would suggest raising this to the bearable minimum. I actually keep this at 3 to get notifications for all logins to my servers. As you will see, you will also fine-tune the notifications to your system in the last section.
+Current level of notifications for this command is 3. This means that you will be notified for example of all succeeded events, such as ssh logins or sudo commands. This ensures a very good level of protection, but if you think that these notifications are not useful, you can adjust the level. I would suggest raising this to the bearable minimum. I actually keep this at 3 to get notifications for all logins to my servers. As you will see, you will also fine-tune the notifications to your system in the last section.
 
-OK, now let's start OSSEC and see if everyhing works. Type
+OK, now let's start OSSEC and see if everything works. Type
 
 ```bash
 sudo systemctl start ossec
@@ -338,7 +343,7 @@ sudo nano /var/ossec/etc/ossec.conf
 
 Look for the `<directories>` entries and modify as below
 
-```xml
+```markup
     <!-- Directories to check  (perform all possible verifications) -->
     <directories report_changes="yes" realtime="yes" check_all="yes">/etc,/usr/bin,/usr/sbin</directories>
     <directories report_changes="yes" realtime="yes" check_all="yes">/bin,/sbin,/boot</directories>
@@ -348,13 +353,13 @@ Look for the `<directories>` entries and modify as below
 
 Here we added the keywords `report_changes="yes" realtime="yes` to all directories to monitor their realtime changes. We also want to monitor specific files in the cardano node folder. We will then add a line like this one
 
-```xml
+```markup
     <directories report_changes="yes" realtime="yes" restrict=".skey|.cert|.json|.txt|.sh|.addr|env" check_all="yes">/home/cardano/pool</directories>
 ```
 
 where `/home/cardano/pool` is our cardano node folder. Change this directory to point to your node directory. It's also a good idea to exclude the database and logs folder, so we will add also the following lines to the `<ignore>` fields.
 
-```xml
+```markup
     <ignore>/home/cardano/pool/db</ignore>
     <ignore>/home/cardano/pool/logs</ignore>
 ```
@@ -365,11 +370,11 @@ Another important point is that we want to spot any potential DoS attack to our 
 netstat -tn 2>/dev/null | grep :<YOUR-PORT> | awk '{print $5}' | cut -d: -f1 | uniq -c | sort -nr
 ```
 
-where you will change `<YOUR-PORT>` with the node port (say 3001 or 6000 for example).
+where you will change `<YOUR-PORT>` with the node port \(say 3001 or 6000 for example\).
 
-The ouput will be something like this
+The output will be something like this
 
-```
+```text
       2 xxx.yyy.zzz.www
       1 xxx.yyy.zzz.www
       1 xxx.yyy.zzz.www
@@ -381,20 +386,18 @@ The ouput will be something like this
 
 In this case, we want to track all IPs that have more than 2 connections at the same time. To achieve this we will add an `awk '$1 > 2 { print $2}'` at the end. So our final tracker will be this one, to be inserted at the end of the `<localfile>` commands section. Remember to change `<YOUR-PORT>` with the actual node port.
 
-```xml
+```markup
     <localfile>
       <log_format>full_command</log_format>
       <command>netstat -tn 2>/dev/null | grep :<YOUR-PORT> | awk '{print $5}' | cut -d: -f1 | uniq -c | sort -nr | awk '$1 > 2 { print $2}'</command>
     </localfile>
 ```
 
-Save and close this file. Finally, we want a tracer for errors in topologyUpdater log. We can log its output directly to syslog by adding this line at the top of the script
+Save and close this file. Finally, we want a tracer for errors in topologyUpdater log. We can log its output directly to syslog by adding this line at the top of the script.
 
 ```bash
 #!/bin/bash
-
 exec 1> >(logger -s -t $(basename $0)) 2>&1  # this little line automagically logs all output to syslog!
-
 ```
 
 Save and close this file. We will also add a decoder to let OSSEC know the correct interpretation of this file. Open the `decoder.xml` file
@@ -405,7 +408,7 @@ sudo nano /var/ossec/etc/decoder.xml
 
 and add these lines at the end
 
-```xml
+```markup
 <!-- Decoder topologyUpdater -->
 <!-- { "resultcode": "502", "datetime":"2021-04-07 08:15:50", "clientIp": "8.8.8.8", "msg": "invalid blockNo []" } -->
 <!-- { "resultcode": "504", "datetime":"2021-04-07 08:19:59", "clientIp": "8.8.8.8", "iptype": 4, "msg": "one request per hour please" } -->
@@ -430,7 +433,7 @@ and add these lines at the end
 
 If you are using Systemd scripts for your cardano node and have a `SyslogIdentifier=cardano-node` line in it, we can also add this decoder line to identify the node logs
 
-```xml
+```markup
 <decoder name="cardano-node">
   <program_name>cardano-node</program_name>
 </decoder>
@@ -446,13 +449,13 @@ sudo /var/ossec/bin/ossec-logtest
 
 and paste this test line then press ENTER. The line should be recognized and decoded, such as in this example
 
-```json
+```text
 Apr  9 15:01:17 topologyUpdater.sh: { "resultcode": "502", "datetime":"2021-04-07 08:15:50", "clientIp": "8.8.8.8", "msg": "invalid blockNo []" }
 ```
 
 The result show be like this one
 
-```
+```text
 **Phase 1: Completed pre-decoding.
        full event: 'Apr  9 15:01:17 topologyUpdater.sh: { "resultcode": "502", "datetime":"2021-04-07 08:15:50", "clientIp": "8.8.8.8", "msg": "invalid blockNo []" }'
        hostname: 'relaynode2'
@@ -468,11 +471,11 @@ The result show be like this one
 
 Here you see that OSSEC correctly identified the decoder to use and separated the fields in the right way.
 
-Good! We defined all trackers and files to monitor. Save and close this file. Next step will be the definition of local rules. 
+Good! We defined all trackers and files to monitor. Save and close this file. Next step will be the definition of local rules.
 
 ## 🔎 Setting rules and fine-tuning
 
-OSSEC comes with a number of predefined rules that implement the best practises in server security. However, sometimes they are a bit too invasive or need to be adapted to the specific server you are running. Each set of rules comes in a `.xml` file. In this section, we will configure the `local_rules.xml` file to adapt them to our cardano node.
+OSSEC comes with a number of predefined rules that implement the best practices in server security. However, sometimes they are a bit too invasive or need to be adapted to the specific server you are running. Each set of rules comes in a `.xml` file. In this section, we will configure the `local_rules.xml` file to adapt them to our cardano node.
 
 To edit your rules type
 
@@ -480,9 +483,9 @@ To edit your rules type
 sudo nano /var/ossec/rules/local_rules.xml
 ```
 
-First of all, we will create a new rule to silence all warnings coming from loop devices having no space. Rules have a unique ID (in this case we will use consecutive numbers starting from 100,001) and a level of security. Level 0 means no notification. This rule will be based on rule 531, which is activated in case a device has no empty space, and will be give level 0, i.e. silence, all string matching the regular expression defined in the `pcre2` fields (perl regular expression format). We also ad a human format description.
+First of all, we will create a new rule to silence all warnings coming from loop devices having no space. Rules have a unique ID \(in this case we will use consecutive numbers starting from 100,001\) and a level of security. Level 0 means no notification. This rule will be based on rule 531, which is activated in case a device has no empty space, and will be give level 0, i.e. silence, all string matching the regular expression defined in the `pcre2` fields \(perl regular expression format\). We also ad a human format description.
 
-```xml
+```markup
   <rule id="100001" level="0">
      <if_sid>531</if_sid>
      <pcre2>loop</pcre2>
@@ -492,7 +495,7 @@ First of all, we will create a new rule to silence all warnings coming from loop
 
 Next, we will configure a rule with high severity to keep track of the incoming connections with more than 2 connections. Don't forget to change `<YOUR-PORT>` with the actual node port.
 
-```xml
+```markup
   <rule id="100002" level="7">
     <if_sid>530</if_sid>
     <match>ossec: output: 'netstat -tn 2>/dev/null | grep :<YOUR-PORT></match>
@@ -501,9 +504,9 @@ Next, we will configure a rule with high severity to keep track of the incoming 
   </rule>
 ```
 
-We also want to track errors on topologyUpdater so we will add these lines at the end after the `</group>` line. Here we are creating a new group for our topologyUpdate decoder, which by default has an alert level of 0 and an alert level of 4 for invalid block errors (usually when the node is not working) and level of 3 (low level notification) when topologyUpdater performs more than one request per hour.
+We also want to track errors on topologyUpdater so we will add these lines at the end after the `</group>` line. Here we are creating a new group for our topologyUpdate decoder, which by default has an alert level of 0 and an alert level of 4 for invalid block errors \(usually when the node is not working\) and level of 3 \(low level notification\) when topologyUpdater performs more than one request per hour.
 
-```xml
+```markup
  <group name="syslog,topologyupdater,">
   <rule id="110000" level="0" noalert="1">
     <decoded_as>topologyupdater</decoded_as>
@@ -532,20 +535,18 @@ We also want to track errors on topologyUpdater so we will add these lines at th
 
 Finally, we will add a last group for the cardano node logs
 
-```xml
+```markup
 <group name="syslog,cardano-node">
-
   <rule id="120000" level="0" noalert="1">
      <decoded_as>cardano-node</decoded_as>
      <description>cardano-node grouped.</description>
   </rule>
-
   <rule id="120001" level="0">
      <if_sid>120000</if_sid>
      <match>Info</match>
      <description></description>
   </rule>
-  
+
   <rule id="120002" level="0">
      <if_sid>120000</if_sid>
      <match>Notice</match>
@@ -569,27 +570,28 @@ Finally, we will add a last group for the cardano node logs
 Save and close this file and restart OSSEC. If you let it run for an hour or so, you'll see that you will get a lot of notifications to your OSSEC channel. For example, you may want to adjust the level of the cardano-node rules above, even shutting down some of them by setting the level to 0.
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨ 
+Congrats on completing the guide. ✨
 
-This guide was contributed by [Billionaire Pool](www.billionairepool.com). If you find this guide useful, please consider staking to it (**BIL** ticker). Thank you 🙏 
+This guide was contributed by [Billionaire Pool](www.billionairepool.com). If you find this guide useful, please consider staking to it \(**BIL** ticker\). Thank you 🙏
 
 Join [@BillionairePool](https://twitter.com/BillionairePool) on Twitter or hang out and chat at on Discord @
 
 [https://discord.gg/tDW6dqh7](https://discord.gg/tDW6dqh7)
 
-The guide is kindly hosted by our Coincashew friends. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+The guide is kindly hosted by our Coincashew friends. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏
 
 Hang out and chat with fellow stake pool operators on Discord @
 
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃 
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 
 Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}
 
 ## 🚀 References
 
-{% embed url="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ossec-security-notifications-on-ubuntu-14-04" %}
+{% embed url="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ossec-security-notifications-on-ubuntu-14-04" caption="" %}
 
-{% embed url="https://www.built.io/blog/how-to-implement-a-host-based-intrusion-detection-system--hids-in-the-cloud" %}
+{% embed url="https://www.built.io/blog/how-to-implement-a-host-based-intrusion-detection-system--hids-in-the-cloud" caption="" %}
 
-{% embed url="https://defragged.org/ossec/2016/01/ossec-integrates-slack-and-pagerduty/" %}
+{% embed url="https://defragged.org/ossec/2016/01/ossec-integrates-slack-and-pagerduty/" caption="" %}
+
