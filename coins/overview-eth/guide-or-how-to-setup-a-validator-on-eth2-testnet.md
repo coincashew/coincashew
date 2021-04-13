@@ -9,7 +9,7 @@ description: >-
 {% hint style="success" %}
 As of April 12 2021, this guide is updated for **testnet PYRMONT.** 
 
-If you would like to test on **PRATER**, [please click here.](guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
+If you would like to test on **testnet** **PRATER**, [please click here.](guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
 {% endhint %}
 
 {% hint style="info" %}
