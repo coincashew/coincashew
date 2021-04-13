@@ -10,7 +10,11 @@ description: >-
 As of Mar 29 2021, this guide is updated for **testnet Prater.** 😁
 {% endhint %}
 
-#### ✨ For the mainnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+{% hint style="info" %}
+#### For the **PYRMONT guide,** [please click here.](https://github.com/coincashew/coincashew/blob/53299338b94e2cb0896fd4fc0a1bbc9b5e985eef/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
+
+#### For the MAINNET guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+{% endhint %}
 
 🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
 
