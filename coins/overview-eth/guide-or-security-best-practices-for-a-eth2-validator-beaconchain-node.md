@@ -409,8 +409,6 @@ sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
 # Enable firewall
 sudo ufw enable
-# Verify status
-sudo ufw status numbered
 ```
 {% endtab %}
 
@@ -429,8 +427,6 @@ sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
 # Enable firewall
 sudo ufw enable
-# Verify status
-sudo ufw status numbered
 ```
 {% endtab %}
 
@@ -449,8 +445,6 @@ sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
 # Enable firewall
 sudo ufw enable
-# Verify status
-sudo ufw status numbered
 ```
 {% endtab %}
 
@@ -469,8 +463,6 @@ sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
 # Enable firewall
 sudo ufw enable
-# Verify status
-sudo ufw status numbered
 ```
 {% endtab %}
 
@@ -489,11 +481,14 @@ sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
 # Enable firewall
 sudo ufw enable
-# Verify status
-sudo ufw status numbered
 ```
 {% endtab %}
 {% endtabs %}
+
+```bash
+# Verify status
+sudo ufw status numbered
+```
 
 {% hint style="danger" %}
 Do not expose Grafana \(port 3000\) and Prometheus endpoint \(port 9090\) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.

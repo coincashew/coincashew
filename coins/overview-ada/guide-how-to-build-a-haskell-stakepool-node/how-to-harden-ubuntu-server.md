@@ -403,6 +403,9 @@ sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
 sudo ufw allow 6000/tcp
 # Enable firewall
 sudo ufw enable
+```
+
+```bash
 # Verify status
 sudo ufw status numbered
 ```

@@ -55,6 +55,9 @@ sudo ufw allow 18080
 sudo ufw allow 18089
 # Enable firewall
 sudo ufw enable
+```
+
+```bash
 # Verify status
 sudo ufw status numbered
 ```
