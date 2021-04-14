@@ -7,14 +7,14 @@
 * Elige **Daedalus** o **Yoroi**
 
 {% hint style="info" %}
-Yoroi será la manera más rápida, es una Wallet ligera que funciona desde el explorador o desde un teléfono celular.
+Yoroi es la  manera más rápida de delegar, ya que es una Wallet ligera que funciona desde el explorador o incluso desde un teléfono celular.
 {% endhint %}
 
-Para este ejemplo, vamos a delegar usando Yoroi.
+Para esta guía vamos a delegar usando Yoroi.
 
 ![](../../.gitbook/assets/ss.PNG)
 
-2. **Instala** Yoroi desde la tienda de aplicaciones.
+2. **Instala** Yoroi desde la tienda de aplicaciones o extensiones.
 
 3. Hacemos clic en la pestaña **Delegation \(Simple\) tab**
 
