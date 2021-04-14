@@ -1,39 +1,66 @@
+---
+description: >-
+Esta guía mostrará la forma de instalar y configurar una Stake Pool de Cardano desde su código fuente, usando una configuración de dos nodos, con 1 nodo productor de bloques y 1 nodo relevador.
+---
+
 # Guía: ¿Cómo implementar una Stake Pool en Cardano?
 
-{% hint style="success" %}
-A partir del 4 de septiembre, 2020, esta guía está escrita para **mainnet** con **edición v.1.19.1** 😁
+{% hint style="info" %}
+¡Muchas gracias por todo el apoyo y los mensajes! Realmente nos motiva a seguir creando las mejores guías de criptomonedas. Sigue el enlace para ver [nuestras direcciones de donación](https://cointr.ee/coincashew) 🙏 
 {% endhint %}
 
-### 🏁 0. Prerequisitos
+{% hint style="success" %}
+Esta guía fue actualizada el 7 de Abril de 2021, con **versión 3.2.0**, escrita para la  **mainnet de cardano** en su versión **1.26.1** 😁 
+{% endhint %}
 
-#### 🧙♂ Habilidades obligatorias de los operadores de stake pool
+### 🏁 0. Prerrequisitos
 
-Como un operador de stake pool de Cardano, deberás contar con las siguientes habilidades:
+#### 🧙♂ Habilidades necesarias para los Operadores de una Stake Pool
 
-* conocimiento operacional de cómo instalar, operar y mantener un nodo de Cardano continuamente
-* un compromiso a mantenera tu nodo 24/7/365
-* habilidades de sistemas operativos
-* habilidades de administración de servidores \(operacionales y mantenimiento\)
-* experiencia de desarrollo y operaciones \(DevOps\)
-* experiencia de cómo [endurecer ](https://www.lifewire.com/harden-ubuntu-server-security-4178243)y [asegurar un servidor](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3).
-* [aprobar el curso oficial de la Escuela de Stake Pool](https://cardano-foundation.gitbook.io/stake-pool-course/)
+Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidades:
 
-🛑 **Antes de continuar con esta guía, debes de satisfacer las habilidades requeridas mencionadas anteriormente.** 🚧
+* Conocimientos de como implementar, arrancar y mantener un nodo de Cardano de manera continua.
+* Compromiso de mantener tu nodo funcionando 24/7/365.
+* Habilidad para operar sistemas.
+* Habilidad para la administración de servidores \(operación y mantenimiento\).
 
-#### 🎗 Requisitos Mínimos del Equipo
+### 🧙 Experiencia necesaria para los Operadores de una Stake Pool
 
-* **Dos servidores independientes:** 1 para tu nodo productor de bloques, 1 para tu nodo de relevo
-* **Una máquina fuera de línea, totalmente aislada del internet \(ambiente frío\)**
-* **Sistema Operativo:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **Procesador:** CPU con cuádruple núcleo
-* **Memoria RAM:** 8GB
-* **Disco Duro:** 20GB SSD
-* **Internet:** conexión 24/7 a internet con banda ancha con velocidades de al menos 10 Mbps.
-* **Plan de Datos**: como mínimo 1GB por hora. 720GB cada mes.
-* **Electricidad:** energía eléctrica 24/7
-* **Saldo de ADA:** como mínimo 505 ADA
+* Experiencia en DevOps.
+* Experiencia [reforzando ](https://www.lifewire.com/harden-ubuntu-server-security-4178243) y [aumentando la seguridad de un servidor](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3).
+* [Haber tomado el curso oficial de Stake Pool.](https://cardano-foundation.gitbook.io/stake-pool-course/) 
 
-#### 🏋♂ Equipo Recomendado para Largo Plazo
+{% hint style="danger" %}
+🛑 **Antes de continuar con la guía, es NECESARIO cumplir con los requisitos anteriores.** 🚧 
+{% endhint %}
+
+#### 🎗 Requisitos mínimos de Hardware
+
+* **Dos servidores independientes:** 1 para el nodo productor, 1 para el nodo relevador.
+* **Un equipo fuera de línea \(Ambiente frío\)**
+* **Sistema Operativo:** Linux 64-bit \(por ejemplo Ubuntu Server 20.04 LTS\)
+* **Procesador:** Un procesador AMD o Intel de x86 con dos o más núcleos, de 2GHz o mayor.
+* **Memoria:** 8GB de RAM
+* **Almacenamiento:** Al menos 20GB de almacenamiento disponible.
+* **Internet:** Concexión con una velocidad de al menos 10Mbps.
+* **Plan de Datos**: De al menos 1GB por hora. 720GB al mes.
+* **Alimentación:** Alimentación eléctrica confiable.
+* **ADA:** Al menos 505 ADA para depósitos al Stake Pool y tarifas de transacción.
+
+#### 🏋♂ Hardware recomendado a futuro para un Stake Pool
+
+* **Tres servidores independientes:** 1 para el nodo productor de bloques, 2 para los nodos relevadores.
+* **Un equipo fuera de línea \(Ambiente frío\)**
+* **Sistema Operativo:** Linux 64-bit \(por ejemplo Ubuntu Server 20.04 LTS\)
+* **Procesador:** Un procesador de 4 núcleos o mayor.}
+* **Memoria:** Más de 8GB de RAM
+* **Almacenamiento:** Un SSD 256GB o más.
+* **Internet:** Concexión con una velocidad de al menos 100Mbps.
+* **Plan de Datos**: Ilimitado
+* **Alimentación:** Alimentación eléctrica confiable con UPS.
+* **ADA:** Dependerá del parámetro **a0**, entre más ADA en el Stake Pool será mejor a futuro. Actualmente el valor no es relevante.
+
+
 
 * **Tres servidores independientes:** 1 para tu nodo productor de bloques, 2 para tus nodos de relevo
 * **Una máquina fuera de línea, totalmente aislada del internet \(ambiente frío\)**
