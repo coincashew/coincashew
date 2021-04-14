@@ -34,7 +34,7 @@ Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidad
 🛑 **Antes de continuar con la guía, es NECESARIO cumplir con los requisitos anteriores.** 🚧 
 {% endhint %}
 
-#### 🎗 Requisitos mínimos de Hardware
+#### 🎗 Hardware mínimo
 
 * **Dos servidores independientes:** 1 para el nodo productor, 1 para el nodo relevador.
 * **Un equipo fuera de línea \(Ambiente frío\)**
@@ -47,7 +47,7 @@ Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidad
 * **Alimentación:** Alimentación eléctrica confiable.
 * **ADA:** Al menos 505 ADA para depósitos al Stake Pool y tarifas de transacción.
 
-#### 🏋♂ Hardware recomendado a futuro para un Stake Pool
+#### 🏋♂ Hardware recomendado a futuro
 
 * **Tres servidores independientes:** 1 para el nodo productor de bloques, 2 para los nodos relevadores.
 * **Un equipo fuera de línea \(Ambiente frío\)**
@@ -60,34 +60,50 @@ Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidad
 * **Alimentación:** Alimentación eléctrica confiable con UPS.
 * **ADA:** Dependerá del parámetro **a0**, entre más ADA en el Stake Pool será mejor a futuro. Actualmente el valor no es relevante.
 
+#### 🔓 Factores de seguridad recomendados para el Stake Pool
 
-Nota que la velocidad del procesador no es un factor determinante para dirigir un stake pool.
+Si necesitas ideas de cómo reforzar la seguridad de tus nodos, puedes ir a:
 
-#### 🔓 Seguridad Recomendada para los Nodos
+{% page-ref page="how-to-harden-ubuntu-server.md" %}
 
-Si necesitas ideas para cómo endurecer los nodos en tus servidores, refiérete [a esta corta guía](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-harden-ubuntu-server).
+### 🛠 Instalación de Ubuntu
 
-#### 🧱 Reconstruyendo los Nodos
+Si requieres instalar **Ubuntu Server**, puedes ir a:
 
-Si estás reconstruyendo o reusando una instalción existente de `cardano-node`, refiérete a la sección 18.2 en esta guía de cómo resetear la instalación.
+{% embed url="https://ubuntu.com/tutorials/install-ubuntu-server\#1-overview" %}
 
-### 🏭 1. Instala Cabal y GHC
+Si requieres instalar **Ubuntu Desktop**, puedes ir a:
 
-**Oprime** Ctrl+Alt+T. Esto lanzará la terminal en una ventana.
+{% page-ref page="../../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
 
-Primeramente, actualiza los paquetes e instala las dependencias de Ubuntu.
+
+### 🧱 Reconstruyendo Nodos
+
+Si estás reconstruyendo o reusando una instalación existente de `cardano-node`, ve a la [sección 18.2 ¿Cómo reiniciar la instalación?.](./#18-2-resetting-the-installation)
+
+### 🏭 1. Instalar Cabal y GHC
+
+Si estás usando Ubuntu Desktop, **presiona** Ctrl+Alt+T. Esto abrirá la terminal.
+
+Primero, actualizamos los paquetedes e instalamos las dependencias de Ubuntu.
 
 ```bash
 sudo apt-get update -y
-sudo apt-get upgrade -y
-sudo apt-get install git make tmux rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
 ```
 
-Instala Libsodium.
+```text
+sudo apt-get upgrade -y
+```
+
+```text
+sudo apt-get install git jq bc make automake rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ wget libncursesw5 libtool autoconf -y
+```
+
+Instalamos Libsodium.
 
 ```bash
-mkdir ~/git
-cd ~/git
+mkdir $HOME/git
+cd $HOME/git
 git clone https://github.com/input-output-hk/libsodium
 cd libsodium
 git checkout 66f017f1
@@ -97,29 +113,43 @@ make
 sudo make install
 ```
 
-Instala Cabal.
+{% hint style="info" %}
+Para los Operadores que utilicen Debian OS, puede que sea necesario vincular una librería adicional.
 
 ```bash
-cd
-wget https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
-tar -xf cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
-rm cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz cabal.sig
-mkdir -p ~/.local/bin
-mv cabal ~/.local/bin/
+sudo ln -s /usr/local/lib/libsodium.so.23.3.0 /usr/lib/libsodium.so.23
 ```
+{% endhint %}
 
-Instala GHC.
+Instalamos Cabal y sus dependencias
 
 ```bash
-wget https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-deb9-linux.tar.xz
-tar -xf ghc-8.6.5-x86_64-deb9-linux.tar.xz
-rm ghc-8.6.5-x86_64-deb9-linux.tar.xz
-cd ghc-8.6.5
-./configure
-sudo make install
+sudo apt-get -y install pkg-config libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev build-essential curl libgmp-dev libffi-dev libncurses-dev libtinfo5
 ```
 
-Actualiza el PATH para que incluya Cabal y GHC y agrega los exportes. La dirección a tu nodo será **$NODE\_HOME**. La [agrupación de la configuración](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) es establecida por **$NODE\_CONFIG, $NODE\_URL** y **$NODE\_BUILD\_NUM**.
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+```
+
+Respondemos **NO** cuand se pregunte por instalar haskell-language-server \(HLS\).
+
+Respondemos **YES** para agregar de manera automática la variable PATH al archivo ".bashrc".
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+ghcup upgrade
+ghcup install cabal 3.4.0.0
+ghcup set cabal 3.4.0.0
+```
+
+Instalamos GHC
+
+```bash
+ghcup install ghc 8.10.4
+ghcup set ghc 8.10.4
+```
+
+Actualizamos la variable PATH para que incluya a Cabal y GHC, y agregamos exports. La localización del nodo estará en **$NODE\_HOME**. La [configuración del cluster](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) está dada por **$NODE\_CONFIG** y **$NODE\_BUILD\_NUM**. 
 
 ```bash
 echo PATH="$HOME/.local/bin:$PATH" >> $HOME/.bashrc
@@ -130,15 +160,30 @@ echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/car
 source $HOME/.bashrc
 ```
 
-Actualiza cabal y verifica que las versiones correctas fueron instaladas correctamente.
+{% hint style="info" %}
+💡 **¿Cómo usar esta guía para la TestNet?**
+
+Simplemente reemplaza cada instancia de ****CLI parameter 
+
+ `--mainnet` 
+
+con
+
+`--testnet-magic 1097911063`
+{% endhint %}
+
+Actualizamos Cabal y verificamos que las versiones correctas hayan sido instaladas de manera exitosa.
 
 ```bash
 cabal update
-cabal -V
-ghc -V
+cabal --version
+ghc --version
 ```
 
-La versión de la librería de Cabal debería de ser 3.2.0.0 y la versión de GHC debería de ser 8.6.5
+{% hint style="info" %}
+La librería de Cabal debe de ser versión 3.4.0.0 y la de GHC debe ser versión 8.10.4
+{% endhint %}
+
 
 ### 🏗 2. Construyendo el nodo desde el código fuente
 
