@@ -1,53 +1,47 @@
-# Guide: How to stake ADA
+# Guia: ¿Cómo hacer Staking de Ada?
 
-## 🎊 Delegate your stake
+## 🎊 Delegando tu Wallet
 
-{% hint style="info" %}
-If you had ada in a Daedalus or Yoroi wallet when the balance snapshot was taken at 12.00 UTC on November 29, 2019, you can participate. If not, you will need to wait until mainnet Cardano is upgraded to **Shelley**.
-{% endhint %}
+1. **Instala** la wallet oficial de [Cardano.org](https://staking.cardano.org/en/delegation/)
 
-1. **Install** an official wallet from [Cardano.org](https://staking.cardano.org/en/delegation/)
-
-* Choice of **Daedalus** or **Yoroi**
+* Elige **Daedalus** o **Yoroi**
 
 {% hint style="info" %}
-Yoroi will be the quickest choice and is a lightweight wallet that runs in your browser or mobile phone.
+Yoroi será la manera más rápida, es una Wallet ligera que funciona desde el explorador o desde un teléfono celular.
 {% endhint %}
 
-For this example, we will delegate with Yoroi.
+Para este ejemplo, vamos a delegar usando Yoroi.
 
 ![](../../.gitbook/assets/ss.PNG)
 
-2. **Install** Yoroi from your app store
+2. **Instala** Yoroi desde la tienda de aplicaciones.
 
-3. Click on the **Delegation \(Simple\) tab**
+3. Hacemos clic en la pestaña **Delegation \(Simple\) tab**
 
-4. Search for a Stake Pool you would like to delegate to.
+4. Buscamos una Stake Pool a la que queramos delegar
 
 {% hint style="info" %}
-Easily find and browse Stake Pools at [PoolTool ](https://pooltool.io/)or [ADApools.org](https://adapools.org/)
-
-Or watch this youtube video on [How to choose a good Cardano stake pool by Kaizen Crypto.](https://www.youtube.com/watch?v=tgxHfQy7CnU)
+Puedes buscar Stake Pools fácilmente en [PoolTool ](https://pooltool.io/) o en [ADApools.org](https://adapools.org/)
 {% endhint %}
 
-5. Click **Delegate**
+5. Hacemos ahora clic en **Delegate**
 
-6. Enter in your spending password
+6. Introduce tu contraseña de Yoroi
 
-7. Click **DELEGATE** button
+7. Hacemos clic en el botón que dice **DELEGATE**
 
-8. 🎉 Congratulations. Rewards will start showing up in 2 days, or epochs. Check your rewards on the **Dashboard tab**.
+8. 🎉 ¡Felicidades! Las recompensas se reflejarán a partir de 2 semanas, o 2 epochs( Una vez cumplido este tiempo recibirás recompensas cada 5 días). Puedes seguir el avance de tus recompensas en la pestaña **Dashboard**.
 
-## 🔎 Monitoring your rewards
+## 🔎 Monitorea tus Recompensas
 
-To learn more about your pool and their performance, use these amazing community created tools.
+Para aprender más acerca de la Stake Pool que elegiste y su desempeño, puedes usar estas grandiosas herramientas creadas por la comunidad:
 
-* [Cardano PoolTool](https://pooltool.io/) - The most comprehensive staking statistics for Cardano on the web
-* [ADApools.org](https://adapools.org) - Independent cardano staking pool toplist
-* [AdaStat ](https://adastat.net/en/)- Statistics for pool operators and ada holders
+* [Cardano PoolTool](https://pooltool.io/) - La página web con las estadísticas más completas de Cardano.
+* [ADApools.org](https://adapools.org) - Listado independiente de las Stake Pools de Cardano.
+* [AdaStat ](https://adastat.net/en/)- Estadísticas para los Operadores de Stake Pools y personas que tienen ADA
+* 
+## 🤖 Bots de Telegram con alertas en tiempo real
 
-## 🤖 Telegram Bots for real-time alerts
-
-* [AdaPoolsOrgBot ](https://t.me/AdaPoolsOrg_bot)on Telegram
-* [PoolToolBot](https://t.me/PoolToolBot)[ ](https://t.me/AdaPoolsOrg_bot)on Telegram
+* [AdaPoolsOrgBot ](https://t.me/AdaPoolsOrg_bot) en Telegram
+* [PoolToolBot](https://t.me/PoolToolBot)[ ](https://t.me/AdaPoolsOrg_bot) en Telegram
 
