@@ -1,18 +1,4 @@
-# Guía: Cómo construir un Stake Pool de Cardano
-
-\*\*CRÉDITOS: &gt;- ESTA GUÍA FUE HECHA POR [COINCASHEW](https://www.coincashew.com).
-
-### LA GUÍA ORIGINAL EN INGLÉS LA PUEDES ENCONTRAR **\[**AQUÍ\*\*\]\([https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/\#15-operational-and-maintenance-tips](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/#15-operational-and-maintenance-tips)\).
-
-TRADUCIDA POR: &gt;- ESTA GUÍA FUE TRADUCIDA POR [THE LEGEND OF ₳DA POOL \[TLOA\]](https://tloada.github.io/tloa/español.html).
-
-### SI DESEAS APOYARNOS, PUEDES HACERLO DELEGANDO A NUESTRO POOL CON TICKER [\[TLOA\]](https://tloada.github.io/tloa/español.html).
-
-Descripción: &gt;- En Ubuntu/Debian, esta guía ilustrará cómo instalar y configurar un stake pool de Cardano usando el código fuente con una configuración de \*\*un \(1\)
-
-### nodo productor de bloques y un \(1\) nodo de relevo\*\*.
-
-## Guía: Cómo construir un Stake Pool de Cardano
+# Guía: ¿Cómo implementar una Stake Pool en Cardano?
 
 {% hint style="success" %}
 A partir del 4 de septiembre, 2020, esta guía está escrita para **mainnet** con **edición v.1.19.1** 😁
