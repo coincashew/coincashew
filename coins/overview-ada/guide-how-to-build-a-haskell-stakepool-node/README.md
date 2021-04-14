@@ -6,7 +6,7 @@ Esta guía mostrará la forma de instalar y configurar una Stake Pool de Cardano
 # Guía: ¿Cómo implementar una Stake Pool en Cardano?
 
 {% hint style="info" %}
-¡Muchas gracias por todo el apoyo y los mensajes! Realmente nos motiva a seguir creando las mejores guías de criptomonedas. Sigue el enlace para ver [nuestras direcciones de donación](https://cointr.ee/coincashew) 🙏 
+¡Muchas gracias por todo el apoyo y los mensajes! Realmente nos motiva a seguir creando las mejores guías de criptomonedas. Si deseas donar [estas son las direcciones](https://cointr.ee/coincashew) a las que puedes depositar 🙏 
 {% endhint %}
 
 {% hint style="success" %}
@@ -15,11 +15,11 @@ Esta guía fue actualizada el 7 de Abril de 2021, con **versión 3.2.0**, escrit
 
 ### 🏁 0. Prerrequisitos
 
-#### 🧙♂ Habilidades necesarias para los Operadores de una Stake Pool
+#### 🧙 Habilidades necesarias para los Operadores de una Stake Pool
 
 Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidades:
 
-* Conocimientos de como implementar, arrancar y mantener un nodo de Cardano de manera continua.
+* Conocimientos de como implementar, iniciar y mantener un nodo de Cardano de manera continua.
 * Compromiso de mantener tu nodo funcionando 24/7/365.
 * Habilidad para operar sistemas.
 * Habilidad para la administración de servidores \(operación y mantenimiento\).
@@ -60,9 +60,9 @@ Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidad
 * **Alimentación:** Alimentación eléctrica confiable con UPS.
 * **ADA:** Dependerá del parámetro **a0**, entre más ADA en el Stake Pool será mejor a futuro. Actualmente el valor no es relevante.
 
-#### 🔓 Factores de seguridad recomendados para el Stake Pool
+#### 🔓 Acciones de Seguridad Recomendadas
 
-Si necesitas ideas de cómo reforzar la seguridad de tus nodos, puedes ir a:
+Si necesitas ideas de cómo aumentar la seguridad de tus nodos, puedes ir a:
 
 {% page-ref page="how-to-harden-ubuntu-server.md" %}
 
@@ -79,13 +79,13 @@ Si requieres instalar **Ubuntu Desktop**, puedes ir a:
 
 ### 🧱 Reconstruyendo Nodos
 
-Si estás reconstruyendo o reusando una instalación existente de `cardano-node`, ve a la [sección 18.2 ¿Cómo reiniciar la instalación?.](./#18-2-resetting-the-installation)
+Si estás reconstruyendo o reutilizando una instalación existente de `cardano-node`, ve a la [sección 18.2 ¿Cómo reiniciar la instalación?.](./#18-2-resetting-the-installation)
 
 ### 🏭 1. Instalar Cabal y GHC
 
 Si estás usando Ubuntu Desktop, **presiona** Ctrl+Alt+T. Esto abrirá la terminal.
 
-Primero, actualizamos los paquetedes e instalamos las dependencias de Ubuntu.
+Primero, actualizaremos el sistema e instalaremos todas las dependencias para Ubuntu.
 
 ```bash
 sudo apt-get update -y
@@ -131,7 +131,7 @@ sudo apt-get -y install pkg-config libgmp-dev libssl-dev libtinfo-dev libsystemd
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
 
-Respondemos **NO** cuand se pregunte por instalar haskell-language-server \(HLS\).
+Respondemos **NO** cuando se nos pregunte instalar haskell-language-server \(HLS\).
 
 Respondemos **YES** para agregar de manera automática la variable PATH al archivo ".bashrc".
 
@@ -149,7 +149,7 @@ ghcup install ghc 8.10.4
 ghcup set ghc 8.10.4
 ```
 
-Actualizamos la variable PATH para que incluya a Cabal y GHC, y agregamos exports. La localización del nodo estará en **$NODE\_HOME**. La [configuración del cluster](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) está dada por **$NODE\_CONFIG** y **$NODE\_BUILD\_NUM**. 
+Actualizamos la variable PATH para que incluya a Cabal y GHC y exportamos varias rutas. La localización del nodo estará en **$NODE\_HOME**. La [configuración del cluster](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) está dada por **$NODE\_CONFIG** y **$NODE\_BUILD\_NUM**. 
 
 ```bash
 echo PATH="$HOME/.local/bin:$PATH" >> $HOME/.bashrc
@@ -172,7 +172,7 @@ con
 `--testnet-magic 1097911063`
 {% endhint %}
 
-Actualizamos Cabal y verificamos que las versiones correctas hayan sido instaladas de manera exitosa.
+Ahora actualizamos Cabal, una vez terminado nos aseguramos de que la versión sea la correcta.
 
 ```bash
 cabal update
@@ -185,51 +185,63 @@ La librería de Cabal debe de ser versión 3.4.0.0 y la de GHC debe ser versión
 {% endhint %}
 
 
-### 🏗 2. Construyendo el nodo desde el código fuente
+### 🏗 2. Construyendo el nodo desde su código fuente
 
-Descarga el código fuente y cambia al _tag_ más reciente.
+Descargamos el código fuente y cambiamos la etiqueta de versión a descargar para que corresponda a la 1.26.1
 
 ```bash
-cd ~/git
+cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
-git fetch --all
-git checkout tags/1.19.1
+git fetch --all --recurse-submodules --tags
+git checkout tags/1.26.1
 ```
 
-Actualiza cabal config, configuración del proyecto y resetea la carpeta de construcción.
+Configuramos las opciones de construcción.
+
+```text
+cabal configure -O0 -w ghc-8.10.4
+```
+
+Actualizamos la configuración de cabal, los parámetros del proyecto y reiniciamos la carpeta donde se va a construir.
 
 ```bash
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 sed -i $HOME/.cabal/config -e "s/overwrite-policy:/overwrite-policy: always/g"
-rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5
+rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.10.4
 ```
 
-Construye cardano-node desde el código fuente.
+¡Ahora construimos el nodo!
 
 ```text
 cabal build cardano-cli cardano-node
 ```
 
-El proceso de construcción puede tomar unos minutos e incluso algunas horas dependiendo del poder del procesador de tu compoutadora.
+{% hint style="info" %}
+El proceso de construcción puede tomar de unos cuantos minutos a unas cuantas horas, dependiendo de la capacidad de procesamiento de la computadora.
+{% endhint %}
 
-Copia los archivos **cardano-cli** y **cardano-node** a tu carpeta _bin_.
+Copiamos los archivos **cardano-cli** y **cardano-node** a la carpeta bin
 
 ```bash
-sudo cp $(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
-sudo cp $(find ~/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
+sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
 ```
 
-Verifica las versiones de **cardano-cli** and **cardano-node**.
+```bash
+sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
+```
+
+Verificamos que las versiones de **cardano-cli** y **cardano-node** sean las correctas (En este caso, la 1.26.1)
 
 ```text
 cardano-node version
 cardano-cli version
 ```
 
-### 📐 3. Configura tu nodo
 
-Aquí conseguirás los archivos config.json, genesis.json y topology.json necesarios para configurar tu nodo.
+### 📐 3. Configuración de los nodos
+
+En este punto, vamos a descargar los archivos config.json, genesis.json y topology.json, los cuales son necesarios para la configuración del nodo.
 
 ```bash
 mkdir $NODE_HOME
@@ -240,39 +252,52 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 ```
 
-Ejecuta lo siguiente para modificar **config.json** y
-
-* actualiza ViewMode a "LiveView"
-* actualiza TraceBlockFetchDecisions a "true"
+Ejecutamos los siguientes comandos para modificar el archivo **mainnet-config.json** y actualizar la línea:
+* update TraceBlockFetchDecisions a "true"
 
 ```bash
 sed -i ${NODE_CONFIG}-config.json \
-    -e "s/SimpleView/LiveView/g" \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
 ```
 
-Actualiza las variables **.bashrc** de tu shell.
+{% hint style="info" %}
+\*\*\*\*✨ **Consejo para Nodo Relevador**: Es posible reducir el consumo de memoria y de cpu cambiando el parámetro "TraceMemPool" a "false" en el archivo **mainnet-config.json**  
+{% endhint %}
+
+Actualizamos nuestro archivo **.bashrc** con las nuevas variables de shell.
 
 ```bash
-echo export CARDANO_NODE_SOCKET_PATH="$NODE_HOME/db/socket" >> ~/.bashrc
-source ~/.bashrc
+echo export CARDANO_NODE_SOCKET_PATH="$NODE_HOME/db/socket" >> $HOME/.bashrc
+source $HOME/.bashrc
 ```
 
-#### 🔮 4 Configura el nodo productor de bloques
+#### 🔮 4. Configurar el Nodo Productor
 
-Un nodo productor de bloques será configurado con varios pares de llaves necesarios para la creación de bloques \(cold keys \(llaves frías\), KES hot keys \(llaves calientes KES\) y VRF hot keys \(llaves calientes VRF\)\). Debe de conectarse solamente con sus nodos de relevo.
+{% hint style="info" %}
+Un Nodo Productor de Bloques es aquel que está configurado con varios pares de llaves \(Llaves Frías, KES y VRF\), las cuales son necesarias para la producción de bloques. Solamente debe de tener conexión con sus Nodos Relevadores.
+{% endhint %}
 
-Un nodo de relevo no tendrá ninguna de las llaves y por lo tanto será incapaz de producir bloques. Estará conectada a su nodo productor de bloques respectivo, y a otros relevos y nodos externos.
+{% hint style="info" %}
+Un Nodo Relevador no tendrá ningún tipo de llaves y por lo  tanto no será capaz de producir ningún bloque. Estará conectado a su Nodo Productor y a otros relevadores y nodos externos en la red.
+{% endhint %}
 
-En esta guía. construiremos **dos nodos** en dos **servidores distintos**. Un nodo será designado como **nodo productor de bloques**, y el otro será el nodo de relevo, llamado **relaynode1**.
+![](../../../.gitbook/assets/producer-relay-diagram.png)
 
-Configura el archivo **topology.json** de tal forma que
+{% hint style="success" %}
+Para propósitos de la guía, haremos **dos nodos** en **dos servidores independientes**. Uno nodo será llamado el **Nodo Productor de Bloques** y el otro será su Nodo Relevador, llamado **nodoRelevador1**.
+{% endhint %}
 
-* tus nodos de relevo se conecten a los nodos públicos de relevo \(IOHK y relevos de tus 'buddies'\) y a tu nodo porductor de bloques
-* el nodo productor de bloques se conecte **solamente** a tus nodos de relevo
+{% hint style="danger" %}
+Edita el archivo **topology.json** para que: 
 
-En tu **nodo productor de bloques**, ejecuta lo siguiente. Actualiza la **addr** con la dirección IP pública de tu nodo de relevo.
+* El/Los Nodo(s) Relevadore(s) se conecten a los Relevadores Públicos \(como los de  IOHK y los Nodos de amigos\) y a tu Nodo Productor de Bloques.
+* El Nodo Productor de Bloques **SOLAMENTE** debe de tener conexión con el/los Nodo(s) Relevadore(s). 
+{% endhint %}
 
+On your **block-producer node,** run the following. Update the **addr** with your relay node's public IP address.
+
+{% tabs %}
+{% tab title="block producer node" %}
 ```bash
 cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF 
  {
@@ -286,6 +311,12 @@ cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF
   }
 EOF
 ```
+{% endtab %}
+{% endtabs %}
+
+
+
+
 
 ### 🛸 5. Configura tu\(s\) nodo\(s\) de relevo
 
