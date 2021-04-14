@@ -61,18 +61,6 @@ Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidad
 * **ADA:** Dependerá del parámetro **a0**, entre más ADA en el Stake Pool será mejor a futuro. Actualmente el valor no es relevante.
 
 
-
-* **Tres servidores independientes:** 1 para tu nodo productor de bloques, 2 para tus nodos de relevo
-* **Una máquina fuera de línea, totalmente aislada del internet \(ambiente frío\)**
-* **Sistema Operativo:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
-* **Procesador:** CPU con óctuple núcleo o mejor
-* **Memoria RAM:** 16GB+
-* **Disco Duro:** 1TB SSD
-* **Internet:** conexión 24/7 a internet con banda ancha con velocidades de al menos 100 Mbps.
-* **Plan de Datos**: como mínimo 1GB por hora. 720GB cada mes.
-* **Electricidad:** energía eléctrica redundante 24/7 con SAI
-* **Saldo de ADA:** más pledge es mejor, será determinado por **a0**, el factor que influye al pledge
-
 Nota que la velocidad del procesador no es un factor determinante para dirigir un stake pool.
 
 #### 🔓 Seguridad Recomendada para los Nodos
