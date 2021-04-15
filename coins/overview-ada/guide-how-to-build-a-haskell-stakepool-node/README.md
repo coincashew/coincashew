@@ -1,6 +1,6 @@
 ---
 description: >-
-Esta guía mostrará la forma de instalar y configurar una Stake Pool de Cardano desde su código fuente, usando una configuración de dos nodos, con 1 nodo productor de bloques y 1 nodo relevador.
+  Esta guía mostrará la manera de instalar y configurar un Stake Pool de Cardano desde su código fuente en una configuración de dos nodos, con 1 Nodo Productor de Bloques y 1 Nodo Relevador.
 ---
 
 # Guía: ¿Cómo implementar una Stake Pool en Cardano?
