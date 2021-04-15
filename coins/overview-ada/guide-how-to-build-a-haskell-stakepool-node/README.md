@@ -139,7 +139,8 @@ Answer **NO** to installing haskell-language-server \(HLS\).
 Answer **YES** to automatically add the required PATH variable to ".bashrc".
 
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+cd $HOME
+source .bashrc
 ghcup upgrade
 ghcup install cabal 3.4.0.0
 ghcup set cabal 3.4.0.0
