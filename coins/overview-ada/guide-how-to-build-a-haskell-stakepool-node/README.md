@@ -572,6 +572,72 @@ journalctl --unit=cardano-node --since='2020-07-29 00:00:00' --until='2020-07-29
 
 ### ✅ 8. Iniciando los Nodos
 
+¡Vamos a iniciar la sincronización de los nodos con la cadena de bloques!
+
+{% tabs %}
+{% tab title="Nodo Productor de Bloques" %}
+```bash
+sudo systemctl start cardano-node
+```
+{% endtab %}
+
+{% tab title="NodoRelevador1" %}
+```bash
+sudo systemctl start cardano-node
+```
+{% endtab %}
+{% endtabs %}
+
+Ahora instalaremos gLiveView, una herramienta de monitoreo.
+
+{% hint style="info" %}
+gLiveView muestra información importante de nuestro nodo y funciona bien con los servicios controlados con systemd. Créditos a [Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview) por desarrollar esta herramienta.
+{% endhint %}
+
+```bash
+cd $NODE_HOME
+sudo apt install bc tcptraceroute -y
+curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
+curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
+chmod 755 gLiveView.sh
+```
+
+Ejecutamos lo siguiente para modificar el archivo **env** con las rutas y variables de nuestro nodo.
+
+```bash
+sed -i env \
+    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
+    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
+```
+
+{% hint style="warning" %}
+El nodo debe de alcanzar el epoch 208 \(lanzamiento de Shelley\), antes de que **gLiveView** pueda empezar a mostrar información acerca de la sincronización del nodo. Por el momento puedes usar `journalctl` en lo que el nodo alcanza el epoch 208.
+
+```text
+journalctl --unit=cardano-node --follow
+```
+{% endhint %}
+
+Mandamos a ejecutar gLiveView para monitorear el proceso de sincronización de nuestro nodo.
+
+```text
+./gLiveView.sh
+```
+
+Vista de ejemplo de gLiveView
+
+![](../../../.gitbook/assets/glive.png)
+
+Para más información, puedes ir a la [página Oficial de Guild Live View](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
+
+{% hint style="info" %}
+\*\*\*\*✨ **Super Tip**: Si terminas de sincronizar la base de datos de un nodo, puedes copiar el directorio completo al otro nodo para reducir el tiempo de sincronización.
+{% endhint %}
+
+{% hint style="success" %}
+¡Felicidades! Tu nodo ahora se encuentra corriendo, déjalo sincronizar.
+{% endhint %}
+
 ### ⚙ 9. Crea las llaves para el nodo productor de bloques
 
 ### 🔐 10. Prepara las llaves de pago y de staking
