@@ -7,7 +7,7 @@
 {% endhint %}
 
 {% hint style="success" %}
-As of April 7 2021, this guide is written for **mainnet** with **release v.1.26.1** 😁 
+As of April 14 2021, this guide is written for **mainnet** with **release v.1.26.1** 😁 
 {% endhint %}
 
 ## 📡 1. How to perform an update
@@ -101,19 +101,7 @@ sed -i env \
     -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
 
-**4. If used, update relay-topology\_pull.sh on relay nodes**
-
-Change the delimiter between IP/Port/Valency from `:` to `,`
-
-```bash
-cd $NODE_HOME
-nano relay-topology_pull.sh
-# Example where changing the delimiter from : to , is required
-# Update the BlockProducer IP/PORT and Relay IP(S)/PORT(S) to match your existing pool setup
-# curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=<YOUR BLOCKPRODUCING_IP>,<YOUR BLOCKPRODUCING_PORT>,1|relays-new.cardano-mainnet.iohk.io,3001,2"
-```
-
-#### 5. If used, update qcpolsendmytip.sh on block producer core node
+#### 4. If used, update qcpolsendmytip.sh on block producer core node
 
 Various variables changed.
 
