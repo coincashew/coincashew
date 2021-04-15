@@ -13,7 +13,7 @@ If you wish to test on **testnet PYRMONT**, [please click here.](guide-or-how-to
 {% endhint %}
 
 {% hint style="info" %}
-#### ⏩ For the MAINNET guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+#### ⏩ For the MAINNET guide, [please click here.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
 
 🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
