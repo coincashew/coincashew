@@ -25,7 +25,7 @@ Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidad
 * Habilidad para operar sistemas.
 * Habilidad para la administración de servidores \(operación y mantenimiento\).
 
-### 🧙 Experiencia necesaria para los operadores
+#### 🧙 Experiencia necesaria para los operadores
 
 * Experiencia en DevOps.
 * Experiencia [reforzando](https://www.lifewire.com/harden-ubuntu-server-security-4178243) y [aumentando la seguridad de un servidor](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3).
@@ -37,10 +37,10 @@ Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidad
 
 #### 🎗 Hardware mínimo
 
-* **Dos servidores independientes:** 1 para el nodo productor, 1 para el nodo relevador.
-* **Una máquina fuera de línea \(Ambiente frío\)**
+* **Dos servidores independientes:** 1 para el nodo productor de bloques, 1 para el nodo relevador.
+* **Una máquina fuera de línea \(Entorno frío\)**
 * **Sistema Operativo:** Linux 64-bit \(por ejemplo Ubuntu Server 20.04 LTS\).
-* **Procesador:** Un procesador AMD o Intel de x86 con dos o más núcleos, de 2GHz o mayor.
+* **Procesador:** Un procesador AMD o Intel x86 con dos o más núcleos, de 2GHz o mayor.
 * **Memoria:** 8GB de RAM.
 * **Almacenamiento:** Al menos 20GB de almacenamiento disponible.
 * **Internet:** Conexión con una velocidad de al menos 10Mbps.
@@ -51,7 +51,7 @@ Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidad
 #### 🏋♂ Hardware recomendado a futuro
 
 * **Tres servidores independientes:** 1 para el nodo productor de bloques, 2 para los nodos relevadores.
-* **Una máquina fuera de línea \(Ambiente frío\)**
+* **Una máquina fuera de línea \(Entorno frío\)**
 * **Sistema Operativo:** Linux 64-bit \(por ejemplo Ubuntu Server 20.04 LTS\).
 * **Procesador:** Un procesador de 4 núcleos o mayor.
 * **Memoria:** Más de 8GB de RAM.
@@ -164,7 +164,7 @@ source $HOME/.bashrc
 {% hint style="info" %}
 💡 **¿Cómo usar esta guía para la TestNet?**
 
-En cada parámetro de ****CLI parameter**** donde aparezca: 
+En cada ****parámetro de CLI**** donde aparezca: 
 
  `--mainnet` 
 
@@ -173,7 +173,7 @@ lo reemplazaremos por:
 `--testnet-magic 1097911063`
 {% endhint %}
 
-Actualizamos Cabal, y una vez terminado nos aseguramos de que la versión sea la correcta.
+Actualizamos Cabal, y nos aseguramos de que la versión sea la correcta.
 
 ```bash
 cabal update
@@ -279,7 +279,7 @@ Un Nodo Productor de Bloques es aquel que está configurado con varios pares de 
 {% endhint %}
 
 {% hint style="info" %}
-Un Nodo Relevador no tendrá ningún tipo de clave y por lo tanto no será capaz de producir ningún bloque. Estará conectado a su Nodo Productor, aotros relevadores y nodos externos en la red.
+Un Nodo Relevador no tendrá ningún tipo de clave y por lo tanto no será capaz de producir ningún bloque. Estará conectado a su Nodo Productor, a otros relevadores y nodos externos en la red.
 {% endhint %}
 
 ![](../../../.gitbook/assets/producer-relay-diagram.png)
@@ -291,7 +291,7 @@ Para propósitos de la guía, vamos a trabajar **dos nodos** en **dos servidores
 {% hint style="danger" %}
 Editamos el archivo **topology.json** para que: 
 
-* El/Los Nodo(s) Relevadore(s) se conecten a los Relevadores Públicos \(como los de  IOHK y los Nodos de amigos\) y a tu Nodo Productor de Bloques.
+* El/Los Nodo(s) Relevadore(s) se conectan a los Relevadores Públicos \(como los de  IOHK y los Nodos de amigos\) y a tu Nodo Productor de Bloques.
 * El Nodo Productor de Bloques **SOLAMENTE** debe de tener conexión con el/los Nodo(s) Relevadore(s). 
 {% endhint %}
 
@@ -322,7 +322,7 @@ EOF
 {% endhint %}
 
 {% hint style="info" %}
-Puedes tener múltiples Nodos Relevadores a manera que escales la arquitectura de tu Stake Pool. Simplemente reemplaza el número de **NodoRelevadorN** y adapta las instrucciones de la guía para generar otro Nodo Relevador. 
+Puedes tener múltiples Nodos Relevadores a manera que escales la arquitectura de tu Stake Pool. Simplemente reemplaza el número de **NodoRelevadorN** y adapta las instrucciones de la guía para generar otro Nodo Relevador.
 {% endhint %}
 
 En el **NodoRelevador1** ejectuta el siguiente comando, **recuerda cambiar la dirección IP del Nodo Productor** (En caso de que ambos estén en una red local, deberás colocar la IP privada de tu Nodo Productor de Bloques).
@@ -351,7 +351,7 @@ EOF
 {% endtabs %}
 
 {% hint style="info" %}
-La valencia, **valency**, le indica a tu nodo cuántas conexiones mantener abiertas. Solamente afecta a las direcciones en modo de DNS. Si el valor es 0, la dirección es ignorada.
+La valencia, **valency**, le indica a nuestro nodo cuántas conexiones mantener abiertas. Solamente afecta a las direcciones en modo de DNS. Si el valor es 0, la dirección es ignorada.
 {% endhint %}
 
 {% hint style="danger" %}
@@ -361,7 +361,7 @@ La valencia, **valency**, le indica a tu nodo cuántas conexiones mantener abier
 ### 🔏 6. Configurar la máquina fuera de línea
 
 {% hint style="info" %}
-Una máquina fuera de línea se conoce como un **ambiente frío**. 
+Una máquina fuera de línea se conoce como un **entorno frío**. 
 
 * Está protegida contra intentos de key-logging, ataques basados en virus o otro tipo de exploit del firewall.
 * Físicamente aislada del resto de la red.
@@ -380,7 +380,7 @@ mkdir -p $NODE_HOME
 {% endtab %}
 {% endtabs %}
 
-Copia de tu **ambiente caliente**, también conocido como el Nodo Productor de Bloques, una copia del archivo **`cardano-cli`** hacia tu **ambiente frío**, y colócalo en la carpeta de binarios. 
+Copia de tu **entorno caliente**, también conocido como el Nodo Productor de Bloques, una copia del archivo **`cardano-cli`** hacia tu **entorno frío**, y colócalo en la carpeta de binarios. 
 
 {% hint style="danger" %}
 Para que verdaderamente se considere una Máquina Fuera de Línea, debes de mover los archivos de manera física entre los dos usando una USB o otro dispositivo portátil.
@@ -737,7 +737,7 @@ echo startKesPeriod: ${startKesPeriod}
 
 Con este cálculo, ya podemos generar el certificado de operación para el Stake Pool. 
 
-Copia **kes.vkey** a tu **ambiente frío**. 
+Copia **kes.vkey** a tu **entorno frío**. 
 
 Cambiamos &lt;**startKesPeriod&gt;** al valor calculado anteriormente.
 
@@ -758,7 +758,7 @@ cardano-cli node issue-op-cert \
 {% endtab %}
 {% endtabs %}
 
-Copia **node.cert** a tu **ambiente caliente**.
+Copia **node.cert** a tu **entorno caliente**.
 
 Hacemos un par de claves VRF.
 
@@ -855,7 +855,7 @@ Las claves de pago son usadas para mandar y recibir pagos, mientras que las clav
 Hay dos maneras de crear tu par de claves de `pago` y `stake`. Elige la que cumpla mejor con tus necesidades.
 
 {% hint style="danger" %}
-🔥 **Consejo Crítico de Seguridad:** Las claves de `pago` y `stake` deben de ser generadas y usadas para construir transacciones en un ambiente frío, en otras palabras tu **Máquina Fuera de Línea**. Copia el binario `cardano-cli` a tu Máquina Fuera de Línea y ejecuta el método CLI o el método de la mnemónica. Los únicos pasos que son hechos en el Nodo Productor son aquellos que requieren información actualizada. Específicamente los siguientes pasos:  
+🔥 **Consejo Crítico de Seguridad:** Las claves de `pago` y `stake` deben de ser generadas y usadas para construir transacciones en un entorno frío, en otras palabras tu **Máquina Fuera de Línea**. Copia el binario `cardano-cli` a tu Máquina Fuera de Línea y ejecuta el método CLI o el método de la mnemónica. Los únicos pasos que son hechos en el Nodo Productor son aquellos que requieren información actualizada. Específicamente los siguientes pasos:  
 
 * Consultar el slot actual en la red.
 * Consultar el balance de una dirección.
@@ -1635,11 +1635,228 @@ cardano-cli transaction submit \
 {% endtab %}
 {% endtabs %}
 
-### 🐣 13. Localiza tu Stake pool ID y verifica que todo funcione
+### 🐣 13. Localizando el ID del Stake Pool y verificando que esté funcionando bien.
 
-### ⚙ 14. Configura tus archivos de topología
+El ID del Stake Pool se puede calcular de la siguiente manera:
 
-### 🎇 15. Revisando las Recompensas del Stake Pool
+{% tabs %}
+{% tab title="Máquina Fuera de Línea" %}
+```bash
+cardano-cli stake-pool id --cold-verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
+cat stakepoolid.txt
+```
+{% endtab %}
+{% endtabs %}
+
+Copia **stakepoolid.txt** a tu **entorno frío**
+
+Con el ID del Stake Pool, verificamos que esté incluido en la cadena de bloques.
+
+{% tabs %}
+{% tab title="Nodo Productor de Bloques" %}
+```bash
+cardano-cli query ledger-state --mainnet | grep publicKey | grep $(cat stakepoolid.txt)
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+Si el comando retorna una cadena no vacía, significa que estás registrado correctamente 👏
+{% endhint %} 
+
+Con el ID del Stake Pool, ahora puedes buscar tu información en exploradores de la cadena de bloques, tales como [https://pooltool.io/](https://pooltool.io/)
+
+### ⚙ 14. Configuración del archivo de topología
+
+{% hint style="info" %}
+La actualización de Shelley fue lanzada sin descubrimiento de nodos por P2P (Peer-to-peer), lo que significa que necesitaremos agregar de manera manual las direcciones de los nodos para configurar nuestro archivo de topología. Este es un **paso crítico**, saltarse este paso resultará en bloques aislados del resto de la red.
+{% endhint %}
+
+Configuremos los archivos de la topología.
+
+* **El método topologyUpdate.sh** es una manera de automatizar el descubrimiento de los nodos, tomará mínimo 4 horas. 
+
+{% tabs %}
+{% tab title="Método topologyUpdater.sh " %}
+### 🚀 Publicar tu nodo con topologyUpdater.sh
+
+{% hint style="info" %}
+Créditos a [GROWPOOL](https://twitter.com/PoolGrow) por esta opción y créditos a [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) por la creación de este proceso. 
+{% endhint %}
+
+Creamos el script `topologyUpdater.sh` el cual publica la información de nuestro nodo en una lista.
+```bash
+###
+### En el NodoRelevador1
+###
+cat > $NODE_HOME/topologyUpdater.sh << EOF
+#!/bin/bash
+# shellcheck disable=SC2086,SC2034
+ 
+USERNAME=$(whoami)
+CNODE_PORT=6000 # must match your relay node port as set in the startup command
+CNODE_HOSTNAME="CHANGE ME"  # optional. must resolve to the IP you are requesting from
+CNODE_BIN="/usr/local/bin"
+CNODE_HOME=$NODE_HOME
+CNODE_LOG_DIR="\${CNODE_HOME}/logs"
+GENESIS_JSON="\${CNODE_HOME}/${NODE_CONFIG}-shelley-genesis.json"
+NETWORKID=\$(jq -r .networkId \$GENESIS_JSON)
+CNODE_VALENCY=1   # optional for multi-IP hostnames
+NWMAGIC=\$(jq -r .networkMagic < \$GENESIS_JSON)
+[[ "\${NETWORKID}" = "Mainnet" ]] && HASH_IDENTIFIER="--mainnet" || HASH_IDENTIFIER="--testnet-magic \${NWMAGIC}"
+[[ "\${NWMAGIC}" = "1097911063" ]] && NETWORK_IDENTIFIER="--mainnet" || NETWORK_IDENTIFIER="--testnet-magic \${NWMAGIC}"
+ 
+export PATH="\${CNODE_BIN}:\${PATH}"
+export CARDANO_NODE_SOCKET_PATH="\${CNODE_HOME}/db/socket"
+ 
+blockNo=\$(/usr/local/bin/cardano-cli query tip \${NETWORK_IDENTIFIER} | jq -r .block )
+ 
+# Note:
+# if you run your node in IPv4/IPv6 dual stack network configuration and want announced the
+# IPv4 address only please add the -4 parameter to the curl command below  (curl -4 -s ...)
+if [ "\${CNODE_HOSTNAME}" != "CHANGE ME" ]; then
+  T_HOSTNAME="&hostname=\${CNODE_HOSTNAME}"
+else
+  T_HOSTNAME=''
+fi
+
+if [ ! -d \${CNODE_LOG_DIR} ]; then
+  mkdir -p \${CNODE_LOG_DIR};
+fi
+ 
+curl -s "https://api.clio.one/htopology/v1/?port=\${CNODE_PORT}&blockNo=\${blockNo}&valency=\${CNODE_VALENCY}&magic=\${NWMAGIC}\${T_HOSTNAME}" | tee -a \$CNODE_LOG_DIR/topologyUpdater_lastresult.json
+EOF
+```
+
+Le damos permisos de ejecución al script.
+
+```bash
+###
+### En el NodoRelevador1,
+###
+cd $NODE_HOME
+chmod +x topologyUpdater.sh
+./topologyUpdater.sh
+```
+
+Cuando `topologyUpdater.sh` se ejecute de manera exitosa verás el sisguiente mensaje
+
+> `{ "resultcode": "201", "datetime":"2020-07-28 01:23:45", "clientIp": "1.2.3.4", "iptype": 4, "msg": "nice to meet you" }`
+
+{% hint style="info" %}
+Cada que el script se ejecuta y actualiza tu IP, se genera un registro en **`$NODE_HOME/logs`**
+{% endhint %}
+
+Add a crontab job to automatically run `topologyUpdater.sh` every hour on the 22nd minute. You can change the 22 value to your own preference.
+Agregamos una tarea de crontab, para que `topologyUpdater.sh` se actualice cada hora en el minuto 22. De ser necesario puedes cambiar el valor 22 al de tu preferencia.
+
+```bash
+###
+### On relaynode1
+###
+cat > $NODE_HOME/crontab-fragment.txt << EOF
+22 * * * * ${NODE_HOME}/topologyUpdater.sh
+EOF
+crontab -l | cat - crontab-fragment.txt >crontab.txt && crontab crontab.txt
+rm crontab-fragment.txt
+```
+
+{% hint style="success" %}
+Después de cuatro horas y cuatro actualizaciones, la IP de tu nodo será registrada en una lista de topología.
+{% endhint %}
+
+### 🤹♀ Update your relay node topology files
+
+{% hint style="danger" %}
+Completa los siguientes pasos después de **cuatro horas**, cuando la IP de tu Nodo Relevador haya sido registrada correctamente.
+{% endhint %}
+
+Create `relay-topology_pull.sh` script which fetches your relay node buddies and updates your topology file. **Update with your block producer's public IP address.**
+Creamos el script `relay-topology_pull.sh`, el cual extrae las IPs de los demás nodos y actualiza tu archivo de topología. **Reemplaza en el script la IP pública del Nodo Productor de Bloques**
+
+```bash
+###
+### On relaynode1
+###
+cat > $NODE_HOME/relay-topology_pull.sh << EOF
+#!/bin/bash
+BLOCKPRODUCING_IP=DIRECCION IP DEL NODO PRODUCTOR DE BLOQUES
+BLOCKPRODUCING_PORT=6000
+curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP},\${BLOCKPRODUCING_PORT},1|relays-new.cardano-mainnet.iohk.io,3001,2"
+EOF
+```
+
+Le damos permisos de ejecución y corremos el script para actualizar nuestro archivo de topología.
+
+```bash
+###
+### On relaynode1
+###
+chmod +x relay-topology_pull.sh
+./relay-topology_pull.sh
+```
+
+Ahora reiniciamos el nodo para que se ejecute con las nueva topología.
+
+```bash
+###
+### On relaynode1
+###
+sudo systemctl restart cardano-node
+```
+
+{% hint style="warning" %}
+No olvides reiniciar tus Nodos Relevadores después de cada actualización del archivo de topología.
+{% endhint %}
+{% endtab %}
+{% endtabs %}
+
+{% hint style="danger" %}
+\*\*\*\*🔥 **Paso Crítico:** Para que tu Stake Pool sea funcional y esté lista para producir bloques, debes de ver el número de transacciones aumentando en gLiveView. De lo contrario revisa tu archivo de topología y asegurate que los demás nodos están conectados correctamente, y de manera ideal que hayan producido anteriormente.
+{% endhint %}
+
+![Las Transacciones deben ser un número positivo. Debe de haber conexiones in / out.](../../../.gitbook/assets/in-out-connections.png)
+
+{% hint style="danger" %}
+\*\*\*\*🛑 **Nota Importante de Seguridad**: Las siguientes claves y certificados son los únicos archivos requeridos enb el Nodo Productor para que el Stake Pool funcione:
+
+```bash
+###
+### 
+###
+KES=\${DIRECTORY}/kes.skey
+VRF=\${DIRECTORY}/vrf.skey
+CERT=\${DIRECTORY}/node.cert
+```
+
+**All other keys must remain offline in your air-gapped offline cold environment.**
+**Todas las otras claves y certificados deben estar en tu Máquina Fuera de Línea.**
+{% endhint %}
+
+{% hint style="danger" %}
+\*\*\*\*🔥 **Recordatorio:** Los Nodos Relevadores no deben tener ningún **`certificado de operación`, `vrf`, `skey` o `claves frías`**.
+{% endhint %}
+
+{% hint style="success" %}
+Congratulations! Your stake pool is registered and ready to produce blocks.
+¡Felicidades! Tu Stake Pool está registrada y lista para producir bloques.
+{% endhint %}
+
+## 🎇 15. Revisando las recompensas
+
+After the epoch is over and assuming you successfully minted blocks, check with this:
+Cuando acabe un epoch y suponiendo que has producido un bloque de manera exitosa, puedes revisar las recompensas de la siguiente manera:
+
+{% tabs %}
+{% tab title="Nodo Productor de Bloques" %}
+```bash
+cardano-cli query stake-address-info \
+ --address $(cat stake.addr) \
+ --mainnet
+```
+{% endtab %}
+{% endtabs %}
+
 
 ### 🔮 16. Configura tu Consola de Control con Prometheus y Grafana
 
