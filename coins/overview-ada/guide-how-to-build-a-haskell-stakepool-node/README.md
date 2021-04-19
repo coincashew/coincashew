@@ -1528,8 +1528,8 @@ Find the deposit fee for a pool.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-poolDeposit=$(cat $NODE_HOME/params.json | jq -r '.poolDeposit')
-echo poolDeposit: $poolDeposit
+stakePoolDeposit=$(cat $NODE_HOME/params.json | jq -r '.stakePoolDeposit')
+echo stakePoolDeposit: $stakePoolDeposit
 ```
 {% endtab %}
 {% endtabs %}
@@ -1545,7 +1545,7 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 ```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${poolDeposit}))  \
+    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakePoolDeposit}))  \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --certificate-file pool.cert \
@@ -1582,7 +1582,7 @@ Calculate your change output.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-txOut=$((${total_balance}-${poolDeposit}-${fee}))
+txOut=$((${total_balance}-${stakePoolDeposit}-${fee}))
 echo txOut: ${txOut}
 ```
 {% endtab %}
@@ -3470,11 +3470,11 @@ Find the earliest and latest retirement epoch that your pool can retire.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-eMax=$(cat $NODE_HOME/params.json | jq -r '.eMax')
-echo eMax: ${eMax}
+poolRetireMaxEpoch=$(cat $NODE_HOME/params.json | jq -r '.poolRetireMaxEpoch')
+echo poolRetireMaxEpoch: ${poolRetireMaxEpoch}
 
 minRetirementEpoch=$(( ${epoch} + 1 ))
-maxRetirementEpoch=$(( ${epoch} + ${eMax} ))
+maxRetirementEpoch=$(( ${epoch} + ${poolRetireMaxEpoch} ))
 
 echo earliest epoch for retirement is: ${minRetirementEpoch}
 echo latest epoch for retirement is: ${maxRetirementEpoch}
@@ -3483,10 +3483,10 @@ echo latest epoch for retirement is: ${maxRetirementEpoch}
 {% endtabs %}
 
 {% hint style="info" %}
-\*\*\*\*🚧 **Example**: if we are in epoch 39 and eMax is 18,
+\*\*\*\*🚧 **Example**: if we are in epoch 39 and poolRetireMaxEpoch is 18,
 
 * the earliest epoch for retirement is 40 \( current epoch  + 1\).
-* the latest epoch for retirement is 57 \( eMax + current epoch\). 
+* the latest epoch for retirement is 57 \( poolRetireMaxEpoch + current epoch\). 
 
 Let's pretend we wish to retire as soon as possible in epoch 40.
 {% endhint %}
