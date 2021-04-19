@@ -2265,6 +2265,18 @@ Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resub
 **Reminder**: There is no requirement to pay the 500 ADA stake pool deposit again.
 {% endhint %}
 
+First, generate the protocol-parameters.
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cardano-cli query protocol-parameters \
+    --mainnet \
+    --out-file $NODE_HOME/params.json
+```
+{% endtab %}
+{% endtabs %}
+
 If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. Refer to [section 9 for information.](./#9-register-your-stakepool) 
 
 {% tabs %}
@@ -2275,7 +2287,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 {% endtab %}
 {% endtabs %}
 
-If you changed your poolMetaData.json, copy **poolMetaDataHash,txt** to your **cold environment.**
+If you changed your poolMetaData.json, copy **poolMetaDataHash.txt** to your **cold environment.**
 
 Update the below registration-certificate transaction with your desired stake pool settings.
 
@@ -3442,6 +3454,18 @@ Here are the top problems a stake pool can experience and how to solve them.
 6. **Declared pledge is met** - check your pool on [pooltool.io](https://pooltool.io/) or [adapools.org](https://adapools.org/). Add more ADA to pledge address.
 
 ## 🌜 19. Retire your stake pool
+
+First, generate the protocol-parameters.
+
+{% tabs %}
+{% tab title="block producer node" %}
+```bash
+cardano-cli query protocol-parameters \
+    --mainnet \
+    --out-file $NODE_HOME/params.json
+```
+{% endtab %}
+{% endtabs %}
 
 Calculate the current epoch.
 
