@@ -2261,24 +2261,11 @@ rm -rf db
 
 {% hint style="info" %}
 Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resubmit your stake pool registration certificate.
+
+**Reminder**: There is no requirement to pay the 500 ADA stake pool deposit again.
 {% endhint %}
 
-Find the minimum pool cost.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-minPoolCost=$(cat $NODE_HOME/params.json | jq -r .minPoolCost)
-echo minPoolCost: ${minPoolCost}
-```
-{% endtab %}
-{% endtabs %}
-
-{% hint style="info" %}
-minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
-{% endhint %}
-
-If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. Refer to [section 9 for information.](./#9-register-your-stakepool) If you're verifying your stake pool ID, the hash is already provided to you by pooltool.
+If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. Refer to [section 9 for information.](./#9-register-your-stakepool) 
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -2288,7 +2275,9 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 {% endtab %}
 {% endtabs %}
 
-Update the below registration-certificate transaction with your desired settings.
+If you changed your poolMetaData.json, copy **poolMetaDataHash,txt** to your **cold environment.**
+
+Update the below registration-certificate transaction with your desired stake pool settings.
 
 If you have **multiple relay nodes,** [**refer to section 12**](./#12-register-your-stake-pool) and change your parameters appropriately.
 
@@ -2316,6 +2305,10 @@ cardano-cli stake-pool registration-certificate \
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="warning" %}
+minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
+{% endhint %}
 
 {% hint style="info" %}
 Here we are pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 20%. 
