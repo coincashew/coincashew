@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of April 14 2021, this is **guide version 3.2.1** and written for **cardano mainnet** with **release v.1.26.1** 😁 
+As of April 18 2021, this is **guide version 3.3.0** and written for **cardano mainnet** with **release v.1.26.2** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -197,7 +197,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.26.1
+git checkout tags/1.26.2
 ```
 
 Configure build options.

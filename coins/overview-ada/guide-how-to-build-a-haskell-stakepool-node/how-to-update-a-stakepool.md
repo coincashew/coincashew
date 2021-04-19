@@ -7,7 +7,7 @@
 {% endhint %}
 
 {% hint style="success" %}
-As of April 14 2021, this guide is written for **mainnet** with **release v.1.26.1** 😁 
+As of April 18 2021, this guide is written for **mainnet** with **release v1.26.2** 😁 
 {% endhint %}
 
 ## 📡 1. How to perform an update
@@ -19,13 +19,23 @@ Read the patch notes for any other special updates or dependencies that may be r
 {% endhint %}
 
 {% tabs %}
+{% tab title="v1.26.2 Notes" %}
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2**](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2)\*\*\*\*
+
+This point release is a recommended upgrade for all stake pool operators. It is not required for relays or other passive nodes. It ensures that block producing nodes do not unnecessarily re-evaluate the stake distribution at the epoch boundary.
+
+{% hint style="info" %}
+It is possible to upgrade from v1.25.1 but for a smooth update, ensure you have completed the v1.26.1 release dependencies, notably the ghc and cabal updates. Also note the database migration can take up to 2 hours.
+{% endhint %}
+{% endtab %}
+
 {% tab title="v1.26.1 Notes" %}
 **Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.26.1**](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.1)\*\*\*\*
 
 This release includes significant performance improvements and numerous other minor improvements and feature additions. In particular the reward calculation pause is eliminated, and the CPU load for relays handling lots of incoming transactions should be significantly reduced.  
 The focus of the current development work is on completing and integrating support for the Alonzo era. This release includes many of the internal changes but does not yet include support for the new era.
 
-* Note that this release will automatically perform a DB migration on the first startup after the update. The **migration should take 10-20 minutes** however it can take up to 60 minutes depending on your CPU. If this is a problem for your use, then see below for steps to mitigate this.
+* Note that this release will automatically perform a DB migration on the first startup after the update. The **migration should take 10-120 minutes** however it can take up to 60 minutes depending on your CPU. If this is a problem for your use, then see below for steps to mitigate this.
 * The format of the `cardano-cli query tip` query has changed - see release notes for the CLI below.
 * The `cardano-cli query ledger-state` query now produces a binary file if `--out-file` is specified. If required \(e.g. for use in `cncli`\), JSON output can be obtained by omitting this parameter, and redirecting the standard output to a file
 
@@ -184,72 +194,6 @@ Stake Pool Operators \(SPOs\) and Exchanges should update their node config \( `
       ],
 ```
 {% endtab %}
-
-{% tab title="v1.23.0 Notes" %}
-This release includes a substantial amount of internal changes to support the upcoming Allegra and Mary hard forks and the new features they bring. This is _not_ the final release before the Allegra hard fork, but it does include the bulk of the functionality for both Allegra and Mary hard forks.
-
-* The Allegra hard fork adds some features needed to support the Catalyst treasury scheme. It extends the existing multi-sig script language with predicates for time, via the slot number. It allows, for example, to make an address not spendable until a certain point in time.
-* The Mary hard fork adds multi-asset support. This is comparable to ERC20 and ERC721 tokens, but supported natively in the UTxO ledger. This is part of the Goguen feature set. It is a very significant feature and will have implications for all Cardano wallet implementations, including exchanges.
-
-Another notable change in this release is an adjustment to the pool ranking that will benefit small pools that have not yet made many blocks. We have adjusted the initial Bayesian prior so that instead of assuming new pools will perform at some less-than-perfect average level, we assume they will perform more-or-less perfectly. This prior is still updated based on the actual performance history, so pools that perform poorly will still drop in ranking. This change will especially benefit small pools that have produce few blocks so far, because they have very little performance history and so their score will be more influenced by the initial prior.
-
-### Release v1.23.0 New Dependencies
-
-Install GHC version 8.10.2
-
-```bash
-cd
-wget https://downloads.haskell.org/ghc/8.10.2/ghc-8.10.2-x86_64-deb9-linux.tar.xz
-tar -xf ghc-8.10.2-x86_64-deb9-linux.tar.xz
-rm ghc-8.10.2-x86_64-deb9-linux.tar.xz
-cd ghc-8.10.2
-./configure
-sudo make install
-```
-
-Update cabal and ensure GHC version 8.10.2 is installed.
-
-```bash
-source $HOME/.bashrc
-cabal update
-ghc -V
-```
-
-> \#Example of version output
->
-> The Glorious Glasgow Haskell Compilation System, version 8.10.2
-
-#### Disable Liveview
-
-As if this release, LiveView was removed.
-
-Run the following to modify **mainnet-config.json** and 
-
-* change LiveView to SimpleView
-
-```bash
-cd $NODE_HOME
-sed -i mainnet-config.json \
-    -e "s/LiveView/SimpleView/g"
-```
-
-#### Install gLiveView
-
-A recommended drop in replacement for LiveView to help you monitor activities on the node.
-
-Refer to [this link for install instructions.](./#18-13-gliveview-node-status-monitoring)
-
-#### Update permissions on vrf.skey \(only for block producer node\)
-
-{% hint style="info" %}
-Starting with version 1.23.0, `vrf.skey` permission checking has been implemented and a block producer node will only start if the owner is set to read-only permission.
-{% endhint %}
-
-```bash
-cd $NODE_HOME
-chmod 400 vrf.skey
-```
-{% endtab %}
 {% endtabs %}
 
 ### Compiling the new binaries
@@ -268,10 +212,8 @@ Run the following command to pull and build the latest binaries. Change the chec
 ```bash
 cd $HOME/git/cardano-node2
 cabal update
-rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.2
-rm -rf $HOME/git/cardano-node2/dist-newstyle/build/x86_64-linux/ghc-8.10.4
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.26.1
+git checkout tags/1.26.2
 cabal configure -O0 -w ghc-8.10.4
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 cabal build cardano-node cardano-cli
