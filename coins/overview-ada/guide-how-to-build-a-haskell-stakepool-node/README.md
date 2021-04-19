@@ -1750,14 +1750,14 @@ When the `topologyUpdater.sh` runs successfully, you will see
 Every time the script runs and updates your IP, a log is created in **`$NODE_HOME/logs`**
 {% endhint %}
 
-Add a crontab job to automatically run `topologyUpdater.sh` every hour on the 22nd minute. You can change the 22 value to your own preference.
+Add a crontab job to automatically run `topologyUpdater.sh` every hour on the 33rd minute. You can change the 33 value to your own preference.
 
 ```bash
 ###
 ### On relaynode1
 ###
 cat > $NODE_HOME/crontab-fragment.txt << EOF
-22 * * * * ${NODE_HOME}/topologyUpdater.sh
+33 * * * * ${NODE_HOME}/topologyUpdater.sh
 EOF
 crontab -l | cat - crontab-fragment.txt >crontab.txt && crontab crontab.txt
 rm crontab-fragment.txt
