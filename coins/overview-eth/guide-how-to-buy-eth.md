@@ -8,7 +8,7 @@
 
 | Site | Pairs | Location | KYC Required? |
 | :--- | :--- | :--- | :--- |
-| [Binance](https://www.coinex.com/register?refer_code=6rcz2) | BTC-BNB-BUSD-USDT | Global | No. 2₿/day. |
+| [Binance](https://www.binance.com/en/register?ref=RI4R7YI6) | BTC-BNB-BUSD-USDT | Global | No. 2₿/day. |
 | [CoinEx](https://www.coinex.com/register?refer_code=6rcz2) | BCH-BTC-USDT | Hong Kong | No. 10,000USD/day. |
 | [Kucoin](https://www.kucoin.com/ucenter/signup?rcode=2M43tty) | BTC-USDT | Seychelles | No. 2₿/day. |
 | [AscendEX](https://ascendex.com/) | BTC-USDT | Singapore | No. 2₿/day. |
