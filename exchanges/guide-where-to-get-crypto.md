@@ -20,6 +20,8 @@ This guide is for you.
 | [Huobi](https://www.hbg.com/en-us/exchange/?s=xtz_btc&invite_code=) | Singapore | No |
 | [TradeOgre](https://tradeogre.com/markets) | Global | No |
 | [Bitcoin.com Exchange](https://exchange.bitcoin.com) | Saint Bitts | No |
+| [AscendEX](https://ascendex.com/) | Singapore | No. 2₿/day. |
+| [BitForex](https://www.bitforex.com/) | Seychelles | No. |
 | [Bitfinex](https://www.bitfinex.com/t/XTZ:USD) | Hong Kong | No |
 | [Coinbase](https://pro.coinbase.com/trade/XTZ-USD) | USA | Yes |
 | [Kraken](https://www.kraken.com) | USA | Yes |
