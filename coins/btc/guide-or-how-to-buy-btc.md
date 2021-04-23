@@ -1,10 +1,14 @@
-# Guide: How to buy ETH
+---
+description: Simple two step process to buying Bitcoin.
+---
 
-## 🔥 1. Get some money into crypto
+# Guide \| How to buy BTC
+
+## ​ 🔥 1. Get some money into crypto <a id="1-get-some-money-into-crypto"></a>
 
 {% page-ref page="../../exchanges/guide-where-to-get-crypto.md" %}
 
-## 💱 2. Convert on Exchange
+## 🔄 2. Convert on Exchange
 
 | Site | Pairs | Location | KYC Required? |
 | :--- | :--- | :--- | :--- |
