@@ -217,7 +217,7 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 5. Confirm the transaction\(s\). There's one deposit transaction of 32 ETH for each validator.
 
 {% hint style="info" %}
-Your transaction is sending and depositing your ETH to the prymont ETH2 deposit contract address. 
+Your transaction is sending and depositing your ETH to the pyrmont ETH2 deposit contract address. 
 
 **Check**, _double-check_, _**triple-check**_ that the pyrmont Eth2 deposit contract address is correct.
 
@@ -710,7 +710,7 @@ lighthouse --version
 ## 🎩 4.3. Import validator key
 
 {% hint style="info" %}
-When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `$HOME/.lighthouse/prymont/validators` folder.
+When you import your keys into Lighthouse, your validator signing key\(s\) are stored in the `$HOME/.lighthouse/pyrmont/validators` folder.
 {% endhint %}
 
 Run the following command to import your validator keys from the eth2deposit-cli tool directory.
@@ -718,13 +718,13 @@ Run the following command to import your validator keys from the eth2deposit-cli
 Enter your **keystore password** to import accounts.
 
 ```bash
-lighthouse account validator import --network prymont --directory=$HOME/eth2deposit-cli/validator_keys
+lighthouse account validator import --network pyrmont --directory=$HOME/eth2deposit-cli/validator_keys
 ```
 
 Verify the accounts were imported successfully.
 
 ```bash
-lighthouse account_manager validator list --network prymont
+lighthouse account_manager validator list --network pyrmont
 ```
 
 {% hint style="danger" %}
@@ -766,7 +766,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) bn --staking --validator-monitor-auto --metrics --network prymont
+ExecStart       = $(which lighthouse) bn --staking --validator-monitor-auto --metrics --network pyrmont
 Restart         = on-failure
 
 [Install]
@@ -878,7 +878,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network prymont --metrics
+ExecStart       = $(which lighthouse) vc --network pyrmont --metrics
 Restart         = on-failure
 
 [Install]
@@ -2643,9 +2643,9 @@ Use this command to signal your intentions to stop validating with your validato
 {% tab title="Lighthouse" %}
 ```bash
 lighthouse account validator exit \
---keystore $HOME/.lighthouse/prymont/validators \
+--keystore $HOME/.lighthouse/pyrmont/validators \
 --beacon-node http://localhost:5052 \
---network prymont
+--network pyrmont
 ```
 {% endtab %}
 
@@ -2683,7 +2683,7 @@ Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pair
 
 ```bash
 cd $HOME/eth2deposit-cli 
-./deposit.sh existing-mnemonic --chain prymont
+./deposit.sh existing-mnemonic --chain pyrmont
 ```
 
 {% hint style="info" %}
@@ -2722,14 +2722,14 @@ Reminder to use the same **keystore password.**
 {% tab title="Build from source code" %}
 ```bash
 # Generate from an existing mnemonic 5 more validators when 3 were previously already made
-./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain prymont
+./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
 ```
 {% endtab %}
 
 {% tab title="Pre-built eth2deposit-cli binaries" %}
 ```bash
 # Generate from an existing mnemonic 5 more validators when 3 were previously already made
-./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain prymont
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
 ```
 {% endtab %}
 
@@ -3014,16 +3014,16 @@ In case you need to locate your validator keys or database directories.
 {% tab title="Lighthouse" %}
 ```bash
 # Validator Keys
-~/.lighthouse/prymont/validators
+~/.lighthouse/pyrmont/validators
 
 # Beacon Chain Data
-~/.lighthouse/prymont/beacon
+~/.lighthouse/pyrmont/beacon
 
 # List of all validators and passwords
-~/.lighthouse/prymont/validators/validator_definitions.yml
+~/.lighthouse/pyrmont/validators/validator_definitions.yml
 
 #Slash protection db
-~/.lighthouse/prymont/validators/slashing_protection.sqlite
+~/.lighthouse/pyrmont/validators/slashing_protection.sqlite
 ```
 {% endtab %}
 
@@ -3233,7 +3233,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network prymont --graffiti "${MY_GRAFFITI}" 
+ExecStart       = $(which lighthouse) vc --network pyrmont --graffiti "${MY_GRAFFITI}" 
 Restart         = on-failure
 
 [Install]
@@ -3271,7 +3271,7 @@ After           = network-online.target
 Type            = simple
 User            = $(whoami)
 WorkingDirectory= /var/lib/nimbus
-ExecStart       = /usr/bin/nimbus_beacon_node --network=prymont --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
+ExecStart       = /usr/bin/nimbus_beacon_node --network=pyrmont --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
 Restart         = on-failure
 
 [Install]
@@ -3302,7 +3302,7 @@ Re-generate your Teku Config file. Simply copy and paste.
 ```bash
 cat > $HOME/teku.yaml << EOF
 # network
-network: "prymont"
+network: "pyrmont"
 
 # p2p
 p2p-enabled: true
@@ -3356,7 +3356,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --prymont --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --pyrmont --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
 Restart         = on-failure
 
 [Install]
@@ -3393,7 +3393,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --network prymont --graffiti "${MY_GRAFFITI}"
+ExecStart       = yarn run cli validator run --network pyrmont --graffiti "${MY_GRAFFITI}"
 Restart         = on-failure
 
 [Install]
@@ -3582,7 +3582,7 @@ Add the following flag to increase peers on the `ExecStart` line.
 ```bash
 --target-peers 100
 # Example
-# lighthouse bn --target-peers 100 --staking --metrics --network prymont
+# lighthouse bn --target-peers 100 --staking --metrics --network pyrmont
 ```
 {% endtab %}
 
@@ -3608,7 +3608,7 @@ p2p-peer-upper-bound: 100
 ```bash
 --p2p-max-peers=100
 # Example
-# prysm.sh beacon-chain --prymont --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+# prysm.sh beacon-chain --pyrmont --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 ```
 {% endtab %}
 
@@ -3616,7 +3616,7 @@ p2p-peer-upper-bound: 100
 ```bash
 --network.maxPeers 100
 # Example
-# yarn run cli beacon --network.maxPeers 100 --network prymont
+# yarn run cli beacon --network.maxPeers 100 --network pyrmont
 ```
 {% endtab %}
 {% endtabs %}
