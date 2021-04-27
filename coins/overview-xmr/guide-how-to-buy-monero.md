@@ -1,10 +1,14 @@
-# Guide: How to buy ETH
+---
+description: Simple two step process to buying XMR.
+---
+
+# Guide: How to buy Monero
 
 ## 🔥 1. Get some money into crypto
 
 {% page-ref page="../../exchanges/guide-where-to-get-crypto.md" %}
 
-## 💱 2. Convert on Exchange
+## 🔄 2. Convert on Exchange
 
 | Site | Pairs | Location | KYC Required? |
 | :--- | :--- | :--- | :--- |

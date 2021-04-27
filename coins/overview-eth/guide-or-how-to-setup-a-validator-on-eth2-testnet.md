@@ -7,10 +7,14 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet
 
 {% hint style="success" %}
-As of Jan 5 2021, this guide is updated for **testnet Pyrmont.** 😁
+As of April 12 2021, this guide is updated for **testnet PYRMONT.** 
+
+If you would like to test on **testnet** **PRATER**, [please click here.](guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
 {% endhint %}
 
-#### ✨ For the mainnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+{% hint style="info" %}
+#### ⏩ For the MAINNET guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+{% endhint %}
 
 🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
 
@@ -141,7 +145,7 @@ sudo ./deposit.sh install
 Make a new mnemonic.
 
 ```text
-./deposit.sh new-mnemonic --chain pyrmont
+./deposit.sh new-mnemonic --chain prymont
 ```
 {% endtab %}
 
@@ -207,17 +211,17 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 {% endhint %}
 
 1. Follow the prompts and pick a **keystore password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
-2. Follow the steps at [https://pyrmont.launchpad.ethereum.org/](https://pyrmont.launchpad.ethereum.org/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
+2. Follow the steps at https://pyrmont.launchpad.ethereum.org while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
 3. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
 4. Connect to the launchpad with your Metamask wallet, review and accept terms.
 5. Confirm the transaction\(s\). There's one deposit transaction of 32 ETH for each validator.
 
 {% hint style="info" %}
-Your transaction is sending and depositing your ETH to the pyrmont ETH2 deposit contract address. 
+Your transaction is sending and depositing your ETH to the prymont ETH2 deposit contract address. 
 
 **Check**, _double-check_, _**triple-check**_ that the pyrmont Eth2 deposit contract address is correct.
 
-[0x8c5fecdC472E27Bc447696F431E425D02dd46a8c](https://goerli.etherscan.io/address/0x8c5fecdc472e27bc447696f431e425d02dd46a8c)
+ [0x8c5fecdC472E27Bc447696F431E425D02dd46a8c](https://goerli.etherscan.io/address/0x8c5fecdc472e27bc447696f431e425d02dd46a8c)
 {% endhint %}
 
 {% hint style="danger" %}
@@ -358,6 +362,7 @@ User            = $(whoami)
 ExecStart       = /usr/bin/geth --http --goerli --metrics --pprof
 Restart         = on-failure
 RestartSec      = 3
+TimeoutSec      = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -713,13 +718,13 @@ Run the following command to import your validator keys from the eth2deposit-cli
 Enter your **keystore password** to import accounts.
 
 ```bash
-lighthouse account validator import --network pyrmont --directory=$HOME/eth2deposit-cli/validator_keys
+lighthouse account validator import --network prymont --directory=$HOME/eth2deposit-cli/validator_keys
 ```
 
 Verify the accounts were imported successfully.
 
 ```bash
-lighthouse account_manager validator list --network pyrmont
+lighthouse account_manager validator list --network prymont
 ```
 
 {% hint style="danger" %}
@@ -761,7 +766,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) bn --staking --metrics --network pyrmont
+ExecStart       = $(which lighthouse) bn --staking --validator-monitor-auto --metrics --network prymont
 Restart         = on-failure
 
 [Install]
@@ -873,7 +878,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network pyrmont --metrics
+ExecStart       = $(which lighthouse) vc --network prymont --metrics
 Restart         = on-failure
 
 [Install]
@@ -1463,7 +1468,7 @@ $HOME/prysm/prysm.sh validator accounts import --pyrmont --keys-dir=$HOME/eth2de
 Verify your validators imported successfully.
 
 ```bash
-$HOME/prysm/prysm.sh validator accounts list --pyrmont     
+$HOME/prysm/prysm.sh validator accounts list --pyrmont
 ```
 
 Confirm your validator's pubkeys are listed.
@@ -1504,7 +1509,7 @@ After           = network-online.target
 [Service]
 Type            = simple
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --p2p-max-peers=75 --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --pyrmont --p2p-max-peers=45 --monitoring-host="0.0.0.0" --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]
@@ -1700,16 +1705,12 @@ INFO Enabled validator       voting_pubkey: 0x2374.....7121
 **Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
-{% hint style="danger" %}
-Lodestar may not be fully functional and stable yet.
-{% endhint %}
-
 ## ⚙ 4.1 Build Lodestar from source
 
 Install curl and git.
 
 ```bash
-sudo apt-get install git curl -y
+sudo apt-get install gcc g++ make git curl -y
 ```
 
 Install yarn.
@@ -1718,7 +1719,7 @@ Install yarn.
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update
-sudo apt install yarn
+sudo apt install yarn -y
 ```
 
 Confirm yarn is installed properly.
@@ -1748,7 +1749,7 @@ Install and build Lodestar.
 cd ~/git
 git clone https://github.com/chainsafe/lodestar.git
 cd lodestar
-yarn install
+yarn install --ignore-optional
 yarn run build
 ```
 
@@ -1759,7 +1760,7 @@ This build process may take a few minutes.
 Verify Lodestar was installed properly by displaying the help menu.
 
 ```text
-yarn run cli --help
+./lodestar --help
 ```
 
 ## 🔥 4.2. Configure port forwarding and/or firewall
@@ -1776,7 +1777,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 ## 🎩 4.3. Import validator key
 
 ```bash
-yarn run cli account validator import \
+./lodestar account validator import \
   --testnet pyrmont \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
@@ -1786,7 +1787,7 @@ Enter your **keystore password** to import accounts.
 Confirm your keys were imported properly.
 
 ```text
-yarn run cli account validator list --testnet pyrmont
+./lodestar account validator list --testnet pyrmont
 ```
 
 {% hint style="danger" %}
@@ -1820,7 +1821,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli beacon --testnet pyrmont --eth1.providerUrl http://localhost:8545 --metrics.serverPort 8008
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar --testnet pyrmont --eth1.providerUrl http://localhost:8545 --metrics.enabled true --metrics.serverPort 8008
 Restart         = on-failure
 
 [Install]
@@ -1913,7 +1914,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --testnet pyrmont
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar validator --testnet pyrmont
 Restart         = on-failure
 
 [Install]
@@ -2369,7 +2370,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 
 {% tabs %}
 {% tab title="Email Notifications" %}
-1. Visit [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+1. Visit https://pyrmont.beaconcha.in/
 2. Sign up for an account.
 3. Verify your **email**
 4. Search for your **validator's public address**
@@ -2456,7 +2457,7 @@ For a video demo, watch [MohamedMansour's eth2 education videos](https://www.you
 {% hint style="success" %}
 Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
 
-Use [https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) to create alerts and track your validator's performance.
+Use https://pyrmont.beaconcha.in/ to create alerts and track your validator's performance.
 {% endhint %}
 
 {% hint style="info" %}
@@ -2508,8 +2509,7 @@ lighthouse --version
 Restart beacon chain and validator as per normal operating procedures.
 
 ```text
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl reload-or-restart beacon-chain validator
 ```
 {% endtab %}
 
@@ -2592,21 +2592,20 @@ Pull the latest source and build it.
 ```bash
 cd $HOME/git/lodestar
 git pull
-yarn install
+yarn install --ignore-optional
 yarn run build
 ```
 
 Verify the build completed by checking the new version number.
 
 ```bash
-yarn run cli --version
+./lodestar --version
 ```
 
 Restart beacon chain and validator as per normal operating procedures.
 
 ```text
-sudo systemctl reload-or-restart beacon-chain
-sudo systemctl reload-or-restart validator
+sudo systemctl reload-or-restart beacon-chain validator
 ```
 {% endtab %}
 {% endtabs %}
@@ -2644,9 +2643,9 @@ Use this command to signal your intentions to stop validating with your validato
 {% tab title="Lighthouse" %}
 ```bash
 lighthouse account validator exit \
---keystore $HOME/.lighthouse/pyrmont/validators \
+--keystore $HOME/.lighthouse/prymont/validators \
 --beacon-node http://localhost:5052 \
---network pyrmont
+--network prymont
 ```
 {% endtab %}
 
@@ -2684,7 +2683,7 @@ Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pair
 
 ```bash
 cd $HOME/eth2deposit-cli 
-./deposit.sh existing-mnemonic --chain pyrmont
+./deposit.sh existing-mnemonic --chain prymont
 ```
 
 {% hint style="info" %}
@@ -2723,14 +2722,14 @@ Reminder to use the same **keystore password.**
 {% tab title="Build from source code" %}
 ```bash
 # Generate from an existing mnemonic 5 more validators when 3 were previously already made
-./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
+./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain prymont
 ```
 {% endtab %}
 
 {% tab title="Pre-built eth2deposit-cli binaries" %}
 ```bash
 # Generate from an existing mnemonic 5 more validators when 3 were previously already made
-./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain pyrmont
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain prymont
 ```
 {% endtab %}
 
@@ -2761,7 +2760,7 @@ Run the existing-mnemonic command in the previous tabs.
 
 5. Finally, verify your **existing** validator's attestations are working with public block explorer such as
 
-[https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/) 
+https://pyrmont.beaconcha.in/ 
 
 Enter your validator's pubkey to view its status.
 
@@ -2819,11 +2818,15 @@ teku slashing-protection export --to=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-To be implemented
+```bash
+prysm.sh validator slashing-protection export --datadir=/path/to/your/wallet --slashing-protection-export-dir=/path/to/desired/outputdir
+```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-To be implemented
+```bash
+./lodestar account validator slashing-protection export --network mainnet --file interchange.json
+```
 {% endtab %}
 {% endtabs %}
 
@@ -2861,11 +2864,15 @@ teku slashing-protection import --from=<FILE>
 {% endtab %}
 
 {% tab title="Prysm" %}
-To be implemented
+```bash
+prysm.sh validator slashing-protection import --datadir=/path/to/your/wallet --slashing-protection-json-file=/path/to/desiredimportfile
+```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-To be implemented
+```bash
+./lodestar account validator slashing-protection import --network mainnet --file interchange.json
+```
 {% endtab %}
 {% endtabs %}
 
@@ -2905,7 +2912,7 @@ sudo systemctl status beacon-chain
 
 Finally, verify your validator's attestations are working with public block explorer such as
 
-[https://pyrmont.beaconcha.in/](https://pyrmont.beaconcha.in/)
+https://pyrmont.beaconcha.in/
 
 Enter your validator's pubkey to view its status.
 
@@ -3007,16 +3014,16 @@ In case you need to locate your validator keys or database directories.
 {% tab title="Lighthouse" %}
 ```bash
 # Validator Keys
-~/.lighthouse/pyrmont/validators
+~/.lighthouse/prymont/validators
 
 # Beacon Chain Data
-~/.lighthouse/pyrmont/beacon
+~/.lighthouse/prymont/beacon
 
 # List of all validators and passwords
-~/.lighthouse/pyrmont/validators/validator_definitions.yml
+~/.lighthouse/prymont/validators/validator_definitions.yml
 
 #Slash protection db
-~/.lighthouse/pyrmont/validators/slashing_protection.sqlite
+~/.lighthouse/prymont/validators/slashing_protection.sqlite
 ```
 {% endtab %}
 
@@ -3060,7 +3067,16 @@ In case you need to locate your validator keys or database directories.
 {% endtab %}
 
 {% tab title="Lodestar" %}
-TBD
+```bash
+# Validator Keystores
+$rootDir/keystores
+
+# Validator Secrets
+$rootDir/secrets
+
+# Validator DB Data
+$rootDir/validator-db
+```
 {% endtab %}
 {% endtabs %}
 
@@ -3167,8 +3183,12 @@ nano /etc/systemd/system/beacon-chain.service
 {% endtab %}
 
 {% tab title="Lodestar" %}
-```
-tbd.
+```bash
+# edit beacon-chain unit file
+nano /etc/systemd/system/beacon-chain.service
+# add the --eth1.providerUrl parameter
+# example
+# --eth1.providerUrl http://192.168.10.20:8545
 ```
 {% endtab %}
 {% endtabs %}
@@ -3213,7 +3233,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network pyrmont --graffiti "${MY_GRAFFITI}" 
+ExecStart       = $(which lighthouse) vc --network prymont --graffiti "${MY_GRAFFITI}" 
 Restart         = on-failure
 
 [Install]
@@ -3251,7 +3271,7 @@ After           = network-online.target
 Type            = simple
 User            = $(whoami)
 WorkingDirectory= /var/lib/nimbus
-ExecStart       = /usr/bin/nimbus_beacon_node --network=pyrmont --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
+ExecStart       = /usr/bin/nimbus_beacon_node --network=prymont --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
 Restart         = on-failure
 
 [Install]
@@ -3282,7 +3302,7 @@ Re-generate your Teku Config file. Simply copy and paste.
 ```bash
 cat > $HOME/teku.yaml << EOF
 # network
-network: "pyrmont"
+network: "prymont"
 
 # p2p
 p2p-enabled: true
@@ -3336,7 +3356,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --pyrmont --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --prymont --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
 Restart         = on-failure
 
 [Install]
@@ -3373,7 +3393,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = yarn run cli validator run --network pyrmont --graffiti "${MY_GRAFFITI}"
+ExecStart       = yarn run cli validator run --network prymont --graffiti "${MY_GRAFFITI}"
 Restart         = on-failure
 
 [Install]
@@ -3562,7 +3582,7 @@ Add the following flag to increase peers on the `ExecStart` line.
 ```bash
 --target-peers 100
 # Example
-# lighthouse bn --target-peers 100 --staking --metrics --network pyrmont
+# lighthouse bn --target-peers 100 --staking --metrics --network prymont
 ```
 {% endtab %}
 
@@ -3588,7 +3608,7 @@ p2p-peer-upper-bound: 100
 ```bash
 --p2p-max-peers=100
 # Example
-# prysm.sh beacon-chain --pyrmont --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+# prysm.sh beacon-chain --prymont --p2p-max-peers=100 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 ```
 {% endtab %}
 
@@ -3596,7 +3616,7 @@ p2p-peer-upper-bound: 100
 ```bash
 --network.maxPeers 100
 # Example
-# yarn run cli beacon --network.maxPeers 100 --network pyrmont
+# yarn run cli beacon --network.maxPeers 100 --network prymont
 ```
 {% endtab %}
 {% endtabs %}
@@ -3731,7 +3751,7 @@ sudo systemctl restart validator
 
 Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
 
-{% embed url="https://pyrmont.launchpad.ethereum.org/" %}
+{% embed url="https://pyrmont.launchpad.ethereum.org/en/" %}
 
 {% embed url="https://pegasys.tech/teku-ethereum-2-for-enterprise/" %}
 

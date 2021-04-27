@@ -77,8 +77,8 @@ cd cardano-node
 ```bash
 git fetch --tags --all
 git pull
-# Replace tag 1.24.2 with the version/branch you'd like to build
-git checkout 1.24.2
+# Replace tag 1.26.2 with the version/branch you'd like to build
+git checkout 1.26.2
 
 echo -e "package cardano-crypto-praos\n  flags: -external-libsodium-vrf" > cabal.project.local
 $CNODE_HOME/scripts/cabal-build-all.sh
@@ -199,17 +199,25 @@ Run Guild Liveview.
 
 Sample output of Guild Live View
 
-![Guild Live View](../../../.gitbook/assets/gliveview-core.png)
+![](../../../.gitbook/assets/glive.png)
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
 ## 🛑5. Configure and review the relay node topology file
 
-Use [pooltool.io](https://pooltool.io/) and the get\_buddies script to manage your **NEW** relay node's topology.
+Modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script to configure your relay node's connections to your other relays and block producer node. Refer to the [official documentation for more info.](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater?id=download-and-configure-topologyupdatersh)
 
-Alternatively use topologyUpdater.sh. Refer to the [official documentation for more info.](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater?id=download-and-configure-topologyupdatersh)
+```bash
+nano $CNODE_HOME/scripts/topologyUpdater.sh
+```
 
-After adding your relay node information to pooltool or the topologyUpdater.sh process, review your topology.json and check that it looks correct. Your new relay node's topology should contain your block producer node, your other relay nodes, and other public buddy relay nodes.
+Deploy the scripts with  `deploy-as-systemd.sh` to setup and schedule the execution. This will handle automatically sending updates to the Topology Updater API as well as fetching new peers whenever the node is restarted.
+
+```bash
+$CNODE_HOME/scripts/deploy-as-systemd.sh
+```
+
+Review your topology.json and check that it looks correct. Your new relay node's topology should contain your block producer node, your other relay nodes, and other public buddy relay nodes.
 
 ```bash
 cat $CNODE_HOME/files/topology.json
@@ -227,7 +235,7 @@ Additionally, if you have node-exporter installed for grafana stats, you will ne
 
 ## 👩💻 7. Configure existing relay or block producing node's topology
 
-Finally, add your new **NEW** relay node IP/port information to your **EXISTING** block producer and/or relay node's topology file. 
+Finally, add your new **NEW** relay node IP/port information to your **EXISTING** block producer and/or relay node's topology file. Modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh`
 
 For your block producer node, you'll want to manually add the new relay node information to your topology.json file.
 
@@ -241,7 +249,7 @@ Example snippet to add to your block producer's topology file. Add a comma to se
  }
 ```
 
-For relay nodes, you can use pooltool.io or topologyUpdater process to manage your topology file.
+For relay nodes, use the [topologyUpdater process](./#14-configure-your-topology-files) to manage your topology file or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh`.
 
 ## 🔄 8. Restart all relay and block producer nodes for new topology configurations to take effect
 

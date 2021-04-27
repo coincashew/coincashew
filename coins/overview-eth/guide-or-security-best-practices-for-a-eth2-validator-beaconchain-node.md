@@ -165,7 +165,7 @@ ssh ethereum@server.public.ip.address -p <custom port number>
 {% endtabs %}
 
 {% hint style="info" %}
-Alternatively, you might need to use. Add the `-p <port#>` flag if you used a custom SSH port.
+Alternatively, you might need to add the `-p <port#>` flag if you used a custom SSH port.
 
 ```bash
 ssh -i <path to your SSH_key_name.pub> ethereum@server.public.ip.address
@@ -396,64 +396,99 @@ With any new installation, ufw is disabled by default. Enable it with the follow
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-sudo ufw allow <22 or your random port number>/tcp
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
+# Allow p2p ports
 sudo ufw allow 9000/tcp
 sudo ufw allow 9000/udp
+# Allow eth1 port
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
+# Enable firewall
 sudo ufw enable
-sudo ufw status numbered
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
 ```bash
-sudo ufw allow <22 or your random port number>/tcp
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
+# Allow p2p ports
 sudo ufw allow 13000/tcp
 sudo ufw allow 12000/udp
+# Allow eth1 port
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
+# Enable firewall
 sudo ufw enable
-sudo ufw status numbered
 ```
 {% endtab %}
 
 {% tab title="Teku" %}
 ```bash
-sudo ufw allow <22 or your random port number>/tcp
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
+# Allow p2p ports
 sudo ufw allow 9000/tcp
 sudo ufw allow 9000/udp
+# Allow eth1 port
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
+# Enable firewall
 sudo ufw enable
-sudo ufw status numbered
 ```
 {% endtab %}
 
 {% tab title="Nimbus" %}
 ```bash
-sudo ufw allow <22 or your random port number>/tcp
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
+# Allow p2p ports
 sudo ufw allow 9000/tcp
 sudo ufw allow 9000/udp
+# Allow eth1 port
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
+# Enable firewall
 sudo ufw enable
-sudo ufw status numbered
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 ```bash
-sudo ufw allow <22 or your random port number>/tcp
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
+# Allow p2p ports
 sudo ufw allow 30607/tcp
 sudo ufw allow 9000/udp
+# Allow eth1 port
 sudo ufw allow 30303/tcp
 sudo ufw allow 30303/udp
+# Enable firewall
 sudo ufw enable
-sudo ufw status numbered
 ```
 {% endtab %}
 {% endtabs %}
+
+```bash
+# Verify status
+sudo ufw status numbered
+```
 
 {% hint style="danger" %}
 Do not expose Grafana \(port 3000\) and Prometheus endpoint \(port 9090\) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
@@ -464,13 +499,17 @@ Only open the following ports on local home staking setups behind a home router 
 \*\*\*\*🔥 **It is dangerous to open these ports on a VPS/cloud node.**
 
 ```bash
+# Allow grafana web server port
 sudo ufw allow 3000/tcp
+# Enable prometheus endpoint port
 sudo ufw allow 9090/tcp
 ```
 
 Confirm the settings are in effect.
 
 > ```csharp
+> # Verify status
+> sudo ufw status numbered
 >      To                         Action      From
 >      --                         ------      ----
 > [ 1] 22/tcp                     ALLOW IN    Anywhere

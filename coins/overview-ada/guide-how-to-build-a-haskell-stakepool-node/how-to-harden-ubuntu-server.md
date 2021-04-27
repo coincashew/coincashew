@@ -169,9 +169,7 @@ ssh cardano@server.public.ip.address -p <custom port number>
 {% endtabs %}
 
 {% hint style="info" %}
-Alternatively, you might need to use the following. 
-
-Add the `-p <port#>` flag if you used a custom SSH port.
+Alternatively, add the `-p <port#>` flag if you used a custom SSH port.
 
 ```bash
 ssh -i <path to your SSH_key_name.pub> cardano@server.public.ip.address
@@ -391,28 +389,42 @@ With any new installation, ufw is disabled by default. Enable it with the follow
 
 * Port 22 \(or your random port \#\) TCP for SSH connection
 * Port 6000 TCP for p2p traffic
-* Port 3000 TCP for Grafana web server \(if hosted on current node\)
-* Port 9090 tcp for Prometheus export data \(optional, if hosted on current node\)
+* Port 3000 TCP for Grafana web server \(if applicable\)
+* Port 9100 tcp for Prometheus node data
+* Port 12798 tcp for Prometheus cardano-node metrics data
 
 ```bash
-ufw allow <22 or your random port number>/tcp
-ufw allow 6000/tcp
-ufw allow 3000/tcp
-ufw enable
-ufw status numbered
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
+# Allow cardano-node p2p port
+sudo ufw allow 6000/tcp
+# Enable firewall
+sudo ufw enable
+```
+
+```bash
+# Verify status
+sudo ufw status numbered
 ```
 
 {% hint style="danger" %}
-Do not expose Grafana \(port 3000\) and Prometheus endpoint \(port 9090\) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
+Do not expose Grafana \(port 3000\) and Prometheus endpoint \(port 9100 and 12798\) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
 {% endhint %}
 
 Only open the following ports on nodes behind a network firewall.
 
-\*\*\*\*🔥 **It is dangerous to open these ports on a VPS/cloud node.**
+\*\*\*\*🔥 **It may be dangerous to open these ports on a VPS/cloud node.**
 
 ```bash
+# Allow grafana web server port
 sudo ufw allow 3000/tcp
-sudo ufw allow 9090/tcp
+# Allow prometheus endpoint port
+sudo ufw allow 9100/tcp
+# Allow prometheus cardano-node metric data port
+sudo ufw allow 12798/tcp
 ```
 
 Confirm the settings are in effect. 

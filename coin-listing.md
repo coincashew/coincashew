@@ -13,7 +13,7 @@
 | ![](.gitbook/assets/mkr.png) [Maker](coins/mkr.md) | ![](.gitbook/assets/bat.png) [BAT](coins/bat.md) |
 | ![](.gitbook/assets/vet.png) [Vechain](coins/overview-vet/) | ![](.gitbook/assets/hex.png) [HEX](coins/overview-hex/) |
 | ![](.gitbook/assets/trx.png) [TRON](coins/overview-trx/) | ![](.gitbook/assets/icx.png) [ICON](coins/overview-icx/) |
-| ![](.gitbook/assets/doge.png) [Dogecoin](coins/doge.md) | ![](.gitbook/assets/dgb.png) [Digibyte](coins/dgb.md) |
+| ![](.gitbook/assets/doge.png) [Dogecoin](coins/doge/) | ![](.gitbook/assets/dgb.png) [Digibyte](coins/dgb.md) |
 | ![](.gitbook/assets/dcr.png) [Decred](coins/dcr/) | ![](.gitbook/assets/ont.png) [Ontology](coins/ont/) |
 | ![](.gitbook/assets/zrx.png) [Ox](coins/zrx.md) | ![](.gitbook/assets/knc.png) [Kyber Network](coins/knc.md) |
 | ![](.gitbook/assets/kmd.png) [Komodo](coins/kmd/) | ![](.gitbook/assets/theta.png) [THETA](coins/theta/) |
