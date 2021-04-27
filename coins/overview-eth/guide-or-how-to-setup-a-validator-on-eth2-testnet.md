@@ -145,7 +145,7 @@ sudo ./deposit.sh install
 Make a new mnemonic.
 
 ```text
-./deposit.sh new-mnemonic --chain prymont
+./deposit.sh new-mnemonic --chain pyrmont
 ```
 {% endtab %}
 
