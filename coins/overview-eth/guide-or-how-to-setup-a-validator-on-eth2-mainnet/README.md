@@ -7,12 +7,24 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of March 29 2021, this guide is updated for **mainnet.** 😁 
+As of April 27 2021, this guide is updated for **mainnet.** 😁 
 {% endhint %}
 
 {% hint style="info" %}
-#### ✨ For the PYRMONT testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md). Always test on testnet. 
+#### ✨ For the PYRMONT testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md). Always test first on testnet. 
 {% endhint %}
+
+### 📄 Changelog - **Update Notes -** **April 27 2021**
+
+* [Iancoleman.io](https://iancoleman.io/eip2333/) BLS12-381 Key Generation Tool how-to added
+* Testnet guide forked for [Prater testnet](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md) staking
+* [Geth pruning guide](how-to-free-up-eth1-node-disk-space.md) created
+* Major changes to Lodestar guide
+* Additional Grafana Dashboards for Prysm, Lighthouse and Nimbus
+* Validator Security Best Practices added
+* Translations now available for Japanese, Chinese and Spanish
+* Generate keystore files on [Ledger Nano X with tool from allnodes.com](https://abyss.finance/eth2depositor)
+* Batch deposit tool by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added
 
 \*\*\*\*🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
 
@@ -118,7 +130,7 @@ If you need to buy/exchange or top up your ETH to a multiple of 32, check out:
 Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
 {% endhint %}
 
-You have the choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source.
+You have the choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source. Alternatively, if you have a Ledger Nano X, you're able to generate deposit files with keys managed by a hardware wallet.
 
 {% tabs %}
 {% tab title="Build from source code" %}
@@ -183,6 +195,38 @@ Make a new mnemonic.
 ```
 {% endtab %}
 
+{% tab title="Ledger Nano X - Most Secure" %}
+## How to generate validator keys with Ledger Nano X
+
+{% hint style="info" %}
+[Allnodes ](https://help.allnodes.com/en/articles/4664440-how-to-setup-ethereum-2-0-validator-node-on-allnodes)has created an easy to use tool to connect a Ledger Nano X and generate the deposit json files such that the withdrawal credentials remain secured by the Nano X. This tool can be used by any validator or staker.
+{% endhint %}
+
+1. Connect Ledger Nano X to your PC/laptop 
+2. Open the "ETHEREUM" ledger app on your Nano X \(if missing, install from Ledger Live\)
+3. Visit [AllNode's Deposit Generator Tool.](https://wallet.allnodes.com/eth2/generate)
+4. Select network &gt; Mainnet
+5. Click Connect Ledger Nano X
+
+![](../../../.gitbook/assets/allnodes1.png)
+
+6. Select your eth address with at least 32 ETH to fund your validators
+
+7. Click **SHOW ETH2 CREDENTIALS** 
+
+8. Click Verify on Ledger
+
+![](../../../.gitbook/assets/allnodes2.png)
+
+9. Verify your ETH2 withdrawal credentials matches on your Ledger Nano X
+
+10. Enter the amount of nodes \(or validators you want\) 
+
+11. Finally, enter a **KEYSTORE password** to encrypt the deposit json files
+
+12. Confirm password and click **GENERATE**
+{% endtab %}
+
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
 🔥**\[ Optional \] Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
@@ -209,6 +253,12 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 {% endhint %}
 
 3. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
+
+{% hint style="info" %}
+\*\*\*\*🐳 **Batch Depositing Tip**: If you have many deposits to make for many validators, consider using [Abyss.finance's eth2depositor tool.](https://abyss.finance/eth2depositor) This greatly improves the deposit experience as multiple deposits can be batched into one transaction, thereby saving gas fees and saving your fingers by minimizing Metamask clicking. 
+
+Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://twitter.com/AbyssFinance/status/1379732382044069888)
+{% endhint %}
 
 4. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
 
@@ -3952,12 +4002,28 @@ Add the following flag on the `ExecStart` line.
 {% endtab %}
 {% endtabs %}
 
+{% hint style="info" %}
+[Infura.io](https://infura.io) offers beacon-node endpoints.
+{% endhint %}
+
 Reload the updated unit file and restart the validator process to complete this change.
 
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl restart validator
 ```
+
+### 🧩 8.12 EIP2333 Key Generator by iancoleman.io
+
+A [key generator tool by iancoleman](https://iancoleman.io/eip2333/) can generate EIP2333 keys from a BIP39 mnemonic, or a seed, or a master secret key.
+
+This tool should be used **offline** and is useful for extracting **withdrawal keys** and **signing keys**.
+
+{% hint style="info" %}
+For more info see the [EIP2333 spec](https://eips.ethereum.org/EIPS/eip-2333).
+{% endhint %}
+
+{% embed url="https://iancoleman.io/eip2333/" %}
 
 ## 🌇 9. Join the community on Discord and Reddit
 
