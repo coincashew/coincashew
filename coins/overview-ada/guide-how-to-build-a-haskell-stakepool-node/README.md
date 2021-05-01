@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of April 18 2021, this is **guide version 3.3.0** and written for **cardano mainnet** with **release v.1.26.2** 😁 
+As of April 30 2021, this is **guide version 3.3.1** and written for **cardano mainnet** with **release v.1.26.2** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -2953,23 +2953,282 @@ You should see output similar to this showing your updated Lovelace balance with
 ### 🕒 18.12 Slot Leader Schedule - Find out when your pool will mint blocks
 
 {% hint style="info" %}
-🔥 **Hot tip**: You can calculate your slot leader schedule, which tells you when it's your stake pools turn to mint a block. This can help you know what time is best to schedule maintenance on your stake pool. It can also help verify your pool is minting blocks correctly when it is your pool's turn. Credits for inventing this process goes to the hard work by [Andrew Westberg @amw7](https://twitter.com/amw7) \(developer of JorManager and operator of BCSH family of stake pools\).
+🔥 **Hot tip**: You can calculate your slot leader schedule, which tells you when it's your stake pools turn to mint a block. This can help you know what time is best to schedule maintenance on your stake pool. It can also help verify your pool is minting blocks correctly when it is your pool's turn.
+{% endhint %}
+
+{% tabs %}
+{% tab title="CNCLI Tool" %}
+{% hint style="info" %}
+## [CNCLI](https://github.com/AndrewWestberg/cncli) by [BCSH](https://bluecheesestakehouse.com/), [SAND](https://www.sandstone.io/), [SALAD](https://insalada.io/)
+
+A community-based `cardano-node` CLI tool. It's a collection of utilities to enhance and extend beyond those available with the `cardano-cli`.
+{% endhint %}
+
+### 🧬 Compiling CNCLI from source
+
+**Prepare RUST environment**
+
+```text
+mkdir -p $HOME/.cargo/bin
+chown -R $USER\: $HOME/.cargo
+touch $HOME/.profile
+chown $USER\: $HOME/.profile]
+```
+
+**Install rustup - proceed with default install \(option 1\)**
+
+```text
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+```text
+source $HOME/.cargo/env
+```
+
+```text
+rustup install stable
+```
+
+```text
+rustup default stable
+```
+
+```text
+rustup update
+```
+
+```text
+rustup component add clippy rustfmt
+```
+
+**Install dependencies and build cncli**
+
+Adjust the `<latest_tag_name>` variable in the command to the [latest tag available.](https://github.com/AndrewWestberg/cncli/tags)
+
+```text
+source $HOME/.cargo/env
+```
+
+```text
+sudo apt-get update -y && sudo apt-get install -y jq automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf
+```
+
+```text
+cd ~/git
+git clone --recurse-submodules https://github.com/AndrewWestberg/cncli
+```
+
+```text
+cd cncli
+```
+
+```text
+git checkout <latest_tag_name>
+```
+
+```text
+cargo install --path . --force
+```
+
+```text
+cncli --version
+```
+
+#### Checking that cncli is properly installed
+
+Run the following command to check if cncli is correctly installed and available in your system `PATH` variable:
+
+```text
+command -v cncli
+```
+
+It should return `/usr/local/bin/cncli`
+
+**Download the scripts**
+
+You can get the scripts from [here](https://github.com/AndrewWestberg/cncli/blob/develop/scripts). Place them under `/root/scripts/` of the block producing node server of your pool. If you don't have that directory, create it by running the following command as `root`:
+
+```text
+mkdir /root/scripts/
+```
+
+{% hint style="warning" %}
+ **Important**: at the very least, remember to change the pool id in the `cncli-leaderlog.sh` script to match your pool.
+{% endhint %}
+
+#### PoolTool Integration
+
+CNCLI can send your tip and block slots to [PoolTool](https://pooltool.io/). To do this, it requires that you set up a `pooltool.json` file containing your PoolTool API key and stake pool details. Your PoolTool API key can be found on your pooltool profile page. 
+
+Here's an example `pooltool.json` file. 
+
+Please update with your pool information and save it at `/root/scripts/pooltool.json`
+
+```text
+{
+    "api_key": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "pools": [
+        {
+            "name": "BCSH2",
+            "pool_id": "00beef284975ef87856c1343f6bf50172253177fdebc756524d43fc1",
+            "host" : "127.0.0.1",
+            "port": 6000
+        }
+    ]
+}
+```
+
+#### Systemd Services
+
+CNCLI `sync` and `sendtip` can be easily enabled as `systemd` services. When enabled as `systemd` services:
+
+* `sync` will continuously keep the `cncli.db` database synchronized.
+* `sendtip` will continuously send your stake pool `tip` to PoolTool.
+
+To set up `systemd`:
+
+* Copy the following to `/etc/systemd/system/cncli-sync.service`
+
+```text
+[Unit]
+Description=CNCLI Sync
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+LimitNOFILE=131072
+ExecStart=/usr/local/bin/cncli sync --host 127.0.0.1 --port 6000 --db /root/scripts/cncli.db
+KillSignal=SIGINT
+SuccessExitStatus=143
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=cncli-sync
+
+[Install]
+WantedBy=multi-user.target
+```
+
+* Copy the following to `/etc/systemd/system/cncli-sendtip.service`
+
+```text
+[Unit]
+Description=CNCLI Sendtip
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+LimitNOFILE=131072
+ExecStart=/usr/local/bin/cncli sendtip --cardano-node /usr/local/bin/cardano-node --config /root/scripts/pooltool.json
+KillSignal=SIGINT
+SuccessExitStatus=143
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=cncli-sendtip
+
+[Install]
+WantedBy=multi-user.target
+```
+
+* To enable and run the above services, run:
+
+```text
+sudo systemctl daemon-reload
+```
+
+```text
+sudo systemctl start cncli-sync.service
+```
+
+```text
+sudo systemctl start cncli-sendtip.service
+```
+
+#### Helper Scripts
+
+Besides setting up the `systemd` services, there are a couple of more automation that CNCLI can help you with. We have devised a few scripts that will be invoked daily with `crontab` and that will take care of:
+
+1. calculating the `next` epoch assigned slots \(with `cncli leaderlog`\)
+2. send the `previous` and `current` assigned slots to PoolTool \(with `cncli sendslots`\).
+3. optionally: query the `ledger-state` and save it to a `ledger-state.json` file.
+
+Although, by default, the `cncli-leaderlog.sh` script will calculate the `next` epoch `leaderlog`, it can also be run manually to also calculate the `previous` and `current` epoch slots \(adjust the time zone to better suit your location\):
+
+```text
+bash /root/scripts/cncli-leaderlog.sh previous UTC
+```
+
+```text
+bash /root/scripts/cncli-leaderlog.sh current UTC
+```
+
+```text
+bash /root/scripts/cncli-leaderlog.sh next UTC
+```
+
+**Crontab**
+
+To set up the `cronjobs`, run `crontab -e` as `root` and paste the following into it and save.
+
+```bash
+# calculate slots assignment for the next epoch
+15 21 * * * /root/scripts/cncli-fivedays.sh && /root/scripts/cncli-leaderlog.sh
+# send previous and current epochs slots to pooltool
+15 22 * * * /root/scripts/cncli-fivedays.sh && /root/scripts/cncli-sendslots.sh
+```
+
+Optionally set up a cronjob to dump the ledger-state, every day at 3:15 PM.
+
+```bash
+# query ledger-state and dump to /root/scripts/ledger-state.json
+15 15 * * * /root/scripts/ledger-dump.sh
+```
+
+### 🛠 Updating cncli from earlier versions
+
+Adjust the `<latest_tag_name>` variable in the command to the [latest tag available](https://github.com/AndrewWestberg/cncli/tags):
+
+```text
+rustup update
+```
+
+```text
+cd cncli
+```
+
+```text
+git fetch --all --prune
+```
+
+```text
+git checkout <latest_tag_name>
+```
+
+```text
+cargo install --path . --force
+```
+
+```text
+cncli --version
+```
+{% endtab %}
+
+{% tab title="\[Deprecated\] Python Method" %}
+{% hint style="info" %}
+Credits for inventing this process goes to the hard work by [Andrew Westberg @amw7](https://twitter.com/amw7) \(developer of JorManager and operator of BCSH family of stake pools\).
 {% endhint %}
 
 Check if you have python installed.
 
-{% tabs %}
-{% tab title="block producer node" %}
 ```bash
 python3 --version
 ```
-{% endtab %}
-{% endtabs %}
 
 Otherwise, install python3.
 
-{% tabs %}
-{% tab title="block producer node" %}
 ```text
 sudo apt-get update
 sudo apt-get install -y software-properties-common
@@ -2977,28 +3236,18 @@ sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt-get update
 sudo apt-get install -y python3.9
 ```
-{% endtab %}
-{% endtabs %}
 
 Check if you have pip installed.
 
-{% tabs %}
-{% tab title="block producer node" %}
 ```bash
 pip3 --version
 ```
-{% endtab %}
-{% endtabs %}
 
 Install pip3 if needed.
 
-{% tabs %}
-{% tab title="block producer node" %}
 ```bash
 sudo apt-get install -y python3-pip
 ```
-{% endtab %}
-{% endtabs %}
 
 Install pytz which handles timezones.
 
@@ -3008,14 +3257,10 @@ pip3 install pytz
 
 Verify python and pip are setup correctly before continuing.
 
-{% tabs %}
-{% tab title="block producer node" %}
 ```bash
 python3 --version
 pip3 --version
 ```
-{% endtab %}
-{% endtabs %}
 
 Clone the leaderLog scripts from [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) git repo. 
 
@@ -3023,28 +3268,20 @@ Clone the leaderLog scripts from [papacarp/pooltool.io](https://github.com/papac
 Official documentation for this LeaderLogs tool can be [read here.](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md)
 {% endhint %}
 
-{% tabs %}
-{% tab title="block producer node" %}
 ```bash
 cd $HOME/git
 git clone https://github.com/papacarp/pooltool.io
 cd pooltool.io/leaderLogs
 ```
-{% endtab %}
-{% endtabs %}
 
 Calculate your slot leader schedule for the latest current epoch.
 
-{% tabs %}
-{% tab title="block producer node" %}
 ```bash
 python3 leaderLogs.py \
 --pool-id $(cat ${NODE_HOME}/stakepoolid.txt) \
 --tz America/Los_Angeles \
 --vrf-skey ${NODE_HOME}/vrf.skey
 ```
-{% endtab %}
-{% endtabs %}
 
 {% hint style="info" %}
 Set the timezone name to format the schedule's times properly. Use the --tz option. \[Default: America/Los\_Angeles\]'\) [Refer to the official documentation for more info.](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md#arguments-1)
@@ -3065,21 +3302,23 @@ git pull
 
 If your pool is scheduled to mint blocks, you should hopefully see output similar to this. Listed by date and time, this is your slot leader schedule or in other words, when your pool is eligible to mint a block.
 
-{% hint style="danger" %}
-Your slot leader log should remain confidential. If you share this information publicly, an attacker could use this information to attack your stake pool.
-{% endhint %}
-
 ```bash
 Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 2020-10-01 00:11:10 ==> Leader for slot 121212, Cumulative epoch blocks: 1
 2020-10-01 00:12:22 ==> Leader for slot 131313, Cumulative epoch blocks: 2
 2020-10-01 00:19:55 ==> Leader for slot 161212, Cumulative epoch blocks: 3
 ```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="danger" %}
+Your slot leader log should remain confidential. If you share this information publicly, an attacker could use this information to attack your stake pool.
+{% endhint %}
 
 ### 🔝 18.13 Update your node's height on pooltool.io
 
 {% hint style="info" %}
-Credits to [QCPOL](https://cardano.stakepool.quebec/) for this addition and credits to [papacarp](https://github.com/papacarp/pooltool.io/tree/master/sendmytip/shell/systemd) which this script is based on.
+Credits to [QCPOL](https://cardano.stakepool.quebec/) for this addition and credits to [papacarp](https://github.com/papacarp/pooltool.io/tree/master/sendmytip/shell/systemd) which this script is based on. Alternatively, use [cncli's](https://github.com/AndrewWestberg/cncli) pooltool integration as described in [section 18.12](./#18-12-slot-leader-schedule-find-out-when-your-pool-will-mint-blocks).
 {% endhint %}
 
 When browsing pools on [pooltool.io](https://pooltool.io/), you'll notice that there's a column named `height`. It shows the node's current block and let your \(future\) delegators know that your node is running and up to date.
