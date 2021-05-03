@@ -16,10 +16,15 @@ Only the remote node is public internet facing online and the local machine can 
 
 ## 🐣 1. Install Wireguard
 
+{% hint style="info" %}
+Linux Headers needs to be installed before wireguard. Below you see the generic headers being installed.
+If this is failing you can use "sudo apt install linux-headers-$(uname -r)" instead. Please be aware that this will require installing it the headers again after a kernel upgrade. If upgrading and restarting withouth installing the new linux-headers will course wireguard to no be able creating the network interface after a restart.
+{% endhint %}
+
 {% tabs %}
 {% tab title="local and remote node" %}
 ```bash
-sudo apt install linux-headers-$(uname -r)
+sudo apt install linux-headers-generic
 sudo add-apt-repository ppa:wireguard/wireguard
 sudo apt-get update
 sudo apt-get install wireguard -y
