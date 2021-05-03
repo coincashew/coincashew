@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of April 30 2021, this is **guide version 3.3.1** and written for **cardano mainnet** with **release v.1.26.2** 😁 
+As of May 2 2021, this is **guide version 3.3.2** and written for **cardano mainnet** with **release v.1.26.2** 😁 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
@@ -2953,7 +2953,7 @@ You should see output similar to this showing your updated Lovelace balance with
 ### 🕒 18.12 Slot Leader Schedule - Find out when your pool will mint blocks
 
 {% hint style="info" %}
-🔥 **Hot tip**: You can calculate your slot leader schedule, which tells you when it's your stake pools turn to mint a block. This can help you know what time is best to schedule maintenance on your stake pool. It can also help verify your pool is minting blocks correctly when it is your pool's turn.
+🔥 **Hot tip**: You can calculate your slot leader schedule, which tells you when it's your stake pools turn to mint a block. This can help you know what time is best to schedule maintenance on your stake pool. It can also help verify your pool is minting blocks correctly when it is your pool's turn. This is to be setup and run on the block producer node.
 {% endhint %}
 
 {% tabs %}
@@ -2968,16 +2968,19 @@ A community-based `cardano-node` CLI tool. It's a collection of utilities to enh
 
 **Prepare RUST environment**
 
-```text
+```bash
+###
+### On blockproducer
+###
 mkdir -p $HOME/.cargo/bin
 chown -R $USER\: $HOME/.cargo
 touch $HOME/.profile
-chown $USER\: $HOME/.profile]
+chown $USER\: $HOME/.profile
 ```
 
 **Install rustup - proceed with default install \(option 1\)**
 
-```text
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
@@ -3022,7 +3025,7 @@ git clone --recurse-submodules https://github.com/AndrewWestberg/cncli
 cd cncli
 ```
 
-```text
+```bash
 git checkout <latest_tag_name>
 ```
 
@@ -3044,12 +3047,142 @@ command -v cncli
 
 It should return `/usr/local/bin/cncli`
 
-**Download the scripts**
+**Create the helper scripts**
 
-You can get the scripts from [here](https://github.com/AndrewWestberg/cncli/blob/develop/scripts). Place them under `/root/scripts/` of the block producing node server of your pool. If you don't have that directory, create it by running the following command as `root`:
+Place them under `$NODE_HOME/scripts/` of the block producing node server of your pool. 
 
-```text
-mkdir /root/scripts/
+{% hint style="info" %}
+Credits to the original CNCLI scripts [here](https://github.com/AndrewWestberg/cncli/blob/develop/scripts).
+{% endhint %}
+
+Create helper script directory.
+
+```bash
+###
+### On blockproducer
+###
+mkdir -p ${NODE_HOME}/scripts/
+```
+
+Create script `cncli-leaderlog.sh`
+
+```bash
+cat > ${NODE_HOME}/scripts/cncli-leaderlog.sh << EOF
+#!/usr/bin/env bash
+
+epoch="\${1:-next}"
+timezone="\${2:-UTC}"
+
+function getStatus() {
+    local result
+    result=\$(/usr/local/bin/cncli status \
+        --db ${NODE_HOME}/scripts/cncli.db \
+        --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json \
+        --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json \
+        | jq -r .status
+    )
+    echo "\$result"
+}
+
+function getLeader() {
+    /usr/local/bin/cncli leaderlog \
+        --db ${NODE_HOME}/scripts/cncli.db \
+        --pool-id  $(cat ${NODE_HOME}/stakepoolid.txt) \
+        --pool-vrf-skey ${NODE_HOME}/vrf.skey \
+        --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json \
+        --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json \
+        --ledger-set "\$epoch" \
+        --tz "\$timezone"
+}
+
+statusRet=\$(getStatus)
+
+if [[ "\$statusRet" == "ok" ]]; then
+    mv ${NODE_HOME}/scripts/leaderlog.json ${NODE_HOME}/scripts/leaderlog."\$(date +%F-%H%M%S)".json
+    getLeader > ${NODE_HOME}/scripts/leaderlog.json
+    find . -name "leaderlog.*.json" -mtime +15 -exec rm -f '{}' \;
+else
+    echo "CNCLI database not synced!!!"
+fi
+
+exit 0
+EOF
+```
+
+Create script `cncli-sendslots.sh`
+
+```bash
+cat > ${NODE_HOME}/scripts/cncli-sendslots.sh << EOF
+#!/usr/bin/env bash
+
+function getStatus() {
+    local result
+    result=\$(/usr/local/bin/cncli status \
+        --db ${NODE_HOME}/scripts/cncli.db \
+        --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json \
+        --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json \
+        | jq -r .status
+    )
+    echo "\$result"
+}
+
+function sendSlots() {
+    /usr/local/bin/cncli sendslots \
+        --db ${NODE_HOME}/scripts/cncli.db \
+        --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json \
+        --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json \
+        --config ${NODE_HOME}/scripts/pooltool.json
+}
+
+statusRet=\$(getStatus)
+
+if [[ "\$statusRet" == "ok" ]]; then
+    mv ${NODE_HOME}/scripts/sendslots.log ${NODE_HOME}/scripts/sendslots."\$(date +%F-%H%M%S)".log
+    sendSlots > ${NODE_HOME}/scripts/sendslots.log
+    find . -name "sendslots.*.log" -mtime +15 -exec rm -f '{}' \;
+else
+    echo "CNCLI database not synced!!!"
+fi
+
+exit 0
+EOF
+```
+
+Create script `cncli-leaderlog.sh`
+
+```bash
+cat > ${NODE_HOME}/scripts/cncli-fivedays.sh << EOF
+#!/usr/bin/env bash
+
+CARDANO_START=\$(date +%s -d "2017-09-23")
+CARDANO_START_DAY=\$(( CARDANO_START / 86400 ))
+NOW_TIMESTAMP=\$(date +%s)
+NOW_DAY=\$(( NOW_TIMESTAMP / 86400 ))
+DAYS_SINCE_CARDANO_START=\$(( NOW_DAY - CARDANO_START_DAY ))
+RESULT=\$(( DAYS_SINCE_CARDANO_START % 5 ))
+
+if [[ "\$RESULT" == "0" ]]; then
+    echo "Exit Success"
+    exit 0
+else
+    echo "Exit Failure"
+    exit 1
+fi
+EOF
+```
+
+Create script `ledger-dump.sh`
+
+```bash
+cat > ${NODE_HOME}/scripts/ledger-dump.sh << EOF
+#!/usr/bin/env bash
+
+export CARDANO_NODE_SOCKET_PATH="${NODE_HOME}/db/socket"
+
+/usr/local/bin/cardano-cli query ledger-state --mainnet > ${NODE_HOME}/scripts/ledger-state.json
+
+exit 0
+EOF
 ```
 
 {% hint style="warning" %}
@@ -3062,20 +3195,22 @@ CNCLI can send your tip and block slots to [PoolTool](https://pooltool.io/). To 
 
 Here's an example `pooltool.json` file. 
 
-Please update with your pool information and save it at `/root/scripts/pooltool.json`
+Please update with your pool information and save it at `$NODE_HOME/scripts/pooltool.json`
 
-```text
+```bash
+cat > ${NODE_HOME}/scripts/pooltool.json << EOF
 {
-    "api_key": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "api_key": "<UPDATE WITH YOUR API KEY FROM POOLTOOL PROFILE PAGE>",
     "pools": [
         {
-            "name": "BCSH2",
-            "pool_id": "00beef284975ef87856c1343f6bf50172253177fdebc756524d43fc1",
+            "name": "<UPDATE TO MY POOL TICKER>",
+            "pool_id": "$(cat ${NODE_HOME}/stakepoolid.txt)",
             "host" : "127.0.0.1",
             "port": 6000
         }
     ]
 }
+EOF
 ```
 
 #### Systemd Services
@@ -3087,9 +3222,10 @@ CNCLI `sync` and `sendtip` can be easily enabled as `systemd` services. When ena
 
 To set up `systemd`:
 
-* Copy the following to `/etc/systemd/system/cncli-sync.service`
+* Create the following and move to`/etc/systemd/system/cncli-sync.service`
 
-```text
+```bash
+cat > ${NODE_HOME}/cncli-sync.service << EOF
 [Unit]
 Description=CNCLI Sync
 After=multi-user.target
@@ -3099,7 +3235,7 @@ Type=simple
 Restart=always
 RestartSec=5
 LimitNOFILE=131072
-ExecStart=/usr/local/bin/cncli sync --host 127.0.0.1 --port 6000 --db /root/scripts/cncli.db
+ExecStart=/usr/local/bin/cncli sync --host 127.0.0.1 --port 6000 --db ${NODE_HOME}/scripts/cncli.db
 KillSignal=SIGINT
 SuccessExitStatus=143
 StandardOutput=syslog
@@ -3108,11 +3244,17 @@ SyslogIdentifier=cncli-sync
 
 [Install]
 WantedBy=multi-user.target
+EOF
 ```
 
-* Copy the following to `/etc/systemd/system/cncli-sendtip.service`
+```bash
+sudo mv ${NODE_HOME}/cncli-sync.service /etc/systemd/system/cncli-sync.service
+```
 
-```text
+* Create the following and move to `/etc/systemd/system/cncli-sendtip.service`
+
+```bash
+cat > ${NODE_HOME}/cncli-sendtip.service << EOF
 [Unit]
 Description=CNCLI Sendtip
 After=multi-user.target
@@ -3122,7 +3264,7 @@ Type=simple
 Restart=always
 RestartSec=5
 LimitNOFILE=131072
-ExecStart=/usr/local/bin/cncli sendtip --cardano-node /usr/local/bin/cardano-node --config /root/scripts/pooltool.json
+ExecStart=/usr/local/bin/cncli sendtip --cardano-node /usr/local/bin/cardano-node --config ${NODE_HOME}/scripts/pooltool.json
 KillSignal=SIGINT
 SuccessExitStatus=143
 StandardOutput=syslog
@@ -3131,6 +3273,11 @@ SyslogIdentifier=cncli-sendtip
 
 [Install]
 WantedBy=multi-user.target
+EOF
+```
+
+```bash
+sudo mv ${NODE_HOME}/cncli-sendtip.service /etc/systemd/system/cncli-sendtip.service
 ```
 
 * To enable and run the above services, run:
@@ -3157,34 +3304,54 @@ Besides setting up the `systemd` services, there are a couple of more automation
 
 Although, by default, the `cncli-leaderlog.sh` script will calculate the `next` epoch `leaderlog`, it can also be run manually to also calculate the `previous` and `current` epoch slots \(adjust the time zone to better suit your location\):
 
-```text
-bash /root/scripts/cncli-leaderlog.sh previous UTC
+```bash
+bash ${NODE_HOME}/scripts/cncli-leaderlog.sh previous UTC
 ```
 
-```text
-bash /root/scripts/cncli-leaderlog.sh current UTC
+```bash
+bash ${NODE_HOME}/scripts/cncli-leaderlog.sh current UTC
 ```
 
-```text
-bash /root/scripts/cncli-leaderlog.sh next UTC
+```bash
+bash ${NODE_HOME}/scripts/cncli-leaderlog.sh next UTC
 ```
 
 **Crontab**
 
-To set up the `cronjobs`, run `crontab -e` as `root` and paste the following into it and save.
+To set up the `cronjobs`, run the following.
 
 ```bash
+###
+### On blockproducer
+###
+cat > $NODE_HOME/crontab-fragment.txt << EOF
 # calculate slots assignment for the next epoch
-15 21 * * * /root/scripts/cncli-fivedays.sh && /root/scripts/cncli-leaderlog.sh
+15 21 * * * $NODE_HOME/scripts/cncli-fivedays.sh && $NODE_HOME/scripts/cncli-leaderlog.sh
 # send previous and current epochs slots to pooltool
-15 22 * * * /root/scripts/cncli-fivedays.sh && /root/scripts/cncli-sendslots.sh
+15 22 * * * $NODE_HOME/scripts/cncli-fivedays.sh && $NODE_HOME/scripts/cncli-sendslots.sh
+EOF
+crontab -l | cat - crontab-fragment.txt >crontab.txt && crontab crontab.txt
+rm $NODE_HOME/crontab-fragment.txt
 ```
 
 Optionally set up a cronjob to dump the ledger-state, every day at 3:15 PM.
 
 ```bash
-# query ledger-state and dump to /root/scripts/ledger-state.json
-15 15 * * * /root/scripts/ledger-dump.sh
+###
+### On blockproducer
+###
+cat > $NODE_HOME/crontab-fragment.txt << EOF
+# query ledger-state and dump to $NODE_HOME/scripts/ledger-state.json
+15 15 * * * $NODE_HOME/scripts/ledger-dump.sh
+EOF
+crontab -l | cat - crontab-fragment.txt >crontab.txt && crontab crontab.txt
+rm $NODE_HOME/crontab-fragment.txt
+```
+
+Verify the crontab jobs entries were created properly.
+
+```bash
+crontab -l
 ```
 
 ### 🛠 Updating cncli from earlier versions
