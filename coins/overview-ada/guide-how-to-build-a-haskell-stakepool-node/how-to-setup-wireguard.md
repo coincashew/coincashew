@@ -51,7 +51,7 @@ wg genkey | tee remotenode-privatekey | wg pubkey > remotenode-publickey
 
 Create a `wg0.conf` configuration file in  `/etc/wireguard` directory.
 
-Update your Private and Public Keys accordingly.
+Update your Private and Public Keys accordingly. 
 
 Change the Endpoint to your remote node public IP or DNS address.
 
