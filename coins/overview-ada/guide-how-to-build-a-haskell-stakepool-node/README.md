@@ -17,6 +17,14 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 As of May 2 2021, this is **guide version 3.3.2** and written for **cardano mainnet** with **release v.1.26.2** 😁 
 {% endhint %}
 
+### 📄 Changelog - **Update Notes -** **May 2 2021**
+
+* Added [CNCLI tool](./#18-12-slot-leader-schedule-find-out-when-your-pool-will-mint-blocks) for sending slot to Pooltool and for LeaderLog scripts
+* Updated guide for release cardano-node/cli v1.26.2 changes
+* Added [Stake Pool Operator's Best Practices Checklist](./#18-15-stake-pool-operators-best-practices-checklist)
+* Contribution By [Billionaire Pool](www.billionairepool.com) - [Guide to monitor your node security with OSSEC and Slack.](how-to-monitor-security-with-ossec.md)
+* Added how to [Secure your pool pledge with a 2nd pool owner using a hardware wallet](./#18-14-secure-your-pool-pledge-with-a-2nd-pool-owner-using-a-hardware-wallet)
+
 ## 🏁 0. Prerequisites
 
 ### 🧙♂ Mandatory skills for stake pool operators
@@ -3363,7 +3371,7 @@ rustup update
 ```
 
 ```text
-cd cncli
+cd ~/git/cncli
 ```
 
 ```text
