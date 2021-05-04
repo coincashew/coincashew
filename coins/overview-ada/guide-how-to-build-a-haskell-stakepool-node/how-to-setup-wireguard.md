@@ -7,19 +7,24 @@ description: >-
 # How to setup WireGuard
 
 {% hint style="info" %}
-Assuming you have a local node \(i.e. block producer / validator client / local laptop\) and remote node \(i.e. relay node / beacon-chain node / VPS\), this guide helps you secure and encrypt your network traffic between the two machines with WireGuard. 
+Assuming you have a local node \(i.e. block producer / validator client / local laptop\) and remote node \(i.e. relay node / beacon-chain node / VPS\), this guide helps you secure and encrypt your network traffic between the two machines with WireGuard.
 
-This greatly minimizes the chances that your local node is attacked and minimizes the attack surface of the remote node by not requiring you to open ports for services such as Grafana. 
+This greatly minimizes the chances that your local node is attacked and minimizes the attack surface of the remote node by not requiring you to open ports for services such as Grafana.
 
 Only the remote node is public internet facing online and the local machine can access the remote node's internal services, such as Grafana.
 {% endhint %}
 
 ## 🐣 1. Install Wireguard
 
+{% hint style="info" %}
+Linux Headers needs to be installed before Wireguard. Below you see the generic headers being installed.
+If this is failing you can use "sudo apt install linux-headers-$(uname -r)" instead. Please be aware that this will require installing the headers again after a kernel upgrade. If upgrading and restarting without installing the new linux-headers will course Wireguard to no be able creating the network interface after a restart.
+{% endhint %}
+
 {% tabs %}
 {% tab title="local and remote node" %}
 ```bash
-sudo apt install linux-headers-$(uname -r)
+sudo apt install linux-headers-generic
 sudo add-apt-repository ppa:wireguard/wireguard
 sudo apt-get update
 sudo apt-get install wireguard -y
@@ -44,7 +49,7 @@ wg genkey | tee remotenode-privatekey | wg pubkey > remotenode-publickey
 
 ## 🤖 3. Configure Wireguard
 
-Create a `wg0.conf` configuration file in  `/etc/wireguard` directory. 
+Create a `wg0.conf` configuration file in  `/etc/wireguard` directory.
 
 Update your Private and Public Keys accordingly. 
 
@@ -231,4 +236,3 @@ sudo systemctl stop wg-quick@wg0
 sudo systemctl disable wg-quick@wg0.service
 sudo systemctl daemon-reload
 ```
-
