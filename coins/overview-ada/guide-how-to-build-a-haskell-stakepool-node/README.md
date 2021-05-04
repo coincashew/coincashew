@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of May 2 2021, this is **guide version 3.3.2** and written for **cardano mainnet** with **release v.1.26.2** 😁 
+As of May 3 2021, this is **guide version 3.3.3** and written for **cardano mainnet** with **release v.1.26.2** 😁 
 {% endhint %}
 
 ### 📄 Changelog - **Update Notes -** **May 2 2021**
@@ -2972,77 +2972,20 @@ You should see output similar to this showing your updated Lovelace balance with
 A community-based `cardano-node` CLI tool. It's a collection of utilities to enhance and extend beyond those available with the `cardano-cli`.
 {% endhint %}
 
-### 🧬 Compiling CNCLI from source
-
-**Prepare RUST environment**
+### 🧬 Install the binary release
 
 ```bash
 ###
 ### On blockproducer
 ###
-mkdir -p $HOME/.cargo/bin
-chown -R $USER\: $HOME/.cargo
-touch $HOME/.profile
-chown $USER\: $HOME/.profile
-```
-
-**Install rustup - proceed with default install \(option 1\)**
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-```text
-source $HOME/.cargo/env
-```
-
-```text
-rustup install stable
-```
-
-```text
-rustup default stable
-```
-
-```text
-rustup update
-```
-
-```text
-rustup component add clippy rustfmt
-```
-
-**Install dependencies and build cncli**
-
-Adjust the `<latest_tag_name>` variable in the command to the [latest tag available.](https://github.com/AndrewWestberg/cncli/tags)
-
-```text
-source $HOME/.cargo/env
-```
-
-```text
-sudo apt-get update -y && sudo apt-get install -y jq automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf
-```
-
-```text
-cd ~/git
-git clone --recurse-submodules https://github.com/AndrewWestberg/cncli
-```
-
-```text
-cd cncli
+RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
+VERSION=$(echo ${RELEASETAG} | cut -c 2-)
+echo "Installing release ${RELEASETAG}"
+curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
 ```
 
 ```bash
-git checkout <latest_tag_name>
-```
-
-```text
-cargo install --path . --force
-```
-
-```text
-cncli --version
+sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
 #### Checking that cncli is properly installed
@@ -3312,6 +3255,16 @@ Besides setting up the `systemd` services, there are a couple of more automation
 
 Although, by default, the `cncli-leaderlog.sh` script will calculate the `next` epoch `leaderlog`, it can also be run manually to also calculate the `previous` and `current` epoch slots \(adjust the time zone to better suit your location\):
 
+{% hint style="info" %}
+Set the timezone name to format the schedule's times properly. 
+
+Find your **timezone name**. Format follows this example: "`Asia/Tokyo`"
+
+```text
+timedatectl list-timezones
+```
+{% endhint %}
+
 ```bash
 bash ${NODE_HOME}/scripts/cncli-leaderlog.sh previous UTC
 ```
@@ -3364,31 +3317,24 @@ crontab -l
 
 ### 🛠 Updating cncli from earlier versions
 
-Adjust the `<latest_tag_name>` variable in the command to the [latest tag available](https://github.com/AndrewWestberg/cncli/tags):
-
-```text
-rustup update
+```bash
+RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
+VERSION=$(echo ${RELEASETAG} | cut -c 2-)
+echo "Installing release ${RELEASETAG}"
+curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
 ```
 
-```text
-cd ~/git/cncli
+```bash
+sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-```text
-git fetch --all --prune
-```
+#### Checking that cncli is properly updated
 
 ```text
-git checkout <latest_tag_name>
+cncli -V
 ```
 
-```text
-cargo install --path . --force
-```
-
-```text
-cncli --version
-```
+It should return the updated version number.
 {% endtab %}
 
 {% tab title="\[Deprecated\] Python Method" %}
