@@ -205,7 +205,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.26.2
+git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
 ```
 
 Configure build options.

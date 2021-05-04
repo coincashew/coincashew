@@ -213,7 +213,7 @@ Run the following command to pull and build the latest binaries. Change the chec
 cd $HOME/git/cardano-node2
 cabal update
 git fetch --all --recurse-submodules --tags
-git checkout tags/1.26.2
+git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
 cabal configure -O0 -w ghc-8.10.4
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 cabal build cardano-node cardano-cli
