@@ -1216,19 +1216,19 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-Find the stakePoolDeposit value.
+Find the stakeAddressDeposit value.
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-stakePoolDeposit=$(cat $NODE_HOME/params.json | jq -r '.stakePoolDeposit')
-echo stakePoolDeposit: $stakePoolDeposit
+stakeAddressDeposit=$(cat $NODE_HOME/params.json | jq -r '.stakeAddressDeposit')
+echo stakeAddressDeposit : $stakeAddressDeposit
 ```
 {% endtab %}
 {% endtabs %}
 
 {% hint style="info" %}
-Registration of a stake address certificate \(stakePoolDeposit\) costs 2000000 lovelace.
+Registration of a stake address certificate \(stakeAddressDeposit\) costs 2000000 lovelace.
 {% endhint %}
 
 Run the build-raw transaction command
@@ -1270,7 +1270,7 @@ echo fee: $fee
 {% endtabs %}
 
 {% hint style="info" %}
-Ensure your balance is greater than cost of fee + stakePoolDeposit or this will not work.
+Ensure your balance is greater than cost of fee + stakeAddressDeposit or this will not work.
 {% endhint %}
 
 Calculate your change output.
@@ -1278,7 +1278,7 @@ Calculate your change output.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-txOut=$((${total_balance}-${stakePoolDeposit}-${fee}))
+txOut=$((${total_balance}-${stakeAddressDeposit}-${fee}))
 echo Change Output: ${txOut}
 ```
 {% endtab %}
