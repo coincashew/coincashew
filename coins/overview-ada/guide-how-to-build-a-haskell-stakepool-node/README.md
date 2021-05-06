@@ -3297,6 +3297,11 @@ rm $NODE_HOME/crontab-fragment.txt
 
 Optionally set up a cronjob to dump the ledger-state, every day at 3:15 PM.
 
+{% hint style="warning" %}
+Hint: This cronjob takes a huge amount of memory! You should only set it up when your node has at least 16GB memory. Otherwise it my crash your cardano-node process.
+{% endhint %}
+
+
 ```bash
 ###
 ### On blockproducer
