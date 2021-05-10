@@ -1767,8 +1767,8 @@ Add a crontab job to automatically run `topologyUpdater.sh` every hour on the 33
 cat > $NODE_HOME/crontab-fragment.txt << EOF
 33 * * * * ${NODE_HOME}/topologyUpdater.sh
 EOF
-crontab -l | cat - crontab-fragment.txt >crontab.txt && crontab crontab.txt
-rm crontab-fragment.txt
+crontab -l | cat - ${NODE_HOME}/crontab-fragment.txt > ${NODE_HOME}/crontab.txt && crontab ${NODE_HOME}/crontab.txt
+rm ${NODE_HOME}/crontab-fragment.txt
 ```
 
 {% hint style="success" %}
@@ -3293,7 +3293,7 @@ cat > $NODE_HOME/crontab-fragment.txt << EOF
 # send previous and current epochs slots to pooltool
 15 22 * * * $NODE_HOME/scripts/cncli-fivedays.sh && $NODE_HOME/scripts/cncli-sendslots.sh
 EOF
-crontab -l | cat - crontab-fragment.txt >crontab.txt && crontab crontab.txt
+crontab -l | cat - ${NODE_HOME}/crontab-fragment.txt > ${NODE_HOME}/crontab.txt && crontab ${NODE_HOME}/crontab.txt
 rm $NODE_HOME/crontab-fragment.txt
 ```
 
@@ -3312,7 +3312,7 @@ cat > $NODE_HOME/crontab-fragment.txt << EOF
 # query ledger-state and dump to $NODE_HOME/scripts/ledger-state.json
 15 15 * * * $NODE_HOME/scripts/ledger-dump.sh
 EOF
-crontab -l | cat - crontab-fragment.txt >crontab.txt && crontab crontab.txt
+crontab -l | cat - ${NODE_HOME}/crontab-fragment.txt > ${NODE_HOME}/crontab.txt && crontab ${NODE_HOME}/crontab.txt
 rm $NODE_HOME/crontab-fragment.txt
 ```
 
