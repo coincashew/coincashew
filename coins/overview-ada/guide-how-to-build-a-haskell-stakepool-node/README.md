@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of May 3 2021, this is **guide version 3.3.3** and written for **cardano mainnet** with **release v.1.26.2** 😁 
+As of May 12 2021, this is **guide version 3.3.4** and written for **cardano mainnet** with **release v.1.26.2** 😁 
 {% endhint %}
 
 ### 📄 Changelog - **Update Notes -** **May 2 2021**
@@ -125,10 +125,16 @@ sudo make install
 ```
 
 {% hint style="info" %}
-Debian OS pool operators: extra lib linking may be required.
+**Debian OS pool operators**: extra lib linking may be required.
 
 ```bash
 sudo ln -s /usr/local/lib/libsodium.so.23.3.0 /usr/lib/libsodium.so.23
+```
+
+**AWS Linux CentOS pool operators:** clearing the lib cache may be required.
+
+```bash
+sudo ldconfig
 ```
 {% endhint %}
 
@@ -3258,25 +3264,25 @@ Besides setting up the `systemd` services, there are a couple of more automation
 Although, by default, the `cncli-leaderlog.sh` script will calculate the `next` epoch `leaderlog`, it can also be run manually to also calculate the `previous` and `current` epoch slots \(adjust the time zone to better suit your location\):
 
 {% hint style="info" %}
-Set the timezone name to format the schedule's times properly. 
+By replacing "**UTC**" in the commands below, set the timezone name to format your pool's scheduled times properly. 
 
-Find your **timezone name**. Format follows this example: "`Asia/Tokyo`"
-
-```text
+```bash
+# Find your timezone name. 
+# Format follows this example: "Asia/Tokyo"
 timedatectl list-timezones
 ```
 {% endhint %}
 
 ```bash
-bash ${NODE_HOME}/scripts/cncli-leaderlog.sh previous UTC
+sudo bash ${NODE_HOME}/scripts/cncli-leaderlog.sh previous UTC
 ```
 
 ```bash
-bash ${NODE_HOME}/scripts/cncli-leaderlog.sh current UTC
+sudo bash ${NODE_HOME}/scripts/cncli-leaderlog.sh current UTC
 ```
 
 ```bash
-bash ${NODE_HOME}/scripts/cncli-leaderlog.sh next UTC
+sudo bash ${NODE_HOME}/scripts/cncli-leaderlog.sh next UTC
 ```
 
 **Crontab**
@@ -3300,9 +3306,8 @@ rm $NODE_HOME/crontab-fragment.txt
 Optionally set up a cronjob to dump the ledger-state, every day at 3:15 PM.
 
 {% hint style="warning" %}
-Hint: This cronjob takes a huge amount of memory! You should only set it up when your node has at least 16GB memory. Otherwise it my crash your cardano-node process.
+This cronjob takes a huge amount of memory! You should only set it up when your node has at least 16GB memory. Otherwise it my crash your cardano-node process.
 {% endhint %}
-
 
 ```bash
 ###

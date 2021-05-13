@@ -7,24 +7,24 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of April 27 2021, this guide is updated for **mainnet.** 😁 
+As of May 12 2021, this is **guide version 3.1.0** and written for **ethereum mainnet**😁 
 {% endhint %}
 
 {% hint style="info" %}
 #### ✨ For the PYRMONT testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md). Always test first on testnet. 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **April 27 2021**
+### 📄 Changelog - **Update Notes -** **May 12 2021**
 
-* [Iancoleman.io](https://iancoleman.io/eip2333/) BLS12-381 Key Generation Tool how-to added
+* Iancoleman.io BLS12-381 Key Generation Tool [how-to added](./#8-12-eip2333-key-generator-by-iancoleman-io)
 * Testnet guide forked for [Prater testnet](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md) staking
 * [Geth pruning guide](how-to-free-up-eth1-node-disk-space.md) created
 * Major changes to Lodestar guide
-* Additional Grafana Dashboards for Prysm, Lighthouse and Nimbus
-* Validator Security Best Practices added
-* Translations now available for Japanese, Chinese and Spanish
-* Generate keystore files on [Ledger Nano X with tool from allnodes.com](https://abyss.finance/eth2depositor)
-* Batch deposit tool by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added
+* Additional [Grafana Dashboards](./#6-2-setting-up-grafana-dashboards) for Prysm, Lighthouse and Nimbus
+* [Validator Security Best Practices added](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+* Translations now available for Japanese, Chinese and Spanish \(access by changing site language\)
+* Generate keystore files on [Ledger Nano X, Nano S and Trezor Model T](./#2-signup-to-be-a-validator-at-the-launchpad) with tool from [allnodes.com](https://twitter.com/Allnodes/status/1390020240541618177?s=20)
+* [Batch deposit tool](./#2-signup-to-be-a-validator-at-the-launchpad) by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added
 
 \*\*\*\*🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
 
@@ -130,9 +130,43 @@ If you need to buy/exchange or top up your ETH to a multiple of 32, check out:
 Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
 {% endhint %}
 
-You have the choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source. Alternatively, if you have a Ledger Nano X, you're able to generate deposit files with keys managed by a hardware wallet.
+You have the choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source. Alternatively, if you have a **Ledger Nano X/S or Trezor Model T**, you're able to generate deposit files with keys managed by a hardware wallet.
 
 {% tabs %}
+{% tab title="Hardware Wallet - Most Secure" %}
+## How to generate validator keys with Ledger Nano X/S and Trezor Model T
+
+{% hint style="info" %}
+[Allnodes ](https://help.allnodes.com/en/articles/4664440-how-to-setup-ethereum-2-0-validator-node-on-allnodes)has created an easy to use tool to connect a Ledger Nano X/S and Trezor Model T and generate the deposit json files such that the withdrawal credentials remain secured by the hardware wallet. This tool can be used by any validator or staker.
+{% endhint %}
+
+1. Connect your hardware wallet to your PC/laptop 
+2. If using a Ledger Nano X/S, open the "ETHEREUM" ledger app \(if missing, install from Ledger Live\)
+3. Visit [AllNode's Deposit Generator Tool.](https://wallet.allnodes.com/eth2/generate)
+4. Select network &gt; Mainnet
+5. Select your wallet &gt; then CONTINUE
+
+![](../../../.gitbook/assets/allnodes-menu.png)
+
+6. From the dropdown, select your eth address with at least 32 ETH to fund your validators
+
+7. On your hardware wallet, sign the ETH signature message to login to allnodes.com
+
+8. Again on your hardware wallet, sign another message to verify your eth2 withdrawal credentials
+
+{% hint style="info" %}
+Double check that your generated deposit data file contains the same string as in withdrawal credentials and that this string includes your Ethereum address \(starting after 0x\)
+{% endhint %}
+
+![](../../../.gitbook/assets/allnodes-3.png)
+
+9. Enter the amount of nodes \(or validators you want\) 
+
+10. Finally, enter a **KEYSTORE password** to encrypt the deposit json files. Keep this password safe and **offline**.
+
+11. Confirm password and click **GENERATE**
+{% endtab %}
+
 {% tab title="Build from source code" %}
 Install dependencies.
 
@@ -195,38 +229,6 @@ Make a new mnemonic.
 ```
 {% endtab %}
 
-{% tab title="Ledger Nano X - Most Secure" %}
-## How to generate validator keys with Ledger Nano X
-
-{% hint style="info" %}
-[Allnodes ](https://help.allnodes.com/en/articles/4664440-how-to-setup-ethereum-2-0-validator-node-on-allnodes)has created an easy to use tool to connect a Ledger Nano X and generate the deposit json files such that the withdrawal credentials remain secured by the Nano X. This tool can be used by any validator or staker.
-{% endhint %}
-
-1. Connect Ledger Nano X to your PC/laptop 
-2. Open the "ETHEREUM" ledger app on your Nano X \(if missing, install from Ledger Live\)
-3. Visit [AllNode's Deposit Generator Tool.](https://wallet.allnodes.com/eth2/generate)
-4. Select network &gt; Mainnet
-5. Click Connect Ledger Nano X
-
-![](../../../.gitbook/assets/allnodes1.png)
-
-6. Select your eth address with at least 32 ETH to fund your validators
-
-7. Click **SHOW ETH2 CREDENTIALS** 
-
-8. Click Verify on Ledger
-
-![](../../../.gitbook/assets/allnodes2.png)
-
-9. Verify your ETH2 withdrawal credentials matches on your Ledger Nano X
-
-10. Enter the amount of nodes \(or validators you want\) 
-
-11. Finally, enter a **KEYSTORE password** to encrypt the deposit json files
-
-12. Confirm password and click **GENERATE**
-{% endtab %}
-
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
 🔥**\[ Optional \] Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
@@ -246,7 +248,7 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 {% endtab %}
 {% endtabs %}
 
-2. Follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
+2. If using **eth2deposit-cli**, follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
 
 {% hint style="warning" %}
 \*\*\*\*🚧 **Caution**: Only deposit the 32 ETH per validator if you are confident your ETH1 node and ETH2 validator will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
@@ -3952,6 +3954,15 @@ Add the following flag on the `ExecStart` line.
 --fallback-web3provider=<http://<alternate eth1 provider one> --fallback-web3provider=<http://<alternate eth1 provider two>
 # Example, repeat flag for multiple eth1 providers
 # --fallback-web3provider=https://nodes.mewapi.io/rpc/eth --fallback-web3provider=https://mainnet.infura.io/v3/YOUR-PROJECT-ID
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+--eth1-endpoints <http://alternate eth1 endpoints>,<http://alternate eth1 endpoints>
+# Support for automatic fail-over of eth1-endpoints. Multiple endpoints can be specified with the new --eth1-endpoints CLI option.
+# Example
+# --eth1-endpoints http://localhost:8545,https://infura.io/
 ```
 {% endtab %}
 {% endtabs %}
