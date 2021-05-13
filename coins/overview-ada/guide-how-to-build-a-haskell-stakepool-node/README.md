@@ -14,13 +14,13 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of May 12 2021, this is **guide version 3.3.4** and written for **cardano mainnet** with **release v.1.26.2** 😁 
+As of May 13 2021, this is **guide version 3.4.0** and written for **cardano mainnet** with **release v.1.27.0** 😁 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **May 2 2021**
+### 📄 Changelog - **Update Notes -** **May 13 2021**
 
 * Added [CNCLI tool](./#18-12-slot-leader-schedule-find-out-when-your-pool-will-mint-blocks) for sending slot to Pooltool and for LeaderLog scripts
-* Updated guide for release cardano-node/cli v1.26.2 changes
+* Updated guide for release cardano-node/cli v1.27.0 changes
 * Added [Stake Pool Operator's Best Practices Checklist](./#18-15-stake-pool-operators-best-practices-checklist)
 * Contribution By [Billionaire Pool](www.billionairepool.com) - [Guide to monitor your node security with OSSEC and Slack.](how-to-monitor-security-with-ossec.md)
 * Added how to [Secure your pool pledge with a 2nd pool owner using a hardware wallet](./#18-14-secure-your-pool-pledge-with-a-2nd-pool-owner-using-a-hardware-wallet)
@@ -1671,7 +1671,7 @@ Now that you have your stake pool ID,  verify it's included in the blockchain.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query ledger-state --mainnet | grep publicKey | grep $(cat stakepoolid.txt)
+cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) --mainnet 
 ```
 {% endtab %}
 {% endtabs %}

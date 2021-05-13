@@ -7,7 +7,7 @@
 {% endhint %}
 
 {% hint style="success" %}
-As of April 18 2021, this guide is written for **mainnet** with **release v1.26.2** 😁 
+As of May 13 2021, this guide is written for **mainnet** with **release v1.27.0** 😁 
 {% endhint %}
 
 ## 📡 1. How to perform an update
@@ -19,6 +19,38 @@ Read the patch notes for any other special updates or dependencies that may be r
 {% endhint %}
 
 {% tabs %}
+{% tab title="v1.27.0 Notes" %}
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0)\*\*\*\*
+
+Node version 1.27.0 provides important new functionality, including supporting new CLI commands that have been requested by stake pools, providing garbage collection metrics.  
+It includes the performance fixes for the epoch boundary calculation that were released in node version [1.26.2](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2), plus a number of bug fixes and code improvements.  
+It also includes many fundamental changes that are needed to prepare for forthcoming feature releases \(notably Plutus scripts in the Alonzo era\).  
+Note that this release includes breaking changes to the API and CLI commands, and that compilation using GHC version 8.6.5 is no longer supported.
+
+### 🛑 Release Dependencies
+
+#### 1. If using cncli for leaderlogs and sendslots, update to `cncli version 2.10` is required.
+
+```bash
+RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
+VERSION=$(echo ${RELEASETAG} | cut -c 2-)
+echo "Installing release ${RELEASETAG}"
+curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+```
+
+```bash
+sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
+```
+
+#### Checking that cncli is properly updated
+
+```text
+cncli -V
+```
+
+It should return the updated version number.
+{% endtab %}
+
 {% tab title="v1.26.2 Notes" %}
 **Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2**](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2)\*\*\*\*
 
@@ -175,23 +207,6 @@ chmod 755 gLiveView.sh
 sed -i env \
     -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
     -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
-```
-{% endtab %}
-
-{% tab title="v1.24.2 Notes" %}
-This release provides support for the upcoming Allegra and Mary hard forks and the new features they bring.
-
-* The Allegra hard fork adds some features needed to support the Catalyst treasury scheme. It extends the existing multi-sig script language with predicates for time, via the slot number. It allows, for example, to make a script address that is not spendable until a certain point in time.
-* The Mary hard fork adds multi-asset support. This is comparable to ERC20 and ERC721 tokens, but supported natively in the UTxO ledger. This is part of the Goguen feature set. It is a very significant feature and will have implications for all Cardano wallet implementations, including exchanges.
-
-Stake Pool Operators \(SPOs\) and Exchanges should update their node config \( `mainnet-config.json`\) "options" section with an extra entry:
-
-```text
-  "options": {
-    "mapBackends": {
-      "cardano.node.resources": [
-        "EKGViewBK"
-      ],
 ```
 {% endtab %}
 {% endtabs %}
