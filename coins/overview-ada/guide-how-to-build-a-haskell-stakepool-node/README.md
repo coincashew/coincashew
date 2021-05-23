@@ -3105,7 +3105,7 @@ exit 0
 EOF
 ```
 
-Create script `cncli-leaderlog.sh`
+Create script `cncli-fivedays.sh`
 
 ```bash
 cat > ${NODE_HOME}/scripts/cncli-fivedays.sh << EOF
