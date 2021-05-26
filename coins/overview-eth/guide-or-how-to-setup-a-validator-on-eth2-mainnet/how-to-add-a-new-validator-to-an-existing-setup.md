@@ -4,7 +4,7 @@ description: >-
   validators with your existing mnemonic seed.
 ---
 
-# How to add a new validator to an existing setup
+# How to add a new validator to an existing setup with the same seed words
 
 ## ⏩ Quick steps guide
 
