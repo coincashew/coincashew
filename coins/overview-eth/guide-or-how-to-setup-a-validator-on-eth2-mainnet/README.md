@@ -69,6 +69,10 @@ As a validator for eth2, you will typically have the following abilities:
 * **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
 * **Wallet**: Metamask installed
 
+{% hint style="info" %}
+💡 For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
+{% endhint %}
+
 {% hint style="success" %}
 ✨ **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
 {% endhint %}

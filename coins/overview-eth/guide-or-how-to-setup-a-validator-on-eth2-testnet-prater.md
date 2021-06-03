@@ -47,7 +47,7 @@ As a validator for eth2, you will typically have the following abilities:
 * **ETH balance:** at least 32 goerli ETH and some ETH for deposit transaction fees
 * **Wallet**: Metamask installed
 
-### 🏋♂ Recommended Hardware Setup
+### 🏋 Recommended Hardware Setup
 
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS Server or Desktop\)
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
@@ -57,6 +57,10 @@ As a validator for eth2, you will typically have the following abilities:
 * **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
 * **ETH balance:** at least 32 goerli ETH and some ETH for deposit transaction fees
 * **Wallet**: Metamask installed
+
+{% hint style="info" %}
+💡 For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
+{% endhint %}
 
 {% hint style="success" %}
 ✨ **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
