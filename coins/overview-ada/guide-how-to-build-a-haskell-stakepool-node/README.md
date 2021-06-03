@@ -136,6 +136,15 @@ sudo ln -s /usr/local/lib/libsodium.so.23.3.0 /usr/lib/libsodium.so.23
 ```bash
 sudo ldconfig
 ```
+
+**Raspberry Pi 4 with Ubuntu pool operators **: extra lib linking may be required.
+
+```bash
+apt-get install libnuma-dev
+```
+This will help to solve "cannot find -lnuma" error when compiling
+
+
 {% endhint %}
 
 Install Cabal and dependencies.
