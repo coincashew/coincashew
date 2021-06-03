@@ -14,11 +14,12 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of June 2 2021, this is **guide version 3.4.1** and written for **cardano mainnet** with **release v.1.27.0** 😁 
+As of June 2 2021, this is **guide version 3.4.2** and written for **cardano mainnet** with **release v.1.27.0** 😁 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **May 13 2021**
+### 📄 Changelog - **Update Notes -** **June 2 2021**
 
+* Updated CNCLI's Leaderlog command with the [stake-snapshot approach](./#18-12-slot-leader-schedule-find-out-when-your-pool-will-mint-blocks)
 * Added [CNCLI tool](./#18-12-slot-leader-schedule-find-out-when-your-pool-will-mint-blocks) for sending slot to Pooltool and for LeaderLog scripts
 * Updated guide for release cardano-node/cli v1.27.0 changes
 * Added [Stake Pool Operator's Best Practices Checklist](./#18-15-stake-pool-operators-best-practices-checklist)
@@ -3012,7 +3013,37 @@ command -v cncli
 
 It should return `/usr/local/bin/cncli`
 
-**Create the helper scripts**
+### \*\*\*\*⛏ **Manual approach - running LeaderLog with stake-snapshot**
+
+This command calculates a stake pool's expected slot list. `prev` and `current` logs are available as long as you have a synchronized database. `next` logs are only available 1.5 days before the end of the epoch. You need to use `.poolStakeMark` and `.activeStakeMark` for `next`, `.poolStakeSet` and `.activeStakeSet` for `current`, `.poolStakeGo` and `.activeStakeGo` for `prev`.
+
+Example usage with the `stake-snapshot` approach:
+
+```bash
+/usr/local/bin/cncli sync --host 127.0.0.1 --port 6000 --no-service
+
+MYPOOLID=$(cat $NODE_HOME/stakepoolid.txt)
+echo "LeaderLog - POOLID $MYPOOLID"
+
+SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
+POOL_STAKE=$(jq .poolStakeMark <<< $SNAPSHOT)
+ACTIVE_STAKE=$(jq .activeStakeMark <<< $SNAPSHOT)
+MYPOOL=`/usr/local/bin/cncli leaderlog --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
+
+EPOCH=`jq .epoch <<< $MYPOOL`
+echo "\`Epoch $EPOCH\` 🧙🔮:"
+
+SLOTS=`jq .epochSlots <<< $MYPOOL`
+IDEAL=`jq .epochSlotsIdeal <<< $MYPOOL`
+PERFORMANCE=`jq .maxPerformance <<< $MYPOOL`
+echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
+```
+
+{% hint style="success" %}
+This stake-snapshot approach is advantageous as it requires less system RAM memory, compared to the below approach with ledger-state dumps.
+{% endhint %}
+
+### \*\*\*\*⏩ **Automated approach - Create the helper scripts**
 
 Place them under `$NODE_HOME/scripts/` of the block producing node server of your pool. 
 

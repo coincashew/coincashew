@@ -118,9 +118,43 @@ Otherwise, visit the 🚰[Goerli Authenticated Faucet](https://faucet.goerli.mud
 Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
 {% endhint %}
 
-You have the choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source.
+You have the choice of downloading the pre-built [ethereum foundation deposit tool](https://github.com/ethereum/eth2.0-deposit-cli) or building it from source. Alternatively, if you have a **Ledger Nano X/S or Trezor Model T**, you're able to generate deposit files with keys managed by a hardware wallet.
 
 {% tabs %}
+{% tab title="Hardware Wallet - Most Secure" %}
+## How to generate validator keys with Ledger Nano X/S and Trezor Model T
+
+{% hint style="info" %}
+[Allnodes ](https://help.allnodes.com/en/articles/4664440-how-to-setup-ethereum-2-0-validator-node-on-allnodes)has created an easy to use tool to connect a Ledger Nano X/S and Trezor Model T and generate the deposit json files such that the withdrawal credentials remain secured by the hardware wallet. This tool can be used by any validator or staker.
+{% endhint %}
+
+1. Connect your hardware wallet to your PC/laptop 
+2. If using a Ledger Nano X/S, open the "ETHEREUM" ledger app \(if missing, install from Ledger Live\)
+3. Visit [AllNode's Deposit Generator Tool.](https://wallet.allnodes.com/eth2/generate)
+4. Select network &gt; Gorli Testnet
+5. Select your wallet &gt; then CONTINUE
+
+![](../../.gitbook/assets/allnodes-menu.png)
+
+6. From the dropdown, select your eth address with at least 32 ETH to fund your validators
+
+7. On your hardware wallet, sign the ETH signature message to login to allnodes.com
+
+8. Again on your hardware wallet, sign another message to verify your eth2 withdrawal credentials
+
+{% hint style="info" %}
+Double check that your generated deposit data file contains the same string as in withdrawal credentials and that this string includes your Ethereum address \(starting after 0x\)
+{% endhint %}
+
+![](../../.gitbook/assets/allnodes-3.png)
+
+9. Enter the amount of nodes \(or validators you want\) 
+
+10. Finally, enter a **KEYSTORE password** to encrypt the deposit json files. Keep this password safe and **offline**.
+
+11. Confirm password and click **GENERATE**
+{% endtab %}
+
 {% tab title="Build from source code" %}
 Install dependencies.
 
@@ -143,6 +177,19 @@ Make a new mnemonic.
 ```text
 ./deposit.sh new-mnemonic --chain prater
 ```
+
+{% hint style="info" %}
+**Advanced option**: Custom eth1 withdrawal address, often used for 3rd party staking.
+
+```bash
+# Add the following
+--eth1_withdrawal_address <eth1 address hex string>
+# Example
+./deposit.sh new-mnemonic --chain prater --eth1_withdrawal_address 0x1...x
+```
+
+If this field is set and valid, the given Eth1 address will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters).
+{% endhint %}
 {% endtab %}
 
 {% tab title="Pre-built eth2deposit-cli" %}
@@ -150,18 +197,18 @@ Download eth2deposit-cli.
 
 ```bash
 cd $HOME
-wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.1.0/eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
+wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-linux-amd64.tar.gz
 ```
 
 Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
 
 ```bash
-echo "2107f26f954545f423530e3501ae616c222b6bf77774a4f2743effb8fe4bcbe7 *eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz" | shasum -a 256 --check
+echo "825035b6d6c06c0c85a38f78e8bf3e9df93dfd16bf7b72753b6888ae8c4cb30a *eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz" | shasum -a 256 --check
 ```
 
 Example valid output:
 
-> eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz: OK
+> eth2deposit-cli-256ea21-linux-amd64.tar.gz: OK
 
 {% hint style="danger" %}
 Only proceed if the sha256 check passes with **OK**!
@@ -170,9 +217,9 @@ Only proceed if the sha256 check passes with **OK**!
 Extract the archive.
 
 ```text
-tar -xvf eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
-mv eth2deposit-cli-ed5a6d3-linux-amd64 eth2deposit-cli
-rm eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
+tar -xvf eth2deposit-cli-256ea21-linux-amd64.tar.gz
+mv eth2deposit-cli-256ea21-linux-amd64 eth2deposit-cli
+rm eth2deposit-cli-256ea21-linux-amd64.tar.gz
 cd eth2deposit-cli
 ```
 
@@ -181,40 +228,150 @@ Make a new mnemonic.
 ```text
 ./deposit new-mnemonic --chain prater
 ```
+
+{% hint style="info" %}
+**Advanced option**: Custom eth1 withdrawal address, often used for 3rd party staking.
+
+```bash
+# Add the following
+--eth1_withdrawal_address <eth1 address hex string>
+# Example
+./deposit.sh new-mnemonic --chain prater --eth1_withdrawal_address 0x1...x
+```
+
+If this field is set and valid, the given Eth1 address will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters).
+{% endhint %}
 {% endtab %}
 
 {% tab title="Advanced - Most Secure" %}
-
-{% tab %}
+{% hint style="warning" %}
 🔥**\[ Optional \] Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
-{% endtab %}
+{% endhint %}
 
-{% tab %}
-Follow this [ethstaker.cc](https://ethstaker.cc/) exclusive for the low down on making a bootable usb.
-{% endtab %}
+You will learn how to boot up a windows PC into an airgapped [Tails operating system](https://tails.boum.org/index.en.html).
 
-{% tab %}
+The Tails OS is an _amnesic_ operating system, meaning it will save nothing and _leave no tracks behind_ each time you boot it.
+
+## Part 0 - Prerequisites
+
+You need:
+
+* 2 storage mediums \(can be USB stick, SD cards or external hard drives\)
+* One of them must be &gt; 8GB  
+* Windows or Mac computer
+* 30 minutes or longer depending on your download speed 
+
+## Part 1 - Download Tails OS
+
+Download the official image from the [Tails website](https://tails.boum.org/install/index.en.html). Might take a while, go grab a coffee.
+
+Make sure you follow the guide on the Tails website to verify your download of Tails.
+
+## Part 2 - Download and install the software to transfer your Tails image on your USB stick
+
+For Windows, use one of
+
+* [Etcher](https://tails.boum.org/etcher/Etcher-Portable.exe)
+* [Win32 Disk Imager](https://win32diskimager.org/#download)
+* [Rufus](https://rufus.ie/en_US/)
+
+For Mac, download [Etcher](https://tails.boum.org/etcher/Etcher.dmg)
+
+## Part 3 - Making your bootable USB stick
+
+Run the above software. This is an example how it looks like on Mac OS with etcher, but other software should be similar.
+
+![](../../.gitbook/assets/etcher_in_mac.png)
+
+Select the Tails OS image that you downloaded as the image. Then select the USB stick \(the larger one\).
+
+Then flash the image to the larger USB stick.
+
+## Part 4 - Download and verify the eth2-deposit-cli
+
+You can refer to the other tab on this guide on how to download and verify the eth2-deposit-cli.
+
+Copy the file to the other USB stick.
+
+## Part 5 - Reboot your computer and into Tails OS
+
+After you have done all the above, you can reboot. If you are connected by a LAN cable to the internet, you can disconnect it manually.
+
+Plug in the USB stick that has your Tails OS.
+
+On Mac, press and hold the Option key immediately upon hearing the startup chime. Release the key after Startup Manager appears.
+
+On Windows, it depends on your computer manufacturer. Usually it is by pressing F1 or F12. If it doesn't work, try googling "Enter boot options menu on \[Insert your PC brand\]"
+
+Choose the USB stick that you loaded up with Tails OS to boot into Tails.
+
+## Part 6 - Welcome to Tails OS
+
+![](../../.gitbook/assets/grub.png)
+
+You can boot with all the default settings.
+
+## Part 7 - Run the eth2-deposit-cli
+
+Plug in your other USB stick with the `eth2-deposit-cli` file.
+
+You can then open your command line and navigate into the directory containing the file. Then you can continue the guide from the other tab.
+
+Make a new mnemonic.
+
+```text
+./deposit.sh new-mnemonic --chain prater
+```
+
+If you ran this command directly from your non-Tails USB stick, the validator keys should stay on it. If it hasn't, copy the directory over to your non-Tails USB stick.
+
+{% hint style="warning" %}
+\*\*\*\*🔥 **Make sure you have saved your validator keys directory in your other USB stick \(non Tails OS\) before you shutdown Tails. Tails will delete everything saved on it after you shutdown.**.
+{% endhint %}
+
+{% hint style="success" %}
+🎉 Congrats on learning how to use Tails OS to make an air gapped system. As a bonus, you can reboot into Tails OS again and connect to internet to surf the dark web or clear net safely!
+{% endhint %}
+
+Alternatively, follow this [ethstaker.cc](https://ethstaker.cc/) exclusive for the low down on making a bootable usb.
+
 ### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
-{% endtab %}
 
-{% tab %}
+{% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
+
 ### Part 2 - Install Ubuntu 20.04 from the USB Drive
-{% endtab %}
 
-{% tab %}
+{% embed url="https://www.youtube.com/watch?v=C97\_6MrufCE" %}
+
 You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
 {% endtab %}
 {% endtabs %}
+
+2. If using **eth2deposit-cli**, follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
 
 {% hint style="danger" %}
 **Do not send real mainnet ETH during this process!** 🛑 Use only goerli ETH.
 {% endhint %}
 
-1. Follow the prompts and pick a **keystore password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
-2. Follow the steps at [https://prater.launchpad.ethereum.org](https://prater.launchpad.ethereum.org/en/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
-3. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
-4. Connect to the launchpad with your Metamask wallet, review and accept terms.
-5. Confirm the transaction\(s\). There's one deposit transaction of 32 ETH for each validator.
+{% hint style="warning" %}
+\*\*\*\*🚧 **Caution**: Only deposit the 32 ETH per validator if you are confident your ETH1 node and ETH2 validator will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
+{% endhint %}
+
+3. Follow the steps at [https://prater.launchpad.ethereum.org](https://prater.launchpad.ethereum.org/en/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
+
+{% hint style="info" %}
+\*\*\*\*🐳 **Batch Depositing Tip**: If you have many deposits to make for many validators, consider using [Abyss.finance's eth2depositor tool.](https://abyss.finance/eth2depositor) This greatly improves the deposit experience as multiple deposits can be batched into one transaction, thereby saving gas fees and saving your fingers by minimizing Metamask clicking.
+
+Make sure to switch to **GÖRLI** network.
+
+Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://twitter.com/AbyssFinance/status/1379732382044069888)
+{% endhint %}
+
+4. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
+
+5. Connect to the launchpad with your Metamask wallet, review and accept terms.
+
+6. Confirm the transaction\(s\). There's one deposit transaction of 32 ETH for each validator.
 
 {% hint style="info" %}
 Your transaction is sending and depositing your ETH to the prater ETH2 deposit contract address.
@@ -225,7 +382,7 @@ Your transaction is sending and depositing your ETH to the prater ETH2 deposit c
 {% endhint %}
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **Critical Crypto Reminder:** **Keep your mnemonic, keep your ETH.** 🚀
+🔥 **Critical Crypto Reminder:** **Keep your mnemonic, keep your ETH.** 🚀
 
 * Write down your mnemonic seed **offline**. _Not email. Not cloud._
 * Multiple copies are better. _Best stored in a_ [_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)

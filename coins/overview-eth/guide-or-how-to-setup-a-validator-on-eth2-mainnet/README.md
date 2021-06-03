@@ -7,15 +7,16 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of June 2 2021, this is **guide version 3.1.1** and written for **ethereum mainnet**😁 
+As of June 2 2021, this is **guide version 3.1.2** and written for **ethereum mainnet**😁 
 {% endhint %}
 
 {% hint style="info" %}
 #### ✨ For the PYRMONT testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md). Always test first on testnet. 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **May 12 2021**
+### 📄 Changelog - **Update Notes -** **June 2 2021**
 
+* Updated [eth2.0-deposit-cli to v.1.2.0](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.2.0) and added section on eth1 withdrawal address
 * Added generating mnemonic seeds on **Tails OS** by [punggolzenith](https://github.com/punggolzenith)
 * Iancoleman.io BLS12-381 Key Generation Tool [how-to added](./#8-12-eip2333-key-generator-by-iancoleman-io)
 * Testnet guide forked for [Prater testnet](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md) staking
@@ -194,6 +195,19 @@ Make a new mnemonic.
 ```text
 ./deposit.sh new-mnemonic --chain mainnet
 ```
+
+{% hint style="info" %}
+**Advanced option**: Custom eth1 withdrawal address, often used for 3rd party staking.
+
+```bash
+# Add the following
+--eth1_withdrawal_address <eth1 address hex string>
+# Example
+./deposit.sh new-mnemonic --chain mainnet --eth1_withdrawal_address 0x1...x
+```
+
+If this field is set and valid, the given Eth1 address will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters).
+{% endhint %}
 {% endtab %}
 
 {% tab title="Pre-built eth2deposit-cli" %}
@@ -201,18 +215,18 @@ Download eth2deposit-cli.
 
 ```bash
 cd $HOME
-wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.1.0/eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
+wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-linux-amd64.tar.gz
 ```
 
 Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
 
 ```bash
-echo "2107f26f954545f423530e3501ae616c222b6bf77774a4f2743effb8fe4bcbe7 *eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz" | shasum -a 256 --check
+echo "825035b6d6c06c0c85a38f78e8bf3e9df93dfd16bf7b72753b6888ae8c4cb30a *eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz" | shasum -a 256 --check
 ```
 
 Example valid output:
 
-> eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz: OK
+> eth2deposit-cli-256ea21-linux-amd64.tar.gz: OK
 
 {% hint style="danger" %}
 Only proceed if the sha256 check passes with **OK**!
@@ -221,9 +235,9 @@ Only proceed if the sha256 check passes with **OK**!
 Extract the archive.
 
 ```text
-tar -xvf eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
-mv eth2deposit-cli-ed5a6d3-linux-amd64 eth2deposit-cli
-rm eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz
+tar -xvf eth2deposit-cli-256ea21-linux-amd64.tar.gz
+mv eth2deposit-cli-256ea21-linux-amd64 eth2deposit-cli
+rm eth2deposit-cli-256ea21-linux-amd64.tar.gz
 cd eth2deposit-cli
 ```
 
@@ -232,6 +246,19 @@ Make a new mnemonic.
 ```text
 ./deposit new-mnemonic --chain mainnet
 ```
+
+{% hint style="info" %}
+**Advanced option**: Custom eth1 withdrawal address, often used for 3rd party staking.
+
+```bash
+# Add the following
+--eth1_withdrawal_address <eth1 address hex string>
+# Example
+./deposit.sh new-mnemonic --chain mainnet --eth1_withdrawal_address 0x1...x
+```
+
+If this field is set and valid, the given Eth1 address will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters).
+{% endhint %}
 {% endtab %}
 
 {% tab title="Advanced - Most Secure" %}
