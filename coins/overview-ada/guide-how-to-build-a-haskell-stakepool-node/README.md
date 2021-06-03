@@ -12,9 +12,13 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-このマニュアルは、カルダノノードv1.27.0に対応しています。  
-[ドキュメント更新情報はこちら](README.md)  
-最終更新日：2021年5月14日の時点guide version 4.2.0
+このマニュアルは、カルダノノードv1.27.0に対応しています。
+最終更新日：2021年5月14日の時点guide version 4.2.0  
+{% endhint %}
+
+{% hint style="info" %}
+こちらのマニュアルは更新頻度が低く、最新情報ではない可能性があります。  
+BTBFが管理するドメイン[https://dev.xstakepool.com/](https://dev.xstakepool.com/)の日本語マニュアルをご参照ください。
 {% endhint %}
 
 ## 🏁 0. 前提条件
@@ -66,13 +70,13 @@ description: >-
 ステークプールのサーバ初期設定とセキュリティ強化するには、以下の内容を実施して下さい。
 
 {% hint style="info" %}
-[Ubuntuサーバー初期設定(+セキュリティ設定)](how-to-harden-ubuntu-server.md)
+[Ubuntuサーバー初期設定(+セキュリティ設定)](./how-to-harden-ubuntu-server.md)
 {% endhint %}
 
 
 ### 🧱 ノードを再構築したい場合
 
-もしノードインストールを初めからやり直したい場合は[項目18.2](guide-how-to-build-a-haskell-stakepool-node.md#182-resetting-the-installation)で、リセットの方法を確認して下さい。
+もしノードインストールを初めからやり直したい場合は[項目18.2](./guide-how-to-build-a-haskell-stakepool-node.md#182-resetting-the-installation)で、リセットの方法を確認して下さい。
 
   
 ### 🧱 試しにノードを起動してみたい方へ
@@ -2560,7 +2564,7 @@ wget -O poolMetaData.json https://git.io/JUcnl
 {% endtab %}
 {% endtabs %}
 
-poolMetaData.jsonを変更する場合は、メタデータファイルのハッシュを再計算し、更新されたpoolMetaData.jsonをWEBサーバへアップロードしてください。 詳細については [項目11-1](guide-how-to-build-a-haskell-stakepool-node.md#11-1-prunojsonfairuwoshiteprunometadtawoshimasu)を参照して下さい。
+poolMetaData.jsonを変更する場合は、メタデータファイルのハッシュを再計算し、更新されたpoolMetaData.jsonをWEBサーバへアップロードしてください。 詳細については [項目11-1](./guide-how-to-build-a-haskell-stakepool-node.md#11-1-prunojsonfairuwoshiteprunometadtawoshimasu)を参照して下さい。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -2573,7 +2577,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 登録証明書トランザクションを作成します。
 
-複数のリレーノードを設定する場合は [**こちら**](guide-how-to-build-a-haskell-stakepool-node.md#norirndowosuru) を参考にパラメーターを指定して下さい。  
+複数のリレーノードを設定する場合は [**こちら**](./guide-how-to-build-a-haskell-stakepool-node.md#norirndowosuru) を参考にパラメーターを指定して下さい。  
   
 **poolMetaDataHash.txt** をエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
@@ -3053,9 +3057,9 @@ cardano-cli query utxo \
 
 2つの送金方法があります。
 {% hint style="info" %}
-**1.payment.addrへ送金する方法**は[こちら](guide-how-to-build-a-haskell-stakepool-node.md#18-10-1-paymentaddrhesuru)
+**1.payment.addrへ送金する方法**は[こちら](./guide-how-to-build-a-haskell-stakepool-node.md#18-10-1-paymentaddrhesuru)
 
-**2.任意のアドレスへ送金する方法は**[こちら](guide-how-to-build-a-haskell-stakepool-node.md#18-10-2-noadoresuhesuru)
+**2.任意のアドレスへ送金する方法は**[こちら](./guide-how-to-build-a-haskell-stakepool-node.md#18-10-2-noadoresuhesuru)
 {% endhint %}
 
     
