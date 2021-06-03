@@ -209,7 +209,7 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 {% hint style="danger" %}
 **Do not send real mainnet ETH during this process!** 🛑 Use only goerli ETH.
 
-You should have both your Eth1 node and Beacon Chain node synced before your validator becomes active.  If they are not, you may incur penalties until they are synced.  You may want to complete steps 3 and 4 BEFORE initiating your deposit to avoid these penalties.
+You should have both your Eth1 node and Beacon Chain node synced before your validator becomes active. If they are not, you may incur penalties until they are synced. You may want to complete steps 3 and 4 BEFORE initiating your deposit to avoid these penalties.
 {% endhint %}
 
 1. Follow the prompts and pick a **keystore password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.

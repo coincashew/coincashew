@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of May 13 2021, this is **guide version 3.4.0** and written for **cardano mainnet** with **release v.1.27.0** 😁 
+As of June 2 2021, this is **guide version 3.4.1** and written for **cardano mainnet** with **release v.1.27.0** 😁 
 {% endhint %}
 
 ### 📄 Changelog - **Update Notes -** **May 13 2021**
@@ -137,14 +137,13 @@ sudo ln -s /usr/local/lib/libsodium.so.23.3.0 /usr/lib/libsodium.so.23
 sudo ldconfig
 ```
 
-**Raspberry Pi 4 with Ubuntu pool operators **: extra lib linking may be required.
+**Raspberry Pi 4 with Ubuntu pool operators** : extra lib linking may be required.
 
 ```bash
-apt-get install libnuma-dev
+sudo apt-get install libnuma-dev
 ```
+
 This will help to solve "cannot find -lnuma" error when compiling
-
-
 {% endhint %}
 
 Install Cabal and dependencies.
