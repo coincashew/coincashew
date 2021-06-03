@@ -61,6 +61,15 @@ Restart chrony in order for config change to take effect.
 systemctl restart chronyd.service
 ```
 
+{% hint style="danger" %}
+If using a firewall such as `ufw`, ensure port 123/udp is open for NTP traffic.
+
+```bash
+# Allow chrony ntp
+sudo ufw allow 123/udp
+```
+{% endhint %}
+
 ## 🤖 2. Helpful Commands
 
 To see the source of synchronization data.

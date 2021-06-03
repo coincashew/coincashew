@@ -388,6 +388,7 @@ The standard UFW firewall can be used to control network access to your node.
 With any new installation, ufw is disabled by default. Enable it with the following settings.
 
 * Port 22 \(or your random port \#\) TCP for SSH connection
+* Port 123 UDP for chrony ntp
 * Port 6000 TCP for p2p traffic
 * Port 3000 TCP for Grafana web server \(if applicable\)
 * Port 9100 tcp for Prometheus node data
@@ -401,6 +402,8 @@ sudo ufw default allow outgoing
 sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
 # Allow cardano-node p2p port
 sudo ufw allow 6000/tcp
+# Allow chrony ntp
+sudo ufw allow 123/udp
 # Enable firewall
 sudo ufw enable
 ```
