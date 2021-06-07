@@ -307,7 +307,7 @@ and add these lines at the end of the commands section
     <name>ossec-slack</name>
     <executable>ossec-slack.sh</executable>
     <expect></expect> <!-- no expect args required -->
-    <timeout_allowed>no<timeout_allowed>
+    <timeout_allowed>no</timeout_allowed>
   </command>  
 
   <active-response>
