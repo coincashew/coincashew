@@ -61,7 +61,7 @@ Pull the latest source and build it.
 ```bash
 cd $HOME/git/nimbus-eth2
 git pull && make update
-make NIMFLAGS="-d:insecure" nimbus_beacon_node
+make nimbus_beacon_node
 ```
 
 Verify the build completed by checking the new version number.

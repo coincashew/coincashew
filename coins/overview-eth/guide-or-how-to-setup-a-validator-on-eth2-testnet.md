@@ -2515,7 +2515,7 @@ Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://githu
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](../../.gitbook/assets/node-exporter.png)
+![](../../.gitbook/assets/grafana%20%281%29.png)
 
 ![](../../.gitbook/assets/node-exporter2.png)
 

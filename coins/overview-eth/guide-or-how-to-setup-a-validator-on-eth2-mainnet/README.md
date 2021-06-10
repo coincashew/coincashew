@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of June 2 2021, this is **guide version 3.1.2** and written for **ethereum mainnet**😁 
+As of June 9 2021, this is **guide version 3.1.3** and written for **ethereum mainnet**😁 
 {% endhint %}
 
 {% hint style="info" %}
@@ -1172,6 +1172,13 @@ sudo systemctl stop validator
 {% tab title="Nimbus" %}
 {% hint style="info" %}
 [Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im/) by the same name. Nimbus \(Apache 2\) is written in Nim, a language with Python-like syntax that compiles to C.
+{% endhint %}
+
+{% hint style="info" %}
+💡 **Noteworthy**: binaries for all the usual platforms as well as dockers for x86 and arm can be found below:
+
+[https://github.com/status-im/nimbus-eth2/releases/](https://github.com/status-im/nimbus-eth2/releases/)  
+[https://hub.docker.com/r/statusim/nimbus-eth2](https://hub.docker.com/r/statusim/nimbus-eth2)
 {% endhint %}
 
 ## ⚙ 4.1. Build Nimbus from source
@@ -2725,7 +2732,7 @@ Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://githu
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](../../../.gitbook/assets/node-exporter.png)
+![](../../../.gitbook/assets/grafana%20%281%29.png)
 
 ![](../../../.gitbook/assets/node-exporter2.png)
 
@@ -2902,7 +2909,7 @@ Pull the latest source and build it.
 ```bash
 cd $HOME/git/nimbus-eth2
 git pull && make update
-make NIMFLAGS="-d:insecure" nimbus_beacon_node
+make nimbus_beacon_node
 ```
 
 Verify the build completed by checking the new version number.
