@@ -1190,7 +1190,7 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
-make NIMFLAGS="-d:insecure" nimbus_beacon_node
+make nimbus_beacon_node
 ```
 
 {% hint style="info" %}
