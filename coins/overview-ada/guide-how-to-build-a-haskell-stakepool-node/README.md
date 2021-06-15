@@ -3750,12 +3750,12 @@ This multi signature transaction will be signed using witnesses.
 
 You need the following 4 witnesses.
 
-* node.vkey
-* hw-stake.vkey
-* stake.vkey
-* payment**.**vkey
+* node.skey
+* hw-stake.skey
+* stake.skey
+* payment.skey
 
-Create a witness using node.vkey,
+Create a witness using node.skey,
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -3769,7 +3769,7 @@ cardano-cli transaction witness \
 {% endtab %}
 {% endtabs %}
 
-Create a witness using stake.vkey,
+Create a witness using stake.skey,
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -3783,7 +3783,7 @@ cardano-cli transaction witness \
 {% endtab %}
 {% endtabs %}
 
-Create a witness using payment.vkey,
+Create a witness using payment.skey,
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -3799,7 +3799,7 @@ cardano-cli transaction witness \
 
 Copy **tx-pool.raw** to local PC or block producer node, which is where your hardware wallet device is connected. Ensure your hardware wallet is unlocked and ready.
 
-Create a witness using hw-stake.vkey.
+Create a witness using hw-stake.hwskey.
 
 {% tabs %}
 {% tab title="local PC or block producer node" %}
