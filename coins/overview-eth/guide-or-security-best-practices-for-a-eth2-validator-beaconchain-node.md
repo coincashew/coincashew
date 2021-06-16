@@ -4,6 +4,12 @@ description: Quick steps to secure your node.
 
 # Guide \| Security Best Practices for a ETH2 validator beaconchain node
 
+{% hint style="info" %}
+🎊 **2021-06 Gitcoin Grant Round 10 Update**: We maintain and improve this guide with your support! Consider [making a donation](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) via quadratic funding and make an even bigger impact. Thank you!🙏
+{% endhint %}
+
+{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
+
 ## 🤖 Pre-requisites
 
 * Ubuntu Server or Ubuntu Desktop installed

@@ -6,6 +6,12 @@ description: >-
 
 # Guide \| How to setup a validator on ETH2 testnet PRATER
 
+{% hint style="info" %}
+🎊 **2021-06 Gitcoin Grant Round 10 Update**: We maintain and improve this guide with your support! Consider [making a donation](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) via quadratic funding and make an even bigger impact. Thank you!🙏
+{% endhint %}
+
+{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
+
 {% hint style="success" %}
 As of Jun 15 2021, this guide is updated for **testnet PRATER.**
 
@@ -15,10 +21,6 @@ If you wish to test on **testnet PYRMONT**, [please click here.](guide-or-how-to
 {% hint style="info" %}
 #### ⏩ For the MAINNET guide, [please click here.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
-
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
-
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" caption="" %}
 
 ## 🏁 0. Prerequisites
 
@@ -52,7 +54,7 @@ As a validator for eth2, you will typically have the following abilities:
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS Server or Desktop\)
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
 * **Memory:** 16GB RAM or more
-* **Storage:** 1TB SSD or more
+* **Storage:** 2TB SSD or more
 * **Internet:** Broadband internet connections with speeds at least 10 Mbps without data limit. 
 * **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
 * **ETH balance:** at least 32 goerli ETH and some ETH for deposit transaction fees

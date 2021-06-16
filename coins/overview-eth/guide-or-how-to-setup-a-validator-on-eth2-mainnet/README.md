@@ -6,6 +6,12 @@ description: >-
 
 # Guide \| How to setup a validator on ETH2 mainnet
 
+{% hint style="info" %}
+🎊 **2021-06 Gitcoin Grant Round 10 Update**: We maintain and improve this guide with your support! Consider [making a donation](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) via quadratic funding and make an even bigger impact. Thank you!🙏
+{% endhint %}
+
+{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
+
 {% hint style="success" %}
 As of June 15 2021, this is **guide version 3.2.0** and written for **ethereum mainnet**😁 
 {% endhint %}
@@ -29,10 +35,6 @@ As of June 15 2021, this is **guide version 3.2.0** and written for **ethereum m
 * Translations now available for Japanese, Chinese and Spanish \(access by changing site language\)
 * Generate keystore files on [Ledger Nano X, Nano S and Trezor Model T](./#2-signup-to-be-a-validator-at-the-launchpad) with tool from [allnodes.com](https://twitter.com/Allnodes/status/1390020240541618177?s=20)
 * [Batch deposit tool](./#2-signup-to-be-a-validator-at-the-launchpad) by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added
-
-\*\*\*\*🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
-
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
 ## 🏁 0. Prerequisites
 
@@ -66,7 +68,7 @@ As a validator for eth2, you will typically have the following abilities:
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS Server or Desktop\)
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
 * **Memory:** 16GB RAM or more
-* **Storage:** 1TB SSD or more
+* **Storage:** 2TB SSD or more
 * **Internet:** Broadband internet connections with speeds at least 10 Mbps without data limit. 
 * **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
 * **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
