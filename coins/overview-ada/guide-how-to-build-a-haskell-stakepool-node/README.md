@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of June 9 2021, this is **guide version 3.4.3** and written for **cardano mainnet** with **release v.1.27.0** 😁 
+As of June 15 2021, this is **guide version 3.4.4** and written for **cardano mainnet** with **release v.1.27.0** 😁 
 {% endhint %}
 
 ### 📄 Changelog - **Update Notes -** **June 2 2021**
@@ -3751,9 +3751,9 @@ This multi signature transaction will be signed using witnesses.
 You need the following 4 witnesses.
 
 * node.skey
-* hw-stake.skey
+* hw-stake.hwsfile
 * stake.skey
-* payment.skey
+* payment**.**skey
 
 Create a witness using node.skey,
 
@@ -3799,7 +3799,7 @@ cardano-cli transaction witness \
 
 Copy **tx-pool.raw** to local PC or block producer node, which is where your hardware wallet device is connected. Ensure your hardware wallet is unlocked and ready.
 
-Create a witness using hw-stake.hwskey.
+Create a witness using hw-stake.hwsfile
 
 {% tabs %}
 {% tab title="local PC or block producer node" %}

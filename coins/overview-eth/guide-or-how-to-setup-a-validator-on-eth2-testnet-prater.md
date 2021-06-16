@@ -7,7 +7,7 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet PRATER
 
 {% hint style="success" %}
-As of Mar 29 2021, this guide is updated for **testnet PRATER.**
+As of Jun 15 2021, this guide is updated for **testnet PRATER.**
 
 If you wish to test on **testnet PYRMONT**, [please click here.](guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
 {% endhint %}
@@ -405,89 +405,6 @@ The subsequent steps assume you have completed the [best practices security guid
 Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/) **or** [**Infura**](https://infura.io/)**.**
 
 {% tabs %}
-{% tab title="OpenEthereum \(Parity\)" %}
-{% hint style="info" %}
-**OpenEthereum** - It's **\*\*goal is to be the fastest, lightest, and most secure Ethereum client using the** Rust programming language\*\*. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
-{% endhint %}
-
-#### ⚙ Install dependencies
-
-```text
-sudo apt-get update
-sudo apt-get install curl jq unzip -y
-```
-
-#### 🤖 Install OpenEthereum
-
-Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
-
-Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
-
-```bash
-mkdir $HOME/openethereum
-cd $HOME/openethereum
-curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux | xargs wget -q --show-progress
-unzip -o openethereum*.zip
-chmod +x openethereum
-rm openethereum*.zip
-```
-
-​ ⚙ **Setup and configure systemd**
-
-Run the following to create a **unit file** to define your `eth1.service` configuration.
-
-Simply copy/paste the following.
-
-```bash
-cat > $HOME/eth1.service << EOF 
-[Unit]
-Description     = openethereum eth1 service
-Wants           = network-online.target
-After           = network-online.target 
-
-[Service]
-User            = $(whoami)
-ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli --metrics --metrics-port=6060
-Restart         = on-failure
-RestartSec      = 3
-
-[Install]
-WantedBy    = multi-user.target
-EOF
-```
-
-{% hint style="info" %}
-**Nimbus Specific Configuration**: Add the following flag to the **ExecStart** line.
-
-```bash
---ws-origins=all
-```
-{% endhint %}
-
-Move the unit file to `/etc/systemd/system` and give it permissions.
-
-```bash
-sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
-sudo chmod 644 /etc/systemd/system/eth1.service
-```
-
-Run the following to enable auto-start at boot time.
-
-```text
-sudo systemctl daemon-reload
-sudo systemctl enable eth1
-```
-
-#### ⛓ Start OpenEthereum
-
-```text
-sudo systemctl start eth1
-```
-{% endtab %}
-
 {% tab title="Geth" %}
 {% hint style="info" %}
 **Geth** - Go Ethereum is one of the three original implementations \(along with C++ and Python\) of the Ethereum protocol. It is written in **Go**, fully open source and licensed under the GNU LGPL v3.
@@ -709,6 +626,93 @@ sudo systemctl start eth1
 {% hint style="info" %}
 **Note about Metric Error messages**: You will see these until prometheus pushergateway is setup in section 6. `Error in MetricPusher: System.Net.Http.HttpRequestException: Connection refused`
 {% endhint %}
+{% endtab %}
+
+{% tab title="OpenEthereum \(Parity\)" %}
+{% hint style="danger" %}
+OpenEthereum will no longer be supported post London hard fork.  Gnosis, maintainers of OpenEthereum, suggest users migrate to their new **Erigon** Ethererum client.
+{% endhint %}
+
+{% hint style="info" %}
+**OpenEthereum** - It's **\*\*goal is to be the fastest, lightest, and most secure Ethereum client using the** Rust programming language\*\*. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
+{% endhint %}
+
+#### ⚙ Install dependencies
+
+```text
+sudo apt-get update
+sudo apt-get install curl jq unzip -y
+```
+
+#### 🤖 Install OpenEthereum
+
+Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
+
+Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
+
+```bash
+mkdir $HOME/openethereum
+cd $HOME/openethereum
+curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux | xargs wget -q --show-progress
+unzip -o openethereum*.zip
+chmod +x openethereum
+rm openethereum*.zip
+```
+
+​ ⚙ **Setup and configure systemd**
+
+Run the following to create a **unit file** to define your `eth1.service` configuration.
+
+Simply copy/paste the following.
+
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = openethereum eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli --metrics --metrics-port=6060
+Restart         = on-failure
+RestartSec      = 3
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+{% hint style="info" %}
+**Nimbus Specific Configuration**: Add the following flag to the **ExecStart** line.
+
+```bash
+--ws-origins=all
+```
+{% endhint %}
+
+Move the unit file to `/etc/systemd/system` and give it permissions.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Run the following to enable auto-start at boot time.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable eth1
+```
+
+#### ⛓ Start OpenEthereum
+
+```text
+sudo systemctl start eth1
+```
 {% endtab %}
 
 {% tab title="Minimum Hardware Setup \(Infura\)" %}

@@ -104,6 +104,16 @@ unzip -o nethermind*.zip
 rm nethermind*linux*.zip
 ```
 {% endtab %}
+
+{% tab title="Erigon" %}
+Review the latest release at [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)
+
+```bash
+cd $HOME/erigon
+git pull
+make erigon
+```
+{% endtab %}
 {% endtabs %}
 
 3. Start your eth1 node process.

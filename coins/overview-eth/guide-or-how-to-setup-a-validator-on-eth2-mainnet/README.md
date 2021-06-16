@@ -7,15 +7,17 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of June 9 2021, this is **guide version 3.1.3** and written for **ethereum mainnet**😁 
+As of June 15 2021, this is **guide version 3.2.0** and written for **ethereum mainnet**😁 
 {% endhint %}
 
 {% hint style="info" %}
 #### ✨ For the PYRMONT testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md). Always test first on testnet. 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **June 2 2021**
+### 📄 Changelog - **Update Notes -** **June 15 2021**
 
+* OpenEthereum will no longer be supported post London hard fork. Gnosis, maintainers of OpenEthereum, suggest users migrate to their new **Erigon** Ethererum client. Added setup instructions for **Erigon** under eth1 node section.
+* Added [Mobile App Node Monitoring by beaconcha.in](./#6-5-mobile-app-node-monitoring-by-beaconcha-in)
 * Updated [eth2.0-deposit-cli to v.1.2.0](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.2.0) and added section on eth1 withdrawal address
 * Added generating mnemonic seeds on **Tails OS** by [punggolzenith](https://github.com/punggolzenith)
 * Iancoleman.io BLS12-381 Key Generation Tool [how-to added](./#8-12-eip2333-key-generator-by-iancoleman-io)
@@ -412,92 +414,9 @@ The subsequent steps assume you have completed the [best practices security guid
 🛑 Do not run your processes as **ROOT** user. 😱 
 {% endhint %}
 
-Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/) **or** [**Infura**](https://infura.io/)**.**
+Your choice of either [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/)**,** [**Erigon**](https://github.com/ledgerwatch/erigon) **or** [**Infura**](https://infura.io/)**.**
 
 {% tabs %}
-{% tab title="OpenEthereum \(Parity\)" %}
-{% hint style="info" %}
-**OpenEthereum** - It's ****goal is to be the fastest, lightest, and most secure Ethereum client using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
-{% endhint %}
-
-#### ⚙ Install dependencies
-
-```text
-sudo apt-get update
-sudo apt-get install curl jq unzip -y
-```
-
-#### 🤖 Install OpenEthereum
-
-Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
-
-Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
-
-```bash
-mkdir $HOME/openethereum
-cd $HOME/openethereum
-curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux | xargs wget -q --show-progress
-unzip -o openethereum*.zip
-chmod +x openethereum
-rm openethereum*.zip
-```
-
-​ ⚙ **Setup and configure systemd**
-
-Run the following to create a **unit file** to define your `eth1.service` configuration.
-
-Simply copy/paste the following.
-
-```bash
-cat > $HOME/eth1.service << EOF 
-[Unit]
-Description     = openethereum eth1 service
-Wants           = network-online.target
-After           = network-online.target 
-
-[Service]
-User            = $(whoami)
-ExecStart       = $(echo $HOME)/openethereum/openethereum --metrics --metrics-port=6060
-Restart         = on-failure
-RestartSec      = 3
-
-[Install]
-WantedBy    = multi-user.target
-EOF
-```
-
-{% hint style="info" %}
-**Nimbus Specific Configuration**: Add the following flag to the **ExecStart** line.
-
-```bash
---ws-origins=all
-```
-{% endhint %}
-
-Move the unit file to `/etc/systemd/system` and give it permissions.
-
-```bash
-sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
-sudo chmod 644 /etc/systemd/system/eth1.service
-```
-
-Run the following to enable auto-start at boot time.
-
-```text
-sudo systemctl daemon-reload
-sudo systemctl enable eth1
-```
-
-#### ⛓ Start OpenEthereum
-
-```text
-sudo systemctl start eth1
-```
-{% endtab %}
-
 {% tab title="Geth" %}
 {% hint style="info" %}
 **Geth** - Go Ethereum is one of the three original implementations \(along with C++ and Python\) of the Ethereum protocol. It is written in **Go**, fully open source and licensed under the GNU LGPL v3.
@@ -729,6 +648,206 @@ sudo systemctl start eth1
 {% hint style="info" %}
 **Note about Metric Error messages**: You will see these until prometheus pushergateway is setup in section 6. `Error in MetricPusher: System.Net.Http.HttpRequestException: Connection refused`
 {% endhint %}
+{% endtab %}
+
+{% tab title="Erigon" %}
+{% hint style="info" %}
+**Erigon** - Successor to OpenEthereum, Erigon is an implementation of Ethereum \(aka "Ethereum client"\), on the efficiency frontier, written in Go.
+{% endhint %}
+
+{% hint style="warning" %}
+Erigon is new and under rapid development at this time. Frequent updates required.
+{% endhint %}
+
+#### ⚙ Install Go dependencies
+
+```text
+wget -O go.tar.gz https://golang.org/dl/go1.16.5.linux-amd64.tar.gz
+```
+
+```bash
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go.tar.gz
+```
+
+```bash
+echo export PATH=$PATH:/usr/local/go/bin>> $HOME/.bashrc
+source $HOME/.bashrc
+```
+
+Verify Go is properly installed and cleanup files.
+
+```bash
+go version
+rm go.tar.gz
+```
+
+#### 🤖 Build and install Erigon
+
+Review the latest release at [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)
+
+```bash
+cd $HOME
+git clone --recurse-submodules -j8 https://github.com/ledgerwatch/erigon.git
+cd erigon
+make erigon
+```
+
+​ ⚙ **Setup and configure systemd**
+
+Run the following to create a **unit file** to define your `eth1.service` configuration.
+
+Simply copy/paste the following.
+
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = erigon eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+Requires        = eth1-erigon.service
+
+[Service]
+User            = $USER
+ExecStart       = $HOME/erigon/build/bin/erigon --metrics
+Restart         = on-failure
+RestartSec      = 3
+
+[Install]
+WantedBy    = multi-user.target
+
+EOF
+```
+
+```bash
+cat > $HOME/eth1-erigon.service << EOF 
+[Unit]
+Description     = erigon eth1 rpcdaemon service
+Wants           = network-online.target
+After           = eth1.service
+Requires        = eth1.service
+
+[Service]
+User            = $USER
+ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9090 --datadir $HOME/.local/share/erigon --http.api=eth,web3,net
+Restart         = on-failure
+RestartSec      = 3
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+Move the unit file to `/etc/systemd/system` and give it permissions.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+sudo mv $HOME/eth1-erigon.service /etc/systemd/system/eth1-erigon.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+sudo chmod 644 /etc/systemd/system/eth1-erigon.service
+```
+
+Run the following to enable auto-start at boot time.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable eth1 eth1-erigon
+```
+
+#### ⛓ Start Erigon
+
+```text
+sudo systemctl start eth1
+```
+{% endtab %}
+
+{% tab title="OpenEthereum \(Retired\)" %}
+{% hint style="danger" %}
+OpenEthereum will no longer be supported post London hard fork.  Gnosis, maintainers of OpenEthereum, suggest users migrate to their new **Erigon** Ethererum client.
+{% endhint %}
+
+{% hint style="info" %}
+**OpenEthereum** - It's ****goal is to be the fastest, lightest, and most secure Ethereum client using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
+{% endhint %}
+
+#### ⚙ Install dependencies
+
+```text
+sudo apt-get update
+sudo apt-get install curl jq unzip -y
+```
+
+#### 🤖 Install OpenEthereum
+
+Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
+
+Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
+
+```bash
+mkdir $HOME/openethereum
+cd $HOME/openethereum
+curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux | xargs wget -q --show-progress
+unzip -o openethereum*.zip
+chmod +x openethereum
+rm openethereum*.zip
+```
+
+​ ⚙ **Setup and configure systemd**
+
+Run the following to create a **unit file** to define your `eth1.service` configuration.
+
+Simply copy/paste the following.
+
+```bash
+cat > $HOME/eth1.service << EOF 
+[Unit]
+Description     = openethereum eth1 service
+Wants           = network-online.target
+After           = network-online.target 
+
+[Service]
+User            = $(whoami)
+ExecStart       = $(echo $HOME)/openethereum/openethereum --metrics --metrics-port=6060
+Restart         = on-failure
+RestartSec      = 3
+
+[Install]
+WantedBy    = multi-user.target
+EOF
+```
+
+{% hint style="info" %}
+**Nimbus Specific Configuration**: Add the following flag to the **ExecStart** line.
+
+```bash
+--ws-origins=all
+```
+{% endhint %}
+
+Move the unit file to `/etc/systemd/system` and give it permissions.
+
+```bash
+sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
+```
+
+```bash
+sudo chmod 644 /etc/systemd/system/eth1.service
+```
+
+Run the following to enable auto-start at boot time.
+
+```text
+sudo systemctl daemon-reload
+sudo systemctl enable eth1
+```
+
+#### ⛓ Start OpenEthereum
+
+```text
+sudo systemctl start eth1
+```
 {% endtab %}
 
 {% tab title="Minimum Hardware Setup \(Infura\)" %}
@@ -2579,6 +2698,18 @@ Pushgateway listens for data from Nethermind on port 9091.
      - targets: ['localhost:6060']
 ```
 {% endtab %}
+
+{% tab title="Erigon" %}
+```bash
+   - job_name: 'erigon'
+     scrape_interval: 10s
+     scrape_timeout: 3s
+     metrics_path: /debug/metrics/prometheus
+     scheme: http
+     static_configs:
+       - targets: ['localhost:6060']
+```
+{% endtab %}
 {% endtabs %}
 
 Move it to `/etc/prometheus/prometheus.yml`
@@ -2620,7 +2751,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
 9. **Download and save** your ETH2 Client's json file. More json dashboard options available below. \[ [Lighthouse](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark_ETH_staking_dashboard.json) \| [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)\| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)\| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)\| [Prysm &gt; 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) \| Lodestar \] 
-10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| [OpenEthereum ](https://raw.githubusercontent.com/dappnode/DAppNodePackage-openethereum/master/openethereum-grafana-dashboard.json)\]
+10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) \| [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)\| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)\| [Erigon](https://raw.githubusercontent.com/ledgerwatch/erigon/devel/cmd/prometheus/dashboards/erigon.json) \| [OpenEthereum ](https://raw.githubusercontent.com/dappnode/DAppNodePackage-openethereum/master/openethereum-grafana-dashboard.json)\]
 11. **Download and save** a [node-exporter dashboard](https://grafana.com/api/dashboards/11074/revisions/9/download) for general system monitoring
 12. Click **Create +** icon &gt; **Import**
 13. Add the ETH2 client dashboard via **Upload JSON file**
@@ -2717,6 +2848,12 @@ Credits: [https://grafana.com/dashboards/10273](https://grafana.com/dashboards/1
 ![](../../../.gitbook/assets/nethermind-dash.png)
 
 Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://github.com/NethermindEth/metrics-infrastructure)
+{% endtab %}
+
+{% tab title="Erigon" %}
+![](../../../.gitbook/assets/erigon-grafana.png)
+
+Credits: [https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashboards](https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashboards)
 {% endtab %}
 
 {% tab title="OpenEthereum" %}
@@ -2833,6 +2970,18 @@ For a video demo, watch [MohamedMansour's eth2 education videos](https://www.you
 18. Select desired notifications.
 19. Click **TEST** to verify your notifications are setup correctly.
 20. Click **CREATE** to finish.
+
+### 📱 6.5 Mobile App Node Monitoring by beaconcha.in
+
+Learn how to monitor your validator & beacon node on the [beaconcha.in mobile app.](https://beaconcha.in/mobile)
+
+{% hint style="info" %}
+This feature currently works for Lighthouse and Prysm.
+{% endhint %}
+
+Refer to the official guide found here: [https://kb.beaconcha.in/beaconcha.in-explorer/mobile-app-less-than-greater-than-beacon-node](https://kb.beaconcha.in/beaconcha.in-explorer/mobile-app-less-than-greater-than-beacon-node)
+
+![beaconcha.in mobile app monitoring](../../../.gitbook/assets/grafik.png)
 
 {% hint style="success" %}
 Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
@@ -3496,6 +3645,13 @@ $HOME/.besu/database
 $HOME/.nethermind/nethermind_db/mainnet
 ```
 {% endtab %}
+
+{% tab title="Erigon" %}
+```bash
+#database location
+$HOME/.local/share/erigon/erigon/chaindata
+```
+{% endtab %}
 {% endtabs %}
 
 ###  🌏 8.8 Hosting ETH1 node on a different machine
@@ -3851,7 +4007,7 @@ sudo systemctl restart beacon-chain
 {% endtab %}
 {% endtabs %}
 
-### 📦 8.10 Update a ETH1 node - Geth / OpenEthereum / Besu / Nethermind
+### 📦 8.10 Update a ETH1 node - Geth / OpenEthereum / Besu / Nethermind / Erigon
 
 {% hint style="info" %}
 From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
@@ -3945,6 +4101,16 @@ curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | 
 unzip -o nethermind*.zip
 # cleanup
 rm nethermind*linux*.zip
+```
+{% endtab %}
+
+{% tab title="Erigon" %}
+Review the latest release at [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)
+
+```bash
+cd $HOME/erigon
+git pull
+make erigon
 ```
 {% endtab %}
 {% endtabs %}
