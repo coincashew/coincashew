@@ -1449,6 +1449,8 @@ to be run on your air-gapped offline machine appropriately.
 **metadata-url** must be no longer than 64 characters.
 {% endhint %}
 
+Copy **poolMetaDataHash.txt** to your **air-gapped offline machine.**
+
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
