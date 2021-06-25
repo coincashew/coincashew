@@ -14,7 +14,7 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of June 15 2021, this is **guide version 3.4.4** and written for **cardano mainnet** with **release v.1.27.0** 😁 
+As of June 25 2021, this is **guide version 3.4.5** and written for **cardano mainnet** with **release v.1.27.0** 😁 
 {% endhint %}
 
 ### 📄 Changelog - **Update Notes -** **June 2 2021**
@@ -1373,7 +1373,7 @@ EOF
 {% endtab %}
 {% endtabs %}
 
-Calculate the hash of your metadata file.
+Calculate the hash of your metadata file. It's saved to **poolMetaDataHash.txt**
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -1382,6 +1382,8 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 ```
 {% endtab %}
 {% endtabs %}
+
+Copy **poolMetaDataHash.txt** to your air-gapped offline machine, cold environment.
 
 Now upload your **poolMetaData.json** to your website or a public website such as [https://pages.github.com/](https://pages.github.com/)
 
@@ -1448,8 +1450,6 @@ to be run on your air-gapped offline machine appropriately.
 {% hint style="warning" %}
 **metadata-url** must be no longer than 64 characters.
 {% endhint %}
-
-Copy **poolMetaDataHash.txt** to your **air-gapped offline machine.**
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
