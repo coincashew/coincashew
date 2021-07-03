@@ -2733,7 +2733,7 @@ cardano-cli transaction build-raw \
 
 Copy **tx.raw** to your **cold environment.**
 
-Sign the transaction with both the payment and stake secret keys. 
+Sign the transaction with the payment secret key. 
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
