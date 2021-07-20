@@ -3632,6 +3632,103 @@ Finally, verify your validator's attestations are working with public block expl
 
 Enter your validator's pubkey to view its status.
 
+### 🖴 8.13 Dealing with storage issues on the Eth1 node
+
+{% hint style="info" %}
+It is currently recommended to use a minimum 1TB hard disk. 
+{% endhint %}
+
+After running the Eth1 node for a while, you will notice that it will start to fill up the hard disk.
+The following steps might be helpful for you.
+
+Firstly make sure you have a fallback Eth1 node: see [8.11 Strategy 2](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet#strategy-2-eth1-redundancy).
+
+{% tabs %}
+{% tab title="Manually Pruning Geth" %}
+
+{% hint style="info" %}
+Since Geth 1.10x version, the blockchain data can be regularly pruned to reduce it's size.
+{% endhint %}
+
+Reference: https://gist.github.com/yorickdowne/3323759b4cbf2022e191ab058a4276b2
+
+You will need to upgrade Geth to at least 1.10x. Other prerequisites are a fully synced Eth1 node and that a snapshot has been created.
+
+Stop your Eth1 node
+
+```bash
+sudo systemctl stop eth1
+```
+
+Prune the blockchain data
+
+```bash
+geth --datadir ~/.ethereum snapshot prune-state
+```
+
+Restart the Eth1 node
+
+```bash
+sudo systemctl start eth1
+```
+{% endtab %}
+
+{% tab title="Adding new hard disks and changing the data directory" %}
+
+After you have installed your hard disk, you will need to properly format it and automount it. Consult the ubuntu guides on this.
+
+I will assume that the new disk has been mounted onto `/mnt/eth1-data`. (The name of the mount point is up to you) 
+
+Handling file permissions. 
+
+You need to change ownership of the folder to be accessible by your `eth1 service`. If your folder is a different name, please change the `/mnt/eth1-data` accordingly.
+
+```bash
+sudo chown $whoami:$whoami /mnt/eth1-data
+```
+```bash
+sudo chmod 755 /mnt/eth1-data
+```
+
+Stop your Eth1 node.
+
+```bash
+sudo systemctl stop eth1
+```
+
+Edit the system service file to point to a new data directory.
+
+```bash
+sudo nano /etc/systemd/system/eth1.service
+```
+
+At the end of this command starting with `/usr/bin/geth --http --metrics .... ` add a space and the following flag `--datadir "/mnt/eth1-data"`.
+
+`Ctrl-X` to save your settings.
+
+Refresh the system service daemon to load the new configurations.
+
+```bash
+sudo systemctl daemon-reload
+```
+
+Restart the Eth1 node.
+
+```bash
+sudo systemctl start eth1
+```
+
+Make sure it is up and running by viewing the running logs.
+
+```bash
+journalctl -u eth1 -f
+```
+
+{% endtab %}
+{% endtabs %}
+
+
+
 ## 🌇 9. Join the community on Discord and Reddit
 
 ### 📱 Discord
