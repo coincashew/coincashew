@@ -3724,6 +3724,12 @@ Make sure it is up and running by viewing the running logs.
 journalctl -u eth1 -f
 ```
 
+(Optional) Delete original data directory
+
+```bash
+rm -r ~/.ethereum
+```
+
 {% endtab %}
 {% endtabs %}
 
