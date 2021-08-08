@@ -3597,9 +3597,9 @@ Export your hardware wallet's staking keys.
 {% tabs %}
 {% tab title="local PC or block producer node" %}
 ```bash
-cardano-hw-cli address key-gen
-  --path 1852H/1815H/0H/2/0
-  --verification-key-file hw-stake.vkey
+cardano-hw-cli address key-gen \
+  --path 1852H/1815H/0H/2/0 \
+  --verification-key-file hw-stake.vkey \
   --hw-signing-file hw-stake.hwsfile
 ```
 {% endtab %}
@@ -3806,10 +3806,10 @@ Create a witness using hw-stake.hwsfile
 {% tabs %}
 {% tab title="local PC or block producer node" %}
 ```text
-cardano-hw-cli transaction witness
-  --tx-body-file tx-pool.raw
-  --hw-signing-file hw-stake.hwsfile
-  --mainnet
+cardano-hw-cli transaction witness \
+  --tx-body-file tx-pool.raw \
+  --hw-signing-file hw-stake.hwsfile \
+  --mainnet \
   --out-file hw-stake.witness
 ```
 {% endtab %}
