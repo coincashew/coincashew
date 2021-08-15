@@ -1246,7 +1246,7 @@ echo stakeAddressDeposit : $stakeAddressDeposit
 Registration of a stake address certificate \(stakeAddressDeposit\) costs 2000000 lovelace.
 {% endhint %}
 
-Run the build-raw transaction command
+Build your transaction which will register your stake address. 
 
 {% hint style="info" %}
 The **invalid-hereafter** value must be greater than the current tip. In this example, we use current slot + 10000.
@@ -1255,31 +1255,13 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
-    ${tx_in} \
-    --tx-out $(cat payment.addr)+0 \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
-    --out-file tx.tmp \
-    --certificate stake.cert
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate the current minimum fee:
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-fee=$(cardano-cli transaction calculate-min-fee \
-    --tx-body-file tx.tmp \
-    --tx-in-count ${txcnt} \
-    --tx-out-count 1 \
+cardano-cli transaction build \
     --mainnet \
-    --witness-count 2 \
-    --byron-witness-count 0 \
-    --protocol-params-file params.json | awk '{ print $1 }')
-echo fee: $fee
+    ${tx_in} \
+    --change-address $(cat payment.addr) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --certificate-file stake.cert \
+    --out-file tx.raw
 ```
 {% endtab %}
 {% endtabs %}
@@ -1287,33 +1269,6 @@ echo fee: $fee
 {% hint style="info" %}
 Ensure your balance is greater than cost of fee + stakeAddressDeposit or this will not work.
 {% endhint %}
-
-Calculate your change output.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-txOut=$((${total_balance}-${stakeAddressDeposit}-${fee}))
-echo Change Output: ${txOut}
-```
-{% endtab %}
-{% endtabs %}
-
-Build your transaction which will register your stake address. 
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-cardano-cli transaction build-raw \
-    ${tx_in} \
-    --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee ${fee} \
-    --certificate-file stake.cert \
-    --out-file tx.raw
-```
-{% endtab %}
-{% endtabs %}
 
 Copy **tx.raw** to your **cold environment**.
 
@@ -1559,7 +1514,7 @@ echo stakePoolDeposit: $stakePoolDeposit
 {% endtab %}
 {% endtabs %}
 
-Run the build-raw transaction command.
+Build the transaction. 
 
 {% hint style="info" %}
 The **invalid-hereafter** value must be greater than the current tip. In this example, we use current slot + 10000. 
@@ -1568,32 +1523,14 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli transaction build \
+    --mainnet \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakePoolDeposit}))  \
+    --change-address $(cat payment.addr) \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
-    --out-file tx.tmp
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate the minimum fee:
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-fee=$(cardano-cli transaction calculate-min-fee \
-    --tx-body-file tx.tmp \
-    --tx-in-count ${txcnt} \
-    --tx-out-count 1 \
-    --mainnet \
-    --witness-count 3 \
-    --byron-witness-count 0 \
-    --protocol-params-file params.json | awk '{ print $1 }')
-echo fee: $fee
+    --out-file tx.raw
 ```
 {% endtab %}
 {% endtabs %}
@@ -1601,34 +1538,6 @@ echo fee: $fee
 {% hint style="info" %}
 Ensure your balance is greater than cost of fee + minPoolCost or this will not work.
 {% endhint %}
-
-Calculate your change output.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-txOut=$((${total_balance}-${stakePoolDeposit}-${fee}))
-echo txOut: ${txOut}
-```
-{% endtab %}
-{% endtabs %}
-
-Build the transaction. 
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-cardano-cli transaction build-raw \
-    ${tx_in} \
-    --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee ${fee} \
-    --certificate-file pool.cert \
-    --certificate-file deleg.cert \
-    --out-file tx.raw
-```
-{% endtab %}
-{% endtabs %}
 
 Copy **tx.raw** to your **cold environment.**
 
@@ -2410,7 +2319,7 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-Run the build-raw transaction command.
+Build the transaction. 
 
 {% hint style="info" %}
 The **invalid-hereafter** value must be greater than the current tip. In this example, we use current slot + 10000. 
@@ -2419,57 +2328,11 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
-    ${tx_in} \
-    --tx-out $(cat payment.addr)+${total_balance} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
-    --certificate-file pool.cert \
-    --certificate-file deleg.cert \
-    --out-file tx.tmp
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate the minimum fee:
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-fee=$(cardano-cli transaction calculate-min-fee \
-    --tx-body-file tx.tmp \
-    --tx-in-count ${txcnt} \
-    --tx-out-count 1 \
+cardano-cli transaction build \
     --mainnet \
-    --witness-count 3 \
-    --byron-witness-count 0 \
-    --protocol-params-file params.json | awk '{ print $1 }')
-echo fee: $fee
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate your change output.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-txOut=$((${total_balance}-${fee}))
-echo txOut: ${txOut}
-```
-{% endtab %}
-{% endtabs %}
-
-Build the transaction. 
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-cardano-cli transaction build-raw \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+${txOut} \
+    --change-address $(cat payment.addr) \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
     --out-file tx.raw
@@ -2670,62 +2533,17 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-Run the build-raw transaction command.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-cardano-cli transaction build-raw \
-    ${tx_in} \
-    --tx-out $(cat payment.addr)+0 \
-    --tx-out ${destinationAddress}+0 \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
-    --out-file tx.tmp
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate the current minimum fee:
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-fee=$(cardano-cli transaction calculate-min-fee \
-    --tx-body-file tx.tmp \
-    --tx-in-count ${txcnt} \
-    --tx-out-count 2 \
-    --mainnet \
-    --witness-count 1 \
-    --byron-witness-count 0 \
-    --protocol-params-file params.json | awk '{ print $1 }')
-echo fee: $fee
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate your change output.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-txOut=$((${total_balance}-${fee}-${amountToSend}))
-echo Change Output: ${txOut}
-```
-{% endtab %}
-{% endtabs %}
-
 Build your transaction. 
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli transaction build \
+    --mainnet \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+${txOut} \
     --tx-out ${destinationAddress}+${amountToSend} \
+    --change-address $(cat payment.addr) \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee ${fee} \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -2863,61 +2681,16 @@ withdrawalString="$(cat stake.addr)+${rewardBalance}"
 {% endtab %}
 {% endtabs %}
 
-Run the build-raw transaction command.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-cardano-cli transaction build-raw \
-    ${tx_in} \
-    --tx-out $(cat payment.addr)+0 \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
-    --withdrawal ${withdrawalString} \
-    --out-file tx.tmp
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate the current minimum fee:
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-fee=$(cardano-cli transaction calculate-min-fee \
-    --tx-body-file tx.tmp \
-    --tx-in-count ${txcnt} \
-    --tx-out-count 1 \
-    --mainnet \
-    --witness-count 2 \
-    --byron-witness-count 0 \
-    --protocol-params-file params.json | awk '{ print $1 }')
-echo fee: $fee
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate your change output.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-txOut=$((${total_balance}-${fee}+${rewardBalance}))
-echo Change Output: ${txOut}
-```
-{% endtab %}
-{% endtabs %}
-
 Build your transaction. 
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli transaction build \
+    --mainnet \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+${txOut} \
+    --change-address $(cat payment.addr) \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee ${fee} \
     --withdrawal ${withdrawalString} \
     --out-file tx.raw
 ```
@@ -3685,61 +3458,16 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-Run the build-raw transaction command.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-cardano-cli transaction build-raw \
-    ${tx_in} \
-    --tx-out $(cat payment.addr)+${total_balance} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
-    --certificate-file pool.cert \
-    --out-file tx.tmp
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate the minimum fee:
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-fee=$(cardano-cli transaction calculate-min-fee \
-    --tx-body-file tx.tmp \
-    --tx-in-count ${txcnt} \
-    --tx-out-count 1 \
-    --mainnet \
-    --witness-count 4 \
-    --byron-witness-count 0 \
-    --protocol-params-file params.json | awk '{ print $1 }')
-echo fee: $fee
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate your change output.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-txOut=$((${total_balance}-${fee}))
-echo txOut: ${txOut}
-```
-{% endtab %}
-{% endtabs %}
-
 Build the transaction. 
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli transaction build \
+    --mainnet \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+${txOut} \
+    --change-address $(cat payment.addr) \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee ${fee} \
     --certificate-file pool.cert \
     --out-file tx-pool.raw
 ```
@@ -3978,61 +3706,16 @@ echo Current Slot: $currentSlot
 {% endtab %}
 {% endtabs %}
 
-Run the build-raw transaction command.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-cardano-cli transaction build-raw \
-    ${tx_in} \
-    --tx-out $(cat payment.addr)+${total_balance} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
-    --certificate-file pool.dereg \
-    --out-file tx.tmp
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate the minimum fee:
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-fee=$(cardano-cli transaction calculate-min-fee \
-    --tx-body-file tx.tmp \
-    --tx-in-count ${txcnt} \
-    --tx-out-count 1 \
-    --mainnet \
-    --witness-count 2 \
-    --byron-witness-count 0 \
-    --protocol-params-file params.json | awk '{ print $1 }')
-echo fee: $fee
-```
-{% endtab %}
-{% endtabs %}
-
-Calculate your change output.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-txOut=$((${total_balance}-${fee}))
-echo txOut: ${txOut}
-```
-{% endtab %}
-{% endtabs %}
-
 Build the transaction. 
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli transaction build \
+    --mainnet \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+${txOut} \
+    --change-address $(cat payment.addr) \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee ${fee} \
     --certificate-file pool.dereg \
     --out-file tx.raw
 ```
