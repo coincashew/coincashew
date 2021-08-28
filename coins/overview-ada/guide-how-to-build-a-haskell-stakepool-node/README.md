@@ -3772,7 +3772,7 @@ Create a witness using node.skey,
 ```bash
 cardano-cli transaction witness \
   --tx-body-file tx-pool.raw \
-  --signing-key-file node.skey \
+  --signing-key-file $HOME/cold-keys/node.skey \
   --mainnet \
   --out-file node.witness
 ```
@@ -3832,9 +3832,9 @@ cardano-cli transaction assemble \
   --tx-body-file tx-pool.raw \
   --witness-file node.witness \
   --witness-file stake.witness \
-  --witness-file payment.witness \  
+  --witness-file payment.witness \
   --witness-file hw-stake.witness \
-  --out-file tx-pool.multisign 
+  --out-file tx-pool.multisign
 ```
 {% endtab %}
 {% endtabs %}
