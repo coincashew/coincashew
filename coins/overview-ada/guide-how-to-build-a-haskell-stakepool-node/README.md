@@ -54,7 +54,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu Server 20.04 LTS\)
 * **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
 * **Memory:** 8GB of RAM
-* **Storage:** 20GB of free storage
+* **Storage:** 50GB of free storage
 * **Internet:** Broadband internet connection with speeds at least 10 Mbps.
 * **Data Plan**: at least 1GB per hour. 720GB per month.
 * **Power:** Reliable electrical power
