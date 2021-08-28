@@ -190,6 +190,13 @@ source $HOME/.bashrc
 {% hint style="info" %}
 💡 **How to use this Guide on TestNet**
 
+Run the following commands to set your NODE_CONFIG to testnet rather than mainnet
+
+```bash
+echo export NODE_CONFIG=testnet>> $HOME/.bashrc
+source $HOME/.bashrc
+```
+
 Simply replace every instance of ****CLI parameter
 
  `--mainnet` 
