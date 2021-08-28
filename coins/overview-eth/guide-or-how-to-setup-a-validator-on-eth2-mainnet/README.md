@@ -432,6 +432,7 @@ Review the latest release notes at [https://github.com/ethereum/go-ethereum/rele
 ```text
 sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt-get update -y
+sudo apt dist-upgrade -y
 sudo apt-get install ethereum -y
 ```
 
@@ -656,10 +657,6 @@ sudo systemctl start eth1
 {% tab title="Erigon" %}
 {% hint style="info" %}
 **Erigon** - Successor to OpenEthereum, Erigon is an implementation of Ethereum \(aka "Ethereum client"\), on the efficiency frontier, written in Go.
-{% endhint %}
-
-{% hint style="warning" %}
-Erigon is new and under rapid development at this time. Frequent updates required.
 {% endhint %}
 
 #### ⚙ Install Go dependencies
@@ -4036,6 +4033,13 @@ From time to time, be sure to update to the latest ETH1 releases to enjoy new im
 \*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
 {% endhint %}
 
+Update your operating system and ensure it's on the latest long term \(LTS\) support version.
+
+```bash
+sudo apt update
+sudo apt dist-upgrade -y
+```
+
 Stop your eth1 node process.
 
 ```bash
@@ -4050,8 +4054,9 @@ Update the eth1 node package or binaries.
 Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
 
 ```bash
-sudo apt update
-sudo apt upgrade -y
+# Already handled by previous commands.
+# sudo apt update
+# sudo apt dist-upgrade -y
 ```
 {% endtab %}
 

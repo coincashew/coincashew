@@ -24,6 +24,13 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 
 From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
 
+0.1 Update your operating system and ensure it's on the latest long term \(LTS\) support version.
+
+```bash
+sudo apt update
+sudo apt dist-upgrade -y
+```
+
 1. Stop your eth1 node process.
 
 ```bash
@@ -38,8 +45,9 @@ sudo systemctl stop eth1
 Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
 
 ```bash
-sudo apt update
-sudo apt upgrade -y
+# Already handled by previous commands.
+# sudo apt update
+# sudo apt upgrade -y
 ```
 {% endtab %}
 

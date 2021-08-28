@@ -119,19 +119,16 @@ cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
-    --testnet-magic 42 \
+    --mainnet \
     --out-file tx.signed
 ```
 
 Send the signed transaction.
 
 ```bash
-cardano-cli transaction sign \
-    --tx-body-file tx.raw \
-    --signing-key-file payment.skey \
-    --signing-key-file stake.skey \
-    --mainnet \
-    --out-file tx.signed
+cardano-cli transaction submit \
+    --tx-file tx.signed \
+    --mainnet
 ```
 
 ## 📄 2. Create a delegation certificate
