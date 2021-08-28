@@ -14,11 +14,13 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of June 25 2021, this is **guide version 3.4.5** and written for **cardano mainnet** with **release v.1.27.0** 😁 
+As of August 27 2021, this is **guide version 4.0.0** and written for **cardano mainnet** with **release v.1.29.0** 😁 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **June 2 2021**
+### 📄 Changelog - **Update Notes -** **August 27 2021**
 
+* Updated for Alonzo release 1.29.0.
+* Various fixes to testnet  / alonzo / storage requirements / cli commands
 * Updated CNCLI's Leaderlog command with the [stake-snapshot approach](./#18-12-slot-leader-schedule-find-out-when-your-pool-will-mint-blocks)
 * Added [CNCLI tool](./#18-12-slot-leader-schedule-find-out-when-your-pool-will-mint-blocks) for sending slot to Pooltool and for LeaderLog scripts
 * Updated guide for release cardano-node/cli v1.27.0 changes
@@ -190,20 +192,24 @@ source $HOME/.bashrc
 {% hint style="info" %}
 💡 **How to use this Guide on TestNet**
 
-Run the following commands to set your NODE_CONFIG to testnet rather than mainnet
+Run the following commands to set your **NODE\_CONFIG** to testnet rather than mainnet.
 
 ```bash
 echo export NODE_CONFIG=testnet>> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
-Simply replace every instance of ****CLI parameter
+As you work through this guide, replace every instance of ****CLI parameter
 
- `--mainnet` 
+```bash
+ --mainnet 
+```
 
 with 
 
-`--testnet-magic 1097911063`
+```bash
+--testnet-magic 1097911063
+```
 {% endhint %}
 
 Update cabal and verify the correct versions were installed successfully.
@@ -719,7 +725,7 @@ Make a set of cold keys and create the cold counter file.
 ```bash
 cardano-cli node key-gen \
     --cold-verification-key-file node.vkey \
-    --cold-signing-key-file node.skey \
+    --cold-signing-key-file $HOME/cold-keys/node.skey \
     --operational-certificate-issue-counter node.counter
 ```
 {% endtab %}
@@ -2604,6 +2610,7 @@ NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deploym
 cd $NODE_HOME
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
+wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-alonzo-genesis.json
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 sed -i ${NODE_CONFIG}-config.json \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
@@ -4094,6 +4101,10 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="info" %}
+After retirement completes in 2 epochs, your pool deposit of 500 ADA is returned to your stake address \(stake.addr\). Withdraw funds following [section 18.11](./#18-11-claim-your-rewards).
+{% endhint %}
 
 ## 🚀 20. Onwards and upwards...
 

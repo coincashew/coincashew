@@ -6,5 +6,7 @@
 
 {% page-ref page="keepkey-wallet/" %}
 
+{% page-ref page="bitbox02-wallet.md" %}
+
 {% page-ref page="where-to-buy.md" %}
 

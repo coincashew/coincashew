@@ -18,7 +18,7 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 
 ### 🤖 Pre-requisites
 
-* Works with **geth** currently
+* Works with **geth + erigon \(automatic\)** currently
 * Ensure at least 30+ GB of free disk space is available otherwise database corruption may occur.
 
 ### 🚧 How to prune a eth1 node
@@ -34,70 +34,42 @@ df
 sudo service eth1 stop
 ```
 
-2. Backup your current eth1 unit file
+2. Start the pruning process and monitor it's process.
 
-```bash
-cp /etc/systemd/system/eth1.service /etc/systemd/system/eth1.service_backup
-```
+{% hint style="warning" %}
+🔥 **Geth pruning Caveats**: 
 
-3. Add the prune command to the ExecStart line.
+* Pruning can take a few hours or longer \(typically 2 to 10 hours is common\) depending on your node's disk performance.
+* There are three stages to pruning: **iterating state snapshot, pruning state data and compacting database.**
+* "**Compacting database**" will stop updating status and appear hung. **Do not interrupt or restart this process.** Typically after an hour, pruning status messages will reappear.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Geth" %}
 ```bash
-cat > $HOME/eth1.service << EOF 
-[Unit]
-Description     = geth eth1 service
-Wants           = network-online.target
-After           = network-online.target 
+/usr/bin/geth snapshot prune-state
+```
+{% endtab %}
 
-[Service]
-User            = $(whoami)
-ExecStart       = /usr/bin/geth snapshot prune-state
-Restart         = on-failure
-RestartSec      = 3
-TimeoutSec      = 300
+{% tab title="Erigon" %}
+```bash
+# Automatic if your systemd service is setup with --prune
 
-[Install]
-WantedBy    = multi-user.target
-EOF
+# Example
+# $HOME/erigon/build/bin/erigon --private.api.addr=localhost:9090 --pprof --metrics --prune htc
+
+# Note: --prune deletes data older than 90K blocks from the tip of the chain (aka, for if tip block is no. 12'000'000, only the data between 11'910'000-12'000'000 will be kept).
 ```
 {% endtab %}
 {% endtabs %}
 
-4. Move the unit file to /etc/systemd/system, give it proper permissions and reload.
+3. Once the pruning is finished, restart the eth1 service.
 
 ```bash
-sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
-sudo chmod 644 /etc/systemd/system/eth1.service
-sudo systemctl daemon-reload
-```
-
-5. Start the pruning process and monitor it's process.
-
-{% hint style="warning" %}
-🔥 **Pruning Caveats**: 
-
-* Pruning can take a few hours or longer depending on your node's disk speed performance.
-{% endhint %}
-
-```bash
-sudo service eth1 start
-journalctl -fu eth1
-```
-
-6. Once the pruning is finished, restore the original service file and restart the eth1 service.
-
-```bash
-mv /etc/systemd/system/eth1.service_backup /etc/systemd/system/eth1.service
-sudo systemctl daemon-reload
 sudo service eth1 restart
 ```
 
-7. Compare the disk space of the node after pruning.
+4. Compare the disk space of the node after pruning.
 
 ```bash
 df

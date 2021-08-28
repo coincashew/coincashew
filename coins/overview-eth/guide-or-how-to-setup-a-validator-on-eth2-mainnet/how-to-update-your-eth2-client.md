@@ -44,6 +44,16 @@ git fetch --all && git checkout stable && git pull
 make
 ```
 
+{% hint style="info" %}
+In case of compilation errors, update Rust with the following sequence.
+
+```text
+rustup update
+cargo clean
+make
+```
+{% endhint %}
+
 Verify the build completed by checking the new version number.
 
 ```bash

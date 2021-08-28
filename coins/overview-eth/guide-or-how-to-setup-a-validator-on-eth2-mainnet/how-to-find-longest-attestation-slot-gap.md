@@ -14,6 +14,7 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 
 * Your validators are assigned duties to attest and propose blocks.
 * Understanding the schedule of your validator's duties better, you can find the best time to plan eth1/eth2 updates, system reboots or outages.
+* Since the Altair Hard Fork, checking sync committee membership is a must before performing any maintenance. This will give you up to [~27 hours of advanced notice](https://github.com/ethereum/consensus-specs/pull/2453) in case your validators have been selected for sync committee duties.
 
 ### 🤖 Pre-requisites
 

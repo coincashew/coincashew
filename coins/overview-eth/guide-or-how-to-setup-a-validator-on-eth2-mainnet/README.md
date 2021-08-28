@@ -13,15 +13,16 @@ description: >-
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
 {% hint style="success" %}
-As of June 15 2021, this is **guide version 3.2.0** and written for **ethereum mainnet**😁 
+As of August 27 2021, this is **guide version 3.3.0** and written for **ethereum mainnet**😁 
 {% endhint %}
 
 {% hint style="info" %}
-#### ✨ For the PYRMONT testnet guide, [please click here](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md). Always test first on testnet. 
+#### ✨ [PRATER testnet guide](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md). Always test and practice on testnet. 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **June 15 2021**
+### 📄 Changelog - **Update Notes -** **August 27 2021**
 
+* geth + erigon pruning / Altair hard fork changes / nimbus eth1 fallback / lighthouse + prysm doppelganger protection updates.
 * OpenEthereum will no longer be supported post London hard fork. Gnosis, maintainers of OpenEthereum, suggest users migrate to their new **Erigon** Ethererum client. Added setup instructions for **Erigon** under eth1 node section.
 * Added [Mobile App Node Monitoring by beaconcha.in](./#6-5-mobile-app-node-monitoring-by-beaconcha-in)
 * Updated [eth2.0-deposit-cli to v.1.2.0](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.2.0) and added section on eth1 withdrawal address
@@ -710,7 +711,7 @@ Requires        = eth1-erigon.service
 
 [Service]
 User            = $USER
-ExecStart       = $HOME/erigon/build/bin/erigon --metrics
+ExecStart       = $HOME/erigon/build/bin/erigon --private.api.addr=localhost:9090 --metrics --prune htc
 Restart         = on-failure
 RestartSec      = 3
 
@@ -720,22 +721,28 @@ WantedBy    = multi-user.target
 EOF
 ```
 
+{% hint style="info" %}
+ By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain \(aka, for if tip block is no. 12'000'000, only the data between 11'910'000-12'000'000 will be kept\).
+{% endhint %}
+
 ```bash
 cat > $HOME/eth1-erigon.service << EOF 
 [Unit]
-Description     = erigon eth1 rpcdaemon service
-Wants           = network-online.target
+Description     = erigon rpcdaemon service
+BindsTo	        = eth1.service
 After           = eth1.service
-Requires        = eth1.service
 
 [Service]
+Type            = simple
 User            = $USER
-ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9090 --datadir $HOME/.local/share/erigon --http.api=eth,web3,net
+ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9090 --datadir $HOME/.local/share/erigon -http.api=eth,erigon,web3,net,debug,trace,txpool,shh
 Restart         = on-failure
 RestartSec      = 3
+KillSignal      = SIGINT
+TimeoutStopSec  = 5
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy    = eth1.service
 EOF
 ```
 
@@ -934,7 +941,7 @@ Your eth1 node is fully sync'd when these events occur.
 ​​ 🗒 **To view and follow eth1 logs**
 
 ```text
-journalctl -u eth1 -f
+journalctl -fu eth1
 ```
 
 🗒 **To stop eth1 service**
@@ -1064,7 +1071,7 @@ Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
-User            = $(whoami)
+User            = $USER
 ExecStart       = $(which lighthouse) bn --staking --validator-monitor-auto --metrics --network mainnet
 Restart         = on-failure
 
@@ -1208,8 +1215,8 @@ Wants           = network-online.target beacon-chain.service
 After           = network-online.target 
 
 [Service]
-User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" --metrics 
+User            = $USER
+ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" --metrics --enable-doppelganger-protection 
 Restart         = on-failure
 
 [Install]
@@ -2044,7 +2051,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --mainnet --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --mainnet --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt --enable-doppelganger
 Restart         = on-failure
 
 [Install]
@@ -3036,6 +3043,16 @@ cd $HOME/git/lighthouse
 git fetch --all && git checkout stable && git pull
 make
 ```
+
+{% hint style="info" %}
+In case of compilation errors, update Rust with the following sequence.
+
+```text
+rustup update
+cargo clean
+make
+```
+{% endhint %}
 
 Verify the build completed by checking the new version number.
 
@@ -4257,6 +4274,15 @@ Add the following flag on the `ExecStart` line.
 # --eth1-endpoints http://localhost:8545,https://infura.io/
 ```
 {% endtab %}
+
+{% tab title="Nimbus" %}
+```bash
+--web3-url <http://alternate eth1 endpoint>
+# Multiple endpoints can be specified with additional parameters of --web3-url
+# Example
+# --web3-url http://localhost:8545 --web3-url wss://mainnet.infura.io/ws/v3/...
+```
+{% endtab %}
 {% endtabs %}
 
 {% hint style="info" %}
@@ -4327,6 +4353,114 @@ For more info see the [EIP2333 spec](https://eips.ethereum.org/EIPS/eip-2333).
 {% endhint %}
 
 {% embed url="https://iancoleman.io/eip2333/" %}
+
+### 📀 8.13 Dealing with storage issues on the Eth1 node
+
+{% hint style="info" %}
+It is currently recommended to use a minimum 1TB hard disk.
+
+_Kudos to_ [_angyts_](https://github.com/angyts) _for this contribution._
+{% endhint %}
+
+After running the Eth1 node for a while, you will notice that it will start to fill up the hard disk. The following steps might be helpful for you.
+
+Firstly make sure you have a fallback Eth1 node: see [8.11 Strategy 2](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet#strategy-2-eth1-redundancy).
+
+{% tabs %}
+{% tab title="Manually Pruning Geth" %}
+{% hint style="info" %}
+Since Geth 1.10x version, the blockchain data can be regularly pruned to reduce it's size.
+{% endhint %}
+
+Reference: [https://gist.github.com/yorickdowne/3323759b4cbf2022e191ab058a4276b2](https://gist.github.com/yorickdowne/3323759b4cbf2022e191ab058a4276b2)
+
+You will need to upgrade Geth to at least 1.10x. Other prerequisites are a fully synced Eth1 node and that a snapshot has been created.
+
+Stop your Eth1 node
+
+```text
+sudo systemctl stop eth1
+```
+
+Prune the blockchain data
+
+```text
+geth --datadir ~/.ethereum snapshot prune-state
+```
+
+{% hint style="warning" %}
+🔥 **Geth pruning Caveats**: 
+
+* Pruning can take a few hours or longer \(typically 2 to 10 hours is common\) depending on your node's disk performance.
+* There are three stages to pruning: **iterating state snapshot, pruning state data and compacting database.**
+* "**Compacting database**" will stop updating status and appear hung. **Do not interrupt or restart this process.** Typically after an hour, pruning status messages will reappear.
+{% endhint %}
+
+Restart the Eth1 node
+
+```text
+sudo systemctl start eth1
+```
+{% endtab %}
+
+{% tab title="Adding new hard disks and changing the data directory" %}
+After you have installed your hard disk, you will need to properly format it and automount it. Consult the ubuntu guides on this.
+
+I will assume that the new disk has been mounted onto `/mnt/eth1-data`. \(The name of the mount point is up to you\)
+
+Handling file permissions.
+
+You need to change ownership of the folder to be accessible by your `eth1 service`. If your folder is a different name, please change the `/mnt/eth1-data` accordingly.
+
+```text
+sudo chown $whoami:$whoami /mnt/eth1-data
+```
+
+```text
+sudo chmod 755 /mnt/eth1-data
+```
+
+Stop your Eth1 node.
+
+```text
+sudo systemctl stop eth1
+```
+
+Edit the system service file to point to a new data directory.
+
+```text
+sudo nano /etc/systemd/system/eth1.service
+```
+
+At the end of this command starting with `/usr/bin/geth --http --metrics ....` add a space and the following flag `--datadir "/mnt/eth1-data"`.
+
+`Ctrl-X` to save your settings.
+
+Refresh the system service daemon to load the new configurations.
+
+```text
+sudo systemctl daemon-reload
+```
+
+Restart the Eth1 node.
+
+```text
+sudo systemctl start eth1
+```
+
+Make sure it is up and running by viewing the running logs.
+
+```text
+journalctl -fu eth1
+```
+
+\(**Optional**\) Delete original data directory
+
+```text
+rm -r ~/.ethereum
+```
+{% endtab %}
+{% endtabs %}
 
 ## 🌇 9. Join the community on Discord and Reddit
 

@@ -7,7 +7,7 @@
 {% endhint %}
 
 {% hint style="success" %}
-As of May 13 2021, this guide is written for **mainnet** with **release v1.27.0** 😁 
+As of August 27 2021, this guide is written for **mainnet** with **release v1.29.0** 😁 
 {% endhint %}
 
 ## 📡 1. How to perform an update
@@ -19,6 +19,76 @@ Read the patch notes for any other special updates or dependencies that may be r
 {% endhint %}
 
 {% tabs %}
+{% tab title="v1.29.0 Notes" %}
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0)\*\*\*\*
+
+This release is an important update to the node that provides the functionality that is needed following the Alonzo hard fork.  
+**All users, including stake pool operators, must upgrade to this version \(or a later version\) of the node.**
+
+The release includes features that will enable the use of the node in the Alonzo era, allowing the on-chain execution of Plutus scripts,  
+including extended CLI commands to support the construction of transactions that include Plutus scripts, datums and redeemers.  
+It incorporates several improvements, including a new `transaction build` command that calculates transaction fees and Plutus script execution units, and a new version of the `query tip` command that provides additional information, including node synchronisation progress. The `transaction build` command requires a local instance of the node in order to check Plutus script validity and to provide information that is used by the fee calculation. The Shelley specification has also been updated with respect to rewards calculation.
+
+Note that this release changes the log format of traces configured by `TraceChainSyncHeaderServer` and `TraceChainSyncClient` . See [\#2746](https://github.com/input-output-hk/cardano-node/pull/2746) for more detail.
+
+### 🛑 Release Dependencies
+
+#### 1. If using cncli for leaderlogs and sendslots, update to `cncli version 3.15` is required.
+
+```bash
+RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
+VERSION=$(echo ${RELEASETAG} | cut -c 2-)
+echo "Installing release ${RELEASETAG}"
+curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+```
+
+```bash
+sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
+```
+
+#### Checking that cncli is properly updated
+
+```text
+cncli -V
+```
+
+It should return the updated version number.
+
+**2. Download `mainnet-alonzo-genesis.json` file**
+
+```bash
+cd $NODE_HOME
+wget -N https://hydra.iohk.io/build/7416228/download/1/mainnet-alonzo-genesis.json
+```
+
+**3. Download new`mainnet-config.json` file to with alonzo configurations.**
+
+{% hint style="info" %}
+If you have any custom mainnet configurations, be sure to backup and re-apply your settings.
+{% endhint %}
+
+```bash
+cd $NODE_HOME
+wget -N https://hydra.iohk.io/build/7416228/download/1/mainnet-config.json
+sed -i mainnet-config.json \
+    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
+    -e "s/127.0.0.1/0.0.0.0/g"
+```
+
+Verify that your **mainnet-config.json** contains the following two new lines.
+
+```text
+  "AlonzoGenesisFile": "mainnet-alonzo-genesis.json",
+  "AlonzoGenesisHash": "7e94a15f55d1e82d10f09203fa1d40f8eede58fd8066542cf6566008068ed874",
+```
+
+View your config,
+
+```bash
+cat mainnet-config.json
+```
+{% endtab %}
+
 {% tab title="v1.27.0 Notes" %}
 **Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0)\*\*\*\*
 

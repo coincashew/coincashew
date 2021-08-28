@@ -928,7 +928,7 @@ Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
-User            = $(whoami)
+User            = $USER
 ExecStart       = $(which lighthouse) bn --staking --validator-monitor-auto --metrics --network prater
 Restart         = on-failure
 
@@ -1040,8 +1040,8 @@ Wants           = network-online.target beacon-chain.service
 After           = network-online.target 
 
 [Service]
-User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network prater --metrics
+User            = $USER
+ExecStart       = $(which lighthouse) vc --network prater --metrics --enable-doppelganger-protection
 Restart         = on-failure
 
 [Install]
@@ -1794,7 +1794,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --prater --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
+ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --prater --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt --enable-doppelganger
 Restart         = on-failure
 
 [Install]
@@ -2640,6 +2640,16 @@ cd $HOME/git/lighthouse
 git fetch --all && git checkout stable && git pull
 make
 ```
+
+{% hint style="info" %}
+In case of compilation errors, update Rust with the following sequence.
+
+```text
+rustup update
+cargo clean
+make
+```
+{% endhint %}
 
 Verify the build completed by checking the new version number.
 

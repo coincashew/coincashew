@@ -17,17 +17,16 @@ cardano-cli stake-address registration-certificate \
 You need to find the **slot tip** of the blockchain.
 
 ```
-currentSlot=$(cardano-cli query tip --testnet-magic 42 | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 
 Find your balance and **UTXOs**.
 
-```text
+```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 \
-    --cardano-mode > fullUtxo.out
+    --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -49,28 +48,28 @@ echo Total ADA balance: ${total_balance}
 echo Number of UTXOs: ${txcnt}
 ```
 
-Find the keyDeposit value.
+Find the stakeAddressDeposit value.
 
 ```text
-keyDeposit=$(cat $NODE_HOME/params.json | jq -r '.keyDeposit')
-echo keyDeposit: $keyDeposit
+stakeAddressDeposit=$(cat $NODE_HOME/params.json | jq -r '.stakeAddressDeposit')
+echo stakeAddressDeposit : $stakeAddressDeposit
 ```
 
 {% hint style="info" %}
-Registration of a stake address certificate \(keyDeposit\) costs 2000000 lovelace.
+Registration of a stake address certificate \(stakeAddressDeposit\) costs 2000000 lovelace.
 {% endhint %}
 
 Run the build-raw transaction command
 
 {% hint style="info" %}
-The **ttl** value must be greater than the current tip. In this example, we use current slot + 10000.
+The **invalid-hereafter** value must be greater than the current tip. In this example, we use current slot + 10000.
 {% endhint %}
 
-```text
+```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+0 \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --out-file tx.tmp \
     --certificate stake.cert
@@ -78,12 +77,12 @@ cardano-cli transaction build-raw \
 
 Calculate the current minimum fee:
 
-```text
+```bash
 fee=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
-    --testnet-magic 42 \
+    --mainnet \
     --witness-count 2 \
     --byron-witness-count 0 \
     --protocol-params-file params.json | awk '{ print $1 }')
@@ -91,23 +90,23 @@ echo fee: $fee
 ```
 
 {% hint style="info" %}
-Ensure your balance is greater than cost of fee + keyDeposit or this will not work.
+Ensure your balance is greater than cost of fee + stakeAddressDeposit or this will not work.
 {% endhint %}
 
 Calculate your change output.
 
-```text
-txOut=$((${total_balance}-${keyDeposit}-${fee}))
+```bash
+txOut=$((${total_balance}-${stakeAddressDeposit}-${fee}))
 echo Change Output: ${txOut}
 ```
 
 Build your transaction which will register your stake address.
 
-```text
+```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file stake.cert \
     --out-file tx.raw
@@ -126,16 +125,18 @@ cardano-cli transaction sign \
 
 Send the signed transaction.
 
-```text
-cardano-cli transaction submit \
-    --tx-file tx.signed \
-    --testnet-magic 42 \
-    --cardano-mode
+```bash
+cardano-cli transaction sign \
+    --tx-body-file tx.raw \
+    --signing-key-file payment.skey \
+    --signing-key-file stake.skey \
+    --mainnet \
+    --out-file tx.signed
 ```
 
 ## 📄 2. Create a delegation certificate
 
-Given its **stake pool verification key file** `node.vkey`, your stakepool should have generated (and published) a **stake pool ID**:
+Given its **stake pool verification key file** `node.vkey` , from your stakepool should have generated \(and published\) a **stake pool ID**:
 
 ```text
 cardano-cli stake-pool id \
@@ -145,7 +146,7 @@ cardano-cli stake-pool id \
 
 Given the **stake pool ID** from your stakepool, run the following:
 
-```text
+```bash
 cardano-cli stake-address delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --stake-pool-id <stake pool ID> \
@@ -155,17 +156,16 @@ cardano-cli stake-address delegation-certificate \
 You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
 
 ```
-currentSlot=$(cardano-cli query tip --testnet-magic 42 | jq -r '.slotNo')
+currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 
 Find your balance and **UTXOs**.
 
-```text
+```bash
 cardano-cli query utxo \
     --address $(cat payment.addr) \
-    --testnet-magic 42 \
-    --cardano-mode > fullUtxo.out
+    --mainnet > fullUtxo.out
 
 tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
 
@@ -189,11 +189,11 @@ echo Number of UTXOs: ${txcnt}
 
 Run the build-raw transaction command.
 
-```text
+```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 0 \
     --certificate-file deleg.cert \
     --out-file tx.tmp
@@ -201,12 +201,12 @@ cardano-cli transaction build-raw \
 
 Calculate the minimum fee:
 
-```text
+```bash
 fee=$(cardano-cli transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
-    --testnet-magic 42 \
+    --mainnet \
     --witness-count 2 \
     --byron-witness-count 0 \
     --protocol-params-file params.json | awk '{ print $1 }')
@@ -215,18 +215,18 @@ echo fee: $fee
 
 Calculate your change output.
 
-```text
+```bash
 txOut=$((${total_balance}-${fee}))
 echo txOut: ${txOut}
 ```
 
 Build the transaction.
 
-```text
+```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --ttl $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee ${fee} \
     --certificate-file deleg.cert \
     --out-file tx.raw
@@ -234,12 +234,12 @@ cardano-cli transaction build-raw \
 
 Sign the transaction.
 
-```text
+```bash
 cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
-    --testnet-magic 42 \
+    --mainnet \
     --out-file tx.signed
 ```
 
@@ -248,8 +248,7 @@ Send the transaction.
 ```text
 cardano-cli transaction submit \
     --tx-file tx.signed \
-    --testnet-magic 42 \
-    --cardano-mode
+    --mainnet
 ```
 
 {% hint style="success" %}
