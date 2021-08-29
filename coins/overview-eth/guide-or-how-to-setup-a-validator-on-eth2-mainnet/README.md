@@ -13,14 +13,14 @@ description: >-
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
 {% hint style="success" %}
-As of August 27 2021, this is **guide version 3.3.0** and written for **ethereum mainnet**😁 
+As of August 28 2021, this is **guide version 3.3.1** and written for **ethereum mainnet**😁 
 {% endhint %}
 
 {% hint style="info" %}
 #### ✨ [PRATER testnet guide](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md). Always test and practice on testnet. 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **August 27 2021**
+### 📄 Changelog - **Update Notes -** **August 28 2021**
 
 * geth + erigon pruning / Altair hard fork changes / nimbus eth1 fallback / lighthouse + prysm doppelganger protection updates.
 * OpenEthereum will no longer be supported post London hard fork. Gnosis, maintainers of OpenEthereum, suggest users migrate to their new **Erigon** Ethererum client. Added setup instructions for **Erigon** under eth1 node section.
@@ -689,7 +689,14 @@ Review the latest release at [https://github.com/ledgerwatch/erigon/releases](ht
 cd $HOME
 git clone --recurse-submodules -j8 https://github.com/ledgerwatch/erigon.git
 cd erigon
-make erigon
+make erigon && make rpcdaemon
+```
+
+​ Make data directory and update directory ownership.
+
+```bash
+sudo mkdir -p /var/lib/erigon
+sudo chown $USER:$USER /var/lib/erigon
 ```
 
 ​ ⚙ **Setup and configure systemd**
@@ -707,14 +714,16 @@ After           = network-online.target
 Requires        = eth1-erigon.service
 
 [Service]
+Type            = simple
 User            = $USER
-ExecStart       = $HOME/erigon/build/bin/erigon --private.api.addr=localhost:9090 --metrics --prune htc
+ExecStart       = $HOME/erigon/build/bin/erigon --datadir /var/lib/erigon --chain mainnet --private.api.addr=localhost:9089 --metrics --pprof --prune htc
 Restart         = on-failure
 RestartSec      = 3
+KillSignal      = SIGINT
+TimeoutStopSec  = 5
 
 [Install]
 WantedBy    = multi-user.target
-
 EOF
 ```
 
@@ -732,7 +741,8 @@ After           = eth1.service
 [Service]
 Type            = simple
 User            = $USER
-ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9090 --datadir $HOME/.local/share/erigon -http.api=eth,erigon,web3,net,debug,trace,txpool,shh
+ExecStartPre	  = /bin/sleep 3
+ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9089 --datadir /var/lib/erigon --http.api=eth,erigon,web3,net,debug,trace,txpool,shh
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
@@ -743,7 +753,7 @@ WantedBy    = eth1.service
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` and give it permissions.
+Move the unit files to `/etc/systemd/system` and give it permissions.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
@@ -1640,6 +1650,12 @@ sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
 sudo chmod 600 /etc/teku/validators-password.txt
 ```
 
+Clear the bash history in order to remove traces of keystore password.
+
+```bash
+shred -u ~/.bash_history && touch ~/.bash_history
+```
+
 #### 🚀 Setup Graffiti and POAP
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
@@ -1852,10 +1868,10 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 ## 🎩 4.3. Import validator key
 
-Accept terms of use, accept default wallet location, enter a new prysm-only password to encrypt your local prysm wallet files and enter the **keystore password** for your imported accounts.
+Accept terms of use, accept default wallet location, enter a new **prysm-only password** to encrypt your local prysm wallet files and enter the **keystore password** for your imported accounts.
 
 {% hint style="info" %}
-If you wish, you can use the same password for the **keystore** and **prysm**.
+If you wish, you can use the same password for the **keystore** and **prysm-only**.
 {% endhint %}
 
 ```bash
@@ -2005,6 +2021,12 @@ Store your **prysm-only password** in a file and make it read-only. This is requ
 ```bash
 echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
 sudo chmod 600 $HOME/.eth2validators/validators-password.txt
+```
+
+Clear the bash history in order to remove traces of your **prysm-only password.**
+
+```bash
+shred -u ~/.bash_history && touch ~/.bash_history
 ```
 
 #### 🚀 Setup Graffiti and POAP
@@ -3544,6 +3566,12 @@ Add the following flag to limit the number of peers on the `ExecStart` line.
 # ExecStart       = <home directory>/nethermind/Nethermind.Runner --Network.ActivePeersMaxCount 10 --JsonRpc.Enabled true
 ```
 {% endtab %}
+
+{% tab title="Erigon" %}
+```
+--maxpeers 10
+```
+{% endtab %}
 {% endtabs %}
 
 Finally, reload the new unit file and restart the eth1 node.
@@ -3665,7 +3693,7 @@ $HOME/.nethermind/nethermind_db/mainnet
 {% tab title="Erigon" %}
 ```bash
 #database location
-$HOME/.local/share/erigon/erigon/chaindata
+/var/lib/erigon
 ```
 {% endtab %}
 {% endtabs %}
@@ -3794,213 +3822,48 @@ sudo systemctl restart beacon-chain
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn an early beacon chain validator POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
 
-Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>`  between the single quotes.
-
-```bash
-MY_GRAFFITI='<my POAP string or message>'
-# Examples
-# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
-# MY_GRAFFITI='eth2 rulez!'
-```
-
 {% hint style="info" %}
 Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
 {% endhint %}
 
 {% tabs %}
 {% tab title="Lighthouse" %}
-Run the following to re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+Change the **--graffiti** value on ExecStart line. Save your file.
 
 ```bash
-cat > $HOME/validator.service << EOF 
-# The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
-
-[Unit]
-Description     = eth2 validator service
-Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
-
-[Service]
-User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" 
-Restart         = on-failure
-
-[Install]
-WantedBy    = multi-user.target
-EOF
-```
-
-Move the unit file to `/etc/systemd/system` 
-
-```bash
-sudo mv $HOME/validator.service /etc/systemd/system/validator.service
-```
-
-Update file permissions.
-
-```bash
-sudo chmod 644 /etc/systemd/system/validator.service
+sudo nano /etc/systemd/system/validator.service
 ```
 {% endtab %}
 
 {% tab title="Nimbus" %}
-Run the following to re-create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
+Change the **--graffiti** value on ExecStart line. Save your file.
 
 ```bash
-cat > $HOME/beacon-chain.service << EOF 
-# The eth2 beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
-
-[Unit]
-Description     = eth2 beacon chain service
-Wants           = network-online.target
-After           = network-online.target 
-
-[Service]
-Type            = simple
-User            = $(whoami)
-WorkingDirectory= /var/lib/nimbus
-ExecStart       = /usr/bin/nimbus_beacon_node --network=mainnet --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log
-Restart         = on-failure
-
-[Install]
-WantedBy    = multi-user.target
-EOF
-```
-
-{% hint style="warning" %}
-Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum and Infura ETH1 nodes are verified compatible.
-{% endhint %}
-
-Move the unit file to `/etc/systemd/system` 
-
-```bash
-sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
-```
-
-Update file permissions.
-
-```bash
-sudo chmod 644 /etc/systemd/system/beacon-chain.service
+sudo nano /etc/systemd/system/beacon-chain.service
 ```
 {% endtab %}
 
 {% tab title="Teku" %}
-Re-generate your Teku Config file. Simply copy and paste.
+Change the **validators-graffiti** value. Save your file.
 
 ```bash
-cat > $HOME/teku.yaml << EOF
-# network
-network: "mainnet"
-
-# p2p
-p2p-enabled: true
-p2p-port: 9000
-# validators
-validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
-validators-graffiti: "${MY_GRAFFITI}"
-
-# Eth 1
-eth1-endpoint: "http://localhost:8545"
-
-# metrics
-metrics-enabled: true
-metrics-categories: ["BEACON","LIBP2P","NETWORK"]
-metrics-port: 8008
-
-# database
-data-path: "$(echo $HOME)/tekudata"
-data-storage-mode: "archive"
-
-# rest api
-rest-api-port: 5051
-rest-api-docs-enabled: true
-rest-api-enabled: true
-
-# logging
-log-include-validator-duties-enabled: true
-log-destination: CONSOLE
-EOF
-```
-
-Move the config file to `/etc/teku`
-
-```bash
-sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
+sudo nano /etc/teku/teku.yaml
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
-Re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+Change the **--graffiti** value on ExecStart line. Save your file.
 
 ```bash
-cat > $HOME/validator.service << EOF 
-# The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
-
-[Unit]
-Description     = eth2 validator service
-Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
-
-[Service]
-User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh validator --mainnet --graffiti "${MY_GRAFFITI}" --accept-terms-of-use --wallet-password-file $(echo $HOME)/.eth2validators/validators-password.txt
-Restart         = on-failure
-
-[Install]
-WantedBy	= multi-user.target
-EOF
-```
-
-Move the unit file to `/etc/systemd/system`
-
-```bash
-sudo mv $HOME/validator.service /etc/systemd/system/validator.service
-```
-
- Update its permissions.
-
-```bash
-sudo chmod 644 /etc/systemd/system/validator.service
+sudo nano /etc/systemd/system/validator.service
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-Run the following to re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
+Change the **--graffiti** value on ExecStart line. Save your file.
 
 ```bash
-cat > $HOME/validator.service << EOF 
-# The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
-
-[Unit]
-Description     = eth2 validator service
-Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
-
-[Service]
-User            = $(whoami)
-WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = $(echo $HOME)/git/lodestar/lodestar validator --network mainnet --graffiti "${MY_GRAFFITI}"
-Restart         = on-failure
-
-[Install]
-WantedBy	= multi-user.target
-EOF
-```
-
-Move the unit file to `/etc/systemd/system`
-
-```bash
-sudo mv $HOME/validator.service /etc/systemd/system/validator.service
-```
-
- Update its permissions.
-
-```bash
-sudo chmod 644 /etc/systemd/system/validator.service
+sudo nano /etc/systemd/system/validator.service
 ```
 {% endtab %}
 {% endtabs %}
@@ -4030,7 +3893,7 @@ From time to time, be sure to update to the latest ETH1 releases to enjoy new im
 {% endhint %}
 
 {% hint style="success" %}
-\*\*\*\*🔥 **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+\*\*\*\*🔥 **Pro tip**: Setup a failover eth1 node to overlap your maintenance. See section 8.11, strategy 2, eth1 redundancy.
 {% endhint %}
 
 Update your operating system and ensure it's on the latest long term \(LTS\) support version.
@@ -4134,7 +3997,7 @@ Review the latest release at [https://github.com/ledgerwatch/erigon/releases](ht
 ```bash
 cd $HOME/erigon
 git pull
-make erigon
+make erigon && make rpcdaemon
 ```
 {% endtab %}
 {% endtabs %}
@@ -4543,7 +4406,7 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 {% embed url="https://github.com/metanull-operator/eth2-ubuntu" %}
 
-{% embed url="https://agstakingco.gitbook.io/eth-2-0-staking-guide-medalla/" %}
+{% embed url="https://agstakingco.gitbook.io/eth-2-0-staking-guide-prater-lighthouse/" %}
 
 #### Hardware Staking Guide [https://www.reddit.com/r/ethstaker/comments/j3mlup/a\_slightly\_updated\_look\_at\_hardware\_for\_staking/](https://www.reddit.com/r/ethstaker/comments/j3mlup/a_slightly_updated_look_at_hardware_for_staking/)
 

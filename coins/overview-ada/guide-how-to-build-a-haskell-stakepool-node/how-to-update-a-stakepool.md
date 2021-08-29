@@ -82,10 +82,30 @@ Verify that your **mainnet-config.json** contains the following two new lines.
   "AlonzoGenesisHash": "7e94a15f55d1e82d10f09203fa1d40f8eede58fd8066542cf6566008068ed874",
 ```
 
-View your config,
+View your **mainnet-config.json**
 
 ```bash
 cat mainnet-config.json
+```
+
+Example of what it should look like with the two new lines.
+
+```bash
+{
+  "AlonzoGenesisFile": "mainnet-alonzo-genesis.json",
+  "AlonzoGenesisHash": "7e94a15f55d1e82d10f09203fa1d40f8eede58fd8066542cf6566008068ed874",
+  "ApplicationName": "cardano-sl",
+  "ApplicationVersion": 1,
+  "ByronGenesisFile": "byron-genesis.json",
+  "ByronGenesisHash": "5f20df933584822601f9e3f8c024eb5eb252fe8cefb24d1317dc3d432e940ebb",
+  "LastKnownBlockVersion-Alt": 0,
+  "LastKnownBlockVersion-Major": 3,
+  "LastKnownBlockVersion-Minor": 0,
+  "MaxKnownMajorProtocolVersion": 2,
+  "Protocol": "Cardano",
+  "RequiresNetworkMagic": "RequiresNoMagic",
+  "ShelleyGenesisFile": "genesis.json",
+  "ShelleyGenesisHash": "1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81",
 ```
 {% endtab %}
 

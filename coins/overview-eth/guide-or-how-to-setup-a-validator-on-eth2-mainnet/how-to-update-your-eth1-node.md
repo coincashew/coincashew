@@ -125,7 +125,7 @@ Review the latest release at [https://github.com/ledgerwatch/erigon/releases](ht
 ```bash
 cd $HOME/erigon
 git pull
-make erigon
+make erigon && make rpcdaemon
 ```
 {% endtab %}
 {% endtabs %}

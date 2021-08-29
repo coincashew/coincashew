@@ -13,13 +13,13 @@ description: >-
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
 {% hint style="success" %}
-As of June 15 2021, this guide is updated for **testnet PYRMONT.** 
+As of August 28 2021, this guide is updated for **testnet PYRMONT.** 
 
-If you would like to test on **testnet** **PRATER**, [please click here.](guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
+If you would like to test on **testnet** **PRATER**, [please click here](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater).
 {% endhint %}
 
 {% hint style="info" %}
-#### ⏩ For the MAINNET guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
+#### ⏩ [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet). Always test and practice on testnet first. 
 {% endhint %}
 
 ## 🏁 0. Prerequisites
