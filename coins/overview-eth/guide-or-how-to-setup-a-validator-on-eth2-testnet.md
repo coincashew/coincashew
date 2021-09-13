@@ -7,7 +7,9 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet
 
 {% hint style="info" %}
-🎊 **2021-06 Gitcoin Grant Round 10 Update**: We maintain and improve this guide with your support! Consider [making a donation](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) via quadratic funding and make an even bigger impact. Thank you!🙏
+🎊 **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
+
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
 {% endhint %}
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
@@ -112,7 +114,7 @@ Note: Teku and Nimbus combines both clients into one process.
 Every 32 ETH you own allows you to make 1 validator. You can run thousands of validators with your beacon node. However on testnet, please only run 1 or 2 validators to keep the activation queue reasonably quick.
 {% endhint %}
 
-Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a request for ETH in the **`-request-goerli-eth channel`**
+Join the [ethstaker Discord](https://discord.io/ethstaker) and send a request for ETH in the **`-request-goerli-eth channel`**
 
 ```text
 !send <your metamask goerli network ETH address>

@@ -8,7 +8,9 @@ description: >-
 # Checklist \| How to confirm a healthy functional ETH2 validator
 
 {% hint style="info" %}
-🎊 **2021-06 Gitcoin Grant Round 10 Update**: We maintain and improve this guide with your support! Consider [making a donation](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) via quadratic funding and make an even bigger impact. Thank you!🙏
+🎊 **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
+
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
 {% endhint %}
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}

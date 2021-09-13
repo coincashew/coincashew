@@ -472,7 +472,7 @@ In order to protect your Relay Node\(s\) from a novel "DoS/Syn" attack, [**Micha
 Replace `<RELAY NODE PORT>` with your public relay port, replace the 5 with your preferred connection limit.
 
 ```bash
-iptables -I INPUT -p tcp -m tcp --dport <RELAY NODE PORT> --tcp-flags FIN,SYN,RST,ACK SYN -m connlimit --connlimit-above 5 --connlimit-mask 32 --connlimit-saddr -j REJECT --reject-with tcp-reset
+sudo iptables -I INPUT -p tcp -m tcp --dport <RELAY NODE PORT> --tcp-flags FIN,SYN,RST,ACK SYN -m connlimit --connlimit-above 5 --connlimit-mask 32 --connlimit-saddr -j REJECT --reject-with tcp-reset
 ```
 
 {% hint style="warning" %}

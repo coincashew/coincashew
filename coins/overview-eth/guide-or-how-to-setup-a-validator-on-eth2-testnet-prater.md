@@ -7,7 +7,9 @@ description: >-
 # Guide \| How to setup a validator on ETH2 testnet PRATER
 
 {% hint style="info" %}
-🎊 **2021-06 Gitcoin Grant Round 10 Update**: We maintain and improve this guide with your support! Consider [making a donation](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) via quadratic funding and make an even bigger impact. Thank you!🙏
+🎊 **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
+
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
 {% endhint %}
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
@@ -21,6 +23,24 @@ If you wish to test on **testnet PYRMONT**, [please click here](https://www.coin
 {% hint style="info" %}
 #### ⏩ [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet). Always test and practice on testnet first. 
 {% endhint %}
+
+### 📄 Changelog - **Update Notes -** **August 28 2021**
+
+* geth + erigon pruning / Altair hard fork changes / nimbus eth1 fallback
+* lighthouse + prysm doppelganger protection enabled. Doppelganger protection intentionally misses an epoch on startup and listens for attestations to make sure your keys are not still running on the old validator client.
+* OpenEthereum will no longer be supported post London hard fork. Gnosis, maintainers of OpenEthereum, suggest users migrate to their new **Erigon** Ethererum client. Added setup instructions for **Erigon** under eth1 node section.
+* Added [Mobile App Node Monitoring by beaconcha.in](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#6-5-mobile-app-node-monitoring-by-beaconcha-in)
+* Updated [eth2.0-deposit-cli to v.1.2.0](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.2.0) and added section on eth1 withdrawal address
+* Added generating mnemonic seeds on **Tails OS** by [punggolzenith](https://github.com/punggolzenith)
+* Iancoleman.io BLS12-381 Key Generation Tool [how-to added](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#8-12-eip2333-key-generator-by-iancoleman-io)
+* Testnet guide forked for [Prater testnet](guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md) staking
+* [Geth pruning guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-free-up-eth1-node-disk-space.md) created
+* Major changes to Lodestar guide
+* Additional [Grafana Dashboards](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#6-2-setting-up-grafana-dashboards) for Prysm, Lighthouse and Nimbus
+* [Validator Security Best Practices added](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+* Translations now available for Japanese, Chinese and Spanish \(access by changing site language\)
+* Generate keystore files on [Ledger Nano X, Nano S and Trezor Model T](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#2-signup-to-be-a-validator-at-the-launchpad) with tool from [allnodes.com](https://twitter.com/Allnodes/status/1390020240541618177?s=20)
+* [Batch deposit tool](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#2-signup-to-be-a-validator-at-the-launchpad) by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added
 
 ## 🏁 0. Prerequisites
 
@@ -112,7 +132,7 @@ Note: Teku and Nimbus combines both clients into one process.
 Every 32 ETH you own allows you to make 1 validator. You can run thousands of validators with your beacon node. However on testnet, please only run 1 or 2 validators to keep the activation queue reasonably quick.
 {% endhint %}
 
-Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a request for ETH in the **`-request-goerli-eth channel`**
+Join the [ethstaker Discord](https://discord.io/ethstaker) and send a request for ETH in the **`-request-goerli-eth channel`**
 
 ```text
 !send <your metamask goerli network ETH address>
@@ -381,7 +401,11 @@ Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://tw
 
 5. Connect to the launchpad with your Metamask wallet, review and accept terms.
 
-6. Confirm the transaction\(s\). There's one deposit transaction of 32 ETH for each validator.
+6. Confirm the transaction\(s\). There's one deposit transaction of 32 ETH for each validator. 
+
+{% hint style="info" %}
+For instance, if you want to run 3 validators you will need to have \(32 x 3\) = 96 goerli ETH plus some extra to cover the gas fees.
+{% endhint %}
 
 {% hint style="info" %}
 Your transaction is sending and depositing your ETH to the prater ETH2 deposit contract address.
@@ -1084,10 +1108,10 @@ EOF
 
 ```bash
 # Example:
---eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
+--eth1-endpoints http://localhost:8545,https://goerli.infura.io/v3/xxx
 ```
 
-Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+Signup for free goerli ethereum fallback nodes at [https://infura.io/](https://infura.io/)
 {% endhint %}
 
 Move the unit file to `/etc/systemd/system`
@@ -1921,7 +1945,7 @@ EOF
 # --fallback-web3provider=https://nodes.mewapi.io/rpc/eth --fallback-web3provider=https://mainnet.infura.io/v3/YOUR-PROJECT-ID
 ```
 
-Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+Sign up for free goerli ethereum fallback nodes at [https://infura.io/](https://infura.io/)
 {% endhint %}
 
 Move the unit file to `/etc/systemd/system`
@@ -3187,7 +3211,7 @@ Use this command to signal your intentions to stop validating with your validato
 {% tab title="Lighthouse" %}
 ```bash
 lighthouse account validator exit \
---keystore $HOME/.lighthouse/prater/validators \
+--keystore $HOME/.lighthouse/prater/validators/<0x validator>/<keystore.json file> \
 --beacon-node http://localhost:5052 \
 --network prater
 ```
@@ -4127,7 +4151,7 @@ Add the following flag on the `ExecStart` line.
 {% endtabs %}
 
 {% hint style="info" %}
-💸 Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
+💸 Signup for free goerli ethereum fallback nodes at [https://infura.io/](https://infura.io/)
 {% endhint %}
 
 Reload the updated unit file and restart the beacon-chain process to complete this change.

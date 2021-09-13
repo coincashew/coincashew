@@ -58,7 +58,7 @@ sudo mv $HOME/chrony.conf /etc/chrony/chrony.conf
 Restart chrony in order for config change to take effect.
 
 ```text
-systemctl restart chronyd.service
+sudo systemctl restart chronyd.service
 ```
 
 {% hint style="danger" %}

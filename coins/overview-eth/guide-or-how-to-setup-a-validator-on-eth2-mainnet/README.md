@@ -7,7 +7,9 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="info" %}
-🎊 **2021-06 Gitcoin Grant Round 10 Update**: We maintain and improve this guide with your support! Consider [making a donation](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) via quadratic funding and make an even bigger impact. Thank you!🙏
+🎊 **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
+
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
 {% endhint %}
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
@@ -22,7 +24,8 @@ As of August 28 2021, this is **guide version 3.3.1** and written for **ethereum
 
 ### 📄 Changelog - **Update Notes -** **August 28 2021**
 
-* geth + erigon pruning / Altair hard fork changes / nimbus eth1 fallback / lighthouse + prysm doppelganger protection updates.
+* geth + erigon pruning / Altair hard fork changes / nimbus eth1 fallback
+* lighthouse + prysm doppelganger protection enabled. Doppelganger protection intentionally misses an epoch on startup and listens for attestations to make sure your keys are not still running on the old validator client.
 * OpenEthereum will no longer be supported post London hard fork. Gnosis, maintainers of OpenEthereum, suggest users migrate to their new **Erigon** Ethererum client. Added setup instructions for **Erigon** under eth1 node section.
 * Added [Mobile App Node Monitoring by beaconcha.in](./#6-5-mobile-app-node-monitoring-by-beaconcha-in)
 * Updated [eth2.0-deposit-cli to v.1.2.0](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.2.0) and added section on eth1 withdrawal address
@@ -389,6 +392,10 @@ Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://tw
 5. Connect to the launchpad with your Metamask wallet, review and accept terms.
 
 6. Confirm the transaction\(s\). There's one deposit transaction of 32 ETH for each validator.
+
+{% hint style="info" %}
+For instance, if you want to run 3 validators you will need to have \(32 x 3\) = 96 goerli ETH plus some extra to cover the gas fees.
+{% endhint %}
 
 {% hint style="info" %}
 Your transaction is sending and depositing your ETH to the [official ETH2 deposit contract address. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
@@ -3216,7 +3223,7 @@ Use this command to signal your intentions to stop validating with your validato
 {% tab title="Lighthouse" %}
 ```bash
 lighthouse account validator exit \
---keystore $HOME/.lighthouse/mainnet/validators \
+--keystore $HOME/.lighthouse/mainnet/validators/<0x validator>/<keystore.json file> \
 --beacon-node http://localhost:5052 \
 --network mainnet
 ```

@@ -24,7 +24,7 @@ Linux Headers needs to be installed before Wireguard. Below you see the generic 
 {% tab title="local and remote node" %}
 ```bash
 sudo apt install linux-headers-generic
-sudo add-apt-repository ppa:wireguard/wireguard
+sudo add-apt-repository ppa:wireguard/wireguard -y
 sudo apt-get update
 sudo apt-get install wireguard -y
 ```
@@ -117,17 +117,17 @@ PersistentKeepalive = 21
 {% tabs %}
 {% tab title="local node" %}
 ```bash
-ufw allow 51820/udp
+sudo ufw allow 51820/udp
 # check the firewall rules
-ufw verbose
+sudo ufw verbose
 ```
 {% endtab %}
 
 {% tab title="remote node" %}
 ```bash
-ufw allow 51820/udp
+sudo ufw allow 51820/udp
 # check the firewall rules
-ufw verbose
+sudo ufw verbose
 ```
 {% endtab %}
 {% endtabs %}

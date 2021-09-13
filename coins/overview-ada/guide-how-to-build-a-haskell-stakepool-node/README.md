@@ -14,11 +14,12 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of August 27 2021, this is **guide version 4.0.0** and written for **cardano mainnet** with **release v.1.29.0** 😁 
+As of September 13 2021, this is **guide version 4.0.1** and written for **cardano mainnet** with **release v.1.29.0** 😁 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **August 27 2021**
+### 📄 Changelog - **Update Notes -** **September 13 2021**
 
+* Increased minimum RAM requirements to 12GB.
 * Updated for Alonzo release 1.29.0.
 * Various fixes to testnet  / alonzo / storage requirements / cli commands
 * Updated CNCLI's Leaderlog command with the [stake-snapshot approach](./#18-12-slot-leader-schedule-find-out-when-your-pool-will-mint-blocks)
@@ -55,7 +56,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **One air-gapped offline machine \(cold environment\)**
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu Server 20.04 LTS\)
 * **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
-* **Memory:** 8GB of RAM
+* **Memory:** 12GB of RAM
 * **Storage:** 50GB of free storage
 * **Internet:** Broadband internet connection with speeds at least 10 Mbps.
 * **Data Plan**: at least 1GB per hour. 720GB per month.
@@ -68,7 +69,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **One air-gapped offline machine \(cold environment\)**
 * **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
 * **Processor:** 4 core or higher CPU
-* **Memory:** 8GB+ of RAM
+* **Memory:** 16GB+ of RAM
 * **Storage:** 256GB+ SSD
 * **Internet:** Broadband internet connections with speeds at least 100 Mbps
 * **Data Plan**: Unlimited
@@ -2109,7 +2110,7 @@ Thank you for supporting Cardano and us! Please use the below cointr.ee link. �
 
 ### 😁 17.2 Thank yous
 
-Thanks to all 50000+ of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
+Thanks to all 102,000+ of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
 
 ### \*\*\*\*💬 17**.3 Telegram and Discord Chat Channel**
 
