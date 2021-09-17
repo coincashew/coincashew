@@ -86,17 +86,14 @@ chronyc tracking
 
 ## 🔥 Bonus Commands
 
-Your server might be using the default timezone `UTC`.
-
-Find your **timezone tz name**. Format appears as "`Asia/Singapore`"
+To pick your timezone run the following command:
 
 ```text
-timedatectl list-timezones
-```
+dpkg-reconfigure tzdata
+``
 
-Set your timezone.
+Your region should be simple to find using the text-based GUI.
 
-```text
-sudo timedatectl set-timezone Europe/Isle_of_Man
-```
-
+In the event that you are using national system like India's `IST` select:
+"`Asia/Kolkata`"
+This will be appropriate for all lales in the country (`IST`, `GMT+0530`).
