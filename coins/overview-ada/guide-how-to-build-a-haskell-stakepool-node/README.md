@@ -811,7 +811,7 @@ cardano-cli node key-gen-VRF \
 {% endtab %}
 {% endtabs %}
 
-Update vrf key permissions to read-only.
+Update vrf key permissions to read-onl. You must also move it to your **cold environment.**
 
 ```text
 chmod 400 vrf.skey
