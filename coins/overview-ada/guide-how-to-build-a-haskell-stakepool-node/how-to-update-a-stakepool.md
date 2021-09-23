@@ -244,61 +244,6 @@ sed -i qcpolsendmytip.sh \
 sudo systemctl restart qcpolsendmytip
 ```
 {% endtab %}
-
-{% tab title="v1.25.1 Notes" %}
-**Full release notes:** [https://github.com/input-output-hk/cardano-node/releases/tag/1.25.1](https://github.com/input-output-hk/cardano-node/releases/tag/1.25.1)
-
-This release is expected to be the final release for the upcoming Mary hard fork, and everyone _**must**_ upgrade to this \(or a later\) version to cross the Mary hard fork.
-
-The Mary hard fork introduces native token functionality to Cardano. This is directly useful and is also one of the significant building blocks for the later Goguen smart contracts.
-
-Stake Pool Operators \(SPOs\) and Exchanges should take note that the metric namespace has undergone consolidation, so all metrics now reside in `cardano.node.metrics`:
-
-* cardano.node.Forge.metrics.\* -&gt; cardano.node.metrics.Forge.\*
-* cardano.node.ChainDB.metrics.\* -&gt; cardano.node.metrics.ChainDB.\*
-* cardano.node.BlockFetchDecision.connectedPeers -&gt; cardano.node.metrics.connectedPeers
-
-The node configs require no changes, but allow dropping entries that became redundant: wherever `cardano.node.Forge.metrics.*`, `cardano.node.ChainDB.metrics.*` or `cardano.node.BlockFetchDecision.connectedPeers` were mentioned, those entries can be removed. Only `cardano.node.metric` needs to remain. Please see [\#2281](https://github.com/input-output-hk/cardano-node/pull/2281) for further details.
-
-This release uses a new cabal snapshot so could be rather resource intensive when building for the first time.
-
-### 🛑 Release v1.25.1 New Dependencies
-
-#### 1. Update Grafana monitoring dashboard to use new metrics
-
-1. On relaynode1 \(or server with grafana\), open [http://localhost:3000](http://localhost:3000) 
-2. Login to grafana
-3. **Download and save** this [**updated json file**](https://raw.githubusercontent.com/coincashew/coincashew/master/.gitbook/assets/grafana-monitor-cardano-nodes-by-kaze.json)**.**
-4. Click **Create +** icon &gt; **Import**
-5. Add dashboard by **Upload JSON file**
-6. Change **Name**/**uid** or click the **Import \(Overwrite\)** button 
-
-**2. Update mainnet-config file on all relays and block producer nodes.**
-
-```bash
-cd ${NODE_HOME}
-# Download a current mainnet config
-NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g')
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/mainnet-config.json
-# Update config settings back to stock. Add any custom changes as needed.
-sed -i mainnet-config.json \
-    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
-  	-e "s/127.0.0.1/0.0.0.0/g" 
-```
-
-#### **3. Update** gLiveView
-
-```bash
-cd ${NODE_HOME}
-curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
-curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
-chmod 755 gLiveView.sh
-# Update env file with the stake pools configuration.
-sed -i env \
-    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
-    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
-```
-{% endtab %}
 {% endtabs %}
 
 ### Compiling the new binaries

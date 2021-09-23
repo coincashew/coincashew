@@ -14,11 +14,12 @@ Thank you for your support and kind messages! It really energizes us to keep cre
 {% endhint %}
 
 {% hint style="success" %}
-As of September 13 2021, this is **guide version 4.0.1** and written for **cardano mainnet** with **release v.1.29.0** 😁 
+As of September 22 2021, this is **guide version 4.0.2** and written for **cardano mainnet** with **release v.1.29.0** 😁 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **September 13 2021**
+### 📄 Changelog - **Update Notes -** **September 22 2021**
 
+* Added Leaderlog changes and improvements
 * Increased minimum RAM requirements to 12GB.
 * Updated for Alonzo release 1.29.0.
 * Various fixes to testnet  / alonzo / storage requirements / cli commands
@@ -302,7 +303,7 @@ sed -i ${NODE_CONFIG}-config.json \
 ```
 
 {% hint style="info" %}
-\*\*\*\*✨ **Tip for relay nodes**: It's possible to reduce memory and cpu usage by setting "TraceMemPool" to "false" in **mainnet-config.json**
+\*\*\*\*✨ **Tip for relay and block producer nodes**: It's possible to reduce the number of missed slot leader checks, memory and cpu usage by setting "TraceMemPool" to "false" in **mainnet-config.json**
 {% endhint %}
 
 Update **.bashrc** shell variables.
@@ -811,7 +812,7 @@ cardano-cli node key-gen-VRF \
 {% endtab %}
 {% endtabs %}
 
-Update vrf key permissions to read-onl. You must also move it to your **cold environment.**
+Update vrf key permissions to read-only. You must also copy **vrf.vkey** to your **cold environment.**
 
 ```text
 chmod 400 vrf.skey
@@ -2067,6 +2068,24 @@ sudo systemctl restart cardano-node
 {% endtab %}
 {% endtabs %}
 
+Verify the metrics are working by querying the prometheus port.
+
+{% tabs %}
+{% tab title="block producer and relaynodes" %}
+```bash
+curl -s 127.0.0.1:12798/metrics
+
+# Example output:
+# rts_gc_par_tot_bytes_copied 123
+# rts_gc_num_gcs 345
+# rts_gc_max_bytes_slop 4711111
+# cardano_node_metrics_served_block_count_int 8112
+# cardano_node_metrics_Stat_threads_int 8
+# cardano_node_metrics_density_real 4.67
+```
+{% endtab %}
+{% endtabs %}
+
 ### 📶 16.2 Setting up Grafana Dashboards 
 
 1. On relaynode1, open [http://localhost:3000](http://localhost:3000) or http://&lt;your relaynode1 ip address&gt;:3000 in your local browser. You may need to open up port 3000 in your router and/or firewall.
@@ -3031,11 +3050,15 @@ command -v cncli
 
 It should return `/usr/local/bin/cncli`
 
-### \*\*\*\*⛏ **Manual approach - running LeaderLog with stake-snapshot**
+### \*\*\*\*⛏ **Running LeaderLog with stake-snapshot**
 
-This command calculates a stake pool's expected slot list. `prev` and `current` logs are available as long as you have a synchronized database. `next` logs are only available 1.5 days before the end of the epoch. You need to use `.poolStakeMark` and `.activeStakeMark` for `next`, `.poolStakeSet` and `.activeStakeSet` for `current`, `.poolStakeGo` and `.activeStakeGo` for `prev`.
+This command calculates a stake pool's expected slot list. 
 
-Example usage with the `stake-snapshot` approach:
+* `prev` and `current` logs are available as long as you have a synchronized database. 
+* `next` logs are only available 1.5 days \(36 hours\) before the end of the epoch. 
+* You need to use `poolStakeMark` and `activeStakeMark` for `next`, `.poolStakeSet` and `activeStakeSet` for `current`, `poolStakeGo` and `activeStakeGo` for `prev`.
+
+Example usage with the `stake-snapshot` approach for `next` epoch:
 
 ```bash
 /usr/local/bin/cncli sync --host 127.0.0.1 --port 6000 --no-service
@@ -3044,164 +3067,68 @@ MYPOOLID=$(cat $NODE_HOME/stakepoolid.txt)
 echo "LeaderLog - POOLID $MYPOOLID"
 
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
-POOL_STAKE=$(jq .poolStakeMark <<< $SNAPSHOT)
-ACTIVE_STAKE=$(jq .activeStakeMark <<< $SNAPSHOT)
+POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeGo": )\d+(?=,?)')
+ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeGo": )\d+(?=,?)')
 MYPOOL=`/usr/local/bin/cncli leaderlog --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
+echo $MYPOOL | jq .
 
-EPOCH=`jq .epoch <<< $MYPOOL`
+EPOCH=`echo $MYPOOL | jq .epoch`
 echo "\`Epoch $EPOCH\` 🧙🔮:"
 
-SLOTS=`jq .epochSlots <<< $MYPOOL`
-IDEAL=`jq .epochSlotsIdeal <<< $MYPOOL`
-PERFORMANCE=`jq .maxPerformance <<< $MYPOOL`
+SLOTS=`echo $MYPOOL | jq .epochSlots`
+IDEAL=`echo $MYPOOL | jq .epochSlotsIdeal`
+PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
+
 echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
 
-{% hint style="success" %}
-This stake-snapshot approach is advantageous as it requires less system RAM memory, compared to the below approach with ledger-state dumps.
-{% endhint %}
-
-### \*\*\*\*⏩ **Automated approach - Create the helper scripts**
-
-Place them under `$NODE_HOME/scripts/` of the block producing node server of your pool. 
-
-{% hint style="info" %}
-Credits to the original CNCLI scripts [here](https://github.com/AndrewWestberg/cncli/blob/develop/scripts).
-{% endhint %}
-
-Create helper script directory.
+Example usage with the `stake-snapshot` approach for `current` epoch:
 
 ```bash
-###
-### On blockproducer
-###
-mkdir -p ${NODE_HOME}/scripts/
+/usr/local/bin/cncli sync --host 127.0.0.1 --port 6000 --no-service
+
+MYPOOLID=$(cat $NODE_HOME/stakepoolid.txt)
+echo "LeaderLog - POOLID $MYPOOLID"
+
+SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
+POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeSet": )\d+(?=,?)')
+ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeSet": )\d+(?=,?)')
+MYPOOL=`/usr/local/bin/cncli leaderlog --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set current`
+echo $MYPOOL | jq .
+
+EPOCH=`echo $MYPOOL | jq .epoch`
+echo "\`Epoch $EPOCH\` 🧙🔮:"
+
+SLOTS=`echo $MYPOOL | jq .epochSlots`
+IDEAL=`echo $MYPOOL | jq .epochSlotsIdeal`
+PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
+
+echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
 
-Create script `cncli-leaderlog.sh`
+Example usage with the `stake-snapshot` approach for `previous` epoch:
 
 ```bash
-cat > ${NODE_HOME}/scripts/cncli-leaderlog.sh << EOF
-#!/usr/bin/env bash
+/usr/local/bin/cncli sync --host 127.0.0.1 --port 6000 --no-service
 
-epoch="\${1:-next}"
-timezone="\${2:-UTC}"
+MYPOOLID=$(cat $NODE_HOME/stakepoolid.txt)
+echo "LeaderLog - POOLID $MYPOOLID"
 
-function getStatus() {
-    local result
-    result=\$(/usr/local/bin/cncli status \
-        --db ${NODE_HOME}/scripts/cncli.db \
-        --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json \
-        --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json \
-        | jq -r .status
-    )
-    echo "\$result"
-}
+SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
+POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeGo": )\d+(?=,?)')
+ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeGo": )\d+(?=,?)')
+MYPOOL=`/usr/local/bin/cncli leaderlog --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set prev`
+echo $MYPOOL | jq .
 
-function getLeader() {
-    /usr/local/bin/cncli leaderlog \
-        --db ${NODE_HOME}/scripts/cncli.db \
-        --pool-id  $(cat ${NODE_HOME}/stakepoolid.txt) \
-        --pool-vrf-skey ${NODE_HOME}/vrf.skey \
-        --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json \
-        --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json \
-        --ledger-set "\$epoch" \
-        --tz "\$timezone"
-}
+EPOCH=`echo $MYPOOL | jq .epoch`
+echo "\`Epoch $EPOCH\` 🧙🔮:"
 
-statusRet=\$(getStatus)
+SLOTS=`echo $MYPOOL | jq .epochSlots`
+IDEAL=`echo $MYPOOL | jq .epochSlotsIdeal`
+PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
 
-if [[ "\$statusRet" == "ok" ]]; then
-    mv ${NODE_HOME}/scripts/leaderlog.json ${NODE_HOME}/scripts/leaderlog."\$(date +%F-%H%M%S)".json
-    getLeader > ${NODE_HOME}/scripts/leaderlog.json
-    find . -name "leaderlog.*.json" -mtime +15 -exec rm -f '{}' \;
-else
-    echo "CNCLI database not synced!!!"
-fi
-
-exit 0
-EOF
+echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
-
-Create script `cncli-sendslots.sh`
-
-```bash
-cat > ${NODE_HOME}/scripts/cncli-sendslots.sh << EOF
-#!/usr/bin/env bash
-
-function getStatus() {
-    local result
-    result=\$(/usr/local/bin/cncli status \
-        --db ${NODE_HOME}/scripts/cncli.db \
-        --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json \
-        --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json \
-        | jq -r .status
-    )
-    echo "\$result"
-}
-
-function sendSlots() {
-    /usr/local/bin/cncli sendslots \
-        --db ${NODE_HOME}/scripts/cncli.db \
-        --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json \
-        --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json \
-        --config ${NODE_HOME}/scripts/pooltool.json
-}
-
-statusRet=\$(getStatus)
-
-if [[ "\$statusRet" == "ok" ]]; then
-    mv ${NODE_HOME}/scripts/sendslots.log ${NODE_HOME}/scripts/sendslots."\$(date +%F-%H%M%S)".log
-    sendSlots > ${NODE_HOME}/scripts/sendslots.log
-    find . -name "sendslots.*.log" -mtime +15 -exec rm -f '{}' \;
-else
-    echo "CNCLI database not synced!!!"
-fi
-
-exit 0
-EOF
-```
-
-Create script `cncli-fivedays.sh`
-
-```bash
-cat > ${NODE_HOME}/scripts/cncli-fivedays.sh << EOF
-#!/usr/bin/env bash
-
-CARDANO_START=\$(date +%s -d "2017-09-23")
-CARDANO_START_DAY=\$(( CARDANO_START / 86400 ))
-NOW_TIMESTAMP=\$(date +%s)
-NOW_DAY=\$(( NOW_TIMESTAMP / 86400 ))
-DAYS_SINCE_CARDANO_START=\$(( NOW_DAY - CARDANO_START_DAY ))
-RESULT=\$(( DAYS_SINCE_CARDANO_START % 5 ))
-
-if [[ "\$RESULT" == "0" ]]; then
-    echo "Exit Success"
-    exit 0
-else
-    echo "Exit Failure"
-    exit 1
-fi
-EOF
-```
-
-Create script `ledger-dump.sh`
-
-```bash
-cat > ${NODE_HOME}/scripts/ledger-dump.sh << EOF
-#!/usr/bin/env bash
-
-export CARDANO_NODE_SOCKET_PATH="${NODE_HOME}/db/socket"
-
-/usr/local/bin/cardano-cli query ledger-state --mainnet > ${NODE_HOME}/scripts/ledger-state.json
-
-exit 0
-EOF
-```
-
-{% hint style="warning" %}
- **Important**: at the very least, remember to change the pool id in the `cncli-leaderlog.sh` script to match your pool.
-{% endhint %}
 
 #### PoolTool Integration
 
@@ -3308,80 +3235,6 @@ sudo systemctl start cncli-sync.service
 
 ```text
 sudo systemctl start cncli-sendtip.service
-```
-
-#### Helper Scripts
-
-Besides setting up the `systemd` services, there are a couple of more automation that CNCLI can help you with. We have devised a few scripts that will be invoked daily with `crontab` and that will take care of:
-
-1. calculating the `next` epoch assigned slots \(with `cncli leaderlog`\)
-2. send the `previous` and `current` assigned slots to PoolTool \(with `cncli sendslots`\).
-3. optionally: query the `ledger-state` and save it to a `ledger-state.json` file.
-
-Although, by default, the `cncli-leaderlog.sh` script will calculate the `next` epoch `leaderlog`, it can also be run manually to also calculate the `previous` and `current` epoch slots \(adjust the time zone to better suit your location\):
-
-{% hint style="info" %}
-By replacing "**UTC**" in the commands below, set the timezone name to format your pool's scheduled times properly. 
-
-```bash
-# Find your timezone name. 
-# Format follows this example: "Asia/Tokyo"
-timedatectl list-timezones
-```
-{% endhint %}
-
-```bash
-sudo bash ${NODE_HOME}/scripts/cncli-leaderlog.sh previous UTC
-```
-
-```bash
-sudo bash ${NODE_HOME}/scripts/cncli-leaderlog.sh current UTC
-```
-
-```bash
-sudo bash ${NODE_HOME}/scripts/cncli-leaderlog.sh next UTC
-```
-
-**Crontab**
-
-To set up the `cronjobs`, run the following.
-
-```bash
-###
-### On blockproducer
-###
-cat > $NODE_HOME/crontab-fragment.txt << EOF
-# calculate slots assignment for the next epoch
-15 21 * * * $NODE_HOME/scripts/cncli-fivedays.sh && $NODE_HOME/scripts/cncli-leaderlog.sh
-# send previous and current epochs slots to pooltool
-15 22 * * * $NODE_HOME/scripts/cncli-fivedays.sh && $NODE_HOME/scripts/cncli-sendslots.sh
-EOF
-crontab -l | cat - ${NODE_HOME}/crontab-fragment.txt > ${NODE_HOME}/crontab.txt && crontab ${NODE_HOME}/crontab.txt
-rm $NODE_HOME/crontab-fragment.txt
-```
-
-Optionally set up a cronjob to dump the ledger-state, every day at 3:15 PM.
-
-{% hint style="warning" %}
-This cronjob takes a huge amount of memory! You should only set it up when your node has at least 16GB memory. Otherwise it my crash your cardano-node process.
-{% endhint %}
-
-```bash
-###
-### On blockproducer
-###
-cat > $NODE_HOME/crontab-fragment.txt << EOF
-# query ledger-state and dump to $NODE_HOME/scripts/ledger-state.json
-15 15 * * * $NODE_HOME/scripts/ledger-dump.sh
-EOF
-crontab -l | cat - ${NODE_HOME}/crontab-fragment.txt > ${NODE_HOME}/crontab.txt && crontab ${NODE_HOME}/crontab.txt
-rm $NODE_HOME/crontab-fragment.txt
-```
-
-Verify the crontab jobs entries were created properly.
-
-```bash
-crontab -l
 ```
 
 ### 🛠 Updating cncli from earlier versions

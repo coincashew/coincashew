@@ -89,11 +89,16 @@ chronyc tracking
 To pick your timezone run the following command:
 
 ```text
-dpkg-reconfigure tzdata
-``
+sudo dpkg-reconfigure tzdata
+```
 
-Your region should be simple to find using the text-based GUI.
+Find your region using the simple text-based GUI.
 
 In the event that you are using national system like India's `IST` select:
-"`Asia/Kolkata`"
-This will be appropriate for all lales in the country (`IST`, `GMT+0530`).
+
+```text
+Asia/Kolkata
+```
+
+This will be appropriate for all lales in the country \(`IST`, `GMT+0530`\).
+
