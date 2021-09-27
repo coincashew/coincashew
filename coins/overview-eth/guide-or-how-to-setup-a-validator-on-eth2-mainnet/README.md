@@ -12,18 +12,20 @@ description: >-
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
 {% endhint %}
 
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
+{% embed url="https://gitcoin.co/grants/1653/ethereum-staking-guides-by-coincashew-with-poap" %}
 
 {% hint style="success" %}
-As of August 28 2021, this is **guide version 3.3.1** and written for **ethereum mainnet**😁 
+As of Sept 26 2021, this is **guide version 3.3.2** and written for **ethereum mainnet**😁 
 {% endhint %}
 
 {% hint style="info" %}
 #### ✨ [PRATER testnet guide](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md). Always test and practice on testnet. 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **August 28 2021**
+### 📄 Changelog - **Update Notes -** **Sept 26 2021**
 
+* Added erigon build dependencies.
+* Added **Teku** Checkpoint Sync feature, the quickest way to sync a Ethereum beacon chain client.
 * geth + erigon pruning / Altair hard fork changes / nimbus eth1 fallback
 * lighthouse + prysm doppelganger protection enabled. Doppelganger protection intentionally misses an epoch on startup and listens for attestations to make sure your keys are not still running on the old validator client.
 * OpenEthereum will no longer be supported post London hard fork. Gnosis, maintainers of OpenEthereum, suggest users migrate to their new **Erigon** Ethererum client. Added setup instructions for **Erigon** under eth1 node section.
@@ -39,6 +41,10 @@ As of August 28 2021, this is **guide version 3.3.1** and written for **ethereum
 * Translations now available for Japanese, Chinese and Spanish \(access by changing site language\)
 * Generate keystore files on [Ledger Nano X, Nano S and Trezor Model T](./#2-signup-to-be-a-validator-at-the-launchpad) with tool from [allnodes.com](https://twitter.com/Allnodes/status/1390020240541618177?s=20)
 * [Batch deposit tool](./#2-signup-to-be-a-validator-at-the-launchpad) by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added
+
+### 📄 Latest Essential Ethereum Staking Reading
+
+* [Modelling the Impact of Altair by pintail.xyz](https://pintail.xyz/posts/modelling-the-impact-of-altair/)
 
 ## 🏁 0. Prerequisites
 
@@ -689,6 +695,13 @@ rm go.tar.gz
 ```
 
 #### 🤖 Build and install Erigon
+
+Install build dependencies.
+
+```bash
+sudo apt-get update
+sudo apt install build-essential git
+```
 
 Review the latest release at [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)
 
@@ -1665,12 +1678,15 @@ shred -u ~/.bash_history && touch ~/.bash_history
 
 #### 🚀 Setup Graffiti and POAP
 
-Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes.
 
 Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
 
 ```bash
 MY_GRAFFITI='<my POAP string or message>'
+```
+
+```bash
 # Examples
 # MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
 # MY_GRAFFITI='eth2 rulez!'
@@ -1680,12 +1696,46 @@ MY_GRAFFITI='<my POAP string or message>'
 Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
 {% endhint %}
 
+⏩ **Setup Teku Checkpoint Sync**
+
+{% hint style="info" %}
+Teku's Checkpoint Cync utilizes Infura to create the fastest syncing Ethereum beacon chain.
+{% endhint %}
+
+1. Sign up for [a free infura account](https://infura.io/register).
+
+2. Create a project.
+
+![](../../../.gitbook/assets/inf1.png)
+
+3. Copy your Project's ENDPOINT. Ensure the correct Network is selected with the dropdown box.
+
+![](../../../.gitbook/assets/inf2.png)
+
+Replace `<my infura Project's ENDPOINT>` with your Infura endpoint and then run the following command to set the `INFURA_PROJECT_ENDPOINT` variable.
+
+```bash
+INFURA_PROJECT_ENDPOINT=<my Infura Project's ENDPOINT>
+```
+
+```bash
+# Example
+# INFURA_PROJECT_ENDPOINT=1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-mainnet.infura.io
+```
+
+Confirm that your Infura Project Endpoint looks correct.
+
+```bash
+echo $INFURA_PROJECT_ENDPOINT
+```
+
 Generate your Teku Config file. Simply copy and paste.
 
 ```bash
 cat > $HOME/teku.yaml << EOF
 # network
 network: "mainnet"
+initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v1/debug/beacon/states/finalized" 
 
 # p2p
 p2p-enabled: true

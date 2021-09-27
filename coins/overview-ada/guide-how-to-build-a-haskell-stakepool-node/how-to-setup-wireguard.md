@@ -43,15 +43,16 @@ Be aware this will require installing the headers again. Not restarting with the
 
 ##  🗝 2. Setup Public / Private Keypair
 
+Generate a public/private key on each node by running the following commands.
+
 {% tabs %}
-{% tab title="local and remote node" %}
+{% tab title="local and remote nodes" %}
 ```bash
 sudo su
 
 cd /etc/wireguard
 umask 077
-wg genkey | tee localnode-privatekey | wg pubkey > localnode-publickey
-wg genkey | tee remotenode-privatekey | wg pubkey > remotenode-publickey
+wg genkey | tee wireguard-privatekey | wg pubkey > wireguard-publickey
 ```
 {% endtab %}
 {% endtabs %}
@@ -64,6 +65,8 @@ Update your Private and Public Keys accordingly.
 
 Change the Endpoint to your remote node public IP or DNS address.
 
+#### Two Node Setup \( i.e. 1 block producer, 1 relay node\)
+
 {% tabs %}
 {% tab title="local node" %}
 ```bash
@@ -75,7 +78,6 @@ Address = 10.0.0.1/32
 PrivateKey = <i.e. SJ6ygM3csa36...+pO4XW1QU0B2M=>
 # local node wireguard listening port
 ListenPort = 51820
-SaveConfig = true
 
 # remote node
 [Peer]
@@ -85,7 +87,6 @@ PublicKey = <i.e. Rq7QEe2g3qIjDftMu...knBGS9mvJDCa4WQg=>
 Endpoint = remotenode.mydomainname.com:51820
 # remote node's interface address
 AllowedIPs = 10.0.0.2/32
-# send a handshake every 21 seconds
 PersistentKeepalive = 21
 ```
 {% endtab %}
@@ -97,16 +98,100 @@ PersistentKeepalive = 21
 Address = 10.0.0.2/32
 PrivateKey = <i.e. cF3OjVhtKJAY/rQ...LFi7ASWg=>
 ListenPort = 51820
-SaveConfig = true
 
 # local node
 [Peer]
 # local node's public key
 PublicKey = <i.e. rZLBzslvFtEJ...JdfX4XSwk=>
 # local node's public ip address or dns address
-Endpoint = 12.34.56.78:51820
+Endpoint = localnodesIP-or-domain.com:51820
 # local node's interface address
 AllowedIPs = 10.0.0.1/32
+PersistentKeepalive = 21
+```
+{% endtab %}
+{% endtabs %}
+
+#### Triple Node Setup \( i.e. 1 block producer, 2 relay nodes\)
+
+{% tabs %}
+{% tab title="local node" %}
+```bash
+# local node WireGuard Configuration
+[Interface]
+# local node address
+Address = 10.0.0.1/32
+# local node private key
+PrivateKey = <i.e. SJ6ygM3csa36...+pO4XW1QU0B2M=>
+# local node wireguard listening port
+ListenPort = 51820
+
+# remote node 1 config
+[Peer]
+# remote node's publickey
+PublicKey = <i.e. R11q7QEe2g3qIjDftMu...knBGdd2mvJDCaasde=>
+# remote node's public ip address or dns address
+Endpoint = remotenode1.mydomainname.com:51820
+# remote node's interface address
+AllowedIPs = 10.0.0.2/32
+PersistentKeepalive = 21
+
+# remote node 2 config
+[Peer]
+# remote node 2's publickey
+PublicKey = <i.e. ESDd7QEe2g3qIjDftMu...knBGS9mvJDCa4WQg=>
+# remote node 2's public ip address or dns address
+Endpoint = remotenode2.mydomainname.com:51820
+# remote node 2's interface address
+AllowedIPs = 10.0.0.3/32
+PersistentKeepalive = 21
+```
+{% endtab %}
+
+{% tab title="remote node 1" %}
+```bash
+# remote node 1's WireGuard Configuration
+[Interface]
+Address = 10.0.0.2/32
+PrivateKey = <i.e. cF3OjVhtKJAY/rQ...LFi7ASWg=>
+ListenPort = 51820
+
+# local node config
+[Peer]
+PublicKey = <i.e. rZLBzslvFtEJ...knBGS9mvJDCa4WQg=>
+Endpoint = localnodesIP-or-domain.com:51820
+AllowedIPs = 10.0.0.1/32
+PersistentKeepalive = 21
+
+# remote node 2 config
+[Peer]
+PublicKey = <i.e. m2222zslvFtEJ...JdfX4XSwk=>
+Endpoint = remotenode2.mydomainname.com:51820
+AllowedIPs = 10.0.0.3/32
+PersistentKeepalive = 21
+```
+{% endtab %}
+
+{% tab title="remote node 2" %}
+```bash
+# remote node WireGuard Configuration
+[Interface]
+Address = 10.0.0.3/32
+PrivateKey = <i.e. 222jVhtKJAY/rQ...LFi7ASWg=>
+ListenPort = 51820
+
+# local node config
+[Peer]
+PublicKey = <i.e. rZLBzslvFtEJ...knBGS9mvJDCa4WQg=>
+Endpoint = localnodesIP-or-domain.com:51820
+AllowedIPs = 10.0.0.1/32
+PersistentKeepalive = 21
+
+# remote node 1 config
+[Peer]
+PublicKey = <i.e. R11q7QEe2g3qIjDftMu...knBGdd2mvJDCaasde=>
+Endpoint = remotenode1.mydomainname.com:51820
+AllowedIPs = 10.0.0.2/32
 PersistentKeepalive = 21
 ```
 {% endtab %}
@@ -123,7 +208,7 @@ sudo ufw verbose
 ```
 {% endtab %}
 
-{% tab title="remote node" %}
+{% tab title="remote nodes" %}
 ```bash
 sudo ufw allow 51820/udp
 # check the firewall rules
@@ -206,6 +291,13 @@ ping 10.0.0.2
 {% tab title="remote node" %}
 ```
 ping 10.0.0.1
+```
+{% endtab %}
+
+{% tab title="remote node 2" %}
+```
+ping 10.0.0.1
+ping 10.0.0.2
 ```
 {% endtab %}
 {% endtabs %}

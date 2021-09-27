@@ -107,6 +107,13 @@ Example of what it should look like with the two new lines.
   "ShelleyGenesisFile": "genesis.json",
   "ShelleyGenesisHash": "1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81",
 ```
+
+**\[ Optional Troubleshooting \]** 4. In case your node does not start up properly, refresh `mainnet-shelley-genesis.json`
+
+```bash
+cd $NODE_HOME
+wget -N https://hydra.iohk.io/build/7416228/download/1/mainnet-shelley-genesis.json
+```
 {% endtab %}
 
 {% tab title="v1.27.0 Notes" %}
