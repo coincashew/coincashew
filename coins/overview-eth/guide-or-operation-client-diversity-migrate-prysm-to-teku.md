@@ -325,7 +325,7 @@ sudo systemctl start validator
 {% endtab %}
 {% endtabs %}
 
-Observe the logs for errors about missing validator keys.
+Observe the logs and check for errors about missing validator keys.
 
 {% tabs %}
 {% tab title="CoinCashew" %}
@@ -411,7 +411,7 @@ rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
 {% hint style="danger" %}
-\*\*\*\*🛑 **WARNING !!!**  **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** \(penalized and exited from the system\).
+\*\*\*\*🛑 **FINAL WARNING REMINDER !!!**  **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** \(penalized and exited from the system\).
 
 Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes. 
 
@@ -786,10 +786,10 @@ After a period of stable attestations on Teku, you can safely dispose of the for
 rm -rf ~/prysm 
 
 # Validator Keys
-rm -rf ~/.eth2validators/prysm-wallet-v2/direct
+rm -rf ~/.eth2validators
 
 # Beacon Chain Data
-rm -rf ~/.eth2/beaconchaindata
+rm -rf ~/.eth2
 ```
 {% endtab %}
 
