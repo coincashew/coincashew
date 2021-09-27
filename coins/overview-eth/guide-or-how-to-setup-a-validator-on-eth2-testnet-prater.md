@@ -1703,7 +1703,7 @@ Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
 ⏩ **Setup Teku Checkpoint Sync**
 
 {% hint style="info" %}
-Teku's Checkpoint Cync utilizes Infura to create the fastest syncing Ethereum beacon chain.
+Teku's Checkpoint Sync utilizes Infura to create the fastest syncing Ethereum beacon chain.
 {% endhint %}
 
 1. Sign up for [a free infura account](https://infura.io/register).

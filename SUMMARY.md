@@ -110,6 +110,7 @@
     * [How to setup dynamic DNS \(DDNS\)](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-setup-dynamic-dns-ddns.md)
     * [How to find longest attestation slot gap](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-find-longest-attestation-slot-gap.md)
     * [How to free up eth1 node disk space with pruning](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-free-up-eth1-node-disk-space.md)
+  * [Guide \| Operation Client Diversity: Migrate Prysm to Teku](coins/overview-eth/guide-or-operation-client-diversity-migrate-prysm-to-teku.md)
   * [Guide \| Security Best Practices for a ETH2 validator beaconchain node](coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
   * [Guide \| How to setup a validator on ETH2 testnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
   * [Guide \| How to setup a validator on ETH2 testnet PRATER](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)

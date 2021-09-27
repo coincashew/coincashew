@@ -283,19 +283,26 @@ Verify ping works between nodes.
 
 {% tabs %}
 {% tab title="local node" %}
-```text
+```bash
 ping 10.0.0.2
+
+# if triple node configuration
+ping 10.0.0.3
 ```
 {% endtab %}
 
 {% tab title="remote node" %}
-```
+```bash
 ping 10.0.0.1
+
+# if triple node configuration
+ping 10.0.0.3
 ```
 {% endtab %}
 
 {% tab title="remote node 2" %}
-```
+```bash
+# if triple node configuration
 ping 10.0.0.1
 ping 10.0.0.2
 ```
@@ -308,11 +315,32 @@ ping 10.0.0.2
 
 Update and/or review your topology.json file to ensure the "addr" matches this new tunneled IP address, and not the usual public node IP address.
 
-> Example: topology.json on blockproducer  
+**Dual node setup**
+
+> Example: topology.json on **blockproducer**  
 > { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
 
-> topology.json on relaynode1   
+> topology.json on **relaynode1**   
 > { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
+
+
+
+**Triple node setup**
+
+> Example: topology.json on **blockproducer**  
+> { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
+>
+> { "addr": "10.0.0.3", "port": 6000, "valency": 1 },
+
+> topology.json on **relaynode1**   
+> { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
+>
+> { "addr": "10.0.0.3", "port": 6000, "valency": 1 },
+
+> topology.json on **relaynode2**  
+> { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
+>
+> { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
 {% endtab %}
 
 {% tab title="ETH2" %}
