@@ -46,7 +46,7 @@ Install git.
 sudo apt-get install git -y
 ```
 
-Install Java 11for **Ubuntu 20.x**, use the following
+Install Java 11 for **Ubuntu 20.x**
 
 ```text
 sudo apt update
@@ -695,6 +695,36 @@ sudo systemctl restart grafana-server prometheus prometheus-node-exporter
 ![Teku by PegaSys Engineering](../../.gitbook/assets/teku.dash.png)
 
 Credits: [https://grafana.com/grafana/dashboards/13457](https://grafana.com/grafana/dashboards/13457)
+
+### 🌊 7. Clean up Prysm Storage
+
+After a period of stable attestations on Teku, you can safely dispose of the former Prysm files and reclaim disk space.
+
+{% tabs %}
+{% tab title="CoinCashew" %}
+```bash
+# executables
+rm -rf ~/prysm 
+
+# Validator Keys
+rm -rf ~/.eth2validators/prysm-wallet-v2/direct
+
+# Beacon Chain Data
+rm -rf ~/.eth2/beaconchaindata
+```
+{% endtab %}
+
+{% tab title="Somersat" %}
+```bash
+# executables
+sudo rm /usr/local/bin/validator
+sudo rm /usr/local/bin/beacon-chain
+
+# datadir
+sudo rm -rf /var/lib/prysm
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="success" %}
 Well done on successfully switching! Cheers to client diversity and a healthy beacon chain.
