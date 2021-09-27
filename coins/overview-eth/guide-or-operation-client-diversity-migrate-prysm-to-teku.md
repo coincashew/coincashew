@@ -111,18 +111,20 @@ MY_GRAFFITI='OPERATION CLIENT DIVERSITY TEKU W/ COINCASHEW'
 **Setup Teku Checkpoint Sync**
 
 {% hint style="info" %}
-Teku's Checkpoint Cync utilizes Infura to create the fastest syncing Ethereum beacon node.
+Teku's Checkpoint Sync utilizes Infura to create the fastest syncing Ethereum beacon node.
 {% endhint %}
 
 1. Sign up for [a free infura account](https://infura.io/register).
 
-![](../../.gitbook/assets/inf1.png)
-
 2. Create a project
 
-![](../../.gitbook/assets/inf2.png)
+![](../../.gitbook/assets/inf1.png)
 
-3. Copy your Project's **ENDPOINT**. Ensure the correct Network is selected with the dropdown box.
+3. Add a project name and save changes.
+
+4. Copy your Project's **ENDPOINT**. Ensure the correct Network is selected with the dropdown box.
+
+![](../../.gitbook/assets/inf2.png)
 
 Replace `<my infura Project's ENDPOINT>` with your Infura endpoint and then run the following command to set the `INFURA_PROJECT_ENDPOINT` variable.
 
@@ -152,8 +154,8 @@ initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v1/debug/beacon/states/finalized"
 # p2p
 p2p-enabled: true
 p2p-port: 9000
+
 # validators
-validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
 validators-graffiti: "${MY_GRAFFITI}"
 
 # Eth 1
@@ -164,7 +166,7 @@ metrics-enabled: true
 metrics-port: 8008
 
 # database
-data-path: "$(echo $HOME)/tekudata"
+data-path: "/var/lib/teku"
 data-storage-mode: "archive"
 
 # rest api
@@ -233,13 +235,24 @@ Keep an eye on CPU/RAM/disk usage when running both Prysm and Teku clients simul
 ```bash
 # CPU and RAM
 htop
+```
+
+```bash
 # disk space
 df -h
 ```
 {% endhint %}
 
 {% hint style="info" %}
-Syncing the beacon node might take up to 36 hours depending on your hardware. Keep validating using your current Prysm setup until it completes. However, thanks to Teku's Checkpoint sync, you'll complete this step in a flash.
+Syncing the beacon node might take up to 36 hours depending on your hardware. Keep validating using your current Prysm setup until it completes. However, thanks to Teku's Checkpoint sync, you'll complete this step in a few minutes.
+
+Syncing is complete when your beacon node's slot matches that of a block explorer's slot number \(i.e. [https://beaconcha.in/](https://beaconcha.in/)\)
+
+Check the beacon node syncing progress with the following:
+
+```bash
+journalctl -fu beacon-chain-temporary
+```
 {% endhint %}
 
 ### 🛑 2. Stop and disable Prysm
@@ -254,12 +267,12 @@ sudo systemctl disable validator beacon-chain
 ```
 {% endtab %}
 
-{% tab title="Somersat" %}
+{% tab title="SomerEsat" %}
 ```
-sudo systemctl stop prysmvalidator.service
-sudo systemctl stop prysmbeacon.service
-sudo systemctl disable prysmvalidator.service
-sudo systemctl disable prysmbeacon.service
+sudo systemctl stop prysmvalidator
+sudo systemctl stop prysmbeacon
+sudo systemctl disable prysmvalidator
+sudo systemctl disable prysmbeacon
 ```
 {% endtab %}
 {% endtabs %}
@@ -273,30 +286,84 @@ service validator status
 ```
 {% endtab %}
 
-{% tab title="Somersat" %}
+{% tab title="SomerEsat" %}
 ```
 service prysmvalidator status
 ```
 {% endtab %}
 {% endtabs %}
 
-Change the prysm-validator password to read-only so that there's no accidental starting of prysm's validator.
+Delete existing Prysm validators keys so that there's no accidental starting of Prysm's validator.
 
 {% tabs %}
 {% tab title="CoinCashew" %}
 ```bash
-sudo chmod 000 $HOME/.eth2validators/validators-password.txt
+sudo rm -rf ~/.eth2validators
 ```
 {% endtab %}
 
-{% tab title="Somersat" %}
+{% tab title="SomerEsat" %}
 ```
-sudo chmod 000 /var/lib/prysm/validator/password.txt
+sudo rm -rf /var/lib/prysm/validator
 ```
 {% endtab %}
 {% endtabs %}
 
-Verify that your validator has stopped by waiting a few epochs. Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
+As a double check, verify that Prysm validator can't find it's keys by starting the validator again.
+
+{% tabs %}
+{% tab title="CoinCashew" %}
+```bash
+sudo systemctl start validator
+```
+{% endtab %}
+
+{% tab title="SomerEsat" %}
+```
+ sudo systemctl start prysmvalidator
+```
+{% endtab %}
+{% endtabs %}
+
+Observe the logs for errors about missing validator keys.
+
+{% tabs %}
+{% tab title="CoinCashew" %}
+```bash
+journalctl -fu validator
+```
+{% endtab %}
+
+{% tab title="SomerEsat" %}
+```
+journalctl -fu prysmvalidator
+```
+{% endtab %}
+{% endtabs %}
+
+Finally, stop Prysm validator.
+
+{% tabs %}
+{% tab title="CoinCashew" %}
+```bash
+sudo systemctl stop validator
+```
+{% endtab %}
+
+{% tab title="SomerEsat" %}
+```
+ sudo systemctl start prysmvalidator
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="danger" %}
+**Before continuing - Required Waiting Period !!!**
+
+Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes. 
+
+Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
+{% endhint %}
 
 ### 🧱 3. Update firewall / port forwarding.
 
@@ -344,7 +411,11 @@ rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
 {% hint style="danger" %}
-**WARNING**:  **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** \(penalized and exited from the system\).
+\*\*\*\*🛑 **WARNING !!!**  **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** \(penalized and exited from the system\).
+
+Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes. 
+
+Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
 {% endhint %}
 
 Storing your **keystore password** in a text file is required so that Teku can decrypt and load your validators automatically.
@@ -382,6 +453,14 @@ Verify that your validator's keystore and validator's passwords are present by c
 
 ```text
 ll /var/lib/teku/validator_keys
+```
+
+Add validator-keys configuration to teku.yaml
+
+```bash
+cat >> /etc/teku/teku.yaml << EOF
+validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
+EOF
 ```
 
 ### 🚀 5. Setup and start the Teku service
@@ -492,7 +571,7 @@ sudo systemctl stop beacon-chain
 
 ### 📡 6. Update Prometheus and Grafana monitoring
 
-Select your Ethereum consensus engine and then re-create your `prometheus.yml` configuration file to match Teku's metric's settings.
+Select your Ethereum execution engine and then re-create your `prometheus.yml` configuration file to match Teku's metric's settings.
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -714,7 +793,7 @@ rm -rf ~/.eth2/beaconchaindata
 ```
 {% endtab %}
 
-{% tab title="Somersat" %}
+{% tab title="SomerEsat" %}
 ```bash
 # executables
 sudo rm /usr/local/bin/validator
@@ -722,6 +801,10 @@ sudo rm /usr/local/bin/beacon-chain
 
 # datadir
 sudo rm -rf /var/lib/prysm
+
+# users
+sudo deluser prysmbeacon
+sudo deluser prysmvalidator
 ```
 {% endtab %}
 {% endtabs %}

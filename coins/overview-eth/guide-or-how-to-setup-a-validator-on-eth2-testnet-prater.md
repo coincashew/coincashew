@@ -1579,14 +1579,6 @@ sudo apt update
 sudo apt install openjdk-11-jdk -y
 ```
 
-For **Ubuntu 18.x**, use the following
-
-```text
-sudo add-apt-repository ppa:linuxuprising/java
-sudo apt update
-sudo apt install oracle-java11-set-default -y
-```
-
 Verify Java 11+ is installed.
 
 ```bash
@@ -1680,7 +1672,7 @@ Clear the bash history in order to remove traces of keystore password.
 shred -u ~/.bash_history && touch ~/.bash_history
 ```
 
-#### 🚀 Setup Graffiti and POAP
+#### 🚀 Setup Graffiti
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes.
 
@@ -1712,7 +1704,9 @@ Teku's Checkpoint Sync utilizes Infura to create the fastest syncing Ethereum be
 
 ![](../../.gitbook/assets/inf1.png)
 
-3. Copy your Project's ENDPOINT. Ensure the correct Network is selected with the dropdown box.
+3. Add a project name and save changes. 
+
+4. Copy your Project's ENDPOINT. Ensure the correct Network is selected with the dropdown box.
 
 ![](../../.gitbook/assets/inf2.png)
 
@@ -1756,7 +1750,7 @@ metrics-enabled: true
 metrics-port: 8008
 
 # database
-data-path: "$(echo $HOME)/tekudata"
+data-path: "/var/lib/teku"
 data-storage-mode: "archive"
 
 # rest api
@@ -3675,10 +3669,10 @@ In case you need to locate your validator keys or database directories.
 /var/lib/teku
 
 # Beacon Chain Data
-~/tekudata/beacon
+~/var/lib/teku/beacon
 
 #Slash protection db
-~/tekudata/validator/slashprotection
+~/var/lib/teku/validator/slashprotection
 ```
 {% endtab %}
 
