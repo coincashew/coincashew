@@ -352,7 +352,7 @@ sudo systemctl stop validator
 
 {% tab title="SomerEsat" %}
 ```
- sudo systemctl start prysmvalidator
+ sudo systemctl stop prysmvalidator
 ```
 {% endtab %}
 {% endtabs %}
@@ -386,6 +386,21 @@ Verify that your firewall configuration is correct.
 ```text
 sudo ufw status numbered
 ```
+
+Example output of firewall configuration:
+
+> ```csharp
+>      To                         Action      From
+>      --                         ------      ----
+> [ 1] 22/tcp                     ALLOW IN    Anywhere       # SSH
+> [ 2] 9000/tcp                   ALLOW IN    Anywhere       # eth2 p2p traffic
+> [ 3] 9000/udp                   ALLOW IN    Anywhere       # eth2 p2p traffic
+> [ 4] 30303/tcp                  ALLOW IN    Anywhere       # eth1
+> [ 5] 22/tcp (v6)                ALLOW IN    Anywhere (v6)  # SSH
+> [ 6] 9000/tcp (v6)              ALLOW IN    Anywhere (v6)  # eth2 p2p traffic
+> [ 7] 9000/udp (v6)              ALLOW IN    Anywhere (v6)  # eth2 p2p traffic
+> [ 8] 30303/tcp (v6)             ALLOW IN    Anywhere (v6)  # eth1
+> ```
 
 {% hint style="info" %}
 Your router's port forwarding setup or cloud provider settings will need to be updated to ensure your validator's firewall ports are open and reachable. 
