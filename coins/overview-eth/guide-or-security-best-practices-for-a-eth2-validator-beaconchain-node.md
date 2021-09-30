@@ -200,7 +200,7 @@ It's critically important to keep your system up-to-date with the latest patches
 {% endhint %}
 
 ```bash
-sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get update -y && sudo apt dist-upgrade -y
 sudo apt-get autoremove
 sudo apt-get autoclean
 ```

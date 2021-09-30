@@ -1656,12 +1656,23 @@ rm /var/lib/teku/validator_keys/deposit_data*
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
 
-Store your **keystore password** in a file and make it read-only. This is required so that Teku can decrypt and load your validators.
+Storing your **keystore password** in a text file is required so that Teku can decrypt and load your validators automatically.
 
-Update your **keystore password** between the quotation marks after `echo`.
+Update `my_keystore_password_goes_here` with your **keystore password** between the single quotation marks and then run the command to save it to validators-password.txt
 
 ```bash
-echo 'my_keystore_password' > $HOME/validators-password.txt
+echo 'my_keystore_password_goes_here' > $HOME/validators-password.txt
+```
+
+Confirm that your **keystore password** is correct.
+
+```bash
+cat $HOME/validators-password.txt
+```
+
+Move the password file and make it read-only.
+
+```bash
 sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
 sudo chmod 600 /etc/teku/validators-password.txt
 ```

@@ -443,7 +443,7 @@ TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
-/usr/local/bin/cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
+/usr/local/bin/cardano-node run +RTS -N -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
 {% endtab %}
@@ -459,7 +459,7 @@ TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
-/usr/local/bin/cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
+/usr/local/bin/cardano-node run +RTS -N -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
 {% endtab %}
@@ -1715,13 +1715,7 @@ With your stake pool ID, now you can find your data on block explorers such as [
 Shelley has been launched without peer-to-peer \(p2p\) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
 {% endhint %}
 
-Configure your topology files.
-
-* **topologyUpdate.sh method** is automated and works after 4 hours. 
-
-{% tabs %}
-{% tab title="topologyUpdater.sh Method" %}
-### 🚀 Publishing your Relay Node with topologyUpdater.sh
+#### 🚀 Publishing your Relay Node with topologyUpdater.sh
 
 {% hint style="info" %}
 Credits to [GROWPOOL](https://twitter.com/PoolGrow) for this addition and credits to [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) on creating this process.
@@ -1783,12 +1777,12 @@ chmod +x topologyUpdater.sh
 ./topologyUpdater.sh
 ```
 
-When the `topologyUpdater.sh` runs successfully, you will see 
+When the `topologyUpdater.sh` runs successfully, you will see
 
 > `{ "resultcode": "201", "datetime":"2020-07-28 01:23:45", "clientIp": "1.2.3.4", "iptype": 4, "msg": "nice to meet you" }`
 
 {% hint style="info" %}
-Every time the script runs and updates your IP, a log is created in **`$NODE_HOME/logs`**
+Every time the script runs and updates your IP, a log is created in **`$NODE_HOME/logs`** 
 {% endhint %}
 
 Add a crontab job to automatically run `topologyUpdater.sh` every hour on the 33rd minute. You can change the 33 value to your own preference.
@@ -1808,25 +1802,43 @@ rm ${NODE_HOME}/crontab-fragment.txt
 After four hours and four updates, your node IP will be registered in the topology fetch list.
 {% endhint %}
 
-### 🤹♀ Update your relay node topology files
+#### 🤹♀ Update your relay node topology files
 
 {% hint style="danger" %}
 Complete this section after **four hours** when your relay node IP is properly registered.
 {% endhint %}
 
-Create `relay-topology_pull.sh` script which fetches your relay node buddies and updates your topology file. **Update with your block producer's public IP address.**
+Create `relay-topology_pull.sh` script which fetches your relay node buddies and updates your topology file. **Update with your block producer's IP address.**
 
+{% tabs %}
+{% tab title="mainnet" %}
 ```bash
 ###
 ### On relaynode1
 ###
 cat > $NODE_HOME/relay-topology_pull.sh << EOF
 #!/bin/bash
-BLOCKPRODUCING_IP=<BLOCK PRODUCERS PUBLIC IP ADDRESS>
+BLOCKPRODUCING_IP=<BLOCK PRODUCERS IP ADDRESS>
 BLOCKPRODUCING_PORT=6000
 curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:1|relays-new.cardano-mainnet.iohk.io:3001:2"
 EOF
 ```
+{% endtab %}
+
+{% tab title="testnet" %}
+```bash
+###
+### On relaynode1
+###
+cat > $NODE_HOME/relay-topology_pull.sh << EOF
+#!/bin/bash
+BLOCKPRODUCING_IP=<BLOCK PRODUCERS IP ADDRESS>
+BLOCKPRODUCING_PORT=6000
+curl -s -o $NODE_HOME/testnet-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&magic=1097911063&customPeers=${BLOCKPRODUCING_IP}:${BLOCKPRODUCING_PORT}:1|relays-new.cardano-testnet.iohkdev.io:3001:2"
+EOF
+```
+{% endtab %}
+{% endtabs %}
 
 Add permissions and pull new topology files.
 
@@ -1848,16 +1860,8 @@ sudo systemctl restart cardano-node
 ```
 
 {% hint style="warning" %}
-Don't forget to restart your relay nodes after every time you fetch the topology!
+Don't forget to restart your relay nodes after every time you fetch the topology! 
 {% endhint %}
-{% endtab %}
-{% endtabs %}
-
-{% hint style="danger" %}
-\*\*\*\*🔥 **Critical step:** In order to be a functional stake pool ready to mint blocks, you must see the **Processed  TX** number increasing in gLiveView. If not, review your topology file and ensure your **peers** \(or relay buddies\) are well connected and ideally, minted some blocks.
-{% endhint %}
-
-![Processed TX must be positive in gLiveView. Must also have in / out connections.](../../../.gitbook/assets/in-out-connections.png)
 
 {% hint style="danger" %}
 \*\*\*\*🛑 **Critical Key Security Reminde**r: The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer. Namely, the following three files.
@@ -1898,7 +1902,8 @@ cardano-cli query stake-address-info \
 
 ## 🔮 16. Setup Prometheus and Grafana Dashboard
 
-Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
+* Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/)
+* Grafana is a dashboard used to visualize the collected data.
 
 ###  🐣 16.1 Installation
 
@@ -1965,7 +1970,7 @@ sudo systemctl enable prometheus-node-exporter.service
 
 Update **prometheus.yml** located in `/etc/prometheus/prometheus.yml`
 
-Change the **&lt;block producer public ip address&gt;** in the following command.
+Change the **&lt;block producer ip address&gt;** in the following command.
 
 {% tabs %}
 {% tab title="relaynode1" %}
@@ -1987,8 +1992,8 @@ scrape_configs:
 
     static_configs:
       - targets: ['localhost:9100']
-      - targets: ['<block producer public ip address>:9100']
-      - targets: ['<block producer public ip address>:12798']
+      - targets: ['<block producer ip address>:9100']
+      - targets: ['<block producer ip address>:12798']
         labels:
           alias: 'block-producer-node'
           type:  'cardano-node'
@@ -2102,6 +2107,10 @@ curl -s 127.0.0.1:12798/metrics
 12. Click the **Import** button.
 
 ![Credits to KAZE stake pool for this dashboard](../../../.gitbook/assets/dashboard-kaze.jpg)
+
+{% hint style="info" %}
+Community contributer **Sansky.de** is sharing a very detailed Grafana tutorial 🙏 [https://sanskys.de/dashboard/](https://sanskys.de/dashboard/)
+{% endhint %}
 
 {% hint style="success" %}
 Congratulations. You're basically done. More great operational and maintenance tips below.
@@ -2235,6 +2244,25 @@ cardano-cli node key-gen-KES \
 
 Copy **kes.vkey** to your **cold environment.**
 
+Verify the current value of your **node.counter** is valid.
+
+```bash
+cat $HOME/cold-keys/node.counter
+
+# Example where value is 6
+# "Next certificate issue number: 6"
+```
+
+{% hint style="warning" %}
+A valid value of your **node.counter** MUST be greater than a recently created block's **OpCertC** value. 
+
+To find your pool's current **OpCertC** value, search for your pool on [https://adapools.org/](https://adapools.org/) and check the **Blocks** tab, then look at the **OpCertC** column.
+
+For example, if your **OpCerC** value is 5, then your node.counter should be`"Next certificate issue number: 6"`
+
+If not, then you need to increment the counter by running the below command with issue-op-cert.
+{% endhint %}
+
 Create the new `node.cert` file with the following command. Update `<startKesPeriod>` with the value from above.
 
 {% tabs %}
@@ -2276,19 +2304,7 @@ killall -s 2 cardano-node
 {% endtabs %}
 
 {% hint style="info" %}
-\*\*\*\*✨ **Tip:** With your hot keys created, you can remove access to the cold keys for improved security. This protects against accidental deletion, editing, or access. 
-
-To lock,
-
-```bash
-chmod a-rwx $HOME/cold-keys
-```
-
-To unlock,
-
-```bash
-chmod u+rwx $HOME/cold-keys
-```
+\*\*\*\*💡 **Best practice recommendation**: It's now a good time to make a new backup of your new `node.counter` file and `cold-keys` directory to another USB drive or other offline location.
 {% endhint %}
 
 ### 🔥 18.2 Resetting the installation
@@ -2640,6 +2656,10 @@ sed -i ${NODE_CONFIG}-config.json \
 ### 💸 18.9 Send a simple transaction example
 
 Let's walk through an example to send **10 ADA** to **CoinCashew's tip address** 🙃 
+
+{% hint style="info" %}
+The minimum amount, or smallest UTXO, you can send in one transaction is 1 ADA.
+{% endhint %}
 
 First, find the **tip** of the blockchain to set the **invalid-hereafter** parameter properly.
 
@@ -3056,9 +3076,13 @@ This command calculates a stake pool's expected slot list.
 
 * `prev` and `current` logs are available as long as you have a synchronized database. 
 * `next` logs are only available 1.5 days \(36 hours\) before the end of the epoch. 
-* You need to use `poolStakeMark` and `activeStakeMark` for `next`, `.poolStakeSet` and `activeStakeSet` for `current`, `poolStakeGo` and `activeStakeGo` for `prev`.
+* You need to use `poolStakeMark` and `activeStakeMark` for `next`, `poolStakeSet` and `activeStakeSet` for `current`, `poolStakeGo` and `activeStakeGo` for `prev`.
 
 Example usage with the `stake-snapshot` approach for `next` epoch:
+
+{% hint style="info" %}
+Run this command 1.5 days \(36 hours\) before the next epoch begins.
+{% endhint %}
 
 ```bash
 /usr/local/bin/cncli sync --host 127.0.0.1 --port 6000 --no-service
@@ -3067,8 +3091,8 @@ MYPOOLID=$(cat $NODE_HOME/stakepoolid.txt)
 echo "LeaderLog - POOLID $MYPOOLID"
 
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
-POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeGo": )\d+(?=,?)')
-ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeGo": )\d+(?=,?)')
+POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeMark": )\d+(?=,?)')
+ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeMark": )\d+(?=,?)')
 MYPOOL=`/usr/local/bin/cncli leaderlog --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
 echo $MYPOOL | jq .
 
@@ -3957,7 +3981,12 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 {% endtabs %}
 
 {% hint style="info" %}
-After retirement completes in 2 epochs, your pool deposit of 500 ADA is returned to your stake address \(stake.addr\). Withdraw funds following [section 18.11](./#18-11-claim-your-rewards).
+After retirement completes in 2 epochs, 
+
+* Verify your pool is retired by checking with a block explorer such as [cardanoscan.io](https://cardanoscan.io/)
+* Pool deposit of 500 ADA is returned to your stake address \(stake.addr\) as a reward.
+* Withdraw reward funds following [section 18.11](./#18-11-claim-your-rewards).
+* Finally send the funds away to another wallet with a [simple transaction as shown in section 18.9](./#18-9-send-a-simple-transaction-example).
 {% endhint %}
 
 ## 🚀 20. Onwards and upwards...

@@ -102,10 +102,12 @@ sudo chown $USER:$USER /var/lib/teku
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes.
 
-Run the following command to set the `MY_GRAFFITI` variable. Feel free to customize the message between the single quotes.
+Run the following command to set the `MY_GRAFFITI` variable. Feel free to customize your graffiti message between the single quotes.
 
 ```bash
-MY_GRAFFITI='OPERATION CLIENT DIVERSITY TEKU W/ COINCASHEW'
+MY_GRAFFITI=''
+# Example
+# MY_GRAFFITI='OPERATION CLIENT DIVERSITY TEKU W/ COINCASHEW'
 ```
 
 **Setup Teku Checkpoint Sync**
@@ -439,6 +441,12 @@ Update `my_keystore_password_goes_here` with your **keystore password** between 
 
 ```bash
 echo 'my_keystore_password_goes_here' > $HOME/validators-password.txt
+```
+
+Confirm that your **keystore password** is correct.
+
+```bash
+cat $HOME/validators-password.txt
 ```
 
 Move the password file and make it read-only.

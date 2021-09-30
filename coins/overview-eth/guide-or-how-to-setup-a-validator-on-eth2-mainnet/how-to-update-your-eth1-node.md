@@ -12,7 +12,7 @@ description: >-
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
 {% endhint %}
 
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
+{% embed url="https://gitcoin.co/grants/1653/ethereum-staking-guides-by-coincashew-with-poap" %}
 
 ## ⏩ Quick steps guide
 
@@ -143,7 +143,7 @@ sudo systemctl start eth1
 {% tabs %}
 {% tab title="Lighthouse \| Prysm \| Lodestar" %}
 ```bash
-sudo systemctl status eth1 status beacon-chain validator
+sudo systemctl status eth1 beacon-chain validator
 ```
 {% endtab %}
 
@@ -179,8 +179,4 @@ Hang out and chat with fellow stakers on Discord @
 
 ​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
-
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
-
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
