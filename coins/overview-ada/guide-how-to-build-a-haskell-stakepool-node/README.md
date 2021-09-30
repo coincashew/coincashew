@@ -303,7 +303,7 @@ sed -i ${NODE_CONFIG}-config.json \
 ```
 
 {% hint style="info" %}
-\*\*\*\*✨ **Tip for relay and block producer nodes**: It's possible to reduce the number of missed slot leader checks, memory and cpu usage by setting "TraceMemPool" to "false" in **mainnet-config.json**
+\*\*\*\*✨ **Tip for relay and block producer nodes**: It's possible to reduce the number of missed slot leader checks, memory and cpu usage by setting "TraceMempool" to "false" in **mainnet-config.json**
 {% endhint %}
 
 Update **.bashrc** shell variables.
