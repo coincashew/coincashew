@@ -10,15 +10,17 @@ description: >-
 ## 🎉 ∞ Pre-Announcements
 
 {% hint style="info" %}
-Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. Much appreciated in advance. 🙏 
 {% endhint %}
 
 {% hint style="success" %}
-As of September 22 2021, this is **guide version 4.0.2** and written for **cardano mainnet** with **release v.1.29.0** 😁 
+As of October 1 2021, this is **guide version 4.1.0** and written for **cardano mainnet** with **release v.1.30.1** 😁 
 {% endhint %}
 
-### 📄 Changelog - **Update Notes -** **September 22 2021**
+### 📄 Changelog - **Update Notes -** **October 1 2021**
 
+* Added a [collection of projects](./#17-6-community-inspired-projects) built by this amazing community.
+* Added cardano-node RTS flags to reduce chance of missed slot leader checks.
 * Added Leaderlog changes and improvements
 * Increased minimum RAM requirements to 12GB.
 * Updated for Alonzo release 1.29.0.
@@ -148,7 +150,7 @@ sudo ldconfig
 sudo apt-get install libnuma-dev
 ```
 
-This will help to solve "cannot find -lnuma" error when compiling
+This will help to solve "cannot find -lnuma" error when compiling.
 {% endhint %}
 
 Install Cabal and dependencies.
@@ -411,6 +413,13 @@ An air-gapped offline machine is called your cold environment.
 * Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air_gap_%28networking%29).
 {% endhint %}
 
+{% hint style="info" %}
+A note about **hardware requirements** for an air-gapped offline machine.
+
+* Can be as basic as a Raspberry Pi or an upcycled older laptop/desktop.
+* Uses an usb port to transport files back and forth.
+{% endhint %}
+
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
@@ -443,7 +452,7 @@ TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
-/usr/local/bin/cardano-node run +RTS -N -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
+/usr/local/bin/cardano-node run +RTS -N -A16m -qg -qb -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
 {% endtab %}
@@ -459,7 +468,7 @@ TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
-/usr/local/bin/cardano-node run +RTS -N -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
+/usr/local/bin/cardano-node run +RTS -N -A16m -qg -qb -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
 {% endtab %}
@@ -1435,21 +1444,21 @@ Update the next operation
 
 `cardano-cli stake-pool registration-certificate`
 
-to be run on your air-gapped offline machine appropriately. 
+to be run on your air-gapped offline machine appropriately. Replace with your proper domain names or IP addresses.
 
 **DNS based relays, 1 entry per DNS record**
 
 ```bash
-    --single-host-pool-relay relaynode1.myadapoolnamerocks.com\
+    --single-host-pool-relay <relaynode1.myadapoolnamerocks.com> \
     --pool-relay-port 6000 \
-    --single-host-pool-relay relaynode2.myadapoolnamerocks.com\
+    --single-host-pool-relay <relaynode2.myadapoolnamerocks.com> \
     --pool-relay-port 6000 \
 ```
 
 **Round Robin DNS based relays, 1 entry per** [**SRV DNS record**](https://support.dnsimple.com/articles/srv-record/)\*\*\*\*
 
 ```bash
-    --multi-host-pool-relay relayNodes.myadapoolnamerocks.com\
+    --multi-host-pool-relay <relayNodes.myadapoolnamerocks.com> \
     --pool-relay-port 6000 \
 ```
 
@@ -2203,6 +2212,20 @@ For more information and official documentation, please refer to the following l
 #### CNTools by Guild Operators
 
 Many pool operators have asked about how to deploy a stake pool with CNTools. The [official guide can be found here.](https://cardano-community.github.io/guild-operators/#/Scripts/cntools)
+
+### 🌍 17.6 Community Inspired Projects
+
+Did you build something new based on this guide? Let us know with a PR or open issue on [github](https://github.com/coincashew/coincashew).
+
+Here's a collection of some amazing community projects.
+
+{% embed url="https://sanskys.de/dashboard/" %}
+
+{% embed url="https://dev.xstakepool.com/" %}
+
+{% embed url="https://github.com/dodopontocom/darcano/tree/terraforming" %}
+
+{% embed url="https://www.youtube.com/watch?v=WI-bLYL5By4" %}
 
 ## 🛠 18. Operational and Maintenance Tips
 

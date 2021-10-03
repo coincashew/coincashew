@@ -3,11 +3,13 @@
 ## 🎉 ∞ Pre-Announcements
 
 {% hint style="info" %}
-🎊 This latest update brought to you by the generous donations by [**BEBOP stake pool**](https://bebopadapool.com/). If you found this helpful, consider using [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+🎊 This latest update brought to you by the generous donations by [**BEBOP stake pool**](https://bebopadapool.com/). 
+
+If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation addresses](https://cointr.ee/coincashew). Much appreciated in advance. 🙏 
 {% endhint %}
 
 {% hint style="success" %}
-As of August 27 2021, this guide is written for **mainnet** with **release v1.29.0** 😁 
+As of Oct 1 2021, this guide is written for **mainnet** with **release v1.30.1** 😁 
 {% endhint %}
 
 ## 📡 1. How to perform an update
@@ -19,6 +21,46 @@ Read the patch notes for any other special updates or dependencies that may be r
 {% endhint %}
 
 {% tabs %}
+{% tab title="v1.30.1 Notes" %}
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1**](https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1)\*\*\*\*
+
+### 🛑 Release Dependencies
+
+#### 1. If using cncli for leaderlogs and sendslots, update to `cncli version 4.0.1` is required.
+
+```bash
+RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
+VERSION=$(echo ${RELEASETAG} | cut -c 2-)
+echo "Installing release ${RELEASETAG}"
+curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+```
+
+```bash
+sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
+```
+
+#### Checking that cncli is properly updated
+
+```text
+cncli -V
+```
+
+It should return the updated version number.
+
+**2. Update gLiveView**
+
+```bash
+cd ${NODE_HOME}
+curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
+curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
+chmod 755 gLiveView.sh
+# Update env file with the stake pools configuration.
+sed -i env \
+    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
+    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
+```
+{% endtab %}
+
 {% tab title="v1.29.0 Notes" %}
 **Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0)\*\*\*\*
 
@@ -157,100 +199,6 @@ This point release is a recommended upgrade for all stake pool operators. It is 
 It is possible to upgrade from v1.25.1 but for a smooth update, ensure you have completed the v1.26.1 release dependencies, notably the ghc and cabal updates. Also note the database migration can take up to 2 hours.
 {% endhint %}
 {% endtab %}
-
-{% tab title="v1.26.1 Notes" %}
-**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.26.1**](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.1)\*\*\*\*
-
-This release includes significant performance improvements and numerous other minor improvements and feature additions. In particular the reward calculation pause is eliminated, and the CPU load for relays handling lots of incoming transactions should be significantly reduced.  
-The focus of the current development work is on completing and integrating support for the Alonzo era. This release includes many of the internal changes but does not yet include support for the new era.
-
-* Note that this release will automatically perform a DB migration on the first startup after the update. The **migration should take 10-120 minutes** however it can take up to 60 minutes depending on your CPU. If this is a problem for your use, then see below for steps to mitigate this.
-* The format of the `cardano-cli query tip` query has changed - see release notes for the CLI below.
-* The `cardano-cli query ledger-state` query now produces a binary file if `--out-file` is specified. If required \(e.g. for use in `cncli`\), JSON output can be obtained by omitting this parameter, and redirecting the standard output to a file
-
-#### Steps to mitigate downtime for this update
-
-This release will automatically perform a DB migration on the first startup after the update. The migration should take 10-20 minutes however it can take up to 60 minutes depending on your CPU.
-
-To mitigate downtime:
-
-1. Update a non-production mainnet node
-2. Take a DB snapshot
-3. Stop production node
-4. Backup and replace DB with snapshot
-5. Restart production node on 1.26.1
-6. Repeat steps 3-5 for all production nodes
-
-### 🛑 Release v1.26.1 New Dependencies
-
-#### 1. Install GHC 8.10.4 and Cabal 3.4.0.0 and update dependencies
-
-```bash
-sudo apt-get -y install pkg-config libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev
-```
-
-```bash
-sudo apt-get -y install build-essential curl libgmp-dev libffi-dev libncurses-dev libtinfo5
-```
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
-```
-
-Answer **NO** to installing haskell-language-server \(HLS\).
-
-Answer **YES** to automatically add the required PATH variable to ".bashrc".
-
-```bash
-source ~/.bashrc
-ghcup upgrade
-ghcup install ghc 8.10.4
-ghcup set ghc 8.10.4
-# Verify 8.10.4 is installed
-ghc --version  
-```
-
-```bash
-ghcup install cabal 3.4.0.0
-ghcup set cabal 3.4.0.0
-# Verify 3.4.0.0 is installed
-cabal --version 
-```
-
-#### 2. Update variables for topologyUpdater.sh on relay nodes
-
-`.blockNo` was changed to `.block`
-
-```bash
-cd $NODE_HOME
-sed -i topologyUpdater.sh \
-  -e "s/jq -r .blockNo/jq -r .block/g"
-```
-
-**3. Update gLiveView**
-
-```bash
-cd ${NODE_HOME}
-curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
-curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
-chmod 755 gLiveView.sh
-# Update env file with the stake pools configuration.
-sed -i env \
-    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
-    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
-```
-
-#### 4. If used, update qcpolsendmytip.sh on block producer core node
-
-Various variables changed.
-
-```bash
-cd $NODE_HOME
-sed -i qcpolsendmytip.sh \
-  -e "s/jq -r '.slotNo, .headerHash, .blockNo'/jq -r '.slot, .hash, .block'/g"
-sudo systemctl restart qcpolsendmytip
-```
-{% endtab %}
 {% endtabs %}
 
 ### Compiling the new binaries
@@ -334,8 +282,16 @@ cardano-node version
 cardano-cli version
 ```
 
+{% hint style="info" %}
+**Optional Best Practice**: Now is an opportune time to update/upgrade and reboot your Ubuntu operating system.
+
+```text
+sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
+```
+{% endhint %}
+
 {% hint style="success" %}
-Now restart your node to use the updated binaries.
+Now restart your node to use the updated binaries. If you used the previously mentioned optional best practice, your binaries should've already auto-started.
 {% endhint %}
 
 {% tabs %}
@@ -373,6 +329,27 @@ cd $HOME/git
 mv cardano-node/ cardano-node-old/
 mv cardano-node2/ cardano-node/
 ```
+
+Verify that your node is working successfully by either checking gLiveView, your other journalctl logs, or grafana dashboard.
+
+{% tabs %}
+{% tab title="gLiveView" %}
+```bash
+cd ${NODE_HOME}
+./gLiveView.sh
+```
+{% endtab %}
+
+{% tab title="journalctl" %}
+```
+journalctl -fu cardano-node
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+It may take some time to start a node, sometimes up to 30 minutes. gLiveView may appear stuck on "Starting..." but this is normal behavior and simply requires time.
+{% endhint %}
 
 {% hint style="danger" %}
 \*\*\*\*🤖 **Important Reminder**: Don't forget to update your **air-gapped offline machine \(cold environment\)** with the new **Cardano CLI** binaries.
