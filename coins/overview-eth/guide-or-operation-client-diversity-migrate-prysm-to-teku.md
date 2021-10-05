@@ -136,7 +136,7 @@ INFURA_PROJECT_ENDPOINT=<my Infura Project's ENDPOINT>
 
 ```bash
 # Example
-# INFURA_PROJECT_ENDPOINT=1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-mainnet.infura.io
+# INFURA_PROJECT_ENDPOINT=https://1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-mainnet.infura.io
 ```
 
 Confirm that your Infura Project Endpoint is correct.
@@ -363,6 +363,8 @@ sudo systemctl stop validator
 **Before continuing - Required Waiting Period !!!**
 
 Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes. 
+
+By waiting for a finalized epoch, there's no need to migrate the slashing database.
 
 Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
 {% endhint %}

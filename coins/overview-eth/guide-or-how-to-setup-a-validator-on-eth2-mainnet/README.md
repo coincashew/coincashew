@@ -15,7 +15,7 @@ description: >-
 {% embed url="https://gitcoin.co/grants/1653/ethereum-staking-guides-by-coincashew-with-poap" %}
 
 {% hint style="success" %}
-As of Sept 26 2021, this is **guide version 3.3.2** and written for **ethereum mainnet**😁 
+As of Sept 26 2021, this is **guide version 3.3.3** and written for **ethereum mainnet**😁 
 {% endhint %}
 
 {% hint style="info" %}
@@ -1725,7 +1725,7 @@ INFURA_PROJECT_ENDPOINT=<my Infura Project's ENDPOINT>
 
 ```bash
 # Example
-# INFURA_PROJECT_ENDPOINT=1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-mainnet.infura.io
+# INFURA_PROJECT_ENDPOINT=https://1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-mainnet.infura.io
 ```
 
 Confirm that your Infura Project Endpoint looks correct.

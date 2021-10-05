@@ -44,7 +44,7 @@ sudo nano /etc/systemd/system/beacon-chain.service
 # Append the following slasher flag to ExecStart
 --slasher --debug-level debug
 
-# Example of what your ExecStart should look like.
+# Example of what your ExecStart could look like.
 # lighthouse bn --staking --metrics --network mainnet --slasher --debug-level debug
 
 # Reload the new unit file
@@ -57,35 +57,25 @@ sudo systemctl restart beacon-chain
 
 {% tab title="Prysm" %}
 ```bash
-# Create a new slasher unit file
-cat > $HOME/slasher.service << EOF 
-# The eth2 slasher service (part of systemd)
-# file: /etc/systemd/system/slasher.service 
+# Revamped Prysm slasher implementation. 
+# The slasher functionality is no longer a standalone binary. 
+# Note: Running the slasher has considerably increased resource requirements. 
+# Be sure to review the latest documentation before enabling this feature. 
 
-[Unit]
-Description     = eth2 slasher service
-Wants           = network-online.target
-After           = network-online.target 
+# Edit your beacon-chain unit file
+sudo nano /etc/systemd/system/beacon-chain.service
 
-[Service]
-User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh slasher --mainnet
-Restart         = on-failure
+# Append the following slasher flag to ExecStart
+--slasher
 
-[Install]
-WantedBy    = multi-user.target
-EOF
+# Example of what your ExecStart could look like.
+# prysm.sh beacon-chain --slasher
 
-# Move the unit file to /etc/systemd/system 
-sudo mv $HOME/slasher.service /etc/systemd/system/slasher.service
-
-# Update file permissions.
-sudo chmod 644 /etc/systemd/system/slasher.service
-
-# Enable auto-start at boot time and then start your slasher service.
+# Reload the new unit file
 sudo systemctl daemon-reload
-sudo systemctl enable slasher
-sudo systemctl start slasher
+
+# Restart your beacon-chain
+sudo systemctl restart beacon-chain
 ```
 {% endtab %}
 {% endtabs %}

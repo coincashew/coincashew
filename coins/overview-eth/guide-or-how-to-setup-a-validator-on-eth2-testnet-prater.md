@@ -1729,7 +1729,7 @@ INFURA_PROJECT_ENDPOINT=<my Infura Project's ENDPOINT>
 
 ```bash
 # Example
-# INFURA_PROJECT_ENDPOINT=1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-prater.infura.io
+# INFURA_PROJECT_ENDPOINT=https://1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-prater.infura.io
 ```
 
 Confirm that your Infura Project Endpoint looks correct.
