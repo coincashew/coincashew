@@ -76,7 +76,7 @@ ICONex is currently the easiest way to stake, vote, and claim rewards. It's also
 
 19\. Click **Close**. Vote Request complete. :tada: 
 
-![When Voting is complete.](../../.gitbook/assets/icx-vote-complete.png)
+![When Voting is complete.](<../../.gitbook/assets/icx-vote complete.png>)
 
 ## :fireworks: 4. Claiming your Rewards
 

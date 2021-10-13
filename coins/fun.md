@@ -6,7 +6,7 @@ description: >-
 
 # FunFair: FUN
 
-## ![](broken-reference)![](../.gitbook/assets/fun.png) General Data
+## ![](broken-reference)![](<../.gitbook/assets/fun (1).png>) General Data
 
 | Site        | Title                                                                                        |
 | ----------- | -------------------------------------------------------------------------------------------- |
