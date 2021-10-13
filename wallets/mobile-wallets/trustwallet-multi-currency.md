@@ -4,23 +4,22 @@ description: Secure Crypto Wallet for Android and iOS by Binance
 
 # TrustWallet: Multi-chain assets
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://trustwallet.com" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/trustwallet" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://community.trustwallet.com/t/getting-started/40" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://community.trustwallet.com/c/helpcenter" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 {% embed url="https://trustwallet.com/assets" %}
-

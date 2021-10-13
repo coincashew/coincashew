@@ -4,23 +4,22 @@ description: The safe place for your coins. Open source hardware wallet.
 
 # Trezor.io Wallet
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://trezor.io/start/" %}
 
-## 📑Source Code
+## :bookmark_tabs:Source Code
 
 {% embed url="https://github.com/trezor" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
-{% embed url="https://wiki.trezor.io/Getting\_started\_in\_5\_steps" %}
+{% embed url="https://wiki.trezor.io/Getting_started_in_5_steps" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://trezor.io/support/general/" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 [https://trezor.io/coins/](https://trezor.io/coins/)
-

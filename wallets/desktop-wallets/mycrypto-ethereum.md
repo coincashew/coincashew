@@ -7,24 +7,23 @@ description: >-
 
 # MyCrypto: Ethereum
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://www.mycrypto.com/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/MyCryptoHQ" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://support.mycrypto.com/how-to/getting-started" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://support.mycrypto.com/" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Ethereum \(ETH\)](../../coins/overview-eth/)
-* Ethereum Classic \(ETC\)
-
+* [Ethereum (ETH)](../../coins/overview-eth/)
+* Ethereum Classic (ETC)

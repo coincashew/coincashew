@@ -6,16 +6,15 @@ description: >-
 
 # Cakewallet: Monero
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://cakewallet.com/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
-{% embed url="https://github.com/cake-tech/cake\_wallet" %}
+{% embed url="https://github.com/cake-tech/cake_wallet" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Monero \(XMR\)](../../coins/overview-xmr/)
-* XMR -&gt; BTC, LTC, ETH, BCH, DASH, USDT, EOS, XRP, TRX, BNB, ADA, XLM, and NANO in 3 Exchanges
-
+* [Monero (XMR)](../../coins/overview-xmr/)
+* XMR -> BTC, LTC, ETH, BCH, DASH, USDT, EOS, XRP, TRX, BNB, ADA, XLM, and NANO in 3 Exchanges

@@ -4,23 +4,22 @@ description: Yoroi is a web light wallet for Cardano.
 
 # Yoroi-wallet: Cardano
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://yoroi-wallet.com/" %}
 
-## 📑 Source Wallet
+## :bookmark_tabs: Source Wallet
 
 {% embed url="https://github.com/Emurgo/yoroi-frontend" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
-{% embed url="https://www.youtube.com/watch?v=DHtEgLMslIQ&feature=emb\_title" %}
+{% embed url="https://www.youtube.com/watch?v=DHtEgLMslIQ&feature=emb_title" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
-{% embed url="https://yoroi-wallet.com/\#/faq/1" %}
+{% embed url="https://yoroi-wallet.com/#/faq/1" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 * [Cardano ADA](../../coins/overview-ada/)
-

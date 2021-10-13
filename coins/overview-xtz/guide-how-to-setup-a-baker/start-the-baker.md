@@ -4,11 +4,11 @@ description: 'Baking uses four processes: the node, baker, endorser, accuser'
 
 # 5. Start the baker
 
-## 🏆 Almost there
+## :trophy: Almost there
 
 Becoming a baker comes with great power and responsibility. 
 
-First, you should open three more terminals in Ubuntu, one per process. Remember the keyboard shortcut, **press** Ctrl+Alt+T.
+First, you should open three more terminals in Ubuntu, one per process. Remember the keyboard shortcut, **press **Ctrl+Alt+T.
 
 In one terminal, you run the baker.
 
@@ -48,8 +48,7 @@ Congratulations. Your baker is now ready to bake some rolls!
 {% endhint %}
 
 {% hint style="info" %}
-Since you recently registered as a baker, you need to wait 7 cycles, or about 21 days, before you have rights to start baking and endorsing. Check on your baking rights with a block explorer such as [https://tzstats.com](https://tzstats.com/) via the **Bonds tab**.
+Since you recently registered as a baker, you need to wait 7 cycles, or about 21 days, before you have rights to start baking and endorsing. Check on your baking rights with a block explorer such as [https://tzstats.com](https://tzstats.com) via the **Bonds tab**.
 {% endhint %}
 
 ![Example of baking rights from tzstats.com](../../../.gitbook/assets/bondspic.png)
-

@@ -6,15 +6,14 @@ description: >-
 
 # Enjin: Multi-chain assets
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://enjin.io/products/wallet" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://support.enjin.io/help" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 {% embed url="https://support.enjin.io/help/enjin-wallet-supported-coins" %}
-

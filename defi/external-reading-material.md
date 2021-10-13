@@ -1,6 +1,6 @@
 # External Reading Material
 
-## 🧬 Decentralized Finance \(DeFi\) Fundamentals
+## :dna: Decentralized Finance (DeFi) Fundamentals
 
 {% embed url="https://www.binance.vision/blockchain/the-complete-beginners-guide-to-decentralized-finance-defi" %}
 
@@ -29,4 +29,3 @@
 {% embed url="https://decrypt.co/resources/defi-decentralized-finance-explained-guide-learn" %}
 
 {% embed url="https://thedefiant.substack.com/p/fail-proof-guide-to-make-defi-go-533" %}
-

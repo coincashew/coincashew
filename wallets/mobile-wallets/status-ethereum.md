@@ -6,18 +6,16 @@ description: >-
 
 # Status: Ethereum
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://status.im/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/status-im" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Ethereum \(ETH\)](../../coins/overview-eth/)
+* [Ethereum (ETH)](../../coins/overview-eth/)
 * [ERC Tokens](../../coins/overview-eth/)
-
-
 

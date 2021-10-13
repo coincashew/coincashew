@@ -1,19 +1,18 @@
 # Sync: Vechain
 
-## 🚀 Official Website
+## :rocket: Official Website
 
-{% embed url="https://env.vechain.org/\#sync" %}
+{% embed url="https://env.vechain.org/#sync" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/vechain/thor-sync.electron/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://docs.vechain.org/sync/user-guide/" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Vechain \(VET\)](../../coins/overview-vet/)
-* [VeThor \(VTHO\)](../../coins/overview-vet/)
-
+* [Vechain (VET)](../../coins/overview-vet/)
+* [VeThor (VTHO)](../../coins/overview-vet/)

@@ -7,14 +7,14 @@ description: >-
 # How to setup WireGuard
 
 {% hint style="info" %}
-Assuming you have a local node \(i.e. block producer / validator client / local laptop\) and remote node \(i.e. relay node / beacon-chain node / VPS\), this guide helps you secure and encrypt your network traffic between the two machines with WireGuard.
+Assuming you have a local node (i.e. block producer / validator client / local laptop) and remote node (i.e. relay node / beacon-chain node / VPS), this guide helps you secure and encrypt your network traffic between the two machines with WireGuard.
 
 This greatly minimizes the chances that your local node is attacked and minimizes the attack surface of the remote node by not requiring you to open ports for services such as Grafana.
 
 Only the remote node is public internet facing online and the local machine can access the remote node's internal services, such as Grafana.
 {% endhint %}
 
-## 🐣 1. Install Wireguard
+## :hatching_chick: 1. Install Wireguard
 
 {% hint style="info" %}
 Linux Headers needs to be installed before Wireguard. Below you see the generic headers being installed. 
@@ -34,14 +34,14 @@ sudo apt-get install wireguard -y
 {% hint style="info" %}
 In case of linux header problems, use the following instead.
 
-```text
+```
 sudo apt install linux-headers-$(uname -r)
 ```
 
 Be aware this will require installing the headers again. Not restarting with the new linux-headers will prevent Wireguard network interface from functioning.
 {% endhint %}
 
-##  🗝 2. Setup Public / Private Keypair
+##  :key2: 2. Setup Public / Private Keypair
 
 Generate a public/private key on each node by running the following commands.
 
@@ -57,7 +57,7 @@ wg genkey | tee wireguard-privatekey | wg pubkey > wireguard-publickey
 {% endtab %}
 {% endtabs %}
 
-## 🤖 3. Configure Wireguard
+## :robot: 3. Configure Wireguard
 
 Create a `wg0.conf` configuration file in  `/etc/wireguard` directory.
 
@@ -65,7 +65,7 @@ Update your Private and Public Keys accordingly.
 
 Change the Endpoint to your remote node public IP or DNS address.
 
-#### Two Node Setup \( i.e. 1 block producer, 1 relay node\)
+#### Two Node Setup ( i.e. 1 block producer, 1 relay node)
 
 {% tabs %}
 {% tab title="local node" %}
@@ -112,7 +112,7 @@ PersistentKeepalive = 21
 {% endtab %}
 {% endtabs %}
 
-#### Triple Node Setup \( i.e. 1 block producer, 2 relay nodes\)
+#### Triple Node Setup ( i.e. 1 block producer, 2 relay nodes)
 
 {% tabs %}
 {% tab title="local node" %}
@@ -197,7 +197,7 @@ PersistentKeepalive = 21
 {% endtab %}
 {% endtabs %}
 
-#### 🧱 Configure your firewall / port forwarding to allow port 51820 udp traffic to your node.
+#### :bricks: Configure your firewall / port forwarding to allow port 51820 udp traffic to your node.
 
 {% tabs %}
 {% tab title="local node" %}
@@ -217,7 +217,7 @@ sudo ufw verbose
 {% endtab %}
 {% endtabs %}
 
-## 🔗 4. Setup autostart with systemd
+## :link: 4. Setup autostart with systemd
 
 {% hint style="info" %}
 Setup systemd on both your local node and remote node.
@@ -227,7 +227,7 @@ Add the service to systemd.
 
 {% tabs %}
 {% tab title="local and remote node" %}
-```text
+```
 sudo systemctl enable wg-quick@wg0.service
 sudo systemctl daemon-reload
 ```
@@ -238,7 +238,7 @@ Start wireguard.
 
 {% tabs %}
 {% tab title="local and remote node" %}
-```text
+```
 sudo systemctl start wg-quick@wg0
 ```
 {% endtab %}
@@ -248,13 +248,13 @@ Check the status.
 
 {% tabs %}
 {% tab title="local and remote node" %}
-```text
+```
 sudo systemctl status wg-quick@wg0
 ```
 {% endtab %}
 {% endtabs %}
 
-## ✅ 5. Verify Connection is Working
+## :white_check_mark: 5. Verify Connection is Working
 
 Check the status of the interfaces by running `wg`
 
@@ -317,27 +317,27 @@ Update and/or review your topology.json file to ensure the "addr" matches this n
 
 **Dual node setup**
 
-> Example: topology.json on **blockproducer**  
+> Example: topology.json on **blockproducer**\
 > { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
 
-> topology.json on **relaynode1**   
+> topology.json on **relaynode1 **\
 > { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
 
 
 
 **Triple node setup**
 
-> Example: topology.json on **blockproducer**  
+> Example: topology.json on **blockproducer**\
 > { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
 >
 > { "addr": "10.0.0.3", "port": 6000, "valency": 1 },
 
-> topology.json on **relaynode1**   
+> topology.json on **relaynode1 **\
 > { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
 >
 > { "addr": "10.0.0.3", "port": 6000, "valency": 1 },
 
-> topology.json on **relaynode2**  
+> topology.json on **relaynode2**\
 > { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
 >
 > { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
@@ -358,11 +358,10 @@ To access Grafana from your local machine, enter into the browser `http://10.0.0
 Wireguard setup is complete.
 {% endhint %}
 
-## 🛑 6. Stop and disable Wireguard
+## :octagonal_sign: 6. Stop and disable Wireguard
 
-```text
+```
 sudo systemctl stop wg-quick@wg0
 sudo systemctl disable wg-quick@wg0.service
 sudo systemctl daemon-reload
 ```
-

@@ -7,31 +7,30 @@ description: >-
 
 # Galleon: Tezos
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="http://cryptonomic.tech/galleon.html" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 ### Creating and Loading a Wallet
 
-{% embed url="https://www.youtube.com/watch?v=XWDy06FqKIg&feature=emb\_title" %}
+{% embed url="https://www.youtube.com/watch?v=XWDy06FqKIg&feature=emb_title" %}
 
 ### Creating a Brand New Account
 
-{% embed url="https://www.youtube.com/watch?v=lLqCQUDaI1o&feature=emb\_title" %}
+{% embed url="https://www.youtube.com/watch?v=lLqCQUDaI1o&feature=emb_title" %}
 
 ### How to Delegate Tez
 
-{% embed url="https://www.youtube.com/watch?v=QBJACuJt5DA&feature=emb\_title" %}
+{% embed url="https://www.youtube.com/watch?v=QBJACuJt5DA&feature=emb_title" %}
 
 
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="http://cryptonomic.tech/support.html" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Tezos \(XTZ\)](../../coins/overview-xtz/)
-
+* [Tezos (XTZ)](../../coins/overview-xtz/)

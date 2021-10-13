@@ -1,14 +1,13 @@
 # Zcoin: Official Wallet
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://zcoin.io/get-zcoin/" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://zcoin.io/faq/" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 * [Zcoin](../../coins/xzc/)
-

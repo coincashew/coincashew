@@ -1,6 +1,6 @@
 # Guide: How to stake ONT
 
-## 🏁1. Prerequisites
+## :checkered_flag:1. Prerequisites
 
 In order to stake, ONT must be stored on a local wallet, where you control the seed/private keys. 
 
@@ -8,13 +8,17 @@ In order to stake, ONT must be stored on a local wallet, where you control the s
 Remember, it's best practice to always withdraw coins from an Exchange.
 {% endhint %}
 
-## 🌜 2. Download and use a compatible wallet
+## :last_quarter_moon_with_face: 2. Download and use a compatible wallet
 
-{% page-ref page="../../wallets/desktop-wallets/o3-neo-ont.md" %}
+{% content-ref url="../../wallets/desktop-wallets/o3-neo-ont.md" %}
+[o3-neo-ont.md](../../wallets/desktop-wallets/o3-neo-ont.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+{% content-ref url="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+[exodus-multi-chain-assets.md](../../wallets/mobile-wallets/exodus-multi-chain-assets.md)
+{% endcontent-ref %}
 
-## 🔥 3. Stake your ONT
+## :fire: 3. Stake your ONT
 
 {% hint style="info" %}
 Staking ONT means generating ONG. It's easy to stake because holding ONT in your own wallet is the only requirement.
@@ -31,6 +35,5 @@ Staking ONT means generating ONG. It's easy to stake because holding ONT in your
 ![](../../.gitbook/assets/neo-o3.png)
 
 {% hint style="success" %}
-✨ Now you're staking ONT and earning ONG, every block or 1 second.
+:sparkles: Now you're staking ONT and earning ONG, every block or 1 second.
 {% endhint %}
-

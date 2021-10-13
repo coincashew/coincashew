@@ -6,19 +6,18 @@ description: >-
 
 # Coinomi: Multi-chain assets
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://www.coinomi.com/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
-{% embed url="https://youtu.be/15r\_mcCFUAo" %}
+{% embed url="https://youtu.be/15r_mcCFUAo" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://coinomi.freshdesk.com/support/home" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 [https://www.coinomi.com/en/assets](https://www.coinomi.com/en/assets/)
-

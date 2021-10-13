@@ -6,17 +6,15 @@ description: >-
 
 # Solar: Stellar
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://solarwallet.io/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/satoshipay/solar" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Stellar \(XLM\)](../../coins/xlm/)
-
-
+* [Stellar (XLM)](../../coins/xlm/)
 

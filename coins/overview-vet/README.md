@@ -6,47 +6,54 @@ description: Public Blockchain for Business Mass Adoption
 
 ## ![](../../.gitbook/assets/vet.png) General Data
 
-| Site | Title |
-| :--- | :--- |
-| Website | [https://www.vechain.org/](https://www.vechain.org/) |
+| Site        | Title                                                              |
+| ----------- | ------------------------------------------------------------------ |
+| Website     | [https://www.vechain.org/](https://www.vechain.org)                |
 | Source Code | [https://github.com/vechain/thor](https://github.com/vechain/thor) |
-| Whitepaper | [https://docs.vechain.org/](https://docs.vechain.org/) |
+| Whitepaper  | [https://docs.vechain.org/](https://docs.vechain.org)              |
 
-## 🙋 Social Media and Community
+## :person_raising_hand: Social Media and Community
 
-| Community | Link |
-| :--- | :--- |
-| 🐦 Twitter | [https://twitter.com/vechainofficial](https://twitter.com/vechainofficial) |
-| Reddit | [https://www.reddit.com/r/vechain](https://www.reddit.com/r/vechain) |
-| Telegram | [https://t.me/vechain\_official\_english](https://t.me/vechain_official_english) |
-| Telegram News | [https://t.me/vechainannouncement](https://t.me/vechainannouncement) |
-| Builders | [https://www.builders.vechain.org/](https://www.builders.vechain.org/) |
-| Vechain Insider | [http://vechaininsider.com/](http://vechaininsider.com/) |
-| Wiki | [https://www.reddit.com/r/Vechain/wiki/index](https://www.reddit.com/r/Vechain/wiki/index) |
+| Community       | Link                                                                                       |
+| --------------- | ------------------------------------------------------------------------------------------ |
+| :bird: Twitter  | [https://twitter.com/vechainofficial](https://twitter.com/vechainofficial)                 |
+| Reddit          | [https://www.reddit.com/r/vechain](https://www.reddit.com/r/vechain)                       |
+| Telegram        | [https://t.me/vechain_official_english](https://t.me/vechain_official_english)             |
+| Telegram News   | [https://t.me/vechainannouncement](https://t.me/vechainannouncement)                       |
+| Builders        | [https://www.builders.vechain.org/](https://www.builders.vechain.org)                      |
+| Vechain Insider | [http://vechaininsider.com/](http://vechaininsider.com)                                    |
+| Wiki            | [https://www.reddit.com/r/Vechain/wiki/index](https://www.reddit.com/r/Vechain/wiki/index) |
 
-## 🔃 Block Explorers
+## :arrows_clockwise: Block Explorers
 
-| Site |
-| :--- |
-| [http://explore.vechain.org/](http://explore.vechain.org/) |
-| [https://www.vescan.io/](https://www.vescan.io/) |
-| [https://insight.vecha.in/](https://insight.vecha.in/) |
-| [https://explorer.vtho.net/](https://explorer.vtho.net/) |
+| Site                                                      |
+| --------------------------------------------------------- |
+| [http://explore.vechain.org/](http://explore.vechain.org) |
+| [https://www.vescan.io/](https://www.vescan.io)           |
+| [https://insight.vecha.in/](https://insight.vecha.in)     |
+| [https://explorer.vtho.net/](https://explorer.vtho.net)   |
 
-## 📊 Charts and Pricing
+## :bar_chart: Charts and Pricing
 
-| Site | Link |
-| :--- | :--- |
-| CoinPaprika | [https://coinpaprika.com/coin/vet-vechain/](https://coinpaprika.com/coin/vet-vechain/) |
+| Site          | Link                                                                                           |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| CoinPaprika   | [https://coinpaprika.com/coin/vet-vechain/](https://coinpaprika.com/coin/vet-vechain/)         |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/vechain/](https://coinmarketcap.com/currencies/vechain/) |
 
-## 💰 Wallets
+## :moneybag: Wallets
 
-{% page-ref page="../../wallets/mobile-wallets/vechainthor-wallet-vet.md" %}
+{% content-ref url="../../wallets/mobile-wallets/vechainthor-wallet-vet.md" %}
+[vechainthor-wallet-vet.md](../../wallets/mobile-wallets/vechainthor-wallet-vet.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/desktop-wallets/sync-vechain.md" %}
+{% content-ref url="../../wallets/desktop-wallets/sync-vechain.md" %}
+[sync-vechain.md](../../wallets/desktop-wallets/sync-vechain.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+{% content-ref url="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+[exodus-multi-chain-assets.md](../../wallets/mobile-wallets/exodus-multi-chain-assets.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
-
+{% content-ref url="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+[guarda-multi-chain-assets.md](../../wallets/mobile-wallets/guarda-multi-chain-assets.md)
+{% endcontent-ref %}

@@ -1,6 +1,6 @@
 # Guide: Dollar-cost averaging into crypto
 
-### 💸 A sat or wei a day can relieve all volatility and stress away.
+### :money_with_wings: A sat or wei a day can relieve all volatility and stress away.
 
 {% hint style="info" %}
 By dollar-cost averaging, you can automatically build a position gradually over time by buying periodically every day/week/month/etc.
@@ -10,38 +10,37 @@ Here is a list of known services by region.
 
 ## Asia
 
-### 🇦🇺 Australia
+### :flag_au: Australia
 
-* [Bitaroo](https://www.bitaroo.com.au/)
-* [amber.](https://www.getamber.io/)
-* [Independent Reserve](https://www.independentreserve.com/)
+* [Bitaroo](https://www.bitaroo.com.au)
+* [amber.](https://www.getamber.io)
+* [Independent Reserve](https://www.independentreserve.com)
 
-### 🇮🇳 India
+### :flag_in: India
 
-* [Bitdroplet](https://bitdroplet.com/)
+* [Bitdroplet](https://bitdroplet.com)
 
-### 🇳🇿 New Zealand
+### :flag_nz: New Zealand
 
-* [Vimba](https://vimba.co/)
+* [Vimba](https://vimba.co)
 
 ## North America
 
-### 🇺🇸 United States
+### :flag_us: United States
 
-* [CashApp](https://cash.app/)
+* [CashApp](https://cash.app)
 * [Gemini.com](https://support.gemini.com/hc/en-us/articles/360020827411-What-is-a-recurring-buy-)
-* [SwanBitcoin](http://swanbitcoin.com/)
-* [RIVER FINANCIAL](https://river.com/)
-* [DonutApp](https://www.donut.app/)
+* [SwanBitcoin](http://swanbitcoin.com)
+* [RIVER FINANCIAL](https://river.com)
+* [DonutApp](https://www.donut.app)
 
-### 🇨🇦 Canada
+### :flag_ca: Canada
 
-* [BullBitcoin](https://bullbitcoin.com/)
+* [BullBitcoin](https://bullbitcoin.com)
 * [Gemini.com](https://support.gemini.com/hc/en-us/articles/360020827411-What-is-a-recurring-buy-)
 
-## 🇪🇺 Europe
+## :flag_eu: Europe
 
-* [BitPanda](https://www.bitpanda.com/)
-* [Vimba](https://vimba.co/)
+* [BitPanda](https://www.bitpanda.com)
+* [Vimba](https://vimba.co)
 * [CoinFloor](https://coinfloor.co.uk/hodl/)
-

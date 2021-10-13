@@ -4,40 +4,40 @@ description: >-
   connectivity issues with other validators when my dynamic IP address changes.
 ---
 
-# How to setup dynamic DNS \(DDNS\)
+# How to setup dynamic DNS (DDNS)
 
-## ⏩ Quick steps guide
+## :fast_forward: Quick steps guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
-### 🗡 Why do I need a dynamic DNS service?
+### :dagger: Why do I need a dynamic DNS service?
 
 * Most internet connections are through a dynamic IP address and can change weekly or even daily.
 * Frequent IP changes can make it difficult to host services such as a validator.
-* As a workaround, you can use a DDNS \(Dynamic DNS\) service.
-* Using a subdomain \(i.e. mySubDomain.duckdns.org\), you relate this to your latest dynamic IP address.
+* As a workaround, you can use a DDNS (Dynamic DNS) service.
+* Using a subdomain (i.e. mySubDomain.duckdns.org), you relate this to your latest dynamic IP address.
 * Periodically, say every 5 minutes, your computer updates a subdomain with your latest dynamic IP address.
 * Other validators or users would find you via the subdomain, instead of IP address.
 
 {% hint style="info" %}
-There are many [alternative DDNS services](https://hackerspad.net/software/duck-dns/#alternatives) but seldom do they accept crypto donations like [Duck DNS](https://www.duckdns.org/).
+There are many [alternative DDNS services](https://hackerspad.net/software/duck-dns/#alternatives) but seldom do they accept crypto donations like [Duck DNS](https://www.duckdns.org).
 {% endhint %}
 
-### 🤖 Minimum System Requirements
+### :robot: Minimum System Requirements
 
 * Linux cron
 
-### 🚧 How to Configure the DDNS
+### :construction: How to Configure the DDNS
 
 For the purpose of this tutorial, we will be using [DuckDNS.org](https://www.duckdns.org/install.jsp)
 
-1. Sign in and create an account with your preferred social media login. 
+1\. Sign in and create an account with your preferred social media login. 
 
-2. Follow the instructions on[ how to setup duckdns for linux cron.](https://www.duckdns.org/install.jsp)
+2\. Follow the instructions on[ how to setup duckdns for linux cron.](https://www.duckdns.org/install.jsp)
 
-3. Configure the **beacon-chain** to use your new DDNS subdomain.
+3\. Configure the **beacon-chain** to use your new DDNS subdomain.
 
 {% tabs %}
 {% tab title="Prysm" %}
@@ -68,9 +68,9 @@ Nice work. You're running a DDNS now.
 Be sure to familiarize yourself with the [official docs and faqs.](https://www.duckdns.org/faqs.jsp)
 {% endhint %}
 
-##  🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+##  :robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨
@@ -88,7 +88,6 @@ Hang out and chat with fellow stakers on Discord @
 ​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
 
-## 🧩 Reference Material
+## :jigsaw: Reference Material
 
 {% embed url="https://www.duckdns.org/install.jsp" %}
-

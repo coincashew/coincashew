@@ -8,17 +8,16 @@ description: >-
 
 ## 🚀 Official Website
 
-{% embed url="https://www.exodus.io/" caption="" %}
+{% embed url="https://www.exodus.io/" %}
 
 ## 🧙 Getting started
 
-{% embed url="https://support.exodus.io/article/37-how-do-i-get-started-with-exodus" caption="" %}
+{% embed url="https://support.exodus.io/article/37-how-do-i-get-started-with-exodus" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
-{% embed url="https://support.exodus.io/" caption="" %}
+{% embed url="https://support.exodus.io/" %}
 
 ## 💰 Supported Assets
 
 * [https://www.exodus.io/status/](https://www.exodus.io/status/)
-

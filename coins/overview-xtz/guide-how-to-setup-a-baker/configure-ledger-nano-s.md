@@ -1,22 +1,23 @@
 # 4. Configure Ledger Nano S
 
-## 🕵♀ 1\) Update udev rules
+## :woman_detective: 1) Update udev rules
 
-This enables the Ledger Nano device to work via USB. \[[\*Reference](https://support.ledger.com/hc/en-us/articles/360019301813-Fix-USB-issues)\]
+This enables the Ledger Nano device to work via USB. \[[\*Reference](https://support.ledger.com/hc/en-us/articles/360019301813-Fix-USB-issues)]
 
 ```bash
 wget -q -O - https://raw.githubusercontent.com/LedgerHQ/udev-rules/master/add_udev_rules.sh | sudo bash
 ```
 
-## 📱 2\) Install Ledger Live
+## :mobile_phone: 2) Install Ledger Live
 
 1. Navigate to [ledger.com/ledger-live/download](https://www.ledger.com/ledger-live/download).
 2. Download the Ledger Live AppImage.
-3. Make the file executable. In a terminal: `chmod +x ledger-live-*.AppImage`
+3. Make the file executable.\
+   In a terminal: `chmod +x ledger-live-*.AppImage`
 4. Launch the AppImage by double-clicking on it or via your terminal.
 5. Follow the wizard to setup your Ledger Wallet hardware device.
 
-## 🧩 3\) Install the latest Tezos Wallet and Baking companion apps
+## :jigsaw: 3) Install the latest Tezos Wallet and Baking companion apps
 
 1. Plug in your Ledger Nano hardware wallet
 2. Enter your PIN code to unlock
@@ -28,9 +29,9 @@ wget -q -O - https://raw.githubusercontent.com/LedgerHQ/udev-rules/master/add_ud
 
 ![Installing the Tezos ledger apps](../../../.gitbook/assets/ledger.PNG)
 
-## ⛓ 4\) Import secret key from Ledger Nano
+## :chains: 4) Import secret key from Ledger Nano
 
- **Press** Ctrl+Alt+T to open a new terminal.
+ **Press **Ctrl+Alt+T to open a new terminal.
 
 Verify that your Ledger Nano is connected.
 
@@ -57,7 +58,7 @@ tezos-client import secret key ledger_username "ledger://happy-funny-moody-fun/s
 tezos-client import secret key ledger_username "ledger://happy-funny-moody-fun/P-256/0h/0h"
 ```
 
-Import an account by copying and pasting one of the `tezos-client import secret` commands. 
+Import an account by copying and pasting one of the `tezos-client import secret `commands. 
 
 {% hint style="info" %}
 It's recommended to use the **ed25519 curve command** as this is the most widely supported account.
@@ -87,7 +88,7 @@ Example:
 
 > `ledger_mybaker: tz1LoLVKXA7VL7s3V7uHeXHeHpz8RNxyAE78 (ledger sk known)`
 
-## 👩🍳 5\) Register your intention to be a baker
+## :woman_cook: 5) Register your intention to be a baker
 
 Check that your node is fully synchronized.
 
@@ -107,7 +108,7 @@ When your node is fully synchronized, the output will say `Bootstrapped.`
 
 On your Ledger Nano, click the buttons to acknowledge the transaction.
 
-## ⛏ 6\) Configure Ledger Baking app
+## :pick: 6) Configure Ledger Baking app
 
 1. Open the **Tezos Baking** app on your Ledger Nano.
 2. Run the following command from a terminal and then acknowledge the command on your device.
@@ -115,4 +116,3 @@ On your Ledger Nano, click the buttons to acknowledge the transaction.
 ```bash
 ./tezos-client setup ledger to bake for ledger_mybaker --main-chain-id NetXdQprcVkpaWU
 ```
-

@@ -4,19 +4,18 @@ description: Fast. Secure. Open Source.
 
 # Grin++: Grin
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://grinplusplus.github.io/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://github.com/GrinPlusPlus/GrinPlusPlus/wiki" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://github.com/GrinPlusPlus/GrinPlusPlus/wiki" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Grin \(GRIN\)](../../coins/overview-grin/)
-
+* [Grin (GRIN)](../../coins/overview-grin/)

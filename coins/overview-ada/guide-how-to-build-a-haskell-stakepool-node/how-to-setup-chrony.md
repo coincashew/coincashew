@@ -6,11 +6,11 @@ description: >-
 
 # How to setup chrony
 
-## 🐣 1. Installation
+## :hatching_chick: 1. Installation
 
 Install chrony.
 
-```text
+```
 sudo apt-get install chrony -y
 ```
 
@@ -57,7 +57,7 @@ sudo mv $HOME/chrony.conf /etc/chrony/chrony.conf
 
 Restart chrony in order for config change to take effect.
 
-```text
+```
 sudo systemctl restart chronyd.service
 ```
 
@@ -70,25 +70,25 @@ sudo ufw allow 123/udp
 ```
 {% endhint %}
 
-## 🤖 2. Helpful Commands
+## :robot: 2. Helpful Commands
 
 To see the source of synchronization data.
 
-```text
+```
 chronyc sources
 ```
 
 To view the current status of chrony.
 
-```text
+```
 chronyc tracking
 ```
 
-## 🔥 Bonus Commands
+## :fire: Bonus Commands
 
 To pick your timezone run the following command:
 
-```text
+```
 sudo dpkg-reconfigure tzdata
 ```
 
@@ -96,9 +96,8 @@ Find your region using the simple text-based GUI.
 
 In the event that you are using national system like India's `IST` select:
 
-```text
+```
 Asia/Kolkata
 ```
 
-This will be appropriate for all lales in the country \(`IST`, `GMT+0530`\).
-
+This will be appropriate for all lales in the country (`IST`, `GMT+0530`).

@@ -8,56 +8,69 @@ description: >-
 
 ## ![](../.gitbook/assets/dgb.png) General Data
 
-| Site | Title |
-| :--- | :--- |
-| Website | [http://www.digibyte.io/](http://www.digibyte.io/) |
-| Foundation | [https://digibytefoundation.io/](https://digibytefoundation.io/) |
+| Site        | Title                                                                |
+| ----------- | -------------------------------------------------------------------- |
+| Website     | [http://www.digibyte.io/](http://www.digibyte.io)                    |
+| Foundation  | [https://digibytefoundation.io/](https://digibytefoundation.io)      |
 | Source Code | [https://github.com/DigiByte-Core](https://github.com/DigiByte-Core) |
 
-## 🙋 Social Media and Community
+## :person_raising_hand: Social Media and Community
 
-| Community | Link |
-| :--- | :--- |
-| 🐦 Twitter | [https://twitter.com/DigiByteCoin](https://twitter.com/DigiByteCoin) |
-| Reddit | [https://www.reddit.com/r/Digibyte](https://www.reddit.com/r/Digibyte) |
-| Facebook | [https://www.facebook.com/digibytecoin/](https://www.facebook.com/digibytecoin/) |
-| Bitcointalk | [https://bitcointalk.org/index.php?topic=408268.0](https://bitcointalk.org/index.php?topic=408268.0) |
-| Telegram | [https://t.me/DigiByteCoin](https://t.me/DigiByteCoin) |
-| Wiki | [https://dgbwiki.com/](https://dgbwiki.com/) |
-| Digistats | [https://digistats.digibyteservers.io/](https://digistats.digibyteservers.io/) |
+| Community      | Link                                                                                                 |
+| -------------- | ---------------------------------------------------------------------------------------------------- |
+| :bird: Twitter | [https://twitter.com/DigiByteCoin](https://twitter.com/DigiByteCoin)                                 |
+| Reddit         | [https://www.reddit.com/r/Digibyte](https://www.reddit.com/r/Digibyte)                               |
+| Facebook       | [https://www.facebook.com/digibytecoin/](https://www.facebook.com/digibytecoin/)                     |
+| Bitcointalk    | [https://bitcointalk.org/index.php?topic=408268.0](https://bitcointalk.org/index.php?topic=408268.0) |
+| Telegram       | [https://t.me/DigiByteCoin](https://t.me/DigiByteCoin)                                               |
+| Wiki           | [https://dgbwiki.com/](https://dgbwiki.com)                                                          |
+| Digistats      | [https://digistats.digibyteservers.io/](https://digistats.digibyteservers.io)                        |
 
-## 🔃 Block Explorers
+## :arrows_clockwise: Block Explorers
 
-| Site |
-| :--- |
-| [https://dgb1.trezor.io/](https://dgb1.trezor.io/) |
-| [https://digiexplorer.info/](https://digiexplorer.info/) |
-| [https://dgb.tokenview.com/en/](https://dgb.tokenview.com/en/) |
-| [https://dgb.ccore.online/](https://dgb.ccore.online/) |
-| [https://chainz.cryptoid.info/dgb/](https://chainz.cryptoid.info/dgb/) |
+| Site                                                                                 |
+| ------------------------------------------------------------------------------------ |
+| [https://dgb1.trezor.io/](https://dgb1.trezor.io)                                    |
+| [https://digiexplorer.info/](https://digiexplorer.info)                              |
+| [https://dgb.tokenview.com/en/](https://dgb.tokenview.com/en/)                       |
+| [https://dgb.ccore.online/](https://dgb.ccore.online)                                |
+| [https://chainz.cryptoid.info/dgb/](https://chainz.cryptoid.info/dgb/)               |
 | [https://altexplorer.co/coin/dgb/explorer](https://altexplorer.co/coin/dgb/explorer) |
-| [https://insight.digibyte.host/](https://insight.digibyte.host/) |
+| [https://insight.digibyte.host/](https://insight.digibyte.host)                      |
 
-## 📊 Charts and Pricing
+## :bar_chart: Charts and Pricing
 
-| Site | Link |
-| :--- | :--- |
-| CoinPaprika | [https://coinpaprika.com/coin/dgb-digibyte/](https://coinpaprika.com/coin/dgb-digibyte/) |
+| Site          | Link                                                                                             |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| CoinPaprika   | [https://coinpaprika.com/coin/dgb-digibyte/](https://coinpaprika.com/coin/dgb-digibyte/)         |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/digibyte/](https://coinmarketcap.com/currencies/digibyte/) |
 
-## 💰 Wallets
+## :moneybag: Wallets
 
-{% page-ref page="../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+{% content-ref url="../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+[coinomi-multi-chain-assets.md](../wallets/mobile-wallets/coinomi-multi-chain-assets.md)
+{% endcontent-ref %}
 
-{% page-ref page="../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+{% content-ref url="../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+[exodus-multi-chain-assets.md](../wallets/mobile-wallets/exodus-multi-chain-assets.md)
+{% endcontent-ref %}
 
-{% page-ref page="../wallets/desktop-wallets/atomic-multi-currency.md" %}
+{% content-ref url="../wallets/desktop-wallets/atomic-multi-currency.md" %}
+[atomic-multi-currency.md](../wallets/desktop-wallets/atomic-multi-currency.md)
+{% endcontent-ref %}
 
-{% page-ref page="../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
+{% content-ref url="../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
+[trustwallet-multi-currency.md](../wallets/mobile-wallets/trustwallet-multi-currency.md)
+{% endcontent-ref %}
 
-{% page-ref page="../wallets/hardware-wallets/trezor.io-wallet/" %}
+{% content-ref url="../wallets/hardware-wallets/trezor.io-wallet/" %}
+[trezor.io-wallet](../wallets/hardware-wallets/trezor.io-wallet/)
+{% endcontent-ref %}
 
-{% page-ref page="../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
+{% content-ref url="../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
+[ledger-live-ledger-nano-wallet](../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/)
+{% endcontent-ref %}
 
-{% page-ref page="../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
-
+{% content-ref url="../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+[guarda-multi-chain-assets.md](../wallets/mobile-wallets/guarda-multi-chain-assets.md)
+{% endcontent-ref %}

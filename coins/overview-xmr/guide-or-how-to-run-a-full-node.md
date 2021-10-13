@@ -4,7 +4,7 @@ description: >-
   how.
 ---
 
-# Guide \| How to run your own Monero node
+# Guide | How to run your own Monero node
 
 ## ​🗡 Why should I run my own Monero node?
 
@@ -12,7 +12,7 @@ description: >-
 * If you do not run your own node, you are relying on other's nodes to verify and send your transactions.
 * To contribute to the decentralization of the Monero network.
 * To use a monero wallet requires connecting to a fully synched node. Best node is your own.
-* To connect to the monero network, you run a peer-to-peer application called **monerod** \(the d stands for daemon\) and it forms the backbone of the Monero network.
+* To connect to the monero network, you run a peer-to-peer application called **monerod **(the d stands for daemon) and it forms the backbone of the Monero network.
 * **Optional**: Offering your node as a public remote note is to volunteer your node as a public resource by helping onboard new monero nodes and relay other monero users transactions.
 
 {% hint style="info" %}
@@ -22,13 +22,13 @@ Monero nodes come in two flavours.
 * **Pruned Node**: Stores a random 1/8th of the blockchain's data and requires much less disk space
 {% endhint %}
 
-### ​  🚀Minimum Full Node System Requirements <a id="minimum-slasher-system-requirements"></a>
+### ​  :rocket:Minimum Full Node System Requirements <a href="minimum-slasher-system-requirements" id="minimum-slasher-system-requirements"></a>
 
 * Dual-core CPU
 * 4+ GB RAM
 * 160GB+ SSD HD
 
-### 🤖 Minimum Pruned Node System Requirements <a id="minimum-slasher-system-requirements"></a>
+### :robot: Minimum Pruned Node System Requirements <a href="minimum-slasher-system-requirements" id="minimum-slasher-system-requirements"></a>
 
 * Same as full node yet with a smaller HD
 * 80GB+ SSD HD
@@ -37,7 +37,7 @@ Monero nodes come in two flavours.
 As of early 2021, a pruned node uses 32GB and a full node uses 96GB of storage space.
 {% endhint %}
 
-## 🧱 1. Configuring ports and firewall
+## :bricks: 1. Configuring ports and firewall
 
 ![Kudos to r/Krakataua314](../../.gitbook/assets/10iwbu47ul761.png)
 
@@ -172,10 +172,10 @@ limit-rate-down=1048576 # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s;
 {% hint style="info" %}
 **Configuration File Comments**
 
-* Modify `prune-blockchain` to `false` if you want to store full blockchain
-* Modify `public-node` to `false` if you do not want other users to use your node.
+* Modify `prune-blockchain` to `false `if you want to store full blockchain
+* Modify `public-node` to `false `if you do not want other users to use your node.
 * `rpc-restricted-bind-ip/port flags`enable restricted access to your node but allow full RPC from other Monero wallets on your LAN.
-* Limit the upload speed in case you have a data cap: `limit-rate-up=8192` \(in kB/s\). Conversely, if you have an unlimited data plan, consider increasing the upload speeds to better support the Monero network. A node can typically use up to 1TB traffic per month.
+* Limit the upload speed in case you have a data cap: `limit-rate-up=8192` (in kB/s). Conversely, if you have an unlimited data plan, consider increasing the upload speeds to better support the Monero network. A node can typically use up to 1TB traffic per month.
 {% endhint %}
 
 Create a `monerod.service`  systemd unit file. Simply copy and paste the following.
@@ -208,7 +208,7 @@ sudo mv $HOME/monerod.service /etc/systemd/system/monerod.service
 
 Restart monerod in order for config change to take effect.
 
-```text
+```
 sudo systemctl daemon-reload
 sudo systemctl enable monerod
 sudo systemctl restart monerod
@@ -216,13 +216,13 @@ sudo systemctl restart monerod
 
 Check the systemd service with
 
-```text
+```
 journalctl -fu monerod
 ```
 
 Review the logs for any errors. CTRL + C to exit.
 
-```text
+```
 tail -f /var/log/monero/monero.log
 ```
 
@@ -230,7 +230,7 @@ tail -f /var/log/monero/monero.log
 Allow the node to sync. This may take a few hours up to a few days depending on your node's system resources.
 {% endhint %}
 
-Your node is completely synchronized the node status says **height:** **n / n** **100%** and has the same **block height** as a public xmr block explorer such as [https://blockchair.com/monero](https://blockchair.com/monero) or [http://xmrchain.net/](http://xmrchain.net/)
+Your node is completely synchronized the node status says **height:** **n / n** **100%** and has the same **block height** as a public xmr block explorer such as [https://blockchair.com/monero](https://blockchair.com/monero) or [http://xmrchain.net/](http://xmrchain.net)
 
 Check your node's block height with the following command.
 
@@ -239,10 +239,10 @@ monerod status
 ```
 
 {% hint style="success" %}
-Connect to your brand new node with your favorite clients such as Monerujo, CakeWallet or Monero-GUI. Simply enter your node's IP or hostname into the remote node field. Congrats! 🎊 
+Connect to your brand new node with your favorite clients such as Monerujo, CakeWallet or Monero-GUI. Simply enter your node's IP or hostname into the remote node field. Congrats! :confetti_ball: 
 {% endhint %}
 
-## ⛏ Optional: Start mining
+## :pick: Optional: Start mining
 
 Like winning a lotto ticket, your monero node has a chance to mine a block. You may never win a block but your hashrate helps protect and strengthen the network.
 
@@ -254,7 +254,7 @@ Run the following command.
 monerod start_mining <YOUR XMR ADDRESS> <NUMBER OF THREADS>
 ```
 
-## 🛸 Optional: Setup I2P
+## :flying_saucer: Optional: Setup I2P
 
 Download I2p.
 
@@ -305,22 +305,22 @@ sudo mv $HOME/i2pzero.service /etc/systemd/system/i2pzero.service
 
 Check the logs.
 
-```text
+```
 journalctl -fu i2pzero
 ```
 
 Restart i2pzero in order for config change to take effect.
 
-```text
+```
 sudo systemctl daemon-reload
 sudo systemctl enable i2pzero
 sudo systemctl start i2pzero
 sudo systemctl status i2pzero
 ```
 
-Based on the status, open the port &lt;NUMBER&gt; on your firewall for best performance.
+Based on the status, open the port \<NUMBER> on your firewall for best performance.
 
-> For best performance, please open port &lt;NUMBER&gt; on your firewall for incoming UDP and TCP connections. This port has been randomly assigned to you. For privacy reasons, please do not share this port with others.
+> For best performance, please open port \<NUMBER> on your firewall for incoming UDP and TCP connections. This port has been randomly assigned to you. For privacy reasons, please do not share this port with others.
 
 ```bash
 cd $HOME/i2p-zero-linux
@@ -347,11 +347,11 @@ sudo ufw allow 8060
 
 Restart monerod.
 
-```text
+```
 sudo systemctl restart monerod
 ```
 
-##  🛠 2. How to update a monero node <a id="7-update-a-eth2-client"></a>
+##  :tools: 2. How to update a monero node <a href="7-update-a-eth2-client" id="7-update-a-eth2-client"></a>
 
 When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your monero node.
 
@@ -392,7 +392,7 @@ tar -xvf monero-linux-x64-*.tar.bz2
 
 Stop, copy new binaries and restart monerod service.
 
-```text
+```
 sudo systemctl stop monerod
 ```
 
@@ -404,13 +404,13 @@ sudo systemctl start monerod
 
 Check the logs to verify the services are working properly and ensure there are no errors.
 
-```text
+```
 sudo systemctl status monerod
 ```
 
 Review the logs for any errors. CTRL + C to exit.
 
-```text
+```
 tail -f /var/log/monero/monero.log
 ```
 
@@ -421,4 +421,3 @@ rm monero-linux-x64-*.tar.bz2
 rm hashes.txt
 rm -rf monero-x86_64-linux-gnu-*/
 ```
-

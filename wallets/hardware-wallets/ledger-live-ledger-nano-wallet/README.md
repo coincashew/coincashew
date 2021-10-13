@@ -6,25 +6,24 @@ description: >-
 
 # Ledger Live: Ledger Nano Wallet
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://www.ledger.com/ledger-live/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/LedgerHQ/ledger-live-desktop" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://www.youtube.com/watch?v=5xkqIwFWMoM" %}
 
 {% embed url="https://www.ledger.com/start/" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://support.ledger.com/hc/en-us" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 {% embed url="https://support.ledger.com/hc/en-us/categories/115000811829-Apps" %}
-

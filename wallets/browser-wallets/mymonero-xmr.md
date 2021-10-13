@@ -6,17 +6,16 @@ description: >-
 
 # MyMonero: XMR
 
-## 🚀 Official Website
+## :rocket: Official Website
 
-[https://wallet.mymonero.com/](https://wallet.mymonero.com/)
+[https://wallet.mymonero.com/](https://wallet.mymonero.com)
 
 {% embed url="https://mymonero.com/" %}
 
-## 📑 Source Wallet
+## :bookmark_tabs: Source Wallet
 
 {% embed url="https://github.com/mymonero/mymonero-app-js/releases" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 * [Monero XMR](../../coins/overview-xmr/)
-

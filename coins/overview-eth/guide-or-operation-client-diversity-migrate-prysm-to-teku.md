@@ -2,17 +2,17 @@
 description: Step by step guide on how to switch for the solo home or cloud staker.
 ---
 
-# Guide \| Operation Client Diversity: Migrate Prysm to Teku
+# Guide | Operation Client Diversity: Migrate Prysm to Teku
 
 {% hint style="info" %}
-🎊 **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
+:confetti_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
 {% endhint %}
 
 {% embed url="https://gitcoin.co/grants/1653/ethereum-staking-guides-by-coincashew-with-poap" %}
 
-## ⏩ Complete step by step guide
+## :fast_forward: Complete step by step guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
@@ -22,40 +22,40 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 As per best practices, always try everything on a testnet before doing it _for real_ on mainnet.
 {% endhint %}
 
-## 🔥 Problem: Why the commotion?
+## :fire: Problem: Why the commotion?
 
-> If improving the stability of the beacon chain is not a good enough reason for you to switch from Prysm to either Teku or Nimbus, you also need to consider that due to the design of the beacon chain you will be subject to severe financial penalties if Prysm ever has an issue. ~[Lamboshi on Twitter](https://twitter.com/L_Nakaghini/status/1440771303745540096)
+> If improving the stability of the beacon chain is not a good enough reason for you to switch from Prysm to either Teku or Nimbus, you also need to consider that due to the design of the beacon chain you will be subject to severe financial penalties if Prysm ever has an issue. \~[Lamboshi on Twitter](https://twitter.com/L_Nakaghini/status/1440771303745540096)
 
 ![](../../.gitbook/assets/meme2.jpg)
 
-## 🚀 Solution: Increase client diversity by migrating to Teku
+## :rocket: Solution: Increase client diversity by migrating to Teku
 
 ![](../../.gitbook/assets/meme1.jpg)
 
-## 🚧 How to Migrate from Prysm to Teku
+## :construction: How to Migrate from Prysm to Teku
 
 {% hint style="info" %}
-[PegaSys Teku](https://consensys.net/knowledge-base/ethereum-2/teku/) \(formerly known as Artemis\) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net/) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
+[PegaSys Teku](https://consensys.net/knowledge-base/ethereum-2/teku/) (formerly known as Artemis) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
 {% endhint %}
 
-### ⛓ 1. Setup and Sync the Teku beacon node
+### :chains: 1. Setup and Sync the Teku beacon node
 
 Install git.
 
-```text
+```
 sudo apt-get install git -y
 ```
 
 Install Java 11 for **Ubuntu 20.x**
 
-```text
+```
 sudo apt update
 sudo apt install openjdk-11-jdk -y
 ```
 
 Verify Java 11+ is installed.
 
-```text
+```
 java --version
 ```
 
@@ -75,14 +75,14 @@ This build process may take a few minutes.
 
 Verify Teku was installed properly by displaying the version.
 
-```text
+```
 cd $HOME/git/teku/build/install/teku/bin
 ./teku --version
 ```
 
 Copy the Teku binary file to `/usr/bin/teku`
 
-```text
+```
 sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 ```
 
@@ -116,15 +116,15 @@ MY_GRAFFITI=''
 Teku's Checkpoint Sync utilizes Infura to create the fastest syncing Ethereum beacon node.
 {% endhint %}
 
-1. Sign up for [a free infura account](https://infura.io/register).
+1\. Sign up for [a free infura account](https://infura.io/register).
 
-2. Create a project
+2\. Create a project
 
 ![](../../.gitbook/assets/inf1.png)
 
-3. Add a project name and save changes.
+3\. Add a project name and save changes.
 
-4. Copy your Project's **ENDPOINT**. Ensure the correct Network is selected with the dropdown box.
+4\. Copy your Project's **ENDPOINT**. Ensure the correct Network is selected with the dropdown box.
 
 ![](../../.gitbook/assets/inf2.png)
 
@@ -213,19 +213,19 @@ EOF
 
 Move the unit file to `/etc/systemd/system`
 
-```text
+```
 sudo mv $HOME/beacon-chain-temporary.service /etc/systemd/system/beacon-chain-temporary.service
 ```
 
 Update file permissions.
 
-```text
+```
 sudo chmod 644 /etc/systemd/system/beacon-chain-temporary.service
 ```
 
 Run the following to enable auto-start at boot time and then start your Teku beacon node service.
 
-```text
+```
 sudo systemctl daemon-reload
 sudo systemctl enable beacon-chain-temporary
 sudo systemctl start beacon-chain-temporary
@@ -248,7 +248,7 @@ df -h
 {% hint style="info" %}
 Syncing the beacon node might take up to 36 hours depending on your hardware. Keep validating using your current Prysm setup until it completes. However, thanks to Teku's Checkpoint sync, you'll complete this step in a few minutes.
 
-Syncing is complete when your beacon node's slot matches that of a block explorer's slot number \(i.e. [https://beaconcha.in/](https://beaconcha.in/)\)
+Syncing is complete when your beacon node's slot matches that of a block explorer's slot number (i.e. [https://beaconcha.in/](https://beaconcha.in))
 
 Check the beacon node syncing progress with the following:
 
@@ -257,7 +257,7 @@ journalctl -fu beacon-chain-temporary
 ```
 {% endhint %}
 
-### 🛑 2. Stop and disable Prysm
+### :octagonal_sign: 2. Stop and disable Prysm
 
 Stop and disable the Prysm services. Choose your guide.
 
@@ -366,28 +366,28 @@ Wait until your validator's last attestation is in a finalized epoch - usually a
 
 By waiting for a finalized epoch, there's no need to migrate the slashing database.
 
-Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
+Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in) or [beaconscan.com](https://beaconscan.com)
 {% endhint %}
 
-### 🧱 3. Update firewall / port forwarding.
+### :bricks: 3. Update firewall / port forwarding.
 
 Allow Teku ports:
 
-```text
+```
 sudo ufw allow 9000/tcp
 sudo ufw allow 9000/udp
 ```
 
 Delete Prysm firewall rules:
 
-```text
+```
 sudo ufw delete allow 13000/tcp
 sudo ufw delete allow 12000/udp
 ```
 
 Verify that your firewall configuration is correct.
 
-```text
+```
 sudo ufw status numbered
 ```
 
@@ -412,7 +412,7 @@ Your router's port forwarding setup or cloud provider settings will need to be u
 You'll need to add new port forwarding rules for Teku and remove the existing Prysm port forwarding rules.
 {% endhint %}
 
-**Optional** - Update your server and reboot for best practice.
+**Optional **- Update your server and reboot for best practice.
 
 ```bash
 sudo apt update && sudo apt upgrade
@@ -420,21 +420,21 @@ sudo apt dist-upgrade && sudo apt autoremove
 sudo reboot
 ```
 
-###  🗝 4. Import Validator Keys
+###  :key2: 4. Import Validator Keys
 
-Copy your `validator_keys` directory to the data directory we created above and remove the extra deposit\_data file. If you no longer have the validator keys on your node, you will need to restore from file backup or [restore from secret recovery phrase](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#8-2-verify-your-mnemonic-phrase).
+Copy your `validator_keys` directory to the data directory we created above and remove the extra deposit_data file. If you no longer have the validator keys on your node, you will need to restore from file backup or [restore from secret recovery phrase](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#8-2-verify-your-mnemonic-phrase).
 
-```text
+```
 cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
 rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
 {% hint style="danger" %}
-\*\*\*\*🛑 **FINAL WARNING REMINDER !!!**  **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** \(penalized and exited from the system\).
+****:octagonal_sign: **FINAL WARNING REMINDER !!!**  **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** (penalized and exited from the system).
 
 Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes. 
 
-Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
+Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in) or [beaconscan.com](https://beaconscan.com)
 {% endhint %}
 
 Storing your **keystore password** in a text file is required so that Teku can decrypt and load your validators automatically.
@@ -460,7 +460,7 @@ sudo chmod 600 /etc/teku/validators-password.txt
 
 Clear the bash history in order to remove traces of keystore password.
 
-```text
+```
 shred -u ~/.bash_history && touch ~/.bash_history
 ```
 
@@ -470,13 +470,13 @@ When specifying directories for your validator-keys, Teku expects to find identi
 
 Create a corresponding password file for every one of your validators.
 
-```text
+```
 for f in /var/lib/teku/validator_keys/keystore*.json; do cp /etc/teku/validators-password.txt /var/lib/teku/validator_keys/$(basename $f .json).txt; done
 ```
 
 Verify that your validator's keystore and validator's passwords are present by checking the following directory.
 
-```text
+```
 ll /var/lib/teku/validator_keys
 ```
 
@@ -488,7 +488,7 @@ validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
 EOF
 ```
 
-### 🚀 5. Setup and start the Teku service
+### :rocket: 5. Setup and start the Teku service
 
 Run the following to create a **unit file** to define your`beacon-chain.service` configuration.
 
@@ -515,19 +515,19 @@ EOF
 
 Move the unit file to `/etc/systemd/system`
 
-```text
+```
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
 ```
 
 Update file permissions.
 
-```text
+```
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
 ```
 
 Stop, disable and delete the temporary service used to sync Teku beacon node while Prysm was running simultaneously.
 
-```text
+```
 sudo systemctl stop beacon-chain-temporary
 sudo systemctl disable beacon-chain-temporary
 sudo rm /etc/systemd/system/beacon-chain-temporary.service
@@ -535,7 +535,7 @@ sudo rm /etc/systemd/system/beacon-chain-temporary.service
 
 Run the following to enable auto-start at boot time and then start your beacon node service.
 
-```text
+```
 sudo systemctl daemon-reload
 sudo systemctl enable beacon-chain
 sudo systemctl start beacon-chain
@@ -549,7 +549,7 @@ journalctl -fu beacon-chain
 ```
 
 {% hint style="success" %}
-Confirm that your new Teku validator has started attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
+Confirm that your new Teku validator has started attesting with block explorer [beaconcha.in](https://beaconcha.in) or [beaconscan.com](https://beaconscan.com)
 {% endhint %}
 
 #### 🛠 Some helpful systemd commands
@@ -576,25 +576,25 @@ journalctl --unit=beacon-chain --since=today
 journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
-\*\*\*\*🔎 **View the status of the beacon chain**
+****:mag_right:** View the status of the beacon chain**
 
-```text
+```
 sudo systemctl status beacon-chain
 ```
 
-\*\*\*\*🔁 **Restart the beacon chain**
+****:repeat:** Restart the beacon chain**
 
-```text
+```
 sudo systemctl restart beacon-chain
 ```
 
-\*\*\*\*🛑 **Stop the beacon chain**
+****:octagonal_sign:** Stop the beacon chain**
 
-```text
+```
 sudo systemctl stop beacon-chain
 ```
 
-### 📡 6. Update Prometheus and Grafana monitoring
+### :satellite: 6. Update Prometheus and Grafana monitoring
 
 Select your Ethereum execution engine and then re-create your `prometheus.yml` configuration file to match Teku's metric's settings.
 
@@ -790,17 +790,17 @@ sudo systemctl restart grafana-server prometheus prometheus-node-exporter
 
 #### Import your new Teku dashboard into Grafana.
 
-1. Open [http://localhost:3000](http://localhost:3000) or http://&lt;your validator's ip address&gt;:3000 in your local browser.
+1. Open [http://localhost:3000](http://localhost:3000) or http://\<your validator's ip address>:3000 in your local browser.
 2. Login with your credentials
 3. **Download and save** [Teku's Dashboard json file](https://grafana.com/api/dashboards/13457/revisions/2/download).
-4. Click **Create +** icon &gt; **Import**
+4. Click **Create +** icon > **Import**
 5. Add the ETH2 client dashboard via **Upload JSON file**
 
 ![Teku by PegaSys Engineering](../../.gitbook/assets/teku.dash.png)
 
 Credits: [https://grafana.com/grafana/dashboards/13457](https://grafana.com/grafana/dashboards/13457)
 
-### 🌊 7. Clean up Prysm Storage
+### :ocean: 7. Clean up Prysm Storage
 
 After a period of stable attestations on Teku, you can safely dispose of the former Prysm files and reclaim disk space.
 
@@ -838,11 +838,10 @@ sudo deluser prysmvalidator
 Well done on successfully switching! Cheers to client diversity and a healthy beacon chain.
 {% endhint %}
 
-## 🙏 Alternative Community Migration Guides
+## :pray: Alternative Community Migration Guides
 
 {% embed url="https://lighthouse.sigmaprime.io/switch-to-lighthouse.html" %}
 
 {% embed url="https://nimbus.guide/migration.html" %}
 
-[https://www.reddit.com/r/ethstaker/comments/pu30fa/short\_guide\_to\_migrate\_from\_prysm\_to\_teku\_or/](https://www.reddit.com/r/ethstaker/comments/pu30fa/short_guide_to_migrate_from_prysm_to_teku_or/)
-
+[https://www.reddit.com/r/ethstaker/comments/pu30fa/short_guide_to_migrate_from_prysm_to_teku_or/](https://www.reddit.com/r/ethstaker/comments/pu30fa/short_guide_to_migrate_from_prysm_to_teku_or/)

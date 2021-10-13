@@ -1,3 +1,8 @@
+---
+cover: .gitbook/assets/ce.png
+coverY: 0
+---
+
 # Home
 
 ##  ![](.gitbook/assets/160.png) CoinCashew
@@ -5,93 +10,177 @@
 > ### The best how-to guide for all your favorite cryptocurrencies.
 
 {% hint style="success" %}
-✨ Learn to do anything with crypto, _better_.
+:sparkles: Learn to do anything with crypto, _better_.
 {% endhint %}
 
 {% hint style="info" %}
-\*\*\*\*🔥 **HOT TOPICS** 
+****:fire: **HOT TOPICS** 
 
 * Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
 * Learn to setup your own [ETH2 Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
 
-## 🙋♀ I would like to ...
+## :woman_raising_hand: I would like to ...
 
 {% tabs %}
 {% tab title="Learn" %}
-{% page-ref page="guide-where-to-get-started.md" %}
+{% content-ref url="guide-where-to-get-started.md" %}
+[guide-where-to-get-started.md](guide-where-to-get-started.md)
+{% endcontent-ref %}
 
-{% page-ref page="wallets/guide-wallet-tips-101-dos-and-donts.md" %}
+{% content-ref url="wallets/guide-wallet-tips-101-dos-and-donts.md" %}
+[guide-wallet-tips-101-dos-and-donts.md](wallets/guide-wallet-tips-101-dos-and-donts.md)
+{% endcontent-ref %}
 
-{% page-ref page="exchanges/guide-where-to-get-crypto.md" %}
+{% content-ref url="exchanges/guide-where-to-get-crypto.md" %}
+[guide-where-to-get-crypto.md](exchanges/guide-where-to-get-crypto.md)
+{% endcontent-ref %}
 
-{% page-ref page="exchanges/guide-dollar-cost-averaging-into-crypto.md" %}
+{% content-ref url="exchanges/guide-dollar-cost-averaging-into-crypto.md" %}
+[guide-dollar-cost-averaging-into-crypto.md](exchanges/guide-dollar-cost-averaging-into-crypto.md)
+{% endcontent-ref %}
 
-{% page-ref page="coin-listing.md" %}
+{% content-ref url="coin-listing.md" %}
+[coin-listing.md](coin-listing.md)
+{% endcontent-ref %}
 
-{% page-ref page="wallets-1.md" %}
+{% content-ref url="wallets-1.md" %}
+[wallets-1.md](wallets-1.md)
+{% endcontent-ref %}
 
-{% page-ref page="exchanges-1.md" %}
+{% content-ref url="exchanges-1.md" %}
+[exchanges-1.md](exchanges-1.md)
+{% endcontent-ref %}
+
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 {% endtab %}
 
 {% tab title="Stake Coins" %}
-{% page-ref page="coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/" %}
+{% content-ref url="coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/" %}
+[guide-or-how-to-setup-a-validator-on-eth2-mainnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/" %}
+{% content-ref url="coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/" %}
+[guide-how-to-build-a-haskell-stakepool-node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-xtz/guide-how-to-stake-xtz.md" %}
+{% content-ref url="coins/overview-xtz/guide-how-to-stake-xtz.md" %}
+[guide-how-to-stake-xtz.md](coins/overview-xtz/guide-how-to-stake-xtz.md)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-neo/guide-how-to-stake-neo.md" %}
+{% content-ref url="coins/overview-neo/guide-how-to-stake-neo.md" %}
+[guide-how-to-stake-neo.md](coins/overview-neo/guide-how-to-stake-neo.md)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-ada/guide-how-to-stake-ada.md" %}
+{% content-ref url="coins/overview-ada/guide-how-to-stake-ada.md" %}
+[guide-how-to-stake-ada.md](coins/overview-ada/guide-how-to-stake-ada.md)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-hex/guide-how-to-stake-hex.md" %}
+{% content-ref url="coins/overview-hex/guide-how-to-stake-hex.md" %}
+[guide-how-to-stake-hex.md](coins/overview-hex/guide-how-to-stake-hex.md)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-eos/guide-how-to-stake-eos.md" %}
+{% content-ref url="coins/overview-eos/guide-how-to-stake-eos.md" %}
+[guide-how-to-stake-eos.md](coins/overview-eos/guide-how-to-stake-eos.md)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-icx/guide-how-to-stake-icx.md" %}
+{% content-ref url="coins/overview-icx/guide-how-to-stake-icx.md" %}
+[guide-how-to-stake-icx.md](coins/overview-icx/guide-how-to-stake-icx.md)
+{% endcontent-ref %}
 
-{% page-ref page="coins/theta/guide-how-to-stake-theta.md" %}
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-vet/guide-how-to-stake-vet.md" %}
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-neo/guide-how-to-stake-neo.md" %}
+{% content-ref url="coins/theta/guide-how-to-stake-theta.md" %}
+[guide-how-to-stake-theta.md](coins/theta/guide-how-to-stake-theta.md)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-tlos/guide-how-to-stake-tlos.md" %}
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 
-{% page-ref page="coins/ont/guide-how-to-stake-ont.md" %}
+{% content-ref url="coins/overview-vet/guide-how-to-stake-vet.md" %}
+[guide-how-to-stake-vet.md](coins/overview-vet/guide-how-to-stake-vet.md)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-trx/guide-how-to-stake-trx.md" %}
+{% content-ref url="coins/overview-neo/guide-how-to-stake-neo.md" %}
+[guide-how-to-stake-neo.md](coins/overview-neo/guide-how-to-stake-neo.md)
+{% endcontent-ref %}
+
+{% content-ref url="coins/overview-tlos/guide-how-to-stake-tlos.md" %}
+[guide-how-to-stake-tlos.md](coins/overview-tlos/guide-how-to-stake-tlos.md)
+{% endcontent-ref %}
+
+{% content-ref url="coins/ont/guide-how-to-stake-ont.md" %}
+[guide-how-to-stake-ont.md](coins/ont/guide-how-to-stake-ont.md)
+{% endcontent-ref %}
+
+{% content-ref url="coins/overview-trx/guide-how-to-stake-trx.md" %}
+[guide-how-to-stake-trx.md](coins/overview-trx/guide-how-to-stake-trx.md)
+{% endcontent-ref %}
 {% endtab %}
 
 {% tab title="Get Crypto" %}
-{% page-ref page="exchanges/guide-where-to-get-crypto.md" %}
+{% content-ref url="exchanges/guide-where-to-get-crypto.md" %}
+[guide-where-to-get-crypto.md](exchanges/guide-where-to-get-crypto.md)
+{% endcontent-ref %}
 
-{% page-ref page="exchanges/guide-earning-crypto-via-cashback.md" %}
+{% content-ref url="exchanges/guide-earning-crypto-via-cashback.md" %}
+[guide-earning-crypto-via-cashback.md](exchanges/guide-earning-crypto-via-cashback.md)
+{% endcontent-ref %}
 
-{% page-ref page="exchanges/guide-dollar-cost-averaging-into-crypto.md" %}
+{% content-ref url="exchanges/guide-dollar-cost-averaging-into-crypto.md" %}
+[guide-dollar-cost-averaging-into-crypto.md](exchanges/guide-dollar-cost-averaging-into-crypto.md)
+{% endcontent-ref %}
 {% endtab %}
 
 {% tab title="Mine" %}
-{% page-ref page="coins/overview-xmr/guide-how-to-mine-xmr.md" %}
+{% content-ref url="coins/overview-xmr/guide-how-to-mine-xmr.md" %}
+[guide-how-to-mine-xmr.md](coins/overview-xmr/guide-how-to-mine-xmr.md)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-beam/guide-how-to-mine-beam.md" %}
+{% content-ref url="coins/overview-beam/guide-how-to-mine-beam.md" %}
+[guide-how-to-mine-beam.md](coins/overview-beam/guide-how-to-mine-beam.md)
+{% endcontent-ref %}
 
-{% page-ref page="coins/overview-grin/guide-how-to-mine-grin.md" %}
+{% content-ref url="coins/overview-grin/guide-how-to-mine-grin.md" %}
+[guide-how-to-mine-grin.md](coins/overview-grin/guide-how-to-mine-grin.md)
+{% endcontent-ref %}
+
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
+
+
 {% endtab %}
 
 {% tab title="Get a Wallet" %}
-{% page-ref page="wallets/mobile-wallets/" %}
+{% content-ref url="wallets/mobile-wallets/" %}
+[mobile-wallets](wallets/mobile-wallets/)
+{% endcontent-ref %}
 
-{% page-ref page="wallets/desktop-wallets/" %}
+{% content-ref url="wallets/desktop-wallets/" %}
+[desktop-wallets](wallets/desktop-wallets/)
+{% endcontent-ref %}
 
-{% page-ref page="wallets/hardware-wallets/" %}
+{% content-ref url="wallets/hardware-wallets/" %}
+[hardware-wallets](wallets/hardware-wallets/)
+{% endcontent-ref %}
 
-{% page-ref page="wallets/browser-wallets/" %}
+{% content-ref url="wallets/browser-wallets/" %}
+[browser-wallets](wallets/browser-wallets/)
+{% endcontent-ref %}
 {% endtab %}
 {% endtabs %}
 
-## 🤖 Blazingly helpful
+## :robot: Blazingly helpful
 
 > "CoinCashew was like the expert crypto mentor I never knew I needed. Saved me so much time and money!" -- TheRealSatoshi
 
@@ -99,11 +188,10 @@
 
 > "Crypto explained, ELI5 style" --5 year young
 
-## 🎯 Be the contributor, the builder.
+## :dart: Be the contributor, the builder.
 
 Perhaps you wrote your own guide? Scale, share, and amplify your knowledge. [Your pull request contributions are welcome on GitHub!](contact-us/contributing/)
 
 {% hint style="success" %}
 Accelerating the adoption of crypto! Yes, you are. 
 {% endhint %}
-

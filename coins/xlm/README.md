@@ -9,56 +9,65 @@ description: >-
 
 ## ![](../../.gitbook/assets/xlm.png) General Data
 
-| Site | Title |
-| :--- | :--- |
-| Website | [https://www.stellar.org/](https://www.stellar.org/) |
-| Source Code | [https://github.com/stellar/stellar-core](https://github.com/stellar/stellar-core) |
-| Whitepaper | [https://www.stellar.org/papers/stellar-consensus-protocol.pdf](https://www.stellar.org/papers/stellar-consensus-protocol.pdf) |
+| Site        | Title                                                                                                                          |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Website     | [https://www.stellar.org/](https://www.stellar.org)                                                                            |
+| Source Code | [https://github.com/stellar/stellar-core](https://github.com/stellar/stellar-core)                                             |
+| Whitepaper  | [https://www.stellar.org/papers/stellar-consensus-protocol.pdf](https://www.stellar.org/papers/stellar-consensus-protocol.pdf) |
 
-## 🙋 Social Media and Community
+## :person_raising_hand: Social Media and Community
 
-| Community | Link |
-| :--- | :--- |
-| 🐦 Twitter | [https://twitter.com/StellarOrg](https://twitter.com/StellarOrg) |
-| Reddit | [https://www.reddit.com/r/stellar](https://www.reddit.com/r/stellar) |
-| Official Forums | [https://stellarcommunity.org/](https://stellarcommunity.org/) |
-| GalacticTalk Forums | [https://galactictalk.org/](https://galactictalk.org/) |
-| Bitcointalk.org | [https://bitcointalk.org/index.php?topic=1428573.0](https://bitcointalk.org/index.php?topic=1428573.0) |
-| Telegram | [https://t.me/StellarLumens](https://t.me/StellarLumens) |
-| Stack Exchange | [https://stellar.stackexchange.com/](https://stellar.stackexchange.com/) |
-| Keybase.io | [https://keybase.io/team/stellar.public](https://keybase.io/team/stellar.public) |
+| Community           | Link                                                                                                   |
+| ------------------- | ------------------------------------------------------------------------------------------------------ |
+| :bird: Twitter      | [https://twitter.com/StellarOrg](https://twitter.com/StellarOrg)                                       |
+| Reddit              | [https://www.reddit.com/r/stellar](https://www.reddit.com/r/stellar)                                   |
+| Official Forums     | [https://stellarcommunity.org/](https://stellarcommunity.org)                                          |
+| GalacticTalk Forums | [https://galactictalk.org/](https://galactictalk.org)                                                  |
+| Bitcointalk.org     | [https://bitcointalk.org/index.php?topic=1428573.0](https://bitcointalk.org/index.php?topic=1428573.0) |
+| Telegram            | [https://t.me/StellarLumens](https://t.me/StellarLumens)                                               |
+| Stack Exchange      | [https://stellar.stackexchange.com/](https://stellar.stackexchange.com)                                |
+| Keybase.io          | [https://keybase.io/team/stellar.public](https://keybase.io/team/stellar.public)                       |
 
-## 🗳 Governance
+## :ballot_box: Governance
 
-| Site |
-| :--- |
-| [https://stellarcommunity.fund/](https://stellarcommunity.fund/) |
+| Site                                                            |
+| --------------------------------------------------------------- |
+| [https://stellarcommunity.fund/](https://stellarcommunity.fund) |
 
-## 🔃 Block Explorers
+## :arrows_clockwise: Block Explorers
 
-| Site |
-| :--- |
+| Site                                                             |
+| ---------------------------------------------------------------- |
 | [https://blockchair.com/stellar](https://blockchair.com/stellar) |
-| [https://steexp.com/](https://steexp.com/) |
-| [https://steexp.com/](https://steexp.com/) |
-| [https://dashboard.stellar.org/](https://dashboard.stellar.org/) |
+| [https://steexp.com/](https://steexp.com)                        |
+| [https://steexp.com/](https://steexp.com)                        |
+| [https://dashboard.stellar.org/](https://dashboard.stellar.org)  |
 
-## 📊 Charts and Pricing
+## :bar_chart: Charts and Pricing
 
-| Site | Link |
-| :--- | :--- |
-| CoinPaprika | [https://coinpaprika.com/coin/xlm-stellar/](https://coinpaprika.com/coin/xlm-stellar/) |
+| Site          | Link                                                                                           |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| CoinPaprika   | [https://coinpaprika.com/coin/xlm-stellar/](https://coinpaprika.com/coin/xlm-stellar/)         |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/stellar/](https://coinmarketcap.com/currencies/stellar/) |
 
-## 💰 Wallets
+## :moneybag: Wallets
 
-{% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
+{% content-ref url="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
+[ledger-live-ledger-nano-wallet](../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+{% content-ref url="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+[exodus-multi-chain-assets.md](../../wallets/mobile-wallets/exodus-multi-chain-assets.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/browser-wallets/stellar-account-viewer.md" %}
+{% content-ref url="../../wallets/browser-wallets/stellar-account-viewer.md" %}
+[stellar-account-viewer.md](../../wallets/browser-wallets/stellar-account-viewer.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/desktop-wallets/solar-stellar.md" %}
+{% content-ref url="../../wallets/desktop-wallets/solar-stellar.md" %}
+[solar-stellar.md](../../wallets/desktop-wallets/solar-stellar.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
-
+{% content-ref url="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+[guarda-multi-chain-assets.md](../../wallets/mobile-wallets/guarda-multi-chain-assets.md)
+{% endcontent-ref %}

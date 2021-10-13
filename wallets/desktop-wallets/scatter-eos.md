@@ -6,23 +6,22 @@ description: >-
 
 # Scatter: EOS
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://get-scatter.com/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/GetScatter/ScatterDesktop" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://support.get-scatter.com/collection/14-getting-started" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://support.get-scatter.com/" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 * [EOS](../../coins/overview-eos/)
-

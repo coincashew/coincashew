@@ -1,10 +1,10 @@
 # External Reading Material
 
-## 📜 Whitepaper
+## :scroll: Whitepaper
 
 {% embed url="https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf" %}
 
-## 🧬 Fundamentals
+## :dna: Fundamentals
 
 {% embed url="https://web.getmonero.org/get-started/what-is-monero/" %}
 
@@ -12,7 +12,7 @@
 
 {% embed url="https://research.binance.com/projects/monero" %}
 
-## 🚀 Mining
+## :rocket: Mining
 
 {% embed url="https://www.getmonero.org/get-started/mining/" %}
 
@@ -22,11 +22,10 @@
 
 {% embed url="https://www.whattomine.com/coins/101-xmr-randomx" %}
 
-## 👩💻 Developers
+## :woman_technologist: Developers
 
 {% embed url="https://www.getmonero.org/resources/developer-guides/" %}
 
 {% embed url="https://web.getmonero.org/resources/developer-guides/wallet-rpc.html" %}
 
-\*\*\*\*
-
+****

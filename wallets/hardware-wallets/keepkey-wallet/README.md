@@ -7,21 +7,20 @@ description: >-
 
 # KeepKey Wallet
 
-## 🚀 Official Website
+## :rocket: Official Website
 
-{% embed url="https://shapeshift.com/?utm\_source=keepkey\_homepage&utm\_medium=explore\_now" %}
+{% embed url="https://shapeshift.com/?utm_source=keepkey_homepage&utm_medium=explore_now" %}
 
 {% embed url="https://shapeshift.io/keepkey/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://keepkey.shapeshift.com/get-started/" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://keepkey.zendesk.com/hc/en-us/categories/360000303310-FAQ" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 {% embed url="https://keepkey.zendesk.com/hc/en-us/articles/360003047479" %}
-

@@ -1,6 +1,6 @@
 # External Reading Material
 
-## 🧬 EOS Fundamentals
+## :dna: EOS Fundamentals
 
 {% embed url="https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md" %}
 
@@ -32,15 +32,14 @@
 
 {% embed url="https://helpdesk.eostoolkit.io/hc/en-us/articles/360013714051-How-to-Claim-Airgrabs" %}
 
-## 🗳 Voting and Governance
+## :ballot_box: Voting and Governance
 
 {% embed url="https://www.eosgo.io/blog/eos-beginners-vote-for-bps/" %}
 
 {% embed url="https://www.eosgo.io/blog/eos-beginners-referendum-vote/" %}
 
-## 💱 Resource Exchange - REX
+## :currency_exchange: Resource Exchange - REX
 
 {% embed url="https://medium.com/@tokenpocket.gm/guide-of-the-eos-rex-c540e21e03c3" %}
 
 {% embed url="https://medium.com/eos-new-york/the-ultimate-guide-to-rex-participation-on-eos-9cc0e449b320" %}
-

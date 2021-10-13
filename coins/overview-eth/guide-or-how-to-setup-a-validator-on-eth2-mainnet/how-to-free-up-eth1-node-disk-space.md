@@ -12,34 +12,34 @@ description: >-
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
-### 🗡 Why do I want to prune my eth1 node?
+### :dagger: Why do I want to prune my eth1 node?
 
 * Free up gigs of precious disk space. Typically 200gb or more is common.
 
-### 🤖 Pre-requisites
+### :robot: Pre-requisites
 
-* Works with **geth + erigon \(automatic\)** currently
+* Works with **geth + erigon (automatic) **currently
 * Ensure at least 30+ GB of free disk space is available otherwise database corruption may occur.
 
-### 🚧 How to prune a eth1 node
+### :construction: How to prune a eth1 node
 
 {% hint style="info" %}
 Ensure adequate failover or backup eth1 nodes are configured for use with your beacon-chain node before proceeding. geth is offline and unavailable during this process.
 {% endhint %}
 
-1. Note how much disk space is currently used and stop the eth1 node
+1\. Note how much disk space is currently used and stop the eth1 node
 
-```text
+```
 df
 sudo service eth1 stop
 ```
 
-2. Start the pruning process and monitor it's process.
+2\. Start the pruning process and monitor it's process.
 
 {% hint style="warning" %}
-🔥 **Geth pruning Caveats**: 
+:fire: **Geth pruning Caveats**: 
 
-* Pruning can take a few hours or longer \(typically 2 to 10 hours is common\) depending on your node's disk performance.
+* Pruning can take a few hours or longer (typically 2 to 10 hours is common) depending on your node's disk performance.
 * There are three stages to pruning: **iterating state snapshot, pruning state data and compacting database.**
 * "**Compacting database**" will stop updating status and appear hung. **Do not interrupt or restart this process.** Typically after an hour, pruning status messages will reappear.
 {% endhint %}
@@ -63,13 +63,13 @@ sudo service eth1 stop
 {% endtab %}
 {% endtabs %}
 
-3. Once the pruning is finished, restart the eth1 service.
+3\. Once the pruning is finished, restart the eth1 service.
 
 ```bash
 sudo service eth1 restart
 ```
 
-4. Compare the disk space of the node after pruning.
+4\. Compare the disk space of the node after pruning.
 
 ```bash
 df
@@ -79,9 +79,9 @@ df
 Nice work. Enjoy the extra disk breathing room.
 {% endhint %}
 
-##  🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+##  :robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨
@@ -98,4 +98,3 @@ Hang out and chat with fellow stakers on Discord @
 
 ​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
-

@@ -1,6 +1,6 @@
 # External Reading Material
 
-## 🧬 Stellar Fundamentals
+## :dna: Stellar Fundamentals
 
 {% embed url="https://novicedock.com/learn/cryptocurrency/stellar" %}
 
@@ -12,13 +12,11 @@
 
 {% embed url="https://www.lumenauts.com/courses/stellar-overview-course" %}
 
-## 👩💻 Developers
+## :woman_technologist: Developers
 
 {% embed url="https://www.stellar.org/developers/" %}
 
 {% embed url="https://www.stellar.org/developers/guides/get-started/" %}
 
 {% embed url="https://www.stellar.org/developers/guides/walkthroughs/stellar-smart-contracts.html" %}
-
-
 

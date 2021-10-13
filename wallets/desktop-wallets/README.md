@@ -1,30 +1,61 @@
 # Desktop Wallets
 
-{% page-ref page="coinomi-multi-chain-assets.md" %}
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 
-{% page-ref page="atomic-multi-currency.md" %}
+{% content-ref url="coinomi-multi-chain-assets.md" %}
+[coinomi-multi-chain-assets.md](coinomi-multi-chain-assets.md)
+{% endcontent-ref %}
 
-{% page-ref page="galleon-tezos.md" %}
+{% content-ref url="atomic-multi-currency.md" %}
+[atomic-multi-currency.md](atomic-multi-currency.md)
+{% endcontent-ref %}
 
-{% page-ref page="mycrypto-ethereum.md" %}
+{% content-ref url="galleon-tezos.md" %}
+[galleon-tezos.md](galleon-tezos.md)
+{% endcontent-ref %}
 
-{% page-ref page="scatter-eos.md" %}
+{% content-ref url="mycrypto-ethereum.md" %}
+[mycrypto-ethereum.md](mycrypto-ethereum.md)
+{% endcontent-ref %}
 
-{% page-ref page="o3-neo-ont.md" %}
+{% content-ref url="scatter-eos.md" %}
+[scatter-eos.md](scatter-eos.md)
+{% endcontent-ref %}
 
-{% page-ref page="solar-stellar.md" %}
+{% content-ref url="o3-neo-ont.md" %}
+[o3-neo-ont.md](o3-neo-ont.md)
+{% endcontent-ref %}
 
-{% page-ref page="beam.mw-beam.md" %}
+{% content-ref url="solar-stellar.md" %}
+[solar-stellar.md](solar-stellar.md)
+{% endcontent-ref %}
 
-{% page-ref page="grin++-grin.md" %}
+{% content-ref url="beam.mw-beam.md" %}
+[beam.mw-beam.md](beam.mw-beam.md)
+{% endcontent-ref %}
 
-{% page-ref page="monero-official-gui.md" %}
+{% content-ref url="grin++-grin.md" %}
+[grin++-grin.md](grin++-grin.md)
+{% endcontent-ref %}
 
-{% page-ref page="sync-vechain.md" %}
+{% content-ref url="monero-official-gui.md" %}
+[monero-official-gui.md](monero-official-gui.md)
+{% endcontent-ref %}
 
-{% page-ref page="sqrl-tlos.md" %}
+{% content-ref url="sync-vechain.md" %}
+[sync-vechain.md](sync-vechain.md)
+{% endcontent-ref %}
 
-{% page-ref page="zcoin-official-wallet.md" %}
+{% content-ref url="sqrl-tlos.md" %}
+[sqrl-tlos.md](sqrl-tlos.md)
+{% endcontent-ref %}
 
-{% page-ref page="guarda-multi-chain-assets.md" %}
+{% content-ref url="zcoin-official-wallet.md" %}
+[zcoin-official-wallet.md](zcoin-official-wallet.md)
+{% endcontent-ref %}
 
+{% content-ref url="guarda-multi-chain-assets.md" %}
+[guarda-multi-chain-assets.md](guarda-multi-chain-assets.md)
+{% endcontent-ref %}

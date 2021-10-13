@@ -7,23 +7,21 @@ description: >-
 
 # Atomic: Multi-currency
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://atomicwallet.io/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://support.atomicwallet.io/category/13-getting-started" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://support.atomicwallet.io/" %}
 
 
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 {% embed url="https://atomicwallet.io/prices" %}
-
-
 

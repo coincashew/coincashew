@@ -5,29 +5,28 @@ description: >-
   Substrate chains.
 ---
 
-# @polkadot{.js} \| DOT
+# @polkadot{.js} | DOT
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://polkadot.js.org/apps/" %}
 
 {% embed url="https://polkadot.js.org/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/polkadot-js/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://wiki.polkadot.network/docs/en/getting-started" %}
 
 {% embed url="https://wiki.polkadot.network/docs/en/learn-ledger" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://wiki.polkadot.network/docs/en/faq" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 * [DOT](../../coins/polkadot-or-dot/)
-

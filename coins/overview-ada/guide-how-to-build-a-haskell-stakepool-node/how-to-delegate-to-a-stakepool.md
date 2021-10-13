@@ -1,20 +1,20 @@
 # How to delegate to a Stakepool
 
-## ✅ 0. Prerequisites
+## :white_check_mark: 0. Prerequisites
 
 * Both a payment and a stake key pair. Payment key should contain some ADA.
 
-## 👩💻 1. Register Stake Address
+## :woman_technologist: 1. Register Stake Address
 
 Create a certificate, `stake.cert`, using the `stake.vkey`
 
-```text
+```
 cardano-cli stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
     --out-file stake.cert
 ```
 
-You need to find the **slot tip** of the blockchain.
+You need to find the **slot tip **of the blockchain.
 
 ```
 currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
@@ -50,13 +50,13 @@ echo Number of UTXOs: ${txcnt}
 
 Find the stakeAddressDeposit value.
 
-```text
+```
 stakeAddressDeposit=$(cat $NODE_HOME/params.json | jq -r '.stakeAddressDeposit')
 echo stakeAddressDeposit : $stakeAddressDeposit
 ```
 
 {% hint style="info" %}
-Registration of a stake address certificate \(stakeAddressDeposit\) costs 2000000 lovelace.
+Registration of a stake address certificate (stakeAddressDeposit) costs 2000000 lovelace.
 {% endhint %}
 
 Run the build-raw transaction command
@@ -114,7 +114,7 @@ cardano-cli transaction build-raw \
 
 Sign the transaction with both the payment and stake secret keys.
 
-```text
+```
 cardano-cli transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
@@ -131,11 +131,11 @@ cardano-cli transaction submit \
     --mainnet
 ```
 
-## 📄 2. Create a delegation certificate
+## :page_facing_up: 2. Create a delegation certificate
 
-Given its **stake pool verification key file** `node.vkey` , from your stakepool should have generated \(and published\) a **stake pool ID**:
+Given its **stake pool verification key file** `node.vkey` , from your stakepool should have generated (and published) a **stake pool ID**:
 
-```text
+```
 cardano-cli stake-pool id \
     --cold-verification-key-file node.vkey \
     --output-format 'hex'
@@ -150,7 +150,7 @@ cardano-cli stake-address delegation-certificate \
     --out-file deleg.cert
 ```
 
-You need to find the **tip** of the blockchain to set the **ttl** parameter properly.
+You need to find the **tip **of the blockchain to set the **ttl **parameter properly.
 
 ```
 currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
@@ -242,7 +242,7 @@ cardano-cli transaction sign \
 
 Send the transaction.
 
-```text
+```
 cardano-cli transaction submit \
     --tx-file tx.signed \
     --mainnet
@@ -251,4 +251,3 @@ cardano-cli transaction submit \
 {% hint style="success" %}
 Congratulations! Your ADA is now successfully delegated to your chosen stakepool.
 {% endhint %}
-

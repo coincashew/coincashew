@@ -6,24 +6,23 @@ description: >-
 
 # Bitcoin.com wallet: BCH
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://wallet.bitcoin.com/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/Bitcoin-com" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://support.bitcoin.com/en/collections/2050805-wallet" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://support.bitcoin.com/en" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Bitcoin Cash \(BCH\)](../../coins/bch/)
-* [Bitcoin \(BTC\)](../../coins/btc/)
-
+* [Bitcoin Cash (BCH)](../../coins/bch/)
+* [Bitcoin (BTC)](../../coins/btc/)

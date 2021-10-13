@@ -1,44 +1,54 @@
 # Guide: How to mine Monero
 
-## 🏁 1. Prerequisites
+## :checkered_flag: 1. Prerequisites
 
 * 64bit Intel or AMD CPU
 * AMD/Nvidia GPU
 * ARM CPU
 
-## 🌜 2. Install and use a compatible wallet
+## :last_quarter_moon_with_face: 2. Install and use a compatible wallet
 
-{% page-ref page="../../wallets/mobile-wallets/cakewallet-monero.md" %}
+{% content-ref url="../../wallets/mobile-wallets/cakewallet-monero.md" %}
+[cakewallet-monero.md](../../wallets/mobile-wallets/cakewallet-monero.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/monerujo-monero.md" %}
+{% content-ref url="../../wallets/mobile-wallets/monerujo-monero.md" %}
+[monerujo-monero.md](../../wallets/mobile-wallets/monerujo-monero.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/desktop-wallets/monero-official-gui.md" %}
+{% content-ref url="../../wallets/desktop-wallets/monero-official-gui.md" %}
+[monero-official-gui.md](../../wallets/desktop-wallets/monero-official-gui.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+{% content-ref url="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+[coinomi-multi-chain-assets.md](../../wallets/mobile-wallets/coinomi-multi-chain-assets.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+{% content-ref url="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+[exodus-multi-chain-assets.md](../../wallets/mobile-wallets/exodus-multi-chain-assets.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/browser-wallets/mymonero-xmr.md" %}
+{% content-ref url="../../wallets/browser-wallets/mymonero-xmr.md" %}
+[mymonero-xmr.md](../../wallets/browser-wallets/mymonero-xmr.md)
+{% endcontent-ref %}
 
-## ⛏ 3. Install mining software
+## :pick: 3. Install mining software
 
 ### CPU & GPU Mining software: xmrig
 
-1. Download latest miner binaries from
+1.  Download latest miner binaries from
 
-   [https://github.com/xmrig/xmrig/releases](https://github.com/xmrig/xmrig/releases)
+    [https://github.com/xmrig/xmrig/releases](https://github.com/xmrig/xmrig/releases)
+2.  Pick a mining pool from
 
-2. Pick a mining pool from
-
-   [https://miningpoolstats.stream/monero](https://miningpoolstats.stream/monero)
-
+    [https://miningpoolstats.stream/monero](https://miningpoolstats.stream/monero)
 3. Configure your xmrig with the [configuration wizard.](https://xmrig.com/wizard)
 
 **Example: Command Line to mine with CPU and AMD GPU**
 
 {% tabs %}
 {% tab title="Windows" %}
-```text
+```
 xmrig.exe --opencl -o de.minexmr.com:443 -u 44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A -k --tls
 ```
 {% endtab %}
@@ -56,7 +66,7 @@ xmrig.exe --opencl -o de.minexmr.com:443 -u 44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DB
 {% endtab %}
 {% endtabs %}
 
-## 📄 4. Enable Huge Pages
+## :page_facing_up: 4. Enable Huge Pages
 
 {% hint style="success" %}
 Enabling huge pages can boost hash rate up to 50%
@@ -67,7 +77,7 @@ Enabling huge pages can boost hash rate up to 50%
 **Two ways to enable huge pages.**
 
 1. Run the `xmrig.exe` one time with administrator  and then reboot your PC.
-   * Right-click `xmrig.exe` &gt; select  "Run as administrator"
+   * Right-click `xmrig.exe` > select  "Run as administrator"
 
 Or,
 
@@ -87,30 +97,30 @@ Or,
 {% endtab %}
 
 {% tab title="Linux" %}
-```text
+```
 sudo bash -c "echo vm.nr_hugepages=1280 >> /etc/sysctl.conf"
 ```
 
 {% hint style="info" %}
-✨ **Tip:** Boost hash rate up to 3% more by enabling 1GB huge pages. Run the following command:
+:sparkles:** Tip: **Boost hash rate up to 3% more by enabling 1GB huge pages. Run the following command:
 
 `sudo ./scripts/enable_1gb_pages.sh`
 {% endhint %}
 {% endtab %}
 {% endtabs %}
 
-## 💰 5. FAQ
+## :moneybag: 5. FAQ
 
 ### 5.1 How much performance should I expect from my hardware?
 
 {% tabs %}
 {% tab title="CPU Mining" %}
-Find your potential CPU mining performance at [https://monerobenchmarks.info/](https://monerobenchmarks.info/)
+Find your potential CPU mining performance at [https://monerobenchmarks.info/](https://monerobenchmarks.info)
 {% endtab %}
 
 {% tab title="GPU Mining" %}
-1. Visit [whattomine.com](https://www.whattomine.com/)
-2. Enter the \# of GPUs
+1. Visit [whattomine.com](https://www.whattomine.com)
+2. Enter the # of GPUs
 3. Press **RandomX**
 4. Press **Calculate**
 {% endtab %}
@@ -126,5 +136,4 @@ When your earnings reaches the payout limit or threshold, payment is automatical
 
 ### 5.4 How can I optimize and tune my miner?
 
-Follow the [Windows tuning guide by sech1 \(XMRig Dev\)](https://www.reddit.com/r/MoneroMining/comments/f18825/windows_10_tuning_guide_for_randomx_mining/)
-
+Follow the [Windows tuning guide by sech1 (XMRig Dev)](https://www.reddit.com/r/MoneroMining/comments/f18825/windows\_10\_tuning_guide_for_randomx_mining/)

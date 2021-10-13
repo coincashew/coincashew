@@ -6,11 +6,9 @@
 
 
 
-## 👩💻 Development
+## :woman_technologist: Development
 
 {% embed url="https://developer.bitcoin.com/" %}
 
 {% embed url="https://docs.devops.cash/welcome/se.html" %}
-
-
 

@@ -4,20 +4,20 @@ description: 'Where the magic begins... Estimated duration: ~ 1 hour.'
 
 # 3. Install a Tezos Node
 
-## 📖 1. Open a Terminal Window in Ubuntu
+## :book: 1. Open a Terminal Window in Ubuntu
 
-**Press** Ctrl+Alt+T. This will launch the Terminal.
+**Press **Ctrl+Alt+T. This will launch the Terminal.
 
-## 🏭 2. Getting and building Tezos from source
+## :factory: 2. Getting and building Tezos from source
 
 Copy and paste these commands into the terminal line by line.
 
-```text
+```
 sudo apt install -y rsync git m4 build-essential patch unzip bubblewrap wget pkg-config libgmp-dev libev-dev libhidapi-dev
 ```
 
 {% hint style="info" %}
-Type your **password** when prompted.
+Type your **password **when prompted.
 
 `[sudo] password for username:`
 {% endhint %}
@@ -62,11 +62,11 @@ export TEZOS_CLIENT_UNSAFE_DISABLE_DISCLAIMER=Y
 Congratulations! You built your own Tezos node.
 {% endhint %}
 
-## ✨ 3. Starting the Node
+## :sparkles: 3. Starting the Node
 
 First, you must generate a new identity in order to connect to the Tezos network.
 
-```text
+```
 ./tezos-node identity generate 26.
 ```
 
@@ -74,15 +74,15 @@ First, you must generate a new identity in order to connect to the Tezos network
 This may take a few minutes to complete.
 {% endhint %}
 
-## 💿 4. Restore a snapshot
+## :cd: 4. Restore a snapshot
 
 Rather than taking days to download the Tezos blockchain from the p2p network, a node can be quickly synchronized in a few minutes from snapshot.
 
 Download a **rolling mode** snapshot from one of the following sources.
 
 * [https://github.com/Phlogi/tezos-snapshots/releases](https://github.com/Phlogi/tezos-snapshots/releases)
-* [https://tezosshots.com](https://tezosshots.com/)
-* [https://snapshots.baketzfor.me](https://snapshots.baketzfor.me/)
+* [https://tezosshots.com](https://tezosshots.com)
+* [https://snapshots.baketzfor.me](https://snapshots.baketzfor.me)
 
 For example, here we will download from the first link both a **rolling snapshot** and a **verification file**, `checksums.sha256`. 
 
@@ -109,7 +109,7 @@ sha256sum -c checksum
 Ensure the checksum hash matches. This means the snapshot was downloaded fully and properly.
 {% endhint %}
 
-Sample output says **OK** when you successfully validate the file:
+Sample output says **OK **when you successfully validate the file:
 
 > `mainnet.roll.date.12345.chain.xz : OK`
 
@@ -126,13 +126,13 @@ rm mainnet.roll* checksums.sha256 checksum
 ```
 
 {% hint style="info" %}
-\*\*\*\*🏸 **FYI:** Rolling mode vs Full mode
+****:badminton: **FYI: **Rolling mode vs Full mode
 
 * **`rolling`** mode are the most lightweight snapshots. Keeps a minimal rolling fragment of the chain and deleting everything before this fragment. Safe for baking, endorsing, and validating new blocks.
 * **`full`** mode store all chain data since the beginning of the chain, but drop the archived contexts below the current checkpoint. Safe for baking, endorsing, and validating new blocks.
 {% endhint %}
 
-## 🧱5. Starting the node
+## :bricks:5. Starting the node
 
 ```bash
 ./tezos-node run --rpc-addr 127.0.0.1:8732 --log-output tezos.log &
@@ -152,4 +152,3 @@ Downloading the latest blocks from peers, your node will gather the blocks creat
 cd ~/tezos
 ./tezos-client bootstrapped
 ```
-

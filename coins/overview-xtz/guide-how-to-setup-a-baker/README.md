@@ -4,25 +4,41 @@ description: Your guide to building a solo baker and improving Tezos decentraliz
 
 # Guide: How to setup a Baker
 
-## 📑 Table of Contents
+## :bookmark_tabs: Table of Contents
 
-{% page-ref page="requirements.md" %}
+{% content-ref url="requirements.md" %}
+[requirements.md](requirements.md)
+{% endcontent-ref %}
 
-{% page-ref page="install-ubuntu.md" %}
+{% content-ref url="install-ubuntu.md" %}
+[install-ubuntu.md](install-ubuntu.md)
+{% endcontent-ref %}
 
-{% page-ref page="install-a-tezos-node.md" %}
+{% content-ref url="install-a-tezos-node.md" %}
+[install-a-tezos-node.md](install-a-tezos-node.md)
+{% endcontent-ref %}
 
-{% page-ref page="configure-ledger-nano-s.md" %}
+{% content-ref url="configure-ledger-nano-s.md" %}
+[configure-ledger-nano-s.md](configure-ledger-nano-s.md)
+{% endcontent-ref %}
 
-{% page-ref page="start-the-baker.md" %}
+{% content-ref url="start-the-baker.md" %}
+[start-the-baker.md](start-the-baker.md)
+{% endcontent-ref %}
 
-{% page-ref page="monitoring-and-autostart.md" %}
+{% content-ref url="monitoring-and-autostart.md" %}
+[monitoring-and-autostart.md](monitoring-and-autostart.md)
+{% endcontent-ref %}
 
-{% page-ref page="updating-a-node.md" %}
+{% content-ref url="updating-a-node.md" %}
+[updating-a-node.md](updating-a-node.md)
+{% endcontent-ref %}
 
-{% page-ref page="distribute-rewards.md" %}
+{% content-ref url="distribute-rewards.md" %}
+[distribute-rewards.md](distribute-rewards.md)
+{% endcontent-ref %}
 
-{% page-ref page="tips-and-tricks.md" %}
-
-
+{% content-ref url="tips-and-tricks.md" %}
+[tips-and-tricks.md](tips-and-tricks.md)
+{% endcontent-ref %}
 

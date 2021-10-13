@@ -7,19 +7,18 @@ description: >-
 
 # Guarda: Multi-chain assets
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://guarda.com/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://guarda.freshdesk.com/support/solutions/articles/36000032811-getting-started-with-guarda-wallet" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://guarda.freshdesk.com/support/solutions" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 {% embed url="https://guarda.com/coins" %}
-

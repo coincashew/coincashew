@@ -6,11 +6,10 @@ description: >-
 
 # Stellar: Account Viewer
 
-## 🚀 Official Website
+## :rocket: Official Website
 
-{% embed url="https://accountviewer.stellar.org/\#!/" %}
+{% embed url="https://accountviewer.stellar.org/#!/" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Stellar \(XLM\)](../../coins/xlm/)
-
+* [Stellar (XLM)](../../coins/xlm/)

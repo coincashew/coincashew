@@ -15,7 +15,7 @@ description: >-
 
 {% embed url="https://github.com/atomex-me" %}
 
-## 🧙♂ Getting started
+## :man_mage: Getting started
 
 {% embed url="https://www.youtube.com/watch?v=fiwx9f1BOFU" %}
 
@@ -25,5 +25,4 @@ description: >-
 
 ## 💰 Supported Assets
 
-{% embed url="https://atomex.me/\#currencies" %}
-
+{% embed url="https://atomex.me/#currencies" %}

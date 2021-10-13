@@ -1,20 +1,18 @@
 # Lynx: EOS
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://www.lynxwallet.io/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://create.lynxwallet.io/" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://t.me/lynxwallet" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 * [EOS](../../coins/overview-eos/)
-
-
 

@@ -7,23 +7,21 @@ description: >-
 
 # Pillar: Ethereum, BTC
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://pillarproject.io/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://help.pillarproject.io/en/collections/897486-getting-started" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://help.pillarproject.io/en/" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
 * [Ethereum](../../coins/overview-eth/)
 * [ERC Tokens](../../coins/overview-eth/)
 * [BTC](../../coins/btc/)
-
-
 

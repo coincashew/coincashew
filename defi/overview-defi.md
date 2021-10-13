@@ -1,18 +1,18 @@
 # Overview: DeFi
 
-## 🗞 DeFi Newletters 
+## :newspaper2: DeFi Newletters 
 
 {% embed url="https://thedefiant.substack.com/" %}
 
 {% embed url="https://compound.substack.com/" %}
 
-## 💵 Decentralized Stablecoins
+## :dollar: Decentralized Stablecoins
 
 {% embed url="https://makerdao.com/en/" %}
 
 {% embed url="https://www.basis.io/" %}
 
-## 💳 Decentralized Lending
+## :credit_card: Decentralized Lending
 
 {% embed url="https://compound.finance/" %}
 
@@ -32,9 +32,9 @@
 
 {% embed url="https://saltlending.com/" %}
 
-## 💱 Decentralized Exchanges
+## :currency_exchange: Decentralized Exchanges
 
-{% embed url="https://1inch.exchange/\#/r/0xCF83d0c22dd54475cC0C52721B0ef07d9756E8C0" %}
+{% embed url="https://1inch.exchange/#/r/0xCF83d0c22dd54475cC0C52721B0ef07d9756E8C0" %}
 
 {% embed url="https://uniswap.io/" %}
 
@@ -64,7 +64,7 @@
 
 {% embed url="https://trontrade.io/" %}
 
-## 💠 DeFi No-Loss Applications
+## :diamond_shape_with_a_dot_inside: DeFi No-Loss Applications
 
 {% embed url="https://www.pooltogether.com/" %}
 
@@ -72,7 +72,7 @@
 
 {% embed url="http://rtrees.dappy.dev/" %}
 
-## 🎟 DeFi Applications
+## :tickets: DeFi Applications
 
 {% embed url="http://mintbase.io/" %}
 
@@ -90,9 +90,9 @@
 
 {% embed url="https://defizap.com/zaps" %}
 
-{% embed url="https://idle.finance/\#/" %}
+{% embed url="https://idle.finance/#/" %}
 
-## ⚙ Decentralized Management Tools
+## :gear: Decentralized Management Tools
 
 {% embed url="https://defisaver.com/" %}
 
@@ -108,7 +108,7 @@
 
 {% embed url="https://trustwallet.com/" %}
 
-## 🔮 Decentralized Dashboards
+## :crystal_ball: Decentralized Dashboards
 
 {% embed url="https://defipulse.com/" %}
 
@@ -124,7 +124,7 @@
 
 {% embed url="https://uniswapdex.com/" %}
 
-## 🎭 Decentralized Identity
+## :performing_arts: Decentralized Identity
 
 {% embed url="https://www.civic.com/" %}
 
@@ -138,13 +138,13 @@
 
 {% embed url="https://bloom.co/" %}
 
-## 🗃 Decentralized Asset Tokenization
+## :card_box: Decentralized Asset Tokenization
 
 {% embed url="https://openfinance.io/" %}
 
 {% embed url="https://polymath.network/" %}
 
-## 💸 Decentralized Payments
+## :money_with_wings: Decentralized Payments
 
 {% embed url="https://stablepay.io/url" %}
 
@@ -156,7 +156,7 @@
 
 {% embed url="https://lightning.network/" %}
 
-## 🏪 Decentralized Marketplaces
+## :convenience_store: Decentralized Marketplaces
 
 {% embed url="https://gitcoin.co/" %}
 
@@ -168,13 +168,11 @@
 
 {% embed url="https://opensea.io/" %}
 
-## 🛡 Decentralized Insurance
+## :shield: Decentralized Insurance
 
 {% embed url="https://opyn.co/" %}
 
 {% embed url="https://etherisc.com/" %}
 
 {% embed url="http://hegic.co/" %}
-
-
 

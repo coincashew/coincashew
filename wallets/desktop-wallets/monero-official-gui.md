@@ -7,19 +7,18 @@ description: >-
 
 # Monero: Official GUI
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://web.getmonero.org/downloads/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://web.getmonero.org/get-started/using/" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://web.getmonero.org/resources/user-guides/" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Monero \(XMR\)](../../coins/overview-xmr/)
-
+* [Monero (XMR)](../../coins/overview-xmr/)

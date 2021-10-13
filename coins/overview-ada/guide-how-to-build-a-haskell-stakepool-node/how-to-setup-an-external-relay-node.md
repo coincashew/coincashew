@@ -14,15 +14,15 @@ Major credits and appreciation to the fine folks at [Cardano Community Guild Ope
 **Relay nodes** do not have any keys, so they cannot produce blocks. Instead, relays act as proxies between the core network nodes and the internet, establishing a security perimeter around the core, block-producing network nodes. Since external nodes cannot communicate with block-producing nodes directly, relay nodes ensure that the integrity of the core nodes and the blockchain remains intact, even if one or more relays become compromised.
 {% endhint %}
 
-## 🌜 0. Prerequisites
+## :last_quarter_moon_with_face: 0. Prerequisites
 
-* A different server/VM \(not located on the same machine as your block-producer node\)
+* A different server/VM (not located on the same machine as your block-producer node)
 
-## 🛸 1. Run prereqs.sh
+## :flying_saucer: 1. Run prereqs.sh
 
 Installs prerequisite dependencies and creates folder structure.
 
-```text
+```
 sudo apt-get install curl net-tools
 ```
 
@@ -54,7 +54,7 @@ chmod 755 prereqs.sh
 
 Reload environment variables.
 
-```text
+```
 . "${HOME}/.bashrc"
 ```
 
@@ -62,7 +62,7 @@ Reload environment variables.
 Familiarize yourself with the [folder structure](https://cardano-community.github.io/guild-operators/#/basics?id=folder-structure) created by CNtools.
 {% endhint %}
 
-## 🤹♀ 2. Build Cardano Node and CLI
+## :woman_juggling: 2. Build Cardano Node and CLI
 
 #### Clone the git repository.
 
@@ -86,7 +86,7 @@ $CNODE_HOME/scripts/cabal-build-all.sh
 
 #### Install binaries to local bin directory.
 
-```text
+```
 sudo cp $HOME/.cabal/bin/cardano* /usr/local/bin
 ```
 
@@ -97,9 +97,9 @@ cardano-cli version
 cardano-node version
 ```
 
-## ⚒ 3. Auto-starting with systemd services
+## :hammer_pick: 3. Auto-starting with systemd services
 
-#### 🎊 Benefits of using systemd for your stake pool
+#### :confetti_ball: Benefits of using systemd for your stake pool
 
 1. Auto-start your node when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed node processes.
@@ -140,42 +140,42 @@ sudo systemctl enable cnode.service
 Nice work. Your node is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-####   ✅ Check whether the node service is active <a id="check-whether-the-stake-pool-service-is-active"></a>
+####   :white_check_mark: Check whether the node service is active <a href="check-whether-the-stake-pool-service-is-active" id="check-whether-the-stake-pool-service-is-active"></a>
 
-```text
+```
 sudo systemctl is-active cnode
 ```
 
-#### ​ 🔎 View the status of the node service <a id="view-the-status-of-the-stake-pool-service"></a>
+#### ​ :mag_right: View the status of the node service <a href="view-the-status-of-the-stake-pool-service" id="view-the-status-of-the-stake-pool-service"></a>
 
-```text
+```
 sudo systemctl status cnode
 ```
 
-#### ​ 🔄 Restarting the node service <a id="restarting-the-stake-pool-service"></a>
+#### ​ :arrows_counterclockwise: Restarting the node service <a href="restarting-the-stake-pool-service" id="restarting-the-stake-pool-service"></a>
 
-```text
+```
 sudo systemctl reload-or-restart cnode
 ```
 
-#### ​ 🛑 Stopping the node service <a id="stopping-the-stake-pool-service"></a>
+#### ​ :octagonal_sign: Stopping the node service <a href="stopping-the-stake-pool-service" id="stopping-the-stake-pool-service"></a>
 
-```text
+```
 sudo systemctl stop cnode
 ```
 
-#### 🚧 Filtering logs <a id="filtering-logs"></a>
+#### :construction: Filtering logs <a href="filtering-logs" id="filtering-logs"></a>
 
-```text
+```
 journalctl --unit=cnode --since=yesterday
 journalctl --unit=cnode --since=today
 journalctl --unit=cnode --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
 ```
 
-## 🚀 4. Start the relay node
+## :rocket: 4. Start the relay node
 
 {% hint style="success" %}
-**Pro tip:** 🎇 Speed this step up by copying the **db** folder from another node you control.
+**Pro tip:** :sparkler: Speed this step up by copying the **db** folder from another node you control.
 {% endhint %}
 
 ```bash
@@ -193,7 +193,7 @@ chmod 755 gLiveView.sh
 
 Run Guild Liveview.
 
-```text
+```
 ./gLiveView.sh
 ```
 
@@ -203,9 +203,9 @@ Sample output of Guild Live View
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
-## 🛑5. Configure and review the relay node topology file
+## :octagonal_sign:5. Configure and review the relay node topology file
 
-Modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script to configure your relay node's connections to your other relays and block producer node. Refer to the [official documentation for more info.](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater?id=download-and-configure-topologyupdatersh)
+Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh` script to configure your relay node's connections to your other relays and block producer node. Refer to the [official documentation for more info.](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater?id=download-and-configure-topologyupdatersh)
 
 ```bash
 nano $CNODE_HOME/scripts/topologyUpdater.sh
@@ -223,25 +223,25 @@ Review your topology.json and check that it looks correct. Your new relay node's
 cat $CNODE_HOME/files/topology.json
 ```
 
-## 🔥 6. Configure port-forwarding and/or firewall
+## :fire: 6. Configure port-forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, ensure your relay node's port 6000 is open and reachable. 
 
 {% hint style="danger" %}
-\*\*\*\*✨ **Port Forwarding Tip:** Check that your relay port 6000 is open with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
+****:sparkles: **Port Forwarding Tip: **Check that your relay port 6000 is open with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
-Additionally, if you have node-exporter installed for grafana stats, you will need to open ports 9100 and 12798. Don't forget to update `prometheus.yml` on your prometheus server \(aka relaynode1\). Restart prometheus service for the new relay node to appear in your dashboard.
+Additionally, if you have node-exporter installed for grafana stats, you will need to open ports 9100 and 12798. Don't forget to update `prometheus.yml` on your prometheus server (aka relaynode1). Restart prometheus service for the new relay node to appear in your dashboard.
 
-## 👩💻 7. Configure existing relay or block producing node's topology
+## :woman_technologist: 7. Configure existing relay or block producing node's topology
 
-Finally, add your new **NEW** relay node IP/port information to your **EXISTING** block producer and/or relay node's topology file. Modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh`
+Finally, add your new **NEW **relay node IP/port information to your **EXISTING **block producer and/or relay node's topology file. Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh`
 
 For your block producer node, you'll want to manually add the new relay node information to your topology.json file.
 
 Example snippet to add to your block producer's topology file. Add a comma to separate the nodes where appropriate.
 
-```text
+```
  {
     "addr": "<relay node public ip address>",
     "port": 6000,
@@ -249,37 +249,36 @@ Example snippet to add to your block producer's topology file. Add a comma to se
  }
 ```
 
-For relay nodes, use the [topologyUpdater process](./#14-configure-your-topology-files) to manage your topology file or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh`.
+For relay nodes, use the [topologyUpdater process](./#14-configure-your-topology-files) to manage your topology file or modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh`.
 
-## 🔄 8. Restart all relay and block producer nodes for new topology configurations to take effect
+## :arrows_counterclockwise: 8. Restart all relay and block producer nodes for new topology configurations to take effect
 
-## 🎊 9. Verify the connection is working
+## :confetti_ball: 9. Verify the connection is working
 
 On the Guild LiveView screen, press `P` to view the peer list. You should see the connection to other node's IP.
 
 {% hint style="success" %}
-✨ Congrats on the new relay node.
+:sparkles: Congrats on the new relay node.
 {% endhint %}
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **Critical Security Reminder:** Relay nodes must not contain any **`operational certifications`, `vrf`, `skey` or `cold`** ``**keys**.
+****:fire: **Critical Security Reminder:** Relay nodes must not contain any **`operational certifications`, `vrf`, `skey` or `cold`**` `**keys**.
 {% endhint %}
 
 {% hint style="success" %}
-Congrats on completing the guide. ✨ 
+Congrats on completing the guide. :sparkles: 
 
 Did you find our guide useful? Send us a signal with a tip and we'll keep updating it. 
 
 It really energizes us to keep creating the best crypto guides. 
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray: 
 
-Any feedback and all pull requests much appreciated. 🌛 
+Any feedback and all pull requests much appreciated. :first_quarter_moon_with_face: 
 
 Hang out and chat with fellow stake pool operators on Discord @
 
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃 
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley: 
 
 Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}
-

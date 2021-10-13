@@ -1,19 +1,19 @@
 # Guide: How to stake THETA with a Guardian Node
 
-## 🏁 0. Prerequisites
+## :checkered_flag: 0. Prerequisites
 
 * **Processor:** Quad cores or more
 * **Memory:** 8GB RAM or more
 * **Storage:** 256GB SSD or more
 * **Internet:** 24/7 broadband internet connection 5 Mbps or more
 * **Power:** 24/7 electrical power
-* **THETA balance:** 10000 Theta or more
+* **THETA balance: **10000 Theta or more
 
-## 🏗 1. Setting up your Guardian Node
+## :construction_site: 1. Setting up your Guardian Node
 
 {% tabs %}
 {% tab title="Windows" %}
-### 🤖1. Create a Node
+### :robot:1. Create a Node
 
 1. Download the Windows [binaries](https://api.thetatoken.org/downloads/guardian-node/windows?network=mainnet)
 2. Run the binary
@@ -24,19 +24,19 @@
 
 ![Click continue on the Welcome screen](../../.gitbook/assets/theta-welcome.png)
 
-### ⚙2. Sync your node
+### :gear:2. Sync your node
 
 1. Sync your node to the tip of the blockchain can take minutes up to an hour depending on the performance of your computer.
 
-### 💸3. Deposit stake to your node
+### :money_with_wings:3. Deposit stake to your node
 
-1. Once your node is fully synchronized, you will see a Guardian Node Holder \(Summary\). Copy and paste into your Theta wallet's "Deposit Stake" function.
+1. Once your node is fully synchronized, you will see a Guardian Node Holder (Summary). Copy and paste into your Theta wallet's "Deposit Stake" function.
 
-![Copy the Summary and paste into your Theta wallet&apos;s Deposit Stake function](../../.gitbook/assets/theta-stake-windows.png)
+![Copy the Summary and paste into your Theta wallet's Deposit Stake function](../../.gitbook/assets/theta-stake-windows.png)
 
 ![Using your Theta wallet, enter the summary, your amount to stake then deposit stake.](../../.gitbook/assets/theta-deposit.png)
 
-### ✅ 4. Validate your node is working
+### :white_check_mark: 4. Validate your node is working
 
 Verify that
 
@@ -48,7 +48,7 @@ Verify that
 ![Verifying a functioning node](../../.gitbook/assets/theta-verify.png)
 
 {% hint style="success" %}
-✨Congratulations! Your Theta Guardian Node is working to finalize blocks and will earn TFUEL.
+:sparkles:Congratulations! Your Theta Guardian Node is working to finalize blocks and will earn TFUEL.
 {% endhint %}
 
 {% hint style="info" %}
@@ -56,22 +56,22 @@ Every 10 minutes or 100 blocks, your Guardian node is rewarded TFUEL for it's wo
 {% endhint %}
 
 {% hint style="info" %}
-You can view your TFUEL rewards in your THETA wallet or view them on the [block explorer.](https://explorer.thetatoken.org/)
+You can view your TFUEL rewards in your THETA wallet or view them on the [block explorer.](https://explorer.thetatoken.org)
 {% endhint %}
 {% endtab %}
 
 {% tab title="Linux / MacOS" %}
-### \*\*\*\*🤖 **1.** Download and create a node
+### ****:robot: **1. **Download and create a node
 
 First install curl if you need to.
 
-```text
+```
 sudo apt install curl -y
 ```
 
 Install Theta binaries. If you're using macOS, update the URLs so that os=macos
 
-```text
+```
 mkdir ~/theta-node && cd ~/theta-node
 mkdir guardian
 wget -O guardian/snapshot `curl -k https://mainnet-data.thetatoken.org/snapshot`
@@ -81,9 +81,9 @@ curl -k --output thetacli `curl -k 'https://mainnet-data.thetatoken.org/binary?o
 chmod +x theta && chmod +x thetacli
 ```
 
-### ⚙ 2. Sync your node
+### :gear: 2. Sync your node
 
-```text
+```
 cd ~/theta-node
 ./theta start --config=guardian
 ```
@@ -96,7 +96,7 @@ Check the status of the sync.
 
 Open a new terminal window with CTRL-SHIFT-T and check your sync status.
 
-```text
+```
 ./thetacli query status
 ```
 
@@ -104,32 +104,32 @@ Open a new terminal window with CTRL-SHIFT-T and check your sync status.
 Sync your node to the tip of the blockchain can take minutes up to an hour depending on the performance of your computer.
 {% endhint %}
 
-### 💸 3. Deposit stake to your node
+### :money_with_wings: 3. Deposit stake to your node
 
 Once your node is done syncing when **"syncing": false**, run the following to generate your Guardian Node Holder Summary.
 
-```text
+```
 ./thetacli query guardian
 ```
 
  **Sample query guardian output:**
 
-> `{ "Address": "0x5C...",   
-> "BlsPubkey": "a1...",   
-> "BlsPop": "az1...",   
-> "Signature": "83201...",   
-> "Summary": "0xeb..." }`
+> `{ "Address": "0x5C...", `\
+> `"BlsPubkey": "a1...", `\
+> `"BlsPop": "az1...", `\
+> `"Signature": "83201...", `\
+> `"Summary": "0xeb..." }`
 
-Copy and paste the **Summary** data into your wallet's "Deposit Stake" function
+Copy and paste the **Summary **data into your wallet's "Deposit Stake" function
 
-### ✅ 4. Validate your node is working
+### :white_check_mark: 4. Validate your node is working
 
 If you see the following logs, your node is working.
 
 `DEBUG [guardian] Boardcasting guardian vote vote=AggregatedVotes`
 
 {% hint style="success" %}
-✨Congratulations! Your Theta Guardian Node is working to finalize blocks and will earn TFUEL.
+:sparkles:Congratulations! Your Theta Guardian Node is working to finalize blocks and will earn TFUEL.
 {% endhint %}
 
 {% hint style="info" %}
@@ -137,8 +137,7 @@ Every 10 minutes or 100 blocks, your Guardian node is rewarded TFUEL for it's wo
 {% endhint %}
 
 {% hint style="info" %}
-You can view your TFUEL rewards in your THETA wallet or view them on the [block explorer.](https://explorer.thetatoken.org/)
+You can view your TFUEL rewards in your THETA wallet or view them on the [block explorer.](https://explorer.thetatoken.org)
 {% endhint %}
 {% endtab %}
 {% endtabs %}
-

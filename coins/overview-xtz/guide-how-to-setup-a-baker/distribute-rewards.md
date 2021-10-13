@@ -1,6 +1,6 @@
 # 8. Distribute Rewards
 
-## ⁉ 0. Why?
+## :interrobang: 0. Why?
 
 Are you baking on behalf of others? Do you have accounts delegated to your baking address? No longer solo-baking? If yes, then you need a process to distribute rewards every cycle. The best way is with the following, TRD:
 
@@ -10,29 +10,29 @@ Are you baking on behalf of others? Do you have accounts delegated to your bakin
 >
 > Source code: [https://github.com/habanoz/tezos-reward-distributor](https://github.com/habanoz/tezos-reward-distributor)
 
-## 🚧 1. Installing TRD
+## :construction: 1. Installing TRD
 
-1. Install python 3.
+1\. Install python 3.
 
-```text
+```
 sudo apt-get update
 sudo apt-get -y install python3-pip
 ```
 
-2. Clone repo and install modules.
+2\. Clone repo and install modules.
 
-```text
+```
 cd 
 git clone https://github.com/habanoz/tezos-reward-distributor
 cd tezos-reward-distributor
 pip3 install -r requirements.txt
 ```
 
-## 💸 2. Setup your payout configuration
+## :money_with_wings: 2. Setup your payout configuration
 
 * By default, payment configuration is stored in `~/pymnt/cfg/`
 
-```text
+```
 # create directory
 mkdir -p ~/pymnt/cfg/
 cp tezos-reward-distributor/examples/tz1boot1pK9h2BVGXdyvfQSv8kd1LQM6H889.yaml ~/pymnt/cfg/
@@ -41,7 +41,7 @@ nano ~/pymnt/cfg/<tz1_yourBakerAddress>.yaml
 
 Example contents of `<tz1_yourBakerAddress>.yaml`
 
-```text
+```
 version : 1.0
 baking_address : tz1_yourBakerAddress
 payment_address : myPaymentAddress
@@ -63,11 +63,11 @@ rules_map:
 TOB means to balance. Review the [detailed configuration help documentation here](https://habanoz.github.io/tezos-reward-distributor/configuration.html).
 {% endhint %}
 
-## 🧨 3. Setup and configure a new Rewards Payment Address
+## :firecracker: 3. Setup and configure a new Rewards Payment Address
 
-1. Generate a new tz1 account named`myPaymentAddress`. Add a passphrase to protect it.
+1\. Generate a new tz1 account named`myPaymentAddress`. Add a passphrase to protect it.
 
-```text
+```
 cd ~/tezos
 ./tezos-client gen keys myPaymentAddress
 
@@ -75,19 +75,19 @@ cd ~/tezos
 # Confirm passphrase:
 ```
 
-2. Verify that the account was created successfully.
+2\. Verify that the account was created successfully.
 
-```text
+```
 ./tezos-client list known addresses
 ```
 
-3. You should see your `myPaymentAddress` along with it's public address starting with `tz1.` See below for example.
+3\. You should see your `myPaymentAddress` along with it's public address starting with `tz1.` See below for example.
 
 > `myPaymentAddress: t1420a9zkodJpP5xtbwez651YxRKJtxVmqe (encrypted sk known)`
 
-4. ✨ **VERY IMPORTANT STEP**: Backup the secret key and your passphrase. Save this somewhere safe.
+4\. :sparkles: **VERY IMPORTANT STEP**: Backup the secret key and your passphrase. Save this somewhere safe.
 
-```text
+```
 ./tezos-client show address myPaymentAddress -S
 ```
 
@@ -99,32 +99,32 @@ Example output`:`
 Reminder: Backup your secret key and passphrase, _**carefully and correctly.**_
 {% endhint %}
 
-## 🎇 4. Setup Tezos Client and Signer
+## :sparkler: 4. Setup Tezos Client and Signer
 
 1. Update and run the following command with your secret key that you backed up earlier.
 
-```text
+```
 cd ~/tezos
 ./tezos-signer import secret key myPaymentAddress encrypted:edesk1<randomCharacters>
 ```
 
-2. Start the signer process which will sign payment transactions generated fromTRD.
+2\. Start the signer process which will sign payment transactions generated fromTRD.
 
-```text
+```
 ./tezos-signer launch socket signer -a 127.0.0.1 -p 22000 -W
 ```
 
-3. Add the payment address to tezos-client. Make sure to update `<tz1_myPaymentAddress>` with your payment address public key.
+3\. Add the payment address to tezos-client. Make sure to update `<tz1_myPaymentAddress>` with your payment address public key.
 
-```text
+```
 ./tezos-client import secret key myPaymentAddress tcp://127.0.0.1:22000/<tz1_myPaymentAddress> -f
 ```
 
-## 🏃♀ 5. Running Tezos Reward Distributor
+## :woman_running: 5. Running Tezos Reward Distributor
 
 To run TRD, execute the following command.
 
-```text
+```
 cd ~/tezos-reward-distributor
 python3 src/main.py -O 60 -E ~/tezos --do_not_publish_stats -P tzstats
 ```
@@ -138,16 +138,16 @@ Want to double check everything and do a dry run before sending rewards? Add `-D
 {% endhint %}
 
 {% hint style="success" %}
-That's it! Every cycle or ~3 days, reward payments can automatically be distributed from `myPaymentAddress.` Just make sure to transfer enough tez from your baker address to this payment address.
+That's it! Every cycle or \~3 days, reward payments can automatically be distributed from `myPaymentAddress.` Just make sure to transfer enough tez from your baker address to this payment address.
 {% endhint %}
 
-## 📂 6. Reviewing payment reports
+## :open_file_folder: 6. Reviewing payment reports
 
 * `~/pymnt/reports/` contains CSV files detailing calculations, failed/done payments.
 
-## 🤖 7. Updating Tezos Reward Distributor
+## :robot: 7. Updating Tezos Reward Distributor
 
-```text
+```
 git fetch origin #fetches new branches
 git status #see the changes
 git pull
@@ -156,4 +156,3 @@ git pull
 {% hint style="info" %}
 Check the change logs and review the new fixes/updates for potentially breaking changes requiring attention. Use `git log` command.
 {% endhint %}
-

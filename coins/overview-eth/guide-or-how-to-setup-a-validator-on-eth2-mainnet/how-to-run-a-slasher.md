@@ -6,13 +6,13 @@ description: >-
 
 # How to run a slasher
 
-## ⏩ Quick steps guide
+## :fast_forward: Quick steps guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
-### 🗡 What is a Slasher?
+### :dagger: What is a Slasher?
 
 * Validators might commit slashable transactions such as
   * **Double Voting**: signs more than one block in same epoch
@@ -25,13 +25,13 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 Slashers tend to be resource intensive and is currently recommended for advanced users only.
 {% endhint %}
 
-### 🤖 Minimum Slasher System Requirements
+### :robot: Minimum Slasher System Requirements
 
 * Quad-core or more CPU
 * 16+ GB RAM
 * 256GB+ SSD HD
 
-### 🚧 How to Configure the Slasher
+### :construction: How to Configure the Slasher
 
 Slasher functionality is currently available in Lighthouse or Prysm.
 
@@ -81,16 +81,16 @@ sudo systemctl restart beacon-chain
 {% endtabs %}
 
 {% hint style="success" %}
-Nice work. You're running a slasher now. 🗡 🤖 🔪 
+Nice work. You're running a slasher now. :dagger: :robot: :knife: 
 {% endhint %}
 
 {% hint style="info" %}
 Be sure to familiarize yourself with the [reference material for detailed official slasher documentation.](how-to-run-a-slasher.md#reference-material)
 {% endhint %}
 
-##  🤖 Start staking by building a validator <a id="start-staking-by-building-a-validator"></a>
+##  :robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨
@@ -108,13 +108,12 @@ Hang out and chat with fellow stakers on Discord @
 ​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
 
-🎊 **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+:confetti_ball: **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
-## 🧩 Reference Material
+## :jigsaw: Reference Material
 
 {% embed url="https://docs.prylabs.network/docs/prysm-usage/slasher/" %}
 
 {% embed url="https://lighthouse-book.sigmaprime.io/slasher.html" %}
-

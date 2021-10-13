@@ -1,6 +1,6 @@
 # External Reading Material
 
-## 🧬 Ontology Fundamentals
+## :dna: Ontology Fundamentals
 
 {% embed url="https://docs.ont.io/" %}
 
@@ -9,6 +9,4 @@
 {% embed url="https://coincentral.com/ontology-ont-beginners-guide/" %}
 
 {% embed url="https://themerkle.com/what-is-ontology-cryptocurrency/" %}
-
-
 

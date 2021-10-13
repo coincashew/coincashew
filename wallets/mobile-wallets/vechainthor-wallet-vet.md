@@ -1,14 +1,14 @@
 # VeChainThor Wallet: VET
 
-## 🚀 Official Website
+## :rocket: Official Website
 
-[https://env.vechain.org/\#thor-wallet](https://env.vechain.org/#thor-wallet)
+[https://env.vechain.org/#thor-wallet](https://env.vechain.org/#thor-wallet)
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/vechain" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 #### IOS
 
@@ -18,8 +18,7 @@
 
 {% embed url="https://vechain-cdn.oss-cn-shanghai.aliyuncs.com/wallet/Usermanual/Vechain%20wallet%20manual-android%201.4.pdf" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Vechain \(VET\)](../../coins/overview-vet/)
-* [VeThor \(VTHO\)](../../coins/overview-vet/)
-
+* [Vechain (VET)](../../coins/overview-vet/)
+* [VeThor (VTHO)](../../coins/overview-vet/)

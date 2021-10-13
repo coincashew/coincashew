@@ -4,20 +4,19 @@ description: Another Android Monero Wallet for Monero
 
 # Monerujo: Monero
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://www.monerujo.io/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/m2049r/xmrwallet" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://github.com/m2049r/xmrwallet/blob/master/doc/FAQ.md" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Monero \(XMR\)](../../coins/overview-xmr/)
-* XMR -&gt; BTC
-
+* [Monero (XMR)](../../coins/overview-xmr/)
+* XMR -> BTC

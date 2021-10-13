@@ -7,24 +7,23 @@ description: >-
 
 # argent: Ethereum
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://www.argent.xyz/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/argentlabs/" %}
 
-## 🧙♀ Getting started
+## :woman_mage: Getting started
 
 {% embed url="https://support.argent.xyz/hc/en-us/sections/360001775418-Getting-started" %}
 
-## ⁉ FAQ
+## :interrobang: FAQ
 
 {% embed url="https://support.argent.xyz/hc/en-us" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Ethereum \(ETH\)](../../coins/overview-eth/)
+* [Ethereum (ETH)](../../coins/overview-eth/)
 * [ERC-20](../../coins/overview-eth/)
-

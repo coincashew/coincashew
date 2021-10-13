@@ -6,19 +6,19 @@ description: >-
 
 # External Reading Material
 
-## 📜 Tezos Whitepaper
+## :scroll: Tezos Whitepaper
 
 {% embed url="https://learn.tqtezos.com/files/whitepaper.html" %}
 
-## 🧬 Tezos Fundamentals
+## :dna: Tezos Fundamentals
 
 {% embed url="https://www.publish0x.com/publish0x-posts/an-introduction-to-tezos-xodegk" %}
 
 {% embed url="https://learn.tqtezos.com/" %}
 
-## 🚀 Delegators
+## :rocket: Delegators
 
-{% embed url="https://baking-bad.org/docs/tezos\_delegation\_for\_beginners" %}
+{% embed url="https://baking-bad.org/docs/tezos_delegation_for_beginners" %}
 
 {% embed url="https://www.tezos.community/guides/2018/6/23/faqs-about-delegating-to-tezoscommunity" %}
 
@@ -26,13 +26,13 @@ description: >-
 
 {% embed url="https://medium.com/wealthchain/why-financial-institutions-love-tezos-fb4d1cc4b0f0" %}
 
-## 🥠 Bakers
+## :fortune_cookie: Bakers
 
 {% embed url="https://medium.com/@obsidian.systems/benefits-and-risks-of-home-baking-a631c9ca745" %}
 
 {% embed url="https://medium.com/@obsidian.systems/setting-up-a-secure-baker-27bb12363679" %}
 
-## 👩💻 Developers
+## :woman_technologist: Developers
 
 {% embed url="https://developers.tezos.com/" %}
 
@@ -50,5 +50,4 @@ description: >-
 
 {% embed url="https://medium.com/@claudebarde/a-beginners-guide-to-tezos-tzip-7-proposal-90a8b816af7e" %}
 
-\*\*\*\*
-
+****

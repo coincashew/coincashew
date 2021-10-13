@@ -4,43 +4,46 @@ description: >-
   security, scalability and innovation.
 ---
 
-# Polkadot \| DOT
+# Polkadot | DOT
 
 ## ![](../../.gitbook/assets/dot.png) General Data
 
-| Site | Title |
-| :--- | :--- |
-| Website | [https://polkadot.network/](https://polkadot.network/) |
-| Source Code | [https://github.com/w3f](https://github.com/w3f) |
+| Site        | Title                                                 |
+| ----------- | ----------------------------------------------------- |
+| Website     | [https://polkadot.network/](https://polkadot.network) |
+| Source Code | [https://github.com/w3f](https://github.com/w3f)      |
 
-## 🙋 Social Media and Community
+## :person_raising_hand: Social Media and Community
 
-| Community | Link |
-| :--- | :--- |
-| 🐦 Twitter | [https://twitter.com/polkadotnetwork](https://twitter.com/polkadotnetwork) |
-| Reddit | [https://www.reddit.com/r/dot](https://www.reddit.com/r/dot) |
-| Official Blog | [https://polkadot.network/blog](https://polkadot.network/blog) |
-| Medium | [https://medium.com/polkadot-network](https://medium.com/polkadot-network) |
-| Telegram | [https://t.me/PolkadotOfficial](https://t.me/PolkadotOfficial) |
+| Community      | Link                                                                       |
+| -------------- | -------------------------------------------------------------------------- |
+| :bird: Twitter | [https://twitter.com/polkadotnetwork](https://twitter.com/polkadotnetwork) |
+| Reddit         | [https://www.reddit.com/r/dot](https://www.reddit.com/r/dot)               |
+| Official Blog  | [https://polkadot.network/blog](https://polkadot.network/blog)             |
+| Medium         | [https://medium.com/polkadot-network](https://medium.com/polkadot-network) |
+| Telegram       | [https://t.me/PolkadotOfficial](https://t.me/PolkadotOfficial)             |
 
-## 🔃 Block Explorers
+## :arrows_clockwise: Block Explorers
 
-| Site |
-| :--- |
-| [https://polkascan.io/](https://polkascan.io/) |
-| [https://polkastats.io/](https://polkastats.io/) |
-| [https://polkadot.subscan.io/](https://polkadot.subscan.io/) |
+| Site                                                        |
+| ----------------------------------------------------------- |
+| [https://polkascan.io/](https://polkascan.io)               |
+| [https://polkastats.io/](https://polkastats.io)             |
+| [https://polkadot.subscan.io/](https://polkadot.subscan.io) |
 
-## 📊 Charts and Pricing
+## :bar_chart: Charts and Pricing
 
-| Site | Link |
-| :--- | :--- |
-| CoinPaprika | [https://coinpaprika.com/coin/dot-polkadot/](https://coinpaprika.com/coin/dot-polkadot/) |
+| Site          | Link                                                                                                             |
+| ------------- | ---------------------------------------------------------------------------------------------------------------- |
+| CoinPaprika   | [https://coinpaprika.com/coin/dot-polkadot/](https://coinpaprika.com/coin/dot-polkadot/)                         |
 | CoinMarketCap | [https://www.coinmarketcap.com/currencies/polkadot-new/](https://www.coinmarketcap.com/currencies/polkadot-new/) |
 
-## 💰 Wallets
+## :moneybag: Wallets
 
-{% page-ref page="../../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
+{% content-ref url="../../wallets/mobile-wallets/trustwallet-multi-currency.md" %}
+[trustwallet-multi-currency.md](../../wallets/mobile-wallets/trustwallet-multi-currency.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
-
+{% content-ref url="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
+[ledger-live-ledger-nano-wallet](../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/)
+{% endcontent-ref %}

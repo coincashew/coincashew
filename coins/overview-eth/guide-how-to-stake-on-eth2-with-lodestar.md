@@ -17,12 +17,12 @@ Instructions below are now deprecated and for reference only.
 
 
 {% hint style="info" %}
-**Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
+**Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
-## 🏁 0. Prerequisites
+## :checkered_flag: 0. Prerequisites
 
-### 👩💻 Skills for operating a eth2 validator and beacon node
+### :woman_technologist: Skills for operating a eth2 validator and beacon node
 
 As a validator for eth2, you will typically have the following abilities:
 
@@ -30,12 +30,12 @@ As a validator for eth2, you will typically have the following abilities:
 * a commitment to maintain your validator 24/7/365
 * basic operating system skills
 * have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
-* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com/)
+* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com)
 * and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
-### \*\*\*\*🎗**Minimum Setup Requirements**
+### ****:reminder_ribbon:**Minimum Setup Requirements**
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
+* **Operating system: **64-bit Linux (i.e. Ubuntu 20.04 LTS)
 * **Processor:** Dual core CPU, Intel Core i5–760 or AMD FX-8100 or better
 * **Memory:** 8GB RAM
 * **Storage:** 20GB SSD
@@ -44,48 +44,54 @@ As a validator for eth2, you will typically have the following abilities:
 * **ETH balance:** at least 32 Goerli ETH
 * **Wallet**: Metamask installed
 
-### 🏋♀ Recommended Hardware Setup
+### :woman_lifting_weights: Recommended Hardware Setup
 
-* **Operating system:** 64-bit Linux \(i.e. Ubuntu 20.04 LTS\)
+* **Operating system: **64-bit Linux (i.e. Ubuntu 20.04 LTS)
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
 * **Memory:** 32GB RAM
 * **Storage:** 100GB SSD
-* **Internet:** Broadband internet connections with speeds at least 10 Mbps
-* **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
+* **Internet: **Broadband internet connections with speeds at least 10 Mbps
+* **Power:** Reliable electrical power with uninterruptible power supply (UPS)
 * **ETH balance:** at least 32 Goerli ETH
 * **Wallet**: Metamask installed
 
-### 🔓 Recommended ETH 2 Node Security
+### :unlock: Recommended ETH 2 Node Security
 
 If you need ideas or a reminder on how to secure and harden your node, refer to
 
-{% page-ref page="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+{% content-ref url="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
+[guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+{% endcontent-ref %}
 
-### 🛠 Setup Ubuntu
+### :tools: Setup Ubuntu
 
 If you need to install Ubuntu, refer to
 
-{% page-ref page="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+{% content-ref url="../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
+[install-ubuntu.md](../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md)
+{% endcontent-ref %}
 
-### 🎭 Setup Metamask
+### :performing_arts: Setup Metamask
 
 If you need to install Metamask, refer to
 
-{% page-ref page="../../wallets/browser-wallets/metamask-ethereum.md" %}
+{% content-ref url="../../wallets/browser-wallets/metamask-ethereum.md" %}
+[metamask-ethereum.md](../../wallets/browser-wallets/metamask-ethereum.md)
+{% endcontent-ref %}
 
-## 🤖 1. Install a ETH1 node
+## :robot: 1. Install a ETH1 node
 
 {% hint style="info" %}
 Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
 {% endhint %}
 
-Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/)**.**
+Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**, **[**Geth**](https://geth.ethereum.org)**, **[**Besu**](https://besu.hyperledger.org)** or **[**Nethermind**](https://www.nethermind.io)**.**
 
 {% tabs %}
-{% tab title="OpenEthereum \(Parity\)" %}
-####  🤖 Install and run OpenEthereum.
+{% tab title="OpenEthereum (Parity)" %}
+####  :robot: Install and run OpenEthereum.
 
-```text
+```
 mkdir ~/openethereum && cd ~/openethereum
 wget https://github.com/openethereum/openethereum/releases/download/v3.0.1/openethereum-linux-v3.0.1.zip
 unzip openethereum*.zip
@@ -93,39 +99,39 @@ chmod +x openethereum
 rm openethereum*.zip
 ```
 
-#### ⛓ Start OpenEthereum on goerli chain.
+#### :chains: Start OpenEthereum on goerli chain.
 
-```text
+```
 ./openethereum --chain goerli
 ```
 {% endtab %}
 
 {% tab title="Geth" %}
-#### 🧬 Install from the repository.
+#### :dna: Install from the repository.
 
-```text
+```
 sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt-get update -y
 sudo apt-get install ethereum -y
 ```
 
-#### 🐣 Start the geth node for ETH Goerli testnet.
+#### :hatching_chick: Start the geth node for ETH Goerli testnet.
 
-```text
+```
 geth --goerli --datadir="$HOME/Goerli" --rpc
 ```
 {% endtab %}
 
 {% tab title="Besu" %}
-#### 🧬 Install java dependency.
+#### :dna: Install java dependency.
 
-```text
+```
 sudo apt install openjdk-11-jdk
 ```
 
-#### 🌜 Download and unzip Besu.
+#### :last_quarter_moon_with_face: Download and unzip Besu.
 
-```text
+```
 cd
 wget -O besu.tar.gz https://bintray.com/hyperledger-org/besu-repo/download_file?file_path=besu-1.5.0.tar.gz
 tar -xvf besu.tar.gz
@@ -133,32 +139,32 @@ rm besu.tar.gz
 cd besu-1.5.0/bin
 ```
 
-#### ⛓ Run Besu on the goerli network.
+#### :chains: Run Besu on the goerli network.
 
-```text
+```
 ./besu --network=goerli --data-path="$HOME/Goerli"
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
-#### ⚙ Install dependencies.
+#### :gear: Install dependencies.
 
-```text
+```
 sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
 ```
 
-#### 🌜 Download and unzip Nethermind.
+#### :last_quarter_moon_with_face: Download and unzip Nethermind.
 
-```text
+```
 mkdir ~/nethermind && cd ~/nethermind
 wget -O nethermind.zip https://nethdev.blob.core.windows.net/builds/nethermind-linux-amd64-1.8.77-9d3a58a.zip
 unzip nethermind.zip
 rm nethermind.zip
 ```
 
-#### 🛸 Launch Nethermind.
+#### :flying_saucer: Launch Nethermind.
 
-```text
+```
 ./Nethermind.Launcher
 ```
 
@@ -177,31 +183,31 @@ Syncing the node could take up to 1 hour.
 {% hint style="success" %}
 Your eth1 node is fully sync'd when these events occur.
 
-* **`OpenEthereum:`** `Imported #<block number>`
-* **`Geth:`** `Imported new chain segment`
-* **`Besu:`** `Imported #<block number>`
-* **`Nethermind:`** `No longer syncing Old Headers`
+* **`OpenEthereum: `**`Imported #<block number>`
+* **`Geth:`**` Imported new chain segment`
+* **`Besu:`**` Imported #<block number>`
+* **`Nethermind: `**`No longer syncing Old Headers`
 {% endhint %}
 
-## ⚙ 2. Obtain Goerli test network ETH
+## :gear: 2. Obtain Goerli test network ETH
 
 Join the [Prysmatic Labs Discord](https://discord.com/invite/YMVYzv6) and send a request for ETH in the **`-request-goerli-eth channel`**
 
-```text
+```
 !send <your metamask goerli network ETH address>
 ```
 
-Otherwise, visit the 🚰 [Goerli Authenticated Faucet](https://faucet.goerli.mudit.blog).
+Otherwise, visit the :potable_water: [Goerli Authenticated Faucet](https://faucet.goerli.mudit.blog).
 
-## 👩💻3. Signup to be a validator at the Launchpad
+## :woman_technologist:3. Signup to be a validator at the Launchpad
 
 1. Install dependencies, the ethereum foundation deposit tool and generate keys.
 
-```text
+```
 sudo apt install python3-pip git -y
 ```
 
-```text
+```
 mkdir ~/git
 cd ~/git
 git clone https://github.com/ethereum/eth2.0-deposit-cli.git
@@ -209,25 +215,25 @@ cd eth2.0-deposit-cli
 sudo ./deposit.sh install
 ```
 
-```text
+```
 ./deposit.sh --chain medalla
 ```
 
-2. Follow the prompts and pick a password. Write down your mnemonic and keep this safe, preferably **offline**.
+2\. Follow the prompts and pick a password. Write down your mnemonic and keep this safe, preferably **offline**.
 
-3. Follow the steps at [https://medalla.launchpad.ethereum.org/](https://medalla.launchpad.ethereum.org/) but skip the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
+3\. Follow the steps at [https://medalla.launchpad.ethereum.org/](https://medalla.launchpad.ethereum.org) but skip the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
 
-4. Back on the launchpad website, upload the `deposit_data.json` found in the `validator_keys` directory.
+4\. Back on the launchpad website, upload the `deposit_data.json` found in the `validator_keys` directory.
 
-5. Connect your metamask wallet, review and accept terms.
+5\. Connect your metamask wallet, review and accept terms.
 
-6. Confirm the transaction.
+6\. Confirm the transaction.
 
 {% hint style="danger" %}
 Be sure to safely save your mnemonic seed offline.
 {% endhint %}
 
-## 💡 4. Build Lodestar from source
+## :bulb: 4. Build Lodestar from source
 
 Install curl and git.
 
@@ -253,7 +259,7 @@ yarn --version
 
 Install nodejs.
 
-```text
+```
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
@@ -281,20 +287,20 @@ This build process may take up to an hour.
 
 Verify Lodestar was installed properly by displaying the help menu.
 
-```text
+```
 yarn run cli --help
 ```
 
-## 🔥 5. Configure port forwarding and/or firewall
+## :fire: 5. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
+Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org) to verify.
 
 * **Lodestar beacon chain node** will use port 30607 for tcp and port 9000 for udp peer discovery.
-* **geth** node will use port 30303 for tcp and udp
+* **geth **node will use port 30303 for tcp and udp
 
-## 🏂 6. Start the beacon chain and validator
+## :snowboarder: 6. Start the beacon chain and validator
 
-Locate your keystore filename\(s\).
+Locate your keystore filename(s).
 
 ```bash
 ll $HOME/git/eth2.0-deposit-cli/validator_keys/
@@ -302,11 +308,11 @@ ll $HOME/git/eth2.0-deposit-cli/validator_keys/
 
 Update `MY_KEYSTORE_FILE` with your validator key's filename. If you have multiple validator keys, repeat this sequence for each key.
 
-```text
+```
 MY_KEYSTORE_FILENAME=<FILENAME OF YOUR keystore-m_.....json>
 ```
 
-Copy your **keystore** file to `voting-keystore.json` according to loadstar's expected file naming structure.
+Copy your **keystore **file to `voting-keystore.json` according to loadstar's expected file naming structure.
 
 ```bash
 shortPubKey=$(cat ${MY_KEYSTORE_FILENAME} | jq -r '.pubkey')
@@ -319,7 +325,7 @@ cp $HOME/git/eth2.0-deposit-cli/validator_keys/$MY_KEYSTORE_FILENAME \
    $HOME/git/lodestar/.medalla/keystores/${PUBKEY}/voting-keystore.json
 ```
 
-**Example**: If your **pubkey** is `0x846...0f00` then your keystore should be located as follows:
+**Example**: If your **pubkey **is `0x846...0f00` then your keystore should be located as follows:
 
 > `$HOME/git/lodestar/.medalla/keystores/0x846...0f00/voting-keystore.json`
 
@@ -341,7 +347,7 @@ yarn run cli beacon --testnet medalla \
 ```
 
 {% hint style="warning" %}
-If you cannot find peers, then likely port 9000 is already in use. Change the port in the file`.medalla/beacon.config.json` located at **network** &gt; **bindAddr**
+If you cannot find peers, then likely port 9000 is already in use. Change the port in the file`.medalla/beacon.config.json `located at **network **> **bindAddr**
 {% endhint %}
 
 Start your validator in a new terminal window.
@@ -364,10 +370,10 @@ yarn run cli validator run --testnet medalla
 {% hint style="success" %}
 Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 8 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards. 
 
-Use [beaconcha.in](https://medalla.beaconcha.in/) and [register an account](https://medalla.beaconcha.in/register) to create alerts and track your validator's performance.
+Use [beaconcha.in](https://medalla.beaconcha.in) and [register an account](https://medalla.beaconcha.in/register) to create alerts and track your validator's performance.
 {% endhint %}
 
-## 🕒 7. Time Synchronization
+## :clock3: 7. Time Synchronization
 
 {% hint style="info" %}
 Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
@@ -375,13 +381,15 @@ Because beacon chain relies on accurate times to perform attestations and produc
 
 Setup **Chrony** with the following guide.
 
-{% page-ref page="../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md" %}
+{% content-ref url="../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md" %}
+[how-to-setup-chrony.md](../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md)
+{% endcontent-ref %}
 
 {% hint style="info" %}
 chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
 {% endhint %}
 
-## 🧩 8. Reference Material
+## :jigsaw: 8. Reference Material
 
 {% embed url="https://discord.gg/yjyvFRP" %}
 
@@ -391,9 +399,9 @@ chrony is an implementation of the Network Time Protocol and helps to keep your 
 
 {% embed url="https://github.com/ChainSafe/lodestar" %}
 
-## 🧙♂ 9. Updating Lodestar
+## :man_mage: 9. Updating Lodestar
 
-```text
+```
 cd ~/git/lodestar
 git pull
 yarn install
@@ -409,6 +417,5 @@ Did you find our guide useful? Let us know with a tip and we'll keep updating it
 
 It really energizes us to keep creating the best crypto guides. 
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray: 
 {% endhint %}
-

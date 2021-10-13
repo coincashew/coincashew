@@ -6,20 +6,19 @@ description: A crypto wallet & gateway to blockchain apps
 
 ## 🚀 Official Website
 
-{% embed url="https://metamask.io/" caption="" %}
+{% embed url="https://metamask.io/" %}
 
 ## 📑 Source Code
 
-{% embed url="https://github.com/MetaMask/metamask-extension" caption="" %}
+{% embed url="https://github.com/MetaMask/metamask-extension" %}
 
-## 🧙♂ Getting started
+## :man_mage: Getting started
 
-{% embed url="https://www.youtube.com/watch?v=6Gf\_kRE4MJU" caption="" %}
+{% embed url="https://www.youtube.com/watch?v=6Gf_kRE4MJU" %}
 
-{% embed url="https://metamask.zendesk.com/hc/en-us/articles/360015489531-Getting-Started-With-MetaMask-Part-1-" caption="" %}
+{% embed url="https://metamask.zendesk.com/hc/en-us/articles/360015489531-Getting-Started-With-MetaMask-Part-1-" %}
 
 ## 💰 Supported Assets
 
 * [Ethereum](../../coins/overview-eth/)
 * [ERC tokens](../../coins/overview-eth/)
-

@@ -9,55 +9,68 @@ description: >-
 
 ## ![](../../.gitbook/assets/xmr.png) General Data
 
-| Site | Title |
-| :--- | :--- |
-| Website | [https://getmonero.org/](https://getmonero.org/) |
-| Source Code | [https://github.com/monero-project/monero](https://github.com/monero-project/monero) |
-| Whitepaper | [https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf](https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf) |
+| Site        | Title                                                                                                                                                                        |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Website     | [https://getmonero.org/](https://getmonero.org)                                                                                                                              |
+| Source Code | [https://github.com/monero-project/monero](https://github.com/monero-project/monero)                                                                                         |
+| Whitepaper  | [https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf](https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf) |
 
-## 🙋 Social Media and Community
+## :person_raising_hand: Social Media and Community
 
-| Community | Link |
-| :--- | :--- |
-| 🐦 Twitter | [https://twitter.com/monero](https://twitter.com/monero) |
-| Facebook | [https://www.facebook.com/monerocurrency](https://www.facebook.com/monerocurrency) |
-| Reddit | [https://www.reddit.com/r/monero](https://www.reddit.com/r/monero) |
-| Official Forum | [https://forum.getmonero.org/](https://forum.getmonero.org/) |
+| Community         | Link                                                                                                 |
+| ----------------- | ---------------------------------------------------------------------------------------------------- |
+| :bird: Twitter    | [https://twitter.com/monero](https://twitter.com/monero)                                             |
+| Facebook          | [https://www.facebook.com/monerocurrency](https://www.facebook.com/monerocurrency)                   |
+| Reddit            | [https://www.reddit.com/r/monero](https://www.reddit.com/r/monero)                                   |
+| Official Forum    | [https://forum.getmonero.org/](https://forum.getmonero.org)                                          |
 | Bitcointalk Forum | [https://bitcointalk.org/index.php?topic=583449.0](https://bitcointalk.org/index.php?topic=583449.0) |
-| Telegram | [https://t.me/monero](https://t.me/monero) |
-| StackExchange | [https://monero.stackexchange.com/](https://monero.stackexchange.com/) |
-| IRC Chat | [https://monerologs.net](https://monerologs.net) |
-| Conference | [https://monerokon.com/](https://monerokon.com/) |
+| Telegram          | [https://t.me/monero](https://t.me/monero)                                                           |
+| StackExchange     | [https://monero.stackexchange.com/](https://monero.stackexchange.com)                                |
+| IRC Chat          | [https://monerologs.net](https://monerologs.net)                                                     |
+| Conference        | [https://monerokon.com/](https://monerokon.com)                                                      |
 
-## 🔃 Block Explorers
+## :arrows_clockwise: Block Explorers
 
-| Site |
-| :--- |
-| [https://blockchair.com/monero](https://blockchair.com/monero) |
-| [https://xmrchain.org/](https://xmrchain.org/) |
+| Site                                                                 |
+| -------------------------------------------------------------------- |
+| [https://blockchair.com/monero](https://blockchair.com/monero)       |
+| [https://xmrchain.org/](https://xmrchain.org)                        |
 | [http://chainradar.com/xmr/blocks](http://chainradar.com/xmr/blocks) |
-| [https://xmr.tokenview.com/](https://xmr.tokenview.com/) |
+| [https://xmr.tokenview.com/](https://xmr.tokenview.com)              |
 
-## 📊 Charts and Pricing
+## :bar_chart: Charts and Pricing
 
-| Site | Link |
-| :--- | :--- |
-| CoinPaprika | [https://coinpaprika.com/coin/xmr-monero/](https://coinpaprika.com/coin/xmr-monero/) |
+| Site          | Link                                                                                         |
+| ------------- | -------------------------------------------------------------------------------------------- |
+| CoinPaprika   | [https://coinpaprika.com/coin/xmr-monero/](https://coinpaprika.com/coin/xmr-monero/)         |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/monero/](https://coinmarketcap.com/currencies/monero/) |
 
-## 💰 Wallets
+## :moneybag: Wallets
 
-{% page-ref page="../../wallets/browser-wallets/mymonero-xmr.md" %}
+{% content-ref url="../../wallets/browser-wallets/mymonero-xmr.md" %}
+[mymonero-xmr.md](../../wallets/browser-wallets/mymonero-xmr.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/desktop-wallets/monero-official-gui.md" %}
+{% content-ref url="../../wallets/desktop-wallets/monero-official-gui.md" %}
+[monero-official-gui.md](../../wallets/desktop-wallets/monero-official-gui.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/monerujo-monero.md" %}
+{% content-ref url="../../wallets/mobile-wallets/monerujo-monero.md" %}
+[monerujo-monero.md](../../wallets/mobile-wallets/monerujo-monero.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/cakewallet-monero.md" %}
+{% content-ref url="../../wallets/mobile-wallets/cakewallet-monero.md" %}
+[cakewallet-monero.md](../../wallets/mobile-wallets/cakewallet-monero.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+{% content-ref url="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+[exodus-multi-chain-assets.md](../../wallets/mobile-wallets/exodus-multi-chain-assets.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+{% content-ref url="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
+[coinomi-multi-chain-assets.md](../../wallets/mobile-wallets/coinomi-multi-chain-assets.md)
+{% endcontent-ref %}
 
-{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
-
+{% content-ref url="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
+[guarda-multi-chain-assets.md](../../wallets/mobile-wallets/guarda-multi-chain-assets.md)
+{% endcontent-ref %}

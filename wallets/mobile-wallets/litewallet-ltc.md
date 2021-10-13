@@ -6,17 +6,16 @@ description: >-
 
 # Litewallet: LTC
 
-## 🚀 Official Website
+## :rocket: Official Website
 
 {% embed url="https://lite-wallet.org/" %}
 
-## 📑 Source Code
+## :bookmark_tabs: Source Code
 
 {% embed url="https://github.com/litecoin-foundation/loafwallet-ios" %}
 
 {% embed url="https://github.com/litecoin-foundation/loafwallet-android" %}
 
-## 💰 Supported Assets
+## :moneybag: Supported Assets
 
-* [Litecoin \(LTC\)](../../coins/ltc/)
-
+* [Litecoin (LTC)](../../coins/ltc/)

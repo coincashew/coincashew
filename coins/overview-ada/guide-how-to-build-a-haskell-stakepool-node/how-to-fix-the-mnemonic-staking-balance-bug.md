@@ -1,29 +1,29 @@
 # How to fix the Mnemonic staking balance bug
 
-## 🛑 Am I affected?
+## :octagonal_sign: Am I affected?
 
 Check if you created your `stake / payment` key pair on [step 7](./#7-setup-payment-and-staking-keys) with the **mnemonic method** from Daedalus 2.0 before July 30, 2020.
 
 Run the following to see if you're affected
 
-```text
+```
 cd $NODE_HOME
 wc -m payment.addr
 ```
 
 If this returns **`59 payment.addr`**`,` then continue reading. If this returns **`104 payment.addr,`** you are not affected!
 
-## 🛠 What is the problem?
+## :tools: What is the problem?
 
 * The balance towards your stake is not being counted because the script's default, **`payment.addr`**, is also known as the enterprise address.
 * By design, enterprise address balances are not counted as stake.
 * The public address found in **`base.addr`** should have been funded. In other words, `base.addr` should have been the real `payment.addr`.
 
-## 🤖 Verify that the problem exists
+## :robot: Verify that the problem exists
 
 Check your stake balance by running the following query to find all your stake pool's delegators.
 
-```text
+```
 cd $NODE_HOME
 pool_id=$(cat stakepoolid.txt)
 timeout -k 5 60 cardano-cli shelley query ledger-state ${NETWORK_IDENTIFIER} --out-file ledger-state.json
@@ -67,13 +67,13 @@ If you see stake is 0 for the owner, then the issue exists.
 
 **Example output:**
 
-> {"hex\_key":"70f2... \(owner\)","stake":"0","rewards":"0\)"},
+> {"hex_key":"70f2... (owner)","stake":"0","rewards":"0)"},
 
-## 🧩 What is the fix?
+## :jigsaw: What is the fix?
 
 1\) Find your `base.addr` public address.
 
-```text
+```
 cat $NODE_HOME/extractedPoolKeys/base.addr
 ```
 
@@ -89,10 +89,9 @@ cat $NODE_HOME/extractedPoolKeys/base.addr
 
 7\) Replace the old `payment.addr` with `base.addr`
 
-```text
+```
 cd $NODE_HOME
 cp extractedPoolKeys/base.addr payment.addr
 ```
 
 If you need assistance, please visit our [Telegram Channel.](https://t.me/coincashew)
-
