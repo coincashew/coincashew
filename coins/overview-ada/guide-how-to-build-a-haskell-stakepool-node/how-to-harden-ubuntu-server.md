@@ -118,10 +118,10 @@ Locate **PasswordAuthentication** update to no
 PasswordAuthentication no 
 ```
 
-Locate **PermitRootLogin **and update to no
+Locate **PermitRootLogin **and update to prohibit-password
 
 ```
-PermitRootLogin no
+PermitRootLogin prohibit-password
 ```
 
 Locate **PermitEmptyPasswords **and update to no
@@ -146,10 +146,10 @@ Validate the syntax of your new SSH configuration.
 sudo sshd -t
 ```
 
-If no errors with the syntax validation, reload the SSH process
+If no errors with the syntax validation, restart the SSH process.
 
 ```
-sudo service sshd reload
+sudo systemctl restart sshd
 ```
 
 Verify the login still works

@@ -111,7 +111,7 @@
     * [How to find longest attestation slot gap](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-find-longest-attestation-slot-gap.md)
     * [How to free up eth1 node disk space with pruning](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-free-up-eth1-node-disk-space.md)
   * [Guide | Operation Client Diversity: Migrate Prysm to Teku](coins/overview-eth/guide-or-operation-client-diversity-migrate-prysm-to-teku.md)
-  * [Guide | Security Best Practices for a ETH2 validator beaconchain node](coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+  * [Guide | Security Best Practices for a ETH validator beaconchain node](coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
   * [Guide | How to setup a validator on ETH2 testnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
   * [Guide | How to setup a validator on ETH2 testnet PRATER](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
   * [Guide | Eth2 staking on RaspberryPi 4 with Prysm](https://d-u-a-l-i-s.medium.com/eth2-staking-on-raspberrypi-4-with-prysm-f5d5d3d7a73c)

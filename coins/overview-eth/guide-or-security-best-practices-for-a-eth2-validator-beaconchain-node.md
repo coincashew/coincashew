@@ -2,7 +2,7 @@
 description: Quick steps to secure your node.
 ---
 
-# Guide | Security Best Practices for a ETH2 validator beaconchain node
+# Guide | Security Best Practices for a ETH validator beaconchain node
 
 {% hint style="info" %}
 :confetti_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
@@ -122,10 +122,10 @@ Locate **PasswordAuthentication** update to no
 PasswordAuthentication no
 ```
 
-Locate **PermitRootLogin** and update to no
+Locate **PermitRootLogin** and update to prohibit-password
 
 ```
-PermitRootLogin no
+PermitRootLogin prohibit-password
 ```
 
 Locate **PermitEmptyPasswords** and update to no
@@ -150,10 +150,10 @@ Validate the syntax of your new SSH configuration.
 sudo sshd -t
 ```
 
-If no errors with the syntax validation, reload the SSH process
+If no errors with the syntax validation, restart the SSH process
 
 ```
-sudo service sshd reload
+sudo systemctl restart sshd
 ```
 
 Verify the login still works
