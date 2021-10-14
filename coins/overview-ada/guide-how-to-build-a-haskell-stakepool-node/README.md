@@ -14,11 +14,12 @@ If you want to support this free educational Cardano content or found this helpf
 {% endhint %}
 
 {% hint style="success" %}
-As of October 1 2021, this is **guide version 4.1.0** and written for **cardano mainnet **with **release v.1.30.1** :grin: 
+As of October 12 2021, this is **guide version 4.1.1** and written for **cardano mainnet **with **release v.1.30.1** :grin: 
 {% endhint %}
 
-### :page_facing_up: Changelog - **Update Notes -** **October 1 2021**
+### :page_facing_up: Changelog - **Update Notes -** **October 12 2021**
 
+* Increased the cardano-node service unit file timeout from 2 to 300 seconds.
 * Added a [collection of projects](./#17-6-community-inspired-projects) built by this amazing community.
 * Added cardano-node RTS flags to reduce chance of missed slot leader checks.
 * Added Leaderlog changes and improvements
@@ -186,14 +187,13 @@ ghcup install ghc 8.10.4
 ghcup set ghc 8.10.4
 ```
 
-Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE_HOME**. The [cluster configuration](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) is set by **$NODE_CONFIG **and **$NODE_BUILD_NUM**. 
+Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE_HOME**. The [cluster configuration](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) is set by **$NODE_CONFIG**. 
 
 ```bash
 echo PATH="$HOME/.local/bin:$PATH" >> $HOME/.bashrc
 echo export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" >> $HOME/.bashrc
 echo export NODE_HOME=$HOME/cardano-my-node >> $HOME/.bashrc
 echo export NODE_CONFIG=mainnet>> $HOME/.bashrc
-echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g') >> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
@@ -292,11 +292,11 @@ Here you'll grab the config.json, genesis.json, and topology.json files needed t
 ```bash
 mkdir $NODE_HOME
 cd $NODE_HOME
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-topology.json
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-alonzo-genesis.json
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
+wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-config.json
+wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-byron-genesis.json
+wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-shelley-genesis.json
+wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-alonzo-genesis.json
+wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-topology.json
 ```
 
 Run the following to modify **mainnet-config.json** and 
@@ -523,7 +523,7 @@ WorkingDirectory= ${NODE_HOME}
 ExecStart       = /bin/bash -c '${NODE_HOME}/startBlockProducingNode.sh'
 KillSignal=SIGINT
 RestartKillSignal=SIGINT
-TimeoutStopSec=2
+TimeoutStopSec=300
 LimitNOFILE=32768
 Restart=always
 RestartSec=5
@@ -553,7 +553,7 @@ WorkingDirectory= ${NODE_HOME}
 ExecStart       = /bin/bash -c '${NODE_HOME}/startRelayNode1.sh'
 KillSignal=SIGINT
 RestartKillSignal=SIGINT
-TimeoutStopSec=2
+TimeoutStopSec=300
 LimitNOFILE=32768
 Restart=always
 RestartSec=5
@@ -679,7 +679,7 @@ Run gLiveView to monitor the progress of the sync'ing of the blockchain.
 
 Sample output of gLiveView.
 
-![](../../../.gitbook/assets/glive.png)
+![](../../../.gitbook/assets/glive-update2.jpg)
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
@@ -1421,6 +1421,28 @@ Refer to the following quick guide if you need help hosting your metadata on git
 {% content-ref url="how-to-upload-poolmetadata.json-to-github.md" %}
 [how-to-upload-poolmetadata.json-to-github.md](how-to-upload-poolmetadata.json-to-github.md)
 {% endcontent-ref %}
+
+Verify the metadata hashes by comparing your uploaded .json file and your local .json file's hash. 
+
+{% tabs %}
+{% tab title="block producer node" %}
+Get the metadata hash from your metadata json URL. Replace **\<https://REPLACE WITH YOUR METADATA_URL>** with your actual URL.
+
+```bash
+cardano-cli stake-pool metadata-hash --pool-metadata-file <(curl -s -L <https://REPLACE WITH YOUR METADATA_URL>)
+```
+
+This above hash must equal the local metadata hash.
+
+```
+cat poolMetaDataHash.txt
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+If the hashes do no match, then the uploaded .json file likely was truncated or extra whitespace caused issues. Upload the .json again or to a different web host.
+{% endhint %}
 
 Find the minimum pool cost.
 
@@ -2671,12 +2693,12 @@ Finally, follow [instructions to update your pool registration data](./#18-4-cha
 Keep your config files fresh by downloading the latest .json files.
 
 ```bash
-NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g')
 cd $NODE_HOME
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-byron-genesis.json
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-shelley-genesis.json
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-alonzo-genesis.json
-wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
+wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-config.json
+wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-byron-genesis.json
+wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-shelley-genesis.json
+wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-alonzo-genesis.json
+wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-topology.json
 sed -i ${NODE_CONFIG}-config.json \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
 	  -e "s/127.0.0.1/0.0.0.0/g" 
