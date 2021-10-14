@@ -6,7 +6,7 @@ description: >-
 
 # Guide | How to setup a validator for Ethereum staking on mainnet
 
-## e:new:Announcements
+## :new:Announcements
 
 {% hint style="info" %}
 The ETH Foundation would like to hear from you. 
