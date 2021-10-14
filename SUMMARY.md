@@ -101,7 +101,7 @@
   * [Guide | How to buy BTC](coins/btc/guide-or-how-to-buy-btc.md)
   * [Book: Mastering Bitcoin](coins/btc/book-mastering-bitcoin.md)
 * [Ethereum: ETH](coins/overview-eth/README.md)
-  * [Guide | How to setup a validator on Ethereum mainnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/README.md)
+  * [Guide | How to setup a validator for Ethereum staking on mainnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/README.md)
     * [Checklist | How to confirm a healthy functional ETH2 validator](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
     * [How to update your eth2 client](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-update-your-eth2-client.md)
     * [How to update your eth1 node](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-update-your-eth1-node.md)

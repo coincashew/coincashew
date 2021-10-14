@@ -4,10 +4,14 @@ description: >-
   blockchain. Anyone with 32 ETH can join.
 ---
 
-# Guide | How to setup a validator on Ethereum mainnet
+# Guide | How to setup a validator for Ethereum staking on mainnet
 
-{% hint style="success" %}
-The ETH Foundation would like to hear from you. Fill out this survey [https://ethstaker.cc/survey/#Z7ZpSghg](https://ethstaker.cc/survey/#Z7ZpSghg)
+## :new:Announcements
+
+{% hint style="info" %}
+The ETH Foundation would like to hear from you. 
+
+Fill out this survey [https://ethstaker.cc/survey/#Z7ZpSghg](https://ethstaker.cc/survey/#Z7ZpSghg)
 {% endhint %}
 
 {% hint style="info" %}
@@ -16,18 +20,17 @@ The ETH Foundation would like to hear from you. Fill out this survey [https://et
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
 {% endhint %}
 
-{% embed url="https://gitcoin.co/grants/1653/ethereum-staking-guides-by-coincashew-with-poap" %}
-
 {% hint style="success" %}
-As of October 11 2021, this is **guide version 3.3.4 **and written for **Ethereum mainnet**:grin: 
+As of October 12 2021, this is **guide version 3.4.0 **and written for **Ethereum mainnet**:grin: 
 {% endhint %}
 
 {% hint style="info" %}
 #### :sparkles: [PRATER testnet guide](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md). Always test and practice on testnet. 
 {% endhint %}
 
-### :page_facing_up: Changelog - **Update Notes -** **Sept 26 2021**
+### :page_facing_up: Changelog - **Update Notes -** **October 12 2021**
 
+* Updated with consensus layer (CL), the execution layer (EL), formerly known as eth2 and eth1.
 * Added erigon build dependencies.
 * Added **Teku **Checkpoint Sync feature, the quickest way to sync a Ethereum beacon chain client.
 * geth + erigon pruning / Altair hard fork changes / nimbus eth1 fallback
@@ -49,6 +52,7 @@ As of October 11 2021, this is **guide version 3.3.4 **and written for **Ethereu
 ### :page_facing_up: Latest Essential Ethereum Staking Reading
 
 * [Modelling the Impact of Altair by pintail.xyz](https://pintail.xyz/posts/modelling-the-impact-of-altair/)
+* [Update on the Merge after the Amphora Interop by Consensys.net](https://consensys.net/blog/ethereum-2-0/an-update-on-the-merge-after-the-amphora-interop-event-in-greece/)
 
 ## :checkered_flag: 0. Prerequisites
 
@@ -56,7 +60,7 @@ As of October 11 2021, this is **guide version 3.3.4 **and written for **Ethereu
 
 As a validator for eth, you will typically have the following abilities:
 
-* operational knowledge of how to set up, run and maintain a ethbeacon node and validator continuously
+* operational knowledge of how to set up, run and maintain a eth beacon node and validator continuously
 * a long term commitment to maintain your validator 24/7/365
 * basic operating system skills
 
@@ -96,7 +100,7 @@ As a validator for eth, you will typically have the following abilities:
 :sparkles: **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
 {% endhint %}
 
-### :unlock: Recommended eth2 validator Security Best Practices
+### :unlock: Recommended eth validator Security Best Practices
 
 If you need ideas or a reminder on how to secure your validator, refer to
 
@@ -127,7 +131,7 @@ If you need to install Metamask, refer to
 ### :jigsaw: High Level Validator Node Overview
 
 {% hint style="info" %}
-At the end of this guide, you will build a node that hosts three main components: a validator client, a beacon chain client and an eth1 node.
+At the end of this guide, you will build a node that hosts three main components in two layers: consensus layer consists of a consensus engine, also known as a validator client with a beacon chain client. The execution layer consists of a execution engine, formerly a eth1 node.
 
 **Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
 
@@ -394,10 +398,10 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 2\. If using **eth2deposit-cli**, follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
 
 {% hint style="warning" %}
-****:construction: **Caution**: Only deposit the 32 ETH per validator if you are confident your ETH1 node and ETH2 validator will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
+****:construction: **Caution**: Only deposit the 32 ETH per validator if you are confident your execution engine (ETH1 node) and consensus engine (ETH2 validator) will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
 {% endhint %}
 
-3\. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
+3\. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth staking is the key to success!
 
 {% hint style="info" %}
 ****:whale: **Batch Depositing Tip**: If you have many deposits to make for many validators, consider using [Abyss.finance's eth2depositor tool.](https://abyss.finance/eth2depositor) This greatly improves the deposit experience as multiple deposits can be batched into one transaction, thereby saving gas fees and saving your fingers by minimizing Metamask clicking. 
@@ -989,14 +993,14 @@ journalctl -fu eth1
 sudo systemctl stop eth1
 ```
 
-## :last_quarter_moon_with_face: 4. Configure a ETH2 beacon chain node and validator
+## :last_quarter_moon_with_face: 4. Configure a ETH beacon chain node and validator
 
 Your choice of [Lighthouse](https://github.com/sigp/lighthouse), [Nimbus](https://github.com/status-im/nimbus-eth2), [Teku](https://consensys.net/knowledge-base/ethereum-2/teku/), [Prysm](https://github.com/prysmaticlabs/prysm) or [Lodestar](https://lodestar.chainsafe.io).
 
 {% tabs %}
 {% tab title="Lighthouse" %}
 {% hint style="info" %}
-[Lighthouse](https://github.com/sigp/lighthouse) is an Eth2.0 client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
+[Lighthouse](https://github.com/sigp/lighthouse) is an Eth client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
 {% endhint %}
 
 ## :gear: 4.1. Install rust dependency
@@ -1101,11 +1105,11 @@ Run the following to create a **unit file** to define your`beacon-chain.service`
 
 ```bash
 cat > $HOME/beacon-chain.service << EOF 
-# The eth2 beacon chain service (part of systemd)
+# The eth beacon chain service (part of systemd)
 # file: /etc/systemd/system/beacon-chain.service 
 
 [Unit]
-Description     = eth2 beacon chain service
+Description     = eth beacon chain service
 Wants           = network-online.target
 After           = network-online.target 
 
@@ -1218,15 +1222,13 @@ sudo systemctl stop beacon-chain
 
 #### :rocket: Setup Graffiti and POAP
 
-Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
-
-Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+Setup your `graffiti`, a custom message included in blocks your validator successfully proposes. Add optional graffiti between the single quotes. 
 
 ```bash
-MY_GRAFFITI='<my POAP string or message>'
+MY_GRAFFITI=''
 # Examples
 # MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
-# MY_GRAFFITI='eth2 rulez!'
+# MY_GRAFFITI='eth rulez!'
 ```
 
 {% hint style="info" %}
@@ -1245,11 +1247,11 @@ Run the following to create a **unit file** to define your`validator.service` co
 
 ```bash
 cat > $HOME/validator.service << EOF 
-# The eth2 validator service (part of systemd)
+# The ethvalidator service (part of systemd)
 # file: /etc/systemd/system/validator.service 
 
 [Unit]
-Description     = eth2 validator service
+Description     = eth validator service
 Wants           = network-online.target beacon-chain.service
 After           = network-online.target 
 
@@ -2605,7 +2607,7 @@ Enable services so they start automatically.
 sudo systemctl enable grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
-Create the **prometheus.yml** config file. Choose the tab for your eth2 client. Simply copy and paste.
+Create the **prometheus.yml** config file. Choose the tab for your eth client. Simply copy and paste.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -2855,14 +2857,14 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 6. Set **Name** to **"Prometheus**"
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
-9. **Download and save** your ETH2 Client's json file. More json dashboard options available below. \[ [Lighthouse](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark_ETH_staking_dashboard.json) | [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less\_10\_validators.json)| [Prysm > 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more\_10\_validators.json) | Lodestar ] 
-10. **Download and save** your ETH1 Client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) | [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)| [Erigon](https://raw.githubusercontent.com/ledgerwatch/erigon/devel/cmd/prometheus/dashboards/erigon.json) | [OpenEthereum ](https://raw.githubusercontent.com/dappnode/DAppNodePackage-openethereum/master/openethereum-grafana-dashboard.json)]
+9. **Download and save** your consensus engine's json file. More json dashboard options available below. \[ [Lighthouse](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark_ETH_staking_dashboard.json) | [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less\_10\_validators.json)| [Prysm > 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more\_10\_validators.json) | Lodestar ] 
+10. **Download and save** your execution engine's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) | [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)| [Erigon](https://raw.githubusercontent.com/ledgerwatch/erigon/devel/cmd/prometheus/dashboards/erigon.json) | [OpenEthereum ](https://raw.githubusercontent.com/dappnode/DAppNodePackage-openethereum/master/openethereum-grafana-dashboard.json)]
 11. **Download and save** a [node-exporter dashboard](https://grafana.com/api/dashboards/11074/revisions/9/download) for general system monitoring
 12. Click **Create +** icon > **Import**
-13. Add the ETH2 client dashboard via **Upload JSON file**
+13. Add the consensus engine dashboard via **Upload JSON file**
 14. If needed, select Prometheus as **Data Source**.
 15. Click the **Import** button.
-16. Repeat steps 12-15 for the ETH1 client dashboard.
+16. Repeat steps 12-15 for the execution engine dashboard.
 17. Repeat steps 12-15 for the node-exporter dashboard.
 
 {% hint style="info" %}
@@ -2874,7 +2876,7 @@ _The dashboards do not display eth1 node data._
   * Example:`ExecStartPre = /usr/bin/geth --http --metrics --pprof`
 {% endhint %}
 
-#### Example of Grafana Dashboards for each ETH2 client.
+#### Example of Grafana Dashboards for each consensus engine.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -3098,7 +3100,7 @@ Be sure to review the [Checklist | How to confirm a healthy functional ETH2 vali
 {% endhint %}
 
 {% hint style="success" %}
-:tada:Congrats on setting up your validator! You're good to go on eth2.0.
+:tada:Congrats on setting up your validator! You're good to go on staking Ethereum.
 
 Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
 
@@ -3111,9 +3113,9 @@ Hang out and chat with fellow stakers on Discord @
 [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley: 
 {% endhint %}
 
-## :man_mage:7. Update a ETH2 client
+## :man_mage:7. Update a consensus engine (ETH2 client)
 
-When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your eth2 beacon chain and validator.
+When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your beacon chain and validator.
 
 {% hint style="info" %}
 Always review the **git logs with command`git log`** or **release notes** before updating. There may be changes requiring your attention.
@@ -3123,7 +3125,7 @@ Always review the **git logs with command`git log`** or **release notes** before
 ****:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
 {% endhint %}
 
-Select your ETH2 client.
+Select your consensus engine.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -3415,10 +3417,10 @@ Enter your validator's pubkey to view its status.
 Your additional validators are now in the activation queue waiting their turn. Check your estimated activation time at [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app)
 {% endhint %}
 
-### :money_with_wings: 8.4 Switch / migrate Eth2 clients with slash protection
+### :money_with_wings: 8.4 Switch / migrate consensus engine (Eth2 client) with slash protection
 
 {% hint style="info" %}
-The key takeaway in this process is to avoid running two eth2 clients simultaneously. You want to avoid being punished by a slashing penalty, which causes a loss of ether.
+The key takeaway in this process is to avoid running two consensus engines simultaneously. You want to avoid being punished by a slashing penalty, which causes a loss of ether.
 {% endhint %}
 
 #### :octagonal_sign: 8.4.1 Stop old beacon chain and old validator.
@@ -3442,7 +3444,7 @@ sudo systemctl stop beacon-chain
 #### :minidisc: 8.4.2 Export slashing database (Optional)
 
 {% hint style="info" %}
-[EIP-3076](https://eips.ethereum.org/EIPS/eip-3076) implements a standard to safety migrate validator keys between eth2 clients. This is the exported contents of the slashing database.
+[EIP-3076](https://eips.ethereum.org/EIPS/eip-3076) implements a standard to safety migrate validator keys between consensus engines. This is the exported contents of the slashing database.
 {% endhint %}
 
 Update the export .json file location and name.
@@ -3482,7 +3484,7 @@ prysm.sh validator slashing-protection export --datadir=/path/to/your/wallet --s
 Now you need to setup/install your new validator **but do not start running the systemd processes**. Be sure to thoroughly follow your new validator's  [Section 4. Configure a ETH2 beacon chain and validator.](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md#4-configure-a-eth2-beacon-chain-node-and-validator) You will need to build/install the client, configure port forwarding/firewalls, and new systemd unit files.
 
 {% hint style="warning" %}
-****:sparkles: **Pro Tip**: During the process of re-importing validator keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two eth2 clients with same validator keys at the same time.
+****:sparkles: **Pro Tip**: During the process of re-importing validator keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two consensus engines with same validator keys at the same time.
 {% endhint %}
 
 {% hint style="danger" %}
@@ -3491,7 +3493,7 @@ Now you need to setup/install your new validator **but do not start running the 
 
 #### :open_file_folder: 8.4.4 Import slashing database (Optional)
 
-Using your new eth2 client, run the following command and update the relevant path to import your slashing database from 2 steps ago.
+Using your new consensus engine, run the following command and update the relevant path to import your slashing database from 2 steps ago.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -3565,7 +3567,7 @@ Enter your validator's pubkey to view its status.
 
 #### :fire_extinguisher: 8.4.7 Update Monitoring with Prometheus and Grafana
 
-[Review section 6](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md#6-monitoring-your-validator-with-grafana-and-prometheus) and change your `prometheus.yml`. Ensure prometheus is connected to your new eth2 client's metrics port. You will also want to import your new eth2 client's dashboard. 
+[Review section 6](../guide-or-how-to-setup-a-validator-on-eth2-testnet.md#6-monitoring-your-validator-with-grafana-and-prometheus) and change your `prometheus.yml`. Ensure prometheus is connected to your new consensus engine's metrics port. You will also want to import your new consensus engine's dashboard. 
 
 ### :desktop: 8.5 Use all available LVM disk space
 
@@ -3663,7 +3665,7 @@ sudo systemctl restart eth1
 In case you need to locate your validator keys, database directories or other important files.
 {% endhint %}
 
-#### Eth2 Client files and locations
+#### Consensus engine files and locations
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -4114,7 +4116,7 @@ Enter your validator's pubkey to view its status.
 Learn about [attestation effectiveness from Attestant.io](https://www.attestant.io/posts/defining-attestation-effectiveness/)
 {% endhint %}
 
-#### :family_mwgg: Strategy #1: Increase eth2 beacon chain peer count
+#### :family_mwgg: Strategy #1: Increase beacon chain peer count
 
 {% hint style="info" %}
 This change will result in increased bandwidth and memory usage. Tweak and tailor appropriately for your hardware. 
@@ -4255,7 +4257,7 @@ Learn how to at the following quick guide.
 {% hint style="info" %}
 Allows the VC (validator client) to connect to multiple BN (beacon nodes). This means your validator client can use multiple BNs. Whenever a BN fails to respond, the VC will try again with the next BN.
 
-Must install a BN of the same eth2 client on another server.
+Must install a BN of the same consensus engine on another server.
 
 Currently only works for Lighthouse.
 {% endhint %}
