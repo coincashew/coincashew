@@ -1,10 +1,10 @@
 ---
 description: >-
-  Scenario: In discord, you see an alert that your eth1 node just announced a
-  new release. How best to update?
+  Scenario: In discord, you see an alert that your execution engine just
+  announced a new release. How best to update?
 ---
 
-# How to update your eth1 node
+# How to update your execution engine (eth1 node)
 
 {% hint style="info" %}
 ​ :tada: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
@@ -33,14 +33,14 @@ sudo apt update
 sudo apt dist-upgrade -y
 ```
 
-1\. Stop your eth1 node process.
+1\. Stop your execution engine process.
 
 ```bash
 # This can take a few minutes.
 sudo systemctl stop eth1
 ```
 
-2\. Update the eth1 node package or binaries.
+2\. Update the execution engine package or binaries.
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -132,7 +132,7 @@ make erigon && make rpcdaemon
 {% endtab %}
 {% endtabs %}
 
-3\. Start your eth1 node process.
+3\. Start your execution engine process.
 
 ```bash
 sudo systemctl start eth1

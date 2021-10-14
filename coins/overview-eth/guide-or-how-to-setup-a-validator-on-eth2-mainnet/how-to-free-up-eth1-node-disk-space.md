@@ -1,10 +1,10 @@
 ---
 description: >-
-  eth1 nodes grow quickly. Run this process to prune the blockchain and free up
-  space.
+  Execution engines (formerly known as eth1 nodes) grow quickly. Run this
+  process to prune the blockchain and free up space.
 ---
 
-# How to free up eth1 node disk space with pruning
+# How to free up execution engine (eth1) disk space with pruning
 
 ## Quick steps guide
 
@@ -12,7 +12,7 @@ description: >-
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
-### :dagger: Why do I want to prune my eth1 node?
+### :dagger: Why do I want to prune my execution engine?
 
 * Free up gigs of precious disk space. Typically 200gb or more is common.
 
@@ -21,13 +21,13 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 * Works with **geth + erigon (automatic) **currently
 * Ensure at least 30+ GB of free disk space is available otherwise database corruption may occur.
 
-### :construction: How to prune a eth1 node
+### :construction: How to prune execution engine
 
 {% hint style="info" %}
-Ensure adequate failover or backup eth1 nodes are configured for use with your beacon-chain node before proceeding. geth is offline and unavailable during this process.
+Ensure adequate failover or backup execution engines are configured for use with your beacon-chain node before proceeding. geth is offline and unavailable during this process.
 {% endhint %}
 
-1\. Note how much disk space is currently used and stop the eth1 node
+1\. Note how much disk space is currently used and stop the execution engine
 
 ```
 df
@@ -63,7 +63,7 @@ sudo service eth1 stop
 {% endtab %}
 {% endtabs %}
 
-3\. Once the pruning is finished, restart the eth1 service.
+3\. Once the pruning is finished, restart the execution engine service.
 
 ```bash
 sudo service eth1 restart

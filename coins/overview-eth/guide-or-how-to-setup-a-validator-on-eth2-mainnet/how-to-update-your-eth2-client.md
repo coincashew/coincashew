@@ -1,10 +1,10 @@
 ---
 description: >-
-  Scenario: In discord, you see an alert that your eth2 client just announced a
-  new release. How best to update?
+  Scenario: In discord, you see an alert that your consensus engine just
+  announced a new release. How best to update?
 ---
 
-# How to update your eth2 client
+# How to update your consensus engine (eth2 client)
 
 {% hint style="info" %}
 :confetti_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
@@ -20,7 +20,7 @@ description: >-
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
-When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your eth2 beacon chain and validator.
+When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your beacon chain and validator.
 
 {% hint style="info" %}
 Always review the **git logs **with command**`git log`** or **release notes** before updating. There may be changes requiring your attention.
@@ -30,7 +30,7 @@ Always review the **git logs **with command**`git log`** or **release notes** be
 ****:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
 {% endhint %}
 
-1. Select your ETH2 client.
+1. Select your consensus engine.
 
 {% tabs %}
 {% tab title="Lighthouse" %}

@@ -6,7 +6,7 @@ description: >-
 
 # Guide | How to setup a validator for Ethereum staking on mainnet
 
-## :new:Announcements
+## e:new:Announcements
 
 {% hint style="info" %}
 The ETH Foundation would like to hear from you. 
@@ -137,7 +137,7 @@ At the end of this guide, you will build a node that hosts three main components
 
 **Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
 
-**Eth1 node** - Supplies incoming validator deposits from the eth1 mainnet chain to the beacon chain client.
+**Execution engine (aka Eth1 node)** - Supplies incoming validator deposits from the eth mainnet chain to the beacon chain client.
 
 Note: Teku and Nimbus combines both clients into one process.
 {% endhint %}
@@ -434,7 +434,7 @@ Your transaction is sending and depositing your ETH to the [official ETH2 deposi
 * Make **offline backups**, such as to a USB key, of your **`validator_keys`** directory.
 {% endhint %}
 
-## :flying_saucer: 3. Install a ETH1 node
+## :flying_saucer: 3. Install a execution engine (ETH1 node)
 
 {% hint style="info" %}
 Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
@@ -474,7 +474,7 @@ Simply copy/paste the following.
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
-Description     = geth eth1 service
+Description     = geth execution engine service
 Wants           = network-online.target
 After           = network-online.target 
 
@@ -967,11 +967,11 @@ eth1-endpoint: <your https:// infura endpoint>
 {% endtabs %}
 
 {% hint style="info" %}
-Syncing an eth1 node can take up to 1 week. On high-end machines with gigabit internet, expect syncing to take less than a day.
+Syncing an execution engine can take up to 1 week. On high-end machines with gigabit internet, expect syncing to take less than a day.
 {% endhint %}
 
 {% hint style="success" %}
-Your eth1 node is fully sync'd when these events occur.
+Your execution engine is fully sync'd when these events occur.
 
 * **`OpenEthereum:`** `Imported #<block number>`
 * **`Geth:`** `Imported new chain segment`
@@ -993,7 +993,7 @@ journalctl -fu eth1
 sudo systemctl stop eth1
 ```
 
-## :last_quarter_moon_with_face: 4. Configure a ETH beacon chain node and validator
+## :last_quarter_moon_with_face: 4. Configure a ETH consensus engine (beacon chain and validator)
 
 Your choice of [Lighthouse](https://github.com/sigp/lighthouse), [Nimbus](https://github.com/status-im/nimbus-eth2), [Teku](https://consensys.net/knowledge-base/ethereum-2/teku/), [Prysm](https://github.com/prysmaticlabs/prysm) or [Lodestar](https://lodestar.chainsafe.io).
 
@@ -1085,7 +1085,7 @@ lighthouse account_manager validator list --network mainnet
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
 * **Lighthouse beacon chain** requires port 9000 for tcp and udp
-* **eth1** node requires port 30303 for tcp and udp
+* execution engine requires port 30303 for tcp and udp
 
 {% hint style="info" %}
 :sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
@@ -1124,7 +1124,7 @@ EOF
 ```
 
 {% hint style="info" %}
-****:fire: **Lighthouse Pro Tip: **On the **ExecStart **line, adding the `--eth1-endpoints` flag allows for redundant eth1 nodes. Separate with comma. Make sure the endpoint does not end with a trailing slash or`/` Remove it.
+****:fire: **Lighthouse Pro Tip: **On the **ExecStart **line, adding the `--eth1-endpoints` flag allows for redundant execution engines. Separate with comma. Make sure the endpoint does not end with a trailing slash or`/` Remove it.
 
 ```bash
 # Example:
@@ -1159,11 +1159,11 @@ sudo systemctl start beacon-chain
 
 _The beacon chain couldn't connect to the :8545 service?_ 
 
-* In the beacon chain unit file under \[Service], add, "`ExecStartPre = /bin/sleep 30`" so that it waits 30 seconds for eth1 node to startup before connecting.
+* In the beacon chain unit file under \[Service], add, "`ExecStartPre = /bin/sleep 30`" so that it waits 30 seconds for execution engine to startup before connecting.
 
 _CRIT Invalid eth1 chain id. Please switch to correct chain id._
 
-* Allow your eth1 node to fully sync to mainnet.
+* Allow your execution engine to fully sync to mainnet.
 {% endhint %}
 
 {% hint style="success" %}
@@ -1247,7 +1247,7 @@ Run the following to create a **unit file** to define your`validator.service` co
 
 ```bash
 cat > $HOME/validator.service << EOF 
-# The ethvalidator service (part of systemd)
+# The eth validator service (part of systemd)
 # file: /etc/systemd/system/validator.service 
 
 [Unit]
@@ -2735,13 +2735,13 @@ EOF
 {% endtab %}
 {% endtabs %}
 
-Setup prometheus for your **eth1 node**. Start by editing **prometheus.yml**
+Setup prometheus for your execution engine. Start by editing **prometheus.yml**
 
 ```bash
 nano $HOME/prometheus.yml
 ```
 
-Append the applicable job snippet for your eth1 node to the end of **prometheus.yml**. Save the file.
+Append the applicable job snippet for your execution engine to the end of **prometheus.yml**. Save the file.
 
 {% hint style="warning" %}
 **Spacing matters**. Ensure all `job_name` snippets are in alignment.
@@ -2870,9 +2870,9 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 {% hint style="info" %}
 ****:fire: **Troubleshooting common Grafana issues**: 
 
-_The dashboards do not display eth1 node data._
+_The dashboards do not display _execution engine_ data._
 
-* In the **eth1 unit file** under located at `/etc/systemd/system/eth1.service`,  make sure your eth1 node/geth is started with the correct parameters so that reporting metrics and pprof http server are enabled. 
+* In the **eth1 unit file** under located at `/etc/systemd/system/eth1.service`,  make sure your execution engine/geth is started with the correct parameters so that reporting metrics and pprof http server are enabled. 
   * Example:`ExecStartPre = /usr/bin/geth --http --metrics --pprof`
 {% endhint %}
 
@@ -2936,7 +2936,7 @@ Work in progress.
 
 
 
-#### Example of Grafana Dashboards for each ETH1 node.
+#### Example of Grafana Dashboards for each execution engine.
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -3601,7 +3601,7 @@ df -h
 ### :vertical_traffic_light: 8.6 Reduce network bandwidth usage
 
 {% hint style="info" %}
-Hosting your own ETH1 node can consume hundreds of gigabytes of data per day. Because data plans can be limited or costly, you might desire to slow down data usage but still maintain good connectivity to the network.
+Hosting your own execution engine can consume hundreds of gigabytes of data per day. Because data plans can be limited or costly, you might desire to slow down data usage but still maintain good connectivity to the network.
 {% endhint %}
 
 Edit your eth1.service unit file.
@@ -3652,7 +3652,7 @@ Add the following flag to limit the number of peers on the `ExecStart` line.
 {% endtab %}
 {% endtabs %}
 
-Finally, reload the new unit file and restart the eth1 node.
+Finally, reload the new unit file and restart the execution engine.
 
 ```bash
 sudo systemctl daemon-reload
@@ -3739,7 +3739,7 @@ $rootDir/validator-db
 {% endtab %}
 {% endtabs %}
 
-#### Eth1 node files and locations
+#### Execution engine files and locations
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -3778,13 +3778,13 @@ $HOME/.nethermind/nethermind_db/mainnet
 {% endtab %}
 {% endtabs %}
 
-###  :earth_asia: 8.8 Hosting ETH1 node on a different machine
+###  :earth_asia: 8.8 Hosting execution engine on a different machine
 
 {% hint style="info" %}
-Hosting your own ETH1 node on a different machine than where your beacon-chain and validator resides, can allow some extra modularity and flexibility.
+Hosting your own execution engine on a different machine than where your beacon-chain and validator resides, can allow some extra modularity and flexibility.
 {% endhint %}
 
-On the eth1 node machine, edit your eth1.service unit file.
+On the execution engine machine, edit your eth1.service unit file.
 
 ```bash
 sudo nano /etc/systemd/system/eth1.service
@@ -3830,14 +3830,14 @@ If not using websockets, there's no need to include ws parameters. Only Nimbus r
 {% endtab %}
 {% endtabs %}
 
-Reload the new unit file and restart the eth1 node.
+Reload the new unit file and restart the execution engine.
 
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl restart eth1
 ```
 
-On the separate machine hosting the beacon-chain, update the beacon-chain unit file with the eth1 node's IP address.
+On the separate machine hosting the beacon-chain, update the beacon-chain unit file with the execution engine's IP address.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -3966,14 +3966,14 @@ sudo systemctl restart beacon-chain
 {% endtab %}
 {% endtabs %}
 
-### :package: 8.10 Update a ETH1 node - Geth / OpenEthereum / Besu / Nethermind / Erigon
+### :package: 8.10 Update execution engine - Geth / OpenEthereum / Besu / Nethermind / Erigon
 
 {% hint style="info" %}
-From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
+From time to time, be sure to update to the latest execution engine releases to enjoy new improvements and features.
 {% endhint %}
 
 {% hint style="success" %}
-****:fire: **Pro tip**: Setup a failover eth1 node to overlap your maintenance. See section 8.11, strategy 2, eth1 redundancy.
+****:fire: **Pro tip**: Setup a failover execution engine to overlap your maintenance. See section 8.11, strategy 2, execution engine redundancy.
 {% endhint %}
 
 Update your operating system and ensure it's on the latest long term (LTS) support version.
@@ -3983,14 +3983,14 @@ sudo apt update
 sudo apt dist-upgrade -y
 ```
 
-Stop your eth1 node process.
+Stop your execution engine process.
 
 ```bash
 # This can take a few minutes.
 sudo systemctl stop eth1
 ```
 
-Update the eth1 node package or binaries.
+Update the execution engine package or binaries.
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -4082,7 +4082,7 @@ make erigon && make rpcdaemon
 {% endtab %}
 {% endtabs %}
 
-Start your eth1 node process.
+Start your execution engine process.
 
 ```bash
 sudo systemctl start eth1
@@ -4304,7 +4304,7 @@ For more info see the [EIP2333 spec](https://eips.ethereum.org/EIPS/eip-2333).
 
 {% embed url="https://iancoleman.io/eip2333/" %}
 
-### :dvd: 8.13 Dealing with storage issues on the Eth1 node
+### :dvd: 8.13 Dealing with storage issues on the execution engine
 
 {% hint style="info" %}
 It is currently recommended to use a minimum 1TB hard disk.
@@ -4312,9 +4312,9 @@ It is currently recommended to use a minimum 1TB hard disk.
 _Kudos to _[_angyts_](https://github.com/angyts)_ for this contribution._
 {% endhint %}
 
-After running the Eth1 node for a while, you will notice that it will start to fill up the hard disk. The following steps might be helpful for you.
+After running the execution engine for a while, you will notice that it will start to fill up the hard disk. The following steps might be helpful for you.
 
-Firstly make sure you have a fallback Eth1 node: see [8.11 Strategy 2](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet#strategy-2-eth1-redundancy).
+Firstly make sure you have a fallback execution engine: see [8.11 Strategy 2](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet#strategy-2-eth1-redundancy).
 
 {% tabs %}
 {% tab title="Manually Pruning Geth" %}
@@ -4324,9 +4324,9 @@ Since Geth 1.10x version, the blockchain data can be regularly pruned to reduce 
 
 Reference: [https://gist.github.com/yorickdowne/3323759b4cbf2022e191ab058a4276b2](https://gist.github.com/yorickdowne/3323759b4cbf2022e191ab058a4276b2)
 
-You will need to upgrade Geth to at least 1.10x. Other prerequisites are a fully synced Eth1 node and that a snapshot has been created.
+You will need to upgrade Geth to at least 1.10x. Other prerequisites are a fully synced execution engine and that a snapshot has been created.
 
-Stop your Eth1 node
+Stop your execution engine
 
 ```
 sudo systemctl stop eth1
@@ -4346,7 +4346,7 @@ geth --datadir ~/.ethereum snapshot prune-state
 * "**Compacting database**" will stop updating status and appear hung. **Do not interrupt or restart this process.** Typically after an hour, pruning status messages will reappear.
 {% endhint %}
 
-Restart the Eth1 node
+Restart execution engine
 
 ```
 sudo systemctl start eth1

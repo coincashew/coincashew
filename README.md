@@ -17,7 +17,7 @@ coverY: 0
 ****:fire: **HOT TOPICS** 
 
 * Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
-* Learn to setup your own [ETH2 Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+* Learn to setup your own [Ethereum Staking Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
 
 ## :woman_raising_hand: I would like to ...
