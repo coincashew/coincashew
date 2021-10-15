@@ -6,9 +6,7 @@ description: >-
 
 # Guide | How to setup a validator for Ethereum staking on Pithos testnet in 10 minutes or less
 
-## Your **Mission**
-
-To participate in the public testnet known as **Pithos**, which is the public's first glimpse in helping Ethereum's journey towards "[The Merge](https://consensys.net/blog/ethereum-2-0/an-update-on-the-merge-after-the-amphora-interop-event-in-greece/)", where Ethereum will transition from proof of work to a much more sustainable proof of stake consensus model.
+Your **Missio**To participate in the public testnet known as **Pithos**, which is the public's first glimpse in helping Ethereum's journey towards "[The Merge](https://consensys.net/blog/ethereum-2-0/an-update-on-the-merge-after-the-amphora-interop-event-in-greece/)", where Ethereum will transition from proof of work to a much more sustainable proof of stake consensus model.
 
 {% hint style="info" %}
 Major props and credits to [parithosh](https://github.com/parithosh/consensus-deployment-ansible#pithos-testnet-ansible-files--config) for this knowledge share. Without his extensive work and dedication, this guide would not be possible.
@@ -240,7 +238,7 @@ Note: Validator Deposits not yet available. Deposits for general public should b
 
 
 
-If you haven't already, learn to setup a [Validator for Ethereum Staking](guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less.md).
+If you haven't already, learn to setup a [Validator for Ethereum Staking.](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
 {% endhint %}
 
 ## Additional Information
