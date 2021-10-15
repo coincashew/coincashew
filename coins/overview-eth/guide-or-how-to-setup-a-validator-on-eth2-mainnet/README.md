@@ -21,7 +21,7 @@ Fill out this survey [https://ethstaker.cc/survey/#Z7ZpSghg](https://ethstaker.c
 {% endhint %}
 
 {% hint style="success" %}
-As of October 12 2021, this is **guide version 3.4.0 **and written for **Ethereum mainnet**:grin: 
+As of October 12 2021, this is **guide version 3.4.1 **and written for **Ethereum mainnet**:grin: 
 {% endhint %}
 
 {% hint style="info" %}
@@ -102,31 +102,17 @@ As a validator for eth, you will typically have the following abilities:
 
 ### :unlock: Recommended eth validator Security Best Practices
 
-If you need ideas or a reminder on how to secure your validator, refer to
-
-{% content-ref url="../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
-[guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
-{% endcontent-ref %}
+If you need ideas or a reminder on how to secure your validator, refer to the [security best practices guide](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node).
 
 ### :tools: Setup Ubuntu
 
-If you need to install Ubuntu Server, refer to
+If you need to install Ubuntu Server, refer to [this guide.](https://ubuntu.com/tutorials/install-ubuntu-server#1-overview)
 
-{% embed url="https://ubuntu.com/tutorials/install-ubuntu-server#1-overview" %}
-
-Or Ubuntu Desktop,
-
-{% content-ref url="../../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
-[install-ubuntu.md](../../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md)
-{% endcontent-ref %}
+Or Ubuntu Desktop, refer to [this guide.](https://www.coincashew.com/coins/overview-xtz/guide-how-to-setup-a-baker/install-ubuntu) 
 
 ### :performing_arts: Setup Metamask
 
-If you need to install Metamask, refer to
-
-{% content-ref url="../../../wallets/browser-wallets/metamask-ethereum.md" %}
-[metamask-ethereum.md](../../../wallets/browser-wallets/metamask-ethereum.md)
-{% endcontent-ref %}
+If you need to install Metamask, refer to [this guide.](https://www.coincashew.com/wallets/browser-wallets/metamask-ethereum)
 
 ### :jigsaw: High Level Validator Node Overview
 
@@ -152,11 +138,7 @@ Every 32 ETH you own allows you to make 1 validator. You can run thousands of va
 
 Your ETH (or multiples of 32 ETH) should be consolidated into a single address accessible with Metamask.
 
-If you need to buy/exchange or top up your ETH to a multiple of 32, check out:
-
-{% content-ref url="../guide-how-to-buy-eth.md" %}
-[guide-how-to-buy-eth.md](../guide-how-to-buy-eth.md)
-{% endcontent-ref %}
+If you need to buy/exchange or top up your ETH to a multiple of 32, check out [How to buy ETH guide.](https://www.coincashew.com/coins/overview-eth/guide-how-to-buy-eth)
 
 ## :woman_technologist: 2. Signup to be a validator at the Launchpad
 
@@ -434,7 +416,7 @@ Your transaction is sending and depositing your ETH to the [official ETH2 deposi
 * Make **offline backups**, such as to a USB key, of your **`validator_keys`** directory.
 {% endhint %}
 
-## :flying_saucer: 3. Install a execution engine (ETH1 node)
+## :flying_saucer: 3. Install execution engine (ETH1 node)
 
 {% hint style="info" %}
 Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
@@ -993,7 +975,7 @@ journalctl -fu eth1
 sudo systemctl stop eth1
 ```
 
-## :last_quarter_moon_with_face: 4. Configure a ETH consensus engine (beacon chain and validator)
+## :last_quarter_moon_with_face: 4. Configure consensus engine (beacon chain and validator)
 
 Your choice of [Lighthouse](https://github.com/sigp/lighthouse), [Nimbus](https://github.com/status-im/nimbus-eth2), [Teku](https://consensys.net/knowledge-base/ethereum-2/teku/), [Prysm](https://github.com/prysmaticlabs/prysm) or [Lodestar](https://lodestar.chainsafe.io).
 
@@ -1220,7 +1202,7 @@ sudo systemctl stop beacon-chain
 
 ## :dna: 4.6. Start the validator
 
-#### :rocket: Setup Graffiti and POAP
+#### :rocket: Setup Graffiti
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes. Add optional graffiti between the single quotes. 
 
@@ -1230,10 +1212,6 @@ MY_GRAFFITI=''
 # MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
 # MY_GRAFFITI='eth rulez!'
 ```
-
-{% hint style="info" %}
-Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz)
-{% endhint %}
 
 #### :cake: Benefits of using systemd for your validator <a href="benefits-of-using-systemd-for-your-stake-pool" id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
@@ -2566,11 +2544,7 @@ sudo systemctl stop validator
 Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
 {% endhint %}
 
-Setup **Chrony** with the following guide.
-
-{% content-ref url="../../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md" %}
-[how-to-setup-chrony.md](../../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md)
-{% endcontent-ref %}
+Setup **Chrony** with [this guide.](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony)
 
 {% hint style="info" %}
 chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
@@ -3113,7 +3087,7 @@ Hang out and chat with fellow stakers on Discord @
 [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley: 
 {% endhint %}
 
-## :man_mage:7. Update a consensus engine (ETH2 client)
+## :man_mage:7. Update your consensus engine (ETH2 client)
 
 When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your beacon chain and validator.
 
@@ -3594,9 +3568,7 @@ df -h
 # /dev/ubuntu-vg/ubuntu-lv           2000G  500G  1500G  25% /
 ```
 
-**Source reference**:
-
-{% embed url="https://askubuntu.com/questions/1106795/ubuntu-server-18-04-lvm-out-of-space-with-improper-default-partitioning" %}
+**Source reference**: [https://askubuntu.com/questions/1106795/ubuntu-server-18-04-lvm-out-of-space-with-improper-default-partitioning](https://askubuntu.com/questions/1106795/ubuntu-server-18-04-lvm-out-of-space-with-improper-default-partitioning)
 
 ### :vertical_traffic_light: 8.6 Reduce network bandwidth usage
 
@@ -4246,11 +4218,7 @@ sudo systemctl restart beacon-chain
 
 #### :gear: Strategy #3: Perform updates or reboots during the longest attestation gap
 
-Learn how to at the following quick guide.
-
-{% content-ref url="how-to-find-longest-attestation-slot-gap.md" %}
-[how-to-find-longest-attestation-slot-gap.md](how-to-find-longest-attestation-slot-gap.md)
-{% endcontent-ref %}
+Learn how to at [this quick guide.](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-find-longest-attestation-slot-gap)
 
 #### :chains: Strategy #4: Beacon node redundancy
 
@@ -4298,11 +4266,11 @@ A [key generator tool by iancoleman](https://iancoleman.io/eip2333/) can generat
 
 This tool should be used **offline **and is useful for extracting **withdrawal keys** and **signing keys**.
 
+Link: [https://iancoleman.io/eip2333/](https://iancoleman.io/eip2333/)
+
 {% hint style="info" %}
 For more info see the [EIP2333 spec](https://eips.ethereum.org/EIPS/eip-2333).
 {% endhint %}
-
-{% embed url="https://iancoleman.io/eip2333/" %}
 
 ### :dvd: 8.13 Dealing with storage issues on the execution engine
 
@@ -4416,85 +4384,46 @@ rm -r ~/.ethereum
 
 ### :mobile_phone: Discord
 
-{% tabs %}
-{% tab title="Lighthouse" %}
-{% embed url="https://discord.gg/cyAszAh" %}
-{% endtab %}
-
-{% tab title="Nimbus" %}
-{% embed url="https://discord.gg/XRxWahP" %}
-
-
-{% endtab %}
-
-{% tab title="Teku" %}
-{% embed url="https://discord.gg/7hPv2T6" %}
-{% endtab %}
-
-{% tab title="Prysm" %}
-{% embed url="https://discord.gg/XkyZSSk4My" %}
-{% endtab %}
-
-{% tab title="Lodestar" %}
-{% embed url="https://discord.gg/aMxzVcr" %}
-{% endtab %}
-
-{% tab title="CoinCashew" %}
-{% embed url="https://discord.gg/w8Bx8W2HPW" %}
-{% endtab %}
-{% endtabs %}
+* Lighthouse: [https://discord.com/invite/cyAszAh](https://discord.com/invite/cyAszAh)
+* Nimbus: [https://discord.com/invite/XRxWahP](https://discord.com/invite/XRxWahP)
+* Teku: [https://discord.com/invite/7hPv2T6](https://discord.com/invite/7hPv2T6)
+* Prysm: [https://discord.com/invite/XkyZSSk4My](https://discord.com/invite/XkyZSSk4My)
+* Lodestar: [https://discord.com/invite/aMxzVcr](https://discord.com/invite/aMxzVcr)
 
 ### :earth_africa: Reddit r/ethStaker
 
-{% embed url="https://www.reddit.com/r/ethstaker/" %}
+* [https://www.reddit.com/r/ethstaker/](https://www.reddit.com/r/ethstaker/)
 
 ## :jigsaw:10. Reference Material
 
 Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
 
-{% embed url="https://launchpad.ethereum.org/" %}
-
-{% embed url="https://pegasys.tech/teku-ethereum-2-for-enterprise/" %}
-
-{% embed url="https://docs.teku.pegasys.tech/en/latest/HowTo/Get-Started/Build-From-Source/" %}
-
-{% embed url="https://lighthouse-book.sigmaprime.io/intro.html" %}
-
-{% embed url="https://status-im.github.io/nimbus-eth2/intro.html" %}
-
-{% embed url="https://prylabs.net/participate" %}
-
-{% embed url="https://docs.prylabs.network/docs/getting-started/" %}
-
-{% embed url="https://chainsafe.github.io/lodestar/installation/" %}
+* [https://launchpad.ethereum.org/en/](https://launchpad.ethereum.org/en/)
+* [https://consensys.net/knowledge-base/ethereum-2/teku/](https://consensys.net/knowledge-base/ethereum-2/teku/)
+* [https://docs.teku.pegasys.tech/en/latest/HowTo/Get-Started/Installation-Options/Build-From-Source/](https://docs.teku.pegasys.tech/en/latest/HowTo/Get-Started/Installation-Options/Build-From-Source/)
+* [https://lighthouse-book.sigmaprime.io/intro.html](https://lighthouse-book.sigmaprime.io/intro.html)
+* [https://nimbus.guide/intro.html](https://nimbus.guide/intro.html)
+* [https://docs.prylabs.network/docs/getting-started/](https://docs.prylabs.network/docs/getting-started/)
+* [https://chainsafe.github.io/lodestar/installation/](https://chainsafe.github.io/lodestar/installation/)
 
 ## :tada:11. Bonus links
 
 ### :bricks: ETH Block Explorers
 
-{% embed url="https://beaconcha.in/" %}
-
-{% embed url="https://beaconscan.com/" %}
+* [https://beaconcha.in/](https://beaconcha.in)
+* [https://beaconscan.com/](https://beaconscan.com)
 
 ### :notepad_spiral: Latest Eth Info
 
-{% embed url="https://hackmd.io/@benjaminion/eth2_news/" %}
-
-{% embed url="https://www.reddit.com/r/ethstaker" %}
-
-{% embed url="https://blog.ethereum.org/" %}
+* [https://hackmd.io/@benjaminion/eth2\_news](https://hackmd.io/@benjaminion/eth2\_news)
+* [https://www.reddit.com/r/ethstaker](https://www.reddit.com/r/ethstaker)
+* [https://blog.ethereum.org/](https://blog.ethereum.org)
 
 ### :family_mwgb: Additional ETH Community Guides
 
-{% embed url="https://someresat.medium.com/" %}
-
-{% embed url="https://github.com/metanull-operator/eth2-ubuntu" %}
-
-{% embed url="https://agstakingco.gitbook.io/eth-2-0-staking-guide-prater-lighthouse/" %}
-
-#### Hardware Staking Guide [https://www.reddit.com/r/ethstaker/comments/j3mlup/a_slightly_updated_look_at_hardware_for_staking/](https://www.reddit.com/r/ethstaker/comments/j3mlup/a_slightly_updated_look_at_hardware_for_staking/)
-
-{% embed url="https://medium.com/@RaymondDurk/how-to-stake-for-ethereum-2-0-with-dappnode-231fa7689c02" %}
-
-{% embed url="https://kb.beaconcha.in/" %}
-
+* [https://someresat.medium.com/](https://someresat.medium.com)
+* [https://github.com/metanull-operator/eth2-ubuntu](https://github.com/metanull-operator/eth2-ubuntu)
+* [https://agstakingco.gitbook.io/eth-2-0-staking-guide-prater-lighthouse/](https://agstakingco.gitbook.io/eth-2-0-staking-guide-prater-lighthouse/)
+* [https://www.reddit.com/r/ethstaker/comments/j3mlup/a_slightly_updated_look_at_hardware_for_staking/](https://www.reddit.com/r/ethstaker/comments/j3mlup/a_slightly_updated_look_at_hardware_for_staking/)
+* [https://raymonddurk.medium.com/how-to-stake-for-ethereum-2-0-with-dappnode-231fa7689c02](https://raymonddurk.medium.com/how-to-stake-for-ethereum-2-0-with-dappnode-231fa7689c02)
+* [https://kb.beaconcha.in/](https://kb.beaconcha.in)

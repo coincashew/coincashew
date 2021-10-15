@@ -167,7 +167,7 @@ sed -i -e "s/<ENTER-IP-ADDRESS-HERE>/$IP_ADDRESS/g" ~/git/consensus-deployment-a
 
 ### 5. Run the execution and consensus engines
 
-Choose and start up your execution and consensus client.
+Choose and start up your **execution engine client**.
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -177,7 +177,7 @@ docker-compose --env-file pithos.vars -f docker-compose.geth.yml up -d
 {% endtab %}
 {% endtabs %}
 
-Choose and start up your consensus engine client.
+Choose and start up your **consensus engine client.**
 
 {% tabs %}
 {% tab title="Lodestar" %}
@@ -230,6 +230,10 @@ docker logs lighthouse_beacon -f --tail=20
 {% endtabs %}
 
 Syncing is complete when your slot number matches that of a block explorers. Check [https://pithos-explorer.ethdevops.io/](https://pithos-explorer.ethdevops.io)
+
+{% hint style="info" %}
+Since the network is new, syncing both the execution and consensus layers should take a few minutes or so.
+{% endhint %}
 
 {% hint style="success" %}
 Congrats on setting up your Pithos staking node! 
@@ -318,4 +322,4 @@ Update UFW firewalls and/or port forwarding rules accordingly.
 
 ## Reference Material <a href="10.-reference-material" id="10.-reference-material"></a>
 
-{% embed url="https://github.com/parithosh/consensus-deployment-ansible#pithos-testnet-ansible-files--config" %}
+* [https://github.com/parithosh/consensus-deployment-ansible#pithos-testnet-ansible-files--config](https://github.com/parithosh/consensus-deployment-ansible#pithos-testnet-ansible-files--config)
