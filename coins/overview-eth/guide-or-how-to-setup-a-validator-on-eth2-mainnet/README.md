@@ -367,11 +367,11 @@ Alternatively, follow this [ethstaker.cc](https://ethstaker.cc) exclusive for th
 
 ### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
 
-{% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
+Video link: [https://www.youtube.com/watch?v=DTR3PzRRtYU](https://www.youtube.com/watch?v=DTR3PzRRtYU)
 
 ### Part 2 - Install Ubuntu 20.04 from the USB Drive
 
-{% embed url="https://www.youtube.com/watch?v=C97_6MrufCE" %}
+Video link: [https://www.youtube.com/watch?v=C97\_6MrufCE](https://www.youtube.com/watch?v=C97\_6MrufCE)
 
 You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
 {% endtab %}
@@ -3354,26 +3354,6 @@ Reminder to use the same **keystore password.**
 # Generate from an existing mnemonic 5 more validators when 3 were previously already made
 ./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
-{% endtab %}
-
-{% tab title="Advanced - Most Secure" %}
-{% hint style="warning" %}
-:fire:**Pro Security Tip**: Run the **eth2deposit-cli tool **and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
-{% endhint %}
-
-Follow this [ethstaker.cc](https://ethstaker.cc) exclusive for the low down on making a bootable usb.
-
-### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
-
-{% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
-
-### Part 2 - Install Ubuntu 20.04 from the USB Drive
-
-{% embed url="https://www.youtube.com/watch?v=C97_6MrufCE" %}
-
-You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
-
-Run the existing-mnemonic command in the previous tabs.
 {% endtab %}
 {% endtabs %}
 
