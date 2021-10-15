@@ -99,7 +99,7 @@ sudo ufw default allow outgoing
 
 # Allow SSH access
 sudo ufw allow ssh
-aa
+
 # Allow execution engine client port
 sudo ufw allow 30303/tcp
 
@@ -232,7 +232,7 @@ docker logs lighthouse_beacon -f --tail=20
 Syncing is complete when your slot number matches that of a block explorers. Check [https://pithos-explorer.ethdevops.io/](https://pithos-explorer.ethdevops.io)
 
 {% hint style="info" %}
-Since the network is new, syncing both the execution and consensus layers should take a few minutes or so.
+Since the network is relatively new, syncing both the execution and consensus layers should take a few minutes or so.
 {% endhint %}
 
 {% hint style="success" %}
