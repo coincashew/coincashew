@@ -1,20 +1,20 @@
 ---
 description: >-
-  Scenario: In discord, you see an alert that your execution client just
+  Scenario: In discord, you see an alert that your execution engine just
   announced a new release. How best to update?
 ---
 
-# How to update your execution client (eth1 node)
+# How to update your execution engine (eth1 node)
 
 {% hint style="info" %}
-​ :tada: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support!&#x20;
+​ :tada: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
 
-[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
 {% endhint %}
 
 {% embed url="https://gitcoin.co/grants/1653/ethereum-staking-guides-by-coincashew-with-poap" %}
 
-## :fast\_forward: Quick steps guide
+## :fast_forward: Quick steps guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
@@ -33,14 +33,14 @@ sudo apt update
 sudo apt dist-upgrade -y
 ```
 
-1\. Stop your execution client process.
+1\. Stop your execution engine process.
 
 ```bash
 # This can take a few minutes.
 sudo systemctl stop eth1
 ```
 
-2\. Update the execution client package or binaries.
+2\. Update the execution engine package or binaries.
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -82,7 +82,7 @@ File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](h
 
 Manually find the desired file from above repo and modify the `wget` command with the URL.
 
-> Example:&#x20;
+> Example: 
 >
 > wget -O besu.tar.gz [https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
 
@@ -132,7 +132,7 @@ make erigon && make rpcdaemon
 {% endtab %}
 {% endtabs %}
 
-3\. Start your execution client process.
+3\. Start your execution engine process.
 
 ```bash
 sudo systemctl start eth1
@@ -160,7 +160,7 @@ sudo systemctl status eth1 beacon-chain
 
 Enter your validator's pubkey to view its status.
 
-## &#x20;:robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+##  :robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
 ### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 

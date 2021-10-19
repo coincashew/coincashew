@@ -14,10 +14,10 @@ This greatly minimizes the chances that your local node is attacked and minimize
 Only the remote node is public internet facing online and the local machine can access the remote node's internal services, such as Grafana.
 {% endhint %}
 
-## :hatching_chick: 1. Install Wireguard
+## :hatching\_chick: 1. Install Wireguard
 
 {% hint style="info" %}
-Linux Headers needs to be installed before Wireguard. Below you see the generic headers being installed. 
+Linux Headers needs to be installed before Wireguard. Below you see the generic headers being installed.&#x20;
 {% endhint %}
 
 {% tabs %}
@@ -41,7 +41,7 @@ sudo apt install linux-headers-$(uname -r)
 Be aware this will require installing the headers again. Not restarting with the new linux-headers will prevent Wireguard network interface from functioning.
 {% endhint %}
 
-##  :key2: 2. Setup Public / Private Keypair
+## &#x20;:key2: 2. Setup Public / Private Keypair
 
 Generate a public/private key on each node by running the following commands.
 
@@ -61,7 +61,7 @@ wg genkey | tee wireguard-privatekey | wg pubkey > wireguard-publickey
 
 Create a `wg0.conf` configuration file in  `/etc/wireguard` directory.
 
-Update your Private and Public Keys accordingly. 
+Update your Private and Public Keys accordingly.&#x20;
 
 Change the Endpoint to your remote node public IP or DNS address.
 
@@ -203,6 +203,7 @@ PersistentKeepalive = 21
 {% tab title="local node" %}
 ```bash
 sudo ufw allow 51820/udp
+sudo ufw allow from 10.0.0.0/16 to any
 # check the firewall rules
 sudo ufw verbose
 ```
@@ -211,6 +212,7 @@ sudo ufw verbose
 {% tab title="remote nodes" %}
 ```bash
 sudo ufw allow 51820/udp
+sudo ufw allow from 10.0.0.0/16 to any
 # check the firewall rules
 sudo ufw verbose
 ```
@@ -254,7 +256,7 @@ sudo systemctl status wg-quick@wg0
 {% endtab %}
 {% endtabs %}
 
-## :white_check_mark: 5. Verify Connection is Working
+## :white\_check\_mark: 5. Verify Connection is Working
 
 Check the status of the interfaces by running `wg`
 
@@ -358,7 +360,7 @@ To access Grafana from your local machine, enter into the browser `http://10.0.0
 Wireguard setup is complete.
 {% endhint %}
 
-## :octagonal_sign: 6. Stop and disable Wireguard
+## :octagonal\_sign: 6. Stop and disable Wireguard
 
 ```
 sudo systemctl stop wg-quick@wg0

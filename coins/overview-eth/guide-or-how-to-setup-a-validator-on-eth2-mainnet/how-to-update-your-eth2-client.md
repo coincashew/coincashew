@@ -1,20 +1,20 @@
 ---
 description: >-
-  Scenario: In discord, you see an alert that your consensus client just
+  Scenario: In discord, you see an alert that your consensus engine just
   announced a new release. How best to update?
 ---
 
-# How to update your consensus client (eth2 client)
+# How to update your consensus engine (eth2 client)
 
 {% hint style="info" %}
-:confetti\_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support!&#x20;
+:confetti_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
 
-[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
 {% endhint %}
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
-## :fast\_forward: Quick steps guide
+## :fast_forward: Quick steps guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
@@ -30,7 +30,7 @@ Always review the **git logs **with command**`git log`** or **release notes** be
 ****:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
 {% endhint %}
 
-1. Select your consensus client.
+1. Select your consensus engine.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -130,7 +130,7 @@ sudo systemctl reload-or-restart beacon-chain
 {% endtab %}
 
 {% tab title="Prysm" %}
-Review release notes and check for breaking changes/features.&#x20;
+Review release notes and check for breaking changes/features. 
 
 [https://github.com/prysmaticlabs/prysm/releases](https://github.com/prysmaticlabs/prysm/releases)
 
@@ -141,7 +141,7 @@ sudo systemctl reload-or-restart beacon-chain validator
 {% endtab %}
 
 {% tab title="Lodestar" %}
-Review release notes and check for breaking changes/features.&#x20;
+Review release notes and check for breaking changes/features. 
 
 [https://github.com/ChainSafe/lodestar/releases](https://github.com/ChainSafe/lodestar/releases)
 
@@ -190,7 +190,7 @@ sudo systemctl status beacon-chain
 
 Enter your validator's pubkey to view its status.
 
-## &#x20;:robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+##  :robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
 ### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
@@ -210,6 +210,6 @@ Hang out and chat with fellow stakers on Discord @
 ​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
 
-:confetti\_ball: **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+:confetti_ball: **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}

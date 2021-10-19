@@ -16,6 +16,10 @@ Major props and credits to [parithosh](https://github.com/parithosh/consensus-de
 
 ![The MergETHEREUM Panda](../../.gitbook/assets/meme-merge.jpg)
 
+{% hint style="info" %}
+Learn more about the Merge: [https://ethmerge.com/](https://ethmerge.com)
+{% endhint %}
+
 ## Prerequisites
 
 This guide was tested against Ubuntu 20.04.1 LTS client. You'll need a virtual machine or local desktop/server/laptop/RaspberryPi.
@@ -28,7 +32,7 @@ This guide was tested against Ubuntu 20.04.1 LTS client. You'll need a virtual m
 * **Storage:** 16GB SSD
 
 {% hint style="info" %}
- For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
+&#x20;For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
 {% endhint %}
 
 {% hint style="success" %}
@@ -236,7 +240,7 @@ Since the network is relatively new, syncing both the execution and consensus la
 {% endhint %}
 
 {% hint style="success" %}
-Congrats on setting up your Pithos staking node! 
+Congrats on setting up your Pithos staking node!&#x20;
 
 
 

@@ -1,10 +1,10 @@
 ---
 description: >-
-  Execution clients (formerly known as eth1 nodes) grow quickly. Run this
+  Execution engines (formerly known as eth1 nodes) grow quickly. Run this
   process to prune the blockchain and free up space.
 ---
 
-# How to free up execution client (eth1) disk space with pruning
+# How to free up execution engine (eth1) disk space with pruning
 
 ## Quick steps guide
 
@@ -12,7 +12,7 @@ description: >-
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
-### :dagger: Why do I want to prune my execution client?
+### :dagger: Why do I want to prune my execution engine?
 
 * Free up gigs of precious disk space. Typically 200gb or more is common.
 
@@ -21,13 +21,13 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 * Works with **geth + erigon (automatic) **currently
 * Ensure at least 30+ GB of free disk space is available otherwise database corruption may occur.
 
-### :construction: How to prune execution client
+### :construction: How to prune execution engine
 
 {% hint style="info" %}
-Ensure adequate failover or backup execution clients are configured for use with your beacon-chain node before proceeding. geth is offline and unavailable during this process.
+Ensure adequate failover or backup execution engines are configured for use with your beacon-chain node before proceeding. geth is offline and unavailable during this process.
 {% endhint %}
 
-1\. Note how much disk space is currently used and stop the execution client
+1\. Note how much disk space is currently used and stop the execution engine
 
 ```
 df
@@ -37,7 +37,7 @@ sudo service eth1 stop
 2\. Start the pruning process and monitor it's process.
 
 {% hint style="warning" %}
-:fire: **Geth pruning Caveats**:&#x20;
+:fire: **Geth pruning Caveats**: 
 
 * Pruning can take a few hours or longer (typically 2 to 10 hours is common) depending on your node's disk performance.
 * There are three stages to pruning: **iterating state snapshot, pruning state data and compacting database.**
@@ -63,7 +63,7 @@ sudo service eth1 stop
 {% endtab %}
 {% endtabs %}
 
-3\. Once the pruning is finished, restart the execution client service.
+3\. Once the pruning is finished, restart the execution engine service.
 
 ```bash
 sudo service eth1 restart
@@ -79,7 +79,7 @@ df
 Nice work. Enjoy the extra disk breathing room.
 {% endhint %}
 
-## &#x20;:robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+##  :robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
 ### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
