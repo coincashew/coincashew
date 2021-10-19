@@ -179,6 +179,12 @@ Choose and start up your **execution client**.
 docker-compose --env-file pithos.vars -f docker-compose.geth.yml up -d
 ```
 {% endtab %}
+
+{% tab title="Besu" %}
+```
+docker-compose --env-file pithos.vars -f docker-compose.besu.yml up -d
+```
+{% endtab %}
 {% endtabs %}
 
 Choose and start up your **consensus client.**
@@ -209,6 +215,12 @@ Check your logs to confirm that the execution and consensus clients are up and s
 {% tab title="Geth" %}
 ```
 docker logs geth -f --tail=20
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+```
+docker logs besu -f --tail=20
 ```
 {% endtab %}
 {% endtabs %}
@@ -261,6 +273,12 @@ To stop the clients, run
 {% tab title="Geth" %}
 ```
 docker-compose -f docker-compose.geth.yml down
+```
+{% endtab %}
+
+{% tab title="Besu" %}
+```
+docker-compose -f docker-compose.besu.yml down
 ```
 {% endtab %}
 {% endtabs %}
