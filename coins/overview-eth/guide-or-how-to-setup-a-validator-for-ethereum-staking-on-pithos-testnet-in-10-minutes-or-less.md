@@ -42,7 +42,7 @@ This guide was tested against Ubuntu 20.04.1 LTS client. You'll need a virtual m
 ## How to participate with Pithos
 
 {% hint style="info" %}
-At present, only the consensus engine beacon client and execution engine are available now. Consensus layer's validator client are coming soon.
+At present, only the consensus beacon client and execution client are available now. Consensus layer's validator client are coming soon.
 {% endhint %}
 
 ### 1. Install dependencies and updates
@@ -104,10 +104,10 @@ sudo ufw default allow outgoing
 # Allow SSH access
 sudo ufw allow ssh
 
-# Allow execution engine client port
+# Allow execution client port
 sudo ufw allow 30303/tcp
 
-# Allow consensus engine client port
+# Allow consensus client port
 sudo ufw allow 9000/tcp
 sudo ufw allow 9000/udp
 
@@ -169,9 +169,9 @@ echo My IP address: $IP_ADDRESS
 sed -i -e "s/<ENTER-IP-ADDRESS-HERE>/$IP_ADDRESS/g" ~/git/consensus-deployment-ansible/scripts/quick-run/pithos.vars
 ```
 
-### 5. Run the execution and consensus engines
+### 5. Run the execution and consensus clients
 
-Choose and start up your **execution engine client**.
+Choose and start up your **execution client**.
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -181,7 +181,7 @@ docker-compose --env-file pithos.vars -f docker-compose.geth.yml up -d
 {% endtab %}
 {% endtabs %}
 
-Choose and start up your **consensus engine client.**
+Choose and start up your **consensus client.**
 
 {% tabs %}
 {% tab title="Lodestar" %}
@@ -308,7 +308,7 @@ We can shutdown and clean the container by calling geth's yml filename (e.g **do
 docker-compose -f docker-compose.geth.yml down --remove-orphans
 ```
 
-Now start up the [execution and consensus engines again.](guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less.md#3.-setup-pithos-testnet-ansible-files-1)
+Now start up the [execution and consensus clients again.](guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less.md#3.-setup-pithos-testnet-ansible-files-1)
 
 ### Change Ports
 
