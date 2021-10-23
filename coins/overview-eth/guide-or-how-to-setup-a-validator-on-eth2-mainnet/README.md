@@ -21,18 +21,18 @@ Fill out this survey [https://ethstaker.cc/survey/#Z7ZpSghg](https://ethstaker.c
 {% endhint %}
 
 {% hint style="success" %}
-As of October 12 2021, this is \*\*guide version 3.4.2 \*\*and written for **Ethereum mainnet**:grin:
+As of October 23 2021, this is **guide version 3.5.0** and written for **Ethereum mainnet**:grin:
 {% endhint %}
 
 {% hint style="info" %}
 :sparkles:** **[**PRATER testnet guide**](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)**. Always test and practice on testnet.**
 {% endhint %}
 
-### :page\_facing\_up: Changelog - **Update Notes -** **October 12 2021**
+### :page\_facing\_up: Changelog - **Update Notes -** **October 23 2021**
 
 * Updated with consensus layer (CL), the execution layer (EL), formerly known as eth2 and eth1.
 * Added erigon build dependencies.
-* Added \*\*Teku \*\*Checkpoint Sync feature, the quickest way to sync a Ethereum beacon chain client.
+* Added Teku and Lodestar Checkpoint Sync feature, the quickest way to sync a Ethereum beacon chain client.
 * geth + erigon pruning / Altair hard fork changes / nimbus eth1 fallback
 * lighthouse + prysm doppelganger protection enabled. Doppelganger protection intentionally misses an epoch on startup and listens for attestations to make sure your keys are not still running on the old validator client.
 * OpenEthereum will no longer be supported post London hard fork. Gnosis, maintainers of OpenEthereum, suggest users migrate to their new \*\*Erigon \*\*Ethererum client. Added setup instructions for **Erigon** under eth1 node section.
@@ -380,13 +380,13 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 2\. If using **eth2deposit-cli**, follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
 
 {% hint style="warning" %}
-\*\*\*\*:construction: **Caution**: Only deposit the 32 ETH per validator if you are confident your execution client (ETH1 node) and consensus client (ETH2 validator) will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
+**Caution**: Only deposit the 32 ETH per validator if you are confident your execution client (ETH1 node) and consensus client (ETH2 validator) will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
 {% endhint %}
 
 3\. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth staking is the key to success!
 
 {% hint style="info" %}
-\*\*\*\*:whale: **Batch Depositing Tip**: If you have many deposits to make for many validators, consider using [Abyss.finance's eth2depositor tool.](https://abyss.finance/eth2depositor) This greatly improves the deposit experience as multiple deposits can be batched into one transaction, thereby saving gas fees and saving your fingers by minimizing Metamask clicking.
+:whale: **Batch Depositing Tip**: If you have many deposits to make for many validators, consider using [Abyss.finance's eth2depositor tool.](https://abyss.finance/eth2depositor) This greatly improves the deposit experience as multiple deposits can be batched into one transaction, thereby saving gas fees and saving your fingers by minimizing Metamask clicking.
 
 Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://twitter.com/AbyssFinance/status/1379732382044069888)
 {% endhint %}
@@ -411,7 +411,7 @@ Your transaction is sending and depositing your ETH to the [official ETH2 deposi
 \*\*\*\*:fire: **Critical Crypto Reminder:** \*\*Keep your mnemonic, keep your ETH. \*\*:rocket:
 
 * Write down your mnemonic seed **offline**. _Not email. Not cloud._
-* Multiple copies are better.\_ Best stored in a \_[_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
+* Multiple copies are better. Best stored in a \_[_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
 * The withdrawal keys will be generated from this mnemonic in the future.
 * Make **offline backups**, such as to a USB key, of your **`validator_keys`** directory.
 {% endhint %}
@@ -425,7 +425,7 @@ Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ET
 {% hint style="warning" %}
 The subsequent steps assume you have completed the [best practices security guide.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
 
-:octagonal\_sign: Do not run your processes as \*\*ROOT \*\*user. :scream:
+:octagonal\_sign: Do not run your processes as **ROOT** user. :scream:
 {% endhint %}
 
 Your choice of either [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org)**, **[**Nethermind**](https://www.nethermind.io)**, **[**Erigon**](https://github.com/ledgerwatch/erigon)** or **[**Infura**](https://infura.io)**.**
@@ -2269,7 +2269,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = $(echo $HOME)/git/lodestar/lodestar beacon --network mainnet --eth1.providerUrl http://localhost:8545 --metrics.enabled true --metrics.serverPort 8008
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar beacon --network mainnet --eth1.providerUrl http://localhost:8545 --weakSubjectivitySyncLatest true --metrics.enabled true --metrics.serverPort 8008
 Restart         = on-failure
 
 [Install]
