@@ -105,6 +105,7 @@
     * [Checklist | How to confirm a healthy functional ETH staking validator](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
     * [How to update your consensus client (eth2 client)](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-update-your-eth2-client.md)
     * [How to update your execution client (eth1 node)](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-update-your-eth1-node.md)
+    * [Additional Useful ETH Staking Tips](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/additional-useful-eth-staking-tips.md)
     * [Monitoring your validator with Grafana and Prometheus](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/monitoring-your-validator-with-grafana-and-prometheus.md)
     * [How to add a new validator to an existing setup with existing seed words](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-add-a-new-validator-to-an-existing-setup.md)
     * [How to run a slasher](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-run-a-slasher.md)
