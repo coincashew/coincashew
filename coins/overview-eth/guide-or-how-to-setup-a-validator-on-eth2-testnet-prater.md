@@ -626,7 +626,7 @@ Automatically download the latest linux release, un-zip and cleanup.
 mkdir $HOME/nethermind
 chmod 775 $HOME/nethermind
 cd $HOME/nethermind
-curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-amd64 | xargs wget -q --show-progress
 unzip -o nethermind*.zip
 rm nethermind*linux*.zip
 ```
