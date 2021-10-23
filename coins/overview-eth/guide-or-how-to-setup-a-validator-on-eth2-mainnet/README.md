@@ -9,13 +9,13 @@ description: >-
 ## :new:Announcements
 
 {% hint style="info" %}
-The ETH Foundation would like to hear from you.&#x20;
+The ETH Foundation would like to hear from you.
 
 Fill out this survey [https://ethstaker.cc/survey/#Z7ZpSghg](https://ethstaker.cc/survey/#Z7ZpSghg)
 {% endhint %}
 
 {% hint style="info" %}
-:confetti\_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support!&#x20;
+:confetti\_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support!
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
 {% endhint %}
@@ -158,7 +158,7 @@ You have the choice of downloading the pre-built [ethereum foundation deposit to
 [Allnodes ](https://help.allnodes.com/en/articles/4664440-how-to-setup-ethereum-2-0-validator-node-on-allnodes)has created an easy to use tool to connect a Ledger Nano X/S and Trezor Model T and generate the deposit json files such that the withdrawal credentials remain secured by the hardware wallet. This tool can be used by any validator or staker.
 {% endhint %}
 
-1. Connect your hardware wallet to your PC/laptop&#x20;
+1. Connect your hardware wallet to your PC/laptop
 2. If using a Ledger Nano X/S, open the "ETHEREUM" ledger app (if missing, install from Ledger Live)
 3. Visit [AllNode's Deposit Generator Tool.](https://wallet.allnodes.com/eth2/generate)
 4. Select network > Mainnet
@@ -178,7 +178,7 @@ Double check that your generated deposit data file contains the same string as i
 
 ![](../../../.gitbook/assets/allnodes-3.png)
 
-9\. Enter the amount of nodes (or validators you want)&#x20;
+9\. Enter the amount of nodes (or validators you want)
 
 10\. Finally, enter a **KEYSTORE password** to encrypt the deposit json files. Keep this password safe and **offline**.
 
@@ -287,9 +287,9 @@ The Tails OS is an _amnesic_ operating system, meaning it will save nothing and 
 You need:
 
 * 2 storage mediums (can be USB stick, SD cards or external hard drives)
-* One of them must be > 8GB &#x20;
+* One of them must be > 8GB 
 * Windows or Mac computer
-* 30 minutes or longer depending on your download speed&#x20;
+* 30 minutes or longer depending on your download speed
 
 ## Part 1 - Download Tails OS
 
@@ -746,7 +746,7 @@ EOF
 ```
 
 {% hint style="info" %}
-&#x20;By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain (aka, for if tip block is no. 12'000'000, only the data between 11'910'000-12'000'000 will be kept).
+By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain (aka, for if tip block is no. 12'000'000, only the data between 11'910'000-12'000'000 will be kept).
 {% endhint %}
 
 ```bash
@@ -881,69 +881,6 @@ sudo systemctl enable eth1
 
 ```
 sudo systemctl start eth1
-```
-{% endtab %}
-
-{% tab title="Minimum Hardware Setup (Infura)" %}
-{% hint style="info" %}
-Infura is suitable for limited disk space setups. Always run your own full eth1 node when possible.&#x20;
-{% endhint %}
-
-Sign up for an API access key at [https://infura.io/](https://infura.io)
-
-1. Sign up for a free account.
-2. Confirm your email address.
-3. Visit your dashboard [https://infura.io/dashboard](https://infura.io/dashboard)
-4. Create a project, give it a name.
-5. Select **Mainnet **as the ENDPOINT
-6. Follow the specific configuration for your eth2 client found below.
-
-{% hint style="success" %}
-Alternatively use a free Ethereum node such as [Chainstack ](https://chainstack.com)at [https://ethereumnodes.com/](https://ethereumnodes.com)
-{% endhint %}
-
-## Nimbus Specific Configuration
-
-1. When creating your systemd's **unit file**, update the `--web-url` parameter with this endpoint.&#x20;
-2. Copy the websocket endpoint. Starts with `wss://`
-3. Save this for step 4, configuring your eth2 node.
-
-```bash
-#example
---web3-url=<your wss:// infura endpoint>
-```
-
-## Teku Specific Configuration
-
-1. After creating the `teku.yaml` located in `/etc/teku/teku.yaml`, update the `--eth1-endpoint` parameter with this endpoint.&#x20;
-2. Copy the http endpoint. Starts with `http://`
-3. Save this for step 4, configuring your eth2 node.
-
-```bash
-#example
-eth1-endpoint: <your https:// infura endpoint>
-```
-
-## Lighthouse Specific Configuration
-
-1. When creating your **beacon chain systemd** **unit file**, add the `--eth1-endpoint` parameter with this endpoint.&#x20;
-2. Copy the **https **endpoint. Starts with `https://`
-3. Save this for step 4, configuring your eth2 node.
-
-```bash
-#example
---eth1-endpoint=<your https:// infura endpoint>
-```
-
-## Prysm Specific Configuration
-
-1. When creating your **beacon chain systemd unit file**, update the `--http-web3provider` parameter with this endpoint.&#x20;
-2. Copy the **https **endpoint. Starts with `https://`
-3. Save this for step 4, configuring your eth2 node.
-
-```bash
-#example
---http-web3provider=<your https:// infura endpoint>
 ```
 {% endtab %}
 {% endtabs %}
@@ -1139,7 +1076,7 @@ sudo systemctl start beacon-chain
 {% hint style="info" %}
 **Troubleshooting common issues**:&#x20;
 
-_The beacon chain couldn't connect to the :8545 service?_&#x20;
+_The beacon chain couldn't connect to the :8545 service?_
 
 * In the beacon chain unit file under \[Service], add, "`ExecStartPre = /bin/sleep 30`" so that it waits 30 seconds for execution client to startup before connecting.
 
@@ -1633,7 +1570,7 @@ sudo mkdir -p /etc/teku
 sudo chown $(whoami):$(whoami) /var/lib/teku
 ```
 
-&#x20;Copy your `validator_files` directory to the data directory we created above and remove the extra deposit\_data file.
+Copy your `validator_files` directory to the data directory we created above and remove the extra deposit\_data file.
 
 ```bash
 cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
@@ -2976,7 +2913,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% endtab %}
 
 {% tab title="Telegram Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. &#x20;
+1. On the menu of Grafana, select **Notification channels** under the bell icon. 
 2. Click on **Add channel**.
 3. Give the notification channel a **name**.
 4. Select **Telegram** from the Type list.
@@ -2996,7 +2933,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% endtab %}
 
 {% tab title="Discord Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. &#x20;
+1. On the menu of Grafana, select **Notification channels** under the bell icon. 
 2. Click on **Add channel**.
 3. Add a **name** to the notification channel.
 4. Select **Discord** from the Type list.
@@ -3006,7 +2943,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% endtab %}
 
 {% tab title="Slack Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. &#x20;
+1. On the menu of Grafana, select **Notification channels** under the bell icon. 
 2. Click on **Add channel**.
 3. Add a **name** to the notification channel.
 4. Select **Slack** from the Type list.
@@ -3038,7 +2975,7 @@ For a video demo, watch [MohamedMansour's eth2 education videos](https://www.you
 6. From the notifications menu, select your new project.
 7. On the right column, there's a Monitoring Card. Click **Go to Monitoring**.
 8. On the left menu, click **Uptime checks **and then **CREATE UPTIME CHECK.**
-9. Type in a title i.e. _**Geth node**_&#x20;
+9. Type in a title i.e. _**Geth node**_
 10. Select protocol as _**TCP**_
 11. Enter your public IP address and port number. i.e. ip=**7.55.6.3** and port=**30303**
 12. Select your desired frequency to check i.e. **5 minutes.**
