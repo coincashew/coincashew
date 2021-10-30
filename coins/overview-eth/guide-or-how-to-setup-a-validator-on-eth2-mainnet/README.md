@@ -436,7 +436,7 @@ Your transaction is sending and depositing your ETH to the [official ETH2 deposi
 ## :flying\_saucer: 3. Install execution client (ETH1 node)
 
 {% hint style="info" %}
-Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
+Ethereum requires a connection to execution client in order to monitor for 32 ETH validator deposits. Hosting your own execution client is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
 {% endhint %}
 
 {% hint style="warning" %}

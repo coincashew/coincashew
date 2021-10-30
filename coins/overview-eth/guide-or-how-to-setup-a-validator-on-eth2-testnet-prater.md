@@ -79,7 +79,7 @@ As a validator for eth, you will typically have the following abilities:
 * **Storage:** 128GB SSD
 * **Internet:** Broadband internet connection with speeds at least 1 Mbps.
 * **Power:** Reliable electrical power.
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
+* **ETH balance:** at least 32 goerli ETH and some goerli ETH for deposit transaction fees
 * **Wallet**: Metamask installed
 
 ### :man\_lifting\_weights: Recommended Hardware Setup
@@ -90,7 +90,7 @@ As a validator for eth, you will typically have the following abilities:
 * **Storage:** 2TB SSD or more
 * **Internet:** Broadband internet connections with speeds at least 10 Mbps without data limit.
 * **Power:** Reliable electrical power with uninterruptible power supply (UPS)
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
+* **ETH balance:** at least 32 goerli ETH and some goerli ETH for deposit transaction fees
 * **Wallet**: Metamask installed
 
 {% hint style="info" %}
@@ -131,7 +131,7 @@ chain to the beacon chain client.
 Note: Teku and Nimbus combines both clients into one process.
 {% endhint %}
 
-![How eth2 fits together featuring Leslie the eth2 Rhino, the mascot named after American computer scientist Leslie Lamport](../../.gitbook/assets/eth2network.png)
+![How Ethereum fits together featuring Leslie the ETH Rhino, the mascot named after American computer scientist Leslie Lamport](../../.gitbook/assets/eth2network.png)
 
 ## :seedling: 1. Obtain testnet ETH
 
@@ -1093,7 +1093,7 @@ lighthouse --version
 #### :tophat: 4.3. Import validator key
 
 {% hint style="info" %}
-When you import your keys into Lighthouse, your validator signing key(s) are stored in the `$HOME/.lighthouse/mainnet/validators` folder.
+When you import your keys into Lighthouse, your validator signing key(s) are stored in the `$HOME/.lighthouse/prater/validators` folder.
 {% endhint %}
 
 
@@ -1180,7 +1180,7 @@ EOF
 
 ```bash
 # Example:
---eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
+--eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://prater.eth.cloud.ava.do,https://prater.infura.io/v3/xxx
 ```
 
 :money\_with\_wings: Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com)
@@ -2608,7 +2608,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 ```bash
 ./lodestar account validator import \
-  --network prater \
+  --testnet prater \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
 
@@ -2619,7 +2619,7 @@ Enter your **keystore password** to import accounts.
 Confirm your keys were imported properly.
 
 ```
-./lodestar account validator list --network prater
+./lodestar account validator list --testnet prater
 ```
 
 
