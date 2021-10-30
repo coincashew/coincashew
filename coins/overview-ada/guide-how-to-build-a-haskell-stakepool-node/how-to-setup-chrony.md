@@ -6,7 +6,7 @@ description: >-
 
 # How to setup chrony
 
-## :hatching_chick: 1. Installation
+## :hatching\_chick: 1. Installation
 
 Install chrony.
 
@@ -49,7 +49,7 @@ makestep 0.1 -1
 EOF
 ```
 
-Move the file to `/etc/chrony/chrony.conf` 
+Move the file to `/etc/chrony/chrony.conf`&#x20;
 
 ```bash
 sudo mv $HOME/chrony.conf /etc/chrony/chrony.conf
@@ -60,15 +60,6 @@ Restart chrony in order for config change to take effect.
 ```
 sudo systemctl restart chronyd.service
 ```
-
-{% hint style="danger" %}
-If using a firewall such as `ufw`, ensure port 123/udp is open for NTP traffic.
-
-```bash
-# Allow chrony ntp
-sudo ufw allow 123/udp
-```
-{% endhint %}
 
 ## :robot: 2. Helpful Commands
 

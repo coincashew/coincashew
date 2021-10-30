@@ -5,7 +5,7 @@ description: Quick steps to secure your node.
 # How to Harden Ubuntu Server
 
 {% hint style="success" %}
-Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. :pray: 
+Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. :pray:&#x20;
 {% endhint %}
 
 ## :robot: Pre-requisites
@@ -22,7 +22,7 @@ In case you need a SSH client for your operating system, refer to:
 
 {% embed url="https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/" %}
 
-## :man_mage: Create a non-root user with sudo privileges
+## :man\_mage: Create a non-root user with sudo privileges
 
 {% hint style="info" %}
 Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command rm can wipe your entire server if run incorrectly using by a root user.
@@ -58,7 +58,7 @@ Add cardano to the sudo group
 usermod -aG sudo cardano
 ```
 
-## ****:lock_with_ink_pen: **Disable SSH password Authentication and Use SSH Keys only**
+## ****:lock\_with\_ink\_pen: **Disable SSH password Authentication and Use SSH Keys only**
 
 {% hint style="info" %}
 The basic rules of hardening SSH are:
@@ -133,7 +133,7 @@ PermitEmptyPasswords no
 **Optional**: Locate **Port **and customize it your** random **port.
 
 {% hint style="info" %}
-Use a **random **port # from 1024 thru 49141. [Check for possible conflicts. ](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
+Use a **random **port # from 1024 thru 49141. [Check for possible conflicts. ](https://en.wikipedia.org/wiki/List\_of\_TCP\_and\_UDP\_port\_numbers)
 {% endhint %}
 
 ```bash
@@ -208,7 +208,7 @@ sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-## :teddy_bear: Disable root account
+## :teddy\_bear: Disable root account
 
 System admins should not frequently log in as root in order to maintain server security. Instead, you can use sudo execute that require low-level privileges.
 
@@ -250,7 +250,7 @@ Now you need to restart the `sshd` daemon using:
 sudo systemctl restart sshd.service
 ```
 
-Modify `/etc/ssh/sshd_config` 
+Modify `/etc/ssh/sshd_config`&#x20;
 
 ```
 sudo nano /etc/ssh/sshd_config
@@ -295,7 +295,7 @@ Now, open Google Authenticator on your phone and add your secret key to make two
 ## :jigsaw: Secure Shared Memory
 
 {% hint style="info" %}
-One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory. 
+One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.&#x20;
 
 To learn more about secure shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
 {% endhint %}
@@ -373,7 +373,7 @@ maxretry = 3
 ignoreip = <list of whitelisted IP address, your local daily laptop/pc>
 ```
 
-Save/close file. 
+Save/close file.&#x20;
 
 Restart fail2ban for settings to take effect.
 
@@ -402,8 +402,6 @@ sudo ufw default allow outgoing
 sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
 # Allow cardano-node p2p port
 sudo ufw allow 6000/tcp
-# Allow chrony ntp
-sudo ufw allow 123/udp
 # Enable firewall
 sudo ufw enable
 ```
@@ -414,12 +412,28 @@ sudo ufw status numbered
 ```
 
 {% hint style="danger" %}
-Do not expose Grafana (port 3000) and Prometheus endpoint (port 9100 and 12798) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
+Do not expose Grafana (port 3000) and Prometheus endpoint (port 9100 and 12798) to the public internet as this invites a new attack surface!&#x20;
 {% endhint %}
 
-Only open the following ports on nodes behind a network firewall.
+**Better idea - SSH tunnel to Grafana server**
 
-****:fire: **It may be dangerous to open these ports on a VPS/cloud node.**
+Setup a SSH tunnel with the following command:
+
+```
+ssh -L 3000:localhost:3000 <user>@<your-server-ip-or-dns>
+```
+
+Alternatively, If using Putty for SSHing, you can configure the tunnel as follows. Make sure to click "Add" and save your settings.
+
+![](../../../.gitbook/assets/putty-tunnel.png)
+
+{% hint style="success" %}
+Now you can access the Grafana server from your local machine's browser by visiting http://localhost:3000
+{% endhint %}
+
+Only open the following ports on nodes behind a network firewall. This is not required if using the above SSH tunnel method.
+
+****:fire: **It is dangerous to open these ports on a VPS/cloud node.**
 
 ```bash
 # Allow grafana web server port
@@ -430,7 +444,7 @@ sudo ufw allow 9100/tcp
 sudo ufw allow 12798/tcp
 ```
 
-Confirm the settings are in effect. 
+Confirm the settings are in effect.&#x20;
 
 > ```csharp
 >      To                         Action      From
@@ -452,7 +466,7 @@ sudo ufw allow from <your local daily laptop/pc>
 ```
 
 {% hint style="info" %}
- :confetti_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+&#x20;:confetti\_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
 #### :bricks: Extra Hardening Rules for your Block Producer Node
@@ -467,7 +481,7 @@ sudo ufw allow proto tcp from <RELAY NODE IP> to any port <BLOCK PRODUCER PORT>
 
 #### :bricks: Extra Hardening Rules for your Relay Node(s)
 
-In order to protect your Relay Node(s) from a novel "DoS/Syn" attack, [**Michael Fazio**](https://github.com/michaeljfazio) created iptables entry which restricts connections to a given destination port to 5 connections from the same IP. 
+In order to protect your Relay Node(s) from a novel "DoS/Syn" attack, [**Michael Fazio**](https://github.com/michaeljfazio) created iptables entry which restricts connections to a given destination port to 5 connections from the same IP.&#x20;
 
 Replace `<RELAY NODE PORT>` with your public relay port, replace the 5 with your preferred connection limit.
 
@@ -498,19 +512,19 @@ ss -tulpn
 ```
 
 {% hint style="success" %}
-Congrats on completing the guide. :sparkles: 
+Congrats on completing the guide. :sparkles:&#x20;
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it. 
+Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.&#x20;
 
-It really energizes us to keep creating the best crypto guides. 
+It really energizes us to keep creating the best crypto guides.&#x20;
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray: 
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:&#x20;
 
-Any feedback and all pull requests much appreciated. :first_quarter_moon_with_face: 
+Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:&#x20;
 
 Hang out and chat with fellow stake pool operators on Discord @
 
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley: 
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley:&#x20;
 
 Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}
