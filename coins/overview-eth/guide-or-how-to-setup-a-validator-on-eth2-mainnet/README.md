@@ -160,6 +160,8 @@ sudo apt update
 sudo apt install python3-pip git -y
 ```
 
+
+
 Download source code and install.
 
 ```
@@ -169,11 +171,15 @@ cd eth2deposit-cli
 sudo ./deposit.sh install
 ```
 
+
+
 Make a new mnemonic.
 
 ```
 ./deposit.sh new-mnemonic --chain mainnet
 ```
+
+
 
 {% hint style="info" %}
 **Advanced option**: Custom eth1 withdrawal address, often used for 3rd party staking.
@@ -197,11 +203,15 @@ cd $HOME
 wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-linux-amd64.tar.gz
 ```
 
+
+
 Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
 
 ```bash
 echo "825035b6d6c06c0c85a38f78e8bf3e9df93dfd16bf7b72753b6888ae8c4cb30a *eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz" | shasum -a 256 --check
 ```
+
+
 
 Example valid output:
 
@@ -210,6 +220,8 @@ Example valid output:
 {% hint style="danger" %}
 Only proceed if the sha256 check passes with **OK**!
 {% endhint %}
+
+
 
 Extract the archive.
 
@@ -220,11 +232,15 @@ rm eth2deposit-cli-256ea21-linux-amd64.tar.gz
 cd eth2deposit-cli
 ```
 
+
+
 Make a new mnemonic.
 
 ```
 ./deposit new-mnemonic --chain mainnet
 ```
+
+
 
 {% hint style="info" %}
 **Advanced option**: Custom eth1 withdrawal address, often used for 3rd party staking.
@@ -276,7 +292,7 @@ Double check that your generated deposit data file contains the same string as i
 
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-:fire:**\[ Optional ] Pro Security Tip**: Run the \*\*eth2deposit-cli tool \*\*and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
+:fire:**\[ Optional ] Pro Security Tip**: Run the eth2deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
 {% endhint %}
 
 You will learn how to boot up a windows PC into an airgapped [Tails operating system](https://tails.boum.org/index.en.html).
@@ -357,7 +373,7 @@ Make a new mnemonic.
 If you ran this command directly from your non-Tails USB stick, the validator keys should stay on it. If it hasn't, copy the directory over to your non-Tails USB stick.
 
 {% hint style="warning" %}
-\*\*\*\*:fire: **Make sure you have saved your validator keys directory in your other USB stick (non Tails OS) before you shutdown Tails. Tails will delete everything saved on it after you shutdown.**.
+:fire: **Make sure you have saved your validator keys directory in your other USB stick (non Tails OS) before you shutdown Tails. Tails will delete everything saved on it after you shutdown.**.
 {% endhint %}
 
 {% hint style="success" %}
@@ -477,13 +493,17 @@ WantedBy    = multi-user.target
 EOF
 ```
 
+
+
 {% hint style="info" %}
-**Nimbus Specific Configuration**: Add the following flag to the \*\*ExecStart \*\*line.
+**Nimbus Specific Configuration**: Add the following flag to the ExecStart line.
 
 ```bash
 --ws
 ```
 {% endhint %}
+
+
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -494,6 +514,8 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 ```bash
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
+
+
 
 Run the following to enable auto-start at boot time.
 
@@ -509,6 +531,8 @@ sudo systemctl enable eth1
 ```
 sudo systemctl start eth1
 ```
+
+
 
 {% hint style="info" %}
 **Geth Tip**: When is my geth node synched?
@@ -564,7 +588,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/besu/bin/besu --metrics-enabled --rpc-http-enabled --data-path="$HOME/.besu"
+ExecStart       = $(echo $HOME)/besu/bin/besu --network=mainnet --sync-mode=FAST --pruning-enabled=true --metrics-enabled --rpc-http-enabled --data-path="$HOME/.besu"
 Restart         = on-failure
 RestartSec      = 3
 
@@ -572,6 +596,8 @@ RestartSec      = 3
 WantedBy    = multi-user.target
 EOF
 ```
+
+
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -583,12 +609,16 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
+
+
 
 :chains: **Start besu**
 
@@ -664,6 +694,8 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
@@ -678,6 +710,8 @@ sudo systemctl enable eth1
 ```
 sudo systemctl start eth1
 ```
+
+
 
 {% hint style="info" %}
 **Note about Metric Error messages**: You will see these until prometheus pushergateway is setup in section 6. `Error in MetricPusher: System.Net.Http.HttpRequestException: Connection refused`
@@ -706,6 +740,8 @@ echo export PATH=$PATH:/usr/local/go/bin>> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
+
+
 Verify Go is properly installed and cleanup files.
 
 ```bash
@@ -724,6 +760,8 @@ sudo apt-get update
 sudo apt install build-essential git
 ```
 
+
+
 Review the latest release at [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)
 
 ```bash
@@ -732,6 +770,8 @@ git clone --recurse-submodules -j8 https://github.com/ledgerwatch/erigon.git
 cd erigon
 make erigon && make rpcdaemon
 ```
+
+
 
 ​ Make data directory and update directory ownership.
 
@@ -770,9 +810,13 @@ WantedBy    = multi-user.target
 EOF
 ```
 
+
+
 {% hint style="info" %}
 By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain (aka, for if tip block is no. 12'000'000, only the data between 11'910'000-12'000'000 will be kept).
 {% endhint %}
+
+
 
 ```bash
 cat > $HOME/eth1-erigon.service << EOF 
@@ -796,6 +840,8 @@ WantedBy    = eth1.service
 EOF
 ```
 
+
+
 Move the unit files to `/etc/systemd/system` and give it permissions.
 
 ```bash
@@ -807,6 +853,8 @@ sudo mv $HOME/eth1-erigon.service /etc/systemd/system/eth1-erigon.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1-erigon.service
 ```
+
+
 
 Run the following to enable auto-start at boot time.
 
@@ -1424,6 +1472,8 @@ sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/bin
 
 #### :tophat: 4.2. Import validator key <a href="6-import-validator-key" id="6-import-validator-key"></a>
 
+
+
 Create a directory structure to store nimbus data.
 
 ```bash
@@ -1464,10 +1514,6 @@ You should see a folder named for each of your validator's pubkey.
 
 
 
-
-
-
-
 {% hint style="info" %}
 When you import your keys into Nimbus, your validator signing key(s) are stored in the `/var/lib/nimbus` folder, under `secrets` and `validators.`
 
@@ -1490,7 +1536,7 @@ For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/
 
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
-* **Nimbus beacon chain node** will use port 9000 for tcp and udp
+* **Nimbus consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
 
 
@@ -1726,8 +1772,10 @@ sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
-* **Teku beacon chain node** will use port 9000 for tcp and udp
+* **Teku consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
+
+
 
 {% hint style="info" %}
 :sparkles: **Port Forwarding Tip**: You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
@@ -1820,9 +1868,13 @@ MY_GRAFFITI=''
 
 :fast\_forward: **Setup Teku Checkpoint Sync**
 
+
+
 {% hint style="info" %}
 Teku's Checkpoint Sync utilizes Infura to create the fastest syncing Ethereum beacon chain.
 {% endhint %}
+
+
 
 1\. Sign up for [a free infura account](https://infura.io/register).
 
@@ -1911,11 +1963,15 @@ sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
 
 #### :tophat: 4.4 Import validator key
 
+
+
 {% hint style="info" %}
 When specifying directories for your validator-keys, Teku expects to find identically named keystore and password files.
 
 For example `keystore-m_12221_3600_1_0_0-11222333.json `and `keystore-m_12221_3600_1_0_0-11222333.txt`
 {% endhint %}
+
+
 
 Create a corresponding password file for every one of your validators.
 
@@ -2095,6 +2151,8 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 
 #### :tophat: 4.3. Import validator key
+
+
 
 Accept terms of use, accept default wallet location, enter a new **prysm-only password** to encrypt your local prysm wallet files and enter the **keystore password** for your imported accounts.
 
@@ -2627,7 +2685,11 @@ sudo systemctl start beacon-chain
 Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
+
+
 :tools:** Some helpful systemd commands**
+
+
 
 **🗄 Viewing and filtering logs**
 
