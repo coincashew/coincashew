@@ -5,14 +5,14 @@ description: Step by step guide on how to switch for the solo home or cloud stak
 # Guide | Operation Client Diversity: Migrate Prysm to Teku
 
 {% hint style="info" %}
-:confetti_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
+:confetti\_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support!&#x20;
 
-[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
 {% endhint %}
 
 {% embed url="https://gitcoin.co/grants/1653/ethereum-staking-guides-by-coincashew-with-poap" %}
 
-## :fast_forward: Complete step by step guide
+## :fast\_forward: Complete step by step guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
@@ -24,7 +24,7 @@ As per best practices, always try everything on a testnet before doing it _for r
 
 ## :fire: Problem: Why the commotion?
 
-> If improving the stability of the beacon chain is not a good enough reason for you to switch from Prysm to either Teku or Nimbus, you also need to consider that due to the design of the beacon chain you will be subject to severe financial penalties if Prysm ever has an issue. \~[Lamboshi on Twitter](https://twitter.com/L_Nakaghini/status/1440771303745540096)
+> If improving the stability of the beacon chain is not a good enough reason for you to switch from Prysm to either Teku or Nimbus, you also need to consider that due to the design of the beacon chain you will be subject to severe financial penalties if Prysm ever has an issue. \~[Lamboshi on Twitter](https://twitter.com/L\_Nakaghini/status/1440771303745540096)
 
 ![](../../.gitbook/assets/meme2.jpg)
 
@@ -151,7 +151,7 @@ Generate your Teku Config file. Simply copy and paste.
 cat > $HOME/teku.yaml << EOF
 # network
 network: "mainnet"
-initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v1/debug/beacon/states/finalized" 
+initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v2/debug/beacon/states/finalized" 
 
 # p2p
 p2p-enabled: true
@@ -257,7 +257,7 @@ journalctl -fu beacon-chain-temporary
 ```
 {% endhint %}
 
-### :octagonal_sign: 2. Stop and disable Prysm
+### :octagonal\_sign: 2. Stop and disable Prysm
 
 Stop and disable the Prysm services. Choose your guide.
 
@@ -362,7 +362,7 @@ sudo systemctl stop validator
 {% hint style="danger" %}
 **Before continuing - Required Waiting Period !!!**
 
-Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes. 
+Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes.&#x20;
 
 By waiting for a finalized epoch, there's no need to migrate the slashing database.
 
@@ -407,7 +407,7 @@ Example output of firewall configuration:
 > ```
 
 {% hint style="info" %}
-Your router's port forwarding setup or cloud provider settings will need to be updated to ensure your validator's firewall ports are open and reachable. 
+Your router's port forwarding setup or cloud provider settings will need to be updated to ensure your validator's firewall ports are open and reachable.&#x20;
 
 You'll need to add new port forwarding rules for Teku and remove the existing Prysm port forwarding rules.
 {% endhint %}
@@ -420,9 +420,9 @@ sudo apt dist-upgrade && sudo apt autoremove
 sudo reboot
 ```
 
-###  :key2: 4. Import Validator Keys
+### &#x20;:key2: 4. Import Validator Keys
 
-Copy your `validator_keys` directory to the data directory we created above and remove the extra deposit_data file. If you no longer have the validator keys on your node, you will need to restore from file backup or [restore from secret recovery phrase](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#8-2-verify-your-mnemonic-phrase).
+Copy your `validator_keys` directory to the data directory we created above and remove the extra deposit\_data file. If you no longer have the validator keys on your node, you will need to restore from file backup or [restore from secret recovery phrase](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#8-2-verify-your-mnemonic-phrase).
 
 ```
 cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
@@ -430,9 +430,9 @@ rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
 {% hint style="danger" %}
-****:octagonal_sign: **FINAL WARNING REMINDER !!!**  **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** (penalized and exited from the system).
+****:octagonal\_sign: **FINAL WARNING REMINDER !!!**  **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** (penalized and exited from the system).
 
-Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes. 
+Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes.&#x20;
 
 Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in) or [beaconscan.com](https://beaconscan.com)
 {% endhint %}
@@ -576,7 +576,7 @@ journalctl --unit=beacon-chain --since=today
 journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
-****:mag_right:** View the status of the beacon chain**
+****:mag\_right:** View the status of the beacon chain**
 
 ```
 sudo systemctl status beacon-chain
@@ -588,7 +588,7 @@ sudo systemctl status beacon-chain
 sudo systemctl restart beacon-chain
 ```
 
-****:octagonal_sign:** Stop the beacon chain**
+****:octagonal\_sign:** Stop the beacon chain**
 
 ```
 sudo systemctl stop beacon-chain
@@ -844,4 +844,4 @@ Well done on successfully switching! Cheers to client diversity and a healthy be
 
 {% embed url="https://nimbus.guide/migration.html" %}
 
-[https://www.reddit.com/r/ethstaker/comments/pu30fa/short_guide_to_migrate_from_prysm_to_teku_or/](https://www.reddit.com/r/ethstaker/comments/pu30fa/short_guide_to_migrate_from_prysm_to_teku_or/)
+[https://www.reddit.com/r/ethstaker/comments/pu30fa/short\_guide\_to\_migrate\_from\_prysm\_to\_teku\_or/](https://www.reddit.com/r/ethstaker/comments/pu30fa/short\_guide\_to\_migrate\_from\_prysm\_to\_teku\_or/)
