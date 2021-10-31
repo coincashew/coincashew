@@ -461,6 +461,12 @@ Location of your cardano-cli.
 In order to remain a true air-gapped environment, you must move files physically between your cold and hot environments with USB keys or other removable media.
 {% endhint %}
 
+After copying over to your cold environment, add execute permissions to the file.
+
+```
+sudo chmod +x /usr/local/bin/cardano-cli
+```
+
 ## :robot: 7. Create startup scripts
 
 The startup script contains all the variables needed to run a cardano-node such as directory, port, db path, config file, and topology file.
@@ -878,7 +884,7 @@ CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
 KES=\${DIRECTORY}/kes.skey
 VRF=\${DIRECTORY}/vrf.skey
 CERT=\${DIRECTORY}/node.cert
-cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG} --shelley-kes-key \${KES} --shelley-vrf-key \${VRF} --shelley-operational-certificate \${CERT}
+cardano-node run +RTS -N -A16m -qg -qb -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG} --shelley-kes-key \${KES} --shelley-vrf-key \${VRF} --shelley-operational-certificate \${CERT}
 EOF
 ```
 {% endtab %}
@@ -1949,4 +1955,8 @@ CERT=\${DIRECTORY}/node.cert
 
 {% hint style="success" %}
 Congratulations! Your stake pool is registered and ready to produce blocks.
+
+
+
+Continue to the next section 15 - Checking stake pool rewards.
 {% endhint %}
