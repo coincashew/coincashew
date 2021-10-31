@@ -1941,9 +1941,9 @@ Don't forget to restart your relay nodes after every time you fetch the topology
 ###
 ### On block producer node
 ###
-KES=\${DIRECTORY}/kes.skey
-VRF=\${DIRECTORY}/vrf.skey
-CERT=\${DIRECTORY}/node.cert
+KES=${NODE_HOME}/kes.skey
+VRF=${NODE_HOME}/vrf.skey
+CERT=${NODE_HOME}/node.cert
 ```
 
 **All other keys must remain offline in your air-gapped offline cold environment.**
