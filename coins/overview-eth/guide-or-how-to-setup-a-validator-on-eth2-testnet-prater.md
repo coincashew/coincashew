@@ -2151,7 +2151,15 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 
 
 
-#### :fire: 4.2. Configure port forwarding and/or firewall
+#### :gear: 4.2. Download the Prater testnet genesis state file
+
+```bash
+wget https://github.com/eth2-clients/eth2-networks/blob/master/shared/prater/genesis.ssz $HOME/prysm/genesis.ssz
+```
+
+
+
+#### :fire: 4.3. Configure port forwarding and/or firewall
 
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
@@ -2166,7 +2174,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 
 
-#### :tophat: 4.3. Import validator key
+#### :tophat: 4.4. Import validator key
 
 
 
@@ -2209,7 +2217,7 @@ Confirm your validator's pubkeys are listed.
 
 
 
-#### :snowboarder: 4.4. Start the beacon chain
+#### :snowboarder: 4.5. Start the beacon chain
 
 
 
@@ -2238,7 +2246,7 @@ After           = network-online.target
 [Service]
 Type            = simple
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --prater --p2p-max-peers=45 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --prater --genesis-state=$(echo $HOME)/prysm/genesis.ssz --p2p-max-peers=45 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]
