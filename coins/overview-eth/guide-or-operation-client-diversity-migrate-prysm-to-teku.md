@@ -5,7 +5,7 @@ description: Step by step guide on how to switch for the solo home or cloud stak
 # Guide | Operation Client Diversity: Migrate Prysm to Teku
 
 {% hint style="info" %}
-:confetti\_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support!&#x20;
+:confetti\_ball: **2021-12 Gitcoin Grant Round 12:** We improve this guide with your support!&#x20;
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
 {% endhint %}
@@ -412,7 +412,7 @@ Your router's port forwarding setup or cloud provider settings will need to be u
 You'll need to add new port forwarding rules for Teku and remove the existing Prysm port forwarding rules.
 {% endhint %}
 
-**Optional **- Update your server and reboot for best practice.
+**Optional** - Update your server and reboot for best practice.
 
 ```bash
 sudo apt update && sudo apt upgrade
@@ -576,19 +576,19 @@ journalctl --unit=beacon-chain --since=today
 journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
-****:mag\_right:** View the status of the beacon chain**
+****:mag\_right: **View the status of the beacon chain**
 
 ```
 sudo systemctl status beacon-chain
 ```
 
-****:repeat:** Restart the beacon chain**
+****:repeat: **Restart the beacon chain**
 
 ```
 sudo systemctl restart beacon-chain
 ```
 
-****:octagonal\_sign:** Stop the beacon chain**
+****:octagonal\_sign: **Stop the beacon chain**
 
 ```
 sudo systemctl stop beacon-chain

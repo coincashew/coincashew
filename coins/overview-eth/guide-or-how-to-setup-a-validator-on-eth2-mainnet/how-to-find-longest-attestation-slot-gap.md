@@ -4,7 +4,7 @@ description: Find the best slot gap to avoid missing any validator duties.
 
 # How to find longest attestation slot gap
 
-## :fast_forward: Quick steps guide
+## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
@@ -13,17 +13,17 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 ### :dagger: Why do I want to calculate the longest attestation slot gap?
 
 * Your validators are assigned duties to attest and propose blocks.
-* Understanding the schedule of your validator's duties better, you can find the best time to plan eth1/eth2 updates, system reboots or outages.
+* Understanding the schedule of your validator's duties better, you can find the best time to plan consensus/execution client updates, system reboots or outages.
 * Since the Altair Hard Fork, checking sync committee membership is a must before performing any maintenance. This will give you up to [\~27 hours of advanced notice](https://github.com/ethereum/consensus-specs/pull/2453) in case your validators have been selected for sync committee duties.
 
 ### :robot: Pre-requisites
 
 * python3
 * validator index number(s) -- Lookup on [https://beaconcha.in/](https://beaconcha.in) or [https://beaconscan.com/](https://beaconscan.com)
-* Works with **Lighthouse / Teku / Prysm **currently
+* Works with **Lighthouse / Teku / Prysm** currently
 
 {% hint style="success" %}
-:sparkles: Kudos to **pietjepuk2 **on Discord for authoring this process.
+:sparkles: Kudos to **pietjepuk2** on Discord for authoring this process.
 {% endhint %}
 
 ### :construction: How to Run the Validator Duties script
@@ -68,9 +68,9 @@ Sample Output showing the longest gap in seconds, # of slots and time range.
 > 120.0 seconds (10 slots), from 13:37:35 until 13:39:35
 
 {% hint style="warning" %}
-****:fire: **Script Usage Caveats**: 
+****:fire: **Script Usage Caveats**:&#x20;
 
-* This version does not include block proposals, although the odds of having one scheduled are really low of course. 
+* This version does not include block proposals, although the odds of having one scheduled are really low of course.&#x20;
 * Block proposal duties are only known for the current epoch, whereas attestation duties are known for the current and next one.
 {% endhint %}
 
@@ -78,9 +78,9 @@ Sample Output showing the longest gap in seconds, # of slots and time range.
 Nice work. Now you now the best gap to avoid missing any validator duties.
 {% endhint %}
 
-##  :robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨

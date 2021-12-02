@@ -7,7 +7,7 @@ description: >-
 # How to update your execution client (eth1 node)
 
 {% hint style="info" %}
-​ :tada: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support!&#x20;
+​ :tada: **2021-12 Gitcoin Grant Round 12:** We improve this guide with your support!&#x20;
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
 {% endhint %}
@@ -160,9 +160,9 @@ sudo systemctl status eth1 beacon-chain
 
 Enter your validator's pubkey to view its status.
 
-## &#x20;:robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨

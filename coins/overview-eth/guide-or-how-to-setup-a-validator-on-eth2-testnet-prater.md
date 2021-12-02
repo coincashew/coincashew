@@ -9,27 +9,22 @@ description: >-
 ## Announcements
 
 {% hint style="info" %}
-The ETH Foundation would like to hear from you.
-
-Fill out this survey [https://ethstaker.cc/survey/#Z7ZpSghg](https://ethstaker.cc/survey/#Z7ZpSghg)
-{% endhint %}
-
-{% hint style="info" %}
-:confetti\_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support!
+:confetti\_ball: **2021-12 Gitcoin Grant Round 12:** We improve this guide with your support!
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏
 {% endhint %}
 
 {% hint style="success" %}
-As of October 30 2021, this is **guide version 3.6.0** and written for **testnet PRATER.**
+As of Dec 1 2021, this is **guide version 3.7.0** and written for **testnet PRATER.**
 {% endhint %}
 
 {% hint style="info" %}
 **Always test and practice on testnet first.**
 {% endhint %}
 
-### Changelog - **Update Notes -** **October 30 2021** <a href="changelog-update-notes-october-30-2021" id="changelog-update-notes-october-30-2021"></a>
+### Changelog - **Update Notes -** **Dec 1 2021** <a href="#changelog-update-notes-october-30-2021" id="changelog-update-notes-october-30-2021"></a>
 
+* Added how to check your [Validator's Sync Committee duties](guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-check-my-eth-validators-sync-committee-duties.md)
 * Formatting fixes and updated Teku initial state API.
 * Updated with consensus layer (CL), the execution layer (EL), formerly known as eth2 and eth1.
 * Added erigon build dependencies.
@@ -55,7 +50,7 @@ As of October 30 2021, this is **guide version 3.6.0** and written for **testnet
 * [Modelling the Impact of Altair by pintail.xyz](https://pintail.xyz/posts/modelling-the-impact-of-altair/)
 * [Update on the Merge after the Amphora Interop by Consensys.net](https://consensys.net/blog/ethereum-2-0/an-update-on-the-merge-after-the-amphora-interop-event-in-greece/)
 
-## ​​:checkered\_flag: 0. Prerequisites <a href="0.-prerequisites" id="0.-prerequisites"></a>
+## ​​:checkered\_flag: 0. Prerequisites <a href="#0.-prerequisites" id="0.-prerequisites"></a>
 
 ### :woman\_technologist:Skills for operating a eth validator and beacon node
 
@@ -461,7 +456,7 @@ The subsequent steps assume you have completed the [best practices security guid
 :octagonal\_sign: Do not run your processes as **ROOT** user. :scream:
 {% endhint %}
 
-Your choice of either [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org)**, **[**Nethermind**](https://www.nethermind.io)**, or **[**Erigon**](https://github.com/ledgerwatch/erigon)**.**
+Your choice of either [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org)**,** [**Nethermind**](https://www.nethermind.io)**, or** [**Erigon**](https://github.com/ledgerwatch/erigon)**.**
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -553,7 +548,7 @@ sudo systemctl start eth1
 {% hint style="info" %}
 **Geth Tip**: When is my geth node synched?
 
-1. Attach to the geth console with:`geth attach `[`http://127.0.0.1:8545`](http://127.0.0.1:8545)\`\`
+1. Attach to the geth console with:`geth attach` [`http://127.0.0.1:8545`](http://127.0.0.1:8545)\`\`
 2. Type the following:`eth.syncing`
 3. If it returns false, your geth node is synched.
 {% endhint %}
@@ -736,7 +731,7 @@ sudo systemctl start eth1
 
 {% tab title="Erigon" %}
 {% hint style="info" %}
-**Erigon **- Successor to OpenEthereum, Erigon is an implementation of Ethereum (aka "Ethereum client"), on the efficiency frontier, written in Go.
+**Erigon** - Successor to OpenEthereum, Erigon is an implementation of Ethereum (aka "Ethereum client"), on the efficiency frontier, written in Go.
 {% endhint %}
 
 
@@ -894,7 +889,7 @@ OpenEthereum will no longer be supported post London hard fork. Gnosis, maintain
 {% endhint %}
 
 {% hint style="info" %}
-OpenEthereum **- **It's goal is to be the fastest, lightest, and most secure Ethereum client using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
+OpenEthereum **-** It's goal is to be the fastest, lightest, and most secure Ethereum client using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
 {% endhint %}
 
 
@@ -1234,7 +1229,7 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 
 
-:tools:** Some helpful systemd commands**
+:tools: **Some helpful systemd commands**
 
 ****
 
@@ -1290,7 +1285,7 @@ sudo systemctl stop beacon-chain
 
 
 
-:rocket:** Setup Graffiti**
+:rocket: **Setup Graffiti**
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes. Add optional graffiti between the single quotes.
 
@@ -1303,7 +1298,7 @@ MY_GRAFFITI=''
 
 
 
-:cake:** Benefits of using systemd for your validator**
+:cake: **Benefits of using systemd for your validator**
 
 1. Auto-start your validator when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed validator processes.
@@ -1311,7 +1306,7 @@ MY_GRAFFITI=''
 
 
 
-:tools:** Setup Instructions for Systemd**
+:tools: **Setup Instructions for Systemd**
 
 Run the following to create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
 
@@ -1486,7 +1481,7 @@ sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/bin
 
 
 
-#### :tophat: 4.2. Import validator key <a href="6-import-validator-key" id="6-import-validator-key"></a>
+#### :tophat: 4.2. Import validator key <a href="#6-import-validator-key" id="6-import-validator-key"></a>
 
 
 
@@ -1660,7 +1655,7 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 
 
-:tools:** Some helpful systemd commands**
+:tools: **Some helpful systemd commands**
 
 
 
@@ -1869,7 +1864,7 @@ shred -u ~/.bash_history && touch ~/.bash_history
 
 
 
-:rocket:** Setup Graffiti**
+:rocket: **Setup Graffiti**
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes. Add optional graffiti between the single quotes.
 
@@ -1984,7 +1979,7 @@ sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
 {% hint style="info" %}
 When specifying directories for your validator-keys, Teku expects to find identically named keystore and password files.
 
-For example `keystore-m_12221_3600_1_0_0-11222333.json `and `keystore-m_12221_3600_1_0_0-11222333.txt`
+For example `keystore-m_12221_3600_1_0_0-11222333.json` and `keystore-m_12221_3600_1_0_0-11222333.txt`
 {% endhint %}
 
 
@@ -2009,7 +2004,7 @@ ll /var/lib/teku/validator_keys
 
 
 
-Use **systemd **to manage starting and stopping teku.
+Use **systemd** to manage starting and stopping teku.
 
 
 
@@ -2025,7 +2020,7 @@ Use **systemd **to manage starting and stopping teku.
 
 ****
 
-Run the following to create a **unit file** to define your`beacon-chain.service` configuration.** **Simply copy and paste.
+Run the following to create a **unit file** to define your`beacon-chain.service` configuration. **** Simply copy and paste.
 
 
 
@@ -2084,7 +2079,7 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 
 
-:tools:** Some helpful systemd commands**
+:tools: **Some helpful systemd commands**
 
 
 
@@ -2155,7 +2150,7 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
-* **Prysm consensus client **will use port 12000 for udp and port 13000 for tcp
+* **Prysm consensus client** will use port 12000 for udp and port 13000 for tcp
 * **Execution client** requires port 30303 for tcp and udp
 
 
@@ -2294,7 +2289,7 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 
 
-:tools:** Some helpful systemd commands**
+:tools: **Some helpful systemd commands**
 
 
 
@@ -2346,7 +2341,7 @@ sudo systemctl stop beacon-chain
 
 
 
-#### :dna: 4.5. Start the validator <a href="9-start-the-validator" id="9-start-the-validator"></a>
+#### :dna: 4.5. Start the validator <a href="#9-start-the-validator" id="9-start-the-validator"></a>
 
 
 
@@ -2444,7 +2439,7 @@ sudo systemctl start validator
 
 
 
-:tools:** Some helpful systemd commands**
+:tools: **Some helpful systemd commands**
 
 
 
@@ -2703,7 +2698,7 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 
 
-:tools:** Some helpful systemd commands**
+:tools: **Some helpful systemd commands**
 
 
 
@@ -2843,7 +2838,7 @@ Nice work. Your validator is now managed by the reliability and robustness of sy
 
 
 
-:tools:** Some helpful systemd commands**
+:tools: **Some helpful systemd commands**
 
 
 

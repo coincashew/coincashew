@@ -18,8 +18,8 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 
 ### :robot: Pre-requisites
 
-* Works with **geth + erigon (automatic) **currently
-* Ensure at least 30+ GB of free disk space is available otherwise database corruption may occur.
+* Works with **geth + erigon (automatic)** currently
+* Ensure at least 50+ GB of free disk space is available otherwise database corruption may occur.
 
 ### :construction: How to prune execution client
 
@@ -47,7 +47,7 @@ sudo service eth1 stop
 {% tabs %}
 {% tab title="Geth" %}
 ```bash
-/usr/bin/geth snapshot prune-state
+/usr/bin/geth --datadir $HOME/.ethereum snapshot prune-state
 ```
 {% endtab %}
 
@@ -79,9 +79,9 @@ df
 Nice work. Enjoy the extra disk breathing room.
 {% endhint %}
 
-## &#x20;:robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨

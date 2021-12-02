@@ -2,12 +2,12 @@
 description: Quick steps to secure your node.
 ---
 
-# Guide | Security Best Practices for a ETH validator beaconchain node
+# Guide | Security Best Practices for a ETH staking validator node
 
 {% hint style="info" %}
-:confetti_ball: **2021-09 Gitcoin Grant Round 11:** We improve this guide with your support! 
+:confetti\_ball: **2021-12 Gitcoin Grant Round 12:** We improve this guide with your support!&#x20;
 
-[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏 
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
 {% endhint %}
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
@@ -26,14 +26,14 @@ In case you need a SSH client for your operating system, refer to:
 
 {% embed url="https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/" %}
 
-## :man_mage:Create a non-root user with sudo privileges
+## :man\_mage:Create a non-root user with sudo privileges
 
 {% hint style="info" %}
-Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command `rm `can wipe your entire server if run incorrectly using by a root user.
+Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command `rm` can wipe your entire server if run incorrectly using by a root user.
 {% endhint %}
 
 {% hint style="danger" %}
-:fire:**Tip**: Do NOT routinely use the root account. Use `su `or `sudo`,  always.
+:fire:**Tip**: Do NOT routinely use the root account. Use `su` or `sudo`,  always.
 {% endhint %}
 
 SSH to your server with your SSH client
@@ -62,7 +62,7 @@ Add ethereum to the sudo group
 sudo usermod -aG sudo ethereum
 ```
 
-## :closed_lock_with_key: **Disable SSH password Authentication and Use SSH Keys only**
+## :closed\_lock\_with\_key: **Disable SSH password Authentication and Use SSH Keys only**
 
 {% hint style="info" %}
 The basic rules of hardening SSH are:
@@ -92,7 +92,7 @@ ssh-keygen -t rsa -b 4096
 {% endtab %}
 {% endtabs %}
 
-Transfer the public key to your remote node. Update **keyname.pub **appropriately.
+Transfer the public key to your remote node. Update **keyname.pub** appropriately.
 
 ```bash
 ssh-copy-id -i $HOME/.ssh/keyname.pub ethereum@server.public.ip.address
@@ -137,7 +137,7 @@ PermitEmptyPasswords no
 **Optional**: Locate **Port** and customize it your **random** port.
 
 {% hint style="info" %}
-Use a **random **port # from 1024 thru 49141. [Check for possible conflicts. ](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
+Use a **random** port # from 1024 thru 49141. [Check for possible conflicts. ](https://en.wikipedia.org/wiki/List\_of\_TCP\_and\_UDP\_port\_numbers)
 {% endhint %}
 
 ```bash
@@ -299,7 +299,7 @@ Now, open Google Authenticator on your phone and add your secret key to make two
 ## :jigsaw: Secure Shared Memory
 
 {% hint style="info" %}
-One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory. 
+One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.&#x20;
 
 To learn more about secure shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
 {% endhint %}
@@ -307,7 +307,7 @@ To learn more about secure shared memory, read this [techrepublic.com article](h
 {% hint style="warning" %}
 ### One exceptional case
 
-There may be a reason for you needing to have that memory space mounted in read/write mode (such as a specific server application like **DappNode **that requires such access to the shared memory or standard applications like Google Chrome). In this case, use the following line for the fstab file with instructions below.
+There may be a reason for you needing to have that memory space mounted in read/write mode (such as a specific server application like **DappNode** that requires such access to the shared memory or standard applications like Google Chrome). In this case, use the following line for the fstab file with instructions below.
 
 ```
 none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
@@ -551,10 +551,10 @@ sudo ufw allow from <your local daily laptop/pc>
 ```
 
 {% hint style="info" %}
- :confetti_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+&#x20;:confetti\_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
-## :telephone_receiver: Verify Listening Ports
+## :telephone\_receiver: Verify Listening Ports
 
 If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
 
@@ -582,7 +582,7 @@ sudo netstat -tulpn
 # udp6       0      0 :::30303                :::*                    LISTEN      22117/geth
 ```
 
-## :woman_astronaut: **Use **system user accounts - Principle of Least Privilege \[Advanced Users / Optional]
+## :woman\_astronaut: **Use** system user accounts - Principle of Least Privilege \[Advanced Users / Optional]
 
 {% hint style="info" %}
 **Recommended for Advanced Users Only**
@@ -607,14 +607,14 @@ sudo adduser --system --no-create-home slasher
 {% hint style="danger" %}
 ****:fire: **Caveats For Advanced Users**
 
-If you decide to use **system user accounts**, remember to replace the **systemd unit files** with the corresponding users. 
+If you decide to use **system user accounts**, remember to replace the **systemd unit files** with the corresponding users.&#x20;
 
 ```bash
 # Example of beacon-chain.service unit file
 User            = beacon-chain
 ```
 
-Furthermore, ensure the correct **file ownership** is assigned to your** system user account **where applicable.
+Furthermore, ensure the correct **file ownership** is assigned to your **system user account** where applicable.
 
 ```bash
 # Example of prysm validator's password file
@@ -639,22 +639,22 @@ Be sure to review the [Checklist | How to confirm a healthy functional ETH2 vali
 ### Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) and here for our [Testnet guide](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
 
 {% hint style="success" %}
-Congrats on completing the guide. :sparkles: 
+Congrats on completing the guide. :sparkles:&#x20;
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it. 
+Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.&#x20;
 
-It really energizes us to keep creating the best crypto guides. 
+It really energizes us to keep creating the best crypto guides.&#x20;
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray: 
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:&#x20;
 
-Any feedback and all pull requests much appreciated. :first_quarter_moon_with_face: 
+Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:&#x20;
 
 Hang out and chat with fellow stakers on Discord @
 
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley: 
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley:&#x20;
 {% endhint %}
 
-:confetti_ball: **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
+:confetti\_ball: **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
 
 {% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 

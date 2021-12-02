@@ -110,6 +110,7 @@
     * [How to add a new validator to an existing setup with existing seed words](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-add-a-new-validator-to-an-existing-setup.md)
     * [How to run a slasher](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-run-a-slasher.md)
     * [How to setup dynamic DNS (DDNS)](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-setup-dynamic-dns-ddns.md)
+    * [How to check my eth validator's sync committee duties](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-check-my-eth-validators-sync-committee-duties.md)
     * [How to find longest attestation slot gap](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-find-longest-attestation-slot-gap.md)
     * [How to free up execution client (eth1) disk space with pruning](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-free-up-eth1-node-disk-space.md)
   * [Guide | How to setup a validator for Ethereum staking on Pithos testnet in 10 minutes or less](coins/overview-eth/guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less.md)
