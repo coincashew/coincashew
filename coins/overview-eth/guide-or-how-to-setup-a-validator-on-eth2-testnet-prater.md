@@ -840,7 +840,7 @@ After           = eth1.service
 Type            = simple
 User            = $USER
 ExecStartPre	  = /bin/sleep 3
-ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9089 --datadir /var/lib/erigon --http.api=eth,erigon,web3,net,debug,trace,txpool,shh
+ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9089 --datadir /var/lib/erigon --http.api=eth,erigon,web3,net,debug,trace,txpool,shh  --txpool.api.addr=localhost:9089
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
