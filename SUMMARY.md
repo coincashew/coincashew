@@ -164,21 +164,28 @@
       * Verifying Operation
       * Configuring Topology Files
       * Setting Up Dashboards
+      * Configuring Slot Leader Calculation
+      * Securing Your Stake Pool Using a Hardware Wallet
     * [Part IV - Administration and Maintenance](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance.md)
       * Checking Stake Pool Rewards
+      * Claiming Stake Pool Rewards
       * Delegating to a Stake Pool
       * Rotating KES Keys
       * Updating Stake Pool Information
       * Upgrading a Node
       * Retiring Your Stake Pool
-    * Part V - Tips
+    * [Part V - Tips](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips.md)
       * Transferring Files Using SSH
       * Resetting an Installation
       * Fixing a Corrupt Blockchain
-    * [🪄 15. Checking Stake pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/15.-checking-stake-pool-rewards.md)
+      * Verifying an ITN Stake Pool
+      * Submitting a Simple Transaction
+      * Updating Your Node Height on PoolTool
+    * Appendix - Best Practices Checklist
     * [🔮 16. Setup Prometheus and Grafana Dashboard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/16.-setup-prometheus-and-grafana-dashboard.md)
+    * [🪄 15. Checking Stake pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/15.-checking-stake-pool-rewards.md)
     * [👏 17. Thank yous, Telegram and reference material](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/17.-thank-yous-telegram-and-reference-material.md)
-    * [🛠 18. Operational and Maintenance Tips](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/18.-operational-and-maintenance-tips.md)
+    * Appendix - Best Practices Checklist
   * [Guide: How to buy ADA](coins/overview-ada/guide-how-to-buy-ada.md)
   * [Guide: Build Haskell Pool by Cardano Community](https://cardano-community.github.io/guild-operators/)
   * [A Non-technical Guide for Running a Stakepool](https://medium.com/@contact_73710/a-non-technical-guide-for-running-a-stake-pool-part-1-a9071022d125)
