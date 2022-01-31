@@ -175,12 +175,12 @@
       * Upgrading a Node
       * Retiring Your Stake Pool
     * [Part V - Tips](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips.md)
+      * Submitting a Simple Transaction
       * Transferring Files Using SSH
       * Resetting an Installation
       * Fixing a Corrupt Blockchain
-      * Verifying an ITN Stake Pool
-      * Submitting a Simple Transaction
       * Updating Your Node Height on PoolTool
+      * Verifying an ITN Stake Pool
     * Appendix - Best Practices Checklist
     * [🪄 15. Checking Stake pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/15.-checking-stake-pool-rewards.md)
     * [🔮 16. Setup Prometheus and Grafana Dashboard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/16.-setup-prometheus-and-grafana-dashboard.md)
