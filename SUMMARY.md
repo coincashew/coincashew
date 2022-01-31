@@ -146,6 +146,7 @@
     * Prerequisites
     * [Part I - Installation](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation.md)
       * [Hardening Ubuntu](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/hardening-ubuntu.md)
+      * Setting Up chrony
       * Installing Cabal and GHC
       * Compiling Source Code
     * Part II - Configuration
@@ -165,6 +166,8 @@
       * Setting Up Dashboards
     * Part IV - Maintenance
       * Checking Stake Pool Rewards
+      * Delegating to a Stake Pool
+      * Rotating KES Keys
       * Upgrading a Node
       * Retiring Your Stake Pool
     * [🪄 15. Checking Stake pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/15.-checking-stake-pool-rewards.md)
