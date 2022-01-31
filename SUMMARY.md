@@ -164,11 +164,14 @@
       * Verifying Operation
       * Configuring Topology Files
       * Setting Up Dashboards
-    * Part IV - Maintenance
+    * [Part IV - Maintenance](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance.md)
       * Checking Stake Pool Rewards
       * Delegating to a Stake Pool
       * Rotating KES Keys
+      * Updating Stake Pool Information
       * Upgrading a Node
+      * Resetting an Installation
+      * Fixing a Corrupt Blockchain
       * Retiring Your Stake Pool
     * [🪄 15. Checking Stake pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/15.-checking-stake-pool-rewards.md)
     * [🔮 16. Setup Prometheus and Grafana Dashboard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/16.-setup-prometheus-and-grafana-dashboard.md)
