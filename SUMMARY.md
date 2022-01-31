@@ -167,6 +167,7 @@
     * [Part IV - Maintenance](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance.md)
       * Checking Stake Pool Rewards
       * Delegating to a Stake Pool
+      * Transferring Files Using SSH
       * Rotating KES Keys
       * Updating Stake Pool Information
       * Upgrading a Node
