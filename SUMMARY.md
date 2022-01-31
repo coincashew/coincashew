@@ -141,24 +141,25 @@
   * [How to Run a Polkadot Validator](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-validate-polkadot)
   * [How to Secure a Polkadot Validator](https://github.com/w3f/polkadot-secure-validator/)
 * [Cardano: ADA](coins/overview-ada/README.md)
-  * [Guide: How to build a Cardano Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
+  * [Setting Up a Cardano Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
     * Introduction
     * Prerequisites
-    * [Installing Cabal and GHC](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/installing-cabal-and-ghc.md)
+    * Part I - Installation
+      * Installing Cabal and GHC
+      * Compiling Source Code
+    * Part II - Configuration
+      * Downloading Configuration Files
+    * Configuring a Block-producer Node
+    * Configuring Relay Nodes
+    * Configuring an Air-gapped, Offline Computer
+    * Creating Startup Scripts
     * [🪄 15. Checking Stake pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/15.-checking-stake-pool-rewards.md)
     * [🔮 16. Setup Prometheus and Grafana Dashboard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/16.-setup-prometheus-and-grafana-dashboard.md)
     * [👏 17. Thank yous, Telegram and reference material](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/17.-thank-yous-telegram-and-reference-material.md)
     * [🛠 18. Operational and Maintenance Tips](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/18.-operational-and-maintenance-tips.md)
     * [🌙 19. Retire your stake pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/19.-retire-your-stake-pool.md)
     * [🚀 20. Onwards and upwards...](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/20.-onwards-and-upwards....md)
-    * [How to Harden Ubuntu Server](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-harden-ubuntu-server.md)
-    * [How to setup chrony](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md)
-    * [How to setup WireGuard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-wireguard.md)
-    * [How to upload poolMetaData.json to Github](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-upload-poolmetadata.json-to-github.md)
-    * [How to update a Stakepool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-update-a-stakepool.md)
-    * [How to setup an external passive relay node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-an-external-relay-node.md)
-    * [How to Monitor Security with OSSEC server and Slack](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-monitor-security-with-ossec.md)
-    * [Building the Node from Source Code](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/building-the-node-from-source-code.md)
+    * Part II - Configuration
   * [Guide: How to buy ADA](coins/overview-ada/guide-how-to-buy-ada.md)
   * [Guide: Build Haskell Pool by Cardano Community](https://cardano-community.github.io/guild-operators/)
   * [A Non-technical Guide for Running a Stakepool](https://medium.com/@contact_73710/a-non-technical-guide-for-running-a-stake-pool-part-1-a9071022d125)
