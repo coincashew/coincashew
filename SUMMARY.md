@@ -144,18 +144,18 @@
   * [Guide: Setting Up a Cardano Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
     * Introduction
     * Prerequisites
-    * [Part I - Installation](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation.md)
+    * [PART I - INSTALLATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation.md)
       * [Hardening Ubuntu](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/hardening-ubuntu.md)
       * Setting Up chrony
       * Installing Cabal and GHC
       * Compiling Source Code
-    * Part II - Configuration
+    * [PART II - CONFIGURATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration.md)
       * Downloading Configuration Files
       * Configuring a Block-producing Node
       * Configuring Relay Nodes
       * Configuring an Air-gapped, Offline Computer
       * Creating Startup Scripts
-    * Part III - Operation
+    * [PART III - OPERATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation.md)
       * Starting the Nodes
       * Generating Keys for the Block-producing Node
       * Setting Up Payment and Stake Keys
@@ -164,9 +164,9 @@
       * Verifying Operation
       * Configuring Topology Files
       * Setting Up Dashboards
-      * Configuring Slot Leader Calculation
+      * [Configuring Slot Leader Calculations](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/configuring-slot-leader-calculation.md)
       * Securing Your Stake Pool Using a Hardware Wallet
-    * [Part IV - Administration and Maintenance](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance.md)
+    * [PART IV - ADMINISTRATION & MAINTENANCE](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance.md)
       * Checking Stake Pool Rewards
       * Claiming Stake Pool Rewards
       * Delegating to a Stake Pool
@@ -174,7 +174,7 @@
       * Updating Stake Pool Information
       * Upgrading a Node
       * Retiring Your Stake Pool
-    * [Part V - Tips](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips.md)
+    * [PART V - TIPS](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips.md)
       * Submitting a Simple Transaction
       * Transferring Files Using SSH
       * Resetting an Installation
