@@ -149,17 +149,26 @@
       * Compiling Source Code
     * Part II - Configuration
       * Downloading Configuration Files
-    * Configuring a Block-producer Node
-    * Configuring Relay Nodes
-    * Configuring an Air-gapped, Offline Computer
-    * Creating Startup Scripts
+      * Configuring a Block-producing Node
+      * Configuring Relay Nodes
+      * Configuring an Air-gapped, Offline Computer
+      * Creating Startup Scripts
+    * Part III - Operation
+      * Starting the Nodes
+      * Generating Keys for the Block-producing Node
+      * Setting Up Payment and Stake Keys
+      * Registering Your Stake Address
+      * Registering Your Stake Pool
+      * Verifying Operation
+      * Configuring Topology Files
+      * Setting Up Dashboards
+    * Part IV - Maintenance
     * [🪄 15. Checking Stake pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/15.-checking-stake-pool-rewards.md)
     * [🔮 16. Setup Prometheus and Grafana Dashboard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/16.-setup-prometheus-and-grafana-dashboard.md)
     * [👏 17. Thank yous, Telegram and reference material](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/17.-thank-yous-telegram-and-reference-material.md)
     * [🛠 18. Operational and Maintenance Tips](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/18.-operational-and-maintenance-tips.md)
     * [🌙 19. Retire your stake pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/19.-retire-your-stake-pool.md)
-    * [🚀 20. Onwards and upwards...](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/20.-onwards-and-upwards....md)
-    * Part II - Configuration
+    * Part IV - Maintenance
   * [Guide: How to buy ADA](coins/overview-ada/guide-how-to-buy-ada.md)
   * [Guide: Build Haskell Pool by Cardano Community](https://cardano-community.github.io/guild-operators/)
   * [A Non-technical Guide for Running a Stakepool](https://medium.com/@contact_73710/a-non-technical-guide-for-running-a-stake-pool-part-1-a9071022d125)
