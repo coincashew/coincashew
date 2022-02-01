@@ -1,4 +1,4 @@
-### :cake: 18.11 Claim your rewards
+### :cake: Claiming Stake Pool Rewards
 
 Let's walk through an example to claim your stake pools rewards.&#x20;
 
