@@ -11,7 +11,7 @@ As of October 30 2021, this is **guide version 5.0.0** and written for **cardano
 ## :page\_facing\_up: Changelog - **Update Notes -** **October 30 2021**
 
 * Re-organized content to improve loading speed.
-* Contribution by [Change Pool](https://change.paradoxicalsphere.com) - Improve Table of Contents
+* Contribution by [Change Pool](https://change.paradoxicalsphere.com) - Improved Table of Contents
 * Added high-level explanation of Topology API.
 * Increased the cardano-node service unit file timeout from 2 to 300 seconds.
 * Added a [collection of projects](./#17-6-community-inspired-projects) built by this amazing community.
