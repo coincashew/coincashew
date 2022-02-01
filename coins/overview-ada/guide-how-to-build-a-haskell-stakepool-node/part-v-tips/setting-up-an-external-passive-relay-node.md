@@ -141,7 +141,7 @@ Nice work. Your node is now managed by the reliability and robustness of systemd
 
 ####   :white_check_mark: Check whether the node service is active <a href="check-whether-the-stake-pool-service-is-active" id="check-whether-the-stake-pool-service-is-active"></a>
 
-To confirm that the node service is active, type the following command where `<NodeServiceName>` is the name of the service running your Cardano node:
+To confirm that the node service is active, type the following command where `<NodeServiceName>` is the name of your Cardano node service:
 
 ```
 sudo systemctl is-active <NodeServiceName>
