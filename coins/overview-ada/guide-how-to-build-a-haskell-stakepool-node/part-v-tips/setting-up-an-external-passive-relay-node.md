@@ -266,7 +266,19 @@ Example snippet to add to your block producer's topology file. Add a comma to se
 
 For relay nodes, use the [topologyUpdater process](./#14-configure-your-topology-files) to manage your topology file or modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh`.
 
-## :arrows_counterclockwise: 8. Restart all relay and block producer nodes for new topology configurations to take effect
+## :arrows_counterclockwise: Restarting Nodes
+
+For the new topology configurations to take effect, you need to restart nodes.
+
+To restart your nodes:
+
+1\. Type:
+
+```
+sudo systemctl reload-or-restart cnode
+```
+
+2\. Repeat step 1 for each node having updated topology configurations.
 
 ## :confetti_ball: 9. Verify the connection is working
 
