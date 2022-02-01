@@ -1,4 +1,4 @@
-### :robot: Rotating KES Keys
+# :robot: Rotating KES Keys
 
 {% hint style="info" %}
 You are required to regenerate the hot keys and issue a new operational certificate, a process called rotating the KES keys, when the hot keys expire.
