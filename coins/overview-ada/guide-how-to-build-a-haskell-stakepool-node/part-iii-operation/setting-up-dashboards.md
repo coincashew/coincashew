@@ -5,7 +5,7 @@
 * **Grafana** is a dashboard used to visualize the collected data.
 {% endhint %}
 
-### &#x20;:hatching\_chick: 16.1 Installation
+## :hatching\_chick: Installing Prometheus and Grafana
 
 Install prometheus and prometheus node exporter.
 
@@ -191,7 +191,7 @@ curl -s 127.0.0.1:12798/metrics
 {% endtab %}
 {% endtabs %}
 
-### :signal\_strength: 16.2 Setting up Grafana Dashboards&#x20;
+## :signal\_strength: Configuring Grafana
 
 1. On relaynode1, open [http://localhost:3000](http://localhost:3000) or http://\<your relaynode1 ip address>:3000 in your local browser. You may need to open up port 3000 in your router and/or firewall.
 2. Login with **admin **/ **admin**
