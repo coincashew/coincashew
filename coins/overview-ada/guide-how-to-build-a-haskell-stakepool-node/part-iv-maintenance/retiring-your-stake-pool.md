@@ -203,7 +203,7 @@ cardano-cli transaction submit \
 {% endtabs %}
 
 {% hint style="success" %}
-Pool will retire at the end of your specified epoch. In this example, retirement occurs at the end of epoch 40.&#x20;
+Pool will retire at the end of your specified epoch. In this example, retirement occurs at the end of epoch 40.
 
 If you have a change of heart, you can create and submit a new registration certificate before the end of epoch 40, which will then overrule the deregistration certificate.
 {% endhint %}
@@ -220,10 +220,10 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 {% endtabs %}
 
 {% hint style="info" %}
-After retirement completes in 2 epochs,&#x20;
+After retirement completes in 2 epochs:
 
-* Verify your pool is retired by checking with a block explorer such as [cardanoscan.io](https://cardanoscan.io)
-* Pool deposit of 500 ADA is returned to your stake address (stake.addr) as a reward.
-* Withdraw reward funds following [section 18.11](18.-operational-and-maintenance-tips.md#18.11-claim-your-rewards).
-* Finally send the funds away to another wallet with [a simple transaction as shown in section 18.9.](18.-operational-and-maintenance-tips.md#18.9-send-a-simple-transaction-example)
+1. Verify your pool is retired by checking with a block explorer such as [cardanoscan.io](https://cardanoscan.io)
+2. Your pool deposit of 500 ADA is returned to your stake address (stake.addr) as a reward
+3. [Claim stake pool rewards](claiming-stake-pool-rewards.md)
+4. To send funds to another wallet, [submit a transaction](../part-v-tips/submitting-a-simple-transaction.md)
 {% endhint %}
