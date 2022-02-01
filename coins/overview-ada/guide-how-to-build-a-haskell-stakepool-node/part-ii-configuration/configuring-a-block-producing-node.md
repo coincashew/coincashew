@@ -1,4 +1,4 @@
-# :crystal\_ball: 4. Configure the block-producer node
+# :crystal\_ball: Configuring a Block-producing Node
 
 {% hint style="info" %}
 A block producer node will be configured with various key-pairs needed for block generation (cold keys, KES hot keys and VRF hot keys). It can only connect to its relay nodes.
