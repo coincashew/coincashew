@@ -216,7 +216,7 @@ Sample output of Guild Live View
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
-## :octagonal_sign:5. Configure and review the relay node topology file
+## :octagonal_sign: Configuring and Reviewing the Relay Node Topology File
 
 Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh` script to configure your relay node's connections to your other relays and block producer node. Refer to the [official documentation for more info.](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater?id=download-and-configure-topologyupdatersh)
 
