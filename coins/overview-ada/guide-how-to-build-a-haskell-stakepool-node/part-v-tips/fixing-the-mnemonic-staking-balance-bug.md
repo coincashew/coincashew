@@ -2,7 +2,7 @@
 
 ## :octagonal_sign: Who Is Affected?
 
-If you [created your payment and stake keys](../part-iii-operation/setting-up-payment-and-stake-keys.md) using the **mnemonic method** in Daedalus 2.0 before July 30, 2020, then you may be affected.
+If you created your [payment and stake keys](../part-iii-operation/setting-up-payment-and-stake-keys.md) using the **mnemonic method** in Daedalus 2.0 before July 30, 2020, then you may be affected.
 
 Run the following to see if you're affected
 
