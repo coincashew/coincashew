@@ -4,7 +4,7 @@
 Shelley has been launched without peer-to-peer (p2p) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
 {% endhint %}
 
-#### :rocket: Publishing your Relay Node with topologyUpdater.sh
+## :rocket: Activating Your Relay Node
 
 {% hint style="info" %}
 Credits to [GROWPOOL](https://twitter.com/PoolGrow) for this addition and credits to [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) on creating this process.
@@ -102,7 +102,7 @@ rm ${NODE_HOME}/crontab-fragment.txt
 After four hours and four updates, your node IP will be registered in the topology fetch list.
 {% endhint %}
 
-#### Update your relay node topology files
+## Updating Topology Files on the Relay Node
 
 {% hint style="danger" %}
 Complete this section after **four hours** when your relay node IP is properly registered.
