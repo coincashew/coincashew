@@ -159,7 +159,7 @@ To restart the node service, type:
 sudo systemctl reload-or-restart cnode
 ```
 
-#### ​ :octagonal_sign: Stopping the node service <a href="stopping-the-stake-pool-service" id="stopping-the-stake-pool-service"></a>
+To stop the node service, type:
 
 ```
 sudo systemctl stop cnode
