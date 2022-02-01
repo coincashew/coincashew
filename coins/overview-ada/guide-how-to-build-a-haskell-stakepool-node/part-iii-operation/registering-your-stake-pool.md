@@ -37,7 +37,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 Copy **poolMetaDataHash.txt** to your air-gapped offline machine, cold environment.
 
-Next, upload your **poolMetaData.json** to a Web site that you administer or a public Web site. For example, [upload pool metadata to GitHub](../part-v-tips/uploading-pool-metadata-to-github.md)
+Next, upload your **poolMetaData.json** to a Web site that you administer or a public Web site. For example, you can [upload pool metadata to GitHub](../part-v-tips/uploading-pool-metadata-to-github.md)
 
 Verify the metadata hashes by comparing your uploaded .json file and your local .json file's hash.
 
