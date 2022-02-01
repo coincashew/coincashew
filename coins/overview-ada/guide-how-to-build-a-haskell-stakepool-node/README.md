@@ -7,7 +7,7 @@ description: >-
 
 # Guide: Setting Up a Cardano Stake Pool
 
-## :tada: ∞ Pre-Announcements
+## :tada: ∞ Introduction
 
 {% hint style="info" %}
 If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. Much appreciated in advance. :pray:&#x20;
