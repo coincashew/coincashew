@@ -173,13 +173,13 @@ To filter log files, type:
 journalctl --unit=cnode --since=yesterday
 ```
 
-OR
+<p style="text-align: center;">OR</p>
 
 ```
 journalctl --unit=cnode --since=today
 ```
 
-OR
+<p style="text-align: center;">OR</p>
 
 ```
 journalctl --unit=cnode --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
@@ -212,7 +212,7 @@ Run Guild Liveview.
 
 Sample output of Guild Live View
 
-![](../../../.gitbook/assets/glive.png)
+![](../../../../.gitbook/assets/glive.png)
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
