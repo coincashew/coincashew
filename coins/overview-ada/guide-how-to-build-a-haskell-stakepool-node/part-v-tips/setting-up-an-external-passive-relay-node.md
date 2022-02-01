@@ -191,11 +191,13 @@ journalctl --unit=cnode --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:
 **Pro tip:** :sparkler: Speed this step up by copying the **db** folder from another node you control.
 {% endhint %}
 
+To start the relay node, type:
+
 ```bash
 sudo systemctl start cnode
 ```
 
-Install Guild LiveView.
+To install Guild LiveView, type:
 
 ```bash
 cd $CNODE_HOME/scripts
@@ -204,7 +206,7 @@ curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operato
 chmod 755 gLiveView.sh
 ```
 
-Run Guild Liveview.
+To run Guild Liveview, type:
 
 ```
 ./gLiveView.sh
