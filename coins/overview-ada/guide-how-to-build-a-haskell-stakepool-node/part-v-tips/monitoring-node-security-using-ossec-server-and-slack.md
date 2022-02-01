@@ -22,8 +22,8 @@ The guide is kindly hosted by our Coincashew friends. Use [cointr.ee to find our
 
 If you need ideas on how to harden your stake pool's nodes, refer to
 
-{% content-ref url="../part-1-installation/hardening-an-ubuntu-server.md" %}
-[Hardening an Ubuntu Server](../part-1-installation/hardening-an-ubuntu-server.md)
+{% content-ref url="../part-i-installation/hardening-an-ubuntu-server.md" %}
+[Hardening an Ubuntu Server](../part-i-installation/hardening-an-ubuntu-server.md)
 {% endcontent-ref %}
 
 These are very recommended steps to perform before configuring a monitoring service.
