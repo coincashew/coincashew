@@ -268,7 +268,7 @@ For relay nodes, use the [topologyUpdater process](./#14-configure-your-topology
 
 ## :arrows_counterclockwise: Restarting Nodes
 
-To refresh updated topology configurations for a node, you need to restart the node.
+To refresh topology configurations for a node, you need to restart the node.
 
 To restart nodes:
 
