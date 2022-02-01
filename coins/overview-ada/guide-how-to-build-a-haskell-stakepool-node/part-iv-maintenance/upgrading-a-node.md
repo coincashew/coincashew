@@ -203,7 +203,7 @@ It is possible to upgrade from v1.25.1 but for a smooth update, ensure you have 
 {% endtab %}
 {% endtabs %}
 
-### Compiling the new binaries
+### Compiling the New Binaries
 
 To update with `$HOME/git/cardano-node` as the current binaries directory, clone a new git repo named `cardano-node2` so that you have a backup in case of rollback. Remove the old binaries.
 
