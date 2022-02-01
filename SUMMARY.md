@@ -183,7 +183,7 @@
       * [Verifying an ITN Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/verifying-an-itn-stake-pool.md)
     * [Appendix - Best Practices Checklist](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/appendix-best-practices-checklist.md)
     * [Credits](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/credits.md)
-    * Telegram and Discord Chat Channel
+    * [Telegram and Discord Chat Channel](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/contact.md)
     * See Also
   * [Guide: How to buy ADA](coins/overview-ada/guide-how-to-buy-ada.md)
   * [Guide: Build Haskell Pool by Cardano Community](https://cardano-community.github.io/guild-operators/)
