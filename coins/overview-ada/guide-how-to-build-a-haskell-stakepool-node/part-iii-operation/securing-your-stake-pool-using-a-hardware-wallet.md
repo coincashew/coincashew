@@ -1,4 +1,4 @@
-### :moneybag: 18.14 Secure your pool pledge with a 2nd pool owner using a hardware wallet
+# :lock: Securing Your Stake Pool Using a Hardware Wallet
 
 {% hint style="info" %}
 Secure your **pool pledge account** and **pool reward account** with a hardware wallet such as Trezor or Ledger Nano S/X. Credits to [angelstakepool ](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool)for documenting this process.
