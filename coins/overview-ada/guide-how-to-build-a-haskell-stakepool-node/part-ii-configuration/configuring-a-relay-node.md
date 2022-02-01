@@ -1,4 +1,4 @@
-## :flying\_saucer: 5. Configure the relay node(s)
+# :flying\_saucer: Configuring a Relay Node
 
 {% hint style="warning" %}
 :construction: On your other server that will be designed as your relay node or what we will call **relaynode1** throughout this guide, carefully **repeat steps 1 through 3** in order to build the cardano binaries.
