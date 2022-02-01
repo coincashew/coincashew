@@ -18,12 +18,6 @@ Thank you for supporting Cardano and us! Please use the below cointr.ee link. :b
 
 Thanks to all 102,000+ of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
 
-## :speech\_balloon: Telegram and Discord Chat Channel
-
-&#x20;Hang out and chat with our telegram stake pool community at [https://t.me/coincashew](https://t.me/coincashew)
-
-Discord community located @ [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley:&#x20;
-
 ## :sparkles: Contributors
 
 * :clap: Antonie of CNT for being awesomely helpful with Youtube content and in telegram.
