@@ -375,9 +375,9 @@ Hang out and chat with fellow stake pool operators on Discord @
 Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}
 
-## :exploding_head: 2. In case of problems
+## :exploding_head: Troubleshooting
 
-### :motorway: 4.1 Forked off
+### :motorway: Forked off
 
 Forget to update your node and now your node is stuck on an old chain?
 
@@ -388,7 +388,7 @@ cd $NODE_HOME
 rm -rf db
 ```
 
-### :open_file_folder: 4.2 Roll back to previous version from backup
+### :open_file_folder: Reverting to a Previous Version Using a Backup
 
 {% hint style="danger" %}
 Stop your node before updating the binaries.
@@ -474,6 +474,6 @@ cd $NODE_HOME
 {% endtab %}
 {% endtabs %}
 
-### :robot: 4.3 Last resort: Rebuild from source code
+### :robot: Last Resort: Rebuild the Stake Pool
 
-Follow the steps in [How to build a Stakepool.](./)
+Follow the steps in [Setting Up a Cardano Stake Pool](../)
