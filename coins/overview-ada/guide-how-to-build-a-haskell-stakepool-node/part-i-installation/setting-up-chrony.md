@@ -14,7 +14,7 @@ To install chrony, type:
 sudo apt-get install chrony -y
 ```
 
-Create the `chrony.conf` config file. Simply copy and paste the following.
+To create the `chrony.conf` config file, copy and paste the following:
 
 ```bash
 cat > $HOME/chrony.conf << EOF
