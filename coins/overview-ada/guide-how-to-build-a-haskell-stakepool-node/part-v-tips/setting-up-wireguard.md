@@ -197,7 +197,11 @@ PersistentKeepalive = 21
 {% endtab %}
 {% endtabs %}
 
-### :bricks: Configure your firewall / port forwarding to allow port 51820 udp traffic to your node.
+### :bricks: Configuring Your Firewall / Port Forwarding
+
+You must allow traffic on port 51820 UDP to your node.
+
+To configure your firewall / port forwarding, type:
 
 {% tabs %}
 {% tab title="local node" %}
