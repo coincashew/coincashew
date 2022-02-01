@@ -62,7 +62,7 @@ Reload environment variables.
 Familiarize yourself with the [folder structure](https://cardano-community.github.io/guild-operators/#/basics?id=folder-structure) created by CNtools.
 {% endhint %}
 
-## :woman_juggling: Building Cardano Node and CLI
+## :woman_juggling: Building the Cardano Node and Command Line Interface
 
 To clone the git repository, type:
 
