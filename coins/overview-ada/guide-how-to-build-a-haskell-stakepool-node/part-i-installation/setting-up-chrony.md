@@ -8,7 +8,7 @@ description: >-
 
 ## :hatching\_chick: Installation
 
-Install chrony.
+To install chrony, type:
 
 ```
 sudo apt-get install chrony -y
