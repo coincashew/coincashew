@@ -83,17 +83,17 @@ echo -e "package cardano-crypto-praos\n  flags: -external-libsodium-vrf" > cabal
 $CNODE_HOME/scripts/cabal-build-all.sh
 ```
 
-#### Install binaries to local bin directory.
+To install the compiled binaries, type:
 
 ```
 sudo cp $HOME/.cabal/bin/cardano* /usr/local/bin
 ```
 
-#### Verify the correct versions were compiled.
+To verify that the correct node and command line versions are installed, type:
 
 ```bash
-cardano-cli version
 cardano-node version
+cardano-cli version
 ```
 
 ## :hammer_pick: 3. Auto-starting with systemd services
