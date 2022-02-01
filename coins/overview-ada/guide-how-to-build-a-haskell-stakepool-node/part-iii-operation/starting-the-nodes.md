@@ -54,7 +54,7 @@ Run gLiveView to monitor the progress of the sync'ing of the blockchain.
 
 Sample output of gLiveView.
 
-![](../../../.gitbook/assets/glive-update2.jpg)
+![](../../../../.gitbook/assets/glive-update2.jpg)
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
