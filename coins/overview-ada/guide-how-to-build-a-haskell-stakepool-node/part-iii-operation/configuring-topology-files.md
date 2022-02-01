@@ -18,7 +18,7 @@ Credits to [GROWPOOL](https://twitter.com/PoolGrow) for this addition and credit
 3. When your relay node is on the list, the relay node can request from the API server a list of other active Cardano nodes with which your node can synchronize in order to participate in the network of nodes as a peer. Also, the domain name or IP address of your relay node is distributed on lists that other active Cardano nodes may request from the same API server. **NOTE**: Other nodes refreshing their list of peer nodes with a list that may include the domain name or IP address of your relay node is dependent on how often other nodes request an updated list from the API server. Request an updated list of nodes from the API server for your relay regularly so that your list of peers remains accurate.
 4. In order to stay on the list of active nodes, your relay node must ping the API server once every hour. If your relay node stops pinging the API server, then your relay node is removed from the list of active nodes after three hours.
 
-Credits for the high level explanation: [Oliver Sterzik - Change (CHG) Cardano Stake Pool Operator](https://change.paradoxicalsphere.com)
+Credits for the high level explanation: [Paradoxical Sphere - Change (CHG) Cardano Stake Pool Operator](https://change.paradoxicalsphere.com)
 {% endhint %}
 
 Create the `topologyUpdater.sh` script which publishes your node information to a topology fetch list.
