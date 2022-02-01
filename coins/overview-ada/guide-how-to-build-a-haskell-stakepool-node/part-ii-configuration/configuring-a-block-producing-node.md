@@ -8,7 +8,7 @@ A block producer node will be configured with various key-pairs needed for block
 A relay node will not be in possession of any keys and will therefore be unable to produce blocks. It will be connected to its block-producing node, other relays and external nodes.
 {% endhint %}
 
-![](../../../.gitbook/assets/producer-relay-diagram.png)
+![](../../../../.gitbook/assets/producer-relay-diagram.png)
 
 {% hint style="success" %}
 For the purposes of this guide, we will be building **two nodes** on two **separate servers**. One node will be designated the **block producer node**, and the other will be the relay node, named **relaynode1**.
