@@ -143,7 +143,7 @@
 * [Cardano: ADA](coins/overview-ada/README.md)
   * [Guide: Setting Up a Cardano Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
     * [Introduction](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/introduction.md)
-    * Prerequisites
+    * [Prerequisites](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/prerequisites.md)
     * [PART I - INSTALLATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation.md)
       * [Hardening Ubuntu](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/hardening-ubuntu.md)
       * Setting Up chrony
