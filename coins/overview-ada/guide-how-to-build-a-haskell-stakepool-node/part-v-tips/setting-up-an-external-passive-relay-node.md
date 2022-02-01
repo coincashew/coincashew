@@ -282,7 +282,7 @@ sudo systemctl reload-or-restart cnode
 
 ## :confetti_ball: Testing the Connection
 
-On the Guild LiveView screen, press `P` to view the peer list. You should see the connection to other node's IP.
+On the Guild LiveView screen, press `P` to view the peer list. You should see the connection to other node's IP address.
 
 {% hint style="success" %}
 :sparkles: Congrats on the new relay node.
