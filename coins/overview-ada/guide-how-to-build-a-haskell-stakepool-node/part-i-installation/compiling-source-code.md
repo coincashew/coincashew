@@ -1,4 +1,4 @@
-## :construction\_site: 2. Build the node from source code
+## :construction\_site: 2. Compiling Source Code
 
 Download source code and switch to the latest tag.
 
