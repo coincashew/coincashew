@@ -150,8 +150,8 @@
       * [Installing Cabal and GHC](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/installing-cabal-and-ghc.md)
       * [Compiling Source Code](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/compiling-source-code.md)
     * [PART II - CONFIGURATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration.md)
-      * [Preparing Configuration Files](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/downloading-configuration-files.md)
-      * Configuring a Block-producing Node
+      * [Preparing Configuration Files](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/preparing-configuration-files.md)
+      * [Configuring a Block-producing Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/configuring-a-block-producing-node.md)
       * Configuring Relay Nodes
       * Configuring an Air-gapped, Offline Computer
       * Creating Startup Scripts
