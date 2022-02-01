@@ -161,7 +161,7 @@
       * [Setting Up Payment and Stake Keys](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/setting-up-payment-and-stake-keys.md)
       * [Registering Your Stake Address](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/registering-your-stake-address.md)
       * [Registering Your Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/registering-your-stake-pool.md)
-      * [Verifying Operation](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/verifying-operation.md)
+      * [Verifying Stake Pool Operation](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/verifying-stake-pool-operation.md)
       * [Configuring Topology Files](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/configuring-topology-files.md)
       * [Setting Up Dashboards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/setting-up-dashboards.md)
       * [Configuring Slot Leader Calculations](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/configuring-slot-leader-calculation.md)
