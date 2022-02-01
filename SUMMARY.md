@@ -169,9 +169,9 @@
     * [PART IV - ADMINISTRATION & MAINTENANCE](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance.md)
       * Checking Stake Pool Rewards
       * Claiming Stake Pool Rewards
-      * Delegating to a Stake Pool
+      * [Delegating to a Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/delegating-to-a-stake-pool.md)
       * [Rotating KES Keys](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/rotating-kes-keys.md)
-      * Updating Stake Pool Information
+      * [Updating Stake Pool Information](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/updating-stake-pool-information.md)
       * Upgrading a Node
       * Retiring Your Stake Pool
     * [PART V - TIPS](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips.md)
