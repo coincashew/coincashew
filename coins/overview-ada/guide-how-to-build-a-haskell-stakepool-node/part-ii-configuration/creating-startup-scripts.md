@@ -55,7 +55,7 @@ chmod +x $NODE_HOME/startRelayNode1.sh
 Run the following to create a **systemd unit file** to define your`cardano-node.service` configuration.
 
 {% hint style="info" %}
-#### :cake: Benefits of using systemd for your stake pool
+#### :cake: Benefits of Using systemd for a Stake Pool
 
 1. Auto-start your stake pool when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed stake pool processes.
@@ -145,25 +145,25 @@ sudo systemctl enable cardano-node
 Your stake pool is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-#### :mag\_right: View the status of the node service
+#### :mag\_right: Viewing the Status of the Node Service
 
 ```
 sudo systemctl status cardano-node
 ```
 
-#### :arrows\_counterclockwise: Restarting the node service
+#### :arrows\_counterclockwise: Restarting the Node Service
 
 ```
 sudo systemctl reload-or-restart cardano-node
 ```
 
-#### :octagonal\_sign: Stopping the node service
+#### :octagonal\_sign: Stopping the Node Service
 
 ```
 sudo systemctl stop cardano-node
 ```
 
-#### 🗄 Viewing and filter logs
+#### 🗄 Viewing and Filtering Logs
 
 ```bash
 journalctl --unit=cardano-node --follow
