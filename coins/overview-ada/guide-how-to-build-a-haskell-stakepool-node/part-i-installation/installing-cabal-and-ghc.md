@@ -1,4 +1,4 @@
-## :factory: 1. Installing Cabal and GHC
+# :factory: Installing Cabal and GHC
 
 If using Ubuntu Desktop, **press **Ctrl+Alt+T. This will launch a terminal window.&#x20;
 

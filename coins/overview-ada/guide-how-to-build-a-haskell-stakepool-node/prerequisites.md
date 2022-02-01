@@ -1,6 +1,6 @@
-## :checkered\_flag: Prerequisites
+# :checkered\_flag: Prerequisites
 
-### :man\_mage: Mandatory skills for stake pool operators
+## :man\_mage: Mandatory skills for stake pool operators
 
 As a stake pool operator for Cardano, you will be competent with the following abilities:
 
@@ -9,7 +9,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * system operation skills
 * server administration skills (operational and maintenance).
 
-### :mage: Mandatory experience for stake pool operators
+## :mage: Mandatory experience for stake pool operators
 
 * experience of development and operations (DevOps)
 * experience on how to [harden ](https://www.lifewire.com/harden-ubuntu-server-security-4178243)and [secure a server](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3).
@@ -19,7 +19,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 :octagonal\_sign: **Before continuing this guide, you must satisfy the above requirements. **:construction:&#x20;
 {% endhint %}
 
-### :reminder\_ribbon: Minimum Stake Pool Hardware Requirements
+## :reminder\_ribbon: Minimum Stake Pool Hardware Requirements
 
 * **Two separate servers: **1 for block producer node, 1 for relay node
 * **One air-gapped offline machine (cold environment)**
@@ -32,7 +32,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **Power:** Reliable electrical power
 * **ADA balance:** at least 505 ADA for pool deposit and transaction fees
 
-### :man\_lifting\_weights: Recommended Future-proof Stake Pool Hardware Setup
+## :man\_lifting\_weights: Recommended Future-proof Stake Pool Hardware Setup
 
 * **Three separate servers: **1 for block producer node, 2 for relay nodes
 * **One air-gapped offline machine (cold environment)**
@@ -45,16 +45,16 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * **Power:** Reliable electrical power with UPS
 * **ADA balance: **more pledge is better, to be determined by **a0**, the pledge influence factor
 
-### :unlock: Recommended Stake Pool Security
+## :unlock: Recommended Stake Pool Security
 
 If you need ideas on how to harden your stake pool's nodes, refer [to this guide.](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-harden-ubuntu-server)
 
-### :tools: Setup Ubuntu
+## :tools: Setup Ubuntu
 
 If you need to install **Ubuntu Server**, refer [to this guide.](https://ubuntu.com/tutorials/install-ubuntu-server#1-overview)
 
 For instructions on installing **Ubuntu Desktop**, refer [to this guide.](https://www.coincashew.com/coins/overview-xtz/guide-how-to-setup-a-baker/install-ubuntu)
 
-### :bricks: Rebuilding Nodes
+## :bricks: Rebuilding Nodes
 
 If you are rebuilding or reusing an existing `cardano-node` installation, refer to [section 18.2 on how to reset the installation.](./#18-2-resetting-the-installation)

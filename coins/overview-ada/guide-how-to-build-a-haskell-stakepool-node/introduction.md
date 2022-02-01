@@ -1,4 +1,4 @@
-## :tada: Introduction
+# :tada: Introduction
 
 {% hint style="info" %}
 If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. Much appreciated in advance. :pray:&#x20;
@@ -8,7 +8,7 @@ If you want to support this free educational Cardano content or found this helpf
 As of October 30 2021, this is **guide version 5.0.0** and written for **cardano mainnet **with **release v.1.30.1** :grin:&#x20;
 {% endhint %}
 
-### :page\_facing\_up: Changelog - **Update Notes -** **October 30 2021**
+## :page\_facing\_up: Changelog - **Update Notes -** **October 30 2021**
 
 * Re-organized content to improve loading speed.
 * Added high-level explanation of Topology API.
