@@ -39,9 +39,9 @@ Copy **poolMetaDataHash.txt** to your air-gapped offline machine, cold environme
 
 Now upload your **poolMetaData.json** to your website or a public website such as [https://pages.github.com/](https://pages.github.com)
 
-Refer to [this quick guide](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-upload-poolmetadata.json-to-github) if you need help hosting your metadata on github.com
+For example, you can [upload pool metadata to GitHub](../part-v-tips/uploading-pool-metadata-to-github.md)
 
-Verify the metadata hashes by comparing your uploaded .json file and your local .json file's hash.&#x20;
+Verify the metadata hashes by comparing your uploaded .json file and your local .json file's hash.
 
 {% tabs %}
 {% tab title="block producer node" %}
