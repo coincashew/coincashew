@@ -185,7 +185,7 @@ OR
 journalctl --unit=cnode --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
 ```
 
-## :rocket: 4. Start the relay node
+## :rocket: Starting the Relay Node
 
 {% hint style="success" %}
 **Pro tip:** :sparkler: Speed this step up by copying the **db** folder from another node you control.
