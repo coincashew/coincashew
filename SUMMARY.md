@@ -181,6 +181,7 @@
       * [Uploading Pool Metadata to GitHub](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/uploading-pool-metadata-to-github.md)
       * [Setting Up an External Passive Relay Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/setting-up-an-external-passive-relay-node.md)
       * [Setting Up WireGuard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/setting-up-wireguard.md)
+      * [Monitoring Node Security Using OSSEC Server and Slack](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/monitoring-node-security-using-ossec-server-and-slack.md)	  
       * [Resetting an Installation](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/resetting-an-installation.md)
       * [Fixing a Corrupt Blockchain](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/fixing-a-corrupt-blockchain.md)
       * [Updating Your Node Height on PoolTool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/updating-your-node-height-on-pooltool.md)
