@@ -1,7 +1,5 @@
 # Uploading Pool Metadata to GitHub
 
-## Quick steps to hosting your poolmetadata.json
-
 To host the file containing metadata for your pool on GitHub:
 
 1. Sign up for a Github account by visiting [https://github.com/](https://github.com)
