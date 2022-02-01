@@ -476,4 +476,4 @@ cd $NODE_HOME
 
 ### :robot: Last Resort: Rebuild the Stake Pool
 
-Follow the steps in [Setting Up a Cardano Stake Pool](../)
+Follow the steps in [Setting Up a Cardano Stake Pool](../README.md)
