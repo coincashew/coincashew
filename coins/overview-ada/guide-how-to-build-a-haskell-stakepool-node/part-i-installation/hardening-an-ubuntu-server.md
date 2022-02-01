@@ -2,13 +2,13 @@
 description: Quick steps to secure your node.
 ---
 
-# How to Harden Ubuntu Server
+# Hardening an Ubuntu Server
 
 {% hint style="success" %}
 Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. :pray:&#x20;
 {% endhint %}
 
-## :robot: Pre-requisites
+## :robot: Prerequisites
 
 * Ubuntu Server or Ubuntu Desktop installed
 * SSH server installed
@@ -22,7 +22,7 @@ In case you need a SSH client for your operating system, refer to:
 
 {% embed url="https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/" %}
 
-## :man\_mage: Create a non-root user with sudo privileges
+## :man\_mage: Creating a non-root user with sudo privileges
 
 {% hint style="info" %}
 Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command rm can wipe your entire server if run incorrectly using by a root user.
