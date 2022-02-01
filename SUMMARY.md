@@ -175,7 +175,7 @@
       * [Upgrading a Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/upgrading-a-node.md)
       * [Retiring Your Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/retiring-your-stake-pool.md)
     * [PART V - TIPS](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips.md)
-      * [Submitting a Simple Transaction Using cardano-cli](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/submitting-a-simple-transaction.md)
+      * [Submitting a Simple Transaction](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/submitting-a-simple-transaction.md)
       * [Transferring Files Using SSH](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/transferring-files-using-ssh.md)
       * [Updating Configuration Files](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/updating-configuration-files.md)
       * [Resetting an Installation](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/resetting-an-installation.md)
