@@ -139,7 +139,7 @@ sudo systemctl enable cnode.service
 Nice work. Your node is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-####   :white_check_mark: Check whether the node service is active <a href="check-whether-the-stake-pool-service-is-active" id="check-whether-the-stake-pool-service-is-active"></a>
+###   :white_check_mark: Example systemd Commands
 
 To confirm that the node service is active, type:
 
@@ -147,13 +147,13 @@ To confirm that the node service is active, type:
 sudo systemctl is-active cnode
 ```
 
-#### ​ :mag_right: View the status of the node service <a href="view-the-status-of-the-stake-pool-service" id="view-the-status-of-the-stake-pool-service"></a>
+To display the status of the node service, type:
 
 ```
 sudo systemctl status cnode
 ```
 
-#### ​ :arrows_counterclockwise: Restarting the node service <a href="restarting-the-stake-pool-service" id="restarting-the-stake-pool-service"></a>
+To restart the node service, type:
 
 ```
 sudo systemctl reload-or-restart cnode
