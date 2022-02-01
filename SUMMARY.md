@@ -182,8 +182,6 @@
       * [Updating Your Node Height on PoolTool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/updating-your-node-height-on-pooltool.md)
       * [Verifying an ITN Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/verifying-an-itn-stake-pool.md)
     * [Appendix - Best Practices Checklist](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/appendix-best-practices-checklist.md)
-    * [🪄 15. Checking Stake pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/15.-checking-stake-pool-rewards.md)
-    * [🔮 16. Setup Prometheus and Grafana Dashboard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/16.-setup-prometheus-and-grafana-dashboard.md)
     * [👏 17. Thank yous, Telegram and reference material](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/17.-thank-yous-telegram-and-reference-material.md)
   * [Guide: How to buy ADA](coins/overview-ada/guide-how-to-buy-ada.md)
   * [Guide: Build Haskell Pool by Cardano Community](https://cardano-community.github.io/guild-operators/)
