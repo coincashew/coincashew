@@ -1,6 +1,6 @@
-# How to update a Stakepool
+# Upgrading a Node
 
-## :tada: ∞ Pre-Announcements
+## :tada: Introduction
 
 {% hint style="info" %}
 :confetti_ball: This latest update brought to you by the generous donations by [**BEBOP stake pool**](https://bebopadapool.com). 
@@ -12,7 +12,7 @@ If you want to support this free educational Cardano content or found this helpf
 As of Oct 1 2021, this guide is written for **mainnet **with **release v1.30.1** :grin: 
 {% endhint %}
 
-## :satellite: 1. How to perform an update
+## :satellite: How to Perform an Upgrade
 
 From time to time, there will be new versions of `cardano-node`. Follow the [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) by enabling **notifications **with the watch functionality.
 
@@ -24,9 +24,11 @@ Read the patch notes for any other special updates or dependencies that may be r
 {% tab title="v1.30.1 Notes" %}
 **Full release notes: **[**https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1**](https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1)****
 
-### :octagonal_sign: Release Dependencies
+### :octagonal_sign: Upgrading Release Dependencies
 
-#### 1. If using cncli for leaderlogs and sendslots, update to `cncli version 4.0.1` is required.
+#### CNCLI
+
+If you use CNCLI for leaderlogs and sendslots, then you must upgrade to `cncli version 4.0.1`
 
 ```bash
 RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
@@ -39,7 +41,7 @@ curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-#### Checking that cncli is properly updated
+To confirm that the new version of CNCLI is installed, type:
 
 ```
 cncli -V
@@ -47,7 +49,7 @@ cncli -V
 
 It should return the updated version number.
 
-**2. Update gLiveView**
+#### gLiveView
 
 ```bash
 cd ${NODE_HOME}
