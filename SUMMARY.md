@@ -177,6 +177,7 @@
     * [PART V - TIPS](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips.md)
       * [Submitting a Simple Transaction](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/submitting-a-simple-transaction.md)
       * [Transferring Files Using SSH](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/transferring-files-using-ssh.md)
+      * [Updating Configuration Files](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/updating-configuration-files.md)
       * [Resetting an Installation](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/resetting-an-installation.md)
       * [Fixing a Corrupt Blockchain](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/fixing-a-corrupt-blockchain.md)
       * [Updating Your Node Height on PoolTool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/updating-your-node-height-on-pooltool.md)
