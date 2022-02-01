@@ -71,10 +71,7 @@ cd ~/git
 git clone https://github.com/input-output-hk/cardano-node
 cd cardano-node
 ```
-
-#### Build all the binaries. Replace the tag with the desired version.
-
-To build all the binaries, type the following commands where `<NodeVersion>` is the version number or branch that you want to build:
+To compile binaries, type the following commands where `<NodeVersion>` is the version number or branch that you want to build:
 
 ```bash
 git fetch --tags --all
