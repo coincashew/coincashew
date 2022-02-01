@@ -98,7 +98,7 @@ cardano-cli version
 
 ## :hammer_pick: Using systemd Services
 
-Using systemd to run your Cardano nodes offers the following benefits:
+Using systemd services to run your Cardano nodes offers the following benefits:
 
 1. Auto-start your node when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed node processes.
