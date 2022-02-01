@@ -61,7 +61,7 @@ Restart chrony in order for config change to take effect.
 sudo systemctl restart chronyd.service
 ```
 
-## :robot: 2. Helpful Commands
+## :robot: Helpful Commands
 
 To see the source of synchronization data.
 
@@ -91,4 +91,4 @@ In the event that you are using national system like India's `IST` select:
 Asia/Kolkata
 ```
 
-This will be appropriate for all lales in the country (`IST`, `GMT+0530`).
+This will be appropriate for all locales in the country (`IST`, `GMT+0530`).
