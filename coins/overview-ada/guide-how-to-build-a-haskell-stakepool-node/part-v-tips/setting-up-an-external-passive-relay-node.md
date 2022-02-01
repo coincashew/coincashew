@@ -238,7 +238,7 @@ Review your topology.json and check that it looks correct. Your new relay node's
 cat $CNODE_HOME/files/topology.json
 ```
 
-## :fire: 6. Configure port-forwarding and/or firewall
+## :fire: Configuring Port Forwarding and/or Firewall
 
 Specific to your networking setup or cloud provider settings, ensure your relay node's port 6000 is open and reachable. 
 
@@ -248,7 +248,7 @@ Specific to your networking setup or cloud provider settings, ensure your relay 
 
 Additionally, if you have node-exporter installed for grafana stats, you will need to open ports 9100 and 12798. Don't forget to update `prometheus.yml` on your prometheus server (aka relaynode1). Restart prometheus service for the new relay node to appear in your dashboard.
 
-## :woman_technologist: 7. Configure existing relay or block producing node's topology
+## :woman_technologist: Configuring the Existing Relay or Block-producing Node's Topology
 
 Finally, add your new **NEW **relay node IP/port information to your **EXISTING **block producer and/or relay node's topology file. Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh`
 
