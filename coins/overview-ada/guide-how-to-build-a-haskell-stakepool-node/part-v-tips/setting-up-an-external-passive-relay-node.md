@@ -96,9 +96,9 @@ cardano-node version
 cardano-cli version
 ```
 
-## :hammer_pick: 3. Auto-starting with systemd services
+## :hammer_pick: Using systemd Services
 
-#### :confetti_ball: Benefits of using systemd for your stake pool
+Using systemd to run your Cardano nodes offers the following benefits:
 
 1. Auto-start your node when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed node processes.
