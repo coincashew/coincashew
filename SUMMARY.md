@@ -167,8 +167,8 @@
       * [Configuring Slot Leader Calculations](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/configuring-slot-leader-calculation.md)
       * [Securing Your Stake Pool Using a Hardware Wallet](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/securing-your-stake-pool-using-a-hardware-wallet.md)
     * [PART IV - ADMINISTRATION & MAINTENANCE](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance.md)
-      * Checking Stake Pool Rewards
-      * Claiming Stake Pool Rewards
+      * [Checking Stake Pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/checking-stake-pool-rewards.md)
+      * [Claiming Stake Pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/claiming-stake-pool-rewards.md)
       * [Delegating to a Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/delegating-to-a-stake-pool.md)
       * [Rotating KES Keys](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/rotating-kes-keys.md)
       * [Updating Stake Pool Information](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/updating-stake-pool-information.md)
