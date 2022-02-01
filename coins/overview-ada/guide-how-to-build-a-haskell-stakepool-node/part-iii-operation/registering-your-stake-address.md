@@ -1,4 +1,4 @@
-# :woman\_technologist: 11. Registering Your Stake Address
+# :woman\_technologist: Registering Your Stake Address
 
 Create a certificate, `stake.cert`, using the `stake.vkey`
 

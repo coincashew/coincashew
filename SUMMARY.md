@@ -175,13 +175,13 @@
       * [Upgrading a Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/upgrading-a-node.md)
       * [Retiring Your Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/retiring-your-stake-pool.md)
     * [PART V - TIPS](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips.md)
-      * Submitting a Simple Transaction
-      * Transferring Files Using SSH
-      * Resetting an Installation
-      * Fixing a Corrupt Blockchain
-      * Updating Your Node Height on PoolTool
-      * Verifying an ITN Stake Pool
-    * Appendix - Best Practices Checklist
+      * [Submitting a Simple Transaction](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/submitting-a-simple-transaction.md)
+      * [Transferring Files Using SSH](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/transferring-files-using-ssh.md)
+      * [Resetting an Installation](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/resetting-an-installation.md)
+      * [Fixing a Corrupt Blockchain](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/fixing-a-corrupt-blockchain.md)
+      * [Updating Your Node Height on PoolTool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/updating-your-node-height-on-pooltool.md)
+      * [Verifying an ITN Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/verifying-an-itn-stake-pool.md)
+    * [Appendix - Best Practices Checklist](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/appendix-best-practices-checklist.md)
     * [🪄 15. Checking Stake pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/15.-checking-stake-pool-rewards.md)
     * [🔮 16. Setup Prometheus and Grafana Dashboard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/16.-setup-prometheus-and-grafana-dashboard.md)
     * [👏 17. Thank yous, Telegram and reference material](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/17.-thank-yous-telegram-and-reference-material.md)

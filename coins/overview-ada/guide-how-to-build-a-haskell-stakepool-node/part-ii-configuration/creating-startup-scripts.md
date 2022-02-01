@@ -163,7 +163,7 @@ sudo systemctl reload-or-restart cardano-node
 sudo systemctl stop cardano-node
 ```
 
-## 🗄 Viewing and Filtering Logs
+## :notebook: Viewing and Filtering Logs
 
 ```bash
 journalctl --unit=cardano-node --follow

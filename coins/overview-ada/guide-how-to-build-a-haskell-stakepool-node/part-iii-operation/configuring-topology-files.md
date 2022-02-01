@@ -102,7 +102,7 @@ rm ${NODE_HOME}/crontab-fragment.txt
 After four hours and four updates, your node IP will be registered in the topology fetch list.
 {% endhint %}
 
-## Updating Topology Files on a Relay Node
+## :newspaper: Updating Topology Files on a Relay Node
 
 {% hint style="danger" %}
 Complete this section after **four hours** when your relay node IP is properly registered.

@@ -1,4 +1,4 @@
-# :cake: Claiming Stake Pool Rewards
+# :moneybag: Claiming Stake Pool Rewards
 
 Let's walk through an example to claim your stake pools rewards.&#x20;
 
