@@ -1,4 +1,4 @@
-## :checkered\_flag: 0. Prerequisites
+## :checkered\_flag: Prerequisites
 
 ### :man\_mage: Mandatory skills for stake pool operators
 
