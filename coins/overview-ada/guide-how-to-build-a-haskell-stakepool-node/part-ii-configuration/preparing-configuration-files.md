@@ -1,4 +1,4 @@
-## :triangular\_ruler: 3. Configure the nodes
+# :triangular\_ruler: Preparing Configuration Files
 
 Here you'll grab the config.json, genesis.json, and topology.json files needed to configure your node.
 
