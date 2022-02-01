@@ -165,7 +165,7 @@ To stop the node service, type:
 sudo systemctl stop cnode
 ```
 
-#### :construction: Filtering logs <a href="filtering-logs" id="filtering-logs"></a>
+### :construction: Filtering logs <a href="filtering-logs" id="filtering-logs"></a>
 
 To filter log files, type:
 
