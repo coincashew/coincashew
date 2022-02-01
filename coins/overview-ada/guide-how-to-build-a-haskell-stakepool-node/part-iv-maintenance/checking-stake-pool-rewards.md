@@ -1,4 +1,4 @@
-# :shortcake: Checking Stake Pool Rewards
+# :cake: Checking Stake Pool Rewards
 
 After the epoch is over and assuming you successfully minted blocks, check with this:
 

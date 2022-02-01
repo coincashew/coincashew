@@ -146,7 +146,7 @@
     * [Prerequisites](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/prerequisites.md)
     * [PART I - INSTALLATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation.md)
       * [Hardening Ubuntu](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/hardening-ubuntu.md)
-      * Setting Up chrony
+      * [Setting Up chrony](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/setting-up-chrony.md)
       * [Installing Cabal and GHC](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/installing-cabal-and-ghc.md)
       * [Compiling Source Code](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/compiling-source-code.md)
     * [PART II - CONFIGURATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration.md)
