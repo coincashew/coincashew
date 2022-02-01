@@ -89,7 +89,7 @@ To install the compiled binaries, type:
 sudo cp $HOME/.cabal/bin/cardano* /usr/local/bin
 ```
 
-To verify that the correct node and command line versions are installed, type:
+To verify that the correct Cardano node and command line versions are installed, type:
 
 ```bash
 cardano-node version
