@@ -172,7 +172,7 @@
       * [Delegating to a Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/delegating-to-a-stake-pool.md)
       * [Rotating KES Keys](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/rotating-kes-keys.md)
       * [Updating Stake Pool Information](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/updating-stake-pool-information.md)
-      * Upgrading a Node
+      * [Upgrading a Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/upgrading-a-node.md)
       * Retiring Your Stake Pool
     * [PART V - TIPS](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips.md)
       * Submitting a Simple Transaction
