@@ -3,7 +3,7 @@
 ## :blush: Donation Tip Jar
 
 {% hint style="info" %}
-Did you find our guide useful? Let us know with a tip and we'll keep updating it. Bonus points if you use [section 18.9's instructions](./#18-9-send-a-simple-transaction-example). :pray: :rocket:&#x20;
+Did you find our guide useful? Let us know with a tip and we'll keep updating it. Bonus points if you use the [command line](./part-v-tips/submitting-a-simple-transaction.md). :pray: :rocket:
 
 It really energizes us to keep creating the best crypto guides.&#x20;
 
