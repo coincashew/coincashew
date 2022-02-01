@@ -153,7 +153,7 @@
       * [Preparing Configuration Files](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/preparing-configuration-files.md)
       * [Configuring a Block-producing Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/configuring-a-block-producing-node.md)
       * [Configuring a Relay Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/configuring-a-relay-node.md)
-      * Configuring an Air-gapped, Offline Computer
+      * [Configuring an Air-gapped, Offline Computer](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/configuring-an-air-gapped-offline-computer.md)
       * [Creating Startup Scripts](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/creating-startup-scripts.md)
     * [PART III - OPERATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation.md)
       * Starting the Nodes
