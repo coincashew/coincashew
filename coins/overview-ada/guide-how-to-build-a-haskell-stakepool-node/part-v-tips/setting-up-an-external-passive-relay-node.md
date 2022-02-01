@@ -14,11 +14,11 @@ Major credits and appreciation to the fine folks at [Cardano Community Guild Ope
 **Relay nodes** do not have any keys, so they cannot produce blocks. Instead, relays act as proxies between the core network nodes and the Internet, establishing a security perimeter around the core, block-producing network nodes. Since external nodes cannot communicate with block-producing nodes directly, relay nodes ensure that the integrity of the core nodes and the blockchain remains intact, even if one or more relays become compromised.
 {% endhint %}
 
-## :last_quarter_moon_with_face: 0. Prerequisites
+## :last_quarter_moon_with_face: Prerequisites
 
 * A different server/VM (not located on the same machine as your block-producer node)
 
-## :flying_saucer: 1. Run prereqs.sh
+## :flying_saucer: Running the prereqs.sh Script
 
 Installs prerequisite dependencies and creates folder structure.
 
@@ -62,9 +62,9 @@ Reload environment variables.
 Familiarize yourself with the [folder structure](https://cardano-community.github.io/guild-operators/#/basics?id=folder-structure) created by CNtools.
 {% endhint %}
 
-## :woman_juggling: 2. Build Cardano Node and CLI
+## :woman_juggling: Building Cardano Node and CLI
 
-#### Clone the git repository.
+To clone the git repository, type:
 
 ```bash
 cd ~/git
@@ -74,11 +74,13 @@ cd cardano-node
 
 #### Build all the binaries. Replace the tag with the desired version.
 
+To build all the binaries, type the following commands where `<NodeVersion>` is the version number or branch that you want to build:
+
 ```bash
 git fetch --tags --all
 git pull
-# Replace tag 1.26.2 with the version/branch you'd like to build
-git checkout 1.26.2
+# For example, to build node version 1.26.2 type git checkout 1.26.2
+git checkout <NodeVersion>
 
 echo -e "package cardano-crypto-praos\n  flags: -external-libsodium-vrf" > cabal.project.local
 $CNODE_HOME/scripts/cabal-build-all.sh
