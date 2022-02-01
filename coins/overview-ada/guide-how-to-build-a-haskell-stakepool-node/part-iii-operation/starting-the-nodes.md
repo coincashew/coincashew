@@ -1,4 +1,4 @@
-# :white\_check\_mark: 8. Start the Nodes
+# :white\_check\_mark: Starting the Nodes
 
 Start your stake pool with systemctl and begin syncing the blockchain!
 
