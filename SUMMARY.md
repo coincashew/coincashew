@@ -170,7 +170,7 @@
       * Checking Stake Pool Rewards
       * Claiming Stake Pool Rewards
       * Delegating to a Stake Pool
-      * Rotating KES Keys
+      * [Rotating KES Keys](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-maintenance/rotating-kes-keys.md)
       * Updating Stake Pool Information
       * Upgrading a Node
       * Retiring Your Stake Pool
