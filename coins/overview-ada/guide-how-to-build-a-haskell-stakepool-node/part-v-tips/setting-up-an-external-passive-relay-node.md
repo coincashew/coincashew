@@ -167,9 +167,21 @@ sudo systemctl stop cnode
 
 #### :construction: Filtering logs <a href="filtering-logs" id="filtering-logs"></a>
 
+To filter log files, type:
+
 ```
 journalctl --unit=cnode --since=yesterday
+```
+
+OR
+
+```
 journalctl --unit=cnode --since=today
+```
+
+OR
+
+```
 journalctl --unit=cnode --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
 ```
 
