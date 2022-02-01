@@ -1,4 +1,4 @@
-### :clock3: 18.12 Slot Leader Schedule - Find out when your pool will mint blocks
+# :clock3: Configuring Slot Leader Calculations
 
 {% hint style="info" %}
 :fire: **Hot tip**: You can calculate your slot leader schedule, which tells you when it's your stake pools turn to mint a block. This can help you know what time is best to schedule maintenance on your stake pool. It can also help verify your pool is minting blocks correctly when it is your pool's turn. This is to be setup and run on the block producer node.
@@ -12,7 +12,7 @@
 A community-based `cardano-node` CLI tool. It's a collection of utilities to enhance and extend beyond those available with the `cardano-cli`.
 {% endhint %}
 
-### :dna: Install the binary release
+## :dna: Installing the Binary
 
 ```bash
 ###
@@ -28,7 +28,7 @@ curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-#### Checking that cncli is properly installed
+## Confirming That CNCLI is Properly Installed
 
 Run the following command to check if cncli is correctly installed and available in your system `PATH` variable:
 
@@ -38,9 +38,9 @@ command -v cncli
 
 It should return `/usr/local/bin/cncli`
 
-### ****:pick: **Running LeaderLog with stake-snapshot**
+## ****:pick: **Running LeaderLog with stake-snapshot**
 
-This command calculates a stake pool's expected slot list.&#x20;
+This command calculates a stake pool's expected slot list.
 
 * `prev` and `current` logs are available as long as you have a synchronized database.&#x20;
 * `next` logs are only available 1.5 days (36 hours) before the end of the epoch.&#x20;
@@ -122,7 +122,7 @@ PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
 echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
 
-#### PoolTool Integration
+### Integrating with PoolTool
 
 CNCLI can send your tip and block slots to [PoolTool](https://pooltool.io). To do this, it requires that you set up a `pooltool.json` file containing your PoolTool API key and stake pool details. Your PoolTool API key can be found on your pooltool profile page.&#x20;
 
@@ -146,7 +146,7 @@ cat > ${NODE_HOME}/scripts/pooltool.json << EOF
 EOF
 ```
 
-#### Systemd Services
+### Creating systemd Services
 
 CNCLI `sync` and `sendtip` can be easily enabled as `systemd` services. When enabled as `systemd` services:
 
@@ -229,7 +229,7 @@ sudo systemctl start cncli-sync.service
 sudo systemctl start cncli-sendtip.service
 ```
 
-### :tools: Updating cncli from earlier versions
+## :tools: Upgrading CNCLI
 
 ```bash
 RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
@@ -242,7 +242,7 @@ curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-#### Checking that cncli is properly updated
+### Confirming CNCLI Upgrades
 
 ```
 cncli -V
