@@ -16,7 +16,7 @@ For more information and official documentation, please refer to the following l
 
 Many pool operators have asked about how to deploy a stake pool with CNTools. The [official guide can be found here.](https://cardano-community.github.io/guild-operators/#/Scripts/cntools)
 
-# :earth\_africa: Community Inspired Projects
+# :earth\_africa: Community Inspired Projects<a id="projects"></a>
 
 Did you build something new based on this guide? Let us know with a PR or open issue on [github](https://github.com/coincashew/coincashew).
 

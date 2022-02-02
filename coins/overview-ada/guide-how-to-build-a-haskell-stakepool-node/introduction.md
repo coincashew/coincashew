@@ -14,7 +14,7 @@ As of October 30 2021, this is **guide version 5.0.0** and written for **cardano
 * Contribution by [Change Pool](https://change.paradoxicalsphere.com) - Improved Table of Contents
 * Added high-level explanation of Topology API.
 * Increased the cardano-node service unit file timeout from 2 to 300 seconds.
-* Added a [collection of projects](./see-also.md) built by this amazing community.
+* Added a [collection of projects](./see-also.md#projects) built by this amazing community.
 * Added cardano-node RTS flags to reduce chance of missed slot leader checks.
 * Added Leaderlog changes and improvements
 * Increased minimum RAM requirements to 12GB.
