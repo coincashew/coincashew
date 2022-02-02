@@ -1,4 +1,4 @@
-# :checkered\_flag: 18.15 Stake Pool Operator's Best Practices Checklist
+# :checkered\_flag: Stake Pool Operator's Best Practices Checklist
 
 Here are the top problems a stake pool can experience and how to solve them:
 
