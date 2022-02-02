@@ -47,7 +47,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 
 ## :unlock: Recommended Stake Pool Security
 
-If you need ideas on how to harden your stake pool's nodes, refer [to this guide.](./part-i-installation/hardening-an-ubuntu-server.md)
+If you need ideas on how to harden your stake pool's nodes, refer to [this guide](./hardening-an-ubuntu-server.md).
 
 ## :tools: Setup Ubuntu
 
@@ -57,4 +57,4 @@ For instructions on installing **Ubuntu Desktop**, refer [to this guide.](https:
 
 ## :bricks: Rebuilding Nodes
 
-If you are rebuilding or reusing an existing `cardano-node` installation, refer to the section [Resetting an Installation](./part-v-tips/resetting-an-installation.md).
+If you are rebuilding or reusing an existing `cardano-node` installation, refer to the section [Resetting an Installation](../part-v-tips/resetting-an-installation.md).
