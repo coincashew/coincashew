@@ -36,7 +36,7 @@ If you changed your poolMetaData.json, copy **poolMetaDataHash.txt** to your **c
 
 Update the below registration-certificate transaction with your desired stake pool settings.
 
-If you have **multiple relay nodes, **[**refer to section 12**](./#12-register-your-stake-pool) and change your parameters appropriately.
+If you have **multiple relay nodes**, then [change your parameters accordingly](../part-iii-operation/registering-your-stake-pool.md#multiplerelays).
 
 {% hint style="warning" %}
 **metadata-url** must be no longer than 64 characters.
