@@ -1,6 +1,6 @@
 # :money\_with\_wings: Submitting a Simple Transaction
 
-Let's walk through an example to send **10 ADA** to **CoinCashew's tip address** :upside\_down:&#x20;
+Let's walk through an example to send **10 ADA** to **CoinCashew's tip address** :upside\_down:
 
 {% hint style="info" %}
 The minimum amount, or smallest UTXO, you can send in one transaction is 1 ADA.
