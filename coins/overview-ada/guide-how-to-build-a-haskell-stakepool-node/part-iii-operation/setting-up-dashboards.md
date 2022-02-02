@@ -206,7 +206,7 @@ curl -s 127.0.0.1:12798/metrics
 11. Add dashboard by **Upload JSON file**
 12. Click the **Import **button.
 
-![Credits to KAZE stake pool for this dashboard](../../../.gitbook/assets/dashboard-kaze.jpg)
+![Credits to KAZE stake pool for this dashboard](../../../../.gitbook/assets/dashboard-kaze.jpg)
 
 {% hint style="info" %}
 Community contributer **Sansky.de** is sharing a very detailed Grafana tutorial :pray: [https://sanskys.de/dashboard/](https://sanskys.de/dashboard/)
