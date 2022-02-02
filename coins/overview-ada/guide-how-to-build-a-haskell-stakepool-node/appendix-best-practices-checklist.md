@@ -8,3 +8,6 @@ Here are the top problems a stake pool can experience and how to solve them:
 4. **TX processed count** - must be non-zero on your block producer node. Check your network config.
 5. **Time synchronization** - install [chrony](how-to-setup-chrony.md) on all BP/relay nodes.
 6. **Declared pledge is met **- check your pool on [pooltool.io](https://pooltool.io) or [adapools.org](https://adapools.org). Add more ADA to pledge address.
+
+
+
