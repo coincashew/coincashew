@@ -47,7 +47,7 @@ As a stake pool operator for Cardano, you will be competent with the following a
 
 ## :unlock: Recommended Stake Pool Security
 
-If you need ideas on how to harden your stake pool's nodes, refer [to this guide.](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-harden-ubuntu-server)
+If you need ideas on how to harden your stake pool's nodes, refer [to this guide.](./part-i-installation/hardening-an-ubuntu-server.md)
 
 ## :tools: Setup Ubuntu
 
