@@ -250,7 +250,7 @@ Additionally, if you have node-exporter installed for grafana stats, you will ne
 
 ## :woman_technologist: Configuring Topology for Existing Nodes
 
-Finally, add your new **NEW **relay node IP/port information to your **EXISTING **block producer and/or relay node's topology file. Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh`
+Finally, add your new **NEW **relay node IP/port information to your **EXISTING **block producer and/or relay node's topology file. Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh` script.
 
 For your block producer node, you'll want to manually add the new relay node information to your topology.json file.
 
@@ -264,7 +264,7 @@ Example snippet to add to your block producer's topology file. Add a comma to se
  }
 ```
 
-For relay nodes, use the [topologyUpdater process](./#14-configure-your-topology-files) to manage your topology file or modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh`.
+For relay nodes, [manage your topology file](../part-iii-operation/configuring-topology-files.md) or modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh` script.
 
 ## :arrows_counterclockwise: Restarting Nodes
 
