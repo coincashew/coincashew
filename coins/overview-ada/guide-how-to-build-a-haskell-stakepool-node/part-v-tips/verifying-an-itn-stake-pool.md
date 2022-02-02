@@ -30,4 +30,4 @@ cat stakepoolid.sig
 
 Find your owner public key in the file you generated on ITN. This data might be stored in a file ending in `.pub`
 
-Finally, follow [instructions to update your pool registration data](./#18-4-changing-the-pledge-fee-margin-etc) with the pooltool generated **`metadata-url`** and **`metadata-hash`**. Notice the metadata has an "extended" field which proves your ticker ownership since ITN.
+Finally, [update your stake pool information](../part-iv-administration/updating-stake-pool-information.md) with the PoolTool-generated **`metadata-url`** and **`metadata-hash`**. Notice the metadata has an "extended" field that proves your ticker ownership since ITN.
