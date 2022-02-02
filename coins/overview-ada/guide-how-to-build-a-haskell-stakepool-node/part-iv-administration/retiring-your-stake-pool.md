@@ -224,6 +224,6 @@ After retirement completes in 2 epochs:
 
 1\. Verify your pool is retired by checking with a block explorer such as [cardanoscan.io](https://cardanoscan.io)
 2\. Your pool deposit of 500 ADA is returned to your stake address (stake.addr) as a reward
-3\. [Claim stake pool rewards](claiming-stake-pool-rewards.md)
+3\. [Claim stake pool rewards](../part-iv-administration/claiming-stake-pool-rewards.md))
 4\. To send funds to another wallet, [submit a transaction](../part-v-tips/submitting-a-simple-transaction.md)
 {% endhint %}
