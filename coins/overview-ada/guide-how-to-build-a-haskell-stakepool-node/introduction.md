@@ -21,7 +21,7 @@ As of October 30 2021, this is **guide version 5.0.0** and written for **cardano
 * Updated for Alonzo release 1.29.0.
 * Various fixes to testnet  / alonzo / storage requirements / cli commands
 * Updated CNCLI's Leaderlog command with the [stake-snapshot approach](./part-iii-operation/configuring-slot-leader-calculations.md)
-* Added [CNCLI tool](./part-iii-operation/configuring-slot-leader-calculations.md) for sending slot to Pooltool and for LeaderLog scripts
+* Added [CNCLI tool](./part-iii-operation/configuring-slot-leader-calculation.md) for sending slot to Pooltool and for LeaderLog scripts
 * Updated guide for release cardano-node/cli v1.27.0 changes
 * Added [Stake Pool Operator's Best Practices Checklist](./appendix-best-practices-checklist.md)
 * Contribution By [Billionaire Pool](https://www.billionairepool.com) - [Guide to monitor your node security with OSSEC and Slack.](./part-v-tips/monitoring-node-security-using-ossec-server-and-slack.md)
