@@ -53,9 +53,9 @@ sudo systemctl start qcpolsendmytip
 {% endtab %}
 {% endtabs %}
 
-If everything was setup correctly, you should see your pool's height updated on pooltool.io.
+If everything was setup correctly, you should see your pool's height updated on pooltool.io
 
-![Your pool's tip on pooltool.io](../../../.gitbook/assets/tip.png)
+![Your pool's tip on pooltool.io](../../../../.gitbook/assets/tip.png)
 
 {% hint style="warning" %}
 **Tip: **If the script uses too much CPU on your machine, you can lower the frequency it checks for new blocks. Simply change **0.5** in the following script by a value that works for you. The value is in seconds. The original value of the script is **0.1**.
