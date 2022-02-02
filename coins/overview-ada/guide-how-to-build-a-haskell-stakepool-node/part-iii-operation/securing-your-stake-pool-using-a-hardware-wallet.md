@@ -46,7 +46,7 @@ Update stake pool registration certificate to add your new hardware wallet owner
 
 Tailor the below registration-certificate transaction with your pool's settings.
 
-If you have **multiple relay nodes,** then [change your parameters accordingly](./registering-your-stake-pool.md).
+If you have **multiple relay nodes,** then [change your parameters accordingly](./registering-your-stake-pool.md#multiplerelays).
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
