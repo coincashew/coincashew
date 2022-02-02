@@ -57,4 +57,4 @@ For instructions on installing **Ubuntu Desktop**, refer [to this guide.](https:
 
 ## :bricks: Rebuilding Nodes
 
-If you are rebuilding or reusing an existing `cardano-node` installation, refer to [section 18.2 on how to reset the installation.](./#18-2-resetting-the-installation)
+If you are rebuilding or reusing an existing `cardano-node` installation, refer to the section [Resetting an Installation](./part-v-tips/resetting-an-installation.md).
