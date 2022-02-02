@@ -1,7 +1,7 @@
 ### :top: Updating Your Node Height on PoolTool
 
 {% hint style="info" %}
-Credits to [QCPOL](https://cardano.stakepool.quebec) for this addition and credits to [papacarp](https://github.com/papacarp/pooltool.io/tree/master/sendmytip/shell/systemd) which this script is based on. Alternatively, use [cncli's](https://github.com/AndrewWestberg/cncli) pooltool integration as described in the section [Configuring Slot Leader Calculations](../part-iii-operation/configuring-slot-leader-calculations.md).
+Credits to [QCPOL](https://cardano.stakepool.quebec) for this addition and credits to [papacarp](https://github.com/papacarp/pooltool.io/tree/master/sendmytip/shell/systemd) which this script is based on. Alternatively, use [cncli's](https://github.com/AndrewWestberg/cncli) pooltool integration as described in the section [Configuring Slot Leader Calculation](../part-iii-operation/configuring-slot-leader-calculation.md).
 {% endhint %}
 
 When browsing pools on [pooltool.io](https://pooltool.io), you'll notice that there's a column named `height`. It shows the node's current block and let your (future) delegators know that your node is running and up to date.
