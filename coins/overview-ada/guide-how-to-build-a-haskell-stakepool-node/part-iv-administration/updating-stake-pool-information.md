@@ -22,7 +22,7 @@ cardano-cli query protocol-parameters \
 {% endtab %}
 {% endtabs %}
 
-If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. Refer to [section 9 for information.](./#9-register-your-stakepool)&#x20;
+If you're changing your poolMetaData.json, remember to calculate the hash of your metadata file and re-upload the updated poolMetaData.json file. For more details, refer to the section [Registering Your Stake Pool](../part-iii-operation/registering-your-stake-pool.md).
 
 {% tabs %}
 {% tab title="block producer node" %}
