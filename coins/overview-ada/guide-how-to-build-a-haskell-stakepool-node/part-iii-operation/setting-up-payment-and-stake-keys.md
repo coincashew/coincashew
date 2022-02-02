@@ -46,7 +46,7 @@ cardano-cli address key-gen \
     --signing-key-file payment.skey
 ```
 
-&#x20;Create a new stake address key pair: `stake.skey` & `stake.vkey`
+Create a new stake address key pair: `stake.skey` & `stake.vkey`
 
 ```bash
 ###
