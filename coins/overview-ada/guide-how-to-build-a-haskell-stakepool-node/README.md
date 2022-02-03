@@ -5,7 +5,7 @@ description: >-
   node and 1 relay node.
 ---
 
-# Guide: Setting Up a Cardano Stake Pool
+# Setting Up a Cardano Stake Pool
 
 ## :wrench: About This Guide
 
