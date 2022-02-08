@@ -23,7 +23,7 @@ To make sure the file is genuine, the md5 hash should be `f7646132e922b24b140202
 
 You will need your pooltool.io API key.
 
-To get your PoolTool API key:
+**To get your PoolTool API key:**
 
 1\. In your Web browser, navigate to [PoolTool.io](https://pooltool.io/)
 2\. In the Search field, type your stake pool name or ticker.
