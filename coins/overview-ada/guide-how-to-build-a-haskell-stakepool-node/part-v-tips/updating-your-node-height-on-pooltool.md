@@ -21,7 +21,22 @@ md5sum qcpolsendmytip.sh
 
 To make sure the file is genuine, the md5 hash should be `f7646132e922b24b140202e5f5cba3ac`. If it's not, stop here and delete the file with `rm qcpolsendmytip.sh`.
 
-You will need your pooltool.io API key (shown in your profile after registering).
+You will need your pooltool.io API key.
+
+To get your PoolTool API key:
+
+1\. In your Web browser, navigate to [PoolTool.io](https://pooltool.io/)
+2\. In the Search field, type your stake pool name or ticker.
+3\. In the search results, click the *Pool Details* button in the Actions column next to your stake pool.
+4\. On the Pool Details page, click the *Address Details* button next to the Reward Account or Owner Accounts addresses.
+5\. On the Address Detail page, click the *Claim Address* button next to the Bech32 address for your stake pool.
+6\. In the Claim Address dialog, click the *Claim Address* button, then type a secure password for your PoolTool account in the Password field, and then click *Claim Address*
+7\. Send exactly the amount of ADA requested in the Cardano PoolTool dialog from a payment address for the same wallet as the stake address that you want to claim to the requested address.
+8\. When the transaction you submitted in step 7 is confirmed, click *Sign In* on the Cardano PoolTool dialog.
+9\. After signing in, click *Profile* in the left navigation.
+10\. To get your API key, click the *Copy* button next to the API Key field, and then paste the API key as needed.
+
+To configure the `qcpolsendmytip.sh` script, type:
 
 ```bash
 sed -i qcpolsendmytip.sh -e "s|CFG_MY_POOL_ID|$(cat stakepoolid.txt)|"
