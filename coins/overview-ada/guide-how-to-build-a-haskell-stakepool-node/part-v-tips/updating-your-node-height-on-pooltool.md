@@ -73,7 +73,7 @@ If everything was setup correctly, you should see your pool's height updated on 
 ![Your pool's tip on pooltool.io](../../../../.gitbook/assets/tip.png)
 
 {% hint style="info" %}
-In the `qcpolsendmytip.sh` script, the result of posting to the PoolTool API server is assigned to a variable named `response`. When posting to the API server is successful, then the result is `{"success":true,"dev":true,"message":null}`. If posting to the API server returns `{"success":false,"dev":true,"message":"Unknown API ID"}` then confirm that your API key is correct in the script. If the issue is not resolved, then open an issue on [GitHub](https://github.com/papacarp/pooltool.io/issues).
+In the `qcpolsendmytip.sh` script, the result of posting to the PoolTool API server is assigned to a variable named `response`. When posting to the API server is successful, then the result is `{"success":true,"dev":true,"message":null}`. If posting to the API server returns `{"success":false,"dev":true,"message":"Unknown API ID"}` then confirm that your API key is correct in the script. If the issue continues, then open a new issue on [GitHub](https://github.com/papacarp/pooltool.io/issues).
 
 {% hint style="warning" %}
 **Tip: **If the script uses too much CPU on your machine, you can lower the frequency it checks for new blocks. Simply change **0.5** in the following script by a value that works for you. The value is in seconds. The original value of the script is **0.1**.
