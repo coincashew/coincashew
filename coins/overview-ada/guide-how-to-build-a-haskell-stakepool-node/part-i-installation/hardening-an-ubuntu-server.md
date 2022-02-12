@@ -208,6 +208,10 @@ sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
+{% hint style="info" %}
+By default when enabled, the `unattended-upgrades` service only installs security updates automatically. To configure unattended upgrades, edit the `/etc/apt/apt.conf.d/50unattended-upgrades` file. For more details, see [How to Setup & Configure Unattended Upgrades on Ubuntu 20.04](https://www.linuxcapable.com/how-to-setup-configure-unattended-upgrades-on-ubuntu-20-04/), for example.
+{% endhint %}
+
 ## :teddy\_bear: Disabling the root Account
 
 System admins should not frequently log in as root in order to maintain server security. Instead, you can use sudo execute that require low-level privileges.
