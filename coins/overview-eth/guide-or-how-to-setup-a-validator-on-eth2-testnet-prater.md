@@ -1048,7 +1048,7 @@ Install rust dependencies.
 
 ```
 sudo apt-get update
-sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev
+sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev libclang-dev clang
 ```
 
 
