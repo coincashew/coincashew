@@ -586,6 +586,8 @@ User            = $(whoami)
 ExecStart       = $(echo $HOME)/besu/bin/besu --network=mainnet --sync-mode=FAST --pruning-enabled=true --metrics-enabled --rpc-http-enabled --data-path="$HOME/.besu"
 Restart         = on-failure
 RestartSec      = 3
+KillSignal      = SIGINT
+TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -673,6 +675,8 @@ User            = $(whoami)
 ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --baseDbPath $HOME/.nethermind --Metrics.Enabled true --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
 Restart         = on-failure
 RestartSec      = 3
+KillSignal      = SIGINT
+TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -798,7 +802,7 @@ ExecStart       = $HOME/erigon/build/bin/erigon --datadir /var/lib/erigon --chai
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
-TimeoutStopSec  = 5
+TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -824,11 +828,11 @@ After           = eth1.service
 Type            = simple
 User            = $USER
 ExecStartPre	  = /bin/sleep 3
-ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9089 --datadir /var/lib/erigon --http.api=eth,erigon,web3,net,debug,trace,txpool,shh
+ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9089 --datadir /var/lib/erigon --http.api=eth,erigon,web3,net,debug,trace,txpool,shh --txpool.api.addr=localhost:9089
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
-TimeoutStopSec  = 5
+TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = eth1.service

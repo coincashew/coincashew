@@ -497,7 +497,8 @@ User            = $(whoami)
 ExecStart       = /usr/bin/geth --http --goerli --metrics --pprof
 Restart         = on-failure
 RestartSec      = 3
-TimeoutSec      = 300
+KillSignal      = SIGINT
+TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -602,6 +603,8 @@ User            = $(whoami)
 ExecStart       = $(echo $HOME)/besu/bin/besu --network=goerli --sync-mode=FAST --pruning-enabled=true --metrics-enabled --rpc-http-enabled --data-path="$HOME/.besu_goerli"
 Restart         = on-failure
 RestartSec      = 3
+KillSignal      = SIGINT
+TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -689,6 +692,8 @@ User            = $(whoami)
 ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --config goerli --baseDbPath $HOME/.nethermind_goerli --Metrics.Enabled true --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
 Restart         = on-failure
 RestartSec      = 3
+KillSignal      = SIGINT
+TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -814,7 +819,7 @@ ExecStart       = $HOME/erigon/build/bin/erigon --datadir /var/lib/erigon --chai
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
-TimeoutStopSec  = 5
+TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -840,11 +845,11 @@ After           = eth1.service
 Type            = simple
 User            = $USER
 ExecStartPre	  = /bin/sleep 3
-ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9089 --datadir /var/lib/erigon --http.api=eth,erigon,web3,net,debug,trace,txpool,shh  --txpool.api.addr=localhost:9089
+ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9089 --datadir /var/lib/erigon --http.api=eth,erigon,web3,net,debug,trace,txpool,shh --txpool.api.addr=localhost:9089
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
-TimeoutStopSec  = 5
+TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = eth1.service
@@ -938,6 +943,8 @@ User            = $(whoami)
 ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli --metrics --metrics-port=6060
 Restart         = on-failure
 RestartSec      = 3
+KillSignal      = SIGINT
+TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = multi-user.target
@@ -2146,9 +2153,9 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 
 
 
-#### :gear: 4.2. Download the Prater testnet genesis state file
+#### :file\_folder: 4.2. Download the Prater testnet genesis state file
 
-```bash
+```
 wget https://github.com/eth2-clients/eth2-networks/blob/master/shared/prater/genesis.ssz $HOME/prysm/genesis.ssz
 ```
 
@@ -2241,7 +2248,7 @@ After           = network-online.target
 [Service]
 Type            = simple
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --prater --genesis-state=$(echo $HOME)/prysm/genesis.ssz --p2p-max-peers=45 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --prater --p2p-max-peers=45 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
 Restart         = on-failure
 
 [Install]
@@ -2349,7 +2356,7 @@ sudo systemctl stop beacon-chain
 
 
 
-#### :dna: 4.5. Start the validator <a href="#9-start-the-validator" id="9-start-the-validator"></a>
+#### :dna: 4.6. Start the validator <a href="#9-start-the-validator" id="9-start-the-validator"></a>
 
 
 
