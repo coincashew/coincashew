@@ -141,7 +141,7 @@
   * [How to Run a Polkadot Validator](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-validate-polkadot)
   * [How to Secure a Polkadot Validator](https://github.com/w3f/polkadot-secure-validator/)
 * [Cardano: ADA](coins/overview-ada/README.md)
-  * [Guide: Setting Up a Cardano Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
+  * [Guide: How to Set Up a Cardano Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
     * [PART I - INSTALLATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation.md)
 	  * [Prerequisites](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/prerequisites.md)
       * [Hardening an Ubuntu Server](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/hardening-an-ubuntu-server.md)

@@ -5,11 +5,11 @@ description: >-
   node and 1 relay node.
 ---
 
-# Setting Up a Cardano Stake Pool
+# How to Set Up a Cardano Stake Pool
 
 ## :wrench: About This Guide
 
-The *Setting Up a Cardano Stake Pool* guide aims to give you complete, step-by-step instructions to implement and maintain a secure Cardano stake pool operating on the Cardano mainnet blockchain using the currently recommended software versions.
+The *How to Set Up a Cardano Stake Pool* guide aims to give you complete, step-by-step instructions to implement and maintain a secure Cardano stake pool operating on the Cardano mainnet blockchain using the currently recommended software versions.
 
 The guide includes the following parts:
 
