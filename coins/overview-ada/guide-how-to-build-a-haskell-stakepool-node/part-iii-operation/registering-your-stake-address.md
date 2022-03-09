@@ -1,4 +1,4 @@
-# :woman\_technologist: Registering Your Stake Address
+# Registering Your Stake Address
 
 Create a certificate, `stake.cert`, using the `stake.vkey`
 
@@ -12,9 +12,9 @@ cardano-cli stake-address registration-certificate \
 {% endtab %}
 {% endtabs %}
 
-Copy **stake.cert **to your **hot environment.**
+Copy **stake.cert** to your **hot environment.**
 
-You need to find the **tip **of the blockchain to set the **invalid-hereafter **parameter properly.
+You need to find the \*\*tip \*\*of the blockchain to set the \*\*invalid-hereafter \*\*parameter properly.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -124,7 +124,7 @@ echo Change Output: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build your transaction which will register your stake address.&#x20;
+Build your transaction which will register your stake address.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -142,7 +142,7 @@ cardano-cli transaction build-raw \
 
 Copy **tx.raw** to your **cold environment**.
 
-Sign the transaction with both the payment and stake secret keys.&#x20;
+Sign the transaction with both the payment and stake secret keys.
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}

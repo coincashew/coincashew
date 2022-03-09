@@ -1,4 +1,4 @@
-# 🌙 Retiring Your Stake Pool
+# Retiring Your Stake Pool
 
 First, generate the protocol-parameters.
 
@@ -45,15 +45,15 @@ echo latest epoch for retirement is: ${maxRetirementEpoch}
 {% endtabs %}
 
 {% hint style="info" %}
-****:construction: **Example**: if we are in epoch 39 and poolRetireMaxEpoch is 18,
+:construction: **Example**: if we are in epoch 39 and poolRetireMaxEpoch is 18,
 
-* the earliest epoch for retirement is 40 ( current epoch  + 1).
-* the latest epoch for retirement is 57 ( poolRetireMaxEpoch + current epoch).&#x20;
+* the earliest epoch for retirement is 40 ( current epoch + 1).
+* the latest epoch for retirement is 57 ( poolRetireMaxEpoch + current epoch).
 
 Let's pretend we wish to retire as soon as possible in epoch 40.
 {% endhint %}
 
-Create the deregistration certificate and save it as `pool.dereg.`  Update the epoch to your desired retirement epoch, usually the earliest epoch or asap.
+Create the deregistration certificate and save it as `pool.dereg.` Update the epoch to your desired retirement epoch, usually the earliest epoch or asap.
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -99,7 +99,7 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-Find the **tip **of the blockchain to set the **invalid-hereafter **parameter properly.
+Find the **tip** of the blockchain to set the **invalid-here** after parameter properly.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -155,7 +155,7 @@ echo txOut: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build the transaction.&#x20;
+Build the transaction.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -173,7 +173,7 @@ cardano-cli transaction build-raw \
 
 Copy **tx.raw** to your **cold environment.**
 
-Sign the transaction.&#x20;
+Sign the transaction.
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -222,8 +222,5 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 {% hint style="info" %}
 After retirement completes in 2 epochs:
 
-1\. Verify your pool is retired by checking with a block explorer such as [cardanoscan.io](https://cardanoscan.io)
-2\. Your pool deposit of 500 ADA is returned to your stake address (stake.addr) as a reward
-3\. [Claim stake pool rewards](../part-iv-administration/claiming-stake-pool-rewards.md)
-4\. To send funds to another wallet, [submit a transaction](../part-v-tips/submitting-a-simple-transaction.md)
+1\. Verify your pool is retired by checking with a block explorer such as [cardanoscan.io](https://cardanoscan.io) 2. Your pool deposit of 500 ADA is returned to your stake address (stake.addr) as a reward 3. [Claim stake pool rewards](claiming-stake-pool-rewards.md) 4. To send funds to another wallet, [submit a transaction](../part-v-tips/submitting-a-simple-transaction.md)
 {% endhint %}

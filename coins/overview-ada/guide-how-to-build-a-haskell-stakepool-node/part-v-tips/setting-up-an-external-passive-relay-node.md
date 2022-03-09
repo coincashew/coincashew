@@ -14,11 +14,11 @@ Major credits and appreciation to the fine folks at [Cardano Community Guild Ope
 **Relay nodes** do not have any keys, so they cannot produce blocks. Instead, relays act as proxies between the core network nodes and the Internet, establishing a security perimeter around the core, block-producing network nodes. Since external nodes cannot communicate with block-producing nodes directly, relay nodes ensure that the integrity of the core nodes and the blockchain remains intact, even if one or more relays become compromised.
 {% endhint %}
 
-## :last_quarter_moon_with_face: Prerequisites
+## :last\_quarter\_moon\_with\_face: Prerequisites
 
 * A different server/VM (not located on the same machine as your block-producer node)
 
-## :flying_saucer: Running the prereqs.sh Script
+## :flying\_saucer: Running the prereqs.sh Script
 
 Installs prerequisite dependencies and creates folder structure.
 
@@ -62,7 +62,7 @@ Reload environment variables.
 Familiarize yourself with the [folder structure](https://cardano-community.github.io/guild-operators/#/basics?id=folder-structure) created by CNtools.
 {% endhint %}
 
-## :woman_juggling: Building the Cardano Node and Command Line Interface
+## :woman\_juggling: Building the Cardano Node and Command Line Interface
 
 To clone the git repository, type:
 
@@ -71,6 +71,7 @@ cd ~/git
 git clone https://github.com/input-output-hk/cardano-node
 cd cardano-node
 ```
+
 To compile binaries, type the following commands where `<NodeVersion>` is the node version number or branch that you want to build:
 
 ```bash
@@ -96,7 +97,7 @@ cardano-node version
 cardano-cli version
 ```
 
-## :hammer_pick: Using systemd Services
+## :hammer\_pick: Using systemd Services
 
 Using systemd services to run your Cardano nodes offers the following benefits:
 
@@ -139,7 +140,7 @@ sudo systemctl enable cnode.service
 Nice work. Your node is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-###   :white_check_mark: Example systemd Commands
+### :white\_check\_mark: Example systemd Commands
 
 To confirm that the node service is active, type:
 
@@ -173,13 +174,13 @@ To filter logs, type:
 journalctl --unit=cnode --since=yesterday
 ```
 
-<p style="text-align: center;">OR</p>
+OR
 
 ```
 journalctl --unit=cnode --since=today
 ```
 
-<p style="text-align: center;">OR</p>
+OR
 
 ```
 journalctl --unit=cnode --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
@@ -218,15 +219,15 @@ Sample output of Guild Live View
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
-## :octagonal_sign: Configuring and Reviewing the Relay Node Topology File
+## :octagonal\_sign: Configuring and Reviewing the Relay Node Topology File
 
-Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh` script to configure your relay node's connections to your other relays and block producer node. Refer to the [official documentation for more info.](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater?id=download-and-configure-topologyupdatersh)
+Modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script to configure your relay node's connections to your other relays and block producer node. Refer to the [official documentation for more info.](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater?id=download-and-configure-topologyupdatersh)
 
 ```bash
 nano $CNODE_HOME/scripts/topologyUpdater.sh
 ```
 
-Deploy the scripts with  `deploy-as-systemd.sh` to setup and schedule the execution. This will handle automatically sending updates to the Topology Updater API as well as fetching new peers whenever the node is restarted.
+Deploy the scripts with `deploy-as-systemd.sh` to setup and schedule the execution. This will handle automatically sending updates to the Topology Updater API as well as fetching new peers whenever the node is restarted.
 
 ```bash
 $CNODE_HOME/scripts/deploy-as-systemd.sh
@@ -240,17 +241,17 @@ cat $CNODE_HOME/files/topology.json
 
 ## :fire: Configuring Port Forwarding and/or Firewall
 
-Specific to your networking setup or cloud provider settings, ensure your relay node's port 6000 is open and reachable. 
+Specific to your networking setup or cloud provider settings, ensure your relay node's port 6000 is open and reachable.
 
 {% hint style="danger" %}
-****:sparkles: **Port Forwarding Tip: **Check that your relay port 6000 is open with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+:sparkles: **Port Forwarding Tip**: Check that your relay port 6000 is open with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
 Additionally, if you have node-exporter installed for grafana stats, you will need to open ports 9100 and 12798. Don't forget to update `prometheus.yml` on your prometheus server (aka relaynode1). Restart prometheus service for the new relay node to appear in your dashboard.
 
-## :woman_technologist: Configuring Topology for Existing Nodes
+## :woman\_technologist: Configuring Topology for Existing Nodes
 
-Finally, add your new **NEW **relay node IP/port information to your **EXISTING **block producer and/or relay node's topology file. Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh` script.
+Finally, add your **NEW** relay node IP/port information to your **EXISTING** block producer and/or relay node's topology file. Modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
 
 For your block producer node, you'll want to manually add the new relay node information to your topology.json file.
 
@@ -264,9 +265,9 @@ Example snippet to add to your block producer's topology file. Add a comma to se
  }
 ```
 
-For relay nodes, [manage your topology file](../part-iii-operation/configuring-topology-files.md) or modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh` script.
+For relay nodes, [manage your topology file](../part-iii-operation/configuring-topology-files.md) or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
 
-## :arrows_counterclockwise: Restarting Nodes
+## :arrows\_counterclockwise: Restarting Nodes
 
 To refresh topology configurations for a node, you need to restart the node.
 
@@ -280,7 +281,7 @@ sudo systemctl reload-or-restart cnode
 
 2\. Repeat step 1 for each node having updated topology configurations.
 
-## :confetti_ball: Testing the Connection
+## :confetti\_ball: Testing the Connection
 
 On the Guild LiveView screen, press `P` to view the peer list. You should see the connection to other node's IP address.
 
@@ -289,23 +290,19 @@ On the Guild LiveView screen, press `P` to view the peer list. You should see th
 {% endhint %}
 
 {% hint style="danger" %}
-****:fire: **Critical Security Reminder:** Relay nodes must not contain any **`operational certifications`, `vrf`, `skey` or `cold`**` `**keys**.
+:fire: **Critical Security Reminder:** Relay nodes must not contain any **`operational certifications`, `vrf`, `skey` or `cold`**` ``` **keys**.
 {% endhint %}
 
 {% hint style="success" %}
-Congrats on completing the guide. :sparkles: 
+Congrats on completing the guide. :sparkles:
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it. 
+Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
 
-It really energizes us to keep creating the best crypto guides. 
+It really energizes us to keep creating the best crypto guides.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray: 
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:
 
-Any feedback and all pull requests much appreciated. :first_quarter_moon_with_face: 
-
-Hang out and chat with fellow stake pool operators on Discord @
-
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley: 
+Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:
 
 Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}
