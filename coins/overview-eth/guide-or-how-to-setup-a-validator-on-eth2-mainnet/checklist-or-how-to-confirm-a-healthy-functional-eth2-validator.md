@@ -8,12 +8,10 @@ description: >-
 # Checklist | How to confirm a healthy functional ETH staking validator
 
 {% hint style="info" %}
-:confetti\_ball: **2021-12 Gitcoin Grant Round 12:** We improve this guide with your support!&#x20;
+:confetti\_ball: **2022-3 Gitcoin Grant Round 13**
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
 {% endhint %}
-
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
 ## :fast\_forward: Quick steps guide
 

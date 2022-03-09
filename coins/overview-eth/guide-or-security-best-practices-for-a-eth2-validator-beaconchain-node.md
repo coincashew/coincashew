@@ -5,7 +5,7 @@ description: Quick steps to secure your node.
 # Guide | Security Best Practices for a ETH staking validator node
 
 {% hint style="info" %}
-:confetti\_ball: **2021-12 Gitcoin Grant Round 12:** We improve this guide with your support!&#x20;
+:confetti\_ball: **2022-3 Gitcoin Grant Round 13:** We improve this guide with your support!&#x20;
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
 {% endhint %}
@@ -636,7 +636,7 @@ Be sure to review the [Checklist | How to confirm a healthy functional ETH2 vali
 
 ## :robot: Start staking by building a validator
 
-### Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/) and here for our [Testnet guide](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
+### Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 
 {% hint style="success" %}
 Congrats on completing the guide. :sparkles:&#x20;
@@ -648,15 +648,7 @@ It really energizes us to keep creating the best crypto guides.&#x20;
 Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:&#x20;
 
 Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:&#x20;
-
-Hang out and chat with fellow stakers on Discord @
-
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley:&#x20;
 {% endhint %}
-
-:confetti\_ball: **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
-
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
 ## :rocket: References
 

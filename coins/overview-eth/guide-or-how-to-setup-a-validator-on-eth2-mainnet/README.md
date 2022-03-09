@@ -9,13 +9,13 @@ description: >-
 ## :new:Announcements
 
 {% hint style="info" %}
-:confetti\_ball: **2021-12 Gitcoin Grant Round 12:** We improve this guide with your support!
+:confetti\_ball: **2022-03 Gitcoin Grant Round 13**
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏
 {% endhint %}
 
 {% hint style="success" %}
-As of Dec 1 2021, this is **guide version 3.7.0** and written for **Ethereum mainnet**:grin:
+As of March 8 2022, this is **guide version 3.8.0** and written for **Ethereum mainnet**:grin:
 {% endhint %}
 
 {% hint style="info" %}

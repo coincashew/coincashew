@@ -6,7 +6,7 @@ description: >-
 
 # How to setup dynamic DNS (DDNS)
 
-## :fast_forward: Quick steps guide
+## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
@@ -33,7 +33,7 @@ There are many [alternative DDNS services](https://hackerspad.net/software/duck-
 
 For the purpose of this tutorial, we will be using [DuckDNS.org](https://www.duckdns.org/install.jsp)
 
-1\. Sign in and create an account with your preferred social media login. 
+1\. Sign in and create an account with your preferred social media login.&#x20;
 
 2\. Follow the instructions on[ how to setup duckdns for linux cron.](https://www.duckdns.org/install.jsp)
 
@@ -61,16 +61,16 @@ sudo systemctl restart beacon-chain
 {% endtabs %}
 
 {% hint style="success" %}
-Nice work. You're running a DDNS now. 
+Nice work. You're running a DDNS now.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
 Be sure to familiarize yourself with the [official docs and faqs.](https://www.duckdns.org/faqs.jsp)
 {% endhint %}
 
-##  :robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨
@@ -82,10 +82,6 @@ It really energizes us to keep creating the best crypto guides.
 Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
 
 Any feedback and all pull requests much appreciated. 🌛
-
-Hang out and chat with fellow stakers on Discord @
-
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
 
 ## :jigsaw: Reference Material

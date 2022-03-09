@@ -6,7 +6,7 @@ description: >-
 
 # How to run a slasher
 
-## :fast_forward: Quick steps guide
+## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
@@ -81,16 +81,16 @@ sudo systemctl restart beacon-chain
 {% endtabs %}
 
 {% hint style="success" %}
-Nice work. You're running a slasher now. :dagger: :robot: :knife: 
+Nice work. You're running a slasher now. :dagger: :robot: :knife:&#x20;
 {% endhint %}
 
 {% hint style="info" %}
 Be sure to familiarize yourself with the [reference material for detailed official slasher documentation.](how-to-run-a-slasher.md#reference-material)
 {% endhint %}
 
-##  :robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨
@@ -102,15 +102,7 @@ It really energizes us to keep creating the best crypto guides.
 Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
 
 Any feedback and all pull requests much appreciated. 🌛
-
-Hang out and chat with fellow stakers on Discord @
-
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
-
-:confetti_ball: **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
-
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
 ## :jigsaw: Reference Material
 

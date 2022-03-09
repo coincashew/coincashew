@@ -6,7 +6,7 @@ description: >-
 
 # How to add a new validator to an existing setup with existing seed words
 
-## :fast_forward: Quick steps guide
+## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
@@ -53,7 +53,7 @@ Reminder to use the same **keystore password.**
 
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-:fire:**Pro Security Tip**: Run the **eth2deposit-cli tool **and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
+:fire:**Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
 {% endhint %}
 
 Follow this [ethstaker.cc](https://ethstaker.cc) exclusive for the low down on making a bootable usb.
@@ -76,7 +76,7 @@ Run the existing-mnemonic command in the previous tabs.
 
 4\. Finish by stopping your validator, importing the new validator key(s), restarting your validator and verifying the logs ensuring everything still works without error. [Review steps 2 and onward of the main guide if you need a refresher.](./#2-signup-to-be-a-validator-at-the-launchpad)
 
-5\. Finally, verify your **existing **validator's attestations are working with public block explorer such as
+5\. Finally, verify your **existing** validator's attestations are working with public block explorer such as
 
 [https://beaconcha.in/](https://beaconcha.in) or [https://beaconscan.com/](https://beaconscan.com)
 
@@ -86,9 +86,9 @@ Enter your validator's pubkey to view its status.
 Your additional validators are now in the activation queue waiting their turn. Check your estimated activation time at [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app)
 {% endhint %}
 
-##  :robot: Start staking by building a validator <a href="start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨
@@ -100,12 +100,4 @@ It really energizes us to keep creating the best crypto guides.
 Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
 
 Any feedback and all pull requests much appreciated. 🌛
-
-Hang out and chat with fellow stakers on Discord @
-
-​[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
-
-:confetti_ball: **2020-12 Update**: Thanks to all [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew) contributors, where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact. Funding complete! Thank you!🙏
-
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
