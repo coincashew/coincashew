@@ -86,6 +86,10 @@ As a stake pool operator for Cardano, you will be competent with the following a
 
 If you need ideas on how to harden your stake pool's nodes, refer [to this guide.](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-harden-ubuntu-server)
 
+### :tools: Recommended Software Pre-requisites
+
+Highly accurate system time is critical for operating a stake pool and therefore considered mandatory. For instructions, refer [to this guide.](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony)
+
 ### :tools: Setup Ubuntu
 
 If you need to install **Ubuntu Server**, refer [to this guide.](https://ubuntu.com/tutorials/install-ubuntu-server#1-overview)
@@ -202,7 +206,7 @@ source $HOME/.bashrc
 As you work through this guide, replace every instance of** **CLI parameter
 
 ```bash
- --mainnet 
+ --mainnet
 ```
 
 with&#x20;
@@ -354,7 +358,7 @@ On your **block-producer node, **run the following. Update the **addr **with you
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF 
+cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF
  {
     "Producers": [
       {
@@ -392,7 +396,7 @@ On your **relaynode1, **run** **with the following after updating with your bloc
 {% tabs %}
 {% tab title="relaynode1" %}
 ```bash
-cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF 
+cat > $NODE_HOME/${NODE_CONFIG}-topology.json << EOF
  {
     "Producers": [
       {
@@ -474,7 +478,7 @@ The startup script contains all the variables needed to run a cardano-node such 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cat > $NODE_HOME/startBlockProducingNode.sh << EOF 
+cat > $NODE_HOME/startBlockProducingNode.sh << EOF
 #!/bin/bash
 DIRECTORY=$NODE_HOME
 PORT=6000
@@ -490,7 +494,7 @@ EOF
 
 {% tab title="relaynode1" %}
 ```bash
-cat > $NODE_HOME/startRelayNode1.sh << EOF 
+cat > $NODE_HOME/startRelayNode1.sh << EOF
 #!/bin/bash
 DIRECTORY=$NODE_HOME
 PORT=6000
@@ -516,7 +520,7 @@ chmod +x $NODE_HOME/startBlockProducingNode.sh
 
 {% tab title="relaynode1" %}
 ```bash
-chmod +x $NODE_HOME/startRelayNode1.sh 
+chmod +x $NODE_HOME/startRelayNode1.sh
 ```
 {% endtab %}
 {% endtabs %}
@@ -534,14 +538,14 @@ Run the following to create a **systemd unit file** to define your`cardano-node.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cat > $NODE_HOME/cardano-node.service << EOF 
+cat > $NODE_HOME/cardano-node.service << EOF
 # The Cardano node service (part of systemd)
-# file: /etc/systemd/system/cardano-node.service 
+# file: /etc/systemd/system/cardano-node.service
 
 [Unit]
 Description     = Cardano node service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = ${USER}
@@ -564,14 +568,14 @@ EOF
 
 {% tab title="relaynode1" %}
 ```bash
-cat > $NODE_HOME/cardano-node.service << EOF 
+cat > $NODE_HOME/cardano-node.service << EOF
 # The Cardano node service (part of systemd)
-# file: /etc/systemd/system/cardano-node.service 
+# file: /etc/systemd/system/cardano-node.service
 
 [Unit]
 Description     = Cardano node service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = ${USER}
@@ -873,7 +877,7 @@ Update your startup script with the new** KES, VRF and Operation Certificate.**
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cat > $NODE_HOME/startBlockProducingNode.sh << EOF 
+cat > $NODE_HOME/startBlockProducingNode.sh << EOF
 DIRECTORY=$NODE_HOME
 PORT=6000
 HOSTADDR=0.0.0.0
@@ -1046,7 +1050,7 @@ Create`extractPoolStakingKeys.sh` script.
 ### On air-gapped offline machine,
 ###
 cat > extractPoolStakingKeys.sh << HERE
-#!/bin/bash 
+#!/bin/bash
 
 CADDR=\${CADDR:=\$( which cardano-address )}
 [[ -z "\$CADDR" ]] && ( echo "cardano-address cannot be found, exiting..." >&2 ; exit 127 )
@@ -1056,14 +1060,14 @@ CCLI=\${CCLI:=\$( which cardano-cli )}
 
 OUT_DIR="\$1"
 [[ -e "\$OUT_DIR"  ]] && {
-       	echo "The \"\$OUT_DIR\" is already exist delete and run again." >&2 
+       	echo "The \"\$OUT_DIR\" is already exist delete and run again." >&2
        	exit 127
 } || mkdir -p "\$OUT_DIR" && pushd "\$OUT_DIR" >/dev/null
 
 shift
 MNEMONIC="\$*"
 
-# Generate the master key from mnemonics and derive the stake account keys 
+# Generate the master key from mnemonics and derive the stake account keys
 # as extended private and public keys (xpub, xprv)
 echo "\$MNEMONIC" |\
 "\$CADDR" key from-recovery-phrase Shelley > root.prv
@@ -1088,7 +1092,7 @@ echo "Generated from 1852H/1815H/0H/{0,2}/0"
 cat base.addr_candidate
 echo
 
-# XPrv/XPub conversion to normal private and public key, keep in mind the 
+# XPrv/XPub conversion to normal private and public key, keep in mind the
 # keypars are not a valind Ed25519 signing keypairs.
 TESTNET_MAGIC="--testnet-magic 1097911063"
 MAINNET_MAGIC="--mainnet"
@@ -1758,7 +1762,7 @@ Now that you have your stake pool ID,  verify it's included in the blockchain.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) --mainnet 
+cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) --mainnet
 ```
 {% endtab %}
 {% endtabs %}
@@ -1801,7 +1805,7 @@ Create the `topologyUpdater.sh` script which publishes your node information to 
 cat > $NODE_HOME/topologyUpdater.sh << EOF
 #!/bin/bash
 # shellcheck disable=SC2086,SC2034
- 
+
 USERNAME=$(whoami)
 CNODE_PORT=6000 # must match your relay node port as set in the startup command
 CNODE_HOSTNAME="CHANGE ME"  # optional. must resolve to the IP you are requesting from
@@ -1814,12 +1818,12 @@ CNODE_VALENCY=1   # optional for multi-IP hostnames
 NWMAGIC=\$(jq -r .networkMagic < \$GENESIS_JSON)
 [[ "\${NETWORKID}" = "Mainnet" ]] && HASH_IDENTIFIER="--mainnet" || HASH_IDENTIFIER="--testnet-magic \${NWMAGIC}"
 [[ "\${NWMAGIC}" = "764824073" ]] && NETWORK_IDENTIFIER="--mainnet" || NETWORK_IDENTIFIER="--testnet-magic \${NWMAGIC}"
- 
+
 export PATH="\${CNODE_BIN}:\${PATH}"
 export CARDANO_NODE_SOCKET_PATH="\${CNODE_HOME}/db/socket"
- 
+
 blockNo=\$(/usr/local/bin/cardano-cli query tip \${NETWORK_IDENTIFIER} | jq -r .block )
- 
+
 # Note:
 # if you run your node in IPv4/IPv6 dual stack network configuration and want announced the
 # IPv4 address only please add the -4 parameter to the curl command below  (curl -4 -s ...)
@@ -1832,7 +1836,7 @@ fi
 if [ ! -d \${CNODE_LOG_DIR} ]; then
   mkdir -p \${CNODE_LOG_DIR};
 fi
- 
+
 curl -s "https://api.clio.one/htopology/v1/?port=\${CNODE_PORT}&blockNo=\${blockNo}&valency=\${CNODE_VALENCY}&magic=\${NWMAGIC}\${T_HOSTNAME}" | tee -a \$CNODE_LOG_DIR/topologyUpdater_lastresult.json
 EOF
 ```
