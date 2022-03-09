@@ -1,4 +1,4 @@
-# Verifying Stake Pool Operation
+# :hatching\_chick: Verifying Stake Pool Operation
 
 Your stake pool ID can be computed with:
 
@@ -11,9 +11,9 @@ cat stakepoolid.txt
 {% endtab %}
 {% endtabs %}
 
-Copy **stakepoolid.txt** to your **hot environment.**
+Copy **stakepoolid.txt **to your **hot environment.**
 
-Now that you have your stake pool ID, verify it's included in the blockchain.
+Now that you have your stake pool ID,  verify it's included in the blockchain.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -24,7 +24,7 @@ cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) --mainne
 {% endtabs %}
 
 {% hint style="info" %}
-A non-empty string return means you're registered! :clap:
+A non-empty string return means you're registered! :clap:&#x20;
 {% endhint %}
 
 With your stake pool ID, now you can find your data on block explorers such as [https://pooltool.io/](https://pooltool.io)

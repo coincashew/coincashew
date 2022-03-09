@@ -1,4 +1,4 @@
-# Rotating KES Keys
+# :robot: Rotating KES Keys
 
 {% hint style="info" %}
 You are required to regenerate the hot keys and issue a new operational certificate, a process called rotating the KES keys, when the hot keys expire.
@@ -46,11 +46,11 @@ cat $HOME/cold-keys/node.counter
 ```
 
 {% hint style="warning" %}
-A valid value of your **node.counter** MUST be greater than a recently created block's **OpCertC** value.
+A valid value of your **node.counter** MUST be greater than a recently created block's **OpCertC** value.&#x20;
 
-To find your pool's current **OpCertC** value, search for your pool on [https://adapools.org/](https://adapools.org) and check the **Blocks** tab, then look at the **OpCertC** column.
+To find your pool's current **OpCertC **value, search for your pool on [https://adapools.org/](https://adapools.org) and check the **Blocks** tab, then look at the **OpCertC **column.
 
-For example, if your **OpCerC** value is 5, then your node.counter should be`"Next certificate issue number: 6"`
+For example, if your **OpCerC **value is 5, then your node.counter should be`"Next certificate issue number: 6"`
 
 If not, then you need to increment the counter by running the below command with issue-op-cert.
 {% endhint %}
@@ -96,5 +96,5 @@ killall -s 2 cardano-node
 {% endtabs %}
 
 {% hint style="info" %}
-:bulb: **Best practice recommendation**: It's now a good time to make a new backup of your new `node.counter` file and `cold-keys` directory to another USB drive or other offline location.
+****:bulb: **Best practice recommendation**: It's now a good time to make a new backup of your new `node.counter` file and `cold-keys` directory to another USB drive or other offline location.
 {% endhint %}

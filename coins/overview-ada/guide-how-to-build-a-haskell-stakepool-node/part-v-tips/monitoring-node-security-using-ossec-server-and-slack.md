@@ -23,12 +23,12 @@ The guide is kindly hosted by our Coincashew friends. Use [cointr.ee to find our
 If you need ideas on how to harden your stake pool's nodes, refer to
 
 {% content-ref url="../part-i-installation/hardening-an-ubuntu-server.md" %}
-[hardening-an-ubuntu-server.md](../part-i-installation/hardening-an-ubuntu-server.md)
+[Hardening an Ubuntu Server](../part-i-installation/hardening-an-ubuntu-server.md)
 {% endcontent-ref %}
 
 These are very recommended steps to perform before configuring a monitoring service.
 
-## :triangular\_ruler: Install packages
+## :triangular_ruler: Install packages
 
 Some packages will be required for the installation. You will need
 
@@ -44,7 +44,7 @@ On Ubuntu run this command to install them
 sudo apt install libz-dev libssl-dev libpcre2-dev build-essential libevent-dev
 ```
 
-## :flying\_saucer: Download OSSEC
+## :flying_saucer: Download OSSEC
 
 First of all, we will need to get a fresh copy of OSSEC. We will download it from github and then checkout the latest stable version.
 
@@ -247,13 +247,13 @@ sudo systemctl daemon-reload
 
 For now we won't start the service, as we want to configure the integration with Slack notifications.
 
-## :crystal\_ball: Configure your Slack workspace
+## :crystal_ball: Configure your Slack workspace
 
 Go to your Slack workspace and create a **private** channel for each of the server that you want to monitor. You really don't want your monitoring information to be public. Let's say we call our channel `ossec-ubuntu` as the name of the server.
 
 We will first create a Slack App for the OSSEC service. Go to this page
 
-[https://api.slack.com/apps?new\_app=1](https://api.slack.com/apps?new\_app=1)
+[https://api.slack.com/apps?new_app=1](https://api.slack.com/apps?new_app=1)
 
 and click **Create New App**. Enter `OSSEC` as a name and select your workspace. Next click on the OSSEC app to view the API information.
 
@@ -271,7 +271,7 @@ SITE="https://hooks.slack.com/services/<some token string>" # The WebHook URL yo
 
 We are ready to configure OSSEC with our Slack information.
 
-## :space\_invader: Let OSSEC talk to your Slack API
+## :space_invader: Let OSSEC talk to your Slack API
 
 OSSEC uses a bash script to forward its notifications to Slack. We will first configure this
 
@@ -475,7 +475,7 @@ Here you see that OSSEC correctly identified the decoder to use and separated th
 
 Good! We defined all trackers and files to monitor. Save and close this file. Next step will be the definition of local rules.
 
-## :mag\_right: Setting rules and fine-tuning
+## :mag_right: Setting rules and fine-tuning
 
 OSSEC comes with a number of predefined rules that implement the best practices in server security. However, sometimes they are a bit too invasive or need to be adapted to the specific server you are running. Each set of rules comes in a `.xml` file. In this section, we will configure the `local_rules.xml` file to adapt them to our cardano node.
 
@@ -581,6 +581,10 @@ Join [@BillionairePool](https://twitter.com/BillionairePool) on Twitter or hang 
 [https://discord.gg/tDW6dqh7](https://discord.gg/tDW6dqh7)
 
 The guide is kindly hosted by our Coincashew friends. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏
+
+Hang out and chat with fellow stake pool operators on Discord @
+
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 
 Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}

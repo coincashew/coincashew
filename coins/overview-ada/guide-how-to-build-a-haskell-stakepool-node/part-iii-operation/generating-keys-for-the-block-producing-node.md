@@ -1,4 +1,4 @@
-# Generating Keys for the Block-producing Node
+# :gear: Generating Keys for the Block-producing Node
 
 The block-producer node requires you to create 3 keys as defined in the [Shelley ledger specs](https://hydra.iohk.io/build/2473732/download/1/ledger-spec.pdf):
 
@@ -20,13 +20,13 @@ cardano-cli node key-gen-KES \
 {% endtabs %}
 
 {% hint style="info" %}
-KES (key evolving signature) keys are created to secure your stake pool against hackers who might compromise your keys.
+KES (key evolving signature) keys are created to secure your stake pool against hackers who might compromise your keys.&#x20;
 
 **On mainnet, you will need to regenerate the KES key every 90 days.**
 {% endhint %}
 
 {% hint style="danger" %}
-:fire: **Cold keys** **must be generated and stored on your air-gapped offline machine.** The cold keys are the files stored in `$HOME/cold-keys.`
+****:fire: **Cold keys** **must be generated and stored on your air-gapped offline machine.** The cold keys are the files stored in `$HOME/cold-keys.`
 {% endhint %}
 
 Make a directory to store your cold keys
@@ -70,7 +70,7 @@ echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 {% endtabs %}
 
 {% hint style="warning" %}
-Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the \_epoch \_and \_slot# \_is equal to that found on a block explorer such as [https://pooltool.io/](https://pooltool.io)
+Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the _epoch _and _slot# _is equal to that found on a block explorer such as [https://pooltool.io/](https://pooltool.io)
 {% endhint %}
 
 {% tabs %}
@@ -95,11 +95,11 @@ echo startKesPeriod: ${startKesPeriod}
 {% endtab %}
 {% endtabs %}
 
-With this calculation, you can generate a operational certificate for your pool.
+With this calculation, you can generate a operational certificate for your pool.&#x20;
 
-Copy **kes.vkey** to your **cold environment**.
+Copy **kes.vkey** to your **cold environment**.&#x20;
 
-Change the <**startKesPeriod**> value accordingly.
+Change the <**startKesPeriod> **value accordingly.
 
 {% hint style="info" %}
 Stake pool operators must provide an operational certificate to verify that the pool has the authority to run. The certificate includes the operator’s signature, and includes key information about the pool (addresses, keys, etc.). Operational certificates represent the link between the operator’s offline key and their operational key.
@@ -138,7 +138,7 @@ Update vrf key permissions to read-only. You must also copy **vrf.vkey** to your
 chmod 400 vrf.skey
 ```
 
-Stop your\*\* \*\*stake pool by running the following:
+Stop your** **stake pool by running the following:
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -148,7 +148,7 @@ sudo systemctl stop cardano-node
 {% endtab %}
 {% endtabs %}
 
-Update your startup script with the new **KES, VRF and Operation Certificate.**
+Update your startup script with the new** KES, VRF and Operation Certificate.**
 
 {% tabs %}
 {% tab title="block producer node" %}

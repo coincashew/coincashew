@@ -1,10 +1,10 @@
 # Delegating to a Stake Pool
 
-## :white\_check\_mark: Prerequisites
+## :white_check_mark: Prerequisites
 
 * Both a payment and a stake key pair. Payment key should contain some ADA.
 
-## :woman\_technologist: Registering Your Stake Address
+## :woman_technologist: Registering Your Stake Address
 
 Create a certificate, `stake.cert`, using the `stake.vkey`
 
@@ -14,7 +14,7 @@ cardano-cli stake-address registration-certificate \
     --out-file stake.cert
 ```
 
-You need to find the slot tip of the blockchain.
+You need to find the **slot tip **of the blockchain.
 
 ```
 currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
@@ -131,7 +131,7 @@ cardano-cli transaction submit \
     --mainnet
 ```
 
-## :page\_facing\_up: Creating a Delegation Certificate
+## :page_facing_up: Creating a Delegation Certificate
 
 Given its **stake pool verification key file** `node.vkey` , from your stakepool should have generated (and published) a **stake pool ID**:
 
@@ -150,7 +150,7 @@ cardano-cli stake-address delegation-certificate \
     --out-file deleg.cert
 ```
 
-You need to find the tip of the blockchain to set the ttl parameter properly.
+You need to find the **tip **of the blockchain to set the **ttl **parameter properly.
 
 ```
 currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')

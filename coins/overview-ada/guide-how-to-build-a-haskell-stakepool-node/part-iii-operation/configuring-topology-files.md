@@ -1,4 +1,4 @@
-# Configuring Topology Files
+# :gear: 14. Configuring Topology Files
 
 {% hint style="info" %}
 Shelley has been launched without peer-to-peer (p2p) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
@@ -82,7 +82,7 @@ When the `topologyUpdater.sh` runs successfully, you will see
 > `{ "resultcode": "201", "datetime":"2020-07-28 01:23:45", "clientIp": "1.2.3.4", "iptype": 4, "msg": "nice to meet you" }`
 
 {% hint style="info" %}
-Every time the script runs and updates your IP, a log is created in **`$NODE_HOME/logs`**
+Every time the script runs and updates your IP, a log is created in **`$NODE_HOME/logs`**&#x20;
 {% endhint %}
 
 Add a crontab job to automatically run `topologyUpdater.sh` every hour on the 33rd minute. You can change the 33 value to your own preference.
@@ -160,11 +160,11 @@ sudo systemctl restart cardano-node
 ```
 
 {% hint style="warning" %}
-Don't forget to restart your relay nodes after every time you fetch the topology!
+Don't forget to restart your relay nodes after every time you fetch the topology!&#x20;
 {% endhint %}
 
 {% hint style="danger" %}
-:octagonal\_sign: **Critical Key Security Reminde**r: The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer. Namely, the following three files.
+****:octagonal\_sign: **Critical Key Security Reminde**r: The only stake pool **keys **and **certs **that are required to run a stake pool are those required by the block producer. Namely, the following three files.
 
 ```bash
 ###
@@ -179,9 +179,13 @@ CERT=${NODE_HOME}/node.cert
 {% endhint %}
 
 {% hint style="danger" %}
-:fire: **Relay Node Security Reminder:** Relay nodes must not contain any **`operational certifications`, `vrf`, `skey` or `cold`**` ``` **keys**.
+****:fire: **Relay Node Security Reminder:** Relay nodes must not contain any **`operational certifications`, `vrf`, `skey` or `cold`**` `**keys**.
 {% endhint %}
 
 {% hint style="success" %}
 Congratulations! Your stake pool is registered and ready to produce blocks.
+
+
+
+Continue to PART IV - ADMINISTRATION & MAINTENANCE
 {% endhint %}

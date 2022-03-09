@@ -1,4 +1,4 @@
-# Starting the Nodes
+# :white\_check\_mark: Starting the Nodes
 
 Start your stake pool with systemctl and begin syncing the blockchain!
 
@@ -39,7 +39,7 @@ sed -i env \
 ```
 
 {% hint style="warning" %}
-A node must reach epoch 208 (Shelley launch) before **gLiveView.sh** can start tracking the node syncing. You can track the node syncing using `journalctl` before epoch 208.
+A node must reach epoch 208 (Shelley launch) before **gLiveView.sh** can start tracking the node syncing. You can track the node syncing using `journalctl `before epoch 208.
 
 ```
 journalctl --unit=cardano-node --follow
@@ -59,7 +59,7 @@ Sample output of gLiveView.
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
 {% hint style="info" %}
-:sparkles: **Pro tip**: If you synchronize a node's database, you can copy the database directory over to your other node directly and save time.
+****:sparkles: **Pro tip**: If you synchronize a node's database, you can copy the database directory over to your other node directly and save time.
 {% endhint %}
 
 {% hint style="success" %}

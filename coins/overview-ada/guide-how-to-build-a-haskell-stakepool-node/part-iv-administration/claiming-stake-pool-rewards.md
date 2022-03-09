@@ -1,12 +1,12 @@
-# Claiming Stake Pool Rewards
+# :moneybag: Claiming Stake Pool Rewards
 
-Let's walk through an example to claim your stake pools rewards.
+Let's walk through an example to claim your stake pools rewards.&#x20;
 
 {% hint style="info" %}
 Rewards are accumulated in the `stake.addr` address.
 {% endhint %}
 
-First, find the **tip** of the blockchain to set the **invalid-hereafter** parameter properly.
+First, find the **tip **of the blockchain to set the **invalid-hereafter **parameter properly.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -119,7 +119,7 @@ echo Change Output: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build your transaction.
+Build your transaction.&#x20;
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -137,7 +137,7 @@ cardano-cli transaction build-raw \
 
 Copy **tx.raw** to your **cold environment.**
 
-Sign the transaction with both the payment and stake secret keys.
+Sign the transaction with both the payment and stake secret keys.&#x20;
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}

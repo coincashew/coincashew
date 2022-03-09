@@ -1,4 +1,4 @@
-# Updating Stake Pool Information
+# :pencil: Updating Stake Pool Information
 
 {% hint style="danger" %}
 **Important Reminder**:fire: Any changes made in this section take effect in two epochs. A common mistake is lowering the pledge amount and removing funds too soon. This results in zero rewards as the current live pledge amount is no longer met.
@@ -68,7 +68,7 @@ minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must
 {% endhint %}
 
 {% hint style="info" %}
-Here we are pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 20%.
+Here we are pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 20%.&#x20;
 {% endhint %}
 
 Copy **pool.cert** to your **hot environment.**
@@ -88,7 +88,7 @@ cardano-cli stake-address delegation-certificate \
 
 Copy **deleg.cert** to your **hot environment.**
 
-You need to find the \*\*tip \*\*of the blockchain to set the \*\*invalid-hereafter \*\*parameter properly.
+You need to find the **tip **of the blockchain to set the **invalid-hereafter **parameter properly.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -133,7 +133,7 @@ echo Number of UTXOs: ${txcnt}
 Run the build-raw transaction command.
 
 {% hint style="info" %}
-The **invalid-hereafter** value must be greater than the current tip. In this example, we use current slot + 10000.
+The **invalid-hereafter **value must be greater than the current tip. In this example, we use current slot + 10000.&#x20;
 {% endhint %}
 
 {% tabs %}
@@ -180,7 +180,7 @@ echo txOut: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build the transaction.
+Build the transaction.&#x20;
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -199,7 +199,7 @@ cardano-cli transaction build-raw \
 
 Copy **tx.raw** to your **cold environment.**
 
-Sign the transaction.
+Sign the transaction.&#x20;
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}

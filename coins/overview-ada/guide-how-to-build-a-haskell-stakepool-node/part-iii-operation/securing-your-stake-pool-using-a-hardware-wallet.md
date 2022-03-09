@@ -1,11 +1,11 @@
-# Securing Your Stake Pool Using a Hardware Wallet
+# :lock: Securing Your Stake Pool Using a Hardware Wallet
 
 {% hint style="info" %}
 Secure your **pool pledge account** and **pool reward account** with a hardware wallet such as Trezor or Ledger Nano S/X. Credits to [angelstakepool ](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool)for documenting this process.
 {% endhint %}
 
 {% hint style="danger" %}
-**Critical Reminder**: After adding a 2nd pool owner using a hardware wallet, you **must wait 2 epochs** before you transfer pledge funds from your **CLI Method** or **Mnemonic Method Wallet** to hardware wallet. Do not transfer any funds earlier because your pool pledge will be not met.
+**Critical Reminder**: After adding a 2nd pool owner using a hardware wallet, you **must wait 2 epochs** before you transfer pledge funds from your **CLI Method** or **Mnemonic Method Wallet **to hardware wallet. Do not transfer any funds earlier because your pool pledge will be not met.
 {% endhint %}
 
 First, delegate your 2nd pool owner to your stake pool with Daedalus or Yoroi or Adalite.io
@@ -46,7 +46,7 @@ Update stake pool registration certificate to add your new hardware wallet owner
 
 Tailor the below registration-certificate transaction with your pool's settings.
 
-If you have **multiple relay nodes,** then [change your parameters accordingly](registering-your-stake-pool.md#multiplerelays).
+If you have **multiple relay nodes,** then [change your parameters accordingly](./registering-your-stake-pool.md#multiplerelays).
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -73,12 +73,12 @@ cardano-cli stake-pool registration-certificate \
 {% hint style="info" %}
 :eyes: Notice the **pool-reward-account** and additional **pool-ownerstake-verification-key-file** lines point to **hw-stake.vkey**.
 
-Example above is pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 10%.
+Example above is pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 10%.&#x20;
 {% endhint %}
 
 Copy **pool.cert** to your **hot environment.**
 
-You need to find the **tip** of the blockchain to set the **invalid-hereafter** parameter properly.
+You need to find the **tip **of the blockchain to set the **invalid-hereafter **parameter properly.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -165,7 +165,7 @@ echo txOut: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build the transaction.
+Build the transaction.&#x20;
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -181,7 +181,7 @@ cardano-cli transaction build-raw \
 {% endtab %}
 {% endtabs %}
 
-Copy **tx-pool.raw** to your **cold environment.**
+Copy **tx-pool.raw **to your **cold environment.**
 
 This multi signature transaction will be signed using witnesses.
 
@@ -190,7 +190,7 @@ You need the following 4 witnesses.
 * node.skey
 * hw-stake.hwsfile
 * stake.skey
-* payment.skey
+* payment**.**skey
 
 Create a witness using node.skey,
 
@@ -250,7 +250,7 @@ cardano-hw-cli transaction witness \
 {% endtab %}
 {% endtabs %}
 
-Copy **hw-stake.witness** to your **cold environment.**
+Copy **hw-stake.witness **to your **cold environment.**
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -283,9 +283,9 @@ cardano-cli transaction submit \
 Check your updated pool information on [adapools.org](https://adapools.org) which should now show your hardware wallet as a pool owner.
 
 {% hint style="danger" %}
-**Important Reminder**:fire: These changes take effect in two epochs. Do **NOT** transfer pledge funds to your hardware wallet until at least two epochs later.
+**Important Reminder**:fire: These changes take effect in two epochs. Do **not **transfer pledge funds to your hardware wallet until at least two epochs later.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
-After two epoch snapshots have passed, you can safely transfer pledge funds from your CLI Method or Mnemonic Method wallet to your new hardware wallet owner account. :rocket:
+After two epoch snapshots have passed, you can safely transfer pledge funds from your CLI Method or Mnemonic Method wallet to your new hardware wallet owner account. :rocket:&#x20;
 {% endhint %}

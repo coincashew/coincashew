@@ -59,7 +59,7 @@ wg genkey | tee wireguard-privatekey | wg pubkey > wireguard-publickey
 
 ## :robot: Configuring WireGuard
 
-Create a `wg0.conf` configuration file in `/etc/wireguard` directory.
+Create a `wg0.conf` configuration file in  `/etc/wireguard` directory.
 
 Update your Private and Public Keys accordingly.
 
@@ -317,7 +317,7 @@ ping 10.0.0.2
 
 {% tabs %}
 {% tab title="Cardano" %}
-#### Cardano-specific Configuration
+### Cardano-specific Configuration
 
 Update and/or review your topology.json file to ensure the "addr" matches this new tunneled IP address, and not the usual public node IP address.
 
@@ -326,7 +326,7 @@ Update and/or review your topology.json file to ensure the "addr" matches this n
 > Example: topology.json on **blockproducer**\
 > { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
 
-> topology.json on \*\*relaynode1 \*\*\
+> topology.json on **relaynode1 **\
 > { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
 
 **Triple node setup**
@@ -336,7 +336,7 @@ Update and/or review your topology.json file to ensure the "addr" matches this n
 >
 > { "addr": "10.0.0.3", "port": 6000, "valency": 1 },
 
-> topology.json on \*\*relaynode1 \*\*\
+> topology.json on **relaynode1 **\
 > { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
 >
 > { "addr": "10.0.0.3", "port": 6000, "valency": 1 },
@@ -347,8 +347,9 @@ Update and/or review your topology.json file to ensure the "addr" matches this n
 > { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
 {% endtab %}
 
-{% tab title="ETH" %}
-#### ETH Validator Specific Configuration
+{% tab title="ETH2" %}
+
+### ETH2 Validator Specific Configuration
 
 Update and/or review your validator's configuration and ensure it connects to the beacon-chain's new tunneled IP address, and not the usual public node IP address.
 
