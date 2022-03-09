@@ -9,7 +9,7 @@ description: >-
 ## Announcements
 
 {% hint style="info" %}
-:confetti\_ball: **2021-12 Gitcoin Grant Round 12:** We improve this guide with your support!
+:confetti\_ball: **2022-3 Gitcoin Grant Round 13:** We improve this guide with your support!
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏
 {% endhint %}
