@@ -1,16 +1,16 @@
-# 👏 Credits
+# Credits
 
 ## :blush: Donation Tip Jar
 
 {% hint style="info" %}
-Did you find our guide useful? Let us know with a tip and we'll keep updating it. Bonus points if you use the [command line](./part-v-tips/submitting-a-simple-transaction.md). :pray: :rocket:
+Did you find our guide useful? Let us know with a tip and we'll keep updating it. Bonus points if you use the [command line](part-v-tips/submitting-a-simple-transaction.md). :pray: :rocket:
 
-It really energizes us to keep creating the best crypto guides.&#x20;
+It really energizes us to keep creating the best crypto guides.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:&#x20;
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:
 {% endhint %}
 
-Thank you for supporting Cardano and us! Please use the below cointr.ee link. :blush:&#x20;
+Thank you for supporting Cardano and us! Please use the below cointr.ee link. :blush:
 
 {% embed url="https://cointr.ee/coincashew" %}
 
@@ -27,6 +27,7 @@ Thanks to all 102,000+ of you, the Cardano hodlers, buidlers, stakers, and pool 
 * :clap: Chris of OMEGA | CODEX for security improvements.
 * :clap: Raymond of GROW for topologyUpdater improvements and being awesome.
 * :clap: QCPOL for the script and service to update node's height on pooltool.io.
+* :clap: ChangePool \[[CHG](https://change.paradoxicalsphere.com)] for massively re-organizing and improving this guide's structure.
 
 ## :money\_with\_wings: Tip Jar Donators
 
