@@ -1,4 +1,4 @@
-# :crystal\_ball: Configuring a Block-producing Node
+# Configuring a Block-producing Node
 
 {% hint style="info" %}
 A block producer node will be configured with various key-pairs needed for block generation (cold keys, KES hot keys and VRF hot keys). It can only connect to its relay nodes.
@@ -15,13 +15,13 @@ For the purposes of this guide, we will be building **two nodes** on two **separ
 {% endhint %}
 
 {% hint style="danger" %}
-Configure **topology.json** file so that&#x20;
+Configure **topology.json** file so that
 
 * relay node(s) connect to public relay nodes (like IOHK) and your block-producer node
-* block-producer node **only **connects to your relay node(s)
+* block-producer node **only** connects to your relay node(s)
 {% endhint %}
 
-On your **block-producer node, **run the following. Update the **addr **with your relay node's IP address.
+On your **block-producer** node, run the following. Update the **addr** with your relay node's IP address.
 
 {% hint style="warning" %}
 **What IP address to use?**

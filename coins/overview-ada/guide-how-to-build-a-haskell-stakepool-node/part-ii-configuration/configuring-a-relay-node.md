@@ -1,14 +1,14 @@
-# :flying\_saucer: Configuring a Relay Node
+# Configuring a Relay Node
 
 {% hint style="warning" %}
-:construction: On your other server that will be designed as your relay node or what we will call **relaynode1** throughout this guide, carefully **repeat steps 1 through 3** in order to build the cardano binaries.
+:construction: On your other server that will be designed as your relay node or what we will call **relaynode1** throughout this guide, carefully **repeat steps in Part 1  Installation** in order to build the cardano binaries.
 {% endhint %}
 
 {% hint style="info" %}
 You can have multiple relay nodes as you scale up your stake pool architecture. Simply create **relaynodeN** and adapt the guide instructions accordingly.
 {% endhint %}
 
-On your **relaynode1, **run** **with the following after updating with your block producer's IP address.
+On your **relaynode1**, run the following after updating with your block producer's IP address.
 
 {% hint style="warning" %}
 **What IP address to use?**
@@ -46,5 +46,5 @@ Valency tells the node how many connections to keep open. Only DNS addresses are
 {% endhint %}
 
 {% hint style="danger" %}
-****:sparkles: **Port Forwarding Tip: **You'll need to forward and open ports 6000 to your nodes. Check with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports 6000 to your nodes. Check with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}

@@ -1,11 +1,11 @@
-# :lock\_with\_ink\_pen: Configuring an Air-gapped, Offline Computer
+# Configuring an Air-gapped, Offline Computer
 
 {% hint style="info" %}
-An air-gapped offline machine is called your cold environment.&#x20;
+An air-gapped offline machine is called your cold environment.
 
-* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits.&#x20;
-* Physically isolated from the rest of your network.&#x20;
-* Must not have a network connection, wired or wireless.&#x20;
+* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits.
+* Physically isolated from the rest of your network.
+* Must not have a network connection, wired or wireless.
 * Is not a VM on a machine with a network connection.
 * Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air\_gap\_\(networking\)).
 {% endhint %}
@@ -27,7 +27,7 @@ mkdir -p $NODE_HOME
 {% endtab %}
 {% endtabs %}
 
-Copy from your **hot environment**, also known as your block producer node, a copy of the **`cardano-cli` **to your **cold environment**, this air-gapped offline machine.&#x20;
+Copy from your **hot environment**, also known as your block producer node, a copy of the `cardano-cli` to your **cold environment**, this air-gapped offline machine.
 
 Location of your cardano-cli.
 

@@ -1,6 +1,6 @@
-# :factory: Installing Cabal and GHC
+# Installing Cabal and GHC
 
-If using Ubuntu Desktop, **press **Ctrl+Alt+T. This will launch a terminal window.&#x20;
+If using Ubuntu Desktop, **press** Ctrl+Alt+T. This will launch a terminal window.
 
 First, update packages and install Ubuntu dependencies.
 
@@ -37,13 +37,13 @@ sudo make install
 sudo ln -s /usr/local/lib/libsodium.so.23.3.0 /usr/lib/libsodium.so.23
 ```
 
-**AWS Linux CentOS pool operators: **clearing the lib cache may be required.
+**AWS Linux CentOS pool operators**: clearing the lib cache may be required.
 
 ```bash
 sudo ldconfig
 ```
 
-**Raspberry Pi 4 with Ubuntu pool operators **: extra lib linking may be required.
+**Raspberry Pi 4 with Ubuntu pool operators**: extra lib linking may be required.
 
 ```bash
 sudo apt-get install libnuma-dev
@@ -62,9 +62,9 @@ sudo apt-get -y install pkg-config libgmp-dev libssl-dev libtinfo-dev libsystemd
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
 
-Answer **NO **to installing haskell-language-server (HLS).
+Answer **NO** to installing haskell-language-server (HLS).
 
-Answer **YES **to automatically add the required PATH variable to ".bashrc".
+Answer **YES** to automatically add the required PATH variable to ".bashrc".
 
 ```bash
 cd $HOME
@@ -81,7 +81,7 @@ ghcup install ghc 8.10.4
 ghcup set ghc 8.10.4
 ```
 
-Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE\_HOME**. The [cluster configuration](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) is set by **$NODE\_CONFIG**.&#x20;
+Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE\_HOME**. The [cluster configuration](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) is set by **$NODE\_CONFIG**.
 
 ```bash
 echo PATH="$HOME/.local/bin:$PATH" >> $HOME/.bashrc
@@ -101,13 +101,13 @@ echo export NODE_CONFIG=testnet>> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
-As you work through this guide, replace every instance of** **CLI parameter
+As you work through this guide, replace every instance of\*\* \*\*CLI parameter
 
 ```bash
  --mainnet 
 ```
 
-with&#x20;
+with
 
 ```bash
 --testnet-magic 1097911063

@@ -5,7 +5,7 @@ description: Quick steps to secure your node.
 # Hardening an Ubuntu Server
 
 {% hint style="success" %}
-Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. :pray:&#x20;
+Thank you for your support and kind messages! It really energizes us to keep creating the best crypto guides. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses and share your message. :pray:
 {% endhint %}
 
 ## :robot: Prerequisites
@@ -29,7 +29,7 @@ Make a habit of logging to your server using a non-root account. This will preve
 {% endhint %}
 
 {% hint style="warning" %}
-****:fire: **Tip**: Do NOT routinely use the root account. Use `su` or `sudo`, always.
+:fire: **Tip**: Do NOT routinely use the root account. Use `su` or `sudo`, always.
 {% endhint %}
 
 SSH to your server
@@ -58,7 +58,7 @@ Add cardano to the sudo group
 usermod -aG sudo cardano
 ```
 
-## ****:lock\_with\_ink\_pen: **Disabling SSH Password Authentication and Using SSH Keys Only**
+## :lock\_with\_ink\_pen: **Disabling SSH Password Authentication and Using SSH Keys Only**
 
 {% hint style="info" %}
 The basic rules of hardening SSH are:
@@ -118,22 +118,22 @@ Locate **PasswordAuthentication** update to no
 PasswordAuthentication no 
 ```
 
-Locate **PermitRootLogin **and update to prohibit-password
+Locate **PermitRootLogin** and update to prohibit-password
 
 ```
 PermitRootLogin prohibit-password
 ```
 
-Locate **PermitEmptyPasswords **and update to no
+Locate **PermitEmptyPasswords** and update to no
 
 ```
 PermitEmptyPasswords no
 ```
 
-**Optional**: Locate **Port **and customize it your** random **port.
+**Optional**: Locate Port **and customize it to your random port number**.
 
 {% hint style="info" %}
-Use a **random **port # from 1024 thru 49141. [Check for possible conflicts. ](https://en.wikipedia.org/wiki/List\_of\_TCP\_and\_UDP\_port\_numbers)
+Use a **random** port # from 1024 thru 49141. [Check for possible conflicts.](https://en.wikipedia.org/wiki/List\_of\_TCP\_and\_UDP\_port\_numbers)
 {% endhint %}
 
 ```bash
@@ -189,7 +189,7 @@ Host cardano-server
 
 This will allow you to log in with `ssh cardano-server` rather than needing to pass through all ssh parameters explicitly.
 
-## ****:robot: **Updating Your System**
+## :robot: **Updating Your System**
 
 {% hint style="warning" %}
 It's critically important to keep your system up-to-date with the latest patches to prevent intruders from accessing your system.
@@ -254,19 +254,19 @@ Now you need to restart the `sshd` daemon using:
 sudo systemctl restart sshd.service
 ```
 
-Modify `/etc/ssh/sshd_config`&#x20;
+Modify `/etc/ssh/sshd_config`
 
 ```
 sudo nano /etc/ssh/sshd_config
 ```
 
-Locate **ChallengeResponseAuthentication **and update to yes
+Locate **ChallengeResponseAuthentication** and update to yes
 
 ```
 ChallengeResponseAuthentication yes
 ```
 
-Locate **UsePAM **and update to yes
+Locate **UsePAM** and update to yes
 
 ```
 UsePAM yes
@@ -299,15 +299,15 @@ Now, open Google Authenticator on your phone and add your secret key to make two
 ## :jigsaw: Securing Shared Memory
 
 {% hint style="info" %}
-One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.&#x20;
+One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.
 
 To learn more about secure shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
 {% endhint %}
 
 {% hint style="warning" %}
-### One exceptional case
+#### One exceptional case
 
-There may be a reason for you needing to have that memory space mounted in read/write mode (such as a specific server application like **Chrome **that requires such access to the shared memory or standard applications like Google Chrome). In this case, use the following line for the fstab file with instructions below.
+There may be a reason for you needing to have that memory space mounted in read/write mode (such as a specific server application like \*\*Chrome \*\*that requires such access to the shared memory or standard applications like Google Chrome). In this case, use the following line for the fstab file with instructions below.
 
 ```
 none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
@@ -315,7 +315,7 @@ none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
 
 The above line will mount the shared memory with read/write access but without permission to execute programs, change the UID of running programs, or to create block or character devices in the namespace. This a net security improvement over default settings.
 
-### Use with caution
+#### Use with caution
 
 With some trial and error, you may discover some applications(**like Chrome**) do not work with shared memory in read-only mode. For the highest security and if compatible with your applications, it is a worthwhile endeavor to implement this secure shared memory setting.
 
@@ -340,7 +340,7 @@ Reboot the node in order for changes to take effect.
 sudo reboot
 ```
 
-## ****:chains: **Installing fail2ban**
+## :chains: **Installing fail2ban**
 
 {% hint style="info" %}
 Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address (within a specified amount of time), fail2ban blocks access from that IP address.
@@ -377,7 +377,7 @@ maxretry = 3
 ignoreip = <list of whitelisted IP address, your local daily laptop/pc>
 ```
 
-Save/close file.&#x20;
+Save/close file.
 
 Restart fail2ban for settings to take effect.
 
@@ -385,7 +385,7 @@ Restart fail2ban for settings to take effect.
 sudo systemctl restart fail2ban
 ```
 
-## ****:bricks: **Configuring Your Firewall**
+## :bricks: **Configuring Your Firewall**
 
 The standard UFW firewall can be used to control network access to your node.
 
@@ -416,7 +416,7 @@ sudo ufw status numbered
 ```
 
 {% hint style="danger" %}
-Do not expose Grafana (port 3000) and Prometheus endpoint (port 9100 and 12798) to the public internet as this invites a new attack surface!&#x20;
+Do not expose Grafana (port 3000) and Prometheus endpoint (port 9100 and 12798) to the public internet as this invites a new attack surface!
 {% endhint %}
 
 **Better idea - SSH tunnel to Grafana server**
@@ -427,7 +427,7 @@ Setup a SSH tunnel with the following command:
 ssh -L 3000:localhost:3000 <user>@<your-server-ip-or-dns>
 ```
 
-Alternatively, If using Putty for SSHing, you can configure the tunnel as follows. Make sure to click "Add" and save your settings.
+Alternatively, If using Putty for SSHing, you can configure the tunnel as follows. Make sure to click "Add" and save your new profile settings.
 
 ![](../../../../.gitbook/assets/putty-tunnel.png)
 
@@ -437,7 +437,7 @@ Now you can access the Grafana server from your local machine's browser by visit
 
 Only open the following ports on nodes behind a network firewall. This is not required if using the above SSH tunnel method.
 
-****:fire: **It is dangerous to open these ports on a VPS/cloud node.**
+:fire: **It is dangerous to open these ports on a VPS/cloud node.**
 
 ```bash
 # Allow grafana web server port
@@ -448,7 +448,7 @@ sudo ufw allow 9100/tcp
 sudo ufw allow 12798/tcp
 ```
 
-Confirm the settings are in effect.&#x20;
+Confirm the settings are in effect.
 
 > ```csharp
 >      To                         Action      From
@@ -470,7 +470,7 @@ sudo ufw allow from <your local daily laptop/pc>
 ```
 
 {% hint style="info" %}
-&#x20;:confetti\_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+:confetti\_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
 ### :bricks: Additional Hardening Rules for a Block-producing Node
@@ -485,7 +485,7 @@ sudo ufw allow proto tcp from <RELAY NODE IP> to any port <BLOCK PRODUCER PORT>
 
 ### :bricks: Additional Hardening Rules for Relay Nodes
 
-In order to protect your Relay Node(s) from a novel "DoS/Syn" attack, [**Michael Fazio**](https://github.com/michaeljfazio) created iptables entry which restricts connections to a given destination port to 5 connections from the same IP.&#x20;
+In order to protect your Relay Node(s) from a novel "DoS/Syn" attack, [**Michael Fazio**](https://github.com/michaeljfazio) created iptables entry which restricts connections to a given destination port to 5 connections from the same IP.
 
 Replace `<RELAY NODE PORT>` with your public relay port, replace the 5 with your preferred connection limit.
 
@@ -516,19 +516,15 @@ ss -tulpn
 ```
 
 {% hint style="success" %}
-Congrats on completing the guide. :sparkles:&#x20;
+Congrats on completing the guide. :sparkles:
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.&#x20;
+Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
 
-It really energizes us to keep creating the best crypto guides.&#x20;
+It really energizes us to keep creating the best crypto guides.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:&#x20;
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:
 
-Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:&#x20;
-
-Hang out and chat with fellow stake pool operators on Discord @
-
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley:&#x20;
+Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:
 
 Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}

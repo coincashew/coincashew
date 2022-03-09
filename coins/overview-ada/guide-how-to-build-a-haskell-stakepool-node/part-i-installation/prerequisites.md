@@ -1,4 +1,4 @@
-# :checkered\_flag: Prerequisites
+# Prerequisites
 
 ## :man\_mage: Mandatory skills for stake pool operators
 
@@ -16,14 +16,14 @@ As a stake pool operator for Cardano, you will be competent with the following a
 * [passed the official Stake Pool School course.](https://cardano-foundation.gitbook.io/stake-pool-course/)
 
 {% hint style="danger" %}
-:octagonal\_sign: **Before continuing this guide, you must satisfy the above requirements. **:construction:&#x20;
+:octagonal\_sign: **Before continuing this guide, you must satisfy the above requirements**. :construction:
 {% endhint %}
 
 ## :reminder\_ribbon: Minimum Stake Pool Hardware Requirements
 
-* **Two separate servers: **1 for block producer node, 1 for relay node
+* **Two separate servers**: 1 for block producer node, 1 for relay node
 * **One air-gapped offline machine (cold environment)**
-* **Operating system: **64-bit Linux (i.e. Ubuntu Server 20.04 LTS)
+* **Operating system**: 64-bit Linux (i.e. Ubuntu Server 20.04 LTS)
 * **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
 * **Memory:** 12GB of RAM
 * **Storage:** 50GB of free storage
@@ -34,20 +34,20 @@ As a stake pool operator for Cardano, you will be competent with the following a
 
 ## :man\_lifting\_weights: Recommended Future-proof Stake Pool Hardware Setup
 
-* **Three separate servers: **1 for block producer node, 2 for relay nodes
+* **Three separate servers**: 1 for block producer node, 2 for relay nodes
 * **One air-gapped offline machine (cold environment)**
-* **Operating system: **64-bit Linux (i.e. Ubuntu 20.04 LTS)
+* **Operating system**: 64-bit Linux (i.e. Ubuntu 20.04 LTS)
 * **Processor:** 4 core or higher CPU
-* **Memory: **16GB+ of RAM
-* **Storage: **256GB+ SSD
-* **Internet: **Broadband internet connections with speeds at least 100 Mbps
+* **Memory**: 16GB+ of RAM
+* **Storage**: 256GB+ SSD
+* **Internet**: Broadband internet connections with speeds at least 100 Mbps
 * **Data Plan**: Unlimited
 * **Power:** Reliable electrical power with UPS
-* **ADA balance: **more pledge is better, to be determined by **a0**, the pledge influence factor
+* **ADA balance**: more pledge is better, to be determined by **a0**, the pledge influence factor
 
 ## :unlock: Recommended Stake Pool Security
 
-If you need ideas on how to harden your stake pool's nodes, refer to [this guide](./hardening-an-ubuntu-server.md).
+If you need ideas on how to harden your stake pool's nodes, refer to [this guide](hardening-an-ubuntu-server.md).
 
 ## :tools: Setup Ubuntu
 
