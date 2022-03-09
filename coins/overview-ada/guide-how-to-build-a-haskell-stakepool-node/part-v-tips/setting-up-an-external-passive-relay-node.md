@@ -4,21 +4,21 @@ description: >-
   the help of CNTOOLs.
 ---
 
-# How to setup an external passive relay node
+# Setting Up an External Passive Relay Node
 
 {% hint style="success" %}
 Major credits and appreciation to the fine folks at [Cardano Community Guild Operators](https://cardano-community.github.io/guild-operators/#/README) for creating and maintaining [CNtool](https://cardano-community.github.io/guild-operators/#/Scripts/cntools), a most helpful swiss army knife for pool operators. You MUST be familiar with how [ADA staking works](https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/index.html) and possess [fundamental Linux system administration skills](https://www.tecmint.com/free-online-linux-learning-guide-for-beginners/) before continuing this guide.
 {% endhint %}
 
 {% hint style="info" %}
-**Relay nodes** do not have any keys, so they cannot produce blocks. Instead, relays act as proxies between the core network nodes and the internet, establishing a security perimeter around the core, block-producing network nodes. Since external nodes cannot communicate with block-producing nodes directly, relay nodes ensure that the integrity of the core nodes and the blockchain remains intact, even if one or more relays become compromised.
+**Relay nodes** do not have any keys, so they cannot produce blocks. Instead, relays act as proxies between the core network nodes and the Internet, establishing a security perimeter around the core, block-producing network nodes. Since external nodes cannot communicate with block-producing nodes directly, relay nodes ensure that the integrity of the core nodes and the blockchain remains intact, even if one or more relays become compromised.
 {% endhint %}
 
-## :last_quarter_moon_with_face: 0. Prerequisites
+## :last_quarter_moon_with_face: Prerequisites
 
 * A different server/VM (not located on the same machine as your block-producer node)
 
-## :flying_saucer: 1. Run prereqs.sh
+## :flying_saucer: Running the prereqs.sh Script
 
 Installs prerequisite dependencies and creates folder structure.
 
@@ -62,44 +62,43 @@ Reload environment variables.
 Familiarize yourself with the [folder structure](https://cardano-community.github.io/guild-operators/#/basics?id=folder-structure) created by CNtools.
 {% endhint %}
 
-## :woman_juggling: 2. Build Cardano Node and CLI
+## :woman_juggling: Building the Cardano Node and Command Line Interface
 
-#### Clone the git repository.
+To clone the git repository, type:
 
 ```bash
 cd ~/git
 git clone https://github.com/input-output-hk/cardano-node
 cd cardano-node
 ```
-
-#### Build all the binaries. Replace the tag with the desired version.
+To compile binaries, type the following commands where `<NodeVersion>` is the node version number or branch that you want to build:
 
 ```bash
 git fetch --tags --all
 git pull
-# Replace tag 1.26.2 with the version/branch you'd like to build
-git checkout 1.26.2
+# For example, to build node version 1.26.2 type git checkout 1.26.2
+git checkout <NodeVersion>
 
 echo -e "package cardano-crypto-praos\n  flags: -external-libsodium-vrf" > cabal.project.local
 $CNODE_HOME/scripts/cabal-build-all.sh
 ```
 
-#### Install binaries to local bin directory.
+To install the compiled binaries, type:
 
 ```
 sudo cp $HOME/.cabal/bin/cardano* /usr/local/bin
 ```
 
-#### Verify the correct versions were compiled.
+To verify that the correct Cardano node and command line versions are installed, type:
 
 ```bash
-cardano-cli version
 cardano-node version
+cardano-cli version
 ```
 
-## :hammer_pick: 3. Auto-starting with systemd services
+## :hammer_pick: Using systemd Services
 
-#### :confetti_ball: Benefits of using systemd for your stake pool
+Using systemd services to run your Cardano nodes offers the following benefits:
 
 1. Auto-start your node when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed node processes.
@@ -140,49 +139,65 @@ sudo systemctl enable cnode.service
 Nice work. Your node is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-####   :white_check_mark: Check whether the node service is active <a href="check-whether-the-stake-pool-service-is-active" id="check-whether-the-stake-pool-service-is-active"></a>
+###   :white_check_mark: Example systemd Commands
+
+To confirm that the node service is active, type:
 
 ```
 sudo systemctl is-active cnode
 ```
 
-#### ​ :mag_right: View the status of the node service <a href="view-the-status-of-the-stake-pool-service" id="view-the-status-of-the-stake-pool-service"></a>
+To display the status of the node service, type:
 
 ```
 sudo systemctl status cnode
 ```
 
-#### ​ :arrows_counterclockwise: Restarting the node service <a href="restarting-the-stake-pool-service" id="restarting-the-stake-pool-service"></a>
+To restart the node service, type:
 
 ```
 sudo systemctl reload-or-restart cnode
 ```
 
-#### ​ :octagonal_sign: Stopping the node service <a href="stopping-the-stake-pool-service" id="stopping-the-stake-pool-service"></a>
+To stop the node service, type:
 
 ```
 sudo systemctl stop cnode
 ```
 
-#### :construction: Filtering logs <a href="filtering-logs" id="filtering-logs"></a>
+### :construction: Filtering Logs
+
+To filter logs, type:
 
 ```
 journalctl --unit=cnode --since=yesterday
+```
+
+<p style="text-align: center;">OR</p>
+
+```
 journalctl --unit=cnode --since=today
+```
+
+<p style="text-align: center;">OR</p>
+
+```
 journalctl --unit=cnode --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
 ```
 
-## :rocket: 4. Start the relay node
+## :rocket: Starting the Relay Node
 
 {% hint style="success" %}
 **Pro tip:** :sparkler: Speed this step up by copying the **db** folder from another node you control.
 {% endhint %}
 
+To start the relay node, type:
+
 ```bash
 sudo systemctl start cnode
 ```
 
-Install Guild LiveView.
+To install Guild LiveView, type:
 
 ```bash
 cd $CNODE_HOME/scripts
@@ -191,7 +206,7 @@ curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operato
 chmod 755 gLiveView.sh
 ```
 
-Run Guild Liveview.
+To run Guild Liveview, type:
 
 ```
 ./gLiveView.sh
@@ -199,11 +214,11 @@ Run Guild Liveview.
 
 Sample output of Guild Live View
 
-![](../../../.gitbook/assets/glive.png)
+![](../../../../.gitbook/assets/glive.png)
 
 For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
-## :octagonal_sign:5. Configure and review the relay node topology file
+## :octagonal_sign: Configuring and Reviewing the Relay Node Topology File
 
 Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh` script to configure your relay node's connections to your other relays and block producer node. Refer to the [official documentation for more info.](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater?id=download-and-configure-topologyupdatersh)
 
@@ -223,7 +238,7 @@ Review your topology.json and check that it looks correct. Your new relay node's
 cat $CNODE_HOME/files/topology.json
 ```
 
-## :fire: 6. Configure port-forwarding and/or firewall
+## :fire: Configuring Port Forwarding and/or Firewall
 
 Specific to your networking setup or cloud provider settings, ensure your relay node's port 6000 is open and reachable. 
 
@@ -233,9 +248,9 @@ Specific to your networking setup or cloud provider settings, ensure your relay 
 
 Additionally, if you have node-exporter installed for grafana stats, you will need to open ports 9100 and 12798. Don't forget to update `prometheus.yml` on your prometheus server (aka relaynode1). Restart prometheus service for the new relay node to appear in your dashboard.
 
-## :woman_technologist: 7. Configure existing relay or block producing node's topology
+## :woman_technologist: Configuring Topology for Existing Nodes
 
-Finally, add your new **NEW **relay node IP/port information to your **EXISTING **block producer and/or relay node's topology file. Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh`
+Finally, add your new **NEW **relay node IP/port information to your **EXISTING **block producer and/or relay node's topology file. Modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh` script.
 
 For your block producer node, you'll want to manually add the new relay node information to your topology.json file.
 
@@ -249,13 +264,25 @@ Example snippet to add to your block producer's topology file. Add a comma to se
  }
 ```
 
-For relay nodes, use the [topologyUpdater process](./#14-configure-your-topology-files) to manage your topology file or modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh`.
+For relay nodes, [manage your topology file](../part-iii-operation/configuring-topology-files.md) or modify the **CUSTOM_PEERS section** of the `topologyUpdater.sh` script.
 
-## :arrows_counterclockwise: 8. Restart all relay and block producer nodes for new topology configurations to take effect
+## :arrows_counterclockwise: Restarting Nodes
 
-## :confetti_ball: 9. Verify the connection is working
+To refresh topology configurations for a node, you need to restart the node.
 
-On the Guild LiveView screen, press `P` to view the peer list. You should see the connection to other node's IP.
+To restart nodes:
+
+1\. Type:
+
+```
+sudo systemctl reload-or-restart cnode
+```
+
+2\. Repeat step 1 for each node having updated topology configurations.
+
+## :confetti_ball: Testing the Connection
+
+On the Guild LiveView screen, press `P` to view the peer list. You should see the connection to other node's IP address.
 
 {% hint style="success" %}
 :sparkles: Congrats on the new relay node.

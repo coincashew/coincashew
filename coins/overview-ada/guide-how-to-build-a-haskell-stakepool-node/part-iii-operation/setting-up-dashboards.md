@@ -1,11 +1,11 @@
-# 🔮 16. Setup Prometheus and Grafana Dashboard
+# 🔮 Setting Up Dashboards
 
 {% hint style="info" %}
 * **Prometheus** is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/)
 * **Grafana** is a dashboard used to visualize the collected data.
 {% endhint %}
 
-### &#x20;:hatching\_chick: 16.1 Installation
+## :hatching\_chick: Installing Prometheus and Grafana
 
 Install prometheus and prometheus node exporter.
 
@@ -197,7 +197,7 @@ curl -s 127.0.0.1:12798/metrics
 {% endtab %}
 {% endtabs %}
 
-### :signal\_strength: 16.2 Setting up Grafana Dashboards&#x20;
+## :signal\_strength: Configuring Grafana
 
 1. On relaynode1, open [http://localhost:3000](http://localhost:3000) or http://\<your relaynode1 ip address>:3000 in your local browser. You may need to open up port 3000 in your router and/or firewall.
 2. Login with **admin** / **admin**
@@ -212,7 +212,7 @@ curl -s 127.0.0.1:12798/metrics
 11. Add dashboard by **Upload JSON file**
 12. Click the **Import** button.
 
-![Credits to KAZE stake pool for this dashboard](../../../.gitbook/assets/dashboard-kaze.jpg)
+![Credits to KAZE stake pool for this dashboard](../../../../.gitbook/assets/dashboard-kaze.jpg)
 
 {% hint style="info" %}
 Community contributer [**Sansky.de**](https://sanskys.github.io/grafana/) is sharing a very detailed Grafana tutorial :pray: [https://sanskys.github.io/grafana/](https://sanskys.github.io/grafana/)
@@ -223,5 +223,5 @@ Congratulations. You're basically done. More great operational and maintenance t
 {% endhint %}
 
 {% hint style="info" %}
-Be sure to review the [stake pool operator's best practice checklist](18.-operational-and-maintenance-tips.md#18.15-stake-pool-operators-best-practices-checklist) to ensure a smooth sailing with your pool.
+Be sure to review the [Stake Pool Operator's Best Practices Checklist](../appendix-best-practices-checklist.md) to ensure smooth sailing with your pool.
 {% endhint %}

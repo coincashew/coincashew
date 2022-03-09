@@ -2,7 +2,7 @@
 description: Guide to monitor your node security with OSSEC and Slack.
 ---
 
-# How to Monitor Security with OSSEC server and Slack
+# Monitoring Node Security Using OSSEC Server and Slack
 
 {% hint style="info" %}
 This guide was contributed by [Billionaire Pool](https://www.billionairepool.com). If you find this guide useful, please consider staking to it (**BIL** ticker). Thank you 🙏
@@ -12,7 +12,7 @@ This guide was contributed by [Billionaire Pool](https://www.billionairepool.com
 The guide is kindly hosted by our Coincashew friends. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏
 {% endhint %}
 
-## :robot: Pre-requisites
+## :robot: Prerequisites
 
 * Ubuntu Server or Ubuntu Desktop installed
 * SSH server installed
@@ -22,8 +22,8 @@ The guide is kindly hosted by our Coincashew friends. Use [cointr.ee to find our
 
 If you need ideas on how to harden your stake pool's nodes, refer to
 
-{% content-ref url="how-to-harden-ubuntu-server.md" %}
-[how-to-harden-ubuntu-server.md](how-to-harden-ubuntu-server.md)
+{% content-ref url="../part-i-installation/hardening-an-ubuntu-server.md" %}
+[Hardening an Ubuntu Server](../part-i-installation/hardening-an-ubuntu-server.md)
 {% endcontent-ref %}
 
 These are very recommended steps to perform before configuring a monitoring service.
