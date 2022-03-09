@@ -43,6 +43,7 @@ Thanks to all 102,000+ of you, the Cardano hodlers, buidlers, stakers, and pool 
 
 ## :rocket:CoinCashew's Preferred Stake Pools
 
+* &#x20;:star:CHG
 * :star2: CNT
 * :star2: OMEGA | CODEX
 * :star2: BTBF

@@ -3,18 +3,18 @@
 ## :tada: Introduction
 
 {% hint style="info" %}
-:confetti_ball: This latest update brought to you by the generous donations by [**BEBOP stake pool**](https://bebopadapool.com). 
+:confetti\_ball: This latest update brought to you by the generous donations by [**BEBOP stake pool**](https://bebopadapool.com).
 
-If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation addresses](https://cointr.ee/coincashew). Much appreciated in advance. :pray: 
+If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation addresses](https://cointr.ee/coincashew). Much appreciated in advance. :pray:
 {% endhint %}
 
 {% hint style="success" %}
-As of Oct 1 2021, this guide is written for **mainnet **with **release v1.30.1** :grin: 
+As of Oct 1 2021, this guide is written for **mainnet** with **release v1.30.1** :grin:
 {% endhint %}
 
 ## :satellite: How to Perform an Upgrade
 
-From time to time, there will be new versions of `cardano-node`. Follow the [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) by enabling **notifications **with the watch functionality.
+From time to time, there will be new versions of `cardano-node`. Follow the [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) by enabling **notifications** with the watch functionality.
 
 {% hint style="danger" %}
 Read the patch notes for any other special updates or dependencies that may be required for the latest release.
@@ -22,11 +22,11 @@ Read the patch notes for any other special updates or dependencies that may be r
 
 {% tabs %}
 {% tab title="v1.30.1 Notes" %}
-**Full release notes: **[**https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1**](https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1)****
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1**](https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1)
 
-### :octagonal_sign: Upgrading Release Dependencies
+#### :octagonal\_sign: Upgrading Release Dependencies
 
-#### CNCLI
+**CNCLI**
 
 If you use CNCLI for leaderlogs and sendslots, then you must upgrade to `cncli version 4.0.1`
 
@@ -49,7 +49,7 @@ cncli -V
 
 It should return the updated version number.
 
-#### gLiveView
+**gLiveView**
 
 ```bash
 cd ${NODE_HOME}
@@ -64,7 +64,7 @@ sed -i env \
 {% endtab %}
 
 {% tab title="v1.29.0 Notes" %}
-**Full release notes: **[**https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0)****
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0)
 
 This release is an important update to the node that provides the functionality that is needed following the Alonzo hard fork.\
 **All users, including stake pool operators, must upgrade to this version (or a later version) of the node.**
@@ -75,9 +75,9 @@ It incorporates several improvements, including a new `transaction build` comman
 
 Note that this release changes the log format of traces configured by `TraceChainSyncHeaderServer` and `TraceChainSyncClient` . See [#2746](https://github.com/input-output-hk/cardano-node/pull/2746) for more detail.
 
-### :octagonal_sign: Release Dependencies
+#### :octagonal\_sign: Release Dependencies
 
-#### 1. If using cncli for leaderlogs and sendslots, update to `cncli version 3.15` is required.
+**1. If using cncli for leaderlogs and sendslots, update to `cncli version 3.15` is required.**
 
 ```bash
 RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
@@ -90,7 +90,7 @@ curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-#### Checking that cncli is properly updated
+**Checking that cncli is properly updated**
 
 ```
 cncli -V
@@ -152,7 +152,7 @@ Example of what it should look like with the two new lines.
   "ShelleyGenesisHash": "1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81",
 ```
 
-**\[ Optional Troubleshooting ] **4. In case your node does not start up properly, refresh `mainnet-shelley-genesis.json`
+\*\*\[ Optional Troubleshooting ] \*\*4. In case your node does not start up properly, refresh `mainnet-shelley-genesis.json`
 
 ```bash
 cd $NODE_HOME
@@ -161,16 +161,16 @@ wget -N https://hydra.iohk.io/build/7416228/download/1/mainnet-shelley-genesis.j
 {% endtab %}
 
 {% tab title="v1.27.0 Notes" %}
-**Full release notes: **[**https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0)****
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0)
 
 Node version 1.27.0 provides important new functionality, including supporting new CLI commands that have been requested by stake pools, providing garbage collection metrics.\
 It includes the performance fixes for the epoch boundary calculation that were released in node version [1.26.2](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2), plus a number of bug fixes and code improvements.\
 It also includes many fundamental changes that are needed to prepare for forthcoming feature releases (notably Plutus scripts in the Alonzo era).\
 Note that this release includes breaking changes to the API and CLI commands, and that compilation using GHC version 8.6.5 is no longer supported.
 
-### :octagonal_sign: Release Dependencies
+#### :octagonal\_sign: Release Dependencies
 
-#### 1. If using cncli for leaderlogs and sendslots, update to `cncli version 2.10` is required.
+**1. If using cncli for leaderlogs and sendslots, update to `cncli version 2.10` is required.**
 
 ```bash
 RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
@@ -183,7 +183,7 @@ curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-#### Checking that cncli is properly updated
+**Checking that cncli is properly updated**
 
 ```
 cncli -V
@@ -193,7 +193,7 @@ It should return the updated version number.
 {% endtab %}
 
 {% tab title="v1.26.2 Notes" %}
-**Full release notes: **[**https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2**](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2)****
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2**](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2)
 
 This point release is a recommended upgrade for all stake pool operators. It is not required for relays or other passive nodes. It ensures that block producing nodes do not unnecessarily re-evaluate the stake distribution at the epoch boundary.
 
@@ -214,7 +214,7 @@ git clone https://github.com/input-output-hk/cardano-node.git cardano-node2
 cd cardano-node2/
 ```
 
-Run the following command to pull and build the latest binaries. Change the checkout **tag **or **branch **as needed.
+Run the following command to pull and build the latest binaries. Change the checkout **tag** or **branch** as needed.
 
 ```bash
 cd $HOME/git/cardano-node2
@@ -230,7 +230,7 @@ cabal build cardano-node cardano-cli
 Build process may take a few minutes up to a few hours depending on your computer's processing power.
 {% endhint %}
 
-Verify your **cardano-cli **and **cardano-node** were updated to the expected version.
+Verify your **cardano-cli** and **cardano-node** were updated to the expected version.
 
 ```bash
 $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") version
@@ -267,7 +267,7 @@ killall -s 2 cardano-node
 {% endtab %}
 {% endtabs %}
 
-Copy **cardano-cli **and **cardano-node** files into bin directory.
+Copy **cardano-cli** and **cardano-node** files into bin directory.
 
 ```bash
 sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
@@ -277,7 +277,7 @@ sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardan
 sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
 ```
 
-Verify your **cardano-cli **and **cardano-node** were copied successfully and updated to the expected version.
+Verify your **cardano-cli** and **cardano-node** were copied successfully and updated to the expected version.
 
 ```bash
 cardano-node version
@@ -354,28 +354,24 @@ It may take some time to start a node, sometimes up to 30 minutes. gLiveView may
 {% endhint %}
 
 {% hint style="danger" %}
-****:robot: **Important Reminder**: Don't forget to update your **air-gapped offline machine (cold environment) **with the new **Cardano CLI** binaries.
+:robot: **Important Reminder**: Don't forget to update your **air-gapped offline machine (cold environment)** with the new **Cardano CLI** binaries.
 {% endhint %}
 
 {% hint style="success" %}
-Congrats on completing the update. :sparkles: 
+Congrats on completing the update. :sparkles:
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it. 
+Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
 
-It really energizes us to keep creating the best crypto guides. 
+It really energizes us to keep creating the best crypto guides.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray: 
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:
 
-Any feedback and all pull requests much appreciated. :first_quarter_moon_with_face: 
-
-Hang out and chat with fellow stake pool operators on Discord @
-
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) :smiley: 
+Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:
 
 Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}
 
-## :exploding_head: Troubleshooting
+## :exploding\_head: Troubleshooting
 
 ### :motorway: Forked off
 
@@ -388,7 +384,7 @@ cd $NODE_HOME
 rm -rf db
 ```
 
-### :open_file_folder: Reverting to a Previous Version Using a Backup
+### :open\_file\_folder: Reverting to a Previous Version Using a Backup
 
 {% hint style="danger" %}
 Stop your node before updating the binaries.
@@ -476,4 +472,4 @@ cd $NODE_HOME
 
 ### :robot: Last Resort: Rebuild the Stake Pool
 
-Follow the steps in [Setting Up a Cardano Stake Pool](../README.md)
+Follow the steps in [Setting Up a Cardano Stake Pool](../)
