@@ -884,13 +884,13 @@ Teku's Checkpoint Sync utilizes Infura to create the fastest syncing Ethereum be
 
 2\. Create a project.
 
-![](../../../.gitbook/assets/inf1.png)
+![](../../../../.gitbook/assets/inf1.png)
 
 3\. Add a project name and save changes.
 
 4\. Copy your Project's ENDPOINT. Ensure the correct Network is selected with the dropdown box.
 
-![](../../../.gitbook/assets/inf2.png)
+![](../../../../.gitbook/assets/inf2.png)
 
 Replace `<my infura Project's ENDPOINT>` with your Infura endpoint and then run the following command to set the `INFURA_PROJECT_ENDPOINT` variable.
 
