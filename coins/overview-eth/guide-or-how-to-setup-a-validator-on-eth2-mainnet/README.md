@@ -6,7 +6,7 @@ description: >-
 
 # Guide | How to setup a validator for Ethereum staking on mainnet
 
-## :new:Announcements
+## :new: Announcements
 
 {% hint style="info" %}
 :confetti\_ball: **2022-03 Gitcoin Grant Round 13**
@@ -22,7 +22,17 @@ As of March 8 2022, this is **guide version 4.0.0** and written for **Ethereum m
 :sparkles: [**PRATER testnet guide**](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md). Always test and practice on testnet.
 {% endhint %}
 
-### :page\_facing\_up: Changelog - **Update Notes -** **March 8 2022**
+## :wrench: About This Guide
+
+The _How to Setup a Validator for Ethereum Staking_ guide aims to give you complete, step-by-step instructions to implement and maintain a secure Ethereum Staking Node using the currently recommended software versions.
+
+The guide includes the following parts:
+
+* **Part I - Installation** describes how to sign up to be a validator at the ETH Launchpad, how to secure the Linux computer hosting your ETH staking node, as well as how to install execution and consensus client software and other helpful software packages such as time synching and monitoring tools.
+* **Part II - Maintenance** explains ongoing tasks you'll require to keep your ETH staking node in great shape and up-to-date.
+* **Part III - Tips** contains additional procedures to simplify managing your ETH staking node.
+
+## :page\_facing\_up: Changelog - **Update Notes -** **March 8 2022**
 
 * Restructured guide for improved speed and readability
 * Added how to check your [Validator's Sync Committee duties](part-ii-maintenance/checking-my-eth-validators-sync-committee-duties.md)
@@ -46,7 +56,7 @@ As of March 8 2022, this is **guide version 4.0.0** and written for **Ethereum m
 * Generate keystore files on [Ledger Nano X, Nano S and Trezor Model T](part-i-installation/signing-up-to-be-a-validator-at-the-launchpad.md) with tool from [allnodes.com](https://twitter.com/Allnodes/status/1390020240541618177?s=20)
 * [Batch deposit tool](part-i-installation/signing-up-to-be-a-validator-at-the-launchpad.md) by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added
 
-### :page\_facing\_up: Latest Essential Ethereum Staking Reading
+## :page\_facing\_up: Latest Essential Ethereum Staking Reading
 
 * [Modelling the Impact of Altair by pintail.xyz](https://pintail.xyz/posts/modelling-the-impact-of-altair/)
 * [Update on the Merge after the Amphora Interop by Consensys.net](https://consensys.net/blog/ethereum-2-0/an-update-on-the-merge-after-the-amphora-interop-event-in-greece/)
