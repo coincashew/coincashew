@@ -5,7 +5,7 @@ Part I includes the following topics describing how to sign up to be a validator
 * [Prerequisites](part-i-installation/prerequisites.md)
 * [Signing up to be a validator at the Launchpad](part-i-installation/signing-up-to-be-a-validator-at-the-launchpad.md)
 * [Security Best Practices for your ETH staking validator node](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
-* [Installing execution client](part-i-installation/install-execution-client-eth1-node.md)
+* [Installing execution client](part-i-installation/installing-execution-client.md)
 * [Configuring consensus client (beacon chain and validator)](part-i-installation/configuring-consensus-client-beaconchain-and-validator.md)
 * [Synchronizing time with Chrony](part-i-installation/synchronizing-time-with-chrony.md)
 * [Monitoring your validator with Grafana and Prometheus](part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md)
