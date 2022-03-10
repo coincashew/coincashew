@@ -1,6 +1,6 @@
 # Signing up to be a validator at the Launchpad
 
-1. Install dependencies, the ethereum foundation deposit tool and generate your two sets of key pairs.
+1. Install dependencies, the Ethereum Foundation deposit tool and generate your two sets of key pairs.
 
 {% hint style="info" %}
 Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
@@ -256,7 +256,7 @@ Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://tw
 6\. Confirm the transaction(s). There's one deposit transaction of 32 ETH for each validator.
 
 {% hint style="info" %}
-For instance, if you want to run 3 validators you will need to have (32 x 3) = 96 goerli ETH plus some extra to cover the gas fees.
+For instance, if you want to run 3 validators you will need to have (32 x 3) = 96 ETH plus some extra to cover the gas fees.
 {% endhint %}
 
 {% hint style="info" %}

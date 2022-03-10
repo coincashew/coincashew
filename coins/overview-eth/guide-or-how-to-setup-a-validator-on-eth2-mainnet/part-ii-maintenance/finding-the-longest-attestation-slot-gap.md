@@ -7,7 +7,7 @@ description: Find the best slot gap to avoid missing any validator duties.
 ## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](../). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 ### :dagger: Why do I want to calculate the longest attestation slot gap?

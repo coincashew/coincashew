@@ -4,12 +4,12 @@ description: >-
   process to prune the blockchain and free up space.
 ---
 
-# Pruning the execution client (eth1) to free up disk space
+# Pruning the execution client to free up disk space
 
 ## Quick steps guide
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](../). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 ### :dagger: Why do I want to prune my execution client?

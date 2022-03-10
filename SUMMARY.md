@@ -137,7 +137,7 @@
     * [Credits](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/credits.md)
   * [Guide | How to setup a validator for Ethereum staking on Pithos testnet in 10 minutes or less](coins/overview-eth/guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less.md)
   * [Guide | Operation Client Diversity: Migrate Prysm to Teku](coins/overview-eth/guide-or-operation-client-diversity-migrate-prysm-to-teku.md)
-  * [Guide | Security Best Practices for a ETH staking validator node](coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+  *
   * [Guide | How to setup a validator on ETH2 testnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
   * [Guide | How to setup a validator on ETH2 testnet PRATER](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
   * [Guide | Ethereum staking on RaspberryPi 4 with Prysm](https://d-u-a-l-i-s.medium.com/eth2-staking-on-raspberrypi-4-with-prysm-f5d5d3d7a73c)

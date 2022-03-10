@@ -2,15 +2,13 @@
 description: Quick steps to secure your node.
 ---
 
-# Guide | Security Best Practices for your ETH staking validator node
+# Security Best Practices for your ETH staking validator node
 
 {% hint style="info" %}
-:confetti\_ball: **2022-3 Gitcoin Grant Round 13:** We improve this guide with your support!&#x20;
+:confetti\_ball: **2022-3 Gitcoin Grant Round 13:** We improve this guide with your support!
 
-[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏
 {% endhint %}
-
-{% embed url="https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew" %}
 
 ## :robot: Pre-requisites
 
@@ -33,7 +31,7 @@ Make a habit of logging to your server using a non-root account. This will preve
 {% endhint %}
 
 {% hint style="danger" %}
-:fire:**Tip**: Do NOT routinely use the root account. Use `su` or `sudo`,  always.
+:fire:**Tip**: Do NOT routinely use the root account. Use `su` or `sudo`, always.
 {% endhint %}
 
 SSH to your server with your SSH client
@@ -137,7 +135,7 @@ PermitEmptyPasswords no
 **Optional**: Locate **Port** and customize it your **random** port.
 
 {% hint style="info" %}
-Use a **random** port # from 1024 thru 49141. [Check for possible conflicts. ](https://en.wikipedia.org/wiki/List\_of\_TCP\_and\_UDP\_port\_numbers)
+Use a **random** port # from 1024 thru 49141. [Check for possible conflicts.](https://en.wikipedia.org/wiki/List\_of\_TCP\_and\_UDP\_port\_numbers)
 {% endhint %}
 
 ```bash
@@ -299,13 +297,13 @@ Now, open Google Authenticator on your phone and add your secret key to make two
 ## :jigsaw: Secure Shared Memory
 
 {% hint style="info" %}
-One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.&#x20;
+One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.
 
 To learn more about secure shared memory, read this [techrepublic.com article](https://www.techrepublic.com/article/how-to-enable-secure-shared-memory-on-ubuntu-server/).
 {% endhint %}
 
 {% hint style="warning" %}
-### One exceptional case
+#### One exceptional case
 
 There may be a reason for you needing to have that memory space mounted in read/write mode (such as a specific server application like **DappNode** that requires such access to the shared memory or standard applications like Google Chrome). In this case, use the following line for the fstab file with instructions below.
 
@@ -315,7 +313,7 @@ none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
 
 The above line will mount the shared memory with read/write access but without permission to execute programs, change the UID of running programs, or to create block or character devices in the namespace. This a net security improvement over default settings.
 
-### Use with caution
+#### Use with caution
 
 With some trial and error, you may discover some applications(**like DappNode**) do not work with shared memory in read-only mode. For the highest security and if compatible with your applications, it is a worthwhile endeavor to implement this secure shared memory setting.
 
@@ -504,7 +502,7 @@ Do not expose Grafana (port 3000) and Prometheus endpoint (port 9090) to the pub
 
 Only open the following ports on local home staking setups behind a home router firewall or other network firewall.
 
-****:fire: **It is dangerous to open these ports on a VPS/cloud node.**
+:fire: **It is dangerous to open these ports on a VPS/cloud node.**
 
 ```bash
 # Allow grafana web server port
@@ -551,7 +549,7 @@ sudo ufw allow from <your local daily laptop/pc>
 ```
 
 {% hint style="info" %}
-&#x20;:confetti\_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+:confetti\_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
 ## :telephone\_receiver: Verify Listening Ports
@@ -605,9 +603,9 @@ sudo adduser --system --no-create-home slasher
 ```
 
 {% hint style="danger" %}
-****:fire: **Caveats For Advanced Users**
+:fire: **Caveats For Advanced Users**
 
-If you decide to use **system user accounts**, remember to replace the **systemd unit files** with the corresponding users.&#x20;
+If you decide to use **system user accounts**, remember to replace the **systemd unit files** with the corresponding users.
 
 ```bash
 # Example of beacon-chain.service unit file
@@ -624,11 +622,11 @@ sudo chown validator:validator -R $HOME/.eth2validators/validators-password.txt
 
 ## :sparkles: Additional validator node best practices
 
-|                        |                                                                                                                                                                                                                                                                                   |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Networking             | <p></p><p>Assign static internal IPs to both your validator node and daily laptop/PC. This is useful in conjunction with ufw and Fail2ban's whitelisting feature. Typically, this can be configured in your router's settings. Consult your router's manual for instructions.</p> |
-| Power Outage           | In case of power outage, you want your validator machine to restart as soon as power is available. In the BIOS settings, change the **Restore on AC / Power Loss** or **After Power Loss** setting to always on. Better yet, install an Uninterruptable Power Supply (UPS).       |
-| Clear the bash history | <p>When pressing the up-arrow key, you can see prior commands which may contain sensitive data. To clear this, run the following:</p><p><code>shred -u ~/.bash_history &#x26;&#x26; touch ~/.bash_history</code></p>                                                              |
+|                        |                                                                                                                                                                                                                                                                             |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Networking             | Assign static internal IPs to both your validator node and daily laptop/PC. This is useful in conjunction with ufw and Fail2ban's whitelisting feature. Typically, this can be configured in your router's settings. Consult your router's manual for instructions.         |
+| Power Outage           | In case of power outage, you want your validator machine to restart as soon as power is available. In the BIOS settings, change the **Restore on AC / Power Loss** or **After Power Loss** setting to always on. Better yet, install an Uninterruptable Power Supply (UPS). |
+| Clear the bash history | <p>When pressing the up-arrow key, you can see prior commands which may contain sensitive data. To clear this, run the following:</p><p><code>shred -u ~/.bash_history &#x26;&#x26; touch ~/.bash_history</code></p>                                                        |
 
 {% hint style="info" %}
 Be sure to review the [Checklist | How to confirm a healthy functional ETH2 validator.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
@@ -639,15 +637,15 @@ Be sure to review the [Checklist | How to confirm a healthy functional ETH2 vali
 ### Visit here for our [Mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 
 {% hint style="success" %}
-Congrats on completing the guide. :sparkles:&#x20;
+Congrats on completing the guide. :sparkles:
 
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.&#x20;
+Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
 
-It really energizes us to keep creating the best crypto guides.&#x20;
+It really energizes us to keep creating the best crypto guides.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:&#x20;
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:
 
-Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:&#x20;
+Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:
 {% endhint %}
 
 ## :rocket: References

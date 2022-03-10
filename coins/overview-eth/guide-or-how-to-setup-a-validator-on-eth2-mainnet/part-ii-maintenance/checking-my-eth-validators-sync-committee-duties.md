@@ -9,7 +9,7 @@ description: >-
 ## Quick steps guide
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](../). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 ### :dagger: Why do I want to check my sync committee duties ?

@@ -4,7 +4,7 @@ description: >-
   announced a new release. How best to update?
 ---
 
-# Updating your consensus client (eth2 client)
+# Updating your consensus client
 
 {% hint style="info" %}
 :confetti\_ball: **2022-3 Gitcoin Grant Round 13**
@@ -15,17 +15,17 @@ description: >-
 ## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](../). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your beacon chain and validator.
 
 {% hint style="info" %}
-Always review the **git logs** with command**`git log`** or **release notes** before updating. There may be changes requiring your attention.
+Always review the **git logs** with command\*\*`git log`\*\* or **release notes** before updating. There may be changes requiring your attention.
 {% endhint %}
 
 {% hint style="success" %}
-****:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](finding-the-longest-attestation-slot-gap.md)
+:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](finding-the-longest-attestation-slot-gap.md)
 {% endhint %}
 
 1. Select your consensus client.
@@ -128,7 +128,7 @@ sudo systemctl reload-or-restart beacon-chain
 {% endtab %}
 
 {% tab title="Prysm" %}
-Review release notes and check for breaking changes/features.&#x20;
+Review release notes and check for breaking changes/features.
 
 [https://github.com/prysmaticlabs/prysm/releases](https://github.com/prysmaticlabs/prysm/releases)
 
@@ -139,7 +139,7 @@ sudo systemctl reload-or-restart beacon-chain validator
 {% endtab %}
 
 {% tab title="Lodestar" %}
-Review release notes and check for breaking changes/features.&#x20;
+Review release notes and check for breaking changes/features.
 
 [https://github.com/ChainSafe/lodestar/releases](https://github.com/ChainSafe/lodestar/releases)
 

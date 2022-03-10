@@ -4,18 +4,18 @@ description: >-
   announced a new release. How best to update?
 ---
 
-# Updating your execution client (eth1 node)
+# Updating your execution client
 
 {% hint style="info" %}
-​ :tada: **2022-3 Gitcoin Grant Round 13**&#x20;
+​ :tada: **2022-3 Gitcoin Grant Round 13**
 
-[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏
 {% endhint %}
 
 ## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](../). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 {% hint style="success" %}
@@ -80,7 +80,7 @@ File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](h
 
 Manually find the desired file from above repo and modify the `wget` command with the URL.
 
-> Example:&#x20;
+> Example:
 >
 > wget -O besu.tar.gz [https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
 
