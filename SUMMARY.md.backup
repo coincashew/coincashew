@@ -100,6 +100,8 @@
 * [Bitcoin: BTC](coins/btc/README.md)
   * [Guide | How to buy BTC](coins/btc/guide-or-how-to-buy-btc.md)
   * [Book: Mastering Bitcoin](coins/btc/book-mastering-bitcoin.md)
+  
+
 * [Ethereum: ETH](coins/overview-eth/README.md)
   * [Guide | How to setup a validator for Ethereum staking on mainnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/README.md)
     * [PART I - INSTALLATION](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation.md)

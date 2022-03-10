@@ -4,7 +4,7 @@ description: >-
   validators with your existing mnemonic seed.
 ---
 
-# How to add a new validator to an existing setup with existing seed words
+# Adding a New Validator to an Existing Setup with Existing Seed Words
 
 ## :fast\_forward: Quick steps guide
 
@@ -88,7 +88,7 @@ Your additional validators are now in the activation queue waiting their turn. C
 
 ## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨

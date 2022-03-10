@@ -1,4 +1,4 @@
-# Monitoring your validator with Grafana and Prometheus
+# :mag\_right: 6. Monitoring your validator with Grafana and Prometheus
 
 Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
 
@@ -298,9 +298,9 @@ The dashboards do not display execution client _data._
 
 {% tabs %}
 {% tab title="Lighthouse" %}
-![Beacon Chain dashboard by sigp](../../../.gitbook/assets/lhm.png)
+![Beacon Chain dashboard by sigp](../../../../.gitbook/assets/lhm.png)
 
-![Validator Client dashboard by sigp](../../../.gitbook/assets/lighthouse-validator.png)
+![Validator Client dashboard by sigp](../../../../.gitbook/assets/lighthouse-validator.png)
 
 Beacon Chain JSON Download link: [https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)
 
@@ -308,7 +308,7 @@ Validator Client JSON download link: [https://raw.githubusercontent.com/sigp/lig
 
 Credits: [https://github.com/sigp/lighthouse-metrics/](https://github.com/sigp/lighthouse-metrics/)
 
-![LH dashboard by Yoldark](../../../.gitbook/assets/yoldark-lighthouse.png)
+![LH dashboard by Yoldark](../../../../.gitbook/assets/yoldark-lighthouse.png)
 
 JSON Download link: [https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark\_ETH\_staking\_dashboard.json](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark\_ETH\_staking\_dashboard.json)
 
@@ -316,11 +316,11 @@ Credits: [https://github.com/Yoldark34/lighthouse-staking-dashboard](https://git
 {% endtab %}
 
 {% tab title="Nimbus" %}
-![Dashboard by status-im](../../../.gitbook/assets/nim\_dashboard.png)
+![Dashboard by status-im](../../../../.gitbook/assets/nim\_dashboard.png)
 
 Credits: [https://github.com/status-im/nimbus-eth2/](https://github.com/status-im/nimbus-eth2/)
 
-![Nimbus dashboard by metanull-operator](../../../.gitbook/assets/eth2-grafana-dashboard-prysm.jpg)
+![Nimbus dashboard by metanull-operator](../../../../.gitbook/assets/eth2-grafana-dashboard-prysm.jpg)
 
 JSON download link:
 
@@ -328,17 +328,17 @@ Credits: [https://github.com/metanull-operator/eth2-grafana/](https://github.com
 {% endtab %}
 
 {% tab title="Teku" %}
-![Teku by PegaSys Engineering](../../../.gitbook/assets/teku.dash.png)
+![Teku by PegaSys Engineering](../../../../.gitbook/assets/teku.dash.png)
 
 Credits: [https://grafana.com/grafana/dashboards/13457](https://grafana.com/grafana/dashboards/13457)
 {% endtab %}
 
 {% tab title="Prysm" %}
-![Prysm dashboard by GuillaumeMiralles](../../../.gitbook/assets/prysm\_dash.png)
+![Prysm dashboard by GuillaumeMiralles](../../../../.gitbook/assets/prysm\_dash.png)
 
 Credits: [https://github.com/GuillaumeMiralles/prysm-grafana-dashboard](https://github.com/GuillaumeMiralles/prysm-grafana-dashboard)
 
-![Prysm dashboard by metanull-operator](../../../.gitbook/assets/eth2-grafana-dashboard-prysm.jpg)
+![Prysm dashboard by metanull-operator](../../../../.gitbook/assets/eth2-grafana-dashboard-prysm.jpg)
 
 JSON download link: [https://github.com/metanull-operator/eth2-grafana/raw/master/eth2-grafana-dashboard-single-source.json](https://github.com/metanull-operator/eth2-grafana/raw/master/eth2-grafana-dashboard-single-source.json)
 
@@ -354,31 +354,31 @@ Work in progress.
 
 {% tabs %}
 {% tab title="Geth" %}
-![Dashboard by karalabe](../../../.gitbook/assets/geth-dash.png)
+![Dashboard by karalabe](../../../../.gitbook/assets/geth-dash.png)
 
 Credits: [https://gist.github.com/karalabe/e7ca79abdec54755ceae09c08bd090cd](https://gist.github.com/karalabe/e7ca79abdec54755ceae09c08bd090cd)
 {% endtab %}
 
 {% tab title="Besu" %}
-![](../../../.gitbook/assets/besu-dash.png)
+![](../../../../.gitbook/assets/besu-dash.png)
 
 Credits: [https://grafana.com/dashboards/10273](https://grafana.com/dashboards/10273)
 {% endtab %}
 
 {% tab title="Nethermind" %}
-![](../../../.gitbook/assets/nethermind-dash.png)
+![](../../../../.gitbook/assets/nethermind-dash.png)
 
 Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://github.com/NethermindEth/metrics-infrastructure)
 {% endtab %}
 
 {% tab title="Erigon" %}
-![](../../../.gitbook/assets/erigon-grafana.png)
+![](../../../../.gitbook/assets/erigon-grafana.png)
 
 Credits: [https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashboards](https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashboards)
 {% endtab %}
 
 {% tab title="OpenEthereum" %}
-![Credits to dappnode](../../../.gitbook/assets/openethereum-dashboard.png)
+![Credits to dappnode](../../../../.gitbook/assets/openethereum-dashboard.png)
 {% endtab %}
 {% endtabs %}
 
@@ -390,9 +390,9 @@ Credits: [https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashbo
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](<../../../.gitbook/assets/grafana (1).png>)
+![](<../../../../.gitbook/assets/grafana (1).png>)
 
-![](../../../.gitbook/assets/node-exporter2.png)
+![](../../../../.gitbook/assets/node-exporter2.png)
 
 Credits: [starsliao](https://grafana.com/grafana/dashboards/11074)
 {% endtab %}
@@ -455,66 +455,3 @@ Get notified of problems with your validators. Choose between email, telegram, d
 7. Click **Send Test**, which will push a confirmation message to the Slack channel.
 {% endtab %}
 {% endtabs %}
-
-### :ocean: 6.4 Monitoring with Uptime Check by Google Cloud
-
-{% hint style="info" %}
-Who watches the watcher? With an external 3rd party tool like Uptime Check, you can have greater reassurance your validator is functioning in case of disasters such as power failure, hardware failure or internet outage. In these scenarios, the previously mentioned monitoring by Prometheus and Grafana would likely cease to function as well.
-
-Credits to [Mohamed Mansour for inspiring this how-to guide](https://www.youtube.com/watch?v=txgOVDTemPQ).
-{% endhint %}
-
-Here's how to setup a no-cost monitoring service called Uptime Check by Google.
-
-{% hint style="info" %}
-For a video demo, watch [MohamedMansour's eth2 education videos](https://www.youtube.com/watch?v=txgOVDTemPQ). Please support his [GITCOIN grant](https://gitcoin.co/grants/1709/video-educational-grant). :pray:
-{% endhint %}
-
-1. Visit [cloud.google.com](https://cloud.google.com)
-2. Search for **Monitoring** in the search field.
-3. Click **Select a Project to Start Monitoring**.
-4. Click **New Project.**
-5. **Name your project and click Create.**
-6. From the notifications menu, select your new project.
-7. On the right column, there's a Monitoring Card. Click **Go to Monitoring**.
-8. On the left menu, click \*\*Uptime checks \*\*and then **CREATE UPTIME CHECK.**
-9. Type in a title i.e. _**Geth node**_
-10. Select protocol as _**TCP**_
-11. Enter your public IP address and port number. i.e. ip=**7.55.6.3** and port=**30303**
-12. Select your desired frequency to check i.e. **5 minutes.**
-13. Choose the region closest to you to check from. Click Next.
-14. Create a Notification Channel. Click **Manage Notification Channels.**
-15. Choose your desired settings. Pick from any or all of Slack, Webhook, Email or SMS.
-16. Go back to Create Uptime Check window.
-17. Within the notifications field, click the refresh button to load your new notification channels.
-18. Select desired notifications.
-19. Click **TEST **to verify your notifications are setup correctly.
-20. Click **CREATE **to finish.
-
-### :mobile\_phone: 6.5 Mobile App Node Monitoring by beaconcha.in
-
-Learn how to monitor your validator & beacon node on the [beaconcha.in mobile app.](https://beaconcha.in/mobile)
-
-{% hint style="info" %}
-This feature currently works for Lighthouse and Prysm.
-{% endhint %}
-
-Refer to the official guide found here: [https://kb.beaconcha.in/beaconcha.in-explorer/mobile-app-less-than-greater-than-beacon-node](https://kb.beaconcha.in/beaconcha.in-explorer/mobile-app-less-than-greater-than-beacon-node)
-
-![beaconcha.in mobile app monitoring](../../../.gitbook/assets/grafik.png)
-
-{% hint style="success" %}
-Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
-
-Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track your validator's performance.
-{% endhint %}
-
-{% hint style="info" %}
-Be sure to review the [Checklist | How to confirm a healthy functional ETH2 validator.](checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
-{% endhint %}
-
-{% hint style="success" %}
-:tada:Congrats on setting up your validator! You're good to go on staking Ethereum.
-
-Did you find our guide useful? Send us a signal with&#x20;
-{% endhint %}

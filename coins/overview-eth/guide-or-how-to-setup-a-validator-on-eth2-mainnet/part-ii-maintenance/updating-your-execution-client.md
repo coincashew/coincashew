@@ -4,7 +4,7 @@ description: >-
   announced a new release. How best to update?
 ---
 
-# How to update your execution client (eth1 node)
+# Updating your execution client (eth1 node)
 
 {% hint style="info" %}
 ​ :tada: **2022-3 Gitcoin Grant Round 13**&#x20;
@@ -19,7 +19,7 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 {% endhint %}
 
 {% hint style="success" %}
-****:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+****:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](finding-the-longest-attestation-slot-gap.md)
 {% endhint %}
 
 From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
@@ -158,9 +158,9 @@ sudo systemctl status eth1 beacon-chain
 
 Enter your validator's pubkey to view its status.
 
-## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## :robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨

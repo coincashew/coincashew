@@ -2,7 +2,7 @@
 description: Quick steps to secure your node.
 ---
 
-# Guide | Security Best Practices for a ETH staking validator node
+# Guide | Security Best Practices for your ETH staking validator node
 
 {% hint style="info" %}
 :confetti\_ball: **2022-3 Gitcoin Grant Round 13:** We improve this guide with your support!&#x20;

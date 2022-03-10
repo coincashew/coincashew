@@ -2,7 +2,7 @@
 description: Find the best slot gap to avoid missing any validator duties.
 ---
 
-# How to find longest attestation slot gap
+# Finding the longest attestation slot gap
 
 ## :fast\_forward: Quick steps guide
 
@@ -78,9 +78,9 @@ Sample Output showing the longest gap in seconds, # of slots and time range.
 Nice work. Now you now the best gap to avoid missing any validator duties.
 {% endhint %}
 
-## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## :robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨
@@ -98,4 +98,5 @@ Any feedback and all pull requests much appreciated. 🌛
 
 {% embed url="https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63150/raw/cc874b3035f97495416353f203d70477b31ab05d/get_validator_duties.py" %}
 
-[https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd](https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd)
+[https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd
+](https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd)

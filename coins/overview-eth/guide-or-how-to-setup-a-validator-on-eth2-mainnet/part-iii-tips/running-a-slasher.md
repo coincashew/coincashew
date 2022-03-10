@@ -4,7 +4,7 @@ description: >-
   earn you extra ETH.
 ---
 
-# How to run a slasher
+# Running a slasher
 
 ## :fast\_forward: Quick steps guide
 
@@ -85,12 +85,12 @@ Nice work. You're running a slasher now. :dagger: :robot: :knife:&#x20;
 {% endhint %}
 
 {% hint style="info" %}
-Be sure to familiarize yourself with the [reference material for detailed official slasher documentation.](how-to-run-a-slasher.md#reference-material)
+Be sure to familiarize yourself with the [reference material for detailed official slasher documentation.](run-a-slasher.md#reference-material)
 {% endhint %}
 
-## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## :robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) and here for our [Testnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet). <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨

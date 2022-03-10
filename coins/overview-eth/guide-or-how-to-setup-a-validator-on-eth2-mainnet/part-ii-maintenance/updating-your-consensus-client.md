@@ -4,12 +4,12 @@ description: >-
   announced a new release. How best to update?
 ---
 
-# How to update your consensus client (eth2 client)
+# Updating your consensus client (eth2 client)
 
 {% hint style="info" %}
 :confetti\_ball: **2022-3 Gitcoin Grant Round 13**
 
-[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏
 {% endhint %}
 
 ## :fast\_forward: Quick steps guide
@@ -25,7 +25,7 @@ Always review the **git logs** with command**`git log`** or **release notes** be
 {% endhint %}
 
 {% hint style="success" %}
-****:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](how-to-find-longest-attestation-slot-gap.md)
+****:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](finding-the-longest-attestation-slot-gap.md)
 {% endhint %}
 
 1. Select your consensus client.
@@ -188,9 +188,9 @@ sudo systemctl status beacon-chain
 
 Enter your validator's pubkey to view its status.
 
-## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## :robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet). <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet).
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨

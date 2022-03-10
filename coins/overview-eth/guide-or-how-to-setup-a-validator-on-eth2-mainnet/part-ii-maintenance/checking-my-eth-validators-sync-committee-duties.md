@@ -4,7 +4,7 @@ description: >-
   duties.
 ---
 
-# How to check my eth validator's sync committee duties
+# Checking my eth validator's sync committee duties
 
 ## Quick steps guide
 

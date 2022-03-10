@@ -4,7 +4,7 @@ description: >-
   connectivity issues with other validators when my dynamic IP address changes.
 ---
 
-# How to setup dynamic DNS (DDNS)
+# Setting up dynamic DNS (DDNS)
 
 ## :fast\_forward: Quick steps guide
 
@@ -33,7 +33,7 @@ There are many [alternative DDNS services](https://hackerspad.net/software/duck-
 
 For the purpose of this tutorial, we will be using [DuckDNS.org](https://www.duckdns.org/install.jsp)
 
-1\. Sign in and create an account with your preferred social media login.&#x20;
+1\. Sign in and create an account with your preferred social media login.
 
 2\. Follow the instructions on[ how to setup duckdns for linux cron.](https://www.duckdns.org/install.jsp)
 
@@ -68,9 +68,9 @@ Nice work. You're running a DDNS now.&#x20;
 Be sure to familiarize yourself with the [official docs and faqs.](https://www.duckdns.org/faqs.jsp)
 {% endhint %}
 
-## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## :robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨

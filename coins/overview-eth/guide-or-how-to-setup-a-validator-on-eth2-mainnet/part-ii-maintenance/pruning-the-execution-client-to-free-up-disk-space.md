@@ -4,7 +4,7 @@ description: >-
   process to prune the blockchain and free up space.
 ---
 
-# How to free up execution client (eth1) disk space with pruning
+# Pruning the execution client (eth1) to free up disk space
 
 ## Quick steps guide
 
@@ -37,7 +37,7 @@ sudo service eth1 stop
 2\. Start the pruning process and monitor it's process.
 
 {% hint style="warning" %}
-:fire: **Geth pruning Caveats**:&#x20;
+:fire: **Geth pruning Caveats**:
 
 * Pruning can take a few hours or longer (typically 2 to 10 hours is common) depending on your node's disk performance.
 * There are three stages to pruning: **iterating state snapshot, pruning state data and compacting database.**
@@ -79,9 +79,9 @@ df
 Nice work. Enjoy the extra disk breathing room.
 {% endhint %}
 
-## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## :robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet) <a href="#visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide" id="visit-here-for-our-mainnet-guide-and-here-for-our-testnet-guide"></a>
+### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
 
 {% hint style="success" %}
 Congrats on completing the guide. ✨
