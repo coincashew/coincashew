@@ -1,4 +1,4 @@
-# :woman\_technologist: 2. Signing up to be a validator at the Launchpad
+# Signing up to be a validator at the Launchpad
 
 1. Install dependencies, the ethereum foundation deposit tool and generate your two sets of key pairs.
 
@@ -17,8 +17,6 @@ sudo apt update
 sudo apt install python3-pip git -y
 ```
 
-
-
 Download source code and install.
 
 ```
@@ -28,15 +26,11 @@ cd eth2deposit-cli
 sudo ./deposit.sh install
 ```
 
-
-
 Make a new mnemonic.
 
 ```
 ./deposit.sh new-mnemonic --chain mainnet
 ```
-
-
 
 {% hint style="info" %}
 **Advanced option**: Custom eth1 withdrawal address, often used for 3rd party staking.
@@ -60,15 +54,11 @@ cd $HOME
 wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-linux-amd64.tar.gz
 ```
 
-
-
 Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
 
 ```bash
 echo "825035b6d6c06c0c85a38f78e8bf3e9df93dfd16bf7b72753b6888ae8c4cb30a *eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz" | shasum -a 256 --check
 ```
-
-
 
 Example valid output:
 
@@ -77,8 +67,6 @@ Example valid output:
 {% hint style="danger" %}
 Only proceed if the sha256 check passes with **OK**!
 {% endhint %}
-
-
 
 Extract the archive.
 
@@ -89,15 +77,11 @@ rm eth2deposit-cli-256ea21-linux-amd64.tar.gz
 cd eth2deposit-cli
 ```
 
-
-
 Make a new mnemonic.
 
 ```
 ./deposit new-mnemonic --chain mainnet
 ```
-
-
 
 {% hint style="info" %}
 **Advanced option**: Custom eth1 withdrawal address, often used for 3rd party staking.
@@ -114,7 +98,7 @@ If this field is set and valid, the given Eth1 address will be used to create th
 {% endtab %}
 
 {% tab title="Hardware Wallet - Most Secure" %}
-#### How to generate validator keys with Ledger Nano X/S and Trezor Model T
+**How to generate validator keys with Ledger Nano X/S and Trezor Model T**
 
 {% hint style="info" %}
 [Allnodes ](https://help.allnodes.com/en/articles/4664440-how-to-setup-ethereum-2-0-validator-node-on-allnodes)has created an easy to use tool to connect a Ledger Nano X/S and Trezor Model T and generate the deposit json files such that the withdrawal credentials remain secured by the hardware wallet. This tool can be used by any validator or staker.
@@ -156,7 +140,7 @@ You will learn how to boot up a windows PC into an airgapped [Tails operating sy
 
 The Tails OS is an _amnesic_ operating system, meaning it will save nothing and _leave no tracks behind_ each time you boot it.
 
-#### Part 0 - Prerequisites
+**Part 0 - Prerequisites**
 
 You need:
 
@@ -165,13 +149,13 @@ You need:
 * Windows or Mac computer
 * 30 minutes or longer depending on your download speed
 
-#### Part 1 - Download Tails OS
+**Part 1 - Download Tails OS**
 
 Download the official image from the [Tails website](https://tails.boum.org/install/index.en.html). Might take a while, go grab a coffee.
 
 Make sure you follow the guide on the Tails website to verify your download of Tails.
 
-#### Part 2 - Download and install the software to transfer your Tails image on your USB stick
+**Part 2 - Download and install the software to transfer your Tails image on your USB stick**
 
 For Windows, use one of
 
@@ -181,7 +165,7 @@ For Windows, use one of
 
 For Mac, download [Etcher](https://tails.boum.org/etcher/Etcher.dmg)
 
-#### Part 3 - Making your bootable USB stick
+**Part 3 - Making your bootable USB stick**
 
 Run the above software. This is an example how it looks like on Mac OS with etcher, but other software should be similar.
 
@@ -191,13 +175,13 @@ Select the Tails OS image that you downloaded as the image. Then select the USB 
 
 Then flash the image to the larger USB stick.
 
-#### Part 4 - Download and verify the eth2-deposit-cli
+**Part 4 - Download and verify the eth2-deposit-cli**
 
 You can refer to the other tab on this guide on how to download and verify the eth2-deposit-cli.
 
 Copy the file to the other USB stick.
 
-#### Part 5 - Reboot your computer and into Tails OS
+**Part 5 - Reboot your computer and into Tails OS**
 
 After you have done all the above, you can reboot. If you are connected by a LAN cable to the internet, you can disconnect it manually.
 
@@ -209,13 +193,13 @@ On Windows, it depends on your computer manufacturer. Usually it is by pressing 
 
 Choose the USB stick that you loaded up with Tails OS to boot into Tails.
 
-#### Part 6 - Welcome to Tails OS
+**Part 6 - Welcome to Tails OS**
 
 ![](../../../../.gitbook/assets/grub.png)
 
 You can boot with all the default settings.
 
-#### Part 7 - Run the eth2-deposit-cli
+**Part 7 - Run the eth2-deposit-cli**
 
 Plug in your other USB stick with the `eth2-deposit-cli` file.
 
@@ -282,10 +266,10 @@ Your transaction is sending and depositing your ETH to the [official ETH2 deposi
 {% endhint %}
 
 {% hint style="danger" %}
-&#x20;**Critical Crypto Reminder:** Keep your mnemonic, keep your ETH.
+**Critical Crypto Reminder:** Keep your mnemonic, keep your ETH.
 
 * Write down your mnemonic seed **offline**. _Not email. Not cloud._
-* Multiple copies are better. Best stored in a \_[_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
+* Multiple copies are better. Best stored in a [_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
 * The withdrawal keys will be generated from this mnemonic in the future.
 * Make **offline backups**, such as to a USB key, of your **`validator_keys`** directory.
 {% endhint %}

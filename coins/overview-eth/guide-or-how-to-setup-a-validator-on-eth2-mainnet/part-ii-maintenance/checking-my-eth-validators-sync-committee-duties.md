@@ -23,7 +23,7 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 * your eth staking validator index number(s) -- Lookup on [https://beaconcha.in/](https://beaconcha.in) or [https://beaconscan.com/](https://beaconscan.com)
 
 {% hint style="success" %}
-:sparkles: Kudos to [**2038**](https://www.reddit.com/user/2038/) **** on Reddit for [authoring this process.](https://www.reddit.com/r/ethstaker/comments/qjlfsf/how\_to\_check\_upcoming\_sync\_committee\_membership/)
+:sparkles: Kudos to [**2038**](https://www.reddit.com/user/2038/) on Reddit for [authoring this process.](https://www.reddit.com/r/ethstaker/comments/qjlfsf/how\_to\_check\_upcoming\_sync\_committee\_membership/)
 {% endhint %}
 
 ### :construction: How to Check Sync Committee Duties script
@@ -113,7 +113,7 @@ Sample Output:
 > ```
 
 {% hint style="warning" %}
-****:fire: **Script Usage Caveats**:&#x20;
+:fire: **Script Usage Caveats**:
 
 * Sync commitee duties are only known for the current AND next epoch.
 {% endhint %}

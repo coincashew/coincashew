@@ -1,4 +1,4 @@
-### :mobile\_phone: 6.5 Mobile App Node Monitoring by beaconcha.in
+# Mobile App Node Monitoring by beaconcha.in
 
 Learn how to monitor your validator & beacon node on the [beaconcha.in mobile app.](https://beaconcha.in/mobile)
 
@@ -22,6 +22,4 @@ Be sure to review the [Checklist | How to confirm a healthy functional ETH staki
 
 {% hint style="success" %}
 :tada:Congrats on setting up your validator! You're good to go on staking Ethereum.
-
-Did you find our guide useful? Send us a signal with&#x20;
 {% endhint %}

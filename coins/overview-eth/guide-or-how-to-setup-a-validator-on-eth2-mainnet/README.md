@@ -22,8 +22,9 @@ As of March 8 2022, this is **guide version 4.0.0** and written for **Ethereum m
 :sparkles: [**PRATER testnet guide**](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md). Always test and practice on testnet.
 {% endhint %}
 
-### :page\_facing\_up: Changelog - **Update Notes -** **Dec 1 2021**
+### :page\_facing\_up: Changelog - **Update Notes -** **March 8 2022**
 
+* Restructured guide for improved speed and readability
 * Added how to check your [Validator's Sync Committee duties](part-ii-maintenance/checking-my-eth-validators-sync-committee-duties.md)
 * Added new Formatting fixes and updated Teku initial state API.
 * Updated with consensus layer (CL), the execution layer (EL), formerly known as eth2 and eth1.
@@ -50,8 +51,3 @@ As of March 8 2022, this is **guide version 4.0.0** and written for **Ethereum m
 * [Modelling the Impact of Altair by pintail.xyz](https://pintail.xyz/posts/modelling-the-impact-of-altair/)
 * [Update on the Merge after the Amphora Interop by Consensys.net](https://consensys.net/blog/ethereum-2-0/an-update-on-the-merge-after-the-amphora-interop-event-in-greece/)
 * [Ethereum Merge Mainnet Readiness Updates](https://github.com/ethereum/pm/blob/master/Merge/mainnet-readiness.md)
-
-
-
-
-

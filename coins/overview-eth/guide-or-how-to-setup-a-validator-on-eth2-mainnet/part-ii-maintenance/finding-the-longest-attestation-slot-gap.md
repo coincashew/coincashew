@@ -68,9 +68,9 @@ Sample Output showing the longest gap in seconds, # of slots and time range.
 > 120.0 seconds (10 slots), from 13:37:35 until 13:39:35
 
 {% hint style="warning" %}
-****:fire: **Script Usage Caveats**:&#x20;
+:fire: **Script Usage Caveats**:
 
-* This version does not include block proposals, although the odds of having one scheduled are really low of course.&#x20;
+* This version does not include block proposals, although the odds of having one scheduled are really low of course.
 * Block proposal duties are only known for the current epoch, whereas attestation duties are known for the current and next one.
 {% endhint %}
 
@@ -98,5 +98,4 @@ Any feedback and all pull requests much appreciated. 🌛
 
 {% embed url="https://gist.githubusercontent.com/pietjepuk2/eb021db978ad20bfd94dce485be63150/raw/cc874b3035f97495416353f203d70477b31ab05d/get_validator_duties.py" %}
 
-[https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd
-](https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd)
+[https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd](https://gist.github.com/mohamedmansour/9a82071802ffd58bef7ab5db530f23fd)
