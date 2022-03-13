@@ -4,6 +4,22 @@
 :fire: **Hot tip**: You can calculate your slot leader schedule, which tells you when it's your stake pools turn to mint a block. This can help you know what time is best to schedule maintenance on your stake pool. It can also help verify your pool is minting blocks correctly when it is your pool's turn. This is to be setup and run on the block producer node.
 {% endhint %}
 
+
+Since version 1.34, it's now possible to check the slot leadership schedule for **next** epoch using cardano-cli.
+The command is the following:
+
+cardano-cli query leadership-schedule \
+   --mainnet \
+   --genesis $NODE_HOME/mainnet-shelley-genesis.json \
+   --stake-pool-id $(cat $NODE_HOME/stakepoolid.txt) \
+   --vrf-signing-key-file $NODE_HOME/vrf.skey \
+   --next
+
+To check the slot leadership schedule for the **current** epoch, simply replace "--next" with "--current".
+
+
+
+
 {% tabs %}
 {% tab title="CNCLI Tool" %}
 {% hint style="info" %}
