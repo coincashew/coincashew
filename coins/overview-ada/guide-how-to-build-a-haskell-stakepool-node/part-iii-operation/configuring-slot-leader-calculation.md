@@ -1,34 +1,71 @@
-# :clock3: Configuring Slot Leader Calculations
+# Configuring Slot Leader Calculations
 
 {% hint style="info" %}
 :fire: **Hot tip**: You can calculate your slot leader schedule, which tells you when it's your stake pools turn to mint a block. This can help you know what time is best to schedule maintenance on your stake pool. It can also help verify your pool is minting blocks correctly when it is your pool's turn. This is to be setup and run on the block producer node.
 {% endhint %}
 
-
-Since version 1.34, it's now possible to check the slot leadership schedule for **next** epoch using cardano-cli.
-The command is the following:
-
-cardano-cli query leadership-schedule \
-   --mainnet \
-   --genesis $NODE_HOME/mainnet-shelley-genesis.json \
-   --stake-pool-id $(cat $NODE_HOME/stakepoolid.txt) \
-   --vrf-signing-key-file $NODE_HOME/vrf.skey \
-   --next
-
-To check the slot leadership schedule for the **current** epoch, simply replace "--next" with "--current".
-
-
-
-
 {% tabs %}
+{% tab title="Cardano-CLI Query" %}
+Since version 1.34, it is possible to check the slot leadership schedule for the **current** and  **next** epoch using cardano-cli.&#x20;
+
+
+
+{% hint style="info" %}
+Next epoch's leadership schedule becomes available 1.5 days (36 hours) before the end of the current epoch.
+{% endhint %}
+
+****
+
+**Next epoch's leadership schedule** is obtained with the following:
+
+```bash
+cardano-cli query leadership-schedule \
+--mainnet \
+--genesis $NODE_HOME/mainnet-shelley-genesis.json \
+--stake-pool-id $(cat $NODE_HOME/stakepoolid.txt) \
+--vrf-signing-key-file $NODE_HOME/vrf.skey \
+--next
+```
+
+
+
+**Current epoch's leadership schedule** is obtained with the following:
+
+```bash
+cardano-cli query leadership-schedule \
+--mainnet \
+--genesis $NODE_HOME/mainnet-shelley-genesis.json \
+--stake-pool-id $(cat $NODE_HOME/stakepoolid.txt) \
+--vrf-signing-key-file $NODE_HOME/vrf.skey \
+--current
+```
+
+
+
+Example leadership schedule output:
+
+```ada
+SlotNo                          UTC Time
+-------------------------------------------------------------
+     4073                   2021-12-29 17:26:54.998001755 UTC
+     4126                   2021-12-29 17:27:00.298001755 UTC
+     4206                   2021-12-29 17:27:08.298001755 UTC
+     4256                   2021-12-29 17:27:13.298001755 UTC
+     4309                   2021-12-29 17:27:18.598001755 UTC
+     4376                   2021-12-29 17:27:25.298001755 UTC
+     4423                   2021-12-29 17:27:29.998001755 UTC
+     4433                   2021-12-29 17:27:30.998001755 UTC
+```
+{% endtab %}
+
 {% tab title="CNCLI Tool" %}
 {% hint style="info" %}
-## [CNCLI](https://github.com/AndrewWestberg/cncli) by [BCSH](https://bluecheesestakehouse.com), [SAND](https://www.sandstone.io), [SALAD](https://insalada.io)
+### [CNCLI](https://github.com/AndrewWestberg/cncli) by [BCSH](https://bluecheesestakehouse.com), [SAND](https://www.sandstone.io), [SALAD](https://insalada.io)
 
 A community-based `cardano-node` CLI tool. It's a collection of utilities to enhance and extend beyond those available with the `cardano-cli`.
 {% endhint %}
 
-## :dna: Installing the Binary
+### :dna: Installing the Binary
 
 ```bash
 ###
@@ -44,7 +81,7 @@ curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-## Confirming That CNCLI is Properly Installed
+### Confirming That CNCLI is Properly Installed
 
 Run the following command to check if cncli is correctly installed and available in your system `PATH` variable:
 
@@ -54,12 +91,12 @@ command -v cncli
 
 It should return `/usr/local/bin/cncli`
 
-## ****:pick: **Running LeaderLog with stake-snapshot**
+### :pick: **Running LeaderLog with stake-snapshot**
 
 This command calculates a stake pool's expected slot list.
 
-* `prev` and `current` logs are available as long as you have a synchronized database.&#x20;
-* `next` logs are only available 1.5 days (36 hours) before the end of the epoch.&#x20;
+* `prev` and `current` logs are available as long as you have a synchronized database.
+* `next` logs are only available 1.5 days (36 hours) before the end of the epoch.
 * You need to use `poolStakeMark` and `activeStakeMark` for `next`, `poolStakeSet` and `activeStakeSet` for `current`, `poolStakeGo` and `activeStakeGo` for `prev`.
 
 Example usage with the `stake-snapshot` approach for `next` epoch:
@@ -138,11 +175,11 @@ PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
 echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
 
-### Integrating with PoolTool
+#### Integrating with PoolTool
 
-CNCLI can send your tip and block slots to [PoolTool](https://pooltool.io). To do this, it requires that you set up a `pooltool.json` file containing your PoolTool API key and stake pool details. Your PoolTool API key can be found on your pooltool profile page.&#x20;
+CNCLI can send your tip and block slots to [PoolTool](https://pooltool.io). To do this, it requires that you set up a `pooltool.json` file containing your PoolTool API key and stake pool details. Your PoolTool API key can be found on your pooltool profile page.
 
-Here's an example `pooltool.json` file.&#x20;
+Here's an example `pooltool.json` file.
 
 Please update with your pool information and save it at `$NODE_HOME/scripts/pooltool.json`
 
@@ -162,7 +199,7 @@ cat > ${NODE_HOME}/scripts/pooltool.json << EOF
 EOF
 ```
 
-### Creating systemd Services
+#### Creating systemd Services
 
 CNCLI `sync` and `sendtip` can be easily enabled as `systemd` services. When enabled as `systemd` services:
 
@@ -245,7 +282,7 @@ sudo systemctl start cncli-sync.service
 sudo systemctl start cncli-sendtip.service
 ```
 
-## :tools: Upgrading CNCLI
+### :tools: Upgrading CNCLI
 
 ```bash
 RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
@@ -258,7 +295,7 @@ curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-### Confirming CNCLI Upgrades
+#### Confirming CNCLI Upgrades
 
 ```
 cncli -V
@@ -313,7 +350,7 @@ python3 --version
 pip3 --version
 ```
 
-Clone the leaderLog scripts from [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) git repo.&#x20;
+Clone the leaderLog scripts from [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io) git repo.
 
 {% hint style="info" %}
 Official documentation for this LeaderLogs tool can be [read here.](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md)
@@ -339,7 +376,7 @@ Set the timezone name to format the schedule's times properly. Use the --tz opti
 {% endhint %}
 
 {% hint style="success" %}
-****:robot: **Pro Tip**: 1.5 days before the end of the current epoch, you can find the next epoch's schedule.
+:robot: **Pro Tip**: 1.5 days before the end of the current epoch, you can find the next epoch's schedule.
 
 :robot: **Pro Tip #2**: Add the flag **--epoch \<INTEGER #>** to find a specific epoch's slot schedule.
 
@@ -361,6 +398,8 @@ Checking leadership log for Epoch 222 [ d Param: 0.6 ]
 ```
 {% endtab %}
 {% endtabs %}
+
+
 
 {% hint style="danger" %}
 Your slot leader log should remain confidential. If you share this information publicly, an attacker could use this information to attack your stake pool.
