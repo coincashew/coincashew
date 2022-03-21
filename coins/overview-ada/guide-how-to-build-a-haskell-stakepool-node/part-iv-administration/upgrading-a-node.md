@@ -10,10 +10,10 @@ Input-Output (IOHK) regularly releases new versions of Cardano Node via the `car
 To receive notifications related to activity in the Cardano Node GitHub repository, configure [Watch](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#automatic-watching) functionality.
 {% endhint %}
 
-The following procedure describes how to upgrade your Cardano node to the latest version.
+The following procedure describes how to upgrade your Cardano node to the current version.
 
 {% hint style="info" %}
-For procedures to upgrade older Cardano versions, see the [archive](./upgrading-a-node-archive.md).
+For instructions on upgrading to a previous Cardano version, see the [archive](./upgrading-a-node-archive.md).
 {% endhint %}
 
 ## :satellite: How to Perform an Upgrade
@@ -72,8 +72,8 @@ _Table 1_ lists GHC and Cabal version requirements for the current Cardano Node 
 _Table 1 Current Cardano Node Version Requirements_
 
 |  Release Date  |  Cardano Node Version  |  GHC Version   | Cabal Version  |
-|:--------------:|:--------------:|:--------------:|:--------------:|
-|  March 7, 2022 |     1.34.1     |     8.10.7     |    3.6.2.0     |
+|:--------------:|:----------------------:|:--------------:|:--------------:|
+|  March 7, 2022 |         1.34.1         |     8.10.7     |    3.6.2.0     |
 
 
 
