@@ -2,30 +2,29 @@
 
 ## :tada: Introduction
 
-If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation addresses](https://cointr.ee/coincashew). Much appreciated in advance. :pray:
-
-Input-Output (IOHK) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each release.
-
 {% hint style="info" %}
-To receive notifications related to activity in the Cardano Node GitHub repository, configure [Watch](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#automatic-watching) functionality.
+:confetti\_ball: This latest update brought to you by the generous donations by [**BEBOP stake pool**](https://bebopadapool.com).
+
+If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation addresses](https://cointr.ee/coincashew). Much appreciated in advance. :pray:
 {% endhint %}
 
-The following procedure describes how to upgrade your Cardano node to the latest version.
-
-{% hint style="info" %}
-For procedures to upgrade older Cardano versions, see the [archive](./upgrading-a-node-archive.md).
+{% hint style="success" %}
+As of Oct 1 2021, this guide is written for **mainnet** with **release v1.30.1** :grin:
 {% endhint %}
 
 ## :satellite: How to Perform an Upgrade
 
+From time to time, there will be new versions of `cardano-node`. Follow the [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) by enabling **notifications** with the watch functionality.
 
+{% hint style="danger" %}
+Read the patch notes for any other special updates or dependencies that may be required for the latest release.
+{% endhint %}
 
-
-
-
+{% tabs %}
+{% tab title="v1.30.1 Notes" %}
 **Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1**](https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1)
 
-### :octagonal\_sign: Upgrading Release Dependencies
+#### :octagonal\_sign: Upgrading Release Dependencies
 
 **CNCLI**
 
@@ -62,24 +61,147 @@ sed -i env \
     -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
     -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
+{% endtab %}
 
-### Setting GHC and Cabal Versions
+{% tab title="v1.29.0 Notes" %}
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0)
 
-For each release, you must compile Cardano Node binaries using the versions of GHC and Cabal that Input-Output recommends. For example, refer to [Installing cardano-node and cardano-cli from source](https://developers.cardano.org/docs/get-started/installing-cardano-node/) in the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/) to determine the GHC and Cabal versions required for the current Cardano Node release.
+This release is an important update to the node that provides the functionality that is needed following the Alonzo hard fork.\
+**All users, including stake pool operators, must upgrade to this version (or a later version) of the node.**
 
-_Table 1_ lists GHC and Cabal version requirements for the current Cardano Node release.
+The release includes features that will enable the use of the node in the Alonzo era, allowing the on-chain execution of Plutus scripts,\
+including extended CLI commands to support the construction of transactions that include Plutus scripts, datums and redeemers.\
+It incorporates several improvements, including a new `transaction build` command that calculates transaction fees and Plutus script execution units, and a new version of the `query tip` command that provides additional information, including node synchronisation progress. The `transaction build` command requires a local instance of the node in order to check Plutus script validity and to provide information that is used by the fee calculation. The Shelley specification has also been updated with respect to rewards calculation.
 
-_Table 1 Current Cardano Node Version Requirements_
+Note that this release changes the log format of traces configured by `TraceChainSyncHeaderServer` and `TraceChainSyncClient` . See [#2746](https://github.com/input-output-hk/cardano-node/pull/2746) for more detail.
 
-|  Release Date  |  Cardano Node Version  |  GHC Version   | Cabal Version  |
-|:--------------:|:--------------:|:--------------:|:--------------:|
-|  March 7, 2022 |     1.34.1     |     8.10.7     |    3.6.2.0     |
+#### :octagonal\_sign: Release Dependencies
 
+**1. If using cncli for leaderlogs and sendslots, update to `cncli version 3.15` is required.**
 
+```bash
+RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
+VERSION=$(echo ${RELEASETAG} | cut -c 2-)
+echo "Installing release ${RELEASETAG}"
+curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+```
 
+```bash
+sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
+```
 
+**Checking that cncli is properly updated**
 
+```
+cncli -V
+```
 
+It should return the updated version number.
+
+**2. Download `mainnet-alonzo-genesis.json` file**
+
+```bash
+cd $NODE_HOME
+wget -N https://hydra.iohk.io/build/7416228/download/1/mainnet-alonzo-genesis.json
+```
+
+**3. Download new`mainnet-config.json` file to with alonzo configurations.**
+
+{% hint style="info" %}
+If you have any custom mainnet configurations, be sure to backup and re-apply your settings.
+{% endhint %}
+
+```bash
+cd $NODE_HOME
+wget -N https://hydra.iohk.io/build/7416228/download/1/mainnet-config.json
+sed -i mainnet-config.json \
+    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
+    -e "s/127.0.0.1/0.0.0.0/g"
+```
+
+Verify that your **mainnet-config.json** contains the following two new lines.
+
+```
+  "AlonzoGenesisFile": "mainnet-alonzo-genesis.json",
+  "AlonzoGenesisHash": "7e94a15f55d1e82d10f09203fa1d40f8eede58fd8066542cf6566008068ed874",
+```
+
+View your **mainnet-config.json**
+
+```bash
+cat mainnet-config.json
+```
+
+Example of what it should look like with the two new lines.
+
+```bash
+{
+  "AlonzoGenesisFile": "mainnet-alonzo-genesis.json",
+  "AlonzoGenesisHash": "7e94a15f55d1e82d10f09203fa1d40f8eede58fd8066542cf6566008068ed874",
+  "ApplicationName": "cardano-sl",
+  "ApplicationVersion": 1,
+  "ByronGenesisFile": "byron-genesis.json",
+  "ByronGenesisHash": "5f20df933584822601f9e3f8c024eb5eb252fe8cefb24d1317dc3d432e940ebb",
+  "LastKnownBlockVersion-Alt": 0,
+  "LastKnownBlockVersion-Major": 3,
+  "LastKnownBlockVersion-Minor": 0,
+  "MaxKnownMajorProtocolVersion": 2,
+  "Protocol": "Cardano",
+  "RequiresNetworkMagic": "RequiresNoMagic",
+  "ShelleyGenesisFile": "genesis.json",
+  "ShelleyGenesisHash": "1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81",
+```
+
+\*\*\[ Optional Troubleshooting ] \*\*4. In case your node does not start up properly, refresh `mainnet-shelley-genesis.json`
+
+```bash
+cd $NODE_HOME
+wget -N https://hydra.iohk.io/build/7416228/download/1/mainnet-shelley-genesis.json
+```
+{% endtab %}
+
+{% tab title="v1.27.0 Notes" %}
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0)
+
+Node version 1.27.0 provides important new functionality, including supporting new CLI commands that have been requested by stake pools, providing garbage collection metrics.\
+It includes the performance fixes for the epoch boundary calculation that were released in node version [1.26.2](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2), plus a number of bug fixes and code improvements.\
+It also includes many fundamental changes that are needed to prepare for forthcoming feature releases (notably Plutus scripts in the Alonzo era).\
+Note that this release includes breaking changes to the API and CLI commands, and that compilation using GHC version 8.6.5 is no longer supported.
+
+#### :octagonal\_sign: Release Dependencies
+
+**1. If using cncli for leaderlogs and sendslots, update to `cncli version 2.10` is required.**
+
+```bash
+RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
+VERSION=$(echo ${RELEASETAG} | cut -c 2-)
+echo "Installing release ${RELEASETAG}"
+curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+```
+
+```bash
+sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
+```
+
+**Checking that cncli is properly updated**
+
+```
+cncli -V
+```
+
+It should return the updated version number.
+{% endtab %}
+
+{% tab title="v1.26.2 Notes" %}
+**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2**](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2)
+
+This point release is a recommended upgrade for all stake pool operators. It is not required for relays or other passive nodes. It ensures that block producing nodes do not unnecessarily re-evaluate the stake distribution at the epoch boundary.
+
+{% hint style="info" %}
+It is possible to upgrade from v1.25.1 but for a smooth update, ensure you have completed the v1.26.1 release dependencies, notably the ghc and cabal updates. Also note the database migration can take up to 2 hours.
+{% endhint %}
+{% endtab %}
+{% endtabs %}
 
 ### Compiling the New Binaries
 
