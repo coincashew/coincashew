@@ -1,4 +1,4 @@
-### :top: Updating Your Node Height on PoolTool
+# :top: Updating Your Node Height on PoolTool
 
 {% hint style="info" %}
 Credits to [QCPOL](https://cardano.stakepool.quebec) for this addition and credits to [papacarp](https://github.com/papacarp/pooltool.io/tree/master/sendmytip/shell/systemd) which this script is based on. Alternatively, use [cncli's](https://github.com/AndrewWestberg/cncli) PoolTool integration as described in the section [Configuring Slot Leader Calculation](../part-iii-operation/configuring-slot-leader-calculation.md).
