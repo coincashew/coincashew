@@ -29,10 +29,11 @@ If you want to support this free educational Cardano content or found this helpf
 As of March 9 2022, this is **guide version 6.0.0** and written for **cardano mainnet** with **release v.1.30.1** :grin:
 {% endhint %}
 
-## :page\_facing\_up: Changelog - **Update Notes -** **March 8 2022**
+## :page\_facing\_up: Changelog - **Update Notes -** **March 22 2022**
 
+* Update the [Upgrading a Node](./part-iv-administration/upgrading-a-node.md) topic
 * Re-organized content to improve loading speed.
-* Massive contribution by [Change Pool](https://change.paradoxicalsphere.com)  Improved Table of Contents
+* Massive contribution by [Change Pool](https://change.paradoxicalsphere.com) Improved Table of Contents
 * Added high-level explanation of Topology API.
 * Increased the cardano-node service unit file timeout from 2 to 300 seconds.
 * Added a [collection of projects](see-also.md#projects) built by this amazing community.
