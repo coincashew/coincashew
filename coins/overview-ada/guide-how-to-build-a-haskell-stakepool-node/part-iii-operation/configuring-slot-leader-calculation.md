@@ -182,7 +182,7 @@ echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal
 - Current block height
 - The number of slots in which your stake pool is currently elected to mint blocks
 
-The following figure shows the green badge that PoolTool displays next to your stake pool when your node is fully synchronized with the blockchain (credit to [QCPOL](https://cardano.stakepool.quebec) for the image):
+The following figure shows the green badge that PoolTool displays next to your stake pool when your node is fully synchronized with the blockchain (image credit to [QCPOL](https://cardano.stakepool.quebec)):
 
 ![Your pool's tip on pooltool.io](../../../../.gitbook/assets/tip.png)
 
