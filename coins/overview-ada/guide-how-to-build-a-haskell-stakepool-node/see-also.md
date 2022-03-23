@@ -22,7 +22,7 @@ Did you build something new based on this guide? Let us know with a PR or open i
 
 Here's a collection of some amazing community projects.
 
-{% embed url="https://sanskys.de/dashboard/" %}
+{% embed url="https://sanskys.github.io/grafana/" %}
 
 {% embed url="https://dev.xstakepool.com/" %}
 
