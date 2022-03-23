@@ -99,7 +99,7 @@ gLiveView.sh
 
 If the upgrade is successful, then the terminal window displays the Guild LiveView dashboard having the version number of the latest release.
 
-## Setting GHC and Cabal Versions
+## <a name="SetGCVersions"></a>Setting GHC and Cabal Versions
 
 For each Cardano Node release, Input-Output recommends compiling binaries using specific versions of GHC and Cabal. For example, refer to [Installing cardano-node and cardano-cli from source](https://developers.cardano.org/docs/get-started/installing-cardano-node/) in the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/) to determine the GHC and Cabal versions required for the current Cardano Node release. _Table 1_ lists GHC and Cabal version requirements for the current Cardano Node release.
 
@@ -139,40 +139,53 @@ cabal --version
 To set GHCup, GHC and Cabal versions using a graphical user interface, type `ghcup tui` in a terminal window.
 {% endhint %}
 
-## Compiling Cardano Node Binaries
+## Building Cardano Node Binaries
 
-To update with `$HOME/git/cardano-node` as the current binaries directory, clone a new git repo named `cardano-node2` so that you have a backup in case of rollback. Remove the old binaries.
+**To build binaries for a new Cardano Node version:**
 
+1. To create a clone of the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), type the following commands in a terminal window on the computer you want to upgrade where `<NewFolderName>` is the name of a folder that does not exist:
 ```bash
+# Navigate to the folder where you want to clone the repository
 cd $HOME/git
-rm -rf cardano-node-old/
-git clone https://github.com/input-output-hk/cardano-node.git cardano-node2
-cd cardano-node2/
-```
-
-Run the following command to pull and build the latest binaries. Change the checkout **tag** or **branch** as needed.
-
-```bash
-cd $HOME/git/cardano-node2
-cabal update
-git fetch --all --recurse-submodules --tags
-git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
-cabal configure -O0 -w ghc-8.10.4
-echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
-cabal build cardano-node cardano-cli
-```
-
+# Download the Cardano Node repository to your local computer
+git clone https://github.com/input-output-hk/cardano-node.git ./<NewFolderName>
+```  
 {% hint style="info" %}
-Build process may take a few minutes up to a few hours depending on your computer's processing power.
+Cloning the GitHub repository to a new folder allows you to roll back the upgrade, if needed.
 {% endhint %}
 
-Verify your **cardano-cli** and **cardano-node** were updated to the expected version.
-
+2. To build Cardano Node binaries using the source code that you downloaded in step 1, type the following commands where `<NewFolderName>` is the name of the folder you created in step 1 and `<GHCVersionNumber>` is the GHC version that you set in the section [Setting GHC and Cabal Versions](./upgrading-a-node.md#SetGCVersions):
 ```bash
-$(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") version
+# Navigate to the folder where you cloned the Cardano Node repository
+cd $HOME/git/<NewFolderName>
+# Update the list of available packages
+cabal update
+# Download all branches and tags from the remote repository
+git fetch --all --recurse-submodules --tags
+# Switch to the branch of the latest Cardano Node release
+git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
+# Adjust the project configuration to disable optimization and use the recommended compiler version
+cabal configure -O0 -w ghc-<GHCVersionNumber>
+# Append the cabal.project.local file in the current folder to avoid installing the custom libsodium library
+echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" >> cabal.project.local
+# Compile the cardano-node and cardano-cli packages found in the current directory
+cabal build cardano-node cardano-cli
+```  
+<!-- References:
+https://stackoverflow.com/questions/67748740/what-is-the-difference-between-git-clone-git-fetch-and-git-pull
+https://cabal.readthedocs.io/en/3.4/cabal-project.html#package-configuration-options
+https://iohk.zendesk.com/hc/en-us/articles/900001951646-Building-a-node-from-source -->  
+{% hint style="info" %}
+The time required to compile the `cardano-node` and `cardano-cli` packages may be a few minutes to hours, depending on the specifications of your computer.
+{% endhint %}
+
+3. When the compiler finishes, to verify the version numbers of the new `cardano-node` and `cardano-cli` binaries, type:
+```bash
 $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") version
+$(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") version
 ```
-## Installing Cardano Node Binaries
+
+## Installing New Cardano Node Binaries
 
 {% hint style="danger" %}
 Stop your node before updating the binaries.
