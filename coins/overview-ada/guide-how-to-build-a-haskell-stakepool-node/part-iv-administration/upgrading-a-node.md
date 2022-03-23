@@ -139,6 +139,10 @@ cabal --version
 To set GHCup, GHC and Cabal versions using a graphical user interface, type `ghcup tui` in a terminal window.
 {% endhint %}
 
+## Downloading New Configuration Files
+
+
+
 ## <a name="BuildingCN"></a>Building Cardano Node Binaries
 
 **To build binaries for a new Cardano Node version:**
@@ -151,7 +155,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git ./<NewFolderName>
 ```  
 {% hint style="info" %}
-Cloning the GitHub repository to a new folder allows you to roll back the upgrade, if needed.
+Cloning the GitHub repository to a new folder allows you to roll back the upgrade, if needed, by re-installing on your computer the `cardano-node` and `cardano-cli` binaries from the folder where you compiled a previous version of Cardano Node packages.
 {% endhint %}
 
 2. To build Cardano Node binaries using the source code that you downloaded in step 1, type the following commands where `<NewFolderName>` is the name of the folder you created in step 1 and `<GHCVersionNumber>` is the GHC version that you set in the section [Setting GHC and Cabal Versions](./upgrading-a-node.md#SetGCVersions):
@@ -252,7 +256,7 @@ Did you find our guide useful? Send us a signal with a tip and we'll keep updati
 
 It really energizes us to keep creating the best crypto guides.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:
+Use [cointr.ee](https://cointr.ee/coincashew) to find our donation addresses. :pray:
 
 Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:
 
@@ -261,103 +265,4 @@ Hang out and chat with our stake pool community on Telegram @ [https://t.me/coin
 
 ## :exploding\_head: Troubleshooting
 
-### :motorway: Forked off
-
-Forget to update your node and now your node is stuck on an old chain?
-
-Reset your database files and be sure to grab the [latest genesis, config, topology json files](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/index.html).
-
-```bash
-cd $NODE_HOME
-rm -rf db
-```
-
-### :open\_file\_folder: Reverting to a Previous Version Using a Backup
-
-{% hint style="danger" %}
-Stop your node before updating the binaries.
-{% endhint %}
-
-{% tabs %}
-{% tab title="systemd" %}
-```
-sudo systemctl stop cardano-node
-```
-{% endtab %}
-
-{% tab title="cnode" %}
-```
-sudo systemctl stop cnode
-```
-{% endtab %}
-
-{% tab title="block producer node" %}
-```bash
-killall -s 2 cardano-node
-```
-{% endtab %}
-
-{% tab title="relaynode1" %}
-```
-killall -s 2 cardano-node
-```
-{% endtab %}
-{% endtabs %}
-
-Restore the old repository.
-
-```bash
-cd $HOME/git
-mv cardano-node/ cardano-node-rolled-back/
-mv cardano-node-old/ cardano-node/
-```
-
-Copy the binaries to `/usr/local/bin`
-
-```bash
-sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
-sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
-```
-
-Verify the binaries are the correct version.
-
-```bash
-/usr/local/bin/cardano-cli version
-/usr/local/bin/cardano-node version
-```
-
-{% hint style="success" %}
-Now restart your node to use the updated binaries.
-{% endhint %}
-
-{% tabs %}
-{% tab title="systemd" %}
-```
-sudo systemctl start cardano-node
-```
-{% endtab %}
-
-{% tab title="cnode" %}
-```
-sudo systemctl start cnode
-```
-{% endtab %}
-
-{% tab title="block producer node" %}
-```bash
-cd $NODE_HOME
-./startBlockProducingNode.sh
-```
-{% endtab %}
-
-{% tab title="relaynode1" %}
-```bash
-cd $NODE_HOME
-./startRelayNode1.sh
-```
-{% endtab %}
-{% endtabs %}
-
-### :robot: Last Resort: Rebuild the Stake Pool
-
-Follow the steps in [Setting Up a Cardano Stake Pool](../README.md)
+If your upgrade is unsuccessful, then try [Fixing a Corrupt Blockchain](../part-v-tips/fixing-a-corrupt-blockchain.md) and [Resetting an Installation](../part-v-tips/resetting-an-installation.md), as needed.
