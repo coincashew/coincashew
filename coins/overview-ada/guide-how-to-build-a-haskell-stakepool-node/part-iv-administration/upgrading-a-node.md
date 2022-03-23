@@ -32,8 +32,7 @@ Do not confuse Andrew Westberg's CNCLI utilities with the [`cncli.sh`](https://c
 
 **To upgrade Andrew Westberg's CNCLI binary:**
 
-1\. In a terminal window, type the following commands:
-
+1. In a terminal window, type the following commands:
 ```bash
 RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
 VERSION=$(echo ${RELEASETAG} | cut -c 2-)
@@ -42,8 +41,7 @@ curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-2\. To confirm that the new version of the CNCLI binary is installed, type:
-
+2. To confirm that the new version of the CNCLI binary is installed, type:
 ```
 cncli -V
 ```
@@ -60,48 +58,41 @@ In the [Common `env`](https://cardano-community.github.io/guild-operators/Script
 
 **To upgrade the Guild LiveView tool manually:**
 
-1\. To navigate to the folder where Guild LiveView is located, type the following command in a terminal window:
-
+1. To navigate to the folder where Guild LiveView is located, type the following command in a terminal window:
 ```bash
 cd ${NODE_HOME}
 ```
 
-2\. To back up existing Guild LiveView script files, type:
-
+2. To back up existing Guild LiveView script files, type:
 ```bash
 mv gLiveView.sh gLiveView.sh.bak
 mv env env.bak
 ```
 
-3\. To download the latest Guild LiveView script files, type:
-
+3. To download the latest Guild LiveView script files, type:
 ```bash
 curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
 curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
 ```
 
-4\. To set file permissions on the `gLiveView.sh` file that you downloaded in step 3, type:
-
+4. To set file permissions on the `gLiveView.sh` file that you downloaded in step 3, type:
 ```bash
 chmod 755 gLiveView.sh
 ```
 
-5\. To set the `CONFIG` and `SOCKET` user variables in the `env` file that you downloaded in step 3, type:
-
+5. To set the `CONFIG` and `SOCKET` user variables in the `env` file that you downloaded in step 3, type:
 ```bash
 sed -i env \
     -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
     -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
-
 {% hint style="info" %}
 For details on setting the `NODE_HOME` environment variable, see the topic [Installing Cabal and GHC](../part-i-installation/installing-cabal-and-ghc.md)
 {% endhint %}
 
-6\. As needed to configure Guild LiveView for your stake pool, use a text editor to transfer additional user variable definitions from the `env.bak` file that you created in step 2 to the `env` file that you downloaded in step 3.
+6. As needed to configure Guild LiveView for your stake pool, use a text editor to transfer additional user variable definitions from the `env.bak` file that you created in step 2 to the `env` file that you downloaded in step 3.
 
-7\. To test the upgrade, type:
-
+7. To test the upgrade, type:
 ```bash
 gLiveView.sh
 ```
@@ -121,7 +112,6 @@ _Table 1 Current Cardano Node Version Requirements_
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
 - In a terminal window, type:
-
 ```
 ghcup upgrade
 ghcup --version
@@ -130,7 +120,6 @@ ghcup --version
 **To install other GHC versions:**
 
 - In a terminal window, type the following commands where `<GHCVersionNumber>` is the GHC version that you want to install and use:
-
 ```
 ghcup install ghc <GHCVersionNumber>
 ghcup set ghc <GHCVersionNumber>
@@ -140,7 +129,6 @@ ghc --version
 **To install other Cabal versions:**
 
 - In a terminal window, type the following commands where `<CabalVersionNumber>` is the Cabal version that you want to install and use:
-
 ```
 ghcup install cabal <CabalVersionNumber>
 ghcup set cabal <CabalVersionNumber>

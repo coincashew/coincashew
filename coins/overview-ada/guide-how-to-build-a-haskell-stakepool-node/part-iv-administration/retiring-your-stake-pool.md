@@ -220,10 +220,10 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 {% endtabs %}
 
 {% hint style="info" %}
-After retirement completes in 2 epochs:
+In two epochs, after retirement completes:
 
-1\. Verify your pool is retired by checking with a block explorer such as [cardanoscan.io](https://cardanoscan.io)
-2\. Your pool deposit of 500 ADA is returned to your stake address (stake.addr) as a reward
-3\. [Claim stake pool rewards](../part-iv-administration/claiming-stake-pool-rewards.md)
-4\. To send funds to another wallet, [submit a transaction](../part-v-tips/submitting-a-simple-transaction.md)
+1. Verify that your pool is retired using a block explorer such as [cardanoscan.io](https://cardanoscan.io)
+2. Your pool deposit of 500 ADA is returned to your stake address (stake.addr) as a reward.
+3. [Claim](../part-iv-administration/claiming-stake-pool-rewards.md) your stake pool rewards.
+4. As needed, [send](../part-v-tips/submitting-a-simple-transaction.md) funds to another wallet.
 {% endhint %}

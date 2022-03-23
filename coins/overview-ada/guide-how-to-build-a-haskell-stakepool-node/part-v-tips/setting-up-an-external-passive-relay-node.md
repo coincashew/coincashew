@@ -100,9 +100,9 @@ cardano-cli version
 
 Using systemd services to run your Cardano nodes offers the following benefits:
 
-1. Auto-start your node when the computer reboots due to maintenance, power outage, etc.
-2. Automatically restart crashed node processes.
-3. Maximize your stake pool up-time and performance.
+- Auto-start your node when the computer reboots due to maintenance, power outage, etc.
+- Automatically restart crashed node processes.
+- Maximize your stake pool up-time and performance.
 
 ```bash
 sudo bash -c "cat << 'EOF' > /etc/systemd/system/cnode.service
@@ -135,9 +135,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable cnode.service
 ```
 
-{% hint style="success" %}
 Nice work. Your node is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
-{% endhint %}
 
 ###   :white_check_mark: Example systemd Commands
 
@@ -272,13 +270,12 @@ To refresh topology configurations for a node, you need to restart the node.
 
 To restart nodes:
 
-1\. Type:
-
+1. Type:
 ```
 sudo systemctl reload-or-restart cnode
 ```
 
-2\. Repeat step 1 for each node having updated topology configurations.
+2. Repeat step 1 for each node having updated topology configurations.
 
 ## :confetti_ball: Testing the Connection
 
