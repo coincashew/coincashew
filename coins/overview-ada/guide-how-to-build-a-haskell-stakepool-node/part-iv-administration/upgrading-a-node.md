@@ -139,7 +139,7 @@ cabal --version
 To set GHCup, GHC and Cabal versions using a graphical user interface, type `ghcup tui` in a terminal window.
 {% endhint %}
 
-## Building Cardano Node Binaries
+## <a name="BuildingCN"></a>Building Cardano Node Binaries
 
 **To build binaries for a new Cardano Node version:**
 
@@ -179,117 +179,54 @@ https://iohk.zendesk.com/hc/en-us/articles/900001951646-Building-a-node-from-sou
 The time required to compile the `cardano-node` and `cardano-cli` packages may be a few minutes to hours, depending on the specifications of your computer.
 {% endhint %}
 
-3. When the compiler finishes, to verify the version numbers of the new `cardano-node` and `cardano-cli` binaries, type:
+3. When the compiler finishes, to verify the version numbers of the new `cardano-node` and `cardano-cli` binaries type the following commands where `<NewFolderName>` is the folder where you cloned the Cardano Node GitHub repository in step 1:
 ```bash
-$(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") version
-$(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") version
+$(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-node") version
+$(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli") version
 ```
 
 ## Installing New Cardano Node Binaries
 
-{% hint style="danger" %}
-Stop your node before updating the binaries.
+**To install new `cardano-node` and `cardano-cli` binaries:**
+
+1. To stop your Cardano node, type the following command where `<CardanoServiceName>` is the name of the systemd service running your Cardano node:
+```bash
+sudo systemctl stop <CardanoServiceName>.service
+```
+{% hint style="info" %}
+If you follow the [Coin Cashew](https://www.coincashew.com/) instructions for [Creating Startup Scripts](../part-ii-configuration/creating-startup-scripts.md), then `<CardanoServiceName>` is `cardano-node`
+{% endhint %}  
+
+2. To replace the existing `cardano-node` and `cardano-cli` binaries, type the following commands where `<NewFolderName>` is the folder where you cloned the Cardano Node GitHub respository in the section [Building Cardano Node Binaries](./upgrading-a-node.md#BuildingCN) and `<DestinationPath>` is the absolute file path to the folder where you install Cardano Node binaries on your local computer:
+```bash
+sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-node") <DestinationPath>/cardano-node
+sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli") <DestinationPath>/cardano-cli
+```
+{% hint style="info" %}
+If you follow the [Coin Cashew](https://www.coincashew.com/) instructions for [Compiling Source Code](../part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
 {% endhint %}
 
-{% tabs %}
-{% tab title="systemd" %}
-```
-sudo systemctl stop cardano-node
-```
-{% endtab %}
-
-{% tab title="cnode" %}
-```
-sudo systemctl stop cnode
-```
-{% endtab %}
-
-{% tab title="block producer node" %}
-```bash
-killall -s 2 cardano-node
-```
-{% endtab %}
-
-{% tab title="relaynode1" %}
-```
-killall -s 2 cardano-node
-```
-{% endtab %}
-{% endtabs %}
-
-Copy **cardano-cli** and **cardano-node** files into bin directory.
-
-```bash
-sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
-```
-
-```bash
-sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
-```
-
-Verify your **cardano-cli** and **cardano-node** were copied successfully and updated to the expected version.
-
+3. To verify that you installed the new Cardano Node binaries successfully, type:
 ```bash
 cardano-node version
 cardano-cli version
 ```
 
-{% hint style="info" %}
-**Optional Best Practice**: Now is an opportune time to update/upgrade and reboot your Ubuntu operating system.
-
+4. Optionally, to install the latest versions of all previously installed packages on your computer, and then reboot the computer, type:
 ```
 sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
 ```
-{% endhint %}
 
-Now restart your node to use the updated binaries. If you used the previously mentioned optional best practice, your binaries should've already auto-started.
-
-{% hint style="info" %}
-For details on creating the `startBlockProducingNode.sh` and `startRelayNode1.sh` scripts, see the topic [Creating Startup Scripts](../part-ii-configuration/creating-startup-scripts.md)
-{% endhint %}
-
-
-{% tabs %}
-{% tab title="systemd" %}
-```
-sudo systemctl start cardano-node
-```
-{% endtab %}
-
-{% tab title="cnode" %}
-```
-sudo systemctl start cnode
-```
-{% endtab %}
-
-{% tab title="block producer node" %}
+5. If you need to restart your Cardano node manually, then type the following command where `<CardanoServiceName>` is the name of the systemd service running your Cardano node:
 ```bash
-cd $NODE_HOME
-./startBlockProducingNode.sh
-```
-{% endtab %}
+sudo systemctl start <CardanoServiceName>.service
+```  
 
-{% tab title="relaynode1" %}
-```bash
-cd $NODE_HOME
-./startRelayNode1.sh
-```
-{% endtab %}
-{% endtabs %}
-
-## Cleaning Up
-
-Finally, the following sequence will switch-over to your newly built cardano-node folder while keeping the old directory for backup.
-
-```bash
-cd $HOME/git
-mv cardano-node/ cardano-node-old/
-mv cardano-node2/ cardano-node/
-```
+6. Copy the new `cardano-node` and `cardano-cli` binaries to the air-gapped, offline computer that you use to sign transactions for your stake pool.
 
 ## Verifying the Upgrade
 
-Verify that your node is working successfully by either checking gLiveView, your other journalctl logs, or grafana dashboard.
+To verify that the upgrade is successful, open gLiveView, journactl logs or Grafana dashboard.
 
 {% tabs %}
 {% tab title="gLiveView" %}
@@ -306,13 +243,7 @@ journalctl -fu cardano-node
 {% endtab %}
 {% endtabs %}
 
-{% hint style="info" %}
-It may take some time to start a node, sometimes up to 30 minutes. gLiveView may appear stuck on "Starting..." but this is normal behavior and simply requires time.
-{% endhint %}
-
-{% hint style="danger" %}
-:robot: **Important Reminder**: Don't forget to update your **air-gapped offline machine (cold environment)** with the new **Cardano CLI** binaries.
-{% endhint %}
+Starting a node may take up to 30 minutes. Be patient.
 
 {% hint style="success" %}
 Congrats on completing the update. :sparkles:
@@ -429,4 +360,4 @@ cd $NODE_HOME
 
 ### :robot: Last Resort: Rebuild the Stake Pool
 
-Follow the steps in [Setting Up a Cardano Stake Pool](../)
+Follow the steps in [Setting Up a Cardano Stake Pool](../README.md)
