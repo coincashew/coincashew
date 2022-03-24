@@ -8,19 +8,19 @@ If you want to support this free educational Cardano content or found the conten
 Technical writing by [Change Pool \[CHG\]](https://change.paradoxicalsphere.com)
 {% endhint %}
 
-Input-Output (IOHK) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each new release.
+[Input-Output (IOHK)](https://iohk.io/) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each new release.
 
 {% hint style="info" %}
 To receive notifications related to activity in the Cardano Node GitHub repository, configure [Watch](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#automatic-watching) functionality.
 {% endhint %}
 
-The *Upgrading a Node* topic describes how to upgrade a Cardano node to the latest version. Complete the following procedures on each block producer and relay node comprising your stake pool, as needed to complete the upgrade.
+The *Upgrading a Node* topic describes how to upgrade a Cardano node to the latest version. Complete the following procedures on each block producer and relay node comprising your stake pool as needed to complete the upgrade.
 
 {% hint style="info" %}
 For instructions on upgrading your stake pool to a previous Cardano version, see the [archive](./upgrading-a-node-archive.md).
 {% endhint %}
 
-## :octagonal\_sign: Upgrading Third-party Software
+## :revolving_hearts: Upgrading Third-party Software
 
 ### CNCLI
 
@@ -98,7 +98,7 @@ gLiveView.sh
 
 If the upgrade is successful, then the terminal window displays the Guild LiveView dashboard having the version number of the latest release.
 
-## <a name="SetGCVersions"></a>Setting GHC and Cabal Versions
+## <a name="SetGCVersions"></a>:nut_and_bolt:Setting GHC and Cabal Versions
 
 For each Cardano Node release, Input-Output recommends compiling binaries using specific versions of GHC and Cabal. For example, refer to [Installing cardano-node and cardano-cli from source](https://developers.cardano.org/docs/get-started/installing-cardano-node/) in the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/) to determine the GHC and Cabal versions required for the current Cardano Node release. _Table 1_ lists GHC and Cabal version requirements for the current Cardano Node release.
 
@@ -138,7 +138,7 @@ cabal --version
 To set GHCup, GHC and Cabal versions using a graphical user interface, type `ghcup tui` in a terminal window.
 {% endhint %}
 
-## Downloading New Configuration Files
+## :inbox_tray:Downloading New Configuration Files
 
 A new Cardano Node release may include updated configuration files. If configuration files are updated for a release, then you need to download and install the new configuration files when you upgrade a node.
 
@@ -174,7 +174,7 @@ If you want to download new configuration files using the command line, then nav
 
 5. Using [`diff`](https://www.man7.org/linux/man-pages/man1/diff.1.html) or a similar file comparison utility, identify and copy customizations as needed from the backup configuration files that you created in step 2 to each new configuration file that you downloaded in step 4.
 
-## <a name="BuildingCN"></a>Building Cardano Node Binaries
+## <a name="BuildingCN"></a>:zap:Building Cardano Node Binaries
 
 **To build binaries for a new Cardano Node version:**
 
@@ -220,7 +220,7 @@ $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-node
 $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli") version
 ```
 
-## Installing New Cardano Node Binaries
+## :open_file_folder:Installing New Cardano Node Binaries
 
 **To install new `cardano-node` and `cardano-cli` binaries:**
 
@@ -256,7 +256,7 @@ sudo systemctl start <CardanoServiceName>.service
 
 6. Copy the new `cardano-node` and `cardano-cli` binaries to the air-gapped, offline computer that you use to sign transactions for your stake pool.
 
-## Verifying the Upgrade
+## :checkered_flag:Verifying the Upgrade
 
 To verify that the upgrade is successful, open gLiveView, journactl logs or Grafana dashboard.
 
@@ -291,6 +291,6 @@ Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with
 Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}
 
-## :exploding\_head: Troubleshooting
+## :rotating_light:Troubleshooting
 
 If your upgrade is unsuccessful, then try [Fixing a Corrupt Blockchain](../part-v-tips/fixing-a-corrupt-blockchain.md) and [Resetting an Installation](../part-v-tips/resetting-an-installation.md), as needed.
