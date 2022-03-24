@@ -3,9 +3,9 @@
 ## :tada: Introduction
 
 {% hint style="success" %}
-If you want to support this free educational Cardano content or found the content helpful, visit [cointr.ee to find our donation addresses](https://cointr.ee/coincashew). Much appreciated in advance. :pray:
+If you want to support this free educational Cardano content or found the content helpful, visit [cointr.ee](https://cointr.ee/coincashew) to find our donation addresses. Much appreciated in advance. :pray:
 
-Technical writing by Paradoxical Sphere and [Change Stake Pool \[CHG\]](https://change.paradoxicalsphere.com)
+Technical writing by [Change Pool \[CHG\]](https://change.paradoxicalsphere.com)
 {% endhint %}
 
 Input-Output (IOHK) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each new release.
@@ -58,29 +58,28 @@ In the [Common `env`](https://cardano-community.github.io/guild-operators/Script
 
 **To upgrade the Guild LiveView tool manually:**
 
-1. To navigate to the folder where Guild LiveView is located, type the following command in a terminal window:
+1. To back up existing Guild LiveView script files, type the following commands where `<gLiveViewFolder>` is the folder where the `gLiveView.sh` script is located on your computer:
 ```bash
-cd ${NODE_HOME}
-```
-
-2. To back up existing Guild LiveView script files, type:
-```bash
+cd <gLiveViewFolder>
 mv gLiveView.sh gLiveView.sh.bak
 mv env env.bak
 ```
+{% hint style="info" %}
+If you follow the Coin Cashew instructions for [Starting the Nodes](../part-iii-operation/starting-the-nodes.md), then you can type `$NODE_HOME` to replace <gLiveViewFolder>
+{% endhint %}
 
-3. To download the latest Guild LiveView script files, type:
+2. To download the latest Guild LiveView script files, type:
 ```bash
 curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
 curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
 ```
 
-4. To set file permissions on the `gLiveView.sh` file that you downloaded in step 3, type:
+3. To set file permissions on the `gLiveView.sh` file that you downloaded in step 2, type:
 ```bash
 chmod 755 gLiveView.sh
 ```
 
-5. To set the `CONFIG` and `SOCKET` user variables in the `env` file that you downloaded in step 3, type:
+4. To set the `CONFIG` and `SOCKET` user variables in the `env` file that you downloaded in step 2, type:
 ```bash
 sed -i env \
     -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
@@ -90,9 +89,9 @@ sed -i env \
 For details on setting the `NODE_HOME` environment variable, see the topic [Installing Cabal and GHC](../part-i-installation/installing-cabal-and-ghc.md)
 {% endhint %}
 
-6. As needed to configure Guild LiveView for your stake pool, use a text editor to transfer additional user variable definitions from the `env.bak` file that you created in step 2 to the `env` file that you downloaded in step 3.
+5. As needed to configure Guild LiveView for your stake pool, use a text editor to transfer additional user variable definitions from the `env.bak` file that you created in step 1 to the `env` file that you downloaded in step 2.
 
-7. To test the upgrade, type:
+6. To test the upgrade, type:
 ```bash
 gLiveView.sh
 ```
@@ -141,7 +140,39 @@ To set GHCup, GHC and Cabal versions using a graphical user interface, type `ghc
 
 ## Downloading New Configuration Files
 
+A new Cardano Node release may include updated configuration files. If configuration files are updated for a release, then you need to download and install the new configuration files when you upgrade a node.
 
+**To download and install new Cardano Node configuration files:**
+
+1. To stop your Cardano node, type the following command in a terminal window where `<CardanoServiceName>` is the name of the systemd service running your Cardano node:
+```bash
+sudo systemctl stop <CardanoServiceName>.service
+```
+{% hint style="info" %}
+If you follow the Coin Cashew instructions for [Creating Startup Scripts](../part-ii-configuration/creating-startup-scripts.md), then `<CardanoServiceName>` is `cardano-node`
+{% endhint %}
+
+2. To back up the configuration files that your node currently uses, type the following commands where `<ConfigurationFileFolder>` is the path to the folder where the configuration files are located:  
+```bash
+cd <ConfigurationFileFolder>
+mv mainnet-config.json mainnet-config.bak
+mv mainnet-byron-genesis.json mainnet-byron-genesis.bak
+mv mainnet-shelley-genesis.json mainnet-shelley-genesis.bak
+mv mainnet-alonzo-genesis.json mainnet-alonzo-genesis.bak
+mv mainnet-topology.json mainnet-topology.bak
+```  
+{% hint style="info" %}
+If you follow the Coin Cashew instructions for [Preparing Configuration Files](../part-ii-configuration/preparing-configuration-files.md), then `<ConfigurationFileFolder>` is `$HOME/cardano-my-node` Alternately, you can type `$NODE_HOME` If needed, you can also use the environment variable `$NODE_CONFIG` to indicate the `mainnet` cluster in configuration file names.
+{% endhint %}
+
+3. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), then browse to the latest release, then click to expand the Downloads dropdown list in the Technical Specification section of the release notes, and then click the Configuration Files link.
+
+4. On the Cardano Configurations page, click the following links to download configuration files for the `mainnet` cluster to the folder where you created backups of your current configuration files in step 2: `config`, `byronGenesis`, `shelleyGenesis`, `alonzoGenesis` and `topology`  
+{% hint style="info" %}
+If you want to download new configuration files using the command line, then navigate to the folder where you created backups of your current configuration files in step 2 using a terminal window, and then type the following command where `<ConfigurationFileURL>` is the URL for the configuration file that you want to download: `wget <ConfigurationFileURL>`
+{% endhint %}
+
+5. Using [`diff`](https://www.man7.org/linux/man-pages/man1/diff.1.html) or a similar file comparison utility, identify and copy customizations as needed from the backup configuration files that you created in step 2 to each new configuration file that you downloaded in step 4.
 
 ## <a name="BuildingCN"></a>Building Cardano Node Binaries
 
@@ -155,7 +186,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git ./<NewFolderName>
 ```  
 {% hint style="info" %}
-Cloning the GitHub repository to a new folder allows you to roll back the upgrade, if needed, by re-installing on your computer the `cardano-node` and `cardano-cli` binaries from the folder where you compiled a previous version of Cardano Node packages.
+Cloning the GitHub repository to a new folder allows you to roll back the upgrade, if needed, by re-installing on your computer the `cardano-node` and `cardano-cli` binaries from a folder where you compiled a previous version of Cardano Node packages.
 {% endhint %}
 
 2. To build Cardano Node binaries using the source code that you downloaded in step 1, type the following commands where `<NewFolderName>` is the name of the folder you created in step 1 and `<GHCVersionNumber>` is the GHC version that you set in the section [Setting GHC and Cabal Versions](./upgrading-a-node.md#SetGCVersions):
@@ -193,13 +224,10 @@ $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli"
 
 **To install new `cardano-node` and `cardano-cli` binaries:**
 
-1. To stop your Cardano node, type the following command where `<CardanoServiceName>` is the name of the systemd service running your Cardano node:
+1. If your Cardano node is running, then type the following command to stop the node where `<CardanoServiceName>` is the name of the systemd service running your node:
 ```bash
 sudo systemctl stop <CardanoServiceName>.service
 ```
-{% hint style="info" %}
-If you follow the [Coin Cashew](https://www.coincashew.com/) instructions for [Creating Startup Scripts](../part-ii-configuration/creating-startup-scripts.md), then `<CardanoServiceName>` is `cardano-node`
-{% endhint %}  
 
 2. To replace the existing `cardano-node` and `cardano-cli` binaries, type the following commands where `<NewFolderName>` is the folder where you cloned the Cardano Node GitHub respository in the section [Building Cardano Node Binaries](./upgrading-a-node.md#BuildingCN) and `<DestinationPath>` is the absolute file path to the folder where you install Cardano Node binaries on your local computer:
 ```bash
@@ -207,7 +235,7 @@ sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "card
 sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli") <DestinationPath>/cardano-cli
 ```
 {% hint style="info" %}
-If you follow the [Coin Cashew](https://www.coincashew.com/) instructions for [Compiling Source Code](../part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
+If you follow the Coin Cashew instructions for [Compiling Source Code](../part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
 {% endhint %}
 
 3. To verify that you installed the new Cardano Node binaries successfully, type:
