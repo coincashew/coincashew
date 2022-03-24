@@ -5,7 +5,7 @@
 {% hint style="success" %}
 If you want to support this free educational Cardano content or found the content helpful, visit [cointr.ee](https://cointr.ee/coincashew) to find our donation addresses. Much appreciated in advance. :pray:
 
-Technical writing by [Change Pool \[CHG\]](https://change.paradoxicalsphere.com)
+:ledger:Technical writing by [Change Pool \[CHG\]](https://change.paradoxicalsphere.com)
 {% endhint %}
 
 [Input-Output (IOHK)](https://iohk.io/) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each new release.
