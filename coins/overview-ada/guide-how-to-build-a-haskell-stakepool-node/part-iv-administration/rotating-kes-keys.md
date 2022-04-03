@@ -42,7 +42,7 @@ cat $HOME/cold-keys/node.counter
 }
 ```  
 {% hint style="warning" %}
-Ensure that `<CertificateIssueNumber>` is a higher value than the values you used to generate operational certificates previously. If your stake pool mints blocks, then you can find the current `<CertificateIssueNumber>` value for your pool on [ADApools](https://adapools.org). To find your current `<CertificateIssueNumber>` on ADApools, navigate to the page for your stake pool, and then click the **Blocks** tab. ADApools displays the `<CertificateIssueNumber>` for your current operational certificate in the first row of the `OpCertC` column.
+Ensure that `<CertificateIssueNumber>` is a higher value than the values you used to generate operational certificates previously. If your stake pool is elected to mint blocks, then you can find the current `<CertificateIssueNumber>` value for your pool on [ADApools](https://adapools.org). To find your current `<CertificateIssueNumber>` on ADApools, navigate to the page for your stake pool, and then click the **Blocks** tab. ADApools displays the `<CertificateIssueNumber>` for your current operational certificate in the first row of the `OpCertC` column.
 {% endhint %}
 
 6. To issue a new operational certificate, type the following command in a terminal window on your air-gapped, offline computer where `<KESvkeyFile>` is the path to the `kes.vkey` file that you copied in step 2, `<StartingKESPeriod>` is the starting KES period that you calculated in step 3, and `<NodeCounterFile>` is the path to the `node.counter` file that you edited in step 4:
