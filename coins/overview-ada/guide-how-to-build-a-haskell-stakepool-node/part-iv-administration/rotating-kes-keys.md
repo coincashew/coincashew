@@ -1,100 +1,74 @@
 # :robot: Rotating KES Keys
 
-{% hint style="info" %}
-You are required to regenerate the hot keys and issue a new operational certificate, a process called rotating the KES keys, when the hot keys expire.
+Prior to the KES keys for your stake pool expiring every 90 days, you must generate new KES keys and issue a new operational certificate.
 
-**Mainnet**: KES keys will be valid for 120 rotations or 90 days
-{% endhint %}
+**To generate new KES keys and issue a new operational certificate:**
 
-When it's time to issue a new operational certificate, run the following to find the starting KES period.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-cd $NODE_HOME
-slotNo=$(cardano-cli query tip --mainnet | jq -r '.slot')
-slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
-kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
-startKesPeriod=${kesPeriod}
-echo startKesPeriod: ${startKesPeriod}
-```
-{% endtab %}
-{% endtabs %}
-
-Make a new KES key pair.
-
-{% tabs %}
-{% tab title="block producer node" %}
+1. In a terminal window on your block producer node, type:
 ```bash
 cd $NODE_HOME
 cardano-cli node key-gen-KES \
     --verification-key-file kes.vkey \
     --signing-key-file kes.skey
 ```
-{% endtab %}
-{% endtabs %}
 
-Copy **kes.vkey** to your **cold environment.**
+2. Copy the `kes.vkey` file that you generated in step 1 to your air-gapped, offline computer.
 
-Verify the current value of your **node.counter** is valid.
-
+3. To issue a new operational certificate, you must set a starting KES period. To calculate the starting KES period for your new operational certificate, type the following commands in a terminal window on your block producer node:
 ```bash
-cat $HOME/cold-keys/node.counter
-
-# Example where value is 6
-# "Next certificate issue number: 6"
+cd $NODE_HOME
+# Query the current slot height of the blockchain, and then
+# retrieve the value of the slot key in the results
+slotNo=$(cardano-cli query tip --mainnet | jq -r '.slot')
+# Retrieve the number of slots per KES period from the key named slotsPerKESPeriod 
+# in the Shelley Genesis JSON configuration file that your stake pool uses
+slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
+# To calculate the current KES period, divide the current slot height by
+# the number of slots per KES period
+kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
+StartingKESPeriod=${kesPeriod}
+echo StartingKESPEriod: ${StartingKESPeriod}
 ```
 
+4. Each time you generate a new operational certificate, you must increment the value of `Next certificate issue number` for the `description` key in the `node.counter` JSON file on your air-gapped, offline computer. To edit the `node.counter` file, use a text editor.
+
+5. To verify the current `description` value in the `node.counter` file, type:
+```bash
+cat $HOME/cold-keys/node.counter
+{
+    ...
+    "description": "Next certificate issue number: <CertificateIssueNumber>",
+    ...
+}
+```  
 {% hint style="warning" %}
-A valid value of your **node.counter** MUST be greater than a recently created block's **OpCertC** value.&#x20;
-
-To find your pool's current **OpCertC **value, search for your pool on [https://adapools.org/](https://adapools.org) and check the **Blocks** tab, then look at the **OpCertC **column.
-
-For example, if your **OpCerC **value is 5, then your node.counter should be`"Next certificate issue number: 6"`
-
-If not, then you need to increment the counter by running the below command with issue-op-cert.
+Ensure that `<CertificateIssueNumber>` is a higher value than the values you used to generate operational certificates previously. If your stake pool mints blocks, then you can find the current `<CertificateIssueNumber>` value for your pool on [ADApools](https://adapools.org). To find your current `<CertificateIssueNumber>` on ADApools, navigate to the page for your stake pool, and then click the **Blocks** tab. ADApools displays the `<CertificateIssueNumber>` for your current operational certificate in the first row of the `OpCertC` column.
 {% endhint %}
 
-Create the new `node.cert` file with the following command. Update `<startKesPeriod>` with the value from above.
-
-{% tabs %}
-{% tab title="air-gapped offline machine" %}
+6. To issue a new operational certificate, type the following command in a terminal window on your air-gapped, offline computer where `<KESvkeyFile>` is the path to the `kes.vkey` file that you copied in step 2, `<StartingKESPeriod>` is the starting KES period that you calculated in step 3, and `<NodeCounterFile>` is the path to the `node.counter` file that you edited in step 4:
 ```bash
 cd $NODE_HOME
 chmod u+rwx $HOME/cold-keys
 cardano-cli node issue-op-cert \
-    --kes-verification-key-file kes.vkey \
+    --kes-verification-key-file <KESvkeyFile> \
     --cold-signing-key-file $HOME/cold-keys/node.skey \
-    --operational-certificate-issue-counter $HOME/cold-keys/node.counter \
-    --kes-period <startKesPeriod> \
+    --operational-certificate-issue-counter <NodeCounterFile> \
+    --kes-period <StartingKESPeriod> \
     --out-file node.cert
 chmod a-rwx $HOME/cold-keys
 ```
-{% endtab %}
-{% endtabs %}
 
-{% hint style="danger" %}
-Copy **node.cert** back to your block producer node.
-{% endhint %}
+7. Copy the `node.cert` file that you created in step 6 to replace the current `node.cert` file on your block producer node.
 
-Stop and restart your block producer node to complete this procedure.
-
-{% tabs %}
-{% tab title="block producer node" %}
+8. To restart your block producer node, type:
 ```
 sudo systemctl restart cardano-node
 ```
-{% endtab %}
 
-{% tab title="manual" %}
-```bash
-cd $NODE_HOME
-killall -s 2 cardano-node
-./startBlockProducingNode.sh
-```
-{% endtab %}
-{% endtabs %}
+9. In a secure location, create backup copies of the KES key files that you generated in step 1, `node.counter` file you edited in step 4, and `node.cert` file that you generated in step 6.
 
-{% hint style="info" %}
-****:bulb: **Best practice recommendation**: It's now a good time to make a new backup of your new `node.counter` file and `cold-keys` directory to another USB drive or other offline location.
+{% hint style="success" %}
+If you want to support this free educational Cardano content or found the content helpful, visit [cointr.ee](https://cointr.ee/coincashew) to find our donation addresses. Much appreciated in advance. :pray:
+
+:ledger:Technical writing by [Change Pool \[CHG\]](https://change.paradoxicalsphere.com)
 {% endhint %}
