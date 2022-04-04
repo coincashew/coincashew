@@ -1,11 +1,9 @@
 # Securing Your Stake Pool Using a Hardware Wallet
 
-{% hint style="info" %}
-Secure your **pool pledge account** and **pool reward account** with a hardware wallet such as Trezor or Ledger Nano S/X. Credits to [angelstakepool ](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool)for documenting this process.
-{% endhint %}
+If you fail to keep the private keys for your stake pool secure using an air-gapped, offline computer, then securing your **pool pledge account** and **pool reward account** using a hardware wallet such as [Trezor](https://trezor.io/) or [Ledger Nano S/X](https://www.ledger.com/) offers an extra level of security. Credits to [angelstakepool](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool) for documenting the procedure.
 
 {% hint style="danger" %}
-**Critical Reminder**: After adding a 2nd pool owner using a hardware wallet, you **must wait 2 epochs** before you transfer pledge funds from your **CLI Method** or **Mnemonic Method Wallet** to hardware wallet. Do not transfer any funds earlier because your pool pledge will be not met.
+**Critical Reminder**: After adding a 2nd pool owner using a hardware wallet, you **must wait 2 epochs** before you transfer pledge funds from your **CLI Method** or **Mnemonic Method Wallet** to hardware wallet. Do not transfer any funds earlier because your pool pledge will not be met.
 {% endhint %}
 
 First, delegate your 2nd pool owner to your stake pool with Daedalus or Yoroi or Adalite.io
