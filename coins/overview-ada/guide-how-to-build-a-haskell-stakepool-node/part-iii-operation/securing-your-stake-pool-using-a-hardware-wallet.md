@@ -43,7 +43,7 @@ cardano-hw-cli address key-gen \
 {% endhint %}
 
 {% hint style="danger" %}
-`hw-stake.hwsfile` is an extremely sensitive stake address secret (private) signing key file. The private signing key file gives you access to any rewards held in the stake address.
+`hw-stake.hwsfile` is an extremely sensitive stake address secret (private) signing key file.
 {% endhint %}
 
 Copy **hw-stake.vkey** to your **cold environment.**
