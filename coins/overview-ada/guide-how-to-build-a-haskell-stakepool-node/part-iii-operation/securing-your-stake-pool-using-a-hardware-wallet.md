@@ -39,7 +39,7 @@ cardano-hw-cli address key-gen \
 {% endtabs %}
 
 {% hint style="info" %}
-Use the `--path` option to specify the derivation path to the key with which you want to sign. `hw-stake.vkey` is not sensitive and may be shared publicly. `hw-stake.hwsfile` does NOT contain the raw private key.
+As needed, you can edit the `--path` option to specify the derivation path to the key with which you want to sign. `hw-stake.vkey` is not sensitive and may be shared publicly. `hw-stake.hwsfile` does NOT contain the raw private key.
 {% endhint %}
 <!-- References:
 https://githubhot.com/repo/vacuumlabs/cardano-hw-cli/issues/54
