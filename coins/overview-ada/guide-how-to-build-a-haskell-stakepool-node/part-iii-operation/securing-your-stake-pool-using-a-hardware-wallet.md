@@ -25,7 +25,7 @@ sudo dpkg --install ./cardano-hw-cli_1.9.1-1.deb
 
 Connect and unlock your hardware wallet on your local PC or block producer node.
 
-Export your hardware wallet's staking keys.
+To generate the verification key and hardware wallet signing file, type:
 
 {% tabs %}
 {% tab title="local PC or block producer node" %}
@@ -39,9 +39,11 @@ cardano-hw-cli address key-gen \
 {% endtabs %}
 
 {% hint style="info" %}
-`hw-stake.vkey` is not sensitive and may be shared publicly. `hw-stake.hwsfile` does NOT contain the raw private key.
+Use the `--path` option to specify the derivation path to the key with which you want to sign. `hw-stake.vkey` is not sensitive and may be shared publicly. `hw-stake.hwsfile` does NOT contain the raw private key.
 {% endhint %}
-<!-- Reference: https://githubhot.com/repo/vacuumlabs/cardano-hw-cli/issues/54 -->
+<!-- References:
+https://githubhot.com/repo/vacuumlabs/cardano-hw-cli/issues/54
+https://github.com/vacuumlabs/cardano-hw-cli -->
 
 Copy **hw-stake.vkey** to your **cold environment.**
 
