@@ -1,6 +1,6 @@
 # Securing Your Stake Pool Using a Hardware Wallet
 
-If you are concerned that storing the private keys for your stake pool using an air-gapped, offline computer may not offer sufficient protection, then securing your **pool pledge account** and **pool reward account** using a hardware wallet such as [Trezor](https://trezor.io/) or [Ledger Nano S/X](https://www.ledger.com/) provides an additional layer of security. Credits to [angelstakepool](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool) for documenting the procedure.
+You can secure your **pool pledge account** and **pool reward account** using staking keys exported from a hardware wallet such as [Trezor](https://trezor.io/) or [Ledger Nano S/X](https://www.ledger.com/). Credits to [angelstakepool](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool) for documenting the procedure.
 
 {% hint style="danger" %}
 **Critical Reminder**: After adding a 2nd pool owner using a hardware wallet, you **must wait 2 epochs** before you transfer pledge funds from your **CLI Method** or **Mnemonic Method Wallet** to hardware wallet. Do not transfer any funds earlier because your pool pledge will not be met.
@@ -37,6 +37,14 @@ cardano-hw-cli address key-gen \
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="info" %}
+`hw-stake.vkey` is not sensitive and may be shared publicly.
+{% endhint %}
+
+{% hint style="danger" %}
+`hw-stake.hwsfile` is an extremely sensitive stake address secret (private) signing key file. The private signing key file gives you access to any rewards held in the stake address.
+{% endhint %}
 
 Copy **hw-stake.vkey** to your **cold environment.**
 
