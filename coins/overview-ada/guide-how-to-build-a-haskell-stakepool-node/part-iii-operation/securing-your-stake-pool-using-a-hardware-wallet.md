@@ -1,6 +1,6 @@
 # Securing Your Stake Pool Using a Hardware Wallet
 
-You can secure your **pool pledge account** and **pool reward account** using staking keys exported from a hardware wallet such as [Trezor](https://trezor.io/) or [Ledger Nano S/X](https://www.ledger.com/). Credits to [angelstakepool](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool) for documenting the procedure.
+You can secure your **pool pledge account** and **pool reward account** using a [Trezor](https://trezor.io/) or [Ledger Nano S/X](https://www.ledger.com/) hardware wallet. Credits to [angelstakepool](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool) for documenting the procedure.
 
 {% hint style="danger" %}
 **Critical Reminder**: After adding a 2nd pool owner using a hardware wallet, you **must wait 2 epochs** before you transfer pledge funds from your **CLI Method** or **Mnemonic Method Wallet** to hardware wallet. Do not transfer any funds earlier because your pool pledge will not be met.
@@ -17,8 +17,8 @@ Install [cardano-hw-cli](https://github.com/vacuumlabs/cardano-hw-cli) to intera
 # Reference https://github.com/vacuumlabs/cardano-hw-cli/blob/develop/docs/installation.md
 
 cd $NODE_HOME
-wget https://github.com/vacuumlabs/cardano-hw-cli/releases/download/v1.2.0/cardano-hw-cli_1.2.0-1.deb
-sudo dpkg --install ./cardano-hw-cli_1.2.0-1.deb
+wget https://github.com/vacuumlabs/cardano-hw-cli/releases/download/v1.9.1/cardano-hw-cli_1.9.1-1.deb
+sudo dpkg --install ./cardano-hw-cli_1.9.1-1.deb
 ```
 {% endtab %}
 {% endtabs %}
@@ -39,12 +39,9 @@ cardano-hw-cli address key-gen \
 {% endtabs %}
 
 {% hint style="info" %}
-`hw-stake.vkey` is not sensitive and may be shared publicly.
+`hw-stake.vkey` is not sensitive and may be shared publicly. `hw-stake.hwsfile` does NOT contain the raw private key.
 {% endhint %}
-
-{% hint style="danger" %}
-`hw-stake.hwsfile` is an extremely sensitive stake address secret (private) signing key file.
-{% endhint %}
+<!-- Reference: https://githubhot.com/repo/vacuumlabs/cardano-hw-cli/issues/54 -->
 
 Copy **hw-stake.vkey** to your **cold environment.**
 
