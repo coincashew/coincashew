@@ -1,6 +1,11 @@
 # :robot: Rotating KES Keys
 
-Prior to the KES keys for your stake pool expiring every 90 days, you must generate new KES keys and issue a new operational certificate.
+Your stake pool requires an operational certificate to verify that the pool has the authority to run. A current KES key pair is required to establish an operational certificate for your stake pool. A KES period indicates the time span when an operational certificate is valid. An operational certificate expires 90 days after the KES period defined in the operational certificate. You must generate a new KES key pair and operational certificate every 90 days, or sooner, for your stake pool to mint blocks.
+
+The private KES key is required to start the block producing node for your stake pool. The public KES key is not sensitive.
+
+<!-- References: https://developers.cardano.org/docs/operate-a-stake-pool/cardano-key-pairs
+https://testnets.cardano.org/en/testnets/cardano/get-started/creating-a-stake-pool/ -->
 
 **To generate new KES keys and issue a new operational certificate:**
 

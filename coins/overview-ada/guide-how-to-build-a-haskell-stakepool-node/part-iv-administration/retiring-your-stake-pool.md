@@ -1,5 +1,18 @@
 # 🌙 Retiring Your Stake Pool
 
+<!-- Reference:
+https://cardano-foundation.gitbook.io/stake-pool-course/stake-pool-guide/stake-pool/retire_stakepool -->
+
+If you no longer want to operate your stake pool, then you can deregister the pool. Deregistering the pool retires the pool.
+
+{% hint style="info" %}
+To retire your stake pool, your stake pool does NOT require valid KES keys. However, you must ensure that your nodes are fully synchronized with the blockchain.
+{% endhint %}
+<!--Reference:
+https://forum.cardano.org/t/kes-key-expired/98936 -->
+
+**To retire your stake pool:**
+
 First, generate the protocol-parameters.
 
 {% tabs %}
@@ -50,10 +63,10 @@ echo latest epoch for retirement is: ${maxRetirementEpoch}
 * the earliest epoch for retirement is 40 ( current epoch  + 1).
 * the latest epoch for retirement is 57 ( poolRetireMaxEpoch + current epoch).&#x20;
 
-Let's pretend we wish to retire as soon as possible in epoch 40.
+Let's presume that you want to retire as soon as possible, in epoch 40.
 {% endhint %}
 
-Create the deregistration certificate and save it as `pool.dereg.`  Update the epoch to your desired retirement epoch, usually the earliest epoch or asap.
+Create the deregistration certificate and save it as `pool.dereg.` Update the epoch to your desired retirement epoch, usually the earliest epoch or asap.
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -173,7 +186,7 @@ cardano-cli transaction build-raw \
 
 Copy **tx.raw** to your **cold environment.**
 
-Sign the transaction.&#x20;
+Sign the transaction.
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
