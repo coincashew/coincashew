@@ -177,6 +177,7 @@
       * [Creating Startup Scripts](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/creating-startup-scripts.md)
     * [PART III - OPERATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation.md)
       * [Starting the Nodes](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/starting-the-nodes.md)
+	  * [Accessing Built-in Help](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/accessing-built-in-help.md)
       * [Generating Keys for the Block-producing Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/generating-keys-for-the-block-producing-node.md)
       * [Setting Up Payment and Stake Keys](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/setting-up-payment-and-stake-keys.md)
       * [Registering Your Stake Address](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/registering-your-stake-address.md)
