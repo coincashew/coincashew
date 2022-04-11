@@ -475,7 +475,7 @@ source ~/.bashrc
 Install rust dependencies.
 
 ```
-sudo apt install -y git gcc g++ make cmake pkg-config llvm-dev libclang-dev clang
+sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev llvm-dev libclang-dev clang
 ```
 
 ## :bulb: 5. Install Lighthouse
