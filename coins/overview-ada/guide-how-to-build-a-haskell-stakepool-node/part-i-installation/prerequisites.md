@@ -6,7 +6,7 @@ As a stake pool operator for Cardano, you must be competent with the following a
 
 * Operational knowledge of how to set up, run and maintain a Cardano node continuously
 * A commitment to maintain your node 24/7/365
-* System operation skills including general knowledge related to using [Bash scripts](https://linuxconfig.org/bash-scripting-tutorial-for-beginners), [cron jobs](https://itsfoss.com/cron-job/) and [systemd](https://systemd.io/) services
+* System operation skills including general knowledge of using [Bash scripts](https://linuxconfig.org/bash-scripting-tutorial-for-beginners), [cron jobs](https://itsfoss.com/cron-job/) and [systemd](https://systemd.io/) services
 * Server administration skills (operational and maintenance)
 
 ## :mage: Mandatory experience for stake pool operators
