@@ -2,18 +2,18 @@
 
 ## :man\_mage: Mandatory skills for stake pool operators
 
-As a stake pool operator for Cardano, you will be competent with the following abilities:
+As a stake pool operator for Cardano, you must be competent with the following abilities:
 
-* operational knowledge of how to set up, run and maintain a Cardano node continuously
-* a commitment to maintain your node 24/7/365
-* system operation skills
-* server administration skills (operational and maintenance).
+* Operational knowledge of how to set up, run and maintain a Cardano node continuously
+* A commitment to maintain your node 24/7/365
+* System operation skills including general knowledge related to using [Bash scripts](https://linuxconfig.org/bash-scripting-tutorial-for-beginners), [cron jobs](https://itsfoss.com/cron-job/) and [systemd](https://systemd.io/) services
+* Server administration skills (operational and maintenance)
 
 ## :mage: Mandatory experience for stake pool operators
 
-* experience of development and operations (DevOps)
-* experience on how to [harden ](https://www.lifewire.com/harden-ubuntu-server-security-4178243)and [secure a server](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3).
-* [passed the official Stake Pool School course.](https://cardano-foundation.gitbook.io/stake-pool-course/)
+* Experience of development and operations (DevOps)
+* Experience on how to [harden ](https://www.lifewire.com/harden-ubuntu-server-security-4178243)and [secure a server](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3).
+* In the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/), successfully complete the section [Operate a Stake Pool](https://developers.cardano.org/docs/operate-a-stake-pool/) including the [Stake Pool Course](https://developers.cardano.org/docs/stake-pool-course/) 
 
 {% hint style="danger" %}
 :octagonal\_sign: **Before continuing this guide, you must satisfy the above requirements**. :construction:
