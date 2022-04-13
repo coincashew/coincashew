@@ -19,6 +19,10 @@ The guide includes the following parts:
 * ****[**Part IV - Administration & Maintenance**](part-iv-administration.md) provides procedures that you need to manage your stake pool.
 * ****[**Part V - Tips**](part-v-tips.md) contains additional procedures to simplify managing your stake pool.
 
+{% hint style="info" %}
+To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying glass (![](../../../.gitbook/assets/search-icon.png)) icon in the top right corner of the left navigation.
+{% endhint %}
+
 ## :tada: Introduction
 
 {% hint style="info" %}
