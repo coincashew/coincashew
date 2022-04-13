@@ -54,7 +54,7 @@ journalctl --unit=cardano-node --follow
 ****:sparkles: **Pro tip**: If you synchronize a node, then you can copy the database directory to a different computer to save time synchronizing another node.
 {% endhint %}
 
-Run gLiveView to monitor the progress of synchronizing the blockchain.
+Run gLiveView to monitor the progress of the node synchronizing with the blockchain.
 
 ```
 ./gLiveView.sh
