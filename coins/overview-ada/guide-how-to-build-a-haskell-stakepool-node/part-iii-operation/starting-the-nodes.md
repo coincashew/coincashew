@@ -30,10 +30,6 @@ curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operato
 chmod 755 gLiveView.sh
 ```
 
-{% hint style="info" %}
-Complete documentation for the [gLiveView](https://cardano-community.github.io/guild-operators/Scripts/gliveview/) script and [env](https://cardano-community.github.io/guild-operators/Scripts/env/) file is available from the developer, [Guild Operators](https://cardano-community.github.io/guild-operators/).
-{% endhint %}
-
 Run the following to modify **env** with the updated file locations.
 
 ```bash
@@ -42,15 +38,23 @@ sed -i env \
     -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
 
+{% hint style="info" %}
+For complete documentation from the developer on using the [gLiveView](https://cardano-community.github.io/guild-operators/Scripts/gliveview/) script and [env](https://cardano-community.github.io/guild-operators/Scripts/env/) file, visit [Guild Operators](https://cardano-community.github.io/guild-operators/).
+{% endhint %}
+
 {% hint style="warning" %}
-A node must reach epoch 208 (Shelley launch) before **gLiveView.sh** can start tracking the node syncing. You can track the node syncing using `journalctl` before epoch 208.
+A node must synchronize to epoch 208 (Shelley launch) before **gLiveView.sh** can start tracking the synchronization process. Before your node synchronizes to epoch 208, you can track node synchronization using the following command:
 
 ```
 journalctl --unit=cardano-node --follow
 ```
 {% endhint %}
 
-Run gLiveView to monitor the progress of the sync'ing of the blockchain.
+{% hint style="info" %}
+****:sparkles: **Pro tip**: If you synchronize a node, then you can copy the database directory to a different computer to save time synchronizing another node.
+{% endhint %}
+
+Run gLiveView to monitor the progress of synchronizing the blockchain.
 
 ```
 ./gLiveView.sh
@@ -59,12 +63,6 @@ Run gLiveView to monitor the progress of the sync'ing of the blockchain.
 Sample output of gLiveView.
 
 ![](../../../../.gitbook/assets/glive-update2.jpg)
-
-For more information, refer to the [official Guild Live View docs.](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
-
-{% hint style="info" %}
-****:sparkles: **Pro tip**: If you synchronize a node's database, you can copy the database directory over to your other node directly and save time.
-{% endhint %}
 
 {% hint style="success" %}
 Congratulations! Your node is running successfully now. Let it sync up.
