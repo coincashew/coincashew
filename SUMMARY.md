@@ -209,7 +209,6 @@
       * [Verifying an ITN Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/verifying-an-itn-stake-pool.md)
       * [Fixing the Mnemonic Staking Balance Bug](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/fixing-the-mnemonic-staking-balance-bug.md)
     * [Appendix - Best Practices Checklist](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/appendix-best-practices-checklist.md)
-	* [Index](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/index.md)
     * [Telegram Chat Channel](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/contact.md)
     * [See Also](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/see-also.md)
     * [Credits](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/credits.md)
