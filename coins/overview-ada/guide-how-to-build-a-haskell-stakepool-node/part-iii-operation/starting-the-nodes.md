@@ -19,7 +19,7 @@ sudo systemctl start cardano-node
 Install gLiveView, a monitoring tool.
 
 {% hint style="info" %}
-gLiveView displays crucial node status information and works well with systemd services. Credits to the [Guild Operators](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview) for creating this tool.
+gLiveView displays crucial node status information and works well with systemd services.
 {% endhint %}
 
 ```bash
@@ -30,6 +30,10 @@ curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operato
 chmod 755 gLiveView.sh
 ```
 
+{% hint style="info" %}
+Complete documentation for the [gLiveView](https://cardano-community.github.io/guild-operators/Scripts/gliveview/) script and [env](https://cardano-community.github.io/guild-operators/Scripts/env/) file is available from the developer, [Guild Operators](https://cardano-community.github.io/guild-operators/).
+{% endhint %}
+
 Run the following to modify **env** with the updated file locations.
 
 ```bash
@@ -39,7 +43,7 @@ sed -i env \
 ```
 
 {% hint style="warning" %}
-A node must reach epoch 208 (Shelley launch) before **gLiveView.sh** can start tracking the node syncing. You can track the node syncing using `journalctl `before epoch 208.
+A node must reach epoch 208 (Shelley launch) before **gLiveView.sh** can start tracking the node syncing. You can track the node syncing using `journalctl` before epoch 208.
 
 ```
 journalctl --unit=cardano-node --follow
