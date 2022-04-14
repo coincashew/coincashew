@@ -1,14 +1,14 @@
 # Guide: How to stake TLOS
 
-## :checkered_flag:1. Prerequisites
+## :checkered\_flag:1. Prerequisites
 
-In order to stake, TLOS must be stored on a local wallet, where you control the seed/private keys. 
+In order to stake, TLOS must be stored on a local wallet, where you control the seed/private keys.&#x20;
 
 {% hint style="info" %}
 Remember, it's best practice to always withdraw coins from an Exchange.
 {% endhint %}
 
-## :last_quarter_moon_with_face: 2. Download and use a compatible wallet
+## :last\_quarter\_moon\_with\_face: 2. Download and use a compatible wallet
 
 {% content-ref url="../../wallets/desktop-wallets/sqrl-tlos.md" %}
 [sqrl-tlos.md](../../wallets/desktop-wallets/sqrl-tlos.md)
@@ -28,9 +28,9 @@ For this example, we will demonstrate with Sqrl wallet.
 
 1\. Open TLOS wallet
 
-2\. Click the **Governance **tab
+2\. Click the **Governance** tab
 
-3\. Click the **Proxies **tab
+3\. Click the **Proxies** tab
 
 4\. Select a **voting proxy**
 
@@ -38,13 +38,13 @@ For this example, we will demonstrate with Sqrl wallet.
 Alternatively, you can manually vote for at least 21 up to 30 block producers
 {% endhint %}
 
-5\. Click **T-REX** tab 
+5\. Click **T-REX** tab&#x20;
 
-6\. Click **Deposit TLOS for Lending **
+6\. Click **Deposit TLOS for Lending**&#x20;
 
 7\. Set the **amount of TLOS** to deposit
 
-8\. Click **Deposit TLOS **button
+8\. Click **Deposit TLOS** button
 
 {% hint style="success" %}
 :sparkles: Now you're staking TLOS and earning a portion of the 685 TLOS created every 30 minutes.

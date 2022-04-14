@@ -6,7 +6,7 @@ description: >-
 
 # Bitcoin Cash: BCH
 
-## ![](../../.gitbook/assets/bch.png) General Data
+## <img src="../../.gitbook/assets/bch.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                                                |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -14,7 +14,7 @@ description: >-
 | Source Code | [https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node)                                     |
 | Whitepaper  | [https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/tree/master/doc](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/tree/master/doc) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community | Link                                                                 |
 | --------- | -------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ description: >-
 | Telegram  | [https://t.me/bitcoincashfork](https://t.me/bitcoincashfork)         |
 | Telegram  | [https://t.me/BitcoinCashUpdates](https://t.me/BitcoinCashUpdates)   |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                       |
 | -------------------------------------------------------------------------- |
@@ -34,7 +34,7 @@ description: >-
 | [http://blockdozer.com/insight/](http://blockdozer.com/insight/)           |
 | [https://bch.tokenview.com/en](https://bch.tokenview.com/en)               |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                     |
 | ------------- | -------------------------------------------------------------------------------------------------------- |

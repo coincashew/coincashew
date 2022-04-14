@@ -7,16 +7,16 @@ description: >-
 
 # Tezos: XTZ
 
-## ![](../../.gitbook/assets/xtz.png) General Data
+## <img src="../../.gitbook/assets/xtz.png" alt="" data-size="original"> General Data
 
-| Site        | Title                                                                                                      |
-| ----------- | ---------------------------------------------------------------------------------------------------------- |
-| Website     | [https://www.tezos.com/](https://www.tezos.com)                                                            |
-| Foundation  | [https://tezos.foundation/](https://tezos.foundation)                                                      |
-| Source Code | [https://gitlab.com/tezos/tezos](https://gitlab.com/tezos/tezos)                                           |
-| Whitepaper  | [https://www.tezos.com/static/papers/white_paper.pdf](https://www.tezos.com/static/papers/white_paper.pdf) |
+| Site        | Title                                                                                                        |
+| ----------- | ------------------------------------------------------------------------------------------------------------ |
+| Website     | [https://www.tezos.com/](https://www.tezos.com)                                                              |
+| Foundation  | [https://tezos.foundation/](https://tezos.foundation)                                                        |
+| Source Code | [https://gitlab.com/tezos/tezos](https://gitlab.com/tezos/tezos)                                             |
+| Whitepaper  | [https://www.tezos.com/static/papers/white\_paper.pdf](https://www.tezos.com/static/papers/white\_paper.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community               | Link                                                                                             |
 | ----------------------- | ------------------------------------------------------------------------------------------------ |
@@ -28,11 +28,11 @@ description: >-
 | Telegram: General       | [https://t.me/tezosplatform](https://t.me/tezosplatform)                                         |
 | Telegram: Trading       | [https://t.me/tezostrading](https://t.me/tezostrading)                                           |
 | Telegram: Announcements | [https://t.me/TezosAnnouncements](https://t.me/TezosAnnouncements)                               |
-| Telegram: Baking        | [https://t.me/Tezos_Baking](https://t.me/Tezos_Baking)                                           |
+| Telegram: Baking        | [https://t.me/Tezos\_Baking](https://t.me/Tezos\_Baking)                                         |
 | Telegram: Developers    | [https://t.me/TezosDevelopers](https://t.me/TezosDevelopers)                                     |
-| Telegram: Baking Bad    | [https://t.me/baking_bad_chat](https://t.me/baking_bad_chat)                                     |
+| Telegram: Baking Bad    | [https://t.me/baking\_bad\_chat](https://t.me/baking\_bad\_chat)                                 |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site               | Link                                                         |
 | ------------------ | ------------------------------------------------------------ |
@@ -53,7 +53,7 @@ description: >-
 | [https://teznode.letzbake.com](https://teznode.letzbake.com)       | api |
 | [https://api.tzstats.com](https://api.tzstats.com)                 | api |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                 |
 | ------------- | ---------------------------------------------------------------------------------------------------- |

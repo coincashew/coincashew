@@ -6,7 +6,7 @@ description: >-
 
 # WAVES
 
-## ![](../../.gitbook/assets/waves.png) General Data
+## <img src="../../.gitbook/assets/waves.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                        |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -14,7 +14,7 @@ description: >-
 | Source Code | [https://github.com/wavesplatform/](https://github.com/wavesplatform/)                                                       |
 | Whitepaper  | [https://blog.wavesplatform.com/waves-whitepaper-164dd6ca6a23](https://blog.wavesplatform.com/waves-whitepaper-164dd6ca6a23) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                               |
 | -------------- | ---------------------------------------------------------------------------------- |
@@ -30,14 +30,14 @@ description: >-
 | Telegram News  | [https://telegram.me/wavesnews](https://telegram.me/wavesnews)                     |
 | Telegram       | [https://t.me/Wavescommunity](https://t.me/Wavescommunity)                         |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                  |
 | ----------------------------------------------------- |
 | [http://wavesexplorer.com/](http://wavesexplorer.com) |
 | [http://wavesgo.com/](http://wavesgo.com)             |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                       |
 | ------------- | ------------------------------------------------------------------------------------------ |

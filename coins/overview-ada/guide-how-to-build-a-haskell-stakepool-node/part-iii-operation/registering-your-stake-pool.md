@@ -1,13 +1,13 @@
-# :page\_facing\_up: Registering Your Stake Pool
+# Registering Your Stake Pool
 
 Create your pool's metadata with a JSON file. Update with your pool information.
 
 {% hint style="warning" %}
-**ticker **must be between 3-5 characters in length. Characters must be A-Z and 0-9 only.
+**ticker** must be between 3-9 characters in length. Characters must be A-Z and 0-9 only.
 {% endhint %}
 
 {% hint style="warning" %}
-**description **cannot exceed 255 characters in length.
+**description** cannot exceed 255 characters in length.
 {% endhint %}
 
 {% tabs %}
@@ -76,14 +76,14 @@ echo minPoolCost: ${minPoolCost}
 minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
-Create a registration certificate for your stake pool. Update with your **metadata URL** and your **relay node information**. Choose one of the three options available to configure relay nodes -- DNS based, Round Robin DNS based, or IP based.&#x20;
+Create a registration certificate for your stake pool. Update with your **metadata URL** and your **relay node information**. Choose one of the three options available to configure relay nodes -- DNS based, Round Robin DNS based, or IP based.
 
 {% hint style="info" %}
 DNS based relays are recommended for simplicity of node management. In other words, you don't need to re-submit this **registration certificate** transaction every time your IP changes. Also you can easily update the DNS to point towards a new IP should you re-locate or re-build a relay node, for example.
 {% endhint %}
 
 {% hint style="info" %}
-## ****:sparkles: **Configuring Multiple Relay Nodes **<a id="multiplerelays"></a>
+### :sparkles: Configuring Multiple Relay Nodes <a href="#multiplerelays" id="multiplerelays"></a>
 
 Update the next operation
 
@@ -100,7 +100,7 @@ to be run on your air-gapped offline machine appropriately. Replace with your pr
     --pool-relay-port 6000 \
 ```
 
-**Round Robin DNS based relays, 1 entry per **[**SRV DNS record**](https://support.dnsimple.com/articles/srv-record/)****
+**Round Robin DNS based relays, 1 entry per** [**SRV DNS record**](https://support.dnsimple.com/articles/srv-record/)
 
 ```bash
     --multi-host-pool-relay <relayNodes.myadapoolnamerocks.com> \
@@ -143,7 +143,7 @@ cardano-cli stake-pool registration-certificate \
 {% endtabs %}
 
 {% hint style="info" %}
-Here we are pledging 100 ADA with a fixed pool cost of 345 ADA and a pool margin of 15%.&#x20;
+Here we are pledging 100 ADA with a fixed pool cost of 345 ADA and a pool margin of 15%.
 {% endhint %}
 
 Copy **pool.cert** to your **hot environment.**
@@ -172,11 +172,11 @@ A stake pool owner's promise to fund their own pool is called **Pledge**.
 
 * Your balance needs to be greater than the pledge amount.
 * You pledge funds are not moved anywhere. In this guide's example, the pledge remains in the stake pool's owner keys, specifically `payment.addr`
-* Failing to fulfill pledge will result in missed block minting opportunities and your delegators would miss rewards.&#x20;
+* Failing to fulfill pledge will result in missed block minting opportunities and your delegators would miss rewards.
 * Your pledge is not locked up. You are free to transfer your funds.
 {% endhint %}
 
-You need to find the **tip **of the blockchain to set the **invalid-hereafter **parameter properly.
+You need to find the **tip** of the blockchain to set the **invalid-hereafter** parameter properly.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -232,7 +232,7 @@ echo stakePoolDeposit: $stakePoolDeposit
 Run the build-raw transaction command.
 
 {% hint style="info" %}
-The **invalid-hereafter **value must be greater than the current tip. In this example, we use current slot + 10000.&#x20;
+The **invalid-hereafter** value must be greater than the current tip. In this example, we use current slot + 10000.
 {% endhint %}
 
 {% tabs %}
@@ -283,7 +283,7 @@ echo txOut: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build the transaction.&#x20;
+Build the transaction.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -302,7 +302,7 @@ cardano-cli transaction build-raw \
 
 Copy **tx.raw** to your **cold environment.**
 
-Sign the transaction.&#x20;
+Sign the transaction.
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}

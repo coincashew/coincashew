@@ -1,51 +1,51 @@
 # Guide: Where to get Crypto
 
 {% hint style="info" %}
-:person_raising_hand:Are you new to crypto and need a helping hand? Or maybe you're just looking for a refresher because you've been away a bit. 
+:person\_raising\_hand:Are you new to crypto and need a helping hand? Or maybe you're just looking for a refresher because you've been away a bit.&#x20;
 
 This guide is for you.
 {% endhint %}
 
-## ![](../.gitbook/assets/btc.png) Choose the tab that best describes you...
+## <img src="../.gitbook/assets/btc.png" alt="" data-size="original"> Choose the tab that best describes you...
 
 {% tabs %}
 {% tab title="I already have crypto" %}
 ## :office: Centralized Exchanges
 
-| Site                                                                 | Location    | KYC Required?      |
-| -------------------------------------------------------------------- | ----------- | ------------------ |
-| [Binance](https://www.binance.com/en/register?ref=RI4R7YI6)          | Global      | No. 2₿/day.        |
-| [CoinEx](https://www.coinex.com/register?refer_code=6rcz2)           | Hong Kong   | No. 10,000USD/day. |
-| [Kucoin](https://www.kucoin.com/ucenter/signup?rcode=2M43tty)        | Seychelles  | No. 2₿/day.        |
-| [Huobi](https://www.hbg.com/en-us/exchange/?s=xtz_btc\&invite_code=) | Singapore   | No                 |
-| [TradeOgre](https://tradeogre.com/markets)                           | Global      | No                 |
-| [Bitcoin.com Exchange](https://exchange.bitcoin.com)                 | Saint Bitts | No                 |
-| [AscendEX](https://ascendex.com)                                     | Singapore   | No. 2₿/day.        |
-| [BitForex](https://www.bitforex.com)                                 | Seychelles  | No.                |
-| [Bitfinex](https://www.bitfinex.com/t/XTZ:USD)                       | Hong Kong   | No                 |
-| [Coinbase](https://pro.coinbase.com/trade/XTZ-USD)                   | USA         | Yes                |
-| [Kraken](https://www.kraken.com)                                     | USA         | Yes                |
-| [Gate.io](https://www.gate.io/trade/xtz_usdt)                        | USA         | Yes                |
-| [Bittrex](https://bittrex.com/Market/Index?MarketName=BTC-XTZ)       | USA         | Yes                |
+| Site                                                                   | Location    | KYC Required?      |
+| ---------------------------------------------------------------------- | ----------- | ------------------ |
+| [Binance](https://www.binance.com/en/register?ref=RI4R7YI6)            | Global      | No. 2₿/day.        |
+| [CoinEx](https://www.coinex.com/register?refer\_code=6rcz2)            | Hong Kong   | No. 10,000USD/day. |
+| [Kucoin](https://www.kucoin.com/ucenter/signup?rcode=2M43tty)          | Seychelles  | No. 2₿/day.        |
+| [Huobi](https://www.hbg.com/en-us/exchange/?s=xtz\_btc\&invite\_code=) | Singapore   | No                 |
+| [TradeOgre](https://tradeogre.com/markets)                             | Global      | No                 |
+| [Bitcoin.com Exchange](https://exchange.bitcoin.com)                   | Saint Bitts | No                 |
+| [AscendEX](https://ascendex.com)                                       | Singapore   | No. 2₿/day.        |
+| [BitForex](https://www.bitforex.com)                                   | Seychelles  | No.                |
+| [Bitfinex](https://www.bitfinex.com/t/XTZ:USD)                         | Hong Kong   | No                 |
+| [Coinbase](https://pro.coinbase.com/trade/XTZ-USD)                     | USA         | Yes                |
+| [Kraken](https://www.kraken.com)                                       | USA         | Yes                |
+| [Gate.io](https://www.gate.io/trade/xtz\_usdt)                         | USA         | Yes                |
+| [Bittrex](https://bittrex.com/Market/Index?MarketName=BTC-XTZ)         | USA         | Yes                |
 
-## :twisted_rightwards_arrows: Coin Swap Services - No Registration Required
+## :twisted\_rightwards\_arrows: Coin Swap Services - No Registration Required
 
-| Site                                                         | Comments                                                                          |
-| ------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| [Sideshift.ai](https://sideshift.ai/a/ziLELkDY5)             | Automated Coin Swap                                                               |
-| [InstaEx.io](https://instaex.io)                             | Privacy first - no Google Analytics, Accounts or KYC                              |
-| [MorphToken.com](https://www.morphtoken.com)                 | Quickly and simply swap one coin to another.Or split into multiple coins at once. |
-| [Changenow.io](https://changenow.io/?link_id=e542777107ca34) | Fast Crypto Swaps, Free of Custody                                                |
-| [Godex.io](https://godex.io/?aff_id=zNyhC0A10Be5YRBt)        | Exchange anonymously any volume with guaranteed fixed rate                        |
-| [TxQuick.com](https://ca.txquick.com)                        | No Account Required                                                               |
-| [SimpleSwap.io](https://simpleswap.io)                       | Free from sign up, limits, complications                                          |
-| [changehero.io](https://changehero.io)                       | Instant cryptocurrency exchange                                                   |
-| [FixedFloat.com](https://fixedfloat.com/?ref=cn8rt3qa)       | Lightning cryptocurrency exchange                                                 |
-| [ChangeAngel.io](https://changeangel.io)                     | Non-Custodial Swap Exchange Service                                               |
-| [SwapSwop.io](https://swapswop.io)                           | Exchange cryptocurrency anonymously without registration.                         |
-| [StealthEX.io](https://stealthex.io)                         | Exchange and nothing more. Limitless, custody-free cryptocurrency exchange.       |
+| Site                                                          | Comments                                                                          |
+| ------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [Sideshift.ai](https://sideshift.ai/a/ziLELkDY5)              | Automated Coin Swap                                                               |
+| [InstaEx.io](https://instaex.io)                              | Privacy first - no Google Analytics, Accounts or KYC                              |
+| [MorphToken.com](https://www.morphtoken.com)                  | Quickly and simply swap one coin to another.Or split into multiple coins at once. |
+| [Changenow.io](https://changenow.io/?link\_id=e542777107ca34) | Fast Crypto Swaps, Free of Custody                                                |
+| [Godex.io](https://godex.io/?aff\_id=zNyhC0A10Be5YRBt)        | Exchange anonymously any volume with guaranteed fixed rate                        |
+| [TxQuick.com](https://ca.txquick.com)                         | No Account Required                                                               |
+| [SimpleSwap.io](https://simpleswap.io)                        | Free from sign up, limits, complications                                          |
+| [changehero.io](https://changehero.io)                        | Instant cryptocurrency exchange                                                   |
+| [FixedFloat.com](https://fixedfloat.com/?ref=cn8rt3qa)        | Lightning cryptocurrency exchange                                                 |
+| [ChangeAngel.io](https://changeangel.io)                      | Non-Custodial Swap Exchange Service                                               |
+| [SwapSwop.io](https://swapswop.io)                            | Exchange cryptocurrency anonymously without registration.                         |
+| [StealthEX.io](https://stealthex.io)                          | Exchange and nothing more. Limitless, custody-free cryptocurrency exchange.       |
 
-## :milky_way: Decentralized Exchanges - No Registration Required
+## :milky\_way: Decentralized Exchanges - No Registration Required
 
 | Site                                              | Comments                                                                                            | Coins     |
 | ------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------- |
@@ -61,7 +61,7 @@ This guide is for you.
 {% endtab %}
 
 {% tab title="I have fiat money" %}
-## :family_woman_girl_boy: Peer-to-Peer Exchanges
+## :family\_woman\_girl\_boy: Peer-to-Peer Exchanges
 
 | Site                                                         | Comments                                                                                        |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |

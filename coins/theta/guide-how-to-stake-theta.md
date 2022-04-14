@@ -1,15 +1,15 @@
 # Guide: How to stake THETA with a Guardian Node
 
-## :checkered_flag: 0. Prerequisites
+## :checkered\_flag: 0. Prerequisites
 
 * **Processor:** Quad cores or more
 * **Memory:** 8GB RAM or more
 * **Storage:** 256GB SSD or more
 * **Internet:** 24/7 broadband internet connection 5 Mbps or more
 * **Power:** 24/7 electrical power
-* **THETA balance: **10000 Theta or more
+* **THETA balance:** 10000 Theta or more
 
-## :construction_site: 1. Setting up your Guardian Node
+## :construction\_site: 1. Setting up your Guardian Node
 
 {% tabs %}
 {% tab title="Windows" %}
@@ -22,21 +22,21 @@
 5. Click Create Node
 6. When Windows asks, click Allow Access so the node can use internet.
 
-![Click continue on the Welcome screen](../../.gitbook/assets/theta-welcome.PNG)
+![Click continue on the Welcome screen](../../.gitbook/assets/theta-welcome.png)
 
 ### :gear:2. Sync your node
 
 1. Sync your node to the tip of the blockchain can take minutes up to an hour depending on the performance of your computer.
 
-### :money_with_wings:3. Deposit stake to your node
+### :money\_with\_wings:3. Deposit stake to your node
 
 1. Once your node is fully synchronized, you will see a Guardian Node Holder (Summary). Copy and paste into your Theta wallet's "Deposit Stake" function.
 
-![Copy the Summary and paste into your Theta wallet's Deposit Stake function](../../.gitbook/assets/theta-stake-windows.PNG)
+![Copy the Summary and paste into your Theta wallet's Deposit Stake function](../../.gitbook/assets/theta-stake-windows.png)
 
-![Using your Theta wallet, enter the summary, your amount to stake then deposit stake.](../../.gitbook/assets/theta-deposit.PNG)
+![Using your Theta wallet, enter the summary, your amount to stake then deposit stake.](../../.gitbook/assets/theta-deposit.png)
 
-### :white_check_mark: 4. Validate your node is working
+### :white\_check\_mark: 4. Validate your node is working
 
 Verify that
 
@@ -45,7 +45,7 @@ Verify that
 * Network Height number is increasing
 * there is Recent Activity
 
-![Verifying a functioning node](../../.gitbook/assets/theta-verify.PNG)
+![Verifying a functioning node](../../.gitbook/assets/theta-verify.png)
 
 {% hint style="success" %}
 :sparkles:Congratulations! Your Theta Guardian Node is working to finalize blocks and will earn TFUEL.
@@ -61,7 +61,7 @@ You can view your TFUEL rewards in your THETA wallet or view them on the [block 
 {% endtab %}
 
 {% tab title="Linux / MacOS" %}
-### ****:robot: **1. **Download and create a node
+### ****:robot: **1.** Download and create a node
 
 First install curl if you need to.
 
@@ -104,7 +104,7 @@ Open a new terminal window with CTRL-SHIFT-T and check your sync status.
 Sync your node to the tip of the blockchain can take minutes up to an hour depending on the performance of your computer.
 {% endhint %}
 
-### :money_with_wings: 3. Deposit stake to your node
+### :money\_with\_wings: 3. Deposit stake to your node
 
 Once your node is done syncing when **"syncing": false**, run the following to generate your Guardian Node Holder Summary.
 
@@ -112,17 +112,17 @@ Once your node is done syncing when **"syncing": false**, run the following to g
 ./thetacli query guardian
 ```
 
- **Sample query guardian output:**
+&#x20;**Sample query guardian output:**
 
-> `{ "Address": "0x5C...", `\
-> `"BlsPubkey": "a1...", `\
-> `"BlsPop": "az1...", `\
-> `"Signature": "83201...", `\
+> `{ "Address": "0x5C...",` \
+> `"BlsPubkey": "a1...",` \
+> `"BlsPop": "az1...",` \
+> `"Signature": "83201...",` \
 > `"Summary": "0xeb..." }`
 
-Copy and paste the **Summary **data into your wallet's "Deposit Stake" function
+Copy and paste the **Summary** data into your wallet's "Deposit Stake" function
 
-### :white_check_mark: 4. Validate your node is working
+### :white\_check\_mark: 4. Validate your node is working
 
 If you see the following logs, your node is working.
 

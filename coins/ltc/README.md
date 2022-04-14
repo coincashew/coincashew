@@ -6,7 +6,7 @@ description: >-
 
 # Litecoin: LTC
 
-## ![](../../.gitbook/assets/ltc.png) General Data
+## <img src="../../.gitbook/assets/ltc.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                        |
 | ----------- | -------------------------------------------------------------------------------------------- |
@@ -15,7 +15,7 @@ description: >-
 | Website     | [https://litecoin.com/](https://litecoin.com)                                                |
 | Source Code | [https://github.com/litecoin-project/litecoin](https://github.com/litecoin-project/litecoin) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community       | Link                                                                                               |
 | --------------- | -------------------------------------------------------------------------------------------------- |
@@ -25,7 +25,7 @@ description: >-
 | Bitcointalk.org | [https://bitcointalk.org/index.php?topic=47417.0](https://bitcointalk.org/index.php?topic=47417.0) |
 | Telegram        | [https://telegram.me/litecoin](https://telegram.me/litecoin)                                       |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                       |
 | ------------------------------------------------------------------------------------------ |
@@ -35,7 +35,7 @@ description: >-
 | [https://chainz.cryptoid.info/ltc/](https://chainz.cryptoid.info/ltc/)                     |
 | [https://ltc.tokenview.com/en](https://ltc.tokenview.com/en)                               |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------ |

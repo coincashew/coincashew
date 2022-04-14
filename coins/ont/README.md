@@ -6,7 +6,7 @@ description: >-
 
 # Ontology: ONT
 
-## ![](../../.gitbook/assets/ont.png) General Data
+## <img src="../../.gitbook/assets/ont.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                    |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -14,7 +14,7 @@ description: >-
 | Source Code | [https://github.com/ontio](https://github.com/ontio)                                                                     |
 | Whitepaper  | [https://ont.io/wp/Ontology-Introductory-White-Paper-EN.pdf](https://ont.io/wp/Ontology-Introductory-White-Paper-EN.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                                                     |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -28,14 +28,14 @@ description: >-
 | Telegram       | [https://t.me/OntologyNetwork](https://t.me/OntologyNetwork)                                                             |
 | Telegram       | [https://t.me/OntologyNetworkCN](https://t.me/OntologyNetworkCN)                                                         |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                    |
 | ------------------------------------------------------- |
 | [https://explorer.ont.io/](https://explorer.ont.io)     |
 | [https://ont.tokenview.com/](https://ont.tokenview.com) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------ |

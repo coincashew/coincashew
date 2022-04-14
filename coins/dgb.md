@@ -6,7 +6,7 @@ description: >-
 
 # Digibyte: DGB
 
-## ![](../.gitbook/assets/dgb.png) General Data
+## <img src="../.gitbook/assets/dgb.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                |
 | ----------- | -------------------------------------------------------------------- |
@@ -14,7 +14,7 @@ description: >-
 | Foundation  | [https://digibytefoundation.io/](https://digibytefoundation.io)      |
 | Source Code | [https://github.com/DigiByte-Core](https://github.com/DigiByte-Core) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                                 |
 | -------------- | ---------------------------------------------------------------------------------------------------- |
@@ -26,7 +26,7 @@ description: >-
 | Wiki           | [https://dgbwiki.com/](https://dgbwiki.com)                                                          |
 | Digistats      | [https://digistats.digibyteservers.io/](https://digistats.digibyteservers.io)                        |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                 |
 | ------------------------------------------------------------------------------------ |
@@ -38,7 +38,7 @@ description: >-
 | [https://altexplorer.co/coin/dgb/explorer](https://altexplorer.co/coin/dgb/explorer) |
 | [https://insight.digibyte.host/](https://insight.digibyte.host)                      |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------ |

@@ -6,7 +6,7 @@ description: >-
 
 # EOS
 
-## ![](../../.gitbook/assets/eos.png) General Data
+## <img src="../../.gitbook/assets/eos.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                                                  |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -15,26 +15,26 @@ description: >-
 | Source Code | [https://github.com/eosio](https://github.com/eosio)                                                                                                   |
 | Whitepaper  | [https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md](https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
-| Community                | Link                                                                                                                                                                                             |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| :bird: Twitter           | [https://twitter.com/block_one\_](https://twitter.com/block_one\_)                                                                                                                               |
-| Reddit                   | [https://www.reddit.com/r/EOS](https://www.reddit.com/r/EOS)                                                                                                                                     |
-| Telegram                 | [https://t.me/EOSProject](https://t.me/EOSProject)                                                                                                                                               |
-| Telegram Community       | [https://t.me/eosgo](https://t.me/eosgo)                                                                                                                                                         |
-| Telegram News            | [https://t.me/eosgo_news](https://t.me/eosgo_news)                                                                                                                                               |
-| Telegram Devs            | [https://t.me/joinchat/EaEnSUPktgfoI-XPfMYtcQ](https://t.me/joinchat/EaEnSUPktgfoI-XPfMYtcQ)                                                                                                     |
-| Telegram Block Producers | [https://t.me/EOSPros](https://t.me/EOSPros)                                                                                                                                                     |
-| Telegram Announcements   | [https://t.me/eosLAUNCHbyTHEwire](https://t.me/eosLAUNCHbyTHEwire)                                                                                                                               |
-| StackExchange            | [https://eosio.stackexchange.com/](https://eosio.stackexchange.com)                                                                                                                              |
-| Medium                   | [https://medium.com/@eosio](https://medium.com/@eosio)                                                                                                                                           |
-| Medium                   | [https://medium.com/block-one](https://medium.com/block-one)                                                                                                                                     |
-| Youtube                  | [https://www.youtube.com/channel/UCbc7vIgwb-sPSckU0FbWmRg](https://www.youtube.com/channel/UCbc7vIgwb-sPSckU0FbWmRg)                                                                             |
-| Official Forums          | [https://forums.eosgo.io/](https://forums.eosgo.io)                                                                                                                                              |
-| Everything EOS Podcast   | [https://www.youtube.com/playlist?list=PLTatkxrYThmbFyCvRSbW-54aFD-axls3Y\&disable_polymer=true](https://www.youtube.com/playlist?list=PLTatkxrYThmbFyCvRSbW-54aFD-axls3Y\&disable_polymer=true) |
+| Community                | Link                                                                                                                                                                                               |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :bird: Twitter           | [https://twitter.com/block\_one\_](https://twitter.com/block\_one\_)                                                                                                                               |
+| Reddit                   | [https://www.reddit.com/r/EOS](https://www.reddit.com/r/EOS)                                                                                                                                       |
+| Telegram                 | [https://t.me/EOSProject](https://t.me/EOSProject)                                                                                                                                                 |
+| Telegram Community       | [https://t.me/eosgo](https://t.me/eosgo)                                                                                                                                                           |
+| Telegram News            | [https://t.me/eosgo\_news](https://t.me/eosgo\_news)                                                                                                                                               |
+| Telegram Devs            | [https://t.me/joinchat/EaEnSUPktgfoI-XPfMYtcQ](https://t.me/joinchat/EaEnSUPktgfoI-XPfMYtcQ)                                                                                                       |
+| Telegram Block Producers | [https://t.me/EOSPros](https://t.me/EOSPros)                                                                                                                                                       |
+| Telegram Announcements   | [https://t.me/eosLAUNCHbyTHEwire](https://t.me/eosLAUNCHbyTHEwire)                                                                                                                                 |
+| StackExchange            | [https://eosio.stackexchange.com/](https://eosio.stackexchange.com)                                                                                                                                |
+| Medium                   | [https://medium.com/@eosio](https://medium.com/@eosio)                                                                                                                                             |
+| Medium                   | [https://medium.com/block-one](https://medium.com/block-one)                                                                                                                                       |
+| Youtube                  | [https://www.youtube.com/channel/UCbc7vIgwb-sPSckU0FbWmRg](https://www.youtube.com/channel/UCbc7vIgwb-sPSckU0FbWmRg)                                                                               |
+| Official Forums          | [https://forums.eosgo.io/](https://forums.eosgo.io)                                                                                                                                                |
+| Everything EOS Podcast   | [https://www.youtube.com/playlist?list=PLTatkxrYThmbFyCvRSbW-54aFD-axls3Y\&disable\_polymer=true](https://www.youtube.com/playlist?list=PLTatkxrYThmbFyCvRSbW-54aFD-axls3Y\&disable\_polymer=true) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                        |
 | ------------------------------------------- |
@@ -43,7 +43,7 @@ description: >-
 | [https://eosflare.io/](https://eosflare.io) |
 | [https://eosx.io/](https://eosx.io)         |
 
-## :ballot_box: Referendum Resources
+## :ballot\_box: Referendum Resources
 
 | Site                                                                                               |
 | -------------------------------------------------------------------------------------------------- |
@@ -58,7 +58,7 @@ description: >-
 | [https://eosauthority.com/rex/](https://eosauthority.com/rex/) |
 | [https://eosrex.io/](https://eosrex.io)                        |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                   |
 | ------------- | -------------------------------------------------------------------------------------- |

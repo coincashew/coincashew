@@ -7,7 +7,7 @@ description: >-
 
 # Ethereum: ETH
 
-## ![](../../.gitbook/assets/eth.png) General Data
+## <img src="../../.gitbook/assets/eth.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                  |
 | ----------- | ------------------------------------------------------------------------------------------------------ |
@@ -15,7 +15,7 @@ description: >-
 | Source Code | [https://github.com/ethereum](https://github.com/ethereum)                                             |
 | Whitepaper  | [https://github.com/ethereum/wiki/wiki/White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community       | Link                                                                           |
 | --------------- | ------------------------------------------------------------------------------ |
@@ -24,7 +24,7 @@ description: >-
 | Official Forums | [https://forum.ethereum.org/](https://forum.ethereum.org)                      |
 | Gitter          | [https://gitter.im/orgs/ethereum/rooms](https://gitter.im/orgs/ethereum/rooms) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                              |
 | ------------------------------------------------- |
@@ -34,7 +34,7 @@ description: >-
 | [Etherchain.org](https://etherchain.org)          |
 | [beaconcha.in](https://beaconcha.in)              |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                 |
 | ------------- | ---------------------------------------------------------------------------------------------------- |

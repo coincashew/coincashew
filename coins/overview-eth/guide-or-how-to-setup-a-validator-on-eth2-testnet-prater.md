@@ -24,7 +24,7 @@ As of Dec 1 2021, this is **guide version 3.7.0** and written for **testnet PRAT
 
 ### Changelog - **Update Notes -** **Dec 1 2021** <a href="#changelog-update-notes-october-30-2021" id="changelog-update-notes-october-30-2021"></a>
 
-* Added how to check your [Validator's Sync Committee duties](guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-check-my-eth-validators-sync-committee-duties.md)
+* Added how to check your [Validator's Sync Committee duties](broken-reference)
 * Formatting fixes and updated Teku initial state API.
 * Updated with consensus layer (CL), the execution layer (EL), formerly known as eth2 and eth1.
 * Added erigon build dependencies.
@@ -37,10 +37,10 @@ As of Dec 1 2021, this is **guide version 3.7.0** and written for **testnet PRAT
 * Added generating mnemonic seeds on **Tails OS** by [punggolzenith](https://github.com/punggolzenith)
 * Iancoleman.io BLS12-381 Key Generation Tool [how-to added](guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md#8-12-eip2333-key-generator-by-iancoleman-io)
 * Testnet guide forked for [Prater testnet](guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md) staking
-* [Geth pruning guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-free-up-eth1-node-disk-space.md) created
+* [Geth pruning guide](broken-reference) created
 * Major changes to Lodestar guide
 * Additional [Grafana Dashboards](guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md#6-2-setting-up-grafana-dashboards) for Prysm, Lighthouse and Nimbus
-* [Validator Security Best Practices added](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+* [Validator Security Best Practices added](broken-reference)
 * Translations now available for Japanese, Chinese and Spanish (access by changing site language)
 * Generate keystore files on [Ledger Nano X, Nano S and Trezor Model T](guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md#2-signup-to-be-a-validator-at-the-launchpad) with tool from [allnodes.com](https://twitter.com/Allnodes/status/1390020240541618177?s=20)
 * [Batch deposit tool](guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md#2-signup-to-be-a-validator-at-the-launchpad) by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added
@@ -451,7 +451,7 @@ Ethereum requires a connection to the execution client in order to monitor for 3
 {% endhint %}
 
 {% hint style="warning" %}
-The subsequent steps assume you have completed the [best practices security guide.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+The subsequent steps assume you have completed the [best practices security guide.](broken-reference)
 
 :octagonal\_sign: Do not run your processes as **ROOT** user. :scream:
 {% endhint %}
@@ -1126,7 +1126,7 @@ lighthouse account_manager validator list --network prater
 
 #### :fire: 4.4. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Lighthouse consensus client** requires port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
@@ -1552,7 +1552,7 @@ For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/
 
 #### :fire: 4.3. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Nimbus consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
@@ -1788,7 +1788,7 @@ sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 
 
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Teku consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
@@ -2163,7 +2163,7 @@ wget https://github.com/eth2-clients/eth2-networks/blob/master/shared/prater/gen
 
 #### :fire: 4.3. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Prysm consensus client** will use port 12000 for udp and port 13000 for tcp
 * **Execution client** requires port 30303 for tcp and udp
@@ -2601,7 +2601,7 @@ Verify Lodestar was installed properly by displaying the help menu.
 
 #### :fire: 4.2. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Lodestar consensus client** will use port 30607 for tcp and port 9000 for udp peer discovery.
 * **Execution client** requires port 30303 for tcp and udp

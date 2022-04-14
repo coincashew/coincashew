@@ -4,33 +4,33 @@ description: Buy, Sell and Pay with Crypto
 
 # Crypto.com: MCO
 
-## ![](../../.gitbook/assets/mco.png) General Data
+## <img src="../../.gitbook/assets/mco.png" alt="" data-size="original"> General Data
 
-| Site       | Title                                                                                        |
-| ---------- | -------------------------------------------------------------------------------------------- |
-| Website    | [https://mco.crypto.com/](https://mco.crypto.com)                                            |
-| Whitepaper | [https://crypto.com/images/mco_whitepaper.pdf](https://crypto.com/images/mco_whitepaper.pdf) |
+| Site       | Title                                                                                          |
+| ---------- | ---------------------------------------------------------------------------------------------- |
+| Website    | [https://mco.crypto.com/](https://mco.crypto.com)                                              |
+| Whitepaper | [https://crypto.com/images/mco\_whitepaper.pdf](https://crypto.com/images/mco\_whitepaper.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                                   |
 | -------------- | ------------------------------------------------------------------------------------------------------ |
 | :bird: Twitter | [https://twitter.com/cryptocom](https://twitter.com/cryptocom)                                         |
-| Reddit         | [https://www.reddit.com/r/Crypto_com](https://www.reddit.com/r/Crypto_com)                             |
+| Reddit         | [https://www.reddit.com/r/Crypto\_com](https://www.reddit.com/r/Crypto\_com)                           |
 | Telegram       | [https://t.me/CryptoComOfficial](https://t.me/CryptoComOfficial)                                       |
 | Facebook       | [https://www.facebook.com/CryptoComOfficial](https://www.facebook.com/CryptoComOfficial)               |
-| Medium         | [https://medium.com/@monaco_card](https://medium.com/@monaco_card)                                     |
+| Medium         | [https://medium.com/@monaco\_card](https://medium.com/@monaco\_card)                                   |
 | Discord        | [https://discord.gg/B6cZahJ](https://discord.gg/B6cZahJ)                                               |
 | Bitcointalk    | [https://bitcointalk.org/index.php?topic=1926269.0](https://bitcointalk.org/index.php?topic=1926269.0) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [https://etherscan.io/token/0xb63b606ac810a52cca15e44bb630fd42d8d1d83d](https://etherscan.io/token/0xb63b606ac810a52cca15e44bb630fd42d8d1d83d)     |
 | [https://ethplorer.io/address/0xb63b606ac810a52cca15e44bb630fd42d8d1d83d](https://ethplorer.io/address/0xb63b606ac810a52cca15e44bb630fd42d8d1d83d) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                         |
 | ------------- | ------------------------------------------------------------------------------------------------------------ |

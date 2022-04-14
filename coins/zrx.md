@@ -6,15 +6,15 @@ description: >-
 
 # 0x: ZRX
 
-## ![](../.gitbook/assets/zrx.png) General Data
+## <img src="../.gitbook/assets/zrx.png" alt="" data-size="original"> General Data
 
-| Site        | Title                                                                                          |
-| ----------- | ---------------------------------------------------------------------------------------------- |
-| Website     | [https://0x.org/](https://0x.org)                                                              |
-| Source Code | [https://github.com/0xProject/0x-monorepo](https://github.com/0xProject/0x-monorepo)           |
-| Whitepaper  | [https://0xproject.com/pdfs/0x_white_paper.pdf](https://0xproject.com/pdfs/0x_white_paper.pdf) |
+| Site        | Title                                                                                              |
+| ----------- | -------------------------------------------------------------------------------------------------- |
+| Website     | [https://0x.org/](https://0x.org)                                                                  |
+| Source Code | [https://github.com/0xProject/0x-monorepo](https://github.com/0xProject/0x-monorepo)               |
+| Whitepaper  | [https://0xproject.com/pdfs/0x\_white\_paper.pdf](https://0xproject.com/pdfs/0x\_white\_paper.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                       |
 | -------------- | -------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ description: >-
 | Facebook       | [https://www.facebook.com/0xProject/](https://www.facebook.com/0xProject/) |
 | Blog           | [https://blog.0xproject.com/latest](https://blog.0xproject.com/latest)     |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -31,7 +31,7 @@ description: >-
 | [https://ethplorer.io/address/0xe41d2489571d322189246dafa5ebde1f4699f498](https://ethplorer.io/address/0xe41d2489571d322189246dafa5ebde1f4699f498) |
 | [https://0xtracker.com/](https://0xtracker.com)                                                                                                    |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                         |
 | ------------- | -------------------------------------------------------------------------------------------- |

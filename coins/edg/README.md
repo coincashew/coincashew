@@ -6,7 +6,7 @@ description: >-
 
 # Edgeware: EDG
 
-## ![](../../.gitbook/assets/edg.png) General Data
+## <img src="../../.gitbook/assets/edg.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                                                                                                    |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -15,7 +15,7 @@ description: >-
 | Technical   | [http://docs.edgewa.re/](http://docs.edgewa.re)                                                                                                                                                          |
 | Whitepaper  | [https://arena-attachments.s3.amazonaws.com/3765033/1232ea3075e0940291fa7b5f152f4a04.pdf?1551468991](https://arena-attachments.s3.amazonaws.com/3765033/1232ea3075e0940291fa7b5f152f4a04.pdf?1551468991) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community       | Link                                                                           |
 | --------------- | ------------------------------------------------------------------------------ |
@@ -27,14 +27,14 @@ description: >-
 | Telegram        | [https://t.me/heyedgeware](https://t.me/heyedgeware)                           |
 | Documentation   | [https://edgeware.gitbook.io/](https://edgeware.gitbook.io)                    |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                   |
 | ---------------------------------------------------------------------- |
 | [https://polkascan.io/pre/edgeware](https://polkascan.io/pre/edgeware) |
 | [https://edgeware.subscan.io/](https://edgeware.subscan.io)            |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                   |
 | ------------- | ------------------------------------------------------------------------------------------------------ |

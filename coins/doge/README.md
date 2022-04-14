@@ -6,7 +6,7 @@ description: >-
 
 # Dogecoin: DOGE
 
-## ![](../../.gitbook/assets/doge.png) General Data
+## <img src="../../.gitbook/assets/doge.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                        |
 | ----------- | ---------------------------------------------------------------------------- |
@@ -14,7 +14,7 @@ description: >-
 | Foundation  | [http://foundation.dogecoin.com/](http://foundation.dogecoin.com)            |
 | Source Code | [https://github.com/dogecoin/dogecoin](https://github.com/dogecoin/dogecoin) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                                 |
 | -------------- | ---------------------------------------------------------------------------------------------------- |
@@ -28,7 +28,7 @@ description: >-
 | Telegram       | [https://t.me/dogecoin4life](https://t.me/dogecoin4life)                                             |
 | Medium         | [https://medium.com/@dogecoin](https://medium.com/@dogecoin)                                         |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                 |
 | -------------------------------------------------------------------- |
@@ -37,7 +37,7 @@ description: >-
 | [https://doge.tokenview.com/](https://doge.tokenview.com)            |
 | [https://explorer.viabtc.com/doge](https://explorer.viabtc.com/doge) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------ |

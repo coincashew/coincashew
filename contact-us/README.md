@@ -10,11 +10,11 @@ Every guide, tip, and review written on CoinCashew was written by someone who wa
 
 ****:robot: **Discord**: [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)
 
-****:mobile_phone: **Telegram:** [https://t.me/coincashew](https://t.me/coincashew)
+****:mobile\_phone: **Telegram:** [https://t.me/coincashew](https://t.me/coincashew)
 
-****:bird: **Twitter: **[@coincashew\_](https://twitter.com/coincashew\_)
+****:bird: **Twitter:** [@coincashew\_](https://twitter.com/coincashew\_)
 
-****:e-mail: **Email: **coincashew@protonmail.com
+****:e-mail: **Email:** coincashew@protonmail.com
 
 ## :fire: Want to contribute?
 

@@ -6,7 +6,7 @@ description: >-
 
 # Metal: MTL
 
-## ![](../.gitbook/assets/mtl.png) General Data
+## <img src="../.gitbook/assets/mtl.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                    |
 | ----------- | -------------------------------------------------------------------------------------------------------- |
@@ -14,7 +14,7 @@ description: >-
 | Source Code | [https://github.com/MetalPay/metal-token](https://github.com/MetalPay/metal-token)                       |
 | Whitepaper  | [https://www.metalpay.com/assets/pdf/whitepaper.pdf](https://www.metalpay.com/assets/pdf/whitepaper.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                           |
 | -------------- | ------------------------------------------------------------------------------ |
@@ -24,13 +24,13 @@ description: >-
 | Discord        | [https://discord.gg/B2QDmgf](https://discord.gg/B2QDmgf)                       |
 | Facebook       | [https://www.facebook.com/metalpaysme/](https://www.facebook.com/metalpaysme/) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                           |
 | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | [https://etherscan.io/token/0xf433089366899d83a9f26a773d59ec7ecf30355e](https://etherscan.io/token/0xf433089366899d83a9f26a773d59ec7ecf30355e) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                               |
 | ------------- | -------------------------------------------------------------------------------------------------- |

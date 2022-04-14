@@ -7,7 +7,7 @@ description: >-
 
 # Stellar: XLM
 
-## ![](../../.gitbook/assets/xlm.png) General Data
+## <img src="../../.gitbook/assets/xlm.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -15,7 +15,7 @@ description: >-
 | Source Code | [https://github.com/stellar/stellar-core](https://github.com/stellar/stellar-core)                                             |
 | Whitepaper  | [https://www.stellar.org/papers/stellar-consensus-protocol.pdf](https://www.stellar.org/papers/stellar-consensus-protocol.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community           | Link                                                                                                   |
 | ------------------- | ------------------------------------------------------------------------------------------------------ |
@@ -28,13 +28,13 @@ description: >-
 | Stack Exchange      | [https://stellar.stackexchange.com/](https://stellar.stackexchange.com)                                |
 | Keybase.io          | [https://keybase.io/team/stellar.public](https://keybase.io/team/stellar.public)                       |
 
-## :ballot_box: Governance
+## :ballot\_box: Governance
 
 | Site                                                            |
 | --------------------------------------------------------------- |
 | [https://stellarcommunity.fund/](https://stellarcommunity.fund) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                             |
 | ---------------------------------------------------------------- |
@@ -43,7 +43,7 @@ description: >-
 | [https://steexp.com/](https://steexp.com)                        |
 | [https://dashboard.stellar.org/](https://dashboard.stellar.org)  |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                           |
 | ------------- | ---------------------------------------------------------------------------------------------- |

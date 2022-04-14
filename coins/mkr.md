@@ -6,7 +6,7 @@ description: >-
 
 # Maker: MKR
 
-## ![](../.gitbook/assets/mkr.png) General Data
+## <img src="../.gitbook/assets/mkr.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                                                  |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -14,7 +14,7 @@ description: >-
 | Source Code | [https://github.com/makerdao/market-maker-keeper](https://github.com/makerdao/market-maker-keeper)                                                     |
 | Whitepaper  | [https://makerdao.com/en/whitepaper/#overview-of-the-dai-stablecoin-system](https://makerdao.com/en/whitepaper/#overview-of-the-dai-stablecoin-system) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                   |
 | -------------- | ---------------------------------------------------------------------- |
@@ -22,7 +22,7 @@ description: >-
 | Reddit         | [https://www.reddit.com/r/MakerDAO](https://www.reddit.com/r/MakerDAO) |
 | Forum          | [https://chat.makerdao.com/](https://chat.makerdao.com)                |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                                                               |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -30,7 +30,7 @@ description: >-
 | [https://ethplorer.io/address/0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2](https://ethplorer.io/address/0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2)                                 |
 | [https://blockchair.com/ethereum/erc-20/token/0xda27b988921a0659bceac1abd4b43a295c8296f4](https://blockchair.com/ethereum/erc-20/token/0xda27b988921a0659bceac1abd4b43a295c8296f4) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                               |
 | ------------- | -------------------------------------------------------------------------------------------------- |

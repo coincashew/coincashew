@@ -4,7 +4,7 @@ description: Community-Directed, Superior Store of Value
 
 # Decred: DCR
 
-## ![](../../.gitbook/assets/dcr.png) General Data
+## <img src="../../.gitbook/assets/dcr.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                  |
 | ----------- | ------------------------------------------------------ |
@@ -12,7 +12,7 @@ description: Community-Directed, Superior Store of Value
 | Source Code | [https://github.com/decred](https://github.com/decred) |
 | Whitepaper  | [https://docs.decred.org/](https://docs.decred.org)    |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community       | Link                                                                                     |
 | --------------- | ---------------------------------------------------------------------------------------- |
@@ -25,7 +25,7 @@ description: Community-Directed, Superior Store of Value
 | Wiki            | [https://www.reddit.com/r/decred/wiki/index](https://www.reddit.com/r/decred/wiki/index) |
 | Documentation   | [https://docs.decred.org/](https://docs.decred.org)                                      |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                          |
 | ------------------------------------------------------------- |
@@ -33,11 +33,11 @@ description: Community-Directed, Superior Store of Value
 | [https://stats.decred.org/](https://stats.decred.org)         |
 | [https://explorer.dcrdata.org/](https://explorer.dcrdata.org) |
 
-## :ballot_box: Governance Proposals
+## :ballot\_box: Governance Proposals
 
 {% embed url="https://proposals.decred.org/" %}
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                         |
 | ------------- | -------------------------------------------------------------------------------------------- |

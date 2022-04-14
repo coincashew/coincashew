@@ -1,4 +1,4 @@
-# :mag\_right: 6. Monitoring your validator with Grafana and Prometheus
+# Monitoring your validator with Grafana and Prometheus
 
 Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
 
@@ -390,7 +390,7 @@ Credits: [https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashbo
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](<../../../../.gitbook/assets/grafana (1).png>)
+![](../../../../.gitbook/assets/grafana.png)
 
 ![](../../../../.gitbook/assets/node-exporter2.png)
 

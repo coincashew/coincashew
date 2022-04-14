@@ -19,7 +19,7 @@ Immense personal satisfaction of gaining eth2 knowledge and POAP badges! There's
 What the POAP you may ask? Proof of Attendance Protocol is a dapp that distributes badges in the form of ERC-721 tokens to prove you participated in an event. [More info here.](https://www.beaconcha.in/poap)
 {% endhint %}
 
-## :woman_technologist: 3 simple steps to ETH 2.0 enlightenment and POAP collectibles.
+## :woman\_technologist: 3 simple steps to ETH 2.0 enlightenment and POAP collectibles.
 
 {% hint style="warning" %}
 Don't delay! POAP tokens will only be distributed if you propose a block within the first 300,000 blocks or roughly first six weeks of Medalla's launch.
@@ -34,7 +34,7 @@ Don't delay! POAP tokens will only be distributed if you propose a block within 
 ### :gear: 2. Learn to validate with different ETH2 clients
 
 {% hint style="success" %}
-Did you know each time you propose a block with a different client, your block will contain your **graffiti tag **which entitles you to claim your POAP token for that client! Filter for your graffiti tag with this example query. [https://beaconcha.in/blocks?q=poapq1gBp9OYNRuL4RxDngXFsyWa7JsA](https://beaconcha.in/blocks?q=poapq1gBp9OYNRuL4RxDngXFsyWa7JsA)
+Did you know each time you propose a block with a different client, your block will contain your **graffiti tag** which entitles you to claim your POAP token for that client! Filter for your graffiti tag with this example query. [https://beaconcha.in/blocks?q=poapq1gBp9OYNRuL4RxDngXFsyWa7JsA](https://beaconcha.in/blocks?q=poapq1gBp9OYNRuL4RxDngXFsyWa7JsA)
 {% endhint %}
 
 {% hint style="danger" %}
@@ -77,7 +77,7 @@ Did you know each time you propose a block with a different client, your block w
 {% endtab %}
 {% endtabs %}
 
-### :last_quarter_moon_with_face: 3. Claim POAP Rewards
+### :last\_quarter\_moon\_with\_face: 3. Claim POAP Rewards
 
 ![Gotta collect 'em all. Medalla POAP tokens.](../../.gitbook/assets/eth2-poap-medalla-collectables.jpg)
 
@@ -88,7 +88,7 @@ Did you know your POAP tokens are transferable? Move them to deep, cold and swee
 {% endhint %}
 
 {% hint style="success" %}
-Congrats on making to eth2 moon base. Hope you had fun! See you at mainnet launch! :rocket: 
+Congrats on making to eth2 moon base. Hope you had fun! See you at mainnet launch! :rocket:&#x20;
 {% endhint %}
 
 ## :dog: Reference Material

@@ -7,7 +7,7 @@ description: >-
 
 # GRIN
 
-## ![](../../.gitbook/assets/grin.png) General Data
+## <img src="../../.gitbook/assets/grin.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                                  |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -15,17 +15,17 @@ description: >-
 | Source Code | [https://github.com/mimblewimble/grin/](https://github.com/mimblewimble/grin/)                                                         |
 | Whitepaper  | [https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt](https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
-| Community       | Link                                                                             |
-| --------------- | -------------------------------------------------------------------------------- |
-| :bird: Twitter  | [https://twitter.com/grinMW](https://twitter.com/grinMW)                         |
-| Reddit          | [https://www.reddit.com/r/GRIN](https://www.reddit.com/r/GRIN)                   |
-| Official Forums | [https://forum.grin.mw/](https://forum.grin.mw)                                  |
-| Discord         | [https://discord.gg/Z3sEfEU](https://discord.gg/Z3sEfEU)                         |
-| Gitter          | [https://gitter.im/grin_community/Lobby](https://gitter.im/grin_community/Lobby) |
+| Community       | Link                                                                               |
+| --------------- | ---------------------------------------------------------------------------------- |
+| :bird: Twitter  | [https://twitter.com/grinMW](https://twitter.com/grinMW)                           |
+| Reddit          | [https://www.reddit.com/r/GRIN](https://www.reddit.com/r/GRIN)                     |
+| Official Forums | [https://forum.grin.mw/](https://forum.grin.mw)                                    |
+| Discord         | [https://discord.gg/Z3sEfEU](https://discord.gg/Z3sEfEU)                           |
+| Gitter          | [https://gitter.im/grin\_community/Lobby](https://gitter.im/grin\_community/Lobby) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                           |
 | -------------------------------------------------------------- |
@@ -34,7 +34,7 @@ description: >-
 | [https://grin.blockscan.com/](https://grin.blockscan.com)      |
 | [https://grinexplorer.net/](https://grinexplorer.net)          |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                     |
 | ------------- | ---------------------------------------------------------------------------------------- |

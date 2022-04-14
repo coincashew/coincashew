@@ -70,8 +70,8 @@ As a validator for eth2, you will typically have the following abilities:
 
 If you need ideas or a reminder on how to secure your validator, refer to
 
-{% content-ref url="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
-[guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### :tools: Setup Ubuntu
@@ -409,7 +409,7 @@ Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ET
 {% endhint %}
 
 {% hint style="warning" %}
-The subsequent steps assume you have completed the [best practices security guide. ](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+The subsequent steps assume you have completed the [best practices security guide. ](broken-reference)
 
 :octagonal\_sign: Do not run your processes as **ROOT** user. :scream:&#x20;
 {% endhint %}
@@ -906,7 +906,7 @@ lighthouse account_manager validator list --network pyrmont
 
 ## :fire: 4.4. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Lighthouse beacon chain** requires port 9000 for tcp and udp
 * **eth1** node requires port 30303 for tcp and udp
@@ -1207,7 +1207,7 @@ For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/
 
 ## :fire: 4.3. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Nimbus beacon chain node** will use port 9000 for tcp and udp
 * **eth1** node requires port 30303 for tcp and udp
@@ -1389,7 +1389,7 @@ sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 
 ## :fire: 4.2. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Teku beacon chain node** will use port 9000 for tcp and udp
 * **eth1** node requires port 30303 for tcp and udp
@@ -1617,7 +1617,7 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 
 ## :fire: 4.2. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Prysm beacon chain node** will use port 12000 for udp and port 13000 for tcp
 * **eth1** node requires port 30303 for tcp and udp
@@ -1938,7 +1938,7 @@ Verify Lodestar was installed properly by displaying the help menu.
 
 ## :fire: 4.2. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Lodestar beacon chain node** will use port 30607 for tcp and port 9000 for udp peer discovery.
 * **eth1** node requires port 30303 for tcp and udp
@@ -2163,8 +2163,8 @@ Because beacon chain relies on accurate times to perform attestations and produc
 
 Setup **Chrony** with the following guide.
 
-{% content-ref url="../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md" %}
-[how-to-setup-chrony.md](../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% hint style="info" %}
@@ -2527,7 +2527,7 @@ Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://githu
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](<../../.gitbook/assets/grafana (1).png>)
+![](../../.gitbook/assets/grafana.png)
 
 ![](../../.gitbook/assets/node-exporter2.png)
 
@@ -2635,7 +2635,7 @@ Use https://pyrmont.beaconcha.in/ to create alerts and track your validator's pe
 {% endhint %}
 
 {% hint style="info" %}
-Be sure to review the [Checklist | How to confirm a healthy functional ETH2 validator.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
+Be sure to review the [Checklist | How to confirm a healthy functional ETH2 validator.](broken-reference)
 {% endhint %}
 
 {% hint style="success" %}
@@ -3851,8 +3851,8 @@ sudo systemctl restart beacon-chain
 
 Learn how to at the following quick guide.
 
-{% content-ref url="guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-find-longest-attestation-slot-gap.md" %}
-[how-to-find-longest-attestation-slot-gap.md](guide-or-how-to-setup-a-validator-on-eth2-mainnet/how-to-find-longest-attestation-slot-gap.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 #### :gear: Strategy #4: Beacon node redundancy

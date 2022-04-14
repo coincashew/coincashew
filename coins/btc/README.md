@@ -4,7 +4,7 @@ description: Bitcoin is an innovative payment network and a new kind of money.
 
 # Bitcoin: BTC
 
-##  ![](../../.gitbook/assets/btc.png)General Data
+## &#x20;<img src="../../.gitbook/assets/btc.png" alt="" data-size="original">General Data
 
 | Site        | Title                                                                    |
 | ----------- | ------------------------------------------------------------------------ |
@@ -16,7 +16,7 @@ description: Bitcoin is an innovative payment network and a new kind of money.
 Bitcoin Whitepaper
 {% endfile %}
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                     |
 | -------------- | ------------------------------------------------------------------------ |
@@ -25,7 +25,7 @@ Bitcoin Whitepaper
 | Official Forum | [https://bitcointalk.org/](https://bitcointalk.org)                      |
 | Official Blog  | [https://bitcoin.org/en/blog](https://bitcoin.org/en/blog)               |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                   |
 | ---------------------------------------------------------------------- |
@@ -36,7 +36,7 @@ Bitcoin Whitepaper
 | [https://live.blockcypher.com/btc/](https://live.blockcypher.com/btc/) |
 | [https://explorer.viabtc.com/btc](https://explorer.viabtc.com/btc)     |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                               |
 | ------------- | -------------------------------------------------------------------------------------------------- |

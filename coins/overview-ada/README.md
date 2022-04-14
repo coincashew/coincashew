@@ -7,7 +7,7 @@ description: >-
 
 # Cardano: ADA
 
-## ![](../../.gitbook/assets/ada.png) General Data
+## <img src="../../.gitbook/assets/ada.png" alt="" data-size="original"> General Data
 
 | Site               | Title                                                                                            |
 | ------------------ | ------------------------------------------------------------------------------------------------ |
@@ -18,13 +18,13 @@ description: >-
 | Source Code        | [https://github.com/input-output-hk/cardano-sl/](https://github.com/input-output-hk/cardano-sl/) |
 | Whitepaper         | [https://www.cardano.org/en/academic-papers/](https://www.cardano.org/en/academic-papers/)       |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community                  | Link                                                                                 |
 | -------------------------- | ------------------------------------------------------------------------------------ |
 | :bird: Twitter             | [https://twitter.com/cardano](https://twitter.com/cardano)                           |
 | Twitter IOHK               | [https://twitter.com/InputOutputHK](https://twitter.com/InputOutputHK)               |
-| Twitter Emurgo             | [https://twitter.com/emurgo_io](https://twitter.com/emurgo_io)                       |
+| Twitter Emurgo             | [https://twitter.com/emurgo\_io](https://twitter.com/emurgo\_io)                     |
 | Twitter Cardano Foundation | [https://twitter.com/CardanoStiftung](https://twitter.com/CardanoStiftung)           |
 | Reddit                     | [https://www.reddit.com/r/cardano](https://www.reddit.com/r/cardano)                 |
 | Wiki                       | [https://cardanowiki.info/wiki/Home](https://cardanowiki.info/wiki/Home)             |
@@ -38,7 +38,7 @@ description: >-
 | Meetup                     | [https://www.meetup.com/pro/cardano/](https://www.meetup.com/pro/cardano/)           |
 | Summit Conference          | [https://iohksummit.io/](https://iohksummit.io)                                      |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                               |
 | -------------------------------------------------- |
@@ -46,7 +46,7 @@ description: >-
 | [Blockchair.com](https://blockchair.com/cardano)   |
 | [CardanoExplorer.com](https://cardanoexplorer.com) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                           |
 | ------------- | ---------------------------------------------------------------------------------------------- |

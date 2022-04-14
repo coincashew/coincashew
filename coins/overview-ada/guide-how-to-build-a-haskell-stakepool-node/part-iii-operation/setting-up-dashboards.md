@@ -1,4 +1,4 @@
-# 🔮 Setting Up Dashboards
+# Setting Up Dashboards
 
 {% hint style="info" %}
 * **Prometheus** is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/)
@@ -135,7 +135,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 {% endtab %}
 {% endtabs %}
 
-Update `${NODE_CONFIG}-config.json` config files with new `hasEKG`  and `hasPrometheus` ports.
+Update `${NODE_CONFIG}-config.json` config files with new `hasEKG` and `hasPrometheus` ports.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -156,7 +156,7 @@ sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 {% endtabs %}
 
 {% hint style="info" %}
-Port forwarding and firewall config:&#x20;
+Port forwarding and firewall config:
 
 On block producer node (or relaynodeN), you need to open ports 12798 and 9100
 

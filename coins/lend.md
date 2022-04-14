@@ -6,15 +6,15 @@ description: >-
 
 # Aave: LEND
 
-## ![](../.gitbook/assets/lend.png) General Data
+## <img src="../.gitbook/assets/lend.png" alt="" data-size="original"> General Data
 
-| Site        | Title                                                                                                                                                                                  |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://aave.com/](https://aave.com)                                                                                                                                                  |
-| Source Code | [https://github.com/ETHLend/ethereum-bridge](https://github.com/ETHLend/ethereum-bridge)                                                                                               |
-| Whitepaper  | [https://github.com/aave/aave-protocol/blob/master/docs/Aave_Protocol_Whitepaper_v1\_0.pdf](https://github.com/aave/aave-protocol/blob/master/docs/Aave_Protocol_Whitepaper_v1\_0.pdf) |
+| Site        | Title                                                                                                                                                                                        |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Website     | [https://aave.com/](https://aave.com)                                                                                                                                                        |
+| Source Code | [https://github.com/ETHLend/ethereum-bridge](https://github.com/ETHLend/ethereum-bridge)                                                                                                     |
+| Whitepaper  | [https://github.com/aave/aave-protocol/blob/master/docs/Aave\_Protocol\_Whitepaper\_v1\_0.pdf](https://github.com/aave/aave-protocol/blob/master/docs/Aave\_Protocol\_Whitepaper\_v1\_0.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                                   |
 | -------------- | ------------------------------------------------------------------------------------------------------ |
@@ -25,14 +25,14 @@ description: >-
 | Medium         | [https://medium.com/@ethlend1](https://medium.com/@ethlend1)                                           |
 | Bitcointalk    | [https://bitcointalk.org/index.php?topic=2090735.0](https://bitcointalk.org/index.php?topic=2090735.0) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [https://etherscan.io/token/0x80fb784b7ed66730e8b1dbd9820afd29931aab03](https://etherscan.io/token/0x80fb784b7ed66730e8b1dbd9820afd29931aab03)     |
 | [https://ethplorer.io/address/0x80fb784b7ed66730e8b1dbd9820afd29931aab03](https://ethplorer.io/address/0x80fb784b7ed66730e8b1dbd9820afd29931aab03) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------ |

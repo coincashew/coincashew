@@ -7,7 +7,7 @@ description: >-
 
 # ICON: ICX
 
-## ![](../../.gitbook/assets/icx.png) General Data
+## <img src="../../.gitbook/assets/icx.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                |
 | ----------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -15,17 +15,17 @@ description: >-
 | Source Code | [https://github.com/icon-project](https://github.com/icon-project)                                                   |
 | Whitepaper  | [http://docs.icon.foundation/ICON-Whitepaper-EN-Draft.pdf](http://docs.icon.foundation/ICON-Whitepaper-EN-Draft.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                           |
 | -------------- | ---------------------------------------------------------------------------------------------- |
 | :bird: Twitter | [https://twitter.com/helloiconworld](https://twitter.com/helloiconworld)                       |
 | Reddit         | [https://www.reddit.com/r/helloicon](https://www.reddit.com/r/helloicon)                       |
-| Telegram       | [https://t.me/hello_iconworld](https://t.me/hello_iconworld)                                   |
+| Telegram       | [https://t.me/hello\_iconworld](https://t.me/hello\_iconworld)                                 |
 | ICON.community | [https://icon.community/](https://icon.community)                                              |
 | Wiki           | [https://www.reddit.com/r/helloicon/wiki/index](https://www.reddit.com/r/helloicon/wiki/index) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                       |
 | ---------------------------------------------------------- |
@@ -33,7 +33,7 @@ description: >-
 | [ICXScan.tech](https://www.icxscan.tech)                   |
 | [ICONwat.ch](https://iconwat.ch)                           |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                     |
 | ------------- | ---------------------------------------------------------------------------------------- |

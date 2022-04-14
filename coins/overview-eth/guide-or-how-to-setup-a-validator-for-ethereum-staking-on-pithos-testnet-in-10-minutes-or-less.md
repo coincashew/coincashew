@@ -93,7 +93,7 @@ sudo reboot
 Initialize the firewall with Ethereum's p2p ports and ssh.
 
 {% hint style="info" %}
-More comprehensive [staking validator node security best practices](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md) also available.
+More comprehensive [staking validator node security best practices](broken-reference) also available.
 {% endhint %}
 
 ```bash
@@ -342,6 +342,6 @@ Add this to the command line.
 
 Update UFW firewalls and/or port forwarding rules accordingly.
 
-## Reference Material <a href="10.-reference-material" id="10.-reference-material"></a>
+## Reference Material <a href="#10.-reference-material" id="10.-reference-material"></a>
 
 * [https://github.com/parithosh/consensus-deployment-ansible#pithos-testnet-ansible-files--config](https://github.com/parithosh/consensus-deployment-ansible#pithos-testnet-ansible-files--config)

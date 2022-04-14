@@ -4,7 +4,7 @@ description: The interoperable, scalable blockchain network. Built for developer
 
 # Cosmos: ATOM
 
-## ![](../../.gitbook/assets/atom.png) General Data
+## <img src="../../.gitbook/assets/atom.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                      |
 | ----------- | ------------------------------------------------------------------------------------------ |
@@ -12,7 +12,7 @@ description: The interoperable, scalable blockchain network. Built for developer
 | Source Code | [https://github.com/cosmos](https://github.com/cosmos)                                     |
 | Whitepaper  | [https://cosmos.network/resources/whitepaper](https://cosmos.network/resources/whitepaper) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community        | Link                                                                             |
 | ---------------- | -------------------------------------------------------------------------------- |
@@ -24,7 +24,7 @@ description: The interoperable, scalable blockchain network. Built for developer
 | Telegram         | [https://t.me/cosmosproject](https://t.me/cosmosproject)                         |
 | Discord          | [https://discord.gg/HbvhWZw](https://discord.gg/HbvhWZw)                         |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                   |
 | ------------------------------------------------------------------------------------------------------ |
@@ -32,7 +32,7 @@ description: The interoperable, scalable blockchain network. Built for developer
 | [https://www.mintscan.io/](https://www.mintscan.io)                                                    |
 | [https://hubble.figment.network/chains/cosmoshub-1](https://hubble.figment.network/chains/cosmoshub-1) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                         |
 | ------------- | -------------------------------------------------------------------------------------------- |

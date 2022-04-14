@@ -6,7 +6,7 @@
 2. Automatically restart crashed tezos-\[node|baker|endorser|accuser] processes
 3. Maximize your baker up-time and performance at making rolls and endorsements.
 
-## :control_knobs: Setup instructions
+## :control\_knobs: Setup instructions
 
 Before starting, ensure all tezos processes are stopped. Check with:
 
@@ -14,13 +14,13 @@ Before starting, ensure all tezos processes are stopped. Check with:
 ps -ef | grep tezos
 ```
 
-If there are tezos processes, type 
+If there are tezos processes, type&#x20;
 
 ```
 kill <pid>
 ```
 
-where \<pid> is the process ID number, the first # in the `ps `output.
+where \<pid> is the process ID number, the first # in the `ps` output.
 
 > `#example ps output, the pid is 23311`\
 > `username 23311 121 6 11:22 ? 11:22:33 /home/username/tezos/tezos-node run`
@@ -88,7 +88,7 @@ EOF
 ```
 
 {% hint style="info" %}
-Make sure your ledger account name is correct on the **ExecStart **line. i.e. `ledger_mybaker`
+Make sure your ledger account name is correct on the **ExecStart** line. i.e. `ledger_mybaker`
 {% endhint %}
 
 Run the following to create the `tezos-endorser.service` configuration.
@@ -117,7 +117,7 @@ EOF
 ```
 
 {% hint style="info" %}
-Again, make sure your ledger account name is correct on the **ExecStart **line. i.e. `ledger_mybaker`
+Again, make sure your ledger account name is correct on the **ExecStart** line. i.e. `ledger_mybaker`
 {% endhint %}
 
 Run the following to create the `tezos-accuser.service` configuration.
@@ -204,13 +204,13 @@ journalctl --follow --unit=tezos-accuser.service
 sudo systemctl status 'tezos-*.service'
 ```
 
-## :arrows_counterclockwise: Restarting all services
+## :arrows\_counterclockwise: Restarting all services
 
 ```
 sudo systemctl reload-or-restart tezos-node.service
 ```
 
-## :twisted_rightwards_arrows: Restarting individual services
+## :twisted\_rightwards\_arrows: Restarting individual services
 
 ```
 sudo systemctl reload-or-restart tezos-node.service
@@ -219,7 +219,7 @@ sudo systemctl reload-or-restart tezos-accuser.service
 sudo systemctl reload-or-restart tezos-baker.service
 ```
 
-## :octagonal_sign: Stopping services
+## :octagonal\_sign: Stopping services
 
 ```
 sudo systemctl stop tezos-node.service
@@ -228,7 +228,7 @@ sudo systemctl stop tezos-endorser.service
 sudo systemctl stop tezos-accuser.service
 ```
 
-## :file_cabinet: Filtering logs
+## :file\_cabinet: Filtering logs
 
 ```
 journalctl --unit=tezos-endorser.service --since=yesterday
@@ -236,7 +236,7 @@ journalctl --unit=tezos-endorser.service --since=today
 journalctl --unit=tezos-endorser.service --since='2019-01-01 00:00:00' --until='2019-01-02 12:00:00'
 ```
 
-## :man_mechanic: Making Configuration Changes
+## :man\_mechanic: Making Configuration Changes
 
 If you edit any of the above .service files, you to notify systemd of your new changes by reloading the new configuration by running the following:
 
@@ -244,7 +244,7 @@ If you edit any of the above .service files, you to notify systemd of your new c
 systemctl daemon-reload
 ```
 
-If you modify the`  [Install]  `section, you must reenable the service.
+If you modify the `[Install]` section, you must reenable the service.
 
 ```
 sudo systemctl reenable SERVICEFILENAME

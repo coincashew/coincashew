@@ -5,7 +5,7 @@ coverY: 0
 
 # Home
 
-##  ![](.gitbook/assets/160.png) CoinCashew
+## &#x20;<img src=".gitbook/assets/160.png" alt="" data-size="line"> CoinCashew
 
 > ### The best how-to guide for all your favorite cryptocurrencies.
 
@@ -14,13 +14,13 @@ coverY: 0
 {% endhint %}
 
 {% hint style="info" %}
-****:fire: **HOT TOPICS** 
+****:fire: **HOT TOPICS**&#x20;
 
 * Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
 * Learn to setup your own [Ethereum Staking Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
 
-## :woman_raising_hand: I would like to ...
+## :woman\_raising\_hand: I would like to ...
 
 {% tabs %}
 {% tab title="Learn" %}
@@ -193,5 +193,5 @@ coverY: 0
 Perhaps you wrote your own guide? Scale, share, and amplify your knowledge. [Your pull request contributions are welcome on GitHub!](contact-us/contributing/)
 
 {% hint style="success" %}
-Accelerating the adoption of crypto! Yes, you are. 
+Accelerating the adoption of crypto! Yes, you are.&#x20;
 {% endhint %}

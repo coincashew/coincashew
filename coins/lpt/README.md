@@ -4,7 +4,7 @@ description: Decentralized live video broadcasting on Ethereum
 
 # LivePeer: LPT
 
-## ![](../../.gitbook/assets/lpt.png) General Data
+## <img src="../../.gitbook/assets/lpt.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                    |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -12,7 +12,7 @@ description: Decentralized live video broadcasting on Ethereum
 | Source Code | [https://github.com/livepeer](https://github.com/livepeer)                                                               |
 | Whitepaper  | [https://github.com/livepeer/wiki/blob/master/WHITEPAPER.md](https://github.com/livepeer/wiki/blob/master/WHITEPAPER.md) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                   |
 | -------------- | ---------------------------------------------------------------------- |
@@ -21,7 +21,7 @@ description: Decentralized live video broadcasting on Ethereum
 | Official Forum | [https://forum.livepeer.org/](https://forum.livepeer.org)              |
 | Discord        | [https://discord.gg/RR4kFAh](https://discord.gg/RR4kFAh)               |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -29,7 +29,7 @@ description: Decentralized live video broadcasting on Ethereum
 | [https://etherscan.io/token/0x58b6a8a3302369daec383334672404ee733ab239](https://etherscan.io/token/0x58b6a8a3302369daec383334672404ee733ab239)     |
 | [https://ethplorer.io/address/0x58b6a8a3302369daec383334672404ee733ab239](https://ethplorer.io/address/0x58b6a8a3302369daec383334672404ee733ab239) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------ |

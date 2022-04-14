@@ -7,7 +7,7 @@ description: >-
 
 # Monero: XMR
 
-## ![](../../.gitbook/assets/xmr.png) General Data
+## <img src="../../.gitbook/assets/xmr.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                                                                        |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -15,7 +15,7 @@ description: >-
 | Source Code | [https://github.com/monero-project/monero](https://github.com/monero-project/monero)                                                                                         |
 | Whitepaper  | [https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf](https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community         | Link                                                                                                 |
 | ----------------- | ---------------------------------------------------------------------------------------------------- |
@@ -29,7 +29,7 @@ description: >-
 | IRC Chat          | [https://monerologs.net](https://monerologs.net)                                                     |
 | Conference        | [https://monerokon.com/](https://monerokon.com)                                                      |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                 |
 | -------------------------------------------------------------------- |
@@ -38,7 +38,7 @@ description: >-
 | [http://chainradar.com/xmr/blocks](http://chainradar.com/xmr/blocks) |
 | [https://xmr.tokenview.com/](https://xmr.tokenview.com)              |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                         |
 | ------------- | -------------------------------------------------------------------------------------------- |

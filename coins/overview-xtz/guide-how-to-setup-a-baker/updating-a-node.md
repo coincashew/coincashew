@@ -5,7 +5,7 @@
 From time to time, there will be new versions of Tezos. Follow [Tezos Foundation](https://twitter.com/TezosFoundation) on twitter and the [Official Tezos Gitlab](https://gitlab.com/tezos/tezos/-/releases) to ensure you don't miss any important releases.
 
 {% hint style="success" %}
-****:sparkles: **Tip: **When picking some downtime for maintenance like updating your node, choose a time where your baker has a longer break until next baking or next endorsing.
+****:sparkles: **Tip:** When picking some downtime for maintenance like updating your node, choose a time where your baker has a longer break until next baking or next endorsing.
 {% endhint %}
 
 To update with `~/tezos` as the current binaries directory, copy the whole Tezos directory to a new place so that you have a backup and can also leave the current processes running.
@@ -52,15 +52,15 @@ mv tezos2/ tezos/
 ```
 
 {% hint style="success" %}
-Now restart your node, baker, endorser, and accuser processes. 
+Now restart your node, baker, endorser, and accuser processes.&#x20;
 {% endhint %}
 
-## :safety_pin: 2. Handling updates with new protocols
+## :safety\_pin: 2. Handling updates with new protocols
 
 Tezos performs regular on-chain governance by election. These elections progress through four stages and can conclude with a protocol upgrade which results in a new set of binaries. This is what makes Tezos self-amending.
 
 {% hint style="info" %}
-When a new protocol is successfully promoted and scheduled to occur at a later date, you run both the current protocol and future protocol binaries. 
+When a new protocol is successfully promoted and scheduled to occur at a later date, you run both the current protocol and future protocol binaries.&#x20;
 
 For example, you would expect to run 7 binaries
 
@@ -81,7 +81,7 @@ For example, you would expect to run 7 binaries
 After the future protocol`"007"`activates on a later date, you can stop the previous binaries. In this example, you would stop all the`006` binaries.
 {% endhint %}
 
-## :heavy_check_mark: 3. Update auto-start and monitoring systemctl configs
+## :heavy\_check\_mark: 3. Update auto-start and monitoring systemctl configs
 
 First, stop all tezos services and ensure the services are truly stopped.
 
@@ -126,7 +126,7 @@ Verify the node, baker, endorser, accuser processes are all running.
 sudo systemctl status 'tezos-*.service'
 ```
 
-## :exploding_head: 4. In case of problems
+## :exploding\_head: 4. In case of problems
 
 ### :motorway: 4.1 Forked off
 
@@ -138,7 +138,7 @@ Run this command to resume validating blocks.
 ./tezos-admin-client unmark all invalid blocks
 ```
 
-### :open_file_folder: 4.2 Roll back to previous version from backup
+### :open\_file\_folder: 4.2 Roll back to previous version from backup
 
 Following the above guide, you can simply restore the old Tezos directory.
 

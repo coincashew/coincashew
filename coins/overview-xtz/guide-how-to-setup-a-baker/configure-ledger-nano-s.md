@@ -1,6 +1,6 @@
 # 4. Configure Ledger Nano S
 
-## :woman_detective: 1) Update udev rules
+## :woman\_detective: 1) Update udev rules
 
 This enables the Ledger Nano device to work via USB. \[[\*Reference](https://support.ledger.com/hc/en-us/articles/360019301813-Fix-USB-issues)]
 
@@ -8,7 +8,7 @@ This enables the Ledger Nano device to work via USB. \[[\*Reference](https://sup
 wget -q -O - https://raw.githubusercontent.com/LedgerHQ/udev-rules/master/add_udev_rules.sh | sudo bash
 ```
 
-## :mobile_phone: 2) Install Ledger Live
+## :mobile\_phone: 2) Install Ledger Live
 
 1. Navigate to [ledger.com/ledger-live/download](https://www.ledger.com/ledger-live/download).
 2. Download the Ledger Live AppImage.
@@ -31,7 +31,7 @@ wget -q -O - https://raw.githubusercontent.com/LedgerHQ/udev-rules/master/add_ud
 
 ## :chains: 4) Import secret key from Ledger Nano
 
- **Press **Ctrl+Alt+T to open a new terminal.
+&#x20;**Press** Ctrl+Alt+T to open a new terminal.
 
 Verify that your Ledger Nano is connected.
 
@@ -58,7 +58,7 @@ tezos-client import secret key ledger_username "ledger://happy-funny-moody-fun/s
 tezos-client import secret key ledger_username "ledger://happy-funny-moody-fun/P-256/0h/0h"
 ```
 
-Import an account by copying and pasting one of the `tezos-client import secret `commands. 
+Import an account by copying and pasting one of the `tezos-client import secret` commands.&#x20;
 
 {% hint style="info" %}
 It's recommended to use the **ed25519 curve command** as this is the most widely supported account.
@@ -88,7 +88,7 @@ Example:
 
 > `ledger_mybaker: tz1LoLVKXA7VL7s3V7uHeXHeHpz8RNxyAE78 (ledger sk known)`
 
-## :woman_cook: 5) Register your intention to be a baker
+## :woman\_cook: 5) Register your intention to be a baker
 
 Check that your node is fully synchronized.
 
@@ -100,7 +100,7 @@ Check that your node is fully synchronized.
 When your node is fully synchronized, the output will say `Bootstrapped.`
 {% endhint %}
 
- Run this command to tell the Tezos blockchain that you would like to become a baker.
+&#x20;Run this command to tell the Tezos blockchain that you would like to become a baker.
 
 ```bash
 ./tezos-client register key ledger_mybaker as delegate

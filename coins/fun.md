@@ -6,7 +6,7 @@ description: >-
 
 # FunFair: FUN
 
-## ![](broken-reference)![](<../.gitbook/assets/fun (1).png>) General Data
+## <img src="broken-reference" alt="" data-size="line"><img src="../.gitbook/assets/fun (1).png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                        |
 | ----------- | -------------------------------------------------------------------------------------------- |
@@ -14,26 +14,26 @@ description: >-
 | Source Code | [https://github.com/funfair-tech](https://github.com/funfair-tech)                           |
 | Whitepaper  | [https://funfair.io/how-it-works/whitepapers/](https://funfair.io/how-it-works/whitepapers/) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                                   |
 | -------------- | ------------------------------------------------------------------------------------------------------ |
 | :bird: Twitter | [https://twitter.com/FunFairTech](https://twitter.com/FunFairTech)                                     |
 | Reddit         | [https://www.reddit.com/r/FunfairTech](https://www.reddit.com/r/FunfairTech)                           |
-| Telegram       | [https://t.me/FunFair_Official](https://t.me/FunFair_Official)                                         |
+| Telegram       | [https://t.me/FunFair\_Official](https://t.me/FunFair\_Official)                                       |
 | Discord        | [https://discordapp.com/invite/rwETqSP](https://discordapp.com/invite/rwETqSP)                         |
 | Bitcointalk    | [https://bitcointalk.org/index.php?topic=1968383.0](https://bitcointalk.org/index.php?topic=1968383.0) |
 | Blog           | [https://funfair.io/blog/](https://funfair.io/blog/)                                                   |
 | Facebook       | [https://www.facebook.com/funfairtech/](https://www.facebook.com/funfairtech/)                         |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [https://etherscan.io/token/0x419d0d8bdd9af5e606ae2232ed285aff190e711b](https://etherscan.io/token/0x419d0d8bdd9af5e606ae2232ed285aff190e711b)     |
 | [https://ethplorer.io/address/0x419d0d8bdd9af5e606ae2232ed285aff190e711b](https://ethplorer.io/address/0x419d0d8bdd9af5e606ae2232ed285aff190e711b) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                   |
 | ------------- | ------------------------------------------------------------------------------------------------------ |

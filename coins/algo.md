@@ -4,7 +4,7 @@ description: ENABLING ENTERPRISE TO EMBRACE DECENTRALIZED FINANCE
 
 # Algorand: ALGO
 
-## ![](../.gitbook/assets/algo.png) General Data
+## <img src="../.gitbook/assets/algo.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                              |
 | ----------- | -------------------------------------------------------------------------------------------------- |
@@ -13,7 +13,7 @@ description: ENABLING ENTERPRISE TO EMBRACE DECENTRALIZED FINANCE
 | Source Code | [https://github.com/algorand](https://github.com/algorand)                                         |
 | Whitepaper  | [https://www.algorand.com/resources/white-papers](https://www.algorand.com/resources/white-papers) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                   |
 | -------------- | -------------------------------------------------------------------------------------- |
@@ -25,14 +25,14 @@ description: ENABLING ENTERPRISE TO EMBRACE DECENTRALIZED FINANCE
 | Forum          | [https://forum.algorand.org/](https://forum.algorand.org)                              |
 | Discord        | [https://discord.gg/QBYp7Y2](https://discord.gg/QBYp7Y2)                               |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                 |
 | ---------------------------------------------------------------------------------------------------- |
 | [https://algoexplorer.io/](https://algoexplorer.io)                                                  |
 | [https://goalseeker.purestake.io/algorand/mainnet](https://goalseeker.purestake.io/algorand/mainnet) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                     |
 | ------------- | -------------------------------------------------------------------------------------------------------- |

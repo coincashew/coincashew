@@ -7,15 +7,15 @@ description: >-
 
 # Telos: TLOS
 
-## ![](../../.gitbook/assets/tlos.png) General Data
+## <img src="../../.gitbook/assets/tlos.png" alt="" data-size="original"> General Data
 
-| Site        | Title                                                                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://telosfoundation.io/](https://telosfoundation.io)                                                                                                    |
-| Source Code | [https://github.com/Telos-Foundation/](https://github.com/Telos-Foundation/)                                                                                 |
-| Whitepaper  | [https://resources.telosfoundation.io/wp_master/telos_white_paper_english.pdf](https://resources.telosfoundation.io/wp_master/telos_white_paper_english.pdf) |
+| Site        | Title                                                                                                                                                                |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Website     | [https://telosfoundation.io/](https://telosfoundation.io)                                                                                                            |
+| Source Code | [https://github.com/Telos-Foundation/](https://github.com/Telos-Foundation/)                                                                                         |
+| Whitepaper  | [https://resources.telosfoundation.io/wp\_master/telos\_white\_paper\_english.pdf](https://resources.telosfoundation.io/wp\_master/telos\_white\_paper\_english.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                                                 |
 | -------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -28,7 +28,7 @@ description: >-
 | Youtube        | [https://www.youtube.com/channel/UC1eRSAt81jUf7zM4hsy5S5Q](https://www.youtube.com/channel/UC1eRSAt81jUf7zM4hsy5S5Q) |
 | Directory      | [https://explore.telos.net/](https://explore.telos.net)                                                              |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                     |
 | ------------------------------------------------------------------------ |
@@ -36,7 +36,7 @@ description: >-
 | [https://telos.eosx.io/](https://telos.eosx.io)                          |
 | [https://telostracker.io/topHolders](https://telostracker.io/topHolders) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                       |
 | ------------- | ------------------------------------------------------------------------------------------ |

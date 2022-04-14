@@ -8,22 +8,22 @@ Becoming a crypto super hero can be an exhilarating and rewarding journey.
 It's critical to grasp a solid understanding of crypto wallets. \
 Without such, a wallet can be quickly emptied. :sob: \
 There is no help line to call or way to reverse a transaction. \
-Remember, only you can defend yourself with knowledge. :right_facing_fist: 
+Remember, only you can defend yourself with knowledge. :right\_facing\_fist:&#x20;
 {% endhint %}
 
-> "**With great power comes great responsibility**" 
+> "**With great power comes great responsibility**"&#x20;
 >
 > \- Peter Parker Principle
 
 ## :bulb: The Do's and Don'ts of Crypto Wallets
 
 {% hint style="info" %}
-Listed in order of **what not to do** along side with the correct action** to do**.
+Listed in order of **what not to do** along side with the correct action **to do**.
 {% endhint %}
 
 ## :compass:1. Using Wallets
 
-| :crossed_swords: Don't                                            | :white_check_mark:Do                                                                                                |
+| :crossed\_swords: Don't                                           | :white\_check\_mark:Do                                                                                              |
 | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | Send a transaction blindly                                        | Double check the cryptocurrency type, amount, and destination address                                               |
 | Send a large amount to new address                                | Send a small test transaction firstly                                                                               |
@@ -41,7 +41,7 @@ Elaborate scams or impersonation attempts are common schemes used by fraudsters 
 
 ## :key2:2. Managing seed phrase and private keys
 
-| :crossed_swords: Don't                                                  | :white_check_mark:Do                                                                                                                                       |
+| :crossed\_swords: Don't                                                 | :white\_check\_mark:Do                                                                                                                                     |
 | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Type/take a photo/save your seed phrase or private keys anywhere online | Always keep your seed phrase or private keys offline                                                                                                       |
 | Share your seed phrase with anyone                                      | Understand that anyone, with your seed phrase, can spend your funds                                                                                        |
@@ -49,9 +49,9 @@ Elaborate scams or impersonation attempts are common schemes used by fraudsters 
 | Only have one copy of your seed phrase                                  | Keep multiple copies stored at multiple locations                                                                                                          |
 | Only have a seed written on paper.                                      | Plan in case of a fire or flood. Use a [metal seed.](https://jlopp.github.io/metal-bitcoin-storage-reviews/)                                               |
 
-## :closed_lock_with_key:3. Securing your internet, browser & devices
+## :closed\_lock\_with\_key:3. Securing your internet, browser & devices
 
-| :crossed_swords: Don't                                                   | :white_check_mark:Do                                      |
+| :crossed\_swords: Don't                                                  | :white\_check\_mark:Do                                    |
 | ------------------------------------------------------------------------ | --------------------------------------------------------- |
 | Click unknown links that might steal your crypto (phishing)              | Verify the correctness of a website's address             |
 | Use a wallet on an old device which may be full of vulnerabilities       | Keep your phone/laptop up-to-date with security patches   |

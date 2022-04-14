@@ -1,4 +1,4 @@
-# :money\_with\_wings: Submitting a Simple Transaction
+# Submitting a Simple Transaction
 
 Let's walk through an example to send **10 ADA** to **CoinCashew's tip address** :upside\_down:
 
@@ -6,7 +6,7 @@ Let's walk through an example to send **10 ADA** to **CoinCashew's tip address**
 The minimum amount, or smallest UTXO, you can send in one transaction is 1 ADA.
 {% endhint %}
 
-First, find the **tip **of the blockchain to set the **invalid-hereafter **parameter properly.
+First, find the **tip** of the blockchain to set the **invalid-hereafter** parameter properly.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -115,7 +115,7 @@ echo Change Output: ${txOut}
 {% endtab %}
 {% endtabs %}
 
-Build your transaction.&#x20;
+Build your transaction.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -133,7 +133,7 @@ cardano-cli transaction build-raw \
 
 Copy **tx.raw** to your **cold environment.**
 
-Sign the transaction with the payment secret key.&#x20;
+Sign the transaction with the payment secret key.
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}

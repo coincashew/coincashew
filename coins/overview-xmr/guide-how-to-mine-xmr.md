@@ -1,12 +1,12 @@
 # Guide: How to mine Monero
 
-## :checkered_flag: 1. Prerequisites
+## :checkered\_flag: 1. Prerequisites
 
 * 64bit Intel or AMD CPU
 * AMD/Nvidia GPU
 * ARM CPU
 
-## :last_quarter_moon_with_face: 2. Install and use a compatible wallet
+## :last\_quarter\_moon\_with\_face: 2. Install and use a compatible wallet
 
 {% content-ref url="../../wallets/mobile-wallets/cakewallet-monero.md" %}
 [cakewallet-monero.md](../../wallets/mobile-wallets/cakewallet-monero.md)
@@ -66,7 +66,7 @@ xmrig.exe --opencl -o de.minexmr.com:443 -u 44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DB
 {% endtab %}
 {% endtabs %}
 
-## :page_facing_up: 4. Enable Huge Pages
+## :page\_facing\_up: 4. Enable Huge Pages
 
 {% hint style="success" %}
 Enabling huge pages can boost hash rate up to 50%
@@ -82,7 +82,7 @@ Enabling huge pages can boost hash rate up to 50%
 Or,
 
 1. Manually change the **Lock Pages in Memory** setting.
-   1. Press WindowsKey + R 
+   1. Press WindowsKey + R&#x20;
    2. Type `gpedit.msc`
    3. In **Local Group Policy Editor**, make the following update
       1. Open Computer Configuration
@@ -102,7 +102,7 @@ sudo bash -c "echo vm.nr_hugepages=1280 >> /etc/sysctl.conf"
 ```
 
 {% hint style="info" %}
-:sparkles:** Tip: **Boost hash rate up to 3% more by enabling 1GB huge pages. Run the following command:
+:sparkles: **Tip:** Boost hash rate up to 3% more by enabling 1GB huge pages. Run the following command:
 
 `sudo ./scripts/enable_1gb_pages.sh`
 {% endhint %}
@@ -136,4 +136,4 @@ When your earnings reaches the payout limit or threshold, payment is automatical
 
 ### 5.4 How can I optimize and tune my miner?
 
-Follow the [Windows tuning guide by sech1 (XMRig Dev)](https://www.reddit.com/r/MoneroMining/comments/f18825/windows\_10\_tuning_guide_for_randomx_mining/)
+Follow the [Windows tuning guide by sech1 (XMRig Dev)](https://www.reddit.com/r/MoneroMining/comments/f18825/windows\_10\_tuning\_guide\_for\_randomx\_mining/)

@@ -7,7 +7,7 @@ description: >-
 
 # REN
 
-## ![](../.gitbook/assets/ren.png) General Data
+## <img src="../.gitbook/assets/ren.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                      |
 | ----------- | -------------------------------------------------------------------------- |
@@ -15,7 +15,7 @@ description: >-
 | Source Code | [https://github.com/renproject](https://github.com/renproject)             |
 | Whitepaper  | [https://renproject.io/litepaper.pdf](https://renproject.io/litepaper.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                   |
 | -------------- | -------------------------------------------------------------------------------------- |
@@ -24,14 +24,14 @@ description: >-
 | Telegram       | [https://t.me/republicprotocol](https://t.me/republicprotocol)                         |
 | Medium         | [https://medium.com/republicprotocol](https://medium.com/republicprotocol)             |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [https://etherscan.io/token/0x408e41876cccdc0f92210600ef50372656052a38](https://etherscan.io/token/0x408e41876cccdc0f92210600ef50372656052a38)     |
 | [https://ethplorer.io/address/0x408e41876cccdc0f92210600ef50372656052a38](https://ethplorer.io/address/0x408e41876cccdc0f92210600ef50372656052a38) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                       |
 | ------------- | ---------------------------------------------------------------------------------------------------------- |

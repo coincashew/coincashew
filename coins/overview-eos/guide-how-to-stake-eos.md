@@ -1,16 +1,16 @@
 # Guide: How to stake EOS
 
-## :checkered_flag: 1. Prerequisites
+## :checkered\_flag: 1. Prerequisites
 
-EOS tokens stored on a local wallet. You control the seed/private keys. 
+EOS tokens stored on a local wallet. You control the seed/private keys.&#x20;
 
 {% hint style="warning" %}
 Remember, it's best practice to always withdraw coins from an Exchange.
 {% endhint %}
 
-## :confetti_ball: 2. Delegate your stake
+## :confetti\_ball: 2. Delegate your stake
 
-1\. **Open **in your web browser: [Bloks.io](https://bloks.io/account/eosio)
+1\. **Open** in your web browser: [Bloks.io](https://bloks.io/account/eosio)
 
 {% hint style="info" %}
 Bloks.io will be the quickest way to stake and is safe because your coins never leave your control.
@@ -22,10 +22,10 @@ Bloks.io will be the quickest way to stake and is safe because your coins never 
 
 3\. Click on the **Login button** in the top right.
 
-4\. Select the type of wallet you have. 
+4\. Select the type of wallet you have.&#x20;
 
-* In this example, **plug **in your Ledger, **type **the PIN code, **open **the EOS app.
-* then in the browser, **click **Ledger S/X .
+* In this example, **plug** in your Ledger, **type** the PIN code, **open** the EOS app.
+* then in the browser, **click** Ledger S/X .
 
 5\. Click **Vote tab**
 
@@ -39,13 +39,13 @@ Maximize your EOS token potential by finding the right proxy for you. [Genpool.i
 
 7\. Enter your desired **proxy's name**
 
-8\. Click **Proxy to ... **button
+8\. Click **Proxy to ...** button
 
-9\. **Confirm **the transaction on your Ledger
+9\. **Confirm** the transaction on your Ledger
 
 10\. :tada: Congratulations. Rewards will start showing up every day. Check your rewards on the **Account tab**.
 
-## :mag_right: 3. Monitoring your rewards proxy
+## :mag\_right: 3. Monitoring your rewards proxy
 
 To learn more about your proxy, use these amazing community created tools.
 

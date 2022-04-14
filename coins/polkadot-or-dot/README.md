@@ -6,14 +6,14 @@ description: >-
 
 # Polkadot | DOT
 
-## ![](../../.gitbook/assets/dot.png) General Data
+## <img src="../../.gitbook/assets/dot.png" alt="" data-size="line"> General Data
 
 | Site        | Title                                                 |
 | ----------- | ----------------------------------------------------- |
 | Website     | [https://polkadot.network/](https://polkadot.network) |
 | Source Code | [https://github.com/w3f](https://github.com/w3f)      |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                       |
 | -------------- | -------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ description: >-
 | Medium         | [https://medium.com/polkadot-network](https://medium.com/polkadot-network) |
 | Telegram       | [https://t.me/PolkadotOfficial](https://t.me/PolkadotOfficial)             |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                        |
 | ----------------------------------------------------------- |
@@ -31,7 +31,7 @@ description: >-
 | [https://polkastats.io/](https://polkastats.io)             |
 | [https://polkadot.subscan.io/](https://polkadot.subscan.io) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                             |
 | ------------- | ---------------------------------------------------------------------------------------------------------------- |

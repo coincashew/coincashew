@@ -4,14 +4,14 @@ description: Scalable confidential cryptocurrency. Easy to use, capped supply, n
 
 # BEAM
 
-## ![](../../.gitbook/assets/beam.png) General Data
+## <img src="../../.gitbook/assets/beam.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                            |
 | ----------- | ---------------------------------------------------------------- |
 | Website     | [https://www.beam.mw/](https://www.beam.mw)                      |
 | Source Code | [https://github.com/BeamMW/beam](https://github.com/BeamMW/beam) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community        | Link                                                                                                     |
 | ---------------- | -------------------------------------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ description: Scalable confidential cryptocurrency. Easy to use, capped supply, n
 | Telegram Support | [https://t.me/BeamSupport](https://t.me/BeamSupport)                                                     |
 | QQ Beam          | [https://jq.qq.com/?\_wv=1027\&k=5Mbs8N4](https://jq.qq.com/?\_wv=1027\&k=5Mbs8N4)                       |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                             |
 | -------------------------------------------------------------------------------- |
@@ -31,7 +31,7 @@ description: Scalable confidential cryptocurrency. Easy to use, capped supply, n
 | [https://beamprivacy.community/explorer](https://beamprivacy.community/explorer) |
 | [https://beam.tokenview.com/](https://beam.tokenview.com)                        |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                     |
 | ------------- | ---------------------------------------------------------------------------------------- |

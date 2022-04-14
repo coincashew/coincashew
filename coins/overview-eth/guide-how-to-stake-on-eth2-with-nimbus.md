@@ -7,7 +7,7 @@ description: >-
 # Guide: How to stake on ETH2 Mainnet with Nimbus on Ubuntu
 
 {% hint style="danger" %}
-**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/). 
+**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).&#x20;
 
 Instructions below are now deprecated and for reference only.
 {% endhint %}
@@ -26,9 +26,9 @@ Instructions below are now deprecated and for reference only.
 [Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
 {% endhint %}
 
-## :checkered_flag: 0. Prerequisites
+## :checkered\_flag: 0. Prerequisites
 
-### :woman_technologist: Skills for operating a eth2 validator and beacon node
+### :woman\_technologist: Skills for operating a eth2 validator and beacon node
 
 As a validator for eth2, you will typically have the following abilities:
 
@@ -39,7 +39,7 @@ As a validator for eth2, you will typically have the following abilities:
 * have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com)
 * and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
-### ****:reminder_ribbon: **Minimum Setup Requirements**
+### ****:reminder\_ribbon: **Minimum Setup Requirements**
 
 * **Operating system:** 64-bit Linux (i.e. Ubuntu 20.04 LTS)
 * **Processor:** Dual core CPU, Intel Core i5–760 or AMD FX-8100 or better
@@ -50,7 +50,7 @@ As a validator for eth2, you will typically have the following abilities:
 * **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
 * **Wallet**: Metamask installed
 
-### :woman_lifting_weights: Recommended Hardware Setup
+### :woman\_lifting\_weights: Recommended Hardware Setup
 
 * **Operating system:** 64-bit Linux (i.e. Ubuntu 20.04 LTS)
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
@@ -69,8 +69,8 @@ As a validator for eth2, you will typically have the following abilities:
 
 If you need ideas or a reminder on how to secure your validator, refer to
 
-{% content-ref url="guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md" %}
-[guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### :tools: Setup Ubuntu
@@ -81,7 +81,7 @@ If you need to install Ubuntu, refer to
 [install-ubuntu.md](../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md)
 {% endcontent-ref %}
 
-### :performing_arts: Setup Metamask
+### :performing\_arts: Setup Metamask
 
 If you need to install Metamask, refer to
 
@@ -103,7 +103,7 @@ If you need to buy/exchange or top up your ETH to a multiple of 32, check out:
 [guide-how-to-buy-eth.md](guide-how-to-buy-eth.md)
 {% endcontent-ref %}
 
-## :woman_technologist: 2. Signup to be a validator at the Launchpad
+## :woman\_technologist: 2. Signup to be a validator at the Launchpad
 
 1. Install dependencies, the ethereum foundation deposit tool and generate your two sets of key pairs.
 
@@ -175,11 +175,11 @@ Make a new mnemonic.
 
 You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine.
 
-* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits. 
-* Physically isolated from the rest of your network. 
-* Must not have a network connection, wired or wireless. 
+* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits.&#x20;
+* Physically isolated from the rest of your network.&#x20;
+* Must not have a network connection, wired or wireless.&#x20;
 * Is not a VM on a machine with a network connection.
-* Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air_gap_\(networking\)).
+* Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air\_gap\_\(networking\)).
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -202,17 +202,17 @@ Be sure to write down or record your mnemonic seed **offline**. _Not email. Not 
 Make **offline backups**, such as to a USB key, of your **`validator_keys`** \`\`directory.
 {% endhint %}
 
-## :flying_saucer: 3. Install a ETH1 node
+## :flying\_saucer: 3. Install a ETH1 node
 
 {% hint style="info" %}
 Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
 {% endhint %}
 
 {% hint style="warning" %}
-The subsequent steps assume you have completed the [best practices security guide](https://app.gitbook.com/s/-M5KYnWuA6dS_nKYsmfV-887967055/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
+The subsequent steps assume you have completed the [best practices security guide](https://app.gitbook.com/s/-M5KYnWuA6dS\_nKYsmfV-887967055/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
 {% endhint %}
 
-Your choice of either [**Infura** ](https://infura.io)or [**Geth**](https://geth.ethereum.org)**. **[**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Besu**](https://besu.hyperledger.org) **or** [**Nethermind**](https://www.nethermind.io)** **coming soon.
+Your choice of either [**Infura** ](https://infura.io)or [**Geth**](https://geth.ethereum.org)**.** [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Besu**](https://besu.hyperledger.org) **or** [**Nethermind**](https://www.nethermind.io) **** coming soon.
 
 {% hint style="info" %}
 Currently, only **Geth and Infura** are verified to work with Nimbus.
@@ -281,9 +281,9 @@ Sign up for an API access key at [https://infura.io/](https://infura.io)
 2. Confirm your email address.
 3. Visit your dashboard [https://infura.io/dashboard](https://infura.io/dashboard)
 4. Create a project, give it a name.
-5. Select **Mainnet **as the ENDPOINT
+5. Select **Mainnet** as the ENDPOINT
 6. Copy the websocket endpoint. Starts with `wss://`
-7. Update and add **NODE_PARAMS **to the **make **command in the **start beacon chain and validator** section.
+7. Update and add **NODE\_PARAMS** to the **make** command in the **start beacon chain and validator** section.
 
 ```bash
 #example
@@ -431,7 +431,7 @@ rm nethermind.zip
 ```
 
 * Select `Ethereum Node`
-* Select `Ethereum (mainnet)` then select `Fast sync` 
+* Select `Ethereum (mainnet)` then select `Fast sync`&#x20;
 * Yes to enable web3 / JSON RPC
 * Accept default IP
 * Skip ethstats registration
@@ -453,20 +453,20 @@ Your eth1 node is fully sync'd when these events occur.
 
 #### :tools: Helpful eth1.service commands
 
-​​ :notepad_spiral: **To view and follow eth1 logs**
+​​ :notepad\_spiral: **To view and follow eth1 logs**
 
 ```
 journalctl -u eth1 -f
 ```
 
-****:notepad_spiral: **To stop eth1 service**
+****:notepad\_spiral: **To stop eth1 service**
 
 ```
 sudo systemctl stop eth1
 ```
 
 {% hint style="danger" %}
-****:octagonal_sign: **Before continuing the rest of this guide, we recommend you wait until closer to Dec 1st as the Nimbus code is rapidly preparing for mainnet.** :construction: 
+****:octagonal\_sign: **Before continuing the rest of this guide, we recommend you wait until closer to Dec 1st as the Nimbus code is rapidly preparing for mainnet.** :construction:&#x20;
 {% endhint %}
 
 ## :bulb: 4. Build Nimbus from source
@@ -503,7 +503,7 @@ Copy the nimbus binary files to `/usr/bin`
 sudo cp $HOME/git/nimbus-eth2/build/beacon_node /usr/bin/beacon_node  
 ```
 
-## :tophat: 5. Import validator key <a href="6-import-validator-key" id="6-import-validator-key"></a>
+## :tophat: 5. Import validator key <a href="#6-import-validator-key" id="6-import-validator-key"></a>
 
 Select the tab corresponding to how you installed eth2deposit-cli.Pre-built eth2deposit-cliBuilt from source code
 
@@ -537,7 +537,7 @@ The `validators` folder contains your signing keystore(s) (encrypted keys). Keys
 
 ## :fire: 6. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
 
 * **Nimbus beacon chain node** will use port 19000 for tcp and udp
 * **eth1** node requires port 30303 for tcp and udp
@@ -546,7 +546,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 :sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
-##  :snowboarder: 7. Start the beacon chain and validator
+## &#x20;:snowboarder: 7. Start the beacon chain and validator
 
 {% hint style="info" %}
 Nimbus combines both the beacon chain and validator into one process.
@@ -556,7 +556,7 @@ Your choice of running a beacon chain and validator manually from command line o
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
-#### 🍰 Benefits of using systemd for your beacon chain and validator <a href="benefits-of-using-systemd-for-your-stake-pool" id="benefits-of-using-systemd-for-your-stake-pool"></a>
+#### 🍰 Benefits of using systemd for your beacon chain and validator <a href="#benefits-of-using-systemd-for-your-stake-pool" id="benefits-of-using-systemd-for-your-stake-pool"></a>
 
 1. Auto-start your beacon chain when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed beacon chain processes.
@@ -674,19 +674,19 @@ Because beacon chain relies on accurate times to perform attestations and produc
 
 Setup **Chrony** with the following guide.
 
-{% content-ref url="../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md" %}
-[how-to-setup-chrony.md](../overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% hint style="info" %}
 chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
 {% endhint %}
 
-## :mag_right: 9. Monitoring your validator with Grafana and Prometheus
+## :mag\_right: 9. Monitoring your validator with Grafana and Prometheus
 
 Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
 
-### :hatching_chick: 9.1 Installation
+### :hatching\_chick: 9.1 Installation
 
 Install prometheus and prometheus node exporter.
 
@@ -755,7 +755,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 ****:bulb: **Reminder**: Ensure port 3000 is open on the firewall and/or port forwarded if you intend to view monitoring info from a different machine.
 {% endhint %}
 
-### :signal_strength: 9.2 Setting up Grafana Dashboards
+### :signal\_strength: 9.2 Setting up Grafana Dashboards
 
 1. Open [http://localhost:3000](http://localhost:3000) or http://\<your validator's ip address>:3000 in your local browser.
 2. Login with **admin** / **admin**
@@ -765,12 +765,12 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 6. Set **Name** to **"Prometheus**"
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
-9. **Download and save** this [**json file.**](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)****
+9. **Download and save** this [**json file.**](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon\_nodes\_Grafana\_dashboard.json)****
 10. Click **Create +** icon > **Import**
 11. Add dashboard by **Upload JSON file**
 12. Click the **Import** button.
 
-![](../../.gitbook/assets/nim_dashboard.png)
+![](../../.gitbook/assets/nim\_dashboard.png)
 
 ### :warning: 9.3 Setup Alert Notifications
 
@@ -783,38 +783,38 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% tabs %}
 {% tab title="Email Notifications" %}
 1. Visit [https://beaconcha.in/](https://beaconcha.in)
-2. Sign Up** **for an **account**
+2. Sign Up **** for an **account**
 3. Verify your **email**
 4. Search for your **validator's public address**
 5. Add validators to your watchlist by clicking the **bookmark symbol**.
 {% endtab %}
 
 {% tab title="Telegram Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png) 
+1. On the menu of Grafana, select **Notification channels** under the bell icon. <img src="../../.gitbook/assets/gra-noti.png" alt="" data-size="original">&#x20;
 2. Click on **Add channel**.
 3. Give the notification channel a **name**.
-4. Select **Telegram **from the Type list.
+4. Select **Telegram** from the Type list.
 5. To complete the **Telegram API settings**, a Telegram channel and bot are required. For instructions on setting up a bot with `@Botfather`, see [this section](https://core.telegram.org/bots#6-botfather) of the Telegram documentation.
 6. Once completed, invite the bot to the newly created channel.
 {% endtab %}
 
 {% tab title="Discord Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png) 
+1. On the menu of Grafana, select **Notification channels** under the bell icon. <img src="../../.gitbook/assets/gra-noti.png" alt="" data-size="original">&#x20;
 2. Click on **Add channel**.
 3. Add a **name** to the notification channel.
 4. Select **Discord** from the Type list.
 5. To complete the set up, a Discord server (and a text channel available) as well as a Webhook URL are required. For instructions on setting up a Discord's Webhooks, see [this section](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) of their documentation.
-6. Enter the Webhook **URL **in the Discord notification settings panel.
+6. Enter the Webhook **URL** in the Discord notification settings panel.
 7. Click **Send Test**, which will push a confirmation message to the Discord channel.
 {% endtab %}
 
 {% tab title="Slack Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. ![](../../.gitbook/assets/gra-noti.png) 
+1. On the menu of Grafana, select **Notification channels** under the bell icon. <img src="../../.gitbook/assets/gra-noti.png" alt="" data-size="original">&#x20;
 2. Click on **Add channel**.
 3. Add a **name** to the notification channel.
-4. Select **Slack **from the Type list.
+4. Select **Slack** from the Type list.
 5. For instructions on setting up a Slack's Incoming Webhooks, see [this section](https://api.slack.com/messaging/webhooks) of their documentation.
-6. Enter the Slack Incoming Webhook URL in the **URL **field.
+6. Enter the Slack Incoming Webhook URL in the **URL** field.
 7. Click **Send Test**, which will push a confirmation message to the Slack channel.
 {% endtab %}
 {% endtabs %}
@@ -824,14 +824,14 @@ Get notified of problems with your validators. Choose between email, telegram, d
 
 Did you find our guide useful? Let us know with a tip and we'll keep updating it.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray: 
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:&#x20;
 
-Any feedback and all pull requests much appreciated. :smiley: 
+Any feedback and all pull requests much appreciated. :smiley:&#x20;
 
-Hang out and chat with fellow stakers on telegram @ [https://t.me/coincashew](https://t.me/coincashew) :first_quarter_moon_with_face: 
+Hang out and chat with fellow stakers on telegram @ [https://t.me/coincashew](https://t.me/coincashew) :first\_quarter\_moon\_with\_face:&#x20;
 {% endhint %}
 
-## :man_mage: 10. Updating Nimbus
+## :man\_mage: 10. Updating Nimbus
 
 ```bash
 cd ~/git/nimbus-eth2
@@ -858,7 +858,7 @@ sudo cp $HOME/git/nimbus-eth2/build/beacon_node /usr/bin/beacon_node
 {% endtab %}
 {% endtabs %}
 
-## :maple_leaf: 11. Reference Material
+## :maple\_leaf: 11. Reference Material
 
 Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
 
@@ -894,7 +894,7 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 {% embed url="https://beaconscan.com" %}
 
-### :notepad_spiral: Latest Eth2 Info
+### :notepad\_spiral: Latest Eth2 Info
 
 {% embed url="https://www.reddit.com/r/ethstaker" %}
 
@@ -906,14 +906,14 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 ## :fire: 13. Additional Useful Tips
 
-### :octagonal_sign: 13.1 Voluntary exit a validator
+### :octagonal\_sign: 13.1 Voluntary exit a validator
 
 {% hint style="info" %}
 Use this command to signal your intentions to stop validating with your validator. This means you no longer want to stake with your validator and want to turn off your node.
 
 * Voluntary exiting takes a minimum of 2048 epochs (or \~9days). There is a queue to exit and a delay before your validator is finally exited.
-* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again. 
-* Your funds will not be available for withdrawal until phase 1.5 or later. 
+* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again.&#x20;
+* Your funds will not be available for withdrawal until phase 1.5 or later.&#x20;
 * After your validator leaves the exit queue and is truely exited, it is safe to turn off your beacon node and validator.
 {% endhint %}
 
@@ -921,16 +921,16 @@ Use this command to signal your intentions to stop validating with your validato
 #TO BE DETERMINED FOR NIMBUS
 ```
 
-### :closed_lock_with_key: 13.2 Verify your mnemonic phrase
+### :closed\_lock\_with\_key: 13.2 Verify your mnemonic phrase
 
-Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys `
+Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`&#x20;
 
 ```bash
 ./deposit existing-mnemonic --chain mainnet
 ```
 
 {% hint style="info" %}
-When the **pubkey **is identical, this means your **keystore file** you correctly verified your mnemonic phrase. Other fields will be different because of salting.
+When the **pubkey** is identical, this means your **keystore file** you correctly verified your mnemonic phrase. Other fields will be different because of salting.
 {% endhint %}
 
 ### :robot: 13.3 Add additional validators

@@ -7,7 +7,7 @@ description: >-
 
 # Komodo: KMD
 
-## ![](../../.gitbook/assets/kmd.png) General Data
+## <img src="../../.gitbook/assets/kmd.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                          |
 | ----------- | ------------------------------------------------------------------------------ |
@@ -15,7 +15,7 @@ description: >-
 | Source Code | [https://github.com/KomodoPlatform](https://github.com/KomodoPlatform)         |
 | Whitepaper  | [https://komodoplatform.com/whitepaper](https://komodoplatform.com/whitepaper) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                               |
 | -------------- | -------------------------------------------------------------------------------------------------- |
@@ -23,11 +23,11 @@ description: >-
 | Reddit         | [https://www.reddit.com/r/komodoplatform](https://www.reddit.com/r/komodoplatform)                 |
 | Official Blog  | [https://blog.komodoplatform.com/](https://blog.komodoplatform.com)                                |
 | Discord        | [https://discord.gg/ZSrn5sJ](https://discord.gg/ZSrn5sJ)                                           |
-| Telegram       | [https://telegram.me/KomodoPlatform_Official](https://telegram.me/KomodoPlatform_Official)         |
+| Telegram       | [https://telegram.me/KomodoPlatform\_Official](https://telegram.me/KomodoPlatform\_Official)       |
 | Knowledge Base | [https://support.komodoplatform.com/support/home](https://support.komodoplatform.com/support/home) |
 | Documentation  | [https://docs.komodoplatform.com/](https://docs.komodoplatform.com)                                |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                    |
 | ------------------------------------------------------- |
@@ -35,7 +35,7 @@ description: >-
 | [https://kmdexplorer.io/](https://kmdexplorer.io)       |
 | [https://kmd.tokenview.com/](https://kmd.tokenview.com) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                         |
 | ------------- | -------------------------------------------------------------------------------------------- |

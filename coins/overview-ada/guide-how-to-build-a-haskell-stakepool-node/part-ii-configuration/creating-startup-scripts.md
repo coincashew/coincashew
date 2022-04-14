@@ -1,4 +1,4 @@
-# :robot: Creating Startup Scripts
+# Creating Startup Scripts
 
 The startup script contains all the variables needed to run a cardano-node such as directory, port, db path, config file, and topology file.
 
@@ -55,7 +55,7 @@ chmod +x $NODE_HOME/startRelayNode1.sh
 Run the following to create a **systemd unit file** to define your`cardano-node.service` configuration.
 
 {% hint style="info" %}
-## :cake: Benefits of Using systemd for a Stake Pool
+### :cake: Benefits of Using systemd for a Stake Pool
 
 1. Auto-start your stake pool when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed stake pool processes.

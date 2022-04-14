@@ -4,7 +4,7 @@ description: Public Blockchain for Business Mass Adoption
 
 # VeChain: VET
 
-## ![](../../.gitbook/assets/vet.png) General Data
+## <img src="../../.gitbook/assets/vet.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                              |
 | ----------- | ------------------------------------------------------------------ |
@@ -12,19 +12,19 @@ description: Public Blockchain for Business Mass Adoption
 | Source Code | [https://github.com/vechain/thor](https://github.com/vechain/thor) |
 | Whitepaper  | [https://docs.vechain.org/](https://docs.vechain.org)              |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community       | Link                                                                                       |
 | --------------- | ------------------------------------------------------------------------------------------ |
 | :bird: Twitter  | [https://twitter.com/vechainofficial](https://twitter.com/vechainofficial)                 |
 | Reddit          | [https://www.reddit.com/r/vechain](https://www.reddit.com/r/vechain)                       |
-| Telegram        | [https://t.me/vechain_official_english](https://t.me/vechain_official_english)             |
+| Telegram        | [https://t.me/vechain\_official\_english](https://t.me/vechain\_official\_english)         |
 | Telegram News   | [https://t.me/vechainannouncement](https://t.me/vechainannouncement)                       |
 | Builders        | [https://www.builders.vechain.org/](https://www.builders.vechain.org)                      |
 | Vechain Insider | [http://vechaininsider.com/](http://vechaininsider.com)                                    |
 | Wiki            | [https://www.reddit.com/r/Vechain/wiki/index](https://www.reddit.com/r/Vechain/wiki/index) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                      |
 | --------------------------------------------------------- |
@@ -33,7 +33,7 @@ description: Public Blockchain for Business Mass Adoption
 | [https://insight.vecha.in/](https://insight.vecha.in)     |
 | [https://explorer.vtho.net/](https://explorer.vtho.net)   |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                           |
 | ------------- | ---------------------------------------------------------------------------------------------- |

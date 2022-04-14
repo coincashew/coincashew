@@ -1,11 +1,11 @@
 # Guide: How to claim HEX
 
-## :checkered_flag: 1. Prerequisites
+## :checkered\_flag: 1. Prerequisites
 
 1. You hodled Bitcoin (BTC) on the HEX snapshot time which occurred on block 606227 at December 2nd at 00:04:19 UTC
 2. You control the private keys to the above BTC.
 
-## :last_quarter_moon_with_face: 2. Install and use a compatible wallet
+## :last\_quarter\_moon\_with\_face: 2. Install and use a compatible wallet
 
 {% hint style="info" %}
 Your ETH address is your HEX address.
@@ -21,13 +21,13 @@ Your ETH address is your HEX address.
 
 2\. Click "Add to MetaMask" and allow the connection to MetaMask
 
-3\. Click **Claim **tab
+3\. Click **Claim** tab
 
 ![Claim tab](../../.gitbook/assets/hexc1.PNG)
 
 4\. Paste your BTC address
 
-5\. Click **CLAIM THIS ADDRESS **button
+5\. Click **CLAIM THIS ADDRESS** button
 
 7\. Open your BTC wallet and sign the message given by the claim tool
 
@@ -37,10 +37,10 @@ Your ETH address is your HEX address.
 
 9\. Enter **how many days** to Auto-Stake
 
-10\. Click **SUBMIT CLAIM **button
+10\. Click **SUBMIT CLAIM** button
 
 11\. Confirm transaction with MetaMask wallet
 
-### :film_frames: Video tutorial on how to claim HEX from BTC
+### :film\_frames: Video tutorial on how to claim HEX from BTC
 
 {% embed url="https://www.youtube.com/watch?v=tRZnVarRV2E&feature=emb_title" %}

@@ -4,7 +4,7 @@ description: Private financial transactions,enabled by the Sigma Protocol
 
 # ZCOIN: XZC
 
-## ![](../../.gitbook/assets/xzc.png) General Data
+## <img src="../../.gitbook/assets/xzc.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                                    |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
@@ -12,7 +12,7 @@ description: Private financial transactions,enabled by the Sigma Protocol
 | Source Code | [https://github.com/zcoinofficial/zcoin/](https://github.com/zcoinofficial/zcoin/)                                                       |
 | Whitepaper  | [https://zcoin.io/wp-content/uploads/2016/11/zerocoinwhitepaper.pdf](https://zcoin.io/wp-content/uploads/2016/11/zerocoinwhitepaper.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community       | Link                                                                                               |
 | --------------- | -------------------------------------------------------------------------------------------------- |
@@ -22,7 +22,7 @@ description: Private financial transactions,enabled by the Sigma Protocol
 | Discord         | [https://discordapp.com/invite/4FjnQ2q](https://discordapp.com/invite/4FjnQ2q)                     |
 | Telegram        | [https://telegram.me/zcoinproject](https://telegram.me/zcoinproject)                               |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                   |
 | ---------------------------------------------------------------------- |
@@ -30,7 +30,7 @@ description: Private financial transactions,enabled by the Sigma Protocol
 | [http://explorer.zcoin.io/](http://explorer.zcoin.io)                  |
 | [https://chainz.cryptoid.info/xzc/](https://chainz.cryptoid.info/xzc/) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                       |
 | ------------- | ------------------------------------------------------------------------------------------ |

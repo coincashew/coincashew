@@ -4,7 +4,7 @@ description: Next generation video delivery powered by you.
 
 # THETA
 
-## ![](../../.gitbook/assets/theta.png) General Data
+## <img src="../../.gitbook/assets/theta.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -12,21 +12,21 @@ description: Next generation video delivery powered by you.
 | Source Code | [https://github.com/thetatoken/theta-protocol-ledger](https://github.com/thetatoken/theta-protocol-ledger)                                                                     |
 | Whitepaper  | [https://s3.us-east-2.amazonaws.com/assets.thetatoken.org/Theta-white-paper-latest.pdf](https://s3.us-east-2.amazonaws.com/assets.thetatoken.org/Theta-white-paper-latest.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
-| Community      | Link                                                                                         |
-| -------------- | -------------------------------------------------------------------------------------------- |
-| :bird: Twitter | [https://twitter.com/thetatoken](https://twitter.com/thetatoken)                             |
-| Reddit         | [https://www.reddit.com/r/theta_network/](https://www.reddit.com/r/theta_network/)           |
-| Telegram       | [https://t.me/joinchat/Gt6mbxJb-2XukwGA_atLjg](https://t.me/joinchat/Gt6mbxJb-2XukwGA_atLjg) |
+| Community      | Link                                                                                           |
+| -------------- | ---------------------------------------------------------------------------------------------- |
+| :bird: Twitter | [https://twitter.com/thetatoken](https://twitter.com/thetatoken)                               |
+| Reddit         | [https://www.reddit.com/r/theta\_network/](https://www.reddit.com/r/theta\_network/)           |
+| Telegram       | [https://t.me/joinchat/Gt6mbxJb-2XukwGA\_atLjg](https://t.me/joinchat/Gt6mbxJb-2XukwGA\_atLjg) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                |
 | ------------------------------------------------------------------- |
 | [https://explorer.thetatoken.org/](https://explorer.thetatoken.org) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                               |
 | ------------- | -------------------------------------------------------------------------------------------------- |

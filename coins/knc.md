@@ -7,15 +7,15 @@ description: >-
 
 # Kyber Network: KNC
 
-## ![](../.gitbook/assets/knc.png) General Data
+## <img src="../.gitbook/assets/knc.png" alt="" data-size="original"> General Data
 
-| Site        | Title                                                                                                                            |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://kyber.network/](https://kyber.network)                                                                                  |
-| Source Code | [https://github.com/KyberNetwork/KyberWallet](https://github.com/KyberNetwork/KyberWallet)                                       |
-| Whitepaper  | [https://files.kyber.network/Kyber_Protocol\_22\_April_v0.1.pdf](https://files.kyber.network/Kyber_Protocol\_22\_April_v0.1.pdf) |
+| Site        | Title                                                                                                                                |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Website     | [https://kyber.network/](https://kyber.network)                                                                                      |
+| Source Code | [https://github.com/KyberNetwork/KyberWallet](https://github.com/KyberNetwork/KyberWallet)                                           |
+| Whitepaper  | [https://files.kyber.network/Kyber\_Protocol\_22\_April\_v0.1.pdf](https://files.kyber.network/Kyber\_Protocol\_22\_April\_v0.1.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                           |
 | -------------- | ------------------------------------------------------------------------------ |
@@ -24,14 +24,14 @@ description: >-
 | Telegram       | [https://t.me/kybernetwork](https://t.me/kybernetwork)                         |
 | Blog           | [https://blog.kyber.network/](https://blog.kyber.network)                      |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [https://etherscan.io/token/0xdd974d5c2e2928dea5f71b9825b8b646686bd200](https://etherscan.io/token/0xdd974d5c2e2928dea5f71b9825b8b646686bd200)     |
 | [https://ethplorer.io/address/0xdd974d5c2e2928dea5f71b9825b8b646686bd200](https://ethplorer.io/address/0xdd974d5c2e2928dea5f71b9825b8b646686bd200) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                               |
 | ------------- | ------------------------------------------------------------------------------------------------------------------ |

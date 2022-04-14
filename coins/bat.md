@@ -4,7 +4,7 @@ description: INTRODUCING BLOCKCHAIN-BASED DIGITAL ADVERTISING
 
 # Basic Attention Token: BAT
 
-## ![](../.gitbook/assets/bat.png) General Data
+## <img src="../.gitbook/assets/bat.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                                                                      |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -12,7 +12,7 @@ description: INTRODUCING BLOCKCHAIN-BASED DIGITAL ADVERTISING
 | Source Code | [https://github.com/brave-intl/bat-ledger](https://github.com/brave-intl/bat-ledger)                                                       |
 | Whitepaper  | [https://basicattentiontoken.org/BasicAttentionTokenWhitePaper-4.pdf](https://basicattentiontoken.org/BasicAttentionTokenWhitePaper-4.pdf) |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                           |
 | -------------- | ------------------------------------------------------------------------------ |
@@ -21,7 +21,7 @@ description: INTRODUCING BLOCKCHAIN-BASED DIGITAL ADVERTISING
 | Telegram       | [https://t.me/batproject](https://t.me/batproject)                             |
 | Blog           | [https://basicattentiontoken.org/blog/](https://basicattentiontoken.org/blog/) |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                                                               |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -29,7 +29,7 @@ description: INTRODUCING BLOCKCHAIN-BASED DIGITAL ADVERTISING
 | [https://ethplorer.io/address/0x0d8775f648430679a709e98d2b0cb6250d2887ef](https://ethplorer.io/address/0x0d8775f648430679a709e98d2b0cb6250d2887ef)                                 |
 | [https://blockchair.com/ethereum/erc-20/token/0x0d8775f648430679a709e98d2b0cb6250d2887ef](https://blockchair.com/ethereum/erc-20/token/0x0d8775f648430679a709e98d2b0cb6250d2887ef) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                                               |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |

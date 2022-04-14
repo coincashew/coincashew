@@ -6,9 +6,9 @@ description: 'Baking uses four processes: the node, baker, endorser, accuser'
 
 ## :trophy: Almost there
 
-Becoming a baker comes with great power and responsibility. 
+Becoming a baker comes with great power and responsibility.&#x20;
 
-First, you should open three more terminals in Ubuntu, one per process. Remember the keyboard shortcut, **press **Ctrl+Alt+T.
+First, you should open three more terminals in Ubuntu, one per process. Remember the keyboard shortcut, **press** Ctrl+Alt+T.
 
 In one terminal, you run the baker.
 
@@ -17,7 +17,7 @@ cd ~/tezos
 ./tezos-baker-006-PsCARTHA run with local node ~/.tezos-node ledger_mybaker
 ```
 
- In another terminal, you run the endorser.
+&#x20;In another terminal, you run the endorser.
 
 ```bash
 cd ~/tezos

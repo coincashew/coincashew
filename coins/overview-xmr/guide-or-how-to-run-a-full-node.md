@@ -12,7 +12,7 @@ description: >-
 * If you do not run your own node, you are relying on other's nodes to verify and send your transactions.
 * To contribute to the decentralization of the Monero network.
 * To use a monero wallet requires connecting to a fully synched node. Best node is your own.
-* To connect to the monero network, you run a peer-to-peer application called **monerod **(the d stands for daemon) and it forms the backbone of the Monero network.
+* To connect to the monero network, you run a peer-to-peer application called **monerod** (the d stands for daemon) and it forms the backbone of the Monero network.
 * **Optional**: Offering your node as a public remote note is to volunteer your node as a public resource by helping onboard new monero nodes and relay other monero users transactions.
 
 {% hint style="info" %}
@@ -22,13 +22,13 @@ Monero nodes come in two flavours.
 * **Pruned Node**: Stores a random 1/8th of the blockchain's data and requires much less disk space
 {% endhint %}
 
-### ​  :rocket:Minimum Full Node System Requirements <a href="minimum-slasher-system-requirements" id="minimum-slasher-system-requirements"></a>
+### ​  :rocket:Minimum Full Node System Requirements <a href="#minimum-slasher-system-requirements" id="minimum-slasher-system-requirements"></a>
 
 * Dual-core CPU
 * 4+ GB RAM
 * 160GB+ SSD HD
 
-### :robot: Minimum Pruned Node System Requirements <a href="minimum-slasher-system-requirements" id="minimum-slasher-system-requirements"></a>
+### :robot: Minimum Pruned Node System Requirements <a href="#minimum-slasher-system-requirements" id="minimum-slasher-system-requirements"></a>
 
 * Same as full node yet with a smaller HD
 * 80GB+ SSD HD
@@ -172,8 +172,8 @@ limit-rate-down=1048576 # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s;
 {% hint style="info" %}
 **Configuration File Comments**
 
-* Modify `prune-blockchain` to `false `if you want to store full blockchain
-* Modify `public-node` to `false `if you do not want other users to use your node.
+* Modify `prune-blockchain` to `false` if you want to store full blockchain
+* Modify `public-node` to `false` if you do not want other users to use your node.
 * `rpc-restricted-bind-ip/port flags`enable restricted access to your node but allow full RPC from other Monero wallets on your LAN.
 * Limit the upload speed in case you have a data cap: `limit-rate-up=8192` (in kB/s). Conversely, if you have an unlimited data plan, consider increasing the upload speeds to better support the Monero network. A node can typically use up to 1TB traffic per month.
 {% endhint %}
@@ -239,7 +239,7 @@ monerod status
 ```
 
 {% hint style="success" %}
-Connect to your brand new node with your favorite clients such as Monerujo, CakeWallet or Monero-GUI. Simply enter your node's IP or hostname into the remote node field. Congrats! :confetti_ball: 
+Connect to your brand new node with your favorite clients such as Monerujo, CakeWallet or Monero-GUI. Simply enter your node's IP or hostname into the remote node field. Congrats! :confetti\_ball:&#x20;
 {% endhint %}
 
 ## :pick: Optional: Start mining
@@ -248,13 +248,13 @@ Like winning a lotto ticket, your monero node has a chance to mine a block. You 
 
 Start with 1 thread, check your mining hashrate and increase if your CPU resources allow.
 
-Run the following command. 
+Run the following command.&#x20;
 
 ```bash
 monerod start_mining <YOUR XMR ADDRESS> <NUMBER OF THREADS>
 ```
 
-## :flying_saucer: Optional: Setup I2P
+## :flying\_saucer: Optional: Setup I2P
 
 Download I2p.
 
@@ -351,7 +351,7 @@ Restart monerod.
 sudo systemctl restart monerod
 ```
 
-##  :tools: 2. How to update a monero node <a href="7-update-a-eth2-client" id="7-update-a-eth2-client"></a>
+## &#x20;:tools: 2. How to update a monero node <a href="#7-update-a-eth2-client" id="7-update-a-eth2-client"></a>
 
 When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your monero node.
 

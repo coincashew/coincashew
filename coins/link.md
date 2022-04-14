@@ -7,7 +7,7 @@ description: >-
 
 # Chainlink: LINK
 
-## ![](../.gitbook/assets/link.png) General Data
+## <img src="../.gitbook/assets/link.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                          |
 | ----------- | ---------------------------------------------------------------------------------------------- |
@@ -16,16 +16,16 @@ description: >-
 | Source Code | [https://github.com/smartcontractkit/chainlink](https://github.com/smartcontractkit/chainlink) |
 | Whitepaper  | [https://link.smartcontract.com/whitepaper](https://link.smartcontract.com/whitepaper)         |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
-| Community      | Link                                                                     |
-| -------------- | ------------------------------------------------------------------------ |
-| :bird: Twitter | [https://twitter.com/smart_contract](https://twitter.com/smart_contract) |
-| Reddit         | [https://www.reddit.com/r/chainlink](https://www.reddit.com/r/chainlink) |
-| Telegram       | [https://t.me/chainlinkofficial](https://t.me/chainlinkofficial)         |
-| Medium         | [https://blog.chain.link/](https://blog.chain.link)                      |
+| Community      | Link                                                                       |
+| -------------- | -------------------------------------------------------------------------- |
+| :bird: Twitter | [https://twitter.com/smart\_contract](https://twitter.com/smart\_contract) |
+| Reddit         | [https://www.reddit.com/r/chainlink](https://www.reddit.com/r/chainlink)   |
+| Telegram       | [https://t.me/chainlinkofficial](https://t.me/chainlinkofficial)           |
+| Medium         | [https://blog.chain.link/](https://blog.chain.link)                        |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                                                               |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -33,7 +33,7 @@ description: >-
 | [https://ethplorer.io/address/0x514910771af9ca656af840dff83e8264ecf986ca](https://ethplorer.io/address/0x514910771af9ca656af840dff83e8264ecf986ca)                                 |
 | [https://blockchair.com/ethereum/erc-20/token/0x514910771af9ca656af840dff83e8264ecf986ca](https://blockchair.com/ethereum/erc-20/token/0x514910771af9ca656af840dff83e8264ecf986ca) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                       |
 | ------------- | ---------------------------------------------------------------------------------------------------------- |

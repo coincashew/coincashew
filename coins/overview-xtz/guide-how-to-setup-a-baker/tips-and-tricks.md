@@ -22,7 +22,7 @@ These files and folders are useful for backups and restores.
   * `identity.json (this is your node's identity)`
   * `context (this is the blockchain data)`
 
-## :mag_right: Push Alerts for your Baker
+## :mag\_right: Push Alerts for your Baker
 
 Rapidly get notified if something goes wrong.
 
@@ -32,15 +32,15 @@ Rapidly get notified if something goes wrong.
 
 Participate in the unique Tezos governance process and make the future Tezos better!
 
-There are two kinds of voting, proposal selection and election voting. 
+There are two kinds of voting, proposal selection and election voting.&#x20;
 
 {% tabs %}
 {% tab title="Proposal Selection" %}
 {% hint style="info" %}
-Determine the latest **proposal ID **by visiting your favorite block explorer such as [TzStats ](https://tzstats.com/election/head)or [Tezos.ID](https://tezos.id/proposals).
+Determine the latest **proposal ID** by visiting your favorite block explorer such as [TzStats ](https://tzstats.com/election/head)or [Tezos.ID](https://tezos.id/proposals).
 {% endhint %}
 
-You can **upvote **a proposal with the following command. 
+You can **upvote** a proposal with the following command.&#x20;
 
 ```
 ./tezos-client submit proposals for <baker account name> <proposal ID Hash>
@@ -60,7 +60,7 @@ Voting is available when an On-Chain election is two types of Vote Periods:
 * **Promotion Vote Period**
 
 {% hint style="info" %}
-Determine the latest **election **by visiting your favorite block explorer such as [TzStats](https://tzstats.com/election/head) or [Tezos.ID](https://tezos.id/voting-periods).
+Determine the latest **election** by visiting your favorite block explorer such as [TzStats](https://tzstats.com/election/head) or [Tezos.ID](https://tezos.id/voting-periods).
 {% endhint %}
 
 Suppose there is a current election and you want to vote.
@@ -80,7 +80,7 @@ The command to run is:
 {% endtab %}
 {% endtabs %}
 
-## :man_detective: Test for ledger connectivity
+## :man\_detective: Test for ledger connectivity
 
 If you are not sure your ledger is working properly, run the following and see if there is a valid response.
 
@@ -113,13 +113,13 @@ If you wish to send funds from your account, then you will need to import your p
 If you only want to activate your Tezos account and claim your tez from the fundraiser, a safe and easy way is to use: [https://stephenandrews.github.io/activatez/](https://stephenandrews.github.io/activatez/)
 {% endhint %}
 
-## :potable_water: Drinking from a Tezos Faucet
+## :potable\_water: Drinking from a Tezos Faucet
 
 Want to test something and play with tezos on testnet without risking real coins?
 
 Two ways:
 
-* Use the [Baking Bad Faucet Telegram Bot](https://t.me/tezos_faucet_bot)
+* Use the [Baking Bad Faucet Telegram Bot](https://t.me/tezos\_faucet\_bot)
 * [Get some test tez from the faucet.](https://faucet.tzalpha.net)
 
 Proceed with the following commands:
@@ -129,11 +129,11 @@ Proceed with the following commands:
 ./tezos-client get balance for myaccount
 ```
 
-## :woman_juggling: Exporting and importing a snapshot
+## :woman\_juggling: Exporting and importing a snapshot
 
 Handy if you're building another node and want to speed up the blockchain sync process.
 
-Also useful for reclaiming disk space. 
+Also useful for reclaiming disk space.&#x20;
 
 1. Run the export snapshot command
 2. Stop the node
@@ -142,7 +142,7 @@ Also useful for reclaiming disk space.
 5. Copy `*.json` from `~/.tezos-node2` to `~/.tezos-node`
 6. Start the node
 7. Confirm everything is working
-8. Remove `~/.tezos-node2 `to free up disk space.
+8. Remove `~/.tezos-node2` to free up disk space.
 
 #### Export command
 

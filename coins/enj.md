@@ -6,7 +6,7 @@ description: >-
 
 # Enjin Coin: ENJ
 
-## ![](../.gitbook/assets/enj.png) General Data
+## <img src="../.gitbook/assets/enj.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                    |
 | ----------- | ------------------------------------------------------------------------ |
@@ -15,18 +15,18 @@ description: >-
 | Source Code | [https://github.com/enjin/contracts](https://github.com/enjin/contracts) |
 | Whitepaper  | [https://docs.enjin.io/](https://docs.enjin.io)                          |
 
-## :person_raising_hand: Social Media and Community
+## :person\_raising\_hand: Social Media and Community
 
 | Community      | Link                                                                                                   |
 | -------------- | ------------------------------------------------------------------------------------------------------ |
 | :bird: Twitter | [https://twitter.com/enjin](https://twitter.com/enjin)                                                 |
-| Telegram       | [https://t.me/enjin_coin](https://t.me/enjin_coin)                                                     |
+| Telegram       | [https://t.me/enjin\_coin](https://t.me/enjin\_coin)                                                   |
 | Reddit         | [https://www.reddit.com/r/EnjinCoin](https://www.reddit.com/r/EnjinCoin)                               |
 | Bitcointalk    | [https://bitcointalk.org/index.php?topic=2042871.0](https://bitcointalk.org/index.php?topic=2042871.0) |
 | Facebook       | [https://www.facebook.com/enjinsocial](https://www.facebook.com/enjinsocial)                           |
 | Medium         | [https://medium.com/@enjin](https://medium.com/@enjin)                                                 |
 
-## :arrows_clockwise: Block Explorers
+## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -34,7 +34,7 @@ description: >-
 | [https://etherscan.io/token/0xf629cbd94d3791c9250152bd8dfbdf380e2a3b9c](https://etherscan.io/token/0xf629cbd94d3791c9250152bd8dfbdf380e2a3b9c)     |
 | [https://ethplorer.io/address/0xf629cbd94d3791c9250152bd8dfbdf380e2a3b9c](https://ethplorer.io/address/0xf629cbd94d3791c9250152bd8dfbdf380e2a3b9c) |
 
-## :bar_chart: Charts and Pricing
+## :bar\_chart: Charts and Pricing
 
 | Site          | Link                                                                                                         |
 | ------------- | ------------------------------------------------------------------------------------------------------------ |
