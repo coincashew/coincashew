@@ -2,337 +2,263 @@
 
 ## :tada: Introduction
 
-{% hint style="info" %}
-:confetti\_ball: This latest update brought to you by the generous donations by [**BEBOP stake pool**](https://bebopadapool.com).
-
-If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation addresses](https://cointr.ee/coincashew). Much appreciated in advance. :pray:
-{% endhint %}
-
 {% hint style="success" %}
-As of Oct 1 2021, this guide is written for **mainnet** with **release v1.30.1** :grin:
+If you want to support this free educational Cardano content or found the content helpful, visit [cointr.ee](https://cointr.ee/coincashew) to find our donation addresses. Much appreciated in advance. :pray:
+
+:ledger:Technical writing by [Change Pool \[CHG\]](https://change.paradoxicalsphere.com)
 {% endhint %}
 
-## :satellite: How to Perform an Upgrade
+[Input-Output (IOHK)](https://iohk.io/) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each new release.
 
-From time to time, there will be new versions of `cardano-node`. Follow the [Official Cardano-Node Github Repo](https://github.com/input-output-hk/cardano-node) by enabling **notifications** with the watch functionality.
+{% hint style="info" %}
+To receive notifications related to activity in the Cardano Node GitHub repository, configure [Watch](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#automatic-watching) functionality.
+{% endhint %}
+
+The *Upgrading a Node* topic describes how to upgrade a Cardano node to the latest version. Complete the following procedures on each block producer and relay node comprising your stake pool as needed to complete the upgrade.
+
+{% hint style="info" %}
+For instructions on upgrading your stake pool to a previous Cardano version, see the [archive](./upgrading-a-node-archive.md).
+{% endhint %}
+
+## :revolving_hearts: Upgrading Third-party Software
+
+### CNCLI
+
+If you use Andrew Westberg's [CNCLI](https://github.com/AndrewWestberg/cncli) command line utilities, then upgrade to the latest version if a newer version is available.
 
 {% hint style="danger" %}
-Read the patch notes for any other special updates or dependencies that may be required for the latest release.
+Do not confuse Andrew Westberg's CNCLI utilities with the [`cncli.sh`](https://cardano-community.github.io/guild-operators/Scripts/cncli/) companion script for stake pool operators maintained by [Guild Operators](https://cardano-community.github.io/guild-operators/).
 {% endhint %}
 
-{% tabs %}
-{% tab title="v1.30.1 Notes" %}
-**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1**](https://github.com/input-output-hk/cardano-node/releases/tag/1.30.1)
+**To upgrade Andrew Westberg's CNCLI binary:**
 
-#### :octagonal\_sign: Upgrading Release Dependencies
-
-**CNCLI**
-
-If you use CNCLI for leaderlogs and sendslots, then you must upgrade to `cncli version 4.0.1`
-
+1. In a terminal window, type the following commands:
 ```bash
 RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
 VERSION=$(echo ${RELEASETAG} | cut -c 2-)
 echo "Installing release ${RELEASETAG}"
 curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
-```
-
-```bash
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-To confirm that the new version of CNCLI is installed, type:
-
+2. To confirm that the new version of the CNCLI binary is installed, type:
 ```
 cncli -V
 ```
 
-It should return the updated version number.
+If the command displays the latest version number, then the upgrade is successful.
 
-**gLiveView**
+### Guild LiveView
 
+[Guild Operators](https://cardano-community.github.io/guild-operators/) maintains a set of tools to simplify operating a Cardano stake pool, including [Guild LiveView](https://cardano-community.github.io/guild-operators/Scripts/gliveview/). If you use the gLiveView script, then ensure that you are using the latest version prior to upgrading your Cardano node.
+
+{% hint style="info" %}
+In the [Common `env`](https://cardano-community.github.io/guild-operators/Scripts/env/) file for Guild Operator scripts, by default the `UPDATE_CHECK` user variable is set to check for updates to scripts when you start `gLiveView.sh`. If your implementation displays the message `Checking for script updates` when gLiveView starts and you install available updates when prompted, then you do NOT need to complete the following procedure.
+{% endhint %}
+
+**To upgrade the Guild LiveView tool manually:**
+
+1. To back up existing Guild LiveView script files, type the following commands where `<gLiveViewFolder>` is the folder where the `gLiveView.sh` script is located on your computer:
 ```bash
-cd ${NODE_HOME}
+cd <gLiveViewFolder>
+mv gLiveView.sh gLiveView.sh.bak
+mv env env.bak
+```
+{% hint style="info" %}
+If you follow the Coin Cashew instructions for [Starting the Nodes](../part-iii-operation/starting-the-nodes.md), then you can type `$NODE_HOME` to replace <gLiveViewFolder>
+{% endhint %}
+
+2. To download the latest Guild LiveView script files, type:
+```bash
 curl -s -o gLiveView.sh https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/gLiveView.sh
 curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/env
+```
+
+3. To set file permissions on the `gLiveView.sh` file that you downloaded in step 2, type:
+```bash
 chmod 755 gLiveView.sh
-# Update env file with the stake pools configuration.
+```
+
+4. To set the `CONFIG` and `SOCKET` user variables in the `env` file that you downloaded in step 2, type:
+```bash
 sed -i env \
     -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
     -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
-{% endtab %}
-
-{% tab title="v1.29.0 Notes" %}
-**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.29.0)
-
-This release is an important update to the node that provides the functionality that is needed following the Alonzo hard fork.\
-**All users, including stake pool operators, must upgrade to this version (or a later version) of the node.**
-
-The release includes features that will enable the use of the node in the Alonzo era, allowing the on-chain execution of Plutus scripts,\
-including extended CLI commands to support the construction of transactions that include Plutus scripts, datums and redeemers.\
-It incorporates several improvements, including a new `transaction build` command that calculates transaction fees and Plutus script execution units, and a new version of the `query tip` command that provides additional information, including node synchronisation progress. The `transaction build` command requires a local instance of the node in order to check Plutus script validity and to provide information that is used by the fee calculation. The Shelley specification has also been updated with respect to rewards calculation.
-
-Note that this release changes the log format of traces configured by `TraceChainSyncHeaderServer` and `TraceChainSyncClient` . See [#2746](https://github.com/input-output-hk/cardano-node/pull/2746) for more detail.
-
-#### :octagonal\_sign: Release Dependencies
-
-**1. If using cncli for leaderlogs and sendslots, update to `cncli version 3.15` is required.**
-
-```bash
-RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
-VERSION=$(echo ${RELEASETAG} | cut -c 2-)
-echo "Installing release ${RELEASETAG}"
-curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
-```
-
-```bash
-sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
-```
-
-**Checking that cncli is properly updated**
-
-```
-cncli -V
-```
-
-It should return the updated version number.
-
-**2. Download `mainnet-alonzo-genesis.json` file**
-
-```bash
-cd $NODE_HOME
-wget -N https://hydra.iohk.io/build/7416228/download/1/mainnet-alonzo-genesis.json
-```
-
-**3. Download new`mainnet-config.json` file to with alonzo configurations.**
-
 {% hint style="info" %}
-If you have any custom mainnet configurations, be sure to backup and re-apply your settings.
+For details on setting the `NODE_HOME` environment variable, see the topic [Installing Cabal and GHC](../part-i-installation/installing-cabal-and-ghc.md)
 {% endhint %}
 
+5. As needed to configure Guild LiveView for your stake pool, use a text editor to transfer additional user variable definitions from the `env.bak` file that you created in step 1 to the `env` file that you downloaded in step 2.
+
+6. To test the upgrade, type:
 ```bash
-cd $NODE_HOME
-wget -N https://hydra.iohk.io/build/7416228/download/1/mainnet-config.json
-sed -i mainnet-config.json \
-    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
-    -e "s/127.0.0.1/0.0.0.0/g"
+gLiveView.sh
 ```
 
-Verify that your **mainnet-config.json** contains the following two new lines.
+If the upgrade is successful, then the terminal window displays the Guild LiveView dashboard having the version number of the latest release.
 
+## <a name="SetGCVersions"></a>:nut_and_bolt:Setting GHC and Cabal Versions
+
+For each Cardano Node release, Input-Output recommends compiling binaries using specific versions of GHC and Cabal. For example, refer to [Installing cardano-node and cardano-cli from source](https://developers.cardano.org/docs/get-started/installing-cardano-node/) in the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/) to determine the GHC and Cabal versions required for the current Cardano Node release. _Table 1_ lists GHC and Cabal version requirements for the current Cardano Node release.
+
+_Table 1 Current Cardano Node Version Requirements_
+
+|  Release Date  |  Cardano Node Version  |  GHC Version   | Cabal Version  |
+|:--------------:|:----------------------:|:--------------:|:--------------:|
+|  March 7, 2022 |         1.34.1         |     8.10.7     |    3.6.2.0     |
+
+**To upgrade the GHCup installer for GHC and Cabal to the latest version:**
+
+- In a terminal window, type:
 ```
-  "AlonzoGenesisFile": "mainnet-alonzo-genesis.json",
-  "AlonzoGenesisHash": "7e94a15f55d1e82d10f09203fa1d40f8eede58fd8066542cf6566008068ed874",
-```
-
-View your **mainnet-config.json**
-
-```bash
-cat mainnet-config.json
-```
-
-Example of what it should look like with the two new lines.
-
-```bash
-{
-  "AlonzoGenesisFile": "mainnet-alonzo-genesis.json",
-  "AlonzoGenesisHash": "7e94a15f55d1e82d10f09203fa1d40f8eede58fd8066542cf6566008068ed874",
-  "ApplicationName": "cardano-sl",
-  "ApplicationVersion": 1,
-  "ByronGenesisFile": "byron-genesis.json",
-  "ByronGenesisHash": "5f20df933584822601f9e3f8c024eb5eb252fe8cefb24d1317dc3d432e940ebb",
-  "LastKnownBlockVersion-Alt": 0,
-  "LastKnownBlockVersion-Major": 3,
-  "LastKnownBlockVersion-Minor": 0,
-  "MaxKnownMajorProtocolVersion": 2,
-  "Protocol": "Cardano",
-  "RequiresNetworkMagic": "RequiresNoMagic",
-  "ShelleyGenesisFile": "genesis.json",
-  "ShelleyGenesisHash": "1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81",
+ghcup upgrade
+ghcup --version
 ```
 
-\*\*\[ Optional Troubleshooting ] \*\*4. In case your node does not start up properly, refresh `mainnet-shelley-genesis.json`
+**To install other GHC versions:**
 
-```bash
-cd $NODE_HOME
-wget -N https://hydra.iohk.io/build/7416228/download/1/mainnet-shelley-genesis.json
+- In a terminal window, type the following commands where `<GHCVersionNumber>` is the GHC version that you want to install and use:
 ```
-{% endtab %}
-
-{% tab title="v1.27.0 Notes" %}
-**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0**](https://github.com/input-output-hk/cardano-node/releases/tag/1.27.0)
-
-Node version 1.27.0 provides important new functionality, including supporting new CLI commands that have been requested by stake pools, providing garbage collection metrics.\
-It includes the performance fixes for the epoch boundary calculation that were released in node version [1.26.2](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2), plus a number of bug fixes and code improvements.\
-It also includes many fundamental changes that are needed to prepare for forthcoming feature releases (notably Plutus scripts in the Alonzo era).\
-Note that this release includes breaking changes to the API and CLI commands, and that compilation using GHC version 8.6.5 is no longer supported.
-
-#### :octagonal\_sign: Release Dependencies
-
-**1. If using cncli for leaderlogs and sendslots, update to `cncli version 2.10` is required.**
-
-```bash
-RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
-VERSION=$(echo ${RELEASETAG} | cut -c 2-)
-echo "Installing release ${RELEASETAG}"
-curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+ghcup install ghc <GHCVersionNumber>
+ghcup set ghc <GHCVersionNumber>
+ghc --version
 ```
 
-```bash
-sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
+**To install other Cabal versions:**
+
+- In a terminal window, type the following commands where `<CabalVersionNumber>` is the Cabal version that you want to install and use:
 ```
-
-**Checking that cncli is properly updated**
-
+ghcup install cabal <CabalVersionNumber>
+ghcup set cabal <CabalVersionNumber>
+cabal --version
 ```
-cncli -V
-```
-
-It should return the updated version number.
-{% endtab %}
-
-{% tab title="v1.26.2 Notes" %}
-**Full release notes:** [**https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2**](https://github.com/input-output-hk/cardano-node/releases/tag/1.26.2)
-
-This point release is a recommended upgrade for all stake pool operators. It is not required for relays or other passive nodes. It ensures that block producing nodes do not unnecessarily re-evaluate the stake distribution at the epoch boundary.
 
 {% hint style="info" %}
-It is possible to upgrade from v1.25.1 but for a smooth update, ensure you have completed the v1.26.1 release dependencies, notably the ghc and cabal updates. Also note the database migration can take up to 2 hours.
+To set GHCup, GHC and Cabal versions using a graphical user interface, type `ghcup tui` in a terminal window.
 {% endhint %}
-{% endtab %}
-{% endtabs %}
 
-### Compiling the New Binaries
+## :inbox_tray:Downloading New Configuration Files
 
-To update with `$HOME/git/cardano-node` as the current binaries directory, clone a new git repo named `cardano-node2` so that you have a backup in case of rollback. Remove the old binaries.
+A new Cardano Node release may include updated configuration files. If configuration files are updated for a release, then you need to download and install the new configuration files when you upgrade a node.
 
+**To download and install new Cardano Node configuration files:**
+
+1. To stop your Cardano node, type the following command in a terminal window where `<CardanoServiceName>` is the name of the systemd service running your Cardano node:
 ```bash
+sudo systemctl stop <CardanoServiceName>.service
+```
+{% hint style="info" %}
+If you follow the Coin Cashew instructions for [Creating Startup Scripts](../part-ii-configuration/creating-startup-scripts.md), then `<CardanoServiceName>` is `cardano-node`
+{% endhint %}
+
+2. To back up the configuration files that your node currently uses, type the following commands where `<ConfigurationFileFolder>` is the path to the folder where the configuration files are located:  
+```bash
+cd <ConfigurationFileFolder>
+mv mainnet-config.json mainnet-config.bak
+mv mainnet-byron-genesis.json mainnet-byron-genesis.bak
+mv mainnet-shelley-genesis.json mainnet-shelley-genesis.bak
+mv mainnet-alonzo-genesis.json mainnet-alonzo-genesis.bak
+mv mainnet-topology.json mainnet-topology.bak
+```  
+{% hint style="info" %}
+If you follow the Coin Cashew instructions for [Preparing Configuration Files](../part-ii-configuration/preparing-configuration-files.md), then `<ConfigurationFileFolder>` is `$HOME/cardano-my-node` Alternately, you can type `$NODE_HOME` If needed, you can also use the environment variable `$NODE_CONFIG` to indicate the `mainnet` cluster in configuration file names.
+{% endhint %}
+
+3. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), then browse to the latest release, then click to expand the Downloads dropdown list in the Technical Specification section of the release notes, and then click the Configuration Files link.
+
+4. On the Cardano Configurations page, click the following links to download configuration files for the `mainnet` cluster to the folder where you created backups of your current configuration files in step 2: `config`, `byronGenesis`, `shelleyGenesis`, `alonzoGenesis` and `topology`  
+{% hint style="info" %}
+If you want to download new configuration files using the command line, then navigate to the folder where you created backups of your current configuration files in step 2 using a terminal window, and then type the following command where `<ConfigurationFileURL>` is the URL for the configuration file that you want to download: `wget <ConfigurationFileURL>`
+{% endhint %}
+
+5. Using [`diff`](https://www.man7.org/linux/man-pages/man1/diff.1.html) or a similar file comparison utility, identify and copy customizations as needed from the backup configuration files that you created in step 2 to each new configuration file that you downloaded in step 4.
+
+## <a name="BuildingCN"></a>:zap:Building Cardano Node Binaries
+
+**To build binaries for a new Cardano Node version:**
+
+1. To create a clone of the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), type the following commands in a terminal window on the computer you want to upgrade where `<NewFolderName>` is the name of a folder that does not exist:
+```bash
+# Navigate to the folder where you want to clone the repository
 cd $HOME/git
-rm -rf cardano-node-old/
-git clone https://github.com/input-output-hk/cardano-node.git cardano-node2
-cd cardano-node2/
-```
-
-Run the following command to pull and build the latest binaries. Change the checkout **tag** or **branch** as needed.
-
-```bash
-cd $HOME/git/cardano-node2
-cabal update
-git fetch --all --recurse-submodules --tags
-git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
-cabal configure -O0 -w ghc-8.10.4
-echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
-cabal build cardano-node cardano-cli
-```
-
+# Download the Cardano Node repository to your local computer
+git clone https://github.com/input-output-hk/cardano-node.git ./<NewFolderName>
+```  
 {% hint style="info" %}
-Build process may take a few minutes up to a few hours depending on your computer's processing power.
+Cloning the GitHub repository to a new folder allows you to roll back the upgrade, if needed, by re-installing on your computer the `cardano-node` and `cardano-cli` binaries from a folder where you compiled a previous version of Cardano Node packages.
 {% endhint %}
 
-Verify your **cardano-cli** and **cardano-node** were updated to the expected version.
-
+2. To build Cardano Node binaries using the source code that you downloaded in step 1, type the following commands where `<NewFolderName>` is the name of the folder you created in step 1 and `<GHCVersionNumber>` is the GHC version that you set in the section [Setting GHC and Cabal Versions](./upgrading-a-node.md#SetGCVersions):
 ```bash
-$(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") version
-$(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") version
-```
-
-{% hint style="danger" %}
-Stop your node before updating the binaries.
+# Navigate to the folder where you cloned the Cardano Node repository
+cd $HOME/git/<NewFolderName>
+# Update the list of available packages
+cabal update
+# Download all branches and tags from the remote repository
+git fetch --all --recurse-submodules --tags
+# Switch to the branch of the latest Cardano Node release
+git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
+# Adjust the project configuration to disable optimization and use the recommended compiler version
+cabal configure -O0 -w ghc-<GHCVersionNumber>
+# Append the cabal.project.local file in the current folder to avoid installing the custom libsodium library
+echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" >> cabal.project.local
+# Compile the cardano-node and cardano-cli packages found in the current directory
+cabal build cardano-node cardano-cli
+```  
+<!-- References:
+https://stackoverflow.com/questions/67748740/what-is-the-difference-between-git-clone-git-fetch-and-git-pull
+https://cabal.readthedocs.io/en/3.4/cabal-project.html#package-configuration-options
+https://iohk.zendesk.com/hc/en-us/articles/900001951646-Building-a-node-from-source -->  
+{% hint style="info" %}
+The time required to compile the `cardano-node` and `cardano-cli` packages may be a few minutes to hours, depending on the specifications of your computer.
 {% endhint %}
 
-{% tabs %}
-{% tab title="systemd" %}
-```
-sudo systemctl stop cardano-node
-```
-{% endtab %}
-
-{% tab title="cnode" %}
-```
-sudo systemctl stop cnode
-```
-{% endtab %}
-
-{% tab title="block producer node" %}
+3. When the compiler finishes, to verify the version numbers of the new `cardano-node` and `cardano-cli` binaries type the following commands where `<NewFolderName>` is the folder where you cloned the Cardano Node GitHub repository in step 1:
 ```bash
-killall -s 2 cardano-node
+$(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-node") version
+$(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli") version
 ```
-{% endtab %}
 
-{% tab title="relaynode1" %}
-```
-killall -s 2 cardano-node
-```
-{% endtab %}
-{% endtabs %}
+## :open_file_folder:Installing New Cardano Node Binaries
 
-Copy **cardano-cli** and **cardano-node** files into bin directory.
+**To install new `cardano-node` and `cardano-cli` binaries:**
 
+1. If your Cardano node is running, then type the following command to stop the node where `<CardanoServiceName>` is the name of the systemd service running your node:
 ```bash
-sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
+sudo systemctl stop <CardanoServiceName>.service
 ```
 
+2. To replace the existing `cardano-node` and `cardano-cli` binaries, type the following commands where `<NewFolderName>` is the folder where you cloned the Cardano Node GitHub respository in the section [Building Cardano Node Binaries](./upgrading-a-node.md#BuildingCN) and `<DestinationPath>` is the absolute file path to the folder where you install Cardano Node binaries on your local computer:
 ```bash
-sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
+sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-node") <DestinationPath>/cardano-node
+sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli") <DestinationPath>/cardano-cli
 ```
+{% hint style="info" %}
+If you follow the Coin Cashew instructions for [Compiling Source Code](../part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
+{% endhint %}
 
-Verify your **cardano-cli** and **cardano-node** were copied successfully and updated to the expected version.
-
+3. To verify that you installed the new Cardano Node binaries successfully, type:
 ```bash
 cardano-node version
 cardano-cli version
 ```
 
-{% hint style="info" %}
-**Optional Best Practice**: Now is an opportune time to update/upgrade and reboot your Ubuntu operating system.
-
+4. Optionally, to install the latest versions of all previously installed packages on your computer, and then reboot the computer, type:
 ```
 sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
 ```
-{% endhint %}
 
-{% hint style="success" %}
-Now restart your node to use the updated binaries. If you used the previously mentioned optional best practice, your binaries should've already auto-started.
-{% endhint %}
-
-{% tabs %}
-{% tab title="systemd" %}
-```
-sudo systemctl start cardano-node
-```
-{% endtab %}
-
-{% tab title="cnode" %}
-```
-sudo systemctl start cnode
-```
-{% endtab %}
-
-{% tab title="block producer node" %}
+5. If you need to restart your Cardano node manually, then type the following command where `<CardanoServiceName>` is the name of the systemd service running your Cardano node:
 ```bash
-cd $NODE_HOME
-./startBlockProducingNode.sh
-```
-{% endtab %}
+sudo systemctl start <CardanoServiceName>.service
+```  
 
-{% tab title="relaynode1" %}
-```bash
-cd $NODE_HOME
-./startRelayNode1.sh
-```
-{% endtab %}
-{% endtabs %}
+6. Copy the new `cardano-node` and `cardano-cli` binaries to the air-gapped, offline computer that you use to sign transactions for your stake pool.
 
-Finally, the following sequence will switch-over to your newly built cardano-node folder while keeping the old directory for backup.
+## :checkered_flag:Verifying the Upgrade
 
-```bash
-cd $HOME/git
-mv cardano-node/ cardano-node-old/
-mv cardano-node2/ cardano-node/
-```
-
-Verify that your node is working successfully by either checking gLiveView, your other journalctl logs, or grafana dashboard.
+To verify that the upgrade is successful, open gLiveView, journactl logs or Grafana dashboard.
 
 {% tabs %}
 {% tab title="gLiveView" %}
@@ -349,13 +275,7 @@ journalctl -fu cardano-node
 {% endtab %}
 {% endtabs %}
 
-{% hint style="info" %}
-It may take some time to start a node, sometimes up to 30 minutes. gLiveView may appear stuck on "Starting..." but this is normal behavior and simply requires time.
-{% endhint %}
-
-{% hint style="danger" %}
-:robot: **Important Reminder**: Don't forget to update your **air-gapped offline machine (cold environment)** with the new **Cardano CLI** binaries.
-{% endhint %}
+Starting a node may take up to 30 minutes. Be patient.
 
 {% hint style="success" %}
 Congrats on completing the update. :sparkles:
@@ -364,112 +284,13 @@ Did you find our guide useful? Send us a signal with a tip and we'll keep updati
 
 It really energizes us to keep creating the best crypto guides.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:
+Use [cointr.ee](https://cointr.ee/coincashew) to find our donation addresses. :pray:
 
 Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:
 
 Hang out and chat with our stake pool community on Telegram @ [https://t.me/coincashew](https://t.me/coincashew)
 {% endhint %}
 
-## :exploding\_head: Troubleshooting
+## :rotating_light:Troubleshooting
 
-### :motorway: Forked off
-
-Forget to update your node and now your node is stuck on an old chain?
-
-Reset your database files and be sure to grab the [latest genesis, config, topology json files](https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/index.html).
-
-```bash
-cd $NODE_HOME
-rm -rf db
-```
-
-### :open\_file\_folder: Reverting to a Previous Version Using a Backup
-
-{% hint style="danger" %}
-Stop your node before updating the binaries.
-{% endhint %}
-
-{% tabs %}
-{% tab title="systemd" %}
-```
-sudo systemctl stop cardano-node
-```
-{% endtab %}
-
-{% tab title="cnode" %}
-```
-sudo systemctl stop cnode
-```
-{% endtab %}
-
-{% tab title="block producer node" %}
-```bash
-killall -s 2 cardano-node
-```
-{% endtab %}
-
-{% tab title="relaynode1" %}
-```
-killall -s 2 cardano-node
-```
-{% endtab %}
-{% endtabs %}
-
-Restore the old repository.
-
-```bash
-cd $HOME/git
-mv cardano-node/ cardano-node-rolled-back/
-mv cardano-node-old/ cardano-node/
-```
-
-Copy the binaries to `/usr/local/bin`
-
-```bash
-sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
-sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
-```
-
-Verify the binaries are the correct version.
-
-```bash
-/usr/local/bin/cardano-cli version
-/usr/local/bin/cardano-node version
-```
-
-{% hint style="success" %}
-Now restart your node to use the updated binaries.
-{% endhint %}
-
-{% tabs %}
-{% tab title="systemd" %}
-```
-sudo systemctl start cardano-node
-```
-{% endtab %}
-
-{% tab title="cnode" %}
-```
-sudo systemctl start cnode
-```
-{% endtab %}
-
-{% tab title="block producer node" %}
-```bash
-cd $NODE_HOME
-./startBlockProducingNode.sh
-```
-{% endtab %}
-
-{% tab title="relaynode1" %}
-```bash
-cd $NODE_HOME
-./startRelayNode1.sh
-```
-{% endtab %}
-{% endtabs %}
-
-### :robot: Last Resort: Rebuild the Stake Pool
-
-Follow the steps in [Setting Up a Cardano Stake Pool](../)
+If your upgrade is unsuccessful, then try [Fixing a Corrupt Blockchain](../part-v-tips/fixing-a-corrupt-blockchain.md) and [Resetting an Installation](../part-v-tips/resetting-an-installation.md), as needed.

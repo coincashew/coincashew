@@ -215,7 +215,7 @@ curl -s 127.0.0.1:12798/metrics
 ![Credits to KAZE stake pool for this dashboard](../../../../.gitbook/assets/dashboard-kaze.jpg)
 
 {% hint style="info" %}
-Community contributer [**Sansky.de**](https://sanskys.github.io/grafana/) is sharing a very detailed Grafana tutorial :pray: [https://sanskys.github.io/grafana/](https://sanskys.github.io/grafana/)
+Community contributer [**SNSKY**](https://sanskys.github.io/grafana/) is sharing a very detailed Grafana tutorial :pray: [https://sanskys.github.io/grafana/](https://sanskys.github.io/grafana/)
 {% endhint %}
 
 {% hint style="success" %}

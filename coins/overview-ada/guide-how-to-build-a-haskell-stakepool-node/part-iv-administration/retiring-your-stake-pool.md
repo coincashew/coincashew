@@ -1,5 +1,18 @@
 # Retiring Your Stake Pool
 
+<!-- Reference:
+https://cardano-foundation.gitbook.io/stake-pool-course/stake-pool-guide/stake-pool/retire_stakepool -->
+
+If you no longer want to operate your stake pool, then you can deregister the pool. Deregistering the pool retires the pool.
+
+{% hint style="info" %}
+To retire your stake pool, your stake pool does NOT require valid KES keys. However, you must ensure that your nodes are fully synchronized with the blockchain.
+{% endhint %}
+<!--Reference:
+https://forum.cardano.org/t/kes-key-expired/98936 -->
+
+**To retire your stake pool:**
+
 First, generate the protocol-parameters.
 
 {% tabs %}
@@ -50,7 +63,7 @@ echo latest epoch for retirement is: ${maxRetirementEpoch}
 * the earliest epoch for retirement is 40 ( current epoch + 1).
 * the latest epoch for retirement is 57 ( poolRetireMaxEpoch + current epoch).
 
-Let's pretend we wish to retire as soon as possible in epoch 40.
+Let's presume that you want to retire as soon as possible, in epoch 40.
 {% endhint %}
 
 Create the deregistration certificate and save it as `pool.dereg.` Update the epoch to your desired retirement epoch, usually the earliest epoch or asap.
@@ -220,7 +233,10 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 {% endtabs %}
 
 {% hint style="info" %}
-After retirement completes in 2 epochs:
+In two epochs, after retirement completes:
 
-1\. Verify your pool is retired by checking with a block explorer such as [cardanoscan.io](https://cardanoscan.io) 2. Your pool deposit of 500 ADA is returned to your stake address (stake.addr) as a reward 3. [Claim stake pool rewards](claiming-stake-pool-rewards.md) 4. To send funds to another wallet, [submit a transaction](../part-v-tips/submitting-a-simple-transaction.md)
+1. Verify that your pool is retired using a block explorer such as [cardanoscan.io](https://cardanoscan.io)
+2. Your pool deposit of 500 ADA is returned to your stake address (stake.addr) as a reward.
+3. [Claim](../part-iv-administration/claiming-stake-pool-rewards.md) your stake pool rewards.
+4. As needed, [send](../part-v-tips/submitting-a-simple-transaction.md) funds to another wallet.
 {% endhint %}

@@ -145,25 +145,25 @@ sudo systemctl enable cardano-node
 Your stake pool is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-## :mag\_right: Viewing the Status of the Node Service
+### :mag\_right: Viewing the Status of the Node Service
 
 ```
 sudo systemctl status cardano-node
 ```
 
-## :arrows\_counterclockwise: Restarting the Node Service
+### :arrows\_counterclockwise: Restarting the Node Service
 
 ```
 sudo systemctl reload-or-restart cardano-node
 ```
 
-## :octagonal\_sign: Stopping the Node Service
+### :octagonal\_sign: Stopping the Node Service
 
 ```
 sudo systemctl stop cardano-node
 ```
 
-## :notebook: Viewing and Filtering Logs
+### :notebook: Viewing and Filtering Logs
 
 ```bash
 journalctl --unit=cardano-node --follow

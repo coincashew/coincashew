@@ -175,13 +175,28 @@ PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
 echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
 
-#### Integrating with PoolTool
+#### <a name="ptintegration"></a>Integrating with PoolTool
 
-CNCLI can send your tip and block slots to [PoolTool](https://pooltool.io). To do this, it requires that you set up a `pooltool.json` file containing your PoolTool API key and stake pool details. Your PoolTool API key can be found on your pooltool profile page.
+[PoolTool](https://pooltool.io) provides [example scripts](https://github.com/papacarp/pooltool.io) to submit the following data for your stake pool:
 
-Here's an example `pooltool.json` file.
+- Current block height
+- The number of slots in which your stake pool is currently elected to mint blocks
 
-Please update with your pool information and save it at `$NODE_HOME/scripts/pooltool.json`
+The following figure shows the green badge that PoolTool displays next to your stake pool when your node is fully synchronized with the blockchain (image credit to [QCPOL](https://cardano.stakepool.quebec)):
+
+![Your pool's tip on pooltool.io](../../../../.gitbook/assets/tip.png)
+
+You can also use Andrew Westberg's [CNCLI](https://github.com/AndrewWestberg/cncli) utilities to send the block height and slot count to PoolTool.
+
+[Guild Operators](https://cardano-community.github.io/guild-operators/) maintain the [`cncli.sh`](https://cardano-community.github.io/guild-operators/Scripts/cncli/) companion script to help stake pool operators use Andrew Westberg's CNCLI utilities.
+
+To send data to PoolTool using CNCLI utilities without using the `cncli.sh` script, create a configuration file containing your PoolTool API key and stake pool details.
+
+{% hint style="info" %}
+For details on requesting an API key from PoolTool, see the topic [Obtaining a PoolTool API Key](../part-v-tips/obtaining-a-pooltool-api-key.md).
+{% endhint %}
+
+To create a configuration file, update values in the following example with your pool information. To follow the example, save the configuration file at `$NODE_HOME/scripts/pooltool.json`
 
 ```bash
 cat > ${NODE_HOME}/scripts/pooltool.json << EOF

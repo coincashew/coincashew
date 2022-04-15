@@ -1,11 +1,9 @@
 # Securing Your Stake Pool Using a Hardware Wallet
 
-{% hint style="info" %}
-Secure your **pool pledge account** and **pool reward account** with a hardware wallet such as Trezor or Ledger Nano S/X. Credits to [angelstakepool ](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool)for documenting this process.
-{% endhint %}
+You can secure your **pool pledge account** and **pool reward account** using a [Trezor](https://trezor.io/) or [Ledger Nano S/X](https://www.ledger.com/) hardware wallet. Credits to [angelstakepool](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool) for documenting the procedure.
 
 {% hint style="danger" %}
-**Critical Reminder**: After adding a 2nd pool owner using a hardware wallet, you **must wait 2 epochs** before you transfer pledge funds from your **CLI Method** or **Mnemonic Method Wallet** to hardware wallet. Do not transfer any funds earlier because your pool pledge will be not met.
+**Critical Reminder**: After adding a 2nd pool owner using a hardware wallet, you **must wait 2 epochs** before you transfer pledge funds from your **CLI Method** or **Mnemonic Method** wallet to hardware wallet. Do not transfer any funds earlier because your pool pledge will not be met.
 {% endhint %}
 
 First, delegate your 2nd pool owner to your stake pool with Daedalus or Yoroi or Adalite.io
@@ -19,15 +17,15 @@ Install [cardano-hw-cli](https://github.com/vacuumlabs/cardano-hw-cli) to intera
 # Reference https://github.com/vacuumlabs/cardano-hw-cli/blob/develop/docs/installation.md
 
 cd $NODE_HOME
-wget https://github.com/vacuumlabs/cardano-hw-cli/releases/download/v1.2.0/cardano-hw-cli_1.2.0-1.deb
-sudo dpkg --install ./cardano-hw-cli_1.2.0-1.deb
+wget https://github.com/vacuumlabs/cardano-hw-cli/releases/download/v1.9.1/cardano-hw-cli_1.9.1-1.deb
+sudo dpkg --install ./cardano-hw-cli_1.9.1-1.deb
 ```
 {% endtab %}
 {% endtabs %}
 
 Connect and unlock your hardware wallet on your local PC or block producer node.
 
-Export your hardware wallet's staking keys.
+To generate the verification key and hardware wallet signing file, type:
 
 {% tabs %}
 {% tab title="local PC or block producer node" %}
@@ -39,6 +37,13 @@ cardano-hw-cli address key-gen \
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="info" %}
+As needed, you can edit the value of the `--path` option to specify the derivation path to the key with which you want to sign. `hw-stake.vkey` is not sensitive and may be shared publicly. `hw-stake.hwsfile` does NOT contain the raw private key.
+{% endhint %}
+<!-- References:
+https://githubhot.com/repo/vacuumlabs/cardano-hw-cli/issues/54
+https://github.com/vacuumlabs/cardano-hw-cli -->
 
 Copy **hw-stake.vkey** to your **cold environment.**
 
