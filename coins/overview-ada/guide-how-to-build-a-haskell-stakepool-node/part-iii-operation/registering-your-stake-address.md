@@ -1,5 +1,16 @@
 # Registering Your Stake Address
 
+Pledge is the stake that you delegate to your own pool. Using a transaction, you must register on the blockchain the stake address associated with a payment address containing funds that you want to pledge.
+<!-- References:
+https://youtu.be/PCqvFMTGu3o 
+https://developers.cardano.org/docs/operate-a-stake-pool/cardano-key-pairs -->
+
+{% hint style="info" %}
+For a general discussion on creating transactions, see the topic [Building and Signing Transactions](https://testnets.cardano.org/en/testnets/cardano/transactions/creating-transactions/) in the official [Cardano Testnet](https://testnets.cardano.org/en/testnets/cardano/overview/) documentation.
+{% endhint %}
+
+**To register a stake address on the blockchain:**
+
 Create a certificate, `stake.cert`, using the `stake.vkey`
 
 {% tabs %}
@@ -56,7 +67,7 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-Find the stakeAddressDeposit value.
+Find the amount of the deposit required to register a stake address.
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -68,7 +79,7 @@ echo stakeAddressDeposit : $stakeAddressDeposit
 {% endtabs %}
 
 {% hint style="info" %}
-Registration of a stake address certificate (stakeAddressDeposit) costs 2000000 lovelace.
+Registering a stake address requires a deposit of 2000000 lovelace.
 {% endhint %}
 
 Run the build-raw transaction command
@@ -110,7 +121,11 @@ echo fee: $fee
 {% endtabs %}
 
 {% hint style="info" %}
-Ensure your balance is greater than cost of fee + stakeAddressDeposit or this will not work.
+When calculating the fee for a transaction, the `--witness-count` option indicates the number of keys signing the transaction. You must sign a transaction submitting a stake address registration certificate to the blockchain using the secret—private—key for the payment address spending the input, as well as the secret key for the stake address to register.
+{% endhint %}
+
+{% hint style="info" %}
+When creating the transaction, ensure that the funds the input contains are greater than the total of the transaction fee and stake address deposit. If funds are insufficient, then the transaction fails.
 {% endhint %}
 
 Calculate your change output.

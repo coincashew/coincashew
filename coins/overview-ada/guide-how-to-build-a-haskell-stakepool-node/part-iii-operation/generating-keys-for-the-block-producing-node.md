@@ -102,7 +102,7 @@ Copy **kes.vkey** to your **cold environment**.
 Change the <**startKesPeriod**> value accordingly.
 
 {% hint style="info" %}
-Stake pool operators must provide an operational certificate to verify that the pool has the authority to run. The certificate includes the operator’s signature, and includes key information about the pool (addresses, keys, etc.). Operational certificates represent the link between the operator’s offline key and their operational key.
+Your stake pool requires an operational certificate to verify that the pool has the authority to run. For more details on operational certificates, see the section _Operational Certificates_ in the topic [Creating a Stake Pool](https://testnets.cardano.org/en/testnets/cardano/get-started/creating-a-stake-pool/) in the official [Cardano Testnet](https://testnets.cardano.org/en/testnets/cardano/overview/) documentation.
 {% endhint %}
 
 {% tabs %}

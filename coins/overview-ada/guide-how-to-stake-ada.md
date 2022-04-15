@@ -1,42 +1,31 @@
-# Guide: How to stake ADA
+# Guide: How to Stake ADA
 
-## :confetti_ball: Delegate your stake
+## :confetti_ball: Delegating ADA to a Stake Pool
 
+**To delegate your ADA cryptocurrency to a stake pool:**
+
+1. Install an official wallet for [Cardano](https://cardano.org/) such as [Daedalus](https://daedaluswallet.io) or [Yoroi](https://yoroi-wallet.com)  
 {% hint style="info" %}
-If you had ada in a Daedalus or Yoroi wallet when the balance snapshot was taken at 12.00 UTC on November 29, 2019, you can participate. If not, you will need to wait until mainnet Cardano is upgraded to **Shelley**.
-{% endhint %}
-
-1\. **Install **an official wallet from [Cardano.org](https://staking.cardano.org/en/delegation/)
-
-* Choice of **Daedalus **or **Yoroi**
-
-{% hint style="info" %}
-Yoroi will be the quickest choice and is a lightweight wallet that runs in your browser or mobile phone.
-{% endhint %}
-
-For this example, we will delegate with Yoroi.
-
+Yoroi is quicker to set up than Daedalus. The following steps explain how to delegate using Yoroi.
+{% endhint %}  
 ![](../../.gitbook/assets/ss.PNG)
 
-2\. **Install **Yoroi from your app store
+2. Install Yoroi from your app store
 
-3\. Click on the **Delegation (Simple) tab**
+3. Click on the **Delegation (Simple)** tab.
 
-4\. Search for a Stake Pool you would like to delegate to.
-
+4. Find a pool where you want to delegate your stake.  
 {% hint style="info" %}
-Easily find and browse Stake Pools at [PoolTool](https://pooltool.io) or [ADApools.org](https://adapools.org)
-
-Or watch this youtube video on [How to choose a good Cardano stake pool by Kaizen Crypto.](https://www.youtube.com/watch?v=tgxHfQy7CnU)
+ For example, you can browse stake pools on [PoolTool](https://pooltool.io) or [ADApools.org](https://adapools.org) Web sites. The YouTube video [How to Choose a Good Cardano Stake Pool](https://www.youtube.com/watch?v=tgxHfQy7CnU) by Kaizen Crypto may also offer you some helpful tips.
 {% endhint %}
 
-5\. Click **Delegate**
+5. Click **Delegate**
 
-6\. Enter in your spending password
+6. Type your spending password.
 
-7\. Click **DELEGATE **button
+7. Click the **DELEGATE** button.
 
-8\. :tada: Congratulations. Rewards will start showing up in 2 days, or epochs. Check your rewards on the **Dashboard tab**.
+8. :tada: Congratulations! Rewards will start showing up in two epochs (each epoch is five days in duration). Check your rewards using the **Dashboard** tab.
 
 ## :mag_right: Monitoring your rewards
 
