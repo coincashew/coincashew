@@ -776,7 +776,7 @@ Generate your Teku Config file. Simply copy and paste.
 cat > $HOME/teku.yaml << EOF
 # network
 network: "mainnet"
-initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v3/debug/beacon/states/finalized" 
+initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v2/debug/beacon/states/finalized" 
 
 # p2p
 p2p-enabled: true
@@ -795,7 +795,7 @@ metrics-port: 8008
 
 # database
 data-path: "/var/lib/teku"
-data-storage-mode: "archive"
+data-storage-mode: "prune"
 
 # rest api
 rest-api-port: 5051

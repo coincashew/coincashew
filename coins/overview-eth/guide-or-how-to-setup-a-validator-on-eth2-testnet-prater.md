@@ -576,9 +576,11 @@ sudo apt install openjdk-11-jdk -y
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
 ```
-cd
-wget -O besu.tar.gz https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/21.7.4/besu-21.7.4.zip
-unzip besu.tar.gz
+BINARIES_URL="https://github.com/hyperledger/besu/releases/download/22.1.3/besu-22.1.3.tar.gz"
+
+cd $HOME
+wget -O besu.tar.gz "$BINARIES_URL"
+tar -xzvf besu.tar.gz -C $HOME
 rm besu.tar.gz
 mv besu* besu
 ```
@@ -594,17 +596,28 @@ Simply copy/paste the following.
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
-Description     = besu eth1 service
+Description     = Besu Execution Layer Client service
 Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
-User            = $(whoami)
-ExecStart       = $(echo $HOME)/besu/bin/besu --network=goerli --sync-mode=FAST --pruning-enabled=true --metrics-enabled --rpc-http-enabled --data-path="$HOME/.besu_goerli"
+User            = $USER
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
 TimeoutStopSec  = 300
+ExecStart       = $HOME/besu/bin/besu \
+  --network=mainnet \
+  --rpc-http-host="0.0.0.0" \
+  --rpc-http-cors-origins="*" \
+  --rpc-ws-enabled=true \
+  --rpc-http-enabled=true \
+  --rpc-ws-host="0.0.0.0" \
+  --host-allowlist="*" \
+  --metrics-enabled=true \
+  --metrics-host=0.0.0.0 \
+  --data-storage-format=BONSAI \
+  --data-path="$HOME/.besu"
 
 [Install]
 WantedBy    = multi-user.target
@@ -1937,7 +1950,7 @@ Generate your Teku Config file. Simply copy and paste.
 cat > $HOME/teku.yaml << EOF
 # network
 network: "prater"
-initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v3/debug/beacon/states/finalized" 
+initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v2/debug/beacon/states/finalized" 
 
 # p2p
 p2p-enabled: true
@@ -1956,7 +1969,7 @@ metrics-port: 8008
 
 # database
 data-path: "/var/lib/teku"
-data-storage-mode: "archive"
+data-storage-mode: "prune"
 
 # rest api
 rest-api-port: 5051

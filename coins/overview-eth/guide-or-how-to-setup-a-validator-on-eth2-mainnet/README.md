@@ -15,7 +15,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of March 8 2022, this is **guide version 4.0.0** and written for **Ethereum mainnet**:grin:
+As of March 14 2022, this is **guide version 4.0.1** and written for **Ethereum mainnet**:grin:
 {% endhint %}
 
 {% hint style="info" %}
@@ -32,8 +32,9 @@ The guide includes the following parts:
 * ****[**Part II - Maintenance**](part-ii-maintenance.md) explains ongoing tasks you'll require to keep your ETH staking node in great shape and up-to-date.
 * ****[**Part III - Tips**](part-iii-tips.md) contains additional procedures to simplify managing your ETH staking node.
 
-## :page\_facing\_up: Changelog - **Update Notes -** **March 8 2022**
+## :page\_facing\_up: Changelog - **Update Notes -** **March 14 2022**
 
+* Updated besu execution client to use BONSAI format
 * Restructured guide for improved speed and readability
 * Added how to check your [Validator's Sync Committee duties](part-ii-maintenance/checking-my-eth-validators-sync-committee-duties.md)
 * Added new Formatting fixes and updated Teku initial state API.

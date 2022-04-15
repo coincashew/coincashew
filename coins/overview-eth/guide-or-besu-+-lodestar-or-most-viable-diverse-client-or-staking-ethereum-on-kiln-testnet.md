@@ -228,12 +228,11 @@ ExecStart       = $HOME/git/besu/build/install/besu/bin/besu \
   --rpc-http-enabled=true \
   --rpc-ws-host="0.0.0.0" \
   --host-allowlist="*" \
+  --Xmerge-support=true \
   --engine-host-allowlist="*" \
   --engine-jwt-enabled=true \
   --engine-rpc-ws-port=8550 \
-  --Xmerge-support=true \
   --engine-rpc-http-port=8551 \
-  --engine-jwt-enabled=true \
   --engine-jwt-secret="/var/lib/besu/jwtsecret" \
   --metrics-enabled=true \
   --metrics-host=0.0.0.0 \
@@ -610,7 +609,7 @@ journalctl -fu validator
 ```
 
 {% hint style="info" %}
-After making your 32 ETH deposit, your validator is placed into queue for activation which typically takes half a day to clear.
+After making your 32 ETH deposit, your validator is placed into queue for activation which typically takes 6-24 hours. Once activated, your validator begins staking and attestation duties. Learn more about the [depositing process.](https://kb.beaconcha.in/ethereum-2.0-and-depositing-process)
 {% endhint %}
 
 A properly functioning Lodestar validator will indicate publishing of attestations. For example,
@@ -633,9 +632,12 @@ Press `Ctrl` + `C` to exit the logs.
 
 As a newly minted Ethereum Staker,
 
-* Learn to connect your MetaMask wallet to [your own execution layer node](https://media.consensys.net/make-use-of-your-remote-ethereum-node-using-an-ssh-tunnel-and-metamask-f7b51f7c1c0f)
 * \#TestingTheMerge has a [comprehensive list of things-to-test](https://hackmd.io/WKpg6SNzQbi1jVKNgrSgWg)
 * Monitor your validator's earnings and performance at [https://beaconchain.kiln.themerge.dev/](https://beaconchain.kiln.themerge.dev) by entering your validator's public key.
+* Learn to connect your MetaMask wallet to [your own execution layer node](https://media.consensys.net/make-use-of-your-remote-ethereum-node-using-an-ssh-tunnel-and-metamask-f7b51f7c1c0f)
+  * If node is remote then establish a ssh tunnel. Configure MetaMask with these settings.
+
+![kiln network settings](../../.gitbook/assets/settingKilnMM.png)
 
 ### Additional Information
 

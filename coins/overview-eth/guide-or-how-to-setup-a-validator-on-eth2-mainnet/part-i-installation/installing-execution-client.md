@@ -1,4 +1,4 @@
-# :flying\_saucer: 3. Installing execution client (ETH1 node)
+# Installing execution client
 
 {% hint style="info" %}
 Ethereum requires a connection to execution client in order to monitor for 32 ETH validator deposits. Hosting your own execution client is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
@@ -20,8 +20,6 @@ Your choice of either [**Geth**](https://geth.ethereum.org)**,** [**Besu**](http
 
 Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
 
-
-
 :dna:**Install from the repository**
 
 ```
@@ -30,8 +28,6 @@ sudo apt-get update -y
 sudo apt dist-upgrade -y
 sudo apt-get install ethereum -y
 ```
-
-
 
 :gear: **Setup and configure systemd**
 
@@ -58,8 +54,6 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-
-
 {% hint style="info" %}
 **Nimbus Specific Configuration**: Add the following flag to the ExecStart line.
 
@@ -67,8 +61,6 @@ EOF
 --ws
 ```
 {% endhint %}
-
-
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -80,8 +72,6 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-
-
 Run the following to enable auto-start at boot time.
 
 ```
@@ -89,15 +79,11 @@ sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
-
-
 :chains:**Start geth**
 
 ```
 sudo systemctl start eth1
 ```
-
-
 
 {% hint style="info" %}
 **Geth Tip**: When is my geth node synched?
@@ -113,8 +99,6 @@ sudo systemctl start eth1
 **Hyperledger Besu** is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
 {% endhint %}
 
-
-
 :dna:**Install java dependency**
 
 ```
@@ -122,21 +106,19 @@ sudo apt update
 sudo apt install openjdk-11-jdk -y
 ```
 
-
-
 :last\_quarter\_moon\_with\_face:**Download and unzip Besu**
 
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
 ```
-cd
-wget -O besu.tar.gz https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/21.7.4/besu-21.7.4.zip
-unzip besu.tar.gz
+BINARIES_URL="https://github.com/hyperledger/besu/releases/download/22.1.3/besu-22.1.3.tar.gz"
+
+cd $HOME
+wget -O besu.tar.gz "$BINARIES_URL"
+tar -xzvf besu.tar.gz -C $HOME
 rm besu.tar.gz
 mv besu* besu
 ```
-
-
 
 :gear: **Setup and configure systemd**
 
@@ -147,17 +129,28 @@ Simply copy/paste the following.
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
-Description     = besu eth1 service
+Description     = Besu Execution Layer Client service
 Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
-User            = $(whoami)
-ExecStart       = $(echo $HOME)/besu/bin/besu --network=mainnet --sync-mode=FAST --pruning-enabled=true --metrics-enabled --rpc-http-enabled --data-path="$HOME/.besu"
+User            = $USER
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
 TimeoutStopSec  = 300
+ExecStart       = $HOME/besu/bin/besu \
+  --network=mainnet \
+  --rpc-http-host="0.0.0.0" \
+  --rpc-http-cors-origins="*" \
+  --rpc-ws-enabled=true \
+  --rpc-http-enabled=true \
+  --rpc-ws-host="0.0.0.0" \
+  --host-allowlist="*" \
+  --metrics-enabled=true \
+  --metrics-host=0.0.0.0 \
+  --data-storage-format=BONSAI \
+  --data-path="$HOME/.besu"
 
 [Install]
 WantedBy    = multi-user.target
@@ -185,8 +178,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
-
-
 :chains: **Start besu**
 
 ```
@@ -199,16 +190,12 @@ sudo systemctl start eth1
 **Nethermind** is a flagship Ethereum client all about performance and flexibility. Built on **.NET** core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
 {% endhint %}
 
-
-
 :gear: **Install dependencies**
 
 ```
 sudo apt-get update
 sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 ```
-
-
 
 :last\_quarter\_moon\_with\_face:**Download and unzip Nethermind**
 
@@ -224,8 +211,6 @@ curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | 
 unzip -o nethermind*.zip
 rm nethermind*linux*.zip
 ```
-
-
 
 :gear: **Setup and configure systemd**
 
@@ -263,8 +248,6 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-
-
 Run the following to enable auto-start at boot time.
 
 ```
@@ -272,15 +255,11 @@ sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
-
-
 :chains: **Start Nethermind**
 
 ```
 sudo systemctl start eth1
 ```
-
-
 
 {% hint style="info" %}
 **Note about Metric Error messages**: You will see these until prometheus pushergateway is setup in section 6. `Error in MetricPusher: System.Net.Http.HttpRequestException: Connection refused`
@@ -291,8 +270,6 @@ sudo systemctl start eth1
 {% hint style="info" %}
 **Erigon** - Successor to OpenEthereum, Erigon is an implementation of Ethereum (aka "Ethereum client"), on the efficiency frontier, written in Go.
 {% endhint %}
-
-
 
 :gear: **Install Go dependencies**
 
@@ -309,16 +286,12 @@ echo export PATH=$PATH:/usr/local/go/bin>> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
-
-
 Verify Go is properly installed and cleanup files.
 
 ```bash
 go version
 rm go.tar.gz
 ```
-
-
 
 :robot: **Build and install Erigon**
 
@@ -329,8 +302,6 @@ sudo apt-get update
 sudo apt install build-essential git
 ```
 
-
-
 Review the latest release at [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)
 
 ```bash
@@ -340,16 +311,12 @@ cd erigon
 make erigon && make rpcdaemon
 ```
 
-
-
 ​ Make data directory and update directory ownership.
 
 ```bash
 sudo mkdir -p /var/lib/erigon
 sudo chown $USER:$USER /var/lib/erigon
 ```
-
-
 
 ​ :gear: **Setup and configure systemd**
 
@@ -379,13 +346,9 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-
-
 {% hint style="info" %}
 By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain (aka, for if tip block is no. 12'000'000, only the data between 11'910'000-12'000'000 will be kept).
 {% endhint %}
-
-
 
 ```bash
 cat > $HOME/eth1-erigon.service << EOF 
@@ -409,8 +372,6 @@ WantedBy    = eth1.service
 EOF
 ```
 
-
-
 Move the unit files to `/etc/systemd/system` and give it permissions.
 
 ```bash
@@ -423,16 +384,12 @@ sudo chmod 644 /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1-erigon.service
 ```
 
-
-
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable eth1 eth1-erigon
 ```
-
-
 
 :chains:**Start Erigon**
 
@@ -450,16 +407,12 @@ OpenEthereum will no longer be supported post London hard fork. Gnosis, maintain
 OpenEthereum **-** It's goal is to be the fastest, lightest, and most secure Ethereum client using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
 {% endhint %}
 
-
-
 :gear: Install dependencies
 
 ```
 sudo apt-get update
 sudo apt-get install curl jq unzip -y
 ```
-
-
 
 :robot: Install OpenEthereum
 
@@ -475,8 +428,6 @@ unzip -o openethereum*.zip
 chmod +x openethereum
 rm openethereum*.zip
 ```
-
-
 
 ​ :gear: **Setup and configure systemd**
 
@@ -526,8 +477,6 @@ Run the following to enable auto-start at boot time.
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
-
-
 
 :chains:Start OpenEthereum
 
