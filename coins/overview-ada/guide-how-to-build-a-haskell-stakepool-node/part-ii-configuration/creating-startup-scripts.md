@@ -14,7 +14,7 @@ TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
-/usr/local/bin/cardano-node run +RTS -N -A16m -qg -qb -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
+/usr/local/bin/cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
 {% endtab %}
@@ -30,7 +30,7 @@ TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
-/usr/local/bin/cardano-node run +RTS -N -A16m -qg -qb -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
+/usr/local/bin/cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}
 EOF
 ```
 {% endtab %}
@@ -55,7 +55,7 @@ chmod +x $NODE_HOME/startRelayNode1.sh
 Run the following to create a **systemd unit file** to define your`cardano-node.service` configuration.
 
 {% hint style="info" %}
-### :cake: Benefits of Using systemd for a Stake Pool
+## :cake: Benefits of Using systemd for a Stake Pool
 
 1. Auto-start your stake pool when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed stake pool processes.
@@ -145,25 +145,25 @@ sudo systemctl enable cardano-node
 Your stake pool is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-### :mag\_right: Viewing the Status of the Node Service
+## :mag\_right: Viewing the Status of the Node Service
 
 ```
 sudo systemctl status cardano-node
 ```
 
-### :arrows\_counterclockwise: Restarting the Node Service
+## :arrows\_counterclockwise: Restarting the Node Service
 
 ```
 sudo systemctl reload-or-restart cardano-node
 ```
 
-### :octagonal\_sign: Stopping the Node Service
+## :octagonal\_sign: Stopping the Node Service
 
 ```
 sudo systemctl stop cardano-node
 ```
 
-### :notebook: Viewing and Filtering Logs
+## :notebook: Viewing and Filtering Logs
 
 ```bash
 journalctl --unit=cardano-node --follow
@@ -180,3 +180,8 @@ journalctl --unit=cardano-node --since=today
 ```
 journalctl --unit=cardano-node --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
 ```
+
+## :chart_with_upwards_trend: Improving Cardano Node Performance
+
+If you are not satisfied with the performance of an instance of Cardano Node, then [Configuring Runtime Options](../part-v-tips/configuring-runtime-options.md) may help.
+
