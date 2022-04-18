@@ -1,15 +1,13 @@
 ---
 description: >-
-  On Ubuntu/Debian, this guide will illustrate how to install and configure a
-  Cardano stake pool from source code on a two node setup with 1 block producer
-  node and 1 relay node.
+  After completing this guide, you will have a Cardano stake pool running on the Ubuntu Linux distribution, registered and operating on the mainnet blockchain using a two-node configuration comprised of one block-producing node and one relay node.
 ---
 
 # Guide: How to Set Up a Cardano Stake Pool
 
 ## :wrench: About This Guide
 
-The _How to Set Up a Cardano Stake Pool_ guide aims to give you complete, step-by-step instructions to implement and maintain a secure Cardano stake pool operating on the Cardano mainnet blockchain using the currently recommended software versions.
+The _How to Set Up a Cardano Stake Pool_ guide aims to give you complete, step-by-step instructions to implement and maintain a secure Cardano stake pool using the currently recommended software versions.
 
 The guide includes the following parts:
 
@@ -20,7 +18,7 @@ The guide includes the following parts:
 * ****[**Part V - Tips**](part-v-tips.md) contains additional procedures to simplify managing your stake pool.
 
 {% hint style="info" %}
-To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying glass (![](../../../.gitbook/assets/search-icon.png)) icon in the top right corner of the left navigation.
+To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying glass (![](../../../.gitbook/assets/search-icon.png)) icon in the top right corner of the left navigation. If you need help when working through the guide, the [Cardano Forum](https://forum.cardano.org/) is available as a resource. The Cardano community welcomes you.
 {% endhint %}
 
 ## :tada: Introduction

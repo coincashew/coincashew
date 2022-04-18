@@ -1,7 +1,6 @@
 ---
 description: >-
-  This quick start guide walks through setting up an external relay node with
-  the help of CNTOOLs.
+  Set up an external relay node using [CNTools](https://cardano-community.github.io/guild-operators/Scripts/cntools/).
 ---
 
 # Setting Up an External Passive Relay Node

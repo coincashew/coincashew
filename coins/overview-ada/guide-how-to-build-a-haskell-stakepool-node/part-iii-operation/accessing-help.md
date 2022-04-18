@@ -37,3 +37,7 @@ cardano-cli node key-gen-KES --help
 ```
 
 The built-in documentation is available to help you understand commands that you execute when setting up and operating your stake pool.
+
+{% hint style="info" %}
+If you need additional help, the [Cardano Forum](https://forum.cardano.org/) is available as a resource. The Cardano community welcomes you.
+{% endhint %}

@@ -1,5 +1,6 @@
 ---
-description: Quick steps to secure your node.
+description: >-
+  Secure your Cardano node.
 ---
 
 # Hardening an Ubuntu Server

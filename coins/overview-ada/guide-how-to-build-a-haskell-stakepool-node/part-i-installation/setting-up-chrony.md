@@ -1,7 +1,6 @@
 ---
 description: >-
-  chrony is an implementation of the Network Time Protocol and helps to keep
-  your computer's time synchronized with NTP.
+  chrony is an implementation of the Network Time Protocol (NTP), helping to synchronize the time on your computer.
 ---
 
 # Setting Up chrony
