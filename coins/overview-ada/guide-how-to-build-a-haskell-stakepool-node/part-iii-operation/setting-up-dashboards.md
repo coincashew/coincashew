@@ -1,9 +1,13 @@
 # Setting Up Dashboards
 
-{% hint style="info" %}
-* **Prometheus** is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/)
-* **Grafana** is a dashboard used to visualize the collected data.
-{% endhint %}
+When your nodes are up and running, monitor node behaviour regularly to help ensure that your system is performing as expected and to identify potential opportunities for fine tuning system performance.
+<!-- Reference:
+https://testnets.cardano.org/en/testnets/cardano/monitor/monitoring-the-cardano-node/ -->
+
+As an alternative or in addition to using gLiveView to monitor your stake pool, you may also use Prometheus and Grafana:
+
+* [Prometheus](https://prometheus.io) is a monitoring platform that collects metrics from monitored targets by scraping metrics using HTTP endpoints on these targets.
+* [Grafana](https://grafana.com) is a dashboard for displaying visualizations of the collected data using your Web browser.
 
 ## :hatching\_chick: Installing Prometheus and Grafana
 
