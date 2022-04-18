@@ -23,12 +23,11 @@ In the results, the value of the `Flag -with-rtsopts` key displays the default R
 
 For details on available RTS options and setting RTS options using the command line, in the [GHC User's Guide](https://downloads.haskell.org/ghc/8.10.4/docs/users_guide.pdf) see the sections _RTS Options for SMP Parallelism_ on page 122 and _Running a Compiled Program_ on page 158.
 
-For example, to produce runtime system statistics for each garbage collection in addition to using default RTS options, include the following RTS option in your `cardano-node run` command where `<FileName>` is the name of the file in the current folder where you want to output statistics:
+For example, to produce runtime system statistics for each garbage collection in addition to using default RTS options, include the following RTS option in your `cardano-node run` command where `<FileName>` is the name of the file in the current folder where you want to output statistics and `<Options>` is the list of options that you use when running your node:
 
-`/usr/local/bin/cardano-node run +RTS -S<FileName> -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG}`
+`/usr/local/bin/cardano-node run +RTS -S<FileName> -RTS <Options>`
 
-
-If you are not satisfied with the performance of an instance of Cardano Node, subjectively you may notice improvement using custom RTS options such as:
+If you are not satisfied with the performance of an instance of Cardano Node, then subjectively you may notice improvement using custom RTS options such as:
 
 ```bash
 +RTS -N -qg -qb -RTS
@@ -40,5 +39,5 @@ If you are not satisfied with the performance of an instance of Cardano Node, su
 <!-- Reference:
 https://forum.cardano.org/t/solving-the-cardano-node-huge-memory-usage-done/67032 -->
 
-If you identify different RTS options that improve the performance of your Cardano Node instance, then please contribute your findings to [Coin Cashew](https://www.coincashew.com/).
+If you identify different RTS options that noticably improve the performance of your Cardano Node instance, then please consider contributing your findings to [Coin Cashew](https://www.coincashew.com/) for the potential benefit of other stake pools operating in the Cardano network.
 
