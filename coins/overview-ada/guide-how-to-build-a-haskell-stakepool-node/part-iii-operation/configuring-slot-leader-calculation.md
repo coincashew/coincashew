@@ -284,6 +284,8 @@ Here is an example with a UTC+2 timezone for Mainnet:
 Add cronjob and edit parameters based on your needs, `PATH`, `NODE_HOME`, `NODE_CONFIG`, `CARDANO_NODE_SOCKET_PATH`, `MM`, `HH`, `path_to_script` and `desired_log_folder`:
 ```bash 
 cat > $NODE_HOME/crontab-fragment.txt << EOF
+# disable MTA use
+MAILTO=""
 # linux path, needed because cron doesn't know where to find cardano-cli
 PATH=
 # folder with cardano-node files
