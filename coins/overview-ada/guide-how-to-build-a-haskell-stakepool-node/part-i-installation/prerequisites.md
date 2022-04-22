@@ -22,9 +22,9 @@ As a stake pool operator for Cardano, you must be competent with the following a
 ## :reminder\_ribbon: Minimum Stake Pool Hardware Requirements
 
 * **Two separate servers**: 1 for block producer node, 1 for relay node
-* **One air-gapped offline machine (cold environment)**
-* **Operating system**: 64-bit Linux (i.e. Ubuntu Server 20.04 LTS)
-* **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
+* **One air-gapped offline computer (cold environment)**
+* **Operating system**: 64-bit Linux (i.e. Ubuntu 20.04 LTS)
+* **Processor:** An Intel or AMD x86 processor with two or more cores (2GHz or faster)
 * **Memory:** 12GB of RAM
 * **Storage:** 50GB of free storage
 * **Internet:** Broadband internet connection with speeds at least 10 Mbps.
@@ -35,11 +35,11 @@ As a stake pool operator for Cardano, you must be competent with the following a
 ## :man\_lifting\_weights: Recommended Future-proof Stake Pool Hardware Setup
 
 * **Three separate servers**: 1 for block producer node, 2 for relay nodes
-* **One air-gapped offline machine (cold environment)**
+* **One air-gapped offline computer (cold environment)**
 * **Operating system**: 64-bit Linux (i.e. Ubuntu 20.04 LTS)
 * **Processor:** 4 core or higher CPU
-* **Memory**: 16GB+ of RAM
-* **Storage**: 256GB+ SSD
+* **Memory**: 16GB or more of RAM
+* **Storage**: 256GB or larger SSD
 * **Internet**: Broadband internet connections with speeds at least 100 Mbps
 * **Data Plan**: Unlimited
 * **Power:** Reliable electrical power with UPS
@@ -47,14 +47,12 @@ As a stake pool operator for Cardano, you must be competent with the following a
 
 ## :unlock: Recommended Stake Pool Security
 
-If you need ideas on how to harden your stake pool's nodes, refer to [this guide](hardening-an-ubuntu-server.md).
+If you need ideas on how to harden your stake pool's nodes, refer to the topic [Hardening an Ubuntu Server](hardening-an-ubuntu-server.md).
 
-## :tools: Setup Ubuntu
+## :tools: Installing Ubuntu
 
-If you need to install **Ubuntu Server**, refer [to this guide.](https://ubuntu.com/tutorials/install-ubuntu-server#1-overview)
-
-For instructions on installing **Ubuntu Desktop**, refer [to this guide.](https://www.coincashew.com/coins/overview-xtz/guide-how-to-setup-a-baker/install-ubuntu)
+As needed, refer to resources available online to help you install [Ubuntu Server](https://ubuntu.com/tutorials/install-ubuntu-server#1-overview) or [Ubuntu Desktop](https://www.coincashew.com/coins/overview-xtz/guide-how-to-setup-a-baker/install-ubuntu).
 
 ## :bricks: Rebuilding Nodes
 
-If you are rebuilding or reusing an existing `cardano-node` installation, refer to the section [Resetting an Installation](../part-v-tips/resetting-an-installation.md).
+If you are rebuilding or reusing an existing Cardano Node installation, then refer to the section [Resetting an Installation](../part-v-tips/resetting-an-installation.md).

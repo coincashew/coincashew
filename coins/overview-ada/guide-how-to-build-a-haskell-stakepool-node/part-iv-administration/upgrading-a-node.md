@@ -42,7 +42,7 @@ sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/loca
 ```
 
 2. To confirm that the new version of the CNCLI binary is installed, type:
-```
+```bash
 cncli -V
 ```
 
@@ -86,7 +86,7 @@ sed -i env \
     -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
 {% hint style="info" %}
-For details on setting the `NODE_HOME` environment variable, see the topic [Installing Cabal and GHC](../part-i-installation/installing-cabal-and-ghc.md)
+For details on setting the `NODE_HOME` environment variable, see the topic [Installing the Glasgow Haskell Compiler and Cabal](../part-i-installation/installing-ghc-and-cabal.md)
 {% endhint %}
 
 5. As needed to configure Guild LiveView for your stake pool, use a text editor to transfer additional user variable definitions from the `env.bak` file that you created in step 1 to the `env` file that you downloaded in step 2.
@@ -111,7 +111,7 @@ _Table 1 Current Cardano Node Version Requirements_
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
 - In a terminal window, type:
-```
+```bash
 ghcup upgrade
 ghcup --version
 ```
@@ -119,7 +119,7 @@ ghcup --version
 **To install other GHC versions:**
 
 - In a terminal window, type the following commands where `<GHCVersionNumber>` is the GHC version that you want to install and use:
-```
+```bash
 ghcup install ghc <GHCVersionNumber>
 ghcup set ghc <GHCVersionNumber>
 ghc --version
@@ -128,7 +128,7 @@ ghc --version
 **To install other Cabal versions:**
 
 - In a terminal window, type the following commands where `<CabalVersionNumber>` is the Cabal version that you want to install and use:
-```
+```bash
 ghcup install cabal <CabalVersionNumber>
 ghcup set cabal <CabalVersionNumber>
 cabal --version
@@ -245,7 +245,7 @@ cardano-cli version
 ```
 
 4. Optionally, to install the latest versions of all previously installed packages on your computer, and then reboot the computer, type:
-```
+```bash
 sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
 ```
 
@@ -269,7 +269,7 @@ cd ${NODE_HOME}
 {% endtab %}
 
 {% tab title="journalctl" %}
-```
+```bash
 journalctl -fu cardano-node
 ```
 {% endtab %}

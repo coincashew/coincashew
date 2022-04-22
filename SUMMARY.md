@@ -168,7 +168,7 @@
       * [Prerequisites](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/prerequisites.md)
       * [Hardening an Ubuntu Server](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/hardening-an-ubuntu-server.md)
       * [Setting Up chrony](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/setting-up-chrony.md)
-      * [Installing Cabal and GHC](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/installing-cabal-and-ghc.md)
+      * [Installing the Glasgow Haskell Compiler and Cabal](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/installing-ghc-and-cabal.md)
       * [Compiling Source Code](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/compiling-source-code.md)
     * [PART II - CONFIGURATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration.md)
       * [Preparing Configuration Files](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/preparing-configuration-files.md)

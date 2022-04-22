@@ -27,12 +27,9 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. Much appreciated in advance. :pray:
 {% endhint %}
 
-{% hint style="success" %}
-As of March 9 2022, this is **guide version 6.0.0** and written for **cardano mainnet** with **release v.1.30.1** :grin:
-{% endhint %}
+## :page\_facing\_up: Changelog - **Update Notes -** **April 20, 2022**
 
-## :page\_facing\_up: Changelog - **Update Notes -** **March 22 2022**
-
+* Revise installation procedures for currently recommended software versions
 * Update the [Upgrading a Node](./part-iv-administration/upgrading-a-node.md) topic
 * Re-organized content to improve loading speed.
 * Massive contribution by [Change Pool](https://change.paradoxicalsphere.com) Improved Table of Contents
