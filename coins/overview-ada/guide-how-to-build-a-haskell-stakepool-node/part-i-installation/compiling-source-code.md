@@ -1,5 +1,10 @@
 # Compiling Source Code
 
+To install the `curl` package on your computer, type:
+```bash
+sudo apt-get install curl
+```
+
 Download source code and switch to the latest tag.
 
 ```bash
