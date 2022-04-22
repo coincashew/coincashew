@@ -98,16 +98,16 @@ MAINNET="mainnet"
 network=$TESTNET
 
 # check for vrf.skey presence
-if [[ ! -f "$DIRECTORY/vrf.skey" ]]; then echo "vrf.skey not found" >&2 ; exit 127; fi
+if [[ ! -f "$DIRECTORY/vrf.skey" ]]; then echo "vrf.skey not found"; exit 127; fi
 
 CCLI=$(which cardano-cli)
-if [[ -z $CCLI ]]; then echo "cardano-cli command cannot be found, exiting..." >&2 ; exit 127; fi
+if [[ -z $CCLI ]]; then echo "cardano-cli command cannot be found, exiting..."; exit 127; fi
 
 JQ=$(which jq)
-if [[ -z $JQ ]]; then echo "jq command cannot be found, exiting..." >&2 ; exit 127; fi
+if [[ -z $JQ ]]; then echo "jq command cannot be found, exiting..."; exit 127; fi
 
 read -ra BYRON_GENESIS <<< "$(jq -r '[ .startTime, .protocolConsts.k, .blockVersionData.slotDuration ] |@tsv' < $DIRECTORY/$network-byron-genesis.json)"
-if [[ -z $BYRON_GENESIS ]]; then echo "BYRON GENESIS config file not loaded correctly" >&2; exit 127; fi
+if [[ -z $BYRON_GENESIS ]]; then echo "BYRON GENESIS config file not loaded correctly"; exit 127; fi
 
 network_magic=""
 if [ $network = $TESTNET ]; then
@@ -115,7 +115,7 @@ if [ $network = $TESTNET ]; then
 elif [ $network = $MAINNET ]; then
     network_magic="--mainnet"
 else
-    echo "Incorrect network selected, please use $TESTNET or $MAINNET network type" >&2; exit 1
+    echo "Incorrect network selected, please use $TESTNET or $MAINNET network type"; exit 1
 fi
 
 
@@ -210,19 +210,19 @@ if [ isSynced ];then
 
     timeDifference=$(( $timestampCheckLeaders-$currentTime ))
     if [ -f "$DIRECTORY/logs/leaderSchedule_$(( $(getCurrentEpoch)+1 )).txt" ]; then
-                echo "Check already done, check logs for results" >&2 ; exit 1
-    elif [[ $timeDifference -gt 0 ]] && [[ $timeDifference -gt 86400 ]]; then
-                echo "Too early to run the script, wait for next cron scheduled job" >&2 ; exit 1
+                echo "Check already done, check logs for results"; exit 1
+    elif [[ $timeDifference -gt 86400 ]]; then
+                echo "Too early to run the script, wait for next cron scheduled job"; exit 1
     elif [[ $timeDifference -gt 0 ]] && [[ $timeDifference -le 86400 ]]; then
         sleepUntil $timeDifference
         echo "Check is starting on $(timestampToUTC $(getCurrentTime))"
             checkLeadershipSchedule
         echo "Script ended, schedule logged inside file: leaderSchedule_$(( $(getCurrentEpoch)+1 )).txt"
     else
-        echo "There were problems on running the script, check that everything is working fine" >&2 ; exit 1
+        echo "There were problems on running the script, check that everything is working fine"; exit 1
     fi
 else
-    echo "Node not fully synced." >&2 ; exit 1
+    echo "Node not fully synced."; exit 1
 fi
 
 
