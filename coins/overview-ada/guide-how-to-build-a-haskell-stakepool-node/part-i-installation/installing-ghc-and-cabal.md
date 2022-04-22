@@ -41,16 +41,17 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 4. During installation, when prompted:  
   i. Press ENTER to proceed.  
   ii. To prepend the required PATH variable to `$HOME/.bashrc`, type `P`  
-  {% hint style="info" %}
-  The `$HOME` environment variable or `~` tilde prefix refers to the home directory associated with your login name.
-  {% endhint %}  
   iii. When prompted to install haskell-language-server (HLS), type `N`  
   iv. When prompted to install slack, type `N`  
-  v. Press ENTER to proceed.
+  v. Press ENTER to proceed.  
+{% hint style="info" %}
+The `$HOME` environment variable or `~` tilde prefix refers to the home directory associated with your login name. The `.bashrc` file is a Bash script that runs each time you open a new terminal window. In the `.bashrc` file, you can add any command that you may type at the command prompt. Use `.bashrc` to set up the shell as needed for your environment.
+{% endhint %}
 
 <!-- References:
 http://www.gnu.org/software/bash/manual/html_node/Tilde-Expansion.html
-https://stackoverflow.com/questions/39331531/difference-between-login-name-and-user-name -->
+https://stackoverflow.com/questions/39331531/difference-between-login-name-and-user-name
+https://unix.stackexchange.com/questions/129143/what-is-the-purpose-of-bashrc-and-how-does-it-work -->
 
 5. When GHCup finishes installing GHC and Cabal, type the following commands to reload your shell profile, and then confirm that GHCup installed correctly:
 ```bash
