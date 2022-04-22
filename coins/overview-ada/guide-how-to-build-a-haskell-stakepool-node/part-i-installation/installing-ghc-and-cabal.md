@@ -23,13 +23,15 @@ sudo apt-get upgrade -y
 
 2. To install packages and tools required for downloading and compiling Cardano Node source code, type:
 ```bash
-sudo apt-get install curl automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
+sudo apt-get install autoconf automake build-essential curl g++ git jq libffi-dev libgmp-dev libncursesw5 libssl-dev libsystemd-dev libtinfo-dev libtool make pkg-config tmux wget zlib1g-dev -y
 ```
 {% hint style="info" %}
 To list all packages installed on your computer, type `apt list --installed`
 {% endhint %}
 
 <!-- In addition, the previous procedure recommended typing the command sudo apt-get install bc rsync htop libncurses-dev libtinfo5 Currently in the guide, instructions for installing bc and rsync are included when needed, and htop is not used. libncurses-dev and libtinfo5 are installed automatically. -->
+
+<!-- GHCup requires build-essential curl libffi-dev libffi7 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 -->
 
 3. To use the GHCup installer to install GHC and Cabal, type:
 ```bash
@@ -50,7 +52,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 http://www.gnu.org/software/bash/manual/html_node/Tilde-Expansion.html
 https://stackoverflow.com/questions/39331531/difference-between-login-name-and-user-name -->
 
-5. When GHCup finishes installing GHC and Cabal, type the following commands to reload your shell profile, and then confirm that GHCup is installed correctly:
+5. When GHCup finishes installing GHC and Cabal, type the following commands to reload your shell profile, and then confirm that GHCup installed correctly:
 ```bash
 source $HOME/.bashrc
 ghcup --version
