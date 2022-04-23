@@ -1,5 +1,5 @@
 ---
-description: >-
+description:
   Set up an external relay node using [CNTools](https://cardano-community.github.io/guild-operators/Scripts/cntools/).
 ---
 

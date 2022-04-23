@@ -1,5 +1,5 @@
 ---
-description: >-
+description:
   Secure your Cardano node.
 ---
 

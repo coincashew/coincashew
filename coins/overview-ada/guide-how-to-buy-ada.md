@@ -1,5 +1,5 @@
 ---
-description: >-
+description:
   Buying Cardano is a simple, two-step process.
 ---
 

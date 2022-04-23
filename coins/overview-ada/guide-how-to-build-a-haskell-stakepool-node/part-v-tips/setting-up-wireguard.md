@@ -1,5 +1,5 @@
 ---
-description: >-
+description:
   [WireGuard®](https://www.wireguard.com/) is an extremely simple, fast and modern virtual private network (VPN) utilizing state-of-the-art cryptography.
 ---
 
