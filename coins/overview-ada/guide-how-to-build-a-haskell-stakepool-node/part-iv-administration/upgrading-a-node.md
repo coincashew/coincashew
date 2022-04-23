@@ -235,7 +235,7 @@ sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "card
 sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli") <DestinationPath>/cardano-cli
 ```
 {% hint style="info" %}
-If you follow the Coin Cashew instructions for [Compiling Source Code](../part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
+If you follow the Coin Cashew instructions for [Compiling Cardano Node](../part-i-installation/compiling-cardano-node.md), then `<DestinationPath>` is `/usr/local/bin`
 {% endhint %}
 
 3. To verify that you installed the new Cardano Node binaries successfully, type:
