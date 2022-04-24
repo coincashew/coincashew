@@ -190,7 +190,7 @@ function checkLeadershipSchedule(){
     currentTime=$(getCurrentTime)
 
     echo "Check is running at: $(timestampToUTC $currentTime) for epoch: $next_epoch"
-    $CCLI query leadership-schedule $network_magic --genesis $DIRECTORY$network-shelley-genesis.json --stake-pool-id $STAKE_POOL_ID --vrf-signing-key-file $DIRECTORY"vrf.skey" --next > $DIRECTORY"logs/leaderSchedule_$next_epoch.txt"
+    $CCLI query leadership-schedule $network_magic --genesis "$DIRECTORY/$network-shelley-genesis.json" --stake-pool-id $STAKE_POOL_ID --vrf-signing-key-file "$DIRECTORY/vrf.skey" --next > "$DIRECTORY/logs/leaderSchedule_$next_epoch.txt"
 }
 
 if [ isSynced ];then
