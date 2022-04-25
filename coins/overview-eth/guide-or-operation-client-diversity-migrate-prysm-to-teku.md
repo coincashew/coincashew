@@ -151,7 +151,7 @@ Generate your Teku Config file. Simply copy and paste.
 cat > $HOME/teku.yaml << EOF
 # network
 network: "mainnet"
-initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v3/debug/beacon/states/finalized" 
+initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v2/debug/beacon/states/finalized" 
 
 # p2p
 p2p-enabled: true

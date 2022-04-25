@@ -462,6 +462,13 @@ For security and privacy reasons, it is best practice to use a brand new unused 
 
 Use the [Kiln Testnet faucet](https://faucet.kiln.themerge.dev) to acquire some testnet ETH. It may take a few moments, sometimes up to an hour, for the funds to appear in your wallet.
 
+{% hint style="info" %}
+Alternative kiln testnet faucets:&#x20;
+
+* [https://faucet.kiln.ethdevops.io/  ](https://faucet.kiln.ethdevops.io/http://kiln-faucet.pk-net.net/)
+* [http://kiln-faucet.pk-net.net/](https://faucet.kiln.ethdevops.io/http://kiln-faucet.pk-net.net/)
+{% endhint %}
+
 ### 8. Generate Validator Keys
 
 With two easy methods, your can setup your mnemonic keys with either:
@@ -660,6 +667,23 @@ journalctl -fu consensus
 
 #View Lodestar Validator
 journalctl -fu validator
+```
+
+#### Removing your validator from staking duties: Perform a Voluntary Exit
+
+```shell
+#Stop validator first
+sudo systemctl stop validator 
+
+#Perform a voluntary exit, follow the prompts and confirm your choices
+sudo ./lodestar account validator voluntary-exit --rootDir /var/lib/lodestar/validator --network kiln
+
+#Restart validator. 
+sudo systemctl start validator
+
+#Finally in 1/2 day, your validator will exit and no longer have staking duties.
+sudo systemctl stop validator
+sudo systemctl disable validator
 ```
 
 ### Reference Material
