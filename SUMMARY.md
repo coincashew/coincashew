@@ -206,7 +206,7 @@
       * [Setting Up WireGuard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/setting-up-wireguard.md)
       * [Monitoring Node Security Using OSSEC Server and Slack](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/monitoring-node-security-using-ossec-server-and-slack.md)
       * [Resetting an Installation](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/resetting-an-installation.md)
-      * [Increasing Swap file](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/increasing-swap-file.md)
+      * [Increasing Swap File](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/increasing-swap-file.md)
       * [Fixing a Corrupt Blockchain](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/fixing-a-corrupt-blockchain.md)
       * [Verifying an ITN Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/verifying-an-itn-stake-pool.md)
       * [Fixing the Mnemonic Staking Balance Bug](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/fixing-the-mnemonic-staking-balance-bug.md)
