@@ -25,6 +25,8 @@ cardano-cli query leadership-schedule \
 --next
 ```
 
+****
+
 **Current epoch's leadership schedule** is obtained with the following:
 
 ```bash
@@ -35,6 +37,8 @@ cardano-cli query leadership-schedule \
 --vrf-signing-key-file $NODE_HOME/vrf.skey \
 --current
 ```
+
+
 
 Example leadership schedule output:
 
@@ -51,13 +55,17 @@ SlotNo                          UTC Time
      4433                   2021-12-29 17:27:30.998001755 UTC
 ```
 
+
+
 :repeat: **Automate the process with Cronjob:**
 
 {% hint style="info" %}
-The automation of this process will work with the following method, as said, next epoch blocks can be checked 1.5 days before the start of the next epoch or at the 75% of the current epoch's completition.\
+The automation of this process will work with the following method, as said, next epoch blocks can be checked 1.5 days before the start of the next epoch or at the 75% of the current epoch's completion.\
 What the script will do, is to calculate the the correct day and hour to run the command, then wait until it is possible to do that and once the selected time comes, run the check listed below.\
 Once finished, it will redirect the output into a log file that can be analyzed.
 {% endhint %}
+
+
 
 {% hint style="danger" %}
 Keep in mind that running the leadership-schedule command, listed below and used by the script, with the cardano-node at the same time, will use approximately 17GB of RAM at the time of writing this guide (April 2022).
@@ -68,9 +76,13 @@ The possible solutions to avoid a node crash are:
 * [Increase the SWAP partition of the node](../part-v-tips/increasing-swap-file.md)
 {% endhint %}
 
+
+
 {% hint style="info" %}
 Credits to [Techs2help](https://techs2help.ch) for developing the [script](https://github.com/Techs2Help/leaderScheduleCheck\_cron).
 {% endhint %}
+
+
 
 Create the `leaderScheduleCheck.sh` script file in the block producer (script can also be run on a relay node but vrf.skey needs to be exported there) and paste the following code inside of it:
 
@@ -224,6 +236,8 @@ fi
 
 ```
 
+
+
 Set the following variables with your data:
 
 ```bash
@@ -237,6 +251,8 @@ STAKE_POOL_ID=""
 network=
 ```
 
+
+
 Add execution permissions and test that the script is running without errors:
 
 ```bash
@@ -244,14 +260,18 @@ chmod +x leaderScheduleCheck.sh
 ./leaderScheduleCheck.sh
 ```
 
-If everything is working correclty, an output as the follow will be presented:
+
+
+If everything is working correctly, an output as the follow will be presented:
 
 > Current epoch: 199\
 > Epoch start time: 04/14/22 20:20:16\
 > Epoch end time: 04/19/22 20:10:16\
 > Current cron execution time: 04/18/22 15:37:51\
 > Next check time: 04/18/22 14:12:46\
-> \[...] Cutted output cause it can vary based on time when the script is runned
+> \[...] Cutted output cause it can vary based on time when the script is ran
+
+
 
 Configure `Cronjob` to run make the script run automatically:
 
@@ -262,11 +282,15 @@ To configure the job at the start of an epoch, keep in mind the following inform
 * Epoch in MAINNET starts at 21:45 UTC
 {% endhint %}
 
+
+
 Find the time when the cronjob should start:
 
 {% hint style="info" %}
 Cronjobs run based on local timezone, not on UTC hours. \\
 {% endhint %}
+
+
 
 Find timezone:
 
@@ -297,6 +321,8 @@ EOF
 crontab -l | cat - ${NODE_HOME}/crontab-fragment.txt > ${NODE_HOME}/crontab.txt && crontab ${NODE_HOME}/crontab.txt
 rm ${NODE_HOME}/crontab-fragment.txt
 ```
+
+
 
 {% hint style="success" %}
 Once the cronjob is set, the script will be run every day and it will check if in the next 24H, it will be the correct time to run the command and see if there are scheduled blocks in the next epoch.\

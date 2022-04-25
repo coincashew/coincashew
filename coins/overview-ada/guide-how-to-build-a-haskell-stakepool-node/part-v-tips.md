@@ -12,6 +12,5 @@ Part V includes the following topics containing additional procedures to simplif
 * [Resetting an Installation](part-v-tips/resetting-an-installation.md)
 * [Increasing Swap File](part-v-tips/increasing-swap-file.md)
 * [Fixing a Corrupt Blockchain](part-v-tips/fixing-a-corrupt-blockchain.md)
-* [Updating Your Node Height on PoolTool](broken-reference)
 * [Verifying an ITN Stake Pool](part-v-tips/verifying-an-itn-stake-pool.md)
 * [Fixing the Mnemonic Staking Balance Bug](part-v-tips/fixing-the-mnemonic-staking-balance-bug.md)
