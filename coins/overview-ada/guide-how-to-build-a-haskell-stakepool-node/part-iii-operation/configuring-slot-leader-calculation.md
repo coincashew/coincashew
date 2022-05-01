@@ -227,6 +227,10 @@ if [ isSynced ];then
         echo "Check is starting on $(timestampToUTC $(getCurrentTime))"
             checkLeadershipSchedule
         echo "Script ended, schedule logged inside file: leaderSchedule_$(( $(getCurrentEpoch)+1 )).txt"
+    elif [[ $timeDifference -lt 0 ]] && [ ! -f "$DIRECTORY/logs/leaderSchedule_$(( $(getCurrentEpoch)+1 )).txt" ]; then
+                echo "Check is starting on $(timestampToUTC $(getCurrentTime))"
+                checkLeadershipSchedule
+                echo "Script ended, schedule logged inside file: leaderSchedule_$(( $(getCurrentEpoch)+1 )).txt"
     else
         echo "There were problems on running the script, check that everything is working fine"; exit 1
     fi
@@ -273,7 +277,7 @@ If everything is working correctly, an output as the follow will be presented:
 
 
 
-Configure `Cronjob` to run make the script run automatically:
+Configure `Cronjob` to make the script run automatically:
 
 {% hint style="info" %}
 To configure the job at the start of an epoch, keep in mind the following information:
