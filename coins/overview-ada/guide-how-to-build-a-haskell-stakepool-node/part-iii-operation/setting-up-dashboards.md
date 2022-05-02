@@ -159,6 +159,24 @@ sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 {% endtab %}
 {% endtabs %}
 
+Run the following to modify **mainnet-config.json** and
+
+* update TraceBlockFetchDecisions to "true"
+
+```bash
+sed -i ${NODE_CONFIG}-config.json \
+    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
+```
+
+{% hint style="info" %}
+Setting `"TraceBlockFetchDecisions": true` enables additional metrics that you can display using a dashboard in Grafana.
+{% endhint %}
+<!--TO-DO (240502):
+Test whether Peer data is available in Grafana when only the TraceBlockFetchDecisions key is true.
+The TraceBlockFetchClient key may also need to be set to true. I experienced some instability
+with the block producer restarting every few days when both keys were true. For more details, see
+https://forum.cardano.org/t/post-upgrade-to-1-25-1-some-prometheus-grafana-metrics-not-showing/46137/29 -->
+
 {% hint style="info" %}
 Port forwarding and firewall config:
 

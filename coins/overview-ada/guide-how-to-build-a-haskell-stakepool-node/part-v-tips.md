@@ -8,6 +8,7 @@ Part V includes the following topics containing additional procedures to simplif
 * [Uploading Pool Metadata to GitHub](part-v-tips/uploading-pool-metadata-to-github.md)
 * [Obtaining a PoolTool API Key](part-v-tips/obtaining-a-pooltool-api-key.md)
 * [Configuring Glasgow Haskell Compiler Runtime System Options](part-v-tips/configuring-runtime-options.md)
+* [Setting TraceMempool](part-v-tips/setting-tracemempool.md)
 * [Setting Up an External Passive Relay Node](part-v-tips/setting-up-an-external-passive-relay-node.md)
 * [Setting Up WireGuard](part-v-tips/setting-up-wireguard.md)
 * [Monitoring Node Security Using OSSEC Server and Slack](part-v-tips/monitoring-node-security-using-ossec-server-and-slack.md)
