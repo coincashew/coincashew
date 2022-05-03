@@ -1,5 +1,14 @@
 # Creating Startup Scripts
 
+Update **.bashrc** shell variables.
+
+```bash
+echo export CARDANO_NODE_SOCKET_PATH="$NODE_HOME/db/socket" >> $HOME/.bashrc
+source $HOME/.bashrc
+```
+<!--NOTE (220503):
+Setting the CARDANO_NODE_SOCKET_PATH environment variable is moved from the Downloading Configuration Files topic. Setting CARDANO_NODE_SOCKET_PATH is required on the block producer and all relay nodes in a stake pool. Match the relative location of the information in the Coin Cashew guide with https://developers.cardano.org/docs/get-started/running-cardano/ -->
+
 The startup script contains all the variables needed to run a cardano-node such as directory, port, db path, config file, and topology file.
 
 {% tabs %}

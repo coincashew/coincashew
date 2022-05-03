@@ -162,10 +162,10 @@ mv mainnet-alonzo-genesis.json mainnet-alonzo-genesis.bak
 mv mainnet-topology.json mainnet-topology.bak
 ```  
 {% hint style="info" %}
-If you follow the Coin Cashew instructions for [Preparing Configuration Files](../part-ii-configuration/preparing-configuration-files.md), then `<ConfigurationFileFolder>` is `$HOME/cardano-my-node` Alternately, you can type `$NODE_HOME` If needed, you can also use the environment variable `$NODE_CONFIG` to indicate the `mainnet` cluster in configuration file names.
+If you followed the Coin Cashew instructions for [Downloading Configuration Files](../part-ii-configuration/downloading-configuration-files.md) when you set up your stake pool, then `<ConfigurationFileFolder>` is `$HOME/cardano-my-node` Alternately, you can type `$NODE_HOME` If needed, you can also use the environment variable `$NODE_CONFIG` to indicate the `mainnet` cluster in configuration file names.
 {% endhint %}
 
-3. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), then browse to the latest release, then click to expand the Downloads dropdown list in the Technical Specification section of the release notes, and then click the Configuration Files link.
+3. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), then browse to the latest release, then click to expand the **Downloads** dropdown list in the _Technical Specification_ section of the release notes, and then click the **Configuration Files** link.
 
 4. On the Cardano Configurations page, click the following links to download configuration files for the `mainnet` cluster to the folder where you created backups of your current configuration files in step 2: `config`, `byronGenesis`, `shelleyGenesis`, `alonzoGenesis` and `topology`  
 {% hint style="info" %}
