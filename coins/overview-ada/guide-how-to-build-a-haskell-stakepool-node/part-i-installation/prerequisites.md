@@ -5,9 +5,11 @@
 As a Stake Pool Operator (SPO) for Cardano, you must be competent with the following abilities:
 
 * Operational knowledge of how to set up, run and maintain a Cardano node continuously
-* A commitment to maintain your node 24/7/365
+* Commitment to maintain your node 24/7/365
 * System operation skills including general knowledge of using [Bash scripts](https://linuxconfig.org/bash-scripting-tutorial-for-beginners), [systemd services](https://linuxconfig.org/how-to-create-systemd-service-unit-in-linux) and [cron jobs](https://itsfoss.com/cron-job/)
 * Server administration skills (operational and maintenance)
+* Fundamental understanding of [networking](https://www.ibm.com/cloud/learn/networking-a-complete-guide)
+<!-- NOTE: As an alternative, link to the following resource on networking https://geekflare.com/computer-networking-basics/ -->
 
 ## :mage: Mandatory Experience for Stake Pool Operators
 

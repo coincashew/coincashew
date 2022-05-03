@@ -1,4 +1,4 @@
-# Configuring Topology Files
+# Configuring Network Topology
 
 {% hint style="info" %}
 Shelley has been launched without peer-to-peer (p2p) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
