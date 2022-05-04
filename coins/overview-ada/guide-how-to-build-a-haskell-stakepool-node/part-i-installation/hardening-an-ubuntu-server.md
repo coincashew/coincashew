@@ -386,7 +386,7 @@ Restart fail2ban for settings to take effect.
 sudo systemctl restart fail2ban
 ```
 
-## :bricks: **Configuring Your Firewall**
+## <a name="ufw"></a>:bricks: **Configuring Your Firewall**
 
 The standard UFW firewall can be used to control network access to your node.
 
