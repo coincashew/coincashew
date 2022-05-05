@@ -31,7 +31,7 @@ On your **block-producer** node, run the following. Update the **addr** with you
 {% endhint %}
 
 {% hint style="info" %}
-To improve performance and security of your stake pool, use the local area network (LAN) Internet protocol (IP) address of the computer whenever possible. If necessary, use the wide area network (WAN) IP address.
+For better stake pool security and performance, use the local area network (LAN) Internet protocol (IP) address of the computer whenever possible. If necessary, use the wide area network (WAN) IP address.
 {% endhint %}
 
 {% tabs %}
@@ -77,7 +77,7 @@ On your **relaynode1**, run the following after updating with your block produce
 {% endhint %}
 
 {% hint style="info" %}
-To improve performance and security of your stake pool, use the LAN IP address of the computer whenever possible. If necessary, use the WAN IP address.
+For better stake pool security and performance, use the LAN IP address of the computer whenever possible. If necessary, use the WAN IP address.
 {% endhint %}
 
 {% tabs %}
