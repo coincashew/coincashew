@@ -1,5 +1,13 @@
 # Creating Startup Scripts
 
+{% hint style="warning" %}
+:construction: In the Coin Cashew guide, procedures may refer to your relay nodes using the name `relaynode<N>` where `<N>` is `1` for your first relay, `2` for your second relay, and so on.
+{% endhint %}
+
+{% hint style="info" %}
+You can have multiple relay nodes as you scale up your stake pool architecture. Simply create `relaynode<N>` and adapt the guide instructions accordingly.
+{% endhint %}
+
 Update **.bashrc** shell variables.
 
 ```bash

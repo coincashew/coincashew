@@ -8,7 +8,7 @@ Running Cardano Node requires multiple configuration files. You must download th
 
 2. On the Cardano Configurations page, click the following links to download configuration files for the `mainnet` cluster: `config`, `byronGenesis`, `shelleyGenesis`, `alonzoGenesis` and `topology` Save all configuration files using the default file names in the folder that you set for the `$NODE_HOME` environment variable.  
 {% hint style="info" %}
-You set the `$NODE_HOME` environment variable and created the corresponding folder when [Installing GHC and Cabal](../part-i-installation/installing-ghc-and-cabal.md).
+You set the `NODE_HOME` environment variable and created the corresponding folder when [Installing GHC and Cabal](../part-i-installation/installing-ghc-and-cabal.md).
 {% endhint %}
 <!-- Resource related to prior documentation:
 https://ftp.gnu.org/old-gnu/Manuals/wget-1.8.1/html_chapter/wget_5.html -->
