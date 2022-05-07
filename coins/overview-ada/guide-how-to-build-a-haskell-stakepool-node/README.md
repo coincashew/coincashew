@@ -7,7 +7,7 @@ description:
 
 ## :wrench: About This Guide
 
-The _How to Set Up a Cardano Stake Pool_ guide aims to give you complete, step-by-step instructions to implement and maintain a secure Cardano stake pool using the currently recommended software versions.
+The _How to Set Up a Cardano Stake Pool_ guide aims to give you complete, step-by-step instructions to implement a secure Cardano stake pool using the currently recommended software versions. The guide also aims to give you a thorough understanding of how to complete the administrative tasks required to manage and maintain your pool, over time.
 
 The guide includes the following parts:
 
