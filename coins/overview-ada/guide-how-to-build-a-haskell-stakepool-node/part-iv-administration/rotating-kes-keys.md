@@ -35,10 +35,7 @@ StartingKESPeriod=${kesPeriod}
 echo StartingKESPEriod: ${StartingKESPeriod}
 ```
 
-4. On your air-gapped, offline computer, in the `node.counter` JSON file increment the value of `Next certificate issue number` for the `description` key by exactly 1  
-{% hint style="info" %}
-To edit the `node.counter` file, use a text editor.
-{% endhint %}
+4. On your air-gapped, offline computer, open the `node.counter` JSON file using a text editor. Increment the value of `Next certificate issue number` for the `description` key by exactly 1, and then save and close the `node.counter` file.
 
 5. To verify the current `description` value in the `node.counter` file, type:
 ```bash
