@@ -54,7 +54,7 @@ cardano-cli node key-gen \
 {% endtabs %}
 
 {% hint style="warning" %}
-Be sure to **back up your all your keys** to another secure storage device. Make multiple copies.
+Back up all your key files, as well as the cold counter file, to a secure storage device. Make multiple copies.
 {% endhint %}
 
 Determine the number of slots per KES period from the genesis file.
