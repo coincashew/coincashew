@@ -124,7 +124,7 @@ If you plan to use your Cardano node on the testnet network instead of mainnet, 
 
 11. Save and close the `$HOME/.bashrc` file.
 
-12. To create the folder set for the `$NODE_HOME` environment variable in your `$HOME/.bashrc` file, type:
+12. To create the folder set for the `NODE_HOME` environment variable in your `$HOME/.bashrc` file, type:
 ```bash
 mkdir $HOME/cardano-my-node
 ```
