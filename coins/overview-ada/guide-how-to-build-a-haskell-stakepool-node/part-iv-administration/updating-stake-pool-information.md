@@ -11,9 +11,7 @@ May 7, 2022 - Based on cardanoscan:
 So, the paragraph above seems to be incorrect. However, run a test on testnet to be sure. -->
 
 {% hint style="info" %}
-Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resubmit your stake pool registration certificate. The most recent registration certificate that you successfully submit to the blockchain applies to your stake pool.
-
-**Reminder**: There is no requirement to pay the 500 ADA stake pool deposit again.
+If you need to update your pledge, fee, margin, pool IP/port, or metadata, then submit an updated stake pool registration certificate to the blockchain. The most recent registration certificate that you submit successfully applies to your stake pool. When you update the registration certificate, you do **not** pay a 500 ADA stake pool deposit again.
 {% endhint %}
 
 First, generate the protocol-parameters.
