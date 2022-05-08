@@ -3,9 +3,15 @@
 {% hint style="danger" %}
 **Important Reminder**:fire: Any changes made in this section take effect in two epochs. A common mistake is lowering the pledge amount and removing funds too soon. This results in zero rewards as the current live pledge amount is no longer met.
 {% endhint %}
+<!-- Testing:
+May 7, 2022 - Based on cardanoscan:
+- Changing the margin or committed pledge is updated in the next epoch.
+- Rewards are distributed two epochs later-- that is, five days after the epoch ends-- which aligns with when a change to pool information, including pledge, takes effect.
+
+So, the paragraph above seems to be incorrect. However, run a test on testnet to be sure. -->
 
 {% hint style="info" %}
-Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resubmit your stake pool registration certificate.
+Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resubmit your stake pool registration certificate. The most recent registration certificate that you successfully submit to the blockchain applies to your stake pool.
 
 **Reminder**: There is no requirement to pay the 500 ADA stake pool deposit again.
 {% endhint %}
