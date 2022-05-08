@@ -96,7 +96,7 @@ Port forwarding creates an association between the public WAN IP address of a ro
 <!-- Reference:
 https://learn.g2.com/port-forwarding -->
 
-So that relay nodes in the Cardano network can connect to a relay node in your stake pool configuration, in your firewall configuration you must open a port and forward traffic received on the port to the port where the relay node listens.
+So that relay nodes in the Cardano network can connect to a relay node in your stake pool configuration, in your firewall configuration you must open a port and forward traffic received on the port to the computer and port where the relay node listens.
 <!-- Reference:
 https://customer.cradlepoint.com/s/article/How-to-Do-Port-Forwarding-To-Multiple-Devices-on-the-Same-Port -->
 
