@@ -7,7 +7,8 @@ The following diagram illustrates Cardano network topology:
 ![](../../../../.gitbook/assets/producer-relay-diagram.png)
 
 <!-- Reference:
-https://iohk.zendesk.com/hc/en-us/articles/900001219843-What-are-Block-producing-nodes-and-relay-nodes -->
+https://iohk.zendesk.com/hc/en-us/articles/900001219843-What-are-Block-producing-nodes-and-relay-nodes
+https://developers.cardano.org/docs/stake-pool-course/handbook/configure-topology-files/ -->
 
 Before you start the nodes comprising your stake pool, you must:
 
