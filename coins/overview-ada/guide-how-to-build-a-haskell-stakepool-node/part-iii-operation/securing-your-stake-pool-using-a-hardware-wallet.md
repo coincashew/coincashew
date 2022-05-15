@@ -291,7 +291,7 @@ cardano-cli transaction submit \
 {% endtab %}
 {% endtabs %}
 
-Check your updated pool information on [adapools.org](https://adapools.org) which should now show your hardware wallet as a pool owner.
+Check your updated pool information on [ADApools](https://adapools.org) which should now show your hardware wallet as a pool owner.
 
 {% hint style="danger" %}
 **Important Reminder**:fire: These changes take effect in two epochs. Do **NOT** transfer pledge funds to your hardware wallet until at least two epochs later.

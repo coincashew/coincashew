@@ -1,8 +1,8 @@
 # Configuring Glasgow Haskell Compiler Runtime System Options
 
-To maximize performance of Cardano Node, you may experiment with configuring runtime system (RTS) options available for the Glasgow Haskell Compiler (GHC).
+In some implementations, depending on hardware limitations configuring runtime system (RTS) options available for the Glasgow Haskell Compiler (GHC) may improve the performance and/or stability of an instance of Cardano Node.
 
-For example, depending on your system specifications and the Cardano Node version, your block-producing node may miss slot leader checks due to time spent in garbage collection (GC). Using custom RTS options, you may seek to reduce the number of slot leader checks that your block producer misses due to GC.
+The RTS offers many options for controlling behaviour. For example, depending on your system specifications and the Cardano Node version, your block-producing node may miss slot leader checks as reported using the [gLiveView](../part-iii-operation/starting-the-nodes.md#gliveview) dashboard due to time spent in garbage collection (GC). Using custom RTS options, you may seek to reduce significantly the number of slot leader checks that your block producer misses due to GC.
 
 {% hint style="info" %}
 Currently, missing more slot leader checks during the transition between epochs is expected behaviour for Cardano Node.
@@ -27,7 +27,7 @@ For example, to produce runtime system statistics for each garbage collection in
 
 `/usr/local/bin/cardano-node run +RTS -S<FileName> -RTS <Options>`
 
-If you are not satisfied with the performance of an instance of Cardano Node, then subjectively you may notice improvement using custom RTS options such as:
+If you are not satisfied with the performance or stability of an instance of Cardano Node, then subjectively you may notice improvement using custom RTS options such as:
 
 ```bash
 +RTS -N -qg -qb -RTS
@@ -39,5 +39,5 @@ If you are not satisfied with the performance of an instance of Cardano Node, th
 <!-- Reference:
 https://forum.cardano.org/t/solving-the-cardano-node-huge-memory-usage-done/67032 -->
 
-If you identify different RTS options that noticably improve the performance of your Cardano Node instance, then please consider contributing your findings to [Coin Cashew](https://www.coincashew.com/) for the potential benefit of other stake pools operating in the Cardano network.
+If you identify different RTS options that noticably improve the performance or stability of your Cardano Node instance, then please consider contributing your findings to [Coin Cashew](https://www.coincashew.com/) for the potential benefit of other stake pools operating in the Cardano network.
 

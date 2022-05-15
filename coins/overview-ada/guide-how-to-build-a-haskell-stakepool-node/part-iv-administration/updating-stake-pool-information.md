@@ -1,18 +1,14 @@
 # Updating Stake Pool Information
 
+If you need to update the pledge, fee, margin, IP address, port or metadata for your stake pool, then submit an updated stake pool registration certificate to the blockchain. The most recent registration certificate that you submit successfully applies to your stake pool. When you update the registration certificate, you do **not** pay a 500 ADA stake pool deposit again.
+
 {% hint style="danger" %}
-**Important Reminder**:fire: Any changes made in this section take effect in two epochs. A common mistake is lowering the pledge amount and removing funds too soon. This results in zero rewards as the current live pledge amount is no longer met.
+**Important Reminder**:fire: When you update stake pool information, some changes only apply in two epochs. For example, if you decrease the committed pledge for your stake pool, then allow two epoch boundaries to pass before removing ADA from the account containing your pledge. If you remove ADA before the decreased pledge amount applies and your stake pool does not meet the committed pledge, then your stake pool loses rewards. Confirm information for your stake pool using [PoolTool](https://pooltool.io/) or [ADApools](https://adapools.org), for example.
 {% endhint %}
 <!-- Testing:
 May 7, 2022 - Based on cardanoscan:
-- Changing the margin or committed pledge is updated in the next epoch.
-- Rewards are distributed two epochs later-- that is, five days after the epoch ends-- which aligns with when a change to pool information, including pledge, takes effect.
-
-So, the paragraph above seems to be incorrect. However, run a test on testnet to be sure. -->
-
-{% hint style="info" %}
-If you need to update your pledge, fee, margin, pool IP/port, or metadata, then submit an updated stake pool registration certificate to the blockchain. The most recent registration certificate that you submit successfully applies to your stake pool. When you update the registration certificate, you do **not** pay a 500 ADA stake pool deposit again.
-{% endhint %}
+- Changing metadata, such as the margin or committed pledge, is updated for the pool in the next epoch.
+- However, changes to stake and margin are applied, and rewards are distributed, two epochs later-- that is, five days after the epoch in which the changes are applied ends. -->
 
 First, generate the protocol-parameters.
 

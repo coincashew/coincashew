@@ -16,6 +16,8 @@ sudo systemctl start cardano-node
 {% endtab %}
 {% endtabs %}
 
+## <a name="gliveview"></a>Installing gLiveView
+
 Install gLiveView, a monitoring tool.
 
 {% hint style="info" %}

@@ -9,7 +9,7 @@ To submit data for your stake pool to PoolTool, you need an API key.
 
 **To get your PoolTool API key:**
 
-1. In your Web browser, navigate to [PoolTool.io](https://pooltool.io/)
+1. In your Web browser, navigate to [PoolTool](https://pooltool.io/)
 2. In the Search field, type your stake pool name or ticker.
 3. In the search results, click the **Pool Details** button in the Actions column next to your stake pool.
 4. On the Pool Details page, click the **Address Details** button next to the Reward Account or Owner Accounts addresses.

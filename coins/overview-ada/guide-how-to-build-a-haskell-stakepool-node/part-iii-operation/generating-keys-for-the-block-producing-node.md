@@ -70,7 +70,7 @@ echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 {% endtabs %}
 
 {% hint style="warning" %}
-Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the **epoch and slot#** is equal to that found on a block explorer such as [https://pooltool.io/](https://pooltool.io)
+Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the **epoch and slot#** is equal to that found on a block explorer such as [PoolTool](https://pooltool.io)
 {% endhint %}
 
 {% tabs %}
