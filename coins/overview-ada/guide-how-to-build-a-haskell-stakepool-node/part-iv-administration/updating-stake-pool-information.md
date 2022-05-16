@@ -5,7 +5,7 @@ If you need to update the pledge, fee, margin, IP address, port or metadata for 
 When you update the registration certificate, you do **not** pay a 500 ADA stake pool deposit again.
 
 {% hint style="danger" %}
-**Important Reminder**:fire: When you update stake pool information, some changes only apply in two epochs. Carefully confirm current information for your stake pool using [PoolTool](https://pooltool.io/), [ADApools](https://adapools.org) or another Cardano blockchain explorer. For example, if you decrease the committed pledge for your stake pool and remove ADA from the account containing your pledge before the decreased pledge amount applies, then if your stake pool does not meet the committed pledge, your stake pool loses rewards.
+**Important Reminder**:fire: When you update stake pool information, some changes only apply in two epochs. Carefully confirm current information about your stake pool using [PoolTool](https://pooltool.io/), [ADApools](https://adapools.org) or another Cardano blockchain explorer. For example, if you decrease the committed pledge for your stake pool and remove ADA from the account containing your pledge before the decreased pledge amount applies, then if your stake pool does not meet the committed pledge, your stake pool loses rewards.
 {% endhint %}
 <!-- Testing:
 May 7, 2022 - Based on cardanoscan:
