@@ -1,16 +1,16 @@
 # Updating Stake Pool Information
 
-If you need to update the pledge, fee, margin, IP address, port or metadata for your stake pool, then submit an updated stake pool registration certificate to the blockchain. The most recent registration certificate that you successfully submit applies to your stake pool.
+If you need to update the pledge, fixed fee, margin, domain name(s), IP address(es), port(s) or metadata for your stake pool, then submit an updated stake pool registration certificate to the blockchain. The most recent registration certificate that you successfully submit applies to your stake pool.
+<!-- Reference:
+https://forum.cardano.org/t/registering-stake-pool-with-multiple-relay-nodes/52982/11 -->
 
-When you update the registration certificate, you do **not** pay a 500 ADA stake pool deposit again.
+Depending on the information that you update, you may need to wait up to two epochs until the new information applies. Confirm current information for your stake pool using [PoolTool](https://pooltool.io/), [ADApools](https://adapools.org) or another Cardano blockchain explorer.
 
 {% hint style="danger" %}
-**Important Reminder**:fire: When you update stake pool information, some changes only apply in two epochs. For example, if you decrease the committed pledge for your stake pool and remove ADA from the account containing your pledge before the decreased pledge amount applies, then if your stake pool does not meet the committed pledge, your stake pool loses rewards. Confirm current information for your stake pool using [PoolTool](https://pooltool.io/), [ADApools](https://adapools.org) or another Cardano blockchain explorer.
+**Important Reminder**:fire: If you decrease the committed pledge for your stake pool and remove ADA from the account containing your pledge before the decreased pledge amount applies, then if your stake pool does not meet the committed pledge, your stake pool loses rewards.
 {% endhint %}
-<!-- Testing:
-May 7, 2022 - Based on cardanoscan:
-- Changing metadata, such as the margin or committed pledge, is updated for the pool in the next epoch.
-- However, changes to stake and margin are applied, and rewards are distributed, two epochs later-- that is, five days after the epoch in which the changes are applied ends. -->
+
+When you update the registration certificate, you do **not** pay a 500 ADA stake pool deposit again.
 
 First, generate the protocol-parameters.
 
