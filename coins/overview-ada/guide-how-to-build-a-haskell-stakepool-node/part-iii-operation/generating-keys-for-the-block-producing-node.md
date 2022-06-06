@@ -153,7 +153,7 @@ Update your startup script with the new **KES, VRF and Operation Certificate.**
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cat > $NODE_HOME/startBlockProducingNode.sh << EOF 
+cat > $NODE_HOME/startCardanoNode.sh << EOF 
 DIRECTORY=$NODE_HOME
 PORT=6000
 HOSTADDR=0.0.0.0

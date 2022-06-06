@@ -180,3 +180,8 @@ You should see output similar to this showing the funds you sent.
 ----------------------------------------------------------------------------------------
 100322a39d02c2ead....                                              0        10000000
 ```
+
+<!-- TODO: Document using the cardano-cli transaction build command
+
+Reference:
+https://forum.cardano.org/t/please-use-cardano-cli-transaction-build-instead-of-cardano-cli-transaction-build-raw/94919 -->

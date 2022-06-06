@@ -149,7 +149,7 @@ A new Cardano Node release may include updated configuration files. If configura
 sudo systemctl stop <CardanoServiceName>.service
 ```
 {% hint style="info" %}
-If you follow the Coin Cashew instructions for [Creating Startup Scripts](../part-ii-configuration/creating-startup-scripts.md), then `<CardanoServiceName>` is `cardano-node`
+If you follow the Coin Cashew instructions for [Creating Startup Scripts and Services](../part-ii-configuration/creating-startup-scripts.md), then `<CardanoServiceName>` is `cardano-node`
 {% endhint %}
 
 2. To back up the configuration files that your node currently uses, type the following commands where `<ConfigurationFileFolder>` is the path to the folder where the configuration files are located:  

@@ -312,14 +312,14 @@ sudo systemctl start cnode
 {% tab title="block producer node" %}
 ```bash
 cd $NODE_HOME
-./startBlockProducingNode.sh
+./startCardanoNode.sh
 ```
 {% endtab %}
 
 {% tab title="relaynode1" %}
 ```bash
 cd $NODE_HOME
-./startRelayNode1.sh
+./startCardanoNode.sh
 ```
 {% endtab %}
 {% endtabs %}
@@ -458,14 +458,14 @@ sudo systemctl start cnode
 {% tab title="block producer node" %}
 ```bash
 cd $NODE_HOME
-./startBlockProducingNode.sh
+./startCardanoNode.sh
 ```
 {% endtab %}
 
 {% tab title="relaynode1" %}
 ```bash
 cd $NODE_HOME
-./startRelayNode1.sh
+./startCardanoNode.sh
 ```
 {% endtab %}
 {% endtabs %}

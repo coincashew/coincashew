@@ -174,7 +174,7 @@
       * [Downloading Configuration Files](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/downloading-configuration-files.md)
       * [Configuring Stake Pool Topology](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/configuring-stake-pool-topology.md)
       * [Configuring an Air-gapped, Offline Computer](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/configuring-an-air-gapped-offline-computer.md)
-      * [Creating Startup Scripts](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/creating-startup-scripts.md)
+      * [Creating Startup Scripts and Services](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/creating-startup-scripts.md)
     * [PART III - OPERATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation.md)
       * [Starting the Nodes](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/starting-the-nodes.md)
 	  * [Accessing Built-in Help](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/accessing-help.md)
