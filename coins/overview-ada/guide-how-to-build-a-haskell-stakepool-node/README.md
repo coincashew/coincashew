@@ -29,6 +29,8 @@ If you want to support this free educational Cardano content or found this helpf
 
 ## :page\_facing\_up: Change Log
 
+* June 8, 2022
+  - Testing procedures and updating style in [Part I - Installation](part-i-installation.md) and [Part II - Configuration](part-ii-configuration.md) ([Change Pool](https://change.paradoxicalsphere.com))
 * April 23, 2022
   - Updating Cardano Node installation procedures to reflect current software versions ([Change Pool](https://change.paradoxicalsphere.com))
 * March 22, 2022
