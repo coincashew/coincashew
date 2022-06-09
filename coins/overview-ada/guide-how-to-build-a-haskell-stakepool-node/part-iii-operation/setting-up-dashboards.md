@@ -1,9 +1,13 @@
 # Setting Up Dashboards
 
-{% hint style="info" %}
-* **Prometheus** is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/)
-* **Grafana** is a dashboard used to visualize the collected data.
-{% endhint %}
+When your nodes are up and running, monitor node behaviour regularly to help ensure that your system is performing as expected and to identify potential opportunities for fine tuning system performance.
+<!-- Reference:
+https://testnets.cardano.org/en/testnets/cardano/monitor/monitoring-the-cardano-node/ -->
+
+As an alternative or in addition to using gLiveView to monitor your stake pool, you may also use Prometheus and Grafana:
+
+* [Prometheus](https://prometheus.io) is a monitoring platform that collects metrics from monitored targets by scraping metrics using HTTP endpoints on these targets.
+* [Grafana](https://grafana.com) is a dashboard for displaying visualizations of the collected data using your Web browser.
 
 ## :hatching\_chick: Installing Prometheus and Grafana
 
@@ -154,6 +158,24 @@ sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 ```
 {% endtab %}
 {% endtabs %}
+
+Run the following to modify **mainnet-config.json** and
+
+* update TraceBlockFetchDecisions to "true"
+
+```bash
+sed -i ${NODE_CONFIG}-config.json \
+    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g"
+```
+
+{% hint style="info" %}
+Setting `"TraceBlockFetchDecisions": true` enables additional metrics that you can display using a dashboard in Grafana.
+{% endhint %}
+<!--TO-DO (240502):
+Test whether Peer data is available in Grafana when only the TraceBlockFetchDecisions key is true.
+The TraceBlockFetchClient key may also need to be set to true. I experienced some instability
+with the block producer restarting every few days when both keys were true. For more details, see
+https://forum.cardano.org/t/post-upgrade-to-1-25-1-some-prometheus-grafana-metrics-not-showing/46137/29 -->
 
 {% hint style="info" %}
 Port forwarding and firewall config:

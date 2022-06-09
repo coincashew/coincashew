@@ -42,7 +42,7 @@ sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/loca
 ```
 
 2. To confirm that the new version of the CNCLI binary is installed, type:
-```
+```bash
 cncli -V
 ```
 
@@ -86,7 +86,7 @@ sed -i env \
     -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
 {% hint style="info" %}
-For details on setting the `NODE_HOME` environment variable, see the topic [Installing Cabal and GHC](../part-i-installation/installing-cabal-and-ghc.md)
+For details on setting the `NODE_HOME` environment variable, see the topic [Installing the Glasgow Haskell Compiler and Cabal](../part-i-installation/installing-ghc-and-cabal.md)
 {% endhint %}
 
 5. As needed to configure Guild LiveView for your stake pool, use a text editor to transfer additional user variable definitions from the `env.bak` file that you created in step 1 to the `env` file that you downloaded in step 2.
@@ -111,7 +111,7 @@ _Table 1 Current Cardano Node Version Requirements_
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
 - In a terminal window, type:
-```
+```bash
 ghcup upgrade
 ghcup --version
 ```
@@ -119,7 +119,7 @@ ghcup --version
 **To install other GHC versions:**
 
 - In a terminal window, type the following commands where `<GHCVersionNumber>` is the GHC version that you want to install and use:
-```
+```bash
 ghcup install ghc <GHCVersionNumber>
 ghcup set ghc <GHCVersionNumber>
 ghc --version
@@ -128,7 +128,7 @@ ghc --version
 **To install other Cabal versions:**
 
 - In a terminal window, type the following commands where `<CabalVersionNumber>` is the Cabal version that you want to install and use:
-```
+```bash
 ghcup install cabal <CabalVersionNumber>
 ghcup set cabal <CabalVersionNumber>
 cabal --version
@@ -149,7 +149,7 @@ A new Cardano Node release may include updated configuration files. If configura
 sudo systemctl stop <CardanoServiceName>.service
 ```
 {% hint style="info" %}
-If you follow the Coin Cashew instructions for [Creating Startup Scripts](../part-ii-configuration/creating-startup-scripts.md), then `<CardanoServiceName>` is `cardano-node`
+If you follow the Coin Cashew instructions for [Creating Startup Scripts and Services](../part-ii-configuration/creating-startup-scripts.md), then `<CardanoServiceName>` is `cardano-node`
 {% endhint %}
 
 2. To back up the configuration files that your node currently uses, type the following commands where `<ConfigurationFileFolder>` is the path to the folder where the configuration files are located:  
@@ -162,10 +162,10 @@ mv mainnet-alonzo-genesis.json mainnet-alonzo-genesis.bak
 mv mainnet-topology.json mainnet-topology.bak
 ```  
 {% hint style="info" %}
-If you follow the Coin Cashew instructions for [Preparing Configuration Files](../part-ii-configuration/preparing-configuration-files.md), then `<ConfigurationFileFolder>` is `$HOME/cardano-my-node` Alternately, you can type `$NODE_HOME` If needed, you can also use the environment variable `$NODE_CONFIG` to indicate the `mainnet` cluster in configuration file names.
+If you followed the Coin Cashew instructions for [Downloading Configuration Files](../part-ii-configuration/downloading-configuration-files.md) when you set up your stake pool, then `<ConfigurationFileFolder>` is `$HOME/cardano-my-node` Alternately, you can type `$NODE_HOME` If needed, you can also use the environment variable `$NODE_CONFIG` to indicate the `mainnet` cluster in configuration file names.
 {% endhint %}
 
-3. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), then browse to the latest release, then click to expand the Downloads dropdown list in the Technical Specification section of the release notes, and then click the Configuration Files link.
+3. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), then browse to the latest release, then click to expand the **Downloads** dropdown list in the _Technical Specification_ section of the release notes, and then click the **Configuration Files** link.
 
 4. On the Cardano Configurations page, click the following links to download configuration files for the `mainnet` cluster to the folder where you created backups of your current configuration files in step 2: `config`, `byronGenesis`, `shelleyGenesis`, `alonzoGenesis` and `topology`  
 {% hint style="info" %}
@@ -235,7 +235,7 @@ sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "card
 sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli") <DestinationPath>/cardano-cli
 ```
 {% hint style="info" %}
-If you follow the Coin Cashew instructions for [Compiling Source Code](../part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
+If you follow the Coin Cashew instructions for [Compiling Cardano Node](../part-i-installation/compiling-cardano-node.md), then `<DestinationPath>` is `/usr/local/bin`
 {% endhint %}
 
 3. To verify that you installed the new Cardano Node binaries successfully, type:
@@ -245,7 +245,7 @@ cardano-cli version
 ```
 
 4. Optionally, to install the latest versions of all previously installed packages on your computer, and then reboot the computer, type:
-```
+```bash
 sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
 ```
 
@@ -269,7 +269,7 @@ cd ${NODE_HOME}
 {% endtab %}
 
 {% tab title="journalctl" %}
-```
+```bash
 journalctl -fu cardano-node
 ```
 {% endtab %}

@@ -1,7 +1,6 @@
 ---
-description: >-
-  WireGuard® is an extremely simple yet fast and modern VPN that utilizes
-  state-of-the-art cryptography. It aims to be faster, simpler, leaner.
+description:
+  [WireGuard®](https://www.wireguard.com/) is an extremely simple, fast and modern virtual private network (VPN) utilizing state-of-the-art cryptography.
 ---
 
 # Setting Up WireGuard

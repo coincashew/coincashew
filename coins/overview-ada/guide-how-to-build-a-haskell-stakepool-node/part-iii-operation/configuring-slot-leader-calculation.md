@@ -336,7 +336,8 @@ For every epoch, there will be a file called leaderSchedule\_epoch.txt
 
 {% tab title="CNCLI Tool" %}
 {% hint style="info" %}
-#### [CNCLI](https://github.com/AndrewWestberg/cncli) by [BCSH](https://bluecheesestakehouse.com), [SAND](https://www.sandstone.io), [SALAD](https://insalada.io)
+
+### <a name="cncli"></a>Installing [CNCLI](https://github.com/AndrewWestberg/cncli) by [BCSH](https://bluecheesestakehouse.com), [SAND](https://www.sandstone.io), [SALAD](https://insalada.io)
 
 A community-based `cardano-node` CLI tool. It's a collection of utilities to enhance and extend beyond those available with the `cardano-cli`.
 {% endhint %}
@@ -367,7 +368,7 @@ command -v cncli
 
 It should return `/usr/local/bin/cncli`
 
-#### :pick: **Running LeaderLog with stake-snapshot**
+### <a name="stakesnapshot"></a>:pick: **Running Leaderlog Using the stake-snapshot Command**
 
 This command calculates a stake pool's expected slot list.
 

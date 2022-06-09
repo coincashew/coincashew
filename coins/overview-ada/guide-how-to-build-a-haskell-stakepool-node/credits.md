@@ -26,8 +26,8 @@ Thanks to all 102,000+ of you, the Cardano hodlers, buidlers, stakers, and pool 
 * :clap: [X-StakePool \[BTBF\] for translating this guide to Japanese.](https://github.com/btbf/coincashew/blob/master/guide-how-to-build-a-haskell-stakepool-node.md)
 * :clap: Chris of OMEGA | CODEX for security improvements.
 * :clap: Raymond of GROW for topologyUpdater improvements and being awesome.
-* :clap: QCPOL for the script and service to update node's height on pooltool.io.
-* :clap: ChangePool \[[CHG](https://change.paradoxicalsphere.com)] for massively re-organizing and improving this guide's structure.
+* :clap: QCPOL for the script and service to update node's height on [PoolTool](https://pooltool.io/).
+* :clap: Change Pool \[[CHG](https://change.paradoxicalsphere.com)] for massively re-organizing and improving this guide's structure.
 
 ## :money\_with\_wings: Tip Jar Donators
 

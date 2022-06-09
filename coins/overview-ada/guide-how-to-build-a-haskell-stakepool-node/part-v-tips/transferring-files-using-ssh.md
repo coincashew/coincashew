@@ -18,6 +18,10 @@ rsync -avzhe “ssh -p <SSH-PORT>” <USERNAME>@<IP ADDRESS>:<PATH TO NODE DESTI
 >
 > `rsync -avzhe "ssh -p 12345" myusername@6.1.2.3:/home/myusername/cardano-my-node/stake.vkey ./stake.vkey`
 
+{% hint style="info" %}
+If you need to install `rsync`, type `sudo apt-get install rsync`
+{% endhint %}
+
 ## To Upload Files From Your Local PC to a Node
 
 ```bash
