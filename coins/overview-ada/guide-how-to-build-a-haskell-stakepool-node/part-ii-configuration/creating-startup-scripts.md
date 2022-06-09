@@ -42,6 +42,7 @@ PORT=6000
 # Set a variable to indicate the local IP address of the computer where Cardano Node runs
 # 0.0.0.0 listens on all local IP addresses for the computer
 HOSTADDR=0.0.0.0
+
 # Set a variable to indicate the file path to your topology file
 TOPOLOGY=<NodeHomeValue>/mainnet-topology.json
 # Set a variable to indicate the folder where Cardano Node stores blockchain data
@@ -54,6 +55,7 @@ CONFIG=<NodeHomeValue>/mainnet-config.json
 # Run Cardano Node using the options that you set using variables
 #
 /usr/local/bin/cardano-node run --topology ${TOPOLOGY} --database-path ${DB_PATH} --socket-path ${SOCKET_PATH} --host-addr ${HOSTADDR} --port ${PORT} --config ${CONFIG}
+
 ```
 {% hint style="info" %}
 You configured the `mainnet-topology.json` file when [Configuring Stake Pool Topology](./configuring-stake-pool-topology.md). You downloaded the `mainnet-config.json` file when [Downloading Configuration Files](./downloading-configuration-files.md). For more details on options for the `cardano-node run` command, see the topic [How to run cardano-node](https://developers.cardano.org/docs/get-started/running-cardano) in the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/).
