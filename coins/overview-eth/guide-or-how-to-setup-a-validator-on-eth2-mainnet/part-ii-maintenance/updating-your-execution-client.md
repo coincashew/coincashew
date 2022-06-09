@@ -76,13 +76,13 @@ rm openethereum*.zip
 {% tab title="Besu" %}
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
-File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](https://dl.bintray.com/hyperledger-org/besu-repo)
+File can be downloaded from [https://hyperledger.jfrog.io/ui/native/besu-binaries/besu/](https://hyperledger.jfrog.io/ui/native/besu-binaries/besu/)
 
 Manually find the desired file from above repo and modify the `wget` command with the URL.
 
 > Example:
 >
-> wget -O besu.tar.gz [https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
+> wget -O besu.tar.gz [https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.4.2/besu-22.4.2.tar.gz](https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.4.2/besu-22.4.2.tar.gz)
 
 ```bash
 cd $HOME

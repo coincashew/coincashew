@@ -111,7 +111,7 @@ sudo apt install openjdk-11-jdk -y
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
 ```
-BINARIES_URL="https://github.com/hyperledger/besu/releases/download/22.1.3/besu-22.1.3.tar.gz"
+BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.4.2/besu-22.4.2.tar.gz"
 
 cd $HOME
 wget -O besu.tar.gz "$BINARIES_URL"
