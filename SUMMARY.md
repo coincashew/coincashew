@@ -135,6 +135,7 @@
     * [Join the Community](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/joining-the-community-on-discord-and-reddit.md)
     * [See Also](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/see-also.md)
     * [Credits](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/credits.md)
+  * [Ethereum Merge Upgrade Checklist for Home Stakers and Validators](coins/overview-eth/ethereum-merge-upgrade-checklist-for-home-stakers-and-validators.md)
   * [Guide | Besu + Lodestar | Most Viable Diverse Client | Staking Ethereum on Kiln testnet](coins/overview-eth/guide-or-besu-+-lodestar-or-most-viable-diverse-client-or-staking-ethereum-on-kiln-testnet.md)
   * [Guide | How to setup a validator for Ethereum staking on Pithos testnet in 10 minutes or less](coins/overview-eth/guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less.md)
   * [Guide | Operation Client Diversity: Migrate Prysm to Teku](coins/overview-eth/guide-or-operation-client-diversity-migrate-prysm-to-teku.md)
