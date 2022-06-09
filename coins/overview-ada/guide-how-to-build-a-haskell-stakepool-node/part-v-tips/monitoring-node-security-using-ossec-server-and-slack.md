@@ -1,6 +1,5 @@
 ---
-description:
-  [OSSEC](https://github.com/ossec) is an Open Source Host-based Intrusion Detection System that performs log analysis, file integrity checking, policy monitoring, rootkit detection, real-time alerting and active response. [Slack](https://slack.com/) is a messaging app for business that connects people to the information they need.
+description: Guide to monitor your node security with OSSEC and Slack.
 ---
 
 # Monitoring Node Security Using OSSEC Server and Slack

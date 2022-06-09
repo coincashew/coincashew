@@ -1,5 +1,5 @@
 ---
-description:
+description: >-
   Cardano is a decentralised public blockchain and cryptocurrency project and is
   fully open source. It is the first blockchain platform to evolve out of a
   scientific philosophy.

@@ -4,6 +4,15 @@ description: Quick to-do list before the merge arrives.
 
 # Ethereum Merge Upgrade Checklist for Home Stakers and Validators
 
+{% hint style="success" %}
+​**2022-06 Gitcoin Grant Round 14**\
+****​[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support! :pray:
+{% endhint %}
+
+{% hint style="info" %}
+The following steps align with our [mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+{% endhint %}
+
 ## Wen merge?&#x20;
 
 Ropsten testnet merge done, two more to go, namely Sepolia and Goerli. Mainnet merge upgrade to follow and latest estimates are End of July or August.

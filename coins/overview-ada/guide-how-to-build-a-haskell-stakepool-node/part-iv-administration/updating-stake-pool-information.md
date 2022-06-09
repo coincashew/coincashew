@@ -1,16 +1,14 @@
 # Updating Stake Pool Information
 
-If you need to update the pledge, fixed fee, margin, domain name(s), IP address(es), port(s) or metadata for your stake pool, then submit an updated stake pool registration certificate to the blockchain. The most recent registration certificate that you successfully submit applies to your stake pool.
-<!-- Reference:
-https://forum.cardano.org/t/registering-stake-pool-with-multiple-relay-nodes/52982/11 -->
-
-Depending on the information that you update, you may need to wait up to two epochs until the new information applies. Confirm current information for your stake pool using [PoolTool](https://pooltool.io/), [ADApools](https://adapools.org) or another Cardano blockchain explorer.
-
 {% hint style="danger" %}
-**Important Reminder**:fire: If you decrease the committed pledge for your stake pool and remove ADA from the account containing your pledge before the decreased pledge amount applies, then if your stake pool does not meet the committed pledge, your stake pool loses rewards.
+**Important Reminder**:fire: Any changes made in this section take effect in two epochs. A common mistake is lowering the pledge amount and removing funds too soon. This results in zero rewards as the current live pledge amount is no longer met.
 {% endhint %}
 
-When you update the registration certificate, you do **not** pay a 500 ADA stake pool deposit again.
+{% hint style="info" %}
+Need to change your pledge, fee, margin, pool IP/port, or metadata? Simply resubmit your stake pool registration certificate.
+
+**Reminder**: There is no requirement to pay the 500 ADA stake pool deposit again.
+{% endhint %}
 
 First, generate the protocol-parameters.
 

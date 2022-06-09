@@ -1,6 +1,5 @@
 ---
-description:
-  Buying Cardano is a simple, two-step process.
+description: Simple two step process to buying Cardano.
 ---
 
 # Guide: How to buy ADA

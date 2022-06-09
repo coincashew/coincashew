@@ -1,6 +1,7 @@
 ---
-description:
-  Set up an external relay node using [CNTools](https://cardano-community.github.io/guild-operators/Scripts/cntools/).
+description: >-
+  This quick start guide walks through setting up an external relay node with
+  the help of CNTOOLs.
 ---
 
 # Setting Up an External Passive Relay Node
@@ -262,7 +263,7 @@ Example snippet to add to your block producer's topology file. Add a comma to se
  }
 ```
 
-For relay nodes, [manage your topology file](../part-iii-operation/configuring-network-topology.md) or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
+For relay nodes, [manage your topology file](../part-iii-operation/configuring-topology-files.md) or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
 
 ## :arrows\_counterclockwise: Restarting Nodes
 

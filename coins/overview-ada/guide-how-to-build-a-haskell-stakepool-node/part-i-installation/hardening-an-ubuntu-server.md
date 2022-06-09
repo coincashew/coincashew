@@ -1,6 +1,5 @@
 ---
-description:
-  Secure your Cardano node.
+description: Quick steps to secure your node.
 ---
 
 # Hardening an Ubuntu Server
@@ -386,7 +385,7 @@ Restart fail2ban for settings to take effect.
 sudo systemctl restart fail2ban
 ```
 
-## <a name="ufw"></a>:bricks: **Configuring Your Firewall**
+## :bricks: **Configuring Your Firewall**
 
 The standard UFW firewall can be used to control network access to your node.
 

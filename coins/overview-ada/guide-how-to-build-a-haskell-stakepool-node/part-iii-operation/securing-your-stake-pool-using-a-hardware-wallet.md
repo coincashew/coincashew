@@ -8,16 +8,12 @@ You can secure your **pool pledge account** and **pool reward account** using a 
 
 First, delegate your 2nd pool owner to your stake pool with Daedalus or Yoroi or Adalite.io
 
-{% hint style="info" %}
-[Vacuumlabs](https://vacuumlabs.com/), developer of the [AdaLite](https://adalite.io/) Cardano wallet, releases the [Cardano HW CLI](https://github.com/vacuumlabs/cardano-hw-cli) tool to interact with your hardware wallet.
-{% endhint %}
-
-Install Cardano HW CLI
+Install [cardano-hw-cli](https://github.com/vacuumlabs/cardano-hw-cli) to interact with your hardware wallet.
 
 {% tabs %}
 {% tab title="local PC or block producer node" %}
 ```bash
-# cardano-hw-cli works with Trezor and Ledger Nano S/X
+# Hardware Wallet works with Trezor and Ledger Nano S/X
 # Reference https://github.com/vacuumlabs/cardano-hw-cli/blob/develop/docs/installation.md
 
 cd $NODE_HOME
@@ -291,7 +287,7 @@ cardano-cli transaction submit \
 {% endtab %}
 {% endtabs %}
 
-Check your updated pool information on [ADApools](https://adapools.org) which should now show your hardware wallet as a pool owner.
+Check your updated pool information on [adapools.org](https://adapools.org) which should now show your hardware wallet as a pool owner.
 
 {% hint style="danger" %}
 **Important Reminder**:fire: These changes take effect in two epochs. Do **NOT** transfer pledge funds to your hardware wallet until at least two epochs later.

@@ -16,7 +16,7 @@ Make sure the ITN's `jcli` binaries are present in `$NODE_HOME`. Use `jcli` to s
 {% endtab %}
 {% endtabs %}
 
-Visit [PoolTool](https://pooltool.io) and enter your owner public key and pool id witness data in the metadata section.
+Visit [pooltool.io](https://pooltool.io) and enter your owner public key and pool id witness data in the metadata section.
 
 Find your pool id witness with the following command.
 
@@ -30,4 +30,4 @@ cat stakepoolid.sig
 
 Find your owner public key in the file you generated on ITN. This data might be stored in a file ending in `.pub`
 
-Finally, [update your stake pool information](../part-iv-administration/updating-stake-pool-information.md) with the `metadata-url` and `metadata-hash` that PoolTool generates. Notice that the metadata has an `extended` field that proves your ticker ownership since ITN.
+Finally, [update your stake pool information](../part-iv-administration/updating-stake-pool-information.md) with the PoolTool-generated **`metadata-url`** and **`metadata-hash`**. Notice the metadata has an "extended" field that proves your ticker ownership since ITN.

@@ -27,4 +27,4 @@ cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) --mainne
 A non-empty string return means you're registered! :clap:
 {% endhint %}
 
-With your stake pool ID, now you can find your data on block explorers such as [PoolTool](https://pooltool.io)
+With your stake pool ID, now you can find your data on block explorers such as [https://pooltool.io/](https://pooltool.io)

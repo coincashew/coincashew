@@ -5,7 +5,7 @@ description: Step by step guide on how to switch for the solo home or cloud stak
 # Guide | Operation Client Diversity: Migrate Prysm to Teku
 
 {% hint style="info" %}
-:confetti\_ball: **2022-3 Gitcoin Grant Round 13**
+**2022-6 Gitcoin Grant Round 14**
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
 {% endhint %}
@@ -35,7 +35,7 @@ As per best practices, always try everything on a testnet before doing it _for r
 ## :construction: How to Migrate from Prysm to Teku
 
 {% hint style="info" %}
-[PegaSys Teku](https://consensys.net/knowledge-base/ethereum-2/teku/) (formerly known as Artemis) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
+[PegaSys Teku](https://consensys.net/knowledge-base/ethereum-2/teku/) (formerly known as Artemis) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net/) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
 {% endhint %}
 
 ### :chains: 1. Setup and Sync the Teku beacon node
@@ -248,7 +248,7 @@ df -h
 {% hint style="info" %}
 Syncing the beacon node might take up to 36 hours depending on your hardware. Keep validating using your current Prysm setup until it completes. However, thanks to Teku's Checkpoint sync, you'll complete this step in a few minutes.
 
-Syncing is complete when your beacon node's slot matches that of a block explorer's slot number (i.e. [https://beaconcha.in/](https://beaconcha.in))
+Syncing is complete when your beacon node's slot matches that of a block explorer's slot number (i.e. [https://beaconcha.in/](https://beaconcha.in/))
 
 Check the beacon node syncing progress with the following:
 
@@ -366,7 +366,7 @@ Wait until your validator's last attestation is in a finalized epoch - usually a
 
 By waiting for a finalized epoch, there's no need to migrate the slashing database.
 
-Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in) or [beaconscan.com](https://beaconscan.com)
+Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
 {% endhint %}
 
 ### :bricks: 3. Update firewall / port forwarding.
@@ -434,7 +434,7 @@ rm /var/lib/teku/validator_keys/deposit_data*
 
 Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes.&#x20;
 
-Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in) or [beaconscan.com](https://beaconscan.com)
+Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
 {% endhint %}
 
 Storing your **keystore password** in a text file is required so that Teku can decrypt and load your validators automatically.
@@ -549,7 +549,7 @@ journalctl -fu beacon-chain
 ```
 
 {% hint style="success" %}
-Confirm that your new Teku validator has started attesting with block explorer [beaconcha.in](https://beaconcha.in) or [beaconscan.com](https://beaconscan.com)
+Confirm that your new Teku validator has started attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
 {% endhint %}
 
 #### 🛠 Some helpful systemd commands

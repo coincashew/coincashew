@@ -1,61 +1,46 @@
 # Configuring an Air-gapped, Offline Computer
 
-Store and safeguard the sensitive secret (private) keys for your stake pool using an air-gapped, offline computer. The most effective technique to prevent private key exposure is to guarantee that a necessary private key is never held for any length of time on any Internet-connected computer, also known as a hot node. Your air-gapped, offline computer may also be referred to as a cold environment.
-
-Your air-gapped, offline computer:
-
-- Protects against key-logging attacks; malware- or virus-based attacks; and, other firewall or security exploits
-- Must not have a wired or wireless network connection
-- Is not a virtual machine (VM) on a computer having a network connection
-- Is physically isolated from the rest of your network
-
-Read more about requirements to [Air Gap](https://en.wikipedia.org/wiki/Air_gap_(networking)).
-
-## System Requirements
-
-The system requirements for the air-gapped, offline computer that you use to support your stake pool operation are minimal. The computer must support the same operating system that you install on your hot nodes. For example, you may use a Raspberry Pi or an upcycled older computer or laptop.
-
-Your cold environment requires a USB port to facilitate transporting files to and from your block-producing node using a USB stick or other removable media.
-
-## Copying the cardano-cli Binary
-
-Copy the `cardano-cli` binary that you produced when [Compiling Cardano Node](../part-i-installation/compiling-cardano-node.md) to your air-gapped, offline computer.
-
-**To copy the cardano-cli binary to your cold environment:**
-
-1. Insert the removable media that you want to use to transfer files into a hot node where you compiled the `cardano-cli` binary.
-
-2. If you followed the Coin Cashew guide, then copy the `cardano-cli` binary located in the folder `/usr/local/bin/` to the removable media that you inserted in step 1  
 {% hint style="info" %}
-If you do not know the location of the `cardano-cli` binary, then type `which cardano-cli`
+An air-gapped offline machine is called your cold environment.
+
+* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits.
+* Physically isolated from the rest of your network.
+* Must not have a network connection, wired or wireless.
+* Is not a VM on a machine with a network connection.
+* Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air\_gap\_\(networking\)).
 {% endhint %}
 
-3. Eject the removable media from your hot node, and then insert the removable media into your air-gapped, offline computer.
+{% hint style="info" %}
+A note about **hardware requirements** for an air-gapped offline machine.
 
-4. On your air-gapped, offline computer, copy the `cardano-cli` binary from the removable media to the `/usr/local/bin/` folder.
+* Can be as basic as a Raspberry Pi or an upcycled older laptop/desktop.
+* Uses an usb port to transport files back and forth.
+{% endhint %}
 
-5. To give execute permissions to the `cardano-cli` binary, type:
+{% tabs %}
+{% tab title="air-gapped offline machine" %}
 ```bash
-sudo chmod +x /usr/local/bin/cardano-cli
-```
-
-## Setting the NODE_HOME Environment Variable
-
-For convenience when following the Coin Cashew guide, create a `NODE_HOME` environment variable on your air-gapped, offline computer set to the same file path that you set on your block-producing and relay nodes when [Installing GHC and Cabal](../part-i-installation/installing-ghc-and-cabal.md).
-
-**To create a NODE_HOME environment variable:**
-
-1. On your air-gapped, offline computer, open the file `$HOME/.bashrc` using a text editor, and then add the following line at the end of the file:
-```bash
-export NODE_HOME="$HOME/cardano-my-node"
-```
-
-2. To create the folder set for the `NODE_HOME` environment variable in the `$HOME/.bashrc` file, type:
-```bash
-mkdir $HOME/cardano-my-node
-```
-
-3. To reload your shell profile, type:
-```bash
+echo export NODE_HOME=$HOME/cardano-my-node >> $HOME/.bashrc
 source $HOME/.bashrc
+mkdir -p $NODE_HOME
+```
+{% endtab %}
+{% endtabs %}
+
+Copy from your **hot environment**, also known as your block producer node, a copy of the `cardano-cli` to your **cold environment**, this air-gapped offline machine.
+
+Location of your cardano-cli.
+
+```
+/usr/local/bin/cardano-cli
+```
+
+{% hint style="danger" %}
+In order to remain a true air-gapped environment, you must move files physically between your cold and hot environments with USB keys or other removable media.
+{% endhint %}
+
+After copying over to your cold environment, add execute permissions to the file.
+
+```
+sudo chmod +x /usr/local/bin/cardano-cli
 ```

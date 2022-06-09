@@ -54,7 +54,7 @@ cardano-cli node key-gen \
 {% endtabs %}
 
 {% hint style="warning" %}
-Back up all your key files, as well as the cold counter file, to a secure storage device. Make multiple copies.
+Be sure to **back up your all your keys** to another secure storage device. Make multiple copies.
 {% endhint %}
 
 Determine the number of slots per KES period from the genesis file.
@@ -70,7 +70,7 @@ echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 {% endtabs %}
 
 {% hint style="warning" %}
-Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the **epoch and slot#** is equal to that found on a block explorer such as [PoolTool](https://pooltool.io)
+Before continuing, your node must be fully synchronized to the blockchain. Otherwise, you won't calculate the latest KES period. Your node is synchronized when the **epoch and slot#** is equal to that found on a block explorer such as [https://pooltool.io/](https://pooltool.io)
 {% endhint %}
 
 {% tabs %}
@@ -153,7 +153,7 @@ Update your startup script with the new **KES, VRF and Operation Certificate.**
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cat > $NODE_HOME/startCardanoNode.sh << EOF 
+cat > $NODE_HOME/startBlockProducingNode.sh << EOF 
 DIRECTORY=$NODE_HOME
 PORT=6000
 HOSTADDR=0.0.0.0
@@ -164,7 +164,7 @@ CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
 KES=\${DIRECTORY}/kes.skey
 VRF=\${DIRECTORY}/vrf.skey
 CERT=\${DIRECTORY}/node.cert
-/usr/local/bin/cardano-node run --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG} --shelley-kes-key \${KES} --shelley-vrf-key \${VRF} --shelley-operational-certificate \${CERT}
+/usr/local/bin/cardano-node run +RTS -N -A16m -qg -qb -RTS --topology \${TOPOLOGY} --database-path \${DB_PATH} --socket-path \${SOCKET_PATH} --host-addr \${HOSTADDR} --port \${PORT} --config \${CONFIG} --shelley-kes-key \${KES} --shelley-vrf-key \${VRF} --shelley-operational-certificate \${CERT}
 EOF
 ```
 {% endtab %}

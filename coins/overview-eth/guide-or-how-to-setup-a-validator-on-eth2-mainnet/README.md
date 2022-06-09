@@ -9,13 +9,13 @@ description: >-
 ## :new: Announcements
 
 {% hint style="info" %}
-:confetti\_ball: **2022-03 Gitcoin Grant Round 13**
+:confetti\_ball: **2022-06 Gitcoin Grant Round 14**
 
 [Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏
 {% endhint %}
 
 {% hint style="success" %}
-As of March 14 2022, this is **guide version 4.0.1** and written for **Ethereum mainnet**:grin:
+As of June 8 2022, this is **guide version 4.1.0** and written for **Ethereum mainnet**:grin:
 {% endhint %}
 
 {% hint style="info" %}
@@ -32,8 +32,13 @@ The guide includes the following parts:
 * ****[**Part II - Maintenance**](part-ii-maintenance.md) explains ongoing tasks you'll require to keep your ETH staking node in great shape and up-to-date.
 * ****[**Part III - Tips**](part-iii-tips.md) contains additional procedures to simplify managing your ETH staking node.
 
-## :page\_facing\_up: Changelog - **Update Notes -** **March 14 2022**
+## :page\_facing\_up: Changelog - **Update Notes -** **June 8 2022**
 
+* Are you ready for the Merge? [**Ethereum Merge Upgrade Checklist for Home Stakers and Validators**](https://www.coincashew.com/coins/overview-eth/ethereum-merge-upgrade-checklist-for-home-stakers-and-validators)
+* \#TestingTheMerge on Ropsten: New Automated Install Script for the [Most Diverse Client: Besu+Lodestar](https://github.com/coincashew/ethereum-scripts/blob/main/README.md)
+* Guides for Ropsten and [Kiln "Merge Testnets"](https://www.coincashew.com/coins/overview-eth/guide-or-besu-+-lodestar-or-most-viable-diverse-client-or-staking-ethereum-on-kiln-testnet)
+* \#TestingTheMerge Guide on [Pithos Testnet](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less)
+* Migration Guide with the goal of increasing ClientDiversity: [**Operation Client Diversity: Migrate Prysm to Teku**](https://www.coincashew.com/coins/overview-eth/guide-or-operation-client-diversity-migrate-prysm-to-teku)
 * Updated besu execution client to use BONSAI format
 * Restructured guide for improved speed and readability
 * Added how to check your [Validator's Sync Committee duties](part-ii-maintenance/checking-my-eth-validators-sync-committee-duties.md)

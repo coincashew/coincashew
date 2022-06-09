@@ -85,10 +85,6 @@ DNS based relays are recommended for simplicity of node management. In other wor
 {% hint style="info" %}
 ### :sparkles: Configuring Multiple Relay Nodes <a href="#multiplerelays" id="multiplerelays"></a>
 
-If you operate multiple relay nodes, then **not** registering one relay node increases the security and stability of your stake pool in case of an attack.
-<!-- Reference:
-https://forum.cardano.org/t/registering-stake-pool-with-multiple-relay-nodes/52982/11 -->
-
 Update the next operation
 
 `cardano-cli stake-pool registration-certificate`
@@ -119,7 +115,6 @@ to be run on your air-gapped offline machine appropriately. Replace with your pr
     --pool-relay-port 6000 \
     --pool-relay-ipv4 <your second relay node public IP address> \
 ```
-
 {% endhint %}
 
 {% hint style="warning" %}

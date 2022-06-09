@@ -14,5 +14,5 @@ cardano-cli query stake-address-info \
 
 Or simply lookup your pool on
 
-* [ADApools](https://adapools.org)
-* [PoolTool](https://pooltool.io)
+* &#x20;[https://adapools.org/](https://adapools.org)
+* [https://pooltool.io/](https://pooltool.io)

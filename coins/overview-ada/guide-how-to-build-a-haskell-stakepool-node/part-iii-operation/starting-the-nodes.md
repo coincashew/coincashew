@@ -2,10 +2,6 @@
 
 Start your stake pool with systemctl and begin syncing the blockchain!
 
-{% hint style="info" %}
-:construction: You can have multiple relay nodes as you scale up your stake pool architecture. In the Coin Cashew guide, for convenience procedures may refer to your relay nodes using the name `relaynode<N>` where `<N>` is `1` for your first relay, `2` for your second relay, and so on. Simply create `relaynode<N>` and adapt the guide instructions accordingly.
-{% endhint %}
-
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
@@ -19,8 +15,6 @@ sudo systemctl start cardano-node
 ```
 {% endtab %}
 {% endtabs %}
-
-## <a name="gliveview"></a>Installing gLiveView
 
 Install gLiveView, a monitoring tool.
 

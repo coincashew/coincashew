@@ -6,7 +6,7 @@ https://youtu.be/PCqvFMTGu3o
 https://developers.cardano.org/docs/operate-a-stake-pool/cardano-key-pairs -->
 
 {% hint style="info" %}
-To explain the process of building transactions, procedures in the Coin Cashew guide provide instructions for calculating transaction fees manually using the `transaction build-raw` command. Using the `transaction build` command allows you to calculate transaction fees automatically. For a general discussion on creating transactions, see the topic [Building and Signing Transactions](https://testnets.cardano.org/en/testnets/cardano/transactions/creating-transactions/) in the official [Cardano Testnet](https://testnets.cardano.org/en/testnets/cardano/overview/) documentation. For an example using the `transaction build` command, see the topic [Submitting a Simple Transaction](../part-v-tips/submitting-a-simple-transaction.md).
+For a general discussion on creating transactions, see the topic [Building and Signing Transactions](https://testnets.cardano.org/en/testnets/cardano/transactions/creating-transactions/) in the official [Cardano Testnet](https://testnets.cardano.org/en/testnets/cardano/overview/) documentation.
 {% endhint %}
 
 **To register a stake address on the blockchain:**
