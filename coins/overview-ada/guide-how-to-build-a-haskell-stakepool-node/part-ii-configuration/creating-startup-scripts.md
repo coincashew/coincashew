@@ -2,6 +2,10 @@
 
 The startup script contains all the variables needed to run a cardano-node such as directory, port, db path, config file, and topology file.
 
+{% hint style="warning" %}
+Note: KES, VRF and CERT are not yet included at this stage of the guide. If you require the completed BP startup script, see the section on updating your startup script in [generating keys for the BP node.](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/generating-keys-for-the-block-producing-node)
+{% endhint %}
+
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
