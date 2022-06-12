@@ -2,7 +2,7 @@
 description: Simple two step process to buying Cardano.
 ---
 
-# Guide: How to buy ADA
+# Guide: How to Buy ADA
 
 ## ​ :fire: 1. Get some money into crypto <a href="1-get-some-money-into-crypto" id="1-get-some-money-into-crypto"></a>
 
