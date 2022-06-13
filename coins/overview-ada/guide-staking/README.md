@@ -29,8 +29,9 @@ There should never be a conflict of interest between maximizing rewards and "doi
 
 As a delegator, the attractiveness of a pool depends on four interacting elements:
 
-- **Pledge**—The higher, the better
-- **Operating Costs** and **Operator Margin**—The lower, the better
-- **Performance**—The higher, the better
+- **Pledge**
+- **Operating Costs**
+- **Operator Margin**
+- **Performance**
 
 Consider how these four elements affect your rewards, and evaluate the stake pool operator as well.
