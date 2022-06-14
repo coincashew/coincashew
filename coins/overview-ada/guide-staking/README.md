@@ -25,7 +25,7 @@ One pool or person gaining too much stake power can:
 
 Your delegation choice—who you give your power to—is very important at limiting a single entity from creating too many blocks.
 
-There should never be a conflict of interest between maximizing rewards and "doing the right thing." The staking mechanism was designed so that you can optimally secure the network by trying to maximize your rewards and being greedy with your delegation choice. Stake pools can offer very different return rates.
+There should never be a conflict of interest between maximizing rewards and "doing the right thing." The staking mechanism was designed so that you can optimally secure the network by making delegation choices based on your own best financial interests, as well as your values. Stake pools can offer very different return rates.
 
 As a delegator, the attractiveness of a pool depends on four interacting elements:
 

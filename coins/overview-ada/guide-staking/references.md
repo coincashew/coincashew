@@ -7,3 +7,6 @@
 [How Pledging Will Keep Cardano Healthy](https://iohk.io/en/blog/posts/2020/05/12/how-pledging-encourages-a-healthy-decentralized-cardano-ecosystem/)
 
 [Pledging and Rewards](https://docs.cardano.org/core-concepts/pledging-rewards)
+
+<!-- Reference:
+https://www.ns-businesshub.com/business/yancey-strickler-bentoism -->
