@@ -19,6 +19,10 @@ Every 1 percent increase in margin means delegators receive ≈ 0.037% annual pe
 
 By pledging more, the pool operator may set a higher operator margin without affecting rewards for delegators. As a rule of thumb, 2.3 million ADA pledge and 1 percent margin offset each other.
 
-The fixed fee affects delegator rewards proportionally to pool size. If a pool has little total stake, then each delegator pays more of the fee from their share of the rewards. Currently, the minimum fixed fee is 340 ADA per epoch for stake pools minting blocks. Stake pools having too little total stake to be elected to mint a block by the blockchain protocol do not receive any rewards.
+The fixed fee affects delegator rewards proportionally to pool size. If a pool has little total stake, then each delegator pays more of the fee from their share of the rewards. Currently, the minimum fixed fee is 340 ADA per epoch for stake pools minting blocks. Stake pools not elected by the blockchain protocol to mint blocks in an epoch receive no fixed or variable fee, and delegators receive no staking rewards for the epoch.
 
 **Saturation** is the level at which a pool becomes too large. A pool is saturated at 100 percent. A saturated pool is offering the best returns. If a pool becomes oversaturated, then rewards drop drastically.
+
+When you switch stake pools, the transaction fee is about 0.18 ADA. Try to minimize how often you change stake pools. Transaction fees may diminish your rewards.
+
+You do not need to withdraw staking rewards. Rewards and any new ADA in your wallet are automatically included in your staking balance.
