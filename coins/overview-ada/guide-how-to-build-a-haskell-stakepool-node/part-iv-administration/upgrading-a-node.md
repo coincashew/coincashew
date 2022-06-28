@@ -182,7 +182,7 @@ If you want to download new configuration files using the command line, then nav
 ## <a name="BuildingCN"></a>:zap:Building Cardano Node Binaries
 
 {% hint style="danger" %}
-Prior to building Cardano Node v1.35.0 binaries, [install libsecp256k1](../part-i-installation/installing-cabal-and-ghc.md#Installsecp256k1), and then type `sudo ldconfig`
+Prior to building Cardano Node 1.35.0 binaries, [install libsecp256k1](../part-i-installation/installing-cabal-and-ghc.md#Installsecp256k1), and then type `sudo ldconfig`
 {% endhint %}
 
 **To build binaries for a new Cardano Node version:**
