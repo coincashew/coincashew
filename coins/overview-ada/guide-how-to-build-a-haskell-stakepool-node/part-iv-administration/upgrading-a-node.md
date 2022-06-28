@@ -104,9 +104,14 @@ For each Cardano Node release, Input-Output recommends compiling binaries using 
 
 _Table 1 Current Cardano Node Version Requirements_
 
+<!--
 |  Release Date  |  Cardano Node Version  |  GHC Version   | Cabal Version  |
 |:--------------:|:----------------------:|:--------------:|:--------------:|
-|  March 7, 2022 |         1.34.1         |     8.10.7     |    3.6.2.0     |
+|  March 7, 2022 |         1.34.1         |     8.10.7     |    3.6.2.0     | -->
+
+|  Release Date  |  Cardano Node Version  |  GHC Version   | Cabal Version  |
+|:--------------:|:----------------------:|:--------------:|:--------------:|
+|  June 25, 2022 |         1.35.0         |     8.10.7     |    3.6.2.0     |
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -175,6 +180,10 @@ If you want to download new configuration files using the command line, then nav
 5. Using [`diff`](https://www.man7.org/linux/man-pages/man1/diff.1.html) or a similar file comparison utility, identify and copy customizations as needed from the backup configuration files that you created in step 2 to each new configuration file that you downloaded in step 4.
 
 ## <a name="BuildingCN"></a>:zap:Building Cardano Node Binaries
+
+{% hint style="danger" %}
+Prior to building Cardano Node v1.35.0 binaries, [install libsecp256k1](../part-i-installation/installing-cabal-and-ghc.md#Installsecp256k1), and then type `sudo ldconfig`
+{% endhint %}
 
 **To build binaries for a new Cardano Node version:**
 
