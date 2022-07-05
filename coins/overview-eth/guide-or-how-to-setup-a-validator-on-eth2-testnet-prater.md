@@ -2169,7 +2169,7 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 #### :file\_folder: 4.2. Download the Prater testnet genesis state file
 
 ```
-wget https://github.com/eth2-clients/eth2-networks/blob/master/shared/prater/genesis.ssz $HOME/prysm/genesis.ssz
+wget https://github.com/eth-clients/eth2-networks/raw/master/shared/prater/genesis.ssz $HOME/prysm/genesis.ssz
 ```
 
 
