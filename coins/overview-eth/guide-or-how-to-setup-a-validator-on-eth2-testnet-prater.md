@@ -2631,7 +2631,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 ```bash
 ./lodestar account validator import \
-  --testnet prater \
+  --network prater \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
 
@@ -2642,7 +2642,7 @@ Enter your **keystore password** to import accounts.
 Confirm your keys were imported properly.
 
 ```
-./lodestar account validator list --testnet prater
+./lodestar account validator list --network prater
 ```
 
 
@@ -2684,7 +2684,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = $(echo $HOME)/git/lodestar/lodestar beacon --testnet prater --eth1.providerUrl http://localhost:8545 --weakSubjectivitySyncLatest true --metrics.enabled true --metrics.serverPort 8008
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar beacon --network prater --eth1.providerUrl http://localhost:8545 --weakSubjectivitySyncLatest true --metrics.enabled true --metrics.serverPort 8008
 Restart         = on-failure
 
 [Install]
@@ -2824,7 +2824,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 WorkingDirectory= $(echo $HOME)/git/lodestar
-ExecStart       = $(echo $HOME)/git/lodestar/lodestar validator --testnet prater --graffiti "${MY_GRAFFITI}"
+ExecStart       = $(echo $HOME)/git/lodestar/lodestar validator --network prater --graffiti "${MY_GRAFFITI}"
 Restart         = on-failure
 
 [Install]
