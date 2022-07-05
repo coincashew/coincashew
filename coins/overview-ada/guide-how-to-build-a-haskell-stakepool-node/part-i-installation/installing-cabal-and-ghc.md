@@ -30,14 +30,26 @@ make
 sudo make install
 ```
 
-{% hint style="info" %}
-**Debian OS pool operators**: extra lib linking may be required.
+Install libsecp256k1
 
+```
+cd $HOME/git
+git clone https://github.com/bitcoin-core/secp256k1
+cd secp256k1
+git checkout ac83be33
+./autogen.sh
+./configure --enable-module-schnorrsig --enable-experimental
+make
+make check
+sudo make installDebian OS pool operators: extra lib linking may be required.
+```
+
+{% hint style="info" %}
 ```bash
 sudo ln -s /usr/local/lib/libsodium.so.23.3.0 /usr/lib/libsodium.so.23
 ```
 
-**AWS Linux CentOS pool operators**: clearing the lib cache may be required.
+**AWS Linux CentOS or Ubuntu pool operators**: clearing the lib cache may be required.
 
 ```bash
 sudo ldconfig
