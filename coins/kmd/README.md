@@ -11,7 +11,7 @@ description: >-
 
 | Site        | Title                                                                          |
 | ----------- | ------------------------------------------------------------------------------ |
-| Website     | [https://komodoplatform.com/](https://komodoplatform.com)                      |
+| Website     | [https://komodoplatform.com/](https://komodoplatform.com/)                     |
 | Source Code | [https://github.com/KomodoPlatform](https://github.com/KomodoPlatform)         |
 | Whitepaper  | [https://komodoplatform.com/whitepaper](https://komodoplatform.com/whitepaper) |
 
@@ -21,19 +21,19 @@ description: >-
 | -------------- | -------------------------------------------------------------------------------------------------- |
 | :bird: Twitter | [https://twitter.com/KomodoPlatform](https://twitter.com/KomodoPlatform)                           |
 | Reddit         | [https://www.reddit.com/r/komodoplatform](https://www.reddit.com/r/komodoplatform)                 |
-| Official Blog  | [https://blog.komodoplatform.com/](https://blog.komodoplatform.com)                                |
+| Official Blog  | [https://blog.komodoplatform.com/](https://blog.komodoplatform.com/)                               |
 | Discord        | [https://discord.gg/ZSrn5sJ](https://discord.gg/ZSrn5sJ)                                           |
 | Telegram       | [https://telegram.me/KomodoPlatform\_Official](https://telegram.me/KomodoPlatform\_Official)       |
 | Knowledge Base | [https://support.komodoplatform.com/support/home](https://support.komodoplatform.com/support/home) |
-| Documentation  | [https://docs.komodoplatform.com/](https://docs.komodoplatform.com)                                |
+| Documentation  | [https://docs.komodoplatform.com/](https://docs.komodoplatform.com/)                               |
 
 ## :arrows\_clockwise: Block Explorers
 
-| Site                                                    |
-| ------------------------------------------------------- |
-| [https://komodod.com/](https://komodod.com)             |
-| [https://kmdexplorer.io/](https://kmdexplorer.io)       |
-| [https://kmd.tokenview.com/](https://kmd.tokenview.com) |
+| Site                                                     |
+| -------------------------------------------------------- |
+| [https://komodod.com/](https://komodod.com/)             |
+| [https://kmdexplorer.io/](https://kmdexplorer.io/)       |
+| [https://kmd.tokenview.com/](https://kmd.tokenview.com/) |
 
 ## :bar\_chart: Charts and Pricing
 

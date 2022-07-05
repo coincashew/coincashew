@@ -10,7 +10,7 @@ description: >-
 
 | Site        | Title                                                                                              |
 | ----------- | -------------------------------------------------------------------------------------------------- |
-| Website     | [https://0x.org/](https://0x.org)                                                                  |
+| Website     | [https://0x.org/](https://0x.org/)                                                                 |
 | Source Code | [https://github.com/0xProject/0x-monorepo](https://github.com/0xProject/0x-monorepo)               |
 | Whitepaper  | [https://0xproject.com/pdfs/0x\_white\_paper.pdf](https://0xproject.com/pdfs/0x\_white\_paper.pdf) |
 
@@ -29,7 +29,7 @@ description: >-
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [https://etherscan.io/token/0xe41d2489571d322189246dafa5ebde1f4699f498](https://etherscan.io/token/0xe41d2489571d322189246dafa5ebde1f4699f498)     |
 | [https://ethplorer.io/address/0xe41d2489571d322189246dafa5ebde1f4699f498](https://ethplorer.io/address/0xe41d2489571d322189246dafa5ebde1f4699f498) |
-| [https://0xtracker.com/](https://0xtracker.com)                                                                                                    |
+| [https://0xtracker.com/](https://0xtracker.com/)                                                                                                   |
 
 ## :bar\_chart: Charts and Pricing
 

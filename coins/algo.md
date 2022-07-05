@@ -8,8 +8,8 @@ description: ENABLING ENTERPRISE TO EMBRACE DECENTRALIZED FINANCE
 
 | Site        | Title                                                                                              |
 | ----------- | -------------------------------------------------------------------------------------------------- |
-| Website     | [https://www.algorand.com/](https://www.algorand.com)                                              |
-| Foundation  | [http://algorand.foundation/](http://algorand.foundation)                                          |
+| Website     | [https://www.algorand.com/](https://www.algorand.com/)                                             |
+| Foundation  | [http://algorand.foundation/](http://algorand.foundation/)                                         |
 | Source Code | [https://github.com/algorand](https://github.com/algorand)                                         |
 | Whitepaper  | [https://www.algorand.com/resources/white-papers](https://www.algorand.com/resources/white-papers) |
 
@@ -22,14 +22,14 @@ description: ENABLING ENTERPRISE TO EMBRACE DECENTRALIZED FINANCE
 | Facebook       | [https://www.facebook.com/algorand](https://www.facebook.com/algorand)                 |
 | Telegram       | [https://t.me/algorand](https://t.me/algorand)                                         |
 | Medium         | [https://medium.com/algorand](https://medium.com/algorand)                             |
-| Forum          | [https://forum.algorand.org/](https://forum.algorand.org)                              |
+| Forum          | [https://forum.algorand.org/](https://forum.algorand.org/)                             |
 | Discord        | [https://discord.gg/QBYp7Y2](https://discord.gg/QBYp7Y2)                               |
 
 ## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                 |
 | ---------------------------------------------------------------------------------------------------- |
-| [https://algoexplorer.io/](https://algoexplorer.io)                                                  |
+| [https://algoexplorer.io/](https://algoexplorer.io/)                                                 |
 | [https://goalseeker.purestake.io/algorand/mainnet](https://goalseeker.purestake.io/algorand/mainnet) |
 
 ## :bar\_chart: Charts and Pricing

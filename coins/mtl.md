@@ -10,7 +10,7 @@ description: >-
 
 | Site        | Title                                                                                                    |
 | ----------- | -------------------------------------------------------------------------------------------------------- |
-| Website     | [https://www.metalpay.com/](https://www.metalpay.com)                                                    |
+| Website     | [https://www.metalpay.com/](https://www.metalpay.com/)                                                   |
 | Source Code | [https://github.com/MetalPay/metal-token](https://github.com/MetalPay/metal-token)                       |
 | Whitepaper  | [https://www.metalpay.com/assets/pdf/whitepaper.pdf](https://www.metalpay.com/assets/pdf/whitepaper.pdf) |
 

@@ -8,10 +8,10 @@ description: >-
 
 ## <img src="../../.gitbook/assets/dot.png" alt="" data-size="line"> General Data
 
-| Site        | Title                                                 |
-| ----------- | ----------------------------------------------------- |
-| Website     | [https://polkadot.network/](https://polkadot.network) |
-| Source Code | [https://github.com/w3f](https://github.com/w3f)      |
+| Site        | Title                                                  |
+| ----------- | ------------------------------------------------------ |
+| Website     | [https://polkadot.network/](https://polkadot.network/) |
+| Source Code | [https://github.com/w3f](https://github.com/w3f)       |
 
 ## :person\_raising\_hand: Social Media and Community
 
@@ -25,11 +25,11 @@ description: >-
 
 ## :arrows\_clockwise: Block Explorers
 
-| Site                                                        |
-| ----------------------------------------------------------- |
-| [https://polkascan.io/](https://polkascan.io)               |
-| [https://polkastats.io/](https://polkastats.io)             |
-| [https://polkadot.subscan.io/](https://polkadot.subscan.io) |
+| Site                                                         |
+| ------------------------------------------------------------ |
+| [https://polkascan.io/](https://polkascan.io/)               |
+| [https://polkastats.io/](https://polkastats.io/)             |
+| [https://polkadot.subscan.io/](https://polkadot.subscan.io/) |
 
 ## :bar\_chart: Charts and Pricing
 

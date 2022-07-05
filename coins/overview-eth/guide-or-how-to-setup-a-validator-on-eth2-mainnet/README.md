@@ -28,9 +28,9 @@ The _How to Setup a Validator for Ethereum Staking_ guide aims to give you compl
 
 The guide includes the following parts:
 
-* ****[**Part I - Installation**](part-i-installation.md) describes how to sign up to be a validator at the ETH Launchpad, how to secure the Linux computer hosting your ETH staking node, as well as how to install execution and consensus client software and other helpful software packages such as time synching and monitoring tools.
-* ****[**Part II - Maintenance**](part-ii-maintenance.md) explains ongoing tasks you'll require to keep your ETH staking node in great shape and up-to-date.
-* ****[**Part III - Tips**](part-iii-tips.md) contains additional procedures to simplify managing your ETH staking node.
+* ****[**Part I - Installation**](part-i-installation/) describes how to sign up to be a validator at the ETH Launchpad, how to secure the Linux computer hosting your ETH staking node, as well as how to install execution and consensus client software and other helpful software packages such as time synching and monitoring tools.
+* ****[**Part II - Maintenance**](part-ii-maintenance/) explains ongoing tasks you'll require to keep your ETH staking node in great shape and up-to-date.
+* ****[**Part III - Tips**](part-iii-tips/) contains additional procedures to simplify managing your ETH staking node.
 
 ## :page\_facing\_up: Changelog - **Update Notes -** **June 8 2022**
 
@@ -57,7 +57,7 @@ The guide includes the following parts:
 * [Geth pruning guide](part-ii-maintenance/pruning-the-execution-client-to-free-up-disk-space.md) created
 * Major changes to Lodestar guide
 * Additional [Grafana Dashboards](part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md) for Prysm, Lighthouse and Nimbus
-* [Validator Security Best Practices added](../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+* [Validator Security Best Practices added](part-i-installation/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
 * Translations now available for Japanese, Chinese and Spanish (access by changing site language)
 * Generate keystore files on [Ledger Nano X, Nano S and Trezor Model T](part-i-installation/signing-up-to-be-a-validator-at-the-launchpad.md) with tool from [allnodes.com](https://twitter.com/Allnodes/status/1390020240541618177?s=20)
 * [Batch deposit tool](part-i-installation/signing-up-to-be-a-validator-at-the-launchpad.md) by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added

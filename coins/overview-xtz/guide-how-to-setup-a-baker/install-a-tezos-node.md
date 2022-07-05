@@ -81,8 +81,8 @@ Rather than taking days to download the Tezos blockchain from the p2p network, a
 Download a **rolling mode** snapshot from one of the following sources.
 
 * [https://github.com/Phlogi/tezos-snapshots/releases](https://github.com/Phlogi/tezos-snapshots/releases)
-* [https://tezosshots.com](https://tezosshots.com)
-* [https://snapshots.baketzfor.me](https://snapshots.baketzfor.me)
+* [https://tezosshots.com](https://tezosshots.com/)
+* [https://snapshots.baketzfor.me](https://snapshots.baketzfor.me/)
 
 For example, here we will download from the first link both a **rolling snapshot** and a **verification file**, `checksums.sha256`.&#x20;
 

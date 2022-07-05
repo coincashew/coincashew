@@ -115,11 +115,11 @@ sudo bash -c "echo vm.nr_hugepages=1280 >> /etc/sysctl.conf"
 
 {% tabs %}
 {% tab title="CPU Mining" %}
-Find your potential CPU mining performance at [https://monerobenchmarks.info/](https://monerobenchmarks.info)
+Find your potential CPU mining performance at [https://monerobenchmarks.info/](https://monerobenchmarks.info/)
 {% endtab %}
 
 {% tab title="GPU Mining" %}
-1. Visit [whattomine.com](https://www.whattomine.com)
+1. Visit [whattomine.com](https://www.whattomine.com/)
 2. Enter the # of GPUs
 3. Press **RandomX**
 4. Press **Calculate**

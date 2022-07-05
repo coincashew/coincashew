@@ -8,9 +8,9 @@ description: Community-Directed, Superior Store of Value
 
 | Site        | Title                                                  |
 | ----------- | ------------------------------------------------------ |
-| Website     | [https://www.decred.org/](https://www.decred.org)      |
+| Website     | [https://www.decred.org/](https://www.decred.org/)     |
 | Source Code | [https://github.com/decred](https://github.com/decred) |
-| Whitepaper  | [https://docs.decred.org/](https://docs.decred.org)    |
+| Whitepaper  | [https://docs.decred.org/](https://docs.decred.org/)   |
 
 ## :person\_raising\_hand: Social Media and Community
 
@@ -18,20 +18,20 @@ description: Community-Directed, Superior Store of Value
 | --------------- | ---------------------------------------------------------------------------------------- |
 | :bird: Twitter  | [https://twitter.com/decredproject](https://twitter.com/decredproject)                   |
 | Reddit          | [https://www.reddit.com/r/decred](https://www.reddit.com/r/decred)                       |
-| Official Forums | [https://forum.decred.org/](https://forum.decred.org)                                    |
+| Official Forums | [https://forum.decred.org/](https://forum.decred.org/)                                   |
 | Community       | [https://decred.org/community](https://decred.org/community)                             |
 | Discord         | [https://discordapp.com/invite/GJ2GXfz](https://discordapp.com/invite/GJ2GXfz)           |
 | Telegram        | [https://t.me/decred](https://t.me/decred)                                               |
 | Wiki            | [https://www.reddit.com/r/decred/wiki/index](https://www.reddit.com/r/decred/wiki/index) |
-| Documentation   | [https://docs.decred.org/](https://docs.decred.org)                                      |
+| Documentation   | [https://docs.decred.org/](https://docs.decred.org/)                                     |
 
 ## :arrows\_clockwise: Block Explorers
 
-| Site                                                          |
-| ------------------------------------------------------------- |
-| [https://mainnet.decred.org/](https://mainnet.decred.org)     |
-| [https://stats.decred.org/](https://stats.decred.org)         |
-| [https://explorer.dcrdata.org/](https://explorer.dcrdata.org) |
+| Site                                                           |
+| -------------------------------------------------------------- |
+| [https://mainnet.decred.org/](https://mainnet.decred.org/)     |
+| [https://stats.decred.org/](https://stats.decred.org/)         |
+| [https://explorer.dcrdata.org/](https://explorer.dcrdata.org/) |
 
 ## :ballot\_box: Governance Proposals
 

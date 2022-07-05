@@ -11,7 +11,7 @@ description: >-
 
 | Site        | Title                                                                                                                                                                |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://telosfoundation.io/](https://telosfoundation.io)                                                                                                            |
+| Website     | [https://telosfoundation.io/](https://telosfoundation.io/)                                                                                                           |
 | Source Code | [https://github.com/Telos-Foundation/](https://github.com/Telos-Foundation/)                                                                                         |
 | Whitepaper  | [https://resources.telosfoundation.io/wp\_master/telos\_white\_paper\_english.pdf](https://resources.telosfoundation.io/wp\_master/telos\_white\_paper\_english.pdf) |
 
@@ -26,14 +26,14 @@ description: >-
 | Facebook       | [https://www.facebook.com/TelosFoundation.io](https://www.facebook.com/TelosFoundation.io)                           |
 | Medium         | [https://www.medium.com/@teloslogical](https://www.medium.com/@teloslogical)                                         |
 | Youtube        | [https://www.youtube.com/channel/UC1eRSAt81jUf7zM4hsy5S5Q](https://www.youtube.com/channel/UC1eRSAt81jUf7zM4hsy5S5Q) |
-| Directory      | [https://explore.telos.net/](https://explore.telos.net)                                                              |
+| Directory      | [https://explore.telos.net/](https://explore.telos.net/)                                                             |
 
 ## :arrows\_clockwise: Block Explorers
 
 | Site                                                                     |
 | ------------------------------------------------------------------------ |
-| [https://telos.bloks.io/](https://telos.bloks.io)                        |
-| [https://telos.eosx.io/](https://telos.eosx.io)                          |
+| [https://telos.bloks.io/](https://telos.bloks.io/)                       |
+| [https://telos.eosx.io/](https://telos.eosx.io/)                         |
 | [https://telostracker.io/topHolders](https://telostracker.io/topHolders) |
 
 ## :bar\_chart: Charts and Pricing

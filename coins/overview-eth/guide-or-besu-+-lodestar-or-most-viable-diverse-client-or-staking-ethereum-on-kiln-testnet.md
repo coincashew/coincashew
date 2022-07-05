@@ -80,7 +80,7 @@ sudo reboot
 Initialize the firewall with Ethereum’s p2p ports and ssh.
 
 {% hint style="info" %}
-For additionaly security, check out the comprehensive [eth staking validator node security best practices guide.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+For additionaly security, check out the comprehensive [eth staking validator node security best practices guide.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
 {% endhint %}
 
 ```bash
@@ -165,7 +165,7 @@ cd merge-testnets/kiln && ls
 Setup your execution layer client, **Besu.**
 
 {% hint style="info" %}
-****[**Hyperledger Besu**](https://besu.hyperledger.org) is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
+****[**Hyperledger Besu**](https://besu.hyperledger.org/) is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
 {% endhint %}
 
 Install dependencies.
@@ -275,7 +275,7 @@ Press `Ctrl` + `C` to exit the status.
 Set up your consensus layer client, **Lodestar**.
 
 {% hint style="info" %}
-[​**Lodestar**](https://lodestar.chainsafe.io) **is a Typescript implementation** by the Chainsafe.io team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. Finally, the Lodestar team is leading the Ethereum space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
+[​**Lodestar**](https://lodestar.chainsafe.io/) **is a Typescript implementation** by the Chainsafe.io team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. Finally, the Lodestar team is leading the Ethereum space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
 Install dependencies.
@@ -454,13 +454,13 @@ Syncing is complete when your latest block and slot number matches the public bl
 
 ### 7. Configure MetaMask and Using the Testnet Faucet
 
-Configure your [MetaMask](https://metamask.io) to point to the Kiln testnet. Visit the [https://kiln.themerge.dev/](https://kiln.themerge.dev) website and hit the "**Add Network to MetaMask**" button.
+Configure your [MetaMask](https://metamask.io/) to point to the Kiln testnet. Visit the [https://kiln.themerge.dev/](https://kiln.themerge.dev/) website and hit the "**Add Network to MetaMask**" button.
 
 {% hint style="danger" %}
 For security and privacy reasons, it is best practice to use a brand new unused ETH address for these testnet activities. Do not re-use any of your existing mainnet ETH addresses.
 {% endhint %}
 
-Use the [Kiln Testnet faucet](https://faucet.kiln.themerge.dev) to acquire some testnet ETH. It may take a few moments, sometimes up to an hour, for the funds to appear in your wallet.
+Use the [Kiln Testnet faucet](https://faucet.kiln.themerge.dev/) to acquire some testnet ETH. It may take a few moments, sometimes up to an hour, for the funds to appear in your wallet.
 
 {% hint style="info" %}
 Alternative kiln testnet faucets:&#x20;
@@ -549,7 +549,7 @@ Once successful, you will be shown your **validator's public key**.
 For example, `0x8d9138fcf5676e2031dc4eae30a2c92e3306903eeec83ca83f4f851afbd4cb3b33f710e6f4ac516b4598697b30b04302`
 
 {% hint style="info" %}
-Monitor your validator's status and performance at [https://beaconchain.kiln.themerge.dev/](https://beaconchain.kiln.themerge.dev) by entering your **validator's public key**.
+Monitor your validator's status and performance at [https://beaconchain.kiln.themerge.dev/](https://beaconchain.kiln.themerge.dev/) by entering your **validator's public key**.
 {% endhint %}
 
 Configure systemd by running the following to define your `validator.service` configuration. Simply copy and paste.
@@ -640,7 +640,7 @@ Press `Ctrl` + `C` to exit the logs.
 As a newly minted Ethereum Staker,
 
 * \#TestingTheMerge has a [comprehensive list of things-to-test](https://hackmd.io/WKpg6SNzQbi1jVKNgrSgWg)
-* Monitor your validator's earnings and performance at [https://beaconchain.kiln.themerge.dev/](https://beaconchain.kiln.themerge.dev) by entering your validator's public key.
+* Monitor your validator's earnings and performance at [https://beaconchain.kiln.themerge.dev/](https://beaconchain.kiln.themerge.dev/) by entering your validator's public key.
 * Learn to connect your MetaMask wallet to [your own execution layer node](https://media.consensys.net/make-use-of-your-remote-ethereum-node-using-an-ssh-tunnel-and-metamask-f7b51f7c1c0f)
   * If node is remote then establish a ssh tunnel. Configure MetaMask with these settings.
 

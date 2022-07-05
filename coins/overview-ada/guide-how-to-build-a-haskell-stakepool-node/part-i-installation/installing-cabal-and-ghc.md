@@ -30,23 +30,6 @@ make
 sudo make install
 ```
 
-<a name="Installsecp256k1"></a>Install libsecp256k1
-
-```bash
-cd $HOME/git
-git clone https://github.com/bitcoin-core/secp256k1
-cd secp256k1
-git checkout ac83be33
-./autogen.sh
-./configure --enable-module-schnorrsig --enable-experimental
-make
-make check
-sudo make install
-```
-
-<!--Reference:
-https://github.com/input-output-hk/cardano-node/pull/3796/files -->
-
 {% hint style="info" %}
 **Debian OS pool operators**: extra lib linking may be required.
 
@@ -54,7 +37,7 @@ https://github.com/input-output-hk/cardano-node/pull/3796/files -->
 sudo ln -s /usr/local/lib/libsodium.so.23.3.0 /usr/lib/libsodium.so.23
 ```
 
-**AWS Linux CentOS or Ubuntu pool operators**: clearing the lib cache may be required.
+**AWS Linux CentOS pool operators**: clearing the lib cache may be required.
 
 ```bash
 sudo ldconfig

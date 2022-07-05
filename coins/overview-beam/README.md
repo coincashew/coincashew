@@ -8,7 +8,7 @@ description: Scalable confidential cryptocurrency. Easy to use, capped supply, n
 
 | Site        | Title                                                            |
 | ----------- | ---------------------------------------------------------------- |
-| Website     | [https://www.beam.mw/](https://www.beam.mw)                      |
+| Website     | [https://www.beam.mw/](https://www.beam.mw/)                     |
 | Source Code | [https://github.com/BeamMW/beam](https://github.com/BeamMW/beam) |
 
 ## :person\_raising\_hand: Social Media and Community
@@ -27,9 +27,9 @@ description: Scalable confidential cryptocurrency. Easy to use, capped supply, n
 
 | Site                                                                             |
 | -------------------------------------------------------------------------------- |
-| [https://explorer.beam.mw/](https://explorer.beam.mw)                            |
+| [https://explorer.beam.mw/](https://explorer.beam.mw/)                           |
 | [https://beamprivacy.community/explorer](https://beamprivacy.community/explorer) |
-| [https://beam.tokenview.com/](https://beam.tokenview.com)                        |
+| [https://beam.tokenview.com/](https://beam.tokenview.com/)                       |
 
 ## :bar\_chart: Charts and Pricing
 

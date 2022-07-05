@@ -11,7 +11,7 @@ description: >-
 
 | Site        | Title                                                                                                  |
 | ----------- | ------------------------------------------------------------------------------------------------------ |
-| Website     | [https://www.ethereum.org/](https://www.ethereum.org)                                                  |
+| Website     | [https://www.ethereum.org/](https://www.ethereum.org/)                                                 |
 | Source Code | [https://github.com/ethereum](https://github.com/ethereum)                                             |
 | Whitepaper  | [https://github.com/ethereum/wiki/wiki/White-Paper](https://github.com/ethereum/wiki/wiki/White-Paper) |
 
@@ -21,18 +21,18 @@ description: >-
 | --------------- | ------------------------------------------------------------------------------ |
 | :bird: Twitter  | [https://twitter.com/ethereum](https://twitter.com/ethereum)                   |
 | Reddit          | [https://reddit.com/r/ethereum](https://reddit.com/r/ethereum)                 |
-| Official Forums | [https://forum.ethereum.org/](https://forum.ethereum.org)                      |
+| Official Forums | [https://forum.ethereum.org/](https://forum.ethereum.org/)                     |
 | Gitter          | [https://gitter.im/orgs/ethereum/rooms](https://gitter.im/orgs/ethereum/rooms) |
 
 ## :arrows\_clockwise: Block Explorers
 
 | Site                                              |
 | ------------------------------------------------- |
-| [Etherscan.io](https://etherscan.io)              |
+| [Etherscan.io](https://etherscan.io/)             |
 | [Blockchair.com](https://blockchair.com/ethereum) |
-| [Ethplorer.io](https://ethplorer.io)              |
-| [Etherchain.org](https://etherchain.org)          |
-| [beaconcha.in](https://beaconcha.in)              |
+| [Ethplorer.io](https://ethplorer.io/)             |
+| [Etherchain.org](https://etherchain.org/)         |
+| [beaconcha.in](https://beaconcha.in/)             |
 
 ## :bar\_chart: Charts and Pricing
 

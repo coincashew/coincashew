@@ -230,7 +230,7 @@ tail -f /var/log/monero/monero.log
 Allow the node to sync. This may take a few hours up to a few days depending on your node's system resources.
 {% endhint %}
 
-Your node is completely synchronized the node status says **height:** **n / n** **100%** and has the same **block height** as a public xmr block explorer such as [https://blockchair.com/monero](https://blockchair.com/monero) or [http://xmrchain.net/](http://xmrchain.net)
+Your node is completely synchronized the node status says **height:** **n / n** **100%** and has the same **block height** as a public xmr block explorer such as [https://blockchair.com/monero](https://blockchair.com/monero) or [http://xmrchain.net/](http://xmrchain.net/)
 
 Check your node's block height with the following command.
 

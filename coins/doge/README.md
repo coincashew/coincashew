@@ -10,8 +10,8 @@ description: >-
 
 | Site        | Title                                                                        |
 | ----------- | ---------------------------------------------------------------------------- |
-| Website     | [http://dogecoin.com/](http://dogecoin.com)                                  |
-| Foundation  | [http://foundation.dogecoin.com/](http://foundation.dogecoin.com)            |
+| Website     | [http://dogecoin.com/](http://dogecoin.com/)                                 |
+| Foundation  | [http://foundation.dogecoin.com/](http://foundation.dogecoin.com/)           |
 | Source Code | [https://github.com/dogecoin/dogecoin](https://github.com/dogecoin/dogecoin) |
 
 ## :person\_raising\_hand: Social Media and Community
@@ -22,7 +22,7 @@ description: >-
 | Reddit         | [https://www.reddit.com/r/dogecoin](https://www.reddit.com/r/dogecoin)                               |
 | Facebook       | [https://www.facebook.com/OfficialDogecoin/](https://www.facebook.com/OfficialDogecoin/)             |
 | Bitcointalk    | [https://bitcointalk.org/index.php?topic=361813.0](https://bitcointalk.org/index.php?topic=361813.0) |
-| Slack          | [https://dogecoinslack.slack.com/](https://dogecoinslack.slack.com)                                  |
+| Slack          | [https://dogecoinslack.slack.com/](https://dogecoinslack.slack.com/)                                 |
 | Discord        | [https://discordapp.com/invite/WrDEkT](https://discordapp.com/invite/WrDEkT)                         |
 | Telegram       | [https://t.me/TheDogeHouse](https://t.me/TheDogeHouse)                                               |
 | Telegram       | [https://t.me/dogecoin4life](https://t.me/dogecoin4life)                                             |
@@ -32,9 +32,9 @@ description: >-
 
 | Site                                                                 |
 | -------------------------------------------------------------------- |
-| [https://dogechain.info/](https://dogechain.info)                    |
+| [https://dogechain.info/](https://dogechain.info/)                   |
 | [https://blockchair.com/dogecoin](https://blockchair.com/dogecoin)   |
-| [https://doge.tokenview.com/](https://doge.tokenview.com)            |
+| [https://doge.tokenview.com/](https://doge.tokenview.com/)           |
 | [https://explorer.viabtc.com/doge](https://explorer.viabtc.com/doge) |
 
 ## :bar\_chart: Charts and Pricing

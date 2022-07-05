@@ -11,8 +11,8 @@ description: >-
 
 | Site        | Title                                                                                          |
 | ----------- | ---------------------------------------------------------------------------------------------- |
-| Website     | [https://chain.link/](https://chain.link)                                                      |
-| Website     | [https://smartcontract.com/](https://smartcontract.com)                                        |
+| Website     | [https://chain.link/](https://chain.link/)                                                     |
+| Website     | [https://smartcontract.com/](https://smartcontract.com/)                                       |
 | Source Code | [https://github.com/smartcontractkit/chainlink](https://github.com/smartcontractkit/chainlink) |
 | Whitepaper  | [https://link.smartcontract.com/whitepaper](https://link.smartcontract.com/whitepaper)         |
 
@@ -23,7 +23,7 @@ description: >-
 | :bird: Twitter | [https://twitter.com/smart\_contract](https://twitter.com/smart\_contract) |
 | Reddit         | [https://www.reddit.com/r/chainlink](https://www.reddit.com/r/chainlink)   |
 | Telegram       | [https://t.me/chainlinkofficial](https://t.me/chainlinkofficial)           |
-| Medium         | [https://blog.chain.link/](https://blog.chain.link)                        |
+| Medium         | [https://blog.chain.link/](https://blog.chain.link/)                       |
 
 ## :arrows\_clockwise: Block Explorers
 

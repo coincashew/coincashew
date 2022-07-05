@@ -10,9 +10,9 @@ description: >-
 
 | Site        | Title                                                                                                                                                                                                    |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://edgewa.re/](https://edgewa.re)                                                                                                                                                                  |
+| Website     | [https://edgewa.re/](https://edgewa.re/)                                                                                                                                                                 |
 | Source Code | [https://github.com/hicommonwealth](https://github.com/hicommonwealth)                                                                                                                                   |
-| Technical   | [http://docs.edgewa.re/](http://docs.edgewa.re)                                                                                                                                                          |
+| Technical   | [http://docs.edgewa.re/](http://docs.edgewa.re/)                                                                                                                                                         |
 | Whitepaper  | [https://arena-attachments.s3.amazonaws.com/3765033/1232ea3075e0940291fa7b5f152f4a04.pdf?1551468991](https://arena-attachments.s3.amazonaws.com/3765033/1232ea3075e0940291fa7b5f152f4a04.pdf?1551468991) |
 
 ## :person\_raising\_hand: Social Media and Community
@@ -25,14 +25,14 @@ description: >-
 | Official Forums | [https://commonwealth.im/edgeware/](https://commonwealth.im/edgeware/)         |
 | Discord         | [https://discordapp.com/invite/bDktqyj](https://discordapp.com/invite/bDktqyj) |
 | Telegram        | [https://t.me/heyedgeware](https://t.me/heyedgeware)                           |
-| Documentation   | [https://edgeware.gitbook.io/](https://edgeware.gitbook.io)                    |
+| Documentation   | [https://edgeware.gitbook.io/](https://edgeware.gitbook.io/)                   |
 
 ## :arrows\_clockwise: Block Explorers
 
 | Site                                                                   |
 | ---------------------------------------------------------------------- |
 | [https://polkascan.io/pre/edgeware](https://polkascan.io/pre/edgeware) |
-| [https://edgeware.subscan.io/](https://edgeware.subscan.io)            |
+| [https://edgeware.subscan.io/](https://edgeware.subscan.io/)           |
 
 ## :bar\_chart: Charts and Pricing
 

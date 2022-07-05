@@ -17,7 +17,7 @@ Instructions below are now deprecated and for reference only.
 
 
 {% hint style="info" %}
-**Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS\_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
+**Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS\_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
 ## :checkered\_flag: 0. Prerequisites
@@ -30,7 +30,7 @@ As a validator for eth2, you will typically have the following abilities:
 * a commitment to maintain your validator 24/7/365
 * basic operating system skills
 * have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
-* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com)
+* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com/)
 * and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
 ### ****:reminder\_ribbon:**Minimum Setup Requirements**
@@ -85,7 +85,7 @@ If you need to install Metamask, refer to
 Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ETH validator deposits. Hosting your own Ethereum 1.0 node is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
 {% endhint %}
 
-Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org) **or** [**Nethermind**](https://www.nethermind.io)**.**
+Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/)**.**
 
 {% tabs %}
 {% tab title="OpenEthereum (Parity)" %}
@@ -221,7 +221,7 @@ sudo ./deposit.sh install
 
 2\. Follow the prompts and pick a password. Write down your mnemonic and keep this safe, preferably **offline**.
 
-3\. Follow the steps at [https://medalla.launchpad.ethereum.org/](https://medalla.launchpad.ethereum.org) but skip the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
+3\. Follow the steps at [https://medalla.launchpad.ethereum.org/](https://medalla.launchpad.ethereum.org/) but skip the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
 
 4\. Back on the launchpad website, upload the `deposit_data.json` found in the `validator_keys` directory.
 
@@ -293,7 +293,7 @@ yarn run cli --help
 
 ## :fire: 5. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org) to verify.
+Specific to your networking setup or cloud provider settings, ensure your beacon node's ports are open and reachable. Use [https://canyouseeme.org/](https://canyouseeme.org/) to verify.
 
 * **Lodestar beacon chain node** will use port 30607 for tcp and port 9000 for udp peer discovery.
 * **geth** node will use port 30303 for tcp and udp
@@ -370,7 +370,7 @@ yarn run cli validator run --testnet medalla
 {% hint style="success" %}
 Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 8 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards.&#x20;
 
-Use [beaconcha.in](https://medalla.beaconcha.in) and [register an account](https://medalla.beaconcha.in/register) to create alerts and track your validator's performance.
+Use [beaconcha.in](https://medalla.beaconcha.in/) and [register an account](https://medalla.beaconcha.in/register) to create alerts and track your validator's performance.
 {% endhint %}
 
 ## :clock3: 7. Time Synchronization

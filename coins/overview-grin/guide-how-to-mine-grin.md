@@ -1,11 +1,11 @@
 # Guide: How to mine GRIN
 
-## :checkered_flag: 1. Prerequisites
+## :checkered\_flag: 1. Prerequisites
 
 * Nvidia GPU with at least 8GB RAM
 * AMD GPU with at least 8GB RAM
 
-## :last_quarter_moon_with_face: 2. Install and use a compatible wallet
+## :last\_quarter\_moon\_with\_face: 2. Install and use a compatible wallet
 
 {% content-ref url="../../wallets/desktop-wallets/grin++-grin.md" %}
 [grin++-grin.md](../../wallets/desktop-wallets/grin++-grin.md)
@@ -15,7 +15,7 @@
 
 ### AMD GPU: lolMiner
 
-1.  Download latest miner binaries from 
+1.  Download latest miner binaries from&#x20;
 
     [https://bitcointalk.org/index.php?topic=4724735.0](https://bitcointalk.org/index.php?topic=4724735.0)
 2.  Pick a mining pool from
@@ -47,7 +47,7 @@ lolMiner.exe --coin GRIN-C29M --pool <poolAddr>:<portNumber> --user <Wallet or u
 
 ### Nvidia & AMD GPU: GMiner
 
-1.  Download latest miner binaries from 
+1.  Download latest miner binaries from&#x20;
 
     [https://bitcointalk.org/index.php?topic=5034735.0](https://bitcointalk.org/index.php?topic=5034735.0)
 2.  Pick a mining pool from
@@ -57,7 +57,7 @@ lolMiner.exe --coin GRIN-C29M --pool <poolAddr>:<portNumber> --user <Wallet or u
     [https://miningpoolstats.stream/grin-c31](https://miningpoolstats.stream/grin-c31)
 
     [https://miningpoolstats.stream/grin-c32](https://miningpoolstats.stream/grin-c32)
-3. Run the mining software with the following command line or edit the included `"mine_grin[29|31|32]" `script file.
+3. Run the mining software with the following command line or edit the included `"mine_grin[29|31|32]"` script file.
 
 {% hint style="info" %}
 Grin currently has 3 mining algorithms. Experiment and choose the best for your GPU. grin-c29 has the lowest memory hardware requirements.
@@ -85,7 +85,7 @@ If your Operating System quarantines the file, you will need to create a rule to
 
 ### How much performance should I expect from my hardware?
 
-1. Visit [whattomine.com](https://www.whattomine.com)
+1. Visit [whattomine.com](https://www.whattomine.com/)
 2. Enter the # of GPUs
 3. Press **Cuckaroo29 or Cuckatoo31 or Cuckatoo32**
 4. Press **Calculate**

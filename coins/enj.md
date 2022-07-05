@@ -10,10 +10,10 @@ description: >-
 
 | Site        | Title                                                                    |
 | ----------- | ------------------------------------------------------------------------ |
-| Website     | [https://www.enjin.com/](https://www.enjin.com)                          |
-| Website     | [https://enjincoin.io/](https://enjincoin.io)                            |
+| Website     | [https://www.enjin.com/](https://www.enjin.com/)                         |
+| Website     | [https://enjincoin.io/](https://enjincoin.io/)                           |
 | Source Code | [https://github.com/enjin/contracts](https://github.com/enjin/contracts) |
-| Whitepaper  | [https://docs.enjin.io/](https://docs.enjin.io)                          |
+| Whitepaper  | [https://docs.enjin.io/](https://docs.enjin.io/)                         |
 
 ## :person\_raising\_hand: Social Media and Community
 

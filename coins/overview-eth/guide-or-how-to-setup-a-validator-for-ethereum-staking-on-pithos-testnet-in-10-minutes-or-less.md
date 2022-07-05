@@ -17,7 +17,7 @@ Major props and credits to [parithosh](https://github.com/parithosh/consensus-de
 ![The MergETHEREUM Panda](../../.gitbook/assets/meme-merge.jpg)
 
 {% hint style="info" %}
-Learn more about the Merge: [https://ethmerge.com/](https://ethmerge.com)
+Learn more about the Merge: [https://ethmerge.com/](https://ethmerge.com/)
 {% endhint %}
 
 ## Prerequisites
@@ -161,7 +161,7 @@ mkdir -p execution_data beacon_data
 
 ### 4. Set IP Address
 
-Set your public IP address into the **pithos.vars** file. Ensure your IP address is correct by cross checking with [https://www.whatismyip.com](https://www.whatismyip.com).
+Set your public IP address into the **pithos.vars** file. Ensure your IP address is correct by cross checking with [https://www.whatismyip.com](https://www.whatismyip.com/).
 
 ```
 IP_ADDRESS=$(curl ifconfig.me)
@@ -245,7 +245,7 @@ docker logs lighthouse_beacon -f --tail=20
 {% endtab %}
 {% endtabs %}
 
-Syncing is complete when your slot number matches that of a block explorers. Check [https://pithos-explorer.ethdevops.io/](https://pithos-explorer.ethdevops.io)
+Syncing is complete when your slot number matches that of a block explorers. Check [https://pithos-explorer.ethdevops.io/](https://pithos-explorer.ethdevops.io/)
 
 {% hint style="info" %}
 Since the network is relatively new, syncing both the execution and consensus layers should take a few minutes or so.

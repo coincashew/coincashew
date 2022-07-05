@@ -8,7 +8,7 @@ description: THE FIRST HIGH INTEREST BLOCKCHAIN CERTIFICATE OF DEPOSIT
 
 | Site        | Title                                                            |
 | ----------- | ---------------------------------------------------------------- |
-| Website     | [https://hex.win](https://hex.win)                               |
+| Website     | [https://hex.win](https://hex.win/)                              |
 | Source Code | [https://github.com/bitcoinHEX](https://github.com/bitcoinHEX)   |
 | Specs       | [https://hex.win/techspecs.html](https://hex.win/techspecs.html) |
 
@@ -39,11 +39,11 @@ description: THE FIRST HIGH INTEREST BLOCKCHAIN CERTIFICATE OF DEPOSIT
 
 | Site          | Link                                                                                   |
 | ------------- | -------------------------------------------------------------------------------------- |
-| HexInfo       | [https://www.hexinfo.io/](https://www.hexinfo.io)                                      |
+| HexInfo       | [https://www.hexinfo.io/](https://www.hexinfo.io/)                                     |
 | CoinPaprika   | [https://coinpaprika.com/coin/hex-hex/](https://coinpaprika.com/coin/hex-hex/)         |
-| HexData       | [https://hex-data.com/](https://hex-data.com)                                          |
-| TradingView   | [https://uniswap.hex.vision/](https://uniswap.hex.vision)                              |
-| HexVision     | [http://hex.vision/](http://hex.vision)                                                |
+| HexData       | [https://hex-data.com/](https://hex-data.com/)                                         |
+| TradingView   | [https://uniswap.hex.vision/](https://uniswap.hex.vision/)                             |
+| HexVision     | [http://hex.vision/](http://hex.vision/)                                               |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/hex/](https://coinmarketcap.com/currencies/hex/) |
 | CoinGecko     | [https://www.coingecko.com/en/coins/hex](https://www.coingecko.com/en/coins/hex)       |
 

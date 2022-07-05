@@ -8,9 +8,9 @@ description: Public Blockchain for Business Mass Adoption
 
 | Site        | Title                                                              |
 | ----------- | ------------------------------------------------------------------ |
-| Website     | [https://www.vechain.org/](https://www.vechain.org)                |
+| Website     | [https://www.vechain.org/](https://www.vechain.org/)               |
 | Source Code | [https://github.com/vechain/thor](https://github.com/vechain/thor) |
-| Whitepaper  | [https://docs.vechain.org/](https://docs.vechain.org)              |
+| Whitepaper  | [https://docs.vechain.org/](https://docs.vechain.org/)             |
 
 ## :person\_raising\_hand: Social Media and Community
 
@@ -20,18 +20,18 @@ description: Public Blockchain for Business Mass Adoption
 | Reddit          | [https://www.reddit.com/r/vechain](https://www.reddit.com/r/vechain)                       |
 | Telegram        | [https://t.me/vechain\_official\_english](https://t.me/vechain\_official\_english)         |
 | Telegram News   | [https://t.me/vechainannouncement](https://t.me/vechainannouncement)                       |
-| Builders        | [https://www.builders.vechain.org/](https://www.builders.vechain.org)                      |
-| Vechain Insider | [http://vechaininsider.com/](http://vechaininsider.com)                                    |
+| Builders        | [https://www.builders.vechain.org/](https://www.builders.vechain.org/)                     |
+| Vechain Insider | [http://vechaininsider.com/](http://vechaininsider.com/)                                   |
 | Wiki            | [https://www.reddit.com/r/Vechain/wiki/index](https://www.reddit.com/r/Vechain/wiki/index) |
 
 ## :arrows\_clockwise: Block Explorers
 
-| Site                                                      |
-| --------------------------------------------------------- |
-| [http://explore.vechain.org/](http://explore.vechain.org) |
-| [https://www.vescan.io/](https://www.vescan.io)           |
-| [https://insight.vecha.in/](https://insight.vecha.in)     |
-| [https://explorer.vtho.net/](https://explorer.vtho.net)   |
+| Site                                                       |
+| ---------------------------------------------------------- |
+| [http://explore.vechain.org/](http://explore.vechain.org/) |
+| [https://www.vescan.io/](https://www.vescan.io/)           |
+| [https://insight.vecha.in/](https://insight.vecha.in/)     |
+| [https://explorer.vtho.net/](https://explorer.vtho.net/)   |
 
 ## :bar\_chart: Charts and Pricing
 

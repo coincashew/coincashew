@@ -8,7 +8,7 @@ description: Next generation video delivery powered by you.
 
 | Site        | Title                                                                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://www.thetatoken.org/](https://www.thetatoken.org)                                                                                                                      |
+| Website     | [https://www.thetatoken.org/](https://www.thetatoken.org/)                                                                                                                     |
 | Source Code | [https://github.com/thetatoken/theta-protocol-ledger](https://github.com/thetatoken/theta-protocol-ledger)                                                                     |
 | Whitepaper  | [https://s3.us-east-2.amazonaws.com/assets.thetatoken.org/Theta-white-paper-latest.pdf](https://s3.us-east-2.amazonaws.com/assets.thetatoken.org/Theta-white-paper-latest.pdf) |
 
@@ -22,9 +22,9 @@ description: Next generation video delivery powered by you.
 
 ## :arrows\_clockwise: Block Explorers
 
-| Site                                                                |
-| ------------------------------------------------------------------- |
-| [https://explorer.thetatoken.org/](https://explorer.thetatoken.org) |
+| Site                                                                 |
+| -------------------------------------------------------------------- |
+| [https://explorer.thetatoken.org/](https://explorer.thetatoken.org/) |
 
 ## :bar\_chart: Charts and Pricing
 

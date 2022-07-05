@@ -10,7 +10,7 @@ description: >-
 
 | Site        | Title                                                                                                                    |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://www.synthetix.io/](https://www.synthetix.io)                                                                    |
+| Website     | [https://www.synthetix.io/](https://www.synthetix.io/)                                                                   |
 | Source Code | [https://github.com/Synthetixio/synthetix](https://github.com/Synthetixio/synthetix)                                     |
 | Whitepaper  | [https://www.synthetix.io/uploads/synthetix\_whitepaper.pdf](https://www.synthetix.io/uploads/synthetix\_whitepaper.pdf) |
 
@@ -21,7 +21,7 @@ description: >-
 | :bird: Twitter | [https://twitter.com/havven\_io](https://twitter.com/havven\_io)                 |
 | Reddit         | [https://www.reddit.com/r/havven](https://www.reddit.com/r/havven)               |
 | Documentation  | [https://synthetix.community/docs/intro](https://synthetix.community/docs/intro) |
-| Official Blog  | [https://blog.havven.io/](https://blog.havven.io)                                |
+| Official Blog  | [https://blog.havven.io/](https://blog.havven.io/)                               |
 | Discord        | [https://discord.gg/AEdUHzt](https://discord.gg/AEdUHzt)                         |
 
 ## :arrows\_clockwise: Block Explorers

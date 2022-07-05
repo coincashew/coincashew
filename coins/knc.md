@@ -11,7 +11,7 @@ description: >-
 
 | Site        | Title                                                                                                                                |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://kyber.network/](https://kyber.network)                                                                                      |
+| Website     | [https://kyber.network/](https://kyber.network/)                                                                                     |
 | Source Code | [https://github.com/KyberNetwork/KyberWallet](https://github.com/KyberNetwork/KyberWallet)                                           |
 | Whitepaper  | [https://files.kyber.network/Kyber\_Protocol\_22\_April\_v0.1.pdf](https://files.kyber.network/Kyber\_Protocol\_22\_April\_v0.1.pdf) |
 
@@ -22,7 +22,7 @@ description: >-
 | :bird: Twitter | [https://twitter.com/kybernetwork](https://twitter.com/kybernetwork)           |
 | Reddit         | [https://www.reddit.com/r/kybernetwork](https://www.reddit.com/r/kybernetwork) |
 | Telegram       | [https://t.me/kybernetwork](https://t.me/kybernetwork)                         |
-| Blog           | [https://blog.kyber.network/](https://blog.kyber.network)                      |
+| Blog           | [https://blog.kyber.network/](https://blog.kyber.network/)                     |
 
 ## :arrows\_clockwise: Block Explorers
 

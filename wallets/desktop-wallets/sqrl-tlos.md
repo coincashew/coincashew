@@ -6,9 +6,9 @@ description: Telos Full Wallet & Governance dApp
 
 ## :rocket: Official Website
 
-[https://sqrlwallet.io/](https://sqrlwallet.io)
+[https://sqrlwallet.io/](https://sqrlwallet.io/)
 
-## :woman_mage: Getting started
+## :woman\_mage: Getting started
 
 {% embed url="https://youtu.be/-XeYRV14pJw" %}
 

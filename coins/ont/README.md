@@ -10,7 +10,7 @@ description: >-
 
 | Site        | Title                                                                                                                    |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://ont.io/](https://ont.io)                                                                                        |
+| Website     | [https://ont.io/](https://ont.io/)                                                                                       |
 | Source Code | [https://github.com/ontio](https://github.com/ontio)                                                                     |
 | Whitepaper  | [https://ont.io/wp/Ontology-Introductory-White-Paper-EN.pdf](https://ont.io/wp/Ontology-Introductory-White-Paper-EN.pdf) |
 
@@ -30,10 +30,10 @@ description: >-
 
 ## :arrows\_clockwise: Block Explorers
 
-| Site                                                    |
-| ------------------------------------------------------- |
-| [https://explorer.ont.io/](https://explorer.ont.io)     |
-| [https://ont.tokenview.com/](https://ont.tokenview.com) |
+| Site                                                     |
+| -------------------------------------------------------- |
+| [https://explorer.ont.io/](https://explorer.ont.io/)     |
+| [https://ont.tokenview.com/](https://ont.tokenview.com/) |
 
 ## :bar\_chart: Charts and Pricing
 

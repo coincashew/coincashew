@@ -8,7 +8,7 @@ description: Private financial transactions,enabled by the Sigma Protocol
 
 | Site        | Title                                                                                                                                    |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://zcoin.io/](https://zcoin.io)                                                                                                    |
+| Website     | [https://zcoin.io/](https://zcoin.io/)                                                                                                   |
 | Source Code | [https://github.com/zcoinofficial/zcoin/](https://github.com/zcoinofficial/zcoin/)                                                       |
 | Whitepaper  | [https://zcoin.io/wp-content/uploads/2016/11/zerocoinwhitepaper.pdf](https://zcoin.io/wp-content/uploads/2016/11/zerocoinwhitepaper.pdf) |
 
@@ -26,8 +26,8 @@ description: Private financial transactions,enabled by the Sigma Protocol
 
 | Site                                                                   |
 | ---------------------------------------------------------------------- |
-| [https://insight.zcoin.io/](https://insight.zcoin.io)                  |
-| [http://explorer.zcoin.io/](http://explorer.zcoin.io)                  |
+| [https://insight.zcoin.io/](https://insight.zcoin.io/)                 |
+| [http://explorer.zcoin.io/](http://explorer.zcoin.io/)                 |
 | [https://chainz.cryptoid.info/xzc/](https://chainz.cryptoid.info/xzc/) |
 
 ## :bar\_chart: Charts and Pricing

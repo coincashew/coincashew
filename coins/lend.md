@@ -10,7 +10,7 @@ description: >-
 
 | Site        | Title                                                                                                                                                                                        |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://aave.com/](https://aave.com)                                                                                                                                                        |
+| Website     | [https://aave.com/](https://aave.com/)                                                                                                                                                       |
 | Source Code | [https://github.com/ETHLend/ethereum-bridge](https://github.com/ETHLend/ethereum-bridge)                                                                                                     |
 | Whitepaper  | [https://github.com/aave/aave-protocol/blob/master/docs/Aave\_Protocol\_Whitepaper\_v1\_0.pdf](https://github.com/aave/aave-protocol/blob/master/docs/Aave\_Protocol\_Whitepaper\_v1\_0.pdf) |
 

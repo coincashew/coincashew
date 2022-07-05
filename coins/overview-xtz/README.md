@@ -11,8 +11,8 @@ description: >-
 
 | Site        | Title                                                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://www.tezos.com/](https://www.tezos.com)                                                              |
-| Foundation  | [https://tezos.foundation/](https://tezos.foundation)                                                        |
+| Website     | [https://www.tezos.com/](https://www.tezos.com/)                                                             |
+| Foundation  | [https://tezos.foundation/](https://tezos.foundation/)                                                       |
 | Source Code | [https://gitlab.com/tezos/tezos](https://gitlab.com/tezos/tezos)                                             |
 | Whitepaper  | [https://www.tezos.com/static/papers/white\_paper.pdf](https://www.tezos.com/static/papers/white\_paper.pdf) |
 
@@ -24,7 +24,7 @@ description: >-
 | Reddit                  | [https://www.reddit.com/r/tezos/](https://www.reddit.com/r/tezos/)                               |
 | Discord                 | [https://discord.gg/XRHZg](https://discord.gg/XRHZgze)                                           |
 | Riot                    | [https://riot.im/app/#/room/%23tezos:matrix.org](https://riot.im/app/#/room/%23tezos:matrix.org) |
-| Stack Exchange          | [https://tezos.stackexchange.com/](https://tezos.stackexchange.com)                              |
+| Stack Exchange          | [https://tezos.stackexchange.com/](https://tezos.stackexchange.com/)                             |
 | Telegram: General       | [https://t.me/tezosplatform](https://t.me/tezosplatform)                                         |
 | Telegram: Trading       | [https://t.me/tezostrading](https://t.me/tezostrading)                                           |
 | Telegram: Announcements | [https://t.me/TezosAnnouncements](https://t.me/TezosAnnouncements)                               |
@@ -36,10 +36,10 @@ description: >-
 
 | Site               | Link                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| TzStats            | [https://tzstats.com/](https://tzstats.com)                  |
-| TzKT               | [https://tzkt.io/](https://tzkt.io)                          |
-| tezblock by AirGap | [https://tezblock.io/](https://tezblock.io)                  |
-| Tezos.id           | [https://www.tezos.id/](https://www.tezos.id)                |
+| TzStats            | [https://tzstats.com/](https://tzstats.com/)                 |
+| TzKT               | [https://tzkt.io/](https://tzkt.io/)                         |
+| tezblock by AirGap | [https://tezblock.io/](https://tezblock.io/)                 |
+| Tezos.id           | [https://www.tezos.id/](https://www.tezos.id/)               |
 | Blockchair         | [https://blockchair.com/tezos](https://blockchair.com/tezos) |
 
 ## :cityscape: Public Nodes

@@ -20,8 +20,8 @@ This guide is for you.
 | [Huobi](https://www.hbg.com/en-us/exchange/?s=xtz\_btc\&invite\_code=) | Singapore   | No                 |
 | [TradeOgre](https://tradeogre.com/markets)                             | Global      | No                 |
 | [Bitcoin.com Exchange](https://exchange.bitcoin.com)                   | Saint Bitts | No                 |
-| [AscendEX](https://ascendex.com)                                       | Singapore   | No. 2₿/day.        |
-| [BitForex](https://www.bitforex.com)                                   | Seychelles  | No.                |
+| [AscendEX](https://ascendex.com/)                                      | Singapore   | No. 2₿/day.        |
+| [BitForex](https://www.bitforex.com/)                                  | Seychelles  | No.                |
 | [Bitfinex](https://www.bitfinex.com/t/XTZ:USD)                         | Hong Kong   | No                 |
 | [Coinbase](https://pro.coinbase.com/trade/XTZ-USD)                     | USA         | Yes                |
 | [Kraken](https://www.kraken.com)                                       | USA         | Yes                |
@@ -30,20 +30,20 @@ This guide is for you.
 
 ## :twisted\_rightwards\_arrows: Coin Swap Services - No Registration Required
 
-| Site                                                          | Comments                                                                          |
-| ------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [Sideshift.ai](https://sideshift.ai/a/ziLELkDY5)              | Automated Coin Swap                                                               |
-| [InstaEx.io](https://instaex.io)                              | Privacy first - no Google Analytics, Accounts or KYC                              |
-| [MorphToken.com](https://www.morphtoken.com)                  | Quickly and simply swap one coin to another.Or split into multiple coins at once. |
-| [Changenow.io](https://changenow.io/?link\_id=e542777107ca34) | Fast Crypto Swaps, Free of Custody                                                |
-| [Godex.io](https://godex.io/?aff\_id=zNyhC0A10Be5YRBt)        | Exchange anonymously any volume with guaranteed fixed rate                        |
-| [TxQuick.com](https://ca.txquick.com)                         | No Account Required                                                               |
-| [SimpleSwap.io](https://simpleswap.io)                        | Free from sign up, limits, complications                                          |
-| [changehero.io](https://changehero.io)                        | Instant cryptocurrency exchange                                                   |
-| [FixedFloat.com](https://fixedfloat.com/?ref=cn8rt3qa)        | Lightning cryptocurrency exchange                                                 |
-| [ChangeAngel.io](https://changeangel.io)                      | Non-Custodial Swap Exchange Service                                               |
-| [SwapSwop.io](https://swapswop.io)                            | Exchange cryptocurrency anonymously without registration.                         |
-| [StealthEX.io](https://stealthex.io)                          | Exchange and nothing more. Limitless, custody-free cryptocurrency exchange.       |
+| Site                                                                                                                           | Comments                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| [Sideshift.ai](https://sideshift.ai/a/ziLELkDY5)                                                                               | Automated Coin Swap                                                               |
+| [InstaEx.io](https://instaex.io)                                                                                               | Privacy first - no Google Analytics, Accounts or KYC                              |
+| [MorphToken.com](https://www.morphtoken.com)                                                                                   | Quickly and simply swap one coin to another.Or split into multiple coins at once. |
+| [Changenow.io](https://changenow.io/?link\_id=e542777107ca34)                                                                  | Fast Crypto Swaps, Free of Custody                                                |
+| [Godex.io](https://godex.io/?aff\_id=zNyhC0A10Be5YRBt\&utm\_source=affiliate\&utm\_medium=www\&utm\_campaign=zNyhC0A10Be5YRBt) | Exchange anonymously any volume with guaranteed fixed rate                        |
+| [TxQuick.com](https://ca.txquick.com)                                                                                          | No Account Required                                                               |
+| [SimpleSwap.io](https://simpleswap.io)                                                                                         | Free from sign up, limits, complications                                          |
+| [changehero.io](https://changehero.io)                                                                                         | Instant cryptocurrency exchange                                                   |
+| [FixedFloat.com](https://fixedfloat.com/?ref=cn8rt3qa)                                                                         | Lightning cryptocurrency exchange                                                 |
+| [ChangeAngel.io](https://changeangel.io/)                                                                                      | Non-Custodial Swap Exchange Service                                               |
+| [SwapSwop.io](https://swapswop.io/)                                                                                            | Exchange cryptocurrency anonymously without registration.                         |
+| [StealthEX.io](https://stealthex.io/)                                                                                          | Exchange and nothing more. Limitless, custody-free cryptocurrency exchange.       |
 
 ## :milky\_way: Decentralized Exchanges - No Registration Required
 
@@ -77,9 +77,9 @@ This guide is for you.
 
 | Site                                               |
 | -------------------------------------------------- |
-| [Coin ATM Radar](https://coinatmradar.com)         |
+| [Coin ATM Radar](https://coinatmradar.com/)        |
 | [Coinstar Kiosk](https://www.coinstar.com/bitcoin) |
-| [Bitcoin ATM Map](https://bitcoinatmmap.com)       |
+| [Bitcoin ATM Map](https://bitcoinatmmap.com/)      |
 
 ## :office: Centralized Exchanges
 
@@ -91,7 +91,7 @@ This guide is for you.
 | [Kraken](https://www.kraken.com)           |
 | [Gemini.com](https://gemini.com)           |
 | [BullBitcoin.com](https://bullbitcoin.com) |
-| [Coinmama.com](https://www.coinmama.com)   |
+| [Coinmama.com](https://www.coinmama.com/)  |
 {% endtab %}
 
 {% tab title="I have a credit card" %}
@@ -100,7 +100,7 @@ This guide is for you.
 | [Binance](https://www.binance.com/en/buy-Bitcoin) | 3.5%            | Debit card or credit card (Visa or MasterCard). |
 | [Bitcoin.com](https://buy.bitcoin.com)            | ?               | Credit card (Visa or MasterCard).               |
 | [Changenow.io](https://changenow.io)              | ?               | Credit card (Visa or MasterCard).               |
-| [Crypto.com](https://crypto.com)                  | 0 to 3.5%       | Credit card (Visa or MasterCard).               |
+| [Crypto.com](https://crypto.com/)                 | 0 to 3.5%       | Credit card (Visa or MasterCard).               |
 | [Coinbase.com](https://www.coinbase.com)          | 3.99%           | Debit card or credit card (Visa or MasterCard). |
 | [Kional.io](https://koinal.io)                    | \~4%            | Credit card (Visa or MasterCard or UnionPay).   |
 | [Coinmama.com](https://www.coinmama.com)          | 10.9%           | Credit card, debit card, or bank transfer       |

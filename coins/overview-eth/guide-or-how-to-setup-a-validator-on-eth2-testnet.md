@@ -33,7 +33,7 @@ As a validator for eth2, you will typically have the following abilities:
 ### :man\_technologist: Experience required to be a successful validator
 
 * have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
-* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com)
+* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com/)
 * and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
 ### :reminder\_ribbon: **Minimum Setup Requirements**
@@ -122,7 +122,7 @@ Join the [ethstaker Discord](https://discord.io/ethstaker) and send a request fo
 !send <your metamask goerli network ETH address>
 ```
 
-Otherwise, visit the :potable\_water:[Goerli Authenticated Faucet](https://faucet.goerli.mudit.blog).
+Otherwise, visit the :potable\_water:[Goerli Authenticated Faucet](https://faucet.goerli.mudit.blog/).
 
 ## :woman\_technologist: 2. Signup to be a validator at the Launchpad
 
@@ -347,7 +347,7 @@ If you ran this command directly from your non-Tails USB stick, the validator ke
 :tada: Congrats on learning how to use Tails OS to make an air gapped system. As a bonus, you can reboot into Tails OS again and connect to internet to surf the dark web or clear net safely!
 {% endhint %}
 
-Alternatively, follow this [ethstaker.cc](https://ethstaker.cc) exclusive for the low down on making a bootable usb.
+Alternatively, follow this [ethstaker.cc](https://ethstaker.cc/) exclusive for the low down on making a bootable usb.
 
 ### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
 
@@ -414,7 +414,7 @@ The subsequent steps assume you have completed the [best practices security guid
 :octagonal\_sign: Do not run your processes as **ROOT** user. :scream:&#x20;
 {% endhint %}
 
-Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org)**,** [**Nethermind**](https://www.nethermind.io) **or** [**Infura**](https://infura.io)**.**
+Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/) **or** [**Infura**](https://infura.io/)**.**
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -732,7 +732,7 @@ sudo systemctl start eth1
 Infura is suitable for limited disk space setups. Always run your own full eth1 node when possible.
 {% endhint %}
 
-Sign up for an API access key at [https://infura.io/](https://infura.io)
+Sign up for an API access key at [https://infura.io/](https://infura.io/)
 
 1. Sign up for a free account.
 2. Confirm your email address.
@@ -742,7 +742,7 @@ Sign up for an API access key at [https://infura.io/](https://infura.io)
 6. Follow the specific configuration for your eth2 client found below.
 
 {% hint style="success" %}
-Alternatively use a free testnet Ethereum node such as [Chainstack ](https://chainstack.com)at [https://ethereumnodes.com/](https://ethereumnodes.com)
+Alternatively use a free testnet Ethereum node such as [Chainstack ](https://chainstack.com)at [https://ethereumnodes.com/](https://ethereumnodes.com/)
 {% endhint %}
 
 ## Nimbus Specific Configuration
@@ -825,7 +825,7 @@ Your choice of Lighthouse, Nimbus, Teku, Prysm, or Lodestar.
 {% tabs %}
 {% tab title="Lighthouse" %}
 {% hint style="info" %}
-[Lighthouse](https://github.com/sigp/lighthouse) is an Eth2.0 client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
+[Lighthouse](https://github.com/sigp/lighthouse) is an Eth2.0 client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io/), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
 {% endhint %}
 
 ## :gear: 4.1. Install rust dependency
@@ -912,7 +912,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 * **eth1** node requires port 30303 for tcp and udp
 
 {% hint style="info" %}
-:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
 {% endhint %}
 
 ## :chains: 4.5. Start the beacon chain
@@ -955,7 +955,7 @@ EOF
 --eth1-endpoints http://localhost:8545,https://nodes.mewapi.io/rpc/eth,https://mainnet.eth.cloud.ava.do,https://mainnet.infura.io/v3/xxx
 ```
 
-:money\_with\_wings: Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com)
+:money\_with\_wings: Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
 {% endhint %}
 
 Move the unit file to `/etc/systemd/system`&#x20;
@@ -1120,7 +1120,7 @@ journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12
 
 {% tab title="Nimbus" %}
 {% hint style="info" %}
-[Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
+[Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im/) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
 {% endhint %}
 
 ## :gear: 4.1. Build Nimbus from source
@@ -1213,7 +1213,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 * **eth1** node requires port 30303 for tcp and udp
 
 {% hint style="info" %}
-:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
 {% endhint %}
 
 ## &#x20;:snowboarder: 4.4. Start the beacon chain and validator
@@ -1326,7 +1326,7 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 
 {% tab title="Teku" %}
 {% hint style="info" %}
-[PegaSys Teku](https://pegasys.tech/teku/) (formerly known as Artemis) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
+[PegaSys Teku](https://pegasys.tech/teku/) (formerly known as Artemis) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net/) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
 {% endhint %}
 
 ## :gear: 4.1 Build Teku from source
@@ -1395,7 +1395,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 * **eth1** node requires port 30303 for tcp and udp
 
 {% hint style="info" %}
-****:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+****:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
 {% endhint %}
 
 ## :snowboarder: 4.3. Configure the beacon chain and validator
@@ -1605,7 +1605,7 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 
 {% tab title="Prysm" %}
 {% hint style="info" %}
-[Prysm](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
+[Prysm](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com/), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
 {% endhint %}
 
 ## :gear: 4.1. Install Prysm
@@ -1623,7 +1623,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 * **eth1** node requires port 30303 for tcp and udp
 
 {% hint style="info" %}
-:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
 {% endhint %}
 
 ## :tophat: 4.3. Import validator key
@@ -1699,7 +1699,7 @@ EOF
 # --fallback-web3provider=https://nodes.mewapi.io/rpc/eth --fallback-web3provider=https://mainnet.infura.io/v3/YOUR-PROJECT-ID
 ```
 
-:money\_with\_wings: Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com)
+:money\_with\_wings: Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
 {% endhint %}
 
 Move the unit file to `/etc/systemd/system`&#x20;
@@ -1875,7 +1875,7 @@ INFO Enabled validator       voting_pubkey: 0x2374.....7121
 
 {% tab title="Lodestar" %}
 {% hint style="info" %}
-**Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS\_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
+**Lodestar is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io/) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS\_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
 ## :gear: 4.1 Build Lodestar from source
@@ -1944,7 +1944,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 * **eth1** node requires port 30303 for tcp and udp
 
 {% hint style="info" %}
-****:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+****:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
 {% endhint %}
 
 ## :tophat: 4.3. Import validator key
@@ -2527,7 +2527,7 @@ Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://githu
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](../../.gitbook/assets/grafana.png)
+![](<../../.gitbook/assets/grafana (1).png>)
 
 ![](../../.gitbook/assets/node-exporter2.png)
 
@@ -2607,7 +2607,7 @@ Here's how to setup a no-cost monitoring service called Uptime Check by Google.
 For a video demo, watch [MohamedMansour's eth2 education videos](https://www.youtube.com/watch?v=txgOVDTemPQ). Please support his [GITCOIN grant](https://gitcoin.co/grants/1709/video-educational-grant). :pray:
 {% endhint %}
 
-1. Visit [cloud.google.com](https://cloud.google.com)
+1. Visit [cloud.google.com](https://cloud.google.com/)
 2. Search for **Monitoring** in the search field.
 3. Click **Select a Project to Start Monitoring**.
 4. Click **New Project.**
@@ -2912,7 +2912,7 @@ Reminder to use the same **keystore password.**
 :fire:**Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
 {% endhint %}
 
-Follow this [ethstaker.cc](https://ethstaker.cc) exclusive for the low down on making a bootable usb.
+Follow this [ethstaker.cc](https://ethstaker.cc/) exclusive for the low down on making a bootable usb.
 
 ### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
 
@@ -2928,7 +2928,7 @@ Run the existing-mnemonic command in the previous tabs.
 {% endtab %}
 {% endtabs %}
 
-3\. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org) and making your corresponding 32 ETH deposit transactions.
+3\. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org/) and making your corresponding 32 ETH deposit transactions.
 
 4\. Finish by stopping your validator, importing the new validator key(s), restarting your validator and verifying the logs ensuring everything still works without error. [Review steps 2 and onward of the main guide if you need a refresher.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#2-signup-to-be-a-validator-at-the-launchpad)
 
@@ -3390,7 +3390,7 @@ MY_GRAFFITI='<my POAP string or message>'
 ```
 
 {% hint style="info" %}
-Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz)
+Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
 {% endhint %}
 
 {% tabs %}
@@ -3727,7 +3727,7 @@ sudo systemctl status eth1 beacon-chain
 
 Finally, verify your validator's attestations are working with public block explorer such as
 
-[https://beaconcha.in/](https://beaconcha.in)
+[https://beaconcha.in/](https://beaconcha.in/)
 
 Enter your validator's pubkey to view its status.
 
@@ -3837,7 +3837,7 @@ Add the following flag on the `ExecStart` line.&#x20;
 {% endtabs %}
 
 {% hint style="info" %}
-:money\_with\_wings: Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com)
+:money\_with\_wings: Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com/)
 {% endhint %}
 
 Reload the updated unit file and restart the beacon-chain process to complete this change.

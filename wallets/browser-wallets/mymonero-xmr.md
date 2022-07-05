@@ -8,11 +8,11 @@ description: >-
 
 ## :rocket: Official Website
 
-[https://wallet.mymonero.com/](https://wallet.mymonero.com)
+[https://wallet.mymonero.com/](https://wallet.mymonero.com/)
 
 {% embed url="https://mymonero.com/" %}
 
-## :bookmark_tabs: Source Wallet
+## :bookmark\_tabs: Source Wallet
 
 {% embed url="https://github.com/mymonero/mymonero-app-js/releases" %}
 

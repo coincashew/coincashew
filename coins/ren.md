@@ -11,7 +11,7 @@ description: >-
 
 | Site        | Title                                                                      |
 | ----------- | -------------------------------------------------------------------------- |
-| Website     | [https://republicprotocol.com/](https://republicprotocol.com)              |
+| Website     | [https://republicprotocol.com/](https://republicprotocol.com/)             |
 | Source Code | [https://github.com/renproject](https://github.com/renproject)             |
 | Whitepaper  | [https://renproject.io/litepaper.pdf](https://renproject.io/litepaper.pdf) |
 

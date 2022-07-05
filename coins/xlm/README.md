@@ -11,7 +11,7 @@ description: >-
 
 | Site        | Title                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://www.stellar.org/](https://www.stellar.org)                                                                            |
+| Website     | [https://www.stellar.org/](https://www.stellar.org/)                                                                           |
 | Source Code | [https://github.com/stellar/stellar-core](https://github.com/stellar/stellar-core)                                             |
 | Whitepaper  | [https://www.stellar.org/papers/stellar-consensus-protocol.pdf](https://www.stellar.org/papers/stellar-consensus-protocol.pdf) |
 
@@ -21,27 +21,27 @@ description: >-
 | ------------------- | ------------------------------------------------------------------------------------------------------ |
 | :bird: Twitter      | [https://twitter.com/StellarOrg](https://twitter.com/StellarOrg)                                       |
 | Reddit              | [https://www.reddit.com/r/stellar](https://www.reddit.com/r/stellar)                                   |
-| Official Forums     | [https://stellarcommunity.org/](https://stellarcommunity.org)                                          |
-| GalacticTalk Forums | [https://galactictalk.org/](https://galactictalk.org)                                                  |
+| Official Forums     | [https://stellarcommunity.org/](https://stellarcommunity.org/)                                         |
+| GalacticTalk Forums | [https://galactictalk.org/](https://galactictalk.org/)                                                 |
 | Bitcointalk.org     | [https://bitcointalk.org/index.php?topic=1428573.0](https://bitcointalk.org/index.php?topic=1428573.0) |
 | Telegram            | [https://t.me/StellarLumens](https://t.me/StellarLumens)                                               |
-| Stack Exchange      | [https://stellar.stackexchange.com/](https://stellar.stackexchange.com)                                |
+| Stack Exchange      | [https://stellar.stackexchange.com/](https://stellar.stackexchange.com/)                               |
 | Keybase.io          | [https://keybase.io/team/stellar.public](https://keybase.io/team/stellar.public)                       |
 
 ## :ballot\_box: Governance
 
-| Site                                                            |
-| --------------------------------------------------------------- |
-| [https://stellarcommunity.fund/](https://stellarcommunity.fund) |
+| Site                                                             |
+| ---------------------------------------------------------------- |
+| [https://stellarcommunity.fund/](https://stellarcommunity.fund/) |
 
 ## :arrows\_clockwise: Block Explorers
 
 | Site                                                             |
 | ---------------------------------------------------------------- |
 | [https://blockchair.com/stellar](https://blockchair.com/stellar) |
-| [https://steexp.com/](https://steexp.com)                        |
-| [https://steexp.com/](https://steexp.com)                        |
-| [https://dashboard.stellar.org/](https://dashboard.stellar.org)  |
+| [https://steexp.com/](https://steexp.com/)                       |
+| [https://steexp.com/](https://steexp.com/)                       |
+| [https://dashboard.stellar.org/](https://dashboard.stellar.org/) |
 
 ## :bar\_chart: Charts and Pricing
 

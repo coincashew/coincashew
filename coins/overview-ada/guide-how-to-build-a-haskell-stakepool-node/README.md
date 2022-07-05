@@ -13,11 +13,11 @@ The _How to Set Up a Cardano Stake Pool_ guide aims to give you complete, step-b
 
 The guide includes the following parts:
 
-* [**Part I - Installation**](part-i-installation.md) describes how to secure the Linux computers hosting your Cardano stake pool, as well as how to install Cardano node software and dependent software packages.
-* [**Part II - Configuration**](part-ii-configuration.md) explains how to set up Cardano nodes to create a stake pool.
-* [**Part III - Operation**](part-iii-operation.md) discusses how to create your stake pool.
-* [**Part IV - Administration & Maintenance**](part-iv-administration.md) provides procedures that you need to manage your stake pool.
-* [**Part V - Tips**](part-v-tips.md) contains additional procedures to simplify managing your stake pool.
+* [**Part I - Installation**](part-i-installation/) describes how to secure the Linux computers hosting your Cardano stake pool, as well as how to install Cardano node software and dependent software packages.
+* [**Part II - Configuration**](part-ii-configuration/) explains how to set up Cardano nodes to create a stake pool.
+* [**Part III - Operation**](part-iii-operation/) discusses how to create your stake pool.
+* [**Part IV - Administration & Maintenance**](part-iv-administration/) provides procedures that you need to manage your stake pool.
+* [**Part V - Tips**](part-v-tips/) contains additional procedures to simplify managing your stake pool.
 
 {% hint style="info" %}
 To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying glass (![](../../../.gitbook/assets/search-icon.png)) icon in the top right corner of the left navigation.

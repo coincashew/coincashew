@@ -11,7 +11,7 @@ description: >-
 
 | Site        | Title                                                                                                                                  |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://grin.mw/](https://grin.mw)                                                                                                    |
+| Website     | [https://grin.mw/](https://grin.mw/)                                                                                                   |
 | Source Code | [https://github.com/mimblewimble/grin/](https://github.com/mimblewimble/grin/)                                                         |
 | Whitepaper  | [https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt](https://download.wpsoftware.net/bitcoin/wizardry/mimblewimble.txt) |
 
@@ -21,7 +21,7 @@ description: >-
 | --------------- | ---------------------------------------------------------------------------------- |
 | :bird: Twitter  | [https://twitter.com/grinMW](https://twitter.com/grinMW)                           |
 | Reddit          | [https://www.reddit.com/r/GRIN](https://www.reddit.com/r/GRIN)                     |
-| Official Forums | [https://forum.grin.mw/](https://forum.grin.mw)                                    |
+| Official Forums | [https://forum.grin.mw/](https://forum.grin.mw/)                                   |
 | Discord         | [https://discord.gg/Z3sEfEU](https://discord.gg/Z3sEfEU)                           |
 | Gitter          | [https://gitter.im/grin\_community/Lobby](https://gitter.im/grin\_community/Lobby) |
 
@@ -29,10 +29,10 @@ description: >-
 
 | Site                                                           |
 | -------------------------------------------------------------- |
-| [https://grinscan.net/](https://grinscan.net)                  |
+| [https://grinscan.net/](https://grinscan.net/)                 |
 | [https://grin.tokenview.com/en](https://grin.tokenview.com/en) |
-| [https://grin.blockscan.com/](https://grin.blockscan.com)      |
-| [https://grinexplorer.net/](https://grinexplorer.net)          |
+| [https://grin.blockscan.com/](https://grin.blockscan.com/)     |
+| [https://grinexplorer.net/](https://grinexplorer.net/)         |
 
 ## :bar\_chart: Charts and Pricing
 

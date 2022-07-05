@@ -10,7 +10,7 @@ description: >-
 
 | Site        | Title                                                                                                                        |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://wavesplatform.com/](https://wavesplatform.com)                                                                      |
+| Website     | [https://wavesplatform.com/](https://wavesplatform.com/)                                                                     |
 | Source Code | [https://github.com/wavesplatform/](https://github.com/wavesplatform/)                                                       |
 | Whitepaper  | [https://blog.wavesplatform.com/waves-whitepaper-164dd6ca6a23](https://blog.wavesplatform.com/waves-whitepaper-164dd6ca6a23) |
 
@@ -23,19 +23,19 @@ description: >-
 | Facebook       | [https://www.facebook.com/wavesplatform/](https://www.facebook.com/wavesplatform/) |
 | Steemit        | [https://steemit.com/@wavesplatform](https://steemit.com/@wavesplatform)           |
 | Youtube        | [https://www.youtube.com/wavesplatform](https://www.youtube.com/wavesplatform)     |
-| Official Forum | [https://forum.wavesplatform.com/](https://forum.wavesplatform.com)                |
-| Official Blog  | [https://blog.wavesplatform.com/](https://blog.wavesplatform.com)                  |
-| Documentation  | [https://docs.wavesplatform.com/](https://docs.wavesplatform.com)                  |
+| Official Forum | [https://forum.wavesplatform.com/](https://forum.wavesplatform.com/)               |
+| Official Blog  | [https://blog.wavesplatform.com/](https://blog.wavesplatform.com/)                 |
+| Documentation  | [https://docs.wavesplatform.com/](https://docs.wavesplatform.com/)                 |
 | Discord        | [https://discordapp.com/invite/cnFmDyA](https://discordapp.com/invite/cnFmDyA)     |
 | Telegram News  | [https://telegram.me/wavesnews](https://telegram.me/wavesnews)                     |
 | Telegram       | [https://t.me/Wavescommunity](https://t.me/Wavescommunity)                         |
 
 ## :arrows\_clockwise: Block Explorers
 
-| Site                                                  |
-| ----------------------------------------------------- |
-| [http://wavesexplorer.com/](http://wavesexplorer.com) |
-| [http://wavesgo.com/](http://wavesgo.com)             |
+| Site                                                   |
+| ------------------------------------------------------ |
+| [http://wavesexplorer.com/](http://wavesexplorer.com/) |
+| [http://wavesgo.com/](http://wavesgo.com/)             |
 
 ## :bar\_chart: Charts and Pricing
 

@@ -8,7 +8,7 @@ description: DECENTRALIZE THE WEB
 
 | Site        | Title                                                                        |
 | ----------- | ---------------------------------------------------------------------------- |
-| Website     | [https://tron.network/](https://tron.network)                                |
+| Website     | [https://tron.network/](https://tron.network/)                               |
 | Source Code | [https://github.com/tronprotocol](https://github.com/tronprotocol)           |
 | Whitepaper  | [https://developers.tron.network/docs](https://developers.tron.network/docs) |
 
@@ -27,15 +27,15 @@ description: DECENTRALIZE THE WEB
 | Telegram       | [https://t.me/tronnetworkCN03](https://t.me/tronnetworkCN03)                                                                     |
 | Telegram       | [https://t.me/tronnetworkKR](https://t.me/tronnetworkKR)                                                                         |
 | Wiki           | [http://wiki.tron.network/en/latest/Introduction\_of\_TRON.html](http://wiki.tron.network/en/latest/Introduction\_of\_TRON.html) |
-| TronWeekly.com | [https://www.tronweekly.com/](https://www.tronweekly.com)                                                                        |
+| TronWeekly.com | [https://www.tronweekly.com/](https://www.tronweekly.com/)                                                                       |
 | Dapps          | [https://dapp.review/explore/tron](https://dapp.review/explore/tron)                                                             |
 
 ## :arrows\_clockwise: Block Explorers
 
 | Site                                                         |
 | ------------------------------------------------------------ |
-| [https://tronscan.org/](https://tronscan.org)                |
-| [https://www.trxplorer.io/](https://www.trxplorer.io)        |
+| [https://tronscan.org/](https://tronscan.org/)               |
+| [https://www.trxplorer.io/](https://www.trxplorer.io/)       |
 | [https://trx.tokenview.com/en](https://trx.tokenview.com/en) |
 
 ## :bar\_chart: Charts and Pricing
@@ -44,8 +44,8 @@ description: DECENTRALIZE THE WEB
 | ------------- | ---------------------------------------------------------------------------------------- |
 | CoinPaprika   | [https://coinpaprika.com/coin/trx-tron/](https://coinpaprika.com/coin/trx-tron/)         |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/tron/](https://coinmarketcap.com/currencies/tron/) |
-| TronTrade.io  | [https://trontrade.io/](https://trontrade.io)                                            |
-| Poloniex.org  | [https://poloniex.org/](https://poloniex.org)                                            |
+| TronTrade.io  | [https://trontrade.io/](https://trontrade.io/)                                           |
+| Poloniex.org  | [https://poloniex.org/](https://poloniex.org/)                                           |
 
 ## :moneybag: Wallets
 

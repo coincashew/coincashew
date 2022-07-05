@@ -10,7 +10,7 @@ description: >-
 
 | Site        | Title                                                                                                                                                  |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://makerdao.com/](https://makerdao.com)                                                                                                          |
+| Website     | [https://makerdao.com/](https://makerdao.com/)                                                                                                         |
 | Source Code | [https://github.com/makerdao/market-maker-keeper](https://github.com/makerdao/market-maker-keeper)                                                     |
 | Whitepaper  | [https://makerdao.com/en/whitepaper/#overview-of-the-dai-stablecoin-system](https://makerdao.com/en/whitepaper/#overview-of-the-dai-stablecoin-system) |
 
@@ -20,7 +20,7 @@ description: >-
 | -------------- | ---------------------------------------------------------------------- |
 | :bird: Twitter | [https://twitter.com/MakerDAO](https://twitter.com/MakerDAO)           |
 | Reddit         | [https://www.reddit.com/r/MakerDAO](https://www.reddit.com/r/MakerDAO) |
-| Forum          | [https://chat.makerdao.com/](https://chat.makerdao.com)                |
+| Forum          | [https://chat.makerdao.com/](https://chat.makerdao.com/)               |
 
 ## :arrows\_clockwise: Block Explorers
 

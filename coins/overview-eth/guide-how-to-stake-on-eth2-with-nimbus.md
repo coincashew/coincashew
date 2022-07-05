@@ -23,7 +23,7 @@ Instructions below are now deprecated and for reference only.
 
 
 {% hint style="info" %}
-[Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
+[Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im/) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
 {% endhint %}
 
 ## :checkered\_flag: 0. Prerequisites
@@ -36,7 +36,7 @@ As a validator for eth2, you will typically have the following abilities:
 * a commitment to maintain your validator 24/7/365
 * basic operating system skills
 * have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
-* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com)
+* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com/)
 * and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
 ### ****:reminder\_ribbon: **Minimum Setup Requirements**
@@ -185,7 +185,7 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 {% endtabs %}
 
 1. Follow the prompts and pick a password. Write down your mnemonic and keep this safe and **offline**.
-2. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
+2. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
 3. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
 4. Connect to the launchpad with your Metamask wallet, review and accept terms.
 5. Confirm the transaction(s). There's one deposit transaction of 32 ETH for each validator.
@@ -212,7 +212,7 @@ Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ET
 The subsequent steps assume you have completed the [best practices security guide](https://app.gitbook.com/s/-M5KYnWuA6dS\_nKYsmfV-887967055/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md).
 {% endhint %}
 
-Your choice of either [**Infura** ](https://infura.io)or [**Geth**](https://geth.ethereum.org)**.** [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Besu**](https://besu.hyperledger.org) **or** [**Nethermind**](https://www.nethermind.io) **** coming soon.
+Your choice of either [**Infura** ](https://infura.io/)or [**Geth**](https://geth.ethereum.org/)**.** [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Besu**](https://besu.hyperledger.org/) **or** [**Nethermind**](https://www.nethermind.io/) **** coming soon.
 
 {% hint style="info" %}
 Currently, only **Geth and Infura** are verified to work with Nimbus.
@@ -275,7 +275,7 @@ sudo systemctl start eth1
 Infura is suitable for limited disk space setups. Always run your own full eth1 node when possible.
 {% endhint %}
 
-Sign up for an API access key at [https://infura.io/](https://infura.io)
+Sign up for an API access key at [https://infura.io/](https://infura.io/)
 
 1. Sign up for a free account.
 2. Confirm your email address.
@@ -543,7 +543,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 * **eth1** node requires port 30303 for tcp and udp
 
 {% hint style="info" %}
-:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org/) .
 {% endhint %}
 
 ## &#x20;:snowboarder: 7. Start the beacon chain and validator
@@ -663,7 +663,7 @@ In a new terminal, start the beacon chain.
 {% hint style="success" %}
 Congratulations. Once your beacon-chain is sync'd, validator up and running, you just wait for activation. This process takes up to 24 hours. When you're assigned, your validator will begin creating and voting on blocks while earning ETH staking rewards.
 
-Use [beaconcha.in](https://beaconcha.in) and [register an account](https://beaconcha.in/register) to create alerts and track your validator's performance.
+Use [beaconcha.in](https://beaconcha.in/) and [register an account](https://beaconcha.in/register) to create alerts and track your validator's performance.
 {% endhint %}
 
 ## :clock3: 8. Time Synchronization
@@ -782,7 +782,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 
 {% tabs %}
 {% tab title="Email Notifications" %}
-1. Visit [https://beaconcha.in/](https://beaconcha.in)
+1. Visit [https://beaconcha.in/](https://beaconcha.in/)
 2. Sign Up **** for an **account**
 3. Verify your **email**
 4. Search for your **validator's public address**

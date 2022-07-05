@@ -8,7 +8,7 @@ description: An open network for the Smart Economy
 
 | Site        | Title                                                            |
 | ----------- | ---------------------------------------------------------------- |
-| Website     | [https://neo.org/](https://neo.org)                              |
+| Website     | [https://neo.org/](https://neo.org/)                             |
 | Source Code | [https://github.com/neo-project](https://github.com/neo-project) |
 | Whitepaper  | [http://docs.neo.org/en-us/](http://docs.neo.org/en-us/)         |
 
@@ -23,19 +23,19 @@ description: An open network for the Smart Economy
 | Bitcointalk.org     | [https://bitcointalk.org/index.php?topic=2057932.0](https://bitcointalk.org/index.php?topic=2057932.0)                             |
 | Discord             | [https://discordapp.com/invite/775znJQ](https://discordapp.com/invite/775znJQ)                                                     |
 | Telegram            | [https://telegram.me/Neo\_Blockchain](https://telegram.me/Neo\_Blockchain)                                                         |
-| NEO News Today      | [https://neonewstoday.com/](https://neonewstoday.com)                                                                              |
+| NEO News Today      | [https://neonewstoday.com/](https://neonewstoday.com/)                                                                             |
 | City of Zion Medium | [https://medium.com/proof-of-working](https://medium.com/proof-of-working)                                                         |
-| NEO Economy         | [https://neoeconomy.io/](https://neoeconomy.io)                                                                                    |
+| NEO Economy         | [https://neoeconomy.io/](https://neoeconomy.io/)                                                                                   |
 
 ## :arrows\_clockwise: Block Explorers
 
-| Site                                                        |
-| ----------------------------------------------------------- |
-| [https://neoscan.io/](https://neoscan.io)                   |
-| [https://neo3-preview.com/](https://neo3-preview.com)       |
-| [https://explorer.o3.network/](https://explorer.o3.network) |
-| [https://neo.tokenview.com/](https://neo.tokenview.com)     |
-| [https://neotracker.io/](https://neotracker.io)             |
+| Site                                                         |
+| ------------------------------------------------------------ |
+| [https://neoscan.io/](https://neoscan.io/)                   |
+| [https://neo3-preview.com/](https://neo3-preview.com/)       |
+| [https://explorer.o3.network/](https://explorer.o3.network/) |
+| [https://neo.tokenview.com/](https://neo.tokenview.com/)     |
+| [https://neotracker.io/](https://neotracker.io/)             |
 
 ## :bar\_chart: Charts and Pricing
 

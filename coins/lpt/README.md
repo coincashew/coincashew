@@ -8,7 +8,7 @@ description: Decentralized live video broadcasting on Ethereum
 
 | Site        | Title                                                                                                                    |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://livepeer.org/](https://livepeer.org)                                                                            |
+| Website     | [https://livepeer.org/](https://livepeer.org/)                                                                           |
 | Source Code | [https://github.com/livepeer](https://github.com/livepeer)                                                               |
 | Whitepaper  | [https://github.com/livepeer/wiki/blob/master/WHITEPAPER.md](https://github.com/livepeer/wiki/blob/master/WHITEPAPER.md) |
 
@@ -18,14 +18,14 @@ description: Decentralized live video broadcasting on Ethereum
 | -------------- | ---------------------------------------------------------------------- |
 | :bird: Twitter | [https://twitter.com/LivepeerOrg](https://twitter.com/LivepeerOrg)     |
 | Reddit         | [https://www.reddit.com/r/livepeer](https://www.reddit.com/r/livepeer) |
-| Official Forum | [https://forum.livepeer.org/](https://forum.livepeer.org)              |
+| Official Forum | [https://forum.livepeer.org/](https://forum.livepeer.org/)             |
 | Discord        | [https://discord.gg/RR4kFAh](https://discord.gg/RR4kFAh)               |
 
 ## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [https://explorer.livepeer.org/](https://explorer.livepeer.org)                                                                                    |
+| [https://explorer.livepeer.org/](https://explorer.livepeer.org/)                                                                                   |
 | [https://etherscan.io/token/0x58b6a8a3302369daec383334672404ee733ab239](https://etherscan.io/token/0x58b6a8a3302369daec383334672404ee733ab239)     |
 | [https://ethplorer.io/address/0x58b6a8a3302369daec383334672404ee733ab239](https://ethplorer.io/address/0x58b6a8a3302369daec383334672404ee733ab239) |
 

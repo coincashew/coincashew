@@ -7,22 +7,10 @@ description: >-
 # Guide: How to stake on ETH2 Mainnet with Lighthouse on Ubuntu
 
 {% hint style="danger" %}
-**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).&#x20;
+**Nov 24 2020 Update**: The [new mainnet guide is located here](guide-or-how-to-setup-a-validator-on-eth2-mainnet/).
 
 Instructions below are now deprecated and for reference only.
 {% endhint %}
-
-
-
-
-
-
-
-
-
-
-
-
 
 {% hint style="info" %}
 [Lighthouse](https://github.com/sigp/lighthouse) is an Eth2.0 client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
@@ -41,7 +29,7 @@ As a validator for eth2, you will typically have the following abilities:
 * have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com)
 * and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
-### ****:reminder\_ribbon: **Minimum Setup Requirements**
+### \*\*\*\*:reminder\_ribbon: **Minimum Setup Requirements**
 
 * **Operating system:** 64-bit Linux (i.e. Ubuntu 20.04 LTS)
 * **Processor:** Dual core CPU, Intel Core i5–760 or AMD FX-8100 or better
@@ -71,8 +59,8 @@ As a validator for eth2, you will typically have the following abilities:
 
 If you need ideas or a reminder on how to secure your validator, refer to
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="broken-reference/" %}
+[broken-reference](broken-reference/)
 {% endcontent-ref %}
 
 ### :tools: Setup Ubuntu
@@ -173,13 +161,13 @@ Make a new mnemonic.
 
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-:fire:**\[ Optional ] Pro Security Tip**: Run the eth2deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine**.&#x20;
+:fire:**\[ Optional ] Pro Security Tip**: Run the eth2deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine**.
 
 You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine.
 
-* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits.&#x20;
-* Physically isolated from the rest of your network.&#x20;
-* Must not have a network connection, wired or wireless.&#x20;
+* Protects against key-logging attacks, malware/virus based attacks and other firewall or security exploits.
+* Physically isolated from the rest of your network.
+* Must not have a network connection, wired or wireless.
 * Is not a VM on a machine with a network connection.
 * Learn more about [air-gapping at wikipedia](https://en.wikipedia.org/wiki/Air\_gap\_\(networking\)).
 {% endhint %}
@@ -197,15 +185,15 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 6\. Confirm the transaction(s). There's one deposit transaction of 32 ETH for each validator.
 
 {% hint style="info" %}
-Your transaction is sending and depositing your ETH to the [official ETH2 deposit contract address. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
+Your transaction is sending and depositing your ETH to the [official ETH2 deposit contract address.](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
 
-**Check**, _double-check_, _**triple-check**_ that the official Eth2 deposit contract address is correct.[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)&#x20;
+**Check**, _double-check_, _**triple-check**_ that the official Eth2 deposit contract address is correct.[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
 {% endhint %}
 
 {% hint style="danger" %}
 Be sure to write down or record your mnemonic seed **offline**. _Not email. Not cloud._
 
-Make **offline backups**, such as to a USB key, of your **`validator_keys`**` ``` directory.
+Make **offline backups**, such as to a USB key, of your **`validator_keys`**\` \`\`\` directory.
 {% endhint %}
 
 ## :flying\_saucer:3. Install a ETH1 node
@@ -215,14 +203,14 @@ Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ET
 {% endhint %}
 
 {% hint style="warning" %}
-The subsequent steps assume you have completed the [best practices security guide](broken-reference).
+The subsequent steps assume you have completed the [best practices security guide](broken-reference/).
 {% endhint %}
 
 Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org) **or** [**Nethermind**](https://www.nethermind.io)**.**
 
 {% tabs %}
 {% tab title="OpenEthereum (Parity)" %}
-#### &#x20;:robot: Install and run OpenEthereum.
+:robot: **Install and run OpenEthereum.**
 
 ```
 mkdir ~/openethereum && cd ~/openethereum
@@ -268,7 +256,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
-#### :chains: Start OpenEthereum on mainnet.
+:chains: **Start OpenEthereum on mainnet.**
 
 ```
 sudo systemctl start eth1
@@ -276,7 +264,7 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Geth" %}
-#### :dna: Install from the repository.
+:dna: **Install from the repository.**
 
 ```
 sudo add-apt-repository -y ppa:ethereum/ethereum
@@ -319,7 +307,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
-#### :chains: Start geth on mainnet.
+:chains: **Start geth on mainnet.**
 
 ```
 sudo systemctl start eth1
@@ -327,13 +315,13 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Besu" %}
-#### :dna: Install java dependency.
+:dna: **Install java dependency.**
 
 ```
 sudo apt install openjdk-11-jdk
 ```
 
-#### :last\_quarter\_moon\_with\_face: Download and unzip Besu.
+:last\_quarter\_moon\_with\_face: **Download and unzip Besu.**
 
 ```
 cd
@@ -379,7 +367,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
-#### :chains: Start besu on mainnet.
+:chains: **Start besu on mainnet.**
 
 ```
 sudo systemctl start eth1
@@ -387,13 +375,13 @@ sudo systemctl start eth1
 {% endtab %}
 
 {% tab title="Nethermind" %}
-#### :gear: Install dependencies.
+:gear: **Install dependencies.**
 
 ```
 sudo apt-get update && sudo apt-get install libsnappy-dev libc6-dev libc6 unzip -y
 ```
 
-#### :last\_quarter\_moon\_with\_face: Download and unzip Nethermind.
+:last\_quarter\_moon\_with\_face: **Download and unzip Nethermind.**
 
 ```
 mkdir ~/nethermind && cd ~/nethermind
@@ -402,21 +390,21 @@ unzip nethermind.zip
 rm nethermind.zip
 ```
 
-#### :flying\_saucer: Launch Nethermind.
+:flying\_saucer: **Launch Nethermind.**
 
 ```
 ./Nethermind.Launcher
 ```
 
 * Select `Ethereum Node`
-* Select `Ethereum (mainnet)` then select `Fast sync`&#x20;
+* Select `Ethereum (mainnet)` then select `Fast sync`
 * Yes to enable web3 / JSON RPC
 * Accept default IP
 * Skip ethstats registration
 {% endtab %}
 
 {% tab title="Minimum Hardware Setup" %}
-:construction: **Untested - TBD - Work in progress** :construction:&#x20;
+:construction: **Untested - TBD - Work in progress** :construction:
 
 Use a third party by signing up for an API access key at [https://infura.io/](https://infura.io)
 {% endtab %}
@@ -429,10 +417,10 @@ Syncing the eth1 node could take up to 24 hour.
 {% hint style="success" %}
 Your eth1 node is fully sync'd when these events occur.
 
-* **`OpenEthereum:`**` ``Imported #<block number>`
-* **`Geth:`**` ``Imported new chain segment`
-* **`Besu:`**` ``Imported #<block number>`
-* **`Nethermind:`**` ``No longer syncing Old Headers`
+* **`OpenEthereum:`**` `` ``Imported #<block number> `
+* **`Geth:`**` `` ``Imported new chain segment `
+* **`Besu:`**` `` ``Imported #<block number> `
+* **`Nethermind:`**` `` ``No longer syncing Old Headers `
 {% endhint %}
 
 #### :tools: Helpful eth1.service commands
@@ -450,7 +438,7 @@ sudo systemctl stop eth1
 ```
 
 {% hint style="danger" %}
-:octagonal\_sign: **Before continuing the rest of this guide, we recommend you wait until closer to Dec 1st as the lighthouse code is rapidly preparing for mainnet.** :construction:&#x20;
+:octagonal\_sign: **Before continuing the rest of this guide, we recommend you wait until closer to Dec 1st as the lighthouse code is rapidly preparing for mainnet.** :construction:
 {% endhint %}
 
 ## :woman\_farmer: 4. Install rust
@@ -460,7 +448,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 {% hint style="info" %}
-&#x20;In case of compilation errors, run`rustup update`
+In case of compilation errors, run`rustup update`
 {% endhint %}
 
 Enter '1' to proceed with the default install.
@@ -515,7 +503,7 @@ lighthouse account validator import --directory=$HOME/git/eth2.0-deposit-cli/val
 {% endtab %}
 {% endtabs %}
 
-Enter your keystore's password to import accounts.&#x20;
+Enter your keystore's password to import accounts.
 
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
@@ -523,13 +511,13 @@ Enter your keystore's password to import accounts.&#x20;
 
 ## :fire: 7. Configure port forwarding and/or firewall
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference/)
 
 * **Lighthouse beacon chain** requires port 9000 for tcp and udp
 * **eth1** node requires port 30303 for tcp and udp
 
 {% hint style="info" %}
-****:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+\*\*\*\*:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
 ## :snowboarder: 8. Start the beacon chain
@@ -546,13 +534,13 @@ Your choice of running a beacon chain manually from command line or automaticall
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
-#### 🍰 Benefits of using systemd for your beacon chain <a href="#benefits-of-using-systemd-for-your-stake-pool" id="benefits-of-using-systemd-for-your-stake-pool"></a>
+**🍰 Benefits of using systemd for your beacon chain**
 
 1. Auto-start your beacon chain when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed beacon chain processes.
 3. Maximize your beacon chain up-time and performance.
 
-#### :tools: Setup Instructions
+:tools: **Setup Instructions**
 
 Run the following to create a **unit file** to define your`beacon-chain.service` configuration.
 
@@ -596,33 +584,33 @@ sudo systemctl start beacon-chain
 Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-### :tools: Some helpful systemd commands
+#### :tools: Some helpful systemd commands
 
-#### :white\_check\_mark: Check whether the beacon chain is active
+:white\_check\_mark: **Check whether the beacon chain is active**
 
 ```
 sudo systemctl is-active beacon-chain
 ```
 
-#### :mag\_right: View the status of the beacon chain
+:mag\_right: **View the status of the beacon chain**
 
 ```
 sudo systemctl status beacon-chain
 ```
 
-#### :arrows\_counterclockwise: Restarting the beacon chain
+:arrows\_counterclockwise: **Restarting the beacon chain**
 
 ```
 sudo systemctl reload-or-restart beacon-chain
 ```
 
-#### :octagonal\_sign: Stopping the beacon chain
+:octagonal\_sign: **Stopping the beacon chain**
 
 ```
 sudo systemctl stop beacon-chain
 ```
 
-#### 🗄 Viewing and filtering logs
+**🗄 Viewing and filtering logs**
 
 ```bash
 journalctl --unit=beacon-chain --since=yesterday
@@ -641,7 +629,7 @@ lighthouse bn --staking --metrics
 {% endtabs %}
 
 {% hint style="info" %}
-&#x20;The `--metrics` flag enables reporting on port 5054 and will be monitored with Prometheus.
+The `--metrics` flag enables reporting on port 5054 and will be monitored with Prometheus.
 {% endhint %}
 
 {% hint style="danger" %}
@@ -656,13 +644,13 @@ Your choice of running a validator manually from command line or automatically w
 
 {% tabs %}
 {% tab title="Systemd - Automated" %}
-#### 🍰 Benefits of using systemd for your validator <a href="#benefits-of-using-systemd-for-your-stake-pool" id="benefits-of-using-systemd-for-your-stake-pool"></a>
+**🍰 Benefits of using systemd for your validator**
 
 1. Auto-start your validator when the computer reboots due to maintenance, power outage, etc.
 2. Automatically restart crashed validator processes.
 3. Maximize your validator up-time and performance.
 
-#### :tools: Setup Instructions
+:tools: **Setup Instructions**
 
 Run the following to create a **unit file** to define your`validator.service` configuration.
 
@@ -706,33 +694,33 @@ sudo systemctl start validator
 Nice work. Your validator is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-### :tools: Some helpful systemd commands
+#### :tools: Some helpful systemd commands
 
-#### :white\_check\_mark: Check whether the validator is active
+:white\_check\_mark: **Check whether the validator is active**
 
 ```
 sudo systemctl is-active validator
 ```
 
-#### :mag\_right: View the status of the validator
+:mag\_right: **View the status of the validator**
 
 ```
 sudo systemctl status validator
 ```
 
-#### :arrows\_counterclockwise: Restarting the validator
+:arrows\_counterclockwise: **Restarting the validator**
 
 ```
 sudo systemctl reload-or-restart validator
 ```
 
-#### :octagonal\_sign: Stopping the validator
+:octagonal\_sign: **Stopping the validator**
 
 ```
 sudo systemctl stop validator
 ```
 
-#### 🗄 Viewing and filtering logs
+**🗄 Viewing and filtering logs**
 
 ```bash
 journalctl --unit=validator --since=yesterday
@@ -776,8 +764,8 @@ Because beacon chain relies on accurate times to perform attestations and produc
 
 Setup **Chrony** with the following guide.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="broken-reference/" %}
+[broken-reference](broken-reference/)
 {% endcontent-ref %}
 
 {% hint style="info" %}
@@ -788,7 +776,7 @@ chrony is an implementation of the Network Time Protocol and helps to keep your 
 
 Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
 
-### &#x20;:hatching\_chick: 11.1 Installation
+### :hatching\_chick: 11.1 Installation
 
 Install prometheus and prometheus node exporter.
 
@@ -854,10 +842,10 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 ```
 
 {% hint style="info" %}
-****:bulb: **Reminder**: Ensure port 3000 is open on the firewall and/or port forwarded if you intend to view monitoring info from a different machine.
+\*\*\*\*:bulb: **Reminder**: Ensure port 3000 is open on the firewall and/or port forwarded if you intend to view monitoring info from a different machine.
 {% endhint %}
 
-### :signal\_strength:11.2 Setting up Grafana Dashboards&#x20;
+### :signal\_strength:11.2 Setting up Grafana Dashboards
 
 1. Open [http://localhost:3000](http://localhost:3000) or http://\<your validator's ip address>:3000 in your local browser.
 2. Login with **admin** / **admin**
@@ -867,7 +855,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 6. Set **Name** to **"Prometheus**"
 7. Set **URL** to **http://localhost:9090**
 8. Click **Save & Test**
-9. **Download and save** this [**json file.**](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)****
+9. **Download and save** this [**json file.**](https://raw.githubusercontent.com/sigp/lighthouse-metrics/master/dashboards/Summary.json)\*\*\*\*
 10. Click **Create +** icon > **Import**
 11. Add dashboard by **Upload JSON file**
 12. Click the **Import** button.
@@ -885,14 +873,14 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% tabs %}
 {% tab title="Email Notifications" %}
 1. Visit [https://beaconcha.in/](https://beaconcha.in)
-2. Sign Up **** for an **account**
+2. Sign Up \*\*\*\* for an **account**
 3. Verify your **email**
 4. Search for your **validator's public address**
 5. Add validators to your watchlist by clicking the **bookmark symbol**.
 {% endtab %}
 
 {% tab title="Telegram Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. <img src="../../.gitbook/assets/gra-noti.png" alt="" data-size="original">&#x20;
+1. On the menu of Grafana, select **Notification channels** under the bell icon. <img src="../../.gitbook/assets/gra-noti.png" alt="" data-size="original">
 2. Click on **Add channel**.
 3. Give the notification channel a **name**.
 4. Select **Telegram** from the Type list.
@@ -901,7 +889,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% endtab %}
 
 {% tab title="Discord Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. <img src="../../.gitbook/assets/gra-noti.png" alt="" data-size="original">&#x20;
+1. On the menu of Grafana, select **Notification channels** under the bell icon. <img src="../../.gitbook/assets/gra-noti.png" alt="" data-size="original">
 2. Click on **Add channel**.
 3. Add a **name** to the notification channel.
 4. Select **Discord** from the Type list.
@@ -911,7 +899,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% endtab %}
 
 {% tab title="Slack Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon. <img src="../../.gitbook/assets/gra-noti.png" alt="" data-size="original">&#x20;
+1. On the menu of Grafana, select **Notification channels** under the bell icon. <img src="../../.gitbook/assets/gra-noti.png" alt="" data-size="original">
 2. Click on **Add channel**.
 3. Add a **name** to the notification channel.
 4. Select **Slack** from the Type list.
@@ -924,13 +912,13 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% hint style="success" %}
 :tada: Congrats on setting up your validator! You're good to go on eth2.0.
 
-Did you find our guide useful? Let us know with a tip and we'll keep updating it.&#x20;
+Did you find our guide useful? Let us know with a tip and we'll keep updating it.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:&#x20;
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:
 
-Any feedback and all pull requests much appreciated. :blush:&#x20;
+Any feedback and all pull requests much appreciated. :blush:
 
-Hang out and chat with fellow stakers on telegram @ [https://t.me/coincashew](https://t.me/coincashew) :first\_quarter\_moon\_with\_face:&#x20;
+Hang out and chat with fellow stakers on telegram @ [https://t.me/coincashew](https://t.me/coincashew) :first\_quarter\_moon\_with\_face:
 {% endhint %}
 
 ## :man\_mage: 12. Updating Lighthouse
@@ -1014,8 +1002,8 @@ Appreciate the hard work done by the fine folks at the following links which ser
 Use this command to signal your intentions to stop validating with your validator. This means you no longer want to stake with your validator and want to turn off your node.
 
 * Voluntary exiting takes a minimum of 2048 epochs (or \~9days). There is a queue to exit and a delay before your validator is finally exited.
-* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again.&#x20;
-* Your funds will not be available for withdrawal until phase 1.5 or later.&#x20;
+* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again.
+* Your funds will not be available for withdrawal until phase 1.5 or later.
 * After your validator leaves the exit queue and is truely exited, it is safe to turn off your beacon node and validator.
 {% endhint %}
 
@@ -1027,7 +1015,7 @@ lighthouse account validator exit \
 
 ### :closed\_lock\_with\_key: 15.2 Verify your mnemonic phrase
 
-Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`&#x20;
+Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`
 
 ```bash
 ./deposit existing-mnemonic --chain mainnet

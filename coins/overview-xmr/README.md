@@ -11,7 +11,7 @@ description: >-
 
 | Site        | Title                                                                                                                                                                        |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://getmonero.org/](https://getmonero.org)                                                                                                                              |
+| Website     | [https://getmonero.org/](https://getmonero.org/)                                                                                                                             |
 | Source Code | [https://github.com/monero-project/monero](https://github.com/monero-project/monero)                                                                                         |
 | Whitepaper  | [https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf](https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf) |
 
@@ -22,21 +22,21 @@ description: >-
 | :bird: Twitter    | [https://twitter.com/monero](https://twitter.com/monero)                                             |
 | Facebook          | [https://www.facebook.com/monerocurrency](https://www.facebook.com/monerocurrency)                   |
 | Reddit            | [https://www.reddit.com/r/monero](https://www.reddit.com/r/monero)                                   |
-| Official Forum    | [https://forum.getmonero.org/](https://forum.getmonero.org)                                          |
+| Official Forum    | [https://forum.getmonero.org/](https://forum.getmonero.org/)                                         |
 | Bitcointalk Forum | [https://bitcointalk.org/index.php?topic=583449.0](https://bitcointalk.org/index.php?topic=583449.0) |
 | Telegram          | [https://t.me/monero](https://t.me/monero)                                                           |
-| StackExchange     | [https://monero.stackexchange.com/](https://monero.stackexchange.com)                                |
+| StackExchange     | [https://monero.stackexchange.com/](https://monero.stackexchange.com/)                               |
 | IRC Chat          | [https://monerologs.net](https://monerologs.net)                                                     |
-| Conference        | [https://monerokon.com/](https://monerokon.com)                                                      |
+| Conference        | [https://monerokon.com/](https://monerokon.com/)                                                     |
 
 ## :arrows\_clockwise: Block Explorers
 
 | Site                                                                 |
 | -------------------------------------------------------------------- |
 | [https://blockchair.com/monero](https://blockchair.com/monero)       |
-| [https://xmrchain.org/](https://xmrchain.org)                        |
+| [https://xmrchain.org/](https://xmrchain.org/)                       |
 | [http://chainradar.com/xmr/blocks](http://chainradar.com/xmr/blocks) |
-| [https://xmr.tokenview.com/](https://xmr.tokenview.com)              |
+| [https://xmr.tokenview.com/](https://xmr.tokenview.com/)             |
 
 ## :bar\_chart: Charts and Pricing
 

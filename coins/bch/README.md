@@ -10,7 +10,7 @@ description: >-
 
 | Site        | Title                                                                                                                                                |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://www.bitcoincash.org/](https://www.bitcoincash.org)                                                                                          |
+| Website     | [https://www.bitcoincash.org/](https://www.bitcoincash.org/)                                                                                         |
 | Source Code | [https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node)                                     |
 | Whitepaper  | [https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/tree/master/doc](https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/tree/master/doc) |
 

@@ -8,7 +8,7 @@ description: INTRODUCING BLOCKCHAIN-BASED DIGITAL ADVERTISING
 
 | Site        | Title                                                                                                                                      |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://basicattentiontoken.org/](https://basicattentiontoken.org)                                                                        |
+| Website     | [https://basicattentiontoken.org/](https://basicattentiontoken.org/)                                                                       |
 | Source Code | [https://github.com/brave-intl/bat-ledger](https://github.com/brave-intl/bat-ledger)                                                       |
 | Whitepaper  | [https://basicattentiontoken.org/BasicAttentionTokenWhitePaper-4.pdf](https://basicattentiontoken.org/BasicAttentionTokenWhitePaper-4.pdf) |
 

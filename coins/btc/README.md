@@ -8,7 +8,7 @@ description: Bitcoin is an innovative payment network and a new kind of money.
 
 | Site        | Title                                                                    |
 | ----------- | ------------------------------------------------------------------------ |
-| Website     | [https://bitcoin.org/](https://bitcoin.org)                              |
+| Website     | [https://bitcoin.org/](https://bitcoin.org/)                             |
 | Source Code | [https://github.com/bitcoin/bitcoin](https://github.com/bitcoin/bitcoin) |
 | Whitepaper  | [https://bitcoin.org/bitcoin.pdf](https://bitcoin.org/bitcoin.pdf)       |
 
@@ -22,7 +22,7 @@ Bitcoin Whitepaper
 | -------------- | ------------------------------------------------------------------------ |
 | :bird: Twitter | [https://twitter.com/bitcoincoreorg](https://twitter.com/bitcoincoreorg) |
 | Reddit         | [https://www.reddit.com/r/bitcoin](https://www.reddit.com/r/bitcoin)     |
-| Official Forum | [https://bitcointalk.org/](https://bitcointalk.org)                      |
+| Official Forum | [https://bitcointalk.org/](https://bitcointalk.org/)                     |
 | Official Blog  | [https://bitcoin.org/en/blog](https://bitcoin.org/en/blog)               |
 
 ## :arrows\_clockwise: Block Explorers
@@ -31,8 +31,8 @@ Bitcoin Whitepaper
 | ---------------------------------------------------------------------- |
 | [https://blockchair.com/bitcoin](https://blockchair.com/bitcoin)       |
 | [http://blockchain.com/explorer](http://blockchain.com/explorer)       |
-| [https://blockexplorer.com/](https://blockexplorer.com)                |
-| [https://blockstream.info/](https://blockstream.info)                  |
+| [https://blockexplorer.com/](https://blockexplorer.com/)               |
+| [https://blockstream.info/](https://blockstream.info/)                 |
 | [https://live.blockcypher.com/btc/](https://live.blockcypher.com/btc/) |
 | [https://explorer.viabtc.com/btc](https://explorer.viabtc.com/btc)     |
 

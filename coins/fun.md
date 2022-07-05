@@ -10,7 +10,7 @@ description: >-
 
 | Site        | Title                                                                                        |
 | ----------- | -------------------------------------------------------------------------------------------- |
-| Website     | [https://funfair.io/](https://funfair.io)                                                    |
+| Website     | [https://funfair.io/](https://funfair.io/)                                                   |
 | Source Code | [https://github.com/funfair-tech](https://github.com/funfair-tech)                           |
 | Whitepaper  | [https://funfair.io/how-it-works/whitepapers/](https://funfair.io/how-it-works/whitepapers/) |
 

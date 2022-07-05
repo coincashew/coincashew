@@ -10,8 +10,8 @@ description: >-
 
 | Site        | Title                                                                                                                                                  |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Website     | [https://eos.io/](https://eos.io)                                                                                                                      |
-| Website     | [https://block.one/](https://block.one)                                                                                                                |
+| Website     | [https://eos.io/](https://eos.io/)                                                                                                                     |
+| Website     | [https://block.one/](https://block.one/)                                                                                                               |
 | Source Code | [https://github.com/eosio](https://github.com/eosio)                                                                                                   |
 | Whitepaper  | [https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md](https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md) |
 
@@ -27,28 +27,28 @@ description: >-
 | Telegram Devs            | [https://t.me/joinchat/EaEnSUPktgfoI-XPfMYtcQ](https://t.me/joinchat/EaEnSUPktgfoI-XPfMYtcQ)                                                                                                       |
 | Telegram Block Producers | [https://t.me/EOSPros](https://t.me/EOSPros)                                                                                                                                                       |
 | Telegram Announcements   | [https://t.me/eosLAUNCHbyTHEwire](https://t.me/eosLAUNCHbyTHEwire)                                                                                                                                 |
-| StackExchange            | [https://eosio.stackexchange.com/](https://eosio.stackexchange.com)                                                                                                                                |
+| StackExchange            | [https://eosio.stackexchange.com/](https://eosio.stackexchange.com/)                                                                                                                               |
 | Medium                   | [https://medium.com/@eosio](https://medium.com/@eosio)                                                                                                                                             |
 | Medium                   | [https://medium.com/block-one](https://medium.com/block-one)                                                                                                                                       |
 | Youtube                  | [https://www.youtube.com/channel/UCbc7vIgwb-sPSckU0FbWmRg](https://www.youtube.com/channel/UCbc7vIgwb-sPSckU0FbWmRg)                                                                               |
-| Official Forums          | [https://forums.eosgo.io/](https://forums.eosgo.io)                                                                                                                                                |
+| Official Forums          | [https://forums.eosgo.io/](https://forums.eosgo.io/)                                                                                                                                               |
 | Everything EOS Podcast   | [https://www.youtube.com/playlist?list=PLTatkxrYThmbFyCvRSbW-54aFD-axls3Y\&disable\_polymer=true](https://www.youtube.com/playlist?list=PLTatkxrYThmbFyCvRSbW-54aFD-axls3Y\&disable\_polymer=true) |
 
 ## :arrows\_clockwise: Block Explorers
 
-| Site                                        |
-| ------------------------------------------- |
-| [https://eospark.com/](https://eospark.com) |
-| [https://bloks.io/](https://bloks.io)       |
-| [https://eosflare.io/](https://eosflare.io) |
-| [https://eosx.io/](https://eosx.io)         |
+| Site                                         |
+| -------------------------------------------- |
+| [https://eospark.com/](https://eospark.com/) |
+| [https://bloks.io/](https://bloks.io/)       |
+| [https://eosflare.io/](https://eosflare.io/) |
+| [https://eosx.io/](https://eosx.io/)         |
 
 ## :ballot\_box: Referendum Resources
 
 | Site                                                                                               |
 | -------------------------------------------------------------------------------------------------- |
 | [https://eosauthority.com/polls](https://eosauthority.com/polls)                                   |
-| [https://eosvotes.io/](https://eosvotes.io)                                                        |
+| [https://eosvotes.io/](https://eosvotes.io/)                                                       |
 | [https://www.eosx.io/tools/referendums/proposals](https://www.eosx.io/tools/referendums/proposals) |
 
 ## Resource Exchange (REX) Resources
@@ -56,7 +56,7 @@ description: >-
 | Site                                                           |
 | -------------------------------------------------------------- |
 | [https://eosauthority.com/rex/](https://eosauthority.com/rex/) |
-| [https://eosrex.io/](https://eosrex.io)                        |
+| [https://eosrex.io/](https://eosrex.io/)                       |
 
 ## :bar\_chart: Charts and Pricing
 

@@ -48,7 +48,7 @@ Congratulations. Your baker is now ready to bake some rolls!
 {% endhint %}
 
 {% hint style="info" %}
-Since you recently registered as a baker, you need to wait 7 cycles, or about 21 days, before you have rights to start baking and endorsing. Check on your baking rights with a block explorer such as [https://tzstats.com](https://tzstats.com) via the **Bonds tab**.
+Since you recently registered as a baker, you need to wait 7 cycles, or about 21 days, before you have rights to start baking and endorsing. Check on your baking rights with a block explorer such as [https://tzstats.com](https://tzstats.com/) via the **Bonds tab**.
 {% endhint %}
 
 ![Example of baking rights from tzstats.com](../../../.gitbook/assets/bondspic.png)

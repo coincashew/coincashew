@@ -1,11 +1,11 @@
 # Guide: How to mine BEAM
 
-## :checkered_flag: 1. Prerequisites
+## :checkered\_flag: 1. Prerequisites
 
 * AMD GPU with at least 3GB RAM
 * Nvidia GPU with at least 3GB RAM
 
-## :last_quarter_moon_with_face: 2. Install and use a compatible wallet
+## :last\_quarter\_moon\_with\_face: 2. Install and use a compatible wallet
 
 {% content-ref url="../../wallets/desktop-wallets/beam.mw-beam.md" %}
 [beam.mw-beam.md](../../wallets/desktop-wallets/beam.mw-beam.md)
@@ -15,7 +15,7 @@
 
 ### AMD GPU: lolMiner
 
-1.  Download latest miner binaries from 
+1.  Download latest miner binaries from&#x20;
 
     [https://bitcointalk.org/index.php?topic=4724735.0](https://bitcointalk.org/index.php?topic=4724735.0)
 2.  Pick a mining pool from
@@ -39,13 +39,13 @@ lolMiner.exe --coin BEAM --pool <poolAddr>:<portNumber> --user <Wallet or user n
 
 ### Nvidia & AMD GPU: GMiner
 
-1.  Download latest miner binaries from 
+1.  Download latest miner binaries from&#x20;
 
     [https://bitcointalk.org/index.php?topic=5034735.0](https://bitcointalk.org/index.php?topic=5034735.0)
 2.  Pick a mining pool from
 
     [https://miningpoolstats.stream/beam](https://miningpoolstats.stream/beam)
-3. Run the mining software with the following command line or edit the included `"mine_beam" `script file.
+3. Run the mining software with the following command line or edit the included `"mine_beam"` script file.
 
 {% tabs %}
 {% tab title="Windows" %}
@@ -69,7 +69,7 @@ If your Operating System quarantines the file, you will need to create a rule to
 
 ### How much performance should I expect from my hardware?
 
-1. Visit [whattomine.com](https://www.whattomine.com)
+1. Visit [whattomine.com](https://www.whattomine.com/)
 2. Enter the # of GPUs
 3. Press **Beam**
 4. Press **Calculate**

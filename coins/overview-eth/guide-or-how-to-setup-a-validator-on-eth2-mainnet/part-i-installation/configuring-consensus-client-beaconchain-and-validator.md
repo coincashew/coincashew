@@ -97,7 +97,7 @@ lighthouse account_manager validator list --network mainnet
 
 :fire: **4.4. Configure port forwarding and/or firewall**
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
 * **Lighthouse consensus client** requires port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
@@ -461,7 +461,7 @@ For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/
 
 :fire: **4.3. Configure port forwarding and/or firewall**
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
 * **Nimbus consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
@@ -661,7 +661,7 @@ sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 
 :fire: **4.2. Configure port forwarding and/or firewall**
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
 * **Teku consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
@@ -960,7 +960,7 @@ curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --out
 
 :fire: **4.2. Configure port forwarding and/or firewall**
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
 * **Prysm consensus client** will use port 12000 for udp and port 13000 for tcp
 * **Execution client** requires port 30303 for tcp and udp
@@ -1316,7 +1316,7 @@ Verify Lodestar was installed properly by displaying the help menu.
 
 :fire: **4.2. Configure port forwarding and/or firewall**
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](../../guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
 
 * **Lodestar consensus client** will use port 30607 for tcp and port 9000 for udp peer discovery.
 * **Execution client** requires port 30303 for tcp and udp

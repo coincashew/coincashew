@@ -27,7 +27,7 @@ description: >-
 
 | Site                                                                                                                                           |
 | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| [https://explorer.binance.org/](https://explorer.binance.org)                                                                                  |
+| [https://explorer.binance.org/](https://explorer.binance.org/)                                                                                 |
 | [https://etherscan.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52](https://etherscan.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52) |
 
 ## :bar\_chart: Charts and Pricing

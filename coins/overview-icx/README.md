@@ -11,7 +11,7 @@ description: >-
 
 | Site        | Title                                                                                                                |
 | ----------- | -------------------------------------------------------------------------------------------------------------------- |
-| Website     | [https://www.icon.foundation/](https://www.icon.foundation)                                                          |
+| Website     | [https://www.icon.foundation/](https://www.icon.foundation/)                                                         |
 | Source Code | [https://github.com/icon-project](https://github.com/icon-project)                                                   |
 | Whitepaper  | [http://docs.icon.foundation/ICON-Whitepaper-EN-Draft.pdf](http://docs.icon.foundation/ICON-Whitepaper-EN-Draft.pdf) |
 
@@ -22,16 +22,16 @@ description: >-
 | :bird: Twitter | [https://twitter.com/helloiconworld](https://twitter.com/helloiconworld)                       |
 | Reddit         | [https://www.reddit.com/r/helloicon](https://www.reddit.com/r/helloicon)                       |
 | Telegram       | [https://t.me/hello\_iconworld](https://t.me/hello\_iconworld)                                 |
-| ICON.community | [https://icon.community/](https://icon.community)                                              |
+| ICON.community | [https://icon.community/](https://icon.community/)                                             |
 | Wiki           | [https://www.reddit.com/r/helloicon/wiki/index](https://www.reddit.com/r/helloicon/wiki/index) |
 
 ## :arrows\_clockwise: Block Explorers
 
-| Site                                                       |
-| ---------------------------------------------------------- |
-| [Tracker.Icon.Foundation](https://tracker.icon.foundation) |
-| [ICXScan.tech](https://www.icxscan.tech)                   |
-| [ICONwat.ch](https://iconwat.ch)                           |
+| Site                                                        |
+| ----------------------------------------------------------- |
+| [Tracker.Icon.Foundation](https://tracker.icon.foundation/) |
+| [ICXScan.tech](https://www.icxscan.tech/)                   |
+| [ICONwat.ch](https://iconwat.ch/)                           |
 
 ## :bar\_chart: Charts and Pricing
 

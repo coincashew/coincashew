@@ -8,7 +8,7 @@ description: Buy, Sell and Pay with Crypto
 
 | Site       | Title                                                                                          |
 | ---------- | ---------------------------------------------------------------------------------------------- |
-| Website    | [https://mco.crypto.com/](https://mco.crypto.com)                                              |
+| Website    | [https://mco.crypto.com/](https://mco.crypto.com/)                                             |
 | Whitepaper | [https://crypto.com/images/mco\_whitepaper.pdf](https://crypto.com/images/mco\_whitepaper.pdf) |
 
 ## :person\_raising\_hand: Social Media and Community

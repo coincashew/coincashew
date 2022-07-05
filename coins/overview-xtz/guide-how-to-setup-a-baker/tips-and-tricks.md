@@ -120,7 +120,7 @@ Want to test something and play with tezos on testnet without risking real coins
 Two ways:
 
 * Use the [Baking Bad Faucet Telegram Bot](https://t.me/tezos\_faucet\_bot)
-* [Get some test tez from the faucet.](https://faucet.tzalpha.net)
+* [Get some test tez from the faucet.](https://faucet.tzalpha.net/)
 
 Proceed with the following commands:
 

@@ -10,8 +10,8 @@ description: >-
 
 | Site        | Title                                                                |
 | ----------- | -------------------------------------------------------------------- |
-| Website     | [http://www.digibyte.io/](http://www.digibyte.io)                    |
-| Foundation  | [https://digibytefoundation.io/](https://digibytefoundation.io)      |
+| Website     | [http://www.digibyte.io/](http://www.digibyte.io/)                   |
+| Foundation  | [https://digibytefoundation.io/](https://digibytefoundation.io/)     |
 | Source Code | [https://github.com/DigiByte-Core](https://github.com/DigiByte-Core) |
 
 ## :person\_raising\_hand: Social Media and Community
@@ -23,20 +23,20 @@ description: >-
 | Facebook       | [https://www.facebook.com/digibytecoin/](https://www.facebook.com/digibytecoin/)                     |
 | Bitcointalk    | [https://bitcointalk.org/index.php?topic=408268.0](https://bitcointalk.org/index.php?topic=408268.0) |
 | Telegram       | [https://t.me/DigiByteCoin](https://t.me/DigiByteCoin)                                               |
-| Wiki           | [https://dgbwiki.com/](https://dgbwiki.com)                                                          |
-| Digistats      | [https://digistats.digibyteservers.io/](https://digistats.digibyteservers.io)                        |
+| Wiki           | [https://dgbwiki.com/](https://dgbwiki.com/)                                                         |
+| Digistats      | [https://digistats.digibyteservers.io/](https://digistats.digibyteservers.io/)                       |
 
 ## :arrows\_clockwise: Block Explorers
 
 | Site                                                                                 |
 | ------------------------------------------------------------------------------------ |
-| [https://dgb1.trezor.io/](https://dgb1.trezor.io)                                    |
-| [https://digiexplorer.info/](https://digiexplorer.info)                              |
+| [https://dgb1.trezor.io/](https://dgb1.trezor.io/)                                   |
+| [https://digiexplorer.info/](https://digiexplorer.info/)                             |
 | [https://dgb.tokenview.com/en/](https://dgb.tokenview.com/en/)                       |
-| [https://dgb.ccore.online/](https://dgb.ccore.online)                                |
+| [https://dgb.ccore.online/](https://dgb.ccore.online/)                               |
 | [https://chainz.cryptoid.info/dgb/](https://chainz.cryptoid.info/dgb/)               |
 | [https://altexplorer.co/coin/dgb/explorer](https://altexplorer.co/coin/dgb/explorer) |
-| [https://insight.digibyte.host/](https://insight.digibyte.host)                      |
+| [https://insight.digibyte.host/](https://insight.digibyte.host/)                     |
 
 ## :bar\_chart: Charts and Pricing
 
