@@ -99,6 +99,8 @@ sudo systemctl start eth1
 **Hyperledger Besu** is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
 {% endhint %}
 
+
+
 :dna:**Install java dependency**
 
 ```
@@ -106,12 +108,16 @@ sudo apt update
 sudo apt install openjdk-11-jdk -y
 ```
 
+
+
 :last\_quarter\_moon\_with\_face:**Download and unzip Besu**
 
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
+Update BINARIES\_URL with the latest url.
+
 ```
-BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.4.2/besu-22.4.2.tar.gz"
+BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.4.3/besu-22.4.3.tar.gz"
 
 cd $HOME
 wget -O besu.tar.gz "$BINARIES_URL"
@@ -119,6 +125,8 @@ tar -xzvf besu.tar.gz -C $HOME
 rm besu.tar.gz
 mv besu* besu
 ```
+
+
 
 :gear: **Setup and configure systemd**
 
@@ -177,6 +185,8 @@ Run the following to enable auto-start at boot time.
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
+
+
 
 :chains: **Start besu**
 
