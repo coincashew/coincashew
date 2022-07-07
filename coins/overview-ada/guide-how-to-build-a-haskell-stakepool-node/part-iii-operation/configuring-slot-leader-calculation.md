@@ -25,7 +25,7 @@ cardano-cli query leadership-schedule \
 --next
 ```
 
-****
+***
 
 **Current epoch's leadership schedule** is obtained with the following:
 
@@ -37,8 +37,6 @@ cardano-cli query leadership-schedule \
 --vrf-signing-key-file $NODE_HOME/vrf.skey \
 --current
 ```
-
-
 
 Example leadership schedule output:
 
@@ -65,8 +63,6 @@ What the script will do, is to calculate the the correct day and hour to run the
 Once finished, it will redirect the output into a log file that can be analyzed.
 {% endhint %}
 
-
-
 {% hint style="danger" %}
 Keep in mind that running the leadership-schedule command, listed below and used by the script, with the cardano-node at the same time, will use approximately 17GB of RAM at the time of writing this guide (April 2022).
 
@@ -75,8 +71,6 @@ The possible solutions to avoid a node crash are:
 * Increase the RAM of the node
 * [Increase the SWAP partition of the node](../part-v-tips/increasing-swap-file.md)
 {% endhint %}
-
-
 
 {% hint style="info" %}
 Credits to [Techs2help](https://techs2help.ch) for developing the [script](https://github.com/Techs2Help/leaderScheduleCheck\_cron).
@@ -237,7 +231,6 @@ if [ isSynced ];then
 else
     echo "Node not fully synced."; exit 1
 fi
-
 ```
 
 
@@ -305,6 +298,8 @@ Here is an example with a UTC+2 timezone for Mainnet:
 
 > Epoch starting hour UTC: 21:45 Epoch starting hour for requested timezone: 23:45 Cronjob will be set to run at 23:45
 
+
+
 Add cronjob and edit parameters based on your needs, `PATH`, `NODE_HOME`, `NODE_CONFIG`, `CARDANO_NODE_SOCKET_PATH`, `MM`, `HH`, `path_to_script` and `desired_log_folder`:
 
 ```bash
@@ -336,12 +331,14 @@ For every epoch, there will be a file called leaderSchedule\_epoch.txt
 
 {% tab title="CNCLI Tool" %}
 {% hint style="info" %}
-#### [CNCLI](https://github.com/cardano-community/cncli) by [BCSH](https://bluecheesestakehouse.com), [SAND](https://www.sandstone.io), [SALAD](https://insalada.io)
+[**CNCLI**](https://github.com/cardano-community/cncli) **by** [**BCSH**](https://bluecheesestakehouse.com)**,** [**SAND**](https://www.sandstone.io)**,** [**SALAD**](https://insalada.io)
 
 A community-based `cardano-node` CLI tool. It's a collection of utilities to enhance and extend beyond those available with the `cardano-cli`.
 {% endhint %}
 
-#### :dna: Installing the Binary
+
+
+:dna: **Installing the Binary**
 
 ```bash
 ###
@@ -357,7 +354,9 @@ curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASE
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
-#### Confirming That CNCLI is Properly Installed
+
+
+**Confirming That CNCLI is Properly Installed**
 
 Run the following command to check if cncli is correctly installed and available in your system `PATH` variable:
 
@@ -367,7 +366,9 @@ command -v cncli
 
 It should return `/usr/local/bin/cncli`
 
-#### :pick: **Running LeaderLog with stake-snapshot**
+
+
+:pick: **Running LeaderLog with stake-snapshot**
 
 This command calculates a stake pool's expected slot list.
 
@@ -375,11 +376,27 @@ This command calculates a stake pool's expected slot list.
 * `next` logs are only available 1.5 days (36 hours) before the end of the epoch.
 * You need to use `poolStakeMark` and `activeStakeMark` for `next`, `poolStakeSet` and `activeStakeSet` for `current`, `poolStakeGo` and `activeStakeGo` for `prev`.
 
+
+
 Example usage with the `stake-snapshot` approach for `next` epoch:
+
+
 
 {% hint style="info" %}
 Run this command 1.5 days (36 hours) before the next epoch begins.
 {% endhint %}
+
+
+
+{% hint style="info" %}
+As of CNCLI v5.0.2, additional parameters are required for leaderlogs.
+
+`--consensus tpraos` while in Alonzo era
+
+`--consensus praos` after the Vasil HF
+{% endhint %}
+
+
 
 ```bash
 /usr/local/bin/cncli sync --host 127.0.0.1 --port 6000 --no-service
@@ -390,7 +407,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeMark": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeMark": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -402,6 +419,8 @@ PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
 
 echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
+
+
 
 Example usage with the `stake-snapshot` approach for `current` epoch:
 
@@ -414,7 +433,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeSet": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeSet": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set current`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set current`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -426,6 +445,8 @@ PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
 
 echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
+
+
 
 Example usage with the `stake-snapshot` approach for `previous` epoch:
 
@@ -438,7 +459,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeGo": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeGo": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set prev`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set prev`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -451,6 +472,8 @@ PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
 echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
 
+
+
 **Integrating with PoolTool**
 
 [PoolTool](https://pooltool.io) provides [example scripts](https://github.com/papacarp/pooltool.io) to submit the following data for your stake pool:
@@ -462,17 +485,23 @@ The following figure shows the green badge that PoolTool displays next to your s
 
 ![Your pool's tip on pooltool.io](../../../../.gitbook/assets/tip.png)
 
-You can also use Andrew Westberg's [CNCLI](https://github.com/AndrewWestberg/cncli) utilities to send the block height and slot count to PoolTool.
+You can also use Andrew Westberg's [CNCLI utilities](https://github.com/cardano-community/cncli) to send the block height and slot count to PoolTool.
 
 [Guild Operators](https://cardano-community.github.io/guild-operators/) maintain the [`cncli.sh`](https://cardano-community.github.io/guild-operators/Scripts/cncli/) companion script to help stake pool operators use Andrew Westberg's CNCLI utilities.
 
 To send data to PoolTool using CNCLI utilities without using the `cncli.sh` script, create a configuration file containing your PoolTool API key and stake pool details.
 
+
+
 {% hint style="info" %}
 For details on requesting an API key from PoolTool, see the topic [Obtaining a PoolTool API Key](../part-v-tips/obtaining-a-pooltool-api-key.md).
 {% endhint %}
 
+
+
 To create a configuration file, update values in the following example with your pool information. To follow the example, save the configuration file at `$NODE_HOME/scripts/pooltool.json`
+
+
 
 ```bash
 cat > ${NODE_HOME}/scripts/pooltool.json << EOF
@@ -489,6 +518,8 @@ cat > ${NODE_HOME}/scripts/pooltool.json << EOF
 }
 EOF
 ```
+
+
 
 **Creating systemd Services**
 
@@ -529,6 +560,8 @@ EOF
 sudo mv ${NODE_HOME}/cncli-sync.service /etc/systemd/system/cncli-sync.service
 ```
 
+
+
 * Create the following and move to `/etc/systemd/system/cncli-sendtip.service`
 
 ```bash
@@ -559,6 +592,8 @@ EOF
 sudo mv ${NODE_HOME}/cncli-sendtip.service /etc/systemd/system/cncli-sendtip.service
 ```
 
+
+
 * To enable and run the above services, run:
 
 ```
@@ -573,18 +608,22 @@ sudo systemctl start cncli-sync.service
 sudo systemctl start cncli-sendtip.service
 ```
 
-#### :tools: Upgrading CNCLI
+
+
+:tools: **Upgrading CNCLI**
 
 ```bash
-RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
+RELEASETAG=$(curl -s https://api.github.com/repos/cardano-community/cncli/releases/latest | jq -r .tag_name)
 VERSION=$(echo ${RELEASETAG} | cut -c 2-)
 echo "Installing release ${RELEASETAG}"
-curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
 ```
 
 ```bash
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
+
+
 
 **Confirming CNCLI Upgrades**
 

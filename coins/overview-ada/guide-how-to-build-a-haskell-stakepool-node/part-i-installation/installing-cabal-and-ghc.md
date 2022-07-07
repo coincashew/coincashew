@@ -13,7 +13,7 @@ sudo apt-get upgrade -y
 ```
 
 ```
-sudo apt-get install git jq bc make automake rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ wget libncursesw5 libtool autoconf liblmdb-dev -y
+sudo apt-get install git jq bc make automake rsync htop curl build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ wget libncursesw5 libtool autoconf openssl-devel liblmdb-dev -y
 ```
 
 Install Libsodium.
@@ -82,15 +82,15 @@ Answer **YES** to automatically add the required PATH variable to ".bashrc".
 cd $HOME
 source .bashrc
 ghcup upgrade
-ghcup install cabal 3.4.0.0
-ghcup set cabal 3.4.0.0
+ghcup install cabal 3.6.2.0
+ghcup set cabal 3.6.2.0
 ```
 
 Install GHC.
 
 ```bash
-ghcup install ghc 8.10.4
-ghcup set ghc 8.10.4
+ghcup install ghc 8.10.7
+ghcup set ghc 8.10.7
 ```
 
 Update PATH to include Cabal and GHC and add exports. Your node's location will be in **$NODE\_HOME**. The [cluster configuration](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) is set by **$NODE\_CONFIG**.
@@ -135,5 +135,5 @@ ghc --version
 ```
 
 {% hint style="info" %}
-Cabal library should be version 3.4.0.0 and GHC should be version 8.10.4
+Cabal library should be version 3.6.2.0 and GHC should be version 8.10.7
 {% endhint %}

@@ -13,7 +13,7 @@ git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node
 Configure build options.
 
 ```
-cabal configure -O0 -w ghc-8.10.4
+cabal configure -O0 -w ghc-8.10.7
 ```
 
 Update the cabal config, project settings, and reset build folder.
@@ -21,7 +21,7 @@ Update the cabal config, project settings, and reset build folder.
 ```bash
 echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
 sed -i $HOME/.cabal/config -e "s/overwrite-policy:/overwrite-policy: always/g"
-rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.10.4
+rm -rf $HOME/git/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.10.7
 ```
 
 Build the cardano-node from source code.
