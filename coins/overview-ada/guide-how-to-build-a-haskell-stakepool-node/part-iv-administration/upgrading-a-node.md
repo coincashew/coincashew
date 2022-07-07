@@ -24,7 +24,7 @@ For instructions on upgrading your stake pool to a previous Cardano version, see
 
 ### CNCLI
 
-If you use Andrew Westberg's [CNCLI](https://github.com/AndrewWestberg/cncli) command line utilities, then upgrade to the latest version if a newer version is available.
+If you use Andrew Westberg's [CNCLI](https://github.com/cardano-community/cncli) command line utilities, then upgrade to the latest version if a newer version is available.
 
 {% hint style="danger" %}
 Do not confuse Andrew Westberg's CNCLI utilities with the [`cncli.sh`](https://cardano-community.github.io/guild-operators/Scripts/cncli/) companion script for stake pool operators maintained by [Guild Operators](https://cardano-community.github.io/guild-operators/).
@@ -35,10 +35,10 @@ Do not confuse Andrew Westberg's CNCLI utilities with the [`cncli.sh`](https://c
 1. In a terminal window, type the following commands:
 
 ```bash
-RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
+RELEASETAG=$(curl -s https://api.github.com/repos/cardano-community/cncli/releases/latest | jq -r .tag_name)
 VERSION=$(echo ${RELEASETAG} | cut -c 2-)
 echo "Installing release ${RELEASETAG}"
-curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 

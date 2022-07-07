@@ -336,7 +336,7 @@ For every epoch, there will be a file called leaderSchedule\_epoch.txt
 
 {% tab title="CNCLI Tool" %}
 {% hint style="info" %}
-#### [CNCLI](https://github.com/AndrewWestberg/cncli) by [BCSH](https://bluecheesestakehouse.com), [SAND](https://www.sandstone.io), [SALAD](https://insalada.io)
+#### [CNCLI](https://github.com/cardano-community/cncli) by [BCSH](https://bluecheesestakehouse.com), [SAND](https://www.sandstone.io), [SALAD](https://insalada.io)
 
 A community-based `cardano-node` CLI tool. It's a collection of utilities to enhance and extend beyond those available with the `cardano-cli`.
 {% endhint %}
@@ -347,10 +347,10 @@ A community-based `cardano-node` CLI tool. It's a collection of utilities to enh
 ###
 ### On blockproducer
 ###
-RELEASETAG=$(curl -s https://api.github.com/repos/AndrewWestberg/cncli/releases/latest | jq -r .tag_name)
+RELEASETAG=$(curl -s https://api.github.com/repos/cardano-community/cncli/releases/latest | jq -r .tag_name)
 VERSION=$(echo ${RELEASETAG} | cut -c 2-)
 echo "Installing release ${RELEASETAG}"
-curl -sLJ https://github.com/AndrewWestberg/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
 ```
 
 ```bash
