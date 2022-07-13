@@ -46,7 +46,7 @@ The `cardano-cli query kes-period-info` command returns output similar to:
 
 The value of the `qKesNodeStateOperationalCertificateNumber` key indicates the current counter value for your stake pool registered by the blockchain protocol. The value of the `qKesOnDiskOperationalCertificateNumber` key indicates the counter value of the current operational certificate that your stake pool uses.
 
-The counter value for a new operational certificate must be exactly one (1) greater than the current value of the `qKesNodeStateOperationalCertificateNumber` key.
+For a new operational certificate, the counter value must be exactly one (1) greater than the current value of the `qKesNodeStateOperationalCertificateNumber` key.
 
 {% hint style="warning" %}
 If `qKesOnDiskOperationalCertificateNumber` is more than one (1) greater than `qKesNodeStateOperationalCertificateNumber` then the operational certificate is invalid. Your stake pool cannot mint blocks using an invalid operational certificate.
