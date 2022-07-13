@@ -46,15 +46,15 @@ The `cardano-cli query kes-period-info` command returns output similar to:
 
 The value of the `qKesNodeStateOperationalCertificateNumber` key indicates the current counter value for your stake pool registered by the blockchain protocol. The value of the `qKesOnDiskOperationalCertificateNumber` key indicates the counter value of the current operational certificate that your stake pool uses.
 
-When you issue a new operational certificate, the counter value must increment the current value of the `qKesNodeStateOperationalCertificateNumber` key by exactly one (1)
+The counter value for a new operational certificate must be exactly one (1) greater than the current value of the `qKesNodeStateOperationalCertificateNumber` key.
 
 {% hint style="warning" %}
-If `qKesOnDiskOperationalCertificateNumber` is greater than `qKesNodeStateOperationalCertificateNumber + 1` then the operational certificate is invalid. Your stake pool cannot mint blocks using an invalid operational certificate.
+If `qKesOnDiskOperationalCertificateNumber` is more than one (1) greater than `qKesNodeStateOperationalCertificateNumber` then the operational certificate is invalid. Your stake pool cannot mint blocks using an invalid operational certificate.
 {% endhint %}
 
 ## Setting the Counter Value
 
-When issuing a new operational certificate, you set the counter value for the new certificate using a `node.counter` file.
+When you issue a new operational certificate, a `node.counter` file sets the counter value for the new certificate.
 
 {% hint style="info" %}
 If you follow the Coin Cashew instructions, then you created a `node.counter` file when [Generating Keys for the Block-producing Node](../part-iii-operation/generating-keys-for-the-block-producing-node.md)
@@ -62,7 +62,7 @@ If you follow the Coin Cashew instructions, then you created a `node.counter` fi
 
 When you run the `cardano-cli query kes-period-info` command on your block producer node, if the value of the `qKesOnDiskOperationalCertificateNumber` key equals the value of the `qKesNodeStateOperationalCertificateNumber` key, then your stake pool minted at least one block using the current operational certificate and you do **not** need to set the counter value manually.
 
-If the value of the `qKesOnDiskOperationalCertificateNumber` key is greater than the value of the `qKesNodeStateOperationalCertificateNumber` key, then you need to set the counter value using the following procedure.
+If the value of the `qKesOnDiskOperationalCertificateNumber` key is greater than the value of the `qKesNodeStateOperationalCertificateNumber` key, then prior to issuing a new operational certificate you need to set the counter value using the following procedure.
 
 **To set the counter value for issuing a new operational certificate:**
 
