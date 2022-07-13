@@ -157,6 +157,7 @@ ExecStart       = $HOME/besu/bin/besu \
   --host-allowlist="*" \
   --metrics-enabled=true \
   --metrics-host=0.0.0.0 \
+  --sync-mode=X_SNAP \
   --data-storage-format=BONSAI \
   --data-path="$HOME/.besu"
 
