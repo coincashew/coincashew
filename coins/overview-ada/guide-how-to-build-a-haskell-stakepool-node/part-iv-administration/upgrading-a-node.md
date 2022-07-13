@@ -112,9 +112,9 @@ For each Cardano Node release, Input-Output recommends compiling binaries using 
 
 _Table 1 Current Cardano Node Version Requirements_
 
-|  Release Date | Cardano Node Version | GHC Version | Cabal Version |
-| :-----------: | :------------------: | :---------: | :-----------: |
-| June 25, 2022 |        1.35.0        |    8.10.7   |    3.6.2.0    |
+|   Release Date   | Cardano Node Version | GHC Version | Cabal Version |
+| :--------------: | :------------------: | :---------: | :-----------: |
+|  June 25, 2022   |        1.35.x        |    8.10.7   |    3.6.2.0    |
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -192,8 +192,11 @@ If you want to download new configuration files using the command line, then nav
 ## :zap:Building Cardano Node Binaries <a href="#buildingcn" id="buildingcn"></a>
 
 {% hint style="danger" %}
-Prior to building Cardano Node 1.35.0 binaries, [install libsecp256k1](https://github.com/coincashew/coincashew/blob/cb3c75e9e1099926dedb88cb49371d8542bcd848/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/installing-cabal-and-ghc.md#Installsecp256k1), and then type `sudo ldconfig`
+Prior to building Cardano Node 1.35.x binaries, [install libsecp256k1](https://github.com/coincashew/coincashew/blob/cb3c75e9e1099926dedb88cb49371d8542bcd848/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/installing-cabal-and-ghc.md#Installsecp256k1), and then type `sudo ldconfig`
 {% endhint %}
+
+<!-- Reference:
+../part-i-installation/installing-ghc-and-cabal.md#libsecp -->
 
 **To build binaries for a new Cardano Node version:**
 
@@ -281,6 +284,10 @@ sudo systemctl start <CardanoServiceName>.service
 ```
 
 1. Copy the new `cardano-node` and `cardano-cli` binaries to the air-gapped, offline computer that you use to sign transactions for your stake pool.
+
+## Issuing a New Operational Certificate
+
+Upgrading to Cardano Node 1.35.x may require [Issuing a New Operational Certificate](./issuing-new-opcert.md) for your stake pool.
 
 ## :checkered\_flag:Verifying the Upgrade
 

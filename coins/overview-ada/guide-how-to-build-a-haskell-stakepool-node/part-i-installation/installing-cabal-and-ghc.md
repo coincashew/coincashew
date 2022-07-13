@@ -41,7 +41,8 @@ git checkout ac83be33
 ./configure --enable-module-schnorrsig --enable-experimental
 make
 make check
-sudo make installDebian OS pool operators: extra lib linking may be required.
+sudo make install
+sudo ldconfig
 ```
 
 {% hint style="info" %}
