@@ -5,12 +5,8 @@ description: Step by step guide on how to switch for the solo home or cloud stak
 # Guide | Operation Client Diversity: Migrate Prysm to Teku
 
 {% hint style="info" %}
-**2022-6 Gitcoin Grant Round 14**
-
-[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏&#x20;
+**2022-6 Gitcoin Grant Round 14:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
 {% endhint %}
-
-{% embed url="https://gitcoin.co/grants/1653/ethereum-staking-guides-by-coincashew-with-poap" %}
 
 ## :fast\_forward: Complete step by step guide
 

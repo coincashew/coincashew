@@ -7,9 +7,7 @@ description: >-
 # Updating your execution client
 
 {% hint style="info" %}
-​ **2022-6 Gitcoin Grant Round 14**
-
-[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏
+​**2022-6 Gitcoin Grant Round 14:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
 {% endhint %}
 
 ## :fast\_forward: Quick steps guide

@@ -5,8 +5,7 @@ description: Quick to-do list before the merge arrives.
 # Ethereum Merge Upgrade Checklist for Home Stakers and Validators
 
 {% hint style="success" %}
-​**2022-06 Gitcoin Grant Round 14**\
-****​[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support! :pray:
+​**2022-6 Gitcoin Grant Round 14:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
 {% endhint %}
 
 {% hint style="info" %}
