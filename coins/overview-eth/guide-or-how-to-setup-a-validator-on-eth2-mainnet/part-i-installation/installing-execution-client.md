@@ -99,16 +99,12 @@ sudo systemctl start eth1
 **Hyperledger Besu** is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
 {% endhint %}
 
-
-
 :dna:**Install java dependency**
 
 ```
 sudo apt update
 sudo apt install openjdk-11-jdk -y
 ```
-
-
 
 :last\_quarter\_moon\_with\_face:**Download and unzip Besu**
 
@@ -125,8 +121,6 @@ tar -xzvf besu.tar.gz -C $HOME
 rm besu.tar.gz
 mv besu* besu
 ```
-
-
 
 :gear: **Setup and configure systemd**
 
@@ -166,8 +160,6 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-
-
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
@@ -178,16 +170,12 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
-
-
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
-
-
 
 :chains: **Start besu**
 
@@ -201,12 +189,16 @@ sudo systemctl start eth1
 **Nethermind** is a flagship Ethereum client all about performance and flexibility. Built on **.NET** core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
 {% endhint %}
 
+
+
 :gear: **Install dependencies**
 
 ```
 sudo apt-get update
 sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 ```
+
+
 
 :last\_quarter\_moon\_with\_face:**Download and unzip Nethermind**
 
@@ -222,6 +214,8 @@ curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | 
 unzip -o nethermind*.zip
 rm nethermind*linux*.zip
 ```
+
+
 
 :gear: **Setup and configure systemd**
 
@@ -239,6 +233,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --baseDbPath $HOME/.nethermind --Metrics.Enabled true --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
+WorkingDirectory= $(echo $HOME)/nethermind
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
@@ -248,6 +243,8 @@ TimeoutStopSec  = 300
 WantedBy    = multi-user.target
 EOF
 ```
+
+
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -259,12 +256,26 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
+
+
+
+{% hint style="info" %}
+On Ubuntu 22.xx+, a [workaround](https://github.com/NethermindEth/nethermind/issues/4039) is required.
+
+```
+sudo ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.so
+```
+{% endhint %}
+
+
 
 :chains: **Start Nethermind**
 

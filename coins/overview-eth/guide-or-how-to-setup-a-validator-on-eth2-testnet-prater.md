@@ -704,6 +704,7 @@ After           = network-online.target
 [Service]
 User            = $(whoami)
 ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --config goerli --baseDbPath $HOME/.nethermind_goerli --Metrics.Enabled true --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
+WorkingDirectory= $(echo $HOME)/nethermind
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
@@ -732,6 +733,16 @@ Run the following to enable auto-start at boot time.
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
+
+
+
+{% hint style="info" %}
+On Ubuntu 22.xx+, a [workaround](https://github.com/NethermindEth/nethermind/issues/4039) is required.
+
+```
+sudo ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.so
+```
+{% endhint %}
 
 
 
