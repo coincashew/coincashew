@@ -14,13 +14,19 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 
 ## Wen merge?&#x20;
 
-Ropsten testnet merge done, two more to go, namely Sepolia and Goerli. Mainnet merge upgrade to follow and latest estimates are End of July or August.
+Ropsten and Sepolia testnet merge done, one more to go, namely Goerli. Mainnet merge upgrade to follow and latest estimates are mid-September.
 
 ## What's merge?
 
 ![Enough said](../../.gitbook/assets/meme-merge.jpg)
 
 ## How to merge?
+
+{% hint style="danger" %}
+Familiarize yourself with these changes.
+
+Best practice is to implement these changes **after mainnet** [**Terminal Total Difficulty (TTD)**](https://ethereum.stackexchange.com/questions/129860/what-is-terminal-total-difficulty-ttd) has been published and the final merge-ready EL/CL clients are released.
+{% endhint %}
 
 **Prerequisite:** Before beginning, there is a mandatory requirement to run your own Execution Layer (EL) client (i.e. besu, geth, nethermind, erigon). Outsourcing EL/eth1 to Infura is no longer possible post merge.
 
@@ -124,7 +130,7 @@ sudo nano /etc/systemd/system/geth.service
 {% tab title="Lighthouse" %}
 ```
 --execution-endpoints http://127.0.0.1:8551 \
---jwt-secrets="/secrets/jwtsecret"
+--execution-jwt "/secrets/jwtsecret"
 ```
 {% endtab %}
 
@@ -132,7 +138,7 @@ sudo nano /etc/systemd/system/geth.service
 ```
 --ee-endpoint http://localhost:8551 \ 
 --ee-jwt-secret-file "/secrets/jwtsecret" \
---validators-proposer-default-fee-recipient=0x0000000000000000000000000000000000000000
+--validators-proposer-default-fee-recipient 0x0000000000000000000000000000000000000000
 ```
 {% endtab %}
 
@@ -263,7 +269,7 @@ Congrats! Your node should be merge ready now. Stay tuned to the latest news.
 
 Can't get your mind off the merge? Here's some additional ideas and nice to haves.
 
-\[:white\_check\_mark:] Participate in Sepolia/Goerli Upcoming Merge
+\[:white\_check\_mark:] Participate in Goerli Upcoming Merge
 
 \[:white\_check\_mark:] Improve [Client Diversity](https://clientdiversity.org/)
 
