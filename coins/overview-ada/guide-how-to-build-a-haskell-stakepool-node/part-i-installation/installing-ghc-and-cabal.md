@@ -9,9 +9,9 @@ For each Cardano Node release, Input-Output recommends compiling binaries using 
 
 _Table 1 Current Cardano Node Version Requirements_
 
-|  Release Date  |  Cardano Node Version  |  GHC Version   | Cabal Version  |
-|:--------------:|:----------------------:|:--------------:|:--------------:|
-|  March 7, 2022 |         1.34.1         |     8.10.7     |    3.6.2.0     |
+|   Release Date   | Cardano Node Version | GHC Version | Cabal Version |
+| :--------------: | :------------------: | :---------: | :-----------: |
+|  June 25, 2022   |        1.35.x        |    8.10.7   |    3.6.2.0    |
 
 **To install GHC and Cabal:**
 
@@ -107,7 +107,21 @@ sudo apt-get install libnuma-dev
 ```
 {% endhint %}
 
-10. Using a text editor, open the `$HOME/.bashrc` file, and then add the following lines at the end of the file:
+10. <a name="libsecp"></a>To download, compile and install `libsecp256k1`, type:
+```
+cd $HOME/git
+git clone https://github.com/bitcoin-core/secp256k1
+cd secp256k1
+git checkout ac83be33
+./autogen.sh
+./configure --enable-module-schnorrsig --enable-experimental
+make
+make check
+sudo make install
+sudo ldconfig
+```
+
+11. Using a text editor, open the `$HOME/.bashrc` file, and then add the following lines at the end of the file:
 ```bash
 # Set environment variables so that the compiler finds libsodium on your computer
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
@@ -122,16 +136,16 @@ export NODE_CONFIG="mainnet"
 If you plan to use your Cardano node on the testnet network instead of mainnet, then replace the line `export NODE_CONFIG="mainnet"` in your `$HOME/.bashrc` file with `export NODE_CONFIG="testnet"` Also, when working through the _How to Set Up a Cardano Stake Pool_ guide, replace every instance of the command option `--mainnet` with `--testnet-magic 1097911063`
 {% endhint %}
 
-11. Save and close the `$HOME/.bashrc` file.
+12. Save and close the `$HOME/.bashrc` file.
 
-12. To create the folder set for the `NODE_HOME` environment variable in your `$HOME/.bashrc` file, type:
+13. To create the folder set for the `NODE_HOME` environment variable in your `$HOME/.bashrc` file, type:
 ```bash
 mkdir $HOME/cardano-my-node
 ```
 
-13. To reload your shell profile, type:
+14. To reload your shell profile, type:
 ```bash
 source $HOME/.bashrc
 ```
 
-14. On each computer hosting a relay node for your stake pool, repeat steps 1 to 13
+15. On each computer hosting a relay node for your stake pool, repeat steps 1 to 13
