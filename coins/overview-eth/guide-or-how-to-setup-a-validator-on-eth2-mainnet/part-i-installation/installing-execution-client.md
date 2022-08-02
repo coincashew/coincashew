@@ -1,7 +1,7 @@
 # Installing execution client
 
 {% hint style="info" %}
-Ethereum requires a connection to execution client in order to monitor for 32 ETH validator deposits. Hosting your own execution client is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
+Ethereum requires a connection to execution client in order to monitor for 32 ETH validator deposits. Hosting your own execution client is the best way to maximize decentralization.
 {% endhint %}
 
 {% hint style="warning" %}
