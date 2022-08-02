@@ -17,20 +17,26 @@ sudo apt update
 sudo apt install python3-pip git -y
 ```
 
+
+
 Download source code and install.
 
 ```
 cd $HOME
-git clone https://github.com/ethereum/eth2.0-deposit-cli.git eth2deposit-cli
-cd eth2deposit-cli
+git clone https://github.com/ethereum/staking-deposit-cli
+cd staking-deposit-cli
 sudo ./deposit.sh install
 ```
+
+
 
 Make a new mnemonic.
 
 ```
 ./deposit.sh new-mnemonic --chain mainnet
 ```
+
+
 
 {% hint style="info" %}
 **Advanced option**: Custom eth1 withdrawal address, often used for 3rd party staking.
@@ -47,41 +53,53 @@ If this field is set and valid, the given Eth1 address will be used to create th
 {% endtab %}
 
 {% tab title="Pre-built eth2deposit-cli" %}
-Download eth2deposit-cli.
+Download staking\_deposit-cli
 
 ```bash
 cd $HOME
-wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-linux-amd64.tar.gz
+wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.3.0/staking_deposit-cli-76ed782-linux-amd64.tar.gz
 ```
+
+
 
 Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
 
 ```bash
-echo "825035b6d6c06c0c85a38f78e8bf3e9df93dfd16bf7b72753b6888ae8c4cb30a *eth2deposit-cli-ed5a6d3-linux-amd64.tar.gz" | shasum -a 256 --check
+echo "8a7757995e70178ac953a746c7434f1bc816a2f4be0318d980bf1eca98930a3c *staking_deposit-cli-76ed782-linux-amd64.tar.gz" | shasum -a 256 --check
 ```
+
+
 
 Example valid output:
 
-> eth2deposit-cli-256ea21-linux-amd64.tar.gz: OK
+> staking\_deposit-cli-76ed782-linux-amd64.tar.gz: OK
+
+
 
 {% hint style="danger" %}
 Only proceed if the sha256 check passes with **OK**!
 {% endhint %}
 
+
+
 Extract the archive.
 
 ```
-tar -xvf eth2deposit-cli-256ea21-linux-amd64.tar.gz
-mv eth2deposit-cli-256ea21-linux-amd64 eth2deposit-cli
-rm eth2deposit-cli-256ea21-linux-amd64.tar.gz
-cd eth2deposit-cli
+tar -xvf staking_deposit-cli-76ed782-linux-amd64.tar.gz
+mv staking_deposit-cli-76ed782-linux-amd64 staking_deposit-cli
+rm staking_deposit-cli-76ed782-linux-amd64.tar.gz
+cd staking_deposit-cli
 ```
+
+
 
 Make a new mnemonic.
 
 ```
 ./deposit new-mnemonic --chain mainnet
 ```
+
+
 
 {% hint style="info" %}
 **Advanced option**: Custom eth1 withdrawal address, often used for 3rd party staking.
@@ -100,9 +118,13 @@ If this field is set and valid, the given Eth1 address will be used to create th
 {% tab title="Hardware Wallet - Most Secure" %}
 **How to generate validator keys with Ledger Nano X/S and Trezor Model T**
 
+
+
 {% hint style="info" %}
 [Allnodes ](https://help.allnodes.com/en/articles/4664440-how-to-setup-ethereum-2-0-validator-node-on-allnodes)has created an easy to use tool to connect a Ledger Nano X/S and Trezor Model T and generate the deposit json files such that the withdrawal credentials remain secured by the hardware wallet. This tool can be used by any validator or staker.
 {% endhint %}
+
+
 
 1. Connect your hardware wallet to your PC/laptop
 2. If using a Ledger Nano X/S, open the "ETHEREUM" ledger app (if missing, install from Ledger Live)
@@ -122,6 +144,8 @@ If this field is set and valid, the given Eth1 address will be used to create th
 Double check that your generated deposit data file contains the same string as in withdrawal credentials and that this string includes your Ethereum address (starting after 0x)
 {% endhint %}
 
+
+
 ![](../../../../.gitbook/assets/allnodes-3.png)
 
 9\. Enter the amount of nodes (or validators you want)
@@ -133,8 +157,10 @@ Double check that your generated deposit data file contains the same string as i
 
 {% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-:fire:**\[ Optional ] Pro Security Tip**: Run the eth2deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
+:fire:**\[ Optional ] Pro Security Tip**: Run the staking\_deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
 {% endhint %}
+
+
 
 You will learn how to boot up a windows PC into an airgapped [Tails operating system](https://tails.boum.org/index.en.html).
 
@@ -199,9 +225,9 @@ Choose the USB stick that you loaded up with Tails OS to boot into Tails.
 
 You can boot with all the default settings.
 
-**Part 7 - Run the eth2-deposit-cli**
+**Part 7 - Run the staking\_deposit-cli**
 
-Plug in your other USB stick with the `eth2-deposit-cli` file.
+Plug in your other USB stick with the `staking_deposit-cli` file.
 
 You can then open your command line and navigate into the directory containing the file. Then you can continue the guide from the other tab.
 
@@ -231,14 +257,14 @@ Video link: [https://www.youtube.com/watch?v=DTR3PzRRtYU](https://www.youtube.co
 
 Video link: [https://www.youtube.com/watch?v=C97\_6MrufCE](https://www.youtube.com/watch?v=C97\_6MrufCE)
 
-You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
+You can copy via USB key the pre-built staking\_deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
 {% endtab %}
 {% endtabs %}
 
-2\. If using **eth2deposit-cli**, follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
+2\. If using **staking\_deposit-cli**, follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
 
 {% hint style="warning" %}
-**Caution**: Only deposit the 32 ETH per validator if you are confident your execution client (ETH1 node) and consensus client (ETH2 validator) will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
+**Caution**: Only deposit the 32 ETH per validator if you are confident your execution client  and consensus client will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
 {% endhint %}
 
 3\. Follow the steps at [https://launchpad.ethereum.org/](https://launchpad.ethereum.org) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth staking is the key to success!
