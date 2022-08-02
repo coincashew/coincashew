@@ -78,7 +78,7 @@ Run the following command to import your validator keys from the eth2deposit-cli
 Enter your **keystore password** to import accounts.
 
 ```bash
-lighthouse account validator import --network mainnet --directory=$HOME/eth2deposit-cli/validator_keys
+lighthouse account validator import --network mainnet --directory=$HOME/staking-deposit-cli/validator_keys
 ```
 
 Verify the accounts were imported successfully.
@@ -430,7 +430,7 @@ Enter your **keystore password** to import accounts.
 
 ```bash
 cd $HOME/git/nimbus-eth2
-build/nimbus_beacon_node deposits import --data-dir=/var/lib/nimbus $HOME/eth2deposit-cli/validator_keys
+build/nimbus_beacon_node deposits import --data-dir=/var/lib/nimbus $HOME/staking-deposit-cli/validator_keys
 ```
 
 Now you can verify the accounts were imported successfully by doing a directory listing.
@@ -689,7 +689,7 @@ sudo chown $(whoami):$(whoami) /var/lib/teku
 Copy your `validator_files` directory to the data directory we created above and remove the extra deposit\_data file.
 
 ```bash
-cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
+cp -r $HOME/staking-deposit-cli/validator_keys /var/lib/teku
 rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
@@ -980,7 +980,7 @@ If you wish, you can use the same password for the **keystore** and **prysm-only
 {% endhint %}
 
 ```bash
-$HOME/prysm/prysm.sh validator accounts import --mainnet --keys-dir=$HOME/eth2deposit-cli/validator_keys
+$HOME/prysm/prysm.sh validator accounts import --mainnet --keys-dir=$HOME/staking-deposit-cli/validator_keys
 ```
 
 Verify your validators imported successfully.
@@ -1332,7 +1332,7 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 ```bash
 ./lodestar account validator import \
   --network mainnet \
-  --directory $HOME/eth2deposit-cli/validator_keys
+  --directory $HOME/staking-deposit-cli/validator_keys
 ```
 
 Enter your **keystore password** to import accounts.

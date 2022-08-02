@@ -52,8 +52,8 @@ If this field is set and valid, the given Eth1 address will be used to create th
 {% endhint %}
 {% endtab %}
 
-{% tab title="Pre-built eth2deposit-cli" %}
-Download staking\_deposit-cli
+{% tab title="Pre-built staking-deposit-cli" %}
+Download staking-deposit-cli
 
 ```bash
 cd $HOME
@@ -86,9 +86,9 @@ Extract the archive.
 
 ```
 tar -xvf staking_deposit-cli-76ed782-linux-amd64.tar.gz
-mv staking_deposit-cli-76ed782-linux-amd64 staking_deposit-cli
+mv staking_deposit-cli-76ed782-linux-amd64 staking-deposit-cli
 rm staking_deposit-cli-76ed782-linux-amd64.tar.gz
-cd staking_deposit-cli
+cd staking-deposit-cli
 ```
 
 
@@ -201,7 +201,7 @@ Select the Tails OS image that you downloaded as the image. Then select the USB 
 
 Then flash the image to the larger USB stick.
 
-**Part 4 - Download and verify the eth2-deposit-cli**
+**Part 4 - Download and verify the staking-deposit-cli**
 
 You can refer to the other tab on this guide on how to download and verify the eth2-deposit-cli.
 
@@ -225,9 +225,9 @@ Choose the USB stick that you loaded up with Tails OS to boot into Tails.
 
 You can boot with all the default settings.
 
-**Part 7 - Run the staking\_deposit-cli**
+**Part 7 - Run the staking-deposit-cli**
 
-Plug in your other USB stick with the `staking_deposit-cli` file.
+Plug in your other USB stick with the `staking-deposit-cli` file.
 
 You can then open your command line and navigate into the directory containing the file. Then you can continue the guide from the other tab.
 
@@ -237,15 +237,23 @@ Make a new mnemonic.
 ./deposit.sh new-mnemonic --chain mainnet
 ```
 
+
+
 If you ran this command directly from your non-Tails USB stick, the validator keys should stay on it. If it hasn't, copy the directory over to your non-Tails USB stick.
+
+
 
 {% hint style="warning" %}
 :fire: **Make sure you have saved your validator keys directory in your other USB stick (non Tails OS) before you shutdown Tails. Tails will delete everything saved on it after you shutdown.**.
 {% endhint %}
 
+
+
 {% hint style="success" %}
 :tada: Congrats on learning how to use Tails OS to make an air gapped system. As a bonus, you can reboot into Tails OS again and connect to internet to surf the dark web or clear net safely!
 {% endhint %}
+
+
 
 Alternatively, follow this [ethstaker.cc](https://ethstaker.cc) exclusive for the low down on making a bootable usb.
 
@@ -257,11 +265,11 @@ Video link: [https://www.youtube.com/watch?v=DTR3PzRRtYU](https://www.youtube.co
 
 Video link: [https://www.youtube.com/watch?v=C97\_6MrufCE](https://www.youtube.com/watch?v=C97\_6MrufCE)
 
-You can copy via USB key the pre-built staking\_deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
+You can copy via USB key the pre-built staking-deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
 {% endtab %}
 {% endtabs %}
 
-2\. If using **staking\_deposit-cli**, follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
+2\. If using **staking-deposit-cli**, follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
 
 {% hint style="warning" %}
 **Caution**: Only deposit the 32 ETH per validator if you are confident your execution client  and consensus client will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
