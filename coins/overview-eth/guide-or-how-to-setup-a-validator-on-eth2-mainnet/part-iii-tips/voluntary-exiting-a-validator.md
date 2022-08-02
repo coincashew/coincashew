@@ -1,8 +1,4 @@
----
-description: Removing a validator from staking duties
----
-
-# Voluntary Exiting a Validator
+# Voluntary Exit a Validator
 
 {% hint style="info" %}
 Use this command to signal your intentions to stop validating with your validator. This means you no longer want to stake with your validator and want to turn off your node.
@@ -46,7 +42,7 @@ $HOME/prysm/prysm.sh validator accounts voluntary-exit
 
 {% tab title="Lodestar" %}
 ```bash
-./lodestar account validator voluntary-exit
+./lodestar account validator voluntary-exit --publicKey 0xF00
 ```
 {% endtab %}
 {% endtabs %}

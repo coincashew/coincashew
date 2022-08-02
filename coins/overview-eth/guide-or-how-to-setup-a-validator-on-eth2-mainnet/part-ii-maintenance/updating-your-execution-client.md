@@ -7,7 +7,7 @@ description: >-
 # Updating your execution client
 
 {% hint style="info" %}
-​**2022-6 Gitcoin Grant Round 14:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
+​:confetti\_ball: **Support us on Gitcoin Grants:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
 {% endhint %}
 
 ## :fast\_forward: Quick steps guide
@@ -46,28 +46,6 @@ Review the latest release notes at [https://github.com/ethereum/go-ethereum/rele
 # Already handled by previous commands.
 # sudo apt update
 # sudo apt upgrade -y
-```
-{% endtab %}
-
-{% tab title="OpenEthereum (Parity)" %}
-Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
-
-Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
-
-```bash
-cd $HOME
-# backup previous openethereum version in case of rollback
-mv openethereum openethereum_backup_$(date +"%Y%d%m-%H%M%S")
-# store new version in openethreum directory
-mkdir openethereum && cd openethereum
-# download latest version
-curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
-# unzip
-unzip openethereum*.zip
-# add execute permission
-chmod +x openethereum
-# cleanup
-rm openethereum*.zip
 ```
 {% endtab %}
 

@@ -13,9 +13,12 @@ Thank you for supporting Ethereum and us! Please use the below cointr.ee link. :
 {% embed url="https://cointr.ee/coincashew" %}
 
 {% hint style="info" %}
-:confetti\_ball: **Support us on Gitcoin Grants:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
+:confetti\_ball: **Support us on Gitcoin Grants**
+
+[Help fund us and earn a **POAP NFT**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Appreciate your support!🙏
 {% endhint %}
 
 ## :grin: Thank You
 
 Thanks to all 100,000+ of you, the ETH hodlers, buidlers, stakers, and node operators for making the better future a reality.
+
