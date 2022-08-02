@@ -26,7 +26,7 @@ mv validator_key validator_key_$(date +"%Y%d%m-%H%M%S")
 Using the staking-deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
 {% endhint %}
 
-2\. For example, in case we originally created **3 validators** but now wish to **add 5 more validators**, we could use the following command.&#x20;
+2\. For example, in case we originally created **3 validators** but now wish to **add 5 more validators**, we could use the following command.
 
 {% hint style="warning" %}
 **Security recommendation reminder**: For best security practices, key management and other activities where you type your 24 word mnemonic seed should be completed on an air-gapped offline cold machine booted from USB drive.
@@ -43,7 +43,7 @@ Reminder to use the same **keystore password** as existing validators.
 
 3\. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org) and making your corresponding 32 ETH deposit transactions.
 
-4\. Finish by stopping your validator, importing the new validator key(s), restarting your validator and verifying the logs ensuring everything still works without error. [Review steps 2 and onward of the main guide if you need a refresher.](./#2-signup-to-be-a-validator-at-the-launchpad)
+4\. Finish by stopping your validator, importing the new validator key(s), restarting your validator and verifying the logs ensuring everything still works without error. [Review steps 2 and onward of the main guide if you need a refresher.](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/signing-up-to-be-a-validator-at-the-launchpad)
 
 5\. Finally, verify your **existing** validator's attestations are working with public block explorer such as
 
