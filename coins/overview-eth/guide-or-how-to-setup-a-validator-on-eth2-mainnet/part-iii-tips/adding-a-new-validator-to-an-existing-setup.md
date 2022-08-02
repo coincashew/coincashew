@@ -15,15 +15,15 @@ The following steps align with our [mainnet guide](./). You may need to adjust f
 1\. Backup and move your existing `validator_key` directory and append the date to the end.
 
 ```bash
-# Adjust your eth2deposit-cli directory accordingly
-cd $HOME/eth2deposit-cli
+# Adjust your staking-deposit-cli directory accordingly
+cd $HOME/staking-deposit-cli
 # Renames and append the date to the existing validator_key directory
 mv validator_key validator_key_$(date +"%Y%d%m-%H%M%S")
 # Optional: you can also delete this folder since it can be regenerated.
 ```
 
 {% hint style="info" %}
-Using the eth2deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
+Using the staking-deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
 {% endhint %}
 
 2\. For example, in case we originally created **3 validators** but now wish to **add 5 more validators**, we could use the following command. Select the tab depending on how you acquired [**eth2deposit tool**](https://github.com/ethereum/eth2.0-deposit-cli).
@@ -36,24 +36,18 @@ Using the eth2deposit-cli tool, you can add more validators by creating a new de
 Reminder to use the same **keystore password.**
 {% endhint %}
 
-{% tabs %}
-{% tab title="Build from source code" %}
 ```bash
 # Generate from an existing mnemonic 5 more validators when 3 were previously already made
 ./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
-{% endtab %}
 
-{% tab title="Pre-built eth2deposit-cli binaries" %}
 ```bash
 # Generate from an existing mnemonic 5 more validators when 3 were previously already made
 ./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
-{% endtab %}
 
-{% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
-:fire:**Pro Security Tip**: Run the **eth2deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
+:fire:**Pro Security Tip**: Run the **staking-deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
 {% endhint %}
 
 Follow this [ethstaker.cc](https://ethstaker.cc) exclusive for the low down on making a bootable usb.
@@ -61,16 +55,6 @@ Follow this [ethstaker.cc](https://ethstaker.cc) exclusive for the low down on m
 ### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
 
 {% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
-
-### Part 2 - Install Ubuntu 20.04 from the USB Drive
-
-{% embed url="https://www.youtube.com/watch?v=C97_6MrufCE" %}
-
-You can copy via USB key the pre-built eth2deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
-
-Run the existing-mnemonic command in the previous tabs.
-{% endtab %}
-{% endtabs %}
 
 3\. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org) and making your corresponding 32 ETH deposit transactions.
 
@@ -86,7 +70,7 @@ Enter your validator's pubkey to view its status.
 Your additional validators are now in the activation queue waiting their turn. Check your estimated activation time at [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app)
 {% endhint %}
 
-## &#x20;:robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
+## :robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
 
 ### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
 
