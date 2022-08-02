@@ -129,8 +129,8 @@ sudo nano /etc/systemd/system/geth.service
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```
---execution-endpoints http://127.0.0.1:8551 \
---execution-jwt "/secrets/jwtsecret"
+--execution-endpoint http://127.0.0.1:8551 \
+--execution-jwt /secrets/jwtsecret
 ```
 {% endtab %}
 
