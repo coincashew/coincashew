@@ -212,18 +212,6 @@ Pushgateway listens for data from Nethermind on port 9091.
 {% endhint %}
 {% endtab %}
 
-{% tab title="OpenEthereum" %}
-```bash
-   - job_name: 'openethereum'
-     scrape_interval: 15s
-     scrape_timeout: 10s
-     metrics_path: /metrics
-     scheme: http
-     static_configs:
-     - targets: ['localhost:6060']
-```
-{% endtab %}
-
 {% tab title="Erigon" %}
 ```bash
    - job_name: 'erigon'
@@ -276,7 +264,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
 9. **Download and save** your consensus client's json file. More json dashboard options available below. \[ [Lighthouse](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark\_ETH\_staking\_dashboard.json) | [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon\_nodes\_Grafana\_dashboard.json)| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less\_10\_validators.json)| [Prysm > 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more\_10\_validators.json) | Lodestar ]
-10. **Download and save** your execution client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) | [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)| [Erigon](https://raw.githubusercontent.com/ledgerwatch/erigon/devel/cmd/prometheus/dashboards/erigon.json) | [OpenEthereum ](https://raw.githubusercontent.com/dappnode/DAppNodePackage-openethereum/master/openethereum-grafana-dashboard.json)]
+10. **Download and save** your execution client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) | [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)| [Nethermind ](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/dashboards/nethermind.json)| [Erigon](https://raw.githubusercontent.com/ledgerwatch/erigon/devel/cmd/prometheus/dashboards/erigon.json) ]
 11. **Download and save** a [node-exporter dashboard](https://grafana.com/api/dashboards/11074/revisions/9/download) for general system monitoring
 12. Click **Create +** icon > **Import**
 13. Add the consensus client dashboard via **Upload JSON file**
@@ -375,10 +363,6 @@ Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://githu
 ![](../../../../.gitbook/assets/erigon-grafana.png)
 
 Credits: [https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashboards](https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashboards)
-{% endtab %}
-
-{% tab title="OpenEthereum" %}
-![Credits to dappnode](../../../../.gitbook/assets/openethereum-dashboard.png)
 {% endtab %}
 {% endtabs %}
 
