@@ -236,11 +236,11 @@ cabal build cardano-node cardano-cli
 The time required to compile the `cardano-node` and `cardano-cli` packages may be a few minutes to hours, depending on the specifications of your computer.
 {% endhint %}
 
-1. When the compiler finishes, to verify the version numbers of the new `cardano-node` and `cardano-cli` binaries type the following commands where `<NewFolderName>` is the folder where you cloned the Cardano Node GitHub repository in step 1:
+1. When the compiler finishes, to verify the version numbers of the new `cardano-node` and `cardano-cli` binaries type the following commands:
 
 ```bash
-$(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-node") version
-$(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli") version
+$(find ./dist-newstyle/build -type f -name "cardano-node") version
+$(find ./dist-newstyle/build -type f -name "cardano-cli") version
 ```
 
 ## :open\_file\_folder:Installing New Cardano Node Binaries
@@ -256,8 +256,8 @@ sudo systemctl stop <CardanoServiceName>.service
 1. To replace the existing `cardano-node` and `cardano-cli` binaries, type the following commands where `<NewFolderName>` is the folder where you cloned the Cardano Node GitHub respository in the section [Building Cardano Node Binaries](upgrading-a-node.md#BuildingCN) and `<DestinationPath>` is the absolute file path to the folder where you install Cardano Node binaries on your local computer:
 
 ```bash
-sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-node") <DestinationPath>/cardano-node
-sudo cp $(find $HOME/git/<NewFolderName>/dist-newstyle/build -type f -name "cardano-cli") <DestinationPath>/cardano-cli
+sudo cp $(find ./dist-newstyle/build -type f -name "cardano-node") <DestinationPath>/cardano-node
+sudo cp $(find ./dist-newstyle/build -type f -name "cardano-cli") <DestinationPath>/cardano-cli
 ```
 
 {% hint style="info" %}
