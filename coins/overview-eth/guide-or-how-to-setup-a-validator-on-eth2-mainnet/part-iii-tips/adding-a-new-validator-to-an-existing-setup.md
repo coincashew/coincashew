@@ -26,35 +26,20 @@ mv validator_key validator_key_$(date +"%Y%d%m-%H%M%S")
 Using the staking-deposit-cli tool, you can add more validators by creating a new deposit data file and `validator_keys`
 {% endhint %}
 
-2\. For example, in case we originally created **3 validators** but now wish to **add 5 more validators**, we could use the following command. Select the tab depending on how you acquired [**eth2deposit tool**](https://github.com/ethereum/eth2.0-deposit-cli).
+2\. For example, in case we originally created **3 validators** but now wish to **add 5 more validators**, we could use the following command.&#x20;
 
 {% hint style="warning" %}
 **Security recommendation reminder**: For best security practices, key management and other activities where you type your 24 word mnemonic seed should be completed on an air-gapped offline cold machine booted from USB drive.
 {% endhint %}
 
 {% hint style="danger" %}
-Reminder to use the same **keystore password.**
+Reminder to use the same **keystore password** as existing validators.
 {% endhint %}
-
-```bash
-# Generate from an existing mnemonic 5 more validators when 3 were previously already made
-./deposit.sh existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
-```
 
 ```bash
 # Generate from an existing mnemonic 5 more validators when 3 were previously already made
 ./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
 ```
-
-{% hint style="warning" %}
-:fire:**Pro Security Tip**: Run the **staking-deposit-cli tool** and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
-{% endhint %}
-
-Follow this [ethstaker.cc](https://ethstaker.cc) exclusive for the low down on making a bootable usb.
-
-### Part 1 - Create a Ubuntu 20.04 USB Bootable Drive
-
-{% embed url="https://www.youtube.com/watch?v=DTR3PzRRtYU" %}
 
 3\. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org) and making your corresponding 32 ETH deposit transactions.
 
@@ -68,20 +53,4 @@ Enter your validator's pubkey to view its status.
 
 {% hint style="info" %}
 Your additional validators are now in the activation queue waiting their turn. Check your estimated activation time at [https://eth2-validator-queue.web.app/](https://eth2-validator-queue.web.app)
-{% endhint %}
-
-## :robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
-
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
-
-{% hint style="success" %}
-Congrats on completing the guide. ✨
-
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
-
-It really energizes us to keep creating the best crypto guides.
-
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
-
-Any feedback and all pull requests much appreciated. 🌛
 {% endhint %}
