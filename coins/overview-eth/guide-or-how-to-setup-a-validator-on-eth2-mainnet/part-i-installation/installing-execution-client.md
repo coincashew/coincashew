@@ -105,7 +105,7 @@ sudo systemctl start eth1
 
 ```
 sudo apt update
-sudo apt install openjdk-11-jdk -y
+sudo apt install openjdk-18-jdk -y
 ```
 
 

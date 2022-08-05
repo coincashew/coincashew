@@ -126,7 +126,7 @@ geth --goerli --datadir="$HOME/Goerli" --rpc
 #### :dna: Install java dependency.
 
 ```
-sudo apt install openjdk-11-jdk
+sudo apt install openjdk-18-jdk
 ```
 
 #### :last\_quarter\_moon\_with\_face: Download and unzip Besu.

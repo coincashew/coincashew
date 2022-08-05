@@ -496,7 +496,7 @@ sudo systemctl start eth1
 
 ```
 sudo apt-get update
-sudo apt install openjdk-11-jdk -y
+sudo apt install openjdk-18-jdk -y
 ```
 
 #### :last\_quarter\_moon\_with\_face: Download and unzip Besu
@@ -1337,13 +1337,13 @@ Install git.
 sudo apt-get install git -y
 ```
 
-Install Java 11.
+Install Java 18.
 
 For **Ubuntu 20.x**, use the following
 
 ```
 sudo apt update
-sudo apt install openjdk-11-jdk -y
+sudo apt install openjdk-18-jdk -y
 ```
 
 For **Ubuntu 18.x**, use the following
@@ -1354,7 +1354,7 @@ sudo apt update
 sudo apt install oracle-java11-set-default -y
 ```
 
-Verify Java 11+ is installed.
+Verify Java 18+ is installed.
 
 ```bash
 java --version
