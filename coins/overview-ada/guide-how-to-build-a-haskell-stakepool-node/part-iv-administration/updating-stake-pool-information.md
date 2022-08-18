@@ -142,7 +142,7 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $((${currentSlot}+10000)) \
     --fee 0 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
@@ -188,7 +188,7 @@ Build the transaction.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $((${currentSlot}+10000)) \
     --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
