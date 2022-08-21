@@ -97,6 +97,10 @@ STAKE_POOL_ID=""
 TESTNET="testnet"
 MAINNET="mainnet"
 
+# Set the network magic value as needed for the testnet environment that you want to use
+# For details on available testnet environments, see https://book.world.dev.cardano.org/environments.html
+MAGICNUMBER="1"
+
 # Edit variable with $TESTNET for Testnet and $MAINNET for Mainnet
 network=$TESTNET
 
@@ -114,7 +118,7 @@ if [[ -z $BYRON_GENESIS ]]; then echo "BYRON GENESIS config file not loaded corr
 
 network_magic=""
 if [ $network = $TESTNET ]; then
-    network_magic="--testnet-magic 1097911063"
+    network_magic="--testnet-magic $MAGICNUMBER"
 elif [ $network = $MAINNET ]; then
     network_magic="--mainnet"
 else
@@ -275,11 +279,10 @@ Configure `Cronjob` to make the script run automatically:
 {% hint style="info" %}
 To configure the job at the start of an epoch, keep in mind the following information:
 
-* Epoch in TESTNET starts at 20:20 UTC
 * Epoch in MAINNET starts at 21:45 UTC
 {% endhint %}
 
-
+<!-- * Epoch in legacy TESTNET starts at 20:20 UTC -->
 
 Find the time when the cronjob should start:
 
@@ -485,9 +488,9 @@ The following figure shows the green badge that PoolTool displays next to your s
 
 ![Your pool's tip on pooltool.io](../../../../.gitbook/assets/tip.png)
 
-You can also use Andrew Westberg's [CNCLI utilities](https://github.com/cardano-community/cncli) to send the block height and slot count to PoolTool.
+You can also use [CNCLI utilities](https://github.com/cardano-community/cncli) developed by the Cardano Community to send the block height and slot count to PoolTool.
 
-[Guild Operators](https://cardano-community.github.io/guild-operators/) maintain the [`cncli.sh`](https://cardano-community.github.io/guild-operators/Scripts/cncli/) companion script to help stake pool operators use Andrew Westberg's CNCLI utilities.
+[Guild Operators](https://cardano-community.github.io/guild-operators/) maintain the [`cncli.sh`](https://cardano-community.github.io/guild-operators/Scripts/cncli/) companion script to help stake pool operators use the Cardano Community's CNCLI utilities.
 
 To send data to PoolTool using CNCLI utilities without using the `cncli.sh` script, create a configuration file containing your PoolTool API key and stake pool details.
 

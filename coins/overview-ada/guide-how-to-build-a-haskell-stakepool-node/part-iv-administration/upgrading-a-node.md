@@ -24,13 +24,13 @@ For instructions on upgrading your stake pool to a previous Cardano version, see
 
 ### CNCLI
 
-If you use Andrew Westberg's [CNCLI](https://github.com/cardano-community/cncli) command line utilities, then upgrade to the latest version if a newer version is available.
+If you use [CNCLI](https://github.com/cardano-community/cncli) command line utilities developed by the Cardano Community, then upgrade to the latest version if a newer version is available.
 
 {% hint style="danger" %}
-Do not confuse Andrew Westberg's CNCLI utilities with the [`cncli.sh`](https://cardano-community.github.io/guild-operators/Scripts/cncli/) companion script for stake pool operators maintained by [Guild Operators](https://cardano-community.github.io/guild-operators/).
+Do not confuse the Cardano Community's CNCLI utilities with the [`cncli.sh`](https://cardano-community.github.io/guild-operators/Scripts/cncli/) companion script for stake pool operators maintained by [Guild Operators](https://cardano-community.github.io/guild-operators/).
 {% endhint %}
 
-**To upgrade Andrew Westberg's CNCLI binary:**
+**To upgrade the Cardano Community's CNCLI binary:**
 
 1. In a terminal window, type the following commands:
 ```bash

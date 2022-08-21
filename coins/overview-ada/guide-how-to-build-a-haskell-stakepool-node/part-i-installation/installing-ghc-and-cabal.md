@@ -133,8 +133,10 @@ export NODE_HOME="$HOME/cardano-my-node"
 export NODE_CONFIG="mainnet"
 ```
 {% hint style="info" %}
-If you plan to use your Cardano node on the testnet network instead of mainnet, then replace the line `export NODE_CONFIG="mainnet"` in your `$HOME/.bashrc` file with `export NODE_CONFIG="testnet"` Also, when working through the _How to Set Up a Cardano Stake Pool_ guide, replace every instance of the command option `--mainnet` with `--testnet-magic 1097911063`
+If you plan to use your Cardano node on a testnet network instead of mainnet, then replace the line `export NODE_CONFIG="mainnet"` in your `$HOME/.bashrc` file with `export NODE_CONFIG="testnet"` Also, when working through the _How to Set Up a Cardano Stake Pool_ guide, replace every instance of the command option `--mainnet` with `--testnet-magic <MagicNumber>` where `<MagicNumber>` is the network magic number for the testnet network you want to use. For details on available testnet networks, see [Environments](https://book.world.dev.cardano.org/environments.html).
 {% endhint %}
+
+<!-- For Legacy testnet, <MagicNumber> is 1097911063 -->
 
 12. Save and close the `$HOME/.bashrc` file.
 

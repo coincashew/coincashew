@@ -102,7 +102,7 @@ Copy **kes.vkey** to your **cold environment**.
 Change the <**startKesPeriod**> value accordingly.
 
 {% hint style="info" %}
-Your stake pool requires an operational certificate to verify that the pool has the authority to run. For more details on operational certificates, see the section _Operational Certificates_ in the topic [Creating a Stake Pool](https://testnets.cardano.org/en/testnets/cardano/get-started/creating-a-stake-pool/) in the official [Cardano Testnet](https://testnets.cardano.org/en/testnets/cardano/overview/) documentation.
+Your stake pool requires an operational certificate to verify that the pool has the authority to run. For more details on operational certificates, see the topic [Issuing a New Operational Certificate](../part-iv-administration/issuing-new-opcert.md).
 {% endhint %}
 
 {% tabs %}
