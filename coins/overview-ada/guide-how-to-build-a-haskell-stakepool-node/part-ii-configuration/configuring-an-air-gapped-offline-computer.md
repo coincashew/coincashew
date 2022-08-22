@@ -64,9 +64,13 @@ source $HOME/.bashrc
 
 To use the `cardano-cli` binary on your air-gapped, offline computer you must also install the `libsecp256k1` library that you installed on your hot nodes. Use the following procedure to install `libsecp256k1` without connecting your air-gapped, offline computer to the Internet.
 
+{% hint style="info" %}
+Alternately, thanks to [TerminadaPool](https://terminada.io/), if you prefer you can [create your own Debian (DEB) package](https://github.com/TerminadaPool/libsecp256k1-iog-debian) to install `libsecp256k1` offline.
+{% endhint %}
+
 **To install the `libsecp256k1` library on your air-gapped, offline computer:**
 
-1. On the air-gapped, ofline computer, open the `$HOME/.bashrc` file using a text editor, and then add the following lines at the end of the file:
+1. On the air-gapped, offline computer, open the `$HOME/.bashrc` file using a text editor, and then add the following lines at the end of the file:
 ```bash
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
@@ -111,3 +115,4 @@ lrwxrwxrwx root root libsecp256k1.so.0 -> libsecp256k1.so.0.0.0
 ```bash
 sudo ldconfig
 ```
+
