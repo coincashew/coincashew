@@ -63,7 +63,7 @@ Determine the number of slots per KES period from the genesis file.
 {% tab title="block producer node" %}
 ```bash
 pushd +1
-slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
+slotsPerKESPeriod=$(cat $NODE_HOME/shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 ```
 {% endtab %}
@@ -157,10 +157,10 @@ cat > $NODE_HOME/startBlockProducingNode.sh << EOF
 DIRECTORY=$NODE_HOME
 PORT=6000
 HOSTADDR=0.0.0.0
-TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
+TOPOLOGY=\${DIRECTORY}/topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
-CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
+CONFIG=\${DIRECTORY}/config.json
 KES=\${DIRECTORY}/kes.skey
 VRF=\${DIRECTORY}/vrf.skey
 CERT=\${DIRECTORY}/node.cert

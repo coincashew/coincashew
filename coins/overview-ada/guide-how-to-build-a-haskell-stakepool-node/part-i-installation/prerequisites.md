@@ -1,18 +1,20 @@
 # Prerequisites
 
-## :man\_mage: Mandatory skills for stake pool operators
+## :man\_mage: Mandatory Skills for Stake Pool Operators
 
-As a stake pool operator for Cardano, you must be competent with the following abilities:
+As a Stake Pool Operator (SPO) for Cardano, you need:
 
 * Operational knowledge of how to set up, run and maintain a Cardano node continuously
 * A commitment to maintain your node 24/7/365
-* System operation skills including general knowledge of using [Bash scripts](https://linuxconfig.org/bash-scripting-tutorial-for-beginners), [systemd services](https://linuxconfig.org/how-to-create-systemd-service-unit-in-linux) and [cron jobs](https://itsfoss.com/cron-job/)
+* System operation skills including general knowledge of using [Bash scripts](https://linuxconfig.org/bash-scripting-tutorial-for-beginners), [JavaScript Object Notation (JSON) format](https://attacomsian.com/blog/what-is-json?msclkid=0445ae34ce4d11ec84216d09187b5112), [systemd services](https://linuxconfig.org/how-to-create-systemd-service-unit-in-linux) and [cron jobs](https://itsfoss.com/cron-job/)
 * Server administration skills (operational and maintenance)
+* Fundamental understanding of [networking](https://www.ibm.com/cloud/learn/networking-a-complete-guide)
+<!-- NOTE: As an alternative, link to the following resource on networking https://geekflare.com/computer-networking-basics/ -->
 
-## :mage: Mandatory experience for stake pool operators
+## :mage: Mandatory Experience for Stake Pool Operators
 
 * Experience of development and operations (DevOps)
-* Experience on how to [harden ](https://www.lifewire.com/harden-ubuntu-server-security-4178243)and [secure a server](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3).
+* Experience in how to [harden ](https://www.lifewire.com/harden-ubuntu-server-security-4178243)and [secure a server](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3).
 * In the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/), successfully complete the section [Operate a Stake Pool](https://developers.cardano.org/docs/operate-a-stake-pool/) including the [Stake Pool Course](https://developers.cardano.org/docs/stake-pool-course/) 
 
 {% hint style="danger" %}
@@ -25,9 +27,9 @@ As a stake pool operator for Cardano, you must be competent with the following a
 * **One air-gapped offline machine (cold environment)**
 * **Operating system**: 64-bit Linux (i.e. Ubuntu Server 20.04 LTS)
 * **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
-* **Memory:** 12GB of RAM
-* **Storage:** 50GB of free storage
-* **Internet:** Broadband internet connection with speeds at least 10 Mbps.
+* **Memory:** 16GB RAM
+* **Storage:** 150GB free storage
+* **Internet:** Static IP address and a broadband connection supporting speeds at least 10 Mbps
 * **Data Plan**: at least 1GB per hour. 720GB per month.
 * **Power:** Reliable electrical power
 * **ADA balance:** at least 505 ADA for pool deposit and transaction fees
@@ -40,7 +42,7 @@ As a stake pool operator for Cardano, you must be competent with the following a
 * **Processor:** 4 core or higher CPU
 * **Memory**: 16GB+ of RAM
 * **Storage**: 256GB+ SSD
-* **Internet**: Broadband internet connections with speeds at least 100 Mbps
+* **Internet**: Static IP addresses and broadband connections supporting speeds of at least 100 Mbps
 * **Data Plan**: Unlimited
 * **Power:** Reliable electrical power with UPS
 * **ADA balance**: more pledge is better, to be determined by **a0**, the pledge influence factor

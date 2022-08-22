@@ -105,7 +105,7 @@ cd $NODE_HOME
 slotNo=$(cardano-cli query tip --mainnet | jq -r '.slot')
 # Retrieve the number of slots per KES period from the key named slotsPerKESPeriod 
 # in the Shelley Genesis JSON configuration file that your stake pool uses
-slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
+slotsPerKESPeriod=$(cat $NODE_HOME/shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 # To calculate the current KES period, divide the current slot height by
 # the number of slots per KES period
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))

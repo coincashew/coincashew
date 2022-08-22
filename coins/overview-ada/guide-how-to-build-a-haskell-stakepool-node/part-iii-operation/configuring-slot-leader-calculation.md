@@ -19,7 +19,7 @@ Next epoch's leadership schedule becomes available 1.5 days (36 hours) before th
 ```bash
 cardano-cli query leadership-schedule \
 --mainnet \
---genesis $NODE_HOME/mainnet-shelley-genesis.json \
+--genesis $NODE_HOME/shelley-genesis.json \
 --stake-pool-id $(cat $NODE_HOME/stakepoolid.txt) \
 --vrf-signing-key-file $NODE_HOME/vrf.skey \
 --next
@@ -32,7 +32,7 @@ cardano-cli query leadership-schedule \
 ```bash
 cardano-cli query leadership-schedule \
 --mainnet \
---genesis $NODE_HOME/mainnet-shelley-genesis.json \
+--genesis $NODE_HOME/shelley-genesis.json \
 --stake-pool-id $(cat $NODE_HOME/stakepoolid.txt) \
 --vrf-signing-key-file $NODE_HOME/vrf.skey \
 --current
@@ -315,7 +315,7 @@ PATH=
 NODE_HOME=
 # testnet or mainnet
 NODE_CONFIG=
-# path to the soket of cardano node, should be under db/ folder under NODE_HOME
+# path to the socket of cardano node, should be under db/ folder under NODE_HOME
 CARDANO_NODE_SOCKET_PATH=
 
 MM HH * * * path_to_script/leaderScheduleCheck.sh > desired_log_folder/leaderSchedule_logs.txt 2>&1
@@ -410,7 +410,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeMark": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeMark": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -436,7 +436,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeSet": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeSet": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set current`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set current`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -462,7 +462,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeGo": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeGo": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set prev`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set prev`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`

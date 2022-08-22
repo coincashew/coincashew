@@ -177,7 +177,7 @@ If you want to download new configuration files using the command line, then nav
 ## :zap:Building Cardano Node Binaries <a href="#buildingcn" id="buildingcn"></a>
 
 {% hint style="danger" %}
-Prior to building Cardano Node 1.35.x binaries, [install libsecp256k1](https://github.com/coincashew/coincashew/blob/cb3c75e9e1099926dedb88cb49371d8542bcd848/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/installing-cabal-and-ghc.md#Installsecp256k1), and then type `sudo ldconfig`
+Prior to building Cardano Node 1.35.x binaries, [install libsecp256k1](../part-i-installation/installing-ghc-and-cabal.md#libsecp)
 {% endhint %}
 
 <!-- Reference:
@@ -262,57 +262,7 @@ Upgrading to a new Cardano Node version may require replaying the copy of the bl
 
 6. Copy the new `cardano-cli` binary to the air-gapped, offline computer that you use to sign transactions for your stake pool.
 
-## Installing libsecp256k1 on the Air-gapped, Offline Computer
-
-Cardano Node 1.35.x requires you to install the `libsecp256k1` library on the air-gapped, offline computer you use to sign transactions for your stake pool. Use the following procedure to install `libsecp256k1` without connecting your air-gapped, offline computer to the Internet.
-
-**To install the `libsecp256k1` library on your air-gapped, offline computer:**
-
-1. On the air-gapped, ofline computer, open the `$HOME/.bashrc` file using a text editor, and then add the following lines at the end of the file:
-```bash
-export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
-```
-
-2. Save and close the `$HOME/.bashrc` file.
-
-3. To reload the `$HOME/.bashrc` file, type:
-```bash
-source $HOME/.bashrc
-```
-
-4. Using removable media, copy the following three files from the `/usr/local/lib` folder on a block-producing or relay node where you installed `libsecp256k1` to the `/usr/local/lib` folder on your air-gapped, offline computer:
-```bash
-libsecp256k1.a
-libsecp256k1.la
-libsecp256k1.so.0.0.0
-```
-
-5. To set file permissions and ownership for the `libsecp256k1` library files on the air-gapped, offline computer, type the following commands using a terminal window:
-```bash
-cd /usr/local/lib
-sudo chown root:root libsecp256k1.*
-sudo chmod 644 libsecp256k1.a
-sudo chmod 755 libsecp256k1.la
-sudo chmod 755 libsecp256k1.so.0.0.0
-```
-
-6. To create symbolic links, type:
-```bash
-sudo ln -s libsecp256k1.so.0.0.0 libsecp256k1.so
-sudo ln -s libsecp256k1.so.0.0.0 libsecp256k1.so.0
-```
-
-7. Type `ls -la` and then confirm that in step 6 you created the following symbolic links:
-```bash
-lrwxrwxrwx root root libsecp256k1.so -> libsecp256k1.so.0.0.0
-lrwxrwxrwx root root libsecp256k1.so.0 -> libsecp256k1.so.0.0.0
-```
-
-8. To update available symbolic links for currently shared libraries, type:
-```bash
-sudo ldconfig
-```
+7. On your air-gapped, offline computer, [install libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp)
 
 ## Issuing a New Operational Certificate
 

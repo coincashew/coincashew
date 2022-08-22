@@ -135,14 +135,14 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 {% endtab %}
 {% endtabs %}
 
-Update `${NODE_CONFIG}-config.json` config files with new `hasEKG` and `hasPrometheus` ports.
+Update `config.json` config files with new `hasEKG` and `hasPrometheus` ports.
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
 cd $NODE_HOME
 
-sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"  
+sed -i config.json -e "s/127.0.0.1/0.0.0.0/g"  
 ```
 {% endtab %}
 
@@ -150,7 +150,7 @@ sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 ```bash
 cd $NODE_HOME
 
-sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"  
+sed -i config.json -e "s/127.0.0.1/0.0.0.0/g"  
 ```
 {% endtab %}
 {% endtabs %}
