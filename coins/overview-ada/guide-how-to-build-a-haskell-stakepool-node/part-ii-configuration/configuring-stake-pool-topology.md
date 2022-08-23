@@ -26,13 +26,13 @@ cd ${NODE_HOME}
 
 2. To create a backup of the original topology configuration file, type:
 ```bash
-cp ${NODE_CONFIG}-topology.json ${NODE_CONFIG}-topology.json.bak
+cp topology.json topology.json.bak
 ```
 {% hint style="info" %}
 You set the `NODE_CONFIG` environment variable when [Installing GHC and Cabal](../part-i-installation/installing-ghc-and-cabal.md).
 {% endhint %}
 
-3. Using a text editor, open the `${NODE_CONFIG}-topology.json` file, and then add a record for the block-producing node as follows, where `<BlockProducingNodeIPAddress>` is the IP address of the block-producing node in your stake pool configuration:
+3. Using a text editor, open the `topology.json` file, and then add a record for the block-producing node as follows, where `<BlockProducingNodeIPAddress>` is the IP address of the block-producing node in your stake pool configuration:
 ```bash
 {
 	"Producers": [
@@ -53,7 +53,7 @@ You set the `NODE_CONFIG` environment variable when [Installing GHC and Cabal](.
 To follow best practices, set `<BlockProducingNodeIPAddress>` to the local area network (LAN) Internet protocol (IP) address of the computer hosting the block-producing node when possible. If necessary—for example, if you set up your block-producing node on a different network than the relay node—then use the wide area network (WAN) IP address. Connecting to `relays-new.cardano-mainnet.iohk.io` allows your relay node to synchronize with the blockchain.
 {% endhint %}
 
-4. Save and close the `${NODE_CONFIG}-topology.json` file.
+4. Save and close the `topology.json` file.
 
 5. To configure additional relay nodes, repeat steps 1 to 4 for each additional relay node in your stake pool configuration.
 
@@ -68,10 +68,10 @@ cd ${NODE_HOME}
 
 2. To create a backup of the original topology configuration file, type:
 ```bash
-cp ${NODE_CONFIG}-topology.json ${NODE_CONFIG}-topology.json.bak
+cp topology.json topology.json.bak
 ```
 
-3. Using a text editor, open the `${NODE_CONFIG}-topology.json` file, and then replace the contents of the file with one or more records, as needed, to reference only the relay node(s) in your stake pool configuration. For example, the following lines configure a single relay node where `<RelayNodeIPAddress>` is the IP address of the relay node:
+3. Using a text editor, open the `topology.json` file, and then replace the contents of the file with one or more records, as needed, to reference only the relay node(s) in your stake pool configuration. For example, the following lines configure a single relay node where `<RelayNodeIPAddress>` is the IP address of the relay node:
 ```bash
 {
 	"Producers": [
@@ -89,7 +89,7 @@ To follow best practices, set `<RelayNodeIPAddress>` to the LAN IP address of th
 <!-- Reference:
 https://forum.cardano.org/t/question-about-valency/35696 -->
 
-4. Save and close the `${NODE_CONFIG}-topology.json` file.
+4. Save and close the `topology.json` file.
 
 ## Configuring Port Forwarding
 

@@ -27,7 +27,7 @@ For example, to produce runtime system statistics for each garbage collection in
 
 `/usr/local/bin/cardano-node run +RTS -S<FileName> -RTS <Options>`
 
-If you are not satisfied with the performance or stability of an instance of Cardano Node, then subjectively you may notice improvement using custom RTS options such as:
+If you are not satisfied with the performance or stability of an instance of Cardano Node, then subjectively you may notice improvement when adding custom RTS options such as:
 
 ```bash
 +RTS -N -qg -qb -RTS
@@ -36,6 +36,20 @@ If you are not satisfied with the performance or stability of an instance of Car
 ```bash
 +RTS -I0.3 -Iw600 -F1.5 -H2500M -RTS
 ```
+
+```bash
++RTS -M12g -N -RTS
+```
+
+Using similar syntax, you can configure custom RTS options when running the Cardano Command Line Interface (CLI).
+
+**To display the default RTS options for Cardano CLI:**
+
+- In a terminal window, type:
+```bash
+cardano-cli +RTS --info
+```
+
 <!-- Reference:
 https://forum.cardano.org/t/solving-the-cardano-node-huge-memory-usage-done/67032 -->
 

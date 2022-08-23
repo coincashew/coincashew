@@ -7,7 +7,7 @@ A current KES key pair is required to establish an operational certificate for y
 The private KES key is required to start the block producing node for your stake pool. The public KES key is not sensitive.
 
 <!-- References: https://developers.cardano.org/docs/operate-a-stake-pool/cardano-key-pairs
-https://testnets.cardano.org/en/testnets/cardano/get-started/creating-a-stake-pool/ -->
+http://web.archive.org/web/20211025143454/https://testnets.cardano.org/en/testnets/cardano/get-started/creating-a-stake-pool/ -->
 
 Issuing an operational certificate also uses a counter that increments by exactly one (1) for each unique operational certificate that a stake pool uses to mint blocks. In a valid operational certificate, the counter value that you use to issue the operational certificate must be consistent with the current counter value for your stake pool registered on the Cardano blockchain by the protocol.
 
@@ -105,7 +105,7 @@ cd $NODE_HOME
 slotNo=$(cardano-cli query tip --mainnet | jq -r '.slot')
 # Retrieve the number of slots per KES period from the key named slotsPerKESPeriod 
 # in the Shelley Genesis JSON configuration file that your stake pool uses
-slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
+slotsPerKESPeriod=$(cat $NODE_HOME/shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 # To calculate the current KES period, divide the current slot height by
 # the number of slots per KES period
 kesPeriod=$((${slotNo} / ${slotsPerKESPeriod}))
