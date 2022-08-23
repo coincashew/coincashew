@@ -270,11 +270,26 @@ sudo systemctl daemon-reload
 sudo systemctl restart eth1 beacon-chain validator
 ```
 
+Verify your logs look error-free and show use of the new configurations.
+
+```
+journalctl -fu eth1
+journalctl -fu beacon-chain
+journalctl -fu validator
+```
+
 Verify your validator is still attesting properly by checking an public block explorer such as beaconcha.in
 
 {% hint style="success" %}
 Congrats! Your node should be merge ready now. Stay tuned to the latest news.
 {% endhint %}
+
+## Post-Merge Cleanup and To-Dos
+
+We've made it to a post-merge era! Consider the following changes to your startup commands.
+
+* Remove `--eth1-endpoints` , as the execution engine endpoint is now in use. Not removing this may cause extra chatter in logs.
+* Remove any Infura or backup beacon-chain CL references.
 
 ## Optional - Extra #TestingTheMerge
 

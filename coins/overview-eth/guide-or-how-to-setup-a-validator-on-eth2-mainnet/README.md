@@ -13,11 +13,11 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of Aug 1 2022, this is **guide version 4.1.1** and written for **Ethereum mainnet**:grin:
+As of Aug 23 2022, this is **guide version 4.2.0** and written for **Ethereum mainnet**:grin:
 {% endhint %}
 
 {% hint style="info" %}
-:sparkles: [**PRATER testnet guide**](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md). Always test and practice on testnet.
+:sparkles: [**Goerli (formerly PRATER) testnet guide**](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md). Always test and practice on testnet.
 {% endhint %}
 
 ## :wrench: About This Guide

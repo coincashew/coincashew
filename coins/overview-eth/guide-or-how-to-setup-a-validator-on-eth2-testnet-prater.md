@@ -13,7 +13,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of Dec 1 2021, this is **guide version 3.7.0** and written for **testnet PRATER.**
+As of Dec 1 2021, this is **guide version 3.7.0** and written for **testnet GOERLI (PRATER).**
 {% endhint %}
 
 {% hint style="info" %}
@@ -540,7 +540,7 @@ Review the latest release at [https://github.com/hyperledger/besu/releases](http
 Update BINARIES\_URL with the latest url.
 
 ```
-BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.4.3/besu-22.4.3.tar.gz"
+BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz"
 
 cd $HOME
 wget -O besu.tar.gz "$BINARIES_URL"
@@ -570,14 +570,14 @@ KillSignal      = SIGINT
 TimeoutStopSec  = 300
 ExecStart       = $HOME/besu/bin/besu \
   --network=mainnet \
-  --rpc-http-host="0.0.0.0" \
+  --rpc-http-host="127.0.0.1" \
   --rpc-http-cors-origins="*" \
   --rpc-ws-enabled=true \
   --rpc-http-enabled=true \
-  --rpc-ws-host="0.0.0.0" \
+  --rpc-ws-host="127.0.0.1" \
   --host-allowlist="*" \
   --metrics-enabled=true \
-  --metrics-host=0.0.0.0 \
+  --metrics-host="127.0.0.1" \
   --sync-mode=X_SNAP \
   --data-storage-format=BONSAI \
   --data-path="$HOME/.besu"
@@ -827,95 +827,6 @@ sudo systemctl enable eth1 eth1-erigon
 ```
 
 :chains:**Start Erigon**
-
-```
-sudo systemctl start eth1
-```
-{% endtab %}
-
-{% tab title="OpenEthereum (Retired)" %}
-{% hint style="danger" %}
-OpenEthereum will no longer be supported post London hard fork. Gnosis, maintainers of OpenEthereum, suggest users migrate to their new Erigon Ethererum client.
-{% endhint %}
-
-{% hint style="info" %}
-OpenEthereum **-** It's goal is to be the fastest, lightest, and most secure Ethereum client using the **Rust programming language**. OpenEthereum is licensed under the GPLv3 and can be used for all your Ethereum needs.
-{% endhint %}
-
-:gear: Install dependencies
-
-```
-sudo apt-get update
-sudo apt-get install curl jq unzip -y
-```
-
-:robot: Install OpenEthereum
-
-Review the latest release at [https://github.com/openethereum/openethereum/releases](https://github.com/openethereum/openethereum/releases)
-
-Automatically download the latest linux release, un-zip, add execute permissions and cleanup.
-
-```bash
-mkdir $HOME/openethereum
-cd $HOME/openethereum
-curl -s https://api.github.com/repos/openethereum/openethereum/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux | xargs wget -q --show-progress
-unzip -o openethereum*.zip
-chmod +x openethereum
-rm openethereum*.zip
-```
-
-​ :gear: **Setup and configure systemd**
-
-Run the following to create a **unit file** to define your `eth1.service` configuration.
-
-Simply copy/paste the following.
-
-```bash
-cat > $HOME/eth1.service << EOF 
-[Unit]
-Description     = openethereum eth1 service
-Wants           = network-online.target
-After           = network-online.target 
-
-[Service]
-User            = $(whoami)
-ExecStart       = $(echo $HOME)/openethereum/openethereum --chain goerli --metrics --metrics-port=6060
-Restart         = on-failure
-RestartSec      = 3
-KillSignal      = SIGINT
-TimeoutStopSec  = 300
-
-[Install]
-WantedBy    = multi-user.target
-EOF
-```
-
-{% hint style="info" %}
-**Nimbus Specific Configuration**: Add the following flag to the \*\*ExecStart \*\*line.
-
-```bash
---ws-origins=all
-```
-{% endhint %}
-
-Move the unit file to `/etc/systemd/system` and give it permissions.
-
-```bash
-sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
-sudo chmod 644 /etc/systemd/system/eth1.service
-```
-
-Run the following to enable auto-start at boot time.
-
-```
-sudo systemctl daemon-reload
-sudo systemctl enable eth1
-```
-
-:chains:Start OpenEthereum
 
 ```
 sudo systemctl start eth1

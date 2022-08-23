@@ -58,7 +58,7 @@ Manually find the desired file from above repo and modify the `wget` command wit
 
 > Example:
 >
-> wget -O besu.tar.gz [https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.4.2/besu-22.4.2.tar.gz](https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.4.2/besu-22.4.2.tar.gz)
+> wget -O besu.tar.gz [https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz](https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz)
 
 ```bash
 cd $HOME
