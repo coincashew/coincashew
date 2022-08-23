@@ -43,32 +43,32 @@ Did you know each time you propose a block with a different client, your block w
 
 {% tabs %}
 {% tab title="Prysm" %}
-{% content-ref url="guide-how-to-stake-on-eth2.md" %}
-[guide-how-to-stake-on-eth2.md](guide-how-to-stake-on-eth2.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 {% endtab %}
 
 {% tab title="Lighthouse" %}
-{% content-ref url="guide-how-to-stake-on-eth2-with-lighthouse.md" %}
-[guide-how-to-stake-on-eth2-with-lighthouse.md](guide-how-to-stake-on-eth2-with-lighthouse.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 {% endtab %}
 
 {% tab title="Teku" %}
-{% content-ref url="guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md" %}
-[guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md](guide-how-to-stake-on-eth2-with-teku-on-ubuntu.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 {% endtab %}
 
 {% tab title="Nimbus" %}
-{% content-ref url="guide-how-to-stake-on-eth2-with-nimbus.md" %}
-[guide-how-to-stake-on-eth2-with-nimbus.md](guide-how-to-stake-on-eth2-with-nimbus.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 {% endtab %}
 
 {% tab title="Lodestar" %}
-{% content-ref url="guide-how-to-stake-on-eth2-with-lodestar.md" %}
-[guide-how-to-stake-on-eth2-with-lodestar.md](guide-how-to-stake-on-eth2-with-lodestar.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% hint style="warning" %}

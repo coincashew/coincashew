@@ -8,7 +8,7 @@ description: >-
 
 ## Your Mission - #TestingTheMerge
 
-* To participate in the public testnet known as **Kiln**, the first concentrated public effort to test Ethereum’s upgrade to proof-of-stake with a hardfork called "Paris-Bellatrix" or affectionly called “[The Merge](https://consensys.net/blog/ethereum-2-0/an-update-on-the-merge-after-the-amphora-interop-event-in-greece/)”.&#x20;
+* To participate in the public testnet known as **Kiln**, the first concentrated public effort to test Ethereum’s upgrade to proof-of-stake with a hardfork called "Paris-Bellatrix" or affectionly called “[The Merge](https://consensys.net/blog/ethereum-2-0/an-update-on-the-merge-after-the-amphora-interop-event-in-greece/)”.
 * Within the Ethereum network of nodes, you want to maximize [Ethereum's client diversity](https://ethereum.org/en/developers/docs/nodes-and-clients/client-diversity/) by being the **Most Viable Diverse Client** with execution and consensus clients, **Besu and Lodestar** aka **Bestar.**
 
 {% hint style="info" %}
@@ -25,7 +25,7 @@ If using a VPS or remote server, install and start the SSH client for your opera
 
 **Windows**: [PuTTY](https://www.puttygen.com/download-putty)
 
-**MacOS and Linux**: from the Terminal, use the native command:&#x20;
+**MacOS and Linux**: from the Terminal, use the native command:
 
 ```
 ssh YourUserName@YourServersIP
@@ -165,7 +165,7 @@ cd merge-testnets/kiln && ls
 Setup your execution layer client, **Besu.**
 
 {% hint style="info" %}
-****[**Hyperledger Besu**](https://besu.hyperledger.org/) is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
+[**Hyperledger Besu**](https://besu.hyperledger.org/) is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
 {% endhint %}
 
 Install dependencies.
@@ -427,7 +427,7 @@ A properly functioning Besu execution client will indicate "Fork-Choice-Updates"
 {% hint style="warning" %}
 Within Besu's logs, you might see a false warning. In reality, Lodestar consensus client is working fine and no cause for concern.
 
-`WARN | EngineExchangeTransitionConfiguration | not called in 120 seconds, consensus client may not be connected`&#x20;
+`WARN | EngineExchangeTransitionConfiguration | not called in 120 seconds, consensus client may not be connected`
 {% endhint %}
 
 A properly functioning Lodestar consensus client will indicate "info: Synced". For example,
@@ -445,7 +445,7 @@ Since the network is relatively new, syncing both the execution and consensus la
 {% endhint %}
 
 {% hint style="info" %}
-Syncing is complete when your latest block and slot number matches the public block explorers.&#x20;
+Syncing is complete when your latest block and slot number matches the public block explorers.
 
 **Consensus client**: check latest slot number with [https://beaconchain.kiln.themerge.dev](https://beaconchain.kiln.themerge.dev)
 
@@ -463,10 +463,9 @@ For security and privacy reasons, it is best practice to use a brand new unused 
 Use the [Kiln Testnet faucet](https://faucet.kiln.themerge.dev/) to acquire some testnet ETH. It may take a few moments, sometimes up to an hour, for the funds to appear in your wallet.
 
 {% hint style="info" %}
-Alternative kiln testnet faucets:&#x20;
+Alternative kiln testnet faucets:
 
-* [https://faucet.kiln.ethdevops.io/
-  ](https://faucet.kiln.ethdevops.io/http://kiln-faucet.pk-net.net/)
+* [https://faucet.kiln.ethdevops.io/](https://faucet.kiln.ethdevops.io/http://kiln-faucet.pk-net.net/)
 * [http://kiln-faucet.pk-net.net/](https://faucet.kiln.ethdevops.io/http://kiln-faucet.pk-net.net/)
 {% endhint %}
 
@@ -505,7 +504,7 @@ ls $HOME/staking_deposit-cli-ce8cbb6-linux-amd64/validator_keys
 Ensure your MetaMask is switched to the Kiln Testnet network.
 {% endhint %}
 
-Follow along the instructions at the Kiln Launchpad. You'll complete this process when you've uploaded your **deposit\_data-##########.json** file and sent the corresponding 32 Kiln testnet ETH deposit to the Kiln staking deposit address.&#x20;
+Follow along the instructions at the Kiln Launchpad. You'll complete this process when you've uploaded your **deposit\_data-##########.json** file and sent the corresponding 32 Kiln testnet ETH deposit to the Kiln staking deposit address.
 
 {% hint style="info" %}
 The Kiln network staking deposit address is 0x4242424242424242424242424242424242424242
