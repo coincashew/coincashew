@@ -12,14 +12,14 @@ _Table 1 Current Cardano Node Version Requirements_
 
 **To install GHC and Cabal:**
 
-1. In a terminal window on the computer hosting your block-producing node, to install the latest versions of all previously installed packages assuming the answer `yes` to all prompts, type:
+1\. In a terminal window on the computer hosting your block-producing node, to install the latest versions of all previously installed packages assuming the answer `yes` to all prompts, type:
 
 ```bash
 sudo apt-get update -y
 sudo apt-get upgrade -y
 ```
 
-1. To install packages and tools required for downloading and compiling Cardano Node source code, type:
+2\. To install packages and tools required for downloading and compiling Cardano Node source code, type:
 
 ```bash
 sudo apt-get install autoconf automake build-essential curl g++ git jq libffi-dev libgmp-dev libncursesw5 libssl-dev libsystemd-dev libtinfo-dev libtool make pkg-config tmux wget zlib1g-dev -y
@@ -29,24 +29,24 @@ sudo apt-get install autoconf automake build-essential curl g++ git jq libffi-de
 To list all packages installed on your computer, type `apt list --installed`
 {% endhint %}
 
-1. To use the GHCup installer to install GHC and Cabal, type:
+3\. To use the GHCup installer to install GHC and Cabal, type:
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ```
 
-1. During installation, when prompted:\
-   i. Press ENTER to proceed.\
-   ii. To prepend the required PATH variable to `$HOME/.bashrc`, type `P`\
-   iii. When prompted to install haskell-language-server (HLS), type `N`\
-   iv. When prompted to install slack, type `N`\
-   v. Press ENTER to proceed.
+4\. During installation, when prompted:\
+i. Press ENTER to proceed.\
+ii. To prepend the required PATH variable to `$HOME/.bashrc`, type `P`\
+iii. When prompted to install haskell-language-server (HLS), type `N`\
+iv. When prompted to install slack, type `N`\
+v. Press ENTER to proceed.
 
 {% hint style="info" %}
 The `$HOME` environment variable or `~` tilde prefix refers to the home directory associated with your login name. The `.bashrc` file is a Bash script that runs each time you open a new terminal window. In the `.bashrc` file, you can add any command that you may type at the command prompt. Use `.bashrc` to set up the shell as needed for your environment.
 {% endhint %}
 
-1. When GHCup finishes installing GHC and Cabal, type the following commands to reload your shell profile, and then confirm that GHCup installed correctly:
+5\. When GHCup finishes installing GHC and Cabal, type the following commands to reload your shell profile, and then confirm that GHCup installed correctly:
 
 ```bash
 source $HOME/.bashrc
@@ -57,7 +57,7 @@ ghcup --version
 If GHCup is installed correctly, then the `ghcup --version` command returns `The GHCup Haskell installer, version <GHCupVersionNumber>` where `<GHCupVersionNumber>` is the version number of GHCup installed on your computer.
 {% endhint %}
 
-1. To set the Glasgow Haskell Compiler to the version required for compiling the current Cardano Node release, type the following commands where `<GHCVersionNumber>` is the GHC version that you need to install and use:
+6\. To set the Glasgow Haskell Compiler to the version required for compiling the current Cardano Node release, type the following commands where `<GHCVersionNumber>` is the GHC version that you need to install and use:
 
 ```bash
 ghcup install ghc <GHCVersionNumber>
@@ -65,7 +65,7 @@ ghcup set ghc <GHCVersionNumber>
 ghc --version
 ```
 
-1. To set Cabal to the version required for compiling the current Cardano Node release, type the following commands where `<CabalVersionNumber>` is the Cabal version that you need to install and use:
+7\. To set Cabal to the version required for compiling the current Cardano Node release, type the following commands where `<CabalVersionNumber>` is the Cabal version that you need to install and use:
 
 ```bash
 ghcup install cabal <CabalVersionNumber>
@@ -73,14 +73,14 @@ ghcup set cabal <CabalVersionNumber>
 cabal --version
 ```
 
-1. To create a working directory to store source code and builds related to Cardano Node, type:
+8\. To create a working directory to store source code and builds related to Cardano Node, type:
 
 ```bash
 mkdir $HOME/git
 cd $HOME/git
 ```
 
-1. To download, compile and install `libsodium`, type:
+9\. To download, compile and install `libsodium`, type:
 
 ```bash
 git clone https://github.com/input-output-hk/libsodium
@@ -112,7 +112,7 @@ sudo apt-get install libnuma-dev
 ```
 {% endhint %}
 
-1. To download, compile and install `libsecp256k1`, type:
+10\. To download, compile and install `libsecp256k1`, type:
 
 ```
 cd $HOME/git
@@ -127,7 +127,7 @@ sudo make install
 sudo ldconfig
 ```
 
-1. Using a text editor, open the `$HOME/.bashrc` file, and then add the following lines at the end of the file:
+11\. Using a text editor, open the `$HOME/.bashrc` file, and then add the following lines at the end of the file:
 
 ```bash
 # Set environment variables so that the compiler finds libsodium on your computer
@@ -144,17 +144,18 @@ export NODE_CONFIG="mainnet"
 If you plan to use your Cardano node on a testnet network instead of mainnet, then replace the line `export NODE_CONFIG="mainnet"` in your `$HOME/.bashrc` file with `export NODE_CONFIG="testnet"` Also, when working through the _How to Set Up a Cardano Stake Pool_ guide, replace every instance of the command option `--mainnet` with `--testnet-magic <MagicNumber>` where `<MagicNumber>` is the network magic number for the testnet network that you want to use. For details on available testnet networks, see [Environments](https://book.world.dev.cardano.org/environments.html).
 {% endhint %}
 
-1. Save and close the `$HOME/.bashrc` file.
-2. To create the folder set for the `NODE_HOME` environment variable in your `$HOME/.bashrc` file, type:
+12\. Save and close the `$HOME/.bashrc` file.
+
+13\. To create the folder set for the `NODE_HOME` environment variable in your `$HOME/.bashrc` file, type:
 
 ```bash
 mkdir $HOME/cardano-my-node
 ```
 
-1. To reload your shell profile, type:
+14\. To reload your shell profile, type:
 
 ```bash
 source $HOME/.bashrc
 ```
 
-1. On each computer hosting a relay node for your stake pool, repeat steps 1 to 13
+15\. On each computer hosting a relay node for your stake pool, repeat steps 1 to 13
