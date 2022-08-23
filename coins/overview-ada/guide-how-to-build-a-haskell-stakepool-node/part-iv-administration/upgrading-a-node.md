@@ -218,6 +218,7 @@ The time required to compile the `cardano-node` and `cardano-cli` packages may b
 {% endhint %}
 
 3. When the compiler finishes, to verify the version numbers of the new `cardano-node` and `cardano-cli` binaries type:
+
 ```bash
 $(find ./dist-newstyle/build -type f -name "cardano-node") version
 $(find ./dist-newstyle/build -type f -name "cardano-cli") version
