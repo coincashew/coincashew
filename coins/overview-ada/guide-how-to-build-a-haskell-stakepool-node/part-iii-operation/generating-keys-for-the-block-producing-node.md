@@ -63,7 +63,7 @@ Determine the number of slots per KES period from the genesis file.
 {% tab title="block producer node" %}
 ```bash
 pushd +1
-slotsPerKESPeriod=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r '.slotsPerKESPeriod')
+slotsPerKESPeriod=$(cat $NODE_HOME/shelley-genesis.json | jq -r '.slotsPerKESPeriod')
 echo slotsPerKESPeriod: ${slotsPerKESPeriod}
 ```
 {% endtab %}
@@ -102,7 +102,7 @@ Copy **kes.vkey** to your **cold environment**.
 Change the <**startKesPeriod**> value accordingly.
 
 {% hint style="info" %}
-Your stake pool requires an operational certificate to verify that the pool has the authority to run. For more details on operational certificates, see the section _Operational Certificates_ in the topic [Creating a Stake Pool](https://testnets.cardano.org/en/testnets/cardano/get-started/creating-a-stake-pool/) in the official [Cardano Testnet](https://testnets.cardano.org/en/testnets/cardano/overview/) documentation.
+Your stake pool requires an operational certificate to verify that the pool has the authority to run. For more details on operational certificates, see the topic [Issuing a New Operational Certificate](../part-iv-administration/issuing-new-opcert.md).
 {% endhint %}
 
 {% tabs %}
@@ -157,10 +157,10 @@ cat > $NODE_HOME/startBlockProducingNode.sh << EOF
 DIRECTORY=$NODE_HOME
 PORT=6000
 HOSTADDR=0.0.0.0
-TOPOLOGY=\${DIRECTORY}/${NODE_CONFIG}-topology.json
+TOPOLOGY=\${DIRECTORY}/topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
-CONFIG=\${DIRECTORY}/${NODE_CONFIG}-config.json
+CONFIG=\${DIRECTORY}/config.json
 KES=\${DIRECTORY}/kes.skey
 VRF=\${DIRECTORY}/vrf.skey
 CERT=\${DIRECTORY}/node.cert

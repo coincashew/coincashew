@@ -6,7 +6,7 @@ https://youtu.be/PCqvFMTGu3o
 https://developers.cardano.org/docs/operate-a-stake-pool/cardano-key-pairs -->
 
 {% hint style="info" %}
-For a general discussion on creating transactions, see the topic [Building and Signing Transactions](https://testnets.cardano.org/en/testnets/cardano/transactions/creating-transactions/) in the official [Cardano Testnet](https://testnets.cardano.org/en/testnets/cardano/overview/) documentation.
+For a general discussion on creating transactions, see the topic [Building and Signing Transactions](http://web.archive.org/web/20211025133818/https://testnets.cardano.org/en/testnets/cardano/transactions/creating-transactions/).
 {% endhint %}
 
 **To register a stake address on the blockchain:**

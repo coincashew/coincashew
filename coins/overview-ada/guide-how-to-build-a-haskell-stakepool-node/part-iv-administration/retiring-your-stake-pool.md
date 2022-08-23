@@ -30,10 +30,10 @@ Calculate the current epoch.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-startTimeGenesis=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r .systemStart)
+startTimeGenesis=$(cat $NODE_HOME/shelley-genesis.json | jq -r .systemStart)
 startTimeSec=$(date --date=${startTimeGenesis} +%s)
 currentTimeSec=$(date -u +%s)
-epochLength=$(cat $NODE_HOME/${NODE_CONFIG}-shelley-genesis.json | jq -r .epochLength)
+epochLength=$(cat $NODE_HOME/shelley-genesis.json | jq -r .epochLength)
 epoch=$(( (${currentTimeSec}-${startTimeSec}) / ${epochLength} ))
 echo current epoch: ${epoch}
 ```

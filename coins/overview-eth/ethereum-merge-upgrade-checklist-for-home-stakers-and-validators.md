@@ -5,7 +5,7 @@ description: Quick to-do list before the merge arrives.
 # Ethereum Merge Upgrade Checklist for Home Stakers and Validators
 
 {% hint style="success" %}
-​**2022-6 Gitcoin Grant Round 14:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
+​:confetti\_ball: **Support us on Gitcoin Grants:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
 {% endhint %}
 
 {% hint style="info" %}
@@ -14,7 +14,7 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 
 ## Wen merge?&#x20;
 
-Ropsten and Sepolia testnet merge done, one more to go, namely Goerli. Mainnet merge upgrade to follow and latest estimates are mid-September.
+All testnets passed and the Merge is a go! Mainnet merge is estimated to arrive on [Sept 15 2022 with TTD 58750000000000000000000](https://twitter.com/TimBeiko/status/1557747656507633665).
 
 ## What's merge?
 
@@ -25,12 +25,16 @@ Ropsten and Sepolia testnet merge done, one more to go, namely Goerli. Mainnet m
 {% hint style="danger" %}
 Familiarize yourself with these changes.
 
-Best practice is to implement these changes **after mainnet** [**Terminal Total Difficulty (TTD)**](https://ethereum.stackexchange.com/questions/129860/what-is-terminal-total-difficulty-ttd) has been published and the final merge-ready EL/CL clients are released.
+Best practice is to implement these changes **after** merge-ready EL/CL clients are released.
 {% endhint %}
 
-**Prerequisite:** Before beginning, there is a mandatory requirement to run your own Execution Layer (EL) client (i.e. besu, geth, nethermind, erigon). Outsourcing EL/eth1 to Infura is no longer possible post merge.
+**Prerequisite:** Before beginning, there is a mandatory requirement to run your own Execution Layer (EL) client (i.e. besu, geth, nethermind, erigon).
 
-#### In order to transition through the merge successfully, your staking node/validator must:
+{% hint style="warning" %}
+Outsourcing EL/eth1 to Infura is no longer possible post merge. Run your own.
+{% endhint %}
+
+#### In order to transition through the merge successfully, your validator node must:
 
 1\) Update to latest EL / CL node software
 
@@ -75,14 +79,21 @@ Updates to your systemd file for the consensus layer, execution layer, or valida
 * Set your suggested fee recipient address
 * Enable the authenticated port to the new Engine API
 
+Ensure you add/append the changes to the **END** of the `ExecStart` line. Ctrl + O, Ctrl + X to save and exit.
+
 {% hint style="info" %}
-The fee recipient address recieves block proposal priority fees (aka mining tips) and is an ETH address you designate as your rewards address. These rewards are immediately spendable, unlike the validator's attestation and block proposal rewards.
+The fee recipient address receives block proposal priority fees (aka mining tips) and is an ETH address you designate as your rewards address. These rewards are immediately spendable, unlike the validator's attestation and block proposal rewards.
+{% endhint %}
+
+{% hint style="danger" %}
+Change 0x000000000..., your fee recipient address to an ETH address you control.
+{% endhint %}
+
+{% hint style="warning" %}
+For advanced fee recipient configurations, i.e. you want a unique ETH address per validator for privacy reasons, refer to the official documents at: [Teku](https://docs.teku.consensys.net/en/latest/HowTo/Prepare-for-The-Merge/#configure-the-fee-recipient) | [Lighthouse](https://lighthouse-book.sigmaprime.io/suggested-fee-recipient.html) | [Nimbus](https://nimbus.guide/suggested-fee-recipient.html) | [Prysm](https://docs.prylabs.network/docs/execution-node/fee-recipient) | [Lodestar](https://chainsafe.github.io/lodestar/usage/validator-management/#configuring-the-fee-recipient-address)
 {% endhint %}
 
 #### Location of system service files to update
-
-* Ensure you add/append the changes to the **END** of the `ExecStart` line. Ctrl + O, Ctrl + X to save and exit.
-* Change 0x000000000... to an ETH address you control.
 
 {% tabs %}
 {% tab title="CoinCashew" %}
@@ -285,4 +296,6 @@ Can't get your mind off the merge? Here's some additional ideas and nice to have
 \[:white\_check\_mark:] Upgrade Grafana reporting with [samc's ethereum metrics exporter](https://github.com/samcm/ethereum-metrics-exporter)
 
 \[:white\_check\_mark:] Test / dev / deploy code on the testnets
+
+\[:white\_check\_mark:] Learn and earn more rewards with [MEV-boost](https://github.com/flashbots/mev-boost)
 

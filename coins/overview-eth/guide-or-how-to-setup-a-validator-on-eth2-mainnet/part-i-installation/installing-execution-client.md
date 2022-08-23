@@ -105,7 +105,7 @@ sudo systemctl start eth1
 
 ```
 sudo apt update
-sudo apt install openjdk-11-jdk -y
+sudo apt install openjdk-18-jdk -y
 ```
 
 
@@ -117,7 +117,7 @@ Review the latest release at [https://github.com/hyperledger/besu/releases](http
 Update BINARIES\_URL with the latest url.
 
 ```
-BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.4.4/besu-22.4.4.tar.gz"
+BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.0/besu-22.7.0.tar.gz"
 
 cd $HOME
 wget -O besu.tar.gz "$BINARIES_URL"
@@ -157,7 +157,7 @@ ExecStart       = $HOME/besu/bin/besu \
   --host-allowlist="*" \
   --metrics-enabled=true \
   --metrics-host=0.0.0.0 \
-  --sync-mode=X_SNAP \
+  --sync-mode=X_CHECKPOINT \
   --data-storage-format=BONSAI \
   --data-path="$HOME/.besu"
 

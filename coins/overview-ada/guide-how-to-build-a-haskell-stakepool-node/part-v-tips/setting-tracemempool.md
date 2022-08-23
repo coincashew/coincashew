@@ -1,6 +1,6 @@
 # Setting TraceMempool
 
-If you are not satisfied with the performance of an instance of Cardano Node, then subjectively you may notice improvement in memory usage, CPU usage and/or the number of missed slot leader checks if you set the `TraceMempool` key to the value `false` in the file `mainnet-config.json`
+If you are not satisfied with the performance of an instance of Cardano Node, then subjectively you may notice improvement in memory usage, CPU usage and/or the number of missed slot leader checks if you set the `TraceMempool` key to the value `false` in the configuration file named `config.json` that your Cardano Node uses.
 
 **Side effects of TraceMempool = false**
 

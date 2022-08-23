@@ -19,7 +19,7 @@ Next epoch's leadership schedule becomes available 1.5 days (36 hours) before th
 ```bash
 cardano-cli query leadership-schedule \
 --mainnet \
---genesis $NODE_HOME/mainnet-shelley-genesis.json \
+--genesis $NODE_HOME/shelley-genesis.json \
 --stake-pool-id $(cat $NODE_HOME/stakepoolid.txt) \
 --vrf-signing-key-file $NODE_HOME/vrf.skey \
 --next
@@ -32,7 +32,7 @@ cardano-cli query leadership-schedule \
 ```bash
 cardano-cli query leadership-schedule \
 --mainnet \
---genesis $NODE_HOME/mainnet-shelley-genesis.json \
+--genesis $NODE_HOME/shelley-genesis.json \
 --stake-pool-id $(cat $NODE_HOME/stakepoolid.txt) \
 --vrf-signing-key-file $NODE_HOME/vrf.skey \
 --current
@@ -97,6 +97,10 @@ STAKE_POOL_ID=""
 TESTNET="testnet"
 MAINNET="mainnet"
 
+# Set the network magic value as needed for the testnet environment that you want to use
+# For details on available testnet environments, see https://book.world.dev.cardano.org/environments.html
+MAGICNUMBER="1"
+
 # Edit variable with $TESTNET for Testnet and $MAINNET for Mainnet
 network=$TESTNET
 
@@ -114,7 +118,7 @@ if [[ -z $BYRON_GENESIS ]]; then echo "BYRON GENESIS config file not loaded corr
 
 network_magic=""
 if [ $network = $TESTNET ]; then
-    network_magic="--testnet-magic 1097911063"
+    network_magic="--testnet-magic $MAGICNUMBER"
 elif [ $network = $MAINNET ]; then
     network_magic="--mainnet"
 else
@@ -275,11 +279,10 @@ Configure `Cronjob` to make the script run automatically:
 {% hint style="info" %}
 To configure the job at the start of an epoch, keep in mind the following information:
 
-* Epoch in TESTNET starts at 20:20 UTC
 * Epoch in MAINNET starts at 21:45 UTC
 {% endhint %}
 
-
+<!-- * Epoch in legacy TESTNET starts at 20:20 UTC -->
 
 Find the time when the cronjob should start:
 
@@ -312,7 +315,7 @@ PATH=
 NODE_HOME=
 # testnet or mainnet
 NODE_CONFIG=
-# path to the soket of cardano node, should be under db/ folder under NODE_HOME
+# path to the socket of cardano node, should be under db/ folder under NODE_HOME
 CARDANO_NODE_SOCKET_PATH=
 
 MM HH * * * path_to_script/leaderScheduleCheck.sh > desired_log_folder/leaderSchedule_logs.txt 2>&1
@@ -407,7 +410,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeMark": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeMark": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -433,7 +436,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeSet": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeSet": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set current`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set current`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -459,7 +462,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeGo": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeGo": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/mainnet-byron-genesis.json --shelley-genesis ${NODE_HOME}/mainnet-shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set prev`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set prev`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -485,9 +488,9 @@ The following figure shows the green badge that PoolTool displays next to your s
 
 ![Your pool's tip on pooltool.io](../../../../.gitbook/assets/tip.png)
 
-You can also use Andrew Westberg's [CNCLI utilities](https://github.com/cardano-community/cncli) to send the block height and slot count to PoolTool.
+You can also use [CNCLI utilities](https://github.com/cardano-community/cncli) developed by the Cardano Community to send the block height and slot count to PoolTool.
 
-[Guild Operators](https://cardano-community.github.io/guild-operators/) maintain the [`cncli.sh`](https://cardano-community.github.io/guild-operators/Scripts/cncli/) companion script to help stake pool operators use Andrew Westberg's CNCLI utilities.
+[Guild Operators](https://cardano-community.github.io/guild-operators/) maintain the [`cncli.sh`](https://cardano-community.github.io/guild-operators/Scripts/cncli/) companion script to help stake pool operators use the Cardano Community's CNCLI utilities.
 
 To send data to PoolTool using CNCLI utilities without using the `cncli.sh` script, create a configuration file containing your PoolTool API key and stake pool details.
 

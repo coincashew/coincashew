@@ -37,7 +37,7 @@ CNODE_HOSTNAME="CHANGE ME"  # optional. must resolve to the IP you are requestin
 CNODE_BIN="/usr/local/bin"
 CNODE_HOME=$NODE_HOME
 CNODE_LOG_DIR="\${CNODE_HOME}/logs"
-GENESIS_JSON="\${CNODE_HOME}/${NODE_CONFIG}-shelley-genesis.json"
+GENESIS_JSON="\${CNODE_HOME}/shelley-genesis.json"
 NETWORKID=\$(jq -r .networkId \$GENESIS_JSON)
 CNODE_VALENCY=1   # optional for multi-IP hostnames
 NWMAGIC=\$(jq -r .networkMagic < \$GENESIS_JSON)
@@ -120,7 +120,7 @@ cat > $NODE_HOME/relay-topology_pull.sh << EOF
 #!/bin/bash
 BLOCKPRODUCING_IP=<BLOCK PRODUCERS IP ADDRESS>
 BLOCKPRODUCING_PORT=6000
-curl -s -o $NODE_HOME/${NODE_CONFIG}-topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:1|relays-new.cardano-mainnet.iohk.io:3001:2"
+curl -s -o $NODE_HOME/topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:1|relays-new.cardano-mainnet.iohk.io:3001:2"
 EOF
 ```
 {% endtab %}

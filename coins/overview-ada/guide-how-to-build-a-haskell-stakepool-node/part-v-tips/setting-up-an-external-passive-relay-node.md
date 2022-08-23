@@ -101,9 +101,9 @@ cardano-cli version
 
 Using systemd services to run your Cardano nodes offers the following benefits:
 
-- Auto-start your node when the computer reboots due to maintenance, power outage, etc.
-- Automatically restart crashed node processes.
-- Maximize your stake pool up-time and performance.
+* Auto-start your node when the computer reboots due to maintenance, power outage, etc.
+* Automatically restart crashed node processes.
+* Maximize your stake pool up-time and performance.
 
 ```bash
 sudo bash -c "cat << 'EOF' > /etc/systemd/system/cnode.service
@@ -263,7 +263,7 @@ Example snippet to add to your block producer's topology file. Add a comma to se
  }
 ```
 
-For relay nodes, [manage your topology file](../part-iii-operation/configuring-topology-files.md) or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
+For relay nodes, [manage your topology file](broken-reference) or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
 
 ## :arrows\_counterclockwise: Restarting Nodes
 
@@ -272,11 +272,12 @@ To refresh topology configurations for a node, you need to restart the node.
 To restart nodes:
 
 1. Type:
+
 ```
 sudo systemctl reload-or-restart cnode
 ```
 
-2. Repeat step 1 for each node having updated topology configurations.
+1. Repeat step 1 for each node having updated topology configurations.
 
 ## :confetti\_ball: Testing the Connection
 
@@ -287,7 +288,7 @@ On the Guild LiveView screen, press `P` to view the peer list. You should see th
 {% endhint %}
 
 {% hint style="danger" %}
-:fire: **Critical Security Reminder:** Relay nodes must not contain any **`operational certifications`, `vrf`, `skey` or `cold`**` ``` **keys**.
+:fire: **Critical Security Reminder:** Relay nodes must not contain any **`operational certifications`, `vrf`, `skey` or `cold`**\` \`\`\` **keys**.
 {% endhint %}
 
 {% hint style="success" %}

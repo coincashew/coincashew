@@ -169,6 +169,10 @@ TESTNET=0
 MAINNET=1
 NETWORK=\$MAINNET
 
+# Set the network magic value as needed for the testnet environment that you want to use
+# For details on available testnet environments, see https://book.world.dev.cardano.org/environments.html
+MAGICNUMBER="1"
+
 cat payment.xprv |\
 "\$CADDR" key public | tee payment.xpub |\
 "\$CADDR" address payment --network-tag \$NETWORK |\
@@ -180,8 +184,8 @@ cat base.addr_candidate
 echo
 
 # XPrv/XPub conversion to normal private and public key, keep in mind the 
-# keypars are not a valind Ed25519 signing keypairs.
-TESTNET_MAGIC="--testnet-magic 1097911063"
+# keypars are not a valid Ed25519 signing keypairs.
+TESTNET_MAGIC="--testnet-magic \$MAGICNUMBER"
 MAINNET_MAGIC="--mainnet"
 MAGIC="\$MAINNET_MAGIC"
 

@@ -5,7 +5,7 @@ description: Step by step guide on how to switch for the solo home or cloud stak
 # Guide | Operation Client Diversity: Migrate Prysm to Teku
 
 {% hint style="info" %}
-**2022-6 Gitcoin Grant Round 14:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
+:confetti\_ball: **Support us on Gitcoin Grants:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
 {% endhint %}
 
 ## :fast\_forward: Complete step by step guide
@@ -42,14 +42,14 @@ Install git.
 sudo apt-get install git -y
 ```
 
-Install Java 11 for **Ubuntu 20.x**
+Install Java 18 for **Ubuntu 20.x**
 
 ```
 sudo apt update
-sudo apt install openjdk-11-jdk -y
+sudo apt install openjdk-18-jdk -y
 ```
 
-Verify Java 11+ is installed.
+Verify Java 18+ is installed.
 
 ```
 java --version
@@ -165,7 +165,7 @@ metrics-port: 8008
 
 # database
 data-path: "/var/lib/teku"
-data-storage-mode: "archive"
+data-storage-mode: "prune"
 
 # rest api
 rest-api-port: 5051
@@ -358,7 +358,7 @@ sudo systemctl stop validator
 {% hint style="danger" %}
 **Before continuing - Required Waiting Period !!!**
 
-Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes.&#x20;
+Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes.
 
 By waiting for a finalized epoch, there's no need to migrate the slashing database.
 
@@ -403,7 +403,7 @@ Example output of firewall configuration:
 > ```
 
 {% hint style="info" %}
-Your router's port forwarding setup or cloud provider settings will need to be updated to ensure your validator's firewall ports are open and reachable.&#x20;
+Your router's port forwarding setup or cloud provider settings will need to be updated to ensure your validator's firewall ports are open and reachable.
 
 You'll need to add new port forwarding rules for Teku and remove the existing Prysm port forwarding rules.
 {% endhint %}
@@ -416,7 +416,7 @@ sudo apt dist-upgrade && sudo apt autoremove
 sudo reboot
 ```
 
-### &#x20;:key2: 4. Import Validator Keys
+### :key2: 4. Import Validator Keys
 
 Copy your `validator_keys` directory to the data directory we created above and remove the extra deposit\_data file. If you no longer have the validator keys on your node, you will need to restore from file backup or [restore from secret recovery phrase](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#8-2-verify-your-mnemonic-phrase).
 
@@ -426,9 +426,9 @@ rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
 {% hint style="danger" %}
-****:octagonal\_sign: **FINAL WARNING REMINDER !!!**  **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** (penalized and exited from the system).
+\*\*\*\*:octagonal\_sign: **FINAL WARNING REMINDER !!!** **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** (penalized and exited from the system).
 
-Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes.&#x20;
+Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes.
 
 Confirm that your validator has stopped attesting with block explorer [beaconcha.in](https://beaconcha.in/) or [beaconscan.com](https://beaconscan.com/)
 {% endhint %}
@@ -572,19 +572,19 @@ journalctl --unit=beacon-chain --since=today
 journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
-****:mag\_right: **View the status of the beacon chain**
+\*\*\*\*:mag\_right: **View the status of the beacon chain**
 
 ```
 sudo systemctl status beacon-chain
 ```
 
-****:repeat: **Restart the beacon chain**
+\*\*\*\*:repeat: **Restart the beacon chain**
 
 ```
 sudo systemctl restart beacon-chain
 ```
 
-****:octagonal\_sign: **Stop the beacon chain**
+\*\*\*\*:octagonal\_sign: **Stop the beacon chain**
 
 ```
 sudo systemctl stop beacon-chain

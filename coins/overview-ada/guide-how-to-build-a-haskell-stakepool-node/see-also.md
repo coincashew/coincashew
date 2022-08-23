@@ -2,9 +2,7 @@
 
 For more information and official documentation, please refer to the following links:
 
-{% embed url="https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/index.html" %}
-
-{% embed url="https://testnets.cardano.org/en/shelley/get-started/creating-a-stake-pool/" %}
+{% embed url="https://docs.cardano.org/cardano-testnet/getting-started" %}
 
 {% embed url="https://github.com/input-output-hk/cardano-tutorials" %}
 
@@ -14,7 +12,7 @@ For more information and official documentation, please refer to the following l
 
 # CNTools by Guild Operators
 
-Many pool operators have asked about how to deploy a stake pool with CNTools. The [official guide can be found here.](https://cardano-community.github.io/guild-operators/#/Scripts/cntools)
+Many pool operators have asked about how to deploy a stake pool with CNTools. See the [official guide](https://cardano-community.github.io/guild-operators/Scripts/cntools/)
 
 # :earth\_africa: Community Inspired Projects<a id="projects"></a>
 
@@ -24,8 +22,6 @@ Here's a collection of some amazing community projects.
 
 {% embed url="https://sanskys.github.io/grafana/" %}
 
-{% embed url="https://dev.xstakepool.com/" %}
-
-{% embed url="https://github.com/dodopontocom/darcano/tree/terraforming" %}
+{% embed url="https://docs.spojapanguild.net/" %}
 
 {% embed url="https://www.youtube.com/watch?v=WI-bLYL5By4" %}

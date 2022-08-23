@@ -1,15 +1,5 @@
 # :books: Updating Configuration Files
 
-Keep your config files fresh by downloading the latest .json files.
+To download the latest Cardano Node configuration files, visit [Environments](https://book.world.dev.cardano.org/environments.html).
 
-```bash
-cd $NODE_HOME
-wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-config.json
-wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-byron-genesis.json
-wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-shelley-genesis.json
-wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-alonzo-genesis.json
-wget -N https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/${NODE_CONFIG}-topology.json
-sed -i ${NODE_CONFIG}-config.json \
-    -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
-	  -e "s/127.0.0.1/0.0.0.0/g" 
-```
+After downloading new configuration files, compare your existing configuration files with the new configuration files carefully. Edit the new configuration files to include any customizations that you need in the configuration files.
