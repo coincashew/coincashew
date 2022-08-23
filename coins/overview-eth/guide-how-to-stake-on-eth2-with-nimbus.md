@@ -352,7 +352,7 @@ sudo systemctl start eth1
 #### 🧬 Install java dependency.
 
 ```
-sudo apt install openjdk-11-jdk
+sudo apt install openjdk-18-jdk
 ```
 
 #### 🌜 Download and unzip Besu.

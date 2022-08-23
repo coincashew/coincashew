@@ -171,7 +171,7 @@ Setup your execution layer client, **Besu.**
 Install dependencies.
 
 ```bash
-sudo apt install openjdk-11-jdk libsodium23 libnss3 -y
+sudo apt install openjdk-18-jdk libsodium23 libnss3 -y
 ```
 
 Build the binaries.
@@ -465,7 +465,8 @@ Use the [Kiln Testnet faucet](https://faucet.kiln.themerge.dev/) to acquire some
 {% hint style="info" %}
 Alternative kiln testnet faucets:&#x20;
 
-* [https://faucet.kiln.ethdevops.io/  ](https://faucet.kiln.ethdevops.io/http://kiln-faucet.pk-net.net/)
+* [https://faucet.kiln.ethdevops.io/
+  ](https://faucet.kiln.ethdevops.io/http://kiln-faucet.pk-net.net/)
 * [http://kiln-faucet.pk-net.net/](https://faucet.kiln.ethdevops.io/http://kiln-faucet.pk-net.net/)
 {% endhint %}
 

@@ -42,14 +42,14 @@ Install git.
 sudo apt-get install git -y
 ```
 
-Install Java 11 for **Ubuntu 20.x**
+Install Java 18 for **Ubuntu 20.x**
 
 ```
 sudo apt update
-sudo apt install openjdk-11-jdk -y
+sudo apt install openjdk-18-jdk -y
 ```
 
-Verify Java 11+ is installed.
+Verify Java 18+ is installed.
 
 ```
 java --version
