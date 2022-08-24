@@ -83,36 +83,43 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 source $HOME/.bashrc
 ```
 
-4. Using removable media, copy the following three files from the `/usr/local/lib` folder on a block-producing or relay node where you installed `libsecp256k1` to the `/usr/local/lib` folder on your air-gapped, offline computer:
+4. On the air-gapped, offline computer, if the `/usr/local/lib/pkgconfig` folder does not exist, then type the following command to create the folder:
 ```bash
-libsecp256k1.a
-libsecp256k1.la
-libsecp256k1.so.0.0.0
+sudo mkdir /usr/local/lib/pkgconfig
 ```
 
-5. To set file permissions and ownership for the `libsecp256k1` library files on the air-gapped, offline computer, type the following commands using a terminal window:
+5. Using removable media, copy the following four files from a block-producing or relay node where you installed `libsecp256k1` to the same location on your air-gapped, offline computer:
+```bash
+/usr/local/lib/libsecp256k1.a
+/usr/local/lib/libsecp256k1.la
+/usr/local/lib/libsecp256k1.so.0.0.0
+/usr/local/lib/pkgconfig/libsecp256k1.pc
+```
+
+6. To set file permissions and ownership for the `libsecp256k1` library files on the air-gapped, offline computer, type the following commands using a terminal window:
 ```bash
 cd /usr/local/lib
 sudo chown root:root libsecp256k1.*
 sudo chmod 644 libsecp256k1.a
 sudo chmod 755 libsecp256k1.la
 sudo chmod 755 libsecp256k1.so.0.0.0
+sudo chown root:root ./pkgconfig/libsecp256k1.pc
+sudo chmod 644 ./pkgconfig/libsecp256k1.pc
 ```
 
-6. To create symbolic links, type:
+7. To create symbolic links, type:
 ```bash
 sudo ln -s libsecp256k1.so.0.0.0 libsecp256k1.so
 sudo ln -s libsecp256k1.so.0.0.0 libsecp256k1.so.0
 ```
 
-7. Type `ls -la` and then confirm that in step 6 you created the following symbolic links:
+8. Type `ls -la` and then confirm that in step 7 you created the following symbolic links:
 ```bash
 lrwxrwxrwx root root libsecp256k1.so -> libsecp256k1.so.0.0.0
 lrwxrwxrwx root root libsecp256k1.so.0 -> libsecp256k1.so.0.0.0
 ```
 
-8. To update available symbolic links for currently shared libraries, type:
+9. To update available symbolic links for currently shared libraries, type:
 ```bash
 sudo ldconfig
 ```
-
