@@ -86,7 +86,7 @@ The fee recipient address receives block proposal priority fees (aka mining tips
 {% endhint %}
 
 {% hint style="danger" %}
-Change 0x000000000..., your fee recipient address to an ETH address you control.
+Change **0x\_CHANGE\_THIS\_TO\_MY\_ETH\_FEE\_RECIPIENT\_ADDRESS**, your fee recipient address to an ETH address you control.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -149,7 +149,7 @@ sudo nano /etc/systemd/system/geth.service
 ```
 --ee-endpoint http://localhost:8551 \ 
 --ee-jwt-secret-file "/secrets/jwtsecret" \
---validators-proposer-default-fee-recipient 0x0000000000000000000000000000000000000000
+--validators-proposer-default-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 
@@ -157,7 +157,7 @@ sudo nano /etc/systemd/system/geth.service
 ```
 --jwt-secret "/secrets/jwtsecret" \
 --execution.urls "http://127.0.0.1:8551" \
---chain.defaultFeeRecipient "0x0000000000000000000000000000000000000000"
+--chain.defaultFeeRecipient "0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS"
 ```
 {% endtab %}
 
@@ -165,13 +165,13 @@ sudo nano /etc/systemd/system/geth.service
 ```
 --web3-url=http://127.0.0.1:8551 \ 
 --jwt-secret="/secrets/jwtsecret" \
---suggested-fee-recipient=0x0000000000000000000000000000000000000000
+--suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
 ```
---http-web3provider=http://localhost:8551 \ 
+--execution-endpoint=http://localhost:8551 \ 
 --jwt-secret=/secrets/jwtsecret \
 --suggested-fee-recipient=0x0000000000000000000000000000000000000000
 ```
@@ -183,7 +183,7 @@ sudo nano /etc/systemd/system/geth.service
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```
---suggested-fee-recipient 0x0000000000000000000000000000000000000000
+--suggested-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 
@@ -191,13 +191,13 @@ sudo nano /etc/systemd/system/geth.service
 Only if running in validator in a separate client
 
 ```
---validators-proposer-default-fee-recipient=0x0000000000000000000000000000000000000000
+--validators-proposer-default-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 ```
---defaultFeeRecipient 0x0000000000000000000000000000000000000000
+--defaultFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 
@@ -207,7 +207,7 @@ Runs in consensus client, not needed.
 
 {% tab title="Prysm" %}
 ```
---suggested-fee-recipient 0x0000000000000000000000000000000000000000
+--suggested-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 {% endtabs %}
@@ -216,27 +216,29 @@ Runs in consensus client, not needed.
 
 {% tabs %}
 {% tab title="Besu" %}
-TOML format
+If your besu client is configured via a **systemd service file (i.e. eth1.service),** add the following changes.
+
+```
+--miner-enabled=true \
+--miner-coinbase="0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS" \
+--engine-jwt-enabled=true \
+--engine-jwt-secret=/secrets/jwtsecret \
+--engine-host-allowlist=*
+```
+
+
+
+Alternatively, if your besu client is configured with **TOML format in a .yaml file,** add the following changes.
 
 ```
 # toml format
 # nano /etc/teku/teku.yaml
 
 miner-enabled=true
-miner-coinbase="0x0000000000000000000000000000000000000000"
+miner-coinbase="0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS"
 engine-jwt-enabled=true 
 engine-jwt-secret="/secrets/jwtsecret" 
 engine-host-allowlist=["*"]
-```
-
-CLI flags
-
-```
---miner-enabled=true \
---miner-coinbase="0x0000000000000000000000000000000000000000" \
---engine-jwt-enabled=true \
---engine-jwt-secret=/secrets/jwtsecret \
---engine-host-allowlist=*
 ```
 {% endtab %}
 
@@ -257,7 +259,7 @@ CLI flags
 
 {% tab title="Nethermind" %}
 ```
---JsonRpc.Host=0.0.0.0 \
+--JsonRpc.Host=127.0.0.1 \
 --JsonRpc.JwtSecretFile=/secrets/jwtsecret
 ```
 {% endtab %}
@@ -290,6 +292,7 @@ We've made it to a post-merge era! Consider the following changes to your startu
 
 * Remove `--eth1-endpoints` , as the execution engine endpoint is now in use. Not removing this may cause extra chatter in logs.
 * Remove any Infura or backup beacon-chain CL references.
+* If your EL and CL are on separate machines, update your firewall. Port 8551 is now used instead of 8545.
 
 ## Optional - Extra #TestingTheMerge
 
