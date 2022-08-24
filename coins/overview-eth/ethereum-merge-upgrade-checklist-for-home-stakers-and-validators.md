@@ -14,7 +14,15 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 
 ## Wen merge?&#x20;
 
-All testnets passed and the Merge is a go! Mainnet merge is estimated to arrive on [Sept 15 2022 with TTD 58750000000000000000000](https://twitter.com/TimBeiko/status/1557747656507633665).
+* All testnets passed and the Merge is a go!&#x20;
+* [Mainnet merge occurs in two sequential upgrades. ](https://blog.ethereum.org/2022/08/12/finalized-no-36/)
+  * _**`[2022/09/06 11:34:47am UTC]`**_ – Bellatrix Mainnet upgrade
+  * _**`[Estimated: 2022/9/15]`**_ – Paris Mainnet Merge transition
+* Paris Mainnet merge transition is estimated to arrive on [Sept 15 2022 with TTD 58750000000000000000000](https://twitter.com/TimBeiko/status/1557747656507633665).
+
+{% hint style="danger" %}
+All stakers _**must**_ upgrade to EL+CL Merge-ready nodes before this time!
+{% endhint %}
 
 ## What's merge?
 
