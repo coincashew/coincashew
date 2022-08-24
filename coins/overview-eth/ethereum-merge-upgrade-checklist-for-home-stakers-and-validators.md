@@ -173,7 +173,7 @@ sudo nano /etc/systemd/system/geth.service
 ```
 --execution-endpoint=http://localhost:8551 \ 
 --jwt-secret=/secrets/jwtsecret \
---suggested-fee-recipient=0x0000000000000000000000000000000000000000
+--suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 {% endtabs %}
