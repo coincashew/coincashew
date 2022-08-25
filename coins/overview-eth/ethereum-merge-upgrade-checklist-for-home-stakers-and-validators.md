@@ -78,7 +78,7 @@ Here are the Merge-Ready versions you require:
 | go-ethereum (geth) | v1.10.23          | [Download](https://github.com/ethereum/go-ethereum/releases/tag/v1.10.23)   |
 | Nethermind         | v1.14.0           | [Download](https://github.com/NethermindEth/nethermind/releases/tag/1.14.0) |
 
-2\) Create a jwtsecret file
+### 2) Create a jwtsecret file
 
 {% hint style="info" %}
 This new jwtsecret file contains a hexadecimal string that is passed to both Execution Layer client and Consensus Layer clients, and is used to ensure authenticated communications between both clients.
