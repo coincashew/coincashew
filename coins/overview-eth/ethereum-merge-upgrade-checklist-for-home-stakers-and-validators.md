@@ -205,7 +205,7 @@ Only if running in validator in a separate client
 
 {% tab title="Lodestar" %}
 ```
---defaultFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
+--suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 
@@ -227,11 +227,9 @@ Runs in consensus client, not needed.
 If your besu client is configured via a **systemd service file (i.e. eth1.service),** add the following changes.
 
 ```
---miner-enabled=true \
---miner-coinbase="0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS" \
---engine-jwt-enabled=true \
 --engine-jwt-secret=/secrets/jwtsecret \
---engine-host-allowlist=*
+--engine-rpc-port=8551 \
+--engine-host-allowlist=127.0.0.1
 ```
 
 
@@ -242,11 +240,9 @@ Alternatively, if your besu client is configured with **TOML format in a .yaml f
 # toml format
 # nano /etc/teku/teku.yaml
 
-miner-enabled=true
-miner-coinbase="0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS"
-engine-jwt-enabled=true 
-engine-jwt-secret="/secrets/jwtsecret" 
-engine-host-allowlist=["*"]
+engine-jwt-secret="/secrets/jwtsecret"
+engine-rpc-port=8551
+engine-host-allowlist=["127.0.0.1"]
 ```
 {% endtab %}
 
