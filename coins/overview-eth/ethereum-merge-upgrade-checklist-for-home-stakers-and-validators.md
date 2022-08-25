@@ -14,7 +14,7 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 
 ## Wen merge?&#x20;
 
-* All testnets passed and the Merge is a go!&#x20;
+* All testnets passed and the [Merge is a go on mainnet](https://blog.ethereum.org/2022/08/24/mainnet-merge-announcement/) officially as of August 24, 2022!&#x20;
 * [Mainnet merge occurs in two sequential upgrades. ](https://blog.ethereum.org/2022/08/12/finalized-no-36/)
   * _**`[2022/09/06 11:34:47am UTC]`**_ – Bellatrix Mainnet upgrade
   * _**`[Estimated: 2022/9/15]`**_ – Paris Mainnet Merge transition
@@ -29,12 +29,6 @@ All stakers _**must**_ upgrade to EL+CL Merge-ready nodes before this time!
 ![Enough said](../../.gitbook/assets/meme-merge.jpg)
 
 ## How to merge?
-
-{% hint style="danger" %}
-Familiarize yourself with these changes.
-
-Best practice is to implement these changes **after** merge-ready EL/CL clients are released.
-{% endhint %}
 
 **Prerequisite:** Before beginning, there is a mandatory requirement to run your own Execution Layer (EL) client (i.e. besu, geth, nethermind, erigon).
 
@@ -63,7 +57,28 @@ sudo apt -y update && sudo apt -y upgrade
 
 Next, follow the instructions for [updating EL](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/updating-your-execution-client.md) or [updating CL](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/updating-your-consensus-client.md), or your node's official documentation.
 
-### 2) Create a jwtsecret file
+Here are the Merge-Ready versions you require:
+
+**Consensus Layer**
+
+| Name       | Version | Link                                                                      |
+| ---------- | ------- | ------------------------------------------------------------------------- |
+| Lighthouse | v3.0.0  | [Download](https://github.com/sigp/lighthouse/releases/tag/v3.0.0)        |
+| Lodestar   | v1.0.0  | [Download](https://github.com/ChainSafe/lodestar/releases/tag/v1.0.0)     |
+| Nimbus     | v22.8.0 | [Download](https://github.com/status-im/nimbus-eth2/releases/tag/v22.8.0) |
+| Prysm      | v3.0.0  | [Download](https://github.com/prysmaticlabs/prysm/releases/tag/v3.0.0)    |
+| Teku       | 22.8.1  | [Download](https://github.com/ConsenSys/teku/releases/tag/22.8.1)         |
+
+**Execution Layer**
+
+| Name               | Version           | Link                                                                        |
+| ------------------ | ----------------- | --------------------------------------------------------------------------- |
+| Besu               | 22.7.1            | [Download](https://github.com/hyperledger/besu/releases/tag/22.7.1)         |
+| Erigon             | v2022.08.02-alpha | [Download](https://github.com/ledgerwatch/erigon/releases/tag/v2022.08.02)  |
+| go-ethereum (geth) | v1.10.23          | [Download](https://github.com/ethereum/go-ethereum/releases/tag/v1.10.23)   |
+| Nethermind         | v1.14.0           | [Download](https://github.com/NethermindEth/nethermind/releases/tag/1.14.0) |
+
+2\) Create a jwtsecret file
 
 {% hint style="info" %}
 This new jwtsecret file contains a hexadecimal string that is passed to both Execution Layer client and Consensus Layer clients, and is used to ensure authenticated communications between both clients.
