@@ -163,40 +163,31 @@ sudo nano /etc/systemd/system/geth.service
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```
---execution-endpoint http://127.0.0.1:8551 \
---execution-jwt /secrets/jwtsecret
+--execution-endpoint http://127.0.0.1:8551 --execution-jwt /secrets/jwtsecret
 ```
 {% endtab %}
 
 {% tab title="Teku" %}
 ```
---ee-endpoint http://localhost:8551 \ 
---ee-jwt-secret-file "/secrets/jwtsecret" \
---validators-proposer-default-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
+--ee-endpoint http://localhost:8551 --ee-jwt-secret-file "/secrets/jwtsecret" --validators-proposer-default-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 ```
---jwt-secret "/secrets/jwtsecret" \
---execution.urls "http://127.0.0.1:8551" \
---chain.defaultFeeRecipient "0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS"
+--jwt-secret "/secrets/jwtsecret" --execution.urls "http://127.0.0.1:8551" --chain.defaultFeeRecipient "0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS"
 ```
 {% endtab %}
 
 {% tab title="Nimbus" %}
 ```
---web3-url=http://127.0.0.1:8551 \ 
---jwt-secret="/secrets/jwtsecret" \
---suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
+--web3-url=http://127.0.0.1:8551 --jwt-secret="/secrets/jwtsecret" --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
 ```
---execution-endpoint=http://localhost:8551 \ 
---jwt-secret=/secrets/jwtsecret \
---suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
+--execution-endpoint=http://localhost:8551 --jwt-secret=/secrets/jwtsecret --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 {% endtabs %}
@@ -242,9 +233,7 @@ Runs in consensus client, not needed.
 If your besu client is configured via a **systemd service file (i.e. eth1.service),** add the following changes.
 
 ```
---engine-jwt-secret=/secrets/jwtsecret \
---engine-rpc-port=8551 \
---engine-host-allowlist=127.0.0.1
+--engine-jwt-secret=/secrets/jwtsecret --engine-rpc-port=8551 --engine-host-allowlist=127.0.0.1
 ```
 
 
@@ -263,23 +252,19 @@ engine-host-allowlist=["127.0.0.1"]
 
 {% tab title="Geth" %}
 ```
---authrpc.jwtsecret=/secrets/jwtsecret \
---authrpc.vhosts="*"
+--authrpc.jwtsecret=/secrets/jwtsecret
 ```
 {% endtab %}
 
 {% tab title="Erigon" %}
 ```
---authrpc.jwtsecret=/secrets/jwtsecret \
---http \
---http.api=engine,net,eth
+--authrpc.jwtsecret=/secrets/jwtsecret
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
 ```
---JsonRpc.Host=127.0.0.1 \
---JsonRpc.JwtSecretFile=/secrets/jwtsecret
+--JsonRpc.Host=127.0.0.1 --JsonRpc.JwtSecretFile=/secrets/jwtsecret
 ```
 {% endtab %}
 {% endtabs %}
