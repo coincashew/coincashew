@@ -238,7 +238,7 @@ If your besu client is configured via a **systemd service file (i.e. eth1.servic
 
 
 
-Alternatively, if your besu client is configured with **TOML format in a .yaml file,** add the following changes.
+Alternatively, if your besu client is configured with **TOML format file (i.e. teku.yaml),** add the following changes.
 
 ```
 # toml format
@@ -248,6 +248,12 @@ engine-jwt-secret="/secrets/jwtsecret"
 engine-rpc-port=8551
 engine-host-allowlist=["127.0.0.1"]
 ```
+
+
+
+{% hint style="info" %}
+Use one configuration or the other but not both!
+{% endhint %}
 {% endtab %}
 
 {% tab title="Geth" %}
