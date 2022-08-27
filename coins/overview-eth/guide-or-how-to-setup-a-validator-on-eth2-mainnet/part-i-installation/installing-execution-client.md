@@ -10,6 +10,14 @@ The subsequent steps assume you have completed the [best practices security guid
 :octagonal\_sign: Do not run your processes as **ROOT** user. :scream:
 {% endhint %}
 
+### Create execution client user account
+
+The execution layer will run under user, **execution**.
+
+```bash
+sudo useradd -r -s /bin/false execution
+```
+
 ### Create a jwtsecret file
 
 A jwtsecret file contains a hexadecimal string that is passed to both Execution Layer client and Consensus Layer clients, and is used to ensure authenticated communications between both clients.
@@ -39,7 +47,11 @@ To strengthen Ethereum's resilience against potential attacks or consensus bugs,
 **Geth** - Go Ethereum is one of the three original implementations (along with C++ and Python) of the Ethereum protocol. It is written in **Go**, fully open source and licensed under the GNU LGPL v3.
 {% endhint %}
 
+
+
 Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
+
+
 
 :dna:**Install from the repository**
 
@@ -50,9 +62,15 @@ sudo apt dist-upgrade -y
 sudo apt-get install ethereum -y
 ```
 
+
+
 :gear: **Setup and configure systemd**
 
+
+
 Run the following to create a **unit file** to define your `eth1.service` configuration.
+
+
 
 Simply copy/paste the following.
 
@@ -64,16 +82,23 @@ Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
-User            = $USER
-ExecStart       = /usr/bin/geth --mainnet --metrics --pprof --authrpc.jwtsecret=/secrets/jwtsecret
+Type            = simple
+User            = execution
 Restart         = on-failure
 RestartSec      = 3
 TimeoutSec      = 300
+ExecStart       = /usr/bin/geth \
+  --mainnet \
+  --metrics \
+  --pprof \
+  --authrpc.jwtsecret=/secrets/jwtsecret
 
 [Install]
 WantedBy    = multi-user.target
 EOF
 ```
+
+
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -85,6 +110,8 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
@@ -92,11 +119,15 @@ sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
+
+
 :chains:**Start geth**
 
 ```
 sudo systemctl start eth1
 ```
+
+
 
 {% hint style="info" %}
 **Geth Tip**: When is my geth node synched?
@@ -112,6 +143,8 @@ sudo systemctl start eth1
 **Hyperledger Besu** is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
 {% endhint %}
 
+
+
 :dna:**Install java dependency**
 
 ```
@@ -119,11 +152,17 @@ sudo apt update
 sudo apt install openjdk-18-jdk -y
 ```
 
+
+
 :last\_quarter\_moon\_with\_face:**Download and unzip Besu**
+
+
 
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
 Replace the **BINARIES\_URL** variable with the latest URL to a **tar.gz** file found in the **Download links** section.
+
+
 
 ```
 BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz"
@@ -135,7 +174,11 @@ rm besu.tar.gz
 mv besu* besu
 ```
 
+
+
 :gear: **Setup and configure systemd**
+
+
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
@@ -149,18 +192,27 @@ Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
-User            = $USER
+Type            = simple
+User            = execution
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
 TimeoutStopSec  = 300
 Environment     = "JAVA_OPTS=-Xmx5g"
-ExecStart       = $HOME/besu/bin/besu --network=mainnet --metrics-enabled=true --sync-mode=X_CHECKPOINT --data-storage-format=BONSAI --data-path="$HOME/.besu" --engine-jwt-secret=/secrets/jwtsecret
+ExecStart       = $HOME/besu/bin/besu \
+  --network=mainnet \
+  --metrics-enabled=true \
+  --sync-mode=X_CHECKPOINT \
+  --data-storage-format=BONSAI \
+  --data-path="$HOME/.besu" \
+  --engine-jwt-secret=/secrets/jwtsecret
 
 [Install]
 WantedBy    = multi-user.target
 EOF
 ```
+
+
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -172,12 +224,16 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
+
+
 
 :chains: **Start besu**
 
@@ -191,12 +247,16 @@ sudo systemctl start eth1
 **Nethermind** is a flagship Ethereum client all about performance and flexibility. Built on **.NET** core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
 {% endhint %}
 
+
+
 :gear: **Install dependencies**
 
 ```
 sudo apt-get update
 sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 ```
+
+
 
 :last\_quarter\_moon\_with\_face:**Download and unzip Nethermind**
 
@@ -213,9 +273,15 @@ unzip -o nethermind*.zip
 rm nethermind*linux*.zip
 ```
 
+
+
 :gear: **Setup and configure systemd**
 
+
+
 Run the following to create a **unit file** to define your `eth1.service` configuration.
+
+
 
 Simply copy/paste the following.
 
@@ -227,7 +293,12 @@ Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
-User            = $USER
+Type            = simple
+User            = execution
+Restart         = on-failure
+RestartSec      = 3
+KillSignal      = SIGINT
+TimeoutStopSec  = 300
 WorkingDirectory= $HOME/nethermind
 ExecStart       = $HOME/nethermind/Nethermind.Runner \
   --baseDbPath $HOME/.nethermind \
@@ -238,15 +309,12 @@ ExecStart       = $HOME/nethermind/Nethermind.Runner \
   --JsonRpc.Host 127.0.0.1 \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret
 
-Restart         = on-failure
-RestartSec      = 3
-KillSignal      = SIGINT
-TimeoutStopSec  = 300
-
 [Install]
 WantedBy    = multi-user.target
 EOF
 ```
+
+
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -258,12 +326,16 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
+
+
 
 {% hint style="info" %}
 On Ubuntu 22.xx+, a [workaround](https://github.com/NethermindEth/nethermind/issues/4039) is required.
@@ -273,11 +345,15 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.
 ```
 {% endhint %}
 
+
+
 :chains: **Start Nethermind**
 
 ```
 sudo systemctl start eth1
 ```
+
+
 
 {% hint style="info" %}
 **Note about Metric Error messages**: You will see these until prometheus pushergateway is setup in section 6. `Error in MetricPusher: System.Net.Http.HttpRequestException: Connection refused`
@@ -299,6 +375,8 @@ Erigon is considered alpha software and requires at least 16GB RAM.
 
 :gear: **Install Go dependencies**
 
+
+
 Find the [latest release of Go from here ](https://go.dev/doc/install)and update the **download URL** for the **tar.gz file** below.
 
 ```
@@ -314,6 +392,8 @@ echo export PATH=$PATH:/usr/local/go/bin>> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
+
+
 Verify Go is properly installed and cleanup files.
 
 ```bash
@@ -321,7 +401,11 @@ go version
 rm go.tar.gz
 ```
 
+
+
 :robot: **Build and install Erigon**
+
+
 
 Install build dependencies.
 
@@ -329,6 +413,8 @@ Install build dependencies.
 sudo apt-get update
 sudo apt install build-essential git
 ```
+
+
 
 Review the latest release at [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)
 
@@ -339,12 +425,16 @@ cd erigon
 make erigon
 ```
 
+
+
 ​ Make data directory and update directory ownership.
 
 ```bash
 sudo mkdir -p /var/lib/erigon
 sudo chown $USER:$USER /var/lib/erigon
 ```
+
+
 
 ​ :gear: **Setup and configure systemd**
 
@@ -362,7 +452,11 @@ Requires        = eth1-erigon.service
 
 [Service]
 Type            = simple
-User            = $USER
+User            = execution
+Restart         = on-failure
+RestartSec      = 3
+KillSignal      = SIGINT
+TimeoutStopSec  = 300
 ExecStart       = $HOME/erigon/build/bin/erigon \
  --datadir /var/lib/erigon \
  --chain mainnet \
@@ -370,19 +464,19 @@ ExecStart       = $HOME/erigon/build/bin/erigon \
  --pprof \
  --prune htc \
  --authrpc.jwtsecret=/secrets/jwtsecret
-Restart         = on-failure
-RestartSec      = 3
-KillSignal      = SIGINT
-TimeoutStopSec  = 300
 
 [Install]
 WantedBy    = multi-user.target
 EOF
 ```
 
+
+
 {% hint style="info" %}
 By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain. For example, if tip block is no. 12'000'000, then only the data between 11'910'000-12'000'000 will be kept).
 {% endhint %}
+
+
 
 Move the unit files to `/etc/systemd/system` and give it permissions.
 
@@ -394,12 +488,16 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
+
+
 
 :chains:**Start Erigon**
 

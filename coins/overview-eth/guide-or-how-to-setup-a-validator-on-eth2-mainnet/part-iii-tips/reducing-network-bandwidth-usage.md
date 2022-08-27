@@ -1,4 +1,4 @@
-# :vertical\_traffic\_light: Reducing Network Bandwidth Usage
+# Reducing Network Bandwidth Usage
 
 {% hint style="info" %}
 Hosting your own execution client can consume hundreds of gigabytes of data per day. Because data plans can be limited or costly, you might desire to slow down data usage but still maintain good connectivity to the network.
@@ -18,14 +18,6 @@ Add the following flag to limit the number of peers on the `ExecStart` line.
 --maxpeers 10
 # Example
 # ExecStart       = /usr/bin/geth --maxpeers 10 --http --ws
-```
-{% endtab %}
-
-{% tab title="OpenEthereum (Parity)" %}
-```bash
---max-peers 10
-# Example
-# ExecStart       = <home directory>/openethereum/openethereum --max-peers 10
 ```
 {% endtab %}
 

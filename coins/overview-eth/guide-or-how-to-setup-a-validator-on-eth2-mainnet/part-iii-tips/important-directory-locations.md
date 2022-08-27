@@ -1,4 +1,4 @@
-# :open\_file\_folder: Important Directory Locations
+# Important Directory Locations
 
 {% hint style="info" %}
 In case you need to locate your validator keys, database directories or other important files.
@@ -83,13 +83,6 @@ $rootDir/validator-db
 ```bash
 # database location
 $HOME/.ethereum
-```
-{% endtab %}
-
-{% tab title="OpenEthereum (Parity)" %}
-```bash
-# database location
-$HOME/.local/share/openethereum
 ```
 {% endtab %}
 

@@ -52,7 +52,9 @@ Review the latest release notes at [https://github.com/ethereum/go-ethereum/rele
 {% tab title="Besu" %}
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
-Update BINARIES\_URL with the latest release's URL.
+
+
+Replace the **BINARIES\_URL** variable with the latest URL to a **tar.gz** file found in the **Download links** section.
 
 ```bash
 BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz"
@@ -76,6 +78,8 @@ Review the latest release at [https://github.com/NethermindEth/nethermind/releas
 
 Automatically download the latest linux release, un-zip and cleanup.
 
+
+
 ```bash
 cd $HOME
 # backup previous nethermind version in case of rollback
@@ -97,7 +101,7 @@ Review the latest release at [https://github.com/ledgerwatch/erigon/releases](ht
 ```bash
 cd $HOME/erigon
 git pull
-make erigon && make rpcdaemon
+make erigon
 ```
 {% endtab %}
 {% endtabs %}
