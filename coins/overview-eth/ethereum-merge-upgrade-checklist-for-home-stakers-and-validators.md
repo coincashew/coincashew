@@ -233,20 +233,18 @@ Runs in consensus client, not needed.
 If your besu client is configured via a **systemd service file (i.e. eth1.service),** add the following changes.
 
 ```
---engine-jwt-secret=/secrets/jwtsecret --engine-rpc-port=8551 --engine-host-allowlist=127.0.0.1
+--engine-jwt-secret=/secrets/jwtsecret
 ```
 
 
 
-Alternatively, if your besu client is configured with **TOML format file (i.e. teku.yaml),** add the following changes.
+Alternatively, if your besu client is configured with **TOML format file (i.e. besu.yaml),** add the following changes.
 
 ```
 # toml format
-# nano /etc/teku/teku.yaml
+# nano /etc/besu/besu.yaml
 
 engine-jwt-secret="/secrets/jwtsecret"
-engine-rpc-port=8551
-engine-host-allowlist=["127.0.0.1"]
 ```
 
 

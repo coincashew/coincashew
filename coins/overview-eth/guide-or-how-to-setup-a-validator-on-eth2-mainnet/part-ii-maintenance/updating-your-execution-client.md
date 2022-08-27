@@ -52,26 +52,22 @@ Review the latest release notes at [https://github.com/ethereum/go-ethereum/rele
 {% tab title="Besu" %}
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
-File can be downloaded from [https://hyperledger.jfrog.io/ui/native/besu-binaries/besu/](https://hyperledger.jfrog.io/ui/native/besu-binaries/besu/)
-
-Manually find the desired file from above repo and modify the `wget` command with the URL.
-
-> Example:
->
-> wget -O besu.tar.gz [https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz](https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz)
+Update BINARIES\_URL with the latest release's URL.
 
 ```bash
+BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz"
+
 cd $HOME
 # backup previous besu version in case of rollback
 mv besu besu_backup_$(date +"%Y%d%m-%H%M%S")
 # download latest besu
-wget -O besu.tar.gz <https URL to latest tax.gz linux file>
+wget -O besu.tar.gz "$BINARIES_URL"
 # untar
 tar -xvf besu.tar.gz
 # cleanup
 rm besu.tar.gz
 # rename besu to standard folder location
-mv besu* besu
+mv besu-* besu
 ```
 {% endtab %}
 
