@@ -10,14 +10,6 @@ The subsequent steps assume you have completed the [best practices security guid
 :octagonal\_sign: Do not run your processes as **ROOT** user. :scream:
 {% endhint %}
 
-### Create execution client user account
-
-The execution layer will run under user, **execution**.
-
-```bash
-sudo useradd -r -s /bin/false execution
-```
-
 ### Create a jwtsecret file
 
 A jwtsecret file contains a hexadecimal string that is passed to both Execution Layer client and Consensus Layer clients, and is used to ensure authenticated communications between both clients.
@@ -83,7 +75,7 @@ After           = network-online.target
 
 [Service]
 Type            = simple
-User            = execution
+User            = $USER
 Restart         = on-failure
 RestartSec      = 3
 TimeoutSec      = 300
@@ -193,7 +185,7 @@ After           = network-online.target
 
 [Service]
 Type            = simple
-User            = execution
+User            = $USER
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
@@ -294,7 +286,7 @@ After           = network-online.target
 
 [Service]
 Type            = simple
-User            = execution
+User            = $USER
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
@@ -452,7 +444,7 @@ Requires        = eth1-erigon.service
 
 [Service]
 Type            = simple
-User            = execution
+User            = $USER
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
