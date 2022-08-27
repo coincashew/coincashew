@@ -10,7 +10,28 @@ The subsequent steps assume you have completed the [best practices security guid
 :octagonal\_sign: Do not run your processes as **ROOT** user. :scream:
 {% endhint %}
 
+### Create a jwtsecret file
+
+A jwtsecret file contains a hexadecimal string that is passed to both Execution Layer client and Consensus Layer clients, and is used to ensure authenticated communications between both clients.
+
+```bash
+#store the jwtsecret file at /secrets
+sudo mkdir -p /secrets
+
+#create the jwtsecret file
+openssl rand -hex 32 | tr -d "\n" | sudo tee /secrets/jwtsecret
+
+#enable read access
+sudo chmod 644 /secrets/jwtsecret
+```
+
+### Pick a execution client
+
 Your choice of either [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org)**,** [**Nethermind**](https://www.nethermind.io)**, or** [**Erigon**](https://github.com/ledgerwatch/erigon)**.**
+
+{% hint style="info" %}
+To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity. Find the latest distribution of execution clients here: [https://clientdiversity.org/](https://clientdiversity.org/)
+{% endhint %}
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -44,7 +65,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = /usr/bin/geth --http --metrics --pprof
+ExecStart       = /usr/bin/geth --mainnet --metrics --pprof --authrpc.jwtsecret=/secrets/jwtsecret
 Restart         = on-failure
 RestartSec      = 3
 TimeoutSec      = 300
@@ -53,14 +74,6 @@ TimeoutSec      = 300
 WantedBy    = multi-user.target
 EOF
 ```
-
-{% hint style="info" %}
-**Nimbus Specific Configuration**: Add the following flag to the ExecStart line.
-
-```bash
---ws
-```
-{% endhint %}
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -110,7 +123,7 @@ sudo apt install openjdk-18-jdk -y
 
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
-Update BINARIES\_URL with the latest url.
+Update the below **BINARIES\_URL** variable with the latest URL to a **tar.gz** file found in the **Download links** section.
 
 ```
 BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz"
@@ -141,19 +154,14 @@ Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
 TimeoutStopSec  = 300
+Environment     = "JAVA_OPTS=-Xmx5g"
 ExecStart       = $HOME/besu/bin/besu \
   --network=mainnet \
-  --rpc-http-host="127.0.0.1" \
-  --rpc-http-cors-origins="*" \
-  --rpc-ws-enabled=true \
-  --rpc-http-enabled=true \
-  --rpc-ws-host="127.0.0.1" \
-  --host-allowlist="*" \
   --metrics-enabled=true \
-  --metrics-host="127.0.0.1" \
   --sync-mode=X_CHECKPOINT \
   --data-storage-format=BONSAI \
-  --data-path="$HOME/.besu"
+  --data-path="$HOME/.besu" \
+  --engine-jwt-secret=/secrets/jwtsecret
 
 [Install]
 WantedBy    = multi-user.target
@@ -226,7 +234,7 @@ After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --baseDbPath $HOME/.nethermind --Metrics.Enabled true --JsonRpc.Enabled true --Sync.DownloadBodiesInFastSync true --Sync.DownloadReceiptsInFastSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984
+ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --baseDbPath $HOME/.nethermind --Metrics.Enabled true --Sync.SnapSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984 --JsonRpc.Host 127.0.0.1 --JsonRpc.JwtSecretFile /secrets/jwtsecret
 WorkingDirectory= $(echo $HOME)/nethermind
 Restart         = on-failure
 RestartSec      = 3
@@ -279,10 +287,20 @@ sudo systemctl start eth1
 **Erigon** - Successor to OpenEthereum, Erigon is an implementation of Ethereum (aka "Ethereum client"), on the efficiency frontier, written in Go.
 {% endhint %}
 
+
+
+{% hint style="info" %}
+Erigon is considered alpha software and requires at least 16GB RAM.
+{% endhint %}
+
+
+
 :gear: **Install Go dependencies**
 
+Find the [latest release of Go from here ](https://go.dev/doc/install)and update the **download URL** for the **tar.gz file** below.
+
 ```
-wget -O go.tar.gz https://golang.org/dl/go1.16.5.linux-amd64.tar.gz
+wget -O go.tar.gz https://go.dev/dl/go1.19.linux-amd64.tar.gz
 ```
 
 ```bash
@@ -316,7 +334,7 @@ Review the latest release at [https://github.com/ledgerwatch/erigon/releases](ht
 cd $HOME
 git clone --recurse-submodules -j8 https://github.com/ledgerwatch/erigon.git
 cd erigon
-make erigon && make rpcdaemon
+make erigon
 ```
 
 ​ Make data directory and update directory ownership.
@@ -343,7 +361,7 @@ Requires        = eth1-erigon.service
 [Service]
 Type            = simple
 User            = $USER
-ExecStart       = $HOME/erigon/build/bin/erigon --datadir /var/lib/erigon --chain mainnet --private.api.addr=localhost:9089 --metrics --pprof --prune htc
+ExecStart       = $HOME/erigon/build/bin/erigon --datadir /var/lib/erigon --chain mainnet --private.api.addr=localhost:9089 --metrics --pprof --prune htc --authrpc.jwtsecret=/secrets/jwtsecret
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
@@ -355,48 +373,24 @@ EOF
 ```
 
 {% hint style="info" %}
-By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain (aka, for if tip block is no. 12'000'000, only the data between 11'910'000-12'000'000 will be kept).
+By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain. For example, if tip block is no. 12'000'000, then only the data between 11'910'000-12'000'000 will be kept).
 {% endhint %}
-
-```bash
-cat > $HOME/eth1-erigon.service << EOF 
-[Unit]
-Description     = erigon rpcdaemon service
-BindsTo	        = eth1.service
-After           = eth1.service
-
-[Service]
-Type            = simple
-User            = $USER
-ExecStartPre	  = /bin/sleep 3
-ExecStart       = $HOME/erigon/build/bin/rpcdaemon --private.api.addr=localhost:9089 --datadir /var/lib/erigon --http.api=eth,erigon,web3,net,debug,trace,txpool,shh --txpool.api.addr=localhost:9089
-Restart         = on-failure
-RestartSec      = 3
-KillSignal      = SIGINT
-TimeoutStopSec  = 300
-
-[Install]
-WantedBy    = eth1.service
-EOF
-```
 
 Move the unit files to `/etc/systemd/system` and give it permissions.
 
 ```bash
 sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-sudo mv $HOME/eth1-erigon.service /etc/systemd/system/eth1-erigon.service
 ```
 
 ```bash
 sudo chmod 644 /etc/systemd/system/eth1.service
-sudo chmod 644 /etc/systemd/system/eth1-erigon.service
 ```
 
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable eth1 eth1-erigon
+sudo systemctl enable eth1
 ```
 
 :chains:**Start Erigon**

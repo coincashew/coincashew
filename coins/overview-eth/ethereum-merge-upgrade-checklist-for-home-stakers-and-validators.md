@@ -181,7 +181,7 @@ sudo nano /etc/systemd/system/geth.service
 
 {% tab title="Nimbus" %}
 ```
---web3-url=http://127.0.0.1:8551 --jwt-secret="/secrets/jwtsecret" --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
+--web3-url=ws://127.0.0.1:8551 --jwt-secret="/secrets/jwtsecret" --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 

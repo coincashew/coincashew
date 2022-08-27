@@ -8,8 +8,6 @@ Your choice of [Lighthouse](https://github.com/sigp/lighthouse), [Nimbus](https:
 [Lighthouse](https://github.com/sigp/lighthouse) is an Eth client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io), is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
 {% endhint %}
 
-
-
 :gear: **4.1. Install rust dependency**
 
 ```bash
@@ -31,8 +29,6 @@ Install rust dependencies.
 sudo apt-get update
 sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev libclang-dev clang
 ```
-
-
 
 :bulb: **4.2. Build Lighthouse from source**
 
@@ -65,8 +61,6 @@ Verify lighthouse was installed properly by checking the version number.
 lighthouse --version
 ```
 
-
-
 :tophat: **4.3. Import validator key**
 
 {% hint style="info" %}
@@ -87,13 +81,9 @@ Verify the accounts were imported successfully.
 lighthouse account_manager validator list --network mainnet
 ```
 
-
-
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
-
-
 
 :fire: **4.4. Configure port forwarding and/or firewall**
 
@@ -105,8 +95,6 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 {% hint style="info" %}
 :sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
-
-
 
 :chains: **4.5. Start the beacon chain**
 
@@ -140,8 +128,6 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-
-
 {% hint style="info" %}
 :fire: **Lighthouse Pro Tip**: On the **ExecStart** line, adding the `--eth1-endpoints` flag allows for redundant execution clients. Separate with comma. Make sure the endpoint does not end with a trailing slash or`/` Remove it.
 
@@ -152,8 +138,6 @@ EOF
 
 :money\_with\_wings: Find free ethereum fallback nodes at [https://ethereumnodes.com/](https://ethereumnodes.com)
 {% endhint %}
-
-
 
 Move the unit file to `/etc/systemd/system`
 
@@ -175,8 +159,6 @@ sudo systemctl enable beacon-chain
 sudo systemctl start beacon-chain
 ```
 
-
-
 {% hint style="info" %}
 **Troubleshooting common issues**:
 
@@ -189,13 +171,9 @@ _CRIT Invalid eth1 chain id. Please switch to correct chain id._
 * Allow your execution client to fully sync to mainnet.
 {% endhint %}
 
-
-
 {% hint style="success" %}
 Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
-
-
 
 :tools: **Some helpful systemd commands**
 
@@ -240,8 +218,6 @@ sudo systemctl reload-or-restart beacon-chain
 ```
 sudo systemctl stop beacon-chain
 ```
-
-
 
 :dna: **4.6. Start the validator**
 
@@ -310,8 +286,6 @@ sudo systemctl start validator
 Nice work. Your validator is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
-
-
 **🛠 Some helpful systemd commands**
 
 **🗄 Viewing and filtering logs**
@@ -360,16 +334,12 @@ sudo systemctl stop validator
 [Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
 {% endhint %}
 
-
-
 {% hint style="info" %}
 :bulb: **Noteworthy**: binaries for all the usual platforms as well as dockers for x86 and arm can be found below:
 
 [https://github.com/status-im/nimbus-eth2/releases/](https://github.com/status-im/nimbus-eth2/releases/)\
 [https://hub.docker.com/r/statusim/nimbus-eth2](https://hub.docker.com/r/statusim/nimbus-eth2)
 {% endhint %}
-
-
 
 :gear: **4.1. Build Nimbus from source**
 
@@ -407,8 +377,6 @@ Copy the binary file to `/usr/bin`
 sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/bin
 ```
 
-
-
 :tophat: **4.2. Import validator key**
 
 Create a directory structure to store nimbus data.
@@ -441,23 +409,11 @@ ll /var/lib/nimbus/validators
 
 You should see a folder named for each of your validator's pubkey.
 
-{% hint style="info" %}
-When you import your keys into Nimbus, your validator signing key(s) are stored in the `/var/lib/nimbus` folder, under `secrets` and `validators.`
-
-The `secrets` folder contains the common secret that gives you access to all your validator keys.
-
-The `validators` folder contains your signing keystore(s) (encrypted keys). Keystores are used by validators as a method for exchanging keys.
-
-For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/keys/).
-{% endhint %}
-
 
 
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
-
-
 
 :fire: **4.3. Configure port forwarding and/or firewall**
 
@@ -470,26 +426,13 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 :sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
-
-
 :snowboarder: **4.4. Start the beacon chain and validator**
 
 {% hint style="info" %}
 Nimbus combines both the beacon chain and validator into one process.
 {% endhint %}
 
-:rocket: **Setup Graffiti**
 
-***
-
-Setup your `graffiti`, a custom message included in blocks your validator successfully proposes. Add optional graffiti between the single quotes.
-
-```bash
-MY_GRAFFITI=''
-# Examples
-# MY_GRAFFITI='poapAAAAACGatUA1bLuDnL4FMD13BfoD'
-# MY_GRAFFITI='eth rulez!'
-```
 
 **🍰 Benefits of using systemd for your beacon chain and validator**
 
@@ -497,12 +440,24 @@ MY_GRAFFITI=''
 2. Automatically restart crashed beacon chain processes.
 3. Maximize your beacon chain up-time and performance.
 
-**🛠 Setup Instructions**
 
-Run the following to create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
+
+**🛠 Setup systemd service**
+
+Create a **systemd unit file** to define your`beacon-chain.service` configuration.&#x20;
+
+```
+sudo nano /etc/systemd/system/beacon-chain.service
+```
+
+
+
+Paste the following configuration into the file.
+
+* Replace**`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
+* Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
 
 ```bash
-cat > $HOME/beacon-chain.service << EOF 
 # The eth2 beacon chain service (part of systemd)
 # file: /etc/systemd/system/beacon-chain.service 
 
@@ -513,31 +468,36 @@ After           = network-online.target
 
 [Service]
 Type            = simple
-User            = $(whoami)
-WorkingDirectory= /var/lib/nimbus
-ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node --network=mainnet --graffiti="${MY_GRAFFITI}" --data-dir=/var/lib/nimbus --web3-url=ws://127.0.0.1:8546 --metrics --metrics-port=8008 --rpc --rpc-port=9091 --validators-dir=/var/lib/nimbus/validators --secrets-dir=/var/lib/nimbus/secrets --log-file=/var/lib/nimbus/beacon.log'
+User            = $USER
+ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node \
+ --network=mainnet \
+ --graffiti="<MY_GRAFFITI>" \
+ --data-dir=/var/lib/nimbus \
+ --web3-url=ws://127.0.0.1:8551 \
+ --metrics \
+ --metrics-port=8001 \
+ --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS \
+ --jwt-secret="/secrets/jwtsecret"
+ 
 Restart         = on-failure
 
 [Install]
 WantedBy    = multi-user.target
-EOF
 ```
 
-{% hint style="warning" %}
-Nimbus only supports websocket connections ("ws://" and "wss://") for the ETH1 node. Geth, OpenEthereum and Infura ETH1 nodes are verified compatible.
-{% endhint %}
 
-Move the unit file to `/etc/systemd/system`
 
-```bash
-sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
-```
+To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
+
+
 
 Update file permissions.
 
 ```bash
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
 ```
+
+
 
 Run the following to enable auto-start at boot time and then start your beacon node service.
 
@@ -601,8 +561,6 @@ sudo systemctl stop beacon-chain
 [PegaSys Teku](https://consensys.net/knowledge-base/ethereum-2/teku/) (formerly known as Artemis) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its maturity & ubiquity.
 {% endhint %}
 
-
-
 :gear: **4.1 Build Teku from source**
 
 Install git.
@@ -636,13 +594,9 @@ cd teku
 ./gradlew distTar installDist
 ```
 
-
-
 {% hint style="info" %}
 This build process may take a few minutes.
 {% endhint %}
-
-
 
 Verify Teku was installed properly by displaying the version.
 
@@ -657,8 +611,6 @@ Copy the teku binary file to `/usr/bin/teku`
 sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 ```
 
-
-
 :fire: **4.2. Configure port forwarding and/or firewall**
 
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
@@ -669,8 +621,6 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 {% hint style="info" %}
 :sparkles: **Port Forwarding Tip**: You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
-
-
 
 :snowboarder: **4.3. Configure the beacon chain and validator**
 
@@ -814,8 +764,6 @@ Move the config file to `/etc/teku`
 sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
 ```
 
-
-
 :tophat: **4.4 Import validator key**
 
 {% hint style="info" %}
@@ -835,8 +783,6 @@ Verify that your validator's keystore and validator's passwords are present by c
 ```bash
 ll /var/lib/teku/validator_keys
 ```
-
-
 
 :checkered\_flag: **4.5. Start the beacon chain and validator**
 
@@ -947,16 +893,12 @@ sudo systemctl stop beacon-chain
 [Prysm](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
 {% endhint %}
 
-
-
 :gear: **4.1. Install Prysm**
 
 ```bash
 mkdir ~/prysm && cd ~/prysm 
 curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh 
 ```
-
-
 
 :fire: **4.2. Configure port forwarding and/or firewall**
 
@@ -968,8 +910,6 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 {% hint style="info" %}
 :sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
-
-
 
 :tophat: **4.3. Import validator key**
 
@@ -1001,8 +941,6 @@ Confirm your validator's pubkeys are listed.
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
-
-
 
 :snowboarder: **4.4. Start the beacon chain**
 
@@ -1114,8 +1052,6 @@ sudo systemctl reload-or-restart beacon-chain
 ```
 sudo systemctl stop beacon-chain
 ```
-
-
 
 :dna: **4.5. Start the validator**
 
@@ -1251,8 +1187,6 @@ journalctl --unit=validator --since=today
 [Lodestar ](https://lodestar.chainsafe.io)**is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS\_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
-
-
 :gear: **4.1 Build Lodestar from source**
 
 Install curl and git.
@@ -1312,8 +1246,6 @@ Verify Lodestar was installed properly by displaying the help menu.
 ./lodestar --help
 ```
 
-
-
 :fire: **4.2. Configure port forwarding and/or firewall**
 
 Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
@@ -1324,8 +1256,6 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 {% hint style="info" %}
 :sparkles: **Port Forwarding Tip**: You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
-
-
 
 :tophat: **4.3. Import validator key**
 
@@ -1346,8 +1276,6 @@ Confirm your keys were imported properly.
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
-
-
 
 :snowboarder: **4.4. Start the beacon chain and validator**
 
@@ -1449,8 +1377,6 @@ sudo systemctl reload-or-restart beacon-chain
 ```
 sudo systemctl stop beacon-chain
 ```
-
-
 
 :dna: **4.5. Start the validator**
 
