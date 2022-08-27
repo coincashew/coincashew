@@ -25,7 +25,7 @@ openssl rand -hex 32 | tr -d "\n" | sudo tee /secrets/jwtsecret
 sudo chmod 644 /secrets/jwtsecret
 ```
 
-### Pick a execution client
+### Pick an execution client
 
 Your choice of either [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org)**,** [**Nethermind**](https://www.nethermind.io)**, or** [**Erigon**](https://github.com/ledgerwatch/erigon)**.**
 
@@ -64,7 +64,7 @@ Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
-User            = $(whoami)
+User            = $USER
 ExecStart       = /usr/bin/geth --mainnet --metrics --pprof --authrpc.jwtsecret=/secrets/jwtsecret
 Restart         = on-failure
 RestartSec      = 3
@@ -123,7 +123,7 @@ sudo apt install openjdk-18-jdk -y
 
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
-Update the below **BINARIES\_URL** variable with the latest URL to a **tar.gz** file found in the **Download links** section.
+Replace the **BINARIES\_URL** variable with the latest URL to a **tar.gz** file found in the **Download links** section.
 
 ```
 BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz"
@@ -155,13 +155,7 @@ RestartSec      = 3
 KillSignal      = SIGINT
 TimeoutStopSec  = 300
 Environment     = "JAVA_OPTS=-Xmx5g"
-ExecStart       = $HOME/besu/bin/besu \
-  --network=mainnet \
-  --metrics-enabled=true \
-  --sync-mode=X_CHECKPOINT \
-  --data-storage-format=BONSAI \
-  --data-path="$HOME/.besu" \
-  --engine-jwt-secret=/secrets/jwtsecret
+ExecStart       = $HOME/besu/bin/besu --network=mainnet --metrics-enabled=true --sync-mode=X_CHECKPOINT --data-storage-format=BONSAI --data-path="$HOME/.besu" --engine-jwt-secret=/secrets/jwtsecret
 
 [Install]
 WantedBy    = multi-user.target
@@ -233,9 +227,17 @@ Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
-User            = $(whoami)
-ExecStart       = $(echo $HOME)/nethermind/Nethermind.Runner --baseDbPath $HOME/.nethermind --Metrics.Enabled true --Sync.SnapSync true --Sync.AncientBodiesBarrier 11052984 --Sync.AncientReceiptsBarrier 11052984 --JsonRpc.Host 127.0.0.1 --JsonRpc.JwtSecretFile /secrets/jwtsecret
-WorkingDirectory= $(echo $HOME)/nethermind
+User            = $USER
+WorkingDirectory= $HOME/nethermind
+ExecStart       = $HOME/nethermind/Nethermind.Runner \
+  --baseDbPath $HOME/.nethermind \
+  --Metrics.Enabled true \
+  --Sync.SnapSync true \
+  --Sync.AncientBodiesBarrier 11052984 \
+  --Sync.AncientReceiptsBarrier 11052984 \
+  --JsonRpc.Host 127.0.0.1 \
+  --JsonRpc.JwtSecretFile /secrets/jwtsecret
+
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT
@@ -361,7 +363,13 @@ Requires        = eth1-erigon.service
 [Service]
 Type            = simple
 User            = $USER
-ExecStart       = $HOME/erigon/build/bin/erigon --datadir /var/lib/erigon --chain mainnet --private.api.addr=localhost:9089 --metrics --pprof --prune htc --authrpc.jwtsecret=/secrets/jwtsecret
+ExecStart       = $HOME/erigon/build/bin/erigon \
+ --datadir /var/lib/erigon \
+ --chain mainnet \
+ --metrics \
+ --pprof \
+ --prune htc \
+ --authrpc.jwtsecret=/secrets/jwtsecret
 Restart         = on-failure
 RestartSec      = 3
 KillSignal      = SIGINT

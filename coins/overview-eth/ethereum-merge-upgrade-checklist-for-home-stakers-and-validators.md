@@ -175,7 +175,7 @@ sudo nano /etc/systemd/system/geth.service
 
 {% tab title="Lodestar" %}
 ```
---jwt-secret "/secrets/jwtsecret" --execution.urls "http://127.0.0.1:8551" --chain.defaultFeeRecipient "0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS"
+--jwt-secret /secrets/jwtsecret --execution.urls http://127.0.0.1:8551 --suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
 {% endtab %}
 

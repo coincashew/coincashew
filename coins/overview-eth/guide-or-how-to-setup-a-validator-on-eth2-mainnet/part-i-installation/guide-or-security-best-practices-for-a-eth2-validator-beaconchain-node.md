@@ -72,18 +72,10 @@ The basic rules of hardening SSH are:
 
 Create a new SSH key pair on your local machine. Run this on your local machine. You will be asked to type a file name in which to save the key. This will be your **keyname**.
 
-Your choice of [ED25519 or RSA](https://goteleport.com/blog/comparing-ssh-keys/) public key algorithm.
-
 {% tabs %}
 {% tab title="ED25519" %}
 ```
 ssh-keygen -t ed25519
-```
-{% endtab %}
-
-{% tab title="RSA" %}
-```bash
-ssh-keygen -t rsa -b 4096
 ```
 {% endtab %}
 {% endtabs %}
@@ -625,26 +617,6 @@ sudo chown validator:validator -R $HOME/.eth2validators/validators-password.txt
 | Networking             | Assign static internal IPs to both your validator node and daily laptop/PC. This is useful in conjunction with ufw and Fail2ban's whitelisting feature. Typically, this can be configured in your router's settings. Consult your router's manual for instructions.         |
 | Power Outage           | In case of power outage, you want your validator machine to restart as soon as power is available. In the BIOS settings, change the **Restore on AC / Power Loss** or **After Power Loss** setting to always on. Better yet, install an Uninterruptable Power Supply (UPS). |
 | Clear the bash history | <p>When pressing the up-arrow key, you can see prior commands which may contain sensitive data. To clear this, run the following:</p><p><code>shred -u ~/.bash_history &#x26;&#x26; touch ~/.bash_history</code></p>                                                        |
-
-{% hint style="info" %}
-Be sure to review the [Checklist | How to confirm a healthy functional ETH2 validator.](../checklist-or-how-to-confirm-a-healthy-functional-eth2-validator.md)
-{% endhint %}
-
-## :robot: Start staking by building a validator
-
-### Visit here for our [Mainnet guide](../)
-
-{% hint style="success" %}
-Congrats on completing the guide. :sparkles:
-
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
-
-It really energizes us to keep creating the best crypto guides.
-
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. :pray:
-
-Any feedback and all pull requests much appreciated. :first\_quarter\_moon\_with\_face:
-{% endhint %}
 
 ## :rocket: References
 

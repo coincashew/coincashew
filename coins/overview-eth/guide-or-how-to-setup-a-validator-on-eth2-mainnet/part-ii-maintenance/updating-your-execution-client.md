@@ -129,19 +129,3 @@ sudo systemctl status eth1 beacon-chain
 [https://beaconcha.in/](https://beaconcha.in) or [https://beaconscan.com/](https://beaconscan.com)
 
 Enter your validator's pubkey to view its status.
-
-## :robot: Start staking by building a validator <a href="#start-staking-by-building-a-validator" id="start-staking-by-building-a-validator"></a>
-
-### Visit here for our [Mainnet guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
-
-{% hint style="success" %}
-Congrats on completing the guide. ✨
-
-Did you find our guide useful? Send us a signal with a tip and we'll keep updating it.
-
-It really energizes us to keep creating the best crypto guides.
-
-Use [cointr.ee to find our donation](https://cointr.ee/coincashew) addresses. 🙏
-
-Any feedback and all pull requests much appreciated. 🌛
-{% endhint %}

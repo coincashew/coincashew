@@ -18,7 +18,7 @@ The following steps align with our [mainnet guide](../). You may need to adjust 
 
 ### :robot: Pre-requisites
 
-* Works with **geth + erigon (automatic)** currently
+* Works with **geth** currently. **Erigon** and **Besu** prune automatically.
 * Ensure at least 50+ GB of free disk space is available otherwise database corruption may occur.
 
 ### :construction: How to prune execution client
@@ -48,17 +48,6 @@ sudo service eth1 stop
 {% tab title="Geth" %}
 ```bash
 /usr/bin/geth --datadir $HOME/.ethereum snapshot prune-state
-```
-{% endtab %}
-
-{% tab title="Erigon" %}
-```bash
-# Automatic if your systemd service is setup with --prune
-
-# Example
-# $HOME/erigon/build/bin/erigon --private.api.addr=localhost:9090 --pprof --metrics --prune htc
-
-# Note: --prune deletes data older than 90K blocks from the tip of the chain (aka, for if tip block is no. 12'000'000, only the data between 11'910'000-12'000'000 will be kept).
 ```
 {% endtab %}
 {% endtabs %}
