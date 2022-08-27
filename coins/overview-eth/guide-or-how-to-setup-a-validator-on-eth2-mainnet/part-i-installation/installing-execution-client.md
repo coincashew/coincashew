@@ -141,7 +141,7 @@ sudo systemctl start eth1
 
 ```
 sudo apt update
-sudo apt install openjdk-18-jdk -y
+sudo apt install openjdk-17-jdk -y
 ```
 
 
@@ -440,7 +440,6 @@ cat > $HOME/eth1.service << EOF
 Description     = erigon eth1 service
 Wants           = network-online.target
 After           = network-online.target 
-Requires        = eth1-erigon.service
 
 [Service]
 Type            = simple

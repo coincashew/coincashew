@@ -34,6 +34,8 @@ Review release notes and check for breaking changes/features.
 
 [https://github.com/sigp/lighthouse/releases](https://github.com/sigp/lighthouse/releases)
 
+
+
 Pull the latest source and build it.
 
 ```bash
@@ -41,6 +43,8 @@ cd $HOME/git/lighthouse
 git fetch --all && git checkout stable && git pull
 make
 ```
+
+
 
 {% hint style="info" %}
 In case of compilation errors, update Rust with the following sequence.
@@ -52,11 +56,15 @@ make
 ```
 {% endhint %}
 
+
+
 Verify the build completed by checking the new version number.
 
 ```bash
 lighthouse --version
 ```
+
+
 
 Restart beacon chain and validator as per normal operating procedures.
 
@@ -70,13 +78,17 @@ Review release notes and check for breaking changes/features.
 
 [https://github.com/status-im/nimbus-eth2/releases](https://github.com/status-im/nimbus-eth2/releases)
 
+
+
 Pull the latest source and build it.
 
 ```bash
 cd $HOME/git/nimbus-eth2
-git pull && make update
-make nimbus_beacon_node
+git pull && make -j$(nproc) update
+make -j$(nproc) nimbus_beacon_node
 ```
+
+
 
 Verify the build completed by checking the new version number.
 
@@ -84,6 +96,8 @@ Verify the build completed by checking the new version number.
 cd $HOME/git/nimbus-eth2/build
 ./nimbus_beacon_node --version
 ```
+
+
 
 Stop, copy new binary, and restart beacon chain and validator as per normal operating procedures.
 
@@ -100,6 +114,8 @@ Review release notes and check for breaking changes/features.
 
 [https://github.com/ConsenSys/teku/releases](https://github.com/ConsenSys/teku/releases)
 
+
+
 Pull the latest source and build it.
 
 ```bash
@@ -108,12 +124,16 @@ git pull
 ./gradlew distTar installDist
 ```
 
+
+
 Verify the build completed by checking the new version number.
 
 ```bash
 cd $HOME/git/teku/build/install/teku/bin
 ./teku --version
 ```
+
+
 
 Restart beacon chain and validator as per normal operating procedures.
 
@@ -141,6 +161,8 @@ Review release notes and check for breaking changes/features.
 
 [https://github.com/ChainSafe/lodestar/releases](https://github.com/ChainSafe/lodestar/releases)
 
+
+
 Pull the latest source and build it.
 
 ```bash
@@ -150,11 +172,15 @@ yarn install
 yarn run build
 ```
 
+
+
 Verify the build completed by checking the new version number.
 
 ```bash
-yarn run cli --version
+./lodestar --version
 ```
+
+
 
 Restart beacon chain and validator as per normal operating procedures.
 

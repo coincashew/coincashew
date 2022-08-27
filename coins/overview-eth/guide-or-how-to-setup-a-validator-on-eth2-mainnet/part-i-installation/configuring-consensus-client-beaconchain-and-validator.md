@@ -339,7 +339,7 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
-make nimbus_beacon_node
+make -j$(nproc) nimbus_beacon_node
 ```
 
 
@@ -350,11 +350,11 @@ The build process may take a few minutes.
 
 
 
-Verify Nimbus was installed properly by displaying the help.
+Verify Nimbus was installed properly by displaying the version.
 
 ```bash
 cd $HOME/git/nimbus-eth2/build
-./nimbus_beacon_node --help
+./nimbus_beacon_node --version
 ```
 
 
@@ -455,11 +455,11 @@ Paste the following configuration into the file.
 
 
 ```bash
-# The eth2 beacon chain service (part of systemd)
+# The eth beacon chain service (part of systemd)
 # file: /etc/systemd/system/beacon-chain.service 
 
 [Unit]
-Description     = eth2 beacon chain service
+Description     = eth consensus layer beacon chain service
 Wants           = network-online.target
 After           = network-online.target 
 
@@ -475,7 +475,7 @@ ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node \
  --metrics \
  --metrics-port=8001 \
  --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS \
- --jwt-secret="/secrets/jwtsecret"
+ --jwt-secret="/secrets/jwtsecret"'
  
 [Install]
 WantedBy    = multi-user.target
@@ -538,18 +538,16 @@ sudo apt-get install git -y
 
 
 
-Install Java 18.
-
-For **Ubuntu 20.x**, use the following
+Install Java 17 LTS.
 
 ```
 sudo apt update
-sudo apt install openjdk-18-jdk -y
+sudo apt install openjdk-17-jdk -y
 ```
 
 
 
-Verify Java 18+ is installed.
+Verify Java 17+ is installed.
 
 ```bash
 java --version
@@ -566,6 +564,8 @@ git clone https://github.com/ConsenSys/teku.git
 cd teku
 ./gradlew distTar installDist
 ```
+
+
 
 {% hint style="info" %}
 This build process may take a few minutes.
@@ -623,10 +623,17 @@ sudo chown $USER:$USER /var/lib/teku
 
 
 
-Copy your `validator_files` directory to the data directory we created above and remove the extra deposit\_data file.
+Copy your `validator_files` directory to the data directory we created above.
 
 ```bash
 cp -r $HOME/staking-deposit-cli/validator_keys /var/lib/teku
+```
+
+
+
+Remove the extra deposit\_data file. Answer 'y' to remove write-protected regular file.
+
+```
 rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
@@ -640,10 +647,12 @@ rm /var/lib/teku/validator_keys/deposit_data*
 
 Storing your **keystore password** in a text file is required so that Teku can decrypt and load your validators automatically.
 
-Update `my_keystore_password_goes_here` with your **keystore password** between the single quotation marks and then run the command to save it to validators-password.txt
+
+
+Replace `<my_keystore_password_goes_here>` with your **keystore password** between the single quotation marks and then run the command to save it to validators-password.txt
 
 ```bash
-echo 'my_keystore_password_goes_here' > $HOME/validators-password.txt
+echo '<my_keystore_password_goes_here>' > $HOME/validators-password.txt
 ```
 
 
@@ -717,7 +726,7 @@ ee-endpoint: http://localhost:8551
 ee-jwt-secret-file: "/secrets/jwtsecret" 
 
 # fee recipient
-validators-proposer-default-fee-recipient: 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
+validators-proposer-default-fee-recipient: "<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>"
 
 # metrics
 metrics-enabled: true
@@ -730,7 +739,7 @@ data-storage-mode: "prune"
 
 
 
-* Replace**`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
+* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 * Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
 * Replace **`<INFURA_PROJECT_ENDPOINT>`** with your own endpoint. Example endpoint looks like: https://1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-mainnet.infura.io
 
@@ -752,11 +761,15 @@ Create a corresponding password file for every one of your validators.
 for f in /var/lib/teku/validator_keys/keystore*.json; do cp /etc/teku/validators-password.txt /var/lib/teku/validator_keys/$(basename $f .json).txt; done
 ```
 
+
+
 Verify that your validator's keystore and validator's passwords are present by checking the following directory.
 
 ```bash
 ll /var/lib/teku/validator_keys
 ```
+
+
 
 :checkered\_flag: **4.5. Start the beacon chain and validator**
 
@@ -772,11 +785,11 @@ Run the following to create a **unit file** to define your`beacon-chain.service`
 
 ```bash
 cat > $HOME/beacon-chain.service << EOF
-# The eth2 beacon chain service (part of systemd)
+# The eth beacon chain service (part of systemd)
 # file: /etc/systemd/system/beacon-chain.service 
 
 [Unit]
-Description     = eth2 beacon chain service
+Description     = eth consensus layer beacon chain service
 Wants           = network-online.target
 After           = network-online.target 
 
@@ -859,17 +872,24 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 :tophat: **4.3. Import validator key**
 
-Accept terms of use, accept default wallet location, enter a new **prysm-only password** to encrypt your local prysm wallet files and enter the **keystore password** for your imported accounts.
-
-
-
-{% hint style="info" %}
-If you wish, you can use the same password for the **keystore** and **prysm-only**.
-{% endhint %}
+****
 
 ```bash
 $HOME/prysm/prysm.sh validator accounts import --mainnet --keys-dir=$HOME/staking-deposit-cli/validator_keys
 ```
+
+
+
+* Type "accept" to accept terms of use
+* Press enter to accept default wallet location
+* Enter a new **prysm-only password** to encrypt your local prysm wallet files&#x20;
+* and enter the **keystore password** for your imported accounts.
+
+
+
+{% hint style="info" %}
+For simplicity, use the same password for the **keystore** and **prysm-only password**.
+{% endhint %}
 
 
 
@@ -915,11 +935,11 @@ sudo nano /etc/systemd/system/beacon-chain.service
 Paste the following configuration into the file.
 
 ```bash
-# The eth2 beacon chain service (part of systemd)
+# The eth beacon chain service (part of systemd)
 # file: /etc/systemd/system/beacon-chain.service 
 
 [Unit]
-Description     = eth2 beacon chain service
+Description     = eth consensus layer beacon chain service
 Wants           = network-online.target
 After           = network-online.target 
 
@@ -983,12 +1003,28 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 :dna: **4.5. Start the validator**
 
-Store your **prysm-only password** in a file and make it read-only. This is required so that Prysm can decrypt and load your validators.
+Store your **prysm-only password** in a file and make it read-only.&#x20;
+
+This is required so that Prysm can decrypt and load your validators.
+
+Replace **`<my_password_goes_here>`** with your **prysm-only** password.
+
+
 
 ```bash
-echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
+echo '<my_password_goes_here>' > $HOME/.eth2validators/validators-password.txt
 sudo chmod 600 $HOME/.eth2validators/validators-password.txt
 ```
+
+
+
+Verify your password is correct.
+
+```
+cat $HOME/.eth2validators/validators-password.txt
+```
+
+
 
 Clear the bash history in order to remove traces of your **prysm-only password.**
 
@@ -1013,11 +1049,11 @@ sudo nano /etc/systemd/system/validator.service
 Paste the following configuration into the file.
 
 ```bash
-# The eth2 validator service (part of systemd)
+# The eth validator service (part of systemd)
 # file: /etc/systemd/system/validator.service 
 
 [Unit]
-Description     = eth2 validator service
+Description     = eth validator service
 Wants           = network-online.target beacon-chain.service
 After           = network-online.target 
 
@@ -1057,14 +1093,6 @@ sudo sed -i /etc/systemd/system/validator.service -e "s:<USER>:${USER}:g"
 
 
 
-Update the configuration file with your current user's home path.
-
-```
- sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
-```
-
-
-
 Update file permissions.
 
 ```bash
@@ -1087,13 +1115,19 @@ sudo systemctl start validator
 [Lodestar ](https://lodestar.chainsafe.io)**is a Typescript implementation** of the official [Ethereum 2.0 specification](https://github.com/ethereum/eth2.0-specs) by the [ChainSafe.io](https://lodestar.chainsafe.io) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS\_eiLUajr3gi9g). Finally, the Lodestar team is leading the Eth2 space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
+
+
 :gear: **4.1 Build Lodestar from source**
+
+
 
 Install curl and git.
 
 ```bash
 sudo apt-get install gcc g++ make git curl -y
 ```
+
+
 
 Install yarn.
 
@@ -1104,6 +1138,8 @@ sudo apt update
 sudo apt install yarn -y
 ```
 
+
+
 Confirm yarn is installed properly.
 
 ```bash
@@ -1111,19 +1147,16 @@ yarn --version
 # Should output version >= 1.22.4
 ```
 
+
+
 Install nodejs.
 
 ```
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-Confirm nodejs is installed properly.
 
-```bash
-nodejs -v
-# Should output version >= v12.18.3
-```
 
 Install and build Lodestar.
 
@@ -1136,15 +1169,31 @@ yarn install --ignore-optional
 yarn run build
 ```
 
+
+
 {% hint style="info" %}
 This build process may take a few minutes.
 {% endhint %}
 
+
+
 Verify Lodestar was installed properly by displaying the help menu.
 
 ```
-./lodestar --help
+./lodestar --version
 ```
+
+
+
+Setup a directory structure for Lodestar.&#x20;
+
+```
+sudo mkdir -p /var/lib/lodestar 
+sudo mkdir -p /etc/lodestar 
+sudo chown $USER:$USER /var/lib/lodestar
+```
+
+
 
 :fire: **4.2. Configure port forwarding and/or firewall**
 
@@ -1157,13 +1206,18 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 :sparkles: **Port Forwarding Tip**: You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
+
+
 :tophat: **4.3. Import validator key**
 
 ```bash
-./lodestar account validator import \
+./lodestar validator import \
   --network mainnet \
+  --dataDir /var/lib/lodestar \
   --directory $HOME/staking-deposit-cli/validator_keys
 ```
+
+
 
 Enter your **keystore password** to import accounts.
 
@@ -1173,9 +1227,13 @@ Confirm your keys were imported properly.
 ./lodestar account validator list --network mainnet
 ```
 
+
+
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
+
+
 
 :snowboarder: **4.4. Start the beacon chain and validator**
 
@@ -1208,10 +1266,11 @@ After           = network-online.target
 Type            = simple
 User            = <USER>
 Restart         = on-failure
+WorkingDirectory= <HOME>/git/lodestar
 ExecStart       = <HOME>/git/lodestar/lodestar beacon \
   --network mainnet \
+  --dataDir /var/lib/lodestar \
   --metrics true \
-  --metrics.serverPort 8008 \
   --jwt-secret /secrets/jwtsecret \
   --execution.urls http://127.0.0.1:8551 \
   --suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS 
@@ -1289,10 +1348,13 @@ Wants           = network-online.target beacon-chain.service
 After           = network-online.target 
 
 [Service]
+Type            = simple
 User            = <USER>
 Restart         = on-failure
+WorkingDirectory= <HOME>/git/lodestar
 ExecStart       = <HOME>/git/lodestar/lodestar validator \
   --network mainnet \
+  --dataDir /var/lib/lodestar \
   --graffiti "<MY_GRAFFITI>" \
   --suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 
