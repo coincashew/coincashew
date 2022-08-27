@@ -882,7 +882,7 @@ $HOME/prysm/prysm.sh validator accounts import --mainnet --keys-dir=$HOME/stakin
 
 * Type "accept" to accept terms of use
 * Press enter to accept default wallet location
-* Enter a new **prysm-only password** to encrypt your local prysm wallet files&#x20;
+* Enter a new **prysm-only password** to encrypt your local prysm wallet files
 * and enter the **keystore password** for your imported accounts.
 
 
@@ -1003,7 +1003,7 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 :dna: **4.5. Start the validator**
 
-Store your **prysm-only password** in a file and make it read-only.&#x20;
+Store your **prysm-only password** in a file and make it read-only.
 
 This is required so that Prysm can decrypt and load your validators.
 
@@ -1185,11 +1185,10 @@ Verify Lodestar was installed properly by displaying the help menu.
 
 
 
-Setup a directory structure for Lodestar.&#x20;
+Setup a directory structure for Lodestar.
 
 ```
-sudo mkdir -p /var/lib/lodestar 
-sudo mkdir -p /etc/lodestar 
+sudo mkdir -p /var/lib/lodestar
 sudo chown $USER:$USER /var/lib/lodestar
 ```
 
