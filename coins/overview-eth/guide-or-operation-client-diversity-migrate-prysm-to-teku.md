@@ -34,7 +34,7 @@ As per best practices, always try everything on a testnet before doing it _for r
 [PegaSys Teku](https://consensys.net/knowledge-base/ethereum-2/teku/) (formerly known as Artemis) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net/) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
 {% endhint %}
 
-### :chains: 1. Setup and Sync the Teku beacon node
+### :chains: 1. Setup Teku CL
 
 Install git.
 
@@ -42,14 +42,14 @@ Install git.
 sudo apt-get install git -y
 ```
 
-Install Java 18 for **Ubuntu 20.x**
+Install Java 17 LTS
 
 ```
 sudo apt update
-sudo apt install openjdk-18-jdk -y
+sudo apt install openjdk-17-jdk -y
 ```
 
-Verify Java 18+ is installed.
+Verify Java 17+ is installed.
 
 ```
 java --version
@@ -94,18 +94,6 @@ sudo mkdir -p /etc/teku
 sudo chown $USER:$USER /var/lib/teku
 ```
 
-**Setup Graffiti**
-
-Setup your `graffiti`, a custom message included in blocks your validator successfully proposes.
-
-Run the following command to set the `MY_GRAFFITI` variable. Feel free to customize your graffiti message between the single quotes.
-
-```bash
-MY_GRAFFITI=''
-# Example
-# MY_GRAFFITI='OPERATION CLIENT DIVERSITY TEKU W/ COINCASHEW'
-```
-
 **Setup Teku Checkpoint Sync**
 
 {% hint style="info" %}
@@ -124,40 +112,28 @@ Teku's Checkpoint Sync utilizes Infura to create the fastest syncing Ethereum be
 
 ![](../../.gitbook/assets/inf2.png)
 
-Replace `<my infura Project's ENDPOINT>` with your Infura endpoint and then run the following command to set the `INFURA_PROJECT_ENDPOINT` variable.
+Create your teku.yaml configuration file.
 
 ```bash
-INFURA_PROJECT_ENDPOINT=<my Infura Project's ENDPOINT>
+sudo nano /etc/teku/teku.yaml
 ```
 
-```bash
-# Example
-# INFURA_PROJECT_ENDPOINT=https://1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-mainnet.infura.io
-```
-
-Confirm that your Infura Project Endpoint is correct.
+Paste the following configuration into the file.
 
 ```bash
-echo $INFURA_PROJECT_ENDPOINT
-```
-
-Generate your Teku Config file. Simply copy and paste.
-
-```bash
-cat > $HOME/teku.yaml << EOF
 # network
 network: "mainnet"
-initial-state: "${INFURA_PROJECT_ENDPOINT}/eth/v2/debug/beacon/states/finalized" 
-
-# p2p
-p2p-enabled: true
-p2p-port: 9000
+initial-state: "<INFURA_PROJECT_ENDPOINT>" 
 
 # validators
-validators-graffiti: "${MY_GRAFFITI}"
+validators-graffiti: "<MY_GRAFFITI>"
 
-# Eth 1
-eth1-endpoint: "http://localhost:8545"
+# execution engine
+ee-endpoint: http://localhost:8551 
+ee-jwt-secret-file: "/secrets/jwtsecret" 
+
+# fee recipient
+validators-proposer-default-fee-recipient: "<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>"
 
 # metrics
 metrics-enabled: true
@@ -166,92 +142,11 @@ metrics-port: 8008
 # database
 data-path: "/var/lib/teku"
 data-storage-mode: "prune"
-
-# rest api
-rest-api-port: 5051
-rest-api-docs-enabled: true
-rest-api-enabled: true
-
-# logging
-log-include-validator-duties-enabled: true
-log-destination: CONSOLE
-EOF
 ```
 
-Move the config file to `/etc/teku`
-
-```bash
-sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
-```
-
-Run the following to create a **unit file** to define your`beacon-chain-temporary.service` configuration.
-
-```bash
-cat > $HOME/beacon-chain-temporary.service << EOF
-# The eth2 beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
-
-[Unit]
-Description     = eth2 beacon chain service
-Wants           = network-online.target
-After           = network-online.target 
-
-[Service]
-User            = $USER
-ExecStart       = /usr/bin/teku/bin/teku -c /etc/teku/teku.yaml
-Restart         = on-failure
-Environment     = JAVA_OPTS=-Xmx5g
-
-[Install]
-WantedBy	= multi-user.target
-EOF
-```
-
-Move the unit file to `/etc/systemd/system`
-
-```
-sudo mv $HOME/beacon-chain-temporary.service /etc/systemd/system/beacon-chain-temporary.service
-```
-
-Update file permissions.
-
-```
-sudo chmod 644 /etc/systemd/system/beacon-chain-temporary.service
-```
-
-Run the following to enable auto-start at boot time and then start your Teku beacon node service.
-
-```
-sudo systemctl daemon-reload
-sudo systemctl enable beacon-chain-temporary
-sudo systemctl start beacon-chain-temporary
-```
-
-{% hint style="warning" %}
-Keep an eye on CPU/RAM/disk usage when running both Prysm and Teku clients simultaneously.
-
-```bash
-# CPU and RAM
-htop
-```
-
-```bash
-# disk space
-df -h
-```
-{% endhint %}
-
-{% hint style="info" %}
-Syncing the beacon node might take up to 36 hours depending on your hardware. Keep validating using your current Prysm setup until it completes. However, thanks to Teku's Checkpoint sync, you'll complete this step in a few minutes.
-
-Syncing is complete when your beacon node's slot matches that of a block explorer's slot number (i.e. [https://beaconcha.in/](https://beaconcha.in/))
-
-Check the beacon node syncing progress with the following:
-
-```bash
-journalctl -fu beacon-chain-temporary
-```
-{% endhint %}
+* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
+* Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
+* Replace **`<INFURA_PROJECT_ENDPOINT>`** with your own endpoint. Example endpoint looks like: https://1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-mainnet.infura.io
 
 ### :octagonal\_sign: 2. Stop and disable Prysm
 
@@ -426,7 +321,7 @@ rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
 {% hint style="danger" %}
-\*\*\*\*:octagonal\_sign: **FINAL WARNING REMINDER !!!** **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** (penalized and exited from the system).
+:octagonal\_sign: **FINAL WARNING REMINDER !!!** **Do not** start the Teku validator client until you have stopped the Prysm one, or you **will get slashed** (penalized and exited from the system).
 
 Wait until your validator's last attestation is in a finalized epoch - usually about 15 minutes.
 
@@ -435,10 +330,10 @@ Confirm that your validator has stopped attesting with block explorer [beaconcha
 
 Storing your **keystore password** in a text file is required so that Teku can decrypt and load your validators automatically.
 
-Update `my_keystore_password_goes_here` with your **keystore password** between the single quotation marks and then run the command to save it to validators-password.txt
+Replace `<my_keystore_password_goes_here>` with your **keystore password** between the single quotation marks and then run the command to save it to validators-password.txt
 
 ```bash
-echo 'my_keystore_password_goes_here' > $HOME/validators-password.txt
+echo '<my_keystore_password_goes_here>' > $HOME/validators-password.txt
 ```
 
 Confirm that your **keystore password** is correct.
@@ -490,11 +385,11 @@ Run the following to create a **unit file** to define your`beacon-chain.service`
 
 ```bash
 cat > $HOME/beacon-chain.service << EOF
-# The eth2 beacon chain service (part of systemd)
+# The eth beacon chain service (part of systemd)
 # file: /etc/systemd/system/beacon-chain.service 
 
 [Unit]
-Description     = eth2 beacon chain service
+Description     = eth beacon chain service
 Wants           = network-online.target
 After           = network-online.target 
 
@@ -521,14 +416,6 @@ Update file permissions.
 sudo chmod 644 /etc/systemd/system/beacon-chain.service
 ```
 
-Stop, disable and delete the temporary service used to sync Teku beacon node while Prysm was running simultaneously.
-
-```
-sudo systemctl stop beacon-chain-temporary
-sudo systemctl disable beacon-chain-temporary
-sudo rm /etc/systemd/system/beacon-chain-temporary.service
-```
-
 Run the following to enable auto-start at boot time and then start your beacon node service.
 
 ```
@@ -536,6 +423,18 @@ sudo systemctl daemon-reload
 sudo systemctl enable beacon-chain
 sudo systemctl start beacon-chain
 ```
+
+{% hint style="info" %}
+Syncing the beacon node might take up to 36 hours depending on your hardware. Keep validating using your current Prysm setup until it completes. However, thanks to Teku's Checkpoint sync, you'll complete this step in a few minutes.
+
+Syncing is complete when your beacon node's slot matches that of a block explorer's slot number (i.e. [https://beaconcha.in/](https://beaconcha.in/))
+
+Check the beacon node syncing progress with the following:
+
+```bash
+journalctl -fu beacon-chain
+```
+{% endhint %}
 
 Check the logs to verify the services are working properly and ensure there are no errors.
 
@@ -572,19 +471,19 @@ journalctl --unit=beacon-chain --since=today
 journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
-\*\*\*\*:mag\_right: **View the status of the beacon chain**
+:mag\_right: **View the status of the beacon chain**
 
 ```
 sudo systemctl status beacon-chain
 ```
 
-\*\*\*\*:repeat: **Restart the beacon chain**
+:repeat: **Restart the beacon chain**
 
 ```
 sudo systemctl restart beacon-chain
 ```
 
-\*\*\*\*:octagonal\_sign: **Stop the beacon chain**
+:octagonal\_sign: **Stop the beacon chain**
 
 ```
 sudo systemctl stop beacon-chain
