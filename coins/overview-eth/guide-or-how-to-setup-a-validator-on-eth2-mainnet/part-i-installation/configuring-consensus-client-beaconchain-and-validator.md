@@ -1,14 +1,5 @@
 # Configuring consensus client (beacon chain and validator)
 
-### Create consensus layer user accounts
-
-The consensus layer will run under these two users, **consensus** and **validator**.
-
-```bash
-sudo useradd -r -s /bin/false consensus
-sudo useradd -r -s /bin/false validator
-```
-
 ### Pick a consensus client
 
 {% hint style="info" %}
@@ -168,7 +159,7 @@ After           = network-online.target
 
 [Service]
 Type            = simple
-User            = consensus
+User            = <USER>
 Restart         = on-failure
 ExecStart       = <HOME>/.cargo/bin/lighthouse bn \
   --network mainnet \
@@ -188,10 +179,11 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 
 
-Update the configuration file with your current user's home path.
+Update the configuration file with your current user's home path and user name.
 
 ```
- sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
+sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
+sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
 ```
 
 
@@ -257,7 +249,7 @@ After           = network-online.target
 
 [Service]
 Type            = simple
-User            = validator
+User            = <USER>
 Restart         = on-failure
 ExecStart       = <HOME>/.cargo/bin/lighthouse vc \
  --network mainnet \
@@ -281,10 +273,11 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 
 
-Update the configuration file with your current user's home path.
+Update the configuration file with your current user's home path and user name.
 
 ```
- sudo sed -i /etc/systemd/system/validator.service -e "s:<HOME>:${HOME}:g"
+sudo sed -i /etc/systemd/system/validator.service -e "s:<HOME>:${HOME}:g"
+sudo sed -i /etc/systemd/system/validator.service -e "s:<USER>:${USER}:g"
 ```
 
 
@@ -387,7 +380,7 @@ sudo mkdir -p /var/lib/nimbus
 Take ownership of this directory and set the correct permission level.
 
 ```bash
-sudo chown consensus:consensus /var/lib/nimbus
+sudo chown $USER:$USER /var/lib/nimbus
 sudo chmod 700 /var/lib/nimbus
 ```
 
@@ -472,7 +465,7 @@ After           = network-online.target
 
 [Service]
 Type            = simple
-User            = consensus
+User            = <USER>
 Restart         = on-failure
 ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node \
  --network=mainnet \
@@ -499,6 +492,14 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 
 
+Update the configuration file with your current user's name.
+
+```
+sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
+```
+
+
+
 Update file permissions.
 
 ```bash
@@ -520,8 +521,6 @@ sudo systemctl start beacon-chain
 {% hint style="success" %}
 Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
-
-
 {% endtab %}
 
 {% tab title="Teku" %}
@@ -537,6 +536,8 @@ Install git.
 sudo apt-get install git -y
 ```
 
+
+
 Install Java 18.
 
 For **Ubuntu 20.x**, use the following
@@ -546,11 +547,15 @@ sudo apt update
 sudo apt install openjdk-18-jdk -y
 ```
 
+
+
 Verify Java 18+ is installed.
 
 ```bash
 java --version
 ```
+
+
 
 Install and build Teku.
 
@@ -566,6 +571,8 @@ cd teku
 This build process may take a few minutes.
 {% endhint %}
 
+
+
 Verify Teku was installed properly by displaying the version.
 
 ```bash
@@ -573,11 +580,15 @@ cd $HOME/git/teku/build/install/teku/bin
 ./teku --version
 ```
 
+
+
 Copy the teku binary file to `/usr/bin/teku`
 
 ```bash
 sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 ```
+
+
 
 :fire: **4.2. Configure port forwarding and/or firewall**
 
@@ -586,9 +597,13 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 * **Teku consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
 
+
+
 {% hint style="info" %}
 :sparkles: **Port Forwarding Tip**: You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
+
+
 
 :snowboarder: **4.3. Configure the beacon chain and validator**
 
@@ -596,13 +611,17 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 Teku combines both the beacon chain and validator into one process.
 {% endhint %}
 
+
+
 Setup a directory structure for Teku.
 
 ```bash
 sudo mkdir -p /var/lib/teku
 sudo mkdir -p /etc/teku
-sudo chown consensus:consensus /var/lib/teku
+sudo chown $USER:$USER /var/lib/teku
 ```
+
+
 
 Copy your `validator_files` directory to the data directory we created above and remove the extra deposit\_data file.
 
@@ -611,9 +630,13 @@ cp -r $HOME/staking-deposit-cli/validator_keys /var/lib/teku
 rm /var/lib/teku/validator_keys/deposit_data*
 ```
 
+
+
 {% hint style="danger" %}
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
+
+
 
 Storing your **keystore password** in a text file is required so that Teku can decrypt and load your validators automatically.
 
@@ -623,11 +646,15 @@ Update `my_keystore_password_goes_here` with your **keystore password** between 
 echo 'my_keystore_password_goes_here' > $HOME/validators-password.txt
 ```
 
+
+
 Confirm that your **keystore password** is correct.
 
 ```bash
 cat $HOME/validators-password.txt
 ```
+
+
 
 Move the password file and make it read-only.
 
@@ -635,6 +662,8 @@ Move the password file and make it read-only.
 sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
 sudo chmod 600 /etc/teku/validators-password.txt
 ```
+
+
 
 Clear the bash history in order to remove traces of keystore password.
 
@@ -752,7 +781,7 @@ Wants           = network-online.target
 After           = network-online.target 
 
 [Service]
-User            = consensus
+User            = $USER
 ExecStart       = /usr/bin/teku/bin/teku -c /etc/teku/teku.yaml
 Restart         = on-failure
 Environment     = JAVA_OPTS=-Xmx5g
@@ -896,7 +925,7 @@ After           = network-online.target
 
 [Service]
 Type            = simple
-User            = consensus
+User            = <USER>
 Restart         = on-failure
 ExecStart       = <HOME>/prysm/prysm.sh beacon-chain \
   --mainnet \
@@ -919,10 +948,11 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 
 
-Update the configuration file with your current user's home path.
+Update the configuration file with your current user's home path and user name.
 
 ```
- sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
+sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
+sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
 ```
 
 
@@ -993,7 +1023,7 @@ After           = network-online.target
 
 [Service]
 Type            = simple
-User            = validator
+User            = <USER>
 Restart         = on-failure
 ExecStart       = <HOME>/prysm/prysm.sh validator \
   --mainnet \
@@ -1015,6 +1045,15 @@ WantedBy	= multi-user.target
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
+
+
+
+Update the configuration file with your current user's home path and user name.
+
+```
+sudo sed -i /etc/systemd/system/validator.service -e "s:<HOME>:${HOME}:g"
+sudo sed -i /etc/systemd/system/validator.service -e "s:<USER>:${USER}:g"
+```
 
 
 
@@ -1041,8 +1080,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable validator
 sudo systemctl start validator
 ```
-
-
 {% endtab %}
 
 {% tab title="Lodestar" %}
@@ -1169,7 +1206,7 @@ After           = network-online.target
 
 [Service]
 Type            = simple
-User            = consensus
+User            = <USER>
 Restart         = on-failure
 ExecStart       = <HOME>/git/lodestar/lodestar beacon \
   --network mainnet \
@@ -1193,10 +1230,11 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 
 
-Update the configuration file with your current user's home path.
+Update the configuration file with your current user's home path and user name.
 
 ```
- sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
+sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
+sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
 ```
 
 
@@ -1251,7 +1289,7 @@ Wants           = network-online.target beacon-chain.service
 After           = network-online.target 
 
 [Service]
-User            = validator
+User            = <USER>
 Restart         = on-failure
 ExecStart       = <HOME>/git/lodestar/lodestar validator \
   --network mainnet \
@@ -1270,6 +1308,15 @@ WantedBy	= multi-user.target
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
+
+
+
+Update the configuration file with your current user's home path and user name.
+
+```
+sudo sed -i /etc/systemd/system/validator.service -e "s:<HOME>:${HOME}:g"
+sudo sed -i /etc/systemd/system/validator.service -e "s:<USER>:${USER}:g"
+```
 
 
 
@@ -1294,8 +1341,6 @@ sudo systemctl start validator
 {% hint style="success" %}
 Nice work. Your validator is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
-
-
 {% endtab %}
 {% endtabs %}
 
