@@ -115,5 +115,5 @@ Sample Output:
 {% hint style="warning" %}
 :fire: **Script Usage Caveats**:
 
-* Sync commitee duties are only known for the current AND next epoch.
+* Sync commitee duties are only known for the current AND next sync committee period.
 {% endhint %}
