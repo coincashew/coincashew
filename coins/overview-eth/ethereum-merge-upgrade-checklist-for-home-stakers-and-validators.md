@@ -21,7 +21,7 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 * Paris Mainnet merge transition is estimated to arrive on [Sept 15 2022 with TTD 58750000000000000000000](https://twitter.com/TimBeiko/status/1557747656507633665).
 
 {% hint style="danger" %}
-All stakers _**must**_ upgrade to EL+CL Merge-ready nodes before this time!
+All stakers _**must**_ upgrade to EL+CL Merge-ready nodes before September 6th!
 {% endhint %}
 
 ## What's merge?
@@ -63,18 +63,18 @@ Here are the Merge-Ready versions you require:
 
 | Name       | Version | Link                                                                      |
 | ---------- | ------- | ------------------------------------------------------------------------- |
-| Lighthouse | v3.0.0  | [Download](https://github.com/sigp/lighthouse/releases/tag/v3.0.0)        |
+| Lighthouse | v3.1.0  | [Download](https://github.com/sigp/lighthouse/releases/tag/v3.0.0)        |
 | Lodestar   | v1.0.0  | [Download](https://github.com/ChainSafe/lodestar/releases/tag/v1.0.0)     |
-| Nimbus     | v22.8.0 | [Download](https://github.com/status-im/nimbus-eth2/releases/tag/v22.8.0) |
+| Nimbus     | v22.8.1 | [Download](https://github.com/status-im/nimbus-eth2/releases/tag/v22.8.0) |
 | Prysm      | v3.0.0  | [Download](https://github.com/prysmaticlabs/prysm/releases/tag/v3.0.0)    |
-| Teku       | 22.8.1  | [Download](https://github.com/ConsenSys/teku/releases/tag/22.8.1)         |
+| Teku       | 22.9.0  | [Download](https://github.com/ConsenSys/teku/releases/tag/22.8.1)         |
 
 **Execution Layer**
 
 | Name               | Version           | Link                                                                        |
 | ------------------ | ----------------- | --------------------------------------------------------------------------- |
 | Besu               | 22.7.1            | [Download](https://github.com/hyperledger/besu/releases/tag/22.7.1)         |
-| Erigon             | v2022.08.02-alpha | [Download](https://github.com/ledgerwatch/erigon/releases/tag/v2022.08.02)  |
+| Erigon             | v2022.08.03-alpha | [Download](https://github.com/ledgerwatch/erigon/releases/tag/v2022.08.02)  |
 | go-ethereum (geth) | v1.10.23          | [Download](https://github.com/ethereum/go-ethereum/releases/tag/v1.10.23)   |
 | Nethermind         | v1.14.0           | [Download](https://github.com/NethermindEth/nethermind/releases/tag/1.14.0) |
 
