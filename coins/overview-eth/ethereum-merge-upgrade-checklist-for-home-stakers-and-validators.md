@@ -63,18 +63,18 @@ Here are the Merge-Ready versions you require:
 
 | Name       | Version | Link                                                                      |
 | ---------- | ------- | ------------------------------------------------------------------------- |
-| Lighthouse | v3.1.0  | [Download](https://github.com/sigp/lighthouse/releases/tag/v3.0.0)        |
+| Lighthouse | v3.1.0  | [Download](https://github.com/sigp/lighthouse/releases/tag/v3.1.0)        |
 | Lodestar   | v1.0.0  | [Download](https://github.com/ChainSafe/lodestar/releases/tag/v1.0.0)     |
-| Nimbus     | v22.8.1 | [Download](https://github.com/status-im/nimbus-eth2/releases/tag/v22.8.0) |
+| Nimbus     | v22.8.2 | [Download](https://github.com/status-im/nimbus-eth2/releases/tag/v22.8.2) |
 | Prysm      | v3.0.0  | [Download](https://github.com/prysmaticlabs/prysm/releases/tag/v3.0.0)    |
-| Teku       | 22.9.0  | [Download](https://github.com/ConsenSys/teku/releases/tag/22.8.1)         |
+| Teku       | 22.9.0  | [Download](https://github.com/ConsenSys/teku/releases/tag/22.9.0)         |
 
 **Execution Layer**
 
 | Name               | Version           | Link                                                                        |
 | ------------------ | ----------------- | --------------------------------------------------------------------------- |
 | Besu               | 22.7.1            | [Download](https://github.com/hyperledger/besu/releases/tag/22.7.1)         |
-| Erigon             | v2022.08.03-alpha | [Download](https://github.com/ledgerwatch/erigon/releases/tag/v2022.08.02)  |
+| Erigon             | v2022.08.03-alpha | [Download](https://github.com/ledgerwatch/erigon/releases/tag/v2022.08.03)  |
 | go-ethereum (geth) | v1.10.23          | [Download](https://github.com/ethereum/go-ethereum/releases/tag/v1.10.23)   |
 | Nethermind         | v1.14.0           | [Download](https://github.com/NethermindEth/nethermind/releases/tag/1.14.0) |
 
