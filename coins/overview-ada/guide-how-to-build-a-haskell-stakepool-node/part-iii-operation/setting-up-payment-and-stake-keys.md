@@ -169,14 +169,10 @@ TESTNET=0
 MAINNET=1
 NETWORK=\$MAINNET
 
-# Set the network magic value as needed for the testnet environment that you want to use
-# For details on available testnet environments, see https://book.world.dev.cardano.org/environments.html
-MAGICNUMBER="1"
-
 cat payment.xprv |\
-"\$CADDR" key public | tee payment.xpub |\
+"\$CADDR" key public --with-chain-code | tee payment.xpub |\
 "\$CADDR" address payment --network-tag \$NETWORK |\
-"\$CADDR" address delegation \$(cat stake.xprv | "\$CADDR" key public | tee stake.xpub) |\
+"\$CADDR" address delegation \$(cat stake.xprv | "\$CADDR" key public --with-chain-code | tee stake.xpub) |\
 tee base.addr_candidate |\
 "\$CADDR" address inspect
 echo "Generated from 1852H/1815H/0H/{0,2}/0"
@@ -185,7 +181,7 @@ echo
 
 # XPrv/XPub conversion to normal private and public key, keep in mind the 
 # keypars are not a valid Ed25519 signing keypairs.
-TESTNET_MAGIC="--testnet-magic \$MAGICNUMBER"
+TESTNET_MAGIC="--testnet-magic 1097911063"
 MAINNET_MAGIC="--mainnet"
 MAGIC="\$MAINNET_MAGIC"
 
@@ -208,16 +204,16 @@ cat << EOF > payment.skey
 }
 EOF
 
-"\$CCLI" shelley key verification-key --signing-key-file stake.skey --verification-key-file stake.evkey
-"\$CCLI" shelley key verification-key --signing-key-file payment.skey --verification-key-file payment.evkey
+"\$CCLI" key verification-key --signing-key-file stake.skey --verification-key-file stake.evkey
+"\$CCLI" key verification-key --signing-key-file payment.skey --verification-key-file payment.evkey
 
-"\$CCLI" shelley key non-extended-key --extended-verification-key-file payment.evkey --verification-key-file payment.vkey
-"\$CCLI" shelley key non-extended-key --extended-verification-key-file stake.evkey --verification-key-file stake.vkey
+"\$CCLI" key non-extended-key --extended-verification-key-file payment.evkey --verification-key-file payment.vkey
+"\$CCLI" key non-extended-key --extended-verification-key-file stake.evkey --verification-key-file stake.vkey
 
 
-"\$CCLI" shelley stake-address build --stake-verification-key-file stake.vkey \$MAGIC > stake.addr
-"\$CCLI" shelley address build --payment-verification-key-file payment.vkey \$MAGIC > payment.addr
-"\$CCLI" shelley address build \
+"\$CCLI" stake-address build --stake-verification-key-file stake.vkey \$MAGIC > stake.addr
+"\$CCLI" address build --payment-verification-key-file payment.vkey \$MAGIC > payment.addr
+"\$CCLI" address build \
     --payment-verification-key-file payment.vkey \
     --stake-verification-key-file stake.vkey \
     \$MAGIC > base.addr
