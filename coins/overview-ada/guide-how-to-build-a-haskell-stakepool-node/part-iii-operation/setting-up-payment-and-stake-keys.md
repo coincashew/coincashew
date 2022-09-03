@@ -262,7 +262,6 @@ Clear the bash history in order to protect your mnemonic phrase and remove the `
 ### On air-gapped offline machine,
 ###
 history -c && history -w
-rm -rf $NODE_HOME/cardano-wallet-shelley-2020.7.28
 ```
 
 Finally close all your terminal windows and open new ones with zero history.
@@ -309,6 +308,6 @@ You should see output similar to this. This is your unspent transaction output (
 100322a39d02c2ead....                                              0        1000000000
 ```
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 :fire: **Critical Backup Advice:** Make redundant copies of your **payment and staking keys** on offline USB keys or other offline data backups. Have a recovery plan in case of corrupted or lost keys.
 {% endhint %}
