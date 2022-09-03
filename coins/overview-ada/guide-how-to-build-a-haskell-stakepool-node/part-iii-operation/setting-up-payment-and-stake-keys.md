@@ -1,4 +1,4 @@
-# :closed\_lock\_with\_key: Setting Up Payment and Stake Keys
+# Setting Up Payment and Stake Keys
 
 First, obtain the protocol-parameters.
 
@@ -25,7 +25,7 @@ Payment keys are used to send and receive payments and stake keys are used to ma
 There are two ways to create your `payment` and `stake` key pair. Pick the one that best suits your needs.
 
 {% hint style="danger" %}
-:fire: **Critical Operational Security Advice:** `payment `and `stake `keys must be generated and used to build transactions in an cold environment. In other words, your **air-gapped offline machine**. Copy `cardano-cli` binary over to your offline machine and run the CLI method or mnemonic method. The only steps performed online in a hot environment are those steps that require live data. Namely the follow type of steps:
+:fire: **Critical Operational Security Advice:** `payment` and `stake` keys must be generated and used to build transactions in an cold environment. In other words, your **air-gapped offline machine**. Copy `cardano-cli` binary over to your offline machine and run the CLI method or mnemonic method. The only steps performed online in a hot environment are those steps that require live data. Namely the follow type of steps:
 
 * querying the current slot tip
 * querying the balance of an address
@@ -34,7 +34,7 @@ There are two ways to create your `payment` and `stake` key pair. Pick the one t
 
 {% tabs %}
 {% tab title="CLI Method" %}
-Create a new payment key pair:  `payment.skey` & `payment.vkey`
+Create a new payment key pair: `payment.skey` & `payment.vkey`
 
 ```bash
 ###
@@ -101,22 +101,10 @@ Using your online block producer node, download `cardano-wallet`
 ### On block producer node,
 ###
 cd $NODE_HOME
-wget https://hydra.iohk.io/build/3662127/download/1/cardano-wallet-shelley-2020.7.28-linux64.tar.gz
+wget https://github.com/input-output-hk/cardano-wallet/releases/download/v2022-08-16/cardano-wallet-v2022-08-16-linux64.tar.gz
 ```
 
-Verify the legitimacy of `cardano-wallet` by checking the [sha256 hash found in the **Details **button.](https://hydra.iohk.io/build/3662127/)
 
-```bash
-echo "f75e5b2b4cc5f373d6b1c1235818bcab696d86232cb2c5905b2d91b4805bae84 *cardano-wallet-shelley-2020.7.28-linux64.tar.gz" | shasum -a 256 --check
-```
-
-Example valid output:
-
-> cardano-wallet-shelley-2020.7.28-linux64.tar.gz: OK
-
-{% hint style="danger" %}
-Only proceed if the sha256 check passes with **OK**!
-{% endhint %}
 
 Transfer the **cardano-wallet** to your **air-gapped offline machine** via USB key or other removable media.
 
@@ -126,8 +114,9 @@ Extract the wallet files and cleanup.
 ###
 ### On air-gapped offline machine,
 ###
-tar -xvf cardano-wallet-shelley-2020.7.28-linux64.tar.gz
-rm cardano-wallet-shelley-2020.7.28-linux64.tar.gz
+tar -xvf cardano-wallet-v2022-08-16-linux64.tar.gz
+rm cardano-wallet-v2022-08-16-linux64.tar.gz
+cd cardano-wallet-v2022-08-16-linux64
 ```
 
 Create`extractPoolStakingKeys.sh` script.
@@ -231,7 +220,7 @@ Add permissions and export PATH to use the binaries.
 ### On air-gapped offline machine,
 ###
 chmod +x extractPoolStakingKeys.sh
-export PATH="$(pwd)/cardano-wallet-shelley-2020.7.28:$PATH"
+export PATH=$PATH:$(pwd)
 ```
 
 Extract your keys. Update the command with your mnemonic phrase.
@@ -284,7 +273,7 @@ Awesome. Now you can track your pool rewards in your wallet.
 {% endtab %}
 {% endtabs %}
 
-Next step is to fund your payment address.&#x20;
+Next step is to fund your payment address.
 
 Copy **payment.addr** to your **hot environment**.
 
@@ -319,3 +308,7 @@ You should see output similar to this. This is your unspent transaction output (
 ----------------------------------------------------------------------------------------
 100322a39d02c2ead....                                              0        1000000000
 ```
+
+{% hint style="warning" %}
+:fire: **Critical Backup Advice:** Make redundant copies of your **payment and staking keys** on offline USB keys or other offline data backups. Have a recovery plan in case of corrupted or lost keys.
+{% endhint %}
