@@ -94,24 +94,6 @@ sudo mkdir -p /etc/teku
 sudo chown $USER:$USER /var/lib/teku
 ```
 
-**Setup Teku Checkpoint Sync**
-
-{% hint style="info" %}
-Teku's Checkpoint Sync utilizes Infura to create the fastest syncing Ethereum beacon node.
-{% endhint %}
-
-1\. Sign up for [a free infura account](https://infura.io/register).
-
-2\. Create a project
-
-![](../../.gitbook/assets/inf1.png)
-
-3\. Add a project name and save changes.
-
-4\. Copy your Project's **ENDPOINT**. Ensure the correct Network is selected with the dropdown box.
-
-![](../../.gitbook/assets/inf2.png)
-
 Create your teku.yaml configuration file.
 
 ```bash
@@ -123,7 +105,7 @@ Paste the following configuration into the file.
 ```bash
 # network
 network: "mainnet"
-initial-state: "<INFURA_PROJECT_ENDPOINT>" 
+initial-state: "https://beaconstate.info/eth/v2/debug/beacon/states/finalized"
 
 # validators
 validators-graffiti: "<MY_GRAFFITI>"
@@ -146,7 +128,6 @@ data-storage-mode: "prune"
 
 * Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 * Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
-* Replace **`<INFURA_PROJECT_ENDPOINT>`** with your own endpoint. Example endpoint looks like: https://1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-mainnet.infura.io
 
 ### :octagonal\_sign: 2. Stop and disable Prysm
 
