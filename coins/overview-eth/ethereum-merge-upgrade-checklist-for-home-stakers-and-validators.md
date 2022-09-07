@@ -66,7 +66,7 @@ Here are the Merge-Ready versions you require:
 | Lighthouse | v3.1.0  | [Download](https://github.com/sigp/lighthouse/releases/tag/v3.1.0)        |
 | Lodestar   | v1.0.0  | [Download](https://github.com/ChainSafe/lodestar/releases/tag/v1.0.0)     |
 | Nimbus     | v22.8.2 | [Download](https://github.com/status-im/nimbus-eth2/releases/tag/v22.8.2) |
-| Prysm      | v3.0.0  | [Download](https://github.com/prysmaticlabs/prysm/releases/tag/v3.0.0)    |
+| Prysm      | v3.1.0  | [Download](https://github.com/prysmaticlabs/prysm/releases/tag/v3.1.0)    |
 | Teku       | 22.9.0  | [Download](https://github.com/ConsenSys/teku/releases/tag/22.9.0)         |
 
 **Execution Layer**
@@ -74,7 +74,7 @@ Here are the Merge-Ready versions you require:
 | Name               | Version           | Link                                                                        |
 | ------------------ | ----------------- | --------------------------------------------------------------------------- |
 | Besu               | 22.7.1            | [Download](https://github.com/hyperledger/besu/releases/tag/22.7.1)         |
-| Erigon             | v2022.08.03-alpha | [Download](https://github.com/ledgerwatch/erigon/releases/tag/v2022.08.03)  |
+| Erigon             | v2022.09.01-alpha | [Download](https://github.com/ledgerwatch/erigon/releases/tag/v2022.09.01)  |
 | go-ethereum (geth) | v1.10.23          | [Download](https://github.com/ethereum/go-ethereum/releases/tag/v1.10.23)   |
 | Nethermind         | v1.14.0           | [Download](https://github.com/NethermindEth/nethermind/releases/tag/1.14.0) |
 
@@ -102,7 +102,9 @@ Updates to your systemd file for the consensus layer, execution layer, or valida
 * Set your suggested fee recipient address
 * Enable the authenticated port to the new Engine API
 
-Ensure you add/append the changes to the **END** of the `ExecStart` line. Ctrl + O, Ctrl + X to save and exit.
+Ensure you add/append the changes to the **END** of the `ExecStart` line.
+
+To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 {% hint style="info" %}
 The fee recipient address receives block proposal priority fees (aka mining tips) and is an ETH address you designate as your rewards address. These rewards are immediately spendable, unlike the validator's attestation and block proposal rewards.
@@ -306,11 +308,11 @@ We've made it to a post-merge era! Consider the following changes to your startu
 
 Can't get your mind off the merge? Here's some additional ideas and nice to haves.
 
-\[:white\_check\_mark:] Participate in Goerli Upcoming Merge
+\[:white\_check\_mark:] Test your merge configurations on Goerli testnet
 
 \[:white\_check\_mark:] Improve [Client Diversity](https://clientdiversity.org/)
 
-* Switch to a minority EL - tip: Use besu as "minority client" - while Infura still works as a backup EL/eth1 client, stop existing EL/eth1 node, delete, then install and sync besu. Besu features auto pruning.&#x20;
+* Switch to a minority EL - suggestion: Use besu as "minority client". Besu features auto pruning.&#x20;
 * Switch to a minority CL
 
 \[:white\_check\_mark:] Configure MetaMask to use your own node. Bye Infura outages.

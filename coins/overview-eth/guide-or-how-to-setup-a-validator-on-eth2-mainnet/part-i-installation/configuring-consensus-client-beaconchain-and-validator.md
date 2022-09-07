@@ -166,6 +166,7 @@ ExecStart       = <HOME>/.cargo/bin/lighthouse bn \
   --staking \
   --validator-monitor-auto \
   --metrics \
+  --checkpoint-sync-url=https://beaconstate.info \
   --execution-endpoint http://127.0.0.1:8551 \
   --execution-jwt /secrets/jwtsecret
 
@@ -203,16 +204,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable beacon-chain
 sudo systemctl start beacon-chain
 ```
-
-
-
-{% hint style="info" %}
-**Troubleshooting common issues**:
-
-_CRIT Invalid eth1 chain id. Please switch to correct chain id._
-
-* Allow your execution client to fully sync to mainnet.
-{% endhint %}
 
 
 
@@ -434,9 +425,38 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 :snowboarder: **4.4. Start the beacon chain and validator**
 
-{% hint style="info" %}
-Nimbus combines both the beacon chain and validator into one process.
+
+
+{% hint style="warning" %}
+**Reminder**: Nimbus combines both the beacon chain and validator into one process.
 {% endhint %}
+
+####
+
+#### Running Checkpoint Sync
+
+
+
+{% hint style="info" %}
+Checkpoint sync allows you to start your consensus layer within minutes instead of days.
+{% endhint %}
+
+
+
+Run the following command.
+
+<pre><code>/usr/bin/nimbus_beacon_node trustedNodeSync \
+--network=mainnet  \
+--trusted-node-url=https://beaconstate.info \
+<strong>--data-dir=/var/lib/nimbus \
+</strong>--network=mainnet \
+--backfill=false</code></pre>
+
+
+
+When the checkpoint sync is complete, you'll see the following message:
+
+> Done, your beacon node is ready to serve you! Don't forget to check that you're on the canonical chain by comparing the checkpoint root with other online sources. See https://nimbus.guide/trusted-node-sync.html for more information.
 
 
 
@@ -682,26 +702,6 @@ shred -u ~/.bash_history && touch ~/.bash_history
 
 
 
-:fast\_forward: **Setup Teku Checkpoint Sync**
-
-{% hint style="info" %}
-Teku's Checkpoint Sync utilizes Infura to create the fastest syncing Ethereum beacon chain.
-{% endhint %}
-
-1\. Sign up for [a free infura account](https://infura.io/register).
-
-2\. Create a project.
-
-![](../../../../.gitbook/assets/inf1.png)
-
-3\. Add a project name and save changes.
-
-4\. Copy your Project's ENDPOINT. Ensure the correct Network is selected with the dropdown box.
-
-![](../../../../.gitbook/assets/inf2.png)
-
-
-
 Create your teku.yaml configuration file.
 
 ```bash
@@ -715,7 +715,7 @@ Paste the following configuration into the file.
 ```bash
 # network
 network: "mainnet"
-initial-state: "<INFURA_PROJECT_ENDPOINT>" 
+initial-state: "https://beaconstate.info/eth/v2/debug/beacon/states/finalized"
 
 # validators
 validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
@@ -741,7 +741,6 @@ data-storage-mode: "prune"
 
 * Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 * Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
-* Replace **`<INFURA_PROJECT_ENDPOINT>`** with your own endpoint. Example endpoint looks like: https://1Rjimg6q8hxGaRfxmEf9vxyBEk5n:c42acfe90bcae227f9ec19b22e733550@eth2-beacon-mainnet.infura.io
 
 
 
@@ -949,6 +948,8 @@ User            = <USER>
 Restart         = on-failure
 ExecStart       = <HOME>/prysm/prysm.sh beacon-chain \
   --mainnet \
+  --checkpoint-sync-url=https://beaconstate.info \
+  --genesis-beacon-api-url=https://beaconstate.info \
   --execution-endpoint=http://localhost:8551 \
   --jwt-secret=/secrets/jwtsecret \
   --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS \
@@ -1270,6 +1271,7 @@ ExecStart       = <HOME>/git/lodestar/lodestar beacon \
   --network mainnet \
   --dataDir /var/lib/lodestar \
   --metrics true \
+  --checkpointSyncUrl https://beaconstate.info \
   --jwt-secret /secrets/jwtsecret \
   --execution.urls http://127.0.0.1:8551 \
   --suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS 
