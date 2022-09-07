@@ -50,7 +50,6 @@ Review the latest release notes at [https://github.com/ethereum/go-ethereum/rele
 ```
 sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt-get update -y
-sudo apt dist-upgrade -y
 sudo apt-get install ethereum -y
 ```
 
@@ -69,7 +68,7 @@ Simply copy/paste the following.
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
-Description     = geth execution client service
+Description     = Geth Execution Layer Client service
 Wants           = network-online.target
 After           = network-online.target 
 
@@ -256,9 +255,10 @@ Review the latest release at [https://github.com/NethermindEth/nethermind/releas
 
 Automatically download the latest linux release, un-zip and cleanup.
 
+
+
 ```bash
 mkdir $HOME/nethermind
-chmod 775 $HOME/nethermind
 cd $HOME/nethermind
 curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-amd64  | xargs wget -q --show-progress
 unzip -o nethermind*.zip
@@ -280,7 +280,7 @@ Simply copy/paste the following.
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
-Description     = nethermind eth1 service
+Description     = Nethermind Execution Layer Client service
 Wants           = network-online.target
 After           = network-online.target 
 
@@ -296,9 +296,6 @@ ExecStart       = $HOME/nethermind/Nethermind.Runner \
   --baseDbPath $HOME/.nethermind \
   --Metrics.Enabled true \
   --Sync.SnapSync true \
-  --Sync.AncientBodiesBarrier 11052984 \
-  --Sync.AncientReceiptsBarrier 11052984 \
-  --JsonRpc.Host 127.0.0.1 \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret
 
 [Install]
@@ -437,7 +434,7 @@ Simply copy/paste the following.
 ```bash
 cat > $HOME/eth1.service << EOF 
 [Unit]
-Description     = erigon eth1 service
+Description     = Erigon Execution Layer Client service
 Wants           = network-online.target
 After           = network-online.target 
 
