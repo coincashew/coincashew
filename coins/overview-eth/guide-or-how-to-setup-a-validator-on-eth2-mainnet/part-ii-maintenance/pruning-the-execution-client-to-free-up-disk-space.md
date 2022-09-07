@@ -47,7 +47,7 @@ sudo service eth1 stop
 {% tabs %}
 {% tab title="Geth" %}
 ```bash
-/usr/bin/geth --datadir $HOME/.ethereum snapshot prune-state
+/usr/bin/geth snapshot prune-state --datadir $HOME/.ethereum
 ```
 {% endtab %}
 {% endtabs %}
