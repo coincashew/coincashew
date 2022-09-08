@@ -151,18 +151,21 @@ sudo apt install openjdk-17-jdk -y libjemalloc-dev
 
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
+
+
+Run the following to download the linux release, un-tar, cleanup and rename besu directory.
+
+{% hint style="info" %}
 Replace the **BINARIES\_URL** variable with the latest URL to a **tar.gz** file found in the **Download links** section.
+{% endhint %}
 
-
-
-```
+```bash
 BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz"
 
 cd $HOME
 wget -O besu.tar.gz "$BINARIES_URL"
 tar -xzvf besu.tar.gz -C $HOME
-rm besu.tar.gz
-mv besu* besu
+rm besu.tar.gz && mv besu* besu
 ```
 
 
@@ -253,15 +256,14 @@ sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 
 Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
 
-Automatically download the latest linux release, un-zip and cleanup.
+Run the following to automatically download the latest linux release, un-zip and cleanup.
 
 
 
 ```bash
-mkdir $HOME/nethermind
-cd $HOME/nethermind
+cd $HOME
 curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-amd64  | xargs wget -q --show-progress
-unzip -o nethermind*.zip
+unzip -o nethermind*.zip -d $HOME/nethermind
 rm nethermind*linux*.zip
 ```
 
@@ -272,8 +274,6 @@ rm nethermind*linux*.zip
 
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
-
-
 
 Simply copy/paste the following.
 
