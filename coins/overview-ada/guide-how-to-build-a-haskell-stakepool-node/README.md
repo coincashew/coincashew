@@ -57,6 +57,6 @@ If you want to support this free educational Cardano content or found this helpf
   - Adding the section [Installing CNCLI](part-iii-operation/configuring-slot-leader-calculation.md#cncli)
 * May 13, 2021
   - Updating guide for release cardano-node/cli v1.27.0 changes
-  - Adding Stake Pool Operator's [Best Practices Checklist](./appendix-best-practices-checklist.md)
+  - Adding Stake Pool Operator's [Best Practices Checklist](./appendix-a-best-practices-checklist.md)
   - Adding the topic [Monitoring Node Security Using OSSEC Server and Slack](./part-v-tips/monitoring-node-security-using-ossec-server-and-slack.md) (contribution by Billionaire Pool)
   - Adding the topic how to [Securing Your Stake Pool Using a Hardware Wallet](./part-iii-operation/securing-your-stake-pool-using-a-hardware-wallet.md)

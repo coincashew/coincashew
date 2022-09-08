@@ -223,5 +223,5 @@ Congratulations. You're basically done. More great operational and maintenance t
 {% endhint %}
 
 {% hint style="info" %}
-Be sure to review the [Stake Pool Operator's Best Practices Checklist](../appendix-best-practices-checklist.md) to ensure smooth sailing with your pool.
+Be sure to review the [Stake Pool Operator's Best Practices Checklist](../appendix-a-best-practices-checklist.md) to ensure smooth sailing with your pool.
 {% endhint %}
