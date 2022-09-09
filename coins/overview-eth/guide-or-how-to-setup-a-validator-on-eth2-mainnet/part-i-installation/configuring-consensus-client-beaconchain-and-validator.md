@@ -176,6 +176,15 @@ WantedBy    = multi-user.target
 
 
 
+{% hint style="info" %}
+**Checkpoint Sync**: allows consensus layer to start within minutes instead of days.
+
+* Refer to [https://eth-clients.github.io/checkpoint-sync-endpoints/](https://eth-clients.github.io/checkpoint-sync-endpoints/) and feel free to pick one of the random `state` providers from the list, instead of the above endpoint`https://beaconstate.info`
+* Do not trust any single checkpoint provider. Verify the **state root and block root** against multiple checkpoints to ensure you're on the correct chain.
+{% endhint %}
+
+
+
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 
@@ -438,7 +447,10 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 
 
 {% hint style="info" %}
-Checkpoint sync allows you to start your consensus layer within minutes instead of days.
+**Checkpoint Sync**: allows consensus layer to start within minutes instead of days.
+
+* Refer to [https://eth-clients.github.io/checkpoint-sync-endpoints/](https://eth-clients.github.io/checkpoint-sync-endpoints/) and feel free to pick one of the random `state` providers from the list, instead of the endpoint`https://beaconstate.info`
+* Do not trust any single checkpoint provider. Verify the **state root and block root** against multiple checkpoints to ensure you're on the correct chain.
 {% endhint %}
 
 
@@ -739,6 +751,15 @@ data-storage-mode: "prune"
 
 
 
+{% hint style="info" %}
+**Checkpoint Sync**: allows consensus layer to start within minutes instead of days.
+
+* Refer to [https://eth-clients.github.io/checkpoint-sync-endpoints/](https://eth-clients.github.io/checkpoint-sync-endpoints/) and feel free to pick one of the random `state` providers from the list, instead of the above endpoint`https://beaconstate.info`
+* Do not trust any single checkpoint provider. Verify the **state root and block root** against multiple checkpoints to ensure you're on the correct chain.
+{% endhint %}
+
+
+
 * Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 * Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
 
@@ -958,6 +979,15 @@ ExecStart       = <HOME>/prysm/prysm.sh beacon-chain \
 [Install]
 WantedBy    = multi-user.target
 ```
+
+
+
+{% hint style="info" %}
+**Checkpoint Sync**: allows consensus layer to start within minutes instead of days.
+
+* Refer to [https://eth-clients.github.io/checkpoint-sync-endpoints/](https://eth-clients.github.io/checkpoint-sync-endpoints/) and feel free to pick one of the random `state` providers from the list, instead of the above endpoint`https://beaconstate.info`
+* Do not trust any single checkpoint provider. Verify the **state root and block root** against multiple checkpoints to ensure you're on the correct chain.
+{% endhint %}
 
 
 
@@ -1279,6 +1309,15 @@ ExecStart       = <HOME>/git/lodestar/lodestar beacon \
 [Install]
 WantedBy	= multi-user.target
 ```
+
+
+
+{% hint style="info" %}
+**Checkpoint Sync**: allows consensus layer to start within minutes instead of days.
+
+* Refer to [https://eth-clients.github.io/checkpoint-sync-endpoints/](https://eth-clients.github.io/checkpoint-sync-endpoints/) and feel free to pick one of the random `state` providers from the list, instead of the above endpoint`https://beaconstate.info`
+* Do not trust any single checkpoint provider. Verify the **state root and block root** against multiple checkpoints to ensure you're on the correct chain.
+{% endhint %}
 
 
 
