@@ -10,11 +10,71 @@ description: >-
 As of August 28 2021, **testnet PYRMONT is no longer supported.**
 
 **This guide is for historical references only.**
-
-***
-
-If you would like to test, practice on [**testnet** **PRATER.**](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater)
 {% endhint %}
+
+{% hint style="success" %}
+If you would like to test, practice on [**testnet GOERLI**](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater)**.**
+{% endhint %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {% hint style="info" %}
 :fast\_forward: **** [**Mainnet guide**](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)**. Always test and practice on testnet first.**
@@ -2511,7 +2571,7 @@ Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://githu
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](../../.gitbook/assets/grafana.png)
+![](<../../.gitbook/assets/grafana (1).png>)
 
 ![](../../.gitbook/assets/node-exporter2.png)
 
