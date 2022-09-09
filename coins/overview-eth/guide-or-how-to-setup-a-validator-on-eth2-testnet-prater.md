@@ -2382,7 +2382,7 @@ sudo systemctl start validator
 ```
 
 {% hint style="success" %}
-Nice work. Your validator is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+Nice work! Your validator is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
 {% endhint %}
 
 :tools: **Some helpful systemd commands**
