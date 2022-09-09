@@ -493,7 +493,7 @@ ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node \
  --data-dir=/var/lib/nimbus \
  --web3-url=ws://127.0.0.1:8551 \
  --metrics \
- --metrics-port=8001 \
+ --metrics-port=8008 \
  --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS \
  --jwt-secret="/secrets/jwtsecret"'
  
@@ -1178,7 +1178,7 @@ This build process may take a few minutes.
 
 
 
-Verify Lodestar was installed properly by displaying the help menu.
+Verify Lodestar was installed properly by displaying the version.
 
 ```
 ./lodestar --version
