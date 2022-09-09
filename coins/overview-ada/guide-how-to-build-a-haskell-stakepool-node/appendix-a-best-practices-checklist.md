@@ -1,4 +1,4 @@
-# Appendix - Best Practices Checklist
+# Appendix A - Best Practices Checklist
 
 Here are the top problems a stake pool can experience and how to solve them:
 
