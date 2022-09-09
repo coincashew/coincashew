@@ -140,7 +140,7 @@
   * [Guide | How to setup a validator for Ethereum staking on Pithos testnet in 10 minutes or less](coins/overview-eth/guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less.md)
   * [Guide | Operation Client Diversity: Migrate Prysm to Teku](coins/overview-eth/guide-or-operation-client-diversity-migrate-prysm-to-teku.md)
   * [Guide | How to setup a validator on ETH2 testnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
-  * [Guide | How to setup a validator on ETH2 testnet PRATER](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
+  * [Guide | How to setup a validator for Ethereum staking on testnet GOERLI/PRATER](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
   * [Guide: How to buy ETH](coins/overview-eth/guide-how-to-buy-eth.md)
   * [External Reading Material](coins/overview-eth/external-reading-material/README.md)
     * [Book: Mastering Ethereum](coins/overview-eth/external-reading-material/book-mastering-ethereum.md)
