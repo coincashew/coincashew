@@ -65,7 +65,7 @@ Here are the Merge-Ready versions you require:
 | ---------- | ------- | ------------------------------------------------------------------------- |
 | Lighthouse | v3.1.0  | [Download](https://github.com/sigp/lighthouse/releases/tag/v3.1.0)        |
 | Lodestar   | v1.0.0  | [Download](https://github.com/ChainSafe/lodestar/releases/tag/v1.0.0)     |
-| Nimbus     | v22.8.2 | [Download](https://github.com/status-im/nimbus-eth2/releases/tag/v22.8.2) |
+| Nimbus     | v22.9.0 | [Download](https://github.com/status-im/nimbus-eth2/releases/tag/v22.9.0) |
 | Prysm      | v3.1.0  | [Download](https://github.com/prysmaticlabs/prysm/releases/tag/v3.1.0)    |
 | Teku       | 22.9.0  | [Download](https://github.com/ConsenSys/teku/releases/tag/22.9.0)         |
 
@@ -73,10 +73,10 @@ Here are the Merge-Ready versions you require:
 
 | Name               | Version           | Link                                                                        |
 | ------------------ | ----------------- | --------------------------------------------------------------------------- |
-| Besu               | 22.7.1            | [Download](https://github.com/hyperledger/besu/releases/tag/22.7.1)         |
+| Besu               | 22.7.2            | [Download](https://github.com/hyperledger/besu/releases/tag/22.7.2)         |
 | Erigon             | v2022.09.01-alpha | [Download](https://github.com/ledgerwatch/erigon/releases/tag/v2022.09.01)  |
 | go-ethereum (geth) | v1.10.23          | [Download](https://github.com/ethereum/go-ethereum/releases/tag/v1.10.23)   |
-| Nethermind         | v1.14.0           | [Download](https://github.com/NethermindEth/nethermind/releases/tag/1.14.0) |
+| Nethermind         | v1.14.1           | [Download](https://github.com/NethermindEth/nethermind/releases/tag/1.14.1) |
 
 ### 2) Create a jwtsecret file
 
@@ -170,9 +170,38 @@ sudo nano /etc/systemd/system/geth.service
 {% endtab %}
 
 {% tab title="Teku" %}
+If your Teku client is configured by passing in a **TOML file (i.e. teku.yaml),** edit `teku.yaml` with nano.
+
+```
+sudo nano /etc/teku/teku.yaml
+```
+
+
+
+Add the following lines to the yaml file:
+
+```
+# execution engine
+ee-endpoint: http://localhost:8551
+ee-jwt-secret-file: "/secrets/jwtsecret"
+
+# fee recipient
+validators-proposer-default-fee-recipient: "<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>"
+```
+
+
+
+Alternatively, if your Teku client is configured by --parameters in the **systemd service file,** add the following changes.
+
 ```
 --ee-endpoint http://localhost:8551 --ee-jwt-secret-file "/secrets/jwtsecret" --validators-proposer-default-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
+
+
+
+{% hint style="info" %}
+Use one configuration or the other but not both!
+{% endhint %}
 {% endtab %}
 
 {% tab title="Lodestar" %}
@@ -232,7 +261,7 @@ Runs in consensus client, not needed.
 
 {% tabs %}
 {% tab title="Besu" %}
-If your besu client is configured via a **systemd service file (i.e. eth1.service),** add the following changes.
+If your Besu client is configured by --parameters in the **systemd service file,** add the following changes.
 
 ```
 --engine-jwt-secret=/secrets/jwtsecret
@@ -240,19 +269,24 @@ If your besu client is configured via a **systemd service file (i.e. eth1.servic
 
 
 
-Alternatively, if your besu client is configured with **TOML format file (i.e. besu.yaml),** add the following changes.
+Alternatively, if your Besu client is configured by passing a **TOML file (i.e. besu.yaml),** edit `besu.yaml` with nano.
 
 ```
-# toml format
-# nano /etc/besu/besu.yaml
+sudo nano /etc/besu/besu.yaml
+```
 
+
+
+Add the following line:
+
+```
 engine-jwt-secret="/secrets/jwtsecret"
 ```
 
 
 
 {% hint style="info" %}
-Use one configuration or the other but not both!
+Use one configuration or the other, but not both!
 {% endhint %}
 {% endtab %}
 
