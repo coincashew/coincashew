@@ -39,7 +39,11 @@ To strengthen Ethereum's resilience against potential attacks or consensus bugs,
 **Geth** - Go Ethereum is one of the three original implementations (along with C++ and Python) of the Ethereum protocol. It is written in **Go**, fully open source and licensed under the GNU LGPL v3.
 {% endhint %}
 
+
+
 Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
+
+
 
 :dna:**Install from the repository**
 
@@ -49,11 +53,17 @@ sudo apt-get update -y
 sudo apt-get install ethereum -y
 ```
 
+
+
 :gear: **Setup and configure systemd**
+
+
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
 Simply copy/paste the following.
+
+
 
 ```bash
 cat > $HOME/eth1.service << EOF
@@ -79,6 +89,8 @@ WantedBy=multi-user.target
 EOF
 ```
 
+
+
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
@@ -89,6 +101,8 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
@@ -96,11 +110,15 @@ sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
 
+
+
 :chains:**Start geth**
 
 ```
 sudo systemctl start eth1
 ```
+
+
 
 {% hint style="info" %}
 **Geth Tip**: When is my geth node synched?
@@ -116,6 +134,8 @@ sudo systemctl start eth1
 **Hyperledger Besu** is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
 {% endhint %}
 
+
+
 :dna:**Install java dependency**
 
 ```
@@ -123,15 +143,23 @@ sudo apt update
 sudo apt install openjdk-17-jdk -y libjemalloc-dev
 ```
 
+
+
 :last\_quarter\_moon\_with\_face:**Download and unzip Besu**
+
+
 
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
 Run the following to download the linux release, un-tar, cleanup and rename besu directory.
 
+
+
 {% hint style="info" %}
 Replace the **BINARIES\_URL** variable with the latest URL to a **tar.gz** file found in the **Download links** section.
 {% endhint %}
+
+
 
 ```bash
 BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.2/besu-22.7.2.tar.gz"
@@ -142,7 +170,11 @@ tar -xzvf besu.tar.gz -C $HOME
 rm besu.tar.gz && mv besu* besu
 ```
 
+
+
 :gear: **Setup and configure systemd**
+
+
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
@@ -176,6 +208,8 @@ WantedBy=multi-user.target
 EOF
 ```
 
+
+
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
@@ -186,12 +220,16 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
+
+
 
 :chains: **Start besu**
 
@@ -205,6 +243,8 @@ sudo systemctl start eth1
 **Nethermind** is a flagship Ethereum client all about performance and flexibility. Built on **.NET** core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
 {% endhint %}
 
+
+
 :gear: **Install dependencies**
 
 ```
@@ -212,7 +252,11 @@ sudo apt-get update
 sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 ```
 
+
+
 :last\_quarter\_moon\_with\_face:**Download and unzip Nethermind**
+
+****
 
 Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
 
@@ -225,7 +269,11 @@ unzip -o nethermind*.zip -d $HOME/nethermind
 rm nethermind*linux*.zip
 ```
 
+
+
 :gear: **Setup and configure systemd**
+
+****
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
@@ -257,6 +305,8 @@ WantedBy=multi-user.target
 EOF
 ```
 
+
+
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
 ```bash
@@ -267,12 +317,16 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
+
+
 
 {% hint style="info" %}
 On Ubuntu 22.xx+, a [workaround](https://github.com/NethermindEth/nethermind/issues/4039) is required.
@@ -282,11 +336,15 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.
 ```
 {% endhint %}
 
+
+
 :chains: **Start Nethermind**
 
 ```
 sudo systemctl start eth1
 ```
+
+
 
 {% hint style="info" %}
 **Note about Metric Error messages**: You will see these until prometheus pushergateway is setup in section 6. `Error in MetricPusher: System.Net.Http.HttpRequestException: Connection refused`
@@ -298,9 +356,13 @@ sudo systemctl start eth1
 **Erigon** - Successor to OpenEthereum, Erigon is an implementation of Ethereum (aka "Ethereum client"), on the efficiency frontier, written in Go.
 {% endhint %}
 
+
+
 {% hint style="info" %}
 Erigon is considered alpha software and requires at least 16GB RAM.
 {% endhint %}
+
+
 
 :gear: **Install Go dependencies**
 
@@ -319,6 +381,8 @@ echo export PATH=$PATH:/usr/local/go/bin>> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
+
+
 Verify Go is properly installed and cleanup files.
 
 ```bash
@@ -326,7 +390,11 @@ go version
 rm go.tar.gz
 ```
 
+
+
 :robot: **Build and install Erigon**
+
+
 
 Install build dependencies.
 
@@ -334,6 +402,8 @@ Install build dependencies.
 sudo apt-get update
 sudo apt install build-essential git
 ```
+
+
 
 Review the latest release at [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)
 
@@ -344,14 +414,20 @@ cd erigon
 make erigon
 ```
 
-​ Make data directory and update directory ownership.
+​&#x20;
+
+Make data directory and update directory ownership.
 
 ```bash
 sudo mkdir -p /var/lib/erigon
 sudo chown $USER:$USER /var/lib/erigon
 ```
 
-​ :gear: **Setup and configure systemd**
+​
+
+&#x20;:gear: **Setup and configure systemd**
+
+
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
@@ -384,9 +460,13 @@ WantedBy=multi-user.target
 EOF
 ```
 
+
+
 {% hint style="info" %}
 By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain. For example, if tip block is no. 12'000'000, then only the data between 11'910'000-12'000'000 will be kept).
 {% endhint %}
+
+
 
 Move the unit files to `/etc/systemd/system` and give it permissions.
 
@@ -398,12 +478,16 @@ sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
 sudo chmod 644 /etc/systemd/system/eth1.service
 ```
 
+
+
 Run the following to enable auto-start at boot time.
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable eth1
 ```
+
+
 
 :chains:**Start Erigon**
 
