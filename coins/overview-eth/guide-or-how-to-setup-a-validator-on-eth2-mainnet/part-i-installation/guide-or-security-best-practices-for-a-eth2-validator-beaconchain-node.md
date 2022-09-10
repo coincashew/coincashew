@@ -351,7 +351,7 @@ Add the following lines to the bottom of the file.
 
 ```bash
 # Example
-ignoreip = 192.168.1.0/24 127.0.0.1/8 
+ignoreip = 192.168.1.0/24 127.0.0.1/8
 ```
 {% endhint %}
 

@@ -150,18 +150,18 @@ Paste the following configuration into the file.
 
 ```bash
 # The eth beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
-Description     = eth beacon chain service
-Wants           = network-online.target
-After           = network-online.target 
+Description=eth beacon chain service
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = <USER>
-Restart         = on-failure
-ExecStart       = <HOME>/.cargo/bin/lighthouse bn \
+Type=simple
+User=<USER>
+Restart=on-failure
+ExecStart=<HOME>/.cargo/bin/lighthouse bn \
   --network mainnet \
   --staking \
   --validator-monitor-auto \
@@ -171,7 +171,7 @@ ExecStart       = <HOME>/.cargo/bin/lighthouse bn \
   --execution-jwt /secrets/jwtsecret
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy=multi-user.target
 ```
 
 
@@ -240,26 +240,26 @@ Paste the following configuration into the file.
 
 ```bash
 # The eth validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+# file: /etc/systemd/system/validator.service
 
 [Unit]
-Description     = eth validator service
-Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+Description=eth validator service
+Wants=network-online.target beacon-chain.service
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = <USER>
-Restart         = on-failure
-ExecStart       = <HOME>/.cargo/bin/lighthouse vc \
+Type=simple
+User=<USER>
+Restart=on-failure
+ExecStart=<HOME>/.cargo/bin/lighthouse vc \
  --network mainnet \
  --metrics \
  --enable-doppelganger-protection \
  --graffiti "<MY_GRAFFITI>" \
  --suggested-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
- 
+
 [Install]
-WantedBy    = multi-user.target
+WantedBy=multi-user.target
 ```
 
 
@@ -335,7 +335,7 @@ sudo apt-get install curl build-essential git -y
 Install and build Nimbus.
 
 ```bash
-mkdir ~/git 
+mkdir ~/git
 cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
@@ -488,29 +488,29 @@ Paste the following configuration into the file.
 
 ```bash
 # The eth beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
-Description     = eth consensus layer beacon chain service
-Wants           = network-online.target
-After           = network-online.target 
+Description=eth consensus layer beacon chain service
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = <USER>
-Restart         = on-failure
-ExecStart       = /bin/bash -c '/usr/bin/nimbus_beacon_node \
- --network=mainnet \
- --graffiti="<MY_GRAFFITI>" \
- --data-dir=/var/lib/nimbus \
- --web3-url=ws://127.0.0.1:8551 \
- --metrics \
- --metrics-port=8008 \
- --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS \
- --jwt-secret="/secrets/jwtsecret"'
- 
+Type=simple
+User=<USER>
+Restart=on-failure
+ExecStart=/bin/bash -c '/usr/bin/nimbus_beacon_node \
+  --network=mainnet \
+  --graffiti="<MY_GRAFFITI>" \
+  --data-dir=/var/lib/nimbus \
+  --web3-url=ws://127.0.0.1:8551 \
+  --metrics \
+  --metrics-port=8008 \
+  --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS \
+  --jwt-secret="/secrets/jwtsecret"'
+
 [Install]
-WantedBy    = multi-user.target
+WantedBy=multi-user.target
 ```
 
 
@@ -734,8 +734,8 @@ validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
 validators-graffiti: "<MY_GRAFFITI>"
 
 # execution engine
-ee-endpoint: http://localhost:8551 
-ee-jwt-secret-file: "/secrets/jwtsecret" 
+ee-endpoint: http://localhost:8551
+ee-jwt-secret-file: "/secrets/jwtsecret"
 
 # fee recipient
 validators-proposer-default-fee-recipient: "<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>"
@@ -806,21 +806,21 @@ Run the following to create a **unit file** to define your`beacon-chain.service`
 ```bash
 cat > $HOME/beacon-chain.service << EOF
 # The eth beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
-Description     = eth consensus layer beacon chain service
-Wants           = network-online.target
-After           = network-online.target 
+Description=eth consensus layer beacon chain service
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-User            = $USER
-ExecStart       = /usr/bin/teku/bin/teku -c /etc/teku/teku.yaml
-Restart         = on-failure
-Environment     = JAVA_OPTS=-Xmx5g
+User=$USER
+ExecStart=/usr/bin/teku/bin/teku -c /etc/teku/teku.yaml
+Restart=on-failure
+Environment=JAVA_OPTS=-Xmx5g
 
 [Install]
-WantedBy	= multi-user.target
+WantedBy=multi-user.target
 EOF
 ```
 
@@ -869,8 +869,8 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 
 ```bash
-mkdir ~/prysm && cd ~/prysm 
-curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh 
+mkdir ~/prysm && cd ~/prysm
+curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh
 ```
 
 
@@ -956,28 +956,28 @@ Paste the following configuration into the file.
 
 ```bash
 # The eth beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
-Description     = eth consensus layer beacon chain service
-Wants           = network-online.target
-After           = network-online.target 
+Description=eth consensus layer beacon chain service
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = <USER>
-Restart         = on-failure
-ExecStart       = <HOME>/prysm/prysm.sh beacon-chain \
+Type=simple
+User=<USER>
+Restart=on-failure
+ExecStart=<HOME>/prysm/prysm.sh beacon-chain \
   --mainnet \
   --checkpoint-sync-url=https://beaconstate.info \
   --genesis-beacon-api-url=https://beaconstate.info \
   --execution-endpoint=http://localhost:8551 \
   --jwt-secret=/secrets/jwtsecret \
   --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS \
-  --accept-terms-of-use 
+  --accept-terms-of-use
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy=multi-user.target
 ```
 
 
@@ -1081,18 +1081,18 @@ Paste the following configuration into the file.
 
 ```bash
 # The eth validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+# file: /etc/systemd/system/validator.service
 
 [Unit]
-Description     = eth validator service
-Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+Description=eth validator service
+Wants=network-online.target beacon-chain.service
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = <USER>
-Restart         = on-failure
-ExecStart       = <HOME>/prysm/prysm.sh validator \
+Type=simple
+User=<USER>
+Restart=on-failure
+ExecStart=<HOME>/prysm/prysm.sh validator \
   --mainnet \
   --graffiti "<MY_GRAFFITI>" \
   --accept-terms-of-use \
@@ -1101,7 +1101,7 @@ ExecStart       = <HOME>/prysm/prysm.sh validator \
   --enable-doppelganger
 
 [Install]
-WantedBy	= multi-user.target
+WantedBy=multi-user.target
 ```
 
 
@@ -1285,29 +1285,29 @@ Paste the following configuration into the file.
 
 ```bash
 # The eth2 beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
-Description     = eth2 beacon chain service
-Wants           = network-online.target
-After           = network-online.target 
+Description=eth2 beacon chain service
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = <USER>
-Restart         = on-failure
-WorkingDirectory= <HOME>/git/lodestar
-ExecStart       = <HOME>/git/lodestar/lodestar beacon \
+Type=simple
+User=<USER>
+Restart=on-failure
+WorkingDirectory=<HOME>/git/lodestar
+ExecStart=<HOME>/git/lodestar/lodestar beacon \
   --network mainnet \
   --dataDir /var/lib/lodestar \
   --metrics true \
   --checkpointSyncUrl https://beaconstate.info \
   --jwt-secret /secrets/jwtsecret \
   --execution.urls http://127.0.0.1:8551 \
-  --suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS 
+  --suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 
 [Install]
-WantedBy	= multi-user.target
+WantedBy=multi-user.target
 ```
 
 
@@ -1380,26 +1380,26 @@ Paste the following configuration into the file.
 
 ```bash
 # The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+# file: /etc/systemd/system/validator.service
 
 [Unit]
-Description     = eth2 validator service
-Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+Description=eth2 validator service
+Wants=network-online.target beacon-chain.service
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = <USER>
-Restart         = on-failure
-WorkingDirectory= <HOME>/git/lodestar
-ExecStart       = <HOME>/git/lodestar/lodestar validator \
+Type=simple
+User=<USER>
+Restart=on-failure
+WorkingDirectory=<HOME>/git/lodestar
+ExecStart=<HOME>/git/lodestar/lodestar validator \
   --network mainnet \
   --dataDir /var/lib/lodestar \
   --graffiti "<MY_GRAFFITI>" \
   --suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 
 [Install]
-WantedBy	= multi-user.target
+WantedBy=multi-user.target
 ```
 
 

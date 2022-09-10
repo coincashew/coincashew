@@ -7,14 +7,14 @@ description: >-
 # Guide \| How to setup a validator on ETH2 mainnet
 
 {% hint style="success" %}
-As of Dec 5 2020, this guide is updated for **mainnet.** 😁 
+As of Dec 5 2020, this guide is updated for **mainnet.** 😁
 {% endhint %}
 
 #### ✨ For the testnet guide, [please click here](guide-or-how-to-setup-a-validator-on-eth2-testnet.md).
 
 ![](../../.gitbook/assets/gg.jpg)
 
-\*\*\*\*🎊 **2020-12 Update**: We're on [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew), where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact.  Your **1 DAI** contribution equals a **23 DAI** match. 
+\*\*\*\*🎊 **2020-12 Update**: We're on [Gitcoin](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew), where you can contribute via [quadratic funding](https://vitalik.ca/general/2019/12/07/quadratic.html) and make a big impact.  Your **1 DAI** contribution equals a **23 DAI** match.
 
 Please [check us out](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew). Thank you!🙏
 
@@ -50,7 +50,7 @@ As a validator for eth2, you will typically have the following abilities:
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
 * **Memory:** 16GB RAM or more
 * **Storage:** 1TB SSD or more
-* **Internet:** Broadband internet connections with speeds at least 10 Mbps without data limit. 
+* **Internet:** Broadband internet connections with speeds at least 10 Mbps without data limit.
 * **Power:** Reliable electrical power with uninterruptible power supply \(UPS\)
 * **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
 * **Wallet**: Metamask installed
@@ -174,9 +174,9 @@ The Tails OS is an *amnesic* operating system, meaning it will save nothing and 
 You need:
 
 - 2 storage mediums (can be USB stick, SD cards or external hard drives)
-- One of them must be > 8GB  
+- One of them must be > 8GB
 - Windows or Mac computer
-- 30 minutes or longer depending on your download speed 
+- 30 minutes or longer depending on your download speed
 
 ### Part 1 - Download Tails OS
 
@@ -199,13 +199,13 @@ Run the above software. This is an example how it looks like on Mac OS with etch
 
 ![](../../.gitbook/assets/etcher_in_mac.png)
 
-Select the Tails OS image that you downloaded as the image. Then select the USB stick (the larger one). 
+Select the Tails OS image that you downloaded as the image. Then select the USB stick (the larger one).
 
 Then flash the image to the larger USB stick.
 
 ### Part 4 - Download and verify the eth2-deposit-cli
 
-You can refer to the other tab on this guide on how to download and verify the eth2-deposit-cli. 
+You can refer to the other tab on this guide on how to download and verify the eth2-deposit-cli.
 
 Copy the file to the other USB stick.
 
@@ -215,7 +215,7 @@ After you have done all the above, you can reboot. If you are connected by a LAN
 
 Plug in the USB stick that has your Tails OS.
 
-On Mac, press and hold the Option key immediately upon hearing the startup chime. Release the key after Startup Manager appears. 
+On Mac, press and hold the Option key immediately upon hearing the startup chime. Release the key after Startup Manager appears.
 
 On Windows, it depends on your computer manufacturer. Usually it is by pressing F1 or F12. If it doesn't work, try googling "Enter boot options menu on [Insert your PC brand]"
 
@@ -283,11 +283,11 @@ You can copy via USB key the pre-built eth2deposit-cli binaries from an online m
 {% hint style="info" %}
 Your transaction is sending and depositing your ETH to the [official ETH2 deposit contract address. ](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
 
-**Check**, _double-check_, _**triple-check**_ that the official Eth2 deposit contract address is correct.[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa) 
+**Check**, _double-check_, _**triple-check**_ that the official Eth2 deposit contract address is correct.[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
 {% endhint %}
 
 {% hint style="danger" %}
-\*\*\*\*🔥 **Critical Crypto Reminder:** **Keep your mnemonic, keep your ETH.** 🚀 
+\*\*\*\*🔥 **Critical Crypto Reminder:** **Keep your mnemonic, keep your ETH.** 🚀
 
 * Write down your mnemonic seed **offline**. _Not email. Not cloud._
 * Multiple copies are better. _Best stored in a_ [_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
@@ -304,7 +304,7 @@ Ethereum 2.0 requires a connection to Ethereum 1.0 in order to monitor for 32 ET
 {% hint style="warning" %}
 The subsequent steps assume you have completed the [best practices security guide. ](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
 
-🛑 Do not run your processes as **ROOT** user. 😱 
+🛑 Do not run your processes as **ROOT** user. 😱
 {% endhint %}
 
 Your choice of either [**OpenEthereum**](https://www.parity.io/ethereum/)**,** [**Geth**](https://geth.ethereum.org/)**,** [**Besu**](https://besu.hyperledger.org/)**,** [**Nethermind**](https://www.nethermind.io/), [**Infura**](https://infura.io/) **or** [**Chainstack**](https://chainstack.com/)**.**
@@ -344,11 +344,11 @@ Run the following to create a **unit file** to define your `eth1.service` config
 Simply copy/paste the following.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+cat > $HOME/eth1.service << EOF
 [Unit]
 Description     = openethereum eth1 service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -414,11 +414,11 @@ Run the following to create a **unit file** to define your `eth1.service` config
 Simply copy/paste the following.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+cat > $HOME/eth1.service << EOF
 [Unit]
 Description     = geth eth1 service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -495,11 +495,11 @@ Run the following to create a **unit file** to define your `eth1.service` config
 Simply copy/paste the following.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+cat > $HOME/eth1.service << EOF
 [Unit]
 Description     = openethereum eth1 service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -554,7 +554,7 @@ Review the latest release at [https://github.com/NethermindEth/nethermind/releas
 Automatically download the latest linux release, un-zip and cleanup.
 
 ```bash
-mkdir $HOME/nethermind 
+mkdir $HOME/nethermind
 cd $HOME/nethermind
 curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
 unzip -o nethermind*.zip
@@ -568,11 +568,11 @@ Run the following to create a **unit file** to define your `eth1.service` config
 Simply copy/paste the following.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+cat > $HOME/eth1.service << EOF
 [Unit]
 Description     = openethereum eth1 service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -628,7 +628,7 @@ Alternatively use a free Ethereum node at [https://ethereumnodes.com/](https://e
 
 ## Nimbus Specific Configuration
 
-1. When creating your systemd's **unit file**, update the `--web-url` parameter with this endpoint. 
+1. When creating your systemd's **unit file**, update the `--web-url` parameter with this endpoint.
 2. Copy the websocket endpoint. Starts with `wss://`
 3. Save this for step 4, configuring your eth2 node.
 
@@ -639,7 +639,7 @@ Alternatively use a free Ethereum node at [https://ethereumnodes.com/](https://e
 
 ## Teku Specific Configuration
 
-1. After creating the `teku.yaml` located in `/etc/teku/teku.yaml`, update the `--eth1-endpoint` parameter with this endpoint. 
+1. After creating the `teku.yaml` located in `/etc/teku/teku.yaml`, update the `--eth1-endpoint` parameter with this endpoint.
 2. Copy the http endpoint. Starts with `http://`
 3. Save this for step 4, configuring your eth2 node.
 
@@ -650,7 +650,7 @@ eth1-endpoint: <your https:// infura endpoint>
 
 ## Lighthouse Specific Configuration
 
-1. When creating your **beacon chain systemd** **unit file**, add the `--eth1-endpoint` parameter with this endpoint. 
+1. When creating your **beacon chain systemd** **unit file**, add the `--eth1-endpoint` parameter with this endpoint.
 2. Copy the **https** endpoint. Starts with `https://`
 3. Save this for step 4, configuring your eth2 node.
 
@@ -661,7 +661,7 @@ eth1-endpoint: <your https:// infura endpoint>
 
 ## Prysm Specific Configuration
 
-1. When creating your **beacon chain systemd unit file**, update the `--http-web3provider` parameter with this endpoint. 
+1. When creating your **beacon chain systemd unit file**, update the `--http-web3provider` parameter with this endpoint.
 2. Copy the **https** endpoint. Starts with `https://`
 3. Save this for step 4, configuring your eth2 node.
 
@@ -783,7 +783,7 @@ lighthouse account_manager validator list --network mainnet
 ```
 
 {% hint style="danger" %}
-**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED. 
+**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
 
 ## 🔥 4.4. Configure port forwarding and/or firewall
@@ -810,14 +810,14 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 Run the following to create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/beacon-chain.service << EOF 
+cat > $HOME/beacon-chain.service << EOF
 # The eth2 beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
 Description     = eth2 beacon chain service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -838,7 +838,7 @@ EOF
 ```
 {% endhint %}
 
-Move the unit file to `/etc/systemd/system` 
+Move the unit file to `/etc/systemd/system`
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
@@ -859,9 +859,9 @@ sudo systemctl start beacon-chain
 ```
 
 {% hint style="info" %}
-**Troubleshooting common issues**: 
+**Troubleshooting common issues**:
 
-_The beacon chain couldn't connect to the :8545 service?_ 
+_The beacon chain couldn't connect to the :8545 service?_
 
 * In the beacon chain unit file under \[Service\], add, "`ExecStartPre = /bin/sleep 30`" so that it waits 30 seconds for eth1 node to startup before connecting.
 
@@ -919,7 +919,7 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
 
-Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes.
 
 ```bash
 MY_GRAFFITI='<my POAP string or message>'
@@ -943,18 +943,18 @@ Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
 Run the following to create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/validator.service << EOF 
+cat > $HOME/validator.service << EOF
 # The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+# file: /etc/systemd/system/validator.service
 
 [Unit]
 Description     = eth2 validator service
 Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" --metrics 
+ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" --metrics
 Restart         = on-failure
 
 [Install]
@@ -962,7 +962,7 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` 
+Move the unit file to `/etc/systemd/system`
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
@@ -1043,7 +1043,7 @@ sudo apt-get install curl build-essential git -y
 Install and build Nimbus.
 
 ```bash
-mkdir ~/git 
+mkdir ~/git
 cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
@@ -1104,7 +1104,7 @@ When you import your keys into Nimbus, your validator signing key\(s\) are store
 
 The `secrets` folder contains the common secret that gives you access to all your validator keys.
 
-The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). Keystores are used by validators as a method for exchanging keys. 
+The `validators` folder contains your signing keystore\(s\) \(encrypted keys\). Keystores are used by validators as a method for exchanging keys.
 
 For more on keys and keystores, see [here](https://blog.ethereum.org/2020/05/21/keys/).
 {% endhint %}
@@ -1134,7 +1134,7 @@ Nimbus combines both the beacon chain and validator into one process.
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
 
-Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes.
 
 ```bash
 MY_GRAFFITI='<my POAP string or message>'
@@ -1158,14 +1158,14 @@ Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
 Run the following to create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/beacon-chain.service << EOF 
+cat > $HOME/beacon-chain.service << EOF
 # The eth2 beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
 Description     = eth2 beacon chain service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 Type            = simple
@@ -1183,7 +1183,7 @@ EOF
 Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum, Infura and Chainstack ETH1 nodes are verified compatible.
 {% endhint %}
 
-Move the unit file to `/etc/systemd/system` 
+Move the unit file to `/etc/systemd/system`
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
@@ -1346,7 +1346,7 @@ rm /var/lib/teku/validator_keys/deposit_data*
 **WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
 {% endhint %}
 
-Store your validator's password in a file. 
+Store your validator's password in a file.
 
 Update your password between the quotation marks after `echo`.
 
@@ -1359,7 +1359,7 @@ sudo mv $HOME/validators-password.txt /etc/teku/validators-password.txt
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
 
-Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes.
 
 ```bash
 MY_GRAFFITI='<my POAP string or message>'
@@ -1417,7 +1417,7 @@ sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
 ## 🎩 4.4 Import validator key
 
 {% hint style="info" %}
-When specifying directories for your validator-keys, Teku expects to find identically named keystore and password files. 
+When specifying directories for your validator-keys, Teku expects to find identically named keystore and password files.
 
 For example `keystore-m_12221_3600_1_0_0-11222333.json` and `keystore-m_12221_3600_1_0_0-11222333.txt`
 {% endhint %}
@@ -1451,12 +1451,12 @@ Run the following to create a **unit file** to define your`beacon-chain.service`
 ```bash
 cat > $HOME/beacon-chain.service << EOF
 # The eth2 beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
 Description     = eth2 beacon chain service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -1469,7 +1469,7 @@ WantedBy	= multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` 
+Move the unit file to `/etc/systemd/system`
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
@@ -1541,8 +1541,8 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 ## ⚙ 4.1. Install Prysm
 
 ```bash
-mkdir ~/prysm && cd ~/prysm 
-curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh 
+mkdir ~/prysm && cd ~/prysm
+curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh
 ```
 
 ## 🔥 4.2. Configure port forwarding and/or firewall
@@ -1576,7 +1576,7 @@ Confirm your validator's pubkeys are listed.
 >
 > Showing 1 validator account View the eth1 deposit transaction data for your accounts by running \`validator accounts list --show-deposit-data
 >
-> Account 0 \| pens-brother-heat   
+> Account 0 \| pens-brother-heat
 > \[validating public key\] 0x2374.....7121
 
 {% hint style="danger" %}
@@ -1596,19 +1596,19 @@ Confirm your validator's pubkeys are listed.
 Run the following to create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/beacon-chain.service << EOF 
+cat > $HOME/beacon-chain.service << EOF
 # The eth2 beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
 Description     = eth2 beacon chain service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 Type            = simple
 User            = $(whoami)
-ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --p2p-max-peers=75 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use 
+ExecStart       = $(echo $HOME)/prysm/prysm.sh beacon-chain --mainnet --p2p-max-peers=75 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use
 Restart         = on-failure
 
 [Install]
@@ -1616,7 +1616,7 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` 
+Move the unit file to `/etc/systemd/system`
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
@@ -1692,7 +1692,7 @@ sudo chmod 600 $HOME/.eth2validators/validators-password.txt
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
 
-Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes.
 
 ```bash
 MY_GRAFFITI='<my POAP string or message>'
@@ -1718,14 +1718,14 @@ Your choice of running a validator manually from command line or automatically w
 Run the following to create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/validator.service << EOF 
+cat > $HOME/validator.service << EOF
 # The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+# file: /etc/systemd/system/validator.service
 
 [Unit]
 Description     = eth2 validator service
 Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -1737,7 +1737,7 @@ WantedBy	= multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` 
+Move the unit file to `/etc/systemd/system`
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
@@ -1892,7 +1892,7 @@ yarn run cli account validator import \
   --directory $HOME/eth2deposit-cli/validator_keys
 ```
 
-Enter your keystore's password to import accounts. 
+Enter your keystore's password to import accounts.
 
 Confirm your keys were imported properly.
 
@@ -1919,14 +1919,14 @@ Run the beacon chain automatically with systemd.
 Run the following to create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/beacon-chain.service << EOF 
+cat > $HOME/beacon-chain.service << EOF
 # The eth2 beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
 Description     = eth2 beacon chain service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -2008,7 +2008,7 @@ journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn a POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
 
-Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes. 
+Run the following command to set the `MY_GRAFFITI` variable. Replace `<my POAP string or message>` between the single quotes.
 
 ```bash
 MY_GRAFFITI='<my POAP string or message>'
@@ -2034,14 +2034,14 @@ Run the validator automatically with systemd.
 Run the following to create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/validator.service << EOF 
+cat > $HOME/validator.service << EOF
 # The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+# file: /etc/systemd/system/validator.service
 
 [Unit]
 Description     = eth2 validator service
 Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -2195,7 +2195,7 @@ scrape_configs:
      static_configs:
        - targets: ['localhost:9100']
    - job_name: 'nodes'
-     metrics_path: /metrics    
+     metrics_path: /metrics
      static_configs:
        - targets: ['localhost:5054']
    - job_name: 'validators'
@@ -2224,7 +2224,7 @@ scrape_configs:
      static_configs:
        - targets: ['localhost:9100']
    - job_name: 'nodes'
-     metrics_path: /metrics    
+     metrics_path: /metrics
      static_configs:
        - targets: ['localhost:8008']
 EOF
@@ -2249,7 +2249,7 @@ scrape_configs:
      static_configs:
        - targets: ['localhost:9100']
    - job_name: 'nodes'
-     metrics_path: /metrics    
+     metrics_path: /metrics
      static_configs:
        - targets: ['localhost:8008']
 EOF
@@ -2288,13 +2288,13 @@ EOF
 
 {% tab title="Lodestar" %}
 ```bash
-cat > $HOME/prometheus.yml << EOF   
+cat > $HOME/prometheus.yml << EOF
 scrape_configs:
    - job_name: 'node_exporter'
      static_configs:
        - targets: ['localhost:9100']
    - job_name: 'Lodestar'
-     metrics_path: /metrics    
+     metrics_path: /metrics
      static_configs:
        - targets: ['localhost:8008']
 EOF
@@ -2405,11 +2405,11 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 15. Repeat steps 11-14 for the ETH1 client dashboard.
 
 {% hint style="info" %}
-\*\*\*\*🔥 **Troubleshooting common Grafana issues**: 
+\*\*\*\*🔥 **Troubleshooting common Grafana issues**:
 
 _The dashboards do not display eth1 node data._
 
-* In the **eth1 unit file** under located at `/etc/systemd/system/eth1.service`,  make sure your eth1 node/geth is started with the correct parameters so that reporting metrics and pprof http server are enabled. 
+* In the **eth1 unit file** under located at `/etc/systemd/system/eth1.service`,  make sure your eth1 node/geth is started with the correct parameters so that reporting metrics and pprof http server are enabled.
   * Example:`ExecStartPre = /usr/bin/geth --http --metrics --pprof`
 {% endhint %}
 
@@ -2491,7 +2491,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% endtab %}
 
 {% tab title="Telegram Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon.  
+1. On the menu of Grafana, select **Notification channels** under the bell icon.
 2. Click on **Add channel**.
 3. Give the notification channel a **name**.
 4. Select **Telegram** from the Type list.
@@ -2512,7 +2512,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% endtab %}
 
 {% tab title="Discord Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon.  
+1. On the menu of Grafana, select **Notification channels** under the bell icon.
 2. Click on **Add channel**.
 3. Add a **name** to the notification channel.
 4. Select **Discord** from the Type list.
@@ -2522,7 +2522,7 @@ Get notified of problems with your validators. Choose between email, telegram, d
 {% endtab %}
 
 {% tab title="Slack Notifications" %}
-1. On the menu of Grafana, select **Notification channels** under the bell icon.  
+1. On the menu of Grafana, select **Notification channels** under the bell icon.
 2. Click on **Add channel**.
 3. Add a **name** to the notification channel.
 4. Select **Slack** from the Type list.
@@ -2554,14 +2554,14 @@ For a video demo, watch [MohamedMansour's eth2 education videos](https://www.you
 6. From the notifications menu, select your new project.
 7. On the right column, there's a Monitoring Card. Click **Go to Monitoring**.
 8. On the left menu, click **Uptime checks** and then **CREATE UPTIME CHECK.**
-9. Type in a title i.e. _**Geth node**_ 
+9. Type in a title i.e. _**Geth node**_
 10. Select protocol as _**TCP**_
 11. Enter your public IP address and port number. i.e. ip=**7.55.6.3** and port=**30303**
 12. Select your desired frequency to check i.e. **5 minutes.**
 13. Choose the region closest to you to check from. Click Next.
 14. Create a Notification Channel. Click **Manage Notification Channels.**
 15. Choose your desired settings. Pick from any or all of Slack, Webhook, Email or SMS.
-16. Go back to Create Uptime Check window. 
+16. Go back to Create Uptime Check window.
 17. Within the notifications field, click the refresh button to load your new notification channels.
 18. Select desired notifications.
 19. Click **TEST** to verify your notifications are setup correctly.
@@ -2572,13 +2572,13 @@ For a video demo, watch [MohamedMansour's eth2 education videos](https://www.you
 
 Did you find our guide useful? Let us know with a tip and we'll keep updating it.
 
-Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏 
+Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏
 
-Any feedback and all pull requests much appreciated. 🌛 
+Any feedback and all pull requests much appreciated. 🌛
 
 Hang out and chat with fellow stakers on Discord @
 
-[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃 
+[https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 {% endhint %}
 
 ## 🧙♂7. Update a ETH2 client
@@ -2688,7 +2688,7 @@ sudo systemctl reload-or-restart beacon-chain validator
 {% endtab %}
 
 {% tab title="Lodestar" %}
-Review release notes and check for breaking changes/features. 
+Review release notes and check for breaking changes/features.
 
 [https://github.com/ChainSafe/lodestar/releases](https://github.com/ChainSafe/lodestar/releases)
 
@@ -2739,8 +2739,8 @@ sudo systemctl status beacon-chain
 Use this command to signal your intentions to stop validating with your validator. This means you no longer want to stake with your validator and want to turn off your node.
 
 * Voluntary exiting takes a minimum of 2048 epochs \(or ~9days\). There is a queue to exit and a delay before your validator is finally exited.
-* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again. 
-* Your funds will not be available for withdrawal until phase 1.5 or later. 
+* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again.
+* Your funds will not be available for withdrawal until phase 1.5 or later.
 * After your validator leaves the exit queue and is truely exited, it is safe to turn off your beacon node and validator.
 {% endhint %}
 
@@ -2786,7 +2786,7 @@ $HOME/prysm/prysm.sh validator accounts voluntary-exit
 Using the eth2deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`
 
 ```bash
-cd $HOME/eth2deposit-cli 
+cd $HOME/eth2deposit-cli
 ./deposit.sh existing-mnemonic --chain mainnet
 ```
 
@@ -2958,7 +2958,7 @@ Enter your validator's pubkey to view its status.
 
 #### 🧯 8.4.7 Update Monitoring with Prometheus and Grafana
 
-[Review section 6](guide-or-how-to-setup-a-validator-on-eth2-testnet.md#6-monitoring-your-validator-with-grafana-and-prometheus) and change your `prometheus.yml`. Ensure prometheus is connected to your new eth2 client's metrics port. You will also want to import your new eth2 client's dashboard. 
+[Review section 6](guide-or-how-to-setup-a-validator-on-eth2-testnet.md#6-monitoring-your-validator-with-grafana-and-prometheus) and change your `prometheus.yml`. Ensure prometheus is connected to your new eth2 client's metrics port. You will also want to import your new eth2 client's dashboard.
 
 ### 🖥 8.5 Use all available LVM disk space
 
@@ -2995,7 +2995,7 @@ Edit your eth1.service unit file.
 sudo nano /etc/systemd/system/eth1.service
 ```
 
-Add the following flag to limit the number of peers on the `ExecStart` line. 
+Add the following flag to limit the number of peers on the `ExecStart` line.
 
 {% tabs %}
 {% tab title="Geth" %}
@@ -3151,7 +3151,7 @@ On the eth1 node machine, edit your eth1.service unit file.
 sudo nano /etc/systemd/system/eth1.service
 ```
 
-Add the following flag to allow remote incoming http and or websocket api requests on the `ExecStart` line. 
+Add the following flag to allow remote incoming http and or websocket api requests on the `ExecStart` line.
 
 {% hint style="info" %}
 If not using websockets, there's no need to include ws parameters. Only Nimbus requires websockets.
@@ -3277,18 +3277,18 @@ Learn more about [POAP - The Proof of Attendance token. ](https://www.poap.xyz/)
 Run the following to re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/validator.service << EOF 
+cat > $HOME/validator.service << EOF
 # The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+# file: /etc/systemd/system/validator.service
 
 [Unit]
 Description     = eth2 validator service
 Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
-ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}" 
+ExecStart       = $(which lighthouse) vc --network mainnet --graffiti "${MY_GRAFFITI}"
 Restart         = on-failure
 
 [Install]
@@ -3296,7 +3296,7 @@ WantedBy    = multi-user.target
 EOF
 ```
 
-Move the unit file to `/etc/systemd/system` 
+Move the unit file to `/etc/systemd/system`
 
 ```bash
 sudo mv $HOME/validator.service /etc/systemd/system/validator.service
@@ -3313,14 +3313,14 @@ sudo chmod 644 /etc/systemd/system/validator.service
 Run the following to re-create a **unit file** to define your`beacon-chain.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/beacon-chain.service << EOF 
+cat > $HOME/beacon-chain.service << EOF
 # The eth2 beacon chain service (part of systemd)
-# file: /etc/systemd/system/beacon-chain.service 
+# file: /etc/systemd/system/beacon-chain.service
 
 [Unit]
 Description     = eth2 beacon chain service
 Wants           = network-online.target
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 Type            = simple
@@ -3339,7 +3339,7 @@ EOF
 Nimbus only supports websocket connections \("ws://" and "wss://"\) for the ETH1 node. Geth, OpenEthereum, Infura and Chainstack ETH1 nodes are verified compatible.
 {% endhint %}
 
-Move the unit file to `/etc/systemd/system` 
+Move the unit file to `/etc/systemd/system`
 
 ```bash
 sudo mv $HOME/beacon-chain.service /etc/systemd/system/beacon-chain.service
@@ -3401,14 +3401,14 @@ sudo mv $HOME/teku.yaml /etc/teku/teku.yaml
 Re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/validator.service << EOF 
+cat > $HOME/validator.service << EOF
 # The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+# file: /etc/systemd/system/validator.service
 
 [Unit]
 Description     = eth2 validator service
 Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -3437,14 +3437,14 @@ sudo chmod 644 /etc/systemd/system/validator.service
 Run the following to re-create a **unit file** to define your`validator.service` configuration. Simply copy and paste.
 
 ```bash
-cat > $HOME/validator.service << EOF 
+cat > $HOME/validator.service << EOF
 # The eth2 validator service (part of systemd)
-# file: /etc/systemd/system/validator.service 
+# file: /etc/systemd/system/validator.service
 
 [Unit]
 Description     = eth2 validator service
 Wants           = network-online.target beacon-chain.service
-After           = network-online.target 
+After           = network-online.target
 
 [Service]
 User            = $(whoami)
@@ -3554,7 +3554,7 @@ File can be downloaded from [https://dl.bintray.com/hyperledger-org/besu-repo](h
 
 Manually find the desired file from above repo and modify the `wget` command with the URL.
 
-> Example: 
+> Example:
 >
 > wget -O besu.tar.gz [https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz](https://dl.bintray.com/hyperledger-org/besu-repo/besu-20.10.1.tar.gz)
 
@@ -3583,7 +3583,7 @@ cd $HOME
 # backup previous nethermind version in case of rollback
 mv nethermind nethermind_backup_$(date +"%Y%d%m-%H%M%S")
 # store new version in nethermind directory
-mkdir nethermind && cd nethermind 
+mkdir nethermind && cd nethermind
 # download latest version
 curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
 # unzip
@@ -3635,7 +3635,7 @@ Enter your validator's pubkey to view its status.
 ### 🖴 8.13 Dealing with storage issues on the Eth1 node
 
 {% hint style="info" %}
-It is currently recommended to use a minimum 1TB hard disk. 
+It is currently recommended to use a minimum 1TB hard disk.
 {% endhint %}
 
 After running the Eth1 node for a while, you will notice that it will start to fill up the hard disk.
@@ -3677,9 +3677,9 @@ sudo systemctl start eth1
 
 After you have installed your hard disk, you will need to properly format it and automount it. Consult the ubuntu guides on this.
 
-I will assume that the new disk has been mounted onto `/mnt/eth1-data`. (The name of the mount point is up to you) 
+I will assume that the new disk has been mounted onto `/mnt/eth1-data`. (The name of the mount point is up to you)
 
-Handling file permissions. 
+Handling file permissions.
 
 You need to change ownership of the folder to be accessible by your `eth1 service`. If your folder is a different name, please change the `/mnt/eth1-data` accordingly.
 

@@ -66,26 +66,26 @@ Run the following to create a **unit file** to define your `eth1.service` config
 Simply copy/paste the following.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+cat > $HOME/eth1.service << EOF
 [Unit]
-Description     = Geth Execution Layer Client service
-Wants           = network-online.target
-After           = network-online.target 
+Description=Geth Execution Layer Client service
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = $USER
-Restart         = on-failure
-RestartSec      = 3
-TimeoutSec      = 300
-ExecStart       = /usr/bin/geth \
+Type=simple
+User=$USER
+Restart=on-failure
+RestartSec=3
+TimeoutSec=300
+ExecStart=/usr/bin/geth \
   --mainnet \
   --metrics \
   --pprof \
   --authrpc.jwtsecret=/secrets/jwtsecret
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy=multi-user.target
 EOF
 ```
 
@@ -179,21 +179,21 @@ Run the following to create a **unit file** to define your `eth1.service` config
 Simply copy/paste the following.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+cat > $HOME/eth1.service << EOF
 [Unit]
-Description     = Besu Execution Layer Client service
-Wants           = network-online.target
-After           = network-online.target 
+Description=Besu Execution Layer Client service
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = $USER
-Restart         = on-failure
-RestartSec      = 3
-KillSignal      = SIGINT
-TimeoutStopSec  = 300
-Environment     = "JAVA_OPTS=-Xmx5g"
-ExecStart       = $HOME/besu/bin/besu \
+Type=simple
+User=$USER
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGINT
+TimeoutStopSec=300
+Environment="JAVA_OPTS=-Xmx5g"
+ExecStart=$HOME/besu/bin/besu \
   --network=mainnet \
   --metrics-enabled=true \
   --sync-mode=X_CHECKPOINT \
@@ -202,7 +202,7 @@ ExecStart       = $HOME/besu/bin/besu \
   --engine-jwt-secret=/secrets/jwtsecret
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy=multi-user.target
 EOF
 ```
 
@@ -278,28 +278,28 @@ Run the following to create a **unit file** to define your `eth1.service` config
 Simply copy/paste the following.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+cat > $HOME/eth1.service << EOF
 [Unit]
-Description     = Nethermind Execution Layer Client service
-Wants           = network-online.target
-After           = network-online.target 
+Description=Nethermind Execution Layer Client service
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = $USER
-Restart         = on-failure
-RestartSec      = 3
-KillSignal      = SIGINT
-TimeoutStopSec  = 300
-WorkingDirectory= $HOME/nethermind
-ExecStart       = $HOME/nethermind/Nethermind.Runner \
+Type=simple
+User=$USER
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGINT
+TimeoutStopSec=300
+WorkingDirectory=$HOME/nethermind
+ExecStart=$HOME/nethermind/Nethermind.Runner \
   --baseDbPath $HOME/.nethermind \
   --Metrics.Enabled true \
   --Sync.SnapSync true \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy=multi-user.target
 EOF
 ```
 
@@ -432,20 +432,20 @@ Run the following to create a **unit file** to define your `eth1.service` config
 Simply copy/paste the following.
 
 ```bash
-cat > $HOME/eth1.service << EOF 
+cat > $HOME/eth1.service << EOF
 [Unit]
-Description     = Erigon Execution Layer Client service
-Wants           = network-online.target
-After           = network-online.target 
+Description=Erigon Execution Layer Client service
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-Type            = simple
-User            = $USER
-Restart         = on-failure
-RestartSec      = 3
-KillSignal      = SIGINT
-TimeoutStopSec  = 300
-ExecStart       = $HOME/erigon/build/bin/erigon \
+Type=simple
+User=$USER
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGINT
+TimeoutStopSec=300
+ExecStart=$HOME/erigon/build/bin/erigon \
  --datadir /var/lib/erigon \
  --chain mainnet \
  --metrics \
@@ -454,7 +454,7 @@ ExecStart       = $HOME/erigon/build/bin/erigon \
  --authrpc.jwtsecret=/secrets/jwtsecret
 
 [Install]
-WantedBy    = multi-user.target
+WantedBy=multi-user.target
 EOF
 ```
 
