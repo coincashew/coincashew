@@ -62,7 +62,7 @@ wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.3.0/st
 
 
 
-Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.0.0).
+Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/staking-deposit-cli/releases/tag/v2.3.0).
 
 ```bash
 echo "8a7757995e70178ac953a746c7434f1bc816a2f4be0318d980bf1eca98930a3c *staking_deposit-cli-76ed782-linux-amd64.tar.gz" | shasum -a 256 --check

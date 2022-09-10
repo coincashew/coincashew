@@ -80,6 +80,10 @@ ssh-keygen -t ed25519
 {% endtab %}
 {% endtabs %}
 
+{% hint style="warning" %}
+Make multiple backup copies of your **private SSH key file** to external storage for recovery purposes.
+{% endhint %}
+
 Transfer the public key to your remote node. Update **keyname.pub** appropriately.
 
 ```bash
@@ -293,7 +297,7 @@ To learn more about secure shared memory, read this [techrepublic.com article](h
 {% endhint %}
 
 {% hint style="warning" %}
-#### One exceptional case
+**One exceptional case**
 
 There may be a reason for you needing to have that memory space mounted in read/write mode (such as a specific server application like **DappNode** that requires such access to the shared memory or standard applications like Google Chrome). In this case, use the following line for the fstab file with instructions below.
 
@@ -303,7 +307,7 @@ none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
 
 The above line will mount the shared memory with read/write access but without permission to execute programs, change the UID of running programs, or to create block or character devices in the namespace. This a net security improvement over default settings.
 
-#### Use with caution
+**Use with caution**
 
 With some trial and error, you may discover some applications(**like DappNode**) do not work with shared memory in read-only mode. For the highest security and if compatible with your applications, it is a worthwhile endeavor to implement this secure shared memory setting.
 
