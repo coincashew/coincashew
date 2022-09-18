@@ -473,4 +473,4 @@ If multiple relays are available, the relay bidding highest MEV reward will be c
 
 ## :thumbsup: Credits
 
-Inspired by [Remroy's Guide on how to Prepare for The Merge](https://github.com/remyroy/ethstaker/blob/main/prepare-for-the-merge.md#choosing-and-configuring-an-mev-solution)
+Inspired by [Remyroy's Guide on how to Prepare for The Merge](https://github.com/remyroy/ethstaker/blob/main/prepare-for-the-merge.md#choosing-and-configuring-an-mev-solution)
