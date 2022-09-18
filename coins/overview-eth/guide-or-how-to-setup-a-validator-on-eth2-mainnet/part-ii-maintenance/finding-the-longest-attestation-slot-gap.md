@@ -67,6 +67,14 @@ Sample Output showing the longest gap in seconds, # of slots and time range.
 >
 > 120.0 seconds (10 slots), from 13:37:35 until 13:39:35
 
+{% hint style="info" %}
+:question:**Troubleshooting:**
+
+* The python script calls the `http API` on port 5052.
+* Ensure the `http AP`I is enabled for your consensus layer client.
+* Teku by default uses port 5051, rather than 5052. Search and replace the port number before using.
+{% endhint %}
+
 {% hint style="warning" %}
 :fire: **Script Usage Caveats**:
 
