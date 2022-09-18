@@ -374,7 +374,7 @@ Credits: [https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashbo
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](../../../../.gitbook/assets/grafana.png)
+![](<../../../../.gitbook/assets/grafana (1).png>)
 
 ![](../../../../.gitbook/assets/node-exporter2.png)
 
