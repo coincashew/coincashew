@@ -13,7 +13,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of Aug 27 2022, this is **guide version 5.0.0** and written for **Ethereum mainnet**:grin:
+As of September 17 2022, this is **guide version 5.1.0** and written for **Ethereum mainnet**:grin:
 {% endhint %}
 
 {% hint style="info" %}
@@ -30,8 +30,9 @@ The guide includes the following parts:
 * ****[**Part II - Maintenance**](part-ii-maintenance/) explains ongoing tasks you'll require to keep your ETH staking node in great shape and up-to-date.
 * ****[**Part III - Tips**](part-iii-tips/) contains additional procedures to simplify managing your ETH staking node.
 
-## :page\_facing\_up: Changelog - **Update Notes -** **Aug 27 2022**
+## :page\_facing\_up: Changelog - **Update Notes -** **September 17 2022**
 
+* Added [MEV-boost guide.](../mev-boost.md)
 * Updated to be mainnet merge ready.
 * Are you ready for the Merge? [**Ethereum Merge Upgrade Checklist for Home Stakers and Validators**](https://www.coincashew.com/coins/overview-eth/ethereum-merge-upgrade-checklist-for-home-stakers-and-validators)
 * Updated to use staking-deposit-cli
@@ -50,7 +51,7 @@ The guide includes the following parts:
 * lighthouse + prysm doppelganger protection enabled. Doppelganger protection intentionally misses an epoch on startup and listens for attestations to make sure your keys are not still running on the old validator client.
 * OpenEthereum will no longer be supported post London hard fork. Gnosis, maintainers of OpenEthereum, suggest users migrate to their new Erigon Ethererum client. Added setup instructions for **Erigon** under eth1 node section.
 * Added [Mobile App Node Monitoring by beaconcha.in](part-i-installation/mobile-app-node-monitoring-by-beaconchain.md)
-* Updated [eth2.0-deposit-cli to v.1.2.0](https://github.com/ethereum/eth2.0-deposit-cli/releases/tag/v1.2.0) and added section on eth1 withdrawal address
+* Updated staking-deposit-cli and added section on eth1 withdrawal address
 * Added generating mnemonic seeds on **Tails OS** by [punggolzenith](https://github.com/punggolzenith)
 * Iancoleman.io BLS12-381 Key Generation Tool [how-to added](part-iii-tips/eip2333-key-generator-by-iancoleman-io.md)
 * Testnet guide forked for [Prater testnet](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md) staking
