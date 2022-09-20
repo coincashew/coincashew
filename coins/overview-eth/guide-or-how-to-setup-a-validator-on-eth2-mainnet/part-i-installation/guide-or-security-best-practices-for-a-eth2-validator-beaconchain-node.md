@@ -4,9 +4,7 @@ description: Quick steps to secure your node.
 
 # Security Best Practices for your ETH staking validator node
 
-{% hint style="info" %}
-:confetti\_ball: **Support us on Gitcoin Grants:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
-{% endhint %}
+Completing this guide will provide a solid baseline to protect and secure your staking node.
 
 ## :robot: Pre-requisites
 
@@ -22,7 +20,7 @@ In case you need a SSH client for your operating system, refer to:
 
 {% embed url="https://www.howtogeek.com/311287/how-to-connect-to-an-ssh-server-from-windows-macos-or-linux/" %}
 
-## :man\_mage:Create a non-root user with sudo privileges
+## :man\_mage: Mandatory: Create a non-root user with sudo privileges
 
 {% hint style="info" %}
 Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command `rm` can wipe your entire server if run incorrectly using by a root user.
@@ -32,7 +30,11 @@ Make a habit of logging to your server using a non-root account. This will preve
 :fire:**Tip**: Do NOT routinely use the root account. Use `su` or `sudo`, always.
 {% endhint %}
 
-SSH to your server with your SSH client
+If your staking node is your current computer, simply [open a terminal window.](https://www.ubuntubeginner.com/ubuntu-terminal-basics/) From anywhere type Ctrl+Alt+T to open terminal window.
+
+
+
+Otherwise, SSH to your staking node with your SSH client,&#x20;
 
 ```bash
 ssh username@server.public.ip.address
@@ -58,7 +60,7 @@ Add ethereum to the sudo group
 sudo usermod -aG sudo ethereum
 ```
 
-## :closed\_lock\_with\_key: **Disable SSH password Authentication and Use SSH Keys only**
+## :closed\_lock\_with\_key: Mandatory: **Disable SSH password Authentication and Use SSH Keys only**
 
 {% hint style="info" %}
 The basic rules of hardening SSH are:
@@ -185,7 +187,7 @@ Host ethereum-server
 
 This will allow you to log in with `ssh ethereum-server` rather than needing to pass through all ssh parameters explicitly.
 
-## :robot: **Update your system**
+## :robot: Mandatory: **Update your system**
 
 {% hint style="warning" %}
 It's critically important to keep your system up-to-date with the latest patches to prevent intruders from accessing your system.
@@ -204,7 +206,7 @@ sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-## :bear: Disable root account
+## :bear: Optional: Disable root account
 
 System admins should not frequently log in as root in order to maintain server security. Instead, you can use sudo execute that require low-level privileges.
 
@@ -218,7 +220,7 @@ sudo passwd -l root
 sudo passwd -u root
 ```
 
-## :tools: Setup Two Factor Authentication for SSH \[Optional]
+## :tools: Optional: Setup Two Factor Authentication for SSH
 
 {% hint style="info" %}
 SSH, the secure shell, is often used to access remote Linux systems. Because we often use it to connect with computers containing important data, it’s recommended to add another security layer. Here comes the two factor authentication (_2FA_).
@@ -288,7 +290,7 @@ Now, open Google Authenticator on your phone and add your secret key to make two
 **Note**: If you are enabling 2FA on a remote machine that you access over SSH you need to follow **steps 2 and 3** of [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-18-04) to make 2FA work.
 {% endhint %}
 
-## :jigsaw: Secure Shared Memory
+## :jigsaw: Optional: Secure Shared Memory
 
 {% hint style="info" %}
 One of the first things you should do is secure the shared [memory](https://www.lifewire.com/what-is-random-access-memory-ram-2618159) used on the system. If you're unaware, shared memory can be used in an attack against a running service. Because of this, secure that portion of system memory.
@@ -332,7 +334,7 @@ Reboot the node in order for changes to take effect.
 sudo reboot
 ```
 
-## :chains:**Install Fail2ban**
+## :chains:Recommended: **Install Fail2ban**
 
 {% hint style="info" %}
 Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address (within a specified amount of time), fail2ban blocks access from that IP address.
@@ -378,7 +380,7 @@ Restart fail2ban for settings to take effect.
 sudo systemctl restart fail2ban
 ```
 
-## :bricks:**Configure your Firewall**
+## :bricks:Mandatory: **Configure your Firewall**
 
 The standard UFW firewall can be used to control network access to your node.
 
@@ -546,7 +548,7 @@ sudo ufw allow from <your local daily laptop/pc>
 :confetti\_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
-## :telephone\_receiver: Verify Listening Ports
+## :telephone\_receiver: Recommended: Verify Listening Ports
 
 If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
 
@@ -574,7 +576,7 @@ sudo netstat -tulpn
 # udp6       0      0 :::30303                :::*                    LISTEN      22117/geth
 ```
 
-## :woman\_astronaut: **Use** system user accounts - Principle of Least Privilege \[Advanced Users / Optional]
+## :woman\_astronaut: Optional: **Use** system user accounts - Principle of Least Privilege \[Advanced Users]
 
 {% hint style="info" %}
 **Recommended for Advanced Users Only**

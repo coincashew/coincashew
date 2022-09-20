@@ -6,7 +6,7 @@
 Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
 {% endhint %}
 
-You have the choice of using the [Wagyu GUI](https://github.com/stake-house/wagyu-installer), downloading the pre-built [Ethereum staking deposit tool](https://github.com/ethereum/staking-deposit-cli) or building it from source. Alternatively, you can use an air-gapped Tails OS or if you have a **Ledger Nano X/S or Trezor Model T**, you're able to generate deposit files with keys managed by a hardware wallet.&#x20;
+You have the choice of downloading the pre-built [Ethereum staking deposit tool](https://github.com/ethereum/staking-deposit-cli) or building it from source. Alternatively, if you have a **Ledger Nano X/S or Trezor Model T**, you're able to generate deposit files with keys managed by a hardware wallet.
 
 {% tabs %}
 {% tab title="Build from source code" %}
@@ -115,19 +115,7 @@ If this field is set and valid, the given Eth1 address will be used to create th
 {% endhint %}
 {% endtab %}
 
-{% tab title="Wagyu" %}
-Wagyu (formerly known as StakeHouse) is an application aimed at lowering the technical bar to staking on Ethereum 2.0.
-
-Dubbed a 'one-click installer', it provides a clean UI automating the setup and management of all the infrastructure necessary to stake without the user needing to have any technical knowledge.
-
-
-
-Download Wagyu: [https://wagyu.gg](https://wagyu.gg/)
-
-Github: [https://github.com/stake-house/wagyu-installer](https://github.com/stake-house/wagyu-installer)
-{% endtab %}
-
-{% tab title="Hardware Wallet" %}
+{% tab title="Hardware Wallet - Most Secure" %}
 **How to generate validator keys with Ledger Nano X/S and Trezor Model T**
 
 
@@ -167,7 +155,7 @@ Double check that your generated deposit data file contains the same string as i
 11\. Confirm password and click **GENERATE**
 {% endtab %}
 
-{% tab title="Advanced - Airgapped" %}
+{% tab title="Advanced - Most Secure" %}
 {% hint style="warning" %}
 :fire:**\[ Optional ] Pro Security Tip**: Run the staking\_deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
 {% endhint %}

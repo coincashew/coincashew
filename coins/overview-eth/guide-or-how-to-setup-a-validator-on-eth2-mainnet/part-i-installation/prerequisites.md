@@ -1,14 +1,14 @@
 # Prerequisites
 
-## :woman\_technologist:Skills for operating a eth validator and beacon node
+## :woman\_technologist:Skills for operating an staking node
 
-As a validator for eth, you will typically have the following abilities:
+As a validator for Ethereum, you will typically have the following abilities:
 
-* operational knowledge of how to set up, run and maintain a eth beacon node and validator continuously
+* operational knowledge of how to set up, run and maintain a Ethereum consensus client, execution client and validator continuously
 * a long term commitment to maintain your validator 24/7/365
 * basic operating system skills
 
-## :man\_technologist: Experience required to be a successful validator
+## :man\_technologist: Experience required to be a successful ETH Staker
 
 * have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
 * have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com)
@@ -27,7 +27,7 @@ As a validator for eth, you will typically have the following abilities:
 
 ## :man\_lifting\_weights: Recommended Hardware Setup
 
-* **Operating system:** 64-bit Linux (i.e. Ubuntu 20.04 LTS Server or Desktop)
+* **Operating system:** 64-bit Linux (i.e. Ubuntu 22.04.1 LTS Server or Desktop)
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
 * **Memory:** 16GB RAM or more
 * **Storage:** 2TB SSD or more
@@ -43,10 +43,6 @@ As a validator for eth, you will typically have the following abilities:
 {% hint style="success" %}
 :sparkles: **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
 {% endhint %}
-
-## :unlock: Recommended eth validator Security Best Practices
-
-If you need ideas or a reminder on how to secure your validator, refer to the [security best practices guide](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node).
 
 ## :tools: Setup Ubuntu
 
