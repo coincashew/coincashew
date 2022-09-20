@@ -1,6 +1,6 @@
 # Configuring consensus client (beacon chain and validator)
 
-## Pick a consensus client
+### Pick a consensus client
 
 {% hint style="info" %}
 To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity. Find the latest distribution of consensus clients here: [https://clientdiversity.org/](https://clientdiversity.org/)
@@ -1475,7 +1475,7 @@ Nice work. Your validator is now managed by the reliability and robustness of sy
 {% endtab %}
 {% endtabs %}
 
-## :tools: **Some helpful systemd commands**
+### :tools: **Some helpful systemd commands**
 
 {% tabs %}
 {% tab title="beacon-chain" %}
@@ -1501,23 +1501,17 @@ journalctl --unit=beacon-chain --since=today
 journalctl --unit=beacon-chain --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
-
-
 :mag\_right: **View the status of the beacon chain**
 
 ```
 sudo systemctl status beacon-chain
 ```
 
-
-
 :arrows\_counterclockwise: **Restarting the beacon chain**
 
 ```
 sudo systemctl reload-or-restart beacon-chain
 ```
-
-
 
 :octagonal\_sign: **Stopping the beacon chain**
 
@@ -1549,23 +1543,17 @@ journalctl --unit=validator --since=today
 journalctl --unit=validator --since='2020-12-01 00:00:00' --until='2020-12-02 12:00:00'
 ```
 
-
-
 :mag\_right: **View the status of the validator**
 
 ```
 sudo systemctl status validator
 ```
 
-
-
 :arrows\_counterclockwise: **Restarting the validator**
 
 ```
 sudo systemctl reload-or-restart validator
 ```
-
-
 
 :octagonal\_sign: **Stopping the validator**
 
@@ -1574,31 +1562,3 @@ sudo systemctl stop validator
 ```
 {% endtab %}
 {% endtabs %}
-
-## :track\_next: Next Steps
-
-{% hint style="success" %}
-:tada: Congrats! You've finished the primary steps of setting up your validator. You're now an Ethereum staker!
-{% endhint %}
-
-{% hint style="info" %}
-Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
-
-Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track your validator's performance.
-{% endhint %}
-
-### :thumbsup: Recommended Steps
-
-* Ensure your staking computer uses [Chrony or other NTP time synchronization service](synchronizing-time-with-chrony.md).
-* Subscribe to your Execution Client and Consensus Client's Github repository to be notified of new releases. Hit the Notifications button.
-* Join the [community on Discord and Reddit](../joining-the-community-on-discord-and-reddit.md#discord) to discuss all things staking related.
-* Familiarize yourself with [Part II - Maintenance](../part-ii-maintenance/) section, as you'll need to keep your staking node running at its best.
-
-### :checkered\_flag: Optional Steps
-
-* Setup [Monitoring with Grafana and Prometheus](monitoring-your-validator-with-grafana-and-prometheus.md)
-* Setup [Mobile App Notifications and Monitoring by beaconcha.in](mobile-app-node-monitoring-by-beaconchain.md)
-* Setup [External Monitoring with Uptime Check by Google Cloud](monitoring-with-uptime-check-by-google-cloud.md)
-* Setup [MEV-boost](../../mev-boost.md) for extra staking rewards!
-* Familiarize yourself with [Part III - Tips](../part-iii-tips/) section, as you dive deeper into staking.
-* :confetti\_ball: [**Support us on Gitcoin Grants**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)**:** We build this guide exclusively by community support!🙏
