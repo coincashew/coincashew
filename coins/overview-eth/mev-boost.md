@@ -17,7 +17,7 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 * Built by Flashbots as an implementation of [proposer-builder separation (PBS)](https://ethresear.ch/t/proposer-block-builder-separation-friendly-fee-market-designs/9725) for proof-of-stake (PoS) Ethereum.
 
 {% hint style="info" %}
-**tldr**: MEV is estimated to boost validator rewards by 1% APR. Other estimates suggest it can [boost staking rewards by over 60%.](https://hackmd.io/@flashbots/mev-in-eth2)
+**tldr**: MEV is estimated be 11% of a validator rewards. Other estimates suggest it can [boost staking rewards by over 60%.](https://hackmd.io/@flashbots/mev-in-eth2)
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/rewards.png" alt=""><figcaption><p>Estimated earnings per validator. Source: <a href="https://ultrasound.money/">https://ultrasound.money</a></p></figcaption></figure>
@@ -130,7 +130,7 @@ sudo systemctl daemon-reload
 ```
 
 {% hint style="info" %}
-Good to know: If you add or remove relay endpoints, you'll need to re-run this systemctl`daemon-reload` command and restart the mevboost services.
+**Good to know**: If you add or remove relay endpoints, you'll need to re-run this systemctl`daemon-reload` command and restart the mevboost services.
 {% endhint %}
 
 Enable mevboost to automatically startup at system reboots and start the service.
@@ -185,7 +185,7 @@ Both the consensus layer client and validator will require additional **Builder 
 
 **Consensus Client Layer Changes (beacon chain)**
 
-Add the appropriate flag to the `ExecStart`  line of your consensus client's service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
+Add the appropriate flag to the `ExecStart`  line of your **consensus** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 ```bash
 sudo nano /etc/systemd/system/beacon-chain.service
@@ -251,7 +251,7 @@ Use one configuration or the other but not both!
 
 **Validator Client Changes**
 
-If required, add the appropriate flag to the `ExecStart`  line of your validator client's service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
+If required, add the appropriate flag to the `ExecStart`  line of your **validator** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 ```bash
 sudo nano /etc/systemd/system/validator.service
@@ -398,9 +398,9 @@ Sample output:&#x20;
 
 <details>
 
-<summary>Where will I get MEV payments?</summary>
+<summary>Where will I get MEV-boost payments?</summary>
 
-When mev-boost registers your validator with your chosen relays, your fee recipient is passed from the consensus client. Verify that your validator is registered with a particular relay by making a request to the relay's API. See previous FAQ question.
+When a block is produced using MEV-boost, the MEV relay sets themselves as the fee recipient and then, in the same block, pays you MEV via a regular ETH transaction to your validator's fee recipient address.
 
 </details>
 
@@ -435,7 +435,7 @@ Refer to [this article by Stephane Gosslin](https://writings.flashbots.net/writi
 
 <summary>What are the risks of running MEV-boost?</summary>
 
-* Requires trust that relays and block builders will act honestly. MEV is not yet a trust-less process until the next phase with PBS.
+* Requires trust that relays and block builders will act honestly. MEV is not yet a trust-less process until there is protocol-level proposer-builder-separation (PBS).
 
 Detailed explanation: [https://writings.flashbots.net/writings/understanding-mev-boost-liveness-risks](https://writings.flashbots.net/writings/understanding-mev-boost-liveness-risks/)
 
@@ -454,6 +454,18 @@ Track network participation, recent MEV blocks, top relays and block builders at
 <summary>I'm using multiple relays. Which one is chosen?</summary>
 
 If multiple relays are available, the relay bidding highest MEV reward will be chosen. If all relays are not available, the local execution client builds the block without MEV.
+
+</details>
+
+<details>
+
+<summary>What's makes a MEV relay ethical or not?</summary>
+
+Based on varying degrees of profit or censorship, MEV relays can decide on what transactions to bundle in a block.
+
+* Ethical relays: will not censor transactions or profit from front running / sandwich attacks, which is harmful to everyday users on Ethereum.
+* OFAC relays: will censor transactions according to the OFAC list.
+* Maximal profit relays: profit is all that matters, ethics have no meaning.
 
 </details>
 
