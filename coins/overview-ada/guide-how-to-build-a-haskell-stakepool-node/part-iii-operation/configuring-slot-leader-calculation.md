@@ -53,8 +53,6 @@ SlotNo                          UTC Time
      4433                   2021-12-29 17:27:30.998001755 UTC
 ```
 
-
-
 :repeat: **Automate the process with Cronjob:**
 
 {% hint style="info" %}
@@ -75,8 +73,6 @@ The possible solutions to avoid a node crash are:
 {% hint style="info" %}
 Credits to [Techs2help](https://techs2help.ch) for developing the [script](https://github.com/Techs2Help/leaderScheduleCheck\_cron).
 {% endhint %}
-
-
 
 Create the `leaderScheduleCheck.sh` script file in the block producer (script can also be run on a relay node but vrf.skey needs to be exported there) and paste the following code inside of it:
 
@@ -237,8 +233,6 @@ else
 fi
 ```
 
-
-
 Set the following variables with your data:
 
 ```bash
@@ -252,16 +246,12 @@ STAKE_POOL_ID=""
 network=
 ```
 
-
-
 Add execution permissions and test that the script is running without errors:
 
 ```bash
 chmod +x leaderScheduleCheck.sh
 ./leaderScheduleCheck.sh
 ```
-
-
 
 If everything is working correctly, an output as the follow will be presented:
 
@@ -272,8 +262,6 @@ If everything is working correctly, an output as the follow will be presented:
 > Next check time: 04/18/22 14:12:46\
 > \[...] Cutted output cause it can vary based on time when the script is ran
 
-
-
 Configure `Cronjob` to make the script run automatically:
 
 {% hint style="info" %}
@@ -282,15 +270,11 @@ To configure the job at the start of an epoch, keep in mind the following inform
 * Epoch in MAINNET starts at 21:45 UTC
 {% endhint %}
 
-<!-- * Epoch in legacy TESTNET starts at 20:20 UTC -->
-
 Find the time when the cronjob should start:
 
 {% hint style="info" %}
 Cronjobs run based on local timezone, not on UTC hours. \\
 {% endhint %}
-
-
 
 Find timezone:
 
@@ -300,8 +284,6 @@ Once you found your timezone, you need to understand when run the job (It isn't 
 Here is an example with a UTC+2 timezone for Mainnet:
 
 > Epoch starting hour UTC: 21:45 Epoch starting hour for requested timezone: 23:45 Cronjob will be set to run at 23:45
-
-
 
 Add cronjob and edit parameters based on your needs, `PATH`, `NODE_HOME`, `NODE_CONFIG`, `CARDANO_NODE_SOCKET_PATH`, `MM`, `HH`, `path_to_script` and `desired_log_folder`:
 
@@ -323,8 +305,6 @@ EOF
 crontab -l | cat - ${NODE_HOME}/crontab-fragment.txt > ${NODE_HOME}/crontab.txt && crontab ${NODE_HOME}/crontab.txt
 rm ${NODE_HOME}/crontab-fragment.txt
 ```
-
-
 
 {% hint style="success" %}
 Once the cronjob is set, the script will be run every day and it will check if in the next 24H, it will be the correct time to run the command and see if there are scheduled blocks in the next epoch.\
@@ -379,24 +359,12 @@ This command calculates a stake pool's expected slot list.
 * `next` logs are only available 1.5 days (36 hours) before the end of the epoch.
 * You need to use `poolStakeMark` and `activeStakeMark` for `next`, `poolStakeSet` and `activeStakeSet` for `current`, `poolStakeGo` and `activeStakeGo` for `prev`.
 
-
-
 Example usage with the `stake-snapshot` approach for `next` epoch:
 
 
 
 {% hint style="info" %}
 Run this command 1.5 days (36 hours) before the next epoch begins.
-{% endhint %}
-
-
-
-{% hint style="info" %}
-As of CNCLI v5.0.2, additional parameters are required for leaderlogs.
-
-`--consensus tpraos` while in Alonzo era
-
-`--consensus praos` after the Vasil HF
 {% endhint %}
 
 
@@ -410,7 +378,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeMark": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeMark": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus praos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -436,7 +404,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeSet": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeSet": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set current`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus praos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set current`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -462,7 +430,7 @@ echo "LeaderLog - POOLID $MYPOOLID"
 SNAPSHOT=$(/usr/local/bin/cardano-cli query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
 POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeGo": )\d+(?=,?)')
 ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeGo": )\d+(?=,?)')
-MYPOOL=`/usr/local/bin/cncli leaderlog --consensus tpraos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set prev`
+MYPOOL=`/usr/local/bin/cncli leaderlog --consensus praos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set prev`
 echo $MYPOOL | jq .
 
 EPOCH=`echo $MYPOOL | jq .epoch`
@@ -503,8 +471,6 @@ For details on requesting an API key from PoolTool, see the topic [Obtaining a P
 
 
 To create a configuration file, update values in the following example with your pool information. To follow the example, save the configuration file at `$NODE_HOME/scripts/pooltool.json`
-
-
 
 ```bash
 cat > ${NODE_HOME}/scripts/pooltool.json << EOF
@@ -563,8 +529,6 @@ EOF
 sudo mv ${NODE_HOME}/cncli-sync.service /etc/systemd/system/cncli-sync.service
 ```
 
-
-
 * Create the following and move to `/etc/systemd/system/cncli-sendtip.service`
 
 ```bash
@@ -594,8 +558,6 @@ EOF
 ```bash
 sudo mv ${NODE_HOME}/cncli-sendtip.service /etc/systemd/system/cncli-sendtip.service
 ```
-
-
 
 * To enable and run the above services, run:
 
