@@ -34,6 +34,7 @@
 | [SwapSwop.io](https://swapswop.io/)                                                                                            | Exchange cryptocurrency anonymously without registration.                          |
 | [InstaEx.io](https://instaex.io)                                                                                               | Privacy first - no Google Analytics, Accounts or KYC                               |
 | [StealthEX.io](https://stealthex.io/)                                                                                          | Exchange and nothing more. Limitless, custody-free cryptocurrency exchange.        |
+| [BitSwitch.io](https://www.bitswitch.io/)                                                                                          | Exchange your coins and tokens quickly without need of signup!        |
 
 ## :milky\_way: Decentralized Exchanges
 
