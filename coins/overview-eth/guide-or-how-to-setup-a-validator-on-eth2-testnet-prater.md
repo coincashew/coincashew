@@ -609,7 +609,7 @@ Replace the **BINARIES\_URL** variable with the latest URL to a **tar.gz** file 
 
 
 ```bash
-BINARIES_URL="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/22.7.4/besu-22.7.4.zip"
+BINARIES_URL="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/22.7.4/besu-22.7.4.tar.gz"
 
 cd $HOME
 wget -O besu.tar.gz "$BINARIES_URL"
