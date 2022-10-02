@@ -74,6 +74,9 @@ cardano-cli node new-counter \
     --counter-value $(( <NodeCertificateNumber> + 1 )) \
     --operational-certificate-issue-counter-file node.counter
 ```
+{% hint style="info" %}
+If the current value of the `qKesNodeStateOperationalCertificateNumber` key is `null`, then set the `--counter-value` option to zero (`0`)
+{% endhint %}
 
 2. To display the contents of the `node.counter` file that you created in step 1, type:
 ```bash
