@@ -57,7 +57,7 @@ Review the latest release at [https://github.com/hyperledger/besu/releases](http
 Replace the **BINARIES\_URL** variable with the latest URL to a **tar.gz** file found in the **Download links** section.
 
 ```bash
-BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.1/besu-22.7.1.tar.gz"
+BINARIES_URL="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/22.7.4/besu-22.7.4.zip"
 
 cd $HOME
 # backup previous besu version in case of rollback

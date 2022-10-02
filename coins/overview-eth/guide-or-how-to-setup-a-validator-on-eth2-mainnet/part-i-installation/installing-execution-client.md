@@ -162,7 +162,7 @@ Replace the **BINARIES\_URL** variable with the latest URL to a **tar.gz** file 
 
 
 ```bash
-BINARIES_URL="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/22.7.2/besu-22.7.2.tar.gz"
+BINARIES_URL="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/22.7.4/besu-22.7.4.zip"
 
 cd $HOME
 wget -O besu.tar.gz "$BINARIES_URL"
@@ -201,12 +201,19 @@ ExecStart=$HOME/besu/bin/besu \
   --sync-mode=X_CHECKPOINT \
   --data-storage-format=BONSAI \
   --data-path="$HOME/.besu" \
+  --Xplugin-rocksdb-high-spec-enabled \
   --engine-jwt-secret=/secrets/jwtsecret
 
 [Install]
 WantedBy=multi-user.target
 EOF
 ```
+
+
+
+{% hint style="info" %}
+Good to know: --Xplugin-rocksdb-high-spec-enabled allows Besu increased database performance. Recommended for machines with 16GB of RAM or more.
+{% endhint %}
 
 
 
@@ -414,7 +421,7 @@ cd erigon
 make erigon
 ```
 
-​&#x20;
+​
 
 Make data directory and update directory ownership.
 
@@ -425,7 +432,7 @@ sudo chown $USER:$USER /var/lib/erigon
 
 ​
 
-&#x20;:gear: **Setup and configure systemd**
+:gear: **Setup and configure systemd**
 
 
 
@@ -504,19 +511,22 @@ Syncing an execution client can take up to 1 week. On high-end machines with gig
 {% hint style="success" %}
 Your execution client is fully sync'd when these events occur.
 
-* **`OpenEthereum:`** `Imported #<block number>`
 * **`Geth:`** `Imported new chain segment`
 * **`Besu:`** `Imported #<block number>`
 * **`Nethermind:`** `No longer syncing Old Headers`
 {% endhint %}
 
-#### :tools: Helpful eth1.service commands
+### :tools: Helpful eth1.service commands
+
+
 
 ​​ :notepad\_spiral: **To view and follow eth1 logs**
 
 ```
 journalctl -fu eth1
 ```
+
+
 
 :notepad\_spiral: **To stop eth1 service**
 

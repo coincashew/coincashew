@@ -114,7 +114,7 @@ lighthouse account_manager validator list --network mainnet
 
 
 {% hint style="danger" %}
-**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+WARNING: Do not import your validator keys into multiple validator clients and run them at the same time, or you might get slashed. If moving validators to a new setup or different validator client, ensure deletion of the previous validator keys before continuing.
 {% endhint %}
 
 
@@ -187,6 +187,8 @@ WantedBy=multi-user.target
 * Do not trust any single checkpoint provider. Verify the **state root and block root** against multiple checkpoints to ensure you're on the correct chain.
 {% endhint %}
 
+
+
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 
@@ -219,7 +221,7 @@ sudo systemctl start beacon-chain
 
 
 {% hint style="success" %}
-Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+Nice work. Your beacon chain is now managed by the reliability and robustness of systemd.
 {% endhint %}
 
 
@@ -254,8 +256,6 @@ Restart=on-failure
 ExecStart=<HOME>/.cargo/bin/lighthouse vc \
  --network mainnet \
  --metrics \
- --enable-doppelganger-protection \
- --graffiti "<MY_GRAFFITI>" \
  --suggested-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 
 [Install]
@@ -265,7 +265,6 @@ WantedBy=multi-user.target
 
 
 * Replace`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
-* Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
 
 
 
@@ -301,7 +300,7 @@ sudo systemctl start validator
 
 
 {% hint style="success" %}
-Nice work. Your validator is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+Nice work. Your validator is now managed by the reliability and robustness of systemd.
 {% endhint %}
 {% endtab %}
 
@@ -407,7 +406,7 @@ You should see a folder named for each of your validator's pubkey.
 
 
 {% hint style="danger" %}
-**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+WARNING: Do not import your validator keys into multiple validator clients and run them at the same time, or you might get slashed. If moving validators to a new setup or different validator client, ensure deletion of the previous validator keys before continuing.
 {% endhint %}
 
 
@@ -500,7 +499,6 @@ User=<USER>
 Restart=on-failure
 ExecStart=/bin/bash -c '/usr/bin/nimbus_beacon_node \
   --network=mainnet \
-  --graffiti="<MY_GRAFFITI>" \
   --data-dir=/var/lib/nimbus \
   --web3-url=ws://127.0.0.1:8551 \
   --metrics \
@@ -512,8 +510,9 @@ ExecStart=/bin/bash -c '/usr/bin/nimbus_beacon_node \
 WantedBy=multi-user.target
 ```
 
+
+
 * Replace`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
-* Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
 
 
 
@@ -548,7 +547,7 @@ sudo systemctl start beacon-chain
 
 
 {% hint style="success" %}
-Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+Nice work. Your beacon chain is now managed by the reliability and robustness of systemd.
 {% endhint %}
 {% endtab %}
 
@@ -679,7 +678,7 @@ rm /var/lib/teku/validator_keys/deposit_data*
 
 
 {% hint style="danger" %}
-**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+WARNING: Do not import your validator keys into multiple validator clients and run them at the same time, or you might get slashed. If moving validators to a new setup or different validator client, ensure deletion of the previous validator keys before continuing.
 {% endhint %}
 
 
@@ -738,7 +737,6 @@ initial-state: "https://beaconstate.info/eth/v2/debug/beacon/states/finalized"
 
 # validators
 validator-keys: "/var/lib/teku/validator_keys:/var/lib/teku/validator_keys"
-validators-graffiti: "<MY_GRAFFITI>"
 
 # execution engine
 ee-endpoint: http://localhost:8551
@@ -768,7 +766,6 @@ data-storage-mode: "prune"
 
 
 * Replace`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
-* Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
 
 
 
@@ -864,7 +861,7 @@ sudo systemctl start beacon-chain
 
 
 {% hint style="success" %}
-Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+Nice work. Your beacon chain is now managed by the reliability and robustness of systemd.
 {% endhint %}
 {% endtab %}
 
@@ -944,7 +941,7 @@ Confirm your validator's pubkeys are listed.
 
 
 {% hint style="danger" %}
-**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+WARNING: Do not import your validator keys into multiple validator clients and run them at the same time, or you might get slashed. If moving validators to a new setup or different validator client, ensure deletion of the previous validator keys before continuing.
 {% endhint %}
 
 
@@ -1040,7 +1037,7 @@ sudo systemctl start beacon-chain
 
 
 {% hint style="success" %}
-Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+Nice work. Your beacon chain is now managed by the reliability and robustness of systemd.
 {% endhint %}
 
 
@@ -1109,11 +1106,9 @@ User=<USER>
 Restart=on-failure
 ExecStart=<HOME>/prysm/prysm.sh validator \
   --mainnet \
-  --graffiti "<MY_GRAFFITI>" \
   --accept-terms-of-use \
   --wallet-password-file <HOME>/.eth2validators/validators-password.txt \
-  --suggested-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS \
-  --enable-doppelganger
+  --suggested-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 
 [Install]
 WantedBy=multi-user.target
@@ -1122,7 +1117,6 @@ WantedBy=multi-user.target
 
 
 * Replace`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
-* Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
 
 
 
@@ -1283,7 +1277,7 @@ Confirm your keys were imported properly.
 
 
 {% hint style="danger" %}
-**WARNING**: DO NOT USE THE ORIGINAL KEYSTORES TO VALIDATE WITH ANOTHER CLIENT, OR YOU WILL GET SLASHED.
+WARNING: Do not import your validator keys into multiple validator clients and run them at the same time, or you might get slashed. If moving validators to a new setup or different validator client, ensure deletion of the previous validator keys before continuing.
 {% endhint %}
 
 
@@ -1384,7 +1378,7 @@ sudo systemctl start beacon-chain
 
 
 {% hint style="success" %}
-Nice work. Your beacon chain is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+Nice work. Your beacon chain is now managed by the reliability and robustness of systemd.
 {% endhint %}
 
 
@@ -1424,7 +1418,6 @@ WorkingDirectory=<HOME>/git/lodestar
 ExecStart=<HOME>/git/lodestar/lodestar validator \
   --network mainnet \
   --dataDir /var/lib/lodestar \
-  --graffiti "<MY_GRAFFITI>" \
   --suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 
 [Install]
@@ -1433,8 +1426,7 @@ WantedBy=multi-user.target
 
 
 
-* Replace\*\*`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS`\*\* with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
-* Replace **`<MY_GRAFFITI>`** with your own graffiti message. However for privacy and opsec reasons, avoid personal information. Optionally, leave it blank by deleting the flag option.
+* Replace`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 
 
 
@@ -1470,7 +1462,7 @@ sudo systemctl start validator
 
 
 {% hint style="success" %}
-Nice work. Your validator is now managed by the reliability and robustness of systemd. Below are some commands for using systemd.
+Nice work. Your validator is now managed by the reliability and robustness of systemd.
 {% endhint %}
 {% endtab %}
 {% endtabs %}

@@ -274,12 +274,20 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 17. Repeat steps 12-15 for the node-exporter dashboard.
 
 {% hint style="info" %}
-:fire: **Troubleshooting common Grafana issues**:
+:fire: **Troubleshooting common Grafana issues**
 
-The dashboards do not display execution client _data._
+**Symptom**: Your dashboard is missing some data_._
 
-* In the **eth1 unit file** under located at `/etc/systemd/system/eth1.service`, make sure your execution client/geth is started with the correct parameters so that reporting metrics and pprof http server are enabled.
-  * Example:`ExecStartPre = /usr/bin/geth --http --metrics --pprof`
+**Solution**_:_ Ensure that the execution or consensus client has enabled the appropriate metrics flag.
+
+* Geth: geth --http --metrics --pprof
+* Besu: besu  --metrics-enabled=true
+* Nethermind: Nethermind.Runner  --Metrics.Enabled true
+* Erigon: erigon  --metrics
+* Lighthouse beacon-node: lighthouse bn  --validator-monitor-auto
+* Nimbus: nimbus\_beacon\_node  --metrics  --metrics-port=8008
+* Teku: --metrics-enabled=true --metrics-port=8008
+* Lodestar beacon-node: lodestar beacon --metrics true
 {% endhint %}
 
 #### Example of Grafana Dashboards for each consensus client.
