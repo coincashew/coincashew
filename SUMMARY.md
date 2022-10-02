@@ -135,7 +135,7 @@
     * [Join the Community](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/joining-the-community-on-discord-and-reddit.md)
     * [See Also](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/see-also.md)
     * [Credits](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/credits.md)
-  * [Guide | How to setup a validator for Ethereum staking on testnet GOERLI/PRATER](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
+  * [Guide | How to setup a validator for Ethereum staking on testnet GOERLI](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
   * [Ethereum Merge Upgrade Checklist for Home Stakers and Validators](coins/overview-eth/ethereum-merge-upgrade-checklist-for-home-stakers-and-validators.md)
   * [Guide | MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost.md)
   * [Guide | Operation Client Diversity: Migrate Prysm to Teku](coins/overview-eth/guide-or-operation-client-diversity-migrate-prysm-to-teku.md)
