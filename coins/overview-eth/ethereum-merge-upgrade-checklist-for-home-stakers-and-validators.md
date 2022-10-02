@@ -359,5 +359,5 @@ Can't get your mind off the merge? Here's some additional ideas and nice to have
 
 \[:white\_check\_mark:] Test / dev / deploy code on the testnets
 
-\[:white\_check\_mark:] Learn and earn more [rewards with MEV-boost](mev-boost.md)
+\[:white\_check\_mark:] Learn and earn more [rewards with MEV-boost](mev-boost/)
 

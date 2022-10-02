@@ -1591,6 +1591,6 @@ Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track you
 * Setup [Monitoring with Grafana and Prometheus](monitoring-your-validator-with-grafana-and-prometheus.md)
 * Setup [Mobile App Notifications and Monitoring by beaconcha.in](mobile-app-node-monitoring-by-beaconchain.md)
 * Setup [External Monitoring with Uptime Check by Google Cloud](monitoring-with-uptime-check-by-google-cloud.md)
-* Setup [MEV-boost](../../mev-boost.md) for extra staking rewards!
+* Setup [MEV-boost](../../mev-boost/) for extra staking rewards!
 * Familiarize yourself with [Part III - Tips](../part-iii-tips/) section, as you dive deeper into staking.
 * :confetti\_ball: [**Support us on Gitcoin Grants**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)**:** We build this guide exclusively by community support!🙏

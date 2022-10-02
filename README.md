@@ -16,7 +16,7 @@ coverY: 0
 {% hint style="info" %}
 ****:fire: **HOT TOPICS**&#x20;
 
-* [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost.md)
+* [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/)
 * [Ethereum Merge Upgrade Checklist for Home Stakers and Validators](coins/overview-eth/ethereum-merge-upgrade-checklist-for-home-stakers-and-validators.md)
 * Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
 * Learn to setup your own [Ethereum Staking Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)

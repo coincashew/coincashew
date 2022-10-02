@@ -2,7 +2,7 @@
 
 ## :page\_facing\_up: List of changes
 
-* Added [MEV-boost guide.](../mev-boost.md)
+* Added [MEV-boost guide.](../mev-boost/)
 * Updated to be mainnet merge ready.
 * Are you ready for the Merge? [**Ethereum Merge Upgrade Checklist for Home Stakers and Validators**](https://www.coincashew.com/coins/overview-eth/ethereum-merge-upgrade-checklist-for-home-stakers-and-validators)
 * Updated to use staking-deposit-cli

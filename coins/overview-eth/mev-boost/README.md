@@ -5,7 +5,7 @@ description: Quickstart guide to setting up MEV-boost for your ETH validator.
 # Guide | MEV-boost for Ethereum Staking
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 ## :question:What is mev-boost?&#x20;
@@ -20,7 +20,7 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 **tldr**: MEV is estimated be 11% of a validator rewards. Other estimates suggest it can [boost staking rewards by over 60%.](https://hackmd.io/@flashbots/mev-in-eth2)
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/rewards.png" alt=""><figcaption><p>Estimated earnings per validator. Source: <a href="https://ultrasound.money/">https://ultrasound.money</a></p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/rewards.png" alt=""><figcaption><p>Estimated earnings per validator. Source: <a href="https://ultrasound.money/">https://ultrasound.money</a></p></figcaption></figure>
 
 ## :hammer\_pick: How to MEV?
 
@@ -83,11 +83,12 @@ Create the mevboost systemd unit file.
 sudo nano /etc/systemd/system/mevboost.service
 ```
 
-The `ExecStart` line lists two relays, Flashbots and bloXroute. Remove or add other relays according to your ethical preferences.
+The `ExecStart` line lists two relays, **Manifold** and **bloXroute Ethical**. Remove or add other relays according to your ethical preferences.
 
 {% hint style="info" %}
 Find relay endpoints at:
 
+* [MEV Relay List](mev-relay-list.md)
 * [https://boost.flashbots.net](https://boost.flashbots.net/)
 * [https://github.com/remyroy/ethstaker/blob/main/MEV-relay-list.md](https://github.com/remyroy/ethstaker/blob/main/MEV-relay-list.md)
 
@@ -117,7 +118,7 @@ RestartSec=5
 ExecStart=/usr/local/bin/mev-boost \
   -mainnet \
   -relay-check \
-  -relays https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net,https://0xad0a8bb54565c2211cee576363f3a347089d2f07cf72679d16911d740262694cadb62d7fd7483f27afd714ca0f1b9118@bloxroute.ethical.blxrbdn.com
+  -relays https://0x98650451ba02064f7b000f5768cf0cf4d4e492317d82871bdc87ef841a0743f69f0f1eea11168503240ac35d101c9135@mainnet-relay.securerpc.com,https://0xad0a8bb54565c2211cee576363f3a347089d2f07cf72679d16911d740262694cadb62d7fd7483f27afd714ca0f1b9118@bloxroute.ethical.blxrbdn.com
 
 [Install]
 WantedBy=multi-user.target
@@ -427,7 +428,7 @@ Refer to [this article by Stephane Gosslin](https://writings.flashbots.net/writi
 * One instance of MEV-boost can be configured by a validator to connect to **multiple** relays.&#x20;
 * The Consensus Layer client of a validator proposes the most profitable block received from MEV-boost to the Ethereum network for attestation and block inclusion.
 
-<img src="../../.gitbook/assets/mev-boost-integration-overview.png" alt="" data-size="original">
+<img src="../../../.gitbook/assets/mev-boost-integration-overview.png" alt="" data-size="original">
 
 </details>
 
