@@ -71,7 +71,8 @@ Sample Output showing the longest gap in seconds, # of slots and time range.
 :question:**Troubleshooting:**
 
 * The python script calls the `http API` on port 5052.
-* Ensure the `http AP`I is enabled for your consensus layer client.
+* Ensure the `http API` is enabled for your consensus layer client.
+  * teku: `--rest-api-enabled=true`
 * Teku by default uses port 5051, rather than 5052. Search and replace the port number before using.
 {% endhint %}
 

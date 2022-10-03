@@ -6,7 +6,7 @@ description: >-
 
 # Checking my eth validator's sync committee duties
 
-## Quick steps guide
+## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](../). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
@@ -20,7 +20,9 @@ The following steps align with our [mainnet guide](../). You may need to adjust 
 ### :robot: Pre-requisites
 
 * Linux bash shell or command line
-* your eth staking validator index number(s) -- Lookup on [https://beaconcha.in/](https://beaconcha.in) or [https://beaconscan.com/](https://beaconscan.com)
+* Your ETH validator index number(s) -- Enter your validator's public key on [https://beaconcha.in/](https://beaconcha.in) or [https://beaconscan.com/](https://beaconscan.com) Example of Validator index # 12345 is shown below.
+
+<figure><img src="../../../../.gitbook/assets/validator12345.png" alt=""><figcaption><p>Given your validator's public key, the index number is shown. Example of Validator 12345 from <a href="https://beaconcha.in/validator/12345">https://beaconcha.in/validator/12345</a></p></figcaption></figure>
 
 {% hint style="success" %}
 :sparkles: Kudos to [**2038**](https://www.reddit.com/user/2038/) on Reddit for [authoring this process.](https://www.reddit.com/r/ethstaker/comments/qjlfsf/how\_to\_check\_upcoming\_sync\_committee\_membership/)
@@ -98,7 +100,7 @@ fi
 # ./check_sync_committee.sh 1000 1001 1002 1003
 ```
 
-Sample Output:
+Sample Output of the script:
 
 > ```
 > ./check_sync_committee.sh 123511 124216 
@@ -111,6 +113,26 @@ Sample Output:
 > validator: 123511 found in current sync committee
 > validator: 124216 found in next sync committee
 > ```
+
+This output indicates the following:
+
+* it is currently epoch 75115
+* and validator #123511 is in current sync committee from epoch 75008 to epoch 75263
+* and validator #124216 is in next sync committee from epoch 75264 to epoch 75520
+
+If there is no output, then no validators are scheduled for current or next sync committee.
+
+
+
+{% hint style="info" %}
+:question:**Troubleshooting:**
+
+* The python script calls the `http API`
+* Ensure the `http API` is enabled for your consensus layer client.
+  * teku: `--rest-api-enabled=true`
+* Teku by default uses port 5051, rather than 5052. Replace the port number before using.
+  * example: BEACON\_NODE="http://localhost:5051"
+{% endhint %}
 
 {% hint style="warning" %}
 :fire: **Script Usage Caveats**:
