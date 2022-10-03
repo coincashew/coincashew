@@ -318,7 +318,7 @@ Confirm the settings are in effect.&#x20;
 sudo ufw status numbered
 ```
 
-Example of properly configured ufw status.
+Example of properly configured ufw status for Lighthouse.
 
 > ```csharp
 >      To                         Action      From
@@ -331,6 +331,23 @@ Example of properly configured ufw status.
 > [ 6] 30303 (v6)                 ALLOW IN    Anywhere (v6)
 > ```
 
+{% hint style="info" %}
+**Port Forwarding Tip:** You'll need to forward and open ports to your validator.&#x20;
+
+
+
+Verify port forwarding is working with
+
+* [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/)&#x20;
+* or [https://canyouseeme.org](https://canyouseeme.org)
+
+As an example, for Lighthouse, you would verify ports 9000 and 30303 are reachable.
+
+
+
+For advice on configuring port forwarding with routers, refer to this [general port forwarding guide.](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/)
+{% endhint %}
+
 {% hint style="warning" %}
 **Note for Grafana Users**: Do not expose Grafana (port 3000) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel.
 
@@ -341,8 +358,6 @@ ssh -N -v ethereum@staking.node.ip.address -L 3000:localhost:3000
 ```
 {% endhint %}
 
-
-
 **\[ Optional ]** Whitelisting, which means permitting connections from a specific IP, can be setup via the following command.
 
 ```bash
@@ -350,10 +365,6 @@ sudo ufw allow from <your local daily laptop/pc>
 # Example
 # sudo ufw allow from 192.168.50.22
 ```
-
-{% hint style="info" %}
-:confetti\_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
-{% endhint %}
 
 ## :chains: Mandatory: **Install Fail2ban**
 

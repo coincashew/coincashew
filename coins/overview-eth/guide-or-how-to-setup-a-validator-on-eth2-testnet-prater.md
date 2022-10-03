@@ -1078,18 +1078,12 @@ WARNING: Do not import your validator keys into multiple validator clients and r
 
 
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference/)
+Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
 
 
 * **Lighthouse consensus client** requires port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
-
-
-
-{% hint style="info" %}
-:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
-{% endhint %}
 
 
 
@@ -1361,7 +1355,7 @@ WARNING: Do not import your validator keys into multiple validator clients and r
 
 
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference/)
+Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
 ****
 
@@ -1369,10 +1363,6 @@ Specific to your networking setup or cloud provider settings, [ensure your valid
 * **Execution client** requires port 30303 for tcp and udp
 
 
-
-{% hint style="info" %}
-:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
-{% endhint %}
 
 
 
@@ -1570,18 +1560,12 @@ sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 
 
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference/)
+Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
 ****
 
 * **Teku consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
-
-
-
-{% hint style="info" %}
-:sparkles: **Port Forwarding Tip**: You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
-{% endhint %}
 
 
 
@@ -1828,18 +1812,12 @@ wget https://github.com/eth-clients/eth2-networks/raw/master/shared/prater/genes
 
 :fire: **4.3. Configure port forwarding and/or firewall**
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](broken-reference/)
+Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
 ****
 
 * **Prysm consensus client** will use port 12000 for udp and port 13000 for tcp
 * **Execution client** requires port 30303 for tcp and udp
-
-
-
-{% hint style="info" %}
-:sparkles: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
-{% endhint %}
 
 
 
@@ -2152,18 +2130,12 @@ sudo chown $USER:$USER /var/lib/lodestar
 
 
 
-Specific to your networking setup or cloud provider settings, [ensure your validator's firewall ports are open and reachable.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md#configure-your-firewall)
+Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
 
 
-* **Lodestar consensus client** will use port 30607 for tcp and port 9000 for udp peer discovery.
-* **Execution client** requires port 30303 for tcp and udp
-
-
-
-{% hint style="info" %}
-:sparkles: **Port Forwarding Tip**: You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
-{% endhint %}
+* **Lodestar consensus client** will use port 9000
+* **Execution client** requires port 30303
 
 
 
