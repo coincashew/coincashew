@@ -8,13 +8,8 @@ Completing this guide will provide a solid baseline to protect and secure your s
 
 ## :robot: Pre-requisites
 
-* Ubuntu Server or Ubuntu Desktop installed
-* SSH server installed
+* Ubuntu Server or Ubuntu Desktop installed on a local computer. Bonus points for increasing decentralization of Ethereum and not relying on cloud providers.
 * a SSH client or terminal window access
-
-In case you need to install SSH server, refer to:
-
-{% embed url="https://www.simplified.guide/ubuntu/install-ssh-server" %}
 
 In case you need a SSH client for your operating system, refer to:
 
@@ -22,24 +17,12 @@ In case you need a SSH client for your operating system, refer to:
 
 ## :man\_mage: Mandatory: Create a non-root user with sudo privileges
 
-{% hint style="info" %}
-Make a habit of logging to your server using a non-root account. This will prevent the accidental deletion of files if you make a mistake. For instance, the command `rm` can wipe your entire server if run incorrectly using by a root user.
-{% endhint %}
+If you're using Ubuntu Desktop then you're likely currently on your staking node. Simply open a terminal window from anywhere by typing Ctrl+Alt+T.
 
-{% hint style="danger" %}
-:fire:**Tip**: Do NOT routinely use the root account. Use `su` or `sudo`, always.
-{% endhint %}
-
-If your staking node is your current computer, simply [open a terminal window.](https://www.ubuntubeginner.com/ubuntu-terminal-basics/) From anywhere type Ctrl+Alt+T to open terminal window.
-
-
-
-Otherwise, SSH to your staking node with your SSH client,&#x20;
+Otherwise, begin by connecting to Ubuntu Server with your SSH client.
 
 ```bash
-ssh username@server.public.ip.address
-# example
-# ssh myUsername@77.22.161.10
+ssh username@staking.node.ip.address
 ```
 
 Create a new user called ethereum
@@ -62,6 +45,10 @@ sudo usermod -aG sudo ethereum
 
 ## :closed\_lock\_with\_key: Mandatory: **Disable SSH password Authentication and Use SSH Keys only**
 
+{% hint style="warning" %}
+If you're using Ubuntu Desktop locally, you can skip this section.
+{% endhint %}
+
 {% hint style="info" %}
 The basic rules of hardening SSH are:
 
@@ -74,28 +61,48 @@ The basic rules of hardening SSH are:
 
 Create a new SSH key pair on your local machine. Run this on your local machine. You will be asked to type a file name in which to save the key. This will be your **keyname**.
 
-{% tabs %}
-{% tab title="ED25519" %}
 ```
 ssh-keygen -t ed25519
 ```
-{% endtab %}
-{% endtabs %}
+
+Your SSH key pair is stored in your home directory. For example, if your keyname was **mySSHkey**, then your private SSH key is `mySSHkey` and your public SSH key is `mySSHkey.pub`
 
 {% hint style="warning" %}
-Make multiple backup copies of your **private SSH key file** to external storage for recovery purposes.
+**IMPORTANT:** Make multiple backup copies of your **private SSH key file** to external storage, such as a USB backup key, for recovery purposes.
+
+
+
+Verify the contents of your private SSH key file before moving on.&#x20;
+
+```
+cat <keyname>
+```
+
+
+
+It should look similar to this example.
+
+```
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACBAblzWLb7/0o62FZf9YjLPCV4qFhbqiSH3TBvZXBiYNgAAAJCWunkulrp5
+LgAAAAtzc2gtZWQyNTUxOQAAACBAblzWLb7/0o62FZf9YjLPCV4qFhbqiSH3TBvZXBiYNg
+AAAEAxT+yCmifGWgbFnkauf0HyOAJANhYY5EElEX8fI+M4B0BuXNYtvv/SjrYVl/1iMs8J
+XioWFuqJIfdMG9lcGJg2AAAACWV0aDJAZXRoMgECAwQ=
+-----END OPENSSH PRIVATE KEY-----
+```
 {% endhint %}
 
-Transfer the public key to your remote node. Update **keyname.pub** appropriately.
+Transfer the public key to your remote node. Replace <**keyname.pub>** appropriately.
 
 ```bash
-ssh-copy-id -i $HOME/.ssh/keyname.pub ethereum@server.public.ip.address
+ssh-copy-id -i $HOME/<keyname.pub> ethereum@staking.node.ip.address
 ```
 
 Login with your new ethereum user
 
 ```
-ssh ethereum@server.public.ip.address
+ssh ethereum@staking.node.ip.address
 ```
 
 Disable root login and password based login. Edit the `/etc/ssh/sshd_config file`
@@ -130,13 +137,23 @@ PermitEmptyPasswords no
 
 **Optional**: Locate **Port** and customize it your **random** port.
 
-{% hint style="info" %}
-Use a **random** port # from 1024 thru 49141. [Check for possible conflicts.](https://en.wikipedia.org/wiki/List\_of\_TCP\_and\_UDP\_port\_numbers)
-{% endhint %}
-
 ```bash
-Port <port number>
+Port <your random port number>
 ```
+
+{% hint style="info" %}
+A valid **random** port # ranges from 1024 thru 49141.
+
+Check that the port is not already used by other services. Replace \<port> with your random port #.
+
+```
+sudo ss -ntlp | grep :<port>
+```
+
+Empty response means the port is good.
+
+A response with red numbers means the port is already used. Choose another port.
+{% endhint %}
 
 Validate the syntax of your new SSH configuration.
 
@@ -155,24 +172,16 @@ Verify the login still works
 {% tabs %}
 {% tab title="Standard SSH Port 22" %}
 ```
-ssh ethereum@server.public.ip.address
+ssh ethereum@staking.node.ip.address
 ```
 {% endtab %}
 
 {% tab title="Custom SSH Port" %}
 ```bash
-ssh ethereum@server.public.ip.address -p <custom port number>
+ssh ethereum@staking.node.ip.address -p <custom random port number>
 ```
 {% endtab %}
 {% endtabs %}
-
-{% hint style="info" %}
-Alternatively, you might need to add the `-p <port#>` flag if you used a custom SSH port.
-
-```bash
-ssh -i <path to your SSH_key_name.pub> ethereum@server.public.ip.address
-```
-{% endhint %}
 
 **Optional**: Make logging in easier by updating your local ssh config.
 
@@ -181,8 +190,8 @@ To simplify the ssh command needed to log in to your server, consider updating y
 ```bash
 Host ethereum-server
   User ethereum
-  HostName <server.public.ip.address>
-  Port <custom port number>
+  HostName <staking.node.ip.address>
+  Port <custom random port number>
 ```
 
 This will allow you to log in with `ssh ethereum-server` rather than needing to pass through all ssh parameters explicitly.
@@ -204,6 +213,192 @@ Enable automatic updates so you don't have to manually install them.
 ```
 sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
+```
+
+Reboot your system to enable the upgrades.
+
+```
+sudo reboot
+```
+
+## :bricks: Mandatory: **Configure your Firewall**
+
+The standard UFW firewall can be used to control network access to your node.
+
+With any new installation, ufw is disabled by default. Enable it with the following settings.
+
+* If you used a custom random SSH port, replace "22" with your actual port #.
+
+{% tabs %}
+{% tab title="Lighthouse" %}
+```bash
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow 22/tcp
+# Allow consensus client port
+sudo ufw allow 9000
+# Allow execution client port
+sudo ufw allow 30303
+# Enable firewall
+sudo ufw enable
+```
+{% endtab %}
+
+{% tab title="Prysm" %}
+```bash
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow 22/tcp
+# # Allow consensus client port
+sudo ufw allow 13000/tcp
+sudo ufw allow 12000/udp
+# Allow execution client port
+sudo ufw allow 30303
+# Enable firewall
+sudo ufw enable
+```
+{% endtab %}
+
+{% tab title="Teku" %}
+```bash
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow 22/tcp
+# Allow consensus client port
+sudo ufw allow 9000
+# Allow execution client port
+sudo ufw allow 30303
+# Enable firewall
+sudo ufw enable
+```
+{% endtab %}
+
+{% tab title="Nimbus" %}
+```bash
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow 22/tcp
+# Allow consensus client port
+sudo ufw allow 9000
+# Allow execution client port
+sudo ufw allow 30303
+# Enable firewall
+sudo ufw enable
+```
+{% endtab %}
+
+{% tab title="Lodestar" %}
+```bash
+# By default, deny all incoming and outgoing traffic
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Allow ssh access
+sudo ufw allow 22/tcp
+# Allow consensus client port
+sudo ufw allow 9000
+# Allow execution client port
+sudo ufw allow 30303
+# Enable firewall
+sudo ufw enable
+```
+{% endtab %}
+{% endtabs %}
+
+Confirm the settings are in effect.&#x20;
+
+```bash
+sudo ufw status numbered
+```
+
+Example of properly configured ufw status.
+
+> ```csharp
+>      To                         Action      From
+>      --                         ------      ----
+> [ 1] 22/tcp                     ALLOW IN    Anywhere
+> [ 2] 9000                       ALLOW IN    Anywhere
+> [ 3] 30303                      ALLOW IN    Anywhere
+> [ 4] 22/tcp (v6)                ALLOW IN    Anywhere (v6)
+> [ 5] 9000 (v6)                  ALLOW IN    Anywhere (v6)
+> [ 6] 30303 (v6)                 ALLOW IN    Anywhere (v6)
+> ```
+
+{% hint style="warning" %}
+**Note for Grafana Users**: Do not expose Grafana (port 3000) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel.
+
+Example of how to create a ssh tunnel:
+
+```
+ssh -N -v ethereum@staking.node.ip.address -L 3000:localhost:3000
+```
+{% endhint %}
+
+
+
+**\[ Optional ]** Whitelisting, which means permitting connections from a specific IP, can be setup via the following command.
+
+```bash
+sudo ufw allow from <your local daily laptop/pc>
+# Example
+# sudo ufw allow from 192.168.50.22
+```
+
+{% hint style="info" %}
+:confetti\_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
+{% endhint %}
+
+## :chains: Mandatory: **Install Fail2ban**
+
+{% hint style="info" %}
+Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address (within a specified amount of time), fail2ban blocks access from that IP address.
+{% endhint %}
+
+```
+sudo apt-get install fail2ban -y
+```
+
+Edit a config file that monitors SSH logins.
+
+```
+sudo nano /etc/fail2ban/jail.local
+```
+
+Add the following lines to the bottom of the file.
+
+{% hint style="info" %}
+:fire: **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local machine, local IP range or local domain, separated by spaces.
+
+```bash
+# Example
+ignoreip = 192.168.1.0/24 127.0.0.1/8
+```
+{% endhint %}
+
+```bash
+[sshd]
+enabled = true
+port = <22 or your random port number>
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+# whitelisted IP addresses
+ignoreip = <list of whitelisted IP address, your local daily laptop/pc>
+```
+
+Save/close file.
+
+Restart fail2ban for settings to take effect.
+
+```
+sudo systemctl restart fail2ban
 ```
 
 ## :bear: Optional: Disable root account
@@ -332,248 +527,6 @@ Reboot the node in order for changes to take effect.
 
 ```
 sudo reboot
-```
-
-## :chains:Recommended: **Install Fail2ban**
-
-{% hint style="info" %}
-Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address (within a specified amount of time), fail2ban blocks access from that IP address.
-{% endhint %}
-
-```
-sudo apt-get install fail2ban -y
-```
-
-Edit a config file that monitors SSH logins.
-
-```
-sudo nano /etc/fail2ban/jail.local
-```
-
-Add the following lines to the bottom of the file.
-
-{% hint style="info" %}
-:fire: **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local machine, local IP range or local domain, separated by spaces.
-
-```bash
-# Example
-ignoreip = 192.168.1.0/24 127.0.0.1/8
-```
-{% endhint %}
-
-```bash
-[sshd]
-enabled = true
-port = <22 or your random port number>
-filter = sshd
-logpath = /var/log/auth.log
-maxretry = 3
-# whitelisted IP addresses
-ignoreip = <list of whitelisted IP address, your local daily laptop/pc>
-```
-
-Save/close file.
-
-Restart fail2ban for settings to take effect.
-
-```
-sudo systemctl restart fail2ban
-```
-
-## :bricks:Mandatory: **Configure your Firewall**
-
-The standard UFW firewall can be used to control network access to your node.
-
-With any new installation, ufw is disabled by default. Enable it with the following settings.
-
-* Port 22 (or your random port #) TCP for SSH connection
-* Ports for p2p traffic
-  * Lighthouse uses port 9000 tcp/udp
-  * Teku uses port 9000 tcp/udp
-  * Prysm uses port 13000 tcp and port 12000 udp
-  * Nimbus uses port 9000 tcp/udp
-  * Lodestar uses port 30607 tcp and port 9000 udp
-* Port 30303 tcp/udp eth1 node
-
-{% tabs %}
-{% tab title="Lighthouse" %}
-```bash
-# By default, deny all incoming and outgoing traffic
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-# Allow ssh access
-sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
-# Allow p2p ports
-sudo ufw allow 9000/tcp
-sudo ufw allow 9000/udp
-# Allow eth1 port
-sudo ufw allow 30303/tcp
-sudo ufw allow 30303/udp
-# Enable firewall
-sudo ufw enable
-```
-{% endtab %}
-
-{% tab title="Prysm" %}
-```bash
-# By default, deny all incoming and outgoing traffic
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-# Allow ssh access
-sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
-# Allow p2p ports
-sudo ufw allow 13000/tcp
-sudo ufw allow 12000/udp
-# Allow eth1 port
-sudo ufw allow 30303/tcp
-sudo ufw allow 30303/udp
-# Enable firewall
-sudo ufw enable
-```
-{% endtab %}
-
-{% tab title="Teku" %}
-```bash
-# By default, deny all incoming and outgoing traffic
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-# Allow ssh access
-sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
-# Allow p2p ports
-sudo ufw allow 9000/tcp
-sudo ufw allow 9000/udp
-# Allow eth1 port
-sudo ufw allow 30303/tcp
-sudo ufw allow 30303/udp
-# Enable firewall
-sudo ufw enable
-```
-{% endtab %}
-
-{% tab title="Nimbus" %}
-```bash
-# By default, deny all incoming and outgoing traffic
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-# Allow ssh access
-sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
-# Allow p2p ports
-sudo ufw allow 9000/tcp
-sudo ufw allow 9000/udp
-# Allow eth1 port
-sudo ufw allow 30303/tcp
-sudo ufw allow 30303/udp
-# Enable firewall
-sudo ufw enable
-```
-{% endtab %}
-
-{% tab title="Lodestar" %}
-```bash
-# By default, deny all incoming and outgoing traffic
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-# Allow ssh access
-sudo ufw allow ssh #<port 22 or your random ssh port number>/tcp
-# Allow p2p ports
-sudo ufw allow 30607/tcp
-sudo ufw allow 9000/udp
-# Allow eth1 port
-sudo ufw allow 30303/tcp
-sudo ufw allow 30303/udp
-# Enable firewall
-sudo ufw enable
-```
-{% endtab %}
-{% endtabs %}
-
-```bash
-# Verify status
-sudo ufw status numbered
-```
-
-{% hint style="danger" %}
-Do not expose Grafana (port 3000) and Prometheus endpoint (port 9090) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel with Wireguard.
-{% endhint %}
-
-Only open the following ports on local home staking setups behind a home router firewall or other network firewall.
-
-:fire: **It is dangerous to open these ports on a VPS/cloud node.**
-
-```bash
-# Allow grafana web server port
-sudo ufw allow 3000/tcp
-# Enable prometheus endpoint port
-sudo ufw allow 9090/tcp
-```
-
-Confirm the settings are in effect.
-
-> ```csharp
-> # Verify status
-> sudo ufw status numbered
->      To                         Action      From
->      --                         ------      ----
-> [ 1] 22/tcp                     ALLOW IN    Anywhere
-> # SSH
-> [ 2] 3000/tcp                   ALLOW IN    Anywhere
-> # Grafana
-> [ 3] 9000/tcp                   ALLOW IN    Anywhere
-> # eth2 p2p traffic
-> [ 4] 9090/tcp                   ALLOW IN    Anywhere
-> # Prometheus
-> [ 5] 30303/tcp                  ALLOW IN    Anywhere
-> # eth1 node
-> [ 6] 22/tcp (v6)                ALLOW IN    Anywhere (v6)
-> # SSH
-> [ 7] 3000/tcp (v6)              ALLOW IN    Anywhere (v6)
-> # Grafana
-> [ 8] 9000/tcp (v6)              ALLOW IN    Anywhere (v6)
-> # eth2 p2p traffic
-> [ 9] 9090/tcp (v6)              ALLOW IN    Anywhere (v6)
-> # Prometheus
-> [10] 30303/tcp (v6)             ALLOW IN    Anywhere (v6)
-> # eth1 node
-> ```
-
-**\[ Optional but recommended ]** Whitelisting (or permitting connections from a specific IP) can be setup via the following command.
-
-```bash
-sudo ufw allow from <your local daily laptop/pc>
-# Example
-# sudo ufw allow from 192.168.50.22
-```
-
-{% hint style="info" %}
-:confetti\_ball: **Port Forwarding Tip:** You'll need to forward and open ports to your validator. Verify it's working with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
-{% endhint %}
-
-## :telephone\_receiver: Recommended: Verify Listening Ports
-
-If you want to maintain a secure server, you should validate the listening network ports every once in a while. This will provide you essential information about your network.
-
-```bash
-sudo ss -tulpn
-# Example output. Ensure the port numbers look right.
-# Netid  State    Recv-Q  Send-Q    Local Address:Port   Peer Address:Port   Process
-# tcp    LISTEN   0       128       127.0.0.1:5052       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=22))
-# tcp    LISTEN   0       128       127.0.0.1:5054       0.0.0.0:*           users:(("lighthouse",pid=12160,fd=23))
-# tcp    LISTEN   0       1024      0.0.0.0:9000         0.0.0.0:*           users:(("lighthouse",pid=12160,fd=21))
-# udp    UNCONN   0       0         *:30303              *:*                 users:(("geth",pid=22117,fd=158))
-# tcp    LISTEN   0       4096      *:30303              *:*                 users:(("geth",pid=22117,fd=156))
-```
-
-Alternatively you can use `netstat`
-
-```bash
-sudo netstat -tulpn
-# Example output. Ensure the port numbers look right.
-# Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
-# tcp        0      0 127.0.0.1:5052          0.0.0.0:*               LISTEN      12160/lighthouse
-# tcp        0      0 127.0.0.1:5054          0.0.0.0:*               LISTEN      12160/lighthouse
-# tcp        0      0 0.0.0.0:9000            0.0.0.0:*               LISTEN      12160/lighthouse
-# tcp6       0      0 :::30303                :::*                    LISTEN      22117/geth
-# udp6       0      0 :::30303                :::*                    LISTEN      22117/geth
 ```
 
 ## :woman\_astronaut: Optional: **Use** system user accounts - Principle of Least Privilege \[Advanced Users]
