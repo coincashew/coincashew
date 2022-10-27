@@ -54,10 +54,12 @@ Review the latest release at [https://github.com/hyperledger/besu/releases](http
 
 
 
-Replace the **BINARIES\_URL** variable with the latest URL to a **tar.gz** file found in the **Download links** section.
+Run the following to automatically download the latest linux release, un-tar and cleanup.
 
 ```bash
-BINARIES_URL="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/22.7.4/besu-22.7.4.tar.gz"
+BINARIES_URL="$(curl -s https://api.github.com/repos/hyperledger/besu/releases/latest | grep -o 'https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/.*tar.gz' | sed -e 's/.*\\n\(https.*.tar.gz$\)/\1/')"
+
+echo Downloading URL: $BINARIES_URL
 
 cd $HOME
 # backup previous besu version in case of rollback

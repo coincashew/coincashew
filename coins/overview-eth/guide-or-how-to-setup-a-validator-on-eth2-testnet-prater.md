@@ -598,23 +598,19 @@ sudo apt install openjdk-17-jdk -y libjemalloc-dev
 
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
-Run the following to download the linux release, un-tar, cleanup and rename besu directory.
 
 
-
-{% hint style="info" %}
-Replace the **BINARIES\_URL** variable with the latest URL to a **tar.gz** file found in the **Download links** section.
-{% endhint %}
-
-
+Run the following to automatically download the latest linux release, un-tar and cleanup.
 
 ```bash
-BINARIES_URL="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/22.7.4/besu-22.7.4.tar.gz"
+BINARIES_URL="$(curl -s https://api.github.com/repos/hyperledger/besu/releases/latest | grep -o 'https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/.*tar.gz' | sed -e 's/.*\\n\(https.*.tar.gz$\)/\1/')"
+
+echo Downloading URL: $BINARIES_URL
 
 cd $HOME
 wget -O besu.tar.gz "$BINARIES_URL"
 tar -xzvf besu.tar.gz -C $HOME
-rm besu.tar.gz && mv besu* besu
+rm besu.tar.gz && mv besu-* besu
 ```
 
 
