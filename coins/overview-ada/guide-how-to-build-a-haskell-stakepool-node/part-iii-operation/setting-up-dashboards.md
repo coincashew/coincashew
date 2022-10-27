@@ -207,7 +207,7 @@ curl -s 127.0.0.1:12798/metrics
 6. Set **Name** to **"Prometheus**"
 7. Set **URL** to **http://localhost:9090**
 8. Click **Save & Test**
-9. **Download and save** this [**json file**](https://raw.githubusercontent.com/coincashew/coincashew/master/.gitbook/assets/grafana-monitor-cardano-nodes-by-kaze.json)**.**
+9. **Download and save** this [**json file**](https://raw.githubusercontent.com/coincashew/coincashew/master/.gitbook/assets/grafana-monitor-cardano-nodes-by-kaze%20(1).json)**.**
 10. Click **Create +** icon > **Import**
 11. Add dashboard by **Upload JSON file**
 12. Click the **Import** button.
