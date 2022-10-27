@@ -36,12 +36,21 @@ Review release notes and check for breaking changes/features.
 
 
 
+{% hint style="danger" %}
+As of v3.2.0, a new build dependency is required. Install this first.
+
+<pre><code><strong>sudo apt install protobuf-compiler</strong></code></pre>
+{% endhint %}
+
+
+
 Pull the latest source and build it.
 
 ```bash
 cd $HOME/git/lighthouse
 git fetch --all && git checkout stable && git pull
 make
+sudo apt install protobuf-compiler
 ```
 
 
