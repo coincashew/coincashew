@@ -18,4 +18,8 @@ Thank you for supporting Ethereum and us! Please use the below cointr.ee link. :
 
 ## :grin: Thank You
 
-Thanks to all 100,000+ of you, the ETH hodlers, buidlers, stakers, and node operators for making the better future a reality.
+Thanks to all 100,000+ of you, the ETH hodlers, buidlers, solo home stakers, and node operators for making the better future a reality.
+
+## :thumbsup: Last Words
+
+> I stand upon the shoulders of giants and as such, invite you to stand upon mine. Use my work with or without attribution; I make no claim of "intellectual property." My ideas are the result of countless millenia of evolution - they belong to humanity.
