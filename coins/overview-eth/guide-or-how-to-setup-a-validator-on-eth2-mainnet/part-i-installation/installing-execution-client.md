@@ -300,6 +300,8 @@ WorkingDirectory=$HOME/nethermind
 ExecStart=$HOME/nethermind/Nethermind.Runner \
   --baseDbPath $HOME/.nethermind \
   --Metrics.Enabled true \
+  --Metrics.ExposePort 6060 \
+  --Metrics.IntervalSeconds 10000 \
   --Sync.SnapSync true \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret
 

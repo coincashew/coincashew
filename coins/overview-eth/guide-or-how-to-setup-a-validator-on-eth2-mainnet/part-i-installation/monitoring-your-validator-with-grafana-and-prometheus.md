@@ -194,22 +194,9 @@ Append the applicable job snippet for your execution client to the end of **prom
 {% tab title="Nethermind" %}
 ```bash
    - job_name: 'nethermind'
-     scrape_interval: 15s
-     scrape_timeout: 10s
-     honor_labels: true
      static_configs:
-       - targets: ['localhost:9091']
+       - targets: ['localhost:6060']
 ```
-
-Nethermind monitoring requires [Prometheus Pushgateway](https://github.com/prometheus/pushgateway). Install with the following command.
-
-```bash
-sudo apt-get install -y prometheus-pushgateway
-```
-
-{% hint style="info" %}
-Pushgateway listens for data from Nethermind on port 9091.
-{% endhint %}
 {% endtab %}
 
 {% tab title="Erigon" %}
@@ -382,7 +369,7 @@ Credits: [https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashbo
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](<../../../../.gitbook/assets/grafana (1).png>)
+![](../../../../.gitbook/assets/grafana.png)
 
 ![](../../../../.gitbook/assets/node-exporter2.png)
 
