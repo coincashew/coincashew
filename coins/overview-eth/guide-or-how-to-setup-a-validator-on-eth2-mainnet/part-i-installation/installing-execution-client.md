@@ -198,7 +198,9 @@ ExecStart=$HOME/besu/bin/besu \
   --data-storage-format=BONSAI \
   --data-path="$HOME/.besu" \
   --Xplugin-rocksdb-high-spec-enabled \
-  --engine-jwt-secret=/secrets/jwtsecret
+  --engine-jwt-secret=/secrets/jwtsecret \
+  --rpc-http-enabled \
+  --rpc-ws-enabled
 
 [Install]
 WantedBy=multi-user.target
