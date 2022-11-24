@@ -41,7 +41,7 @@ As of early 2021, a pruned node uses 32GB and a full node uses 96GB of storage s
 
 ![Kudos to r/Krakataua314](../../.gitbook/assets/10iwbu47ul761.png)
 
-Full Public Node with port 18089, a restricted RPC port.
+Full Public Node with port 18089, a restricted RPC port, UNLIKE the graphic above, since you must open port 18089 as well (or instead of 18081).
 
 ```bash
 # By default, deny all incoming and outgoing traffic
