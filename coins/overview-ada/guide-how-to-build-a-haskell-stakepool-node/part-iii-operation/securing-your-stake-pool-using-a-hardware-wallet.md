@@ -249,7 +249,7 @@ Create a witness using hw-stake.hwsfile
 {% tab title="local PC or block producer node" %}
 ```
 cardano-hw-cli transaction witness \
-  --tx-body-file tx-pool.raw \
+  --tx-file tx-pool.raw \
   --hw-signing-file hw-stake.hwsfile \
   --mainnet \
   --out-file hw-stake.witness
