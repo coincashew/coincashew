@@ -338,12 +338,6 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.
 ```
 sudo systemctl start eth1
 ```
-
-
-
-{% hint style="info" %}
-**Note about Metric Error messages**: You will see these until prometheus pushergateway is setup in section 6. `Error in MetricPusher: System.Net.Http.HttpRequestException: Connection refused`
-{% endhint %}
 {% endtab %}
 
 {% tab title="Erigon" %}

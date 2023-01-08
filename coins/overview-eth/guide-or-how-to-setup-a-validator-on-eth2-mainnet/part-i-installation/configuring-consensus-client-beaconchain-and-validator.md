@@ -1549,7 +1549,7 @@ Syncing the consensus client is instantaneous with checkpoint sync but the execu
 
 
 
-How do I know I'm fully synched?&#x20;
+How do I know I'm fully synced ?
 
 * Check your execution client's logs and compare the block number against the most recent block on [etherscan.io](https://etherscan.io/)
   * Check EL logs: `journalctl -fu eth1`
@@ -1558,7 +1558,7 @@ How do I know I'm fully synched?&#x20;
 {% endhint %}
 
 {% hint style="info" %}
-Once your EL+CL is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
+Once your EL+CL is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
 
 Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track your validator's performance.
 {% endhint %}

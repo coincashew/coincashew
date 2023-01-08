@@ -13,7 +13,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of October 1 2022, this **post-merge guide is version 5.1.0** and written for **testnet GOERLI.**
+As of Jan 7 2023, this **post-merge guide is version 5.1.1** and written for **testnet GOERLI.**
 {% endhint %}
 
 {% hint style="info" %}
@@ -22,7 +22,7 @@ As of October 1 2022, this **post-merge guide is version 5.1.0** and written for
 
 ## :thumbsup: Your Github Contributions Welcome
 
-This guide is fully open source and fully powered by home-stakers like you.&#x20;
+This guide is fully open source and fully powered by home-stakers like you.
 
 Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
 
@@ -576,16 +576,6 @@ sudo systemctl enable eth1
 ```
 sudo systemctl start eth1
 ```
-
-
-
-{% hint style="info" %}
-**Geth Tip**: When is my geth node synched?
-
-1. Attach to the geth console with:`geth attach` [`http://127.0.0.1:8545`](http://127.0.0.1:8545)\`\`
-2. Type the following:`eth.syncing`
-3. If it returns false, your geth node is synched.
-{% endhint %}
 {% endtab %}
 
 {% tab title="Besu" %}
@@ -741,6 +731,8 @@ ExecStart=$HOME/nethermind/Nethermind.Runner \
   --config goerli \
   --baseDbPath $HOME/.nethermind_goerli \
   --Metrics.Enabled true \
+  --Metrics.ExposePort 6060 \
+  --Metrics.IntervalSeconds 10000 \
   --Sync.SnapSync true \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret
 
@@ -787,12 +779,6 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.
 ```
 sudo systemctl start eth1
 ```
-
-
-
-{% hint style="info" %}
-**Note about Metric Error messages**: You will see these until prometheus pushergateway is setup in section 6. `Error in MetricPusher: System.Net.Http.HttpRequestException: Connection refused`
-{% endhint %}
 {% endtab %}
 
 {% tab title="Erigon" %}
@@ -935,35 +921,39 @@ sudo systemctl start eth1
 {% endtab %}
 {% endtabs %}
 
-{% hint style="info" %}
-Syncing an execution client can take up to 1 week. On high-end machines with gigabit internet, expect syncing to take less than a day.
-{% endhint %}
+### Helpful execution client commands
 
-{% hint style="success" %}
-Your execution client is fully sync'd when these events occur.
-
-* **`Geth:`** `Imported new chain segment`
-* **`Besu:`** `Imported #<block number>`
-* **`Nethermind:`** `No longer syncing Old Headers`
-{% endhint %}
-
-#### :tools: Helpful eth1.service commands
-
-
-
-​​ :notepad\_spiral: **To view and follow eth1 logs**
-
+{% tabs %}
+{% tab title="View Logs" %}
 ```
 journalctl -fu eth1
 ```
+{% endtab %}
 
-
-
-:notepad\_spiral: **To stop eth1 service**
-
+{% tab title="Stop" %}
 ```
 sudo systemctl stop eth1
 ```
+{% endtab %}
+
+{% tab title="Start" %}
+```
+sudo systemctl start eth1
+```
+{% endtab %}
+
+{% tab title="View Status" %}
+```
+sudo systemctl status eth1
+```
+{% endtab %}
+{% endtabs %}
+
+Now that your execution client is configured and started, proceed to the next step on setting up your consensus client.
+
+{% hint style="warning" %}
+If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synched to the Ethereum network.
+{% endhint %}
 
 ## 4. Configure consensus client (beacon chain and validator)
 
@@ -2350,7 +2340,7 @@ Nice work! Your validator is now managed by the reliability and robustness of sy
 {% endtab %}
 {% endtabs %}
 
-### :tools: **Some helpful systemd commands**
+### :tools: H**elpful Consensus Client systemd commands**
 
 {% tabs %}
 {% tab title="beacon-chain" %}
@@ -2452,14 +2442,30 @@ sudo systemctl stop validator
 
 ## :track\_next: Next Steps
 
-{% hint style="success" %}
-:tada: Congrats! You've finished the primary steps of setting up your validator. You're now an Ethereum staker!
+{% hint style="info" %}
+Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to 1 week. On high-end machines with gigabit internet, expect your node to be fully syncing to take less than a day.
+{% endhint %}
+
+{% hint style="warning" %}
+**Patience required**: If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.\
+
+
+How do I know I'm fully synced?&#x20;
+
+* Check your execution client's logs and compare the block number against the most recent block on [https://goerli.etherscan.io/](https://goerli.etherscan.io/)
+  * Check EL logs: `journalctl -fu eth1`
+* Check your consensus client's logs and compare the slot number against the most recent slot on [https://goerli.beaconcha.in](https://goerli.beaconcha.in/)
+  * Check CL logs: `journalctl -fu beacon-chain`
 {% endhint %}
 
 {% hint style="info" %}
-Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
+Once your beacon chain is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
 
 Use [https://goerli.beaconcha.in](https://goerli.beaconcha.in/) to create alerts and track your validator's performance.
+{% endhint %}
+
+{% hint style="success" %}
+:tada: Congrats! You've finished the primary steps of setting up your validator. You're now an Ethereum staker!
 {% endhint %}
 
 ### :thumbsup: Recommended Steps
