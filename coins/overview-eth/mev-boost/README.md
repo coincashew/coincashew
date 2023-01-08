@@ -136,6 +136,13 @@ ExecStart=/usr/local/bin/mev-boost \
 WantedBy=multi-user.target
 ```
 
+{% hint style="info" %}
+Using `-min-bid` flag, you can set a minimum bid value in ETH.&#x20;
+
+* If all relays cannot bid higher than your minimum value, then your local execution client will produce the block.&#x20;
+* By setting this value, you can capture MEV opportunities for higher value blocks and maintain a degree of control for local block production which helps strengthen censorship resistance and a neutral Ethereum network.&#x20;
+{% endhint %}
+
 Reload systemctl to pickup the new service file.
 
 ```bash
