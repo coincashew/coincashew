@@ -117,6 +117,7 @@ Restart=always
 RestartSec=5
 ExecStart=/usr/local/bin/mev-boost \
   -mainnet \
+  -min-bid 0.05 \
   -relay-check \
   -relays https://0x98650451ba02064f7b000f5768cf0cf4d4e492317d82871bdc87ef841a0743f69f0f1eea11168503240ac35d101c9135@mainnet-relay.securerpc.com,https://0xad0a8bb54565c2211cee576363f3a347089d2f07cf72679d16911d740262694cadb62d7fd7483f27afd714ca0f1b9118@bloxroute.ethical.blxrbdn.com
 
