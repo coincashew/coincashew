@@ -448,7 +448,8 @@ Run the following command.
 --trusted-node-url=https://beaconstate.info \
 <strong>--data-dir=/var/lib/nimbus \
 </strong>--network=mainnet \
---backfill=false</code></pre>
+--backfill=false
+</code></pre>
 
 
 
@@ -1437,7 +1438,7 @@ Nice work. Your validator is now managed by the reliability and robustness of sy
 {% endtab %}
 {% endtabs %}
 
-## :tools: **Some helpful systemd commands**
+## :tools: H**elpful Consensus Client systemd commands**
 
 {% tabs %}
 {% tab title="beacon-chain" %}
@@ -1539,14 +1540,31 @@ sudo systemctl stop validator
 
 ## :track\_next: Next Steps
 
-{% hint style="success" %}
-:tada: Congrats! You've finished the primary steps of setting up your validator. You're now an Ethereum staker!
+{% hint style="info" %}
+Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to 1 week. On high-end machines with gigabit internet, expect your node to be fully syncing to take less than a day.
+{% endhint %}
+
+{% hint style="warning" %}
+**Patience required**: If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.
+
+
+
+How do I know I'm fully synched?&#x20;
+
+* Check your execution client's logs and compare the block number against the most recent block on [etherscan.io](https://etherscan.io/)
+  * Check EL logs: `journalctl -fu eth1`
+* Check your consensus client's logs and compare the slot number against the most recent slot on [beaconcha.in](https://beaconcha.in/)
+  * Check CL logs: `journalctl -fu beacon-chain`
 {% endhint %}
 
 {% hint style="info" %}
-Once your beacon chain is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
+Once your EL+CL is sync'd, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
 
 Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track your validator's performance.
+{% endhint %}
+
+{% hint style="success" %}
+:tada: Congrats! You've finished the primary steps of setting up your validator. You're now an Ethereum staker!
 {% endhint %}
 
 ### :thumbsup: Recommended Steps

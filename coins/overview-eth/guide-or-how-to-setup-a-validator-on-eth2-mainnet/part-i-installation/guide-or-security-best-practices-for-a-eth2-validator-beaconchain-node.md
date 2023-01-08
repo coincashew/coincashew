@@ -111,13 +111,13 @@ Disable root login and password based login. Edit the `/etc/ssh/sshd_config file
 sudo nano /etc/ssh/sshd_config
 ```
 
-Locate **PubkeyAuthentication** and update to yes. Delete the #, if needed.
+Locate **ChallengeResponseAuthentication** and update to no
 
 ```
-PubkeyAuthentication yes
+ChallengeResponseAuthentication no
 ```
 
-Locate **PasswordAuthentication** and update to no
+Locate **PasswordAuthentication** update to no
 
 ```
 PasswordAuthentication no

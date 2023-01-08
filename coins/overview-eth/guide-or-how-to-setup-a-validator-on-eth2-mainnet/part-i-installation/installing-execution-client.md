@@ -117,16 +117,6 @@ sudo systemctl enable eth1
 ```
 sudo systemctl start eth1
 ```
-
-
-
-{% hint style="info" %}
-**Geth Tip**: When is my geth node synched?
-
-1. Attach to the geth console with:`geth attach` [`http://127.0.0.1:8545`](http://127.0.0.1:8545)\`\`
-2. Type the following:`eth.syncing`
-3. If it returns false, your geth node is synched.
-{% endhint %}
 {% endtab %}
 
 {% tab title="Besu" %}
@@ -502,32 +492,38 @@ sudo systemctl start eth1
 {% endtab %}
 {% endtabs %}
 
-{% hint style="info" %}
-Syncing an execution client can take up to 1 week. On high-end machines with gigabit internet, expect syncing to take less than a day.
-{% endhint %}
+### :tools: Helpful execution client commands
 
-{% hint style="success" %}
-Your execution client is fully sync'd when these events occur.
-
-* **`Geth:`** `Imported new chain segment`
-* **`Besu:`** `Imported #<block number>`
-* **`Nethermind:`** `No longer syncing Old Headers`
-{% endhint %}
-
-### :tools: Helpful eth1.service commands
-
-
-
-​​ :notepad\_spiral: **To view and follow eth1 logs**
-
+{% tabs %}
+{% tab title="View logs" %}
 ```
 journalctl -fu eth1
 ```
+{% endtab %}
 
-
-
-:notepad\_spiral: **To stop eth1 service**
-
+{% tab title="Stop" %}
 ```
 sudo systemctl stop eth1
 ```
+{% endtab %}
+
+{% tab title="Start" %}
+```
+sudo systemctl start eth1
+```
+{% endtab %}
+
+{% tab title="View Status" %}
+```
+sudo systemctl status eth1
+```
+{% endtab %}
+{% endtabs %}
+
+### :ladder: Next Steps
+
+* Now that your execution client is configured and started, proceed to the [next section to setup your consensus client.](configuring-consensus-client-beaconchain-and-validator.md)
+
+{% hint style="warning" %}
+If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synched to the Ethereum network.
+{% endhint %}

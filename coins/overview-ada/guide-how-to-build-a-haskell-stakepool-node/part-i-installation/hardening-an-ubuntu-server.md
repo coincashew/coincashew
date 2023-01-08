@@ -106,13 +106,13 @@ Disable root login and password based login. Edit the `/etc/ssh/sshd_config file
 sudo nano /etc/ssh/sshd_config
 ```
 
-Locate **PubkeyAuthentication** and update to yes. Delete the #, if needed.
+Locate **ChallengeResponseAuthentication** and update to no
 
 ```
-PubkeyAuthentication yes
+ChallengeResponseAuthentication no
 ```
 
-Locate **PasswordAuthentication** and update to no
+Locate **PasswordAuthentication** update to no
 
 ```
 PasswordAuthentication no 
@@ -305,7 +305,7 @@ To learn more about secure shared memory, read this [techrepublic.com article](h
 {% endhint %}
 
 {% hint style="warning" %}
-**One exceptional case**
+#### One exceptional case
 
 There may be a reason for you needing to have that memory space mounted in read/write mode (such as a specific server application like \*\*Chrome \*\*that requires such access to the shared memory or standard applications like Google Chrome). In this case, use the following line for the fstab file with instructions below.
 
@@ -315,7 +315,7 @@ none /run/shm tmpfs rw,noexec,nosuid,nodev 0 0
 
 The above line will mount the shared memory with read/write access but without permission to execute programs, change the UID of running programs, or to create block or character devices in the namespace. This a net security improvement over default settings.
 
-**Use with caution**
+#### Use with caution
 
 With some trial and error, you may discover some applications(**like Chrome**) do not work with shared memory in read-only mode. For the highest security and if compatible with your applications, it is a worthwhile endeavor to implement this secure shared memory setting.
 
@@ -385,7 +385,7 @@ Restart fail2ban for settings to take effect.
 sudo systemctl restart fail2ban
 ```
 
-## :bricks: **Configuring Your Firewall** <a href="#ufw" id="ufw"></a>
+## <a name="ufw"></a>:bricks: **Configuring Your Firewall**
 
 The standard UFW firewall can be used to control network access to your node.
 

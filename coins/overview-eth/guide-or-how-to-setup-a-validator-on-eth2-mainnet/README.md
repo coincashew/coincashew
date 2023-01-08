@@ -13,7 +13,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of October 1 2022, this is **guide version 5.1.1** and written for **Ethereum mainnet**:grin:
+As of Jan 7 2023, this is **guide version 5.1.2** and written for **Ethereum mainnet**:grin:
 {% endhint %}
 
 {% hint style="info" %}
@@ -32,7 +32,7 @@ The guide includes the following parts:
 
 ## :thumbsup: Your Github Contributions Welcome
 
-This guide is fully open source and fully powered by home-stakers like you.&#x20;
+This guide is fully open source and fully powered by home-stakers like you.
 
 Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
 
