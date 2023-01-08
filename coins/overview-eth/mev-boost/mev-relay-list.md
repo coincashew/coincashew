@@ -2,12 +2,12 @@
 
 ## Definitions
 
-* **Censorship-free**: Will not filter or censor transactions according to OFAC sanction lists.
+* **Non-Censoring:** Will not filter or censor transactions according to OFAC sanction lists. Also commonly referred to as unregulated or censorship-free. All types of MEV permitted.
 * **Ethical**: Will not front run or sandwich attack or generally harm other user's transactions.
 
 ## Ethereum Mainnet Relays
 
-| Relay Name                                                                                                |    Censorship-Free   |        Ethical       | URL                                                                                                                                              |
+| Relay Name                                                                                                |     Non-Censoring    |        Ethical       | URL                                                                                                                                              |
 | --------------------------------------------------------------------------------------------------------- | :------------------: | :------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [Aestus](https://aestus.live)                                                                             | :white\_check\_mark: |          :x:         | https://0xa15b52576bcbf1072f4a011c0f99f9fb6c66f3e1ff321f11f461d15e31b1cb359caa092c71bbded0bae5b5ea401aab7e@aestus.live                           |
 | [Agnostic Gnosis](https://agnostic-relay.net)                                                             | :white\_check\_mark: |          :x:         | https://0xa7ab7a996c8584251c8f925da3170bdfd6ebc75d50f5ddc4050a6fdc77f2a3b5fce2cc750d0865e05d7228af97d69561@agnostic-relay.net                    |
@@ -23,7 +23,7 @@
 
 ## Goerli Testnet Relays
 
-| Relay Name                                     |    Censorship-Free   |        Ethical       | URL                                                                                                                                                        |
+| Relay Name                                     |     Non-Censoring    |        Ethical       | URL                                                                                                                                                        |
 | ---------------------------------------------- | :------------------: | :------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Aestus](https://aestus.live)                  | :white\_check\_mark: |          :x:         | https://0xab78bf8c781c58078c3beb5710c57940874dd96aef2835e7742c866b4c7c0406754376c2c8285a36c630346aa5c5f833@goerli.aestus.live                              |
 | [Blocknative](https://www.blocknative.com)     |          :x:         |          :x:         | https://0x8f7b17a74569b7a57e9bdafd2e159380759f5dc3ccbd4bf600414147e8c4e1dc6ebada83c0139ac15850eb6c975e82d0@builder-relay-goerli.blocknative.com            |
@@ -33,7 +33,7 @@
 | [Manifold](https://securerpc.com)              | :white\_check\_mark: |          :x:         | https://0x8a72a5ec3e2909fff931c8b42c9e0e6c6e660ac48a98016777fc63a73316b3ffb5c622495106277f8dbcc17a06e92ca3@goerli-relay.securerpc.com                      |
 | [Ultra Sound](https://relay.ultrasound.money)  | :white\_check\_mark: |          :x:         | https://0xb1559beef7b5ba3127485bbbb090362d9f497ba64e177ee2c8e7db74746306efad687f2cf8574e38d70067d40ef136dc@relay-stag.ultrasound.money                     |
 
-## Next Steps
+## :ladder: Next Steps
 
 Monitor the reliability / uptime / performance of your relays
 
