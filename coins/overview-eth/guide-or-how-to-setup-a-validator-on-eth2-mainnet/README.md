@@ -42,6 +42,8 @@ Built by home-stakers for home-stakers. :pray:
 
 ## :page\_facing\_up: Latest Essential Ethereum Staking Reading
 
+* [Shapella (Shanghai + Capella) and Beacon Chain Withdrawals Update](https://tim.mirror.xyz/zLdl8bEiDmobHZ5RlvG2LrlZLWV9c2XvkuKQ-vpljSU)
+* [Client diversity on Ethereum's Consensus Layer](https://mirror.xyz/jmcook.eth/S7ONEka\_0RgtKTZ3-dakPmAHQNPvuj15nh0YGKPFriA)
 * [After The Merge │ Part 1: The Surge by himesh.eth](https://himesh.substack.com/p/after-the-merge-part-1-the-surge)
 * [After The Merge │ Part 2: The Verge by himesh.eth](https://himesh.substack.com/p/after-the-merge-part-2-the-verge)
 * [Proof-of-Stake: Explaining Ethereum's consensus mechanism after The Merge by foobar](https://0xfoobar.substack.com/p/ethereum-proof-of-stake)
