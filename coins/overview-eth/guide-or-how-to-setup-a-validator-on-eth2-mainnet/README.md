@@ -30,6 +30,16 @@ The guide includes the following parts:
 * ****[**Part II - Maintenance**](part-ii-maintenance/) explains ongoing tasks you'll require to keep your ETH staking node in great shape and up-to-date.
 * ****[**Part III - Tips**](part-iii-tips/) contains additional procedures to simplify managing your ETH staking node.
 
+## :thumbsup: Your Github Contributions Welcome
+
+This guide is fully open source and fully powered by home-stakers like you.&#x20;
+
+Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
+
+{% embed url="https://github.com/coincashew/coincashew" %}
+
+Built by home-stakers for home-stakers. :pray:
+
 ## :page\_facing\_up: Latest Essential Ethereum Staking Reading
 
 * [After The Merge │ Part 1: The Surge by himesh.eth](https://himesh.substack.com/p/after-the-merge-part-1-the-surge)

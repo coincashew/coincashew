@@ -20,6 +20,16 @@ As of October 1 2022, this **post-merge guide is version 5.1.0** and written for
 **Always test and practice on testnet first.** [**Mainnet guide available here.**](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)****
 {% endhint %}
 
+## :thumbsup: Your Github Contributions Welcome
+
+This guide is fully open source and fully powered by home-stakers like you.&#x20;
+
+Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
+
+{% embed url="https://github.com/coincashew/coincashew" %}
+
+Built by home-stakers for home-stakers. :pray:
+
 ## ​​:checkered\_flag: 0. Prerequisites <a href="#0.-prerequisites" id="0.-prerequisites"></a>
 
 ### :woman\_technologist:Skills to be a eth staker
