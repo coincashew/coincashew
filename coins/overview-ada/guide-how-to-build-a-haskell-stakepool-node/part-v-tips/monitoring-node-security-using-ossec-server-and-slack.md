@@ -228,7 +228,7 @@ Now we want OSSEC to run automatically at startup. To achieve this, we will crea
 
 ```bash
 cd $HOME
-cat ossec.service <<EOF
+cat > ossec.service <<EOF
 [Unit]
 Description=OSSEC service
 
