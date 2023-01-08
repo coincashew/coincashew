@@ -8,13 +8,14 @@ description: Quickstart guide to setting up MEV-boost for your ETH validator.
 The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
-## :question:What is mev-boost?&#x20;
+## :question:What is mev-boost?
 
 * Enables solo and home stakers access to MEV, Maximal Extractible Value.
 * Enables validators to earn higher block rewards.
 * Optional and not required for ETH staking.
-* Open source middleware run by validators to access a competitive block-building market.&#x20;
+* Open source middleware run by validators to access a competitive block-building market.
 * Built by Flashbots as an implementation of [proposer-builder separation (PBS)](https://ethresear.ch/t/proposer-block-builder-separation-friendly-fee-market-designs/9725) for proof-of-stake (PoS) Ethereum.
+* `home-staker (you) >> mevboost >> relay >> builder >> searcher +/-  frontrun/sandwich += efficient markets :)`
 
 {% hint style="info" %}
 **tldr**: MEV is estimated be 11% of a validator rewards. Other estimates suggest it can [boost staking rewards by over 60%.](https://hackmd.io/@flashbots/mev-in-eth2)
@@ -35,7 +36,8 @@ First start by installing Go and removing any previous Go installations.
 <pre class="language-bash"><code class="lang-bash"><strong>cd $HOME
 </strong>wget https://go.dev/dl/go1.19.1.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go &#x26;&#x26; sudo tar -C /usr/local -xzf go1.19.1.linux-amd64.tar.gz
-rm go1.19.1.linux-amd64.tar.gz</code></pre>
+rm go1.19.1.linux-amd64.tar.gz
+</code></pre>
 
 Add `/usr/local/go/bin` to the `PATH` environment variable.
 
@@ -75,7 +77,8 @@ CGO_CFLAGS="-O -D__BLST_PORTABLE__" go install github.com/flashbots/mev-boost@la
 Install binaries to `/usr/local/bin` and update ownership permissions.
 
 <pre class="language-bash"><code class="lang-bash">sudo cp $HOME/go/bin/mev-boost /usr/local/bin
-<strong>sudo chown mevboost:mevboost /usr/local/bin/mev-boost</strong></code></pre>
+<strong>sudo chown mevboost:mevboost /usr/local/bin/mev-boost
+</strong></code></pre>
 
 Create the mevboost systemd unit file.
 
@@ -83,7 +86,7 @@ Create the mevboost systemd unit file.
 sudo nano /etc/systemd/system/mevboost.service
 ```
 
-The `ExecStart` line lists two relays, **Manifold** and **bloXroute Ethical**. Remove or add other relays according to your ethical preferences.
+The `ExecStart` line lists five relays, **Agnostic, UltraSound, Aestus, bloXroute Max Profit and bloXroute Ethical**. Remove or add other relays according to your ethical preferences. Add as many relays as you wish.
 
 {% hint style="info" %}
 Find relay endpoints at:
@@ -92,12 +95,16 @@ Find relay endpoints at:
 * [https://boost.flashbots.net](https://boost.flashbots.net/)
 * [https://github.com/remyroy/ethstaker/blob/main/MEV-relay-list.md](https://github.com/remyroy/ethstaker/blob/main/MEV-relay-list.md)
 
-Multiple relays can be specified by separating each relay endpoint with a comma.
+Multiple relays can be specified by `-relay`
 
 Example:
 
 ```
--relays https://RELAY1.COM,https://RELAY2.COM,https://RELAY3.COM
+-relay https://RELAY1.COM \
+-relay https://RELAY2.COM \
+-relay https://RELAY3.COM
+
+Important: Ensure each relay line ends with \ except the last relay line.
 ```
 {% endhint %}
 
@@ -119,7 +126,11 @@ ExecStart=/usr/local/bin/mev-boost \
   -mainnet \
   -min-bid 0.05 \
   -relay-check \
-  -relays https://0x98650451ba02064f7b000f5768cf0cf4d4e492317d82871bdc87ef841a0743f69f0f1eea11168503240ac35d101c9135@mainnet-relay.securerpc.com,https://0xad0a8bb54565c2211cee576363f3a347089d2f07cf72679d16911d740262694cadb62d7fd7483f27afd714ca0f1b9118@bloxroute.ethical.blxrbdn.com
+  -relay https://0xad0a8bb54565c2211cee576363f3a347089d2f07cf72679d16911d740262694cadb62d7fd7483f27afd714ca0f1b9118@bloxroute.ethical.blxrbdn.com \
+  -relay https://0xa7ab7a996c8584251c8f925da3170bdfd6ebc75d50f5ddc4050a6fdc77f2a3b5fce2cc750d0865e05d7228af97d69561@agnostic-relay.net \
+  -relay https://0xa1559ace749633b997cb3fdacffb890aeebdb0f5a3b6aaa7eeeaf1a38af0a8fe88b9e4b1f61f236d2e64d95733327a62@relay.ultrasound.money \
+  -relay https://0xa15b52576bcbf1072f4a011c0f99f9fb6c66f3e1ff321f11f461d15e31b1cb359caa092c71bbded0bae5b5ea401aab7e@aestus.live \
+  -relay https://0x8b5d2e73e2a3a55c6c87b8b6eb92e0149a125c852751db1422fa951e42a09b82c142c3ea98d0d9930b056a3bc9896b8f@bloxroute.max-profit.blxrbdn.com
 
 [Install]
 WantedBy=multi-user.target
@@ -187,7 +198,7 @@ Both the consensus layer client and validator will require additional **Builder 
 
 **Consensus Client Layer Changes (beacon chain)**
 
-Add the appropriate flag to the `ExecStart`  line of your **consensus** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
+Add the appropriate flag to the `ExecStart` line of your **consensus** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 ```bash
 sudo nano /etc/systemd/system/beacon-chain.service
@@ -207,8 +218,6 @@ If your Teku client is configured by passing in a **TOML file (i.e. teku.yaml),*
 sudo nano /etc/teku/teku.yaml
 ```
 
-
-
 Add the following lines to the yaml file:
 
 ```
@@ -217,15 +226,11 @@ validators-builder-registration-default-enabled: true
 builder-endpoint: "http://127.0.0.1:18550"
 ```
 
-
-
 Alternatively, if your Teku client is configured by --parameters in the **systemd service file,** add the following changes.
 
 ```
 --validators-builder-registration-default-enabled=true --builder-endpoint=http://127.0.0.1:18550
 ```
-
-
 
 {% hint style="info" %}
 Use one configuration or the other but not both!
@@ -253,7 +258,7 @@ Use one configuration or the other but not both!
 
 **Validator Client Changes**
 
-If required, add the appropriate flag to the `ExecStart`  line of your **validator** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
+If required, add the appropriate flag to the `ExecStart` line of your **validator** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 ```bash
 sudo nano /etc/systemd/system/validator.service
@@ -274,15 +279,11 @@ sudo nano /etc/systemd/system/validator.service
 --validators-proposer-config="/etc/teku/proposerConfig.json"
 ```
 
-
-
 Create a proposerConfig.json file with the following:
 
 ```
 sudo nano /etc/teku/proposerConfig.json
 ```
-
-
 
 For example, enable MEV by default, and keep it disabled for a specific key.
 
@@ -304,8 +305,6 @@ For example, enable MEV by default, and keep it disabled for a specific key.
   }
 }
 ```
-
-
 
 Update file ownership permissions.
 
@@ -390,7 +389,7 @@ Sample command:
 https://boost-relay.flashbots.net/relay/v1/data/validator_registration?pubkey=0xb510871a4600b184e83b1ca28402e4de31b5db968f28196419ab64c6e4e2b39920815a61b0bdfe8c928ae8a4db308517
 ```
 
-Sample output:&#x20;
+Sample output:
 
 ```
 {"message":{"fee_recipient":"0xebec795c9c8bbd61ffc14a6662944748f299cacf","gas_limit":"30000000","timestamp":"1663454829","pubkey":"0xb510871a4600b184e83b1ca28402e4de31b5db968f28196419ab64c6e4e2b39920815a61b0bdfe8c928ae8a4db308517"},"signature":"0xaeaffeb2f67f378fc8e0e31929a958bf51895d64e93246372e6bb8609c15b3d64b4ad56a5454bc3ac1be0bc57dce031c12c066c973125312d7e4c5020509edd0aaf98a6a190081305723a89e3dcd7b3f6b1ca40b92bb1a50e5714c28407e1bf9"}
@@ -418,15 +417,15 @@ Refer to [this article by Stephane Gosslin](https://writings.flashbots.net/writi
 
 <summary>How does MEV-boost work?</summary>
 
-* Ethereum stakers must run three pieces of software: a validator client, consensus client, and an execution client.&#x20;
-* MEV-boost is a separate piece of open source software, which queries and outsources block-building to a network of builders.&#x20;
-* Block builders prepare full blocks, optimizing for MEV extraction and fair distribution of rewards.&#x20;
+* Ethereum stakers must run three pieces of software: a validator client, consensus client, and an execution client.
+* MEV-boost is a separate piece of open source software, which queries and outsources block-building to a network of builders.
+* Block builders prepare full blocks, optimizing for MEV extraction and fair distribution of rewards.
 * They then submit their blocks to relays.
 
 <!---->
 
-* Relays aggregate blocks from **multiple** builders in order to select the block with the highest fees.&#x20;
-* One instance of MEV-boost can be configured by a validator to connect to **multiple** relays.&#x20;
+* Relays aggregate blocks from **multiple** builders in order to select the block with the highest fees.
+* One instance of MEV-boost can be configured by a validator to connect to **multiple** relays.
 * The Consensus Layer client of a validator proposes the most profitable block received from MEV-boost to the Ethereum network for attestation and block inclusion.
 
 <img src="../../../.gitbook/assets/mev-boost-integration-overview.png" alt="" data-size="original">
