@@ -45,29 +45,8 @@ $HOME/prysm/prysm.sh validator accounts voluntary-exit
 {% endtab %}
 
 {% tab title="Lodestar" %}
-Stop Lodestar validator
-
-```
-sudo systemctl stop validator
-```
-
-
-
-Run the voluntary exit command
-
-<pre class="language-bash"><code class="lang-bash"><strong># change directories to binary folder
-</strong><strong>cd $HOME/git/lodestar
-</strong><strong>
-</strong># the voluntary exit command
+```bash
 ./lodestar account validator voluntary-exit
-</code></pre>
-
-
-
-Restart validator
-
-```
-sudo systemctl restart validator
 ```
 {% endtab %}
 {% endtabs %}
