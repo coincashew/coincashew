@@ -1,4 +1,6 @@
-# :jigsaw: Reference Material
+# See Also
+
+## :jigsaw: Reference Material
 
 Appreciate the hard work done by the fine folks at the following links which served as a foundation for creating this guide.
 
@@ -10,20 +12,26 @@ Appreciate the hard work done by the fine folks at the following links which ser
 * [https://docs.prylabs.network/docs/getting-started/](https://docs.prylabs.network/docs/getting-started/)
 * [https://chainsafe.github.io/lodestar/installation/](https://chainsafe.github.io/lodestar/installation/)
 
-# :tada: Bonus links
+## :tada: Bonus links
 
-### :bricks: ETH Block Explorers
+#### :bricks: ETH Block Explorers
 
 * [https://beaconcha.in/](https://beaconcha.in)
 * [https://beaconscan.com/](https://beaconscan.com)
 
-### :notepad\_spiral: Latest Eth Info
+:record\_button: **Beacon Chain Stats**
+
+* [Rated Network - Beacon Chain validator ratings](https://www.rated.network/)
+* [Luckystaker.com - Calculate the probabilities of proposing a block](https://luckystaker.com)
+* [beaconcha.in charts - Visualise the ethereum network](https://beaconcha.in/charts)
+
+#### :notepad\_spiral: Latest Eth Info
 
 * [https://hackmd.io/@benjaminion/eth2\_news](https://hackmd.io/@benjaminion/eth2\_news)
 * [https://www.reddit.com/r/ethstaker](https://www.reddit.com/r/ethstaker)
 * [https://blog.ethereum.org/](https://blog.ethereum.org)
 
-### :family\_mwgb: Additional ETH Community Guides
+#### :family\_mwgb: Additional ETH Community Guides
 
 * [https://someresat.medium.com/](https://someresat.medium.com)
 * [https://github.com/metanull-operator/eth2-ubuntu](https://github.com/metanull-operator/eth2-ubuntu)
