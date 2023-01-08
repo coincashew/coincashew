@@ -1267,6 +1267,7 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
+make update
 make nimbus_beacon_node
 ```
 
@@ -2450,7 +2451,7 @@ Syncing the consensus client is instantaneous with checkpoint sync but the execu
 **Patience required**: If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.\
 
 
-How do I know I'm fully synced?&#x20;
+How do I know I'm fully synced?
 
 * Check your execution client's logs and compare the block number against the most recent block on [https://goerli.etherscan.io/](https://goerli.etherscan.io/)
   * Check EL logs: `journalctl -fu eth1`

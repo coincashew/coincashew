@@ -325,6 +325,7 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
+make update
 make -j$(nproc) nimbus_beacon_node
 ```
 
