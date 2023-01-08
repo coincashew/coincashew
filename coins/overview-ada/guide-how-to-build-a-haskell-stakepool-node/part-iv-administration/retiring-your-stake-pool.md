@@ -244,3 +244,8 @@ Important:
 * If there are multiple pool owners, communicate your intention to retire the pool and ensure they do not remove pledge funds until the pool is retired.
 * As a courtesy to your delegators, provide advanced notice of your intention to retire so that they may re-delegate their stake.
 {% endhint %}
+
+#### References
+
+* [https://cardano-foundation.gitbook.io/stake-pool-course/stake-pool-guide/stake-pool/retire\_stakepool](https://cardano-foundation.gitbook.io/stake-pool-course/stake-pool-guide/stake-pool/retire\_stakepoolhttps:/forum.cardano.org/t/kes-key-expired/98936)
+* [https://forum.cardano.org/t/kes-key-expired/98936](https://cardano-foundation.gitbook.io/stake-pool-course/stake-pool-guide/stake-pool/retire\_stakepoolhttps:/forum.cardano.org/t/kes-key-expired/98936)
