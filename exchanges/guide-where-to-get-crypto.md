@@ -67,7 +67,6 @@ This guide is for you.
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
 | [Local.Bitcoin.com](https://local.bitcoin.com/r/coincashew9) | A simple, transparent and private platform to buy and sell Bitcoin Cash.                        |
 | [LocalMonero.co](https://localmonero.co)                     | LocalMonero is a peer-to-peer Monero exchange.                                                  |
-| [LocalCryptos.com](https://localcryptos.com)                 | LocalCryptos is a peer-to-peer marketplace where people exchange crypto with each other.        |
 | [Bisq](https://bisq.network)                                 | Decentralized open-source, peer-to-peer application exchange                                    |
 | [Binance P2P](https://p2p.binance.com)                       | Binance's peer-to-peer trading marketplace                                                      |
 | [Paxful.com](https://paxful.com)                             | Peer-to-peer marketplace to buy and sell bitcoin with 300+ payment methods.                     |
