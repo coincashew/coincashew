@@ -260,7 +260,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 16. Repeat steps 12-15 for the execution client dashboard.
 17. Repeat steps 12-15 for the node-exporter dashboard.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 :fire: **Troubleshooting common Grafana issues**
 
 **Symptom**: Your dashboard is missing some data_._

@@ -211,7 +211,7 @@ After creating the validator keys locally, you'll want to copy these validator k
 
 
 
-To align with this guide's steps, first make a default path to store your validator keys
+To align with this guide's steps, first make a default path to store your validator keys.
 
 <pre><code><strong>mkdir -p $HOME/staking-deposit-cli/validator_keys
 </strong></code></pre>
@@ -220,8 +220,9 @@ To align with this guide's steps, first make a default path to store your valida
 
 If using USB key, mount the key then copy.
 
-<pre><code><strong>cp &#x3C;directory-with-keys>/*.json $HOME/staking-deposit-cli/validator_keys
-</strong></code></pre>
+```
+cp <directory-with-keys>/*.json $HOME/staking-deposit-cli/validator_keys
+```
 
 
 
@@ -375,7 +376,7 @@ You can copy via USB key the pre-built staking-deposit-cli binaries from an onli
 {% endhint %}
 
 {% hint style="warning" %}
-**Caution**: Only deposit the 32 ETH per validator if you are confident your execution client (ETH1 node) and consensus client (ETH2 validator) will be fully synched and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
+**Caution**: Only deposit the 32 ETH per validator if you are confident your execution client (ETH1 node) and consensus client (ETH2 validator) will be fully synced and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
 {% endhint %}
 
 3\. Follow the steps at [https://goerli.launchpad.ethereum.org](https://goerli.launchpad.ethereum.org/en/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
@@ -411,7 +412,6 @@ Your transaction is sending and depositing your ETH to the goerli ETH2 deposit c
 
 * Write down your mnemonic seed **offline**. _Not email. Not cloud._
 * Multiple copies are better. _Best stored in a_ [_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
-* The withdrawal keys will be generated from this mnemonic in the future.
 * Make **offline backups**, such as to a USB key, of your **`validator_keys`** directory.
 {% endhint %}
 
@@ -916,7 +916,7 @@ sudo systemctl status eth1
 Now that your execution client is configured and started, proceed to the next step on setting up your consensus client.
 
 {% hint style="warning" %}
-If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synched to the Ethereum network.
+If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.
 {% endhint %}
 
 ## 4. Configure consensus client (beacon chain and validator)
@@ -1164,7 +1164,7 @@ WantedBy=multi-user.target
 
 
 
-* Replace`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS`\*\* with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
+* Replace**`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 
 
 

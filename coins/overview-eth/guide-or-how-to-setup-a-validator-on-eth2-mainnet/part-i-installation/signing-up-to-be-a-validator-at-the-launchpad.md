@@ -115,8 +115,9 @@ To align with this guide's steps, first make a default path to store your valida
 
 If using USB key, mount the key then copy.
 
-<pre><code><strong>cp &#x3C;directory-with-keys>/*.json $HOME/staking-deposit-cli/validator_keys
-</strong></code></pre>
+```
+cp <directory-with-keys>/*.json $HOME/staking-deposit-cli/validator_keys
+```
 
 
 
@@ -265,7 +266,7 @@ Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://tw
 
 4\. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
 
-5\. Connect to the launchpad with your Metamask wallet, review and accept terms.
+5\. Connect to the launchpad with your Metamask wallet, review and accept terms
 
 6\. Confirm the transaction(s). There's one deposit transaction of 32 ETH for each validator.
 
@@ -284,6 +285,5 @@ Your transaction is sending and depositing your ETH to the [official ETH2 deposi
 
 * Write down your mnemonic seed **offline**. _Not email. Not cloud._
 * Multiple copies are better. Best stored in a [_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
-* The withdrawal keys will be generated from this mnemonic in the future.
 * Make **offline backups**, such as to a USB key, of your **`validator_keys`** directory.
 {% endhint %}
