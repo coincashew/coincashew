@@ -13,7 +13,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of Jan 7 2023, this is **guide version 5.1.2** and written for **Ethereum mainnet**:grin:
+As of Jan 28 2023, this is **guide version 5.1.3** and written for **Ethereum mainnet**:grin:
 {% endhint %}
 
 {% hint style="info" %}

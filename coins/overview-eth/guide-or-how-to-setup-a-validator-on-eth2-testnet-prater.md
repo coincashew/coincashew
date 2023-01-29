@@ -13,7 +13,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of Jan 7 2023, this **post-merge guide is version 5.1.1** and written for **testnet GOERLI.**
+As of Jan 28 2023, this **post-merge guide is version 5.1.2** and written for **testnet GOERLI.**
 {% endhint %}
 
 {% hint style="info" %}
@@ -111,9 +111,13 @@ Watch this how-to [youtube video for Goerli ETH](https://youtu.be/uur7hGCscak)
 
 {% hint style="info" %}
 Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
+
+
+
+You will also set your [ETH Withdrawal Address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-What-are-the-two-types-of-withdrawals), preferably from your Ledger or Trezor hardware wallet.
 {% endhint %}
 
-You have the choice of using the [Wagyu GUI](https://github.com/stake-house/wagyu-installer), downloading the pre-built [Ethereum staking deposit tool](https://github.com/ethereum/staking-deposit-cli) or building it from source. Alternatively, you can use an air-gapped Tails OS or if you have a **Ledger Nano X/S or Trezor Model T**, you're able to generate deposit files with keys managed by a hardware wallet.&#x20;
+You have the choice of using the [Wagyu GUI](https://github.com/stake-house/wagyu-installer), downloading the pre-built [Ethereum staking deposit tool](https://github.com/ethereum/staking-deposit-cli) or building it from source.&#x20;
 
 {% tabs %}
 {% tab title="Build from source code" %}
@@ -137,26 +141,11 @@ sudo ./deposit.sh install
 
 
 
-Make a new mnemonic.
+Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.
 
 ```
-./deposit.sh new-mnemonic --chain goerli
+./deposit.sh new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
-
-
-
-{% hint style="info" %}
-**Advanced option**: Custom eth withdrawal address, often used for 3rd party staking.
-
-```bash
-# Add the following
---eth_withdrawal_address <eth address hex string>
-# Example
-./deposit.sh new-mnemonic --chain goerli --eth1_withdrawal_address 0x1...x
-```
-
-If this field is set and valid, the given Eth address will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters).
-{% endhint %}
 {% endtab %}
 
 {% tab title="Pre-built staking-deposit-cli" %}
@@ -198,26 +187,11 @@ cd staking-deposit-cli
 
 
 
-Make a new mnemonic.
+Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.
 
 ```
-./deposit new-mnemonic --chain goerli
+./deposit.sh new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
-
-
-
-{% hint style="info" %}
-**Advanced option**: Custom eth withdrawal address, often used for 3rd party staking.
-
-```bash
-# Add the following
---eth1_withdrawal_address <eth address hex string>
-# Example
-./deposit.sh new-mnemonic --chain goerli --eth1_withdrawal_address 0x1...x
-```
-
-If this field is set and valid, the given Eth1 address will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters).
-{% endhint %}
 {% endtab %}
 
 {% tab title="Wagyu" %}
@@ -230,46 +204,32 @@ Dubbed a 'one-click installer', it provides a clean UI automating the setup and 
 Download Wagyu: [https://wagyu.gg](https://wagyu.gg/)
 
 Github: [https://github.com/stake-house/wagyu-installer](https://github.com/stake-house/wagyu-installer)
-{% endtab %}
-
-{% tab title="Hardware Wallet - Most Secure" %}
-**How to generate validator keys with Ledger Nano X/S and Trezor Model T**
 
 
 
-{% hint style="info" %}
-[Allnodes ](https://help.allnodes.com/en/articles/4664440-how-to-setup-ethereum-2-0-validator-node-on-allnodes)has created an easy to use tool to connect a Ledger Nano X/S and Trezor Model T and generate the deposit json files such that the withdrawal credentials remain secured by the hardware wallet. This tool can be used by any validator or staker.
-{% endhint %}
+After creating the validator keys locally, you'll want to copy these validator keys via USB key or rsync file transfer to your staking node.
 
 
 
-1. Connect your hardware wallet to your PC/laptop
-2. If using a Ledger Nano X/S, open the "ETHEREUM" ledger app (if missing, install from Ledger Live)
-3. Visit [AllNode's Deposit Generator Tool.](https://wallet.allnodes.com/eth2/generate)
-4. Select network > Gorli Testnet
-5. Select your wallet > then CONTINUE
+To align with this guide's steps, first make a default path to store your validator keys
 
-![](../../.gitbook/assets/allnodes-menu-testnet.png)
-
-6\. From the dropdown, select your eth address with at least 32 ETH to fund your validators
-
-7\. On your hardware wallet, sign the ETH signature message to login to allnodes.com
-
-8\. Again on your hardware wallet, sign another message to verify your eth2 withdrawal credentials
+<pre><code><strong>mkdir -p $HOME/staking-deposit-cli/validator_keys
+</strong></code></pre>
 
 
 
-{% hint style="info" %}
-Double check that your generated deposit data file contains the same string as in withdrawal credentials and that this string includes your Ethereum address (starting after 0x)
-{% endhint %}
+If using USB key, mount the key then copy.
 
-![](../../.gitbook/assets/allnodes-3.png)
+<pre><code><strong>cp &#x3C;directory-with-keys>/*.json $HOME/staking-deposit-cli/validator_keys
+</strong></code></pre>
 
-9\. Enter the amount of nodes (or validators you want)
 
-10\. Finally, enter a **KEYSTORE password** to encrypt the deposit json files. Keep this password safe and **offline**.
 
-11\. Confirm password and click **GENERATE**
+If using rsync, copy your validator keys from your local computer to your staking node with the following command. Change ssh port if needed.
+
+```
+rsync -a "ssh -p 22" <directory-with-keys>/*.json <username>@<remote_host>:/home/<username>/staking-deposit-cli/validator_keys
+```
 {% endtab %}
 
 {% tab title="Advanced - Most Secure" %}
@@ -364,11 +324,15 @@ Plug in your other USB stick with the `staking-deposit-cli` file.
 
 You can then open your command line and navigate into the directory containing the file. Then you can continue the guide from the other tab.
 
-Make a new mnemonic.
+
+
+Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.
 
 ```
-./deposit.sh new-mnemonic --chain goerli
+./deposit.sh new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
+
+
 
 If you ran this command directly from your non-Tails USB stick, the validator keys should stay on it. If it hasn't, copy the directory over to your non-Tails USB stick.
 
@@ -1267,6 +1231,7 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
+make update
 make nimbus_beacon_node
 ```
 
@@ -2450,7 +2415,7 @@ Syncing the consensus client is instantaneous with checkpoint sync but the execu
 **Patience required**: If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.\
 
 
-How do I know I'm fully synced?&#x20;
+How do I know I'm fully synced?
 
 * Check your execution client's logs and compare the block number against the most recent block on [https://goerli.etherscan.io/](https://goerli.etherscan.io/)
   * Check EL logs: `journalctl -fu eth1`

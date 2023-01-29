@@ -30,6 +30,10 @@ Using the staking-deposit-cli tool, you can add more validators by creating a ne
 
 {% hint style="warning" %}
 **Security recommendation reminder**: For best security practices, key management and other activities where you type your 24 word mnemonic seed should be completed on an air-gapped offline cold machine booted from USB drive.
+
+
+
+You will also set your [ETH Withdrawal Address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-What-are-the-two-types-of-withdrawals), preferably from your Ledger or Trezor hardware wallet.
 {% endhint %}
 
 {% hint style="danger" %}
@@ -38,7 +42,7 @@ Reminder to use the same **keystore password** as existing validators.
 
 ```bash
 # Generate from an existing mnemonic 5 more validators when 3 were previously already made
-./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet
+./deposit existing-mnemonic --validator_start_index 3 --num_validators 5 --chain mainnet --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 
 3\. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org) and making your corresponding 32 ETH deposit transactions.
