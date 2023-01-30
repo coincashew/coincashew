@@ -27,7 +27,7 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :thumbsup:Your Github Contributions Welcome
 
-This guide is fully open source and fully powered by stake pool operators like you.&#x20;
+This guide is fully open source and fully powered by stake pool operators like you.
 
 Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
 
@@ -41,6 +41,8 @@ If you want to support this free educational Cardano content or found this helpf
 
 ## :page\_facing\_up: Change Log
 
+* January 27, 2023
+  * Updating procedures for Cardano Node 1.35.5
 * August 22, 2022
   * Updating procedures for Cardano Node 1.35.3 ([Change Pool](https://change.paradoxicalsphere.com))
 * June 8, 2022

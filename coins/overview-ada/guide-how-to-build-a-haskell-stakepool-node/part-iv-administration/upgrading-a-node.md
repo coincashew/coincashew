@@ -115,7 +115,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 | Release Date | Cardano Node Version | GHC Version | Cabal Version |
 | :----------: | :------------------: | :---------: | :-----------: |
-|  Nov 7, 2022 |        1.35.4        |    8.10.7   |    3.6.2.0    |
+| Jan 27, 2023 |        1.35.5        |    8.10.7   |    3.6.2.0    |
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -191,11 +191,55 @@ If you want to download new configuration files using the command line, then nav
 
 5\. Using [`diff`](https://www.man7.org/linux/man-pages/man1/diff.1.html) or a similar file comparison utility, identify and copy customizations as needed from the backup configuration files that you created in step 2 to each new configuration file that you downloaded in step 4.
 
-## :zap:Building Cardano Node Binaries <a href="#buildingcn" id="buildingcn"></a>
+## :zap:Installing New Cardano Binaries <a href="#buildingcn" id="buildingcn"></a>
 
-{% hint style="danger" %}
-Prior to building Cardano Node 1.35.x binaries, [install libsecp256k1](../part-i-installation/installing-ghc-and-cabal.md#libsecp)
-{% endhint %}
+1. Either build the latest binaries or download pre-built binaries from IOHK.
+
+<details>
+
+<summary>Downloading pre-built binaries from IOHK</summary>
+
+1. Create a temporary path to store the pre-built binaries.
+
+```
+mkdir ~/tmp2
+cd ~/tmp2
+```
+
+Visit the [official Github](https://github.com/input-output-hk/cardano-node/releases) to determine the latest cardano-node linux binaries link, located under Downloads > Static Binaries > Linux.
+
+2. Download the latest static binaries for Linux. Update below URL with the latest link before continuing.
+
+<pre><code><strong>wget https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.5-linux.tar.gz
+</strong></code></pre>
+
+3. Un-tar the archive.
+
+```
+tar -xvf cardano*.gz
+```
+
+4. Install the new node and cli binaries.
+
+```
+sudo mv ~/tmp2/cardano-cli /usr/local/bin/
+```
+
+```
+sudo mv ~/tmp2/cardano-node /usr/local/bin/
+```
+
+5. Clean up temporary path.
+
+```
+rm -rf ~/tmp2
+```
+
+</details>
+
+<details>
+
+<summary>Building Cardano Node Binaries</summary>
 
 **To build binaries for a new Cardano Node version:**
 
@@ -208,9 +252,7 @@ cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git ./<NewFolderName>
 ```
 
-{% hint style="info" %}
 Cloning the GitHub repository to a new folder allows you to roll back the upgrade, if needed, by re-installing on your computer the `cardano-node` and `cardano-cli` binaries from a folder where you compiled a previous version of Cardano Node packages.
-{% endhint %}
 
 2\. To build Cardano Node binaries using the source code that you downloaded in step 1, type the following commands where `<NewFolderName>` is the name of the folder you created in step 1 and `<GHCVersionNumber>` is the GHC version that you set in the section [Setting GHC and Cabal Versions](upgrading-a-node.md#SetGCVersions):
 
@@ -231,9 +273,7 @@ echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" >> cabal
 cabal build cardano-node cardano-cli
 ```
 
-{% hint style="info" %}
 The time required to compile the `cardano-node` and `cardano-cli` packages may be a few minutes to hours, depending on the specifications of your computer.
-{% endhint %}
 
 3\. When the compiler finishes, to verify the version numbers of the new `cardano-node` and `cardano-cli` binaries type:
 
@@ -241,8 +281,6 @@ The time required to compile the `cardano-node` and `cardano-cli` packages may b
 $(find ./dist-newstyle/build -type f -name "cardano-node") version
 $(find ./dist-newstyle/build -type f -name "cardano-cli") version
 ```
-
-## :open\_file\_folder:Installing New Cardano Node Binaries
 
 **To install new `cardano-node` and `cardano-cli` binaries:**
 
@@ -259,15 +297,21 @@ sudo cp $(find ./dist-newstyle/build -type f -name "cardano-node") <DestinationP
 sudo cp $(find ./dist-newstyle/build -type f -name "cardano-cli") <DestinationPath>/cardano-cli
 ```
 
-{% hint style="info" %}
 If you follow the Coin Cashew instructions for [Compiling Source Code](../part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
-{% endhint %}
 
-3\. To verify that you installed the new Cardano Node binaries successfully, type:
+</details>
+
+2\. To verify that you installed the new Cardano Node binaries successfully, type:
 
 ```bash
 cardano-node version
 cardano-cli version
+```
+
+3\. Restart your Cardano node systemd service to finish the upgrade process.
+
+```bash
+sudo systemctl restart cardano-node
 ```
 
 4\. Optionally, to install the latest versions of all previously installed packages on your computer, and then reboot the computer, type:
@@ -276,23 +320,19 @@ cardano-cli version
 sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
 ```
 
-5\. If you need to restart your Cardano node manually, then type the following command where `<CardanoServiceName>` is the name of the systemd service running your Cardano node:
-
-```bash
-sudo systemctl start <CardanoServiceName>.service
-```
-
 {% hint style="info" %}
-Upgrading to a new Cardano Node version may require replaying the copy of the blockchain residing on the local computer. The task of replaying the blockchain may require hours to complete. To monitor your node, type the command `journalctl -fu cardano-node.service` in a terminal window.
+Upgrading to a new Cardano Node version may require replaying the copy of the blockchain residing on the local computer. The task of replaying the blockchain may require hours to complete.&#x20;
+
+To monitor your node, type the command `journalctl -fu cardano-node`in a terminal window.
 {% endhint %}
 
 6\. Copy the new `cardano-cli` binary to the air-gapped, offline computer that you use to sign transactions for your stake pool.
 
-7\. On your air-gapped, offline computer, [install libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp)
+7\. On your air-gapped, offline computer, ensure[ libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp) was installed.
 
 ## :checkered\_flag:Verifying the Upgrade
 
-To verify that the upgrade is successful, open gLiveView, journactl logs or Grafana dashboard.
+To verify that the upgrade is successful, open gLiveView, journalctl logs or Grafana dashboard.
 
 {% tabs %}
 {% tab title="gLiveView" %}
