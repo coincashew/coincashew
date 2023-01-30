@@ -232,6 +232,7 @@ sudo mv ~/tmp2/cardano-node /usr/local/bin/
 5. Clean up temporary path.
 
 ```
+cd
 rm -rf ~/tmp2
 ```
 
