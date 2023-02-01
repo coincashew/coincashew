@@ -60,6 +60,16 @@ make
 
 
 {% hint style="info" %}
+Improve some Lighthouse benchmarks by around 20% at the expense of increased compile time? Use `maxperf` profile.\
+\
+To compile with maxperf, replace the above `make` command with
+
+&#x20; `PROFILE=maxperf make`
+{% endhint %}
+
+
+
+{% hint style="info" %}
 In case of compilation errors, run the following sequence.
 
 ```
@@ -325,6 +335,7 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
+make update
 make -j$(nproc) nimbus_beacon_node
 ```
 
