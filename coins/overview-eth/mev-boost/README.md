@@ -376,6 +376,18 @@ sudo chown mevboost:mevboost /usr/local/bin/mev-boost
 sudo systemctl start mevboost
 ```
 
+## :wastebasket: Uninstalling MEV-boost
+
+```
+sudo systemctl stop mevboost
+sudo systemctl disable mevboost
+sudo rm /etc/systemd/system/mevboost.service
+sudo rm /usr/local/bin/mev-boost
+sudo userdel mevboost
+```
+
+Finally, remove the Builder API changes made in [step 4 to your consensus client and validator](./#4-update-consensus-client-and-validator).
+
 ## :question: FAQ
 
 <details>
@@ -383,6 +395,48 @@ sudo systemctl start mevboost
 <summary>How do I verify I'm registered with my relays?</summary>
 
 Verify that your validator is registered with a particular relay by making a request to the relay's API.
+
+You can either manually query the relay's API or use [dabauxi's Check MEV-Boost Relay Registration script](https://github.com/dabauxi/check-mevboost-registration).
+
+### Check MEV-Boost Relay Registration by dabauxi&#x20;
+
+Review notes and source code [here](https://github.com/dabauxi/check-mevboost-registration). Requires python.
+
+```
+# Install python
+sudo apt install python3
+
+# Download the script
+https://raw.githubusercontent.com/dabauxi/check-mevboost-registration/main/check_mevboost_registration.py
+
+# Assign execution permissions
+chmod +x check_mevboost_registration.py
+
+# Check mevboost registration
+./check_mevboost_registration.py <your-validator-address>
+```
+
+Sample output showing your validator's registration to relays.
+
+```
+./check_mevboost_registration.py 0x8000a44457e18388c5be046e22e86aedae1a07638394df63adfcd32d29b4e86c030219e94782ebebe398c9a05a8a28e7
+
+Validator '0x8000a44457e18388c5be046e22e86aedae1a07638394df63adfcd32d29b4e86c030219e94782ebebe398c9a05a8a28e7'
+Relay: 'bloxroute.ethical.blxrbdn.com', ❌ not found
+Relay: 'relay.edennetwork.io', ❌ not found
+Relay: 'builder-relay-mainnet.blocknative.com', ✔️ registered
+Relay: 'bloxroute.max-profit.blxrbdn.com', ✔️ registered
+Relay: 'boost-relay.flashbots.net', ✔️ registered
+Relay: 'bloxroute.regulated.blxrbdn.com', ❌ not found
+Relay: 'builder-relay-mainnet.blocknative.com', ✔️ registered
+Relay: 'relay.edennetwork.io', ❌ not found
+Relay: 'mainnet-relay.securerpc.com', ✔️ registered
+Relay: 'relayooor.wtf', ✔️ registered
+Relay: 'relay.ultrasound.money', ✔️ registered
+Relay: 'agnostic-relay.net', ✔️ registered
+```
+
+### &#x20;Check Manually
 
 For example, to verify that your validator is registered with the flashbots relay, enter the following URL into your browser. Replace `<myPubKey>` with the public key of your validator and you will see registration data such as your fee recipient address.
 
@@ -443,9 +497,12 @@ Refer to [this article by Stephane Gosslin](https://writings.flashbots.net/writi
 
 <summary>What are the risks of running MEV-boost?</summary>
 
-* Requires trust that relays and block builders will act honestly. MEV is not yet a trust-less process until there is protocol-level proposer-builder-separation (PBS).
+* Adding more relays increases risk of adding a "bad" relay (hacked, withholds bid, performance issues) and causes your validator to miss a proposal.
+* More relays = more chance of getting a high-bid block however this also increases chance of getting rugged by "bad" relays and missing a proposal.Requires trust that relays and block builders will act honestly. MEV is not yet a trust-less process until there is protocol-level proposer-builder-separation (PBS).
 
 Detailed explanation: [https://writings.flashbots.net/writings/understanding-mev-boost-liveness-risks](https://writings.flashbots.net/writings/understanding-mev-boost-liveness-risks/)
+
+Summary of risks: Only add relays you trust.
 
 </details>
 
@@ -474,6 +531,14 @@ Based on varying degrees of profit or censorship, MEV relays can decide on what 
 * Ethical relays: will not censor transactions or profit from front running / sandwich attacks, which is harmful to everyday users on Ethereum.
 * OFAC relays: will censor transactions according to the OFAC list.
 * Maximal profit relays: profit is all that matters, ethics have no meaning.
+
+</details>
+
+<details>
+
+<summary>Do I need to open any incoming ports on the firewall?</summary>
+
+No changes needed. mevboost only makes outgoing tcp calls.
 
 </details>
 
