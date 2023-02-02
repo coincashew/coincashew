@@ -20,6 +20,7 @@ The following steps align with our [mainnet guide](../). You may need to adjust 
 ### :robot: Pre-requisites
 
 * Linux bash shell or command line
+* Assumes you will be running this script on the beacon node. If running remotely, you might need to change your beacon node's http API to bind from localhost to 0.0.0.0
 * Your ETH validator index number(s) -- Enter your validator's public key on [https://beaconcha.in/](https://beaconcha.in) or [https://beaconscan.com/](https://beaconscan.com) Example of Validator index # 12345 is shown below.
 
 <figure><img src="../../../../.gitbook/assets/validator12345.png" alt=""><figcaption><p>Given your validator's public key, the index number is shown. Example of Validator 12345 from <a href="https://beaconcha.in/validator/12345">https://beaconcha.in/validator/12345</a></p></figcaption></figure>
@@ -137,5 +138,5 @@ If there is no output, then no validators are scheduled for current or next sync
 {% hint style="warning" %}
 :fire: **Script Usage Caveats**:
 
-* Sync commitee duties are only known for the current AND next sync committee period.
+* Sync committee duties are only known for the current AND next sync committee period.
 {% endhint %}
