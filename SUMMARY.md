@@ -131,6 +131,7 @@
       * [Adding or Changing Graffiti flag](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/adding-or-changing-poap-graffiti-flag.md)
       * [Improving Validator Attestation Effectiveness](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/improving-validator-attestation-effectiveness.md)
       * [EIP2333 Key Generator by iancoleman.io](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/eip2333-key-generator-by-iancoleman-io.md)
+      * [Disk Usage by Execution / Consensus Client](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/disk-usage-by-execution-consensus-client.md)
       * [Dealing with Storage Issues on the Execution Client](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/dealing-with-storage-issues-on-the-execution-client.md)
     * [Join the Community](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/joining-the-community-on-discord-and-reddit.md)
     * [Credits](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/credits.md)

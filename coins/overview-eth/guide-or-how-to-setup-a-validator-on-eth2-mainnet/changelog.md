@@ -2,6 +2,7 @@
 
 ## :page\_facing\_up: List of changes
 
+* Added [disk usage numbers by EL CL combination](part-iii-tips/disk-usage-by-execution-consensus-client.md)
 * Include ETH Withdrawals address as default during validator key generation.
 * Added [MEV-boost guide.](../mev-boost/)
 * Updated to be mainnet merge ready.
