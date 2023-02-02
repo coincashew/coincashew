@@ -46,7 +46,7 @@ Download staking-deposit-cli
 
 ```bash
 cd $HOME
-wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.3.0/staking_deposit-cli-76ed782-linux-amd64.tar.gz
+wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.4.0/staking_deposit-cli-ef89710-linux-amd64.tar.gz
 ```
 
 
@@ -54,14 +54,14 @@ wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.3.0/st
 Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/staking-deposit-cli/releases/tag/v2.3.0).
 
 ```bash
-echo "8a7757995e70178ac953a746c7434f1bc816a2f4be0318d980bf1eca98930a3c *staking_deposit-cli-76ed782-linux-amd64.tar.gz" | shasum -a 256 --check
+echo "c2b12a9e515f904ca359ec39dfbd7022dfefe881c1796ce42319df0a2da05560 *staking_deposit-cli-ef89710-linux-amd64.tar.gz" | shasum -a 256 --check
 ```
 
 
 
 Example valid output:
 
-> staking\_deposit-cli-76ed782-linux-amd64.tar.gz: OK
+> staking\_deposit-cli-ef89710-linux-amd64.tar.gz: OK
 
 
 
@@ -74,9 +74,9 @@ Only proceed if the sha256 check passes with **OK**!
 Extract the archive.
 
 ```
-tar -xvf staking_deposit-cli-76ed782-linux-amd64.tar.gz
-mv staking_deposit-cli-76ed782-linux-amd64 staking-deposit-cli
-rm staking_deposit-cli-76ed782-linux-amd64.tar.gz
+tar -xvf staking_deposit-cli-ef89710-linux-amd64.tar.gz
+mv staking_deposit-cli-ef89710-linux-amd64 staking-deposit-cli
+rm staking_deposit-cli-ef89710-linux-amd64.tar.gz
 cd staking-deposit-cli
 ```
 
@@ -85,7 +85,7 @@ cd staking-deposit-cli
 Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.
 
 ```
-./deposit.sh new-mnemonic --chain mainnet --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+./deposit new-mnemonic --chain mainnet --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 {% endtab %}
 
