@@ -89,7 +89,7 @@ mv nethermind nethermind_backup_$(date +"%Y%d%m-%H%M%S")
 # store new version in nethermind directory
 mkdir nethermind && cd nethermind 
 # download latest version
-curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux  | xargs wget -q --show-progress
+curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-x64  | xargs wget -q --show-progress
 # unzip
 unzip -o nethermind*.zip
 # cleanup

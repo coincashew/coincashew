@@ -257,7 +257,7 @@ Run the following to automatically download the latest linux release, un-zip and
 
 ```bash
 cd $HOME
-curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-amd64  | xargs wget -q --show-progress
+curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-x64 | xargs wget -q --show-progress
 unzip -o nethermind*.zip -d $HOME/nethermind
 rm nethermind*linux*.zip
 ```
