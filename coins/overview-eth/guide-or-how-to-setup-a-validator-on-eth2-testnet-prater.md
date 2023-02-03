@@ -2106,7 +2106,7 @@ Specific to your networking setup or cloud provider settings, ensure your valida
 ./lodestar validator import \
   --network goerli \
   --dataDir /var/lib/lodestar \
-  --keystore $HOME/staking-deposit-cli/validator_keys
+  --directory $HOME/staking-deposit-cli/validator_keys
 ```
 
 
@@ -2118,9 +2118,7 @@ Enter your **keystore password** to import accounts.
 Confirm your keys were imported properly.
 
 ```
-./lodestar validator list \
-  --network goerli  \
-  --dataDir /var/lib/lodestar
+./lodestar account validator list --network goerli
 ```
 
 

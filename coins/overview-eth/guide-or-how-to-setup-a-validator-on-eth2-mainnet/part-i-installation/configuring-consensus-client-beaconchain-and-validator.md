@@ -1180,7 +1180,7 @@ yarn --version
 Install nodejs.
 
 ```
-curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
@@ -1253,7 +1253,9 @@ Enter your **keystore password** to import accounts.
 Confirm your keys were imported properly.
 
 ```
-./lodestar validator list --network mainnet --dataDir /var/lib/lodestarkeystore
+./lodestar validator list \
+  --network mainnet \
+  --dataDir /var/lib/lodestar
 ```
 
 
