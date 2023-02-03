@@ -1241,7 +1241,7 @@ Specific to your networking setup or cloud provider settings, ensure your valida
 ./lodestar validator import \
   --network mainnet \
   --dataDir /var/lib/lodestar \
-  --directory $HOME/staking-deposit-cli/validator_keys
+  --keystore $HOME/staking-deposit-cli/validator_keys
 ```
 
 
@@ -1253,7 +1253,7 @@ Enter your **keystore password** to import accounts.
 Confirm your keys were imported properly.
 
 ```
-./lodestar account validator list --network mainnet
+./lodestar validator list --network mainnet --dataDir /var/lib/lodestarkeystore
 ```
 
 
