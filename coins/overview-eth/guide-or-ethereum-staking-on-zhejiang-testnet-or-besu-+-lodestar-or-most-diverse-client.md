@@ -6,7 +6,7 @@ description: >-
 
 # Guide | Ethereum Staking on Zhejiang Testnet | Besu + Lodestar | Most Diverse Client
 
-## our Mission - #TestingTheWithdrawalsShanghai
+## Your Mission - #TestingTheWithdrawalsShanghai
 
 * **Overview**: To participate in the public testnet known as **Zhejiang**, the first public effort to test Ethereum’s upgrade to enabling validator withdrawals with a hardfork called "Shanghai-Capella" or also known as [EIP 4855](https://eips.ethereum.org/EIPS/eip-4895).
 * **Goals**: To test your staking setups, practice voluntary exits and validator withdrawals.
