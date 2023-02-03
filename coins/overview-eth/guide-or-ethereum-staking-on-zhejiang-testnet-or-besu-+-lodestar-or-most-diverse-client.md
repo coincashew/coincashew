@@ -434,6 +434,18 @@ journalctl -fu execution
 journalctl -fu consensus
 ```
 
+{% hint style="warning" %}
+**Known error in consensus logs**: As noted in [Lodestar's discord](https://discord.com/channels/593655374469660673/743858262864167062/1066771696394191039), there will be a noisy error about updating eth1 chain cache. This does not seem to affect node syncing or validator duties.
+
+
+
+Example error output:
+
+`error: Error updating eth1 chain cache JSON RPC error: Number of requests exceeds max batch size, batch Error: JSON RPC error: Number of requests exceeds max batch size, batch at JsonRpcHttpClient.fetchBatch (file:///usr/local/bin/lodestar/packages/beacon-node/src/eth1/provider/jsonRpcHttpClient.ts:151:15) at processTicksAndRejections (node:internal/process/task_queues:95:5) at Eth1Provider.getBlocksByNumber...`
+{% endhint %}
+
+
+
 A properly functioning Besu execution client will indicate "Fork-Choice-Updates". For example,
 
 ```bash
