@@ -177,6 +177,7 @@ Pull the latest source and build it.
 
 ```bash
 cd $HOME/git/lodestar
+git switch stable
 git pull
 yarn install
 yarn run build
@@ -195,7 +196,7 @@ Verify the build completed by checking the new version number.
 Restart beacon chain and validator as per normal operating procedures.
 
 ```
-sudo systemctl reload-or-restart beacon-chain validator
+sudo systemctl restart beacon-chain validator
 ```
 {% endtab %}
 {% endtabs %}

@@ -2045,7 +2045,7 @@ yarn --version
 Install nodejs.
 
 ```
-curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
@@ -2056,7 +2056,7 @@ Install and build Lodestar.
 ```bash
 mkdir ~/git
 cd ~/git
-git clone https://github.com/chainsafe/lodestar.git
+git clone -b stable https://github.com/chainsafe/lodestar.git
 cd lodestar
 yarn install --ignore-optional
 yarn run build

@@ -1191,7 +1191,7 @@ Install and build Lodestar.
 ```bash
 mkdir ~/git
 cd ~/git
-git clone https://github.com/chainsafe/lodestar.git
+git clone -b stable https://github.com/chainsafe/lodestar.git
 cd lodestar
 yarn install --ignore-optional
 yarn run build

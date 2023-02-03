@@ -6,7 +6,7 @@ description: >-
 
 # Guide | Ethereum Staking on Zhejiang Testnet | Besu + Lodestar | Most Diverse Client
 
-## Your Mission - #TestingTheWithdrawalsShanghai
+## our Mission - #TestingTheWithdrawalsShanghai
 
 * **Overview**: To participate in the public testnet known as **Zhejiang**, the first public effort to test Ethereum’s upgrade to enabling validator withdrawals with a hardfork called "Shanghai-Capella" or also known as [EIP 4855](https://eips.ethereum.org/EIPS/eip-4895).
 * **Goals**: To test your staking setups, practice voluntary exits and validator withdrawals.
@@ -321,7 +321,7 @@ sudo apt install yarn -y
 
 Install nodejs.
 
-<pre class="language-shell"><code class="lang-shell"><strong>curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+<pre class="language-shell"><code class="lang-shell"><strong>curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 </strong>sudo apt-get install -y nodejs
 </code></pre>
 
