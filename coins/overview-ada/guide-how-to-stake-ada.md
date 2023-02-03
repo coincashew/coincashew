@@ -1,33 +1,31 @@
-# Guide: How to Stake ADA
+# Guide: How to stake ADA
 
-## :confetti_ball: Delegating ADA to a Stake Pool
+## :confetti\_ball: Delegating ADA to a Stake Pool
 
 **To delegate your ADA cryptocurrency to a stake pool:**
 
-1. Install an official wallet for [Cardano](https://cardano.org/) such as [Daedalus](https://daedaluswallet.io) or [Yoroi](https://yoroi-wallet.com)  
+1. Install an official wallet for [Cardano](https://cardano.org/) such as [Daedalus](https://daedaluswallet.io) or [Yoroi](https://yoroi-wallet.com)
+
 {% hint style="info" %}
 Yoroi is quicker to set up than Daedalus. The following steps explain how to delegate using Yoroi.
-{% endhint %}  
-![](../../.gitbook/assets/ss.PNG)
-
-2. Install Yoroi from your app store
-
-3. Click on the **Delegation (Simple)** tab.
-
-4. Find a pool where you want to delegate your stake.  
-{% hint style="info" %}
- For example, you can browse stake pools on [PoolTool](https://pooltool.io) or [ADApools.org](https://adapools.org) Web sites. The YouTube video [How to Choose a Good Cardano Stake Pool](https://www.youtube.com/watch?v=tgxHfQy7CnU) by Kaizen Crypto may also offer you some helpful tips.
 {% endhint %}
 
-5. Click **Delegate**
+![](../../.gitbook/assets/ss.PNG)
 
-6. Type your spending password.
+1. Install Yoroi from your app store
+2. Click on the **Delegation (Simple)** tab.
+3. Find a pool where you want to delegate your stake.
 
-7. Click the **DELEGATE** button.
+{% hint style="info" %}
+For example, you can browse stake pools on [PoolTool](https://pooltool.io) or [ADApools.org](https://adapools.org) Web sites. The YouTube video [How to Choose a Good Cardano Stake Pool](https://www.youtube.com/watch?v=tgxHfQy7CnU) by Kaizen Crypto may also offer you some helpful tips.
+{% endhint %}
 
-8. :tada: Congratulations! Rewards will start showing up in two epochs (each epoch is five days in duration). Check your rewards using the **Dashboard** tab.
+1. Click **Delegate**
+2. Type your spending password.
+3. Click the **DELEGATE** button.
+4. :tada: Congratulations! Rewards will start showing up in two epochs (each epoch is five days in duration). Check your rewards using the **Dashboard** tab.
 
-## :mag_right: Monitoring your rewards
+## :mag\_right: Monitoring your rewards
 
 To learn more about your pool and their performance, use these amazing community created tools.
 
@@ -37,5 +35,5 @@ To learn more about your pool and their performance, use these amazing community
 
 ## :robot: Telegram Bots for real-time alerts
 
-* [AdaPoolsOrgBot ](https://t.me/AdaPoolsOrg_bot)on Telegram
-* [PoolToolBot](https://t.me/PoolToolBot)[ ](https://t.me/AdaPoolsOrg_bot)on Telegram
+* [AdaPoolsOrgBot ](https://t.me/AdaPoolsOrg\_bot)on Telegram
+* [PoolToolBot](https://t.me/PoolToolBot)[ ](https://t.me/AdaPoolsOrg\_bot)on Telegram

@@ -1,25 +1,25 @@
-# :grey_question: Accessing Built-in Help
+# Accessing Built-in Help
 
 The Cardano command line interface `cardano-cli` provides a collection of tools for key generation, transaction construction, certificate creation and other important tasks.
 
 The interface is organized in a hierarchy of commands and subcommands. Each command and subcommand includes built-in documentation describing command syntax as well as options. If you want more information about `cardano-cli` commands and options, then the built-in documentation may help you.
 
-<!-- Reference:
-https://developers.cardano.org/docs/stake-pool-course/handbook/use-cli/ -->
-
 **To access built-in documentation for the Cardano command line interface:**
 
 1. In a terminal window on a computer having `cardano-cli` installed, type the following command to display top-level help including a list of available commands:
+
 ```bash
 cardano-cli
 ```
 
-2. To display built-in documentation for a specific command including a list of available subcommands, type the following where `<Command>` is the name of the command for which you want to display help:
+1. To display built-in documentation for a specific command including a list of available subcommands, type the following where `<Command>` is the name of the command for which you want to display help:
+
 ```bash
 cardano-cli <Command> --help
 ```
 
-3. To display built-in documentation for a specific subcommand including a list of available options, type the following where `<Command>` and `<Subcommand>` are the names of the command and subcommand, respectively, for which you want to display help:
+1. To display built-in documentation for a specific subcommand including a list of available options, type the following where `<Command>` and `<Subcommand>` are the names of the command and subcommand, respectively, for which you want to display help:
+
 ```bash
 cardano-cli <Command> <Subcommand> --help
 ```

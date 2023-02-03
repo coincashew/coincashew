@@ -6,19 +6,14 @@ A current KES key pair is required to establish an operational certificate for y
 
 The private KES key is required to start the block producing node for your stake pool. The public KES key is not sensitive.
 
-<!-- References: https://developers.cardano.org/docs/operate-a-stake-pool/cardano-key-pairs
-http://web.archive.org/web/20211025143454/https://testnets.cardano.org/en/testnets/cardano/get-started/creating-a-stake-pool/ -->
-
 Issuing an operational certificate also uses a counter that increments by exactly one (1) for each unique operational certificate that a stake pool uses to mint blocks. In a valid operational certificate, the counter value that you use to issue the operational certificate must be consistent with the current counter value for your stake pool registered on the Cardano blockchain by the protocol.
-
-<!-- Reference:
-https://github.com/input-output-hk/cardano-node/blob/counter-op/doc/stake-pool-operations/KES_period.md -->
 
 ## Determining the Counter Value
 
 **To retrieve the current counter value for your stake pool registered by the blockchain protocol:**
 
-- In a terminal window on your block producer node, type:
+* In a terminal window on your block producer node, type:
+
 ```bash
 cd $NODE_HOME
 cardano-cli query kes-period-info \
@@ -67,6 +62,7 @@ If the value of the `qKesOnDiskOperationalCertificateNumber` key is greater than
 **To set the counter value for issuing a new operational certificate:**
 
 1. To create a new `node.counter` file having the required counter value, type the following command in a terminal window on your air-gapped, offline computer where `<NodeCertificateNumber>` is the current value of the `qKesNodeStateOperationalCertificateNumber` key for your stake pool:
+
 ```bash
 cd $HOME/cold-keys
 cardano-cli node new-counter \
@@ -74,14 +70,17 @@ cardano-cli node new-counter \
     --counter-value $(( <NodeCertificateNumber> + 1 )) \
     --operational-certificate-issue-counter-file node.counter
 ```
+
 {% hint style="info" %}
 If the current value of the `qKesNodeStateOperationalCertificateNumber` key is `null`, then set the `--counter-value` option to zero (`0`)
 {% endhint %}
 
-2. To display the contents of the `node.counter` file that you created in step 1, type:
+1. To display the contents of the `node.counter` file that you created in step 1, type:
+
 ```bash
 cat $HOME/cold-keys/node.counter
 ```
+
 {% hint style="info" %}
 When you generate a new `node.counter` file, the value of the `description` key is empty until you issue a new operational certificate.
 {% endhint %}
@@ -91,6 +90,7 @@ When you generate a new `node.counter` file, the value of the `description` key 
 **To issue a new operational certificate:**
 
 1. In a terminal window on your block producer node, type the following commands to generate a new KES key pair:
+
 ```bash
 cd $NODE_HOME
 cardano-cli node key-gen-KES \
@@ -98,9 +98,9 @@ cardano-cli node key-gen-KES \
     --signing-key-file kes.skey
 ```
 
-2. Copy the `kes.vkey` file that you generated in step 1 to your air-gapped, offline computer.
+1. Copy the `kes.vkey` file that you generated in step 1 to your air-gapped, offline computer.
+2. To issue a new operational certificate, you must set a starting KES period. To calculate the starting KES period for your new operational certificate, type the following commands in a terminal window on your block producer node:
 
-3. To issue a new operational certificate, you must set a starting KES period. To calculate the starting KES period for your new operational certificate, type the following commands in a terminal window on your block producer node:
 ```bash
 cd $NODE_HOME
 # Query the current slot height of the blockchain, and then
@@ -116,7 +116,8 @@ StartingKESPeriod=${kesPeriod}
 echo StartingKESPEriod: ${StartingKESPeriod}
 ```
 
-4. To issue a new operational certificate, type the following command in a terminal window on your air-gapped, offline computer where `<KESvkeyFile>` is the path to the `kes.vkey` file that you copied in step 2 and `<StartingKESPeriod>` is the starting KES period that you calculated in step 3:
+1. To issue a new operational certificate, type the following command in a terminal window on your air-gapped, offline computer where `<KESvkeyFile>` is the path to the `kes.vkey` file that you copied in step 2 and `<StartingKESPeriod>` is the starting KES period that you calculated in step 3:
+
 ```bash
 cd $NODE_HOME
 chmod u+rwx $HOME/cold-keys
@@ -128,29 +129,32 @@ cardano-cli node issue-op-cert \
     --out-file node.cert
 chmod a-rwx $HOME/cold-keys
 ```
+
 {% hint style="info" %}
 Issuing a new operational certificate increments the value of the `node.counter` file by one (1) To display the contents of the `node.counter` file, type `cat $HOME/cold-keys/node.counter`
 {% endhint %}
 
-5. Copy the `node.cert` file that you created in step 4 to replace the current `node.cert` file on your block producer node.
+1. Copy the `node.cert` file that you created in step 4 to replace the current `node.cert` file on your block producer node.
+2. To restart your block producer node, type:
 
-6. To restart your block producer node, type:
 ```
 sudo systemctl restart cardano-node
 ```
 
-7. To verify the operational certificate that you issued in step 4, wait until your block producer node starts, and then type:
+1. To verify the operational certificate that you issued in step 4, wait until your block producer node starts, and then type:
+
 ```bash
 cd $NODE_HOME
 cardano-cli query kes-period-info \
     --${NODE_CONFIG} \
     --op-cert-file node.cert
 ```
+
 {% hint style="info" %}
 In the results of the `cardano-cli query kes-period-info` command, prior to your stake pool minting a block using the operational certificate that you issued in step 4, in a valid operational certificate the value of the `qKesOnDiskOperationalCertificateNumber` key is greater than the value of the `qKesNodeStateOperationalCertificateNumber` key by exactly one (1) The first time your stake pool mints a block using the operational certificate that you issued in step 4, the value of the `qKesNodeStateOperationalCertificateNumber` increments by one (1) to equal the value of the `qKesOnDiskOperationalCertificateNumber` key.
 {% endhint %}
 
-8. In a secure location, create backup copies of the KES key files that you generated in step 1; the current `node.counter` file for your stake pool; and, the `node.cert` file that you generated in step 4
+1. In a secure location, create backup copies of the KES key files that you generated in step 1; the current `node.counter` file for your stake pool; and, the `node.cert` file that you generated in step 4
 
 {% hint style="success" %}
 If you want to support this free educational Cardano content or found the content helpful, visit [cointr.ee](https://cointr.ee/coincashew) to find our donation addresses. Much appreciated in advance. :pray:
