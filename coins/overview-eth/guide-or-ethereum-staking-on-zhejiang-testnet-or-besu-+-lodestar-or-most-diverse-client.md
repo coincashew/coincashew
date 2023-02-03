@@ -28,7 +28,7 @@ As of early February 2023, Besu is the most minority execution client with 6.8% 
 4. Generate your validator keys and import them into your validator client
 5. Monitor and maintain your node
 
-A Ethereum node consists of the Execution Layer + Consensus Layer.&#x20;
+A Ethereum node consists of the Execution Layer + Consensus Layer.
 
 A Ethereum Staking node is the previous plus a Validator client.
 
@@ -307,7 +307,6 @@ Set up your consensus layer client, **Lodestar**.
 Install dependencies.
 
 ```bash
-#install dependencies
 sudo apt-get install gcc g++ make git curl -y
 ```
 
@@ -485,7 +484,7 @@ Configure your [MetaMask](https://metamask.io/) to point to the Zhejiang testnet
 
 **Note**: If your node and where metamask resides is on the same local laptop/desktop/server, skip step 1.
 
-If your node is remote or on another machine, open a SSH tunnel to your node.&#x20;
+If your node is remote or on another machine, open a SSH tunnel to your node.
 
 For Mac/Linux,
 
@@ -573,13 +572,20 @@ Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` wit
 ./deposit new-mnemonic --num_validators 1 --chain zhejiang --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 
+Run the following, in case of this error: `RuntimeError: Click will abort further execution because Python 3 was configured to use ASCII as encoding for the environment.`
+
+```
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
+```
+
 </details>
 
 <details>
 
 <summary>Wagyu Instructions</summary>
 
-For the Wagyu key gen app, make sure to select the _Zhejiang_ network and follow the guided steps.&#x20;
+For the Wagyu key gen app, make sure to select the _Zhejiang_ network and follow the guided steps.
 
 Wagyu (formerly known as StakeHouse) is an application aimed at lowering the technical bar to staking on Ethereum 2.0.
 
