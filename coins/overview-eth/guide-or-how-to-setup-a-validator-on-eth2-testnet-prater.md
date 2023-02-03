@@ -13,7 +13,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of Jan 28 2023, this **post-merge guide is version 5.1.2** and written for **testnet GOERLI.**
+As of Feb 3 2023, this **post-merge guide is version 5.1.3** and written for **testnet GOERLI.**
 {% endhint %}
 
 {% hint style="info" %}
@@ -2106,7 +2106,7 @@ Specific to your networking setup or cloud provider settings, ensure your valida
 ./lodestar validator import \
   --network goerli \
   --dataDir /var/lib/lodestar \
-  --directory $HOME/staking-deposit-cli/validator_keys
+  --keystore $HOME/staking-deposit-cli/validator_keys
 ```
 
 
@@ -2118,7 +2118,9 @@ Enter your **keystore password** to import accounts.
 Confirm your keys were imported properly.
 
 ```
-./lodestar account validator list --network goerli
+./lodestar validator list \
+  --network goerli  \
+  --dataDir /var/lib/lodestar
 ```
 
 
