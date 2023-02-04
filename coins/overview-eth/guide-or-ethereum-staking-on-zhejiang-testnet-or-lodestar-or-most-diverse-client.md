@@ -4,7 +4,7 @@ description: >-
   blockchain. Anyone with 32 ETH can join.
 ---
 
-# Guide | Ethereum Staking on Zhejiang Testnet | Besu + Lodestar | Most Diverse Client
+# Guide | Ethereum Staking on Zhejiang Testnet | Lodestar | Most Diverse Client
 
 ## Your Mission - #TestingTheWithdrawalsShanghai
 
@@ -92,7 +92,7 @@ Install packages and update OS.
 
 ```
 sudo apt-get update && sudo apt-get upgrade -y
-sudo apt-get install git ufw curl -y
+sudo apt-get install git ufw curl ccze -y
 ```
 
 Reboot your machine to update installation.
@@ -185,11 +185,109 @@ sudo cp -R ~/git/withdrawals-testnet/zhejiang-testnet/custom_config_data /var/li
 
 ### 5. Setup Execution Layer Client
 
-Setup your execution layer client, **Besu.**
+Setup your execution layer client, your choice of **Nethermind or Besu.**
+
+Only install one execution layer client.
 
 {% hint style="info" %}
 [**Hyperledger Besu**](https://besu.hyperledger.org/) is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
+
+
+
+****[**Nethermind**](https://docs.nethermind.io/nethermind/) **** is all about performance and flexibility. Built on .NET core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
 {% endhint %}
+
+<details>
+
+<summary>Install Nethermind</summary>
+
+Install dependencies.
+
+```bash
+sudo apt-get update
+sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
+```
+
+Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
+
+Run the following to automatically download the latest linux release, un-zip and cleanup.
+
+```bash
+cd $HOME
+curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-x64 | xargs wget -q --show-progress
+unzip -o nethermind*.zip -d $HOME/nethermind
+rm nethermind*linux*.zip
+```
+
+Install the binaries.
+
+<pre class="language-shell"><code class="lang-shell"><strong>sudo cp -a $HOME/nethermind /usr/local/bin/nethermind
+</strong></code></pre>
+
+Download the testnet configs.
+
+```
+cd /usr/local/bin/nethermind/configs
+wget https://raw.githubusercontent.com/NethermindEth/nethermind/master/src/Nethermind/Nethermind.Runner/configs/withdrawals_devnet.cfg
+```
+
+Create a service user for the execution service, as this improves security, then create data directories.
+
+<pre><code><strong>sudo adduser --system --no-create-home --group execution
+</strong>sudo mkdir -p /var/lib/nethermind/zhejiang
+<strong>sudo chown -R execution:execution /var/lib/nethermind/zhejiang
+</strong></code></pre>
+
+Generate the JWT secret, a file used by both the execution and consensus client, add read access privileges for the consensus client and setup ownership permissions
+
+```
+openssl rand -hex 32 | tr -d "\n" | sudo tee "/var/lib/ethereum/zhejiang/jwtsecret"
+sudo chmod +r /var/lib/ethereum/zhejiang/jwtsecret
+```
+
+Create a **systemd unit file** to define your `execution.service` configuration.
+
+```
+sudo nano /etc/systemd/system/execution.service
+```
+
+Paste the following configuration into the file.
+
+```shell
+[Unit]
+Description=Nethermind Execution Layer Client service for Zhejiang
+Wants=network-online.target
+After=network-online.target
+Documentation=https://www.coincashew.com
+
+[Service]
+Type=simple
+User=execution
+Group=execution
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGINT
+TimeoutStopSec=300
+WorkingDirectory="/var/lib/nethermind/zhejiang"
+Environment="DOTNET_BUNDLE_EXTRACT_BASE_DIR=/var/lib/nethermind/zhejiang"
+ExecStart=/usr/local/bin/nethermind/Nethermind.Runner \
+  --config withdrawals_devnet \
+  --datadir="/var/lib/nethermind/zhejiang" \
+  --JsonRpc.JwtSecretFile="/var/lib/ethereum/zhejiang/jwtsecret" \
+  --Init.ChainSpecPath="/var/lib/ethereum/zhejiang/custom_config_data/chainspec.json" \
+  --Discovery.Bootnodes="enode://691c66d0ce351633b2ef8b4e4ef7db9966915ca0937415bd2b408df22923f274873b4d4438929e029a13a680140223dcf701cabe22df7d8870044321022dfefa@64.225.78.1:30303,enode://89347b9461727ee1849256d78e84d5c86cc3b4c6c5347650093982b726d71f3d08027e280b399b7b6604ceeda863283dcfe1a01e93728b4883114e9f8c7cc8ef@146.190.238.212:30303,enode://c2892072efe247f21ed7ebea6637ade38512a0ae7c5cffa1bf0786d5e3be1e7f40ff71252a21b36aa9de54e49edbcfc6962a98032adadfa29c8524262e484ad3@165.232.84.160:30303,enode://71e862580d3177a99e9837bd9e9c13c83bde63d3dba1d5cea18e89eb2a17786bbd47a8e7ae690e4d29763b55c205af13965efcaf6105d58e118a5a8ed2b0f6d0@68.183.13.170:30303,enode://2f6cf7f774e4507e7c1b70815f9c0ccd6515ee1170c991ce3137002c6ba9c671af38920f5b8ab8a215b62b3b50388030548f1d826cb6c2b30c0f59472804a045@161.35.147.98:30303"
+
+[Install]
+WantedBy=multi-user.target
+```
+
+To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
+
+</details>
+
+<details>
+
+<summary>Install Besu</summary>
 
 Install dependencies.
 
@@ -212,11 +310,15 @@ Verify Besu was properly built by checking the version.
 ./build/install/besu/bin/besu --version
 ```
 
+
+
 Sample output of a compatible version.
 
-> besu/v23.1.0-dev-e18e407c/linux-x86\_64/openjdk-java-17
->
-> 2023-02-02 01:22:12.000+00:00 | main | INFO | Besu | Using jemalloc
+`besu/v23.1.0-dev-e18e407c/linux-x86_64/openjdk-java-17`
+
+`2023-02-02 01:22:12.000+00:00 | main | INFO | Besu | Using jemalloc`
+
+
 
 Install the binaries.
 
@@ -226,8 +328,8 @@ Install the binaries.
 Create a service user for the execution service, as this improves security, then create data directories.
 
 <pre><code><strong>sudo adduser --system --no-create-home --group execution
-</strong>sudo mkdir -p /var/lib/besu
-sudo chown -R execution:execution /var/lib/besu
+</strong>sudo mkdir -p /var/lib/besu/zhejiang
+sudo chown -R execution:execution /var/lib/besu/zhejiang
 </code></pre>
 
 Generate the JWT secret, a file used by both the execution and consensus client, add read access privileges for the consensus client and setup ownership permissions
@@ -271,7 +373,7 @@ ExecStart=/usr/local/bin/besu/bin/besu \
   --sync-mode=X_CHECKPOINT \
   --Xplugin-rocksdb-high-spec-enabled \
   --genesis-file="/var/lib/ethereum/zhejiang/custom_config_data/besu.json" \
-  --data-path="/var/lib/besu" \
+  --data-path="/var/lib/besu/zhejiang" \
   --bootnodes="enode://691c66d0ce351633b2ef8b4e4ef7db9966915ca0937415bd2b408df22923f274873b4d4438929e029a13a680140223dcf701cabe22df7d8870044321022dfefa@64.225.78.1:30303,enode://89347b9461727ee1849256d78e84d5c86cc3b4c6c5347650093982b726d71f3d08027e280b399b7b6604ceeda863283dcfe1a01e93728b4883114e9f8c7cc8ef@146.190.238.212:30303,enode://c2892072efe247f21ed7ebea6637ade38512a0ae7c5cffa1bf0786d5e3be1e7f40ff71252a21b36aa9de54e49edbcfc6962a98032adadfa29c8524262e484ad3@165.232.84.160:30303,enode://71e862580d3177a99e9837bd9e9c13c83bde63d3dba1d5cea18e89eb2a17786bbd47a8e7ae690e4d29763b55c205af13965efcaf6105d58e118a5a8ed2b0f6d0@68.183.13.170:30303,enode://2f6cf7f774e4507e7c1b70815f9c0ccd6515ee1170c991ce3137002c6ba9c671af38920f5b8ab8a215b62b3b50388030548f1d826cb6c2b30c0f59472804a045@161.35.147.98:30303"
   
 [Install]
@@ -279,6 +381,10 @@ WantedBy=multi-user.target
 ```
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
+
+
+
+</details>
 
 Run the following to enable auto-start at boot time.
 
@@ -427,33 +533,38 @@ Press `Ctrl` + `C` to exit the status.
 Check your logs to confirm that the execution and consensus clients are up and syncing.
 
 ```
-journalctl -fu execution
+journalctl -fu execution | ccze
 ```
 
 ```
-journalctl -fu consensus
+journalctl -fu consensus | ccze
 ```
 
 {% hint style="warning" %}
-**Known error in consensus logs**: As noted in [Lodestar's discord](https://discord.com/channels/593655374469660673/743858262864167062/1066771696394191039), there will be a noisy error about updating eth1 chain cache. This does not seem to affect node syncing or validator duties.
+**Known error in Lodestar/Besu consensus logs**: As noted in [Lodestar's discord](https://discord.com/channels/593655374469660673/743858262864167062/1066771696394191039), there will be a noisy error about updating eth1 chain cache. This does not seem to affect node syncing or validator duties.
 
 
 
 Example error output:
 
-`error: Error updating eth1 chain cache JSON RPC error: Number of requests exceeds max batch size, batch Error: JSON RPC error: Number of requests exceeds max batch size, batch at JsonRpcHttpClient.fetchBatch (file:///usr/local/bin/lodestar/packages/beacon-node/src/eth1/provider/jsonRpcHttpClient.ts:151:15) at processTicksAndRejections (node:internal/process/task_queues:95:5) at Eth1Provider.getBlocksByNumber...`
+`error: Error updating eth1 chain cache JSON RPC error: Number of requests exceeds max batch size, batch Error: JSON RPC error: Number of requests exceeds max batch size, batch at JsonRpcHttpClient.fetchBatch (file:///usr/local/bin/lodestar/packages/beacon-node/src/eth1/provider/jsonRpcHttpClient.ts:151:15) at processTicksAndRejections (node:internal/process/task_queues:95:5) at Eth1Provider.getBlocksByNumber...d`
 {% endhint %}
 
-
-
-A properly functioning Besu execution client will indicate "Fork-Choice-Updates". For example,
+A properly functioning **Besu** execution client will indicate "Fork-Choice-Updates". For example,
 
 ```bash
 2022-03-19 04:09:36.315+00:00 | vert.x-worker-thread-0 | INFO  | EngineForkchoiceUpdated | Consensus fork-choice-update: head: 0xcd2a_8b32..., finalized: 0xfa22_1142...
 2022-03-19 04:09:48.328+00:00 | vert.x-worker-thread-0 | INFO  | EngineForkchoiceUpdated | Consensus fork-choice-update: head: 0xff1a_f12a..., finalized: 0xfa22_1142...
 ```
 
-A properly functioning Lodestar consensus client will indicate "info: Synced". For example,
+A properly functioning **Nethermind** execution client will indicate "block nnn ... was processed". For example,
+
+```markup
+Nethermind.Runner[2]: 2023-02-03 00:01:36.2643|FCU - block 16001 (fd781...c2e19f) was processed.
+Nethermind.Runner[2]: 2023-02-03 00:01:36.2643|Block 0xd78eaabc854f4e4a844c5c0f9ccf45bed0b2f13d77ea978af62d0eef2210c2e19f was set as head.
+```
+
+A properly functioning **Lodestar** consensus client will indicate "info: Synced". For example,
 
 ```bash
 Mar-19 04:09:49.000    info: Synced - slot: 3338 - head: 3355 0x5abb_ac30 - execution: valid(0x1a3c_2ca5) - finalized: 0xfa22_1142:3421 - peers: 25
@@ -520,7 +631,7 @@ For Windows using Putty, configure the SSH Tunnel as follows:
 
 #### 2) Add a network to Metamask:
 
-Go to `Metamask > Settings> Networks > Add a network`
+Go to `Metamask > Settings> Networks > Add a network > Localhost 8545`
 
 Configure your Metamask as follows:
 
@@ -749,7 +860,7 @@ sudo systemctl status validator
 Check your logs to confirm that the validator clients are up and functioning.
 
 ```
-journalctl -fu validator
+journalctl -fu validator | ccze
 ```
 
 {% hint style="info" %}
