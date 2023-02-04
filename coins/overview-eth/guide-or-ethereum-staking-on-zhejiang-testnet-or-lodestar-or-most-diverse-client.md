@@ -187,7 +187,9 @@ sudo cp -R ~/git/withdrawals-testnet/zhejiang-testnet/custom_config_data /var/li
 
 Setup your execution layer client, your choice of **Nethermind or Besu.**
 
-Only install one execution layer client.
+{% hint style="warning" %}
+Only one execution layer client is required per node.
+{% endhint %}
 
 {% hint style="info" %}
 [**Hyperledger Besu**](https://besu.hyperledger.org/) is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
@@ -268,7 +270,7 @@ Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=300
-WorkingDirectory="/var/lib/nethermind/zhejiang"
+WorkingDirectory=/var/lib/nethermind/zhejiang
 Environment="DOTNET_BUNDLE_EXTRACT_BASE_DIR=/var/lib/nethermind/zhejiang"
 ExecStart=/usr/local/bin/nethermind/Nethermind.Runner \
   --config withdrawals_devnet \
@@ -393,7 +395,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable execution
 ```
 
-Finally, start your execution layer client, Besu and check it's status.
+Finally, start your execution layer client and check it's status.
 
 ```
 sudo systemctl start execution
@@ -409,6 +411,10 @@ Set up your consensus layer client, **Lodestar**.
 {% hint style="info" %}
 [​**Lodestar**](https://lodestar.chainsafe.io/) **is a Typescript implementation** by the Chainsafe.io team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. Finally, the Lodestar team is leading the Ethereum space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
+
+<details>
+
+<summary>Install Lodestar Consensus Client</summary>
 
 Install dependencies.
 
@@ -447,12 +453,16 @@ Verify Lodestar was installed properly by displaying the version.
 ./lodestar --version
 ```
 
+
+
 Sample output of a compatible version.
 
-> 🌟 Lodestar: TypeScript Implementation of the Ethereum Consensus Beacon Chain.
->
-> * Version: v1.4.1/bff1438
-> * by ChainSafe Systems, 2018-2022
+🌟 Lodestar: TypeScript Implementation of the Ethereum Consensus Beacon Chain.
+
+* Version: v1.4.1/bff1438
+* by ChainSafe Systems, 2018-2022
+
+
 
 Install the binaries.
 
@@ -512,7 +522,7 @@ WantedBy=multi-user.target
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 
-
+</details>
 
 Run the following to enable auto-start at boot time.
 
@@ -521,7 +531,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable consensus
 ```
 
-Finally, start your consensus layer client, Lodestar and check it's status.
+Finally, start your consensus layer client and check it's status.
 
 ```
 sudo systemctl start consensus
@@ -540,15 +550,9 @@ journalctl -fu execution | ccze
 journalctl -fu consensus | ccze
 ```
 
-{% hint style="warning" %}
-**Known error in Lodestar/Besu consensus logs**: As noted in [Lodestar's discord](https://discord.com/channels/593655374469660673/743858262864167062/1066771696394191039), there will be a noisy error about updating eth1 chain cache. This does not seem to affect node syncing or validator duties.
+<details>
 
-
-
-Example error output:
-
-`error: Error updating eth1 chain cache JSON RPC error: Number of requests exceeds max batch size, batch Error: JSON RPC error: Number of requests exceeds max batch size, batch at JsonRpcHttpClient.fetchBatch (file:///usr/local/bin/lodestar/packages/beacon-node/src/eth1/provider/jsonRpcHttpClient.ts:151:15) at processTicksAndRejections (node:internal/process/task_queues:95:5) at Eth1Provider.getBlocksByNumber...d`
-{% endhint %}
+<summary>Sample <strong>Besu</strong> Logs</summary>
 
 A properly functioning **Besu** execution client will indicate "Fork-Choice-Updates". For example,
 
@@ -557,12 +561,32 @@ A properly functioning **Besu** execution client will indicate "Fork-Choice-Upda
 2022-03-19 04:09:48.328+00:00 | vert.x-worker-thread-0 | INFO  | EngineForkchoiceUpdated | Consensus fork-choice-update: head: 0xff1a_f12a..., finalized: 0xfa22_1142...
 ```
 
+**Known error in Lodestar/Besu consensus logs**: As noted in [Lodestar's discord](https://discord.com/channels/593655374469660673/743858262864167062/1066771696394191039), there will be a noisy error about updating eth1 chain cache. This does not seem to affect node syncing or validator duties.
+
+Example error output:
+
+```
+error: Error updating eth1 chain cache JSON RPC error: Number of requests exceeds max batch size, batch Error: JSON RPC error: Number of requests exceeds max batch size, batch at JsonRpcHttpClient.fetchBatch (file:///usr/local/bin/lodestar/packages/beacon-node/src/eth1/provider/jsonRpcHttpClient.ts:151:15) at processTicksAndRejections (node:internal/process/task_queues:95:5) at Eth1Provider.getBlocksByNumber...
+```
+
+</details>
+
+<details>
+
+<summary>Sample Nethermind Logs</summary>
+
 A properly functioning **Nethermind** execution client will indicate "block nnn ... was processed". For example,
 
 ```markup
 Nethermind.Runner[2]: 2023-02-03 00:01:36.2643|FCU - block 16001 (fd781...c2e19f) was processed.
 Nethermind.Runner[2]: 2023-02-03 00:01:36.2643|Block 0xd78eaabc854f4e4a844c5c0f9ccf45bed0b2f13d77ea978af62d0eef2210c2e19f was set as head.
 ```
+
+</details>
+
+<details>
+
+<summary>Sample Lodestar Consensus Logs</summary>
 
 A properly functioning **Lodestar** consensus client will indicate "info: Synced". For example,
 
@@ -571,6 +595,8 @@ Mar-19 04:09:49.000    info: Synced - slot: 3338 - head: 3355 0x5abb_ac30 - exec
 Mar-19 04:09:52.000    info: Synced - slot: 3339 - head: 3356 0xcd2a_8b32 - execution: valid(0xab34_fa32) - finalized: 0xfa22_1142:3421 - peers: 25
 Mar-19 04:09:04.000    info: Synced - slot: 3340 - head: 3357 0xff1a_f12a - execution: valid(0xfaf1_b35f) - finalized: 0xfa22_1142:3421 - peers: 25
 ```
+
+</details>
 
 Press `Ctrl` + `C` to exit the logs.
 
@@ -764,6 +790,10 @@ After sending the deposit with Metamask, verify your deposit was completed on a 
 
 ### 10. Setup Validator Client
 
+<details>
+
+<summary>Install Lodestar Validator Client</summary>
+
 Create a service user for the validator service, as this improves security, then create data directories.
 
 <pre><code>sudo adduser --system --no-create-home --group validator
@@ -793,13 +823,15 @@ Verify that your keystore file was imported successfully.
 </strong>  --dataDir="/var/lib/lodestar/validator/zhejiang"
 </code></pre>
 
+
+
 Once successful, you will be shown your **validator's public key**.
 
 For example, `0x8d9138fcf5676e2031dc4eae30a2c92e3306903eeec83ca83f4f851afbd4cb3b33f710e6f4ac516b4598697b30b04302`
 
-{% hint style="info" %}
-Monitor your validator's status and performance at https://zhejiang.beaconcha.in/ by entering your **validator's public key**.
-{% endhint %}
+
+
+Monitor your validator's status and performance at [https://zhejiang.beaconcha.in](https://zhejiang.beaconcha.in) by entering your **validator's public key**.
 
 Create a **systemd unit file** to define your `validator.service` configuration.
 
@@ -809,9 +841,7 @@ sudo nano /etc/systemd/system/validator.service
 
 Paste the following configuration into the file. Replace `<enter-eth-address-here>` with your suggested fee recipient ETH address.
 
-{% hint style="info" %}
 If you wish to customize a graffiti message that is included when you produce a block, add your message between the double quotes after `--graffiti`.
-{% endhint %}
 
 ```bash
 [Unit]
@@ -841,7 +871,7 @@ WantedBy=multi-user.target
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 
-
+</details>
 
 Run the following to enable auto-start at boot time.
 
@@ -863,9 +893,9 @@ Check your logs to confirm that the validator clients are up and functioning.
 journalctl -fu validator | ccze
 ```
 
-{% hint style="info" %}
-After making your 32 ETH deposit, your validator is placed into queue for activation which typically takes 6-24 hours. Once activated, your validator begins staking and attestation duties. Learn more about the [depositing process.](https://kb.beaconcha.in/ethereum-2.0-and-depositing-process)
-{% endhint %}
+<details>
+
+<summary>Sample Lodestar Validator Logs</summary>
 
 A properly functioning Lodestar validator will indicate publishing of attestations. For example,
 
@@ -877,7 +907,13 @@ Feb-1  03:53:48.944     info: Published attestations slot=2765, index=21, count=
 Feb-1  04:01:48.812     info: Published attestations slot=2809, index=17, count=1
 ```
 
+</details>
+
 Press `Ctrl` + `C` to exit the logs.
+
+{% hint style="info" %}
+After making your 32 ETH deposit, your validator is placed into queue for activation which typically takes 6-24 hours. Once activated, your validator begins staking and attestation duties. Learn more about the [depositing process.](https://kb.beaconcha.in/ethereum-2.0-and-depositing-process)
+{% endhint %}
 
 {% hint style="success" %}
 :tada:Congrats on setting up your Zhejiang “Withdrawals” staking node!
@@ -889,30 +925,44 @@ As a newly minted Zhejiang Ethereum Staker,
 
 * Learn more about [what features are introduced and being tested on Zhejiang](https://notes.ethereum.org/@launchpad/zhejiang#What-is-in-the-Zhejiang-testnet).
 * Monitor your validator's earnings and performance at [https://zhejiang.beaconcha.in](https://zhejiang.beaconcha.in) by entering your validator's public key.
-* Learn to connect your MetaMask wallet to [your own execution layer node](https://media.consensys.net/make-use-of-your-remote-ethereum-node-using-an-ssh-tunnel-and-metamask-f7b51f7c1c0f)
+* Learn to connect your MetaMask wallet to your own execution layer node. See [step 7, use my own node.](guide-or-ethereum-staking-on-zhejiang-testnet-or-lodestar-or-most-diverse-client.md#use-my-node)
 
-#### Additional Information
+#### Additional Commands
 
-**Stopping the execution, consensus and validator clients**
+<details>
+
+<summary><strong>Stopping the execution, consensus and validator clients</strong></summary>
 
 ```
 sudo systemctl stop execution
+```
+
+```
 sudo systemctl stop consensus
+```
+
+```
 sudo systemctl stop validator 
 ```
 
-**Viewing logs / troubleshooting**
+</details>
 
-```shell
+<details>
+
+<summary><strong>Viewing logs / troubleshooting</strong></summary>
+
+```bash
 #View Besu
-journalctl -fu execution
+journalctl -fu execution | ccze
 
 #View Lodestar Beacon Chain
-journalctl -fu consensus
+journalctl -fu consensus | ccze
 
 #View Lodestar Validator
-journalctl -fu validator
+journalctl -fu validator | ccze
 ```
+
+</details>
 
 ## Extra Testing Commands
 
