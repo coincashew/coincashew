@@ -16,7 +16,7 @@ coverY: 0
 {% hint style="info" %}
 ****:fire: **HOT TOPICS**&#x20;
 
-* [Ethereum Staking on Zhejiang Testnet Guide - Lodestar](coins/overview-eth/guide-or-ethereum-staking-on-zhejiang-testnet-or-lodestar-or-most-diverse-client.md)
+* [Ethereum Staking on Zhejiang Testnet Guide](coins/overview-eth/guide-or-ethereum-staking-on-zhejiang-testnet.md)
 * [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/)
 * [Ethereum Merge Upgrade Checklist for Home Stakers and Validators](coins/overview-eth/ethereum-merge-upgrade-checklist-for-home-stakers-and-validators.md)
 * Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)

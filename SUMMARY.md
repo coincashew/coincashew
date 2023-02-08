@@ -142,7 +142,7 @@
   * [Guide | MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/README.md)
     * [MEV Relay List](coins/overview-eth/mev-boost/mev-relay-list.md)
   * [Guide | Operation Client Diversity: Migrate Prysm to Teku](coins/overview-eth/guide-or-operation-client-diversity-migrate-prysm-to-teku.md)
-  * [Guide | Ethereum Staking on Zhejiang Testnet | Lodestar | Most Diverse Client](coins/overview-eth/guide-or-ethereum-staking-on-zhejiang-testnet-or-lodestar-or-most-diverse-client.md)
+  * [Guide | Ethereum Staking on Zhejiang Testnet](coins/overview-eth/guide-or-ethereum-staking-on-zhejiang-testnet.md)
   * [Guide | Besu + Lodestar | Most Viable Diverse Client | Staking Ethereum on Kiln testnet](coins/overview-eth/guide-or-besu-+-lodestar-or-most-viable-diverse-client-or-staking-ethereum-on-kiln-testnet.md)
   * [Guide | How to setup a validator for Ethereum staking on Pithos testnet in 10 minutes or less](coins/overview-eth/guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less.md)
   * [Guide | (Legacy) How to setup a validator on ETH2 testnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet.md)
