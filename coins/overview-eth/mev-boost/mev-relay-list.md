@@ -5,6 +5,10 @@
 * **Non-Censoring:** Will not filter or censor transactions according to OFAC sanction lists. Also commonly referred to as unregulated or censorship-free. All types of MEV permitted.
 * **Ethical**: Will not front run or sandwich attack or generally harm other user's transactions.
 
+{% hint style="info" %}
+Be sure to select the right network. Relays are available for **Mainnet** and **Goerli Testnet**.
+{% endhint %}
+
 ## Ethereum Mainnet Relays
 
 | Relay Name                                                                                                |     Non-Censoring    |        Ethical       | URL                                                                                                                                              |
@@ -46,6 +50,8 @@ Monitor the reliability / uptime / performance of your relays
 * **Rated Network Explorer:** [https://www.rated.network/relays?network=mainnet](https://www.rated.network/relays?network=mainnet)
 * **Metrica Relay Monitor:** [https://app.metrika.co/ethereum/dashboard/relay-monitor](https://app.metrika.co/ethereum/dashboard/relay-monitor)
 * **RelayScan.io MEV-Boost Analytics:** [https://www.relayscan.io](https://www.relayscan.io/)
+* **MEV Panda:** [https://www.mevpanda.com](https://www.mevpanda.com)
+* **Inclusion Watch:** [https://www.inclusion.watch](https://www.inclusion.watch)
 
 {% hint style="info" %}
 Learn to setup [MEV-boost with our guide.](./)
