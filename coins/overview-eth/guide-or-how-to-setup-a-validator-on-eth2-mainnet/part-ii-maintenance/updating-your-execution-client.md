@@ -54,6 +54,22 @@ Review the latest release at [https://github.com/hyperledger/besu/releases](http
 
 
 
+{% hint style="info" %}
+As of Feb 17, 2023, Besu requires minimum Java 17 and up to build and run.
+
+Run the following to update to Java 17.
+
+```bash
+#Install Java 17
+sudo apt install openjdk-17-jre
+
+#Verify Java 17 is installed
+java -version
+```
+{% endhint %}
+
+
+
 Run the following to automatically download the latest linux release, un-tar and cleanup.
 
 ```bash

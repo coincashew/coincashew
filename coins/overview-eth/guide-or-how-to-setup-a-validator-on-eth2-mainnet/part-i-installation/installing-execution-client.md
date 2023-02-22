@@ -130,7 +130,7 @@ sudo systemctl start eth1
 
 ```
 sudo apt update
-sudo apt install openjdk-17-jdk -y libjemalloc-dev
+sudo apt install openjdk-17-jre -y libjemalloc-dev
 ```
 
 
