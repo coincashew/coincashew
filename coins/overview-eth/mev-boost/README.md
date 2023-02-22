@@ -34,17 +34,12 @@ The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-va
 First start by installing Go and removing any previous Go installations.
 
 <pre class="language-bash"><code class="lang-bash"><strong>cd $HOME
-</strong>wget https://go.dev/dl/go1.19.1.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go &#x26;&#x26; sudo tar -C /usr/local -xzf go1.19.1.linux-amd64.tar.gz
-rm go1.19.1.linux-amd64.tar.gz
+</strong>wget -O go.tar.gz https://go.dev/dl/go1.19.6.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go &#x26;&#x26; sudo tar -C /usr/local -xzf go.tar.gz
+rm go.tar.gz
+echo export PATH=$PATH:/usr/local/go/bin >> $HOME/.bashrc
+source $HOME/.bashrc
 </code></pre>
-
-Add `/usr/local/go/bin` to the `PATH` environment variable.
-
-```bash
-export PATH=$PATH:/usr/local/go/bin
-echo 'PATH="$PATH:/usr/local/go/bin"' >> ~/.profile
-```
 
 Verify that you've installed Go 1.18+ by printing the version information.
 

@@ -417,7 +417,7 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 &#x20;Install Go dependencies
 
 ```bash
-wget -O go.tar.gz https://go.dev/dl/go1.19.linux-amd64.tar.gz
+wget -O go.tar.gz https://go.dev/dl/go1.19.6.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go.tar.gz
 echo export PATH=$PATH:/usr/local/go/bin >> $HOME/.bashrc
 source $HOME/.bashrc
@@ -518,7 +518,7 @@ sudo -u execution /usr/local/bin/erigon init \
 Install Go dependencies
 
 ```bash
-wget -O go.tar.gz https://go.dev/dl/go1.19.linux-amd64.tar.gz
+wget -O go.tar.gz https://go.dev/dl/go1.19.6.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go.tar.gz
 echo export PATH=$PATH:/usr/local/go/bin >> $HOME/.bashrc
 source $HOME/.bashrc
@@ -1765,7 +1765,7 @@ WorkingDirectory=/usr/local/bin/lodestar
 ExecStart=/usr/local/bin/lodestar/lodestar validator \
   --dataDir="/var/lib/lodestar/validators/zhejiang" \
   --paramsFile="/var/lib/ethereum/zhejiang/custom_config_data/config.yaml" \
-  --graffiti="lodestar-besu" \
+  --graffiti="" \
   --suggested-fee-recipient=<enter-eth-address-here>
 
 [Install]
