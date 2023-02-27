@@ -1079,7 +1079,7 @@ ExecStart=<HOME>/.cargo/bin/lighthouse bn \
   --staking \
   --validator-monitor-auto \
   --metrics \
-  --checkpoint-sync-url=https://beaconstate.info \
+  --checkpoint-sync-url=https://goerli.beaconstate.info \
   --execution-endpoint http://127.0.0.1:8551 \
   --execution-jwt /secrets/jwtsecret
 
