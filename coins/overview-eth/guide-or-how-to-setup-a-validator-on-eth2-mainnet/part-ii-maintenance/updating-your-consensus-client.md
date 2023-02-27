@@ -122,7 +122,15 @@ sudo systemctl reload-or-restart beacon-chain
 {% tab title="Teku" %}
 Review release notes and check for breaking changes/features.
 
-[https://github.com/ConsenSys/teku/releases](https://github.com/ConsenSys/teku/releases)
+{% embed url="https://github.com/ConsenSys/teku/releases" %}
+
+{% hint style="info" %}
+If you encounter an error fetching the latest release TAG, install `jq` with following:
+
+```
+sudo apt-get install jq -y
+```
+{% endhint %}
 
 
 
@@ -133,6 +141,9 @@ cd $HOME/git/teku
 git pull
 RELEASETAG=$(curl -s https://api.github.com/repos/ConsenSys/teku/releases/latest | jq -r .tag_name)
 git checkout tags/$RELEASETAG
+
+echo "Updating to version: $RELEASETAG"
+
 ./gradlew distTar installDist
 ```
 
