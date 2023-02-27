@@ -94,7 +94,7 @@ Pull the latest source and build it.
 
 ```bash
 cd $HOME/git/nimbus-eth2
-git pull && make -j$(nproc) update
+git checkout stable && git pull && make -j$(nproc) update
 make -j$(nproc) nimbus_beacon_node
 ```
 
@@ -138,9 +138,10 @@ Pull the latest release's tag and build it.
 
 ```bash
 cd $HOME/git/teku
-git pull
+git fetch --all
 RELEASETAG=$(curl -s https://api.github.com/repos/ConsenSys/teku/releases/latest | jq -r .tag_name)
 git checkout tags/$RELEASETAG
+git pull
 
 echo "Updating to version: $RELEASETAG"
 
@@ -190,8 +191,7 @@ Pull the latest source and build it.
 
 ```bash
 cd $HOME/git/lodestar
-git switch stable
-git pull
+git checkout stable && git pull
 yarn install
 yarn run build
 ```
