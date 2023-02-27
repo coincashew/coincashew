@@ -126,11 +126,13 @@ Review release notes and check for breaking changes/features.
 
 
 
-Pull the latest source and build it.
+Pull the latest release's tag and build it.
 
 ```bash
 cd $HOME/git/teku
 git pull
+RELEASETAG=$(curl -s https://api.github.com/repos/ConsenSys/teku/releases/latest | jq -r .tag_name)
+git checkout tags/$RELEASETAG
 ./gradlew distTar installDist
 ```
 

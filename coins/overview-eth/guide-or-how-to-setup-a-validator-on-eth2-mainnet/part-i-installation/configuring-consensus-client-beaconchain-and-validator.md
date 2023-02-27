@@ -594,6 +594,8 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/ConsenSys/teku.git
 cd teku
+RELEASETAG=$(curl -s https://api.github.com/repos/ConsenSys/teku/releases/latest | jq -r .tag_name)
+git checkout tags/$RELEASETAG
 ./gradlew distTar installDist
 ```
 

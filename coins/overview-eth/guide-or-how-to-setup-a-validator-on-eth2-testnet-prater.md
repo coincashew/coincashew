@@ -1460,7 +1460,7 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 Install git.
 
 ```
-sudo apt-get install git -y
+sudo apt-get install git jq -y
 ```
 
 
@@ -1484,13 +1484,14 @@ java --version
 
 Install and build Teku.
 
-```bash
-mkdir ~/git
+<pre class="language-bash"><code class="lang-bash">mkdir ~/git
 cd ~/git
 git clone https://github.com/ConsenSys/teku.git
 cd teku
-./gradlew distTar installDist
-```
+RELEASETAG=$(curl -s https://api.github.com/repos/ConsenSys/teku/releases/latest | jq -r .tag_name)
+<strong>git checkout tags/$RELEASETAG
+</strong>./gradlew distTar installDist
+</code></pre>
 
 
 
