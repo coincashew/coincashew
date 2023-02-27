@@ -31,6 +31,7 @@ Typing a dollar sign ("$") before a command in parentheses refers to the output 
 1. To adjust the project configuration to disable optimization and set the recommended compiler version, type the following command where `<GHCVersionNumber>` is the GHC version that you set in the procedure [Installing Glasgow Haskell Compiler and Cabal](installing-ghc-and-cabal.md):
 
 ```bash
+cabal update
 cabal configure -O0 -w ghc-<GHCVersionNumber>
 ```
 
