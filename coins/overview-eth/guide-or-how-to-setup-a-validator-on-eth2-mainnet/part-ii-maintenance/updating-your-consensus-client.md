@@ -141,7 +141,6 @@ cd $HOME/git/teku
 git fetch --all
 RELEASETAG=$(curl -s https://api.github.com/repos/ConsenSys/teku/releases/latest | jq -r .tag_name)
 git checkout tags/$RELEASETAG
-git pull
 
 echo "Updating to version: $RELEASETAG"
 
