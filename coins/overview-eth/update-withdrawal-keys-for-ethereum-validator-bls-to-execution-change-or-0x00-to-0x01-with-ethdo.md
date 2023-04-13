@@ -205,7 +205,7 @@ Replace \<MY VALIDATOR INDEX>. Adjust the REST API port number, if needed.&#x20;
 Lighthouse/Nimbus=5052. Prysm=3500. Lodestar=9596. Teku=5051.
 
 ```
-curl "http://localhost:5052/eth/v1/beacon/pool/bls_to_execution_changes" | jq '.data | map(select(.message.validator_index=="<MY VALIDATOR INDEX>"))'
+curl -s "http://localhost:5052/eth/v1/beacon/pool/bls_to_execution_changes" | jq '.data | map(select(.message.validator_index=="<MY VALIDATOR INDEX>"))'
 ```
 
 Example output:
