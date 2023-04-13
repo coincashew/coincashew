@@ -16,7 +16,7 @@ Remember, it's best practice to always withdraw coins from an Exchange.
 
 ## :bar\_chart: 3. How to participate in Komodo's "Active User Rewards"
 
-Komodo pays 5% in "Active User Rewards" if you make at least one transaction per month.
+Komodo pays 0.01% in "Active User Rewards" if you make at least one transaction per month.
 
 To maximize your rewards, every 30 days you will want to send to your own address at least 10 KMD coins.
 
