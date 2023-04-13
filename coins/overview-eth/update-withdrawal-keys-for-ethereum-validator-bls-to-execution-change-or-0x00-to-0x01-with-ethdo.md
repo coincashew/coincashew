@@ -146,7 +146,7 @@ back to your online computer.
 
 <details>
 
-<summary>Simply run the command to send your change queue.</summary>
+<summary>Simply run the set command to send your change.</summary>
 
 1. On the **online computer**, copy the `change-operation.json` to your home directory, where `ethdo` is also located.
 2. Run the following command to broadcast your withdrawal credentials. &#x20;
