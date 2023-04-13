@@ -249,7 +249,7 @@ sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 
 :last\_quarter\_moon\_with\_face:**Download and unzip Nethermind**
 
-****
+
 
 Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
 
@@ -266,7 +266,7 @@ rm nethermind*linux*.zip
 
 :gear: **Setup and configure systemd**
 
-****
+
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 

@@ -17,7 +17,7 @@ As of Feb 3 2023, this **post-merge guide is version 5.1.3** and written for **t
 {% endhint %}
 
 {% hint style="info" %}
-**Always test and practice on testnet first.** [**Mainnet guide available here.**](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)****
+**Always test and practice on testnet first.** [**Mainnet guide available here.**](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
 
 ## :thumbsup: Your Github Contributions Welcome
@@ -1318,7 +1318,7 @@ WARNING: Do not import your validator keys into multiple validator clients and r
 
 Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
-****
+
 
 * **Nimbus consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
@@ -1363,7 +1363,7 @@ When the checkpoint sync is complete, you'll see the following message:
 
 > Done, your beacon node is ready to serve you! Don't forget to check that you're on the canonical chain by comparing the checkpoint root with other online sources. See https://nimbus.guide/trusted-node-sync.html for more information.
 
-****
+
 
 **🛠 Setup systemd service**
 
@@ -1525,7 +1525,7 @@ sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 
 Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
-****
+
 
 * **Teku consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
@@ -1777,7 +1777,7 @@ wget https://github.com/eth-clients/eth2-networks/raw/master/shared/prater/genes
 
 Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
-****
+
 
 * **Prysm consensus client** will use port 12000 for udp and port 13000 for tcp
 * **Execution client** requires port 30303 for tcp and udp
@@ -2454,5 +2454,5 @@ Use [https://goerli.beaconcha.in](https://goerli.beaconcha.in/) to create alerts
 * :confetti\_ball: [**Support us on Gitcoin Grants**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)**:** We build this guide exclusively by community support!🙏
 
 {% hint style="success" %}
-### Finished with testnet and ready for mainnet staking? **** [**Mainnet guide available here.**](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)****
+### Finished with testnet and ready for mainnet staking?  [**Mainnet guide available here.**](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}

@@ -126,7 +126,7 @@ rm mainnet.roll* checksums.sha256 checksum
 ```
 
 {% hint style="info" %}
-****:badminton: **FYI:** Rolling mode vs Full mode
+:badminton: **FYI:** Rolling mode vs Full mode
 
 * **`rolling`** mode are the most lightweight snapshots. Keeps a minimal rolling fragment of the chain and deleting everything before this fragment. Safe for baking, endorsing, and validating new blocks.
 * **`full`** mode store all chain data since the beginning of the chain, but drop the archived contexts below the current checkpoint. Safe for baking, endorsing, and validating new blocks.

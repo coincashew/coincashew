@@ -457,7 +457,15 @@ Sample output:
 
 <summary>Where will I get MEV-boost payments?</summary>
 
-When a block is produced using MEV-boost, the MEV relay sets themselves as the fee recipient and then, in the same block, pays you MEV via a regular ETH transaction to your validator's fee recipient address.
+When a block is produced using MEV-boost, you may receive your payment in 1 of 3 ways.
+
+Specifically, your MEV payment may arrive as:
+
+1\) by setting you as the block's Fee Recipient&#x20;
+
+2\) an internal transaction
+
+3\) or a normal transaction
 
 </details>
 

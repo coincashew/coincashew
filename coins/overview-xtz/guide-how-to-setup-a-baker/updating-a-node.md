@@ -5,7 +5,7 @@
 From time to time, there will be new versions of Tezos. Follow [Tezos Foundation](https://twitter.com/TezosFoundation) on twitter and the [Official Tezos Gitlab](https://gitlab.com/tezos/tezos/-/releases) to ensure you don't miss any important releases.
 
 {% hint style="success" %}
-****:sparkles: **Tip:** When picking some downtime for maintenance like updating your node, choose a time where your baker has a longer break until next baking or next endorsing.
+:sparkles: **Tip:** When picking some downtime for maintenance like updating your node, choose a time where your baker has a longer break until next baking or next endorsing.
 {% endhint %}
 
 To update with `~/tezos` as the current binaries directory, copy the whole Tezos directory to a new place so that you have a backup and can also leave the current processes running.

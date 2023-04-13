@@ -14,8 +14,9 @@ coverY: 0
 {% endhint %}
 
 {% hint style="info" %}
-****:fire: **HOT TOPICS**&#x20;
+:fire: **HOT TOPICS**&#x20;
 
+* [Update Withdrawal Keys for Ethereum Validator with Ethdo](coins/overview-eth/update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
 * [Ethereum Staking on Zhejiang Testnet Guide](coins/overview-eth/guide-or-ethereum-staking-on-zhejiang-testnet.md)
 * [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/)
 * [Ethereum Merge Upgrade Checklist for Home Stakers and Validators](coins/overview-eth/ethereum-merge-upgrade-checklist-for-home-stakers-and-validators.md)

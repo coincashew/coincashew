@@ -468,7 +468,7 @@ When the checkpoint sync is complete, you'll see the following message:
 
 > Done, your beacon node is ready to serve you! Don't forget to check that you're on the canonical chain by comparing the checkpoint root with other online sources. See https://nimbus.guide/trusted-node-sync.html for more information.
 
-****
+
 
 **🛠 Setup systemd service**
 

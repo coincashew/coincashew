@@ -35,7 +35,7 @@ Appreciate the hard work done by the fine folks at the following links which ser
 
 ### :notepad\_spiral: Latest Eth Info
 
-* **eth2New:** [https://hackmd.io/@benjaminion/eth2\_news](https://hackmd.io/@benjaminion/eth2\_news)****
+* **eth2New:** [https://hackmd.io/@benjaminion/eth2\_news](https://hackmd.io/@benjaminion/eth2\_news)
 * **r/ETHstaker reddit:** [https://www.reddit.com/r/ethstaker](https://www.reddit.com/r/ethstaker)
 * **Official Ethereum.org Blog:** [https://blog.ethereum.org/](https://blog.ethereum.org)
 

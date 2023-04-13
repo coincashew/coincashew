@@ -77,7 +77,7 @@ If you would like to test, practice on [**testnet GOERLI**](https://www.coincash
 
 
 {% hint style="info" %}
-:fast\_forward: **** [**Mainnet guide**](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)**. Always test and practice on testnet first.**
+:fast\_forward: [**Mainnet guide**](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)**. Always test and practice on testnet first.**
 {% endhint %}
 
 ## :checkered\_flag: 0. Prerequisites
@@ -2571,7 +2571,7 @@ Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://githu
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](<../../.gitbook/assets/grafana (1).png>)
+![](../../.gitbook/assets/grafana.png)
 
 ![](../../.gitbook/assets/node-exporter2.png)
 

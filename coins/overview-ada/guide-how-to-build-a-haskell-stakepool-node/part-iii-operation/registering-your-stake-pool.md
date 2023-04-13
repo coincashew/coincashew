@@ -83,7 +83,7 @@ DNS based relays are recommended for simplicity of node management. In other wor
 {% endhint %}
 
 {% hint style="info" %}
-### :sparkles: Configuring Multiple Relay Nodes <a href="#multiplerelays" id="multiplerelays"></a>
+#### :sparkles: Configuring Multiple Relay Nodes <a href="#multiplerelays" id="multiplerelays"></a>
 
 Update the next operation
 

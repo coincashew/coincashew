@@ -208,15 +208,15 @@ Only one execution layer client is required per node.
 
 
 
-****[**Nethermind**](https://docs.nethermind.io/nethermind/) **** is all about performance and flexibility. Built on .NET core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
+[**Nethermind**](https://docs.nethermind.io/nethermind/) is all about performance and flexibility. Built on .NET core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
 
 
 
-****[**Erigon**](https://github.com/ledgerwatch/erigon) is an implementation of Ethereum innovating on the efficiency frontier, written in Go.
+[**Erigon**](https://github.com/ledgerwatch/erigon) is an implementation of Ethereum innovating on the efficiency frontier, written in Go.
 
-****
 
-****[**Geth**](https://geth.ethereum.org/) - Go-ethereum (aka Geth) is an Ethereum client built in [Go](https://go.dev). It is one of the original and most popular Ethereum clients.
+
+[**Geth**](https://geth.ethereum.org/) - Go-ethereum (aka Geth) is an Ethereum client built in [Go](https://go.dev). It is one of the original and most popular Ethereum clients.
 {% endhint %}
 
 <details>
@@ -638,21 +638,21 @@ Set up your consensus layer client. Your choice of [Lighthouse](https://github.c
 {% hint style="warning" %}
 [​**Lodestar**](https://lodestar.chainsafe.io/) **is a Typescript implementation** by the Chainsafe.io team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. Finally, the Lodestar team is leading the Ethereum space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 
-****
 
-****[**Lighthouse**](https://github.com/sigp/lighthouse) is an Ethereum client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io/) is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
 
-****
-
-****[**Teku**](https://consensys.net/knowledge-base/ethereum-2/teku/) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. Dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform, Teku is Apache 2 licensed and written in Java, a language notable for its maturity & ubiquity.
-
-****
-
-****[**Nimbus**](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
+[**Lighthouse**](https://github.com/sigp/lighthouse) is an Ethereum client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io/) is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
 
 
 
-****[**Prysm**](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
+[**Teku**](https://consensys.net/knowledge-base/ethereum-2/teku/) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. Dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform, Teku is Apache 2 licensed and written in Java, a language notable for its maturity & ubiquity.
+
+
+
+[**Nimbus**](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
+
+
+
+[**Prysm**](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
 {% endhint %}
 
 <details>

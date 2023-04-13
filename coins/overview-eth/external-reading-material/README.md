@@ -21,7 +21,7 @@
 ## :rocket: Staking Validators:  Proposers and Attesters
 
 {% hint style="info" %}
-Validators are virtual and are activated by stakers. In PoW, users buy hardware to become miners. In Ethereum 2.0, users stake ETH to activate and control validators. -- [**ethos.dev**](https://ethos.dev/beacon-chain/)****
+Validators are virtual and are activated by stakers. In PoW, users buy hardware to become miners. In Ethereum 2.0, users stake ETH to activate and control validators. -- [**ethos.dev**](https://ethos.dev/beacon-chain/)
 {% endhint %}
 
 {% embed url="https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487" %}
@@ -32,7 +32,7 @@ Validators are virtual and are activated by stakers. In PoW, users buy hardware 
 
 {% embed url="https://www.attestant.io/posts/evaluating-staking-services/" %}
 
-## :woman_technologist: Development Courses
+## :woman\_technologist: Development Courses
 
 {% embed url="https://cryptozombies.io/en/course" %}
 

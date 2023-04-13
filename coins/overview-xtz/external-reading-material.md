@@ -26,13 +26,13 @@ description: >-
 
 {% embed url="https://medium.com/wealthchain/why-financial-institutions-love-tezos-fb4d1cc4b0f0" %}
 
-## :fortune_cookie: Bakers
+## :fortune\_cookie: Bakers
 
 {% embed url="https://medium.com/@obsidian.systems/benefits-and-risks-of-home-baking-a631c9ca745" %}
 
 {% embed url="https://medium.com/@obsidian.systems/setting-up-a-secure-baker-27bb12363679" %}
 
-## :woman_technologist: Developers
+## :woman\_technologist: Developers
 
 {% embed url="https://developers.tezos.com/" %}
 
@@ -50,4 +50,3 @@ description: >-
 
 {% embed url="https://medium.com/@claudebarde/a-beginners-guide-to-tezos-tzip-7-proposal-90a8b816af7e" %}
 
-****

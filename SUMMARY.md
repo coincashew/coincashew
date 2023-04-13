@@ -139,6 +139,7 @@
     * [Changelog](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/changelog.md)
   * [Guide | How to setup a validator for Ethereum staking on testnet GOERLI](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md)
   * [Ethereum Merge Upgrade Checklist for Home Stakers and Validators](coins/overview-eth/ethereum-merge-upgrade-checklist-for-home-stakers-and-validators.md)
+  * [Update Withdrawal Keys for Ethereum Validator (BLS to Execution Change or 0x00 to 0x01) with ETHDO](coins/overview-eth/update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
   * [Guide | MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/README.md)
     * [MEV Relay List](coins/overview-eth/mev-boost/mev-relay-list.md)
   * [Guide | Operation Client Diversity: Migrate Prysm to Teku](coins/overview-eth/guide-or-operation-client-diversity-migrate-prysm-to-teku.md)

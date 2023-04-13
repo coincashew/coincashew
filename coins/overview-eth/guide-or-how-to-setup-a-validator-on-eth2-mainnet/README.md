@@ -26,9 +26,9 @@ The _How to Setup a Validator for Ethereum Staking_ guide aims to give you compl
 
 The guide includes the following parts:
 
-* ****[**Part I - Installation**](part-i-installation/) describes how to sign up to be a validator at the ETH Launchpad, how to secure the Linux computer hosting your ETH staking node, as well as how to install execution and consensus client software and other helpful software packages such as time synching and monitoring tools.
-* ****[**Part II - Maintenance**](part-ii-maintenance/) explains ongoing tasks you'll require to keep your ETH staking node in great shape and up-to-date.
-* ****[**Part III - Tips**](part-iii-tips/) contains additional procedures to simplify managing your ETH staking node.
+* [**Part I - Installation**](part-i-installation/) describes how to sign up to be a validator at the ETH Launchpad, how to secure the Linux computer hosting your ETH staking node, as well as how to install execution and consensus client software and other helpful software packages such as time synching and monitoring tools.
+* [**Part II - Maintenance**](part-ii-maintenance/) explains ongoing tasks you'll require to keep your ETH staking node in great shape and up-to-date.
+* [**Part III - Tips**](part-iii-tips/) contains additional procedures to simplify managing your ETH staking node.
 
 ## :thumbsup: Your Github Contributions Welcome
 
