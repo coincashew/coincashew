@@ -2,6 +2,7 @@
 
 ## :page\_facing\_up: List of changes
 
+* Created guide for [How to re-sync using checkpoint sync](part-iii-tips/how-to-re-sync-using-checkpoint-sync.md)
 * Created guide to [Updating 0x00 -> 0x01 Withdrawal keys with Ethdo for Shapella Upgrade](../update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
 * Added [disk usage numbers by EL CL combination](part-iii-tips/disk-usage-by-execution-consensus-client.md)
 * Include ETH Withdrawals address as default during validator key generation.
