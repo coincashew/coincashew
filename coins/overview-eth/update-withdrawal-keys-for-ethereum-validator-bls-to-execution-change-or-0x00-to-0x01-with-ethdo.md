@@ -16,14 +16,14 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 * As of the Shapella upgrade, ETH validators with 0x00 credentials should update to 0x01 credentials to enable partial withdrawals, the sweeping of excess ETH > 32.
 * If your validator previously voluntarily exited or you now would like to stop validator duties, you'll need to set your withdrawal credentials to fully reclaim your staked ETH.
 
-<figure><img src="../../.gitbook/assets/withdrawal-owl.png" alt=""><figcaption><p>Guess who says: WITHDROWLS ON</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/withdrawal-owl.png" alt=""><figcaption><p>Nimbus CL says: WITHDROWLS ON</p></figcaption></figure>
 
 ## :thumbsup:Pre-requisites: Before you begin
 
 * Your validator's mnemonic keys (the offline 24 word secrets)
 * An ETH withdrawal address you control, ideally one from a hardware wallet.
 * An **offline air-gapped computer**. Create a Linux Live USB like [Ubuntu](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview) or [Tails](https://tails.boum.org/install/download/index.en.html); needs a USB key.
-* A ETH staking node, also known as **online computer**.
+* A ETH staking node using Ubuntu or Linux, also known as **online computer**.
 * A USB storage key for moving files between the offline and online computer.
 * Familiarize yourself with the [Ethereum.org Staking Withdrawals guide](https://launchpad.ethereum.org/en/withdrawals).
 
@@ -263,9 +263,17 @@ Alternatively, check your favorite beacon chain explorer such as [beaconcha.in](
 
 <details>
 
+<summary>I voluntary exited a while ago and don't have a synced node anymore. What are my options?</summary>
+
+Use Ethdo on an offline computer to create the exit message, as shown in step 2 above, and then perform step 3 using the alternative broadcast method with beaconcha.in
+
+</details>
+
+<details>
+
 <summary>Is the fee-recipient address the same as this withdrawal address?</summary>
 
-They can both be set to the same ETH address; however, understand that **withdrawal credentials** have a different purpose than your **fee recipient**, which receives transaction fee tips from proposed blocks.
+They can both be set to the same ETH address; however, understand that these are independent and **withdrawal credentials** have a different purpose than your **fee recipient**, which receives transaction fee tips from proposed blocks.
 
 </details>
 
@@ -273,8 +281,8 @@ They can both be set to the same ETH address; however, understand that **withdra
 
 <summary>Partial Withdrawals vs Full Withdrawals?</summary>
 
-* **Full validator withdrawal:** The process of withdrawing your entire stake on Ethereum and no longer performing validator duties. First you would exit your validator, and then after your request progress through the withdraw queue, your balance is transferred to your withdrawal address.
-* **Partial validator withdrawal:** The process of withdrawing your validator’s earnings only. For a validator, any amount over the initial 32 ETH deposit is the earnings and is swept every few days periodically to the withdrawal address, as  each proposed block processes 16 partial withdrawals.
+* **Full validator withdrawal:** To withdraw your entire stake on Ethereum and no longer perform validator duties. Exit your validator, and then after your exit request progresses through the withdraw queue while finally your full validator balance is transferred to your withdrawal address.
+* **Partial validator withdrawal:** To withdraw your validator’s earnings only. For a validator, any amount over the initial 32 ETH deposit is the earnings and is automatically swept every few days to the withdrawal address.
 
 </details>
 
@@ -282,7 +290,11 @@ They can both be set to the same ETH address; however, understand that **withdra
 
 <summary>I don't have a mnemonic phrase. I used a private key.</summary>
 
-Refer to the [official ethdo guide's advanced section.](https://github.com/wealdtech/ethdo/blob/master/docs/changingwithdrawalcredentials.md#using-withdrawal-private-key-only)
+In step 2, use this credentials set command instead.
+
+```
+ethdo validator credentials set --private-key=<my-priv-key> --withdrawal-address=<my-eth-withdrawal-address>
+```
 
 </details>
 
@@ -290,7 +302,15 @@ Refer to the [official ethdo guide's advanced section.](https://github.com/weald
 
 <summary>I want different withdrawal addresses for each of my validators.</summary>
 
-Refer to the [official ethdo guide's advanced section detailing usage with mnemonic's and paths.](https://github.com/wealdtech/ethdo/blob/master/docs/changingwithdrawalcredentials.md#using-a-mnemonic-and-path)
+In step 2, use this credentials set command instead.
+
+```
+ethdo validator credentials set --mnemonic="<my-mnemonic-phrase>" --path='m/12381/3600/<my iTH validator>/0' --withdrawal-address=<my-eth-withdrawal-address>
+```
+
+Where the path is the derivation path to your withdrawal key.
+
+* For example, `m/12381/3600/`_`i`_`/0` is the path to a withdrawal key, where _i_ starts at 0 for your 1st validator, 1 for your 2nd validator ...
 
 </details>
 
