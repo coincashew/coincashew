@@ -126,6 +126,7 @@
       * [Switching / Migrating Consensus Client](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/switching-migrating-consensus-client.md)
       * [Using All Available LVM Disk Space](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/using-all-available-lvm-disk-space.md)
       * [Reducing Network Bandwidth Usage](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/reducing-network-bandwidth-usage.md)
+      * [How to re-sync using checkpoint sync](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/how-to-re-sync-using-checkpoint-sync.md)
       * [Important Directory Locations](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/important-directory-locations.md)
       * [Hosting Execution client on a Different Machine](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/hosting-execution-client-on-a-different-machine.md)
       * [Adding or Changing Graffiti flag](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/adding-or-changing-poap-graffiti-flag.md)
