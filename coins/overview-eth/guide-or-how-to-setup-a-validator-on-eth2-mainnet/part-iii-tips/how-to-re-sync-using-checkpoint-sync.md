@@ -161,11 +161,17 @@ sudo systemctl restart beacon-chain
 
 <details>
 
-<summary>Step 5: Check the beacon chain logs and ensure sync is progressing</summary>
+<summary>Step 5: Check the beacon chain logs and ensure sync is on right chain</summary>
+
+Verify that you are on the correct chain by visiting [https://eth-clients.github.io/checkpoint-sync-endpoints](https://eth-clients.github.io/checkpoint-sync-endpoints/) and selecting a **different** endpoint link. Verify that your log's are in agreement with the other endpoint's `epoch / slot / state root / block root`
+
+View your logs:
 
 ```
 journalctl -fu beacon-chain
 ```
+
+Checkpoint sync should take no more than a few minutes to re-sync. Your execution client may take longer to catch up.
 
 </details>
 
