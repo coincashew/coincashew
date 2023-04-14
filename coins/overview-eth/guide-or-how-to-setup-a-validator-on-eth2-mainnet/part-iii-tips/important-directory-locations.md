@@ -71,7 +71,7 @@ In case you need to locate your validator keys, database directories or other im
 /var/lib/lodestar/secrets
 
 # Validator DB Data
-/var/lib/lodestarr/validator-db
+/var/lib/lodestar/validator-db
 
 # Beacon Chain Data
 /var/lib/lodestar/chain-db
