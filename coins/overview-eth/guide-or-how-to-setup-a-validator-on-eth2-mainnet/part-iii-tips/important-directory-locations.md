@@ -55,7 +55,7 @@ In case you need to locate your validator keys, database directories or other im
 {% tab title="Prysm" %}
 ```bash
 # Validator Keys
-~/.eth2validators/prysm-wallet-v2/direct
+~/.eth2validators/prysm-wallet-v2
 
 # Beacon Chain Data
 ~/.eth2/beaconchaindata

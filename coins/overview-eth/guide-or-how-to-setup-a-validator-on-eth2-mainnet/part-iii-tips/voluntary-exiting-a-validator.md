@@ -7,10 +7,10 @@ description: Remove a validator from staking duties.
 {% hint style="info" %}
 Use this command to signal your intentions to stop validating with your validator. This means you no longer want to stake with your validator and want to turn off your node.
 
-* Voluntary exiting takes a minimum of 2048 epochs (or \~9days). There is a queue to exit and a delay before your validator is finally exited.
-* Once a validator is exited in phase 0, this is non-reversible and you can no longer restart validating again.
-* Your funds will not be available for withdrawal until phase 1.5 or later.
-* After your validator leaves the exit queue and is truely exited, it is safe to turn off your beacon node and validator.
+* **Timeline**: Voluntary exiting takes a minimum of 2048 epochs (or \~9days). There is a queue to exit and a delay before your validator is finally exited.
+* **Consequences**: Once a validator is in exited state, it's non-reversible. You would need to re-key, or generate new validator keys to start staking again.
+* **ETH Deposit**: In order to re-claim your 32ETH validator deposit and perform a full withdrawal, you must set the [0x01 withdrawal address.](../../update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
+* **Responsibilities**: After your validator leaves the exit queue and is truly exited, it is safe to turn off your beacon node and validator.
 {% endhint %}
 
 {% tabs %}
@@ -40,7 +40,7 @@ build/nimbus_beacon_node deposits exit --validator=<VALIDATOR_PUBLIC_KEY> --data
 
 {% tab title="Prysm" %}
 ```bash
-$HOME/prysm/prysm.sh validator accounts voluntary-exit
+$HOME/prysm/prysm.sh validator accounts voluntary-exit --wallet-dir=$HOME/.eth2validators/prysm-wallet-v2
 ```
 {% endtab %}
 
@@ -71,3 +71,11 @@ sudo systemctl restart validator
 ```
 {% endtab %}
 {% endtabs %}
+
+#### Official reference documentation from each team can be found below:
+
+* [Exiting a Teku validator](https://docs.teku.consensys.net/Reference/CLI/Subcommands/Voluntary-Exit)
+* [Exiting a Prysm validator](https://docs.prylabs.network/docs/wallet/exiting-a-validator)
+* [Exiting a Nimbus validator](https://nimbus.guide/voluntary-exit.html)
+* [Exiting a Lodestar validator](https://chainsafe.github.io/lodestar/reference/cli/#validator-voluntary-exit)
+* [Exiting a Lighthouse validator](https://lighthouse-book.sigmaprime.io/voluntary-exit.html)
