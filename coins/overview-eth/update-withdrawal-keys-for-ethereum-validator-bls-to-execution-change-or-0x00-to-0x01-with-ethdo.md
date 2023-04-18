@@ -21,7 +21,7 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 ## :thumbsup:Pre-requisites: Before you begin
 
 * Your validator's mnemonic keys (the offline 24 word secrets)
-* An ETH withdrawal address you control, ideally one from a hardware wallet.
+* An ETH withdrawal address **you control the private keys** to, ideally one from a hardware wallet. :octagonal\_sign::octagonal\_sign: **DO NOT USE A EXCHANGE ADDRESS!** :octagonal\_sign::octagonal\_sign:
 * An **offline air-gapped computer**. Create a Linux Live USB like [Ubuntu](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview) or [Tails](https://tails.boum.org/install/download/index.en.html); needs a USB key.
 * A ETH staking node using Ubuntu or Linux, also known as **online computer**.
 * A USB storage key for moving files between the offline and online computer.
@@ -115,7 +115,9 @@ chmod +x ethdo
 
 4. This ethdo command sets your validator credentials and the output is stored in a `change-operations.json` file. Replace `<MY MNEMONIC PHRASE>` AND `<MY ETH WITHDRAW ADDRESS>` accordingly.&#x20;
 
-:octagonal\_sign: Double check your work as this is permanent once set!
+:octagonal\_sign: Double check your work as this is permanent once set! :octagonal\_sign:&#x20;
+
+:octagonal\_sign: FINAL REMINDER: DO NOT USE AN EXCHANGE ETH ADDRESS AS YOUR WITHDRAWAL ADDRESS :octagonal\_sign:
 
 ```
 ./ethdo validator credentials set --offline --mnemonic="<MY MNEMONIC PHRASE>” --withdrawal-address=<MY ETH WITHDRAW ADDRRESS>
@@ -266,6 +268,16 @@ Alternatively, check your favorite beacon chain explorer such as [beaconcha.in](
 <summary>I voluntary exited a while ago and don't have a synced node anymore. What are my options?</summary>
 
 Use Ethdo on an offline computer to create the exit message, as shown in step 2 above, and then perform step 3 using the alternative broadcast method with beaconcha.in
+
+</details>
+
+<details>
+
+<summary>Can I use a Gnosis Safe address as my ETH withdrawal address?</summary>
+
+Yes -- in fact, this is also a great idea as it allows you to rotate private keys (and keep the same public address) or use other more multi-sig strategies.
+
+reference: [https://safe.global](https://safe.global/)
 
 </details>
 
