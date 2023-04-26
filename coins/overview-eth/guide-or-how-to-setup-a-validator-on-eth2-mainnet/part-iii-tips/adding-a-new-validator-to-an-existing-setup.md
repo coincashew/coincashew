@@ -33,7 +33,7 @@ Using the staking-deposit-cli tool, you can add more validators by creating a ne
 
 
 
-You will also set your [ETH Withdrawal Address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-What-are-the-two-types-of-withdrawals), preferably from your Ledger or Trezor hardware wallet.
+**Reminder**: An **ETH withdrawal address** is one such that **you control the private keys** to, ideally one from a hardware wallet. :octagonal\_sign::octagonal\_sign: **DO NOT USE A EXCHANGE ADDRESS!** :octagonal\_sign::octagonal\_sign:
 {% endhint %}
 
 {% hint style="danger" %}
