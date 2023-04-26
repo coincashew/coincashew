@@ -107,7 +107,7 @@ to your offline air-gapped computer.
 
 <!---->
 
-3. After copying the `ethdo` executable and `offline-preparation.json` file to your **offline computer**, ensure the ethdo file has execute permissions.
+3. After copying the `ethdo` executable and `offline-preparation.json` file to your **offline computer's HOME directory**, ensure the ethdo file has execute permissions.
 
 ```
 chmod +x ethdo
