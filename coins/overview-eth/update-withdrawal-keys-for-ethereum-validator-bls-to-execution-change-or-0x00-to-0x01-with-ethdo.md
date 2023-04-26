@@ -37,29 +37,29 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 
 <!---->
 
-2. Download Ethdo v1.28.5 from Github [https://github.com/wealdtech/ethdo/releases](https://github.com/wealdtech/ethdo/releases)
+2. Download Ethdo v1.30.0 from Github [https://github.com/wealdtech/ethdo/releases](https://github.com/wealdtech/ethdo/releases)
 
 ```
 cd ~
-wget https://github.com/wealdtech/ethdo/releases/download/v1.28.5/ethdo-1.28.5-linux-amd64.tar.gz
+wget https://github.com/wealdtech/ethdo/releases/download/v1.30.0/ethdo-1.30.0-linux-amd64.tar.gz
 ```
 
 3. Verify the checksum is valid. Located on the release page, the Checksum string is located in the corresponding sha256 file.
 
 ```
-echo "1436040e1a0a2653723c3df1bc0e4b379e7635d72b35abff8427d29c1f828a2b ethdo-1.28.5-linux-amd64.tar.gz" | sha256sum -c
+echo "6fbe587f522ad2eb8d6ce22dfdb15f7d163b491a670bf50e5acf12dd0f58125c ethdo-1.30.0-linux-amd64.tar.gz" | sha256sum -c
 ```
 
 Successful verification occurs if you see "OK" in the resulting output.
 
 ```
-ethdo-1.28.5-linux-amd64.tar.gz: OK
+ethdo-1.30.0-linux-amd64.tar.gz: OK
 ```
 
 4. Extract ethdo.
 
 ```
-tar -xvf ethdo-1.28.5-linux-amd64.tar.gz
+tar -xvf ethdo-1.30.0-linux-amd64.tar.gz
 ```
 
 5. Verify your validator's credential status with your index number. Replace`<MY-VALIDATOR-INDEX>` accordingly.
@@ -76,7 +76,7 @@ BLS credentials: 0x0002a0addda8106aed690654c7af7af0bc5ccde321c8e5e2319ff432cee70
 
 If you have BLS credentials, continue with the rest of this guide. Otherwise, stop because ethdo will output "`Ethereum execution address`" and that means you've already set your withdrawal address!
 
-6. Run the following command to call your consensus client and generate a list of active validators with relevant information for use on your offline computer.
+6. Run the following command to call your consensus client and generate a list of active validators with relevant information for use on your offline computer. In order to generate this list from your local beacon node, [ensure the REST API](https://github.com/wealdtech/ethdo#setting-up) is enabled; otherwise the default fallback beacon node, [http://mainnet-consensus.attestant.io](http://mainnet-consensus.attestant.io), will be called.
 
 ```
 ./ethdo validator credentials set --prepare-offline
