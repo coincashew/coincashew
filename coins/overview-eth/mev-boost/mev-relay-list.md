@@ -6,7 +6,7 @@
 * **Ethical**: Will not front run or sandwich attack or generally harm other user's transactions.
 
 {% hint style="info" %}
-Be sure to select the right network. Relays are available for **Mainnet** and **Goerli Testnet**.
+Be sure to select the right network. Relays are available for **Mainnet, Goerli and Sepolia Testnets**.
 {% endhint %}
 
 ## Ethereum Mainnet Relays
@@ -35,6 +35,12 @@ Be sure to select the right network. Relays are available for **Mainnet** and **
 | [Flashbots](https://www.flashbots.net)         |          :x:         |          :x:         | https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@builder-relay-goerli.flashbots.net              |
 | [Manifold](https://securerpc.com)              | :white\_check\_mark: |          :x:         | https://0x8a72a5ec3e2909fff931c8b42c9e0e6c6e660ac48a98016777fc63a73316b3ffb5c622495106277f8dbcc17a06e92ca3@goerli-relay.securerpc.com                      |
 | [Ultra Sound](https://relay.ultrasound.money)  | :white\_check\_mark: |          :x:         | https://0xb1559beef7b5ba3127485bbbb090362d9f497ba64e177ee2c8e7db74746306efad687f2cf8574e38d70067d40ef136dc@relay-stag.ultrasound.money                     |
+
+## Sepolia Testnet Relays
+
+| Relay Name | Non-Censoring | Ethical | URL                                                                                                                                          |
+| ---------- | :-----------: | :-----: | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flashbots  |      :x:      |   :x:   | https://0x845bd072b7cd566f02faeb0a4033ce9399e42839ced64e8b2adcfc859ed1e8e1a5a293336a49feac6d9a5edb779be53a@boost-relay-sepolia.flashbots.net |
 
 ## :ladder: Next Steps
 
