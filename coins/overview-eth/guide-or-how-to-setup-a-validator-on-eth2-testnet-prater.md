@@ -9,7 +9,7 @@ description: >-
 ## Announcements
 
 {% hint style="info" %}
-:confetti\_ball: **Support us on Gitcoin Grants:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
+:confetti\_ball: **Live Now! Gitcoin Grants until May 9:** [We improve this guide with your support!](https://explorer.gitcoin.co/#/round/1/0xdf22a2c8f6ba9376ff17ee13e6154b784ee92094/0xdf22a2c8f6ba9376ff17ee13e6154b784ee92094-9)🙏
 {% endhint %}
 
 {% hint style="success" %}
