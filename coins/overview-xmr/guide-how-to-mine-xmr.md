@@ -45,7 +45,7 @@ You are now mining to your own instance of P2Pool, welcome to the world of decen
     [https://miningpoolstats.stream/monero](https://miningpoolstats.stream/monero)
 3. Configure your xmrig with the [configuration wizard.](https://xmrig.com/wizard)
 
-**Example: Command Line to mine with CPU and AMD GPU**
+**Example: Command Line to mine with CPU**
 
 {% tabs %}
 {% tab title="Windows" %}
@@ -114,11 +114,7 @@ sudo bash -c "echo vm.nr_hugepages=1280 >> /etc/sysctl.conf"
 
 ### 5.1 How much performance should I expect from my hardware?
 
-{% tabs %}
-{% tab title="CPU Mining" %}
 Find your potential CPU mining performance at [https://monerobenchmarks.info/](https://monerobenchmarks.info/)
-{% endtab %}
-{% endtabs %}
 
 ### 5.2 How much can I expect to mine?
 
