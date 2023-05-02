@@ -64,8 +64,6 @@ At the end of this guide, you will build a node that hosts three main components
 **Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
 
 **Execution client (aka Eth1 node)** - Supplies incoming validator deposits from the eth mainnet chain to the beacon chain client.
-
-Note: Teku and Nimbus combines both clients into one process.
 {% endhint %}
 
 ![How eth2 fits together featuring Leslie the eth2 Rhino, the mascot named after American computer scientist Leslie Lamport](../../../../.gitbook/assets/eth2network.png)

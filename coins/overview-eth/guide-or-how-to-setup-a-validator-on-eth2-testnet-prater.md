@@ -91,8 +91,6 @@ At the end of this guide, you will build a node that hosts three main components
 **Execution client (aka Eth1 node)** - Supplies incoming validator deposits from the eth
 
 chain to the beacon chain client.
-
-Note: Teku and Nimbus combines both clients into one process.
 {% endhint %}
 
 ![How Ethereum fits together featuring Leslie the ETH Rhino, the mascot named after American computer scientist Leslie Lamport](../../.gitbook/assets/eth2network.png)
@@ -1215,7 +1213,9 @@ Nice work. Your validator is now managed by the reliability and robustness of sy
 [Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
 {% endhint %}
 
-
+{% hint style="info" %}
+**Note**: Nimbus combines both **validator client** and **beacon chain client** into one process.
+{% endhint %}
 
 :gear: **4.1. Build Nimbus from source**
 
@@ -1457,7 +1457,9 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 [PegaSys Teku](https://consensys.net/knowledge-base/ethereum-2/teku/) (formerly known as Artemis) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
 {% endhint %}
 
-
+{% hint style="info" %}
+**Note**: Teku combines both **validator client** and **beacon chain client** into one process.
+{% endhint %}
 
 :gear: **4.1 Build Teku from source**
 
