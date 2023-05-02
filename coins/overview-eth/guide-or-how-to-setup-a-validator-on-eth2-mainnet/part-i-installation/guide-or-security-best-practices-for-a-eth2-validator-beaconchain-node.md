@@ -348,16 +348,6 @@ As an example, for Lighthouse, you would verify ports 9000 and 30303 are reachab
 For advice on configuring port forwarding with routers, refer to this [general port forwarding guide.](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/)
 {% endhint %}
 
-{% hint style="warning" %}
-**Note for Grafana Users**: Do not expose Grafana (port 3000) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel.
-
-Example of how to create a ssh tunnel:
-
-```
-ssh -N -v ethereum@staking.node.ip.address -L 3000:localhost:3000
-```
-{% endhint %}
-
 **\[ Optional ]** Whitelisting, which means permitting connections from a specific IP, can be setup via the following command.
 
 ```bash
