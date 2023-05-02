@@ -297,6 +297,10 @@ For instance, if you want to run 3 validators you will need to have (32 x 3) = 9
 {% endhint %}
 
 {% hint style="info" %}
+Tip for **Ledger Nano Hardware wallet** users: If you encounter difficulty making the deposit transaction, enable blind signing and contract data.
+{% endhint %}
+
+{% hint style="info" %}
 Your transaction is sending and depositing your ETH to the [official ETH2 deposit contract address.](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
 
 **Check**, _double-check_, _**triple-check**_ that the official Eth2 deposit contract address is correct.[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
