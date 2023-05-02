@@ -103,7 +103,13 @@ Note: Teku and Nimbus combines both clients into one process.
 Every 32 ETH you own allows you to make 1 validator. You can run thousands of validators with your beacon node. However on testnet, please only run 1 or 2 validators to keep the activation queue reasonably quick.
 {% endhint %}
 
-Watch this how-to [youtube video for Goerli ETH](https://youtu.be/uur7hGCscak)
+#### Option 1: Ethstaker's #cheap-goerli-validator Channel
+
+* **Step 1**: Visit the [Ethstaker Discord](https://discord.io/ethstaker) and join the #cheap-goerli-validator channel
+* **Step 2**: Use the `/cheap-goerli-deposit` slash command and follow the instructions from the bot. You need to start typing the slash command and it will show above your input box where you can use it.
+* **Requirement**: In order to use the cheap goerli validator process, you must now set your withdrawal address to `0x4D496CcC28058B1D74B7a19541663E21154f9c84` when creating your validator keys and deposit file. This is to prevent abuses of this service.
+
+#### Option 2: Watch this how-to [youtube video for Goerli ETH](https://youtu.be/uur7hGCscak)
 
 ## :woman\_technologist: 2. Signup to be a validator at the Launchpad
 
