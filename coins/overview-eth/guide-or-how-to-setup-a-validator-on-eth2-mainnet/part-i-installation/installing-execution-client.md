@@ -1,29 +1,8 @@
-# Installing execution client
+# Step 4: Installing execution client
 
 {% hint style="info" %}
 Ethereum requires a connection to execution client in order to monitor for 32 ETH validator deposits. Hosting your own execution client is the best way to maximize decentralization.
 {% endhint %}
-
-{% hint style="warning" %}
-The subsequent steps assume you have completed the [best practices security guide.](guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
-
-:octagonal\_sign: Do not run your processes as **ROOT** user. :scream:
-{% endhint %}
-
-### Create a jwtsecret file
-
-A jwtsecret file contains a hexadecimal string that is passed to both Execution Layer client and Consensus Layer clients, and is used to ensure authenticated communications between both clients.
-
-```bash
-#store the jwtsecret file at /secrets
-sudo mkdir -p /secrets
-
-#create the jwtsecret file
-openssl rand -hex 32 | tr -d "\n" | sudo tee /secrets/jwtsecret
-
-#enable read access
-sudo chmod 644 /secrets/jwtsecret
-```
 
 ### Pick an execution client
 
