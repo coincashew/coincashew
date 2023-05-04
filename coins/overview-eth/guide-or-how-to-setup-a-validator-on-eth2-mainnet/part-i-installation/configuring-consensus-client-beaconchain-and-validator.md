@@ -1,4 +1,4 @@
-# Step 5: Installing consensus client (beacon chain and validator)
+# Step 5: Installing consensus client
 
 ## Pick a consensus client
 
@@ -1600,13 +1600,13 @@ Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track you
 * Setup [MEV-boost](../../mev-boost/) for extra staking rewards!
 * Familiarize yourself with [Part III - Tips](../part-iii-tips/) section, as you dive deeper into staking.
 
-### :telephone: **Need extra live support?**&#x20;
+### :telephone: **Need extra live support?**
 
-* Find Ethstaker frens on the [Ethstaker](https://discord.io/ethstaker) Discord!
+* Find Ethstaker frens on the [Ethstaker](https://discord.io/ethstaker) Discord and [coincashew](https://discord.gg/w8Bx8W2HPW) Discord.
 * Use reddit: [r/Ethstaker](https://www.reddit.com/r/ethstaker/), or [DMs](https://www.reddit.com/user/coincashew), or [r/coincashew](https://www.reddit.com/r/coincashew/)
 
 ### :heart\_decoration: Like these guides?
 
 * [Tips much appreciated](../../../../donations.md) :pray:
-* [**Support us on Gitcoin Grants**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)**:** We build this guide exclusively by community support!🙏
+* **Support us on Gitcoin Grants:** We build this guide exclusively by community support!
 * Feedback or pull-requests: [https://github.com/coincashew/coincashew](https://github.com/coincashew/coincashew)

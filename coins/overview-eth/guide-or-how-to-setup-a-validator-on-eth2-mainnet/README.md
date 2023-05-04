@@ -13,11 +13,11 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of May 1 2023, this is **guide version 6.0.0** and written for **Ethereum mainnet**:grin:
+As of May 1 2023, this **post-Shapella guide is version 6.0.0** and written for **Ethereum mainnet**:grin:
 {% endhint %}
 
 {% hint style="info" %}
-:sparkles: Always test and practice on testnet first. See [GOERLI testnet guide](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md).
+:sparkles: Always test and practice on testnet first. See [GOERLI testnet guide](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/).
 {% endhint %}
 
 ## :wrench: About This Guide
@@ -38,15 +38,4 @@ Pull requests or issues can be submitted on [github](https://github.com/coincash
 
 {% embed url="https://github.com/coincashew/coincashew" %}
 
-Built by home-stakers for home-stakers. :pray:
-
-## :page\_facing\_up: Latest Essential Ethereum Staking Reading
-
-* [Shapella (Shanghai + Capella) and Beacon Chain Withdrawals Update](https://tim.mirror.xyz/zLdl8bEiDmobHZ5RlvG2LrlZLWV9c2XvkuKQ-vpljSU)
-* [Client diversity on Ethereum's Consensus Layer](https://mirror.xyz/jmcook.eth/S7ONEka\_0RgtKTZ3-dakPmAHQNPvuj15nh0YGKPFriA)
-* [After The Merge │ Part 1: The Surge by himesh.eth](https://himesh.substack.com/p/after-the-merge-part-1-the-surge)
-* [After The Merge │ Part 2: The Verge by himesh.eth](https://himesh.substack.com/p/after-the-merge-part-2-the-verge)
-* [Proof-of-Stake: Explaining Ethereum's consensus mechanism after The Merge by foobar](https://0xfoobar.substack.com/p/ethereum-proof-of-stake)
-* [Modelling the Impact of Altair by pintail.xyz](https://pintail.xyz/posts/modelling-the-impact-of-altair/)
-* [Update on the Merge after the Amphora Interop by Consensys.net](https://consensys.net/blog/ethereum-2-0/an-update-on-the-merge-after-the-amphora-interop-event-in-greece/)
-* [Ethereum Merge Mainnet Readiness Updates](https://github.com/ethereum/pm/blob/master/Merge/mainnet-readiness.md)
+#### :shield: Built by home-stakers for home-stakers. :pray:
