@@ -409,6 +409,7 @@ ExecStart=$HOME/erigon/build/bin/erigon \
  --metrics \
  --pprof \
  --prune htc \
+ --prune.r.before=11052984 \
  --authrpc.jwtsecret=/secrets/jwtsecret
 
 [Install]
