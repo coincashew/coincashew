@@ -1561,3 +1561,9 @@ Use [https://goerli.beaconcha.in](https://goerli.beaconcha.in/) to create alerts
 {% hint style="success" %}
 ### Ready for mainnet staking?  [**Mainnet guide available here.**](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
+
+## Last Words
+
+> I stand upon the shoulders of giants and as such, invite you to stand upon mine. Use my work with or without attribution; I make no claim of "intellectual property." My ideas are the result of countless millenia of evolution - they belong to humanity.
+
+<figure><img src="../../../.gitbook/assets/leslie-solo.png" alt=""><figcaption><p>This is Leslie, the official mascot of Eth Staking</p></figcaption></figure>

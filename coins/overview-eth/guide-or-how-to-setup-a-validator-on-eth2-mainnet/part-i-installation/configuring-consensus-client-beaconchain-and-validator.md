@@ -1610,3 +1610,9 @@ Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track you
 * [Tips much appreciated](../../../../donations.md) :pray:
 * **Support us on Gitcoin Grants:** We build this guide exclusively by community support!
 * Feedback or pull-requests: [https://github.com/coincashew/coincashew](https://github.com/coincashew/coincashew)
+
+## Last Words
+
+> I stand upon the shoulders of giants and as such, invite you to stand upon mine. Use my work with or without attribution; I make no claim of "intellectual property." My ideas are the result of countless millenia of evolution - they belong to humanity.
+
+<figure><img src="../../../../.gitbook/assets/leslie-solo.png" alt=""><figcaption><p>This is Leslie, the official mascot of Eth Staking</p></figcaption></figure>

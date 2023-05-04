@@ -404,7 +404,7 @@ As an example, for Lighthouse, you would verify ports 9000 and 30303 are reachab
 
 
 
-:bulb: For advice on configuring port forwarding with routers, refer to this [general port forwarding guide.](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/)
+For optimal connectivity, ensure Port Forwarding is setup for your router. Learn to port forward with guides found at [https://portforward.com/how-to-port-forward](https://portforward.com/how-to-port-forward/)
 {% endhint %}
 
 ### Optional: Whitelisting Connections

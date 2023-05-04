@@ -1,6 +1,36 @@
 # Step 1: Prerequisites
 
-## :woman\_technologist:Skills for operating an staking node
+## :rocket: How Staking on Ethereum Works
+
+1. Acquire some hardware (laptop, desktop, server) or rent a VPS (cloud server): You need to run a node to stake.
+2. Sync an execution layer client
+3. Sync a consensus layer client
+4. Generate your validator keys and import them into your validator client
+5. Monitor and maintain your node
+
+A Ethereum node consists of the Execution Layer + Consensus Layer.
+
+A Ethereum Staking node is the previous plus a Validator client.
+
+<figure><img src="../../../../.gitbook/assets/client-stack.png" alt=""><figcaption><p>Client Stack</p></figcaption></figure>
+
+<figure><img src="../../../../.gitbook/assets/eth-validator-diagram.png" alt=""><figcaption><p>Big picture: Execution / Consensus / Validator</p></figcaption></figure>
+
+## :wave: Introduction
+
+This guide was written for aspiring Ethereum stakers who have basic familiarity with command line tools and it was tested against Ubuntu 22.04.1 LTS client. You’ll want a dedicated cloud VPS or local desktop/server/laptop running a clean install of Ubuntu preferably.
+
+If using a VPS or remote server, install and start the SSH client for your operating system:
+
+**Windows**: [PuTTY](https://www.puttygen.com/download-putty)
+
+**MacOS and Linux**: from the Terminal, use the native command:
+
+```
+ssh <YourUserName>@<YourServersIP>
+```
+
+## :woman\_technologist: Skills for operating an staking node
 
 As a validator for Ethereum, you will typically have the following abilities:
 
@@ -41,6 +71,8 @@ As a validator for Ethereum, you will typically have the following abilities:
 {% hint style="info" %}
 :bulb: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
 {% endhint %}
+
+<figure><img src="../../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
 
 {% hint style="success" %}
 :sparkles: **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
