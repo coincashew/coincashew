@@ -20,7 +20,16 @@ A Ethereum Staking node is the previous plus a Validator client.
 
 This guide was written for aspiring Ethereum stakers who have basic familiarity with command line tools and it was tested against Ubuntu 22.04.1 LTS client. You’ll want a dedicated cloud VPS or local desktop/server/laptop running a clean install of Ubuntu preferably.
 
-If using a VPS or remote server, install and start the SSH client for your operating system:
+### Terminology
+
+Your Ethereum staking node may be
+
+* **Local:** on a laptop / PC / NUC that you can physically connect keyboard/mouse/monitor.
+* **Remote:** in the cloud on a VPS
+
+If your staking node is **remote**, then you will want to setup SSH, secure shell.
+
+If using a VPS or **remote** node, install and start the SSH client for your operating system:
 
 **Windows**: [PuTTY](https://www.puttygen.com/download-putty)
 
@@ -29,6 +38,8 @@ If using a VPS or remote server, install and start the SSH client for your opera
 ```
 ssh <YourUserName>@<YourServersIP>
 ```
+
+Here's a [guide from Makeuseof](https://www.makeuseof.com/tag/beginners-guide-setting-ssh-linux-testing-setup/) to connect by SSH to your **remote node.**
 
 ## :woman\_technologist: Skills for operating an staking node
 

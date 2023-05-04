@@ -15,15 +15,6 @@ sudo reboot
 
 ## :key: Security Configuration
 
-### Terminology
-
-Your Ethereum staking node may be
-
-* **Local:** on a laptop / PC / NUC that you can physically connect keyboard/mouse/monitor.
-* **Remote:** in the cloud on a VPS
-
-If your staking node is **remote**, then you will want to setup SSH, secure shell. Here's a [guide from Makeuseof](https://www.makeuseof.com/tag/beginners-guide-setting-ssh-linux-testing-setup/) to connect by SSH to your **remote node.**
-
 ### Create a non-root user with sudo privileges
 
 <details>
