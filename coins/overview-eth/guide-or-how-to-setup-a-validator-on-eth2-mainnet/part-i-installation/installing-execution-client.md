@@ -48,13 +48,14 @@ cat > $HOME/eth1.service << EOF
 Description=Geth Execution Layer Client service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
 User=$USER
 Restart=on-failure
 RestartSec=3
-TimeoutSec=300
+TimeoutSec=690
 ExecStart=/usr/bin/geth \
   --mainnet \
   --metrics \
@@ -149,6 +150,7 @@ cat > $HOME/eth1.service << EOF
 Description=Besu Execution Layer Client service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -156,7 +158,7 @@ User=$USER
 Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
-TimeoutStopSec=300
+TimeoutStopSec=690
 Environment="JAVA_OPTS=-Xmx5g"
 ExecStart=$HOME/besu/bin/besu \
   --network=mainnet \
@@ -255,6 +257,7 @@ cat > $HOME/eth1.service << EOF
 Description=Nethermind Execution Layer Client service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -262,7 +265,7 @@ User=$USER
 Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
-TimeoutStopSec=300
+TimeoutStopSec=690
 WorkingDirectory=$HOME/nethermind
 ExecStart=$HOME/nethermind/Nethermind.Runner \
   --baseDbPath $HOME/.nethermind \
@@ -395,6 +398,7 @@ cat > $HOME/eth1.service << EOF
 Description=Erigon Execution Layer Client service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -402,7 +406,7 @@ User=$USER
 Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
-TimeoutStopSec=300
+TimeoutStopSec=690
 ExecStart=$HOME/erigon/build/bin/erigon \
  --datadir /var/lib/erigon \
  --chain mainnet \

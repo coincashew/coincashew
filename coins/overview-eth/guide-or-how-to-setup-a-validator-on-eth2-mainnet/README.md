@@ -13,7 +13,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of May 1 2023, this **post-Shapella guide is version 6.0.0** and written for **Ethereum mainnet**:grin:
+As of May 1 2023, this **post-**🦉**Shapella**🦉 **guide is** **version 6.0.0** written for **Ethereum mainnet**:grin:
 {% endhint %}
 
 {% hint style="info" %}

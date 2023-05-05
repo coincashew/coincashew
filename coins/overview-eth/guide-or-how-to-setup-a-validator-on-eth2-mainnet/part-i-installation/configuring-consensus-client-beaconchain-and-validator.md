@@ -166,6 +166,7 @@ Paste the following configuration into the file.
 Description=eth beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -254,6 +255,7 @@ Paste the following configuration into the file.
 Description=eth validator service
 Wants=network-online.target beacon-chain.service
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -496,6 +498,7 @@ Paste the following configuration into the file.
 Description=eth consensus layer beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -822,6 +825,7 @@ cat > $HOME/beacon-chain.service << EOF
 Description=eth consensus layer beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 User=$USER
@@ -968,6 +972,7 @@ Paste the following configuration into the file.
 Description=eth consensus layer beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1095,6 +1100,7 @@ Paste the following configuration into the file.
 Description=eth validator service
 Wants=network-online.target beacon-chain.service
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1304,6 +1310,7 @@ Paste the following configuration into the file.
 Description=eth2 beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1401,6 +1408,7 @@ Paste the following configuration into the file.
 Description=eth2 validator service
 Wants=network-online.target beacon-chain.service
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1609,9 +1617,9 @@ Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track you
 
 ### :heart\_decoration: Like these guides?
 
-* [Tips much appreciated](../../../../donations.md) :pray:
+* **Audience-funded guide**: If you found this helpful, [please consider supporting it directly.](../../../../donations.md) :pray:
 * **Support us on Gitcoin Grants:** We build this guide exclusively by community support!
-* Feedback or pull-requests: [https://github.com/coincashew/coincashew](https://github.com/coincashew/coincashew)
+* **Feedback or pull-requests**: [https://github.com/coincashew/coincashew](https://github.com/coincashew/coincashew)
 
 ## Last Words
 

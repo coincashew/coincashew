@@ -13,7 +13,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of May 1 2023, this **post-Shapella guide is version 6.0.0** and written for **testnet GOERLI.**
+As of May 1 2023, this **post-**🦉**Shapella**🦉 **guide is** **version 6.0.0** written for **testnet GOERLI** :grin:
 {% endhint %}
 
 {% hint style="info" %}
@@ -39,6 +39,8 @@ Rest assured, as you become more familiar and more comfortable by practicing on 
 * Step 3: [Setting up Validator Keys](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/signing-up-to-be-a-validator-at-the-launchpad.md)
 * Step 4: [Installing execution client](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/installing-execution-client.md)
 * Step 5: [Installing consensus client](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/configuring-consensus-client-beaconchain-and-validator.md)
+
+
 
 #### :shield: Built by home-stakers for home-stakers. :pray:
 
