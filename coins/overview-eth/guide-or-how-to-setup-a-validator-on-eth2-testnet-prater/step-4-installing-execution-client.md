@@ -249,6 +249,8 @@ ExecStart=$HOME/nethermind/Nethermind.Runner \
   --Metrics.ExposePort 6060 \
   --Metrics.IntervalSeconds 10000 \
   --Sync.SnapSync true \
+  --Sync.AncientBodiesBarrier 4367322 \
+  --Sync.AncientReceiptsBarrier 4367322 \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret
 
 [Install]

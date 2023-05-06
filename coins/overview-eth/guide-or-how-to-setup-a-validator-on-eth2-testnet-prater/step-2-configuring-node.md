@@ -398,7 +398,7 @@ As an example, for Lighthouse, you would verify ports 9000 and 30303 are reachab
 For optimal connectivity, ensure Port Forwarding is setup for your router. Learn to port forward with guides found at [https://portforward.com/how-to-port-forward](https://portforward.com/how-to-port-forward/)
 {% endhint %}
 
-### Optional: Whitelisting Connections
+#### Optional: Whitelisting Connections
 
 Whitelisting, which means permitting connections from a specific IP, can be setup via the following command.
 
@@ -406,4 +406,56 @@ Whitelisting, which means permitting connections from a specific IP, can be setu
 sudo ufw allow from <your client machine>
 # Example
 # sudo ufw allow from 192.168.50.22
+```
+
+### :chains: **Install Fail2ban**
+
+{% hint style="info" %}
+**Local node**? You can skip this section on installing Fail2ban.
+{% endhint %}
+
+{% hint style="info" %}
+Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address (within a specified amount of time), fail2ban blocks access from that IP address.
+{% endhint %}
+
+To install fail2ban:
+
+```
+sudo apt-get install fail2ban -y
+```
+
+Edit a config file that monitors SSH logins.
+
+```
+sudo nano /etc/fail2ban/jail.local
+```
+
+Add the following lines to the bottom of the file.
+
+{% hint style="info" %}
+:fire: **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local client machine, local IP range or local domain, separated by spaces.
+
+```bash
+# Example
+ignoreip = 192.168.1.0/24 127.0.0.1/8
+```
+{% endhint %}
+
+```bash
+[sshd]
+enabled = true
+port = 22
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+# whitelisted IP addresses
+ignoreip = <list of whitelisted IP address, your client machine>
+```
+
+To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
+
+Restart fail2ban for settings to take effect.
+
+```
+sudo systemctl restart fail2ban
 ```
