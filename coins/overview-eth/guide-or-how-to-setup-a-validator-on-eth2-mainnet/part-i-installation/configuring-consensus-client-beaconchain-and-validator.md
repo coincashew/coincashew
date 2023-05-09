@@ -1570,7 +1570,7 @@ sudo systemctl stop validator
 ## :track\_next: Next Steps
 
 {% hint style="info" %}
-Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to 1 week. On high-end machines with gigabit internet, expect your node to be fully syncing to take less than a day.
+**Sync Timeline**: Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to 1 week. On high-end machines with gigabit internet, expect your node to be fully syncing to take less than a day.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -1578,7 +1578,7 @@ Syncing the consensus client is instantaneous with checkpoint sync but the execu
 
 
 
-How do I know I'm fully synced ?
+**How do I know I'm fully synced?**
 
 * Check your execution client's logs and compare the block number against the most recent block on [etherscan.io](https://etherscan.io/)
   * Check EL logs: `journalctl -fu eth1`
@@ -1587,9 +1587,11 @@ How do I know I'm fully synced ?
 {% endhint %}
 
 {% hint style="info" %}
-Once your EL+CL is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
+**Activation Queue**: Once your EL+CL is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. Check the queue length: [https://wenmerge.com ](https://wenmerge.com)
 
-Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track your validator's performance.
+**Activated**: When you're activated, your validator will begin creating and voting on blocks while earning staking rewards.
+
+**Quick monitoring**: Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track your validator's performance.
 {% endhint %}
 
 {% hint style="success" %}

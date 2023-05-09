@@ -1538,6 +1538,7 @@ Use [https://goerli.beaconcha.in](https://goerli.beaconcha.in/) to create alerts
 * Subscribe to your Execution Client and Consensus Client's Github repository to be notified of new releases. Hit the Notifications button.
 * Join the [community on Discord and Reddit](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/joining-the-community-on-discord-and-reddit.md#discord) to discuss all things staking related.
 * Familiarize yourself with [Part II - Maintenance](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/) section, as you'll need to keep your staking node running at its best.
+* &#x20;**Finished testing?** Before decommissioning your validator, it's good practice to properly [exit your validator](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/voluntary-exiting-a-validator.md) as this improves staking network health.
 
 ### :checkered\_flag: Optional Steps
 
