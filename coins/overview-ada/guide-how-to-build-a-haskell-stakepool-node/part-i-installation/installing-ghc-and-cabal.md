@@ -91,6 +91,17 @@ git checkout 66f017f1
 make
 sudo make install
 ```
+9.1\. To download, compile and install `libsodium` for cardano-node builds of version 8.0.0 and above, type:
+
+```bash
+git clone https://github.com/input-output-hk/libsodium
+cd libsodium
+git checkout dbb48cce
+./autogen.sh
+./configure
+make
+sudo make install
+```
 
 {% hint style="info" %}
 If you are using the **Debian** GNU/Linux distribution, then you may need to type the following command to create a symbolic link:
