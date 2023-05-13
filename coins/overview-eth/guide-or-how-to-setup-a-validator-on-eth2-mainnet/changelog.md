@@ -2,6 +2,8 @@
 
 ## :page\_facing\_up: List of changes
 
+* Created guide for [How to re-sync using checkpoint sync](part-iii-tips/how-to-re-sync-using-checkpoint-sync.md)
+* Created guide to [Updating 0x00 -> 0x01 Withdrawal keys with Ethdo for Shapella Upgrade](../update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
 * Added [disk usage numbers by EL CL combination](part-iii-tips/disk-usage-by-execution-consensus-client.md)
 * Include ETH Withdrawals address as default during validator key generation.
 * Added [MEV-boost guide.](../mev-boost/)
@@ -26,7 +28,7 @@
 * Updated staking-deposit-cli and added section on eth1 withdrawal address
 * Added generating mnemonic seeds on **Tails OS** by [punggolzenith](https://github.com/punggolzenith)
 * Iancoleman.io BLS12-381 Key Generation Tool [how-to added](part-iii-tips/eip2333-key-generator-by-iancoleman-io.md)
-* Testnet guide forked for [Prater testnet](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater.md) staking
+* Testnet guide forked for [Prater testnet](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/) staking
 * [Geth pruning guide](part-ii-maintenance/pruning-the-execution-client-to-free-up-disk-space.md) created
 * Major changes to Lodestar guide
 * Additional [Grafana Dashboards](part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md) for Prysm, Lighthouse and Nimbus

@@ -22,7 +22,7 @@ Monero nodes come in two flavours.
 * **Pruned Node**: Stores a random 1/8th of the blockchain's data and requires much less disk space
 {% endhint %}
 
-### ​  :rocket:Minimum Full Node System Requirements <a href="#minimum-slasher-system-requirements" id="minimum-slasher-system-requirements"></a>
+### ​ :rocket:Minimum Full Node System Requirements <a href="#minimum-slasher-system-requirements" id="minimum-slasher-system-requirements"></a>
 
 * Dual-core CPU
 * 4+ GB RAM
@@ -39,9 +39,11 @@ As of early 2021, a pruned node uses 32GB and a full node uses 96GB of storage s
 
 ## :bricks: 1. Configuring ports and firewall
 
-![Kudos to r/Krakataua314](../../.gitbook/assets/10iwbu47ul761.png)
+<figure><img src="../../.gitbook/assets/xmrports.png" alt=""><figcaption></figcaption></figure>
 
-Full Public Node with port 18089, a restricted RPC port, UNLIKE the graphic above, since you must open port 18089 as well (or instead of 18081).
+{% hint style="info" %}
+**Recommendation**: the **Public Full Node** with **port 18089**, a restricted RPC port, is the best option to support the Monero network while allowing yourself and others to use it as a remote node for wallets. Following intructions in this guide, you will implement a monero node in this configuration. Adjust ports accordingly if you want more restricted behavior.
+{% endhint %}
 
 ```bash
 # By default, deny all incoming and outgoing traffic
@@ -178,7 +180,7 @@ limit-rate-down=1048576 # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s;
 * Limit the upload speed in case you have a data cap: `limit-rate-up=8192` (in kB/s). Conversely, if you have an unlimited data plan, consider increasing the upload speeds to better support the Monero network. A node can typically use up to 1TB traffic per month.
 {% endhint %}
 
-Create a `monerod.service`  systemd unit file. Simply copy and paste the following.
+Create a `monerod.service` systemd unit file. Simply copy and paste the following.
 
 ```bash
 cat > $HOME/monerod.service << EOF
@@ -239,7 +241,7 @@ monerod status
 ```
 
 {% hint style="success" %}
-Connect to your brand new node with your favorite clients such as Monerujo, CakeWallet or Monero-GUI. Simply enter your node's IP or hostname into the remote node field. Congrats! :confetti\_ball:&#x20;
+Connect to your brand new node with your favorite clients such as Monerujo, CakeWallet or Monero-GUI. Simply enter your node's IP or hostname into the remote node field. Congrats! :confetti\_ball:
 {% endhint %}
 
 ## :pick: Optional: Start mining
@@ -248,7 +250,7 @@ Like winning a lotto ticket, your monero node has a chance to mine a block. You 
 
 Start with 1 thread, check your mining hashrate and increase if your CPU resources allow.
 
-Run the following command.&#x20;
+Run the following command.
 
 ```bash
 monerod start_mining <YOUR XMR ADDRESS> <NUMBER OF THREADS>
@@ -276,7 +278,7 @@ Setup service accounts.
 sudo adduser --system --group --no-create-home i2p
 ```
 
-Create a `i2pzero.service`  systemd unit file. Simply copy and paste the following.
+Create a `i2pzero.service` systemd unit file. Simply copy and paste the following.
 
 ```bash
 cat > $HOME/i2pzero.service << EOF
@@ -351,7 +353,7 @@ Restart monerod.
 sudo systemctl restart monerod
 ```
 
-## &#x20;:tools: 2. How to update a monero node <a href="#7-update-a-eth2-client" id="7-update-a-eth2-client"></a>
+## :tools: 2. How to update a monero node <a href="#7-update-a-eth2-client" id="7-update-a-eth2-client"></a>
 
 When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your monero node.
 

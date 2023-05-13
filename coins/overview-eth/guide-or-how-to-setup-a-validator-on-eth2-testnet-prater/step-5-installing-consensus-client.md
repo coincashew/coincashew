@@ -1,928 +1,11 @@
----
-description: >-
-  Become a validator and help secure Ethereum, a proof-of-stake blockchain.
-  Anyone with 32 ETH can join.
----
+# Step 5: Installing consensus client
 
-# Guide | How to setup a validator for Ethereum staking on testnet GOERLI
-
-## Announcements
+## Pick a consensus client
 
 {% hint style="info" %}
-:confetti\_ball: **Support us on Gitcoin Grants:** [We improve this guide with your support!](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)🙏
-{% endhint %}
+To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity. Find the latest distribution of consensus clients here: [https://clientdiversity.org](https://clientdiversity.org/)
 
-{% hint style="success" %}
-As of Feb 3 2023, this **post-merge guide is version 5.1.3** and written for **testnet GOERLI.**
-{% endhint %}
-
-{% hint style="info" %}
-**Always test and practice on testnet first.** [**Mainnet guide available here.**](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)****
-{% endhint %}
-
-## :thumbsup: Your Github Contributions Welcome
-
-This guide is fully open source and fully powered by home-stakers like you.
-
-Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
-
-{% embed url="https://github.com/coincashew/coincashew" %}
-
-Built by home-stakers for home-stakers. :pray:
-
-## ​​:checkered\_flag: 0. Prerequisites <a href="#0.-prerequisites" id="0.-prerequisites"></a>
-
-### :woman\_technologist:Skills to be a eth staker
-
-As a eth staker, you will typically have the following abilities:
-
-* operational knowledge of how to set up, run and maintain a eth beacon node and validator continuously
-* a long term commitment to maintain your validator 24/7/365
-* basic operating system skills
-
-### :man\_technologist: Experience required to be a successful validator
-
-* have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
-* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com)
-* and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
-
-### :man\_lifting\_weights: Recommended Hardware Setup
-
-* **Operating system:** 64-bit Linux (i.e. Ubuntu 22.0x+ LTS Server or Desktop)
-* **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
-* **Memory:** 16GB RAM or more
-* **Storage:** 2TB SSD or more
-* **Internet:** Broadband internet connections with speeds at least 10 Mbps without data limit.
-* **Power:** Reliable electrical power with uninterruptible power supply (UPS)
-* **ETH balance:** at least 32 goerli ETH and some goerli ETH for deposit transaction fees
-* **Wallet**: Metamask installed
-
-{% hint style="info" %}
-:bulb: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
-{% endhint %}
-
-{% hint style="success" %}
-:sparkles: **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
-{% endhint %}
-
-### :unlock: Recommended Security Best Practices
-
-If you need ideas or a reminder on how to secure your staking node, refer to the [security best practices guide](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node).
-
-### :tools: Setup Ubuntu Operating System
-
-If you need to install Ubuntu Server, refer to [this guide.](https://ubuntu.com/tutorials/install-ubuntu-server#1-overview)
-
-Or Ubuntu Desktop, refer to [this guide.](https://www.coincashew.com/coins/overview-xtz/guide-how-to-setup-a-baker/install-ubuntu)
-
-### :performing\_arts: Setup Metamask
-
-If you need to install Metamask, refer to [this guide.](https://www.coincashew.com/wallets/browser-wallets/metamask-ethereum)
-
-### :jigsaw: High Level Validator Node Overview
-
-{% hint style="info" %}
-At the end of this guide, you will build a node that hosts three main components in two layers: consensus layer consists of a consensus client, also known as a validator client with a beacon chain client. The execution layer consists of a execution client, formerly a eth1 node.
-
-**Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
-
-**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
-
-**Execution client (aka Eth1 node)** - Supplies incoming validator deposits from the eth
-
-chain to the beacon chain client.
-
-Note: Teku and Nimbus combines both clients into one process.
-{% endhint %}
-
-![How Ethereum fits together featuring Leslie the ETH Rhino, the mascot named after American computer scientist Leslie Lamport](../../.gitbook/assets/eth2network.png)
-
-## :seedling: 1. Obtain testnet ETH
-
-{% hint style="info" %}
-Every 32 ETH you own allows you to make 1 validator. You can run thousands of validators with your beacon node. However on testnet, please only run 1 or 2 validators to keep the activation queue reasonably quick.
-{% endhint %}
-
-Watch this how-to [youtube video for Goerli ETH](https://youtu.be/uur7hGCscak)
-
-## :woman\_technologist: 2. Signup to be a validator at the Launchpad
-
-1. Install dependencies, the ethereum foundation deposit tool and generate your two sets of key pairs.
-
-{% hint style="info" %}
-Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
-
-
-
-You will also set your [ETH Withdrawal Address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-What-are-the-two-types-of-withdrawals), preferably from your Ledger or Trezor hardware wallet.
-{% endhint %}
-
-You have the choice of using the [Wagyu GUI](https://github.com/stake-house/wagyu-installer), downloading the pre-built [Ethereum staking deposit tool](https://github.com/ethereum/staking-deposit-cli) or building it from source.&#x20;
-
-{% tabs %}
-{% tab title="Build from source code" %}
-Install dependencies.
-
-```
-sudo apt update
-sudo apt install python3-pip git -y
-```
-
-
-
-Download source code and install.
-
-```
-cd $HOME
-git clone https://github.com/ethereum/staking-deposit-cli
-cd staking-deposit-cli
-sudo ./deposit.sh install
-```
-
-
-
-Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.
-
-```
-./deposit.sh new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
-```
-{% endtab %}
-
-{% tab title="Pre-built staking-deposit-cli" %}
-Download staking-deposit-cli.
-
-```bash
-cd $HOME
-wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.4.0/staking_deposit-cli-ef89710-linux-amd64.tar.gz
-```
-
-
-
-Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/staking-deposit-cli/releases/tag/v2.3.0).
-
-```bash
-echo "c2b12a9e515f904ca359ec39dfbd7022dfefe881c1796ce42319df0a2da05560 *staking_deposit-cli-76ed782-linux-amd64.tar.gz" | shasum -a 256 --check
-```
-
-
-
-Example valid output:
-
-> staking\_deposit-cli-ef89710-linux-amd64.tar.gz: OK
-
-{% hint style="danger" %}
-Only proceed if the sha256 check passes with **OK**!
-{% endhint %}
-
-
-
-Extract the archive.
-
-```
-tar -xvf staking_deposit-cli-ef89710-linux-amd64.tar.gz
-mv staking_deposit-cli-ef89710-linux-amd64 staking-deposit-cli
-rm staking_deposit-cli-ef89710-linux-amd64.tar.gz
-cd staking-deposit-cli
-```
-
-
-
-Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.
-
-```
-./deposit new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
-```
-{% endtab %}
-
-{% tab title="Wagyu" %}
-Wagyu (formerly known as StakeHouse) is an application aimed at lowering the technical bar to staking on Ethereum 2.0.
-
-Dubbed a 'one-click installer', it provides a clean UI automating the setup and management of all the infrastructure necessary to stake without the user needing to have any technical knowledge.
-
-
-
-Download Wagyu: [https://wagyu.gg](https://wagyu.gg/)
-
-Github: [https://github.com/stake-house/wagyu-installer](https://github.com/stake-house/wagyu-installer)
-
-
-
-After creating the validator keys locally, you'll want to copy these validator keys via USB key or rsync file transfer to your staking node.
-
-
-
-To align with this guide's steps, first make a default path to store your validator keys.
-
-<pre><code><strong>mkdir -p $HOME/staking-deposit-cli/validator_keys
-</strong></code></pre>
-
-
-
-If using USB key, mount the key then copy.
-
-```
-cp <directory-with-keys>/*.json $HOME/staking-deposit-cli/validator_keys
-```
-
-
-
-If using rsync, copy your validator keys from your local computer to your staking node with the following command. Change ssh port if needed.
-
-```
-rsync -a "ssh -p 22" <directory-with-keys>/*.json <username>@<remote_host>:/home/<username>/staking-deposit-cli/validator_keys
-```
-{% endtab %}
-
-{% tab title="Advanced - Most Secure" %}
-{% hint style="warning" %}
-:fire:**\[ Optional ] Pro Security Tip**: Run the staking-deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
-{% endhint %}
-
-
-
-You will learn how to boot up a windows PC into an airgapped [Tails operating system](https://tails.boum.org/index.en.html).
-
-The Tails OS is an _amnesic_ operating system, meaning it will save nothing and _leave no tracks behind_ each time you boot it.
-
-
-
-**Part 0 - Prerequisites**
-
-You need:
-
-* 2 storage mediums (can be USB stick, SD cards or external hard drives)
-* One of them must be > 8GB
-* Windows or Mac computer
-* 30 minutes or longer depending on your download speed
-
-
-
-**Part 1 - Download Tails OS**
-
-Download the official image from the [Tails website](https://tails.boum.org/install/index.en.html). Might take a while, go grab a coffee.
-
-Make sure you follow the guide on the Tails website to verify your download of Tails.
-
-
-
-**Part 2 - Download and install the software to transfer your Tails image on your USB stick**
-
-For Windows, use one of
-
-* [Etcher](https://tails.boum.org/etcher/Etcher-Portable.exe)
-* [Win32 Disk Imager](https://win32diskimager.org/#download)
-* [Rufus](https://rufus.ie/en\_US/)
-
-For Mac, download [Etcher](https://tails.boum.org/etcher/Etcher.dmg)
-
-
-
-**Part 3 - Making your bootable USB stick**
-
-Run the above software. This is an example how it looks like on Mac OS with etcher, but other software should be similar.
-
-![](../../.gitbook/assets/etcher\_in\_mac.png)
-
-Select the Tails OS image that you downloaded as the image. Then select the USB stick (the larger one).
-
-Then flash the image to the larger USB stick.
-
-
-
-**Part 4 - Download and verify the staking-deposit-cli**
-
-You can refer to the other tab on this guide on how to download and verify the staking-deposit-cli.
-
-Copy the file to the other USB stick.
-
-
-
-**Part 5 - Reboot your computer and into Tails OS**
-
-After you have done all the above, you can reboot. If you are connected by a LAN cable to the internet, you can disconnect it manually.
-
-Plug in the USB stick that has your Tails OS.
-
-On Mac, press and hold the Option key immediately upon hearing the startup chime. Release the key after Startup Manager appears.
-
-On Windows, it depends on your computer manufacturer. Usually it is by pressing F1 or F12. If it doesn't work, try googling "Enter boot options menu on \[Insert your PC brand]"
-
-Choose the USB stick that you loaded up with Tails OS to boot into Tails.
-
-
-
-**Part 6 - Welcome to Tails OS**
-
-![](../../.gitbook/assets/grub.png)
-
-You can boot with all the default settings.
-
-
-
-**Part 7 - Run the staking-deposit-cli**
-
-Plug in your other USB stick with the `staking-deposit-cli` file.
-
-You can then open your command line and navigate into the directory containing the file. Then you can continue the guide from the other tab.
-
-
-
-Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.
-
-```
-./deposit.sh new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
-```
-
-
-
-If you ran this command directly from your non-Tails USB stick, the validator keys should stay on it. If it hasn't, copy the directory over to your non-Tails USB stick.
-
-
-
-{% hint style="warning" %}
-:fire: **Make sure you have saved your validator keys directory in your other USB stick (non Tails OS) before you shutdown Tails. Tails will delete everything saved on it after you shutdown.**.
-{% endhint %}
-
-
-
-{% hint style="success" %}
-:tada: Congrats on learning how to use Tails OS to make an air gapped system. As a bonus, you can reboot into Tails OS again and connect to internet to surf the dark web or clear net safely!
-{% endhint %}
-
-
-
-Alternatively, follow this [ethstaker.cc](https://ethstaker.cc) exclusive for the low down on making a bootable usb.
-
-
-
-**Part 1 - Create a Ubuntu 20.04 USB Bootable Drive**
-
-Video link: [https://www.youtube.com/watch?v=DTR3PzRRtYU](https://www.youtube.com/watch?v=DTR3PzRRtYU)
-
-
-
-**Part 2 - Install Ubuntu 20.04 from the USB Drive**
-
-Video link: [https://www.youtube.com/watch?v=C97\_6MrufCE](https://www.youtube.com/watch?v=C97\_6MrufCE)
-
-You can copy via USB key the pre-built staking-deposit-cli binaries from an online machine to an air-gapped offline machine booted from usb. Make sure to disconnect the ethernet cable and/or WIFI.
-{% endtab %}
-{% endtabs %}
-
-2\. If using **staking-deposit-cli**, follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
-
-{% hint style="danger" %}
-**Do not send real mainnet ETH during this process!** :octagonal\_sign: Use only goerli ETH.
-{% endhint %}
-
-{% hint style="warning" %}
-**Caution**: Only deposit the 32 ETH per validator if you are confident your execution client (ETH1 node) and consensus client (ETH2 validator) will be fully synced and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
-{% endhint %}
-
-3\. Follow the steps at [https://goerli.launchpad.ethereum.org](https://goerli.launchpad.ethereum.org/en/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
-
-{% hint style="info" %}
-:whale: **Batch Depositing Tip**: If you have many deposits to make for many validators, consider using [Abyss.finance's eth2depositor tool.](https://abyss.finance/eth2depositor) This greatly improves the deposit experience as multiple deposits can be batched into one transaction, thereby saving gas fees and saving your fingers by minimizing Metamask clicking.
-
-Make sure to switch to **GÖRLI** network.
-
-Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://twitter.com/AbyssFinance/status/1379732382044069888)
-{% endhint %}
-
-4\. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
-
-5\. Connect to the launchpad with your Metamask wallet, review and accept terms. Ensure you're connected to **GÖRLI** network.
-
-6\. Confirm the transaction(s). There's one deposit transaction of 32 ETH for each validator.
-
-{% hint style="info" %}
-For instance, if you want to run 3 validators you will need to have (32 x 3) = 96 goerli ETH plus some extra to cover the gas fees.
-{% endhint %}
-
-{% hint style="info" %}
-Your transaction is sending and depositing your ETH to the goerli ETH2 deposit contract address.
-
-**Check**, _double-check_, _**triple-check**_ that the goerli Eth2 deposit contract address is correct.
-
-[`0xff50ed3d0ec03aC01D4C79aAd74928BFF48a7b2b`](https://goerli.etherscan.io/address/0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b)
-{% endhint %}
-
-{% hint style="danger" %}
-:fire: **Critical Crypto Reminder:** **Keep your mnemonic, keep your ETH.**
-
-* Write down your mnemonic seed **offline**. _Not email. Not cloud._
-* Multiple copies are better. _Best stored in a_ [_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
-* Make **offline backups**, such as to a USB key, of your **`validator_keys`** directory.
-{% endhint %}
-
-## :flying\_saucer: 3. Install execution client (ETH1 node)
-
-{% hint style="info" %}
-Ethereum requires a connection to the execution client in order to monitor for 32 ETH validator deposits. Hosting your own execution client is the best way to maximize decentralization and minimize dependency on third parties such as Infura.
-{% endhint %}
-
-{% hint style="warning" %}
-The subsequent steps assume you have completed the [best practices security guide.](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node)
-
-:octagonal\_sign: Do not run your processes as **ROOT** user. :scream:
-{% endhint %}
-
-### Create a jwtsecret file
-
-A jwtsecret file contains a hexadecimal string that is passed to both Execution Layer client and Consensus Layer clients, and is used to ensure authenticated communications between both clients.
-
-```bash
-#store the jwtsecret file at /secrets
-sudo mkdir -p /secrets
-
-#create the jwtsecret file
-openssl rand -hex 32 | tr -d "\n" | sudo tee /secrets/jwtsecret
-
-#enable read access
-sudo chmod 644 /secrets/jwtsecret
-```
-
-### Pick an execution client
-
-Your choice of either [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org)**,** [**Nethermind**](https://www.nethermind.io)**, or** [**Erigon**](https://github.com/ledgerwatch/erigon)**.**
-
-{% hint style="info" %}
-To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity. Find the latest distribution of execution clients here: [https://clientdiversity.org/](https://clientdiversity.org/)
-{% endhint %}
-
-{% tabs %}
-{% tab title="Geth" %}
-{% hint style="info" %}
-**Geth** - Go Ethereum is one of the three original implementations (along with C++ and Python) of the Ethereum protocol. It is written in **Go**, fully open source and licensed under the GNU LGPL v3.
-{% endhint %}
-
-
-
-Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
-
-
-
-:dna:**Install from the repository**
-
-```
-sudo add-apt-repository -y ppa:ethereum/ethereum
-sudo apt-get update -y
-sudo apt-get install ethereum -y
-```
-
-
-
-:gear: **Setup and configure systemd**
-
-Run the following to create a **unit file** to define your `eth1.service` configuration.
-
-Simply copy/paste the following.
-
-```bash
-cat > $HOME/eth1.service << EOF
-[Unit]
-Description=Geth Execution Layer Client service
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-Type=simple
-User=$USER
-Restart=on-failure
-RestartSec=3
-TimeoutSec=300
-ExecStart=/usr/bin/geth \
-  --goerli \
-  --metrics \
-  --pprof \
-  --authrpc.jwtsecret=/secrets/jwtsecret
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-
-
-{% hint style="info" %}
-**Nimbus Specific Configuration**: Add the following flag to the ExecStart line.
-
-```bash
---ws
-```
-{% endhint %}
-
-
-
-Move the unit file to `/etc/systemd/system` and give it permissions.
-
-```bash
-sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
-sudo chmod 644 /etc/systemd/system/eth1.service
-```
-
-
-
-Run the following to enable auto-start at boot time.
-
-```
-sudo systemctl daemon-reload
-sudo systemctl enable eth1
-```
-
-
-
-:chains:**Start geth**
-
-```
-sudo systemctl start eth1
-```
-{% endtab %}
-
-{% tab title="Besu" %}
-{% hint style="info" %}
-**Hyperledger Besu** is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
-{% endhint %}
-
-
-
-:dna:**Install java dependency**
-
-```
-sudo apt update
-sudo apt install openjdk-17-jdk -y libjemalloc-dev
-```
-
-
-
-:last\_quarter\_moon\_with\_face:**Download and unzip Besu**
-
-Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
-
-
-
-Run the following to automatically download the latest linux release, un-tar and cleanup.
-
-```bash
-BINARIES_URL="$(curl -s https://api.github.com/repos/hyperledger/besu/releases/latest | grep -o 'https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/.*tar.gz' | sed -e 's/.*\\n\(https.*.tar.gz$\)/\1/')"
-
-echo Downloading URL: $BINARIES_URL
-
-cd $HOME
-wget -O besu.tar.gz "$BINARIES_URL"
-tar -xzvf besu.tar.gz -C $HOME
-rm besu.tar.gz && mv besu-* besu
-```
-
-
-
-:gear: **Setup and configure systemd**
-
-```bash
-cat > $HOME/eth1.service << EOF
-[Unit]
-Description=Besu Execution Layer Client service
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-Type=simple
-User=$USER
-Restart=on-failure
-RestartSec=3
-KillSignal=SIGINT
-TimeoutStopSec=300
-Environment="JAVA_OPTS=-Xmx5g"
-ExecStart=$HOME/besu/bin/besu \
-  --network=goerli \
-  --metrics-enabled=true \
-  --sync-mode=X_CHECKPOINT \
-  --data-storage-format=BONSAI \
-  --data-path="$HOME/.besu" \
-  --engine-jwt-secret=/secrets/jwtsecret
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-
-
-Move the unit file to `/etc/systemd/system` and give it permissions.
-
-```bash
-sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
-sudo chmod 644 /etc/systemd/system/eth1.service
-```
-
-
-
-Run the following to enable auto-start at boot time.
-
-```
-sudo systemctl daemon-reload
-sudo systemctl enable eth1
-```
-
-
-
-:chains: **Start besu**
-
-```
-sudo systemctl start eth1
-```
-{% endtab %}
-
-{% tab title="Nethermind" %}
-{% hint style="info" %}
-**Nethermind** is a flagship Ethereum client all about performance and flexibility. Built on **.NET** core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
-{% endhint %}
-
-
-
-:gear: **Install dependencies**
-
-```
-sudo apt-get update
-sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
-```
-
-
-
-:last\_quarter\_moon\_with\_face:**Download and unzip Nethermind**
-
-Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
-
-Run the following to automatically download the latest linux release, un-zip and cleanup.
-
-```bash
-cd $HOME
-curl -s https://api.github.com/repos/NethermindEth/nethermind/releases/latest | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-x64 | xargs wget -q --show-progress
-unzip -o nethermind*.zip -d $HOME/nethermind
-rm nethermind*linux*.zip
-```
-
-
-
-:gear: **Setup and configure systemd**
-
-Run the following to create a **unit file** to define your `eth1.service` configuration.
-
-Simply copy/paste the following.
-
-```bash
-cat > $HOME/eth1.service << EOF
-[Unit]
-Description=Nethermind Execution Layer Client service
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-Type=simple
-User=$USER
-Restart=on-failure
-RestartSec=3
-KillSignal=SIGINT
-TimeoutStopSec=300
-WorkingDirectory=$HOME/nethermind
-ExecStart=$HOME/nethermind/Nethermind.Runner \
-  --config goerli \
-  --baseDbPath $HOME/.nethermind_goerli \
-  --Metrics.Enabled true \
-  --Metrics.ExposePort 6060 \
-  --Metrics.IntervalSeconds 10000 \
-  --Sync.SnapSync true \
-  --JsonRpc.JwtSecretFile /secrets/jwtsecret
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-
-
-Move the unit file to `/etc/systemd/system` and give it permissions.
-
-```bash
-sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
-sudo chmod 644 /etc/systemd/system/eth1.service
-```
-
-
-
-Run the following to enable auto-start at boot time.
-
-```
-sudo systemctl daemon-reload
-sudo systemctl enable eth1
-```
-
-
-
-{% hint style="info" %}
-On Ubuntu 22.xx+, a [workaround](https://github.com/NethermindEth/nethermind/issues/4039) is required.
-
-```
-sudo ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.so
-```
-{% endhint %}
-
-
-
-:chains: **Start Nethermind**
-
-```
-sudo systemctl start eth1
-```
-{% endtab %}
-
-{% tab title="Erigon" %}
-{% hint style="info" %}
-**Erigon** - Successor to OpenEthereum, Erigon is an implementation of Ethereum (aka "Ethereum client"), on the efficiency frontier, written in Go.
-{% endhint %}
-
-
-
-{% hint style="info" %}
-Erigon is considered alpha software and requires at least 16GB RAM.
-{% endhint %}
-
-
-
-:gear: **Install Go dependencies**
-
-```
-wget -O go.tar.gz https://go.dev/dl/go1.19.linux-amd64.tar.gz
-```
-
-```bash
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go.tar.gz
-```
-
-```bash
-echo export PATH=$PATH:/usr/local/go/bin>> $HOME/.bashrc
-source $HOME/.bashrc
-```
-
-
-
-Verify Go is properly installed and cleanup files.
-
-```bash
-go version
-rm go.tar.gz
-```
-
-
-
-:robot: **Build and install Erigon**
-
-Install build dependencies.
-
-```bash
-sudo apt-get update
-sudo apt install build-essential git
-```
-
-
-
-Review the latest release at [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)
-
-```bash
-cd $HOME
-git clone --recurse-submodules -j8 https://github.com/ledgerwatch/erigon.git
-cd erigon
-make erigon
-```
-
-
-
-​ Make data directory and update directory ownership.
-
-```bash
-sudo mkdir -p /var/lib/erigon
-sudo chown $USER:$USER /var/lib/erigon
-```
-
-
-
-​ :gear: **Setup and configure systemd**
-
-Run the following to create a **unit file** to define your `eth1.service` configuration.
-
-Simply copy/paste the following.
-
-```bash
-cat > $HOME/eth1.service << EOF
-[Unit]
-Description=Erigon Execution Layer Client service
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-Type=simple
-User=$USER
-Restart=on-failure
-RestartSec=3
-KillSignal=SIGINT
-TimeoutStopSec=300
-ExecStart=$HOME/erigon/build/bin/erigon \
- --datadir /var/lib/erigon \
- --chain goerli \
- --metrics \
- --pprof \
- --prune htc \
- --authrpc.jwtsecret=/secrets/jwtsecret
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-
-
-{% hint style="info" %}
-By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain (aka, for if tip block is no. 12'000'000, only the data between 11'910'000-12'000'000 will be kept).
-{% endhint %}
-
-
-
-Move the unit files to `/etc/systemd/system` and give it permissions.
-
-```bash
-sudo mv $HOME/eth1.service /etc/systemd/system/eth1.service
-```
-
-```bash
-sudo chmod 644 /etc/systemd/system/eth1.service
-```
-
-
-
-Run the following to enable auto-start at boot time.
-
-```
-sudo systemctl daemon-reload
-sudo systemctl enable eth1
-```
-
-
-
-:chains:**Start Erigon**
-
-```
-sudo systemctl start eth1
-```
-{% endtab %}
-{% endtabs %}
-
-### Helpful execution client commands
-
-{% tabs %}
-{% tab title="View Logs" %}
-```
-journalctl -fu eth1
-```
-{% endtab %}
-
-{% tab title="Stop" %}
-```
-sudo systemctl stop eth1
-```
-{% endtab %}
-
-{% tab title="Start" %}
-```
-sudo systemctl start eth1
-```
-{% endtab %}
-
-{% tab title="View Status" %}
-```
-sudo systemctl status eth1
-```
-{% endtab %}
-{% endtabs %}
-
-Now that your execution client is configured and started, proceed to the next step on setting up your consensus client.
-
-{% hint style="warning" %}
-If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.
-{% endhint %}
-
-## 4. Configure consensus client (beacon chain and validator)
-
-{% hint style="info" %}
-To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity. Find the latest distribution of consensus clients here: [https://clientdiversity.org/](https://clientdiversity.org/)
+:shield: **Recommendation** :shield:: Lodestar
 {% endhint %}
 
 Your choice of [Lighthouse](https://github.com/sigp/lighthouse), [Nimbus](https://github.com/status-im/nimbus-eth2), [Teku](https://consensys.net/knowledge-base/ethereum-2/teku/), [Prysm](https://github.com/prysmaticlabs/prysm) or [Lodestar](https://lodestar.chainsafe.io).
@@ -935,7 +18,7 @@ Your choice of [Lighthouse](https://github.com/sigp/lighthouse), [Nimbus](https:
 
 
 
-:gear: **4.1. Install rust dependency**
+:gear: **5.1. Install rust dependency**
 
 
 
@@ -965,7 +48,7 @@ sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev libclang-dev cl
 
 
 
-:bulb: **4.2. Build Lighthouse from source**
+:bulb: **5.2. Build Lighthouse from source**
 
 ```bash
 mkdir ~/git
@@ -1004,7 +87,7 @@ lighthouse --version
 
 
 
-:tophat: **4.3. Import validator key**
+:tophat: **5.3. Import validator key**
 
 
 
@@ -1034,7 +117,7 @@ WARNING: Do not import your validator keys into multiple validator clients and r
 
 
 
-:fire: **4.4. Configure port forwarding and/or firewall**
+:fire: **5.4. Configure port forwarding and/or firewall**
 
 
 
@@ -1047,7 +130,7 @@ Specific to your networking setup or cloud provider settings, ensure your valida
 
 
 
-:chains: **4.5. Start the beacon chain**
+:chains: **5.5. Start the beacon chain**
 
 
 
@@ -1069,6 +152,7 @@ Paste the following configuration into the file.
 Description=eth beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1079,7 +163,7 @@ ExecStart=<HOME>/.cargo/bin/lighthouse bn \
   --staking \
   --validator-monitor-auto \
   --metrics \
-  --checkpoint-sync-url=https://beaconstate.info \
+  --checkpoint-sync-url=https://goerli.beaconstate.info \
   --execution-endpoint http://127.0.0.1:8551 \
   --execution-jwt /secrets/jwtsecret
 
@@ -1126,7 +210,7 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 
 
 
-:dna: **4.6. Start the validator**
+:dna: **5.6. Start the validator**
 
 
 
@@ -1148,6 +232,7 @@ Paste the following configuration into the file.
 Description=eth validator service
 Wants=network-online.target beacon-chain.service
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1209,7 +294,9 @@ Nice work. Your validator is now managed by the reliability and robustness of sy
 [Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
 {% endhint %}
 
-
+{% hint style="info" %}
+**Note**: Nimbus combines both **validator client** and **beacon chain client** into one process.
+{% endhint %}
 
 :gear: **4.1. Build Nimbus from source**
 
@@ -1318,7 +405,7 @@ WARNING: Do not import your validator keys into multiple validator clients and r
 
 Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
-****
+
 
 * **Nimbus consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
@@ -1363,7 +450,7 @@ When the checkpoint sync is complete, you'll see the following message:
 
 > Done, your beacon node is ready to serve you! Don't forget to check that you're on the canonical chain by comparing the checkpoint root with other online sources. See https://nimbus.guide/trusted-node-sync.html for more information.
 
-****
+
 
 **🛠 Setup systemd service**
 
@@ -1387,6 +474,7 @@ Paste the following configuration into the file.
 Description=eth consensus layer beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1451,7 +539,9 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 [PegaSys Teku](https://consensys.net/knowledge-base/ethereum-2/teku/) (formerly known as Artemis) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its materity & ubiquity.
 {% endhint %}
 
-
+{% hint style="info" %}
+**Note**: Teku combines both **validator client** and **beacon chain client** into one process.
+{% endhint %}
 
 :gear: **4.1 Build Teku from source**
 
@@ -1460,7 +550,7 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 Install git.
 
 ```
-sudo apt-get install git -y
+sudo apt-get install git jq -y
 ```
 
 
@@ -1489,6 +579,8 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/ConsenSys/teku.git
 cd teku
+RELEASETAG=$(curl -s https://api.github.com/repos/ConsenSys/teku/releases/latest | jq -r .tag_name)
+git checkout tags/$RELEASETAG
 ./gradlew distTar installDist
 ```
 
@@ -1523,7 +615,7 @@ sudo cp -r $HOME/git/teku/build/install/teku /usr/bin/teku
 
 Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
-****
+
 
 * **Teku consensus client** will use port 9000 for tcp and udp
 * **Execution client** requires port 30303 for tcp and udp
@@ -1702,6 +794,7 @@ cat > $HOME/beacon-chain.service << EOF
 Description=eth consensus layer beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 User=$USER
@@ -1775,7 +868,7 @@ wget https://github.com/eth-clients/eth2-networks/raw/master/shared/prater/genes
 
 Specific to your networking setup or cloud provider settings, ensure your validator's firewall ports are open and reachable.
 
-****
+
 
 * **Prysm consensus client** will use port 12000 for udp and port 13000 for tcp
 * **Execution client** requires port 30303 for tcp and udp
@@ -1851,6 +944,7 @@ Paste the following configuration into the file.
 Description=eth consensus layer beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1952,6 +1046,8 @@ Paste the following configuration into the file.
 Description=eth validator service
 Wants=network-online.target beacon-chain.service
 After=network-online.target
+Documentation=https://www.coincashew.com
+
 
 [Service]
 Type=simple
@@ -2161,6 +1257,7 @@ Paste the following configuration into the file.
 Description=eth2 beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -2249,10 +1346,11 @@ Paste the following configuration into the file.
 Description=eth2 validator service
 Wants=network-online.target beacon-chain.service
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
-Typesimple
-User<USER>
+Type=simple
+User=<USER>
 Restart=on-failure
 WorkingDirectory=<HOME>/git/lodestar
 ExecStart=<HOME>/git/lodestar/lodestar validator \
@@ -2410,7 +1508,7 @@ sudo systemctl stop validator
 ## :track\_next: Next Steps
 
 {% hint style="info" %}
-Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to 1 week. On high-end machines with gigabit internet, expect your node to be fully syncing to take less than a day.
+Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to a day. On nodes with fast NVME drives and gigabit internet, expect your node to be fully synced in a few hours.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -2437,20 +1535,36 @@ Use [https://goerli.beaconcha.in](https://goerli.beaconcha.in/) to create alerts
 
 ### :thumbsup: Recommended Steps
 
-* Ensure your staking computer uses [Chrony or other NTP time synchronization service](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/synchronizing-time-with-chrony.md).
 * Subscribe to your Execution Client and Consensus Client's Github repository to be notified of new releases. Hit the Notifications button.
-* Join the [community on Discord and Reddit](guide-or-how-to-setup-a-validator-on-eth2-mainnet/joining-the-community-on-discord-and-reddit.md#discord) to discuss all things staking related.
-* Familiarize yourself with [Part II - Maintenance](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/) section, as you'll need to keep your staking node running at its best.
+* Join the [community on Discord and Reddit](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/joining-the-community-on-discord-and-reddit.md#discord) to discuss all things staking related.
+* Familiarize yourself with [Part II - Maintenance](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/) section, as you'll need to keep your staking node running at its best.
+* &#x20;**Finished testing?** Before decommissioning your validator, it's good practice to properly [exit your validator](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/voluntary-exiting-a-validator.md) as this improves staking network health.
 
 ### :checkered\_flag: Optional Steps
 
-* Setup [Monitoring with Grafana and Prometheus](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md)
-* Setup [Mobile App Notifications and Monitoring by beaconcha.in](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/mobile-app-node-monitoring-by-beaconchain.md)
-* Setup [External Monitoring with Uptime Check by Google Cloud](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/monitoring-with-uptime-check-by-google-cloud.md)
-* Setup [MEV-boost](mev-boost/) for extra staking rewards!
-* Familiarize yourself with [Part III - Tips](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/) section, as you dive deeper into staking.
-* :confetti\_ball: [**Support us on Gitcoin Grants**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)**:** We build this guide exclusively by community support!🙏
+* Setup [Monitoring with Grafana and Prometheus](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md)
+* Setup [Mobile App Notifications and Monitoring by beaconcha.in](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/mobile-app-node-monitoring-by-beaconchain.md)
+* Setup [External Monitoring with Uptime Check by Google Cloud](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/monitoring-with-uptime-check-by-google-cloud.md)
+* Setup [MEV-boost](../mev-boost/) for extra staking rewards!
+* Familiarize yourself with [Part III - Tips](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/) section, as you dive deeper into staking.
+
+### :telephone: **Need extra live support?**
+
+* Find Ethstaker frens on the [Ethstaker](https://discord.io/ethstaker) Discord and [coincashew](https://discord.gg/w8Bx8W2HPW) Discord.
+* Use reddit: [r/Ethstaker](https://www.reddit.com/r/ethstaker/), or [DMs](https://www.reddit.com/user/coincashew), or [r/coincashew](https://www.reddit.com/r/coincashew/)
+
+### :heart\_decoration: Like these guides?
+
+* **Audience-funded guide**: If you found this helpful, [please consider supporting it directly.](../../../donations.md) :pray:
+* **Support us on Gitcoin Grants:** We build this guide exclusively by community support!
+* **Feedback or pull-requests**: [https://github.com/coincashew/coincashew](https://github.com/coincashew/coincashew)
 
 {% hint style="success" %}
-### Finished with testnet and ready for mainnet staking? **** [**Mainnet guide available here.**](guide-or-how-to-setup-a-validator-on-eth2-mainnet/)****
+### Ready for mainnet staking?  [**Mainnet guide available here.**](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
+
+## Last Words
+
+> I stand upon the shoulders of giants and as such, invite you to stand upon mine. Use my work with or without attribution; I make no claim of "intellectual property." My ideas are the result of countless millenia of evolution - they belong to humanity.
+
+<figure><img src="../../../.gitbook/assets/leslie-solo.png" alt=""><figcaption><p>This is Leslie, the official mascot of Eth Staking</p></figcaption></figure>

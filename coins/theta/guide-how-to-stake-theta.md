@@ -61,7 +61,7 @@ You can view your TFUEL rewards in your THETA wallet or view them on the [block 
 {% endtab %}
 
 {% tab title="Linux / MacOS" %}
-### ****:robot: **1.** Download and create a node
+### :robot: **1.** Download and create a node
 
 First install curl if you need to.
 

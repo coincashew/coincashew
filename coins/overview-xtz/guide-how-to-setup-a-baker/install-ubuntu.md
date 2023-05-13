@@ -6,7 +6,7 @@ Downloading and installing Ubuntu is a fairly easy process.
 
 Download an Ubuntu ISO image from here:
 
-#### [`https://ubuntu.com/download/desktop`](https://ubuntu.com/download/desktop)``
+#### [`https://ubuntu.com/download/desktop`](https://ubuntu.com/download/desktop)
 
 Burn the ISO to disk, boot from the ISO into a VM or write it to a bootable USB drive.
 

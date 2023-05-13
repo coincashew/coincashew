@@ -12,9 +12,9 @@ A Ethereum node consists of the Execution Layer + Consensus Layer.
 
 A Ethereum Staking node is the previous plus a Validator client.
 
-<figure><img src="../../../../.gitbook/assets/client-stack.png" alt=""><figcaption><p>Client Stack</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/client-stack.png" alt=""><figcaption><p>Client Stack</p></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/eth-validator-diagram.png" alt=""><figcaption><p>Big picture: Execution / Consensus / Validator</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/eth-validator-diagram.png" alt=""><figcaption><p>Big picture: Execution / Consensus / Validator</p></figcaption></figure>
 
 ## :wave: Introduction
 
@@ -41,6 +41,11 @@ ssh <YourUserName>@<YourServersIP>
 
 Here's a [guide from Makeuseof](https://www.makeuseof.com/tag/beginners-guide-setting-ssh-linux-testing-setup/) to connect by SSH to your **remote node.**
 
+## :hammer\_pick: How to Run Commands
+
+* Commands are to be run in a terminal window or ssh terminal.
+* Commands preceded by `sudo` will prompt for your password at first, and periodically afterwards.
+
 ## :woman\_technologist: Skills for operating an staking node
 
 As a validator for Ethereum, you will typically have the following abilities:
@@ -60,7 +65,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 * **Operating system:** 64-bit Linux (i.e. Ubuntu 22.04.1 LTS Server or Desktop)
 * **Processor:** Dual core CPU, Intel Core i5–760 or AMD FX-8100 or better
 * **Memory:** 16GB RAM
-* **Storage:** 2TB SSD
+* **Storage:** 1TB SSD for testnet
 * **Internet:** Stable broadband internet connection with speeds at least 5 Mbps upload and download.
 * **Internet Data Plan**: At least 2 TB per month.
 * **Power:** Reliable electrical power. Mitigate with a [Uninterruptible Power Supply (UPS)](https://www.lifewire.com/best-uninterrupted-power-supplies-4142625).
@@ -68,6 +73,10 @@ As a validator for Ethereum, you will typically have the following abilities:
 * **Wallet**: Metamask installed
 
 ## :man\_lifting\_weights: Recommended Node Setup Requirements
+
+{% hint style="info" %}
+Once done with testnet staking, this hardware configuration would be suitable for a mainnet staking node.
+{% endhint %}
 
 * **Operating system:** 64-bit Linux (i.e. Ubuntu 22.04.1 LTS Server or Desktop)
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
@@ -83,7 +92,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 :bulb: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
 {% endhint %}
 
-<figure><img src="../../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
 
 {% hint style="success" %}
 :sparkles: **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
@@ -107,7 +116,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 
 ## :tools: Setup Ubuntu
 
-With your local or remote node, now you need to install an Operating System. This guide is designed for Ubuntu 22.04 LTS.
+With your local or remote node, now you need to install an Operating System. This guide is designed for Ubuntu 22.04.1 LTS.
 
 * To install **Ubuntu Server**, refer to [this guide.](https://ubuntu.com/tutorials/install-ubuntu-server#1-overview)
 * To install **Ubuntu Desktop**, refer to [this guide.](https://www.coincashew.com/coins/overview-xtz/guide-how-to-setup-a-baker/install-ubuntu)
@@ -117,7 +126,7 @@ With your local or remote node, now you need to install an Operating System. Thi
 {% endhint %}
 
 {% hint style="warning" %}
-**Tip**: When installing Ubuntu Server, ensure you are selecting “**Use an entire disk**” on the **Guided storage configuration** screen. Next screen will be the **Storage configuration** screen, ensure your settings are using all available disk storage. A [common issue](../part-iii-tips/using-all-available-lvm-disk-space.md) is that Ubuntu server defaults to using only 200GB.
+**Tip**: When installing Ubuntu Server, ensure you are selecting “**Use an entire disk**” on the **Guided storage configuration** screen. Next screen will be the **Storage configuration** screen, ensure your settings are using all available disk storage. A [common issue](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/using-all-available-lvm-disk-space.md) is that Ubuntu server defaults to using only 200GB.
 {% endhint %}
 
 ## :performing\_arts: Setup Metamask
@@ -138,4 +147,4 @@ At the end of this guide, you will build a staking validator node that hosts thr
 **Execution client (aka Eth1 node)** - Supplies incoming validator deposits from the eth mainnet chain to the beacon chain client.
 {% endhint %}
 
-![How eth2 fits together featuring Leslie the eth2 Rhino, the mascot named after American computer scientist Leslie Lamport](../../../../.gitbook/assets/eth2network.png)
+![How eth2 fits together featuring Leslie the eth2 Rhino, the mascot named after American computer scientist Leslie Lamport](../../../.gitbook/assets/eth2network.png)

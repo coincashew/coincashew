@@ -94,7 +94,7 @@ Pull the latest source and build it.
 
 ```bash
 cd $HOME/git/nimbus-eth2
-git pull && make -j$(nproc) update
+git checkout stable && git pull && make -j$(nproc) update
 make -j$(nproc) nimbus_beacon_node
 ```
 
@@ -122,15 +122,28 @@ sudo systemctl reload-or-restart beacon-chain
 {% tab title="Teku" %}
 Review release notes and check for breaking changes/features.
 
-[https://github.com/ConsenSys/teku/releases](https://github.com/ConsenSys/teku/releases)
+{% embed url="https://github.com/ConsenSys/teku/releases" %}
+
+{% hint style="info" %}
+If you encounter an error fetching the latest release TAG, install `jq` with following:
+
+```
+sudo apt-get install jq -y
+```
+{% endhint %}
 
 
 
-Pull the latest source and build it.
+Pull the latest release's tag and build it.
 
 ```bash
 cd $HOME/git/teku
-git pull
+git fetch --all
+RELEASETAG=$(curl -s https://api.github.com/repos/ConsenSys/teku/releases/latest | jq -r .tag_name)
+git checkout tags/$RELEASETAG
+
+echo "Updating to version: $RELEASETAG"
+
 ./gradlew distTar installDist
 ```
 
@@ -177,8 +190,7 @@ Pull the latest source and build it.
 
 ```bash
 cd $HOME/git/lodestar
-git switch stable
-git pull
+git checkout stable && git pull
 yarn install
 yarn run build
 ```

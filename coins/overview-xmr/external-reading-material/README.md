@@ -22,10 +22,9 @@
 
 {% embed url="https://www.whattomine.com/coins/101-xmr-randomx" %}
 
-## :woman_technologist: Developers
+## :woman\_technologist: Developers
 
 {% embed url="https://www.getmonero.org/resources/developer-guides/" %}
 
 {% embed url="https://web.getmonero.org/resources/developer-guides/wallet-rpc.html" %}
 
-****

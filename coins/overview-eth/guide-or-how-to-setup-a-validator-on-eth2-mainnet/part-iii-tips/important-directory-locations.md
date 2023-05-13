@@ -55,7 +55,7 @@ In case you need to locate your validator keys, database directories or other im
 {% tab title="Prysm" %}
 ```bash
 # Validator Keys
-~/.eth2validators/prysm-wallet-v2/direct
+~/.eth2validators/prysm-wallet-v2
 
 # Beacon Chain Data
 ~/.eth2/beaconchaindata
@@ -65,13 +65,16 @@ In case you need to locate your validator keys, database directories or other im
 {% tab title="Lodestar" %}
 ```bash
 # Validator Keystores
-$rootDir/keystores
+/var/lib/lodestar/keystores
 
 # Validator Secrets
-$rootDir/secrets
+/var/lib/lodestar/secrets
 
 # Validator DB Data
-$rootDir/validator-db
+/var/lib/lodestar/validator-db
+
+# Beacon Chain Data
+/var/lib/lodestar/chain-db
 ```
 {% endtab %}
 {% endtabs %}

@@ -1,22 +1,18 @@
+# Synchronizing time with Chrony
 
-# :clock3: 5. Synchronizing time with Chrony
+## :clock3: 5. Synchronizing time with Chrony
 
 {% hint style="info" %}
 Because beacon chain relies on accurate times to perform attestations and produce blocks, your computer's time must be accurate to real NTP or NTS time within 0.5 seconds.
 {% endhint %}
 
-
 {% hint style="info" %}
 chrony is an implementation of the Network Time Protocol and helps to keep your computer's time synchronized with NTP.
 {% endhint %}
 
-{% hint style="warning" %}
-Running multiple time synchronization services is known to cause issues. Ensure only either Chrony or only 1 NTP service is running.
-{% endhint %}
+## Setting Up chrony
 
-# Setting Up chrony
-
-## :hatching\_chick: Installation
+### :hatching\_chick: Installation
 
 To install chrony, type:
 
@@ -71,7 +67,7 @@ Restart chrony in order for config change to take effect.
 sudo systemctl restart chronyd.service
 ```
 
-## :robot: Helpful Commands
+### :robot: Helpful Commands
 
 To see the source of synchronization data.
 
@@ -85,7 +81,7 @@ To view the current status of chrony.
 chronyc tracking
 ```
 
-## :fire: Bonus Commands
+### :fire: Bonus Commands
 
 To pick your timezone run the following command:
 

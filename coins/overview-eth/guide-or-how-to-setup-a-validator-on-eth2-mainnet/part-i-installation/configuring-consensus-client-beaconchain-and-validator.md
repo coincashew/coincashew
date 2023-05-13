@@ -1,9 +1,11 @@
-# Installing consensus client (beacon chain and validator)
+# Step 5: Installing consensus client
 
 ## Pick a consensus client
 
 {% hint style="info" %}
-To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity. Find the latest distribution of consensus clients here: [https://clientdiversity.org/](https://clientdiversity.org/)
+To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity. Find the latest distribution of consensus clients here: [https://clientdiversity.org](https://clientdiversity.org/)
+
+:shield: **Recommendation** :shield:: Lodestar
 {% endhint %}
 
 Your choice of [Lighthouse](https://github.com/sigp/lighthouse), [Nimbus](https://github.com/status-im/nimbus-eth2), [Teku](https://consensys.net/knowledge-base/ethereum-2/teku/), [Prysm](https://github.com/prysmaticlabs/prysm) or [Lodestar](https://lodestar.chainsafe.io).
@@ -164,6 +166,7 @@ Paste the following configuration into the file.
 Description=eth beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -252,6 +255,7 @@ Paste the following configuration into the file.
 Description=eth validator service
 Wants=network-online.target beacon-chain.service
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -313,7 +317,9 @@ Nice work. Your validator is now managed by the reliability and robustness of sy
 [Nimbus](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
 {% endhint %}
 
-
+{% hint style="info" %}
+**Note**: Nimbus combines both **validator client** and **beacon chain client** into one process.
+{% endhint %}
 
 :gear: **4.1. Build Nimbus from source**
 
@@ -468,7 +474,7 @@ When the checkpoint sync is complete, you'll see the following message:
 
 > Done, your beacon node is ready to serve you! Don't forget to check that you're on the canonical chain by comparing the checkpoint root with other online sources. See https://nimbus.guide/trusted-node-sync.html for more information.
 
-****
+
 
 **🛠 Setup systemd service**
 
@@ -492,6 +498,7 @@ Paste the following configuration into the file.
 Description=eth consensus layer beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -556,7 +563,9 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 [PegaSys Teku](https://consensys.net/knowledge-base/ethereum-2/teku/) (formerly known as Artemis) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. PegaSys is an arm of [ConsenSys](https://consensys.net) dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform. Teku is Apache 2 licensed and written in Java, a language notable for its maturity & ubiquity.
 {% endhint %}
 
-
+{% hint style="info" %}
+**Note**: Teku combines both **validator client** and **beacon chain client** into one process.
+{% endhint %}
 
 :gear: **4.1 Build Teku from source**
 
@@ -594,6 +603,8 @@ mkdir ~/git
 cd ~/git
 git clone https://github.com/ConsenSys/teku.git
 cd teku
+RELEASETAG=$(curl -s https://api.github.com/repos/ConsenSys/teku/releases/latest | jq -r .tag_name)
+git checkout tags/$RELEASETAG
 ./gradlew distTar installDist
 ```
 
@@ -814,6 +825,7 @@ cat > $HOME/beacon-chain.service << EOF
 Description=eth consensus layer beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 User=$USER
@@ -960,6 +972,7 @@ Paste the following configuration into the file.
 Description=eth consensus layer beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1087,6 +1100,7 @@ Paste the following configuration into the file.
 Description=eth validator service
 Wants=network-online.target beacon-chain.service
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1296,6 +1310,7 @@ Paste the following configuration into the file.
 Description=eth2 beacon chain service
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1393,6 +1408,7 @@ Paste the following configuration into the file.
 Description=eth2 validator service
 Wants=network-online.target beacon-chain.service
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
@@ -1554,7 +1570,7 @@ sudo systemctl stop validator
 ## :track\_next: Next Steps
 
 {% hint style="info" %}
-Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to 1 week. On high-end machines with gigabit internet, expect your node to be fully syncing to take less than a day.
+**Sync Timeline**: Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to 1 week. On high-end machines with gigabit internet, expect your node to be fully syncing to take less than a day.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -1562,7 +1578,7 @@ Syncing the consensus client is instantaneous with checkpoint sync but the execu
 
 
 
-How do I know I'm fully synced ?
+**How do I know I'm fully synced?**
 
 * Check your execution client's logs and compare the block number against the most recent block on [etherscan.io](https://etherscan.io/)
   * Check EL logs: `journalctl -fu eth1`
@@ -1571,9 +1587,11 @@ How do I know I'm fully synced ?
 {% endhint %}
 
 {% hint style="info" %}
-Once your EL+CL is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
+**Activation Queue**: Once your EL+CL is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. Check the queue length: [https://wenmerge.com ](https://wenmerge.com)
 
-Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track your validator's performance.
+**Activated**: When you're activated, your validator will begin creating and voting on blocks while earning staking rewards.
+
+**Quick monitoring**: Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track your validator's performance.
 {% endhint %}
 
 {% hint style="success" %}
@@ -1582,7 +1600,6 @@ Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track you
 
 ### :thumbsup: Recommended Steps
 
-* Ensure your staking computer uses [Chrony or other NTP time synchronization service](synchronizing-time-with-chrony.md).
 * Subscribe to your Execution Client and Consensus Client's Github repository to be notified of new releases. Hit the Notifications button.
 * Join the [community on Discord and Reddit](../joining-the-community-on-discord-and-reddit.md#discord) to discuss all things staking related.
 * Familiarize yourself with [Part II - Maintenance](../part-ii-maintenance/) section, as you'll need to keep your staking node running at its best.
@@ -1594,4 +1611,20 @@ Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track you
 * Setup [External Monitoring with Uptime Check by Google Cloud](monitoring-with-uptime-check-by-google-cloud.md)
 * Setup [MEV-boost](../../mev-boost/) for extra staking rewards!
 * Familiarize yourself with [Part III - Tips](../part-iii-tips/) section, as you dive deeper into staking.
-* :confetti\_ball: [**Support us on Gitcoin Grants**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)**:** We build this guide exclusively by community support!🙏
+
+### :telephone: **Need extra live support?**
+
+* Find Ethstaker frens on the [Ethstaker](https://discord.io/ethstaker) Discord and [coincashew](https://discord.gg/w8Bx8W2HPW) Discord.
+* Use reddit: [r/Ethstaker](https://www.reddit.com/r/ethstaker/), or [DMs](https://www.reddit.com/user/coincashew), or [r/coincashew](https://www.reddit.com/r/coincashew/)
+
+### :heart\_decoration: Like these guides?
+
+* **Audience-funded guide**: If you found this helpful, [please consider supporting it directly.](../../../../donations.md) :pray:
+* **Support us on Gitcoin Grants:** We build this guide exclusively by community support!
+* **Feedback or pull-requests**: [https://github.com/coincashew/coincashew](https://github.com/coincashew/coincashew)
+
+## Last Words
+
+> I stand upon the shoulders of giants and as such, invite you to stand upon mine. Use my work with or without attribution; I make no claim of "intellectual property." My ideas are the result of countless millenia of evolution - they belong to humanity.
+
+<figure><img src="../../../../.gitbook/assets/leslie-solo.png" alt=""><figcaption><p>This is Leslie, the official mascot of Eth Staking</p></figcaption></figure>

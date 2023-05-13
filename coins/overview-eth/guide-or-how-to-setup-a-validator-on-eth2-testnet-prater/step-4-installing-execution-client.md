@@ -1,6 +1,8 @@
 # Step 4: Installing execution client
 
-## Pick an execution client
+## :flying\_saucer: Install execution client (ETH1 node)
+
+### Pick an execution client
 
 Your choice of either [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org)**,** [**Nethermind**](https://www.nethermind.io)**, or** [**Erigon**](https://github.com/ledgerwatch/erigon)**.**
 
@@ -15,8 +17,6 @@ To strengthen Ethereum's resilience against potential attacks or consensus bugs,
 {% hint style="info" %}
 **Geth** - Go Ethereum is one of the three original implementations (along with C++ and Python) of the Ethereum protocol. It is written in **Go**, fully open source and licensed under the GNU LGPL v3.
 {% endhint %}
-
-
 
 Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
 
@@ -34,13 +34,9 @@ sudo apt-get install ethereum -y
 
 :gear: **Setup and configure systemd**
 
-
-
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
 Simply copy/paste the following.
-
-
 
 ```bash
 cat > $HOME/eth1.service << EOF
@@ -57,7 +53,7 @@ Restart=on-failure
 RestartSec=3
 TimeoutSec=690
 ExecStart=/usr/bin/geth \
-  --mainnet \
+  --goerli \
   --metrics \
   --pprof \
   --authrpc.jwtsecret=/secrets/jwtsecret
@@ -66,8 +62,6 @@ ExecStart=/usr/bin/geth \
 WantedBy=multi-user.target
 EOF
 ```
-
-
 
 Move the unit file to `/etc/systemd/system` and give it permissions.
 
@@ -108,14 +102,12 @@ sudo systemctl start eth1
 
 ```
 sudo apt update
-sudo apt install openjdk-17-jre -y libjemalloc-dev
+sudo apt install openjdk-17-jdk -y libjemalloc-dev
 ```
 
 
 
 :last\_quarter\_moon\_with\_face:**Download and unzip Besu**
-
-
 
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
@@ -138,12 +130,6 @@ rm besu.tar.gz && mv besu-* besu
 
 :gear: **Setup and configure systemd**
 
-
-
-Run the following to create a **unit file** to define your `eth1.service` configuration.
-
-Simply copy/paste the following.
-
 ```bash
 cat > $HOME/eth1.service << EOF
 [Unit]
@@ -161,24 +147,17 @@ KillSignal=SIGINT
 TimeoutStopSec=690
 Environment="JAVA_OPTS=-Xmx5g"
 ExecStart=$HOME/besu/bin/besu \
-  --network=mainnet \
+  --network=goerli \
   --metrics-enabled=true \
   --sync-mode=X_CHECKPOINT \
   --data-storage-format=BONSAI \
   --data-path="$HOME/.besu" \
-  --Xplugin-rocksdb-high-spec-enabled \
   --engine-jwt-secret=/secrets/jwtsecret
 
 [Install]
 WantedBy=multi-user.target
 EOF
 ```
-
-
-
-{% hint style="info" %}
-Good to know: --Xplugin-rocksdb-high-spec-enabled allows Besu increased database performance. Recommended for machines with 16GB of RAM or more.
-{% endhint %}
 
 
 
@@ -228,8 +207,6 @@ sudo apt-get install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 
 :last\_quarter\_moon\_with\_face:**Download and unzip Nethermind**
 
-
-
 Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
 
 Run the following to automatically download the latest linux release, un-zip and cleanup.
@@ -244,8 +221,6 @@ rm nethermind*linux*.zip
 
 
 :gear: **Setup and configure systemd**
-
-
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
@@ -268,13 +243,14 @@ KillSignal=SIGINT
 TimeoutStopSec=690
 WorkingDirectory=$HOME/nethermind
 ExecStart=$HOME/nethermind/Nethermind.Runner \
-  --baseDbPath $HOME/.nethermind \
+  --config goerli \
+  --baseDbPath $HOME/.nethermind_goerli \
   --Metrics.Enabled true \
   --Metrics.ExposePort 6060 \
   --Metrics.IntervalSeconds 10000 \
   --Sync.SnapSync true \
-  --Sync.AncientBodiesBarrier 11052984 \
-  --Sync.AncientReceiptsBarrier 11052984 \
+  --Sync.AncientBodiesBarrier 4367322 \
+  --Sync.AncientReceiptsBarrier 4367322 \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret
 
 [Install]
@@ -317,17 +293,7 @@ sudo systemctl start eth1
 **Erigon** - Successor to OpenEthereum, Erigon is an implementation of Ethereum (aka "Ethereum client"), on the efficiency frontier, written in Go.
 {% endhint %}
 
-
-
-{% hint style="info" %}
-Erigon is considered alpha software and requires at least 16GB RAM.
-{% endhint %}
-
-
-
 :gear: **Install Go dependencies**
-
-Find the [latest release of Go from here ](https://go.dev/doc/install)and update the **download URL** for the **tar.gz file** below.
 
 ```
 wget -O go.tar.gz https://go.dev/dl/go1.19.linux-amd64.tar.gz
@@ -355,8 +321,6 @@ rm go.tar.gz
 
 :robot: **Build and install Erigon**
 
-
-
 Install build dependencies.
 
 ```bash
@@ -375,20 +339,18 @@ cd erigon
 make erigon
 ```
 
-​
 
-Make data directory and update directory ownership.
+
+​ Make data directory and update directory ownership.
 
 ```bash
 sudo mkdir -p /var/lib/erigon
 sudo chown $USER:$USER /var/lib/erigon
 ```
 
-​
-
-:gear: **Setup and configure systemd**
 
 
+​ :gear: **Setup and configure systemd**
 
 Run the following to create a **unit file** to define your `eth1.service` configuration.
 
@@ -411,25 +373,17 @@ KillSignal=SIGINT
 TimeoutStopSec=690
 ExecStart=$HOME/erigon/build/bin/erigon \
  --datadir /var/lib/erigon \
- --chain mainnet \
+ --chain goerli \
  --metrics \
  --pprof \
  --prune htc \
- --prune.r.before=11052984 \
+ --prune.r.before=4367322 \
  --authrpc.jwtsecret=/secrets/jwtsecret
 
 [Install]
 WantedBy=multi-user.target
 EOF
 ```
-
-
-
-{% hint style="info" %}
-By default with Erigon, `--prune` deletes data older than 90K blocks from the tip of the chain. For example, if tip block is no. 12'000'000, then only the data between 11'910'000-12'000'000 will be kept).
-{% endhint %}
-
-
 
 Move the unit files to `/etc/systemd/system` and give it permissions.
 
@@ -463,7 +417,7 @@ sudo systemctl start eth1
 ### :tools: Helpful execution client commands
 
 {% tabs %}
-{% tab title="View logs" %}
+{% tab title="View Logs" %}
 ```
 journalctl -fu eth1
 ```
@@ -488,10 +442,8 @@ sudo systemctl status eth1
 {% endtab %}
 {% endtabs %}
 
-### :ladder: Next Steps
-
-* Now that your execution client is configured and started, proceed to the [next section to setup your consensus client.](configuring-consensus-client-beaconchain-and-validator.md)
+Now that your execution client is configured and started, proceed to the next step on setting up your consensus client.
 
 {% hint style="warning" %}
-If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synched to the Ethereum network.
+If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.
 {% endhint %}

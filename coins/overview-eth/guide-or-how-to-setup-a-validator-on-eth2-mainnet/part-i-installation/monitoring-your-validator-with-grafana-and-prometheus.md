@@ -236,13 +236,31 @@ Verify that the services are running properly:
 sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
-{% hint style="info" %}
-:bulb: **Reminder**: Ensure port 3000 is open on the firewall and/or port forwarded if you intend to view monitoring info from a different machine.
-{% endhint %}
+<details>
+
+<summary>Grafana Security: <strong>SSH Tunnels</strong></summary>
+
+Do not expose Grafana (port 3000) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel.
+
+Example of how to create a ssh tunnel in Linux or MacOS:
+
+```
+ssh -N -v <user>@<staking.node.ip.address> -L 3000:localhost:3000
+```
+
+Example of how to create a ssh tunnel in Windows with [Putty](https://putty.org/):
+
+Navigate to Connection > SSH > Tunnels > Enter Source Port `3000` > Enter Destination `localhost:3000` > Click Add
+
+![](../../../../.gitbook/assets/image.png)
+
+Now you can access Grafana on your local machine by pointing a web browser to [http://localhost:3000](http://localhost:3000/)
+
+</details>
 
 ### :signal\_strength: 6.2 Setting up Grafana Dashboards
 
-1. Open [http://localhost:3000](http://localhost:3000) or http://\<your validator's ip address>:3000 in your local browser.
+1. Open [http://localhost:3000](http://localhost:3000) or http://\<your validator's ip address>:3000 in your web browser.
 2. Login with **admin** / **admin**
 3. Change password
 4. Click the **configuration gear** icon, then **Add data Source**
@@ -369,7 +387,7 @@ Credits: [https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashbo
 
 Includes: CPU, memory, disk IO, network, temperature and other monitoring metrics。
 
-![](../../../../.gitbook/assets/grafana.png)
+![](<../../../../.gitbook/assets/grafana (1).png>)
 
 ![](../../../../.gitbook/assets/node-exporter2.png)
 

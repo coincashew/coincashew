@@ -3,7 +3,6 @@
 ## :checkered\_flag: 1. Prerequisites
 
 * 64bit Intel or AMD CPU
-* AMD/Nvidia GPU
 * ARM CPU
 
 ## :last\_quarter\_moon\_with\_face: 2. Install and use a compatible wallet
@@ -20,21 +19,23 @@
 [monero-official-gui.md](../../wallets/desktop-wallets/monero-official-gui.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
-[coinomi-multi-chain-assets.md](../../wallets/mobile-wallets/coinomi-multi-chain-assets.md)
-{% endcontent-ref %}
-
-{% content-ref url="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
-[exodus-multi-chain-assets.md](../../wallets/mobile-wallets/exodus-multi-chain-assets.md)
-{% endcontent-ref %}
-
-{% content-ref url="../../wallets/browser-wallets/mymonero-xmr.md" %}
-[mymonero-xmr.md](../../wallets/browser-wallets/mymonero-xmr.md)
-{% endcontent-ref %}
-
 ## :pick: 3. Install mining software
 
-### CPU & GPU Mining software: xmrig
+### Recommended Option 1: Gupux, all-in-one mining solution with p2pool and xmrig
+
+1. Download at [https://github.com/hinto-janai/gupax/releases](https://github.com/hinto-janai/gupax/releases)
+2. Extract the archive
+3. Launch Gupax
+4. Enter your Monero address in the `P2Pool` tab
+5. Select a [`Remote Monero Node`](https://github.com/hinto-janai/gupax#remote-monero-nodes) (or run your own local [Monero Node](https://github.com/hinto-janai/gupax#running-a-local-monero-node))
+6. Start P2Pool
+7. Start XMRig
+
+{% hint style="info" %}
+You are now mining to your own instance of P2Pool, welcome to the world of decentralized peer-to-peer mining!
+{% endhint %}
+
+### Option 2: xmrig
 
 1.  Download latest miner binaries from
 
@@ -44,29 +45,29 @@
     [https://miningpoolstats.stream/monero](https://miningpoolstats.stream/monero)
 3. Configure your xmrig with the [configuration wizard.](https://xmrig.com/wizard)
 
-**Example: Command Line to mine with CPU and AMD GPU**
+**Example: Command Line to mine with CPU**
 
 {% tabs %}
 {% tab title="Windows" %}
 ```
-xmrig.exe --opencl -o de.minexmr.com:443 -u 44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A -k --tls
+xmrig.exe -o de.minexmr.com:443 -u 44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A
 ```
 {% endtab %}
 
 {% tab title="Linux" %}
 ```
-./xmrig --opencl -o de.minexmr.com:443 -u 44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A -k --tls
+./xmrig -o de.minexmr.com:443 -u 44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A
 ```
 {% endtab %}
 
 {% tab title="Mac" %}
 ```
-./xmrig --opencl -o de.minexmr.com:443 -u 44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A -k --tls
+./xmrig -o de.minexmr.com:443 -u 44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjrpDtQGv7SqSsaBYBb98uNbr2VBBEt7f2wfn3RVGQBEP3A
 ```
 {% endtab %}
 {% endtabs %}
 
-## :page\_facing\_up: 4. Enable Huge Pages
+## :page\_facing\_up: 4. Optional: Enable Huge Pages
 
 {% hint style="success" %}
 Enabling huge pages can boost hash rate up to 50%
@@ -113,18 +114,7 @@ sudo bash -c "echo vm.nr_hugepages=1280 >> /etc/sysctl.conf"
 
 ### 5.1 How much performance should I expect from my hardware?
 
-{% tabs %}
-{% tab title="CPU Mining" %}
 Find your potential CPU mining performance at [https://monerobenchmarks.info/](https://monerobenchmarks.info/)
-{% endtab %}
-
-{% tab title="GPU Mining" %}
-1. Visit [whattomine.com](https://www.whattomine.com/)
-2. Enter the # of GPUs
-3. Press **RandomX**
-4. Press **Calculate**
-{% endtab %}
-{% endtabs %}
 
 ### 5.2 How much can I expect to mine?
 
@@ -132,7 +122,9 @@ Enter your hash rate at [whattomine.com](https://www.whattomine.com/coins/101-xm
 
 ### 5.3 When will I get paid?
 
-When your earnings reaches the payout limit or threshold, payment is automatically sent to your address.
+**Gupax with p2pools:** On the status tab, view the share/block time calculator.
+
+**xmrig with mining pools:** When your earnings reaches the payout limit or threshold, payment is automatically sent to your address.
 
 ### 5.4 How can I optimize and tune my miner?
 
