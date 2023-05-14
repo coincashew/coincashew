@@ -8,7 +8,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 | Release Date | Cardano Node Version | GHC Version | Cabal Version |
 | :----------: | :------------------: | :---------: | :-----------: |
-| Jan 27, 2023 |        1.35.5        |    8.10.7   |    3.6.2.0    |
+|  May 9, 2023 |         8.0.0        |    8.10.7   |    3.6.2.0    |
 
 **To install GHC and Cabal:**
 
@@ -85,18 +85,7 @@ cd $HOME/git
 ```bash
 git clone https://github.com/input-output-hk/libsodium
 cd libsodium
-git checkout 66f017f1
-./autogen.sh
-./configure
-make
-sudo make install
-```
-9.1\. To download, compile and install `libsodium` for cardano-node builds of version 8.0.0 and above, type:
-
-```bash
-git clone https://github.com/input-output-hk/libsodium
-cd libsodium
-git checkout dbb48cce
+git checkout dbb48cc
 ./autogen.sh
 ./configure
 make

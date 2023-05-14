@@ -115,7 +115,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 | Release Date | Cardano Node Version | GHC Version | Cabal Version |
 | :----------: | :------------------: | :---------: | :-----------: |
-| Jan 27, 2023 |        1.35.5        |    8.10.7   |    3.6.2.0    |
+|  May 9, 2023 |         8.0.0        |    8.10.7   |    3.6.2.0    |
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -150,6 +150,22 @@ cabal --version
 To set GHCup, GHC and Cabal versions using a graphical user interface, type `ghcup tui` in a terminal window.
 {% endhint %}
 
+**To update Libsodium:**
+
+As of version 8.0.0, a new version of libsodium is required.
+
+```bash
+cd $HOME/git
+git clone https://github.com/input-output-hk/libsodium
+cd libsodium
+git checkout dbb48cc
+./autogen.sh
+./configure
+make
+make check
+sudo make install
+```
+
 ## :inbox\_tray:Downloading New Configuration Files
 
 A new Cardano Node release may include updated configuration files. If configuration files are updated for a release, then you need to download and install the new configuration files when you upgrade a node.
@@ -183,7 +199,23 @@ If you follow the Coin Cashew instructions for [Preparing Configuration Files](.
 
 3\. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), then browse to the latest release, then click to expand the Downloads dropdown list in the Technical Specification section of the release notes, and then click the Configuration Files link.
 
-4\. On the Cardano Configurations page, click the following links to download configuration files for the `mainnet` cluster to the folder where you created backups of your current configuration files in step 2: `config`, `byronGenesis`, `shelleyGenesis`, `alonzoGenesis` and `topology`
+4\. On the Cardano Configurations page, click the following links to download configuration files for the `mainnet` cluster to the folder where you created backups of your current configuration files in step 2: `config`, `byronGenesis`, `shelleyGenesis`, `alonzoGenesis, conwayGenesis` and `topology`
+
+{% hint style="warning" %}
+As of version 8.0.0, you need to download a new config file, `conway-genesis.json`
+
+```bash
+cd <ConfigurationFileFolder>
+wget https://book.world.dev.cardano.org/environments/mainnet/conway-genesis.json
+```
+
+Then, update `mainnet-config.json` with two lines additional lines:
+
+```
+"ConwayGenesisFile": "conway-genesis.json", 
+"ConwayGenesisHash": "011788fdf180fd6f0fe2d9916b8345c289ffa093014805cbc681344be7200926",
+```
+{% endhint %}
 
 {% hint style="info" %}
 If you want to download new configuration files using the command line, then navigate to the folder where you created backups of your current configuration files in step 2 using a terminal window, and then type the following command where `<ConfigurationFileURL>` is the URL for the configuration file that you want to download: `wget <ConfigurationFileURL>`
@@ -210,7 +242,7 @@ Visit the [official Github](https://github.com/input-output-hk/cardano-node/rele
 
 2. Download the latest static binaries for Linux. Update below URL with the latest link before continuing.
 
-<pre><code><strong>wget https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-1.35.5-linux.tar.gz
+<pre><code><strong>wget https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-8.0.0-linux.tar.gz
 </strong></code></pre>
 
 3. Un-tar the archive.
