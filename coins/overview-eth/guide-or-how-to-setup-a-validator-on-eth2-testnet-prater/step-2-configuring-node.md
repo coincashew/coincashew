@@ -2,6 +2,16 @@
 
 ## :hammer\_pick: Node Configuration
 
+### Logging to the node
+
+**Using Ubuntu Server**: Begin by connecting with your SSH client.
+
+```bash
+ssh username@staking.node.ip.address
+```
+
+**Using Ubuntu Desktop**: You're likely in-front of your **local** node. Simply open a terminal window from anywhere by typing Ctrl+Alt+T.
+
 ### Updating the node
 
 Ensure all the latest packages and patches are installed first, then reboot.
@@ -21,14 +31,6 @@ sudo reboot
 
 <summary>Creating a user called ethereum</summary>
 
-**Using Ubuntu Server**: Begin by connecting with your SSH client.
-
-```bash
-ssh username@staking.node.ip.address
-```
-
-**Using Ubuntu Desktop**: You're likely infront of your **local** node. Simply open a terminal window from anywhere by typing Ctrl+Alt+T.
-
 Create a new user called `ethereum`
 
 ```bash
@@ -46,6 +48,21 @@ Add ethereum to the sudo group
 ```bash
 sudo usermod -aG sudo ethereum
 ```
+
+Log out and log back in as this new user.
+
+**Using Ubuntu Server**: Use the following commands.
+
+```bash
+exit
+ssh ethereum@staking.node.ip.address
+```
+
+**Using Ubuntu Desktop**: Log out can be found in the top right corner under the Power Icon. Click the `ethereum` user account and enter password.
+
+
+
+#### :bulb: For the rest of this guide, remain logged in as this `ethereum` user.
 
 </details>
 
