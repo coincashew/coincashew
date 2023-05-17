@@ -3,7 +3,7 @@
 Create your pool's metadata with a JSON file. Update with your pool information.
 
 {% hint style="warning" %}
-**ticker** must be between 3-9 characters in length. Characters must be A-Z and 0-9 only.
+**ticker** must be between 3-5 characters in length. Characters must be A-Z and 0-9 only.
 {% endhint %}
 
 {% hint style="warning" %}
