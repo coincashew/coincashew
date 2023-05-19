@@ -51,7 +51,7 @@ If `qKesOnDiskOperationalCertificateNumber` is more than one (1) greater than `q
 
 When your stake pool has minted zero (0) blocks, then no value for `qKesNodeStateOperationalCertificateNumber` is registered by the blockchain protocol. Therefore, retrieving the current counter value for your stake pool returns the value `null` for the `qKesNodeStateOperationalCertificateNumber` key.
 
-After minting your first block, then retrieving the current counter value returns the value zero (0) for the `qKesNodeStateOperationalCertificateNumber` key.
+After a stake pool mints a block for the first time, then retrieving the current counter value returns the value zero (0) for the `qKesNodeStateOperationalCertificateNumber` key.
 
 Therefore, when your stake pool has minted zero (0) blocks, then you MUST set the value zero (`0`) for the `qKesOnDiskOperationalCertificateNumber` key so that your stake pool creates a block successfully when elected to mint a block for the first time.
 <!-- Source: https://forum.cardano.org/t/qkesnodestateoperationalcertificatenumber-null/106046 -->
