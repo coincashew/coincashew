@@ -238,7 +238,7 @@ sudo systemctl status grafana-server.service prometheus.service prometheus-node-
 
 <details>
 
-<summary>Grafana Security: <strong>SSH Tunnels</strong></summary>
+<summary><span data-gb-custom-inline data-tag="emoji" data-code="1f525">🔥</span> Grafana Security: <strong>SSH Tunnels</strong></summary>
 
 Do not expose Grafana (port 3000) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel.
 

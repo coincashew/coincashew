@@ -261,7 +261,7 @@ ssh ethereum@staking.node.ip.address
 
 **Optional**: Make logging in easier by updating your local ssh config.
 
-To simplify the ssh command needed to log in to your server, consider updating your local `$HOME/myUserName/.ssh/config` file:
+To simplify the ssh command needed to log in to your server, consider updating on your local client machine the `$HOME/myUserName/.ssh/config` file:
 
 ```bash
 Host ethereum-server
@@ -346,13 +346,20 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 ```
 
-### Allow SSH Port 22
+### Configure SSH Port 22
 
 If your node is remote in the cloud, you will need to enable SSH port 22 in order to connect.
 
 ```bash
-# Allow ssh access
-sudo ufw allow 22/tcp
+# Allow ssh access for remote node
+sudo ufw allow 22/tcp comment 'Allow SSH port'
+```
+
+If your node is local at home and you have keyboard access to it, it's good practice to deny SSH port 22.
+
+```bash
+# Deny ssh access for local node
+sudo ufw deny 22/tcp comment 'Deny SSH port'
 ```
 
 ### Allow Execution Client Port 30303
@@ -360,7 +367,7 @@ sudo ufw allow 22/tcp
 Peering on port 30303, execution clients use this port for communication with other network peers.
 
 ```bash
-sudo ufw allow 30303
+sudo ufw allow 30303 comment 'Allow execution client port'
 ```
 
 ### Allow Consensus Client port
@@ -369,11 +376,11 @@ Consensus clients generally use port 9000 for communication with other network p
 
 ```bash
 # Lighthouse, Lodestar, Nimbus, Teku
-sudo ufw allow 9000
+sudo ufw allow 9000 comment 'Allow consensus client port'
 
 # Prysm
-sudo ufw allow 13000/tcp
-sudo ufw allow 12000/udp
+sudo ufw allow 13000/tcp comment 'Allow consensus client port'
+sudo ufw allow 12000/udp comment 'Allow consensus client port'
 ```
 
 ### Enable firewall
@@ -385,7 +392,7 @@ sudo ufw enable
 sudo ufw status numbered 
 ```
 
-Example of properly configured ufw status for Lighthouse.
+Example of ufw status for a remote staking node configured for Lighthouse consensus client.
 
 > ```csharp
 >      To                         Action      From
@@ -449,15 +456,6 @@ sudo nano /etc/fail2ban/jail.local
 
 Add the following lines to the bottom of the file.
 
-{% hint style="info" %}
-:fire: **Whitelisting IP address tip**: The `ignoreip` parameter accepts IP addresses, IP ranges or DNS hosts that you can specify to be allowed to connect. This is where you want to specify your local client machine, local IP range or local domain, separated by spaces.
-
-```bash
-# Example
-ignoreip = 192.168.1.0/24 127.0.0.1/8
-```
-{% endhint %}
-
 ```bash
 [sshd]
 enabled = true
@@ -465,8 +463,6 @@ port = 22
 filter = sshd
 logpath = /var/log/auth.log
 maxretry = 3
-# whitelisted IP addresses
-ignoreip = <list of whitelisted IP address, your client machine>
 ```
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.

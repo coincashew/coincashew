@@ -156,11 +156,12 @@ sed -i config.json -e "s/127.0.0.1/0.0.0.0/g"
 {% endtabs %}
 
 {% hint style="info" %}
-Port forwarding and firewall config:
+A note on port forwarding and firewall configuration.
 
-On block producer node (or relaynodeN), you need to open ports 12798 and 9100
+Block producer node ports 12798 and 9100 should be reachable from the relaynode1, which is hosting Prometheus and Grafana.
 
-On relaynode1, you will need to open ports 3000 for grafana.
+* Port 12798 is for Cardano-Node's prometheus metrics.
+* Port 9100 is for node-exporter metrics.
 {% endhint %}
 
 Stop and restart your stake pool.
@@ -197,9 +198,31 @@ curl -s 127.0.0.1:12798/metrics
 {% endtab %}
 {% endtabs %}
 
+<details>
+
+<summary><span data-gb-custom-inline data-tag="emoji" data-code="1f525">🔥</span> Grafana Security: <strong>SSH Tunnels</strong></summary>
+
+Do not expose Grafana (port 3000) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel.
+
+Example of how to create a ssh tunnel in Linux or MacOS:
+
+```
+ssh -N -v <user>@<staking.node.ip.address> -L 3000:localhost:3000
+```
+
+Example of how to create a ssh tunnel in Windows with [Putty](https://putty.org/):
+
+Navigate to Connection > SSH > Tunnels > Enter Source Port `3000` > Enter Destination `localhost:3000` > Click Add
+
+![](../../../../.gitbook/assets/image.png)
+
+Now you can access Grafana on your local machine by pointing a web browser to [http://localhost:3000](http://localhost:3000/)
+
+</details>
+
 ## :signal\_strength: Configuring Grafana
 
-1. On relaynode1, open [http://localhost:3000](http://localhost:3000) or http://\<your relaynode1 ip address>:3000 in your local browser. You may need to open up port 3000 in your router and/or firewall.
+1. Open [http://localhost:3000](http://localhost:3000) (if using ssh tunnel or on relaynode1) or http://\<your relaynode1 ip address>:3000 in your local browser.
 2. Login with **admin** / **admin**
 3. Change password
 4. Click the **configuration gear** icon, then **Add data Source**
@@ -207,7 +230,7 @@ curl -s 127.0.0.1:12798/metrics
 6. Set **Name** to **"Prometheus**"
 7. Set **URL** to **http://localhost:9090**
 8. Click **Save & Test**
-9. **Download and save** this [**json file**](https://raw.githubusercontent.com/coincashew/coincashew/master/.gitbook/assets/grafana-monitor-cardano-nodes-by-kaze%20(1).json)**.**
+9. **Download and save** this **json file.**
 10. Click **Create +** icon > **Import**
 11. Add dashboard by **Upload JSON file**
 12. Click the **Import** button.
