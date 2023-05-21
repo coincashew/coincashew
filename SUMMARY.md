@@ -57,6 +57,7 @@
   * [BitBox02 Wallet](wallets/hardware-wallets/bitbox02-wallet.md)
   * [Where to Buy and Overall Review](wallets/hardware-wallets/where-to-buy.md)
 * [Browser Wallets](wallets/browser-wallets/README.md)
+  * [Lace-wallet: Cardano](wallets/browser-wallets/lace-wallet-cardano.md)
   * [Guarda Web Wallet: Multi-chain assets](wallets/browser-wallets/guarda-web-wallet-multi-chain-assets.md)
   * [Stellar: Account Viewer](wallets/browser-wallets/stellar-account-viewer.md)
   * [MetaMask: Ethereum](wallets/browser-wallets/metamask-ethereum.md)

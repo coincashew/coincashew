@@ -1,5 +1,7 @@
 ---
-description: Lace is the first light wallet platform from Input Output Global, one of the creators of Cardano.
+description: >-
+  Lace is the first light wallet platform from Input Output Global, one of the
+  creators of Cardano.
 ---
 
 # Lace-wallet: Cardano
@@ -8,10 +10,16 @@ description: Lace is the first light wallet platform from Input Output Global, o
 
 {% embed url="https://www.lace.io/" %}
 
+## :woman\_mage: Getting started
+
+{% embed url="https://www.lace.io/learn" %}
+
 ## :interrobang: FAQ
 
 {% embed url="https://www.lace.io/faq" %}
 
 ## :moneybag: Supported Assets
 
-* [Cardano ADA](../../coins/overview-ada/)
+{% content-ref url="../../coins/overview-ada/" %}
+[overview-ada](../../coins/overview-ada/)
+{% endcontent-ref %}
