@@ -47,6 +47,15 @@ For a new operational certificate, the counter value must be exactly one (1) gre
 If `qKesOnDiskOperationalCertificateNumber` is more than one (1) greater than `qKesNodeStateOperationalCertificateNumber` then the operational certificate is invalid. Your stake pool cannot mint blocks using an invalid operational certificate.
 {% endhint %}
 
+## Minting Your First Block
+
+When your stake pool has minted zero (0) blocks, then no value for `qKesNodeStateOperationalCertificateNumber` is registered by the blockchain protocol. Therefore, retrieving the current counter value for your stake pool returns the value `null` for the `qKesNodeStateOperationalCertificateNumber` key.
+
+After a stake pool mints a block for the first time, then retrieving the current counter value returns the value zero (0) for the `qKesNodeStateOperationalCertificateNumber` key.
+
+Therefore, when your stake pool has minted zero (0) blocks, then you MUST set the value zero (`0`) for the `qKesOnDiskOperationalCertificateNumber` key so that your stake pool creates a block successfully when elected to mint a block for the first time.
+<!-- Source: https://forum.cardano.org/t/qkesnodestateoperationalcertificatenumber-null/106046 -->
+
 ## Setting the Counter Value
 
 When you issue a new operational certificate, a `node.counter` file sets the counter value for the new certificate.
@@ -72,7 +81,7 @@ cardano-cli node new-counter \
 ```
 
 {% hint style="info" %}
-If the current value of the `qKesNodeStateOperationalCertificateNumber` key is `null`, then set the `--counter-value` option to zero (`0`)
+If the current value of the `qKesNodeStateOperationalCertificateNumber` key for your stake pool is `null`, then set the `--counter-value` option to zero (`0`)
 {% endhint %}
 
 1. To display the contents of the `node.counter` file that you created in step 1, type:

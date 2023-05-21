@@ -56,6 +56,10 @@ description: >-
 
 ## :moneybag: Wallets
 
+{% content-ref url="../../wallets/browser-wallets/lace-wallet-cardano.md" %}
+[lace-wallet-cardano.md](../../wallets/browser-wallets/lace-wallet-cardano.md)
+{% endcontent-ref %}
+
 {% content-ref url="../../wallets/browser-wallets/yoroi-wallet-cardano.md" %}
 [yoroi-wallet-cardano.md](../../wallets/browser-wallets/yoroi-wallet-cardano.md)
 {% endcontent-ref %}

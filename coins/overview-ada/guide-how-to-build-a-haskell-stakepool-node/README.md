@@ -41,6 +41,8 @@ If you want to support this free educational Cardano content or found this helpf
 
 ## :page\_facing\_up: Change Log
 
+* May 18, 2023
+  * Improving details on [issuing a new operational certificate](part-iv-administration/issuing-new-opcert.md) for stake pools prior to minting a first block
 * May 9, 2023
   * Updating procedures for Cardano Node 8.0.0
 * January 27, 2023
