@@ -27,11 +27,111 @@ The following steps align with our [mainnet guide](guide-or-how-to-setup-a-valid
 * A USB storage key for moving files between the offline and online computer.
 * Familiarize yourself with the [Ethereum.org Staking Withdrawals guide](https://launchpad.ethereum.org/en/withdrawals).
 
-### Step 1: Download chain information
+### Step 1: Prepare chain information
+
+* If you no longer have a synced full node, use option 1.
+* Option 2 uses your own consensus client to generate chain information.
 
 <details>
 
-<summary>Generate "offline-preparation.json" file, save to USB key, transfer to offline air-gapped computer.</summary>
+<summary>Option 1: Download "offline-preparation.json" file, save to USB key, transfer to offline air-gapped computer.</summary>
+
+1. On your **online computer**, open a terminal window or shell. Shortcut: CTRL + ALT + T
+
+<!---->
+
+2. Download Ethdo v1.30.0 from Github [https://github.com/wealdtech/ethdo/releases](https://github.com/wealdtech/ethdo/releases)
+
+```
+cd ~
+wget https://github.com/wealdtech/ethdo/releases/download/v1.30.0/ethdo-1.30.0-linux-amd64.tar.gz
+```
+
+3. Verify the checksum is valid. Located on the release page, the Checksum string is located in the corresponding sha256 file.
+
+```
+echo "6fbe587f522ad2eb8d6ce22dfdb15f7d163b491a670bf50e5acf12dd0f58125c ethdo-1.30.0-linux-amd64.tar.gz" | sha256sum -c
+```
+
+Successful verification occurs if you see "OK" in the resulting output.
+
+```
+ethdo-1.30.0-linux-amd64.tar.gz: OK
+```
+
+4. Extract ethdo.
+
+```
+tar -xvf ethdo-1.30.0-linux-amd64.tar.gz
+```
+
+5. Verify your validator's credential status with your index number. Replace`<MY-VALIDATOR-INDEX>` accordingly.
+
+```
+./ethdo validator credentials get --validator=<MY-VALIDATOR-INDEX>
+```
+
+Example output of a validator with BLS credentials. :white\_check\_mark:
+
+```
+BLS credentials: 0x0002a0addda8106aed690654c7af7af0bc5ccde321c8e5e2319ff432cee70396
+```
+
+If you have BLS credentials, continue with the rest of this guide. Otherwise, stop because ethdo will output "`Ethereum execution address`" and that means you've already set your withdrawal address!
+
+6. Download pre-generated offline preparation files made daily by EthStaker.&#x20;
+
+<pre class="language-bash"><code class="lang-bash">#mainnet
+wget https://files.ethstaker.cc/offline-preparation-mainnet.tar.gz
+<strong>wget https://files.ethstaker.cc/offline-preparation-mainnet.tar.gz.sha256
+</strong>
+#goerli
+wget https://files.ethstaker.cc/offline-preparation-goerli.tar.gz
+wget https://files.ethstaker.cc/offline-preparation-goerli.tar.gz.sha256
+</code></pre>
+
+7. Verify the file's sha256 hash against the sha256 files to ensure correctness.
+
+```bash
+#mainnet
+sha256sum offline-preparation-mainnet.tar.gz
+
+#goerli
+sha256sum offline-preparation-goerli.tar.gz
+```
+
+The output should match the contents of the .sha256 file. View the contents:
+
+```bash
+#mainnet
+cat offline-preparation-mainnet.tar.gz.sha256
+
+#goerli
+cat offline-preparation-goerli.tar.gz.sha256
+```
+
+8. Extract the tar file to find `offline-preparation.json`
+
+```bash
+#mainnet
+tar -xvf offline-preparation-mainnet.tar.gz
+
+#goerli
+tar -xvf offline-preparation-goerli.tar.gz
+```
+
+9. Using your USB key, copy both
+
+* the `ethdo` executable&#x20;
+* and `offline-preparation.json` file&#x20;
+
+to your offline air-gapped computer.
+
+</details>
+
+<details>
+
+<summary>Option 2: Generate "offline-preparation.json" file, save to USB key, transfer to offline air-gapped computer.</summary>
 
 1. On your **online computer**, open a terminal window or shell. Shortcut: CTRL + ALT + T
 
@@ -150,14 +250,14 @@ back to your online computer.
 
 <summary>Simply run the set command to send your change.</summary>
 
+:bulb:If you no longer have a synced full node, you can alternatively upload `change-operation.json` file to [https://beaconcha.in/tools/broadcast](https://beaconcha.in/tools/broadcast)
+
 1. On the **online computer**, copy the `change-operation.json` to your home directory, where `ethdo` is also located.
 2. Run the following command to broadcast your withdrawal credentials. &#x20;
 
 ```
 ./ethdo validator credentials set
 ```
-
-Alternatively, you can upload `change-operation.json` file to [https://beaconcha.in/tools/broadcast](https://beaconcha.in/tools/broadcast)
 
 </details>
 
