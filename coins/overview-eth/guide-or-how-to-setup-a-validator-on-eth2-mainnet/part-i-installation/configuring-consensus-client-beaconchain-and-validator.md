@@ -1603,6 +1603,7 @@ sudo systemctl stop validator
 * Subscribe to your Execution Client and Consensus Client's Github repository to be notified of new releases. Hit the Notifications button.
 * Join the [community on Discord and Reddit](../joining-the-community-on-discord-and-reddit.md#discord) to discuss all things staking related.
 * Familiarize yourself with [Part II - Maintenance](../part-ii-maintenance/) section, as you'll need to keep your staking node running at its best.
+* Up your staking understanding with the [EthStaker Knowledge Base](https://docs.ethstaker.cc/ethstaker-knowledge-base/)
 
 ### :checkered\_flag: Optional Steps
 
