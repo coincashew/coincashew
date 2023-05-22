@@ -17,8 +17,8 @@ Install [cardano-hw-cli](https://github.com/vacuumlabs/cardano-hw-cli) to intera
 # Reference https://github.com/vacuumlabs/cardano-hw-cli/blob/develop/docs/installation.md
 
 cd $NODE_HOME
-wget https://github.com/vacuumlabs/cardano-hw-cli/releases/download/v1.9.1/cardano-hw-cli_1.9.1-1.deb
-sudo dpkg --install ./cardano-hw-cli_1.9.1-1.deb
+wget https://github.com/vacuumlabs/cardano-hw-cli/releases/download/v1.13.0/cardano-hw-cli_1.13.0-1.deb
+sudo dpkg --install ./cardano-hw-cli_1.13.0-1.deb
 ```
 {% endtab %}
 {% endtabs %}
