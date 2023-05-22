@@ -406,20 +406,20 @@ Example of ufw status for a remote staking node configured for Lighthouse consen
 > ```
 
 {% hint style="info" %}
-**Port Forwarding Tip:** You'll need to forward and open ports to your validator.
+**Port Forwarding Tip for Local Stakers at Home:** You'll need to forward ports to your validator.
 
 
 
-Verify port forwarding is working with
+For optimal connectivity, ensure Port Forwarding is setup for your router. Learn to port forward with guides found at [https://portforward.com/how-to-port-forward](https://portforward.com/how-to-port-forward/)
+
+
+
+After completing this guide and setting up your validator, verify port forwarding is working with
 
 * [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/)
 * or [https://canyouseeme.org](https://canyouseeme.org)
 
 As an example, for Lighthouse, you would verify ports 9000 and 30303 are reachable.
-
-
-
-For optimal connectivity, ensure Port Forwarding is setup for your router. Learn to port forward with guides found at [https://portforward.com/how-to-port-forward](https://portforward.com/how-to-port-forward/)
 {% endhint %}
 
 #### Optional: Whitelisting Connections
