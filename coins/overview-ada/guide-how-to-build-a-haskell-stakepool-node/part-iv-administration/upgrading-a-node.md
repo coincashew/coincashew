@@ -209,11 +209,11 @@ cd <ConfigurationFileFolder>
 wget https://book.world.dev.cardano.org/environments/mainnet/conway-genesis.json
 ```
 
-Then, update `mainnet-config.json` with two lines additional lines:
+Then, verify `mainnet-config.json` contains the two lines additional lines:
 
 ```
 "ConwayGenesisFile": "conway-genesis.json", 
-"ConwayGenesisHash": "011788fdf180fd6f0fe2d9916b8345c289ffa093014805cbc681344be7200926",
+"ConwayGenesisHash": "f28f1c1280ea0d32f8cd3143e268650d6c1a8e221522ce4a7d20d62fc09783e1",
 ```
 {% endhint %}
 
