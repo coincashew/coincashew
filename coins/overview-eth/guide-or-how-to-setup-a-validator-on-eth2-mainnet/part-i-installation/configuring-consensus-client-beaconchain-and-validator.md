@@ -112,7 +112,7 @@ Run the following command to import your validator keys from the eth2deposit-cli
 Enter your **keystore password** to import accounts.
 
 ```bash
-lighthouse account validator import --network mainnet --directory=$HOME/staking-deposit-cli/validator_keys
+lighthouse account validator import --network mainnet --reuse-password --directory=$HOME/staking-deposit-cli/validator_keys
 ```
 
 

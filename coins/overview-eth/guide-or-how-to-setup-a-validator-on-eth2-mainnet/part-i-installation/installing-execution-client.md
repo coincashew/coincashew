@@ -358,7 +358,7 @@ Review the latest release at [https://github.com/ledgerwatch/erigon/releases](ht
 
 ```bash
 cd $HOME
-git clone --branch stable --recurse-submodules -j8 https://github.com/ledgerwatch/erigon.git
+git clone --branch stable --recurse-submodules https://github.com/ledgerwatch/erigon.git
 cd erigon
 make erigon
 ```

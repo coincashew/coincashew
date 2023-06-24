@@ -57,6 +57,7 @@ Monitor the reliability / uptime / performance of your relays
 * **RelayScan.io MEV-Boost Analytics:** [https://www.relayscan.io](https://www.relayscan.io/)
 * **MEV Panda:** [https://www.mevpanda.com](https://www.mevpanda.com)
 * **Inclusion Watch:** [https://www.inclusion.watch](https://www.inclusion.watch)
+* **Ethereum Block Value Analytics:** [https://payload.de/data](https://payload.de/data/)
 
 {% hint style="info" %}
 Learn to setup [MEV-boost with our guide.](./)
