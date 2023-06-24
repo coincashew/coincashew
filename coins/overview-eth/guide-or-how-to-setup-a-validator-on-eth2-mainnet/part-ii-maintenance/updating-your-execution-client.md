@@ -118,7 +118,7 @@ Review the latest release at [https://github.com/ledgerwatch/erigon/releases](ht
 
 ```bash
 cd $HOME/erigon
-git pull
+git checkout stable && git pull
 make erigon
 ```
 {% endtab %}

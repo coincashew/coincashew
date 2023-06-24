@@ -13,7 +13,7 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-As of May 1 2023, this **post-**🦉**Shapella**🦉 **guide is** **version 6.0.0** written for **testnet GOERLI** :grin:
+As of June 24 2023, this **post-**🦉**Shapella**🦉 **guide is** **version 6.1.0** written for **testnet GOERLI** :grin:
 {% endhint %}
 
 {% hint style="info" %}
