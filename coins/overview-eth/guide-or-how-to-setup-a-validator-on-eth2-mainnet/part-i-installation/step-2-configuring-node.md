@@ -141,7 +141,7 @@ XioWFuqJIfdMG9lcGJg2AAAACWV0aDJAZXRoMgECAwQ=
 Works with Linux or MacOS. Use option 2 for Windows.
 
 ```bash
-ssh-copy-id -i ~/.ssh/id_ed25519 myUserName@staking.node.ip.address
+ssh-copy-id -i ~/.ssh/id_ed25519 ethereum@staking.node.ip.address
 ```
 
 </details>
