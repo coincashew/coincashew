@@ -52,7 +52,7 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=$USER
+User=ethereum
 Restart=on-failure
 RestartSec=3
 TimeoutSec=690
@@ -154,18 +154,18 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=$USER
+User=ethereum
 Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=690
 Environment="JAVA_OPTS=-Xmx5g"
-ExecStart=$HOME/besu/bin/besu \
+ExecStart=/home/ethereum/besu/bin/besu \
   --network=mainnet \
   --metrics-enabled=true \
   --sync-mode=X_CHECKPOINT \
   --data-storage-format=BONSAI \
-  --data-path="$HOME/.besu" \
+  --data-path="/home/ethereum/.besu" \
   --Xplugin-rocksdb-high-spec-enabled \
   --engine-jwt-secret=/secrets/jwtsecret
 
@@ -261,14 +261,14 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=$USER
+User=ethereum
 Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=690
-WorkingDirectory=$HOME/nethermind
-ExecStart=$HOME/nethermind/Nethermind.Runner \
-  --baseDbPath $HOME/.nethermind \
+WorkingDirectory=/home/ethereum/nethermind
+ExecStart=/home/ethereum/nethermind/Nethermind.Runner \
+  --baseDbPath /home/ethereum/.nethermind \
   --Metrics.Enabled true \
   --Metrics.ExposePort 6060 \
   --Metrics.IntervalSeconds 10000 \
@@ -379,7 +379,7 @@ Make data directory and update directory ownership.
 
 ```bash
 sudo mkdir -p /var/lib/erigon
-sudo chown $USER:$USER /var/lib/erigon
+sudo chown ethereum:ethereum /var/lib/erigon
 ```
 
 :gear: **Setup and configure systemd**
@@ -400,12 +400,12 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=$USER
+User=ethereum
 Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=690
-ExecStart=$HOME/erigon/build/bin/erigon \
+ExecStart=/home/ethereum/erigon/build/bin/erigon \
  --datadir /var/lib/erigon \
  --chain mainnet \
  --metrics \

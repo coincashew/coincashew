@@ -53,9 +53,8 @@ sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev libclang-dev cl
 ```bash
 mkdir ~/git
 cd ~/git
-git clone https://github.com/sigp/lighthouse.git
+git clone -b stable https://github.com/sigp/lighthouse.git
 cd lighthouse
-git fetch --all && git checkout stable && git pull
 make
 ```
 
@@ -170,9 +169,9 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-ExecStart=<HOME>/.cargo/bin/lighthouse bn \
+ExecStart=/home/ethereum/.cargo/bin/lighthouse bn \
   --network mainnet \
   --staking \
   --validator-monitor-auto \
@@ -197,15 +196,6 @@ WantedBy=multi-user.target
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -259,9 +249,9 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-ExecStart=<HOME>/.cargo/bin/lighthouse vc \
+ExecStart=/home/ethereum/.cargo/bin/lighthouse vc \
  --network mainnet \
  --metrics \
  --suggested-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
@@ -270,22 +260,11 @@ ExecStart=<HOME>/.cargo/bin/lighthouse vc \
 WantedBy=multi-user.target
 ```
 
-
-
 * Replace`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/validator.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/validator.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -339,7 +318,7 @@ Install and build Nimbus.
 ```bash
 mkdir ~/git
 cd ~/git
-git clone https://github.com/status-im/nimbus-eth2
+git clone -b stable https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
 make update
 make -j$(nproc) nimbus_beacon_node
@@ -385,7 +364,7 @@ sudo mkdir -p /var/lib/nimbus
 Take ownership of this directory and set the correct permission level.
 
 ```bash
-sudo chown $USER:$USER /var/lib/nimbus
+sudo chown ethereum:ethereum /var/lib/nimbus
 sudo chmod 700 /var/lib/nimbus
 ```
 
@@ -502,7 +481,7 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
 ExecStart=/bin/bash -c '/usr/bin/nimbus_beacon_node \
   --network=mainnet \
@@ -517,21 +496,11 @@ ExecStart=/bin/bash -c '/usr/bin/nimbus_beacon_node \
 WantedBy=multi-user.target
 ```
 
-
-
 * Replace`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's name.
-
-```
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -658,11 +627,11 @@ Teku combines both the beacon chain and validator into one process.
 
 Setup a directory structure for Teku.
 
-```bash
-sudo mkdir -p /var/lib/teku
+<pre class="language-bash"><code class="lang-bash">sudo mkdir -p /var/lib/teku
 sudo mkdir -p /etc/teku
-sudo chown $USER:$USER /var/lib/teku
-```
+<strong>sudo chown ethereum:ethereum /var/lib/teku
+</strong>sudo chown ethereum:ethereum /etc/teku
+</code></pre>
 
 
 
@@ -768,8 +737,6 @@ data-storage-mode: "prune"
 * Do not trust any single checkpoint provider. Verify the **state root and block root** against multiple checkpoints to ensure you're on the correct chain.
 {% endhint %}
 
-
-
 * Replace`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 
 
@@ -800,7 +767,12 @@ Verify that your validator's keystore and validator's passwords are present by c
 ll /var/lib/teku/validator_keys
 ```
 
+Update directory ownership.
 
+```bash
+sudo chown -R ethereum:ethereum /var/lib/teku
+sudo chown -R ethereum:ethereum /etc/teku
+```
 
 :checkered\_flag: **4.5. Start the beacon chain and validator**
 
@@ -828,7 +800,7 @@ After=network-online.target
 Documentation=https://www.coincashew.com
 
 [Service]
-User=$USER
+User=ethereum
 ExecStart=/usr/bin/teku/bin/teku -c /etc/teku/teku.yaml
 Restart=on-failure
 Environment=JAVA_OPTS=-Xmx5g
@@ -976,9 +948,9 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-ExecStart=<HOME>/prysm/prysm.sh beacon-chain \
+ExecStart=/home/ethereum/prysm/prysm.sh beacon-chain \
   --mainnet \
   --checkpoint-sync-url=https://beaconstate.info \
   --genesis-beacon-api-url=https://beaconstate.info \
@@ -1000,22 +972,11 @@ WantedBy=multi-user.target
 * Do not trust any single checkpoint provider. Verify the **state root and block root** against multiple checkpoints to ensure you're on the correct chain.
 {% endhint %}
 
-
-
 * Replace`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -1056,8 +1017,8 @@ This is required so that Prysm can decrypt and load your validators.
 Replace **`<my_password_goes_here>`** with your **prysm-only** password.
 
 ```bash
-echo '<my_password_goes_here>' > $HOME/.eth2validators/validators-password.txt
-sudo chmod 600 $HOME/.eth2validators/validators-password.txt
+echo '<my_password_goes_here>' > /home/ethereum/.eth2validators/validators-password.txt
+sudo chmod 600 /home/ethereum/.eth2validators/validators-password.txt
 ```
 
 
@@ -1104,34 +1065,23 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-ExecStart=<HOME>/prysm/prysm.sh validator \
+ExecStart=/home/ethereum/prysm/prysm.sh validator \
   --mainnet \
   --accept-terms-of-use \
-  --wallet-password-file <HOME>/.eth2validators/validators-password.txt \
+  --wallet-password-file /home/ethereum/.eth2validators/validators-password.txt \
   --suggested-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-
-
 * Replace`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/validator.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/validator.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -1229,9 +1179,9 @@ Verify Lodestar was installed properly by displaying the version.
 
 Setup a directory structure for Lodestar.
 
-```
+```bash
 sudo mkdir -p /var/lib/lodestar
-sudo chown $USER:$USER /var/lib/lodestar
+sudo chown ethereum:ethereum /var/lib/lodestar
 ```
 
 
@@ -1314,10 +1264,10 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-WorkingDirectory=<HOME>/git/lodestar
-ExecStart=<HOME>/git/lodestar/lodestar beacon \
+WorkingDirectory=/home/ethereum/git/lodestar
+ExecStart=/home/ethereum/git/lodestar/lodestar beacon \
   --network mainnet \
   --dataDir /var/lib/lodestar \
   --metrics true \
@@ -1339,22 +1289,11 @@ WantedBy=multi-user.target
 * Do not trust any single checkpoint provider. Verify the **state root and block root** against multiple checkpoints to ensure you're on the correct chain.
 {% endhint %}
 
-
-
 * Replac**e**`0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable, unlike the validator's attestation and block proposal rewards.
 
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -1412,10 +1351,10 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-WorkingDirectory=<HOME>/git/lodestar
-ExecStart=<HOME>/git/lodestar/lodestar validator \
+WorkingDirectory=/home/ethereum/git/lodestar
+ExecStart=/home/ethereum/git/lodestar/lodestar validator \
   --network mainnet \
   --dataDir /var/lib/lodestar \
   --suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
@@ -1431,15 +1370,6 @@ WantedBy=multi-user.target
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/validator.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/validator.service -e "s:<USER>:${USER}:g"
-```
 
 
 

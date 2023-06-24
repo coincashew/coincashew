@@ -55,7 +55,6 @@ mkdir ~/git
 cd ~/git
 git clone -b stable https://github.com/sigp/lighthouse.git
 cd lighthouse
-git fetch --all && git checkout stable && git pull
 make
 ```
 
@@ -615,15 +614,14 @@ Teku combines both the beacon chain and validator into one process.
 
 
 
-Setup a directory structure for Teku.
+Setup a directory structure for Teku and set permissions.
 
 ```bash
 sudo mkdir -p /var/lib/teku
 sudo mkdir -p /etc/teku
 sudo chown ethereum:ethereum /var/lib/teku
+sudo chown ethereum:ethereum /etc/teku
 ```
-
-
 
 Copy your `validator_files` directory to the data directory we created above.
 
@@ -752,7 +750,12 @@ Verify that your validator's keystore and validator's passwords are present by c
 ll /var/lib/teku/validator_keys
 ```
 
+Update directory ownership.
 
+```bash
+sudo chown -R ethereum:ethereum /var/lib/teku
+sudo chown -R ethereum:ethereum /etc/teku
+```
 
 :checkered\_flag: **4.5. Start the beacon chain and validator**
 
