@@ -48,7 +48,7 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=$USER
+User=ethereum
 Restart=on-failure
 RestartSec=3
 TimeoutSec=690
@@ -140,18 +140,18 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=$USER
+User=ethereum
 Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=690
 Environment="JAVA_OPTS=-Xmx5g"
-ExecStart=$HOME/besu/bin/besu \
+ExecStart=/home/ethereum/besu/bin/besu \
   --network=goerli \
   --metrics-enabled=true \
   --sync-mode=X_CHECKPOINT \
   --data-storage-format=BONSAI \
-  --data-path="$HOME/.besu" \
+  --data-path="/home/ethereum/.besu" \
   --engine-jwt-secret=/secrets/jwtsecret
 
 [Install]
@@ -236,15 +236,15 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=$USER
+User=ethereum
 Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=690
 WorkingDirectory=$HOME/nethermind
-ExecStart=$HOME/nethermind/Nethermind.Runner \
+ExecStart=/home/ethereum/nethermind/Nethermind.Runner \
   --config goerli \
-  --baseDbPath $HOME/.nethermind_goerli \
+  --baseDbPath /home/ethereum/.nethermind_goerli \
   --Metrics.Enabled true \
   --Metrics.ExposePort 6060 \
   --Metrics.IntervalSeconds 10000 \
@@ -353,7 +353,7 @@ Make data directory and update directory ownership.
 
 ```bash
 sudo mkdir -p /var/lib/erigon
-sudo chown $USER:$USER /var/lib/erigon
+sudo chown ethereum:ethereum /var/lib/erigon
 ```
 
 
@@ -374,12 +374,12 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=$USER
+User=ethereum
 Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=690
-ExecStart=$HOME/erigon/build/bin/erigon \
+ExecStart=/home/ethereum/erigon/build/bin/erigon \
  --datadir /var/lib/erigon \
  --chain goerli \
  --metrics \

@@ -53,7 +53,7 @@ sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev libclang-dev cl
 ```bash
 mkdir ~/git
 cd ~/git
-git clone https://github.com/sigp/lighthouse.git
+git clone -b stable https://github.com/sigp/lighthouse.git
 cd lighthouse
 git fetch --all && git checkout stable && git pull
 make
@@ -156,9 +156,9 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-ExecStart=<HOME>/.cargo/bin/lighthouse bn \
+ExecStart=/home/ethereum/.cargo/bin/lighthouse bn \
   --network goerli \
   --staking \
   --validator-monitor-auto \
@@ -174,15 +174,6 @@ WantedBy=multi-user.target
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -316,7 +307,7 @@ Install and build Nimbus.
 ```bash
 mkdir ~/git
 cd ~/git
-git clone https://github.com/status-im/nimbus-eth2
+git clone -b stable https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
 make update
 make nimbus_beacon_node
@@ -362,7 +353,7 @@ sudo mkdir -p /var/lib/nimbus
 Take ownership of this directory and set the correct permission level.
 
 ```bash
-sudo chown $(whoami):$(whoami) /var/lib/nimbus
+sudo chown ethereum:ethereum /var/lib/nimbus
 sudo chmod 700 /var/lib/nimbus
 ```
 
@@ -478,7 +469,7 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
 ExecStart=/bin/bash -c '/usr/bin/nimbus_beacon_node \
  --network=goerli \
@@ -500,14 +491,6 @@ WantedBy=multi-user.target
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's name.
-
-```
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -637,7 +620,7 @@ Setup a directory structure for Teku.
 ```bash
 sudo mkdir -p /var/lib/teku
 sudo mkdir -p /etc/teku
-sudo chown $USER:$USER /var/lib/teku
+sudo chown ethereum:ethereum /var/lib/teku
 ```
 
 
@@ -797,7 +780,7 @@ After=network-online.target
 Documentation=https://www.coincashew.com
 
 [Service]
-User=$USER
+User=ethereum
 ExecStart=/usr/bin/teku/bin/teku -c /etc/teku/teku.yaml
 Restart=on-failure
 Environment=JAVA_OPTS=-Xmx5g
@@ -948,11 +931,11 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-ExecStart=<HOME>/prysm/prysm.sh beacon-chain \
+ExecStart=/home/ethereum/prysm/prysm.sh beacon-chain \
   --goerli \
-  --genesis-state=<HOME>/prysm/genesis.ssz \
+  --genesis-state=/home/ethereum/prysm/genesis.ssz \
   --checkpoint-sync-url=https://goerli.beaconstate.info \
   --genesis-beacon-api-url=https://goerli.beaconstate.info \
   --execution-endpoint=http://localhost:8551 \
@@ -971,15 +954,6 @@ WantedBy=multi-user.target
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -1014,8 +988,8 @@ Nice work. Your beacon chain is now managed by the reliability and robustness of
 Store your **prysm-only password** in a file and make it read-only. This is required so that Prysm can decrypt and load your validators.
 
 ```bash
-echo 'my_password_goes_here' > $HOME/.eth2validators/validators-password.txt
-sudo chmod 600 $HOME/.eth2validators/validators-password.txt
+echo 'my_password_goes_here' > /home/ethereum/.eth2validators/validators-password.txt
+sudo chmod 600 /home/ethereum/.eth2validators/validators-password.txt
 ```
 
 
@@ -1051,12 +1025,12 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-ExecStart=<HOME>/prysm/prysm.sh validator \
+ExecStart=/home/ethereum/prysm/prysm.sh validator \
   --goerli \
   --accept-terms-of-use \
-  --wallet-password-file <HOME>/.eth2validators/validators-password.txt \
+  --wallet-password-file /home/ethereum/.eth2validators/validators-password.txt \
   --suggested-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 
 [Install]
@@ -1070,15 +1044,6 @@ WantedBy=multi-user.target
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/validator.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/validator.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -1176,9 +1141,9 @@ Verify Lodestar was installed properly by displaying the version.
 
 Setup a directory structure for Lodestar.
 
-```
+```bash
 sudo mkdir -p /var/lib/lodestar
-sudo chown $USER:$USER /var/lib/lodestar
+sudo chown ethereum:ethereum /var/lib/lodestar
 ```
 
 
@@ -1261,10 +1226,10 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-WorkingDirectory=<HOME>/git/lodestar
-ExecStart=<HOME>/git/lodestar/lodestar beacon \
+WorkingDirectory=/home/ethereum/git/lodestar
+ExecStart=/home/ethereum/git/lodestar/lodestar beacon \
   --network goerli \
   --dataDir /var/lib/lodestar \
   --metrics true \
@@ -1284,15 +1249,6 @@ WantedBy=multi-user.target
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/beacon-chain.service -e "s:<USER>:${USER}:g"
-```
 
 
 
@@ -1350,10 +1306,10 @@ Documentation=https://www.coincashew.com
 
 [Service]
 Type=simple
-User=<USER>
+User=ethereum
 Restart=on-failure
-WorkingDirectory=<HOME>/git/lodestar
-ExecStart=<HOME>/git/lodestar/lodestar validator \
+WorkingDirectory=/home/ethereum/git/lodestar
+ExecStart=/home/ethereum/git/lodestar/lodestar validator \
   --network goerli \
   --dataDir /var/lib/lodestar \
   --suggestedFeeRecipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
@@ -1369,15 +1325,6 @@ WantedBy=multi-user.target
 
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
-
-
-
-Update the configuration file with your current user's home path and user name.
-
-```
-sudo sed -i /etc/systemd/system/validator.service -e "s:<HOME>:${HOME}:g"
-sudo sed -i /etc/systemd/system/validator.service -e "s:<USER>:${USER}:g"
-```
 
 
 
