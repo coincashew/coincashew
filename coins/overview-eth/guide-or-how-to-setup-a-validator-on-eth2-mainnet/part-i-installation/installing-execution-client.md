@@ -317,13 +317,9 @@ sudo systemctl start eth1
 **Erigon** - Successor to OpenEthereum, Erigon is an implementation of Ethereum (aka "Ethereum client"), on the efficiency frontier, written in Go.
 {% endhint %}
 
-
-
-{% hint style="info" %}
-Erigon is considered alpha software and requires at least 16GB RAM.
+{% hint style="warning" %}
+Erigon requires at least 16GB RAM. 32GB is highly recommended.
 {% endhint %}
-
-
 
 :gear: **Install Go dependencies**
 
@@ -342,8 +338,6 @@ echo export PATH=$PATH:/usr/local/go/bin>> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
-
-
 Verify Go is properly installed and cleanup files.
 
 ```bash
@@ -351,11 +345,7 @@ go version
 rm go.tar.gz
 ```
 
-
-
 :robot: **Build and install Erigon**
-
-
 
 Install build dependencies.
 
@@ -364,18 +354,26 @@ sudo apt-get update
 sudo apt install build-essential git
 ```
 
-
-
 Review the latest release at [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)
 
 ```bash
 cd $HOME
-git clone --recurse-submodules -j8 https://github.com/ledgerwatch/erigon.git
+git clone --branch stable --recurse-submodules -j8 https://github.com/ledgerwatch/erigon.git
 cd erigon
 make erigon
 ```
 
-​
+​Verify the build completed successfully by displaying Erigon's version.
+
+```bash
+./build/bin/erigon --version
+```
+
+​ Example of version:
+
+```
+erigon version 2.47.0-stable-5536d645
+```
 
 Make data directory and update directory ownership.
 
@@ -383,8 +381,6 @@ Make data directory and update directory ownership.
 sudo mkdir -p /var/lib/erigon
 sudo chown $USER:$USER /var/lib/erigon
 ```
-
-​
 
 :gear: **Setup and configure systemd**
 
