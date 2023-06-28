@@ -13,7 +13,7 @@ Create your pool's metadata with a JSON file. Update with your pool information.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cat > pmd.json << EOF
+cat > md.json << EOF
 {
 "name": "MyPoolName",
 "description": "My pool description",
@@ -117,8 +117,8 @@ to be run on your air-gapped offline machine appropriately. Replace with your pr
 ```
 {% endhint %}
 
-{% hint style="warning" %}
-**metadata-url** must be no longer than 64 characters.
+{% hint style="danger" %}
+**metadata-url** must be no longer than 64 characters. Shorten your URL or file name.
 {% endhint %}
 
 {% tabs %}
@@ -135,7 +135,7 @@ cardano-cli stake-pool registration-certificate \
     --mainnet \
     --single-host-pool-relay <dns based relay, example ~ relaynode1.myadapoolnamerocks.com> \
     --pool-relay-port 6000 \
-    --metadata-url <url where you uploaded pmd.json> \
+    --metadata-url <url where you uploaded md.json> \
     --metadata-hash $(cat poolMetaDataHash.txt) \
     --out-file pool.cert
 ```
