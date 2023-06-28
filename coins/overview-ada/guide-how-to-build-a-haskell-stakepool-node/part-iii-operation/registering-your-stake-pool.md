@@ -13,7 +13,7 @@ Create your pool's metadata with a JSON file. Update with your pool information.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cat > poolMetaData.json << EOF
+cat > pmd.json << EOF
 {
 "name": "MyPoolName",
 "description": "My pool description",
@@ -37,7 +37,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 Copy **poolMetaDataHash.txt** to your air-gapped offline machine, cold environment.
 
-Next, upload your **poolMetaData.json** file to a Web site that you administer or a public Web site. For example, you can [upload your pool metadata to GitHub](../part-v-tips/uploading-pool-metadata-to-github.md).
+Next, upload your **pmd.json** file to a Web site that you administer or a public Web site. For example, you can [upload your pool metadata to GitHub](../part-v-tips/uploading-pool-metadata-to-github.md).
 
 Verify the metadata hashes by comparing your uploaded .json file and your local .json file's hash.
 
@@ -83,7 +83,7 @@ DNS based relays are recommended for simplicity of node management. In other wor
 {% endhint %}
 
 {% hint style="info" %}
-#### :sparkles: Configuring Multiple Relay Nodes <a href="#multiplerelays" id="multiplerelays"></a>
+:sparkles: **Configuring Multiple Relay Nodes**
 
 Update the next operation
 
@@ -135,7 +135,7 @@ cardano-cli stake-pool registration-certificate \
     --mainnet \
     --single-host-pool-relay <dns based relay, example ~ relaynode1.myadapoolnamerocks.com> \
     --pool-relay-port 6000 \
-    --metadata-url <url where you uploaded poolMetaData.json> \
+    --metadata-url <url where you uploaded pmd.json> \
     --metadata-hash $(cat poolMetaDataHash.txt) \
     --out-file pool.cert
 ```

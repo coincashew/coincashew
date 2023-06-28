@@ -1,34 +1,58 @@
-# Uploading Pool Metadata to GitHub
+# Uploading Pool Metadata to GitHub Pages
 
-**To host the file containing metadata for your pool on GitHub:**
+b**To host the file containing metadata for your pool on GitHub Pages:**
 
-1. Sign up for a [GitHub](https://github.com) account.
-2. Create a **new repository** with a short name
-3. Click Get started by "**creating a new file**"\
-   ![](../../../../.gitbook/assets/git1.png)
-4. Enter your file name as **poolMetaData.json** and paste in your JSON content.\
-   ![](../../../../.gitbook/assets/git2.png)
-5. Click **Commit New File**\
-   ![](../../../../.gitbook/assets/git3.png)
-6. Click your new file's name
-7. Click the **Raw** button.
-8. Copy the URL into your clipboard
+1. Sign up or login to your [GitHub](https://github.com) account.
+2. [Create a new public repository](https://github.com/new) named _username_.github.io, where _username_ is your username (or organization name) on GitHub. **Shorter the better.**
 
-{% hint style="info" %}
-Example: [https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json](https://raw.githubusercontent.com/coincashew/test/master/poolMetaData.json)
-{% endhint %}
+<figure><img src="../../../../.gitbook/assets/github-name.png" alt=""><figcaption></figcaption></figure>
 
-1. If the URL that you copied in step 8 is longer than 64 characters, then use [TinyURL](https://tinyurl.com/app) to shorten the URL.
-2. In your stakepool registration transaction, set the value of the `--metadata-url` parameter to a URL having a length of less than 64 characters.
-3. On your block producer node, download your JSON file from your git.io URL using the `wget` command:
+3.  Click Get started by "**creating a new file**" under Quick setup.\
 
-```bash
-cd $NODE_HOME
-wget -O poolMetaData.json <your git.io link>
+
+    <figure><img src="../../../../.gitbook/assets/create-new-file.png" alt=""><figcaption></figcaption></figure>
+4. Enter your file name as **md.json** and paste in your JSON content.
+
+<figure><img src="../../../../.gitbook/assets/md.png" alt=""><figcaption></figcaption></figure>
+
+5. Click **Commit Changes...**
+
+<figure><img src="../../../../.gitbook/assets/commit.png" alt=""><figcaption></figcaption></figure>
+
+6. If everything worked properly, your pool metadata is now hosted at URL:
+
+```
+https://USERNAME.github.io/FILE
 ```
 
 {% hint style="info" %}
-git.io may change your JSON file by removing spaces and new lines. Download your JSON file to ensure that the metadata hash you calculate in step 12 is correct.
+Example URL: [https://coincashew.github.io/md.json](https://coincashew.github.io/md.json)
 {% endhint %}
 
-12\. On your block producer node, generate the updated pool metadata hash. \`\`\`bash cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt \`\`\`
+{% hint style="warning" %}
+Ensure the URL is less than 64 characters. If too long, pick a shorter github username or shorter json file name.
+{% endhint %}
+
+7. In your stakepool registration transaction, set the value of the `--metadata-url` parameter to this URL.
+8. On your block producer node, download your JSON file using the URL with `wget` command:
+
+```bash
+cd $NODE_HOME
+wget -O poolMetaData.json <your github pages URL>
+```
+
+{% hint style="warning" %}
+Note that it can take up to 10 minutes for changes to your site to publish after you commit changes.
+{% endhint %}
+
+9. As a sanity check, check the contents of your JSON file.
+
+```bash
+cat poolMetaData.json
+```
+
+10. On your block producer node, generate the updated pool metadata hash.
+
+```bash
+cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
+```
