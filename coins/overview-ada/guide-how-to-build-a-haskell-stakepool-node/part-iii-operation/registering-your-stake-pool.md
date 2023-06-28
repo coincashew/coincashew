@@ -30,14 +30,14 @@ Calculate the hash of your metadata file. It's saved to **poolMetaDataHash.txt**
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
+cardano-cli stake-pool metadata-hash --pool-metadata-file md.json > poolMetaDataHash.txt
 ```
 {% endtab %}
 {% endtabs %}
 
 Copy **poolMetaDataHash.txt** to your air-gapped offline machine, cold environment.
 
-Next, upload your **pmd.json** file to a Web site that you administer or a public Web site. For example, you can [upload your pool metadata to GitHub](../part-v-tips/uploading-pool-metadata-to-github.md).
+Next, upload your **md.json** file to a Web site that you administer or a public Web site. For example, you can [upload your pool metadata to GitHub](../part-v-tips/uploading-pool-metadata-to-github.md).
 
 Verify the metadata hashes by comparing your uploaded .json file and your local .json file's hash.
 
@@ -118,7 +118,7 @@ to be run on your air-gapped offline machine appropriately. Replace with your pr
 {% endhint %}
 
 {% hint style="danger" %}
-**metadata-url** must be no longer than 64 characters. Shorten your URL or file name.
+**metadata-url** must be less than 64 characters. Shorten your URL or file name.
 {% endhint %}
 
 {% tabs %}

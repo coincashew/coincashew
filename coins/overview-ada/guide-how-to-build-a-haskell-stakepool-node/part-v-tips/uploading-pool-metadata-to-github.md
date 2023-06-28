@@ -38,7 +38,7 @@ Ensure the URL is less than 64 characters. If too long, pick a shorter github us
 
 ```bash
 cd $NODE_HOME
-wget -O poolMetaData.json <your github pages URL>
+wget -O md.json <your github pages URL>
 ```
 
 {% hint style="warning" %}
@@ -48,11 +48,11 @@ Note that it can take up to 10 minutes for changes to your site to publish after
 9. As a sanity check, check the contents of your JSON file.
 
 ```bash
-cat poolMetaData.json
+cat md.json
 ```
 
 10. On your block producer node, generate the updated pool metadata hash.
 
 ```bash
-cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > poolMetaDataHash.txt
+cardano-cli stake-pool metadata-hash --pool-metadata-file md.json > poolMetaDataHash.txt
 ```
