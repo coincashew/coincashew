@@ -20,11 +20,7 @@ To make sure your Cardano nodes (relays and block-producer) are correctly config
 - Firewalling rules extract
 - sysctl.conf hardening check
 
-:::important
-
-Please, note that this script is only intended to help you identify configuration and basic security issues. It does not guarantee that your server is fully protected.
-
-:::
+{% hint style="info" %} Please, note that this script is only intended to help you identify configuration and basic security issues. It does not guarantee that your server is fully protected. {% endhint %}
 
 # How to use the Coincashew Cardano Audit Script 
 
