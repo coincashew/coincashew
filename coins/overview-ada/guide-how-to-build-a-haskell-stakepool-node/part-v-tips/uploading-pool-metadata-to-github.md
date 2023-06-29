@@ -1,6 +1,6 @@
 # Uploading Pool Metadata to GitHub Pages
 
-b**To host the file containing metadata for your pool on GitHub Pages:**
+### **To host the file containing metadata for your pool on GitHub Pages:**
 
 1. Sign up or login to your [GitHub](https://github.com) account.
 2. [Create a new public repository](https://github.com/new) named _username_.github.io, where _username_ is your username (or organization name) on GitHub. **Shorter the better.**
