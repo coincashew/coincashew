@@ -22,9 +22,9 @@ To make sure your Cardano nodes (relays and block-producer) are correctly config
 
 {% hint style="info" %} Please, note that this script is only intended to help you identify configuration and basic security issues. It does not guarantee that your server is fully protected. {% endhint %}
 
-# How to use the Coincashew Cardano Audit Script 
+## How to use the Coincashew Cardano Audit Script 
 
-## Download the Audit Script
+### Download the Audit Script
 
 The script can be found on this [GitHub repository](https://github.com/Kirael12/Cardano-Audit-Coincashew) 
 
@@ -35,13 +35,13 @@ cd $HOME/git
 git clone https://github.com/Kirael12/Cardano-Audit-Coincashew
 ```
 
-## Make script executable
+### Make script executable
 
 ```bash
 cd $HOME/git/Cardano-Audit-Coincashew
 chmod +x audit-coincashew.sh
 ```
-## Run the script
+### Run the script
 
 The script must be ran with sudo and the -E option, to include your environnment variables defined during the Coincashew guide (like $NODE_HOME or $NODE_CONFIG)
 
