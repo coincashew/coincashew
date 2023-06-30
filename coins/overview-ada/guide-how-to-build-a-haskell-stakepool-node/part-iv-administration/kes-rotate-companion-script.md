@@ -65,3 +65,11 @@ If you answer no :
 **4. Script will then provide you with the next steps and the cardano-cli command to execute on your Air-Gapped machine**
 
 * The command includes the KES starting period you need to use.
+
+### Example of Script Output
+
+<figure><img src="../../../../.gitbook/assets/245820963-2935173b-3cca-459d-9dab-b1e56d9787c8.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../../.gitbook/assets/245820993-de6f639b-427d-45de-8660-eee476e212b4.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../../.gitbook/assets/245821046-2eaf74f2-6bc6-416d-a233-c9432bfdd1e3.png" alt=""><figcaption></figcaption></figure>
