@@ -41,6 +41,10 @@ If you want to support this free educational Cardano content or found this helpf
 
 ## :page\_facing\_up: Change Log
 
+* June 29, 2023
+  * Adding contributions by \[[FRADA](https://cardano-france-stakepool.org/)] pool
+    * [Auditing Your Nodes Configuration](part-iv-administration/audit-node-configuration.md)
+    * [Using KES Keys / OP certificate rotate Companion Script](part-iv-administration/kes-rotate-companion-script.md)
 * May 18, 2023
   * Improving details on [issuing a new operational certificate](part-iv-administration/issuing-new-opcert.md) for stake pools prior to minting a first block
 * May 9, 2023
