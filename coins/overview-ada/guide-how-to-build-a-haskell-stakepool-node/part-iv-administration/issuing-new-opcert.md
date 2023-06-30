@@ -8,6 +8,8 @@ The private KES key is required to start the block producing node for your stake
 
 Issuing an operational certificate also uses a counter that increments by exactly one (1) for each unique operational certificate that a stake pool uses to mint blocks. In a valid operational certificate, the counter value that you use to issue the operational certificate must be consistent with the current counter value for your stake pool registered on the Cardano blockchain by the protocol.
 
+{% hint style="info" %} A Companion Script that can help you with rotating KES keys and issuing a new Operational Certificate is available [here](kes-rotate-companion-script.md) {% endhint %}
+
 ## Determining the Counter Value
 
 **To retrieve the current counter value for your stake pool registered by the blockchain protocol:**

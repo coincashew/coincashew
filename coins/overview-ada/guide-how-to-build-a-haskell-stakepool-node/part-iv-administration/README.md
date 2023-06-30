@@ -9,3 +9,5 @@ Part IV includes the following topics providing procedures that you need to mana
 * [Updating Stake Pool Information](updating-stake-pool-information.md)
 * [Upgrading a Node](upgrading-a-node.md)
 * [Retiring Your Stake Pool](retiring-your-stake-pool.md)
+* [Auditing Your Nodes Configuration](audit-node-configuration.md)
+* [Using KES Keys / OP certificate rotate Companion Script](kes-rotate-companion-script.md)
