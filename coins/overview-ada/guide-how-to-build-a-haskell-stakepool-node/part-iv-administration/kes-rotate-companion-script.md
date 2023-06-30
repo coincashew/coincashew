@@ -1,7 +1,7 @@
-# KES key rotation / Operational certificate Companion Script
+# KES Key Rotation / Operational Certificate Companion Script
 
 {% hint style="info" %}
-This guide was graciously contributed by [\[FRADA\] ADA Madin France](https://cardano-france-stakepool.org/). If you find this guide useful, please consider staking to it (**FRADA** ticker).🙏
+This guide was graciously contributed by [\[FRADA\] ADA Made in France](https://cardano-france-stakepool.org/). If you find this guide useful, please consider staking to it (**FRADA** ticker).🙏
 {% endhint %}
 
 Every Cardano Pool Operator has to generate a new KES key pair and Operational Certificate every 90 days. A full guide is available here. In order to help Pool Operators during the process, a Companion Script is available in addition to the guide linked above.

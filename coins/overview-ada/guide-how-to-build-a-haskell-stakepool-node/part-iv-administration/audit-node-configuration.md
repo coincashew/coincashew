@@ -1,7 +1,7 @@
-# Auditing your nodes configuration
+# Auditing Your nodes configuration
 
 {% hint style="info" %}
-This guide was graciously contributed by [\[FRADA\] ADA Madin France](https://cardano-france-stakepool.org/). If you find this guide useful, please consider staking to it (**FRADA** ticker).🙏
+This guide was graciously contributed by [\[FRADA\] ADA Made in France](https://cardano-france-stakepool.org/). If you find this guide useful, please consider staking to it (**FRADA** ticker).🙏
 {% endhint %}
 
 To make sure your Cardano nodes (relays and block-producer) are correctly configured, you can use an automated audit script that will do the following checks :
