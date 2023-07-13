@@ -18,7 +18,7 @@ description: >-
 As of early February 2023, Besu is the most minority execution client with 6.8% of nodes. Lodestar is by far the most minority consensus client with 0.29% representation.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/mvd.png" alt=""><figcaption><p>Client Diversity</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/mvd.png" alt=""><figcaption><p>Client Diversity</p></figcaption></figure>
 
 ## How Staking on Ethereum Works
 
@@ -32,9 +32,9 @@ A Ethereum node consists of the Execution Layer + Consensus Layer.
 
 A Ethereum Staking node is the previous plus a Validator client.
 
-<figure><img src="../../.gitbook/assets/client-stack.png" alt=""><figcaption><p>Client Stack</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/client-stack.png" alt=""><figcaption><p>Client Stack</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/eth-validator-diagram.png" alt=""><figcaption><p>Big picture: Execution / Consensus / Validator</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/eth-validator-diagram.png" alt=""><figcaption><p>Big picture: Execution / Consensus / Validator</p></figcaption></figure>
 
 ## Prerequisites
 
@@ -78,7 +78,7 @@ Once done with testnet staking, this hardware configuration would be suitable fo
 For examples of actual staking hardware builds, check out [RocketPool’s hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
 
 {% hint style="success" %}
 **Pro Staking Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
@@ -1390,7 +1390,7 @@ For Windows using Putty, configure the SSH Tunnel as follows:
 
 4\) Click **Add** button, then **Open** Button
 
-![](../../.gitbook/assets/putty8545.png)
+![](../../../.gitbook/assets/putty8545.png)
 
 #### 2) Add a network to Metamask:
 
@@ -1404,7 +1404,7 @@ Configure your Metamask as follows:
 * **Currency symbol**: ETH
 * **Block explorer URL**: [https://blockscout.com/eth/zhejiang-testnet](https://blockscout.com/eth/zhejiang-testnet)
 
-![](../../.gitbook/assets/metamask-zhe.png)
+![](../../../.gitbook/assets/metamask-zhe.png)
 
 </details>
 
@@ -2070,4 +2070,4 @@ These guides are solely supported by [Gitcoin Grants](https://gitcoin.co/grants/
 
 > I stand upon the shoulders of giants and as such, invite you to stand upon mine. Use my work with or without attribution; I make no claim of "intellectual property." My ideas are the result of countless millenia of evolution - they belong to humanity.
 
-<figure><img src="../../.gitbook/assets/leslie-solo.png" alt=""><figcaption><p>This is Leslie, the official mascot of Eth Staking</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/leslie-solo.png" alt=""><figcaption><p>This is Leslie, the official mascot of Eth Staking</p></figcaption></figure>

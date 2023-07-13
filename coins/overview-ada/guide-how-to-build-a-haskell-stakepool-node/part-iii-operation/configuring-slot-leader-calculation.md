@@ -12,7 +12,7 @@ Since version 1.34, it is possible to check the slot leadership schedule for the
 Next epoch's leadership schedule becomes available 1.5 days (36 hours) before the end of the current epoch.
 {% endhint %}
 
-***
+
 
 **Next epoch's leadership schedule** is obtained with the following:
 
@@ -25,7 +25,7 @@ cardano-cli query leadership-schedule \
 --next
 ```
 
-***
+
 
 **Current epoch's leadership schedule** is obtained with the following:
 
