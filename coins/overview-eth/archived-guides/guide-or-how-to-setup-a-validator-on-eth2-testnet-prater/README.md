@@ -4,20 +4,20 @@ description: >-
   Anyone with 32 ETH can join.
 ---
 
-# Guide | How to setup a validator for Ethereum staking on testnet GOERLI
+# Guide Version 1 | How to setup a validator for Ethereum staking on testnet GOERLI
 
 ## :new: Announcements
 
-{% hint style="info" %}
-:confetti\_ball: **Live Now! Gitcoin Grants until May 9:** [We improve this guide with your support!](https://explorer.gitcoin.co/#/round/1/0xdf22a2c8f6ba9376ff17ee13e6154b784ee92094/0xdf22a2c8f6ba9376ff17ee13e6154b784ee92094-9)🙏
+{% hint style="danger" %}
+As of July 4 2023, this is the **V1 GOERLI** guide written for **post-🦉Shapella**🦉
+
+Archived here, this guide is for historical reference purposes.
+
+New staking setups should follow the V2 guides.
 {% endhint %}
 
-{% hint style="success" %}
-As of June 24 2023, this **post-**🦉**Shapella**🦉 **guide is** **version 6.1.0** written for **testnet GOERLI** :grin:
-{% endhint %}
-
 {% hint style="info" %}
-**Always test and practice on testnet first.** [**Mainnet guide available here.**](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+**Always test and practice on testnet first.** [**Mainnet guide available here.**](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
 
 ## :thumbsup: Your Github Contributions Welcome
@@ -40,7 +40,4 @@ Rest assured, as you become more familiar and more comfortable by practicing on 
 * Step 4: [Installing execution client](step-4-installing-execution-client.md)
 * Step 5: [Installing consensus client](step-5-installing-consensus-client.md)
 
-
-
 #### :shield: Built by home-stakers for home-stakers. :pray:
-

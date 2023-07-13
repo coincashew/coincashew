@@ -213,7 +213,7 @@ For Mac, download [Etcher](https://tails.boum.org/etcher/Etcher.dmg)
 
 Run the above software. This is an example how it looks like on Mac OS with etcher, but other software should be similar.
 
-![](../../../.gitbook/assets/etcher\_in\_mac.png)
+![](../../../../.gitbook/assets/etcher\_in\_mac.png)
 
 Select the Tails OS image that you downloaded as the image. Then select the USB stick (the larger one).
 
@@ -245,7 +245,7 @@ Choose the USB stick that you loaded up with Tails OS to boot into Tails.
 
 **Part 6 - Welcome to Tails OS**
 
-![](../../../.gitbook/assets/grub.png)
+![](../../../../.gitbook/assets/grub.png)
 
 You can boot with all the default settings.
 

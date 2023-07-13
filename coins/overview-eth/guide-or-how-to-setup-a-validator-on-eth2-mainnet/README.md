@@ -17,7 +17,7 @@ As of June 24 2023, this **post-**🦉**Shapella**🦉 **guide is** **version 6.
 {% endhint %}
 
 {% hint style="info" %}
-:sparkles: Always test and practice on testnet first. See [GOERLI testnet guide](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/).
+:sparkles: Always test and practice on testnet first. See [GOERLI testnet guide](../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/).
 {% endhint %}
 
 ## :wrench: About This Guide
