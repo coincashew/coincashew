@@ -14,10 +14,11 @@ ssh username@staking.node.ip.address
 
 ### Updating the node
 
-Ensure all the latest packages and patches are installed first, then reboot.
+Ensure all the latest packages, tools and patches are installed first, then reboot.
 
 ```
 sudo apt-get update -y && sudo apt dist-upgrade -y
+sudo apt-get install git ufw curl ccze -y
 sudo apt-get autoremove
 sudo apt-get autoclean
 sudo reboot
@@ -348,14 +349,14 @@ sudo ufw default allow outgoing
 
 ### Configure SSH Port 22
 
-If your node is remote in the cloud, you will need to enable SSH port 22 in order to connect.
+If your node is remote in the cloud, or at home but on a different headless server, you will need to enable SSH port 22 in order to connect.
 
 ```bash
 # Allow ssh access for remote node
 sudo ufw allow 22/tcp comment 'Allow SSH port'
 ```
 
-If your node is local at home and you have keyboard access to it, it's good practice to deny SSH port 22.
+If your node is local at home and you have **keyboard access** to it, it's good practice to deny SSH port 22.
 
 ```bash
 # Deny ssh access for local node

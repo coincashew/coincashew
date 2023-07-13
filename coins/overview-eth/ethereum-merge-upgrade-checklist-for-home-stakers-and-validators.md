@@ -9,7 +9,7 @@ description: Quick to-do list before the merge arrives.
 {% endhint %}
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 ## Wen merge?&#x20;
@@ -26,7 +26,7 @@ All stakers _**must**_ upgrade to EL+CL Merge-ready nodes before September 6th!
 
 ## What's merge?
 
-![Enough said](../../../.gitbook/assets/meme-merge.jpg)
+![Enough said](../../.gitbook/assets/meme-merge.jpg)
 
 ## How to merge?
 
@@ -55,7 +55,7 @@ First start by updating your system.
 sudo apt -y update && sudo apt -y upgrade
 ```
 
-Next, follow the instructions for [updating EL](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/updating-your-execution-client.md) or [updating CL](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/updating-your-consensus-client.md), or your node's official documentation.
+Next, follow the instructions for [updating EL](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/updating-your-execution-client.md) or [updating CL](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/updating-your-consensus-client.md), or your node's official documentation.
 
 Here are the Merge-Ready versions you require:
 
@@ -359,5 +359,5 @@ Can't get your mind off the merge? Here's some additional ideas and nice to have
 
 \[:white\_check\_mark:] Test / dev / deploy code on the testnets
 
-\[:white\_check\_mark:] Learn and earn more [rewards with MEV-boost](../mev-boost/)
+\[:white\_check\_mark:] Learn and earn more [rewards with MEV-boost](mev-boost/)
 

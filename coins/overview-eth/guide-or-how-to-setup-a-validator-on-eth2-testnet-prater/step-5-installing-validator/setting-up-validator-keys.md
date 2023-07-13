@@ -1,20 +1,36 @@
-# Step 3: Setting up Validator Keys
+# Setting up Validator Keys
 
-## :seedling: Obtain testnet ETH
+## :seedling: 1. Obtain testnet ETH
 
 {% hint style="info" %}
 Every 32 ETH you own allows you to make 1 validator. You can run thousands of validators with your beacon node. However on testnet, please only run 1 or 2 validators to keep the activation queue reasonably quick.
 {% endhint %}
 
-### Option 1: Ethstaker's #cheap-goerli-validator Channel
+<details>
+
+<summary>Option 1: Ethstaker's #cheap-goerli-validator Channel</summary>
 
 * **Step 1**: Visit the [Ethstaker Discord](https://discord.io/ethstaker) and join the #cheap-goerli-validator channel
+
+<!---->
+
 * **Step 2**: Use the `/cheap-goerli-deposit` slash command and follow the instructions from the bot. You need to start typing the slash command and it will show above your input box where you can use it.
+
+<!---->
+
 * **Requirement**: In order to use the cheap goerli validator process, you must now set your withdrawal address to `0x4D496CcC28058B1D74B7a19541663E21154f9c84` when creating your validator keys and deposit file. This is to prevent abuses of this service.
 
-### Option 2: Watch this how-to [youtube video for Goerli ETH](https://youtu.be/uur7hGCscak)
+</details>
 
-## :woman\_technologist: Signup to be a validator at the Launchpad
+<details>
+
+<summary>Option 2: Watch this how-to Youtube video for Goerli ETH</summary>
+
+Link: [https://youtu.be/uur7hGCscak](https://youtu.be/uur7hGCscak)
+
+</details>
+
+## :woman\_technologist: 2. Signup to be a validator at the Launchpad
 
 1. Install dependencies, the ethereum foundation deposit tool and generate your two sets of key pairs.
 
@@ -47,7 +63,7 @@ You have the choice of using the [Wagyu GUI](https://github.com/stake-house/wagy
 {% tab title="Build from source code" %}
 Install dependencies.
 
-```
+```bash
 sudo apt update
 sudo apt install python3-pip git -y
 ```
@@ -56,7 +72,7 @@ sudo apt install python3-pip git -y
 
 Download source code and install.
 
-```
+```bash
 cd $HOME
 git clone https://github.com/ethereum/staking-deposit-cli
 cd staking-deposit-cli

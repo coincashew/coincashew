@@ -14,7 +14,7 @@ To participate in the public testnet known as **Pithos**, which is the public's 
 Major props and credits to [parithosh](https://github.com/parithosh/consensus-deployment-ansible#pithos-testnet-ansible-files--config) for this knowledge share. Without his extensive work and dedication, this guide would not be possible.
 {% endhint %}
 
-![The MergETHEREUM Panda](../../../.gitbook/assets/meme-merge.jpg)
+![The MergETHEREUM Panda](../../.gitbook/assets/meme-merge.jpg)
 
 {% hint style="info" %}
 Learn more about the Merge: [https://ethmerge.com/](https://ethmerge.com/)

@@ -12,9 +12,9 @@ A Ethereum node consists of the Execution Layer + Consensus Layer.
 
 A Ethereum Staking node is the previous plus a Validator client.
 
-<figure><img src="../../../../.gitbook/assets/client-stack.png" alt=""><figcaption><p>Client Stack</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/client-stack.png" alt=""><figcaption><p>Client Stack</p></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/eth-validator-diagram.png" alt=""><figcaption><p>Big picture: Execution / Consensus / Validator</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/eth-validator-diagram.png" alt=""><figcaption><p>Big picture: Execution / Consensus / Validator</p></figcaption></figure>
 
 ## :wave: Introduction
 
@@ -93,7 +93,7 @@ Once done with testnet staking, this hardware configuration would be suitable fo
 :bulb: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
 {% endhint %}
 
-<figure><img src="../../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
 
 {% hint style="success" %}
 :sparkles: **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
@@ -127,7 +127,7 @@ With your local or remote node, now you need to install an Operating System. Thi
 {% endhint %}
 
 {% hint style="warning" %}
-**Tip**: When installing Ubuntu Server, ensure you are selecting “**Use an entire disk**” on the **Guided storage configuration** screen. Next screen will be the **Storage configuration** screen, ensure your settings are using all available disk storage. A [common issue](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/using-all-available-lvm-disk-space.md) is that Ubuntu server defaults to using only 200GB.
+**Tip**: When installing Ubuntu Server, ensure you are selecting “**Use an entire disk**” on the **Guided storage configuration** screen. Next screen will be the **Storage configuration** screen, ensure your settings are using all available disk storage. A [common issue](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/using-all-available-lvm-disk-space.md) is that Ubuntu server defaults to using only 200GB.
 {% endhint %}
 
 ## :performing\_arts: Setup Metamask
@@ -148,4 +148,4 @@ At the end of this guide, you will build a staking validator node that hosts thr
 **Execution client (aka Eth1 node)** - Supplies incoming validator deposits from the eth mainnet chain to the beacon chain client.
 {% endhint %}
 
-![How eth2 fits together featuring Leslie the eth2 Rhino, the mascot named after American computer scientist Leslie Lamport](../../../../.gitbook/assets/eth2network.png)
+![How eth2 fits together featuring Leslie the eth2 Rhino, the mascot named after American computer scientist Leslie Lamport](../../../.gitbook/assets/eth2network.png)

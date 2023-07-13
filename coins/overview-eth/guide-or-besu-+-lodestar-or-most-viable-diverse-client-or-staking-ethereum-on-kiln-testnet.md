@@ -15,7 +15,7 @@ description: >-
 As of mid-March 2022, Besu is the most minority execution client with 0.74% of nodes. Lodestar is by far the most minority consensus client with 0.11% representation.
 {% endhint %}
 
-![Besu - only represents 0.74% of execution layer clients](../../../.gitbook/assets/besu.png) ![Lodestar at 0.11% share of consensus layer clients](../../../.gitbook/assets/lodestar.png)
+![Besu - only represents 0.74% of execution layer clients](../../.gitbook/assets/besu.png) ![Lodestar at 0.11% share of consensus layer clients](../../.gitbook/assets/lodestar.png)
 
 ## Prerequisites
 
@@ -80,7 +80,7 @@ sudo reboot
 Initialize the firewall with Ethereum’s p2p ports and ssh.
 
 {% hint style="info" %}
-For additionaly security, check out the comprehensive [eth staking validator node security best practices guide.](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+For additionaly security, check out the comprehensive [eth staking validator node security best practices guide.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
 {% endhint %}
 
 ```bash
@@ -644,7 +644,7 @@ As a newly minted Ethereum Staker,
 * Learn to connect your MetaMask wallet to [your own execution layer node](https://media.consensys.net/make-use-of-your-remote-ethereum-node-using-an-ssh-tunnel-and-metamask-f7b51f7c1c0f)
   * If node is remote then establish a ssh tunnel. Configure MetaMask with these settings.
 
-![kiln network settings](../../../.gitbook/assets/settingKilnMM.png)
+![kiln network settings](../../.gitbook/assets/settingKilnMM.png)
 
 ### Additional Information
 

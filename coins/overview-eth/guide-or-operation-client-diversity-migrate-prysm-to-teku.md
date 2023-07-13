@@ -11,7 +11,7 @@ description: Step by step guide on how to switch for the solo home or cloud stak
 ## :fast\_forward: Complete step by step guide
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -22,11 +22,11 @@ As per best practices, always try everything on a testnet before doing it _for r
 
 > If improving the stability of the beacon chain is not a good enough reason for you to switch from Prysm to either Teku or Nimbus, you also need to consider that due to the design of the beacon chain you will be subject to severe financial penalties if Prysm ever has an issue. \~[Lamboshi on Twitter](https://twitter.com/L\_Nakaghini/status/1440771303745540096)
 
-![](../../../.gitbook/assets/meme2.jpg)
+![](../../.gitbook/assets/meme2.jpg)
 
 ## :rocket: Solution: Increase client diversity by migrating to Teku
 
-![](../../../.gitbook/assets/meme1.jpg)
+![](../../.gitbook/assets/meme1.jpg)
 
 ## :construction: How to Migrate from Prysm to Teku
 
@@ -294,7 +294,7 @@ sudo reboot
 
 ### :key2: 4. Import Validator Keys
 
-Copy your `validator_keys` directory to the data directory we created above and remove the extra deposit\_data file. If you no longer have the validator keys on your node, you will need to restore from file backup or [restore from secret recovery phrase](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/#8-2-verify-your-mnemonic-phrase).
+Copy your `validator_keys` directory to the data directory we created above and remove the extra deposit\_data file. If you no longer have the validator keys on your node, you will need to restore from file backup or [restore from secret recovery phrase](guide-or-how-to-setup-a-validator-on-eth2-mainnet/#8-2-verify-your-mnemonic-phrase).
 
 ```
 cp -r $HOME/eth2deposit-cli/validator_keys /var/lib/teku
@@ -672,7 +672,7 @@ sudo systemctl restart grafana-server prometheus prometheus-node-exporter
 4. Click **Create +** icon > **Import**
 5. Add the ETH2 client dashboard via **Upload JSON file**
 
-![Teku by PegaSys Engineering](../../../.gitbook/assets/teku.dash.png)
+![Teku by PegaSys Engineering](../../.gitbook/assets/teku.dash.png)
 
 Credits: [https://grafana.com/grafana/dashboards/13457](https://grafana.com/grafana/dashboards/13457)
 
