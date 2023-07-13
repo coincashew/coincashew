@@ -60,11 +60,11 @@ ssh ethereum@staking.node.ip.address
 
 **Using Ubuntu Desktop**: Log out can be found in the top right corner under the Power Icon. Click the `ethereum` user account and enter password.
 
-
-
-#### :bulb: For the rest of this guide, remain logged in as this `ethereum` user.
-
 </details>
+
+{% hint style="warning" %}
+:fire:**Important reminder**: Ensure you are logged in and execute all steps in this guide as this non-root user, `ethereum`.
+{% endhint %}
 
 ### Hardening SSH Access
 

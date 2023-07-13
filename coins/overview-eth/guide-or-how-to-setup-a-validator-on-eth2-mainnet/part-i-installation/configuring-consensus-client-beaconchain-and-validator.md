@@ -8,6 +8,10 @@ To strengthen Ethereum's resilience against potential attacks or consensus bugs,
 :shield: **Recommendation** :shield:: Lodestar
 {% endhint %}
 
+{% hint style="warning" %}
+**Reminder**: Ensure you are logged in and execute all steps in this guide as non-root user, `ethereum ,`created during Step 2: Configuring Node.
+{% endhint %}
+
 Your choice of [Lighthouse](https://github.com/sigp/lighthouse), [Nimbus](https://github.com/status-im/nimbus-eth2), [Teku](https://consensys.net/knowledge-base/ethereum-2/teku/), [Prysm](https://github.com/prysmaticlabs/prysm) or [Lodestar](https://lodestar.chainsafe.io).
 
 {% tabs %}

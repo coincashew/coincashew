@@ -12,6 +12,10 @@ To strengthen Ethereum's resilience against potential attacks or consensus bugs,
 :shield: **Recommendation** :shield:: Nethermind
 {% endhint %}
 
+{% hint style="warning" %}
+**Reminder**: Ensure you are logged in and execute all steps in this guide as non-root user, `ethereum ,`created during Step 2: Configuring Node.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Geth" %}
 {% hint style="info" %}

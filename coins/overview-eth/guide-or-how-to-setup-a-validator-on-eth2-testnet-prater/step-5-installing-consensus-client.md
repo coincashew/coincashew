@@ -10,6 +10,10 @@ To strengthen Ethereum's resilience against potential attacks or consensus bugs,
 
 Your choice of [Lighthouse](https://github.com/sigp/lighthouse), [Nimbus](https://github.com/status-im/nimbus-eth2), [Teku](https://consensys.net/knowledge-base/ethereum-2/teku/), [Prysm](https://github.com/prysmaticlabs/prysm) or [Lodestar](https://lodestar.chainsafe.io).
 
+{% hint style="warning" %}
+**Reminder**: Ensure you are logged in and execute all steps in this guide as non-root user, `ethereum ,`created during Step 2: Configuring Node.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Lighthouse" %}
 {% hint style="info" %}
@@ -473,7 +477,7 @@ Restart=on-failure
 ExecStart=/bin/bash -c '/usr/bin/nimbus_beacon_node \
  --network=goerli \
  --data-dir=/var/lib/nimbus \
- --web3-url=ws://127.0.0.1:8551 \
+ --web3-url=http://127.0.0.1:8551 \
  --metrics \
  --metrics-port=8008 \
  --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS \
