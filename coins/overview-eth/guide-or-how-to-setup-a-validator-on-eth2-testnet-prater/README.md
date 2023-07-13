@@ -30,7 +30,7 @@ Pull requests or issues can be submitted on [github](https://github.com/coincash
 
 ## :star: Installation Overview
 
-Installation is a 5 step process. From start to finish, time to complete these steps can take up to a few hours. Fully syncing your the node can take a day.
+Installation is a 5 step process. From start to finish, time to complete these steps can take up to a few hours. Fully syncing the node can take a day.
 
 Rest assured, as you become more familiar and more comfortable by practicing on [testnet](./), you are now proudly on the path towards the gold standard of ETH solo-staking.
 
