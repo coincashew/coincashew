@@ -19,7 +19,7 @@ coverY: 0
 * Learn to setup your own [Ethereum Staking Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 * [Update Withdrawal Keys for Ethereum Validator with Ethdo](coins/overview-eth/update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
 * [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/)
-* [Ethereum Staking on Zhejiang Testnet Guide](coins/overview-eth/guide-or-ethereum-staking-on-zhejiang-testnet.md)
+* [Ethereum Staking on Zhejiang Testnet Guide](coins/overview-eth/archived-guides/guide-or-ethereum-staking-on-zhejiang-testnet.md)
 * Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
 {% endhint %}
 
