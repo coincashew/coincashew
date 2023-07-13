@@ -8,16 +8,14 @@ description: >-
 
 ## :new: Announcements
 
-{% hint style="info" %}
-:confetti\_ball: **Live Now! Gitcoin Grants until May 9:** [We improve this guide with your support!](https://explorer.gitcoin.co/#/round/1/0xdf22a2c8f6ba9376ff17ee13e6154b784ee92094/0xdf22a2c8f6ba9376ff17ee13e6154b784ee92094-9)🙏
-{% endhint %}
-
 {% hint style="success" %}
-As of June 24 2023, this **post-🦉Shapella**🦉 **guide is** **version 6.1.0** written for **testnet GOERLI** :grin:
+As of July 4 2023, this is the new **Version 2 Guide** written for **post-🦉Shapella**🦉 written for **testnet GOERLI** :grin:
 {% endhint %}
 
 {% hint style="info" %}
 **Always test and practice on testnet first.** [**Mainnet guide available here.**](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+
+**Looking for Version 1 GOERLI** guide? [Available here.](../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/)
 {% endhint %}
 
 ## :thumbsup: Your Github Contributions Welcome
