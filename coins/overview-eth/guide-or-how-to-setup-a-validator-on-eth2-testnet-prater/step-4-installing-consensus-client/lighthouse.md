@@ -92,7 +92,7 @@ sudo apt install -y git gcc g++ make cmake pkg-config libssl-dev libclang-dev cl
 Build the binaries.
 
 ```bash
-mkdir ~/git
+mkdir -p ~/git
 cd ~/git
 git clone -b stable https://github.com/sigp/lighthouse.git
 cd lighthouse
