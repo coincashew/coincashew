@@ -64,7 +64,7 @@ sudo apt-get install -y nodejs
 Install and build Lodestar.
 
 ```bash
-mkdir ~/git
+mkdir -p ~/git
 cd ~/git
 git clone -b stable https://github.com/chainsafe/lodestar.git
 cd lodestar
