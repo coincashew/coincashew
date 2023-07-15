@@ -64,7 +64,7 @@ rm teku.tar.gz
 
 Install the binaries.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo cp -a $HOME/teku /usr/local/bin/teku
+<pre class="language-bash"><code class="lang-bash"><strong>sudo mv $HOME/teku /usr/local/bin/teku
 </strong></code></pre>
 
 </details>
@@ -158,7 +158,7 @@ ExecStart=/usr/local/bin/teku/bin/teku \
 WantedBy=multi-user.target
 </code></pre>
 
-* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* Replace`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * **Not staking?** If you only want a full node, delete the whole three lines beginning with
 
 ```
@@ -188,7 +188,7 @@ Press `Ctrl` + `C` to exit the status.
 Check your logs to confirm that the consensus clients are up and syncing.
 
 ```bash
-journalctl -fu consensus | ccze
+sudo journalctl -fu consensus | ccze
 ```
 
 **Example of Synced Consensus Client Logs**
@@ -202,9 +202,8 @@ teku[64122]: 02:24:40.010 INFO  - Slot Event  *** Slot: 19200, Block: 72B092AADF
 
 {% tabs %}
 {% tab title="View Logs" %}
-```bash
-journalctl -fu consensus | ccze
-```
+<pre class="language-bash"><code class="lang-bash"><strong>sudo journalctl -fu consensus | ccze
+</strong></code></pre>
 
 **Example of Synced Teku Consensus Client Logs**
 

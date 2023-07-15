@@ -26,7 +26,7 @@ Import your validator keys by importing your **keystore file**. When asked to cr
 {% tabs %}
 {% tab title="Binaries" %}
 ```shell
-/usr/local/bin/validator accounts import \
+sudo /usr/local/bin/validator accounts import \
   --accept-terms-of-use \
   --goerli \
   --wallet-dir=/var/lib/prysm/validators \
@@ -61,8 +61,8 @@ Verify that your keystore file was imported successfully.
 
 {% tabs %}
 {% tab title="Binaries" %}
-<pre class="language-bash"><code class="lang-bash"><strong>/usr/local/bin/validator accounts list \
-</strong>  --wallet-dir=/var/lib/prysm/validators
+<pre class="language-bash"><code class="lang-bash"><strong>sudo /usr/local/bin/validator accounts list \
+</strong>  --wallet-dir=/var/lib/prysm/validators \
   --goerli
 </code></pre>
 {% endtab %}
@@ -70,7 +70,7 @@ Verify that your keystore file was imported successfully.
 {% tab title="Built from Source" %}
 <pre class="language-bash"><code class="lang-bash"><strong>cd /usr/local/bin/prysm
 </strong><strong>sudo bazel run //validator:validator -- accounts list \
-</strong>  --wallet-dir=/var/lib/prysm/validator
+</strong>  --wallet-dir=/var/lib/prysm/validator \
   --goerli
 </code></pre>
 {% endtab %}
@@ -189,7 +189,7 @@ sudo systemctl status validator
 Check your logs to confirm that the validator clients are up and functioning.
 
 ```bash
-journalctl -fu validator | ccze
+sudo journalctl -fu validator | ccze
 ```
 
 For example when using 2 validators, logs will show the following:

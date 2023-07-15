@@ -133,7 +133,7 @@ ExecStart=/usr/local/bin/lodestar/lodestar beacon \
 WantedBy=multi-user.target
 ```
 
-* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* Replace`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * **Not staking?** If you only want a full node, delete the whole line beginning with
 
 ```
@@ -163,7 +163,7 @@ Press `Ctrl` + `C` to exit the status.
 {% tabs %}
 {% tab title="View Logs" %}
 ```bash
-journalctl -fu consensus | ccze
+sudo journalctl -fu consensus | ccze
 ```
 
 **Example of Synced Lodestar Consensus Client Logs**

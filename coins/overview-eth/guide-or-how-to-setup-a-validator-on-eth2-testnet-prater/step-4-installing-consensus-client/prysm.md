@@ -53,7 +53,7 @@ chmod +x beacon-chain validator
 
 Install the binaries.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo cp beacon-chain validator /usr/local/bin
+<pre class="language-bash"><code class="lang-bash"><strong>sudo mv beacon-chain validator /usr/local/bin
 </strong></code></pre>
 
 </details>
@@ -177,7 +177,7 @@ WantedBy=multi-user.target
 
 </details>
 
-* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* Replace`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * **Not staking?** If you only want a full node, delete the whole lines beginning with
 
 ```
@@ -205,7 +205,7 @@ Press `Ctrl` + `C` to exit the status.
 Check your logs to confirm that the consensus clients are up and syncing.
 
 ```bash
-journalctl -fu consensus | ccze
+sudo journalctl -fu consensus | ccze
 ```
 
 **Example of Synced Consensus Client Logs**
@@ -219,9 +219,8 @@ journalctl -fu consensus | ccze
 
 {% tabs %}
 {% tab title="View Logs" %}
-```bash
-journalctl -fu consensus | ccze
-```
+<pre class="language-bash"><code class="lang-bash"><strong>sudo journalctl -fu consensus | ccze
+</strong></code></pre>
 
 **Example of Synced Prysm Consensus Client Logs**
 

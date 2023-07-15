@@ -64,7 +64,7 @@ rm nimbus.tar.gz
 
 Install the binaries.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo cp nimbus/build/nimbus_beacon_node /usr/local/bin/nimbus_beacon_node
+<pre class="language-bash"><code class="lang-bash"><strong>sudo mv nimbus/build/nimbus_beacon_node /usr/local/bin/nimbus_beacon_node
 </strong></code></pre>
 
 </details>
@@ -145,7 +145,7 @@ ExecStart=/usr/local/bin/nimbus_beacon_node \
 WantedBy=multi-user.target
 ```
 
-* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* Replace`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * **Not staking?** If you only want a full node, delete the whole line beginning with
 
 ```
@@ -190,9 +190,8 @@ Press `Ctrl` + `C` to exit the status.
 
 Check your logs to confirm that the consensus clients are up and syncing.
 
-```bash
-journalctl -fu consensus | ccze
-```
+<pre class="language-bash"><code class="lang-bash"><strong>sudo journalctl -fu consensus | ccze
+</strong></code></pre>
 
 **Example of Synced Consensus Client Logs**
 
@@ -206,7 +205,7 @@ nimbus_beacon_node[292966]: INF 2023-02-05 01:20:08.000+00:00 Slot end         t
 {% tabs %}
 {% tab title="View Logs" %}
 ```bash
-journalctl -fu consensus | ccze
+sudo journalctl -fu consensus | ccze
 ```
 
 **Example of Synced Nimbus Consensus Client Logs**
@@ -231,7 +230,7 @@ sudo systemctl start consensus
 
 {% tab title="View Status" %}
 ```bash
-sudo systemctl status consensusbbb
+sudo systemctl status consensus
 ```
 {% endtab %}
 {% endtabs %}

@@ -268,7 +268,7 @@ Remove old binaries, install new binaries and restart the services.
 
 ```bash
 sudo rm /usr/local/bin/nimbus_beacon_node
-sudo cp nimbus/build/nimbus_beacon_node /usr/local/bin/nimbus_beacon_node
+sudo mv nimbus/build/nimbus_beacon_node /usr/local/bin/nimbus_beacon_node
 sudo systemctl start consensus
 ```
 

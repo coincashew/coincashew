@@ -96,7 +96,7 @@ sudo systemctl status validator
 Check your logs to confirm that the validator clients are up and functioning.
 
 ```bash
-journalctl -fu validator | ccze
+sudo journalctl -fu validator | ccze
 ```
 
 For example when using 2 validators, logs will show the following:

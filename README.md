@@ -5,21 +5,20 @@ coverY: 0
 
 # Home
 
-## &#x20;<img src=".gitbook/assets/160.png" alt="" data-size="line"> CoinCashew
+## <img src=".gitbook/assets/160.png" alt="" data-size="line"> CoinCashew
 
-> ### The best how-to guide for all your favorite cryptocurrencies.
+> #### The best how-to guide for all your favorite cryptocurrencies.
 
 {% hint style="success" %}
 :sparkles: Learn to do anything with crypto, _better_.
 {% endhint %}
 
 {% hint style="info" %}
-:fire: **HOT TOPICS**&#x20;
+:fire: **HOT TOPICS**
 
 * Learn to setup your own [Ethereum Staking Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 * [Update Withdrawal Keys for Ethereum Validator with Ethdo](coins/overview-eth/update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
 * [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/)
-* [Ethereum Staking on Zhejiang Testnet Guide](coins/overview-eth/archived-guides/guide-or-ethereum-staking-on-zhejiang-testnet.md)
 * Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
 {% endhint %}
 
@@ -36,5 +35,5 @@ coverY: 0
 Perhaps you wrote your own guide? Scale, share, and amplify your knowledge. [Your pull request contributions are welcome on GitHub!](contact-us/contributing/)
 
 {% hint style="success" %}
-Accelerating the adoption of crypto! Yes, you are.&#x20;
+Accelerating the adoption of crypto! Yes, you are.
 {% endhint %}

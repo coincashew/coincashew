@@ -65,7 +65,7 @@ Run the following to automatically download the latest linux release, un-tar and
 
 ```bash
 RELEASE_URL="https://api.github.com/repos/hyperledger/besu/releases/latest"
-FILE="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/[a-zA-Z0-9./?=_%:-]*.tar.gz"
+FILE="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/[a-zA-Z0-9./?=_%:-]*.tar.gz"
 BINARIES_URL="$(curl -s $RELEASE_URL | grep -Eo $FILE)"
 
 echo Downloading URL: $BINARIES_URL
@@ -208,7 +208,7 @@ sudo systemctl start execution
 
 <details>
 
-<summary>UNAVAILABLE - DO NOT USE :: SEG FAULTS - Option 1 - Download binaries</summary>
+<summary>Option 1 - Download binaries</summary>
 
 Run the following to automatically download the latest linux release, un-tar and cleanup.
 

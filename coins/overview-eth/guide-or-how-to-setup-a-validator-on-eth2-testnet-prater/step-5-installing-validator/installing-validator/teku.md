@@ -7,8 +7,8 @@
 First, copy your `validator_keys` to the data directory.
 
 ```bash
-mkdir -p /var/lib/teku/validator_keys
-cp $HOME/staking-deposit-cli/validator_keys/keystore* /var/lib/teku/validator_keys
+sudo mkdir -p /var/lib/teku/validator_keys
+sudo cp $HOME/staking-deposit-cli/validator_keys/keystore* /var/lib/teku/validator_keys
 ```
 
 {% hint style="danger" %}
@@ -20,7 +20,7 @@ Storing your **keystore password** in a text file is required so that Teku can d
 Create a temporary file to store your **keystore password**. Type your password in this file.
 
 ```bash
-nano $HOME/validators-password.txt
+sudo nano $HOME/validators-password.txt
 ```
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
@@ -28,7 +28,7 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 Confirm that your **keystore password** is correct.
 
 ```bash
-cat $HOME/validators-password.txt
+sudo cat $HOME/validators-password.txt
 ```
 
 When specifying directories for your validator-keys, Teku expects to find identically named keystore and password files.
@@ -38,7 +38,7 @@ For example `keystore-m_12221_3600_1_0_0-11222333.json` and `keystore-m_12221_36
 Run the following command to create a corresponding password file for every one of your validators.
 
 ```bash
-for f in /var/lib/teku/validator_keys/keystore*.json; do cp $HOME/validators-password.txt /var/lib/teku/validator_keys/$(basename $f .json).txt; done
+for f in /var/lib/teku/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt /var/lib/teku/validator_keys/$(basename $f .json).txt; done
 ```
 
 Setup ownership permissions, including hardening the access to this directory.
@@ -50,13 +50,13 @@ Setup ownership permissions, including hardening the access to this directory.
 Verify that your validator's keystore .json files and validator's passwords .txt files are present by checking the following directory.
 
 ```bash
-ll /var/lib/teku/validator_keys
+sudo ls -l /var/lib/nimbus/validators
 ```
 
 Delete the temporary **keystore password** file.
 
 ```bash
-rm $HOME/validators-password.txt
+sudo rm $HOME/validators-password.txt
 ```
 
 Finally, restart Teku to use the new validators.
@@ -68,7 +68,7 @@ sudo systemctl restart consensus
 Check your logs to confirm that the validators are up and functioning.
 
 ```bash
-journalctl -fu consensus | ccze
+sudo journalctl -fu consensus | ccze
 ```
 
 For example when using 2 validators, logs will show the following:

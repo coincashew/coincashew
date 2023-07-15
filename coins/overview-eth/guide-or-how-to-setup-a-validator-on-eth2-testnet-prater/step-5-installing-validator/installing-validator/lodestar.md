@@ -34,7 +34,7 @@ sudo chmod 700 /var/lib/lodestar/validators
 Verify that your keystore file was imported successfully.
 
 <pre class="language-bash"><code class="lang-bash"><strong>cd /usr/local/bin/lodestar
-</strong><strong>sudo -u validator ./lodestar validator list \
+</strong><strong>sudo ./lodestar validator list \
 </strong><strong>  --network goerli \
 </strong>  --dataDir="/var/lib/lodestar/validators"
 </code></pre>
@@ -99,7 +99,7 @@ sudo systemctl status validator
 Check your logs to confirm that the validator clients are up and functioning.
 
 ```bash
-journalctl -fu validator | ccze
+sudo journalctl -fu validator | ccze
 ```
 
 For example when using 2 validators, logs will show the following:

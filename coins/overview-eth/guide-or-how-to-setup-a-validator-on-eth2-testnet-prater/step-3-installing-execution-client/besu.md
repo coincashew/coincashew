@@ -32,7 +32,7 @@ sudo apt install -y openjdk-17-jdk libjemalloc-dev
 
 ### 2. Install Binaries
 
-* Downloading binaries is often faster and more convenient.&#x20;
+* Downloading binaries is often faster and more convenient.
 * Building from source code can offer better compatibility and is more aligned with the spirit of FOSS (free open source software).
 
 <details>
@@ -43,7 +43,7 @@ Run the following to automatically download the latest linux release, un-tar and
 
 ```bash
 RELEASE_URL="https://api.github.com/repos/hyperledger/besu/releases/latest"
-FILE="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/[a-zA-Z0-9./?=_%:-]*.tar.gz"
+FILE="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/[a-zA-Z0-9./?=_%:-]*.tar.gz"
 BINARIES_URL="$(curl -s $RELEASE_URL | grep -Eo $FILE)"
 
 echo Downloading URL: $BINARIES_URL

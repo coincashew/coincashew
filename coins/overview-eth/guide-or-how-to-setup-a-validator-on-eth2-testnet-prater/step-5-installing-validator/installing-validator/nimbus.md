@@ -26,7 +26,7 @@ Setup ownership permissions, including hardening the access to this directory.
 Now you can verify the accounts were imported successfully by doing a directory listing.
 
 ```bash
-ll /var/lib/nimbus/validators
+sudo ls -l /var/lib/nimbus/validators
 ```
 
 You should see a folder named for each of your validator's pubkey.&#x20;
@@ -40,7 +40,7 @@ sudo systemctl restart consensus
 Check your logs to confirm that the validators are up and functioning.
 
 ```bash
-journalctl -fu consensus | ccze
+sudo journalctl -fu consensus | ccze
 ```
 
 For example when using 2 validators, logs will show the following:

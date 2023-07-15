@@ -16,7 +16,7 @@ ssh username@staking.node.ip.address
 
 Ensure all the latest packages, tools and patches are installed first, then reboot.
 
-```
+```bash
 sudo apt-get update -y && sudo apt dist-upgrade -y
 sudo apt-get install git ufw curl ccze -y
 sudo apt-get autoremove
@@ -285,7 +285,7 @@ Because the consensus client relies on accurate times to perform attestations an
 
 To install chrony:
 
-```
+```bash
 sudo apt-get install chrony -y
 ```
 
@@ -445,13 +445,13 @@ Fail2ban is an intrusion-prevention system that monitors log files and searches 
 
 To install fail2ban:
 
-```
+```bash
 sudo apt-get install fail2ban -y
 ```
 
 Edit a config file that monitors SSH logins.
 
-```
+```bash
 sudo nano /etc/fail2ban/jail.local
 ```
 
@@ -470,6 +470,6 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 Restart fail2ban for settings to take effect.
 
-```
+```bash
 sudo systemctl restart fail2ban
 ```

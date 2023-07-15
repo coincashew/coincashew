@@ -60,6 +60,56 @@ The Withdrawal Address is:
 You have the choice of using the [Wagyu GUI](https://github.com/stake-house/wagyu-installer), downloading the pre-built [Ethereum staking deposit tool](https://github.com/ethereum/staking-deposit-cli) or building it from source.&#x20;
 
 {% tabs %}
+{% tab title="Pre-built staking-deposit-cli" %}
+Download staking-deposit-cli.
+
+```bash
+cd $HOME
+wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.5.0/staking_deposit-cli-d7b5304-linux-amd64.tar.gz
+```
+
+
+
+Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/staking-deposit-cli/releases).
+
+```bash
+echo "3f51859d78ad47a3e258470f5a5caf03d19ed1d4307d517325b7bb8f6fcde6ef *staking_deposit-cli-d7b5304-linux-amd64.tar.gz" | shasum -a 256 --check
+```
+
+
+
+Example valid output:
+
+> staking\_deposit-cli-d7b5304-linux-amd64.tar.gz: OK
+
+{% hint style="danger" %}
+Only proceed if the sha256 check passes with **OK**!
+{% endhint %}
+
+
+
+Extract the archive.
+
+```
+tar -xvf staking_deposit-cli-d7b5304-linux-amd64.tar.gz
+mv staking_deposit-cli-d7b5304-linux-amd64 staking-deposit-cli
+rm staking_deposit-cli-d7b5304-linux-amd64.tar.gz
+cd staking-deposit-cli
+```
+
+
+
+Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.&#x20;
+
+:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:&#x20;
+
+:octagonal\_sign::octagonal\_sign: **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
+
+```
+./deposit new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+```
+{% endtab %}
+
 {% tab title="Build from source code" %}
 Install dependencies.
 
@@ -89,56 +139,6 @@ Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` wit
 
 ```
 ./deposit.sh new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
-```
-{% endtab %}
-
-{% tab title="Pre-built staking-deposit-cli" %}
-Download staking-deposit-cli.
-
-```bash
-cd $HOME
-wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.4.0/staking_deposit-cli-ef89710-linux-amd64.tar.gz
-```
-
-
-
-Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/staking-deposit-cli/releases/tag/v2.3.0).
-
-```bash
-echo "c2b12a9e515f904ca359ec39dfbd7022dfefe881c1796ce42319df0a2da05560 *staking_deposit-cli-76ed782-linux-amd64.tar.gz" | shasum -a 256 --check
-```
-
-
-
-Example valid output:
-
-> staking\_deposit-cli-ef89710-linux-amd64.tar.gz: OK
-
-{% hint style="danger" %}
-Only proceed if the sha256 check passes with **OK**!
-{% endhint %}
-
-
-
-Extract the archive.
-
-```
-tar -xvf staking_deposit-cli-ef89710-linux-amd64.tar.gz
-mv staking_deposit-cli-ef89710-linux-amd64 staking-deposit-cli
-rm staking_deposit-cli-ef89710-linux-amd64.tar.gz
-cd staking-deposit-cli
-```
-
-
-
-Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.&#x20;
-
-:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:&#x20;
-
-:octagonal\_sign::octagonal\_sign: **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
-
-```
-./deposit new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 {% endtab %}
 

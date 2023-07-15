@@ -32,12 +32,12 @@ sudo apt install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 
 ### 2. Install Binaries
 
-* Downloading binaries is often faster and more convenient.&#x20;
+* Downloading binaries is often faster and more convenient.
 * Building from source code can offer better compatibility and is more aligned with the spirit of FOSS (free open source software).
 
 <details>
 
-<summary>UNAVAILABLE - DO NOT USE :: SEG FAULTS - Option 1 - Download binaries</summary>
+<summary>Option 1 - Download binaries</summary>
 
 Run the following to automatically download the latest linux release, un-tar and cleanup.
 
