@@ -32,7 +32,7 @@ sudo apt install -y openjdk-17-jdk libjemalloc-dev
 
 ### 2. Install Binaries
 
-* Downloading binaries is often faster and more convenient.&#x20;
+* Downloading binaries is often faster and more convenient.
 * Building from source code can offer better compatibility and is more aligned with the spirit of FOSS (free open source software).
 
 <details>

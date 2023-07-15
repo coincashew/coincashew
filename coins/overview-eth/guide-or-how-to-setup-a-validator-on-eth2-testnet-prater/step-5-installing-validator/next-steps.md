@@ -3,14 +3,14 @@
 ## :track\_next: Next Steps
 
 {% hint style="info" %}
-Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to a day. On nodes with fast NVME drives and gigabit internet, expect your node to be fully synced in a few hours.
+**Sync Timeline:** Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to a day. On nodes with fast NVME drives and gigabit internet, expect your node to be fully synced in a few hours.
 {% endhint %}
 
 {% hint style="warning" %}
 **Patience required**: If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.\
 
 
-How do I know I'm fully synced?
+**How do I know I'm fully synced?**
 
 * Check your execution client's logs and compare the block number against the most recent block on [https://goerli.etherscan.io/](https://goerli.etherscan.io/)
   * Check EL logs: `journalctl -fu execution`
@@ -19,9 +19,11 @@ How do I know I'm fully synced?
 {% endhint %}
 
 {% hint style="info" %}
-Once your beacon chain is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. When you're assigned, your validator will begin creating and voting on blocks while earning staking rewards.
+**Activation Queue**: Once your EL+CL is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. Check the queue length: [https://wenmerge.com ](https://wenmerge.com)
 
-Use [https://goerli.beaconcha.in](https://goerli.beaconcha.in/) to create alerts and track your validator's performance.
+**Activated**: When you're activated, your validator will begin creating and voting on blocks while earning staking rewards.
+
+**Quick monitoring**: Use [https://goerli.beaconcha.in/](https://goerli.beaconcha.in) to create alerts and track your validator's performance.
 {% endhint %}
 
 {% hint style="success" %}
@@ -33,6 +35,7 @@ Use [https://goerli.beaconcha.in](https://goerli.beaconcha.in/) to create alerts
 * Subscribe to your Execution Client and Consensus Client's Github repository to be notified of new releases. Find the Github links on each EL/CL's Overview section. At your EL or CL's github page while logged in, click the **Watch** button > **Custom** > click the checkbox for "**Release**".
 * Join the [community on Discord and Reddit](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/joining-the-community-on-discord-and-reddit.md#discord) to discuss all things staking related.
 * Familiarize yourself with [Part II - Maintenance](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/) section, as you'll need to keep your staking node running at its best.
+* Up your staking understanding with the [EthStaker Knowledge Base](https://docs.ethstaker.cc/ethstaker-knowledge-base/).
 * Review your staking validator backups!
 * **Finished testing?** Before decommissioning your validator, it's good practice to properly [exit your validator](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/voluntary-exiting-a-validator.md) as this improves staking network health.
 

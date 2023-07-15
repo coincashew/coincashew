@@ -305,7 +305,7 @@ chronyc tracking
 
 To pick your timezone run the following command:
 
-```
+```bash
 sudo dpkg-reconfigure tzdata
 ```
 
@@ -407,7 +407,7 @@ Example of ufw status for a remote staking node configured for Lighthouse consen
 > ```
 
 {% hint style="info" %}
-**Port Forwarding Tip:** You'll need to forward and open ports to your validator.
+**Port Forwarding Tip for Local Stakers at Home:** You'll need to forward ports to your validator.
 
 
 

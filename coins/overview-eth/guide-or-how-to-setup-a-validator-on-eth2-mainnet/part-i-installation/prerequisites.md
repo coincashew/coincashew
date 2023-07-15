@@ -41,6 +41,11 @@ ssh <YourUserName>@<YourServersIP>
 
 Here's a [guide from Makeuseof](https://www.makeuseof.com/tag/beginners-guide-setting-ssh-linux-testing-setup/) to connect by SSH to your **remote node.**
 
+## :hammer\_pick: How to Run Commands
+
+* Commands are to be run in a terminal window or ssh terminal.
+* Commands preceded by `sudo` will prompt for your password at first, and periodically afterwards.
+
 ## :woman\_technologist: Skills for operating an staking node
 
 As a validator for Ethereum, you will typically have the following abilities:
@@ -108,7 +113,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 
 ## :tools: Setup Ubuntu
 
-With your local or remote node, now you need to install an Operating System. This guide is designed for Ubuntu 22.04 LTS.
+With your local or remote node, now you need to install an Operating System. This guide is designed for Ubuntu 22.04.1 LTS.
 
 * To install **Ubuntu Server**, refer to [this guide.](https://ubuntu.com/tutorials/install-ubuntu-server#1-overview)
 * To install **Ubuntu Desktop**, refer to [this guide.](https://www.coincashew.com/coins/overview-xtz/guide-how-to-setup-a-baker/install-ubuntu)

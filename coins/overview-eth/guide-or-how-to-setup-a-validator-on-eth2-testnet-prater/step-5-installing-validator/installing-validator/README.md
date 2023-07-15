@@ -10,8 +10,8 @@ Select your consensus client for further instructions.
 [lodestar.md](lodestar.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../step-4-installing-consensus-client/teku.md" %}
-[teku.md](../../step-4-installing-consensus-client/teku.md)
+{% content-ref url="teku.md" %}
+[teku.md](teku.md)
 {% endcontent-ref %}
 
 {% content-ref url="nimbus.md" %}

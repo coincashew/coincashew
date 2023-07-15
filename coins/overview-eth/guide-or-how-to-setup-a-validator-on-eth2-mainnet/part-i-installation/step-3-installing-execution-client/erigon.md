@@ -32,7 +32,7 @@ sudo apt install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 
 ### 2. Install Binaries
 
-* Downloading binaries is often faster and more convenient.&#x20;
+* Downloading binaries is often faster and more convenient.
 * Building from source code can offer better compatibility and is more aligned with the spirit of FOSS (free open source software).
 
 <details>
@@ -41,21 +41,23 @@ sudo apt install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 
 Run the following to automatically download the latest linux release, un-tar and cleanup.
 
-<pre class="language-bash"><code class="lang-bash">RELEASE_URL="https://api.github.com/repos/ledgerwatch/erigon/releases/latest"
-<strong>BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux_amd64)"
-</strong>
+```bash
+RELEASE_URL="https://api.github.com/repos/ledgerwatch/erigon/releases/latest"
+BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux_amd64)"
+
 echo Downloading URL: $BINARIES_URL
 
 cd $HOME
 wget -O erigon.tar.gz $BINARIES_URL
 tar -xzvf erigon.tar.gz -C $HOME
 rm erigon.tar.gz
-</code></pre>
+```
 
 Install the binaries.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo mv $HOME/erigon /usr/local/bin/erigon
-</strong></code></pre>
+```bash
+sudo mv $HOME/erigon /usr/local/bin/erigon
+```
 
 </details>
 

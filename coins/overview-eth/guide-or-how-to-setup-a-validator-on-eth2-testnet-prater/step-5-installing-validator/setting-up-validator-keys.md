@@ -90,7 +90,7 @@ Only proceed if the sha256 check passes with **OK**!
 
 Extract the archive.
 
-```
+```bash
 tar -xvf staking_deposit-cli-d7b5304-linux-amd64.tar.gz
 mv staking_deposit-cli-d7b5304-linux-amd64 staking-deposit-cli
 rm staking_deposit-cli-d7b5304-linux-amd64.tar.gz

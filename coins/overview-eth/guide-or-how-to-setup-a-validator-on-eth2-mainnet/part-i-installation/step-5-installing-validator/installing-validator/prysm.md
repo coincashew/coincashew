@@ -25,12 +25,13 @@ Import your validator keys by importing your **keystore file**. When asked to cr
 
 {% tabs %}
 {% tab title="Binaries" %}
-<pre class="language-shell"><code class="lang-shell"><strong>sudo /usr/local/bin/validator accounts import \
-</strong>  --accept-terms-of-use \
+```shell
+sudo /usr/local/bin/validator accounts import \
+  --accept-terms-of-use \
   --mainnet \
   --wallet-dir=/var/lib/prysm/validators \
   --keys-dir=$HOME/staking-deposit-cli/validator_keys
-</code></pre>
+```
 {% endtab %}
 
 {% tab title="Built from Source" %}

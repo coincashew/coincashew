@@ -26,10 +26,11 @@ WARNING: Do not import your validator keys into multiple validator clients and r
 
 Verify that your keystore file was imported successfully.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo ./lodestar validator list \
-</strong><strong>  --network mainnet \
-</strong>  --dataDir="/var/lib/lodestar/validators"
-</code></pre>
+```bash
+sudo ./lodestar validator list \
+  --network mainnet \
+  --dataDir="/var/lib/lodestar/validators"
+```
 
 Once successful, you will be shown your **validator's public key**.
 
@@ -97,8 +98,9 @@ sudo systemctl status validator
 
 Check your logs to confirm that the validator clients are up and functioning.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo journalctl -fu validator | ccze
-</strong></code></pre>
+```bash
+sudo journalctl -fu validator | ccze
+```
 
 For example when using 2 validators, logs will show the following:
 

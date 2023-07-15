@@ -82,13 +82,14 @@ sudo apt-get install curl build-essential git -y
 
 Build the binary.
 
-<pre class="language-bash"><code class="lang-bash">mkdir -p ~/git
+```bash
+mkdir -p ~/git
 cd ~/git
 git clone -b stable https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
 make -j$(nproc) update
-<strong>make -j$(nproc) nimbus_beacon_node
-</strong></code></pre>
+make -j$(nproc) nimbus_beacon_node
+```
 
 Verify Nimbus was built properly by displaying the version.
 

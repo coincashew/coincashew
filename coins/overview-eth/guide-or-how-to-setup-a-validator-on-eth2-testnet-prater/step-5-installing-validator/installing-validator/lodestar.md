@@ -26,11 +26,11 @@ WARNING: Do not import your validator keys into multiple validator clients and r
 
 Verify that your keystore file was imported successfully.
 
-<pre class="language-bash"><code class="lang-bash"><strong>cd /usr/local/bin/lodestar
-</strong><strong>sudo ./lodestar validator list \
-</strong><strong>  --network goerli \
-</strong>  --dataDir="/var/lib/lodestar/validators"
-</code></pre>
+```bash
+sudo ./lodestar validator list \
+  --network goerli \
+  --dataDir="/var/lib/lodestar/validators"
+```
 
 Once successful, you will be shown your **validator's public key**.
 

@@ -27,9 +27,10 @@ You should see a folder named for each of your validator's pubkey.&#x20;
 
 Setup ownership permissions, including hardening the access to this directory.
 
-<pre class="language-bash"><code class="lang-bash">sudo chown -R consensus:consensus /var/lib/nimbus
-<strong>sudo chmod -R 700 /var/lib/nimbus
-</strong></code></pre>
+```bash
+sudo chown -R consensus:consensus /var/lib/nimbus
+sudo chmod -R 700 /var/lib/nimbus
+```
 
 Finally, restart Nimbus to use the new validators.
 
@@ -39,8 +40,9 @@ sudo systemctl restart consensus
 
 Check your logs to confirm that the validators are up and functioning.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo journalctl -fu consensus | ccze
-</strong></code></pre>
+```bash
+sudo journalctl -fu consensus | ccze
+```
 
 For example when using 2 validators, logs will show the following:
 

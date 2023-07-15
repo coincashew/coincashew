@@ -143,9 +143,9 @@ At the end of this guide, you will build a staking validator node that hosts thr
 
 **Validator client** - Responsible for producing new blocks and attestations in the beacon chain and shard chains.
 
-**Beacon chain client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
+**Consensus client** - Responsible for managing the state of the beacon chain, validator shuffling, and more.
 
-**Execution client (aka Eth1 node)** - Supplies incoming validator deposits from the eth mainnet chain to the beacon chain client.
+**Execution client** - Supplies incoming validator deposits from the eth mainnet chain to the beacon chain client.
 {% endhint %}
 
-![How eth2 fits together featuring Leslie the eth2 Rhino, the mascot named after American computer scientist Leslie Lamport](../../../.gitbook/assets/eth2network.png)
+![How Ethereum nodes fits together featuring Leslie the Rhino, the mascot named after American computer scientist Leslie Lamport](../../../.gitbook/assets/eth2network.png)

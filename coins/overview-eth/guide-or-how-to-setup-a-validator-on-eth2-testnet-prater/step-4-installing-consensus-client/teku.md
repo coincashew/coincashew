@@ -189,8 +189,9 @@ teku[64122]: 02:24:40.010 INFO  - Slot Event  *** Slot: 19200, Block: 72B092AADF
 
 {% tabs %}
 {% tab title="View Logs" %}
-<pre class="language-bash"><code class="lang-bash"><strong>sudo journalctl -fu consensus | ccze
-</strong></code></pre>
+```bash
+sudo journalctl -fu consensus | ccze
+```
 
 **Example of Synced Teku Consensus Client Logs**
 

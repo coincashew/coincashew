@@ -219,8 +219,9 @@ sudo journalctl -fu consensus | ccze
 
 {% tabs %}
 {% tab title="View Logs" %}
-<pre class="language-bash"><code class="lang-bash"><strong>sudo journalctl -fu consensus | ccze
-</strong></code></pre>
+```bash
+sudo journalctl -fu consensus | ccze
+```
 
 **Example of Synced Prysm Consensus Client Logs**
 

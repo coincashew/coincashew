@@ -190,8 +190,9 @@ Press `Ctrl` + `C` to exit the status.
 
 Check your logs to confirm that the consensus clients are up and syncing.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo journalctl -fu consensus | ccze
-</strong></code></pre>
+```bash
+sudo journalctl -fu consensus | ccze
+```
 
 **Example of Synced Consensus Client Logs**
 

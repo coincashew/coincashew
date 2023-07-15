@@ -134,8 +134,7 @@ ExecStart=/usr/local/bin/geth \
     --metrics \
     --datadir=/var/lib/geth \
     --pprof \
-    --authrpc.jwtsecret=/secrets/jwtsecret \
-    --db.engine=pebble
+    --authrpc.jwtsecret=/secrets/jwtsecret
    
 <strong>[Install]
 </strong>WantedBy=multi-user.target

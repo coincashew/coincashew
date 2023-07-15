@@ -14,10 +14,11 @@ ssh username@staking.node.ip.address
 
 ### Updating the node
 
-Ensure all the latest packages and patches are installed first, then reboot.
+Ensure all the latest packages, tools and patches are installed first, then reboot.
 
 ```bash
 sudo apt-get update -y && sudo apt dist-upgrade -y
+sudo apt-get install git ufw curl ccze -y
 sudo apt-get autoremove
 sudo apt-get autoclean
 sudo reboot
@@ -410,16 +411,16 @@ Example of ufw status for a remote staking node configured for Lighthouse consen
 
 
 
-For optimal connectivity, ensure Port Forwarding is setup for your router. Learn to port forward with guides found at [https://portforward.com/how-to-port-forward](https://portforward.com/how-to-port-forward/)
-
-
-
-After completing this guide and setting up your validator, verify port forwarding is working with
+Verify port forwarding is working with
 
 * [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/)
 * or [https://canyouseeme.org](https://canyouseeme.org)
 
 As an example, for Lighthouse, you would verify ports 9000 and 30303 are reachable.
+
+
+
+For optimal connectivity, ensure Port Forwarding is setup for your router. Learn to port forward with guides found at [https://portforward.com/how-to-port-forward](https://portforward.com/how-to-port-forward/)
 {% endhint %}
 
 #### Optional: Whitelisting Connections
@@ -450,7 +451,7 @@ sudo apt-get install fail2ban -y
 
 Edit a config file that monitors SSH logins.
 
-```
+```bash
 sudo nano /etc/fail2ban/jail.local
 ```
 
