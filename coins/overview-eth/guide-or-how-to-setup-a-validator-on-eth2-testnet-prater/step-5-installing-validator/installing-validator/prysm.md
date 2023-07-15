@@ -50,13 +50,6 @@ sudo bazel run //validator:validator -- accounts import \
 WARNING: Do not import your validator keys into multiple validator clients and run them at the same time, or you might get slashed. If moving validators to a new setup or different validator client, ensure deletion of the previous validator keys before continuing.
 {% endhint %}
 
-Setup ownership permissions, including hardening the access to this directory.
-
-```bash
-sudo chown -R validator:validator /var/lib/prysm/validators
-sudo chmod 700 /var/lib/prysm/validators
-```
-
 Verify that your keystore file was imported successfully.
 
 {% tabs %}
@@ -87,6 +80,13 @@ Account 0 | gently-learning-chamois
 
 Account 1 | presumably-powerful-lynx
 [validating public key] 0x82b225f66476962b161ed015786df00a0b7b28231915e6d09e81ba8d5c4ae8502b6d5337e3bf101ad72741dc69f0a7cf
+```
+
+Setup ownership permissions, including hardening the access to this directory.
+
+```bash
+sudo chown -R validator:validator /var/lib/prysm/validators
+sudo chmod 700 /var/lib/prysm/validators
 ```
 
 Create a **systemd unit file** to define your `validator.service` configuration.

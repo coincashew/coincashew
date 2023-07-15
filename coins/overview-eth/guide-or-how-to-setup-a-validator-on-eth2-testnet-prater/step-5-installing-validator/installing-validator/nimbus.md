@@ -17,12 +17,6 @@ sudo /usr/local/bin/nimbus_beacon_node deposits import \
 WARNING: Do not import your validator keys into multiple validator clients and run them at the same time, or you might get slashed. If moving validators to a new setup or different validator client, ensure deletion of the previous validator keys before continuing.
 {% endhint %}
 
-Setup ownership permissions, including hardening the access to this directory.
-
-<pre class="language-bash"><code class="lang-bash">sudo chown -R consensus:consensus /var/lib/nimbus
-<strong>sudo chmod -R 700 /var/lib/nimbus
-</strong></code></pre>
-
 Now you can verify the accounts were imported successfully by doing a directory listing.
 
 ```bash
@@ -30,6 +24,12 @@ sudo ls -l /var/lib/nimbus/validators
 ```
 
 You should see a folder named for each of your validator's pubkey.&#x20;
+
+Setup ownership permissions, including hardening the access to this directory.
+
+<pre class="language-bash"><code class="lang-bash">sudo chown -R consensus:consensus /var/lib/nimbus
+<strong>sudo chmod -R 700 /var/lib/nimbus
+</strong></code></pre>
 
 Finally, restart Nimbus to use the new validators.
 

@@ -41,17 +41,17 @@ Run the following command to create a corresponding password file for every one 
 for f in /var/lib/teku/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt /var/lib/teku/validator_keys/$(basename $f .json).txt; done
 ```
 
+Verify that your validator's keystore .json files and validator's passwords .txt files are present by checking the following directory.
+
+```bash
+sudo ls -l /var/lib/teku/validator_keys
+```
+
 Setup ownership permissions, including hardening the access to this directory.
 
 <pre class="language-bash"><code class="lang-bash">sudo chown -R consensus:consensus /var/lib/teku/
 <strong>sudo chmod -R 700 /var/lib/teku/validator_keys
 </strong></code></pre>
-
-Verify that your validator's keystore .json files and validator's passwords .txt files are present by checking the following directory.
-
-```bash
-sudo ls -l /var/lib/nimbus/validators
-```
 
 Delete the temporary **keystore password** file.
 

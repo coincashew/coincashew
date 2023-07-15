@@ -31,7 +31,7 @@ sudo chown -R consensus:consensus /var/lib/teku
 Install dependencies.
 
 ```bash
-sudo apt install curl libsnappy-dev libc6-dev jq git libc6 unzip -y
+sudo apt install curl openjdk-17-jdk libsnappy-dev libc6-dev jq git libc6 unzip -y
 ```
 
 ### 2. Install Binaries
@@ -72,19 +72,6 @@ Install the binaries.
 <details>
 
 <summary>Option 2 - Build from source code</summary>
-
-Install Java 17 LTS.
-
-```bash
-sudo apt update
-sudo apt install openjdk-17-jdk -y
-```
-
-Verify Java 17+ is installed.
-
-```bash
-java --version
-```
 
 Build the binaries.
 

@@ -21,13 +21,6 @@ sudo lighthouse account validator import \
 WARNING: Do not import your validator keys into multiple validator clients and run them at the same time, or you might get slashed. If moving validators to a new setup or different validator client, ensure deletion of the previous validator keys before continuing.
 {% endhint %}
 
-Setup ownership permissions, including hardening the access to this directory.
-
-```bash
-sudo chown -R validator:validator /var/lib/lighthouse/validators
-sudo chmod 700 /var/lib/lighthouse/validators
-```
-
 Verify that your keystore file was imported successfully.
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo lighthouse account_manager validator list \
@@ -38,6 +31,13 @@ Verify that your keystore file was imported successfully.
 Once successful, you will be shown your **validator's public key**.
 
 For example, `0x8d9138fcf5676e2031dc4eae30a2c92e3306903eeec83ca83f4f851afbd4cb3b33f710e6f4ac516b4598697b30b04302`
+
+Setup ownership permissions, including hardening the access to this directory.
+
+```bash
+sudo chown -R validator:validator /var/lib/lighthouse/validators
+sudo chmod 700 /var/lib/lighthouse/validators
+```
 
 Create a **systemd unit file** to define your `validator.service` configuration.
 
