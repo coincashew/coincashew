@@ -73,7 +73,8 @@ sudo mv bazel /usr/local/bin
 Build the binaries.
 
 ```bash
-cd $HOME/git
+mkdir -p ~/git
+cd ~/git
 git clone https://github.com/prysmaticlabs/prysm.git
 cd prysm
 git fetch --tags
