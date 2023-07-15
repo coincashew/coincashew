@@ -13,7 +13,7 @@ description: >-
 ## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](../). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](../../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your beacon chain and validator.
@@ -23,7 +23,7 @@ Always review the **git logs** with command **`git log`**or **release notes** be
 {% endhint %}
 
 {% hint style="success" %}
-:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](finding-the-longest-attestation-slot-gap.md)
+:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](../../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/finding-the-longest-attestation-slot-gap.md)
 {% endhint %}
 
 1. Select your consensus client.

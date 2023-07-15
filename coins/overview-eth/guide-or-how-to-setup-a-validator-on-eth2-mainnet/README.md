@@ -8,16 +8,16 @@ description: >-
 
 ## :new: Announcements
 
-{% hint style="info" %}
-:confetti\_ball: **Live Now! Gitcoin Grants until May 9:** [We improve this guide with your support!](https://explorer.gitcoin.co/#/round/1/0xdf22a2c8f6ba9376ff17ee13e6154b784ee92094/0xdf22a2c8f6ba9376ff17ee13e6154b784ee92094-9)🙏
-{% endhint %}
-
 {% hint style="success" %}
-As of June 24 2023, this **post-**🦉**Shapella**🦉 **guide is** **version 6.1.0** written for **Ethereum mainnet**:grin:
+As of July 4 2023, this is the new **Version 2 Guide** written for **post-🦉Shapella**🦉 written for **MAINNET Ethereum** :grin:
 {% endhint %}
 
 {% hint style="info" %}
 :sparkles: Always test and practice on testnet first. See [GOERLI testnet guide](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/).
+{% endhint %}
+
+{% hint style="warning" %}
+:eyes: **Looking for Version 1 MAINNET Guide?** [Available here.](../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
 
 ## :wrench: About This Guide
@@ -39,3 +39,5 @@ Pull requests or issues can be submitted on [github](https://github.com/coincash
 {% embed url="https://github.com/coincashew/coincashew" %}
 
 #### :shield: Built by home-stakers for home-stakers. :pray:
+
+#### :arrow\_up: [View Changelog](changelog.md): See the latest changes to the guide.

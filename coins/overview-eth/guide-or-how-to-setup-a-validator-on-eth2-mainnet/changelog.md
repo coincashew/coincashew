@@ -2,6 +2,14 @@
 
 ## :page\_facing\_up: List of changes
 
+* Major Version 2 Guides released!
+  * Notable changes include:
+    * Dedicated service account users for execution / consensus / validator
+    * Binaries deployed to /usr/local/bin
+    * Data directory files stored in /var/lib
+    * Options to download pre-built binaries or build from source
+    * Simplified steps for full node non-staking users
+    * Streamlined pre-requisites and node configuration steps
 * Created guide for [How to re-sync using checkpoint sync](part-iii-tips/how-to-re-sync-using-checkpoint-sync.md)
 * Created guide to [Updating 0x00 -> 0x01 Withdrawal keys with Ethdo for Shapella Upgrade](../update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
 * Added [disk usage numbers by EL CL combination](part-iii-tips/disk-usage-by-execution-consensus-client.md)
@@ -32,7 +40,7 @@
 * [Geth pruning guide](part-ii-maintenance/pruning-the-execution-client-to-free-up-disk-space.md) created
 * Major changes to Lodestar guide
 * Additional [Grafana Dashboards](part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md) for Prysm, Lighthouse and Nimbus
-* [Validator Security Best Practices added](part-i-installation/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+* [Validator Security Best Practices added](broken-reference)
 * Translations now available for Japanese, Chinese and Spanish (access by changing site language)
-* Generate keystore files on [Ledger Nano X, Nano S and Trezor Model T](part-i-installation/signing-up-to-be-a-validator-at-the-launchpad.md) with tool from [allnodes.com](https://twitter.com/Allnodes/status/1390020240541618177?s=20)
-* [Batch deposit tool](part-i-installation/signing-up-to-be-a-validator-at-the-launchpad.md) by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added
+* Generate keystore files on [Ledger Nano X, Nano S and Trezor Model T](broken-reference) with tool from [allnodes.com](https://twitter.com/Allnodes/status/1390020240541618177?s=20)
+* [Batch deposit tool](broken-reference) by [abyss.finance](https://twitter.com/AbyssFinance/status/1379732382044069888) now added

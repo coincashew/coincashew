@@ -1,4 +1,4 @@
-# :confetti\_ball: Adding or Changing Graffiti flag
+# Adding or Changing Graffiti flag
 
 Setup your `graffiti`, a custom message included in blocks your validator successfully proposes, and earn an early beacon chain validator POAP token. [Generate your POAP string by supplying an Ethereum 1.0 address here.](https://beaconcha.in/poap)
 

@@ -12,10 +12,10 @@ This change will result in increased bandwidth and memory usage. Tweak and tailo
 _Kudos to_ [_Rémy Roy_](https://www.reddit.com/user/remyroy/) _for this strat._
 {% endhint %}
 
-Edit your `beacon-chain.service` unit file (except for Teku).
+Edit your consensus.`service` unit file.
 
 ```bash
-sudo nano /etc/systemd/system/beacon-chain.service
+sudo nano /etc/systemd/system/consensus.service
 ```
 
 Add the following flag to increase peers on the `ExecStart` line.
@@ -39,11 +39,7 @@ Add the following flag to increase peers on the `ExecStart` line.
 
 {% tab title="Teku" %}
 ```bash
-# Edit teku.yaml
-sudo nano /etc/teku/teku.yaml
-
-# add the following line to teku.yaml and save the file
-p2p-peer-upper-bound: 100
+--p2p-peer-upper-bound 100
 ```
 {% endtab %}
 
@@ -68,7 +64,7 @@ Reload the updated unit file and restart the beacon-chain process to complete th
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart beacon-chain
+sudo systemctl restart consensus
 ```
 
 #### :gear: Strategy: Perform updates or reboots during the longest attestation gap

@@ -1,4 +1,4 @@
-# :earth\_asia: Hosting Execution client on a Different Machine
+# Hosting Execution client on a Different Machine
 
 {% hint style="info" %}
 Hosting your own execution client on a different machine than where your beacon-chain and validator resides, can allow some extra modularity and flexibility.

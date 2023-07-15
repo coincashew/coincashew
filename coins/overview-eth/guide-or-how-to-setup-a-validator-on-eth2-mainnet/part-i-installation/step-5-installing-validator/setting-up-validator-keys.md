@@ -1,4 +1,4 @@
-# Step 3: Setting up Validator Keys
+# Setting up Validator Keys
 
 1. Install dependencies, the Ethereum Foundation deposit tool and generate your two sets of key pairs.
 
@@ -26,78 +26,36 @@ The Withdrawal Address is:
 You have the choice of using the [Wagyu GUI](https://github.com/stake-house/wagyu-installer), downloading the pre-built [Ethereum staking deposit tool](https://github.com/ethereum/staking-deposit-cli) or building it from source.
 
 {% tabs %}
-{% tab title="Build from source code" %}
-Install dependencies.
-
-```
-sudo apt update
-sudo apt install python3-pip git -y
-```
-
-
-
-Download source code and install.
-
-```
-cd $HOME
-git clone https://github.com/ethereum/staking-deposit-cli
-cd staking-deposit-cli
-sudo ./deposit.sh install
-```
-
-
-
-Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.&#x20;
-
-:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:&#x20;
-
-:octagonal\_sign::octagonal\_sign:  **Double check your work as this is permanent once set!** :octagonal\_sign: :octagonal\_sign:
-
-```
-./deposit.sh new-mnemonic --chain mainnet --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
-```
-{% endtab %}
-
 {% tab title="Pre-built staking-deposit-cli" %}
 Download staking-deposit-cli
 
 ```bash
 cd $HOME
-wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.4.0/staking_deposit-cli-ef89710-linux-amd64.tar.gz
+wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.5.0/staking_deposit-cli-d7b5304-linux-amd64.tar.gz
 ```
 
-
-
-Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/staking-deposit-cli/releases/tag/v2.3.0).
+Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/staking-deposit-cli/releases).
 
 ```bash
-echo "c2b12a9e515f904ca359ec39dfbd7022dfefe881c1796ce42319df0a2da05560 *staking_deposit-cli-ef89710-linux-amd64.tar.gz" | shasum -a 256 --check
+echo "3f51859d78ad47a3e258470f5a5caf03d19ed1d4307d517325b7bb8f6fcde6ef *staking_deposit-cli-d7b5304-linux-amd64.tar.gz" | shasum -a 256 --check
 ```
-
-
 
 Example valid output:
 
-> staking\_deposit-cli-ef89710-linux-amd64.tar.gz: OK
-
-
+> staking\_deposit-cli-d7b5304-linux-amd64.tar.gz: OK
 
 {% hint style="danger" %}
 Only proceed if the sha256 check passes with **OK**!
 {% endhint %}
 
-
-
 Extract the archive.
 
-```
-tar -xvf staking_deposit-cli-ef89710-linux-amd64.tar.gz
-mv staking_deposit-cli-ef89710-linux-amd64 staking-deposit-cli
-rm staking_deposit-cli-ef89710-linux-amd64.tar.gz
+```bash
+tar -xvf staking_deposit-cli-d7b5304-linux-amd64.tar.gz
+mv staking_deposit-cli-d7b5304-linux-amd64 staking-deposit-cli
+rm staking_deposit-cli-d7b5304-linux-amd64.tar.gz
 cd staking-deposit-cli
 ```
-
-
 
 Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.&#x20;
 
@@ -107,6 +65,34 @@ Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` wit
 
 ```
 ./deposit new-mnemonic --chain mainnet --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+```
+{% endtab %}
+
+{% tab title="Build from source code" %}
+Install dependencies.
+
+```bash
+sudo apt update
+sudo apt install python3-pip git -y
+```
+
+Download source code and install.
+
+```bash
+cd $HOME
+git clone https://github.com/ethereum/staking-deposit-cli
+cd staking-deposit-cli
+sudo ./deposit.sh install
+```
+
+Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.&#x20;
+
+:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:&#x20;
+
+:octagonal\_sign::octagonal\_sign:  **Double check your work as this is permanent once set!** :octagonal\_sign: :octagonal\_sign:
+
+```
+./deposit.sh new-mnemonic --chain mainnet --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 {% endtab %}
 
@@ -195,7 +181,7 @@ For Mac, download [Etcher](https://tails.boum.org/etcher/Etcher.dmg)
 
 Run the above software. This is an example how it looks like on Mac OS with etcher, but other software should be similar.
 
-![](../../../../.gitbook/assets/etcher\_in\_mac.png)
+![](../../../../../.gitbook/assets/etcher\_in\_mac.png)
 
 Select the Tails OS image that you downloaded as the image. Then select the USB stick (the larger one).
 
@@ -221,7 +207,7 @@ Choose the USB stick that you loaded up with Tails OS to boot into Tails.
 
 **Part 6 - Welcome to Tails OS**
 
-![](../../../../.gitbook/assets/grub.png)
+![](../../../../../.gitbook/assets/grub.png)
 
 You can boot with all the default settings.
 

@@ -1,23 +1,23 @@
-# :money\_with\_wings: Switching / Migrating Consensus Client (Eth2 client) with Slash Protection
+# Switching / Migrating Consensus Client
 
 {% hint style="info" %}
-The key takeaway in this process is to avoid running two consensus clients simultaneously. You want to avoid being punished by a slashing penalty, which causes a loss of ether.
+The key takeaway in this process is to avoid running two validator clients simultaneously. You want to avoid being punished by a slashing penalty, which causes a loss of ether.
 {% endhint %}
 
-#### :octagonal\_sign: 1 Stop old beacon chain and old validator.
+#### :octagonal\_sign: 1 Stop old consensus and old validator.
 
 In order to export the slashing database, the validator needs to be stopped.
 
 {% tabs %}
 {% tab title="Lighthouse | Prysm | Lodestar" %}
 ```bash
-sudo systemctl stop beacon-chain validator
+sudo systemctl stop consensus validator
 ```
 {% endtab %}
 
 {% tab title="Nimbus | Teku" %}
 ```
-sudo systemctl stop beacon-chain
+sudo systemctl stop consensus
 ```
 {% endtab %}
 {% endtabs %}
@@ -33,36 +33,39 @@ Update the export .json file location and name.
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-lighthouse account validator slashing-protection export <lighthouse_interchange.json>
+sudo -u consensus /usr/local/bin/lighthouse account validator slashing-protection export <lighthouse_interchange.json>
 ```
 {% endtab %}
 
 {% tab title="Nimbus" %}
-To be implemented
+```bash
+sudo -u consensus /usr/local/bin/nimbus_beacon_node slashingdb export slashing-protection.json
+
+```
 {% endtab %}
 
 {% tab title="Teku" %}
 ```bash
-teku slashing-protection export --to=<FILE>
+sudo -u consensus /usr/local/bin/teku/bin/teku slashing-protection export --to=<FILE>
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
 ```bash
-prysm.sh validator slashing-protection export --datadir=/path/to/your/wallet --slashing-protection-export-dir=/path/to/desired/outputdir
+sudo -u validator /usr/local/bin/validator slashing-protection export --datadir=/path/to/your/wallet --slashing-protection-export-dir=/path/to/desired/outputdir
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 ```bash
-./lodestar account validator slashing-protection export --network mainnet --file interchange.json
+sudo -u validator /usr/local/bin/lodestar/lodestar validator slashing-protection export --network mainnet --file interchange.json
 ```
 {% endtab %}
 {% endtabs %}
 
-#### :construction: 3 Setup and install new validator / beacon chain
+#### :construction: 3 Setup and install new validator / consensus client
 
-Now you need to setup/install your new validator **but do not start running the systemd processes**. Be sure to thoroughly follow your new validator's [Section 4. Configure a ETH2 beacon chain and validator.](../part-i-installation/configuring-consensus-client-beaconchain-and-validator.md) You will need to build/install the client, configure port forwarding/firewalls, and new systemd unit files.
+Now you need to setup/install your new validator **but do not start running the systemd processes**. Be sure to thoroughly follow your new consensus client and validator in steps 4 and 5. You will need to build/install the client, configure port forwarding/firewalls, and new systemd unit files.
 
 {% hint style="warning" %}
 :sparkles: **Pro Tip**: During the process of re-importing validator keys, **wait at least 13 minutes** or two epochs to prevent slashing penalties. You must avoid running two consensus clients with same validator keys at the same time.
@@ -79,29 +82,31 @@ Using your new consensus client, run the following command and update the releva
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-lighthouse account validator slashing-protection import <my_interchange.json>
+sudo -u consensus /usr/local/bin/lighthouse account validator slashing-protection import <my_interchange.json>
 ```
 {% endtab %}
 
 {% tab title="Nimbus" %}
-To be implemented
+```bash
+sudo -u consensus /usr/local/bin/nimbus_beacon_node slashingdb import path/to/export_dir/slashing-protection.json
+```
 {% endtab %}
 
 {% tab title="Teku" %}
 ```bash
-teku slashing-protection import --from=<FILE>
+sudo -u consensus /usr/local/bin/teku/bin/teku slashing-protection import --from=<FILE>
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
 ```bash
-prysm.sh validator slashing-protection import --datadir=/path/to/your/wallet --slashing-protection-json-file=/path/to/desiredimportfile
+sudo -u validator /usr/local/bin/validator slashing-protection import --datadir=/path/to/your/wallet --slashing-protection-json-file=/path/to/desiredimportfile
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 ```bash
-./lodestar account validator slashing-protection import --network mainnet --file interchange.json
+sudo -u validator /usr/local/bin/lodestar/lodestar validator slashing-protection import --network mainnet --file interchange.json
 ```
 {% endtab %}
 {% endtabs %}
@@ -111,13 +116,13 @@ prysm.sh validator slashing-protection import --datadir=/path/to/your/wallet --s
 {% tabs %}
 {% tab title="Lighthouse | Prysm | Lodestar" %}
 ```bash
-sudo systemctl start beacon-chain validator
+sudo systemctl start consensus validator
 ```
 {% endtab %}
 
 {% tab title="Nimbus | Teku" %}
 ```
-sudo systemctl start beacon-chain
+sudo systemctl start consensus
 ```
 {% endtab %}
 {% endtabs %}
@@ -129,13 +134,13 @@ Check the logs to verify the services are working properly and ensure there are 
 {% tabs %}
 {% tab title="Lighthouse | Prysm | Lodestar" %}
 ```bash
-sudo systemctl status beacon-chain validator
+sudo systemctl status consensus validator
 ```
 {% endtab %}
 
 {% tab title="Nimbus | Teku" %}
 ```
-sudo systemctl status beacon-chain
+sudo systemctl status consensus
 ```
 {% endtab %}
 {% endtabs %}

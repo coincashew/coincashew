@@ -11,13 +11,17 @@ Use the Voluntary Exit command to signal your intentions to permanently stop you
 * **Consequences**: Once a validator is in exited state, it's non-reversible. You would need to re-key, or generate new validator keys to start staking again.
 * **ETH Deposit**: In order to re-claim your 32ETH validator deposit and perform a full withdrawal, you must have previously set a Withdrawal Address. If not yet set, see here: [0x01 withdrawal address.](../../update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
 * **Responsibilities**: After your validator leaves the exit queue and is truly exited, it is safe to turn off your execution client, consensus client and validator.
+
+
+
+Reference: [https://liquidcollective.io/eth-activations-and-exits/](https://liquidcollective.io/eth-activations-and-exits/)
 {% endhint %}
 
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-lighthouse account validator exit \
---keystore $HOME/.lighthouse/mainnet/validators/<0x validator>/<keystore.json file> \
+sudo lighthouse account validator exit \
+--keystore /var/lib/lighthouse/validators/<0x validator>/<keystore.json file> \
 --beacon-node http://localhost:5052 \
 --network mainnet
 ```
@@ -25,8 +29,8 @@ lighthouse account validator exit \
 Example:
 
 ```bash
-lighthouse account validator exit \
---keystore $HOME/.lighthouse/mainnet/validators/0x838f024753064e90fd8fa183400af82dd2103df885/keystore-m_12311_12-112312.json \
+sudo lighthouse account validator exit \
+--keystore /var/lib/lighthouse/validators/0x838f024753064e90fd8fa183400af82dd2103df885/keystore-m_12311_12-112312.json \
 --beacon-node http://localhost:5052 \
 --network mainnet
 ```
@@ -34,7 +38,7 @@ lighthouse account validator exit \
 
 {% tab title="Teku" %}
 ```bash
-/usr/bin/teku/bin/teku voluntary-exit \
+sudo /usr/bin/teku/bin/teku voluntary-exit \
 --beacon-node-api-endpoint=http://127.0.0.1:5051 \
 --validator-keys=<path to keystore.json>:<path to password.txt file>
 ```
@@ -42,7 +46,7 @@ lighthouse account validator exit \
 Example:
 
 ```
-/usr/bin/teku/bin/teku voluntary-exit \
+sudo /usr/bin/teku/bin/teku voluntary-exit \
 --beacon-node-api-endpoint=http://127.0.0.1:5051 \
 --validator-keys=/var/lib/teku/validator_keys/keys/validator_1abc3.json:/etc/teku/validators-password.txt
 ```
@@ -50,45 +54,46 @@ Example:
 
 {% tab title="Nimbus" %}
 ```bash
-/usr/bin/nimbus_beacon_node deposits exit --validator=<VALIDATOR_PUBLIC_KEY> --data-dir=/var/lib/nimbus
+sudo /usr/local/bin/nimbus_beacon_node deposits exit \
+--validator=<VALIDATOR_PUBLIC_KEY> \
+--data-dir=/var/lib/nimbus
 ```
 
 Example:
 
 ```bash
-/usr/bin/nimbus_beacon_node deposits exit --validator=0x838f0247538237064e90fd8fa183400af82dd2103df885 --data-dir=/var/lib/nimbus
+sudo /usr/local/bin/nimbus_beacon_node deposits exit \
+--validator=0x838f0247538237064e90fd8fa183400af82dd2103df885 \
+--data-dir=/var/lib/nimbus
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
 ```bash
-$HOME/prysm/prysm.sh validator accounts voluntary-exit --wallet-dir=$HOME/.eth2validators/prysm-wallet-v2
+sudo /usr/local/bin/validator accounts voluntary-exit \
+--wallet-dir=/var/lib/prysm/validators
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 Stop Lodestar validator
 
-```
+```bash
 sudo systemctl stop validator
 ```
-
-
 
 Run the voluntary exit command
 
 <pre class="language-bash"><code class="lang-bash"><strong># change directories to binary folder
-</strong><strong>cd $HOME/git/lodestar
-</strong><strong>
+</strong>cd /usr/local/bin/lodestar
+<strong>
 </strong># the voluntary exit command
-./lodestar validator voluntary-exit
+sudo ./lodestar validator voluntary-exit
 </code></pre>
-
-
 
 Restart validator
 
-```
+```bash
 sudo systemctl restart validator
 ```
 {% endtab %}

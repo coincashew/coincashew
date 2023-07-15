@@ -13,9 +13,11 @@ As of July 4 2023, this is the new **Version 2 Guide** written for **post-🦉Sh
 {% endhint %}
 
 {% hint style="info" %}
-**Always test and practice on testnet first.** [**Mainnet guide available here.**](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+:sparkles:**Always test and practice on testnet first.** [**Mainnet guide available here.**](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+{% endhint %}
 
-**Looking for Version 1 GOERLI** guide? [Available here.](../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/)
+{% hint style="warning" %}
+:eyes: **Looking for Version 1 GOERLI Guide?** [Available here.](../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/)
 {% endhint %}
 
 ## :thumbsup: Your Github Contributions Welcome
@@ -39,3 +41,5 @@ Rest assured, as you become more familiar and more comfortable by practicing on 
 * Step 5: [Installing consensus client](step-4-installing-consensus-client/)
 
 #### :shield: Built by home-stakers for home-stakers. :pray:
+
+#### :arrow\_up: [View Changelog](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/changelog.md): See the latest changes to the guide.

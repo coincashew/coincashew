@@ -29,9 +29,58 @@ The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-va
 **Prerequisite:** You run a full Ethereum node (Execution Layer client \[e.g. geth/besu/nethermind/erigon] + Consensus Layer client \[e.g. prysm/lighthouse/teku/lodestar/nimbus]) and a validator.
 {% endhint %}
 
-### 1) Install Go 1.18+
+### Step 1) Create mevboost service account
 
-First start by installing Go and removing any previous Go installations.
+The systemd service will run under this account, `mevboost`
+
+```bash
+sudo useradd --no-create-home --shell /bin/false mevboost
+```
+
+### Step 2) Install mevboost
+
+* Downloading binaries is often faster and more convenient.&#x20;
+* Building from source code can offer better compatibility and is more aligned with the spirit of FOSS (free open source software).
+
+<details>
+
+<summary>Option 1 - Download binaries</summary>
+
+Run the following to automatically download the latest linux release, un-tar and cleanup.
+
+```bash
+RELEASE_URL="https://api.github.com/repos/flashbots/mev-boost/releases/latest"
+BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux_amd64.tar.gz$)"
+
+echo Downloading URL: $BINARIES_URL
+
+cd $HOME
+# Download
+wget -O  mev-boost.tar.gz $BINARIES_URL
+# Untar
+tar -xzvf mev-boost.tar.gz -C $HOME
+# Cleanup
+rm mev-boost.tar.gz LICENSE README.md
+```
+
+Install the binaries.
+
+<pre class="language-bash"><code class="lang-bash"><strong>sudo mv $HOME/mev-boost /usr/local/bin
+</strong></code></pre>
+
+</details>
+
+<details>
+
+<summary>Option 2 - Build from source code</summary>
+
+Install build dependencies.
+
+```bash
+sudo apt -y install build-essential
+```
+
+Install Go and removing any previous Go installations.
 
 <pre class="language-bash"><code class="lang-bash"><strong>cd $HOME
 </strong>wget -O go.tar.gz https://go.dev/dl/go1.19.6.linux-amd64.tar.gz
@@ -47,22 +96,6 @@ Verify that you've installed Go 1.18+ by printing the version information.
 go version
 ```
 
-### 2) Create mevboost service account
-
-The systemd service will run under this account, `mevboost`
-
-```bash
-sudo useradd --no-create-home --shell /bin/false mevboost
-```
-
-### 3) Install mevboost
-
-Install build dependencies.
-
-```bash
-sudo apt -y install build-essential
-```
-
 Install mev-boost with `go install`
 
 ```bash
@@ -71,9 +104,11 @@ CGO_CFLAGS="-O -D__BLST_PORTABLE__" go install github.com/flashbots/mev-boost@la
 
 Install binaries to `/usr/local/bin` and update ownership permissions.
 
-<pre class="language-bash"><code class="lang-bash">sudo cp $HOME/go/bin/mev-boost /usr/local/bin
-<strong>sudo chown mevboost:mevboost /usr/local/bin/mev-boost
-</strong></code></pre>
+```bash
+sudo cp $HOME/go/bin/mev-boost /usr/local/bin
+```
+
+</details>
 
 Create the mevboost systemd unit file.
 
@@ -107,9 +142,10 @@ Paste the following into your `mevboost.service` file. To exit and save from the
 
 ```bash
 [Unit]
-Description=mev-boost ethereum mainnet
+Description=MEV-Boost Service for Ethereum Mainnet
 Wants=network-online.target
 After=network-online.target
+Documentation=https://www.coincashew.com
 
 [Service]
 User=mevboost
@@ -119,7 +155,7 @@ Restart=always
 RestartSec=5
 ExecStart=/usr/local/bin/mev-boost \
   -mainnet \
-  -min-bid 0.05 \
+  -min-bid 0.03 \
   -relay-check \
   -relay https://0xad0a8bb54565c2211cee576363f3a347089d2f07cf72679d16911d740262694cadb62d7fd7483f27afd714ca0f1b9118@bloxroute.ethical.blxrbdn.com \
   -relay https://0xa7ab7a996c8584251c8f925da3170bdfd6ebc75d50f5ddc4050a6fdc77f2a3b5fce2cc750d0865e05d7228af97d69561@agnostic-relay.net \
@@ -192,7 +228,7 @@ Sep 17 23:32:23 ethstaker mev-boost[12321]: time="2022-09-17T23:32:32-00:00" lev
 Sep 17 23:32:23 ethstaker mev-boost[12321]: time="2022-09-17T23:32:32-00:00" level=info msg="listening on localhost:18550" module=cli
 ```
 
-### 4) Update consensus client and validator
+### Step 3) Update consensus client and validator
 
 {% hint style="info" %}
 Both the consensus layer client and validator will require additional **Builder API** flags.
@@ -203,7 +239,7 @@ Both the consensus layer client and validator will require additional **Builder 
 Add the appropriate flag to the `ExecStart` line of your **consensus** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 ```bash
-sudo nano /etc/systemd/system/beacon-chain.service
+sudo nano /etc/systemd/system/consensus.service
 ```
 
 {% tabs %}
@@ -214,6 +250,16 @@ sudo nano /etc/systemd/system/beacon-chain.service
 {% endtab %}
 
 {% tab title="Teku" %}
+#### Option 1: Systemd service file configuration
+
+If your Teku client is configured by --parameters in the **systemd service file,** add the following changes.
+
+```
+--validators-builder-registration-default-enabled=true --builder-endpoint=http://127.0.0.1:18550
+```
+
+#### Option 2: TOML Configuration
+
 If your Teku client is configured by passing in a **TOML file (i.e. teku.yaml),** edit `teku.yaml` with nano.
 
 ```
@@ -226,12 +272,6 @@ Add the following lines to the yaml file:
 # mevboost
 validators-builder-registration-default-enabled: true
 builder-endpoint: "http://127.0.0.1:18550"
-```
-
-Alternatively, if your Teku client is configured by --parameters in the **systemd service file,** add the following changes.
-
-```
---validators-builder-registration-default-enabled=true --builder-endpoint=http://127.0.0.1:18550
 ```
 
 {% hint style="info" %}
@@ -334,16 +374,16 @@ Runs in consensus client, not needed.
 
 After configuring your consensus client and validator to enable mevboost, reload and restart your services.
 
-```
+```bash
 sudo systemctl daemon-reload
 sudo systemctl restart beacon-chain validator
 ```
 
 Verify your logs look error-free and show use of the new MEV configurations.
 
-```
-journalctl -fu beacon-chain
-journalctl -fu validator
+```bash
+sudo journalctl -fu consensus
+sudo journalctl -fu validator
 ```
 
 {% hint style="success" %}
@@ -356,6 +396,47 @@ Update to the latest release with the following commands.
 
 [Review the latest MEV-boost release notes](https://github.com/flashbots/mev-boost/releases) for new requirements or breaking changes.
 
+<details>
+
+<summary>Option 1 - Download binaries</summary>
+
+Run the following to automatically download the latest linux release, un-tar and cleanup.
+
+```bash
+RELEASE_URL="https://api.github.com/repos/flashbots/mev-boost/releases/latest"
+BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux_amd64.tar.gz$)"
+
+echo Downloading URL: $BINARIES_URL
+
+cd $HOME
+# Download
+wget -O  mev-boost.tar.gz $BINARIES_URL
+# Untar
+tar -xzvf mev-boost.tar.gz -C $HOME
+# Cleanup
+rm mev-boost.tar.gz LICENSE README.md
+```
+
+Stop the service, install the binaries and start the service.
+
+```bash
+sudo systemctl stop mevboost
+sudo mv $HOME/mev-boost /usr/local/bin
+sudo systemctl start mevboost
+```
+
+Verify the new version number.
+
+```bash
+/usr/local/bin/mev-boost --version
+```
+
+</details>
+
+<details>
+
+<summary>Option 2 - Build from source code</summary>
+
 Compile new binaries and stop the service.
 
 ```bash
@@ -363,17 +444,24 @@ CGO_CFLAGS="-O -D__BLST_PORTABLE__" go install github.com/flashbots/mev-boost@la
 sudo systemctl stop mevboost
 ```
 
-Install new binaries to `/usr/local/bin` and start the service.
+Install new binaries and start the service.
 
 ```bash
 sudo cp ~/go/bin/mev-boost /usr/local/bin
-sudo chown mevboost:mevboost /usr/local/bin/mev-boost
 sudo systemctl start mevboost
 ```
 
+Verify the new version number.
+
+```bash
+/usr/local/bin/mev-boost --version
+```
+
+</details>
+
 ## :wastebasket: Uninstalling MEV-boost
 
-```
+```bash
 sudo systemctl stop mevboost
 sudo systemctl disable mevboost
 sudo rm /etc/systemd/system/mevboost.service

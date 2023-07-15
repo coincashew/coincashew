@@ -53,7 +53,7 @@ Paste the following configuration into the file.
 
 ```bash
 [Unit]
-Description=Lodestar validator Client service for Goerli
+Description=Lodestar Validator Client service for Goerli
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com

@@ -13,11 +13,11 @@ description: >-
 ## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](../). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](../../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 {% hint style="success" %}
-:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](finding-the-longest-attestation-slot-gap.md)
+:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](../../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/finding-the-longest-attestation-slot-gap.md)
 {% endhint %}
 
 From time to time, be sure to update to the latest ETH1 releases to enjoy new improvements and features.
@@ -52,8 +52,6 @@ Review the latest release notes at [https://github.com/ethereum/go-ethereum/rele
 {% tab title="Besu" %}
 Review the latest release at [https://github.com/hyperledger/besu/releases](https://github.com/hyperledger/besu/releases)
 
-
-
 {% hint style="info" %}
 As of Feb 17, 2023, Besu requires minimum Java 17 and up to build and run.
 
@@ -67,8 +65,6 @@ sudo apt install openjdk-17-jre
 java -version
 ```
 {% endhint %}
-
-
 
 Run the following to automatically download the latest linux release, un-tar and cleanup.
 
@@ -95,8 +91,6 @@ mv besu-* besu
 Review the latest release at [https://github.com/NethermindEth/nethermind/releases](https://github.com/NethermindEth/nethermind/releases)
 
 Automatically download the latest linux release, un-zip and cleanup.
-
-
 
 ```bash
 cd $HOME

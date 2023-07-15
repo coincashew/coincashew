@@ -49,7 +49,7 @@ Paste the following configuration into the file.&#x20;
 
 ```bash
 [Unit]
-Description=Lighthouse validator Client service for Goerli
+Description=Lighthouse Validator Client service for Goerli
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com

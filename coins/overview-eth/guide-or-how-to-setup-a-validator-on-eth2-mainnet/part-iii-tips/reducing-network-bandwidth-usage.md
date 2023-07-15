@@ -4,10 +4,10 @@
 Hosting your own execution client can consume hundreds of gigabytes of data per day. Because data plans can be limited or costly, you might desire to slow down data usage but still maintain good connectivity to the network.
 {% endhint %}
 
-Edit your eth1.service unit file.
+Edit your execution.service unit file.
 
 ```bash
-sudo nano /etc/systemd/system/eth1.service
+sudo nano /etc/systemd/system/execution.service
 ```
 
 Add the following flag to limit the number of peers on the `ExecStart` line.
@@ -48,5 +48,5 @@ Finally, reload the new unit file and restart the execution client.
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart eth1
+sudo systemctl restart execution
 ```

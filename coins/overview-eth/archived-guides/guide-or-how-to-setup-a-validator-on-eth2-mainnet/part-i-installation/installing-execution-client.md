@@ -490,7 +490,7 @@ sudo systemctl status eth1
 
 ### :ladder: Next Steps
 
-* Now that your execution client is configured and started, proceed to the [next section to setup your consensus client.](configuring-consensus-client-beaconchain-and-validator.md)
+* Now that your execution client is configured and started, proceed to the [next section to setup your consensus client.](broken-reference)
 
 {% hint style="warning" %}
 If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synched to the Ethereum network.

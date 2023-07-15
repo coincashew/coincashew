@@ -1,14 +1,14 @@
-# :dvd: Dealing with Storage Issues on the Execution Client
+# Dealing with Storage Issues on the Execution Client
 
 {% hint style="info" %}
 It is currently recommended to use a minimum 1TB hard disk.
 
-_Kudos to _[_angyts_](https://github.com/angyts)_ for this contribution._
+_Kudos to_ [_angyts_](https://github.com/angyts) _for this contribution._
 {% endhint %}
 
 After running the execution client for a while, you will notice that it will start to fill up the hard disk. The following steps might be helpful for you.
 
-Firstly make sure you have a fallback execution client: see [8.11 Strategy 2](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet#strategy-2-eth1-redundancy).
+
 
 {% tabs %}
 {% tab title="Manually Pruning Geth" %}
@@ -23,13 +23,13 @@ You will need to upgrade Geth to at least 1.10x. Other prerequisites are a fully
 Stop your execution engine
 
 ```
-sudo systemctl stop eth1
+sudo systemctl stop execution
 ```
 
 Prune the blockchain data
 
 ```
-geth --datadir ~/.ethereum snapshot prune-state
+sudo -u execution geth --datadir /var/lib/geth snapshot prune-state
 ```
 
 {% hint style="warning" %}
@@ -43,40 +43,40 @@ geth --datadir ~/.ethereum snapshot prune-state
 Restart execution engine
 
 ```
-sudo systemctl start eth1
+sudo systemctl start execution
 ```
 {% endtab %}
 
 {% tab title="Adding new hard disks and changing the data directory" %}
 After you have installed your hard disk, you will need to properly format it and automount it. Consult the ubuntu guides on this.
 
-I will assume that the new disk has been mounted onto `/mnt/eth1-data`. (The name of the mount point is up to you)
+I will assume that the new disk has been mounted onto `/mnt/`execution`-data`. (The name of the mount point is up to you)
 
 Handling file permissions.
 
-You need to change ownership of the folder to be accessible by your `eth1 service`. If your folder is a different name, please change the `/mnt/eth1-data` accordingly.
+You need to change ownership of the folder to be accessible by your execution`service`. If your folder is a different name, please change the `/mnt/`execution`-data` accordingly.
 
 ```
-sudo chown $whoami:$whoami /mnt/eth1-data
+sudo chown execution:execution /mnt/execution-data
 ```
 
 ```
-sudo chmod 755 /mnt/eth1-data
+sudo chmod 755 /mnt/execution-data
 ```
 
-Stop your Eth1 node.
+Stop your execution client.
 
 ```
-sudo systemctl stop eth1
+sudo systemctl stop execution
 ```
 
 Edit the system service file to point to a new data directory.
 
 ```
-sudo nano /etc/systemd/system/eth1.service
+sudo nano /etc/systemd/system/execution.service
 ```
 
-At the end of this command starting with `/usr/bin/geth --http --metrics .... `add a space and the following flag `--datadir "/mnt/eth1-data"`.
+At the end of this command starting with `/usr/bin/geth --http --metrics ....` add a space and the following flag `--datadir "/mnt/`execution`-data"`.
 
 `Ctrl-X` to save your settings.
 
@@ -86,22 +86,22 @@ Refresh the system service daemon to load the new configurations.
 sudo systemctl daemon-reload
 ```
 
-Restart the Eth1 node.
+Restart the execution client.
 
 ```
-sudo systemctl start eth1
+sudo systemctl start execution
 ```
 
 Make sure it is up and running by viewing the running logs.
 
 ```
-journalctl -fu eth1
+sudo journalctl -fu execution
 ```
 
 (**Optional**) Delete original data directory
 
 ```
-rm -r ~/.ethereum
+sudo rm -r /var/lib/geth
 ```
 {% endtab %}
 {% endtabs %}

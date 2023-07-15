@@ -10,16 +10,16 @@ In case you need to locate your validator keys, database directories or other im
 {% tab title="Lighthouse" %}
 ```bash
 # Validator Keys
-~/.lighthouse/mainnet/validators
+/var/lib/lighthouse/validators
 
 # Beacon Chain Data
-~/.lighthouse/mainnet/beacon
+/var/lib/lighthouse/beacon
 
 # List of all validators and passwords
-~/.lighthouse/mainnet/validators/validator_definitions.yml
+/var/lib/lighthouse/validators/validator_definitions.yml
 
 #Slash protection db
-~/.lighthouse/mainnet/validators/slashing_protection.sqlite
+/var/lib/lighthouse/validators/slashing_protection.sqlite
 ```
 {% endtab %}
 
@@ -55,23 +55,20 @@ In case you need to locate your validator keys, database directories or other im
 {% tab title="Prysm" %}
 ```bash
 # Validator Keys
-~/.eth2validators/prysm-wallet-v2
+/var/lib/prysm/validators
 
 # Beacon Chain Data
-~/.eth2/beaconchaindata
+/var/lib/prysm/beacon/beaconchaindata
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
 ```bash
 # Validator Keystores
-/var/lib/lodestar/keystores
-
-# Validator Secrets
-/var/lib/lodestar/secrets
+/var/lib/lodestar/validators
 
 # Validator DB Data
-/var/lib/lodestar/validator-db
+/var/lib/lodestar/validators
 
 # Beacon Chain Data
 /var/lib/lodestar/chain-db
@@ -85,21 +82,21 @@ In case you need to locate your validator keys, database directories or other im
 {% tab title="Geth" %}
 ```bash
 # database location
-$HOME/.ethereum
+/var/lib/geth
 ```
 {% endtab %}
 
 {% tab title="Besu" %}
 ```bash
 # database location
-$HOME/.besu/database
+/var/lib/besu
 ```
 {% endtab %}
 
 {% tab title="Nethermind" %}
 ```bash
 #database location
-$HOME/.nethermind/nethermind_db/mainnet
+/var/lib/nethermind
 ```
 {% endtab %}
 

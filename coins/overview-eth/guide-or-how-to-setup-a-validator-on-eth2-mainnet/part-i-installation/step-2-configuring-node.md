@@ -16,7 +16,7 @@ ssh username@staking.node.ip.address
 
 Ensure all the latest packages and patches are installed first, then reboot.
 
-```
+```bash
 sudo apt-get update -y && sudo apt dist-upgrade -y
 sudo apt-get autoremove
 sudo apt-get autoclean
@@ -284,7 +284,7 @@ Because the consensus client relies on accurate times to perform attestations an
 
 To install chrony:
 
-```
+```bash
 sudo apt-get install chrony -y
 ```
 
@@ -304,7 +304,7 @@ chronyc tracking
 
 To pick your timezone run the following command:
 
-```
+```bash
 sudo dpkg-reconfigure tzdata
 ```
 
@@ -444,7 +444,7 @@ Fail2ban is an intrusion-prevention system that monitors log files and searches 
 
 To install fail2ban:
 
-```
+```bash
 sudo apt-get install fail2ban -y
 ```
 
@@ -469,6 +469,6 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 Restart fail2ban for settings to take effect.
 
-```
+```bash
 sudo systemctl restart fail2ban
 ```

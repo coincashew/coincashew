@@ -80,7 +80,7 @@ sudo reboot
 Initialize the firewall with Ethereum’s p2p ports and ssh.
 
 {% hint style="info" %}
-For additionaly security, check out the comprehensive [eth staking validator node security best practices guide.](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node.md)
+For additionaly security, check out the comprehensive [eth staking validator node security best practices guide.](broken-reference)
 {% endhint %}
 
 ```bash

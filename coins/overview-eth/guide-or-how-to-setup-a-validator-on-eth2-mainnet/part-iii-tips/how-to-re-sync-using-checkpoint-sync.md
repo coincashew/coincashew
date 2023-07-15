@@ -13,7 +13,7 @@ Common reasons for re-syncing include:
 <summary>Step 1: Stop consensus client</summary>
 
 ```
-sudo systemctl stop beacon-chain
+sudo systemctl stop consensus
 ```
 
 </details>
@@ -25,7 +25,7 @@ sudo systemctl stop beacon-chain
 Prysm
 
 ```
-sudo rm -r ~/.eth2/beaconchaindata
+sudo rm -r /var/lib/prysm/beacon/beaconchaindata
 ```
 
 Lodestar
@@ -49,7 +49,7 @@ sudo rm -r /var/lib/nimbus/db
 Lighthouse
 
 ```
-sudo rm -r ~/.lighthouse/mainnet/beacon
+sudo rm -r /var/lib/lighthouse/beacon
 ```
 
 </details>
@@ -66,8 +66,8 @@ sudo rm -r ~/.lighthouse/mainnet/beacon
 
 Run the following to start the checkpoint sync.
 
-```
-/usr/bin/nimbus_beacon_node trustedNodeSync \
+```bash
+sudo -u consensus /usr/bin/nimbus_beacon_node trustedNodeSync \
 --network=mainnet  \
 --trusted-node-url=https://beaconstate.info \
 --data-dir=/var/lib/nimbus \
@@ -86,13 +86,13 @@ Done, your beacon node is ready to serve you! Don't forget to check that you're 
 Edit your config file
 
 ```
-sudo nano /etc/teku/teku.yaml
+sudo nano /etc/systemd/system/consensus.service
 ```
 
 Ensure the following line is listed
 
 ```
-initial-state: "https://beaconstate.info/eth/v2/debug/beacon/states/finalized"
+--initial-state="https://beaconstate.info/eth/v2/debug/beacon/states/finalized"
 ```
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
@@ -102,7 +102,7 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 Edit your service file
 
 ```
-sudo nano /etc/systemd/system/beacon-chain.service
+sudo nano /etc/systemd/system/consensus.service
 ```
 
 Ensure the following line is listed on your `ExecStart` line
@@ -118,7 +118,7 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 Edit your service file
 
 ```
-sudo nano /etc/systemd/system/beacon-chain.service
+sudo nano /etc/systemd/system/consensus.service
 ```
 
 Ensure the following line is listed on your `ExecStart` line
@@ -135,7 +135,7 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 Edit your service file
 
 ```
-sudo nano /etc/systemd/system/beacon-chain.service
+sudo nano /etc/systemd/system/consensus.service
 ```
 
 Ensure the following line is listed on your `ExecStart` line
@@ -154,7 +154,7 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 ```
 sudo systemctl daemon-reload
-sudo systemctl restart beacon-chain
+sudo systemctl restart consensus
 ```
 
 </details>
@@ -168,7 +168,7 @@ Verify that you are on the correct chain by visiting [https://eth-clients.github
 View your logs:
 
 ```
-journalctl -fu beacon-chain
+sudo journalctl -fu consensus
 ```
 
 Checkpoint sync should take no more than a few minutes to re-sync. Your execution client may take longer to catch up.

@@ -12,10 +12,10 @@ description: Quick to-do list before the merge arrives.
 The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
-## Wen merge?&#x20;
+## Wen merge?
 
-* All testnets passed and the [Merge is a go on mainnet](https://blog.ethereum.org/2022/08/24/mainnet-merge-announcement/) officially as of August 24, 2022!&#x20;
-* [Mainnet merge occurs in two sequential upgrades. ](https://blog.ethereum.org/2022/08/12/finalized-no-36/)
+* All testnets passed and the [Merge is a go on mainnet](https://blog.ethereum.org/2022/08/24/mainnet-merge-announcement/) officially as of August 24, 2022!
+* [Mainnet merge occurs in two sequential upgrades.](https://blog.ethereum.org/2022/08/12/finalized-no-36/)
   * _**`[2022/09/06 11:34:47am UTC]`**_ – Bellatrix Mainnet upgrade
   * _**`[Estimated: 2022/9/15]`**_ – Paris Mainnet Merge transition
 * Paris Mainnet merge transition is estimated to arrive on [Sept 15 2022 with TTD 58750000000000000000000](https://twitter.com/TimBeiko/status/1557747656507633665).
@@ -55,7 +55,7 @@ First start by updating your system.
 sudo apt -y update && sudo apt -y upgrade
 ```
 
-Next, follow the instructions for [updating EL](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/updating-your-execution-client.md) or [updating CL](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/updating-your-consensus-client.md), or your node's official documentation.
+Next, follow the instructions for [updating EL](broken-reference) or [updating CL](broken-reference), or your node's official documentation.
 
 Here are the Merge-Ready versions you require:
 
@@ -176,8 +176,6 @@ If your Teku client is configured by passing in a **TOML file (i.e. teku.yaml),*
 sudo nano /etc/teku/teku.yaml
 ```
 
-
-
 Add the following lines to the yaml file:
 
 ```
@@ -189,15 +187,11 @@ ee-jwt-secret-file: "/secrets/jwtsecret"
 validators-proposer-default-fee-recipient: "<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>"
 ```
 
-
-
 Alternatively, if your Teku client is configured by --parameters in the **systemd service file,** add the following changes.
 
 ```
 --ee-endpoint http://localhost:8551 --ee-jwt-secret-file "/secrets/jwtsecret" --validators-proposer-default-fee-recipient 0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS
 ```
-
-
 
 {% hint style="info" %}
 Use one configuration or the other but not both!
@@ -267,23 +261,17 @@ If your Besu client is configured by --parameters in the **systemd service file,
 --engine-jwt-secret=/secrets/jwtsecret
 ```
 
-
-
 Alternatively, if your Besu client is configured by passing a **TOML file (i.e. besu.yaml),** edit `besu.yaml` with nano.
 
 ```
 sudo nano /etc/besu/besu.yaml
 ```
 
-
-
 Add the following line:
 
 ```
 engine-jwt-secret="/secrets/jwtsecret"
 ```
-
-
 
 {% hint style="info" %}
 Use one configuration or the other, but not both!
@@ -346,12 +334,12 @@ Can't get your mind off the merge? Here's some additional ideas and nice to have
 
 \[:white\_check\_mark:] Improve [Client Diversity](https://clientdiversity.org/)
 
-* Switch to a minority EL - suggestion: Use besu as "minority client". Besu features auto pruning.&#x20;
+* Switch to a minority EL - suggestion: Use besu as "minority client". Besu features auto pruning.
 * Switch to a minority CL
 
 \[:white\_check\_mark:] Configure MetaMask to use your own node. Bye Infura outages.
 
-\[:white\_check\_mark:] Upgrade node storage to 2TB+&#x20;
+\[:white\_check\_mark:] Upgrade node storage to 2TB+
 
 \[:white\_check\_mark:] Prune your EL node
 
@@ -360,4 +348,3 @@ Can't get your mind off the merge? Here's some additional ideas and nice to have
 \[:white\_check\_mark:] Test / dev / deploy code on the testnets
 
 \[:white\_check\_mark:] Learn and earn more [rewards with MEV-boost](../mev-boost/)
-

@@ -9,8 +9,6 @@ Part III includes the following topics containing additional procedures to simpl
 * [Using All Available LVM Disk Space](using-all-available-lvm-disk-space.md)
 * [Reducing Network Bandwidth Usage](reducing-network-bandwidth-usage.md)
 * [Important Directory Locations](important-directory-locations.md)
-* [Hosting Execution client on a Different Machine](hosting-execution-client-on-a-different-machine.md)
-* [Adding or Changing Graffiti flag](adding-or-changing-poap-graffiti-flag.md)
 * [Improving Validator Attestation Effectiveness](improving-validator-attestation-effectiveness.md)
 * [EIP2333 Key Generator by iancoleman.io](eip2333-key-generator-by-iancoleman-io.md)
 * [Dealing with Storage Issues on the Execution Client](dealing-with-storage-issues-on-the-execution-client.md)

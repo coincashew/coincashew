@@ -1,10 +1,12 @@
 # Verifying Your Mnemonic Phrase
 
-Using the staking-deposit-cli tool, ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`
+Ensure you can regenerate the same eth2 key pairs by restoring your `validator_keys`
+
+Using the pre-built staking-deposit-cli executable,
 
 ```bash
 cd $HOME/staking-deposit-cli 
-./deposit.sh existing-mnemonic --chain mainnet
+./deposit existing-mnemonic --chain mainnet
 ```
 
 {% hint style="info" %}

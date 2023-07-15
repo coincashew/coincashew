@@ -29,9 +29,9 @@ Ensure adequate failover or backup execution clients are configured for use with
 
 1\. Note how much disk space is currently used and stop the execution client
 
-```
+```bash
 df
-sudo service eth1 stop
+sudo service execution stop
 ```
 
 2\. Start the pruning process and monitor it's process.
@@ -47,7 +47,7 @@ sudo service eth1 stop
 {% tabs %}
 {% tab title="Geth" %}
 ```bash
-/usr/bin/geth snapshot prune-state --datadir $HOME/.ethereum
+sudo -u execution /usr/local/bin/geth snapshot prune-state --datadir /var/lib/geth
 ```
 {% endtab %}
 {% endtabs %}
@@ -55,7 +55,7 @@ sudo service eth1 stop
 3\. Once the pruning is finished, restart the execution client service.
 
 ```bash
-sudo service eth1 restart
+sudo service execution restart
 ```
 
 4\. Compare the disk space of the node after pruning.
