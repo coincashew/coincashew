@@ -55,16 +55,16 @@ Verify that your keystore file was imported successfully.
 {% tabs %}
 {% tab title="Binaries" %}
 <pre class="language-bash"><code class="lang-bash"><strong>sudo /usr/local/bin/validator accounts list \
-</strong>  --wallet-dir=/var/lib/prysm/validators
-  --goerli
+</strong>  --wallet-dir=/var/lib/prysm/validators \
+  --mainnet
 </code></pre>
 {% endtab %}
 
 {% tab title="Built from Source" %}
 <pre class="language-bash"><code class="lang-bash"><strong>cd /usr/local/bin/prysm
 </strong><strong>sudo bazel run //validator:validator -- accounts list \
-</strong>  --wallet-dir=/var/lib/prysm/validator
-  --goerli
+</strong>  --wallet-dir=/var/lib/prysm/validator \
+  --mainnet
 </code></pre>
 {% endtab %}
 {% endtabs %}
