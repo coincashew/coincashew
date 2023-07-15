@@ -27,9 +27,10 @@ You should see a folder named for each of your validator's pubkey.&#x20;
 
 Setup ownership permissions, including hardening the access to this directory.
 
-<pre class="language-bash"><code class="lang-bash">sudo chown -R consensus:consensus /var/lib/nimbus
-<strong>sudo chmod -R 700 /var/lib/nimbus
-</strong></code></pre>
+```bash
+sudo chown -R consensus:consensus /var/lib/nimbus
+sudo chmod -R 700 /var/lib/nimbus
+```
 
 Finally, restart Nimbus to use the new validators.
 
