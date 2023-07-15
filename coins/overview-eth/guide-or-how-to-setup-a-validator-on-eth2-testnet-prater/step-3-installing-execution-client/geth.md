@@ -84,7 +84,8 @@ sudo apt install build-essential git
 Build the binary.
 
 ```bash
-cd $HOME/git
+mkdir -p ~/git
+cd ~/git
 git clone -b master https://github.com/ethereum/go-ethereum.git
 cd go-ethereum
 # Get new tags
