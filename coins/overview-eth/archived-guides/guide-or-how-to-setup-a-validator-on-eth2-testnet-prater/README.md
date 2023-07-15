@@ -36,10 +36,10 @@ Installation is a 5 step process. From start to finish, time to complete these s
 
 Rest assured, as you become more familiar and more comfortable by practicing on [testnet](./), you are now proudly on the path towards the gold standard of ETH solo-staking.
 
-* Step 1: [Prerequisites](step-1-prerequisites.md)
-* Step 2: [Configuring Node](step-2-configuring-node.md)
-* Step 3: [Setting up Validator Keys](step-3-setting-up-validator-keys.md)
-* Step 4: [Installing execution client](step-4-installing-execution-client.md)
-* Step 5: [Installing consensus client](step-5-installing-consensus-client.md)
+* Step 1: Prerequisites
+* Step 2: Configuring Node
+* Step 3: Setting up Validator Keys
+* Step 4: Installing execution client
+* Step 5: Installing consensus client
 
 #### :shield: Built by home-stakers for home-stakers. :pray:

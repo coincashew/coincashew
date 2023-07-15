@@ -2,8 +2,8 @@
 
 To complete installation of a full node with validator, complete the following steps:
 
-[1) Setting up Validator Keys](setting-up-validator-keys.md)
+1\) Setting up Validator Keys
 
-[2) Installing Validator](installing-validator/)
+2\) Installing Validator
 
-[3) Next Steps](next-steps.md)
+3\) Next Steps

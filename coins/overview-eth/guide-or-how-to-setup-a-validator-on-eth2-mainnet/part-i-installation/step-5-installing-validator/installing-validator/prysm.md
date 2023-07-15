@@ -167,7 +167,7 @@ WantedBy=multi-user.target
 
 </details>
 
-* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* Replace`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * If you wish to customize a graffiti message that is included when you produce a block, add your message between the double quotes after `--graffiti`.
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
