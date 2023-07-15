@@ -89,7 +89,8 @@ sudo apt install build-essential git
 Build the binary.
 
 ```bash
-cd $HOME/git
+mkdir -p ~/git
+cd ~/git
 git clone -b stable https://github.com/ledgerwatch/erigon.git
 cd erigon
 make erigon
