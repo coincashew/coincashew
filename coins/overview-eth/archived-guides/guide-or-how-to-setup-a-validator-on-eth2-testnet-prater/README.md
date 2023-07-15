@@ -12,8 +12,10 @@ description: >-
 As of July 4 2023, this is the **V1 GOERLI** guide written for **post-🦉Shapella**🦉
 
 Archived here, this guide is for historical reference purposes.
+{% endhint %}
 
-New staking setups should follow the V2 guides.
+{% hint style="success" %}
+**New staking setups** should follow the **V2 guides.**
 {% endhint %}
 
 {% hint style="info" %}
