@@ -69,7 +69,7 @@ Install the binaries.
 Build the binaries.
 
 ```bash
-mkdir ~/git
+mkdir -p ~/git
 cd ~/git
 # Clone the repo
 git clone https://github.com/hyperledger/besu.git
