@@ -4,6 +4,6 @@ Installation is a 5 step process. From start to finish, time to complete these s
 
 * Step 1: [Prerequisites](prerequisites.md)
 * Step 2: [Configuring Node](step-2-configuring-node.md)
-* Step 3: [Setting up Validator Keys](broken-reference)
-* Step 4: [Installing execution client](broken-reference)
-* Step 5: [Installing consensus client](broken-reference)
+* Step 3: [Installing execution client](step-3-installing-execution-client/)
+* Step 4: [Installing consensus client](step-4-installing-consensus-client/)
+* Step 5: [Installing Validator](step-5-installing-validator/)
