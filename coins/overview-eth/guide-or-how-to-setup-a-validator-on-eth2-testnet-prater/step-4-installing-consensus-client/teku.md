@@ -89,7 +89,7 @@ java --version
 Build the binaries.
 
 ```bash
-mkdir ~/git
+mkdir -p ~/git
 cd ~/git
 git clone https://github.com/ConsenSys/teku.git
 cd teku
