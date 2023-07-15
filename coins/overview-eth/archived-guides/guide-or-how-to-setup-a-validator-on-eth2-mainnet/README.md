@@ -13,7 +13,7 @@ As of July 4 2023, this is the **V1 MAINNET** guide written for **post-🦉Shape
 
 Archived here, this guide is for historical reference purposes.
 
-New staking setups should follow the **V2 guides**.
+New staking setups should follow the [**V2 guides.**](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
 
 {% hint style="info" %}
