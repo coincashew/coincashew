@@ -376,7 +376,7 @@ After configuring your consensus client and validator to enable mevboost, reload
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart beacon-chain validator
+sudo systemctl restart consensus validator
 ```
 
 Verify your logs look error-free and show use of the new MEV configurations.

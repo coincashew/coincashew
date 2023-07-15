@@ -29,7 +29,6 @@ Run the following to automatically download the latest linux release, un-zip and
 
 ```bash
 RELEASE_URL="https://api.github.com/repos/NethermindEth/nethermind/releases/latest"
-FILE="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/[a-zA-Z0-9./?=_%:-]*.tar.gz"
 BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-x64)"
 
 echo Downloading URL: $BINARIES_URL
