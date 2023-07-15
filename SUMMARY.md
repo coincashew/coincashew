@@ -223,7 +223,6 @@
         * [Dealing with Storage Issues on the Execution Client](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/dealing-with-storage-issues-on-the-execution-client.md)
       * [Join the Community](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/joining-the-community-on-discord-and-reddit.md)
       * [Credits](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/credits.md)
-      * [Page 1](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/page-1.md)
       * [See Also](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/see-also.md)
       * [Changelog](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/changelog.md)
     * [Guide Version 1 | How to setup a validator for Ethereum staking on testnet GOERLI](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/README.md)

@@ -6,4 +6,4 @@ Installation is a 5 step process. From start to finish, time to complete these s
 * Step 2: [Configuring Node](step-2-configuring-node.md)
 * Step 3: [Installing execution client](step-3-installing-execution-client/)
 * Step 4: [Installing consensus client](step-4-installing-consensus-client/)
-* Step 5: [Installing Validator](step-5-installing-validator/)
+* Step 5: [Installing Validator](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/)

@@ -7,8 +7,7 @@
 {% endhint %}
 
 {% hint style="warning" %}
-**Patience required**: If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.\
-
+**Patience required**: If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.\\
 
 **How do I know I'm fully synced?**
 
@@ -19,7 +18,7 @@
 {% endhint %}
 
 {% hint style="info" %}
-**Activation Queue**: Once your EL+CL is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. Check the queue length: [https://wenmerge.com ](https://wenmerge.com)
+**Activation Queue**: Once your EL+CL is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. Check the queue length: [https://wenmerge.com](https://wenmerge.com)
 
 **Activated**: When you're activated, your validator will begin creating and voting on blocks while earning staking rewards.
 
@@ -59,7 +58,7 @@
 * **Feedback or pull-requests**: [https://github.com/coincashew/coincashew](https://github.com/coincashew/coincashew)
 
 {% hint style="success" %}
-### Ready for mainnet staking?  [**Mainnet guide available here.**](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+#### Ready for mainnet staking? [**Mainnet guide available here.**](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 {% endhint %}
 
 ## Last Words
