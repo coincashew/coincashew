@@ -13,7 +13,7 @@ Import your validator keys by importing your **keystore file**. Be sure to enter
 sudo lighthouse account validator import \
   --network goerli \
   --datadir /var/lib/lighthouse/validators \
-  --directory=$HOME/staking-deposit-cli/validator_keys \
+  --directory=$HOME/git/staking-deposit-cli/validator_keys \
   --reuse-password
 ```
 
