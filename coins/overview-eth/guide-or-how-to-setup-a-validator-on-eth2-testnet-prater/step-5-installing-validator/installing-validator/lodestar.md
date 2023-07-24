@@ -17,7 +17,7 @@ cd /usr/local/bin/lodestar
 sudo ./lodestar validator import \
   --network goerli \
   --dataDir="/var/lib/lodestar/validators" \
-  --keystore=$HOME/staking-deposit-cli/validator_keys
+  --keystore=$HOME/git/staking-deposit-cli/validator_keys
 ```
 
 {% hint style="danger" %}
