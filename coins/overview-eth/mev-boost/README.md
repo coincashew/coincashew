@@ -300,6 +300,10 @@ Use one configuration or the other but not both!
 
 **Validator Client Changes**
 
+{% hint style="info" %}
+**Using Teku or Nimbus?** Skip this section on validator client changes. MEV configuration is set in your consensus.service file during the prior step.&#x20;
+{% endhint %}
+
 If required, add the appropriate flag to the `ExecStart` line of your **validator** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 ```bash
@@ -314,7 +318,7 @@ sudo nano /etc/systemd/system/validator.service
 {% endtab %}
 
 {% tab title="Teku" %}
-**WARNING: Only do the following if running Teku validator in a separate client. Most common setups do not use this configuration.**
+:fire:**TIP: Only do the following if running Teku validator in a separate client. Most common setups do not use this configuration.**
 
 ```
 --validators-builder-registration-default-enabled=true

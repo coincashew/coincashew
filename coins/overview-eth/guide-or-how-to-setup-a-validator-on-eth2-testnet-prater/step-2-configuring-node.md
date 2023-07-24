@@ -77,7 +77,7 @@ ssh ethereum@staking.node.ip.address
 
 <summary>Creating a new SSH Key</summary>
 
-Create a new SSH key pair on **your client machine (i.e. local laptop)**. Run this on **your client machine,** not remote node.  Update the comment with your email or a comment.
+Create a new SSH key pair on **your client machine (i.e. local laptop)**. Run this on **your client machine,** not remote node. Update the comment with your email or a comment.
 
 ```
 ssh-keygen -t ed25519 -C "name@email.com"
@@ -98,7 +98,7 @@ Next, you're prompted to enter a passphrase.
 Enter passphrase (empty for no passphrase):
 ```
 
-:information\_source: A **passphrase** adds an extra layer of protection to your SSH private key. Everytime you connect via SSH to your remote node, enter this passphrase to unlock your SSH private key.&#x20;
+:information\_source: A **passphrase** adds an extra layer of protection to your SSH private key. Everytime you connect via SSH to your remote node, enter this passphrase to unlock your SSH private key.
 
 :fire: Passphrase is highly recommended! Do not leave this empty for no passphrase.
 
@@ -106,14 +106,14 @@ Enter passphrase (empty for no passphrase):
 
 **Location**: Your SSH key pair is stored in your home directory under `~/.ssh`
 
-**File name:** If your default keyname is`id_ed25519`, then&#x20;
+**File name:** If your default keyname is`id_ed25519`, then
 
 * your **private SSH key** is `id_ed25519`
 * your **public SSH key** is `id_ed25519.pub`
 
 :fire: **IMPORTANT:** Make multiple backup copies of your **private SSH key file** to external storage, such as a USB backup key, for recovery purposes. Also backup your **passphrase**!
 
-Verify the contents of your private SSH key file before moving on.&#x20;
+Verify the contents of your private SSH key file before moving on.
 
 ```
 cat ~/.ssh/id_ed25519
@@ -175,7 +175,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAoc78lv+XDh2znunKXUF/9zBNJrM4Nh67yut9RN14SX
 
 Copy into your clipboard this output, also known as your public SSH key.
 
-&#x20;On your **remote node**, run the following:
+On your **remote node**, run the following:
 
 ```
 mkdir -p ~/.ssh
@@ -409,16 +409,12 @@ Example of ufw status for a remote staking node configured for Lighthouse consen
 {% hint style="info" %}
 **Port Forwarding Tip for Local Stakers at Home:** You'll need to forward ports to your validator.
 
-
-
 Verify port forwarding is working with
 
 * [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/)
 * or [https://canyouseeme.org](https://canyouseeme.org)
 
 As an example, for Lighthouse, you would verify ports 9000 and 30303 are reachable.
-
-
 
 For optimal connectivity, ensure Port Forwarding is setup for your router. Learn to port forward with guides found at [https://portforward.com/how-to-port-forward](https://portforward.com/how-to-port-forward/)
 {% endhint %}
@@ -434,10 +430,6 @@ sudo ufw allow from <your client machine>
 ```
 
 ### :chains: **Install Fail2ban**
-
-{% hint style="info" %}
-**Local node**? You can skip this section on installing Fail2ban.
-{% endhint %}
 
 {% hint style="info" %}
 Fail2ban is an intrusion-prevention system that monitors log files and searches for particular patterns that correspond to a failed login attempt. If a certain number of failed logins are detected from a specific IP address (within a specified amount of time), fail2ban blocks access from that IP address.
