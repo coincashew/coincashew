@@ -123,8 +123,7 @@ sudo apt install python3-pip git -y
 Download source code and install.
 
 ```bash
-mkdir -p ~/git
-cd ~/git
+cd ~
 git clone https://github.com/ethereum/staking-deposit-cli
 cd staking-deposit-cli
 sudo ./deposit.sh install
