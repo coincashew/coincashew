@@ -86,7 +86,11 @@ As a validator for Ethereum, you will typically have the following abilities:
 * **Wallet**: Metamask installed
 
 {% hint style="info" %}
-:bulb: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
+**Hardware Builds**: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/docs/guides/node/local/hardware.md#example-setups) and [Ethstaker's Hardware Examples](https://docs.ethstaker.cc/ethstaker-knowledge-base/hardware/hardware-examples).
+{% endhint %}
+
+{% hint style="info" %}
+**Yorick's Storage Advice**: Refer to Yorick's Great and less great SSDs for Ethereum nodes: [https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
 {% endhint %}
 
 <figure><img src="../../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
@@ -99,27 +103,26 @@ As a validator for Ethereum, you will typically have the following abilities:
 
 **Decision**: Do I run my Ethereum staking node locally at home or rent a VPS cloud server remotely? Here's a list of criteria to help you decide.
 
-|       Criteria       | Local Node                                                                                                                                         | Remote Node                                                                                                                                                                        |
-| :------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     Ongoing Costs    | Plus - No fees, besides internet bill and electricity.                                                                                             | Minus - Monthly or Annual reoccurring rental fees.                                                                                                                                 |
-| Hardware Maintenance | Minus - Do it yourself if hardware issues.                                                                                                         | Plus - Included, covered by hosting provider.                                                                                                                                      |
-|       Internet       | Minus - Can slow down home internet and use up data plan (if not unlimited) Budget for at least 2TB per month data plan.                           | Plus - Often plans are generous and more than sufficient for an ETH node.                                                                                                          |
-|      Reliability     | Minus - Do it yourself with UPS, redundant internet connections, computer issues                                                                   | Plus - Hosted in a data center with multiple power/internet backups.                                                                                                               |
-|   Barrier to Entry   | <p>Plus - Can re-use or re-purpose existing hardware<br><br>Minus - Initial cost to purchase new computer equipment</p>                            | Plus - Renting a VPS might require a lower initial investment as you can pay monthly.                                                                                              |
-|   Decentralization   | Plus - Home staking is the **gold standard** for Ethereum decentralization, nothing bets it!                                                       | Minus - VPS cloud hosts like [Netcup](https://www.netcup.eu/bestellen/produkt.php?produkt=3026) or AmazonWebServices are by nature more centralized.                               |
-|     Customization    | Plus - More fine control over hardware configuration                                                                                               | Minus - May be limited choices and hardware can be shared. For example, a common issue is insufficient disk storage I/O speeds (IOPS).                                             |
-|       Security       | Plus - As secure as your home and personal [OPSEC](https://en.wikipedia.org/wiki/Operations\_security)                                             | <p>Plus - Enterprise-grade, professional data centers.</p><p></p><p>Minus - Not your hardware, not your node. It's possible the hosting provide can view your node's contents.</p> |
-|        Freedom       | <p>Plus - Do whatever you want. Plan your own upgrades.<br><br>Minus - With great freedom and power, you are solely responsible for your node.</p> | <p>Plus - Professionally managed.</p><p><br>Minus - At the mercy of the host's actions, data center outages are possible.</p>                                                      |
+|       Criteria       | Local Node                                                                                                                                         | Remote Node                                                                                                                                                                 |
+| :------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     Ongoing Costs    | Plus - No fees, besides internet bill and electricity.                                                                                             | Minus - Monthly or Annual reoccurring rental fees.                                                                                                                          |
+| Hardware Maintenance | Minus - Do it yourself if hardware issues.                                                                                                         | Plus - Included, covered by hosting provider.                                                                                                                               |
+|       Internet       | Minus - Can slow down home internet and use up data plan (if not unlimited) Budget for at least 2TB per month data plan.                           | Plus - Often plans are generous and more than sufficient for an ETH node.                                                                                                   |
+|      Reliability     | Minus - Do it yourself with UPS, redundant internet connections, computer issues                                                                   | Plus - Hosted in a data center with multiple power/internet backups.                                                                                                        |
+|   Barrier to Entry   | <p>Plus - Can re-use or re-purpose existing hardware<br><br>Minus - Initial cost to purchase new computer equipment</p>                            | Plus - Renting a VPS might require a lower initial investment as you can pay monthly.                                                                                       |
+|   Decentralization   | Plus - Home staking is the **gold standard** for Ethereum decentralization, nothing bets it!                                                       | Minus - VPS cloud hosts like [Netcup](https://www.netcup.eu/bestellen/produkt.php?produkt=3026) or AmazonWebServices are by nature more centralized.                        |
+|     Customization    | Plus - More fine control over hardware configuration                                                                                               | Minus - May be limited choices and hardware can be shared. For example, a common issue is insufficient disk storage I/O speeds (IOPS).                                      |
+|       Security       | Plus - As secure as your home and personal [OPSEC](https://en.wikipedia.org/wiki/Operations\_security)                                             | <p>Plus - Enterprise-grade, professional data centers.</p><p>Minus - Not your hardware, not your node. It's possible the hosting provide can view your node's contents.</p> |
+|        Freedom       | <p>Plus - Do whatever you want. Plan your own upgrades.<br><br>Minus - With great freedom and power, you are solely responsible for your node.</p> | <p>Plus - Professionally managed.</p><p><br>Minus - At the mercy of the host's actions, data center outages are possible.</p>                                               |
 
 ## :tools: Setup Ubuntu
 
 With your local or remote node, now you need to install an Operating System. This guide is designed for Ubuntu 22.04.1 LTS.
 
-* To install **Ubuntu Server**, refer to [this guide.](https://ubuntu.com/tutorials/install-ubuntu-server#1-overview)
-* To install **Ubuntu Desktop**, refer to [this guide.](https://www.coincashew.com/coins/overview-xtz/guide-how-to-setup-a-baker/install-ubuntu)
+* To install **Ubuntu Server or Desktop**, refer to this [guide](https://docs.ethstaker.cc/ethstaker-knowledge-base/tutorials/installing-linux).
 
 {% hint style="info" %}
-**Recommendation**: A headless (no monitor) install of **Ubuntu Server** on a **dedicated** NUC/laptop/desktop/VPS is best for ease of reliability and security.  :fire: Do not use this system for email/browsing web/gaming/socials. :fire:
+**Recommendation**: A headless (no monitor) install of **Ubuntu Server** on a **dedicated** NUC/laptop/desktop/VPS is best for ease of reliability and security. :fire: Do not use this system for email/browsing web/gaming/socials. :fire:
 {% endhint %}
 
 {% hint style="warning" %}
