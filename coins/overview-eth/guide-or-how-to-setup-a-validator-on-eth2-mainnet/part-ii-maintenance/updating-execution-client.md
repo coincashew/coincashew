@@ -19,7 +19,8 @@ Always review the **release notes** before updating. There may be changes requir
 
 ## Step 1: Select your execution client.
 
-{% hint style="danger" %}
+{% hint style="warning" %}
+Staking setups prior to July 2023:\
 Using **eth1** as the execution client service name? [V1 update instructions available here.](https://www.coincashew.com/coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/updating-your-execution-client)
 {% endhint %}
 
