@@ -536,7 +536,7 @@ Review notes and source code [here](https://github.com/dabauxi/check-mevboost-re
 sudo apt install python3
 
 # Download the script
-https://raw.githubusercontent.com/dabauxi/check-mevboost-registration/main/check_mevboost_registration.py
+wget https://raw.githubusercontent.com/dabauxi/check-mevboost-registration/main/check_mevboost_registration.py
 
 # Assign execution permissions
 chmod +x check_mevboost_registration.py
