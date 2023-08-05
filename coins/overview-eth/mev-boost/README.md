@@ -236,11 +236,25 @@ Both the consensus layer client and validator will require additional **Builder 
 
 **Consensus Client Layer Changes (beacon chain)**
 
-Add the appropriate flag to the `ExecStart` line of your **consensus** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
+Add the appropriate flag to the `ExecStart` line of your **consensus** **client** service file.&#x20;
 
+Select the tab appropriate to your staking setup.
+
+To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
+
+{% tabs %}
+{% tab title="V2 Staking Setup (Current)" %}
 ```bash
 sudo nano /etc/systemd/system/consensus.service
 ```
+{% endtab %}
+
+{% tab title="V1 Staking Setup" %}
+```bash
+sudo nano /etc/systemd/system/beacon-chain.service
+```
+{% endtab %}
+{% endtabs %}
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -300,8 +314,8 @@ Use one configuration or the other but not both!
 
 **Validator Client Changes**
 
-{% hint style="info" %}
-**Using Teku or Nimbus?** Skip this section on validator client changes. MEV configuration is set in your consensus.service file during the prior step.&#x20;
+{% hint style="warning" %}
+**Using Teku or Nimbus?** Skip this section on validator client changes. MEV configuration is set in your **consensus.service** file during the prior step.&#x20;
 {% endhint %}
 
 If required, add the appropriate flag to the `ExecStart` line of your **validator** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
@@ -376,19 +390,47 @@ Runs in consensus client, not needed.
 {% endtab %}
 {% endtabs %}
 
-After configuring your consensus client and validator to enable mevboost, reload and restart your services.
+After configuring your consensus client and validator to enable mevboost, reload and restart your services. Finally, verify your logs look error-free and show use of the new MEV configurations.
 
-```bash
-sudo systemctl daemon-reload
-sudo systemctl restart consensus validator
-```
+{% tabs %}
+{% tab title="V2 Staking Setup (Current)" %}
+**Lighthouse, Lodestar, Prysm**
 
-Verify your logs look error-free and show use of the new MEV configurations.
+<pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl daemon-reload
+</strong>sudo systemctl restart consensus validator
 
-```bash
 sudo journalctl -fu consensus
 sudo journalctl -fu validator
-```
+</code></pre>
+
+**Teku or Nimbus**
+
+<pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl daemon-reload
+</strong>sudo systemctl restart consensus
+
+sudo journalctl -fu consensus
+</code></pre>
+{% endtab %}
+
+{% tab title="V1 Staking Setup" %}
+**Lighthouse, Lodestar, Prysm**
+
+<pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl daemon-reload
+</strong>sudo systemctl restart beacon-chain validator
+
+sudo journalctl -fu beacon-chain
+sudo journalctl -fu validator
+</code></pre>
+
+**Teku or Nimbus**
+
+<pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl daemon-reload
+</strong>sudo systemctl restart beacon-chain
+
+sudo journalctl -fu beacon-chain
+</code></pre>
+{% endtab %}
+{% endtabs %}
 
 {% hint style="success" %}
 Congrats! Your validator with mev-boost will earn more rewards when proposing a block.
