@@ -2,7 +2,8 @@
 
 ## :page\_facing\_up: List of changes
 
-* Major Version 2 Guides released!
+* Staking setups prior to July 2023: V1 guides (using eth1 and beacon-chain, as systemd service names) can be accessed in the [archive section.](https://www.coincashew.com/coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
+* Major Version 2 Guides released!&#x20;
   * Notable changes include:
     * Dedicated service account users for execution / consensus / validator
     * Binaries deployed to /usr/local/bin
@@ -12,7 +13,7 @@
     * Streamlined pre-requisites and node configuration steps
 * Created guide for [How to re-sync using checkpoint sync](part-iii-tips/how-to-re-sync-using-checkpoint-sync.md)
 * Created guide to [Updating 0x00 -> 0x01 Withdrawal keys with Ethdo for Shapella Upgrade](../update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
-* Added [disk usage numbers by EL CL combination](part-iii-tips/disk-usage-by-execution-consensus-client.md)
+* Added [disk usage numbers by EL CL combination](../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/disk-usage-by-execution-consensus-client.md)
 * Include ETH Withdrawals address as default during validator key generation.
 * Added [MEV-boost guide.](../mev-boost/)
 * Updated to be mainnet merge ready.
