@@ -23,6 +23,7 @@ Be sure to select the right network. Relays are available for **Mainnet, Goerli 
 | [Flashbots](https://boost.flashbots.net)                                                                  |          :x:         |          :x:         | https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net             |
 | [Manifold](https://mainnet-relay.securerpc.com)                                                           | :white\_check\_mark: |          :x:         | https://0x98650451ba02064f7b000f5768cf0cf4d4e492317d82871bdc87ef841a0743f69f0f1eea11168503240ac35d101c9135@mainnet-relay.securerpc.com           |
 | [Ultra Sound](https://relay.ultrasound.money)                                                             | :white\_check\_mark: |          :x:         | https://0xa1559ace749633b997cb3fdacffb890aeebdb0f5a3b6aaa7eeeaf1a38af0a8fe88b9e4b1f61f236d2e64d95733327a62@relay.ultrasound.money                |
+| [Wenmerge](https://relay.wenmerge.com)                                                                    | :white\_check\_mark: |          :x:         | https://0x8c7d33605ecef85403f8b7289c8058f440cbb6bf72b055dfe2f3e2c6695b6a1ea5a9cd0eb3a7982927a463feb4c3dae2@relay.wenmerge.com                    |
 
 ## Goerli Testnet Relays
 
@@ -35,6 +36,7 @@ Be sure to select the right network. Relays are available for **Mainnet, Goerli 
 | [Flashbots](https://www.flashbots.net)         |          :x:         |          :x:         | https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@builder-relay-goerli.flashbots.net              |
 | [Manifold](https://securerpc.com)              | :white\_check\_mark: |          :x:         | https://0x8a72a5ec3e2909fff931c8b42c9e0e6c6e660ac48a98016777fc63a73316b3ffb5c622495106277f8dbcc17a06e92ca3@goerli-relay.securerpc.com                      |
 | [Ultra Sound](https://relay.ultrasound.money)  | :white\_check\_mark: |          :x:         | https://0xb1559beef7b5ba3127485bbbb090362d9f497ba64e177ee2c8e7db74746306efad687f2cf8574e38d70067d40ef136dc@relay-stag.ultrasound.money                     |
+| [Wenmerge](https://goerli-relay.wenmerge.com)  | :white\_check\_mark: |          :x:         | https://0x88d0cc4b8139580d176cf6863db874ee9c505fc3f6362aa005fd9a91f7ea8b47ba026c424a678e072fd67ba6e952e1a1@goerli-relay.wenmerge.com                       |
 
 ## Sepolia Testnet Relays
 
