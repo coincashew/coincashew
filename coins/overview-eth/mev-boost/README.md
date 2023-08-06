@@ -18,10 +18,10 @@ The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-va
 * `home-staker (you) >> mevboost >> relay >> builder >> searcher +/-  frontrun/sandwich += efficient markets :)`
 
 {% hint style="info" %}
-**tldr**: MEV is estimated be 11% of a validator rewards. Other estimates suggest it can [boost staking rewards by over 60%.](https://hackmd.io/@flashbots/mev-in-eth2)
+**tldr**: As of August 2023, MEV is estimated be 24% of a validator rewards. Other estimates suggest it can [boost staking rewards by over 60%.](https://hackmd.io/@flashbots/mev-in-eth2)
 {% endhint %}
 
-<figure><img src="../../../.gitbook/assets/rewards.png" alt=""><figcaption><p>Estimated earnings per validator. Source: <a href="https://ultrasound.money/">https://ultrasound.money</a></p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/mev24.png" alt=""><figcaption><p>Estimated earnings per validator. Source: <a href="https://ultrasound.money/">https://ultrasound.money</a></p></figcaption></figure>
 
 ## :hammer\_pick: How to MEV?
 
@@ -312,6 +312,24 @@ Use one configuration or the other but not both!
 {% endtab %}
 {% endtabs %}
 
+For example, here is the expected result of an updated `ExecStart` line of a **V2 Staking Setup Prysm consensus** **client** service file.&#x20;
+
+Flag is added on the last line.
+
+When adding a new line, notice that previous lines require a backslash `\`
+
+```bash
+ExecStart=/usr/local/bin/beacon-chain \
+  --mainnet \
+  --checkpoint-sync-url=https://beaconstate.info \
+  --genesis-beacon-api-url=https://beaconstate.info \
+  --execution-endpoint=http://localhost:8551 \
+  --jwt-secret=/secrets/jwtsecret \
+  --suggested-fee-recipient=0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS \
+  --accept-terms-of-use \
+  --http-mev-relay=http://127.0.0.1:18550
+```
+
 **Validator Client Changes**
 
 {% hint style="warning" %}
@@ -389,6 +407,25 @@ Runs in consensus client, not needed.
 ```
 {% endtab %}
 {% endtabs %}
+
+For example, here is the expected result of an updated `ExecStart` line of a **V2 Staking Setup Prysm validator client** service file.&#x20;
+
+Flag is added on the last line.
+
+When adding a new line, notice that previous lines require a backslash `\`
+
+```bash
+ExecStart=/usr/local/bin/validator \
+  --mainnet \
+  --accept-terms-of-use \
+  --datadir=/var/lib/prysm/validators \
+  --beacon-rpc-provider=localhost:4000 \
+  --wallet-dir=/var/lib/prysm/validators \
+  --wallet-password-file=/var/lib/prysm/validators/password.txt \
+  --graffiti "" \
+  --suggested-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS> \
+  --enable-builder
+```
 
 After configuring your consensus client and validator to enable mevboost, reload and restart your services. Finally, verify your logs look error-free and show use of the new MEV configurations.
 

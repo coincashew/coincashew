@@ -2,22 +2,22 @@
 
 Select your consensus client for further instructions.
 
-{% content-ref url="lighthouse.md" %}
-[lighthouse.md](lighthouse.md)
+{% content-ref url="../../../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/lighthouse.md" %}
+[lighthouse.md](../../../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/lighthouse.md)
 {% endcontent-ref %}
 
-{% content-ref url="lodestar.md" %}
-[lodestar.md](lodestar.md)
+{% content-ref url="../../../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/lodestar.md" %}
+[lodestar.md](../../../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/lodestar.md)
 {% endcontent-ref %}
 
-{% content-ref url="teku.md" %}
-[teku.md](teku.md)
+{% content-ref url="../../../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/teku.md" %}
+[teku.md](../../../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/teku.md)
 {% endcontent-ref %}
 
-{% content-ref url="nimbus.md" %}
-[nimbus.md](nimbus.md)
+{% content-ref url="../../../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/nimbus.md" %}
+[nimbus.md](../../../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/nimbus.md)
 {% endcontent-ref %}
 
-{% content-ref url="prysm.md" %}
-[prysm.md](prysm.md)
+{% content-ref url="../../../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/prysm.md" %}
+[prysm.md](../../../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/prysm.md)
 {% endcontent-ref %}

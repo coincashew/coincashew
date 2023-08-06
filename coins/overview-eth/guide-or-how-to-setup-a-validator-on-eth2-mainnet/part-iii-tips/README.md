@@ -6,7 +6,7 @@ Part III includes the following topics containing additional procedures to simpl
 * [Verifying Your Mnemonic Phrase](verifying-your-mnemonic-phrase.md)
 * [Adding a New Validator to an Existing Setup with Existing Seed Words](adding-a-new-validator-to-an-existing-setup.md)
 * [Switching / Migrating Consensus Client](switching-migrating-consensus-client.md)
-* [Using All Available LVM Disk Space](using-all-available-lvm-disk-space.md)
+* [Using All Available LVM Disk Space](../../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/using-all-available-lvm-disk-space.md)
 * [Reducing Network Bandwidth Usage](reducing-network-bandwidth-usage.md)
 * [Important Directory Locations](important-directory-locations.md)
 * [Improving Validator Attestation Effectiveness](improving-validator-attestation-effectiveness.md)

@@ -43,7 +43,7 @@
 * Setup [MEV-boost](../../mev-boost/) for extra staking rewards!
 * Setup [Monitoring with Grafana and Prometheus](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md)
 * Setup [Mobile App Notifications and Monitoring by beaconcha.in](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/mobile-app-node-monitoring-by-beaconchain.md)
-* Setup [External Monitoring with Uptime Check by Google Cloud](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/monitoring-with-uptime-check-by-google-cloud.md)
+* Setup [External Monitoring with Uptime Check by Google Cloud](../../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/monitoring-with-uptime-check-by-google-cloud.md)
 * Familiarize yourself with [Part III - Tips](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/) section, as you dive deeper into staking.
 
 ### :telephone: **Need extra live support?**
