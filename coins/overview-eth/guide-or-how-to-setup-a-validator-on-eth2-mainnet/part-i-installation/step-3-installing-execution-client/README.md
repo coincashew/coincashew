@@ -26,7 +26,7 @@ Only one execution client is required per node.
 [nethermind.md](nethermind.md)
 {% endcontent-ref %}
 
-**Hyperledger Besu** is written in Java and is anopen-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing.
+**Hyperledger Besu** is written in Java and is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing.
 
 {% content-ref url="besu.md" %}
 [besu.md](besu.md)
