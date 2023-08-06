@@ -47,7 +47,7 @@ Reminder to use the same **keystore password** as existing validators.
 
 3\. Complete the steps of uploading the `deposit_data-#########.json` to the [official Eth2 launch pad site](https://launchpad.ethereum.org) and making your corresponding 32 ETH deposit transactions.
 
-4\. Finish by stopping your validator, importing the new validator key(s), restarting your validator and verifying the logs ensuring everything still works without error. Review the [Installing Validator section](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-validator/installing-validator/) if you need a refresher.
+4\. Finish by stopping your validator, importing the new validator key(s), restarting your validator and verifying the logs ensuring everything still works without error. Review the [Installing Validator section](../part-i-installation/step-5-installing-validator/installing-validator/) if you need a refresher.
 
 5\. Finally, verify your **existing** validator's attestations are working with public block explorer such as
 
