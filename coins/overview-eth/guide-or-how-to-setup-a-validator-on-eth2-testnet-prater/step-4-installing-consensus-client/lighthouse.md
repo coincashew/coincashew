@@ -28,6 +28,7 @@ Install dependencies.
 
 ```bash
 sudo apt install curl -y
+sudo apt install jq
 ```
 
 ### 2. Install Binaries
