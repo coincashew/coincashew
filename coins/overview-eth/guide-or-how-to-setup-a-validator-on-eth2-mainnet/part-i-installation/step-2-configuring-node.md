@@ -18,7 +18,7 @@ Ensure all the latest packages, tools and patches are installed first, then rebo
 
 ```bash
 sudo apt-get update -y && sudo apt dist-upgrade -y
-sudo apt-get install git ufw curl ccze -y
+sudo apt-get install git ufw curl ccze jq -y
 sudo apt-get autoremove
 sudo apt-get autoclean
 sudo reboot
