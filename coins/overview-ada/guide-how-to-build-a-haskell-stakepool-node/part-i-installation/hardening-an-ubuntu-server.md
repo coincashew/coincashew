@@ -399,7 +399,7 @@ With any new installation, ufw is disabled by default. Enable it with the follow
 * Port 12798 tcp for Prometheus cardano-node metrics data
 
 ```bash
-# By default, deny all incoming and outgoing traffic
+# By default, deny all incoming traffic and allow outgoing traffic.
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 # Allow ssh access

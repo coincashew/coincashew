@@ -340,7 +340,7 @@ The standard UFW - Uncomplicated firewall can be used to control network access 
 
 ### Configure UFW Defaults
 
-By default, deny all incoming and outgoing traffic.
+By default, deny all incoming traffic and allow outgoing traffic.
 
 ```bash
 sudo ufw default deny incoming
