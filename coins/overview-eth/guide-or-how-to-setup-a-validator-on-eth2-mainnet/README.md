@@ -6,6 +6,10 @@ description: >-
 
 # Guide | How to setup a validator for Ethereum staking on mainnet
 
+{% hint style="info" %}
+:sparkles: Adore our guides? Donate a ☕ via [Gitcoin Grants](https://explorer.gitcoin.co/#/round/424/0x222ea76664ed77d18d4416d2b2e77937b76f0a35/0x222ea76664ed77d18d4416d2b2e77937b76f0a35-2)
+{% endhint %}
+
 ## :new: Announcements
 
 {% hint style="success" %}

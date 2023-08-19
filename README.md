@@ -8,9 +8,11 @@ coverY: 0
 ## <img src=".gitbook/assets/160.png" alt="" data-size="line"> CoinCashew
 
 > #### The best how-to guide for all your favorite cryptocurrencies.
+>
+> Learn to do anything with crypto, _better_.
 
 {% hint style="success" %}
-:sparkles: Learn to do anything with crypto, _better_.
+:sparkles: Adore our guides? Donate a ☕ via [Gitcoin Grants](https://explorer.gitcoin.co/#/round/424/0x222ea76664ed77d18d4416d2b2e77937b76f0a35/0x222ea76664ed77d18d4416d2b2e77937b76f0a35-2)
 {% endhint %}
 
 {% hint style="info" %}
@@ -21,6 +23,8 @@ coverY: 0
 * [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/)
 * Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
 {% endhint %}
+
+
 
 ## :robot: Blazingly helpful
 
