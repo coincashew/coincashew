@@ -6,16 +6,17 @@ Prometheus is a monitoring platform that collects metrics from monitored targets
 
 Install prometheus and prometheus node exporter.
 
-```
+```bash
 sudo apt-get install -y prometheus prometheus-node-exporter
 ```
 
 Install grafana.
 
 ```bash
-wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
-echo "deb https://packages.grafana.com/oss/deb stable main" > grafana.list
-sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
+sudo apt-get install -y apt-transport-https
+sudo apt-get install -y software-properties-common wget
+sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
+echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
 sudo apt-get update && sudo apt-get install -y grafana
 ```
 

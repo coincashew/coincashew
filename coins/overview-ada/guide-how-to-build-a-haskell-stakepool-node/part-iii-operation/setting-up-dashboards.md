@@ -11,7 +11,7 @@ Install prometheus and prometheus node exporter.
 
 {% tabs %}
 {% tab title="relaynode1" %}
-```
+```bash
 sudo apt-get install -y prometheus prometheus-node-exporter 
 ```
 {% endtab %}
@@ -28,7 +28,9 @@ Install grafana.
 {% tabs %}
 {% tab title="relaynode1" %}
 ```bash
-wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+sudo apt-get install -y apt-transport-https
+sudo apt-get install -y software-properties-common wget
+sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
 ```
 {% endtab %}
 {% endtabs %}
@@ -36,8 +38,7 @@ wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 {% tabs %}
 {% tab title="relaynode1" %}
 ```bash
-echo "deb https://packages.grafana.com/oss/deb stable main" > grafana.list
-sudo mv grafana.list /etc/apt/sources.list.d/grafana.list
+echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
 ```
 {% endtab %}
 {% endtabs %}
