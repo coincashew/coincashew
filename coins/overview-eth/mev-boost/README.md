@@ -263,25 +263,25 @@ sudo nano /etc/systemd/system/beacon-chain.service
 {% endtab %}
 
 {% tab title="Teku" %}
-#### Option 1: Systemd service file configuration
+#### Option 1: Systemd service file configuration - Use for V2 Teku staking setup&#x20;
 
 If your Teku client is configured by --parameters in the **systemd service file,** add the following changes.
 
-```
+```bash
 --validators-builder-registration-default-enabled=true --builder-endpoint=http://127.0.0.1:18550
 ```
 
-#### Option 2: TOML Configuration
+#### Option 2: TOML Configuration - Use for V1 Teku staking setup
 
 If your Teku client is configured by passing in a **TOML file (i.e. teku.yaml),** edit `teku.yaml` with nano.
 
-```
+```bash
 sudo nano /etc/teku/teku.yaml
 ```
 
 Add the following lines to the yaml file:
 
-```
+```bash
 # mevboost
 validators-builder-registration-default-enabled: true
 builder-endpoint: "http://127.0.0.1:18550"
