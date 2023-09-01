@@ -358,8 +358,8 @@ sudo nano /etc/systemd/system/validator.service
 
 Create a proposerConfig.json file with the following:
 
-```
-sudo nano /etc/teku/proposerConfig.json
+```bash
+sudo nano /var/lib/teku/proposerConfig.json
 ```
 
 For example, enable MEV by default, and keep it disabled for a specific key.
@@ -385,8 +385,8 @@ For example, enable MEV by default, and keep it disabled for a specific key.
 
 Update file ownership permissions.
 
-```
-sudo chown mevboost:mevboost /etc/teku/proposerConfig.json
+```bash
+sudo chown consensus:consensus /var/lib/teku/proposerConfig.json
 ```
 {% endtab %}
 
