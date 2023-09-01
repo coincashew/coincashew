@@ -349,11 +349,15 @@ sudo nano /etc/systemd/system/validator.service
 {% endtab %}
 
 {% tab title="Teku" %}
-:fire:**TIP: Only do the following if running Teku validator in a separate client. Most common setups do not use this configuration.**
+:fire:**TIP: Only do the following if running Teku validator in a separate client.**&#x20;
 
-```
+:octagonal\_sign: **Most common Teku setups DO NOT use this configuration.**&#x20;
+
+:information\_source: **V2 and V1 staking setups DO NOT use this configuration.**
+
+```bash
 --validators-builder-registration-default-enabled=true
---validators-proposer-config="/etc/teku/proposerConfig.json"
+--validators-proposer-config="/var/lib/teku/proposerConfig.json"
 ```
 
 Create a proposerConfig.json file with the following:
