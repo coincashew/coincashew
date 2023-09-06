@@ -12,7 +12,7 @@ Import your validator keys by importing your **keystore file**. Be sure to enter
 ```bash
 sudo lighthouse account validator import \
   --network mainnet \
-  --datadir /var/lib/lighthouse/validators \
+  --datadir /var/lib/lighthouse \
   --directory=$HOME/staking-deposit-cli/validator_keys \
   --reuse-password
 ```
@@ -25,7 +25,7 @@ Verify that your keystore file was imported successfully.
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo lighthouse account_manager validator list \
 </strong><strong>  --network mainnet \
-</strong>  --datadir /var/lib/lighthouse/validators
+</strong>  --datadir /var/lib/lighthouse
 </code></pre>
 
 Once successful, you will be shown your **validator's public key**.
@@ -65,7 +65,7 @@ TimeoutStopSec=900
 ExecStart=/usr/local/bin/lighthouse vc \
   --network mainnet \
   --beacon-nodes http://localhost:5052 \
-  --datadir /var/lib/lighthouse/validators \
+  --datadir /var/lib/lighthouse \
   --graffiti="" \
   --metrics \
   --suggested-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
