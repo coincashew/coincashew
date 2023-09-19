@@ -82,6 +82,12 @@ If Wagyu was used to generate validator keys, move the keystore files to the abo
 
 {% tabs %}
 {% tab title="Lighthouse" %}
+Stop your validator client.
+
+```bash
+sudo systemctl stop validator
+```
+
 Import your validator keys by importing your **keystore file**. Be sure to enter your **keystore password** correctly.
 
 ```bash
@@ -132,6 +138,12 @@ INFO Initialized validators     enabled: 2, disabled: 0
 {% endtab %}
 
 {% tab title="Lodestar" %}
+Stop your validator client.
+
+```bash
+sudo systemctl stop validator
+```
+
 Import your validator keys by importing your **keystore file**. Be sure to enter your **keystore password** correctly.
 
 ```bash
@@ -186,6 +198,12 @@ Press `Ctrl` + `C` to exit the logs.
 {% endtab %}
 
 {% tab title="Teku" %}
+Stop your Teku client.
+
+```bash
+sudo systemctl stop consensus
+```
+
 Copy keystores to validator folder
 
 ```bash
@@ -253,6 +271,12 @@ INFO  - Loaded 2 Validators: 95d3986, 82b225f
 {% endtab %}
 
 {% tab title="Nimbus" %}
+Stop your Nimbus client.
+
+```bash
+sudo systemctl stop consensus
+```
+
 Enter your **keystore password** to import accounts.
 
 ```bash
@@ -297,6 +321,12 @@ Local validator attached       topics="val_pool" pubkey=82b225f66476962b161ed015
 {% endtab %}
 
 {% tab title="Prysm" %}
+Stop your validator client.
+
+```bash
+sudo systemctl stop validator
+```
+
 Import your validator keys by importing your **keystore file**. When asked to create a new wallet password, enter your **keystore password**. When prompted for the imported accounts password, enter your **keystore password** again.
 
 If using Binaries,
