@@ -8,11 +8,7 @@ description: >-
 
 ## :fast\_forward: Quick steps guide
 
-{% hint style="info" %}
-The following steps align with our [mainnet guide](./). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
-{% endhint %}
-
-### :white\_check\_mark: Requirements
+## :white\_check\_mark: Requirements
 
 * Existing 24 word validator mnemonic phrase
 * Existing keystore password
