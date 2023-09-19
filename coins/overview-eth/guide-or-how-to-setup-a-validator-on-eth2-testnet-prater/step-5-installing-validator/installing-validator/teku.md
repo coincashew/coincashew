@@ -4,13 +4,6 @@
 **Note**: Teku is configured to run both **validator client** and **beacon chain client** in one process.
 {% endhint %}
 
-First, copy your `validator_keys` to the data directory.
-
-```bash
-sudo mkdir -p /var/lib/teku/validator_keys
-sudo cp $HOME/staking-deposit-cli/validator_keys/keystore* /var/lib/teku/validator_keys
-```
-
 {% hint style="danger" %}
 WARNING: Do not import your validator keys into multiple validator clients and run them at the same time, or you might get slashed. If moving validators to a new setup or different validator client, ensure deletion of the previous validator keys before continuing.
 {% endhint %}
@@ -38,13 +31,14 @@ For example `keystore-m_12221_3600_1_0_0-11222333.json` and `keystore-m_12221_36
 Run the following command to create a corresponding password file for every one of your validators.
 
 ```bash
-for f in /var/lib/teku/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt /var/lib/teku/validator_keys/$(basename $f .json).txt; done
+for f in $HOME/staking-deposit-cli/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt $HOME/staking-deposit-cli/validator_keys/$(basename $f .json).txt; done
 ```
 
-Verify that your validator's keystore .json files and validator's passwords .txt files are present by checking the following directory.
+Copy your `validator_keys` to the data directory.
 
 ```bash
-sudo ls -l /var/lib/teku/validator_keys
+sudo mkdir -p /var/lib/teku/validator_keys
+sudo cp $HOME/staking-deposit-cli/validator_keys/keystore* /var/lib/teku/validator_keys
 ```
 
 Setup ownership permissions, including hardening the access to this directory.
@@ -52,6 +46,21 @@ Setup ownership permissions, including hardening the access to this directory.
 <pre class="language-bash"><code class="lang-bash">sudo chown -R consensus:consensus /var/lib/teku/
 <strong>sudo chmod -R 700 /var/lib/teku/validator_keys
 </strong></code></pre>
+
+Verify that your validator's keystore .json files and validator's passwords .txt files are present by checking the following directory.
+
+```bash
+sudo ls -l /var/lib/teku/validator_keys
+```
+
+Example output of two validator's keystore.json files with matching password.txt files.
+
+```
+-rwx------ 1 consensus consensus 710 Sep 19 23:39 keystore-m_12381_3600_1_0_0-1695165818.json
+-rwx------ 1 consensus consensus  43 Sep 19 23:39 keystore-m_12381_3600_1_0_0-1695165818.txt
+-rwx------ 1 consensus consensus 710 Sep 19 23:39 keystore-m_12381_3600_2_0_0-1695165819.json
+-rwx------ 1 consensus consensus  43 Sep 19 23:39 keystore-m_12381_3600_2_0_0-1695165819.txt
+```
 
 Delete the temporary **keystore password** file.
 

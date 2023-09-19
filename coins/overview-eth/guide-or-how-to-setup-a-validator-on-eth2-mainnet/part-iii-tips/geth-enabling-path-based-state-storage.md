@@ -18,6 +18,14 @@ No more junk accumulating on disk and no more guerilla (offline) pruning!
 
 ### :robot: How to enable PBSS for existing installations
 
+{% hint style="info" %}
+Before continuing please understand the following:
+
+* Synching Geth can take hours during which time block proposals can be missed
+* Consider using a backup EL/CL if you have many validators
+* Enabling PBSS requires a full Geth resync
+{% endhint %}
+
 {% tabs %}
 {% tab title="V2 Staking Setup (Current)" %}
 ```bash
