@@ -149,7 +149,7 @@
       * [Important Directory Locations](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/important-directory-locations.md)
       * [Improving Validator Attestation Effectiveness](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/improving-validator-attestation-effectiveness.md)
       * [EIP2333 Key Generator by iancoleman.io](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/eip2333-key-generator-by-iancoleman-io.md)
-      * [😁 Geth - Enabling path-based storage](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/geth-enabling-path-based-storage.md)
+      * [😁 Geth - Enabling path-based state storage](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/geth-enabling-path-based-state-storage.md)
       * [Disk Usage by Execution / Consensus Client](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/disk-usage-by-execution-consensus-client.md)
       * [Dealing with Storage Issues on the Execution Client](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/dealing-with-storage-issues-on-the-execution-client.md)
     * [Join the Community](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/joining-the-community-on-discord-and-reddit.md)

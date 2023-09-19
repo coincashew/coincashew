@@ -2,7 +2,7 @@
 description: No more offline pruning, save time and disk space!
 ---
 
-# 😁 Geth - Enabling path-based storage
+# 😁 Geth - Enabling path-based state storage
 
 {% hint style="info" %}
 As of [Geth v1.13.0](https://blog.ethereum.org/2023/09/12/geth-v1-13-0), a new database model for storing the Ethereum state, which is both faster than the previous scheme, and also has proper pruning implemented.&#x20;
@@ -16,7 +16,7 @@ No more junk accumulating on disk and no more guerilla (offline) pruning!
 
 <figure><img src="../../../../.gitbook/assets/geth-v1.13.0-sync-bench.png" alt=""><figcaption></figcaption></figure>
 
-### :robot: How to enable PBS for existing installations
+### :robot: How to enable PBSS for existing installations
 
 {% tabs %}
 {% tab title="V2 Staking Setup (Current)" %}
@@ -61,3 +61,32 @@ sudo systemctl start eth1
 ```
 {% endtab %}
 {% endtabs %}
+
+Example of V2 service file with updated ExecStart line using `--state.scheme=path`
+
+```bash
+[Unit]
+Description=Geth Execution Layer Client service for Mainnet
+Wants=network-online.target
+After=network-online.target
+Documentation=https://www.coincashew.com
+
+[Service]
+Type=simple
+User=execution
+Group=execution
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGINT
+TimeoutStopSec=900
+ExecStart=/usr/local/bin/geth \
+    --mainnet \
+    --metrics \
+    --datadir=/var/lib/geth \
+    --pprof \
+    --state.scheme=path \
+    --authrpc.jwtsecret=/secrets/jwtsecret
+   
+[Install]
+WantedBy=multi-user.target
+```
