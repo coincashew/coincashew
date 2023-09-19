@@ -6,8 +6,6 @@ description: >-
 
 # Adding a New Validator to an Existing Setup with Existing Seed Words
 
-## :fast\_forward: Quick steps guide
-
 ## :white\_check\_mark: Requirements
 
 * Existing 24 word validator mnemonic phrase
