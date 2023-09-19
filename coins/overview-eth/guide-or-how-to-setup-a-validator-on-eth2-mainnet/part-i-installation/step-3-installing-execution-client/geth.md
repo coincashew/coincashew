@@ -134,6 +134,7 @@ ExecStart=/usr/local/bin/geth \
     --metrics \
     --datadir=/var/lib/geth \
     --pprof \
+    --state.scheme=path \
     --authrpc.jwtsecret=/secrets/jwtsecret
    
 <strong>[Install]

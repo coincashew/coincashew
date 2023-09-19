@@ -26,7 +26,7 @@ sudo chown -R execution:execution /var/lib/geth
 
 ### **2. Install binaries**
 
-* Downloading binaries is often faster and more convenient.&#x20;
+* Downloading binaries is often faster and more convenient.
 * Building from source code can offer better compatibility and is more aligned with the spirit of FOSS (free open source software).
 
 <details>
@@ -134,6 +134,7 @@ ExecStart=/usr/local/bin/geth \
     --metrics \
     --datadir=/var/lib/geth \
     --pprof \
+    --state.scheme=path \
     --authrpc.jwtsecret=/secrets/jwtsecret
    
 <strong>[Install]

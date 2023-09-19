@@ -2,6 +2,8 @@
 
 ## :page\_facing\_up: List of changes
 
+* Re-worked adding [new validator keys to existing setup](part-iii-tips/adding-a-new-validator-to-an-existing-setup.md).
+* Added new [Geth how-to for enabling path based state storage](https://app.gitbook.com/o/Ipl5aiJxYYShJZr41G7s/s/-M5KYnWuA6dS\_nKYsmfV-887967055/\~/changes/1063/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/geth-enabling-path-based-storage). Automated pruning!
 * Staking setups prior to July 2023: V1 guides (using eth1 and beacon-chain, as systemd service names) can be accessed in the [archive section.](https://www.coincashew.com/coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
 * Major Version 2 Guides released!&#x20;
   * Notable changes include:
