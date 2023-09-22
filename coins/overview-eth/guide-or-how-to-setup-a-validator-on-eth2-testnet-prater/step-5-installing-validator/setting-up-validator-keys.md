@@ -37,27 +37,19 @@ Link: [https://youtu.be/uur7hGCscak](https://youtu.be/uur7hGCscak)
 {% hint style="info" %}
 Each validator will have two sets of key pairs. A **signing key** and a **withdrawal key.** These keys are derived from a single mnemonic phrase. [Learn more about keys.](https://blog.ethereum.org/2020/05/21/keys/)
 
-
-
 You will also set your [ETH Withdrawal Address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-What-are-the-two-types-of-withdrawals), preferably from your Ledger or Trezor hardware wallet. However, for **testnet purposes** it's okay to use a browser/hot wallet address.
 
-&#x20;
+:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:
 
-:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:&#x20;
-
-:octagonal\_sign::octagonal\_sign:  **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
-
-
+:octagonal\_sign::octagonal\_sign: **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
 
 The Withdrawal Address is:
 
-* where your ETH is returned upon "voluntary exiting a validator", or also known as full withdrawal.&#x20;
+* where your ETH is returned upon "voluntary exiting a validator", or also known as full withdrawal.
 * where you receive partial withdrawals, which is where any excess balance above 32 ETH is periodically scraped and made available for use.
 {% endhint %}
 
-
-
-You have the choice of using the [Wagyu GUI](https://github.com/stake-house/wagyu-installer), downloading the pre-built [Ethereum staking deposit tool](https://github.com/ethereum/staking-deposit-cli) or building it from source.&#x20;
+You have the choice of using the [Wagyu GUI](https://github.com/stake-house/wagyu-installer), downloading the pre-built [Ethereum staking deposit tool](https://github.com/ethereum/staking-deposit-cli) or building it from source.
 
 {% tabs %}
 {% tab title="Pre-built staking-deposit-cli" %}
@@ -68,15 +60,11 @@ cd $HOME
 wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.5.0/staking_deposit-cli-d7b5304-linux-amd64.tar.gz
 ```
 
-
-
 Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/staking-deposit-cli/releases).
 
 ```bash
 echo "3f51859d78ad47a3e258470f5a5caf03d19ed1d4307d517325b7bb8f6fcde6ef *staking_deposit-cli-d7b5304-linux-amd64.tar.gz" | shasum -a 256 --check
 ```
-
-
 
 Example valid output:
 
@@ -85,8 +73,6 @@ Example valid output:
 {% hint style="danger" %}
 Only proceed if the sha256 check passes with **OK**!
 {% endhint %}
-
-
 
 Extract the archive.
 
@@ -97,16 +83,14 @@ rm staking_deposit-cli-d7b5304-linux-amd64.tar.gz
 cd staking-deposit-cli
 ```
 
+Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.
 
-
-Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.&#x20;
-
-:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:&#x20;
+:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:
 
 :octagonal\_sign::octagonal\_sign: **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
 
 ```
-./deposit new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+./deposit new-mnemonic --chain goerli --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 {% endtab %}
 
@@ -118,8 +102,6 @@ sudo apt update
 sudo apt install python3-pip git -y
 ```
 
-
-
 Download source code and install.
 
 ```bash
@@ -129,16 +111,14 @@ cd staking-deposit-cli
 sudo ./deposit.sh install
 ```
 
-
-
 Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.
 
-:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:&#x20;
+:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:
 
 :octagonal\_sign::octagonal\_sign: **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
 
 ```
-./deposit.sh new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+./deposit.sh new-mnemonic --chain goerli --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 {% endtab %}
 
@@ -147,32 +127,22 @@ Wagyu (formerly known as StakeHouse) is an application aimed at lowering the tec
 
 Dubbed a 'one-click installer', it provides a clean UI automating the setup and management of all the infrastructure necessary to stake without the user needing to have any technical knowledge.
 
-
-
 Download Wagyu: [https://wagyu.gg](https://wagyu.gg/)
 
 Github: [https://github.com/stake-house/wagyu-installer](https://github.com/stake-house/wagyu-installer)
 
-
-
 After creating the validator keys locally, you'll want to copy these validator keys via USB key or rsync file transfer to your staking node.
-
-
 
 To align with this guide's steps, first make a default path to store your validator keys.
 
 <pre><code><strong>mkdir -p $HOME/staking-deposit-cli/validator_keys
 </strong></code></pre>
 
-
-
 If using USB key, mount the key then copy.
 
 ```
 cp <directory-with-keys>/*.json $HOME/staking-deposit-cli/validator_keys
 ```
-
-
 
 If using rsync, copy your validator keys from your local computer to your staking node with the following command. Change ssh port if needed.
 
@@ -186,13 +156,9 @@ rsync -a "ssh -p 22" <directory-with-keys>/*.json <username>@<remote_host>:/home
 :fire:**\[ Optional ] Pro Security Tip**: Run the staking-deposit-cli tool and generate your **mnemonic seed** for your validator keys on an **air-gapped offline machine booted from usb**.
 {% endhint %}
 
-
-
 You will learn how to boot up a windows PC into an airgapped [Tails operating system](https://tails.boum.org/index.en.html).
 
 The Tails OS is an _amnesic_ operating system, meaning it will save nothing and _leave no tracks behind_ each time you boot it.
-
-
 
 **Part 0 - Prerequisites**
 
@@ -203,15 +169,11 @@ You need:
 * Windows or Mac computer
 * 30 minutes or longer depending on your download speed
 
-
-
 **Part 1 - Download Tails OS**
 
 Download the official image from the [Tails website](https://tails.boum.org/install/index.en.html). Might take a while, go grab a coffee.
 
 Make sure you follow the guide on the Tails website to verify your download of Tails.
-
-
 
 **Part 2 - Download and install the software to transfer your Tails image on your USB stick**
 
@@ -223,8 +185,6 @@ For Windows, use one of
 
 For Mac, download [Etcher](https://tails.boum.org/etcher/Etcher.dmg)
 
-
-
 **Part 3 - Making your bootable USB stick**
 
 Run the above software. This is an example how it looks like on Mac OS with etcher, but other software should be similar.
@@ -235,15 +195,11 @@ Select the Tails OS image that you downloaded as the image. Then select the USB 
 
 Then flash the image to the larger USB stick.
 
-
-
 **Part 4 - Download and verify the staking-deposit-cli**
 
 You can refer to the other tab on this guide on how to download and verify the staking-deposit-cli.
 
 Copy the file to the other USB stick.
-
-
 
 **Part 5 - Reboot your computer and into Tails OS**
 
@@ -257,15 +213,11 @@ On Windows, it depends on your computer manufacturer. Usually it is by pressing 
 
 Choose the USB stick that you loaded up with Tails OS to boot into Tails.
 
-
-
 **Part 6 - Welcome to Tails OS**
 
 ![](../../../../.gitbook/assets/grub.png)
 
 You can boot with all the default settings.
-
-
 
 **Part 7 - Run the staking-deposit-cli**
 
@@ -279,17 +231,15 @@ Add execute permissions
 chmod +x deposit
 ```
 
-Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.&#x20;
+Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet.
 
-:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:&#x20;
+:octagonal\_sign::octagonal\_sign: **DO NOT USE AN EXCHANGE ADDRESS AS WITHDRAWAL ADDRESS.** :octagonal\_sign::octagonal\_sign:
 
 :octagonal\_sign::octagonal\_sign: **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
 
 ```
-./deposit new-mnemonic --chain goerli --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+./deposit new-mnemonic --chain goerli --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
-
-
 
 If you ran this command directly from your non-Tails USB stick, the validator keys should stay on it. If it hasn't, copy the directory over to your non-Tails USB stick.
 

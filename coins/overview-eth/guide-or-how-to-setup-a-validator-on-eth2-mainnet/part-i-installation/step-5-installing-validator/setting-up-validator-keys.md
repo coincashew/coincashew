@@ -64,7 +64,7 @@ Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` wit
 :octagonal\_sign::octagonal\_sign:**Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:&#x20;
 
 ```
-./deposit new-mnemonic --chain mainnet --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+./deposit new-mnemonic --chain mainnet --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 {% endtab %}
 
@@ -92,7 +92,7 @@ Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` wit
 :octagonal\_sign::octagonal\_sign:  **Double check your work as this is permanent once set!** :octagonal\_sign: :octagonal\_sign:
 
 ```
-./deposit.sh new-mnemonic --chain mainnet --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+./deposit.sh new-mnemonic --chain mainnet --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 {% endtab %}
 
@@ -230,7 +230,7 @@ Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` wit
 :octagonal\_sign::octagonal\_sign: **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
 
 ```
-./deposit new-mnemonic --chain mainnet --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+./deposit new-mnemonic --chain mainnet --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 
 
