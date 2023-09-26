@@ -11,7 +11,7 @@ Import your validator keys by importing your **keystore file**. Be sure to enter
 
 ```bash
 sudo lighthouse account validator import \
-  --network holesky \
+  --network goerli \
   --datadir /var/lib/lighthouse \
   --directory=$HOME/staking-deposit-cli/validator_keys \
   --reuse-password
@@ -24,7 +24,7 @@ WARNING: Do not import your validator keys into multiple validator clients and r
 Verify that your keystore file was imported successfully.
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo lighthouse account_manager validator list \
-</strong><strong>  --network holesky \
+</strong><strong>  --network goerli \
 </strong>  --datadir /var/lib/lighthouse
 </code></pre>
 
@@ -49,7 +49,7 @@ Paste the following configuration into the file.&#x20;
 
 ```bash
 [Unit]
-Description=Lighthouse Validator Client service for Holesky
+Description=Lighthouse Validator Client service for Goerli
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -63,7 +63,7 @@ RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=900
 ExecStart=/usr/local/bin/lighthouse vc \
-  --network holesky \
+  --network goerli \
   --beacon-nodes http://localhost:5052 \
   --datadir /var/lib/lighthouse \
   --graffiti="" \

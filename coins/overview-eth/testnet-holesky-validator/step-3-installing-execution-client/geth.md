@@ -116,7 +116,7 @@ sudo nano /etc/systemd/system/execution.service
 Paste the following configuration into the file.
 
 <pre class="language-bash"><code class="lang-bash">[Unit]
-Description=Geth Execution Layer Client service for Goerli
+Description=Geth Execution Layer Client service for Holesky
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -130,7 +130,7 @@ RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=900
 ExecStart=/usr/local/bin/geth \
-    --goerli \
+    --holesky \
     --metrics \
     --datadir=/var/lib/geth \
     --pprof \

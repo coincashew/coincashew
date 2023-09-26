@@ -115,7 +115,7 @@ Paste the following configuration into the file.
 
 ```shell
 [Unit]
-Description=Besu Execution Layer Client service for Holesky
+Description=Besu Execution Layer Client service for Goerli
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -130,7 +130,7 @@ KillSignal=SIGINT
 TimeoutStopSec=900
 Environment="JAVA_OPTS=-Xmx5g"
 ExecStart=/usr/local/bin/besu/bin/besu \
-  --network=holesky \
+  --network=goerli \
   --metrics-enabled=true \
   --sync-mode=X_CHECKPOINT \
   --data-storage-format=BONSAI \

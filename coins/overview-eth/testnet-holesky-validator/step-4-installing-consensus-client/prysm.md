@@ -113,7 +113,7 @@ Depending on whether you're downloading binaries or building from source, choose
 <summary>Option 1 - Configuration for binaries</summary>
 
 <pre class="language-bash"><code class="lang-bash"><strong>[Unit]
-</strong>Description=Prysm Consensus Layer Client service for Goerli
+</strong>Description=Prysm Consensus Layer Client service for Holesky
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -127,10 +127,9 @@ RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=900
 ExecStart=/usr/local/bin/beacon-chain \
-  --goerli \
+  --holesky \
   --datadir=/var/lib/prysm/beacon \
-  --checkpoint-sync-url=https://goerli.beaconstate.info \
-  --genesis-beacon-api-url=https://goerli.beaconstate.info \
+  --checkpoint-sync-url=https://checkpoint-sync.holesky.ethpandaops.io \
   --execution-endpoint=http://localhost:8551 \
   --jwt-secret=/secrets/jwtsecret \
   --accept-terms-of-use=true \
@@ -147,7 +146,7 @@ WantedBy=multi-user.target
 <summary>Option 2 - Configuration for building from source</summary>
 
 <pre class="language-shell"><code class="lang-shell"><strong>[Unit]
-</strong>Description=Prysm Consensus Layer Client service for Goerli
+</strong>Description=Prysm Consensus Layer Client service for Holesky
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -162,10 +161,9 @@ KillSignal=SIGINT
 TimeoutStopSec=900
 WorkingDirectory=/usr/local/bin/prysm
 ExecStart=bazel run //cmd/beacon-chain --config=release -- \
-  --goerli \
+  --holesky \
   --datadir=/var/lib/prysm/beacon \
-  --checkpoint-sync-url=https://goerli.beaconstate.info \
-  --genesis-beacon-api-url=https://goerli.beaconstate.info \
+  --checkpoint-sync-url=https://checkpoint-sync.holesky.ethpandaops.io \
   --execution-endpoint=http://localhost:8551 \
   --jwt-secret=/secrets/jwtsecret \
   --accept-terms-of-use=true \

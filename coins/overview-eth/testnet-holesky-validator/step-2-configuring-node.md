@@ -407,16 +407,39 @@ Example of ufw status for a remote staking node configured for Lighthouse consen
 > ```
 
 {% hint style="info" %}
-**Port Forwarding Tip for Local Stakers at Home:** You'll need to forward ports to your validator.
+**Port Forwarding Tip for Local Stakers at Home:** You'll need to forward ports to your validator.&#x20;
 
-Verify port forwarding is working with
+
+
+For optimal connectivity, ensure Port Forwarding is setup for your router. Learn to port forward with guides found at [https://portforward.com/how-to-port-forward](https://portforward.com/how-to-port-forward/)
+
+
+
+Verify port forwarding is working with the following.
+
+
+
+**Option 1:** From the terminal on staking machine. Choose accordingly to your clients.
+
+```bash
+# Lighthouse, Lodestar, Nimbus, Teku
+curl https://eth2-client-port-checker.vercel.app/api/checker?ports=30303,9000
+
+# Prysm
+curl https://eth2-client-port-checker.vercel.app/api/checker?ports=30303,12000,13000
+```
+
+**Result:** Open ports will be shown if reachable from public.
+
+\
+**Option 2:** Using the browser
 
 * [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/)
 * or [https://canyouseeme.org](https://canyouseeme.org)
 
-As an example, for Lighthouse, you would verify ports 9000 and 30303 are reachable.
 
-For optimal connectivity, ensure Port Forwarding is setup for your router. Learn to port forward with guides found at [https://portforward.com/how-to-port-forward](https://portforward.com/how-to-port-forward/)
+
+As an example, for Lighthouse, you would verify ports 9000 and 30303 are reachable.
 {% endhint %}
 
 #### Optional: Whitelisting Connections

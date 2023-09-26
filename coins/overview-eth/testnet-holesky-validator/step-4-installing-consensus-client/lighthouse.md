@@ -33,7 +33,7 @@ sudo apt install jq -y
 
 ### 2. Install Binaries
 
-* Downloading binaries is often faster and more convenient.&#x20;
+* Downloading binaries is often faster and more convenient.
 * Building from source code can offer better compatibility and is more aligned with the spirit of FOSS (free open source software).
 
 <details>
@@ -134,7 +134,7 @@ Paste the following configuration into the file.
 
 ```shell
 [Unit]
-Description=Lighthouse Consensus Layer Client service for Goerli
+Description=Lighthouse Consensus Layer Client service for Holesky
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -149,11 +149,11 @@ KillSignal=SIGINT
 TimeoutStopSec=900
 ExecStart=/usr/local/bin/lighthouse bn \
   --datadir /var/lib/lighthouse \
-  --network goerli \
+  --network holesky \
   --staking \
   --validator-monitor-auto \
   --metrics \
-  --checkpoint-sync-url=https://goerli.beaconstate.info \
+  --checkpoint-sync-url=https://checkpoint-sync.holesky.ethpandaops.io \
   --port 9000 \
   --execution-endpoint http://127.0.0.1:8551 \
   --execution-jwt /secrets/jwtsecret
@@ -230,4 +230,3 @@ Proceed to the next step on setting up your validator client, which turns a full
 {% hint style="info" %}
 If you wanted to setup a full node, not a staking node, stop here! Congrats on running your own full node! :tada:
 {% endhint %}
-

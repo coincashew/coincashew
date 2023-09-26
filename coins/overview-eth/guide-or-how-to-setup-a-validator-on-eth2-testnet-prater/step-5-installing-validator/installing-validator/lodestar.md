@@ -15,7 +15,7 @@ Import your validator keys by importing your **keystore file**. Be sure to enter
 ```bash
 cd /usr/local/bin/lodestar
 sudo ./lodestar validator import \
-  --network holesky \
+  --network goerli \
   --dataDir="/var/lib/lodestar/validators" \
   --keystore=$HOME/staking-deposit-cli/validator_keys
 ```
@@ -28,7 +28,7 @@ Verify that your keystore file was imported successfully.
 
 ```bash
 sudo ./lodestar validator list \
-  --network holesky \
+  --network goerli \
   --dataDir="/var/lib/lodestar/validators"
 ```
 
@@ -53,7 +53,7 @@ Paste the following configuration into the file.
 
 ```bash
 [Unit]
-Description=Lodestar Validator Client service for Holesky
+Description=Lodestar Validator Client service for Goerli
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -68,7 +68,7 @@ KillSignal=SIGINT
 TimeoutStopSec=300
 WorkingDirectory=/usr/local/bin/lodestar
 ExecStart=/usr/local/bin/lodestar/lodestar validator \
-  --network holesky \
+  --network goerli \
   --dataDir /var/lib/lodestar/validators \
   --graffiti "" \
   --suggestedFeeRecipient <0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
@@ -77,7 +77,7 @@ ExecStart=/usr/local/bin/lodestar/lodestar validator \
 WantedBy=multi-user.target
 ```
 
-* Replace\*\*`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`\*\* with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * If you wish to customize a graffiti message that is included when you produce a block, add your message between the double quotes after `--graffiti`.
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.

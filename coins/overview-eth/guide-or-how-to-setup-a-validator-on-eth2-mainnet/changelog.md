@@ -2,6 +2,7 @@
 
 ## :page\_facing\_up: List of changes
 
+* Added [Holesky testnet staking guide](../testnet-holesky-validator/)
 * Re-worked adding [new validator keys to existing setup](part-iii-tips/adding-a-new-validator-to-an-existing-setup.md).
 * Added new Geth [how-to for enabling path based state storage](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/geth-enabling-path-based-storage). Automated pruning!
 * Staking setups prior to July 2023: V1 guides (using eth1 and beacon-chain, as systemd service names) can be accessed in the [archive section.](https://www.coincashew.com/coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
@@ -39,7 +40,7 @@
 * Updated staking-deposit-cli and added section on eth1 withdrawal address
 * Added generating mnemonic seeds on **Tails OS** by [punggolzenith](https://github.com/punggolzenith)
 * Iancoleman.io BLS12-381 Key Generation Tool [how-to added](part-iii-tips/eip2333-key-generator-by-iancoleman-io.md)
-* Testnet guide forked for [Prater testnet](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/) staking
+* Testnet guide forked for [Prater testnet](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/) staking
 * [Geth pruning guide](part-ii-maintenance/pruning-the-execution-client-to-free-up-disk-space.md) created
 * Major changes to Lodestar guide
 * Additional [Grafana Dashboards](part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md) for Prysm, Lighthouse and Nimbus

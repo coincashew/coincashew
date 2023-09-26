@@ -8,25 +8,25 @@ Every 32 ETH you own allows you to make 1 validator. You can run thousands of va
 
 <details>
 
-<summary>Option 1: Ethstaker's #cheap-goerli-validator Channel</summary>
+<summary>Option 1: &#x3C;NOT YET READY> Ethstaker's #cheap-holesky-validator Channel</summary>
 
-* **Step 1**: Visit the [Ethstaker Discord](https://discord.io/ethstaker) and join the #cheap-goerli-validator channel
-
-<!---->
-
-* **Step 2**: Use the `/cheap-goerli-deposit` slash command and follow the instructions from the bot. You need to start typing the slash command and it will show above your input box where you can use it.
+* **Step 1**: Visit the [Ethstaker Discord](https://discord.io/ethstaker) and join the #cheap-holesky-validator channel
 
 <!---->
 
-* **Requirement**: In order to use the cheap goerli validator process, you must now set your withdrawal address to `0x4D496CcC28058B1D74B7a19541663E21154f9c84` when creating your validator keys and deposit file. This is to prevent abuses of this service.
+* **Step 2**: Use the `/cheap-holesky-deposit` slash command and follow the instructions from the bot. You need to start typing the slash command and it will show above your input box where you can use it.
+
+<!---->
+
+* **Requirement**: In order to use the cheap holesky validator process, you must now set your withdrawal address to `0x4D496CcC28058B1D74B7a19541663E21154f9c84` when creating your validator keys and deposit file. This is to prevent abuses of this service.
 
 </details>
 
 <details>
 
-<summary>Option 2: Watch this how-to Youtube video for Goerli ETH</summary>
+<summary>Option 2: Use faucet from pk910</summary>
 
-Link: [https://youtu.be/uur7hGCscak](https://youtu.be/uur7hGCscak)
+Link: [https://holesky-faucet.pk910.de](https://holesky-faucet.pk910.de/)
 
 </details>
 
@@ -57,18 +57,18 @@ Download staking-deposit-cli.
 
 ```bash
 cd $HOME
-wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.5.0/staking_deposit-cli-d7b5304-linux-amd64.tar.gz
+wget https://github.com/ethereum/staking-deposit-cli/releases/download/v2.7.0/staking_deposit-cli-fdab65d-linux-amd64.tar.gz
 ```
 
 Verify the SHA256 Checksum matches the checksum on the [releases page](https://github.com/ethereum/staking-deposit-cli/releases).
 
 ```bash
-echo "3f51859d78ad47a3e258470f5a5caf03d19ed1d4307d517325b7bb8f6fcde6ef *staking_deposit-cli-d7b5304-linux-amd64.tar.gz" | shasum -a 256 --check
+echo "ac3151843d681c92ae75567a88fbe0e040d53c21368cc1ed1a8c3d9fb29f2a3a *staking_deposit-cli-fdab65d-linux-amd64.tar.gz" | shasum -a 256 --check
 ```
 
 Example valid output:
 
-> staking\_deposit-cli-d7b5304-linux-amd64.tar.gz: OK
+> staking\_deposit-cli-fdab65d-linux-amd64.tar.gz: OK
 
 {% hint style="danger" %}
 Only proceed if the sha256 check passes with **OK**!
@@ -77,9 +77,9 @@ Only proceed if the sha256 check passes with **OK**!
 Extract the archive.
 
 ```bash
-tar -xvf staking_deposit-cli-d7b5304-linux-amd64.tar.gz
-mv staking_deposit-cli-d7b5304-linux-amd64 staking-deposit-cli
-rm staking_deposit-cli-d7b5304-linux-amd64.tar.gz
+tar -xvf staking_deposit-cli-fdab65d-linux-amd64.tar.gz
+mv staking_deposit-cli-fdab65d-linux-amd64 staking-deposit-cli
+rm staking_deposit-cli-fdab65d-linux-amd64.tar.gz
 cd staking-deposit-cli
 ```
 
@@ -90,7 +90,7 @@ Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` wit
 :octagonal\_sign::octagonal\_sign: **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
 
 ```
-./deposit new-mnemonic --chain goerli --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+./deposit new-mnemonic --chain holesky --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 {% endtab %}
 
@@ -118,12 +118,12 @@ Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` wit
 :octagonal\_sign::octagonal\_sign: **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
 
 ```
-./deposit.sh new-mnemonic --chain goerli --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+./deposit.sh new-mnemonic --chain holesky --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 {% endtab %}
 
 {% tab title="Wagyu" %}
-Wagyu (formerly known as StakeHouse) is an application aimed at lowering the technical bar to staking on Ethereum 2.0.
+Wagyu (formerly known as StakeHouse) is an application aimed at lowering the technical bar to staking on Ethereum.
 
 Dubbed a 'one-click installer', it provides a clean UI automating the setup and management of all the infrastructure necessary to stake without the user needing to have any technical knowledge.
 
@@ -238,7 +238,7 @@ Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` wit
 :octagonal\_sign::octagonal\_sign: **Double check your work as this is permanent once set!** :octagonal\_sign::octagonal\_sign:
 
 ```
-./deposit new-mnemonic --chain goerli --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
+./deposit new-mnemonic --chain holesky --execution_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
 ```
 
 If you ran this command directly from your non-Tails USB stick, the validator keys should stay on it. If it hasn't, copy the directory over to your non-Tails USB stick.
@@ -256,39 +256,39 @@ If you ran this command directly from your non-Tails USB stick, the validator ke
 2\. If using **staking-deposit-cli**, follow the prompts and pick a **KEYSTORE password**. This password encrypts your keystore files. Write down your mnemonic and keep this safe and **offline**.
 
 {% hint style="danger" %}
-**Do not send real mainnet ETH during this process!** :octagonal\_sign: Use only goerli ETH.
+**Do not send real mainnet ETH during this process!** :octagonal\_sign: Use only Holesky ETH.
 {% endhint %}
 
 {% hint style="warning" %}
-**Caution**: Only deposit the 32 ETH per validator if you are confident your execution client (ETH1 node) and consensus client (ETH2 validator) will be fully synced and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
+**Caution**: Only deposit the 32 ETH per validator if you are confident your execution client and consensus client will be fully synced and ready to perform validator duties. You can return later to launchpad with your deposit-data to finish the next steps.
 {% endhint %}
 
-3\. Follow the steps at [https://goerli.launchpad.ethereum.org](https://goerli.launchpad.ethereum.org/en/) while skipping over the steps you already just completed. Study the eth2 phase 0 overview material. Understanding eth2 is the key to success!
+3\. Follow the steps at [https://holesky.launchpad.ethereum.org](https://holesky.launchpad.ethereum.org/) while skipping over the steps you already just completed.
 
 {% hint style="info" %}
 :whale: **Batch Depositing Tip**: If you have many deposits to make for many validators, consider using [Abyss.finance's eth2depositor tool.](https://abyss.finance/eth2depositor) This greatly improves the deposit experience as multiple deposits can be batched into one transaction, thereby saving gas fees and saving your fingers by minimizing Metamask clicking.
 
-Make sure to switch to **GÖRLI** network.
+Make sure to switch to **Holešky** network.
 
 Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://twitter.com/AbyssFinance/status/1379732382044069888)
 {% endhint %}
 
 4\. Back on the launchpad website, upload your`deposit_data-#########.json` found in the `validator_keys` directory.
 
-5\. Connect to the launchpad with your Metamask wallet, review and accept terms. Ensure you're connected to **GÖRLI** network.
+5\. Connect to the launchpad with your Metamask wallet, review and accept terms. Ensure you're connected to **Holešky** network.
 
 6\. Confirm the transaction(s). There's one deposit transaction of 32 ETH for each validator.
 
 {% hint style="info" %}
-For instance, if you want to run 3 validators you will need to have (32 x 3) = 96 goerli ETH plus some extra to cover the gas fees.
+For instance, if you want to run 3 validators you will need to have (32 x 3) = 96 Holesky ETH plus some extra to cover the gas fees.
 {% endhint %}
 
 {% hint style="info" %}
-Your transaction is sending and depositing your ETH to the goerli ETH2 deposit contract address.
+Your transaction is sending and depositing your ETH to the Holesky Deposit Contract address.
 
-**Check**, _double-check_, _**triple-check**_ that the goerli Eth2 deposit contract address is correct.
+**Check**, _double-check_, _**triple-check**_ that the Holesky Deposit Contract address is correct.
 
-[`0xff50ed3d0ec03aC01D4C79aAd74928BFF48a7b2b`](https://goerli.etherscan.io/address/0xff50ed3d0ec03ac01d4c79aad74928bff48a7b2b)
+[`0x4242424242424242424242424242424242424242`](https://holesky.beaconcha.in/address/4242424242424242424242424242424242424242)
 {% endhint %}
 
 {% hint style="danger" %}

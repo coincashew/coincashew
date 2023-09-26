@@ -1,7 +1,8 @@
 ---
 description: >-
-  Become a validator, start staking and help secure Ethereum, a proof-of-stake
-  blockchain. Anyone with 32 ETH can join.
+  Using the gold standard of ETH staking, become a solo home staker. Help
+  decentralize Ethereum, a proof-of-stake blockchain. Anyone with 32 ETH can
+  join.
 ---
 
 # Guide | How to setup a validator for Ethereum staking on mainnet
@@ -13,11 +14,11 @@ description: >-
 ## :new: Announcements
 
 {% hint style="success" %}
-As of July 15 2023, this is the new **Version 2 Guide** written for **post-🦉Shapella**🦉 written for **MAINNET Ethereum** :grin:
+As of September 25 2023, this is the new **Version 2 Guide** written for **post-🦉Shapella**🦉 written for **MAINNET Ethereum** :grin:
 {% endhint %}
 
 {% hint style="info" %}
-:sparkles: **Always test and practice on testnet first. See** [**GOERLI testnet guide**](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/)**.**
+:sparkles: **Always test and practice on testnet first. See** [Holesky testnet ](../testnet-holesky-validator/)guide.
 {% endhint %}
 
 {% hint style="warning" %}

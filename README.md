@@ -19,6 +19,7 @@ coverY: 0
 :fire: **HOT TOPICS**
 
 * Learn to setup your own [Ethereum Staking Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+* Added [Holesky testnet staking guide](coins/overview-eth/testnet-holesky-validator/)
 * [Update Withdrawal Keys for Ethereum Validator with Ethdo](coins/overview-eth/update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
 * [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/)
 * Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)

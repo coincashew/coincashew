@@ -282,6 +282,6 @@ sudo journalctl -fu execution
 
 ## Step 3: Optional - Verify your validator's attestations on public block explorer
 
-1\) Visit [https://goerli.beaconcha.in/](https://goerli.beaconcha.in/)
+1\) Visit [https://holesky.beaconcha.in](https://holesky.beaconcha.in/)
 
 2\) Enter your validator's pubkey into the search bar and look for successful attestations.

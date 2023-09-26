@@ -113,7 +113,7 @@ sudo nano /etc/systemd/system/consensus.service
 Paste the following configuration into the file.
 
 <pre class="language-shell"><code class="lang-shell"><strong>[Unit]
-</strong>Description=Teku Consensus Layer Client service for Goerli
+</strong>Description=Teku Consensus Layer Client service for Holesky
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -128,10 +128,10 @@ KillSignal=SIGINT
 TimeoutStopSec=900
 Environment=JAVA_OPTS=-Xmx5g
 ExecStart=/usr/local/bin/teku/bin/teku \
-  --network goerli \
+  --network holesky \
   --data-path /var/lib/teku/ \
   --data-storage-mode="prune" \
-  --initial-state="https://goerli.beaconstate.info/eth/v2/debug/beacon/states/finalized" \
+  --initial-state="https://checkpoint-sync.holesky.ethpandaops.io/eth/v2/debug/beacon/states/finalized" \
   --ee-endpoint http://127.0.0.1:8551 \
   --ee-jwt-secret-file /secrets/jwtsecret \
   --rest-api-enabled true \

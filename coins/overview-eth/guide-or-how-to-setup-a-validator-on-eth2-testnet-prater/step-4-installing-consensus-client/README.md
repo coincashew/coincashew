@@ -18,30 +18,30 @@ Only one consensus client is required per node.
 
 **Lighthouse** is an Ethereum client with a heavy focus on speed and security. Lighthouse is built in Rust.
 
-{% content-ref url="../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-4-installing-consensus-client/lighthouse.md" %}
-[lighthouse.md](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-4-installing-consensus-client/lighthouse.md)
+{% content-ref url="lighthouse.md" %}
+[lighthouse.md](lighthouse.md)
 {% endcontent-ref %}
 
 **Lodestar** is a Typescript implementation by the Chainsafe.io team. The Lodestar team is leading the Ethereum space in light client research.
 
-{% content-ref url="../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-4-installing-consensus-client/lodestar.md" %}
-[lodestar.md](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-4-installing-consensus-client/lodestar.md)
+{% content-ref url="lodestar.md" %}
+[lodestar.md](lodestar.md)
 {% endcontent-ref %}
 
 **Teku** is a Java-based Ethereum client designed & built to meet institutional needs and security requirements.
 
-{% content-ref url="../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-4-installing-consensus-client/teku.md" %}
-[teku.md](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-4-installing-consensus-client/teku.md)
+{% content-ref url="teku.md" %}
+[teku.md](teku.md)
 {% endcontent-ref %}
 
 **Nimbus** is designed to perform well on embedded systems and personal mobile devices. Written in Nim, a language with Python-like syntax that compiles to C.
 
-{% content-ref url="../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-4-installing-consensus-client/nimbus.md" %}
-[nimbus.md](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-4-installing-consensus-client/nimbus.md)
+{% content-ref url="nimbus.md" %}
+[nimbus.md](nimbus.md)
 {% endcontent-ref %}
 
 **Prysm** is a Go implementation with a focus on usability, security, and reliability.
 
-{% content-ref url="../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-4-installing-consensus-client/prysm.md" %}
-[prysm.md](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-4-installing-consensus-client/prysm.md)
+{% content-ref url="prysm.md" %}
+[prysm.md](prysm.md)
 {% endcontent-ref %}

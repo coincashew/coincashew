@@ -23,7 +23,7 @@ Now you can verify the accounts were imported successfully by doing a directory 
 sudo ls -l /var/lib/nimbus/validators
 ```
 
-You should see a folder named for each of your validator's pubkey.
+You should see a folder named for each of your validator's pubkey.&#x20;
 
 Setup ownership permissions, including hardening the access to this directory.
 

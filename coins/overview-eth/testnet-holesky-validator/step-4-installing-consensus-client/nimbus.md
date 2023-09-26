@@ -118,7 +118,7 @@ Paste the following configuration into the file.
 
 ```shell
 [Unit]
-Description=Nimbus Consensus Layer Client service for Goerli
+Description=Nimbus Consensus Layer Client service for Holesky
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -132,7 +132,7 @@ RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=900
 ExecStart=/usr/local/bin/nimbus_beacon_node \
-  --network=goerli \
+  --network=holesky \
   --data-dir=/var/lib/nimbus \
   --web3-url=http://127.0.0.1:8551 \
   --rest \
@@ -163,7 +163,7 @@ Checkpoint sync allows you to start your consensus layer within minutes instead 
 ```bash
 sudo -u consensus /usr/local/bin/nimbus_beacon_node trustedNodeSync \
 --network=goerli  \
---trusted-node-url=https://goerli.beaconstate.info \
+--trusted-node-url=https://checkpoint-sync.holesky.ethpandaops.io \
 --data-dir=/var/lib/nimbus \
 --backfill=false
 ```

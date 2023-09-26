@@ -71,7 +71,7 @@ Paste the following configuration into the file.
 
 ```shell
 [Unit]
-Description=Nethermind Execution Layer Client service for Goerli
+Description=Nethermind Execution Layer Client service for Holesky
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -87,14 +87,12 @@ TimeoutStopSec=900
 WorkingDirectory=/var/lib/nethermind
 Environment="DOTNET_BUNDLE_EXTRACT_BASE_DIR=/var/lib/nethermind"
 ExecStart=/usr/local/bin/nethermind/Nethermind.Runner \
-  --config goerli \
+  --config holesky \
   --datadir="/var/lib/nethermind" \
   --Metrics.Enabled true \
   --Metrics.ExposePort 6060 \
   --Metrics.IntervalSeconds 10000 \
   --Sync.SnapSync true \
-  --Sync.AncientBodiesBarrier 4367322 \
-  --Sync.AncientReceiptsBarrier 4367322 \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret
   
 [Install]

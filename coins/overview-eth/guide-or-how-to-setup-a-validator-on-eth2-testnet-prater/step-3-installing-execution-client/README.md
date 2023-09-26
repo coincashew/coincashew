@@ -22,25 +22,25 @@ Only one execution client is required per node.
 
 **Nethermind** is built on .NET core. Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
 
-{% content-ref url="../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-3-installing-execution-client/nethermind.md" %}
-[nethermind.md](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-3-installing-execution-client/nethermind.md)
+{% content-ref url="nethermind.md" %}
+[nethermind.md](nethermind.md)
 {% endcontent-ref %}
 
 **Hyperledger Besu** is written in Java and is anopen-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing.
 
-{% content-ref url="../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-3-installing-execution-client/besu.md" %}
-[besu.md](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-3-installing-execution-client/besu.md)
+{% content-ref url="besu.md" %}
+[besu.md](besu.md)
 {% endcontent-ref %}
 
 **Geth** - Go-ethereum (aka Geth) is an Ethereum client built in Go. It is one of the original and most popular Ethereum clients.
 
-{% content-ref url="../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-3-installing-execution-client/geth.md" %}
-[geth.md](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-3-installing-execution-client/geth.md)
+{% content-ref url="geth.md" %}
+[geth.md](geth.md)
 {% endcontent-ref %}
 
 **Erigon** is an implementation of Ethereum innovating on the efficiency frontier, written in Go.
 
-{% content-ref url="../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-3-installing-execution-client/erigon.md" %}
-[erigon.md](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-3-installing-execution-client/erigon.md)
+{% content-ref url="erigon.md" %}
+[erigon.md](erigon.md)
 {% endcontent-ref %}
 
