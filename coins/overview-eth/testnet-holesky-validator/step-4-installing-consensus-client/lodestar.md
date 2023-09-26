@@ -27,7 +27,7 @@ sudo chown -R consensus:consensus /var/lib/lodestar
 Install dependencies.
 
 ```bash
-sudo apt-get install gcc g++ make git curl -y
+sudo apt-get install gcc g++ make git curl ccze -y
 ```
 
 ### 2. Install Binaries

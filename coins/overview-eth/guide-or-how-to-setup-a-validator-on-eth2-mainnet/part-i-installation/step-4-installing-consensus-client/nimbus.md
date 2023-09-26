@@ -31,7 +31,7 @@ sudo chown -R consensus:consensus /var/lib/nimbus
 Install dependencies.
 
 ```bash
-sudo apt install curl libsnappy-dev libc6-dev jq libc6 unzip -y
+sudo apt install curl libsnappy-dev libc6-dev jq libc6 unzip ccze -y
 ```
 
 ### 2. Install Binaries
@@ -145,7 +145,7 @@ ExecStart=/usr/local/bin/nimbus_beacon_node \
 WantedBy=multi-user.target
 ```
 
-* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* Replace\*\*`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`\*\* with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * **Not staking?** If you only want a full node, delete the whole line beginning with
 
 ```

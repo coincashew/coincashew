@@ -27,7 +27,7 @@ sudo chown -R consensus:consensus /var/lib/lighthouse
 Install dependencies.
 
 ```bash
-sudo apt install curl -y
+sudo apt install curl jq ccze -y
 ```
 
 ### 2. Install Binaries

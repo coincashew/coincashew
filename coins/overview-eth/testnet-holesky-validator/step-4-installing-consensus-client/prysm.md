@@ -27,7 +27,7 @@ sudo chown -R consensus:consensus /var/lib/prysm/beacon
 Install dependencies.
 
 ```bash
-sudo apt install curl jq git -y
+sudo apt install curl jq git ccze -y
 ```
 
 ### 2. Install Binaries

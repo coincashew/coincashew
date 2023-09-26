@@ -31,7 +31,7 @@ sudo chown -R consensus:consensus /var/lib/nimbus
 Install dependencies.
 
 ```bash
-sudo apt install curl libsnappy-dev libc6-dev jq libc6 unzip -y
+sudo apt install curl libsnappy-dev libc6-dev jq libc6 unzip ccze -y
 ```
 
 ### 2. Install Binaries
