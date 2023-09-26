@@ -29,7 +29,7 @@ The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-va
 **Prerequisite:** You run a full Ethereum node (Execution Layer client \[e.g. geth/besu/nethermind/erigon] + Consensus Layer client \[e.g. prysm/lighthouse/teku/lodestar/nimbus]) and a validator.
 {% endhint %}
 
-### Step 1) Create mevboost service account
+### Step 1: Create mevboost service account
 
 The systemd service will run under this account, `mevboost`
 
@@ -37,7 +37,7 @@ The systemd service will run under this account, `mevboost`
 sudo useradd --no-create-home --shell /bin/false mevboost
 ```
 
-### Step 2) Install mevboost
+### Step 2: Install mevboost
 
 * Downloading binaries is often faster and more convenient.&#x20;
 * Building from source code can offer better compatibility and is more aligned with the spirit of FOSS (free open source software).
@@ -116,7 +116,7 @@ Create the mevboost systemd unit file.
 sudo nano /etc/systemd/system/mevboost.service
 ```
 
-The `ExecStart` line lists four relays: **Flashbots, UltraSound, Aestus, bloXroute Max Profit**. Remove or add other relays according to your ethical preferences. Add as many relays as you wish.
+The `ExecStart` line lists relays: **Flashbots, UltraSound, Aestus, bloXroute Max Profit, WenMerge**. Remove or add other relays according to your preferences. Add as many or as few relays as you wish.
 
 {% hint style="info" %}
 Find relay endpoints at:
@@ -160,7 +160,8 @@ ExecStart=/usr/local/bin/mev-boost \
   -relay https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net \
   -relay https://0xa1559ace749633b997cb3fdacffb890aeebdb0f5a3b6aaa7eeeaf1a38af0a8fe88b9e4b1f61f236d2e64d95733327a62@relay.ultrasound.money \
   -relay https://0xa15b52576bcbf1072f4a011c0f99f9fb6c66f3e1ff321f11f461d15e31b1cb359caa092c71bbded0bae5b5ea401aab7e@aestus.live \
-  -relay https://0x8b5d2e73e2a3a55c6c87b8b6eb92e0149a125c852751db1422fa951e42a09b82c142c3ea98d0d9930b056a3bc9896b8f@bloxroute.max-profit.blxrbdn.com
+  -relay https://0x8b5d2e73e2a3a55c6c87b8b6eb92e0149a125c852751db1422fa951e42a09b82c142c3ea98d0d9930b056a3bc9896b8f@bloxroute.max-profit.blxrbdn.com \
+  -relay https://0x8c7d33605ecef85403f8b7289c8058f440cbb6bf72b055dfe2f3e2c6695b6a1ea5a9cd0eb3a7982927a463feb4c3dae2@relay.wenmerge.com
 
 [Install]
 WantedBy=multi-user.target
@@ -232,7 +233,7 @@ Sep 17 23:32:23 ethstaker mev-boost[12321]: time="2022-09-17T23:32:32-00:00" lev
 Sep 17 23:32:23 ethstaker mev-boost[12321]: time="2022-09-17T23:32:32-00:00" level=info msg="listening on localhost:18550" module=cli
 ```
 
-### Step 3) Update consensus client and validator
+### Step 3: Update consensus client and validator
 
 {% hint style="info" %}
 Both the consensus layer client and validator will require additional **Builder API** flags.
