@@ -117,7 +117,7 @@ Paste the following configuration into the file.
 
 ```shell
 [Unit]
-Description=Erigon Execution Layer Client service for Holesky
+Description=Erigon Execution Layer Client service for Goerli
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -132,10 +132,11 @@ KillSignal=SIGINT
 TimeoutStopSec=900
 ExecStart=/usr/local/bin/erigon \
    --datadir /var/lib/erigon \
-   --chain holesky \
+   --chain goerli \
    --metrics \
    --pprof \
    --prune htc \
+   --prune.r.before=4367322 \
    --authrpc.jwtsecret=/secrets/jwtsecret
 
 [Install]

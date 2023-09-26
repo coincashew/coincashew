@@ -106,7 +106,7 @@ Paste the following configuration into the file.
 
 ```shell
 [Unit]
-Description=Lodestar Consensus Layer Client service for Holesky
+Description=Lodestar Consensus Layer Client service for Goerli
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -122,9 +122,9 @@ TimeoutStopSec=900
 WorkingDirectory=/usr/local/bin/lodestar
 ExecStart=/usr/local/bin/lodestar/lodestar beacon \
   --dataDir /var/lib/lodestar \
-  --network holesky \
+  --network goerli \
   --metrics true \
-  --checkpointSyncUrl https://checkpoint-sync.holesky.ethpandaops.io \
+  --checkpointSyncUrl https://goerli.beaconstate.info \
   --jwt-secret /secrets/jwtsecret \
   --execution.urls http://127.0.0.1:8551 \
   --suggestedFeeRecipient <0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>

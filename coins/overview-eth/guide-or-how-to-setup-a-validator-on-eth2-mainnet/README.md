@@ -17,7 +17,7 @@ As of July 15 2023, this is the new **Version 2 Guide** written for **post-🦉S
 {% endhint %}
 
 {% hint style="info" %}
-:sparkles: **Always test and practice on testnet first. See** [**GOERLI testnet guide**](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/)**.**
+:sparkles: **Always test and practice on testnet first. See** [**GOERLI testnet guide**](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/)**.**
 {% endhint %}
 
 {% hint style="warning" %}

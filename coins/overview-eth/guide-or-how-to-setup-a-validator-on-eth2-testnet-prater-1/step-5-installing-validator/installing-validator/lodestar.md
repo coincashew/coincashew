@@ -1,20 +1,23 @@
-# Lighthouse
+---
+description: Setup a Lodestar validator client
+---
 
-Create a service user for the validator service and create data directories.
+# Lodestar
 
-```bash
-sudo adduser --system --no-create-home --group validator
-sudo mkdir -p /var/lib/lighthouse/validators
-```
+Create a service user for the validator service, as this improves security, then create data directories.
+
+<pre class="language-bash"><code class="lang-bash">sudo adduser --system --no-create-home --group validator
+<strong>sudo mkdir -p /var/lib/lodestar/validators
+</strong></code></pre>
 
 Import your validator keys by importing your **keystore file**. Be sure to enter your **keystore password** correctly.
 
 ```bash
-sudo lighthouse account validator import \
-  --network holesky \
-  --datadir /var/lib/lighthouse \
-  --directory=$HOME/staking-deposit-cli/validator_keys \
-  --reuse-password
+cd /usr/local/bin/lodestar
+sudo ./lodestar validator import \
+  --network goerli \
+  --dataDir="/var/lib/lodestar/validators" \
+  --keystore=$HOME/staking-deposit-cli/validator_keys
 ```
 
 {% hint style="danger" %}
@@ -23,10 +26,11 @@ WARNING: Do not import your validator keys into multiple validator clients and r
 
 Verify that your keystore file was imported successfully.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo lighthouse account_manager validator list \
-</strong><strong>  --network holesky \
-</strong>  --datadir /var/lib/lighthouse
-</code></pre>
+```bash
+sudo ./lodestar validator list \
+  --network goerli \
+  --dataDir="/var/lib/lodestar/validators"
+```
 
 Once successful, you will be shown your **validator's public key**.
 
@@ -35,8 +39,8 @@ For example, `0x8d9138fcf5676e2031dc4eae30a2c92e3306903eeec83ca83f4f851afbd4cb3b
 Setup ownership permissions, including hardening the access to this directory.
 
 ```bash
-sudo chown -R validator:validator /var/lib/lighthouse/validators
-sudo chmod 700 /var/lib/lighthouse/validators
+sudo chown -R validator:validator /var/lib/lodestar/validators
+sudo chmod 700 /var/lib/lodestar/validators
 ```
 
 Create a **systemd unit file** to define your `validator.service` configuration.
@@ -45,11 +49,11 @@ Create a **systemd unit file** to define your `validator.service` configuration.
 sudo nano /etc/systemd/system/validator.service
 ```
 
-Paste the following configuration into the file.&#x20;
+Paste the following configuration into the file.
 
 ```bash
 [Unit]
-Description=Lighthouse Validator Client service for Holesky
+Description=Lodestar Validator Client service for Goerli
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -61,15 +65,14 @@ Group=validator
 Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
-TimeoutStopSec=900
-ExecStart=/usr/local/bin/lighthouse vc \
-  --network holesky \
-  --beacon-nodes http://localhost:5052 \
-  --datadir /var/lib/lighthouse \
-  --graffiti="" \
-  --metrics \
-  --suggested-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
-
+TimeoutStopSec=300
+WorkingDirectory=/usr/local/bin/lodestar
+ExecStart=/usr/local/bin/lodestar/lodestar validator \
+  --network goerli \
+  --dataDir /var/lib/lodestar/validators \
+  --graffiti "" \
+  --suggestedFeeRecipient <0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
+  
 [Install]
 WantedBy=multi-user.target
 ```
@@ -102,19 +105,23 @@ sudo journalctl -fu validator | ccze
 For example when using 2 validators, logs will show the following:
 
 ```bash
-INFO Enabled validator          voting_pubkey: 0x82b225f66476962b161ed015786df00a0b7b28231915e6d09e81ba8d5c4ae8502b6d5337e3bf101ad72741dc69f0a7cf, signing_method: local_keystore
-INFO Enabled validator          voting_pubkey: 0x95d39860a0d6ea3b92cba78069d21f3a987988f3b8417b14f0945353d79ed9e338bbe6e9d63d487abc044a710ce34866, signing_method: local_keystore
-INFO Initialized validators     enabled: 2, disabled: 0
+info: 100% of local keystores imported. current=2 total=2 rate=975.61keys/m
+info: 2 local keystores
+info: 0x82b225f66476962b161ed015786df00a0b7b28231915e6d09e81ba8d5c4ae8502b6d5337e3bf101ad72741dc69f0a7cf
+info: 0x95d39860a0d6ea3b92cba78069d21f3a987988f3b8417b14f0945353d79ed9e338bbe6e9d63d487abc044a710ce34866
 ```
 
 Press `Ctrl` + `C` to exit the logs.
 
-**Example of Synced Lighthouse Validator Client Logs**
+**Example of Synced Lodestar Validator Client Logs**
 
 * Once the validator is active and proceeded through the validator activation queue, attestation messages will appear indicating successful attestations.
-* Notice the key words "`INFO Successfully published attestations`".
+* Notice the key words "`info: Published attestations`".
 
-```
-Feb 08 01:01:0 INFO Successfully published attestations type: unaggregated, slot: 12422, committee_index: 3, head_block: 0xabc111daedf1281..., validator_indices: [12345], count:1, service: attestation 
-Feb 08 01:01:30 INFO Connected to beacon node(s) synced: 1, available: 1, total: 1, service: notifier
+```bash
+Feb-1  03:33:30.228     info: Published aggregateAndProofs slot=2662, index=13, count=1
+Feb-1  03:37:48.393     info: Published attestations slot=2699, index=20, count=1
+Feb-1  03:46:36.450     info: Published attestations slot=2713, index=2, count=1
+Feb-1  03:53:48.944     info: Published attestations slot=2765, index=21, count=1
+Feb-1  04:01:48.812     info: Published attestations slot=2809, index=17, count=1
 ```

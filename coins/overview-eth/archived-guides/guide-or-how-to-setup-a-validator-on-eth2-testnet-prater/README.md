@@ -15,7 +15,7 @@ Archived here, this guide is for historical reference purposes.
 {% endhint %}
 
 {% hint style="success" %}
-**New staking setups** should follow the [**V2 guides.**](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/)
+**New staking setups** should follow the [**V2 guides.**](../../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/)
 {% endhint %}
 
 {% hint style="info" %}

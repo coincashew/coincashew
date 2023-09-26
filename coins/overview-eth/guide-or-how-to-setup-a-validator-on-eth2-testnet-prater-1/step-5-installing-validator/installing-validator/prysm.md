@@ -28,7 +28,7 @@ Import your validator keys by importing your **keystore file**. When asked to cr
 ```shell
 sudo /usr/local/bin/validator accounts import \
   --accept-terms-of-use \
-  --holesky \
+  --goerli \
   --wallet-dir=/var/lib/prysm/validators \
   --keys-dir=$HOME/staking-deposit-cli/validator_keys
 ```
@@ -39,7 +39,7 @@ sudo /usr/local/bin/validator accounts import \
 cd /usr/local/bin/prysm
 sudo bazel run //validator:validator -- accounts import \
   --accept-terms-of-use \
-  --holesky \
+  --goerli \
   --wallet-dir=/var/lib/prysm/validators \
   --keys-dir=$HOME/staking-deposit-cli/validator_keys
 ```
@@ -56,7 +56,7 @@ Verify that your keystore file was imported successfully.
 {% tab title="Binaries" %}
 <pre class="language-bash"><code class="lang-bash"><strong>sudo /usr/local/bin/validator accounts list \
 </strong>  --wallet-dir=/var/lib/prysm/validators \
-  --holesky
+  --goerli
 </code></pre>
 {% endtab %}
 
@@ -64,7 +64,7 @@ Verify that your keystore file was imported successfully.
 <pre class="language-bash"><code class="lang-bash"><strong>cd /usr/local/bin/prysm
 </strong><strong>sudo bazel run //validator:validator -- accounts list \
 </strong>  --wallet-dir=/var/lib/prysm/validator \
-  --holesky
+  --goerli
 </code></pre>
 {% endtab %}
 {% endtabs %}
@@ -103,7 +103,7 @@ Depending on whether you're downloading binaries or building from source, choose
 
 ```bash
 [Unit]
-Description=Prysm Validator Client service for Holesky
+Description=Prysm Validator Client service for Goerli
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -117,7 +117,7 @@ RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=900
 ExecStart=/usr/local/bin/validator \
-  --holesky \
+  --goerli \
   --accept-terms-of-use \
   --datadir=/var/lib/prysm/validators \
   --beacon-rpc-provider=localhost:4000 \
@@ -137,7 +137,7 @@ WantedBy=multi-user.target
 <summary>Option 2 - Configuration for building from source</summary>
 
 <pre class="language-bash"><code class="lang-bash">[Unit]
-Description=Prysm validator Client service for Holesky
+Description=Prysm validator Client service for Goerli
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -152,7 +152,7 @@ KillSignal=SIGINT
 TimeoutStopSec=900
 WorkingDirectory=/usr/local/bin/prysm
 ExecStart=bazel run //cmd/validator --config=release -- \
-  --holesky \
+  --goerli \
   --accept-terms-of-use \
   --datadir=/var/lib/prysm/validators \
   --beacon-rpc-provider=localhost:4000 \
