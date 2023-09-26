@@ -1,16 +1,18 @@
 # Monitoring your validator with Grafana and Prometheus
 
-Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets. [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) Grafana is a dashboard used to visualize the collected data.
+Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets.&#x20;
 
-### 6.1 Installation
+Grafana is a dashboard used to visualize the collected data.
 
-Install prometheus and prometheus node exporter.
+[Official documentation is available here.](https://prometheus.io/docs/introduction/overview/)&#x20;
+
+### Step 1: Install Prometheus and Node Exporter
 
 ```bash
 sudo apt-get install -y prometheus prometheus-node-exporter
 ```
 
-Install grafana.
+### Step 2: Install Grafana
 
 ```bash
 sudo apt-get install -y apt-transport-https
@@ -20,13 +22,15 @@ echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com st
 sudo apt-get update && sudo apt-get install -y grafana
 ```
 
-Enable services so they start automatically.
+### Step 3: Enable services so they start automatically.
 
 ```bash
 sudo systemctl enable grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
-Create the **prometheus.yml** config file. Choose the tab for your eth client. Simply copy and paste.
+### Step 4: Create the **prometheus.yml** config file&#x20;
+
+Choose the tab for your consensus client. Simply copy and paste into your terminal window.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -154,13 +158,15 @@ EOF
 {% endtab %}
 {% endtabs %}
 
-Setup prometheus for your execution client. Start by editing **prometheus.yml**
+### Step 5: Setup prometheus for your execution client&#x20;
+
+Start by editing **prometheus.yml**
 
 ```bash
 nano $HOME/prometheus.yml
 ```
 
-Append the applicable job snippet for your execution client to the end of **prometheus.yml**. Save the file.
+Append the applicable job snippet for your execution client to the end of **prometheus.yml**.
 
 {% hint style="warning" %}
 **Spacing matters**. Ensure all `job_name` snippets are in alignment.
@@ -213,6 +219,8 @@ Append the applicable job snippet for your execution client to the end of **prom
 {% endtab %}
 {% endtabs %}
 
+To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
+
 Move it to `/etc/prometheus/prometheus.yml`
 
 ```bash
@@ -233,35 +241,43 @@ sudo systemctl restart grafana-server.service prometheus.service prometheus-node
 
 Verify that the services are running properly:
 
-```
+```bash
 sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
 ```
 
-<details>
+### Step 6: Create a SSH Tunnel to Grafana
 
-<summary><span data-gb-custom-inline data-tag="emoji" data-code="1f525">🔥</span> Grafana Security: <strong>SSH Tunnels</strong></summary>
+{% hint style="warning" %}
+Do not expose Grafana (port 3000) to the public internet as this invites a new attack surface!&#x20;
+{% endhint %}
 
-Do not expose Grafana (port 3000) to the public internet as this invites a new attack surface! A secure solution would be to access Grafana through a ssh tunnel.
+Each time you want to access Grafana, a secure method is to access Grafana through a ssh tunnel.
 
+{% tabs %}
+{% tab title="Linux or MacOS" %}
 Example of how to create a ssh tunnel in Linux or MacOS:
 
 ```
 ssh -N -v <user>@<staking.node.ip.address> -L 3000:localhost:3000
 ```
+{% endtab %}
 
+{% tab title="Windows" %}
 Example of how to create a ssh tunnel in Windows with [Putty](https://putty.org/):
 
 Navigate to Connection > SSH > Tunnels > Enter Source Port `3000` > Enter Destination `localhost:3000` > Click Add
 
 ![](../../../../.gitbook/assets/image.png)
 
+Now save your configuration. Navigate to Session > Enter a session name > Save
+{% endtab %}
+{% endtabs %}
+
 Now you can access Grafana on your local machine by pointing a web browser to [http://localhost:3000](http://localhost:3000/)
 
-</details>
+### Step 7: Setup Grafana Dashboards
 
-### :signal\_strength: 6.2 Setting up Grafana Dashboards
-
-1. Open [http://localhost:3000](http://localhost:3000) or http://\<your validator's ip address>:3000 in your web browser.
+1. Open [http://localhost:3000](http://localhost:3000)
 2. Login with **admin** / **admin**
 3. Change password
 4. Click the **configuration gear** icon, then **Add data Source**
@@ -282,18 +298,33 @@ Now you can access Grafana on your local machine by pointing a web browser to [h
 {% hint style="warning" %}
 :fire: **Troubleshooting common Grafana issues**
 
-**Symptom**: Your dashboard is missing some data_._
+**Symptom 1**: Your dashboard is missing some data_._
 
-**Solution**_:_ Ensure that the execution or consensus client has enabled the appropriate metrics flag.
+**Solution 1**_:_ Ensure that the execution or consensus client has enabled the appropriate metrics flag.
 
-* Geth: geth --http --metrics --pprof
-* Besu: besu  --metrics-enabled=true
-* Nethermind: Nethermind.Runner  --Metrics.Enabled true
-* Erigon: erigon  --metrics
-* Lighthouse beacon-node: lighthouse bn  --validator-monitor-auto
-* Nimbus: nimbus\_beacon\_node  --metrics  --metrics-port=8008
-* Teku: --metrics-enabled=true --metrics-port=8008
-* Lodestar beacon-node: lodestar beacon --metrics true
+```bash
+cat /etc/systemd/system/execution.service
+cat /etc/systemd/system/consensus.service
+```
+
+* **Geth**: --http --metrics --pprof
+* **Besu**: --metrics-enabled=true
+* **Nethermind**:  --Metrics.Enabled true
+* **Erigon**: --metrics
+* **Lighthouse**:  --validator-monitor-auto
+* **Nimbus**:  --metrics  --metrics-port=8008
+* **Teku**: --metrics-enabled=true --metrics-port=8008
+* **Lodestar**: --metrics true
+
+
+
+**Symptom 2**: Don't want to use SSH tunnels and you want to expose port 3000 to access Grafana, but understand the security concerns.
+
+**Solution 2**: Open port 3000 in your ufw firewall. Access grafana at http://\<node ipaddress>:3000
+
+```
+sudo ufw allow 3000
+```
 {% endhint %}
 
 #### Example of Grafana Dashboards for each consensus client.
@@ -396,7 +427,7 @@ Credits: [starsliao](https://grafana.com/grafana/dashboards/11074)
 {% endtab %}
 {% endtabs %}
 
-### :warning: 6.3 Setup Alert Notifications
+### &#x20;Step 8: Setup Alert Notifications
 
 {% hint style="info" %}
 Setup alerts to get notified if your validators go offline.
@@ -404,16 +435,22 @@ Setup alerts to get notified if your validators go offline.
 
 Get notified of problems with your validators. Choose between email, telegram, discord or slack.
 
-{% tabs %}
-{% tab title="Email Notifications" %}
+<details>
+
+<summary>Option 1: Email Notifications</summary>
+
 1. Visit [https://beaconcha.in/](https://beaconcha.in)
-2. Sign up for an account.
+2. Sign up for an account
 3. Verify your **email**
 4. Search for your **validator's public address**
 5. Add validators to your watchlist by clicking the **bookmark symbol**.
-{% endtab %}
 
-{% tab title="Telegram Notifications" %}
+</details>
+
+<details>
+
+<summary>Option 2: Telegram Notifications</summary>
+
 1. On the menu of Grafana, select **Notification channels** under the bell icon.
 2. Click on **Add channel**.
 3. Give the notification channel a **name**.
@@ -431,9 +468,13 @@ Get notified of problems with your validators. Choose between email, telegram, d
 11. Paste the **Chat ID** into the corresponding field in **Grafana**.
 12. **Save and test** the notification channel for your alerts.
 13. Now you can create custom alerts from your dashboards. [Visit here to learn how to create alerts.](https://grafana.com/docs/grafana/latest/alerting/create-alerts/)
-{% endtab %}
 
-{% tab title="Discord Notifications" %}
+</details>
+
+<details>
+
+<summary>Option 3: Discord Notifications</summary>
+
 1. On the menu of Grafana, select **Notification channels** under the bell icon.
 2. Click on **Add channel**.
 3. Add a **name** to the notification channel.
@@ -441,9 +482,13 @@ Get notified of problems with your validators. Choose between email, telegram, d
 5. To complete the set up, a Discord server (and a text channel available) as well as a Webhook URL are required. For instructions on setting up a Discord's Webhooks, see [this section](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) of their documentation.
 6. Enter the Webhook **URL** in the Discord notification settings panel.
 7. Click **Send Test**, which will push a confirmation message to the Discord channel.
-{% endtab %}
 
-{% tab title="Slack Notifications" %}
+</details>
+
+<details>
+
+<summary>Option 4: Slack Notifications</summary>
+
 1. On the menu of Grafana, select **Notification channels** under the bell icon.
 2. Click on **Add channel**.
 3. Add a **name** to the notification channel.
@@ -451,5 +496,5 @@ Get notified of problems with your validators. Choose between email, telegram, d
 5. For instructions on setting up a Slack's Incoming Webhooks, see [this section](https://api.slack.com/messaging/webhooks) of their documentation.
 6. Enter the Slack Incoming Webhook URL in the **URL** field.
 7. Click **Send Test**, which will push a confirmation message to the Slack channel.
-{% endtab %}
-{% endtabs %}
+
+</details>
