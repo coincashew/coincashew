@@ -11,27 +11,15 @@ Only one consensus client is required per node.
 <figure><img src="../../../../.gitbook/assets/cd-c.png" alt=""><figcaption><p>Sept 2023 Client Diversity</p></figcaption></figure>
 
 {% hint style="info" %}
-:shield: **Recommendation** :shield:: Nimbus or Lodestar
+:shield: **Recommendation** :shield:: Teku, Nimbus, or Lodestar
 {% endhint %}
 
 ## Select your desired consensus client for further instructions.
 
-
-
-**Lighthouse** is an Ethereum client with a heavy focus on speed and security. Lighthouse is built in Rust.
-
-
-
-**Lodestar** is a Typescript implementation by the Chainsafe.io team. The Lodestar team is leading the Ethereum space in light client research.
-
-
-
-**Teku** is a Java-based Ethereum client designed & built to meet institutional needs and security requirements.
-
-
-
-**Nimbus** is designed to perform well on embedded systems and personal mobile devices. Written in Nim, a language with Python-like syntax that compiles to C.
-
-
-
-**Prysm** is a Go implementation with a focus on usability, security, and reliability.
+| Consensus Clients                                                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Lighthouse** is an Ethereum client with a heavy focus on speed and security. Lighthouse is built in Rust.                                                    |
+| **Lodestar** is a Typescript implementation by the Chainsafe.io team. The Lodestar team is leading the Ethereum space in light client research.                |
+| **Teku** is a Java-based Ethereum client designed & built to meet institutional needs and security requirements.                                               |
+| **Nimbus** is designed to perform well on embedded systems and personal mobile devices. Written in Nim, a language with Python-like syntax that compiles to C. |
+| **Prysm** is a Go implementation with a focus on usability, security, and reliability.                                                                         |

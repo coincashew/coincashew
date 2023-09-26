@@ -116,7 +116,7 @@ Create the mevboost systemd unit file.
 sudo nano /etc/systemd/system/mevboost.service
 ```
 
-The `ExecStart` line lists four relays: **Agnostic, UltraSound, Aestus, bloXroute Max Profit**. Remove or add other relays according to your ethical preferences. Add as many relays as you wish.
+The `ExecStart` line lists four relays: **Flashbots, UltraSound, Aestus, bloXroute Max Profit**. Remove or add other relays according to your ethical preferences. Add as many relays as you wish.
 
 {% hint style="info" %}
 Find relay endpoints at:
@@ -157,7 +157,7 @@ ExecStart=/usr/local/bin/mev-boost \
   -mainnet \
   -min-bid 0.03 \
   -relay-check \
-  -relay https://0xa7ab7a996c8584251c8f925da3170bdfd6ebc75d50f5ddc4050a6fdc77f2a3b5fce2cc750d0865e05d7228af97d69561@agnostic-relay.net \
+  -relay https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net \
   -relay https://0xa1559ace749633b997cb3fdacffb890aeebdb0f5a3b6aaa7eeeaf1a38af0a8fe88b9e4b1f61f236d2e64d95733327a62@relay.ultrasound.money \
   -relay https://0xa15b52576bcbf1072f4a011c0f99f9fb6c66f3e1ff321f11f461d15e31b1cb359caa092c71bbded0bae5b5ea401aab7e@aestus.live \
   -relay https://0x8b5d2e73e2a3a55c6c87b8b6eb92e0149a125c852751db1422fa951e42a09b82c142c3ea98d0d9930b056a3bc9896b8f@bloxroute.max-profit.blxrbdn.com
@@ -181,6 +181,11 @@ sudo systemctl daemon-reload
 
 {% hint style="info" %}
 **Good to know**: If you add or remove relay endpoints, you'll need to re-run this systemctl`daemon-reload` command and restart the mevboost services.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart mevboost
+```
 {% endhint %}
 
 Enable mevboost to automatically startup at system reboots and start the service.

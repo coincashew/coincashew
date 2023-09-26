@@ -20,19 +20,9 @@ Only one execution client is required per node.
 
 ## Select your desired execution client for further instructions.
 
-
-
-**Nethermind** is built on .NET core. Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
-
-
-
-**Hyperledger Besu** is written in Java and is anopen-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing.
-
-
-
-**Geth** - Go-ethereum (aka Geth) is an Ethereum client built in Go. It is one of the original and most popular Ethereum clients.
-
-
-
-**Erigon** is an implementation of Ethereum innovating on the efficiency frontier, written in Go.
-
+| Execution Clients                                                                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Nethermind** is built on .NET core. Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security. |
+| **Hyperledger Besu** is written in Java and is anopen-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing. |
+| **Geth** - Go-ethereum (aka Geth) is an Ethereum client built in Go. It is one of the original and most popular Ethereum clients.                                                      |
+| **Erigon** is an implementation of Ethereum innovating on the efficiency frontier, written in Go.                                                                                      |
