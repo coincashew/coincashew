@@ -1,5 +1,17 @@
 # Step 4: Installing consensus client
 
+{% hint style="info" %}
+As of 9/26/2023, the following binaries are ready for Holesky relaunch.
+{% endhint %}
+
+| Client     | Ready | Version        |
+| ---------- | ----- | -------------- |
+| lodestar   | ✅     | 1.11.3+        |
+| lighthouse | ✅     | 4.5.0+         |
+| teku       | ✅     | 23.9.1+        |
+| nimbus     | ✅     | 23.9.1+        |
+| prysm      | ✅     | 4.1.0-alpha.1+ |
+
 Your choice of either Lighthouse, Lodestar, Teku, Nimbus, or Prysm.
 
 {% hint style="warning" %}

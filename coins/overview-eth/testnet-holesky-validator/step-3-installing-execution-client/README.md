@@ -1,5 +1,16 @@
 # Step 3: Installing execution client
 
+{% hint style="info" %}
+As of 9/26/2023, the following binaries are ready for Holesky relaunch.
+{% endhint %}
+
+| Client     | Ready | Version  |
+| ---------- | ----- | -------- |
+| besu       | ✅     | 23.7.3+  |
+| nethermind | ✅     | v1.20.4+ |
+| erigon     | :x:   | ?        |
+| geth       | :x:   | ?        |
+
 Your choice of either [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org)**,** [**Nethermind**](https://www.nethermind.io)**, or** [**Erigon**](https://github.com/ledgerwatch/erigon)**.**
 
 {% hint style="warning" %}
