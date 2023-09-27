@@ -131,7 +131,6 @@ ExecStart=/usr/local/bin/teku/bin/teku \
   --network holesky \
   --data-path /var/lib/teku/ \
   --data-storage-mode="prune" \
-  --initial-state="https://checkpoint-sync.holesky.ethpandaops.io/eth/v2/debug/beacon/states/finalized" \
   --ee-endpoint http://127.0.0.1:8551 \
   --ee-jwt-secret-file /secrets/jwtsecret \
   --rest-api-enabled true \

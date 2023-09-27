@@ -129,7 +129,6 @@ TimeoutStopSec=900
 ExecStart=/usr/local/bin/beacon-chain \
   --holesky \
   --datadir=/var/lib/prysm/beacon \
-  --checkpoint-sync-url=https://checkpoint-sync.holesky.ethpandaops.io \
   --execution-endpoint=http://localhost:8551 \
   --jwt-secret=/secrets/jwtsecret \
   --accept-terms-of-use=true \
@@ -163,7 +162,6 @@ WorkingDirectory=/usr/local/bin/prysm
 ExecStart=bazel run //cmd/beacon-chain --config=release -- \
   --holesky \
   --datadir=/var/lib/prysm/beacon \
-  --checkpoint-sync-url=https://checkpoint-sync.holesky.ethpandaops.io \
   --execution-endpoint=http://localhost:8551 \
   --jwt-secret=/secrets/jwtsecret \
   --accept-terms-of-use=true \

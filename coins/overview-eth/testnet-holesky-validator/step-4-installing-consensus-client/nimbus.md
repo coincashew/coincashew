@@ -154,24 +154,6 @@ WantedBy=multi-user.target
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 
-Run the following to quickly sync with Checkpoint Sync.
-
-{% hint style="info" %}
-Checkpoint sync allows you to start your consensus layer within minutes instead of days.
-{% endhint %}
-
-```bash
-sudo -u consensus /usr/local/bin/nimbus_beacon_node trustedNodeSync \
---network=goerli  \
---trusted-node-url=https://checkpoint-sync.holesky.ethpandaops.io \
---data-dir=/var/lib/nimbus \
---backfill=false
-```
-
-When the checkpoint sync is complete, you'll see the following message:
-
-> Done, your beacon node is ready to serve you! Don't forget to check that you're on the canonical chain by comparing the checkpoint root with other online sources. See https://nimbus.guide/trusted-node-sync.html for more information.
-
 Run the following to enable auto-start at boot time.
 
 ```bash
