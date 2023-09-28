@@ -4,12 +4,13 @@
 As of 9/26/2023, the following binaries are ready for Holesky relaunch.
 {% endhint %}
 
-| Client     | Ready | Version  |
-| ---------- | ----- | -------- |
-| besu       | ✅     | 23.7.3+  |
-| nethermind | ✅     | v1.20.4+ |
-| erigon     | :x:   | ?        |
-| geth       | :x:   | ?        |
+| Client     | Ready | Version          |
+| ---------- | ----- | ---------------- |
+| besu       | ✅     | 23.7.3+          |
+| nethermind | ✅     | v1.20.4+         |
+| erigon     | ✅     | v2.49.3+         |
+| geth       | ✅     | v1.13.2+         |
+| reth       | ✅     | v0.1.0-alpha.10+ |
 
 Your choice of either [**Geth**](https://geth.ethereum.org)**,** [**Besu**](https://besu.hyperledger.org)**,** [**Nethermind**](https://www.nethermind.io)**, or** [**Erigon**](https://github.com/ledgerwatch/erigon)**.**
 
