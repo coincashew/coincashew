@@ -255,21 +255,26 @@ Each time you want to access Grafana, a secure method is to access Grafana throu
 
 {% tabs %}
 {% tab title="Linux or MacOS" %}
-Example of how to create a ssh tunnel in Linux or MacOS:
+Example of how to create a SSH tunnel in Linux or MacOS:
 
-```
+```bash
 ssh -N -v <user>@<staking.node.ip.address> -L 3000:localhost:3000
+
+#Full Example
+ssh -N -v ethereum@192.168.1.69 -L 3000:localhost:3000
 ```
 {% endtab %}
 
 {% tab title="Windows" %}
-Example of how to create a ssh tunnel in Windows with [Putty](https://putty.org/):
+Example of how to create a SSH tunnel in Windows with [Putty](https://putty.org/):
 
 Navigate to Connection > SSH > Tunnels > Enter Source Port `3000` > Enter Destination `localhost:3000` > Click Add
 
 ![](../../../../.gitbook/assets/image.png)
 
 Now save your configuration. Navigate to Session > Enter a session name > Save
+
+Click Open to open a connection
 {% endtab %}
 {% endtabs %}
 
