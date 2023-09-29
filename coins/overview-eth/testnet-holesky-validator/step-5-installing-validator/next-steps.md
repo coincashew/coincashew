@@ -13,7 +13,7 @@
 
 **How do I know I'm fully synced?**
 
-* Check your execution client's logs and compare the block number against the most recent block on https://holesky.etherscan.io
+* Check your execution client's logs and compare the block number against the most recent block on [https://holesky.etherscan.io](https://holesky.etherscan.io/)
   * Check EL logs: `journalctl -fu execution`
 * Check your consensus client's logs and compare the slot number against the most recent slot on [https://holesky.beaconcha.in](https://holesky.beaconcha.in/)
   * Check CL logs: `journalctl -fu consensus`
