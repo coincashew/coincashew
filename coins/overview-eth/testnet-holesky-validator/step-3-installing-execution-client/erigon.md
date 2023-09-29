@@ -8,11 +8,11 @@
 
 #### Official Links
 
-| Subject       | Link                                                                                                     |
-| ------------- | -------------------------------------------------------------------------------------------------------- |
-| Releases      | [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)         |
-| Documentation | [https://erigon.readthedocs.io/en/latest/index.html](https://erigon.readthedocs.io/en/latest/index.html) |
-| Website       | [https://erigon.substack.com](https://erigon.substack.com/)                                              |
+| Subject       | Link                                                                                                       |
+| ------------- | ---------------------------------------------------------------------------------------------------------- |
+| Releases      | [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)           |
+| Documentation | [https://github.com/ledgerwatch/erigon#documentation](https://github.com/ledgerwatch/erigon#documentation) |
+| Website       | [https://erigon.substack.com](https://erigon.substack.com/)                                                |
 
 ### 1. Initial configuration
 
