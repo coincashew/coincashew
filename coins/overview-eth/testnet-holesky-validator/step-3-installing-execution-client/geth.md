@@ -192,6 +192,24 @@ sudo systemctl start execution
 sudo systemctl status execution
 ```
 {% endtab %}
+
+{% tab title="Reset Database" %}
+Common reasons to reset the database can include:
+
+* Recovering from a corrupted database due to power outage or hardware failure
+* Re-syncing to reduce disk space usage
+* Upgrading to a new storage format
+
+```bash
+sudo systemctl stop execution
+sudo rm -rf /var/lib/geth
+sudo mkdir -p /var/lib/geth
+sudo chown -R execution:execution /var/lib/geth
+sudo systemctl restart execution
+```
+
+Time to re-sync the execution client can take a few hours up to a day.
+{% endtab %}
 {% endtabs %}
 
 Now that your execution client is configured and started, proceed to the next step on setting up your consensus client.
