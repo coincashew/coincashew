@@ -27,6 +27,10 @@ sudo rm -rf /var/lib/geth
 sudo rm -rf /usr/local/bin/erigon
 sudo rm -rf /var/lib/erigon
 
+#Reth
+sudo rm -rf /usr/local/bin/reth
+sudo rm -rf /var/lib/reth
+
 sudo userdel execution
 ```
 

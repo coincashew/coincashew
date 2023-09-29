@@ -60,13 +60,14 @@ tar -xzvf nimbus.tar.gz -C $HOME
 mv nimbus-eth2_Linux_amd64_* nimbus
 # Cleanup
 rm nimbus.tar.gz
-rm -r nimbus
 ```
 
-Install the binaries.
+Install the binaries, display version and cleanup.
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo mv nimbus/build/nimbus_beacon_node /usr/local/bin/nimbus_beacon_node
-</strong></code></pre>
+</strong>nimbus_beacon_node --version
+rm -r nimbus
+</code></pre>
 
 </details>
 

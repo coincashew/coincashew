@@ -165,6 +165,7 @@
       * [Besu](coins/overview-eth/testnet-holesky-validator/step-3-installing-execution-client/besu.md)
       * [Geth](coins/overview-eth/testnet-holesky-validator/step-3-installing-execution-client/geth.md)
       * [Erigon](coins/overview-eth/testnet-holesky-validator/step-3-installing-execution-client/erigon.md)
+      * [Reth](coins/overview-eth/testnet-holesky-validator/step-3-installing-execution-client/reth.md)
     * [Step 4: Installing consensus client](coins/overview-eth/testnet-holesky-validator/step-4-installing-consensus-client/README.md)
       * [Lighthouse](coins/overview-eth/testnet-holesky-validator/step-4-installing-consensus-client/lighthouse.md)
       * [Lodestar](coins/overview-eth/testnet-holesky-validator/step-4-installing-consensus-client/lodestar.md)
