@@ -261,7 +261,6 @@ tar -xzvf nimbus.tar.gz -C $HOME
 mv nimbus-eth2_Linux_amd64_* nimbus
 # Cleanup
 rm nimbus.tar.gz
-rm -r nimbus
 ```
 
 Stop the services.
@@ -269,13 +268,13 @@ Stop the services.
 <pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl stop consensus
 </strong></code></pre>
 
-Remove old binaries, install new binaries and restart the services.
+Remove old binaries, install new binaries, cleanup and restart the services.
 
-```bash
-sudo rm /usr/local/bin/nimbus_beacon_node
+<pre class="language-bash"><code class="lang-bash">sudo rm /usr/local/bin/nimbus_beacon_node
 sudo mv nimbus/build/nimbus_beacon_node /usr/local/bin/nimbus_beacon_node
-sudo systemctl start consensus
-```
+<strong>rm -r nimbus
+</strong><strong>sudo systemctl start consensus
+</strong></code></pre>
 
 </details>
 
