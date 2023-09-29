@@ -132,6 +132,7 @@ Environment="JAVA_OPTS=-Xmx5g"
 ExecStart=/usr/local/bin/besu/bin/besu \
   --network=holesky \
   --metrics-enabled=true \
+  --rpc-http-enabled=true \
   --sync-mode=X_CHECKPOINT \
   --data-storage-format=BONSAI \
   --data-path="/var/lib/besu" \

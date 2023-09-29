@@ -132,6 +132,7 @@ TimeoutStopSec=900
 ExecStart=/usr/local/bin/geth \
     --holesky \
     --metrics \
+    --http \
     --datadir=/var/lib/geth \
     --pprof \
     --state.scheme=path \
