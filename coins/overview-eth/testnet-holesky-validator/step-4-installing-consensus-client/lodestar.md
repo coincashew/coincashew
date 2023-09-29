@@ -124,6 +124,7 @@ ExecStart=/usr/local/bin/lodestar/lodestar beacon \
   --dataDir /var/lib/lodestar \
   --network holesky \
   --metrics true \
+  --checkpointSyncUrl https://holesky.beaconstate.ethstaker.cc \
   --jwt-secret /secrets/jwtsecret \
   --execution.urls http://127.0.0.1:8551 \
   --suggestedFeeRecipient <0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>

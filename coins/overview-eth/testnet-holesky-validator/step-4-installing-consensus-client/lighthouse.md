@@ -152,6 +152,7 @@ ExecStart=/usr/local/bin/lighthouse bn \
   --staking \
   --validator-monitor-auto \
   --metrics \
+  --checkpoint-sync-url=https://holesky.beaconstate.ethstaker.cc \
   --port 9000 \
   --execution-endpoint http://127.0.0.1:8551 \
   --execution-jwt /secrets/jwtsecret

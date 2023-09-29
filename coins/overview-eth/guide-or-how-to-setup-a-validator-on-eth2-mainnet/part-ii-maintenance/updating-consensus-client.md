@@ -253,8 +253,6 @@ BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .brows
 echo Downloading URL: $BINARIES_URL
 
 cd $HOME
-# Remove previous version
-rm -r nimbus
 # Download
 wget -O nimbus.tar.gz $BINARIES_URL
 # Untar
@@ -263,6 +261,7 @@ tar -xzvf nimbus.tar.gz -C $HOME
 mv nimbus-eth2_Linux_amd64_* nimbus
 # Cleanup
 rm nimbus.tar.gz
+rm -r nimbus
 ```
 
 Stop the services.

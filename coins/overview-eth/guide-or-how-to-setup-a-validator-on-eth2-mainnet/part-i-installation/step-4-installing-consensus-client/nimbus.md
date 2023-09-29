@@ -60,6 +60,7 @@ tar -xzvf nimbus.tar.gz -C $HOME
 mv nimbus-eth2_Linux_amd64_* nimbus
 # Cleanup
 rm nimbus.tar.gz
+rm -r nimbus
 ```
 
 Install the binaries.
