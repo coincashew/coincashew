@@ -2,16 +2,16 @@
 description: How to connect your ETH wallet to your own node's RPC endpoint
 ---
 
-# ⚡ Using staking node as RPC URL endpoint
+# ⚡ Using Node as RPC URL endpoint
 
-### :tada: Reasons to use your own staking NODE as RPC URL endpoint
+### :tada: Reasons to use your own NODE as RPC URL endpoint
 
 * **Privacy**: No spying by middleman between you and the blockchain
 * **Trustless verification**: Ability to verify the ETH transaction data you see is raw and not manipulated
 * **Decentralization**: No need to depend on Infura or other centralized 3rd parties
 * **Coolness and credibility**: Using Ethereum as it was meant to be, a step towards being more sovereign
 
-### :robot: How to use your staking NODE as a RPC endpoint
+### :robot: How to use your NODE as a RPC endpoint
 
 {% hint style="info" %}
 Before continuing please understand the following:
@@ -34,11 +34,11 @@ LISTEN 0      128    [::ffff:127.0.0.1]:8545             *:*    users:(("java",p
 ```
 
 {% hint style="warning" %}
-**Port 8545 is NOT listening?**
+**Port 8545 is NOT listening or using Geth or Besu?**
 
 
 
-**Nethermind** and **Erigon** enable RPC by default.
+**Note: Nethermind** and **Erigon** enable RPC by default.
 
 
 
@@ -56,6 +56,7 @@ The following flags on the `ExecStart` line are required to enable RPC.
 
 ```bash
 --rpc-http-enabled=true
+--rpc-http-cors-origins="*"
 ```
 
 
@@ -81,7 +82,11 @@ sudo systemctl restart execution
 ### 2. Create a SSH tunnel
 
 {% hint style="info" %}
-Every time you want to use your node as an RPC endpoint, you must open a SSH tunnel connection.
+Every time you want to use your node as an RPC endpoint, you must open a SSH tunnel connection with port 8545 forwarded.
+
+
+
+**Exception:** **Local nodes** (i.e. using Ubuntu Desktop) - if you're accessing your wallet on the same machine as your node, skip this step.
 {% endhint %}
 
 {% tabs %}

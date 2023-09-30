@@ -6,36 +6,45 @@ Grafana is a dashboard used to visualize the collected data.
 
 [Official documentation is available here.](https://prometheus.io/docs/introduction/overview/)&#x20;
 
-### Step 1: Install Prometheus and Node Exporter
+### 1. Install Prometheus and Node Exporter
 
 ```bash
 sudo apt-get install -y prometheus prometheus-node-exporter
 ```
 
-### Step 2: Install Grafana
+### 2. Install Grafana
 
 ```bash
 sudo apt-get install -y apt-transport-https
 sudo apt-get install -y software-properties-common wget
 sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
+```
+
+```bash
 echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
 sudo apt-get update && sudo apt-get install -y grafana
 ```
 
-### Step 3: Enable services so they start automatically.
+### 3. Enable services so they start automatically
 
 ```bash
-sudo systemctl enable grafana-server.service prometheus.service prometheus-node-exporter.service
+sudo systemctl enable grafana-server prometheus prometheus-node-exporter
 ```
 
-### Step 4: Create the **prometheus.yml** config file&#x20;
+### 4. Create the **prometheus.yml** config file&#x20;
 
-Choose the tab for your consensus client. Simply copy and paste into your terminal window.
+Remove the default **prometheus.yml** configuration file and edit a new one.
+
+```bash
+sudo rm /etc/prometheus/prometheus.yml
+sudo nano /etc/prometheus/prometheus.yml
+```
+
+Choose the tab for your consensus client. Paste the following configuration into the file.
 
 {% tabs %}
 {% tab title="Lighthouse" %}
 ```bash
-cat > $HOME/prometheus.yml << EOF
 global:
   scrape_interval:     15s # By default, scrape targets every 15 seconds.
 
@@ -50,7 +59,7 @@ scrape_configs:
    - job_name: 'node_exporter'
      static_configs:
        - targets: ['localhost:9100']
-   - job_name: 'nodes'
+   - job_name: 'Lighthouse'
      metrics_path: /metrics    
      static_configs:
        - targets: ['localhost:5054']
@@ -58,13 +67,11 @@ scrape_configs:
      metrics_path: /metrics
      static_configs:
        - targets: ['localhost:5064']
-EOF
 ```
 {% endtab %}
 
 {% tab title="Nimbus" %}
 ```bash
-cat > $HOME/prometheus.yml << EOF
 global:
   scrape_interval:     15s # By default, scrape targets every 15 seconds.
 
@@ -79,17 +86,15 @@ scrape_configs:
    - job_name: 'node_exporter'
      static_configs:
        - targets: ['localhost:9100']
-   - job_name: 'nodes'
+   - job_name: 'Nimbus'
      metrics_path: /metrics    
      static_configs:
        - targets: ['localhost:8008']
-EOF
 ```
 {% endtab %}
 
 {% tab title="Teku" %}
 ```bash
-cat > $HOME/prometheus.yml << EOF
 global:
   scrape_interval:     15s # By default, scrape targets every 15 seconds.
 
@@ -104,17 +109,15 @@ scrape_configs:
    - job_name: 'node_exporter'
      static_configs:
        - targets: ['localhost:9100']
-   - job_name: 'nodes'
-     metrics_path: /metrics    
+   - job_name: 'Teku'
+     metrics_path: /metrics
      static_configs:
        - targets: ['localhost:8008']
-EOF
 ```
 {% endtab %}
 
 {% tab title="Prysm" %}
 ```bash
-cat > $HOME/prometheus.yml << EOF
 global:
   scrape_interval:     15s # By default, scrape targets every 15 seconds.
 
@@ -132,19 +135,23 @@ scrape_configs:
    - job_name: 'validator'
      static_configs:
        - targets: ['localhost:8081']
-   - job_name: 'beacon node'
+   - job_name: 'Prysm'
      static_configs:
        - targets: ['localhost:8080']
-   - job_name: 'slasher'
-     static_configs:
-       - targets: ['localhost:8082']
-EOF
 ```
 {% endtab %}
 
 {% tab title="Lodestar" %}
-```bash
-cat > $HOME/prometheus.yml << EOF   
+<pre class="language-bash"><code class="lang-bash"><strong>global:
+</strong>  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
 scrape_configs:
    - job_name: 'node_exporter'
      static_configs:
@@ -153,18 +160,11 @@ scrape_configs:
      metrics_path: /metrics    
      static_configs:
        - targets: ['localhost:8008']
-EOF
-```
+</code></pre>
 {% endtab %}
 {% endtabs %}
 
-### Step 5: Setup prometheus for your execution client&#x20;
-
-Start by editing **prometheus.yml**
-
-```bash
-nano $HOME/prometheus.yml
-```
+### 5. Setup prometheus for your execution client&#x20;
 
 Append the applicable job snippet for your execution client to the end of **prometheus.yml**.
 
@@ -217,15 +217,49 @@ Append the applicable job snippet for your execution client to the end of **prom
        - targets: ['localhost:6060']
 ```
 {% endtab %}
+
+{% tab title="Reth" %}
+```bash
+   - job_name: 'reth'
+     metrics_path: "/"
+     scrape_interval: 10s
+     static_configs:
+       - targets: ['localhost:9001']
+```
+{% endtab %}
 {% endtabs %}
 
-To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
-
-Move it to `/etc/prometheus/prometheus.yml`
+Here's an example of a Lighthouse-Nethermind config:
 
 ```bash
-sudo mv $HOME/prometheus.yml /etc/prometheus/prometheus.yml
+global:
+  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+   - job_name: 'node_exporter'
+     static_configs:
+       - targets: ['localhost:9100']
+   - job_name: 'Lighthouse'
+     metrics_path: /metrics
+     static_configs:
+       - targets: ['localhost:5054']
+   - job_name: 'validators'
+     metrics_path: /metrics
+     static_configs:
+       - targets: ['localhost:5064']
+   - job_name: 'nethermind'
+     static_configs:
+       - targets: ['localhost:6060']
 ```
+
+To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 
 Update file permissions.
 
@@ -233,25 +267,21 @@ Update file permissions.
 sudo chmod 644 /etc/prometheus/prometheus.yml
 ```
 
-Finally, restart the services.
+Restart the services.
 
 ```bash
-sudo systemctl restart grafana-server.service prometheus.service prometheus-node-exporter.service
+sudo systemctl restart grafana-server prometheus prometheus-node-exporter
 ```
 
-Verify that the services are running properly:
+Verify that the services are running.
 
 ```bash
-sudo systemctl status grafana-server.service prometheus.service prometheus-node-exporter.service
+sudo systemctl status grafana-server prometheus prometheus-node-exporter
 ```
 
-### Step 6: Create a SSH Tunnel to Grafana
+### 6. Create a SSH Tunnel to Grafana
 
-{% hint style="warning" %}
-Do not expose Grafana (port 3000) to the public internet as this invites a new attack surface!&#x20;
-{% endhint %}
-
-Each time you want to access Grafana, a secure method is to access Grafana through a ssh tunnel.
+Each time you want to access Grafana, create a SSH tunnel with port 3000 forwarded.
 
 {% tabs %}
 {% tab title="Linux or MacOS" %}
@@ -280,7 +310,7 @@ Click Open to open a connection
 
 Now you can access Grafana on your local machine by pointing a web browser to [http://localhost:3000](http://localhost:3000/)
 
-### Step 7: Setup Grafana Dashboards
+### 7. Setup Grafana Dashboards
 
 1. Open [http://localhost:3000](http://localhost:3000)
 2. Login with **admin** / **admin**
@@ -291,7 +321,7 @@ Now you can access Grafana on your local machine by pointing a web browser to [h
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
 9. **Download and save** your consensus client's json file. More json dashboard options available below. \[ [Lighthouse](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark\_ETH\_staking\_dashboard.json) | [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon\_nodes\_Grafana\_dashboard.json)| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less\_10\_validators.json)| [Prysm > 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more\_10\_validators.json) | [Lodestar](https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboards/lodestar\_summary.json) ]
-10. **Download and save** your execution client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) | [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)| [Nethermind](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/provisioning/dashboards/nethermind.json) | [Erigon](https://raw.githubusercontent.com/ledgerwatch/erigon/devel/cmd/prometheus/dashboards/erigon.json) ]
+10. **Download and save** your execution client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) | [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)| [Nethermind](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/provisioning/dashboards/nethermind.json) | [Erigon](https://raw.githubusercontent.com/ledgerwatch/erigon/devel/cmd/prometheus/dashboards/erigon.json) | [Reth](https://raw.githubusercontent.com/paradigmxyz/reth/main/etc/grafana/dashboards/overview.json) ]
 11. **Download and save** a [node-exporter dashboard](https://grafana.com/api/dashboards/11074/revisions/9/download) for general system monitoring
 12. Click **Create +** icon > **Import**
 13. Add the consensus client dashboard via **Upload JSON file**
@@ -316,6 +346,7 @@ cat /etc/systemd/system/consensus.service
 * **Besu**: --metrics-enabled=true
 * **Nethermind**:  --Metrics.Enabled true
 * **Erigon**: --metrics
+* **Reth**: --metrics 127.0.0.1:9001
 * **Lighthouse**:  --validator-monitor-auto
 * **Nimbus**:  --metrics  --metrics-port=8008
 * **Teku**: --metrics-enabled=true --metrics-port=8008
@@ -384,7 +415,9 @@ Credits: [https://github.com/metanull-operator/eth2-grafana/](https://github.com
 {% endtab %}
 
 {% tab title="Lodestar" %}
-Work in progress.
+<figure><img src="../../../../.gitbook/assets/lode-dash.png" alt=""><figcaption></figcaption></figure>
+
+Credits: [https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboards/lodestar\_summary.json](https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboards/lodestar\_summary.json)
 {% endtab %}
 {% endtabs %}
 
@@ -414,6 +447,12 @@ Credits: [https://github.com/NethermindEth/metrics-infrastructure](https://githu
 
 Credits: [https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashboards](https://github.com/ledgerwatch/erigon/tree/devel/cmd/prometheus/dashboards)
 {% endtab %}
+
+{% tab title="Reth" %}
+<figure><img src="../../../../.gitbook/assets/reth.png" alt=""><figcaption></figcaption></figure>
+
+Credits: [https://github.com/paradigmxyz/reth/blob/main/etc/grafana/dashboards/overview.json](https://github.com/paradigmxyz/reth/blob/main/etc/grafana/dashboards/overview.json)
+{% endtab %}
 {% endtabs %}
 
 #### Example of Node-Exporter Dashboard
@@ -432,7 +471,7 @@ Credits: [starsliao](https://grafana.com/grafana/dashboards/11074)
 {% endtab %}
 {% endtabs %}
 
-### &#x20;Step 8: Setup Alert Notifications
+### &#x20;8. Setup Alert Notifications
 
 {% hint style="info" %}
 Setup alerts to get notified if your validators go offline.

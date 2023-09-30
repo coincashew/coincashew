@@ -2,6 +2,8 @@
 
 ## :page\_facing\_up: List of changes
 
+* Added [Reth Execution Client](../testnet-holesky-validator/step-3-installing-execution-client/reth.md) - Alpha software, yet functional
+* Created guide on how to [connect your wallet software to your own Node's RPC](part-iii-tips/using-node-as-rpc-url-endpoint.md)
 * Added [Holesky testnet staking guide](../testnet-holesky-validator/)
 * Re-worked adding [new validator keys to existing setup](part-iii-tips/adding-a-new-validator-to-an-existing-setup.md).
 * Added new Geth [how-to for enabling path based state storage](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/geth-enabling-path-based-storage). Automated pruning!
