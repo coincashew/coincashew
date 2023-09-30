@@ -93,8 +93,13 @@ Build the binary.
 ```bash
 mkdir -p ~/git
 cd ~/git
-git clone -b stable https://github.com/ledgerwatch/erigon.git
+git clone https://github.com/ledgerwatch/erigon.git
 cd erigon
+git fetch --tags
+# Get latest tag name
+latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+# Checkout latest tag
+git checkout $latestTag
 make erigon
 ```
 
