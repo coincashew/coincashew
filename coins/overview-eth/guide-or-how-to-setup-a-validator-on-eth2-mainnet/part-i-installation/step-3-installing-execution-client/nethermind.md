@@ -127,11 +127,15 @@ Press `Ctrl` + `C` to exit the status.
 sudo journalctl -fu execution | ccze
 ```
 
-A properly functioning **Nethermind** execution client will indicate "block nnn ... was processed". For example,
+A properly functioning **Nethermind** execution client will indicate "Received new block". For example,
 
 ```
-Nethermind.Runner[2]: 2023-02-03 00:01:36.2643|FCU - block 16001 (fd781...c2e19f) was processed.
-Nethermind.Runner[2]: 2023-02-03 00:01:36.2643|Block 0xd78eaabc854f4e4a844c5c0f9ccf45bed0b2f13d77ea978af62d0eef2210c2e19f was set as head.
+Nethermind.Runner[2]: 29 Sep 03:00:00 | Received new block:  8372 (0x425ab9...854f4)
+Nethermind.Runner[2]: 29 Sep 03:00:00 | Processed                8372     |      0.17 ms  |  slot     13,001 ms |
+Nethermind.Runner[2]: 29 Sep 03:00:00 | - Block               0.00 MGas   |      0    txs |  calls      0 (  0) | sload       0 | sstore      0 | create   0
+Nethermind.Runner[2]: 29 Sep 03:00:00 | - Block throughput    0.00 MGas/s |      0.00 t/s |       7217.16 Blk/s | recv        0 | proc        0
+Nethermind.Runner[2]: 29 Sep 03:00:00 | Received ForkChoice: Head: 8372 (0x425ab9...854f4), Safe: 8350 (0xfd781...c2e19f), Finalized: 8332 (0x9ccf...88684c)
+Nethermind.Runner[2]: 29 Sep 03:00:00 | Synced chain Head to 8372 (0x425ab9...2881a5)
 ```
 {% endtab %}
 

@@ -196,12 +196,12 @@ Press `Ctrl` + `C` to exit the status.
 <pre class="language-bash"><code class="lang-bash"><strong>sudo journalctl -fu execution | ccze
 </strong></code></pre>
 
-A properly functioning **Reth** execution client will indicate "Imported new potential chain segment". For example,
+A properly functioning **Reth** execution client will indicate "Block added to canonical chain". For example,
 
 ```
-[TO-DO]
-geth[4531]: INFO [02-04|01:20:48.280] Chain head was updated    number=16000 hash=2317ae..c41107
-geth[4531]: INFO [02-04|01:20:49.648] Imported new potential chain segment       number=16000 hash=ab173f..33a21b
+INFO reth::node::events: Forkchoice updated head_block_hash=2317ae..c41107 safe_block_hash=ab173f..33a21b finalized_block_hash=ab173f..33a21b status=Valid
+INFO reth::node::events: Block added to canonical chain number=16000 hash=2317ae..c41107
+INFO reth::node::events: Canonical chain committed number=16000 hash=2317ae..c41107 elapsed=12.508272ms
 ```
 {% endtab %}
 

@@ -172,8 +172,10 @@ sudo journalctl -fu execution | ccze
 A properly functioning **Erigon** execution client will indicate "Handling new payload". For example,
 
 ```
-erigon[41]: [INFO] [02-04|01:36:50.362] [2/15 Headers] Waiting for Consensus Layer...
-erigon[41]: [INFO] [02-04|01:37:00.273] [2/15 Headers] Handling new payload      height=14001 hash=0x1b2476a50d976536c2846a907ceb4f88cff4d0129ad.
+erigon[3]: [INFO] [09-29|03:36:24.689] [NewPayload] Handling new payload        height=19999 hash=0xea060...2846a907ceb4
+erigon[3]: [INFO] [09-29|03:36:25.278] [updateForkchoice] Fork choice update: flushing in-memory state (built by previous newPayload)
+erigon[3]: [INFO] [09-29|03:36:25.280] RPC Daemon notified of new headers       from=19998 to=19999 hash=0xeeed..710b597 header sending=13.32µs log sending=290ns
+erigon[3]: [INFO] [09-29|03:36:25.280] head updated                             hash=0xea06098ad5e...5e5f43 number=20000
 ```
 {% endtab %}
 
