@@ -118,12 +118,12 @@ Click Open to open a connection
 
 When configuring your wallet, you can reference the following network information:
 
-| Network     | Chain ID | Block Explorer                                                | Currency |
-| ----------- | -------- | ------------------------------------------------------------- | -------- |
-| **Mainnet** | 1        | [https://etherscan.io](https://etherscan.io)                  | ETH      |
-| **Holešky** | 17000    | [https://holesky.etherscan.io](https://holesky.etherscan.io/) | hETH     |
-| **Goerli**  | 5        | [https://goerli.etherscan.io](https://goerli.etherscan.io)    | gETH     |
-| **Sepolia** | 11155111 | [https://sepolia.etherscan.io](https://sepolia.etherscan.io)  | sETH     |
+| Network     | Chain ID | Block Explorer                                                | Currency   |
+| ----------- | -------- | ------------------------------------------------------------- | ---------- |
+| **Mainnet** | 1        | [https://etherscan.io](https://etherscan.io)                  | ETH        |
+| **Holešky** | 17000    | [https://holesky.etherscan.io](https://holesky.etherscan.io/) | HoleskyETH |
+| **Goerli**  | 5        | [https://goerli.etherscan.io](https://goerli.etherscan.io)    | GoerliETH  |
+| **Sepolia** | 11155111 | [https://sepolia.etherscan.io](https://sepolia.etherscan.io)  | SepoliaETH |
 
 Here are steps to configure popular wallets to use a custom RPC URL endpoint.
 
