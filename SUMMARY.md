@@ -143,7 +143,7 @@
       * [Verifying Your Mnemonic Phrase](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/verifying-your-mnemonic-phrase.md)
       * [Adding a New Validator to an Existing Setup with Existing Seed Words](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/adding-a-new-validator-to-an-existing-setup.md)
       * [Switching / Migrating Consensus Client](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/switching-migrating-consensus-client.md)
-      * [⚡ Using Node as RPC URL endpoint](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/using-node-as-rpc-url-endpoint.md)
+      * [⚡ Using Node as RPC URL endpoint](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/using-staking-node-as-rpc-url-endpoint.md)
       * [Using All Available LVM Disk Space](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/using-all-available-lvm-disk-space.md)
       * [Reducing Network Bandwidth Usage](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/reducing-network-bandwidth-usage.md)
       * [How to re-sync using checkpoint sync](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/how-to-re-sync-using-checkpoint-sync.md)
