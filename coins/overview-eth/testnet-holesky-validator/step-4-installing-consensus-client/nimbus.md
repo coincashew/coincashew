@@ -236,6 +236,30 @@ sudo systemctl start consensus
 sudo systemctl status consensus
 ```
 {% endtab %}
+
+{% tab title="Reset Database" %}
+Common reasons to reset the database can include:
+
+* To reduce disk space usage
+* To recover from a corrupted database due to power outage or hardware failure
+* To upgrade to a new storage format
+
+```bash
+sudo systemctl stop consensus
+sudo rm -rf /var/lib/nimbus/db
+
+#Perform checkpoint sync
+sudo -u consensus /usr/local/bin/nimbus_beacon_node trustedNodeSync \
+--network=holesky \
+--trusted-node-url=https://holesky.beaconstate.ethstaker.cc \
+--data-dir=/var/lib/nimbus \
+--backfill=false
+
+sudo systemctl restart consensus
+```
+
+With checkpoint sync, time to re-sync the consensus client should take only a minute or two.
+{% endtab %}
 {% endtabs %}
 
 Now that your consensus client is configured and started, you have a full node.

@@ -249,6 +249,22 @@ sudo systemctl start consensus
 sudo systemctl status consensus
 ```
 {% endtab %}
+
+{% tab title="Reset Database" %}
+Common reasons to reset the database can include:
+
+* To reduce disk space usage
+* To recover from a corrupted database due to power outage or hardware failure
+* To upgrade to a new storage format
+
+```bash
+sudo systemctl stop consensus
+sudo rm -rf /var/lib/prysm/beacon/beaconchaindata
+sudo systemctl restart consensus
+```
+
+With checkpoint sync enabled, time to re-sync the consensus client should take only a minute or two.
+{% endtab %}
 {% endtabs %}
 
 Now that your consensus client is configured and started, you have a full node.
