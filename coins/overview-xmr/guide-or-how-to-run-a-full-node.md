@@ -68,7 +68,7 @@ Setup service accounts.
 
 ```bash
 # creates system user account for monero service
-sudo adduser --system --group --no-create-home monero
+sudo adduser --system --no-create-home --user-group monero
 ```
 
 Create some folders the service needs & set their ownership:
