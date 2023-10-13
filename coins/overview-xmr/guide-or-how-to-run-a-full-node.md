@@ -81,7 +81,7 @@ sudo mkdir /var/log/monero
 sudo mkdir /var/lib/monero
 
 # create file for config  
-touch /var/lib/monero/monerod.conf
+sudo touch /var/lib/monero/monerod.conf
 
 # set permissions to service account
 sudo chown -R monero:monero /var/lib/monero
