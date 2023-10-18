@@ -4,7 +4,7 @@ Prometheus is a monitoring platform that collects metrics from monitored targets
 
 Grafana is a dashboard used to visualize the collected data.
 
-[Official documentation is available here.](https://prometheus.io/docs/introduction/overview/)&#x20;
+[Official documentation is available here.](https://prometheus.io/docs/introduction/overview/) :book:
 
 ### 1. Install Prometheus and Node Exporter
 
@@ -59,11 +59,11 @@ scrape_configs:
    - job_name: 'node_exporter'
      static_configs:
        - targets: ['localhost:9100']
-   - job_name: 'Lighthouse'
+   - job_name: 'lighthouse'
      metrics_path: /metrics    
      static_configs:
        - targets: ['localhost:5054']
-   - job_name: 'validators'
+   - job_name: 'lighthouse_validator'
      metrics_path: /metrics
      static_configs:
        - targets: ['localhost:5064']
@@ -156,10 +156,14 @@ scrape_configs:
    - job_name: 'node_exporter'
      static_configs:
        - targets: ['localhost:9100']
-   - job_name: 'Lodestar'
+   - job_name: 'beacon'
      metrics_path: /metrics    
      static_configs:
        - targets: ['localhost:8008']
+   - job_name: 'validator'
+     metrics_path: /metrics    
+     static_configs:
+       - targets: ['localhost:5064']
 </code></pre>
 {% endtab %}
 {% endtabs %}

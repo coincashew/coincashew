@@ -70,6 +70,7 @@ WorkingDirectory=/usr/local/bin/lodestar
 ExecStart=/usr/local/bin/lodestar/lodestar validator \
   --network mainnet \
   --dataDir /var/lib/lodestar/validators \
+  --metrics true \
   --graffiti "" \
   --suggestedFeeRecipient <0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
   
