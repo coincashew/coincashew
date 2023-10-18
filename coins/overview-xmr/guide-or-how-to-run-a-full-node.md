@@ -68,7 +68,7 @@ Setup service accounts.
 
 ```bash
 # creates system user account for monero service
-sudo adduser --system --group --no-create-home monero
+sudo adduser --system --no-create-home --user-group monero
 ```
 
 Create some folders the service needs & set their ownership:
@@ -81,7 +81,7 @@ sudo mkdir /var/log/monero
 sudo mkdir /var/lib/monero
 
 # create file for config  
-touch /var/lib/monero/monerod.conf
+sudo touch /var/lib/monero/monerod.conf
 
 # set permissions to service account
 sudo chown -R monero:monero /var/lib/monero
