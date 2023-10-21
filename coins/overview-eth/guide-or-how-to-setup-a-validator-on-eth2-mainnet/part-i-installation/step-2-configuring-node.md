@@ -379,6 +379,9 @@ Consensus clients generally use port 9000 for communication with other network p
 # Lighthouse, Lodestar, Nimbus, Teku
 sudo ufw allow 9000 comment 'Allow consensus client port'
 
+# Lighthouse Quic Port https://lighthouse-blog.sigmaprime.io/Quic.html
+sudo ufw allow 9001/udp comment 'Allow lighthouse client quic port'
+
 # Prysm
 sudo ufw allow 13000/tcp comment 'Allow consensus client port'
 sudo ufw allow 12000/udp comment 'Allow consensus client port'
@@ -393,7 +396,7 @@ sudo ufw enable
 sudo ufw status numbered 
 ```
 
-Example of ufw status for a remote staking node configured for Lighthouse consensus client.
+Example of ufw status for a remote staking node configured for Prysm consensus client.
 
 > ```csharp
 >      To                         Action      From
