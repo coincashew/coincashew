@@ -49,7 +49,7 @@ cardano-cli stake-pool registration-certificate \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 1000000000 \
-    --pool-cost 345000000 \
+    --pool-cost 170000000 \
     --pool-margin 0.20 \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
@@ -64,11 +64,11 @@ cardano-cli stake-pool registration-certificate \
 {% endtabs %}
 
 {% hint style="warning" %}
-minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
+minPoolCost is 170000000 lovelace or 170 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
 {% hint style="info" %}
-Here we are pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 20%.
+Here we are pledging 1000 ADA with a fixed pool cost of 170 ADA and a pool margin of 20%.
 {% endhint %}
 
 Copy **pool.cert** to your **hot environment.**
