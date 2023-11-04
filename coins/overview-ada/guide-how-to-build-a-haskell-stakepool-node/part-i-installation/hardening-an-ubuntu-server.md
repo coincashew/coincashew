@@ -497,11 +497,19 @@ sudo iptables -I INPUT -p tcp -m tcp --dport <RELAY NODE PORT> --tcp-flags FIN,S
 Set the connection limit high enough so that your internal relay/block producer node topology remains functional.
 {% endhint %}
 
+:fire: **iptables rules applied via terminal are not reboot-resistant!**
+
 You can check you current connections with a sorted list. Change the relay node port number, if needed.
 
 ```bash
 sudo netstat -enp | grep ":6000" | awk {'print $5'} | cut -d ':' -f 1 | sort | uniq -c | sort
 ```
+
+DDoS/Syn attacks can be complex and can take down a node. A single iptables rule may not be sufficient to protect or mitigate against more modern attacks. Moreover, iptables rules added via the terminal are forgotten if the machine or the iptables service is restarted.
+
+Carden Pool [CRPL] provides a script that configures and deploys iptables rules specifically designed to protect from various DDoS attack vectors, ensuring the persistence of these rules even after reboots.
+
+Further information can be found in the [**Carden Pool GitHub repository**](https://github.com/CardenPool/stakepool-DDoS-defense).
 
 ## :telescope: Verifying Listening Ports
 
