@@ -202,9 +202,7 @@ Common reasons to reset the database can include:
 
 ```bash
 sudo systemctl stop execution
-sudo rm -rf /var/lib/geth
-sudo mkdir -p /var/lib/geth
-sudo chown -R execution:execution /var/lib/geth
+sudo rm -rf /var/lib/geth/*
 sudo systemctl restart execution
 ```
 

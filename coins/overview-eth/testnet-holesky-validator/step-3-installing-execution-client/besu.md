@@ -204,9 +204,7 @@ Common reasons to reset the database can include:
 
 ```bash
 sudo systemctl stop execution
-sudo rm -rf /var/lib/besu
-sudo mkdir -p /var/lib/besu
-sudo chown -R execution:execution /var/lib/besu
+sudo rm -rf /var/lib/besu/*
 sudo systemctl restart execution
 ```
 

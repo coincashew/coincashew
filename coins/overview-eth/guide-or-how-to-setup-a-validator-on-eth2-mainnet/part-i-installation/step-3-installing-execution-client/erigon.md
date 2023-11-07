@@ -211,9 +211,7 @@ Common reasons to reset the database can include:
 
 ```bash
 sudo systemctl stop execution
-sudo rm -rf /var/lib/erigon
-sudo mkdir -p /var/lib/erigon
-sudo chown -R execution:execution /var/lib/erigon
+sudo rm -rf /var/lib/erigon/*
 sudo systemctl restart execution
 ```
 

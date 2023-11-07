@@ -164,9 +164,7 @@ Common reasons to reset the database can include:
 
 ```bash
 sudo systemctl stop execution
-sudo rm -rf /var/lib/nethermind
-sudo mkdir -p /var/lib/nethermind
-sudo chown -R execution:execution /var/lib/nethermind
+sudo rm -rf /var/lib/nethermind/*
 sudo systemctl restart execution
 ```
 

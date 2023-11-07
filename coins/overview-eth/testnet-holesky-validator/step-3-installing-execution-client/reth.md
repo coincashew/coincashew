@@ -232,9 +232,7 @@ Common reasons to reset the database can include:
 
 ```bash
 sudo systemctl stop execution
-sudo rm -rf /var/lib/reth
-sudo mkdir -p /var/lib/reth
-sudo chown -R execution:execution /var/lib/reth
+sudo rm -rf /var/lib/reth/*
 sudo systemctl restart execution
 ```
 
