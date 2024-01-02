@@ -8,7 +8,7 @@ Part V includes the following topics containing additional procedures to simplif
 * [Uploading Pool Metadata to GitHub Pages](uploading-pool-metadata-to-github.md)
 * [Obtaining a PoolTool API Key](obtaining-a-pooltool-api-key.md)
 * [Configuring Glasgow Haskell Compiler Runtime System Options](configuring-runtime-options.md)
-* [Reducing Missed Slot Leader Checks](reducing-missed-slot-leader-checks.md)
+* [Reducing Missed Slot Leader Checks and Improving Cardano Node Performance](reducing-missed-slot-leader-checks.md)
 * [Increasing Swap File](increasing-swap-file.md)
 * [Setting Up an External Passive Relay Node](setting-up-an-external-passive-relay-node.md)
 * [Setting Up WireGuard](setting-up-wireguard.md)
