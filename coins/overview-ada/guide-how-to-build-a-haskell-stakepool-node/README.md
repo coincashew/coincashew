@@ -41,6 +41,10 @@ If you want to support this free educational Cardano content or found this helpf
 
 ## :page\_facing\_up: Change Log
 
+* January 2, 2024
+  * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
+    * Updating prerequisites and procedures for Cardano Node 8.7.2
+    * Updating information on [Reducing Missed Slot Leader Checks and Improving Cardano Node Performance](part-v-tips/reducing-missed-slot-leader-checks.md)
 * June 29, 2023
   * Adding contributions by \[[FRADA](https://cardano-france-stakepool.org/)] pool
     * [Auditing Your Nodes Configuration](part-iv-administration/audit-node-configuration.md)

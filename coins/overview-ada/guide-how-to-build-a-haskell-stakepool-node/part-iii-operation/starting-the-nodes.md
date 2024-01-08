@@ -16,7 +16,7 @@ sudo systemctl start cardano-node
 {% endtab %}
 {% endtabs %}
 
-Install gLiveView, a monitoring tool.
+Install gLiveView, a monitoring tool. <a href="#gliveview" id="gliveview"></a>
 
 {% hint style="info" %}
 gLiveView displays crucial node status information and works well with systemd services.
