@@ -6,9 +6,9 @@ For each Cardano Node release, Input-Output recommends compiling binaries using 
 
 _Table 1 Current Cardano Node Version Requirements_
 
-|  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
-|  :----------:  | :------------------: | :---------: | :-----------: |
-| December, 2023 |         8.7.2        |    8.10.7   |    3.8.1.0    |
+| Release Date | Cardano Node Version | GHC Version | Cabal Version |
+| :----------: | :------------------: | :---------: | :-----------: |
+|  May 9, 2023 |         8.0.0        |    8.10.7   |    3.8.1.0    |
 
 **To install GHC and Cabal:**
 
@@ -127,35 +127,7 @@ sudo make install
 sudo ldconfig
 ```
 
-11\. To download and install the `blst` library, type:
-
-```
-cd $HOME/git
-git clone https://github.com/supranational/blst
-cd blst
-git checkout v0.3.10
-./build.sh
-cat > libblst.pc << EOF
-prefix=/usr/local
-exec_prefix=\${prefix}
-libdir=\${exec_prefix}/lib
-includedir=\${prefix}/include
-
-Name: libblst
-Description: Multilingual BLS12-381 signature library
-URL: https://github.com/supranational/blst
-Version: 0.3.10
-Cflags: -I\${includedir}
-Libs: -L\${libdir} -lblst
-EOF
-sudo cp libblst.pc /usr/local/lib/pkgconfig/
-sudo cp bindings/blst_aux.h bindings/blst.h bindings/blst.hpp /usr/local/include/
-sudo cp libblst.a /usr/local/lib
-sudo chmod u=rw,go=r /usr/local/{lib/{libblst.a,pkgconfig/libblst.pc},include/{blst.{h,hpp},blst_aux.h}}
-```
-<!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md-->
-
-12\. Using a text editor, open the `$HOME/.bashrc` file, and then add the following lines at the end of the file:
+11\. Using a text editor, open the `$HOME/.bashrc` file, and then add the following lines at the end of the file:
 
 ```bash
 # Set environment variables so that the compiler finds libsodium on your computer
@@ -172,18 +144,18 @@ export NODE_CONFIG="mainnet"
 If you plan to use your Cardano node on a testnet network instead of mainnet, then replace the line `export NODE_CONFIG="mainnet"` in your `$HOME/.bashrc` file with `export NODE_CONFIG="testnet"` Also, when working through the _How to Set Up a Cardano Stake Pool_ guide, replace every instance of the command option `--mainnet` with `--testnet-magic <MagicNumber>` where `<MagicNumber>` is the network magic number for the testnet network that you want to use. For details on available testnet networks, see [Environments](https://book.world.dev.cardano.org/environments.html).
 {% endhint %}
 
-13\. Save and close the `$HOME/.bashrc` file.
+12\. Save and close the `$HOME/.bashrc` file.
 
-14\. To create the folder set for the `NODE_HOME` environment variable in your `$HOME/.bashrc` file, type:
+13\. To create the folder set for the `NODE_HOME` environment variable in your `$HOME/.bashrc` file, type:
 
 ```bash
 mkdir $HOME/cardano-my-node
 ```
 
-15\. To reload your shell profile, type:
+14\. To reload your shell profile, type:
 
 ```bash
 source $HOME/.bashrc
 ```
 
-16\. On each computer hosting a relay node for your stake pool, repeat steps 1 to 15
+15\. On each computer hosting a relay node for your stake pool, repeat steps 1 to 13
