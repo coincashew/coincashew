@@ -5,7 +5,7 @@
 {% hint style="success" %}
 If you want to support this free educational Cardano content or found the content helpful, visit [cointr.ee](https://cointr.ee/coincashew) to find our donation addresses. Much appreciated in advance. :pray:
 
-:ledger:Technical writing by [Change Pool \[CHG\]](https://change.paradoxicalsphere.com)
+:ledger:Technical writing by [Change Pool (ticker CHG)](https://change.paradoxicalsphere.com)
 {% endhint %}
 
 [Input-Output (IOHK)](https://iohk.io/) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each new release.
@@ -113,9 +113,9 @@ For each Cardano Node release, Input-Output recommends compiling binaries using 
 
 _Table 1 Current Cardano Node Version Requirements_
 
-| Release Date | Cardano Node Version | GHC Version | Cabal Version |
-| :----------: | :------------------: | :---------: | :-----------: |
-|  May 9, 2023 |         8.0.0        |    8.10.7   |    3.8.1.0    |
+|  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
+|  :----------:  | :------------------: | :---------: | :-----------: |
+| December, 2023 |         8.7.2        |    8.10.7   |    3.8.1.0    |
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -152,7 +152,7 @@ To set GHCup, GHC and Cabal versions using a graphical user interface, type `ghc
 
 **To update Libsodium:**
 
-As of version 8.0.0, a new version of libsodium is required.
+As of version 8.0.0, a new version of `libsodium` is required.
 
 ```bash
 cd $HOME/git
@@ -165,6 +165,36 @@ make
 make check
 sudo make install
 ```
+
+**To install the blst library:**
+
+As of version 8.7.2, the `blst` library is required.
+
+```
+cd $HOME/git
+git clone https://github.com/supranational/blst
+cd blst
+git checkout v0.3.10
+./build.sh
+cat > libblst.pc << EOF
+prefix=/usr/local
+exec_prefix=\${prefix}
+libdir=\${exec_prefix}/lib
+includedir=\${prefix}/include
+
+Name: libblst
+Description: Multilingual BLS12-381 signature library
+URL: https://github.com/supranational/blst
+Version: 0.3.10
+Cflags: -I\${includedir}
+Libs: -L\${libdir} -lblst
+EOF
+sudo cp libblst.pc /usr/local/lib/pkgconfig/
+sudo cp bindings/blst_aux.h bindings/blst.h bindings/blst.hpp /usr/local/include/
+sudo cp libblst.a /usr/local/lib
+sudo chmod u=rw,go=r /usr/local/{lib/{libblst.a,pkgconfig/libblst.pc},include/{blst.{h,hpp},blst_aux.h}}
+```
+<!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md-->
 
 ## :inbox\_tray:Downloading New Configuration Files
 
@@ -361,7 +391,7 @@ To monitor your node, type the command `journalctl -fu cardano-node`in a termina
 
 6\. Copy the new `cardano-cli` binary to the air-gapped, offline computer that you use to sign transactions for your stake pool.
 
-7\. On your air-gapped, offline computer, ensure[ libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp) was installed.
+7\. On your air-gapped, offline computer, ensure that [libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp) and [blst](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#blst) are installed.
 
 ## :checkered\_flag:Verifying the Upgrade
 
