@@ -9,13 +9,12 @@ As a Stake Pool Operator (SPO) for Cardano, you need:
 * System operation skills including general knowledge of using [Bash scripts](https://linuxconfig.org/bash-scripting-tutorial-for-beginners), [JavaScript Object Notation (JSON) format](https://attacomsian.com/blog/what-is-json?msclkid=0445ae34ce4d11ec84216d09187b5112), [systemd services](https://linuxconfig.org/how-to-create-systemd-service-unit-in-linux) and [cron jobs](https://itsfoss.com/cron-job/)
 * Server administration skills (operational and maintenance)
 * Fundamental understanding of [networking](https://www.ibm.com/cloud/learn/networking-a-complete-guide)
-<!-- NOTE: As an alternative, link to the following resource on networking https://geekflare.com/computer-networking-basics/ -->
 
 ## :mage: Mandatory Experience for Stake Pool Operators
 
 * Experience of development and operations (DevOps)
 * Experience in how to [harden ](https://www.lifewire.com/harden-ubuntu-server-security-4178243)and [secure a server](https://gist.github.com/lokhman/cc716d2e2d373dd696b2d9264c0287a3).
-* In the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/), successfully complete the section [Operate a Stake Pool](https://developers.cardano.org/docs/operate-a-stake-pool/) including the [Stake Pool Course](https://developers.cardano.org/docs/stake-pool-course/) 
+* In the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/), successfully complete the section [Operate a Stake Pool](https://developers.cardano.org/docs/operate-a-stake-pool/) including the [Stake Pool Course](https://developers.cardano.org/docs/stake-pool-course/)
 
 {% hint style="danger" %}
 :octagonal\_sign: **Before continuing this guide, you must satisfy the above requirements**. :construction:

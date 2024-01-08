@@ -19,7 +19,7 @@
 | <img src=".gitbook/assets/kmd.png" alt="" data-size="original"> [Komodo](coins/kmd/)           | <img src=".gitbook/assets/theta.png" alt="" data-size="original"> [THETA](coins/theta/)         |
 | <img src=".gitbook/assets/lend.png" alt="" data-size="original"> [Aave](coins/lend.md)         | <img src=".gitbook/assets/enj.png" alt="" data-size="original"> [Enjin Coin](coins/enj.md)      |
 | <img src=".gitbook/assets/xzc.png" alt="" data-size="original"> [Zcoin](coins/xzc/)            | <img src=".gitbook/assets/waves.png" alt="" data-size="original"> [Waves](coins/waves/)         |
-| <img src=".gitbook/assets/ren.png" alt="" data-size="original"> [Ren](coins/ren.md)            | <img src=".gitbook/assets/fun (1).png" alt="" data-size="original"> [FunFair](coins/fun.md)     |
+| <img src=".gitbook/assets/ren.png" alt="" data-size="original"> [Ren](coins/ren.md)            | <img src=".gitbook/assets/fun.png" alt="" data-size="original"> [FunFair](coins/fun.md)         |
 | <img src=".gitbook/assets/mtl.png" alt="" data-size="original"> [Metal](coins/mtl.md)          | <img src=".gitbook/assets/algo.png" alt="" data-size="original"> [Algorand](coins/algo.md)      |
 | <img src=".gitbook/assets/grin.png" alt="" data-size="original"> [Grin](coins/overview-grin/)  | <img src=".gitbook/assets/beam.png" alt="" data-size="original"> [Beam](coins/overview-beam/)   |
 | <img src=".gitbook/assets/lpt.png" alt="" data-size="original"> [LivePeer](coins/lpt/)         | <img src=".gitbook/assets/edg.png" alt="" data-size="original"> [Edgeware](coins/edg/)          |

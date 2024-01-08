@@ -991,7 +991,7 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "cardano_node_metrics_connectedPeers_int",
+          "expr": "cardano_node_metrics_peers_connectedPeers_int",
           "format": "time_series",
           "instant": false,
           "interval": "",

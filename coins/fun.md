@@ -6,7 +6,7 @@ description: >-
 
 # FunFair: FUN
 
-## <img src="broken-reference" alt="" data-size="line"><img src="../.gitbook/assets/fun (1).png" alt="" data-size="original"> General Data
+## <img src="broken-reference" alt="" data-size="line"><img src="../.gitbook/assets/fun.png" alt="" data-size="original"> General Data
 
 | Site        | Title                                                                                        |
 | ----------- | -------------------------------------------------------------------------------------------- |

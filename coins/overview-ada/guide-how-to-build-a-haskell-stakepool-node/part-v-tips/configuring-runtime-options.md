@@ -10,7 +10,8 @@ For suggestions on reducing the number of missed slot leader checks, see the top
 
 **To display the default RTS options for Cardano Node:**
 
-- In a terminal window, type:
+* In a terminal window, type:
+
 ```bash
 cardano-node +RTS --info
 ```
@@ -45,13 +46,10 @@ Using similar syntax, you can configure custom RTS options when running the Card
 
 **To display the default RTS options for Cardano CLI:**
 
-- In a terminal window, type:
+* In a terminal window, type:
+
 ```bash
 cardano-cli +RTS --info
 ```
 
-<!-- Reference:
-https://forum.cardano.org/t/solving-the-cardano-node-huge-memory-usage-done/67032 -->
-
 If you identify different RTS options that noticably improve the performance or stability of your Cardano Node instance, then consider contributing the RTS options to [Coin Cashew](https://www.coincashew.com/) so that other stake pools may also benefit.
-
