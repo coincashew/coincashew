@@ -170,5 +170,5 @@ In the results of the `cardano-cli query kes-period-info` command, prior to your
 {% hint style="success" %}
 If you want to support this free educational Cardano content or found the content helpful, visit [cointr.ee](https://cointr.ee/coincashew) to find our donation addresses. Much appreciated in advance. :pray:
 
-:ledger:Technical writing by [Change Pool \[CHG\]](https://change.paradoxicalsphere.com)
+:ledger:Technical writing by [Change Pool (ticker CHG)](https://change.paradoxicalsphere.com)
 {% endhint %}
