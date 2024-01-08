@@ -22,7 +22,9 @@ In the results, the value of the `Flag -with-rtsopts` key displays the default R
 -T -I0 -A16m -N2 --disable-delayed-os-memory-return
 ```
 
+
 For details on available RTS options and setting RTS options using the command line, in the [GHC User's Guide](https://downloads.haskell.org/ghc/8.10.4/docs/users\_guide.pdf) see the sections _RTS Options for SMP Parallelism_ on page 122 and _Running a Compiled Program_ on page 158.
+
 
 For example, to produce runtime system statistics for each garbage collection in addition to using default RTS options, include the following RTS option in your `cardano-node run` command where `<FileName>` is the name of the file in the current folder where you want to output statistics and `<Options>` is the list of options that you use when running your node:
 
