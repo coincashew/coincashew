@@ -8,7 +8,9 @@ The private KES key is required to start the block producing node for your stake
 
 Issuing an operational certificate also uses a counter that increments by exactly one (1) for each unique operational certificate that a stake pool uses to mint blocks. In a valid operational certificate, the counter value that you use to issue the operational certificate must be consistent with the current counter value for your stake pool registered on the Cardano blockchain by the protocol.
 
-{% hint style="info" %} A Companion Script that can help you with rotating KES keys and issuing a new Operational Certificate is available [here](kes-rotate-companion-script.md) {% endhint %}
+{% hint style="info" %}
+A Companion Script that can help you with rotating KES keys and issuing a new Operational Certificate is available \[here]\(kes-rotate-companion-script.md)
+{% endhint %}
 
 ## Determining the Counter Value
 
@@ -56,7 +58,6 @@ When your stake pool has minted zero (0) blocks, then no value for `qKesNodeStat
 After a stake pool mints a block for the first time, then retrieving the current counter value returns the value zero (0) for the `qKesNodeStateOperationalCertificateNumber` key.
 
 Therefore, when your stake pool has minted zero (0) blocks, then you MUST set the value zero (`0`) for the `qKesOnDiskOperationalCertificateNumber` key so that your stake pool creates a block successfully when elected to mint a block for the first time.
-<!-- Source: https://forum.cardano.org/t/qkesnodestateoperationalcertificatenumber-null/106046 -->
 
 ## Setting the Counter Value
 

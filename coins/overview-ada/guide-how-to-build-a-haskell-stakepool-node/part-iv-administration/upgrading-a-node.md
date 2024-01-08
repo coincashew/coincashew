@@ -354,7 +354,7 @@ sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
 ```
 
 {% hint style="info" %}
-Upgrading to a new Cardano Node version may require replaying the copy of the blockchain residing on the local computer. The task of replaying the blockchain may require hours to complete.&#x20;
+Upgrading to a new Cardano Node version may require replaying the copy of the blockchain residing on the local computer. The task of replaying the blockchain may require hours to complete.
 
 To monitor your node, type the command `journalctl -fu cardano-node`in a terminal window.
 {% endhint %}

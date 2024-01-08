@@ -22,7 +22,7 @@
 5. Click Create Node
 6. When Windows asks, click Allow Access so the node can use internet.
 
-![Click continue on the Welcome screen](../../.gitbook/assets/theta-welcome.png)
+![Click continue on the Welcome screen](../../.gitbook/assets/theta-welcome.PNG)
 
 ### :gear:2. Sync your node
 
@@ -32,9 +32,9 @@
 
 1. Once your node is fully synchronized, you will see a Guardian Node Holder (Summary). Copy and paste into your Theta wallet's "Deposit Stake" function.
 
-![Copy the Summary and paste into your Theta wallet's Deposit Stake function](../../.gitbook/assets/theta-stake-windows.png)
+![Copy the Summary and paste into your Theta wallet's Deposit Stake function](../../.gitbook/assets/theta-stake-windows.PNG)
 
-![Using your Theta wallet, enter the summary, your amount to stake then deposit stake.](../../.gitbook/assets/theta-deposit.png)
+![Using your Theta wallet, enter the summary, your amount to stake then deposit stake.](../../.gitbook/assets/theta-deposit.PNG)
 
 ### :white\_check\_mark: 4. Validate your node is working
 
@@ -45,7 +45,7 @@ Verify that
 * Network Height number is increasing
 * there is Recent Activity
 
-![Verifying a functioning node](../../.gitbook/assets/theta-verify.png)
+![Verifying a functioning node](../../.gitbook/assets/theta-verify.PNG)
 
 {% hint style="success" %}
 :sparkles:Congratulations! Your Theta Guardian Node is working to finalize blocks and will earn TFUEL.
