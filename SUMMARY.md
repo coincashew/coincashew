@@ -324,7 +324,7 @@
       * [Uploading Pool Metadata to GitHub Pages](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/uploading-pool-metadata-to-github.md)
       * [Obtaining a PoolTool API Key](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/obtaining-a-pooltool-api-key.md)
       * [Configuring Glasgow Haskell Compiler Runtime System Options](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/configuring-runtime-options.md)
-      * [Reducing Missed Slot Leader Checks and Improving Cardano Node Performance](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/reducing-missed-slot-leader-checks.md)
+      * [Setting TraceMempool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/setting-tracemempool.md)
       * [Increasing Swap File Size](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/increasing-swap-file.md)
       * [Setting Up an External Passive Relay Node](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/setting-up-an-external-passive-relay-node.md)
       * [Setting Up WireGuard](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/setting-up-wireguard.md)
