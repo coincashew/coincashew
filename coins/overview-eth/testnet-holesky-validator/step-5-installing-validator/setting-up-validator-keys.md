@@ -490,7 +490,7 @@ Expected sample output:
 
 ## :woman\_technologist: 4. Deposit transactions at the Launchpad
 
-1. Follow the walk-through at the Launchpad: [https://holesky.launchpad.ethereum.org](https://holesky.launchpad.ethereum.org/)
+1. Follow the walk-through at the Launchpad: [https://holesky.launchpad.ethstaker.cc](https://holesky.launchpad.ethstaker.cc)
 
 {% hint style="danger" %}
 **Do not send real mainnet ETH during this process!** :octagonal\_sign: Use only Holesky ETH.
@@ -502,7 +502,7 @@ Expected sample output:
 {% hint style="info" %}
 :whale: **Batch Depositing Tip**: If you have many deposits to make for many validators, consider using [Abyss.finance's eth2depositor tool.](https://abyss.finance/eth2depositor) This greatly improves the deposit experience as multiple deposits can be batched into one transaction, thereby saving gas fees and saving your fingers by minimizing Metamask clicking.
 
-Make sure to switch to **Holešky** network.
+On the tool's dropdown box, select **Holešky** network.
 
 Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://twitter.com/AbyssFinance/status/1379732382044069888)
 {% endhint %}
