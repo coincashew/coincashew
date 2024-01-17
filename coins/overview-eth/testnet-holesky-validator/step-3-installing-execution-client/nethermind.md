@@ -91,7 +91,6 @@ ExecStart=/usr/local/bin/nethermind/Nethermind.Runner \
   --datadir="/var/lib/nethermind" \
   --Metrics.Enabled true \
   --Metrics.ExposePort 6060 \
-  --Metrics.IntervalSeconds 10000 \
   --Sync.SnapSync true \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret
   
