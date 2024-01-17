@@ -111,6 +111,7 @@
         * [Besu](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-3-installing-execution-client/besu.md)
         * [Geth](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-3-installing-execution-client/geth.md)
         * [Erigon](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-3-installing-execution-client/erigon.md)
+        * [Reth](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-3-installing-execution-client/reth.md)
       * [Step 4: Installing consensus client](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-4-installing-consensus-client/README.md)
         * [Lighthouse](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-4-installing-consensus-client/lighthouse.md)
         * [Lodestar](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-4-installing-consensus-client/lodestar.md)

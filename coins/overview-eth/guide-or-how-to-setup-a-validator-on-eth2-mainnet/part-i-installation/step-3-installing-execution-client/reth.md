@@ -142,7 +142,7 @@ sudo nano /etc/systemd/system/execution.service
 Paste the following configuration into the file.
 
 <pre class="language-bash"><code class="lang-bash">[Unit]
-Description=Reth Execution Layer Client service for Holesky
+Description=Reth Execution Layer Client service for Mainnet
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -158,7 +158,7 @@ TimeoutStopSec=900
 Environment=RUST_LOG=info
 ExecStart=/usr/local/bin/reth node \
     --full \
-    --chain holesky \
+    --chain mainnet \
     --datadir=/var/lib/reth \
     --metrics 127.0.0.1:9001 \
     --port 30303 \
