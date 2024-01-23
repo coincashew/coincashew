@@ -26,9 +26,10 @@ sudo chown -R execution:execution /var/lib/nethermind
 
 Install dependencies.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo apt update
-</strong><strong>sudo apt install ccze curl libsnappy-dev libc6-dev jq libc6 unzip -y
-</strong></code></pre>
+```bash
+sudo apt update
+sudo apt install ccze curl libsnappy-dev libc6-dev jq libc6 unzip -y
+```
 
 ### 2. Install Binaries
 
