@@ -89,9 +89,13 @@ Environment="DOTNET_BUNDLE_EXTRACT_BASE_DIR=/var/lib/nethermind"
 ExecStart=/usr/local/bin/nethermind/Nethermind.Runner \
   --config holesky \
   --datadir="/var/lib/nethermind" \
+  --Network.DiscoveryPort 30303 \
+  --Network.P2PPort 30303 \
+  --Network.MaxActivePeers 50 \
+  --JsonRpc.Port 8545 \
+  --JsonRpc.EnginePort 8551 \
   --Metrics.Enabled true \
   --Metrics.ExposePort 6060 \
-  --Sync.SnapSync true \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret
   
 [Install]
