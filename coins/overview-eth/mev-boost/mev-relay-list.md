@@ -6,7 +6,7 @@
 * **Ethical**: Will not front run or sandwich attack or generally harm other user's transactions.
 
 {% hint style="info" %}
-Be sure to select the right network. Relays are available for **Mainnet, Goerli and Sepolia Testnets**.
+Be sure to select the right network. Relays are available for **Mainnet, Holesky, Goerli and Sepolia Testnets**.
 {% endhint %}
 
 ## Ethereum Mainnet Relays
