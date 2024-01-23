@@ -131,12 +131,19 @@ TimeoutStopSec=900
 Environment="JAVA_OPTS=-Xmx5g"
 ExecStart=/usr/local/bin/besu/bin/besu \
   --network=holesky \
+  --p2p-port=30303 \
+  --rpc-http-port=8545 \
+  --engine-rpc-port=8551 \
+  --max-peers=25 \
   --metrics-enabled=true \
+  --metrics-port=6060 \
   --rpc-http-enabled=true \
-  --sync-mode=X_CHECKPOINT \
+  --sync-mode=X_SNAP \
   --data-storage-format=BONSAI \
   --data-path="/var/lib/besu" \
   --Xplugin-rocksdb-high-spec-enabled \
+  --Xsnapsync-synchronizer-flat-db-healing-enabled=true \
+  --Xbonsai-trie-log-pruning-enabled=true \
   --engine-jwt-secret=/secrets/jwtsecret
   
 [Install]
