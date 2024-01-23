@@ -2,6 +2,14 @@
 
 ## Overview
 
+{% hint style="danger" %}
+:octagonal\_sign:**Strongly discouraged** :octagonal\_sign:**: GETH can be** [**hazardous to your all YOUR STAKE.**](https://twitter.com/EthDreamer/status/1749355402473410714?ref\_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1749355402473410714%7Ctwgr%5Ec8a1aa0ef51d2c9c4a70664acbe61505802be16a%7Ctwcon%5Es1\_\&ref\_url=https%3A%2F%2Fwww.redditmedia.com%2Fmediaembed%2F19de574%3Fresponsive%3Dtrueis\_nightmode%3Dtrue)
+
+**Select a minority client.**&#x20;
+
+**Recommendation: Besu or Nethermind.**
+{% endhint %}
+
 {% hint style="info" %}
 **Geth** - Go Ethereum is one of the three original implementations (along with C++ and Python) of the Ethereum protocol. It is written in **Go**, fully open source and licensed under the GNU LGPL v3.
 {% endhint %}
