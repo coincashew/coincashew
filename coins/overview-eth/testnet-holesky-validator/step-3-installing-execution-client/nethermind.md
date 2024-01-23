@@ -32,11 +32,14 @@ sudo apt install ccze curl libsnappy-dev libc6-dev jq libc6 unzip -y
 
 ### 2. Install Binaries
 
-* Downloading binaries is often faster and more convenient.&#x20;
+* Downloading binaries is often faster and more convenient.
+* Building from source code can offer better compatibility and is more aligned with the spirit of FOSS (free open source software).
 
 <details>
 
 <summary>Option 1 - Download binaries</summary>
+
+
 
 Run the following to automatically download the latest linux release, un-zip and cleanup.
 
@@ -55,6 +58,70 @@ rm nethermind.zip
 Install the binaries.
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo mv $HOME/nethermind /usr/local/bin/nethermind
+</strong></code></pre>
+
+</details>
+
+<details>
+
+<summary>Option 2 - Build from source code</summary>
+
+Install .NET SDK build dependencies.
+
+```bash
+# Get Ubuntu version
+declare repo_version=$(if command -v lsb_release &> /dev/null; then lsb_release -r -s; else grep -oP '(?<=^VERSION_ID=).+' /etc/os-release | tr -d '"'; fi)
+
+# Download Microsoft signing key and repository
+wget https://packages.microsoft.com/config/ubuntu/$repo_version/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+
+# Install Microsoft signing key and repository
+sudo dpkg -i packages-microsoft-prod.deb
+
+# Clean up
+rm packages-microsoft-prod.deb
+
+# Update packages
+sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
+```
+
+Build the binaries.
+
+```bash
+mkdir -p ~/git
+cd ~/git
+# Clone the repo
+git clone https://github.com/NethermindEth/nethermind.git
+cd nethermind
+# Get new tags
+git fetch --tags
+# Get latest tag name
+latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+# Checkout latest tag
+git checkout $latestTag
+# Build
+dotnet publish src/Nethermind/Nethermind.Runner -c release -o nethermind
+```
+
+Verify Nethermind was properly built by checking the version.
+
+```shell
+./nethermind/nethermind --version
+```
+
+Sample output of a compatible version.
+
+```
+Version: 1.25.2+78c7bf5f
+Commit: 78c7bf5f2c0819f23e248ee6d108c17cd053ffd3
+Build Date: 2024-01-23 06:34:53Z
+OS: Linux x64
+Runtime: .NET 8.0.1
+```
+
+Install the binaries.
+
+<pre class="language-shell"><code class="lang-shell"><strong>sudo mv $HOME/git/nethermind/nethermind /usr/local/bin
 </strong></code></pre>
 
 </details>
@@ -86,7 +153,7 @@ KillSignal=SIGINT
 TimeoutStopSec=900
 WorkingDirectory=/var/lib/nethermind
 Environment="DOTNET_BUNDLE_EXTRACT_BASE_DIR=/var/lib/nethermind"
-ExecStart=/usr/local/bin/nethermind/Nethermind.Runner \
+ExecStart=/usr/local/bin/nethermind/nethermind \
   --config holesky \
   --datadir="/var/lib/nethermind" \
   --Network.DiscoveryPort 30303 \

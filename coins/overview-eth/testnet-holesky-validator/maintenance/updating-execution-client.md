@@ -55,6 +55,55 @@ sudo systemctl start execution
 
 </details>
 
+<details>
+
+<summary>Option 2 - Build from source code</summary>
+
+Build the binaries.
+
+```bash
+cd ~/git/nethermind
+# Get new tags
+git fetch --tags
+# Get latest tag name
+latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+# Checkout latest tag
+git checkout $latestTag
+# Build
+dotnet publish src/Nethermind/Nethermind.Runner -c release -o nethermind
+```
+
+Verify Nethermind was properly built by checking the version.
+
+```shell
+./nethermind/nethermind --version
+```
+
+Sample output of a compatible version.
+
+```
+Version: 1.25.2+78c7bf5f
+Commit: 78c7bf5f2c0819f23e248ee6d108c17cd053ffd3
+Build Date: 2024-01-23 06:34:53Z
+OS: Linux x64
+Runtime: .NET 8.0.1
+```
+
+Stop the services.
+
+<pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl stop execution
+</strong></code></pre>
+
+Remove old binaries, install new binaries and restart the services.
+
+```bash
+sudo rm -rf /usr/local/bin/nethermind
+sudo mv $HOME/git/nethermind/nethermind /usr/local/bin
+sudo systemctl start execution
+```
+
+</details>
+
 ### Besu
 
 <details>
