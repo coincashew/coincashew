@@ -182,7 +182,7 @@ Append the applicable job snippet for your execution client to the end of **prom
    - job_name: 'geth'
      scrape_interval: 15s
      scrape_timeout: 10s
-     metrics_path: /debug/metrics/prometheus
+     metrics_path: /debug/metrics
      scheme: http
      static_configs:
      - targets: ['localhost:6060']

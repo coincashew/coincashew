@@ -31,7 +31,7 @@ Add the following flag to limit the number of peers on the `ExecStart` line.
 
 {% tab title="Nethermind" %}
 ```bash
---Network.ActivePeersMaxCount 10
+---Network.MaxActivePeers 10
 # Example
 # ExecStart       = <home directory>/nethermind/Nethermind.Runner --Network.ActivePeersMaxCount 10 --JsonRpc.Enabled true
 ```
