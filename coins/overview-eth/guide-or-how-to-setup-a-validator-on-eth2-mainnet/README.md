@@ -14,7 +14,7 @@ description: >-
 ## :new: Announcements
 
 {% hint style="success" %}
-As of September 25 2023, this is the new **Version 2 Guide** written for **post-🦉Shapella**🦉 written for **MAINNET Ethereum** :grin:
+As of Jan 21 2024, this is the new **Version 2 Guide** written for **post-🦉Shapella**🦉 written for **MAINNET Ethereum** :grin:
 {% endhint %}
 
 {% hint style="info" %}

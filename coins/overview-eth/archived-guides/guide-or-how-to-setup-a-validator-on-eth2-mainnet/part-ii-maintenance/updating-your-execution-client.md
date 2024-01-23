@@ -42,6 +42,33 @@ sudo systemctl stop eth1
 {% tab title="Geth" %}
 Review the latest release notes at [https://github.com/ethereum/go-ethereum/releases](https://github.com/ethereum/go-ethereum/releases)
 
+#### Option 1: Download binaries
+
+```bash
+RELEASE_URL="https://geth.ethereum.org/downloads"
+FILE="https://gethstore.blob.core.windows.net/builds/geth-linux-amd64[a-zA-Z0-9./?=_%:-]*.tar.gz"
+BINARIES_URL="$(curl -s $RELEASE_URL | grep -Eo $FILE | head -1)"
+
+echo Downloading URL: $BINARIES_URL
+
+cd $HOME
+wget -O geth.tar.gz $BINARIES_URL
+tar -xzvf geth.tar.gz -C $HOME
+rm geth.tar.gz
+sudo mv $HOME/geth-* geth
+
+# Stop the services.
+sudo systemctl stop eth1
+
+# Remove old binaries, install new binaries and restart the services.
+sudo rm -rf /usr/bin/geth
+sudo mv $HOME/geth/geth /usr/bin/geth
+sudo systemctl start eth1
+rm -r $HOME/geth
+```
+
+#### Option 2: Update with apt update command from Personal Package Archive (PPA)
+
 ```bash
 # Already handled by previous commands.
 # sudo apt update
