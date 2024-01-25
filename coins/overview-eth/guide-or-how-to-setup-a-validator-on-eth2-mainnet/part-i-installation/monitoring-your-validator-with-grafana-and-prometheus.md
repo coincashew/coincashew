@@ -1,6 +1,6 @@
 # Monitoring your validator with Grafana and Prometheus
 
-Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets.&#x20;
+Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints on these targets.
 
 Grafana is a dashboard used to visualize the collected data.
 
@@ -31,7 +31,7 @@ sudo apt-get update && sudo apt-get install -y grafana
 sudo systemctl enable grafana-server prometheus prometheus-node-exporter
 ```
 
-### 4. Create the **prometheus.yml** config file&#x20;
+### 4. Create the **prometheus.yml** config file
 
 Remove the default **prometheus.yml** configuration file and edit a new one.
 
@@ -168,7 +168,7 @@ scrape_configs:
 {% endtab %}
 {% endtabs %}
 
-### 5. Setup prometheus for your execution client&#x20;
+### 5. Setup prometheus for your execution client
 
 Append the applicable job snippet for your execution client to the end of **prometheus.yml**.
 
@@ -198,7 +198,7 @@ Append the applicable job snippet for your execution client to the end of **prom
      scheme: http
      static_configs:
      - targets:
-       - localhost:9545
+       - localhost:6060
 ```
 {% endtab %}
 
@@ -337,7 +337,7 @@ Now you can access Grafana on your local machine by pointing a web browser to [h
 {% hint style="warning" %}
 :fire: **Troubleshooting common Grafana issues**
 
-**Symptom 1**: Your dashboard is missing some data_._
+**Symptom 1**: Your dashboard is missing some data\_.\_
 
 **Solution 1**_:_ Ensure that the execution or consensus client has enabled the appropriate metrics flag.
 
@@ -348,15 +348,13 @@ cat /etc/systemd/system/consensus.service
 
 * **Geth**: --http --metrics --pprof
 * **Besu**: --metrics-enabled=true
-* **Nethermind**:  --Metrics.Enabled true
+* **Nethermind**: --Metrics.Enabled true
 * **Erigon**: --metrics
 * **Reth**: --metrics 127.0.0.1:9001
-* **Lighthouse**:  --validator-monitor-auto
-* **Nimbus**:  --metrics  --metrics-port=8008
+* **Lighthouse**: --validator-monitor-auto
+* **Nimbus**: --metrics --metrics-port=8008
 * **Teku**: --metrics-enabled=true --metrics-port=8008
 * **Lodestar**: --metrics true
-
-
 
 **Symptom 2**: Don't want to use SSH tunnels and you want to expose port 3000 to access Grafana, but understand the security concerns.
 
@@ -475,7 +473,7 @@ Credits: [starsliao](https://grafana.com/grafana/dashboards/11074)
 {% endtab %}
 {% endtabs %}
 
-### &#x20;8. Setup Alert Notifications
+### 8. Setup Alert Notifications
 
 {% hint style="info" %}
 Setup alerts to get notified if your validators go offline.
