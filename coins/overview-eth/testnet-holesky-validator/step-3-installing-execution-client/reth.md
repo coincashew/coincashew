@@ -160,12 +160,14 @@ ExecStart=/usr/local/bin/reth node \
     --full \
     --chain holesky \
     --datadir=/var/lib/reth \
-    --metrics 127.0.0.1:9001 \
+    --metrics 127.0.0.1:6060 \
     --port 30303 \
     --http \
     --http.port 8545 \
     --http.api="rpc,eth,web3,net,debug" \
     --log.file.directory=/var/lib/reth/logs \
+    --max-outbound-peers 25 \
+    --max-inbound-peers 25 \
     --authrpc.jwtsecret=/secrets/jwtsecret
    
 <strong>[Install]

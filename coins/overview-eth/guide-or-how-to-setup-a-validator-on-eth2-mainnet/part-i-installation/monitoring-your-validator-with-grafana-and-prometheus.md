@@ -228,7 +228,7 @@ Append the applicable job snippet for your execution client to the end of **prom
      metrics_path: "/"
      scrape_interval: 10s
      static_configs:
-       - targets: ['localhost:9001']
+       - targets: ['localhost:6060']
 ```
 {% endtab %}
 {% endtabs %}
