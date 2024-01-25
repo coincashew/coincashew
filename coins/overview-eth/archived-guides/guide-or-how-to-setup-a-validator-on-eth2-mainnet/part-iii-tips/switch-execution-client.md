@@ -20,7 +20,7 @@ However, as validator downtime incurs minimal penalties, the added complexity mi
 {% endhint %}
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](../). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](../../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 ## Manual Method
@@ -29,38 +29,33 @@ The following steps align with our [mainnet guide](../). You may need to adjust 
 
 <summary>Step 1: Remove OLD Execution Client</summary>
 
-Stop execution client and remove the service user, data paths, binaries and service files.
+Stop execution client and remove data paths, binaries and service files.
 
 ```bash
 # Stop Execution Client
-sudo systemctl stop execution
-sudo systemctl disable execution
+sudo systemctl stop eth1
+sudo systemctl disable eth1
 
 # Remove service file
-sudo rm /etc/systemd/system/execution.service
+sudo rm /etc/systemd/system/eth1.service
 
 # Nethermind
-sudo rm -rf /usr/local/bin/nethermind
-sudo rm -rf /var/lib/nethermind
+sudo rm -rf $HOME/nethermind
+sudo rm -rf $HOME/.nethermind
 
 # Besu
-sudo rm -rf /usr/local/bin/besu
-sudo rm -rf /var/lib/besu
+sudo rm -rf $HOME/besu
+sudo rm -rf $HOME/.besu
 
 # Geth
-sudo rm -rf /usr/local/bin/geth
-sudo rm -rf /var/lib/geth
+sudo rm -rf /usr/bin/geth
+sudo rm -rf $HOME/.ethereum
+sudo add-apt-repository --remove ppa:ethereum/ethereum -y
+sudo apt remove ethereum -y
 
 # Erigon
-sudo rm -rf /usr/local/bin/erigon
+sudo rm -rf $HOME/erigon
 sudo rm -rf /var/lib/erigon
-
-# Reth
-sudo rm -rf /usr/local/bin/reth
-sudo rm -rf /var/lib/reth
-
-# Remove service user
-sudo userdel execution
 ```
 
 </details>
@@ -69,7 +64,7 @@ sudo userdel execution
 
 <summary>Step 2: Install NEW Execution Client</summary>
 
-Follow the instructions found under section: [Installing a new Execution Client.](../part-i-installation/step-3-installing-execution-client/)
+Follow the instructions found under section: [Installing a new Execution Client.](../part-i-installation/installing-execution-client.md)
 
 ***
 
@@ -84,7 +79,7 @@ Follow the instructions found under section: [Installing a new Execution Client.
 Ensure the consensus client establishes a connection to the new execution client.
 
 ```bash
-sudo systemctl restart consensus
+sudo systemctl restart beacon-chain
 ```
 
 </details>
