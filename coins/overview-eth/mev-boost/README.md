@@ -727,9 +727,12 @@ No changes needed. mevboost only makes outgoing tcp calls.
 
 ## :track\_next: Next Steps
 
-* Subscribe to [flashbot's mev-boost repository](https://github.com/flashbots/mev-boost/releases) to be notified of new releases. Hit the Notifications button.
-* Follow [MEV-Boost Twitter contributors](https://github.com/thegostep/awesome-mev-boost#twitter)
-* Learn about the future of MEV democratized by [PBS](https://members.delphidigital.io/reports/the-hitchhikers-guide-to-ethereum/).
+* :moneybag: **MEV Smoothing:** Earn rewards on a consistent basis! Potentially share lottery blocks. Average out your MEV rewards.
+  * **Smoothly -** [**https://docs.smoothly.money/how-to-guide**](https://docs.smoothly.money/how-to-guide)
+  * **Dappnode's Smooth -** [**https://smooth.dappnode.io/how-to**](https://smooth.dappnode.io/how-to)
+* :new: **Stay Updated**: Subscribe to [flashbot's mev-boost repository](https://github.com/flashbots/mev-boost/releases) to be notified of new releases. Hit the Notifications button.
+* :telephone\_receiver: **Stay in contact**: Follow [MEV-Boost Twitter contributors](https://github.com/thegostep/awesome-mev-boost#twitter)
+* :rocket: **Future ideas**: Learn about the future of MEV democratized by [PBS](https://members.delphidigital.io/reports/the-hitchhikers-guide-to-ethereum/).
 * ​:confetti\_ball: **Support us on Gitcoin Grants:** We build this guide exclusively by community support!🙏
 
 ## :books: References
