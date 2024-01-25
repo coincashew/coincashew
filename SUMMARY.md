@@ -240,7 +240,7 @@
         * [Pruning the execution client to free up disk space](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/pruning-the-execution-client-to-free-up-disk-space.md)
         * [Checklist | Confirming a healthy functional ETH staking node](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/checklist-confirming-healthy-functional-eth-staking-node.md)
       * [PART III - TIPS](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/README.md)
-        * [🛡 Switching / Migrating Execution Client](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/switch-execution-client.md)
+        * [🛡 Switching / Migrating Execution Client](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/switching-execution-client.md)
         * [Voluntary Exiting a Validator](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/voluntary-exiting-a-validator.md)
         * [Verifying Your Mnemonic Phrase](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/verifying-your-mnemonic-phrase.md)
         * [Adding a New Validator to an Existing Setup with Existing Seed Words](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/adding-a-new-validator-to-an-existing-setup.md)
