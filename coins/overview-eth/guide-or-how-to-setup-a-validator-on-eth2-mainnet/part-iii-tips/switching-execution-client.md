@@ -23,7 +23,19 @@ However, as validator downtime incurs minimal penalties, the added complexity mi
 The following steps align with our [mainnet guide](../). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
-## Manual Method
+## Option 1: Automated One-Liner
+
+Simply copy and paste the command into your terminal.
+
+Open source source code available here: [https://github.com/coincashew/client-switcher](https://github.com/coincashew/client-switcher)
+
+```bash
+sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/client-switcher/master/install.sh)"
+```
+
+<figure><img src="../../../../.gitbook/assets/client-switcher.png" alt=""><figcaption><p>One-liner screenshot</p></figcaption></figure>
+
+## Option 2: Manual Method
 
 <details>
 
