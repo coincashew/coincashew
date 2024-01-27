@@ -90,7 +90,7 @@ sudo systemctl restart beacon-chain
 
 **Promentheus and Grafana**:
 
-* Revisit the [monitoring guide](https://app.gitbook.com/o/Ipl5aiJxYYShJZr41G7s/s/-M5KYnWuA6dS\_nKYsmfV-887967055/\~/changes/1124/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/monitoring-your-validator-with-grafana-and-prometheus) and update your `prometheus.yml`configuration for the new execution client.
+* Revisit the [monitoring guide](../part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md) and update your `prometheus.yml`configuration for the new execution client.
 * Ensure prometheus is connected to your new execution client's metrics port 6060.
 * Also import your new execution client's dashboard.
 
