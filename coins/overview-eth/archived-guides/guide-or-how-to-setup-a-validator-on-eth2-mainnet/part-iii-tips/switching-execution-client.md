@@ -13,8 +13,8 @@ Important reasons why you would want to switch Execution Clients:
 
 Here are some public options:
 
-* [Tennisbowling's Open Execution Node](https://openexecution.tennisbowling.com/)
 * [RocketPool's Rescue Node](https://rescuenode.com/docs/how-to-connect/solo)
+* [Tennisbowling's Open Execution Node](https://openexecution.tennisbowling.com/)
 
 However, as validator downtime incurs minimal penalties, the added complexity might not be worth your time and extra work configuring a failover option.
 {% endhint %}

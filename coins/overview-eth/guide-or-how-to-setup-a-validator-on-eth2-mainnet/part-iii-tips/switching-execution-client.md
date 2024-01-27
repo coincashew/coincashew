@@ -13,8 +13,8 @@ Important reasons why you would want to switch Execution Clients:
 
 Here are some public options:
 
-* [Tennisbowling's Open Execution Node](https://openexecution.tennisbowling.com/)
 * [RocketPool's Rescue Node](https://rescuenode.com/docs/how-to-connect/solo)
+* [Tennisbowling's Open Execution Node](https://openexecution.tennisbowling.com/)
 
 However, as validator downtime incurs minimal penalties, the added complexity might not be worth your time and extra work configuring a failover option.
 {% endhint %}
@@ -107,7 +107,7 @@ sudo systemctl restart consensus
 
 **Promentheus and Grafana**:
 
-* Revisit the [monitoring guide](../../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md) and update your `prometheus.yml`configuration for the new execution client.
+* Revisit the [monitoring guide](../part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md) and update your `prometheus.yml`configuration for the new execution client.
 * Ensure prometheus is connected to your new execution client's metrics port 6060.
 * Also import your new execution client's dashboard.
 
