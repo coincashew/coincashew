@@ -27,7 +27,7 @@ sudo chown -R execution:execution /var/lib/besu
 Install dependencies.
 
 ```bash
-sudo apt install -y openjdk-17-jdk libjemalloc-dev
+sudo apt install -y openjdk-17-jdk libjemalloc-dev jq
 ```
 
 ### 2. Install Binaries
@@ -43,8 +43,8 @@ Run the following to automatically download the latest linux release, un-tar and
 
 ```bash
 RELEASE_URL="https://api.github.com/repos/hyperledger/besu/releases/latest"
-FILE="https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/[a-zA-Z0-9./?=_%:-]*.tar.gz"
-BINARIES_URL="$(curl -s $RELEASE_URL | grep -Eo $FILE)"
+TAG=$(curl -s $RELEASE_URL | jq '.tag_name' | tr -d "\"")
+BINARIES_URL="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/$TAG/besu-$TAG.tar.gz"
 
 echo Downloading URL: $BINARIES_URL
 

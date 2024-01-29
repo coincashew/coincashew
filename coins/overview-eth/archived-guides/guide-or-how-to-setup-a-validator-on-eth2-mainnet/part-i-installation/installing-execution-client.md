@@ -112,7 +112,7 @@ sudo systemctl start eth1
 
 ```
 sudo apt update
-sudo apt install openjdk-17-jre -y libjemalloc-dev
+sudo apt install openjdk-17-jre -y libjemalloc-dev jq
 ```
 
 
@@ -128,7 +128,9 @@ Review the latest release at [https://github.com/hyperledger/besu/releases](http
 Run the following to automatically download the latest linux release, un-tar and cleanup.
 
 ```bash
-BINARIES_URL="$(curl -s https://api.github.com/repos/hyperledger/besu/releases/latest | grep -o 'https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/.*tar.gz' | sed -e 's/.*\\n\(https.*.tar.gz$\)/\1/')"
+RELEASE_URL="https://api.github.com/repos/hyperledger/besu/releases/latest"
+TAG=$(curl -s $RELEASE_URL | jq '.tag_name' | tr -d "\"")
+BINARIES_URL="https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/$TAG/besu-$TAG.tar.gz"
 
 echo Downloading URL: $BINARIES_URL
 
