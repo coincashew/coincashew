@@ -115,7 +115,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 |  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
 |  :----------:  | :------------------: | :---------: | :-----------: |
-| December, 2023 |         8.7.2        |    8.10.7   |    3.8.1.0    |
+|  January 2024  |         8.7.3        |    8.10.7   |    3.8.1.0    |
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -168,7 +168,7 @@ sudo make install
 
 **To install the blst library:**
 
-As of version 8.7.2, the `blst` library is required.
+In version 8.7.2 and later, the `blst` library is required.
 
 ```
 cd $HOME/git
