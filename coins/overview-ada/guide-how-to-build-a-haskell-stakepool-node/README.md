@@ -41,6 +41,11 @@ If you want to support this free educational Cardano content or found this helpf
 
 ## :page\_facing\_up: Change Log
 
+* February 3, 2024
+  * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
+    * Distinguishing between legacy and peer-to-peer topologies
+    * Removing out-of-date information on founding entities offering stake pool delegations
+    * Creating [Cardano Resource Index](appendix-b-resource-index.md)
 * January 2, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
     * Updating prerequisites and procedures for Cardano Node 8.7.2

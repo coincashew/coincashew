@@ -1,4 +1,4 @@
-# Configuring Stake Pool Topology
+# Configuring Legacy Stake Pool Topology
 
 Network topology describes the physical and logical structure of a network. In the Cardano network, each stake pool must operate at least one block-producing node and one relay node. The keys and certificates required to issue blocks are located on the block-producing node. For security reasons, your block producer must connect **only** to one or more relay nodes that you—the stake pool operator—control.
 
@@ -13,6 +13,16 @@ Before you start the nodes comprising your stake pool, you must:
 
 ## Configuring a Relay Node
 
+**To configure your relay node(s) to use legacy topology:**
+
+1. Using a text editor, open the `config.json` file, and then edit the following option:
+
+```bash
+"EnableP2P": false,
+```
+
+2. Save and close the `config.json` file.
+
 **To configure your relay node(s) to connect with your block-producing node:**
 
 1. On the computer hosting your relay node, in a terminal window type the following command to navigate to the folder where you downloaded Cardano configuration files:
@@ -21,17 +31,17 @@ Before you start the nodes comprising your stake pool, you must:
 cd ${NODE_HOME}
 ```
 
-1. To create a backup of the original topology configuration file, type:
+2. To create a backup of the original topology configuration file, type:
 
 ```bash
-cp topology.json topology.json.bak
+cp topology-legacy.json topology-legacy.json.bak
 ```
 
 {% hint style="info" %}
 You set the `NODE_CONFIG` environment variable when [Installing GHC and Cabal](../part-i-installation/installing-ghc-and-cabal.md).
 {% endhint %}
 
-1. Using a text editor, open the `topology.json` file, and then add a record for the block-producing node as follows, where `<BlockProducingNodeIPAddress>` is the IP address of the block-producing node in your stake pool configuration:
+3. Using a text editor, open the `topology-legacy.json` file, and then add a record for the block-producing node as follows, where `<BlockProducingNodeIPAddress>` is the IP address of the block-producing node in your stake pool configuration:
 
 ```bash
 {
@@ -42,22 +52,42 @@ You set the `NODE_CONFIG` environment variable when [Installing GHC and Cabal](.
 	    "valency": 1
 	  },
 	  {
-	    "addr": "relays-new.cardano-mainnet.iohk.io",
+	    "addr": "backbone.cardano-mainnet.iohk.io",
 	    "port": 3001,
-	    "valency": 2
+	    "valency": 1
+	  },
+	  {
+	    "addr": "backbone.cardano.iog.io",
+	    "port": 3001,
+	    "valency": 1
+	  },
+	  {
+	    "addr": "backbone.mainnet.emurgornd.com",
+	    "port": 3001,
+	    "valency": 1
 	  }
 	]
 }
 ```
 
 {% hint style="info" %}
-To follow best practices, set `<BlockProducingNodeIPAddress>` to the local area network (LAN) Internet protocol (IP) address of the computer hosting the block-producing node when possible. If necessary—for example, if you set up your block-producing node on a different network than the relay node—then use the wide area network (WAN) IP address. Connecting to `relays-new.cardano-mainnet.iohk.io` allows your relay node to synchronize with the blockchain.
+To follow best practices, set `<BlockProducingNodeIPAddress>` to the local area network (LAN) Internet protocol (IP) address of the computer hosting the block-producing node when possible. If necessary—for example, if you set up your block-producing node on a different network than the relay node—then use the wide area network (WAN) IP address. Connecting to `backbone.cardano-mainnet.iohk.io`, `backbone.cardano.iog.io` and `backbone.mainnet.emurgornd.com` allows your relay node to synchronize with the blockchain.
 {% endhint %}
 
-1. Save and close the `topology.json` file.
-2. To configure additional relay nodes, repeat steps 1 to 4 for each additional relay node in your stake pool configuration.
+4. Save and close the `topology-legacy.json` file.
+5. To configure additional relay nodes, repeat steps 1 to 4 for each additional relay node in your stake pool configuration.
 
 ## Configuring Your Block-producing Node
+
+**To configure your block-producing node to use legacy topology:**
+
+1. Using a text editor, open the `config.json` file, and then edit the following option:
+
+```bash
+"EnableP2P": false,
+```
+
+2. Save and close the `config.json` file.
 
 **To configure your block-producing node to connect only with your relay node(s):**
 
@@ -67,13 +97,13 @@ To follow best practices, set `<BlockProducingNodeIPAddress>` to the local area 
 cd ${NODE_HOME}
 ```
 
-1. To create a backup of the original topology configuration file, type:
+2. To create a backup of the original topology configuration file, type:
 
 ```bash
-cp topology.json topology.json.bak
+cp topology-legacy.json topology-legacy.json.bak
 ```
 
-1. Using a text editor, open the `topology.json` file, and then replace the contents of the file with one or more records, as needed, to reference only the relay node(s) in your stake pool configuration. For example, the following lines configure a single relay node where `<RelayNodeIPAddress>` is the IP address of the relay node:
+3. Using a text editor, open the `topology-legacy.json` file, and then replace the contents of the file with one or more records, as needed, to reference only the relay node(s) in your stake pool configuration. For example, the following lines configure a single relay node where `<RelayNodeIPAddress>` is the IP address of the relay node:
 
 ```bash
 {
@@ -91,7 +121,7 @@ cp topology.json topology.json.bak
 To follow best practices, set `<RelayNodeIPAddress>` to the LAN IP address of the computer hosting the relay node when possible. If necessary—for example, if you set up a relay node on a different network than the block-producing node—then use the WAN IP address. If you configure DNS records mapping multiple relay node IP addresses to the same subdomain, then set the `valency` key to indicate the number of IP addresses associated with the subdomain.
 {% endhint %}
 
-1. Save and close the `topology.json` file.
+4. Save and close the `topology-legacy.json` file.
 
 ## Configuring Port Forwarding
 
@@ -107,4 +137,4 @@ To help confirm that your ports are configured as needed, you can use the [Port 
 
 ## Conclusion
 
-The topology configuration described above allows your nodes to connect with each other and synchronize with the blockchain. Operating a stake pool requires that your relay node(s) also connect with other relay nodes in the Cardano network, as explained in the section [Configuring Network Topology](../part-iii-operation/configuring-network-topology.md). However, the _How to Set Up a Cardano Stake Pool_ guide first explains other tasks that you need to complete before your stake pool joins the Cardano network.
+The topology configuration described above allows your nodes to connect with each other and synchronize with the blockchain. Operating a stake pool requires that your relay node(s) also connect with other relay nodes in the Cardano network, as explained in the section [Configuring Legacy Network Topology](../part-iii-operation/configuring-legacy-network-topology.md). However, the _How to Set Up a Cardano Stake Pool_ guide first explains other tasks that you need to complete before your stake pool joins the Cardano network.
