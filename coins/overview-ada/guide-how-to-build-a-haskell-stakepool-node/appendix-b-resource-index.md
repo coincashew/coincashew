@@ -15,7 +15,7 @@ The Cardano Resource Index aims to offer a comprehensive starting point of usefu
 [EMURGO] https://www.emurgo.io/
 [Cardano Node GitHub Repository] https://github.com/IntersectMBO/cardano-node
 [Intersect Member-based Organization] https://www.intersectmbo.org/
-[Cardano Node Wiki] https://github.com/input-output-hk/cardano-node-wiki
+[Cardano Node Wiki] https://github.com/input-output-hk/cardano-node-wiki/tree/main/docs
 [Installing Cardano Node from Source] https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md
 [Cardano Node CLI Reference] https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/reference/cardano-node-cli-reference.md
 [Essential Cardano] https://www.essentialcardano.io/
