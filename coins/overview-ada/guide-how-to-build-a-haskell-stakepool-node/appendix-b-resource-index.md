@@ -1,8 +1,8 @@
 # Appendix C - Cardano Resource Index
 
-Notoriously, Cardano documentation is scattered across the Internet, demonstrating the negative effects of decentralization without coordination.
+Notoriously, Cardano documentation is scattered across the Internet, forming a blatant example of the negative effects of decentralization without coordination.
 
-Taking a neutral standpoint, the Cardano Resource Index offers a broad range of useful Cardano resources available online for aspiring stake pool operators, listed alphabetically by name or subject area, including an accurate description of content available from each resource.
+The Cardano Resource Index aims to present succinctly and neutrally a broad range of useful Cardano resources available online for aspiring stake pool operators, listed alphabetically by name or subject area, including an accurate description of content available from each resource.
 
 [Staking Guide for Delegators] https://adastakingguide.com/
 [Cardano] https://cardano.org/
