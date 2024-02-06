@@ -2,7 +2,7 @@
 
 Notoriously, Cardano documentation is scattered across the Internet, forming a visible example for all of the negative effects of decentralization without coordination.
 
-The Cardano Resource Index aims to present a broad range of useful Cardano resources available online for aspiring stake pool operators neutrally and succinctly, listed alphabetically by name or subject area, including an accurate description of content available at each resource.
+The Cardano Resource Index aims to present a broad range of useful Cardano resources available online for aspiring stake pool operators succinctly and neutrally, listed alphabetically by name or subject area, including an accurate description of content available at each resource.
 
 [Staking Guide for Delegators] https://adastakingguide.com/
 [Cardano] https://cardano.org/
