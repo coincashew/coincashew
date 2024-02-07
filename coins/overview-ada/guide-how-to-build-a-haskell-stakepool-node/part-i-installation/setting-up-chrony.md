@@ -18,9 +18,9 @@ To create the `chrony.conf` config file, copy and paste the following:
 
 ```bash
 cat > $HOME/chrony.conf << EOF
-pool time.google.com       iburst minpoll 1 maxpoll 2 maxsources 3
-pool ntp.ubuntu.com        iburst minpoll 1 maxpoll 2 maxsources 3
-pool us.pool.ntp.org     iburst minpoll 1 maxpoll 2 maxsources 3
+pool time.google.com       iburst minpoll 1 maxpoll 2 maxdelay 0.3 maxsources 3
+pool ntp.ubuntu.com        iburst minpoll 1 maxpoll 2 maxdelay 0.3 maxsources 3
+pool us.pool.ntp.org     iburst minpoll 1 maxpoll 2 maxdelay 0.3 maxsources 3
 
 # This directive specify the location of the file containing ID/key pairs for
 # NTP authentication.
