@@ -1,6 +1,6 @@
 # Appendix C - Cardano Resource Index
 
-Cardano documentation tends to be scattered around the Internet. The Cardano Resource Index aims to present cohesively and neutrally a broad range of useful Cardano resources for aspiring stake pool operators available online, listed alphabetically by name or subject area, including an accurate description of content available at each resource.
+Cardano documentation tends to be scattered around the Internet. The Cardano Resource Index aims to present cohesively and neutrally a well-rounded collection of Cardano resources available online and useful for aspiring stake pool operators, listed alphabetically by name or subject area, including an accurate description of content available at each resource.
 
 [Staking Guide for Delegators] https://adastakingguide.com/
 [Cardano] https://cardano.org/
