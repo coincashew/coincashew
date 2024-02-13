@@ -2,13 +2,13 @@
 
 Cardano documentation tends to be scattered around the Internet, including out-of-date and duplicate information.
 
-The Cardano Resource Index aims to present, without bias or self-interest, a well-rounded collection of general Cardano resources available online and useful for new stake pool operators, listed alphabetically by name or subject area, including an accurate description of content available at each resource.
+The Cardano Resource Index aims to present, without bias, a well-rounded collection of general Cardano resources available online and useful for new stake pool operators, listed alphabetically by name or topic, including an accurate description of content available from each resource.
 
 [BlockFrost.io](https://blockfrost.io/) offers an Application Programming Interface (API), webhooks and InterPlanetary File System (IPFS) decentralized file storage, allowing you to tap into Cardano's potential without the need for manual checks.
 
 [Cardano.org](https://cardano.org/) offers mainly marketing information describing the Cardano ecosystem.
 
-[Cardano Developer Portal](https://developers.cardano.org/) provides technical details related to developing on Cardano mainnet.
+[Cardano Developer Portal](https://developers.cardano.org/) provides technical details related to developing on Cardano mainnet. See also the [Stake Pool Course](#stakepoolcourse).
 
 [Cardano Docs](https://docs.cardano.org/) publishes content that describes and supports the features on Cardano mainnet and testnet environments, including information on all the core components of Cardano; details of Cardano design and architecture; how the Cardano network works; explanations of the fee structure and monetary policy; a glossary of terms; and, community resources.
 
@@ -58,8 +58,8 @@ The Cardano Resource Index aims to present, without bias or self-interest, a wel
 
 [PoolTool](https://pooltool.io/)
 
-[Project Catalyst](https://projectcatalyst.io/)
+[Project Catalyst](https://projectcatalyst.io/) enables the Cardano community to submit ideas, vote and fund innovative proposals solving real-world challenges in the Cardano ecosystem.
 
-[Stake Pool Course](https://developers.cardano.org/docs/operate-a-stake-pool/)
+[Stake Pool Course](https://developers.cardano.org/docs/operate-a-stake-pool/) <a href="#stakepoolcourse" id="stakepoolcourse"></a> publishes guidelines and procedures for setting up a Cardano stake pool.
 
-[Staking Guide for Delegators](https://adastakingguide.com/) explains in detail to ADA holders the factors involved in making decisions related to selecting a stake pool for delegating ADA that prioritizes earning rewards, as well as the health of the Cardano network, without favouring any particular stake pool(s).
+[Staking Guide for Delegators](https://adastakingguide.com/) explains in detail for ADA holders the factors involved in making decisions related to selecting a stake pool for delegating ADA that prioritizes earning rewards, as well as the health of the Cardano network, without favouring any particular stake pool(s).
