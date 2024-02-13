@@ -1,6 +1,6 @@
 # Appendix B - Cardano Resource Index
 
-Cardano documentation tends to be scattered around the Internet, including out-of-date and duplicate information.
+Cardano documentation tends to be scattered around the Internet, including information that may be out of date or duplicate. Some members of the Cardano community contribute in multiple roles.
 
 The Cardano Resource Index aims to present, without bias, a well-rounded collection of general Cardano resources available online and useful for new stake pool operators, listed alphabetically by name or topic, including an accurate description of content available from each resource.
 
