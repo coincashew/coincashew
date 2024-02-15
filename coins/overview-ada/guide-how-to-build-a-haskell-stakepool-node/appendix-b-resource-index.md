@@ -42,19 +42,19 @@ The Cardano Resource Index aims to present, without bias, a well-rounded collect
 
 [eUTxO](https://eutxo.org/) is a visual blockchain explorer for Cardano.
 
-[Guild Operators](https://cardano-community.github.io/guild-operators/) offers various scripts and other software that stake pool operators may use to simplify setting up, managing and monitoring a stake pool.
+[Guild Operators](https://cardano-community.github.io/guild-operators/) offer various scripts and other software that stake pool operators may use to simplify setting up, managing and monitoring a stake pool.
 
 [Input Output](https://iohk.io/en/) is a founding entity of Cardano, and of the world’s pre-eminent blockchain research and engineering companies.
 
 [Input Output Blog](https://iohk.io/en/blog/posts/page-1/) regularly publishes details related to current projects at [Input Output](https://iohk.io/en/).
 
-[Installing Cardano Node from Source](https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md) provides a detailed procedure for compiling and installing Cardano Node software on a computer.
+[Installing Cardano Node from Source](https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md) provides a detailed procedure for compiling and installing Cardano Node software on your local computer.
 
 [Intersect Member-based Organization](https://www.intersectmbo.org/) is tasked with bringing together the Cardano community behind a shared vision to enable a more resilient, secure, transparent and innovative Cardano ecosystem.
 
 [Lace](https://www.lace.io/) is a light wallet platform for exploring Cardano and Web3, developed by [Input Output](https://iohk.io/en/).
 
-[Mithril Guide](https://mithril.network/doc/) provides a complete guide to the Mithril project, which allows you to restore the Cardano blockchain for an instance of Cardano Node using snapshots more quickly than the time required to synchronize the full blockchain ledger from the network.
+[Mithril Guide](https://mithril.network/doc/) provides a complete guide to the Mithril project, which allows you to restore the Cardano blockchain on your local computer using snapshots, more quickly than the time required to synchronize the full blockchain ledger from the network.
 
 [PoolTool](https://pooltool.io/) is an online platform designed to facilitate interaction between Cardano stake pool operators and delegators.
 
