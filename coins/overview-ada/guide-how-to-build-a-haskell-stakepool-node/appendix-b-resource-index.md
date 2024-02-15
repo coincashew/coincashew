@@ -1,8 +1,8 @@
 # Appendix B - Cardano Resource Index
 
-Cardano documentation tends to be scattered around the Internet, including information that may be out of date or duplicate. Some members of the Cardano community contribute in multiple roles.
+Cardano documentation tends to be scattered around the Internet, including duplicate or out-of-date information. Some members of the Cardano community contribute in multiple roles.
 
-The Cardano Resource Index aims to present, without bias, a well-rounded collection of general Cardano resources available online and useful for new stake pool operators, listed alphabetically by name or topic, including an accurate description of content available from each resource.
+The Cardano Resource Index aims to present, without bias, a well-rounded collection of general Cardano resources available online and useful for stake pool operators, listed alphabetically by name or topic, including an accurate description of content available from each resource.
 
 [BlockFrost.io](https://blockfrost.io/) offers an Application Programming Interface (API), webhooks and InterPlanetary File System (IPFS) decentralized file storage, allowing you to tap into Cardano's potential without the need for manual checks.
 
@@ -14,7 +14,7 @@ The Cardano Resource Index aims to present, without bias, a well-rounded collect
 
 [Cardano Environment Configuration Files](https://book.play.dev.cardano.org/environments.html) allows you to download official Cardano Node configuration files for mainnet and testing environments.
 
-[Cardano Explorer](https://cexplorer.io/), online since the Incentivized Testnet (ITN) in 2019, offers the oldest and most fully featured blockchain explorer on the Cardano network.
+[Cardano Explorer](https://cexplorer.io/), online since the Incentivized Testnet (ITN) in 2019, offers the oldest and most fully featured blockchain explorer for the Cardano network.
 
 [Cardano Forum](https://forum.cardano.org/) offers a platform for discussing and sharing information on a wide range of topics within the Cardano community.
 
@@ -48,15 +48,15 @@ The Cardano Resource Index aims to present, without bias, a well-rounded collect
 
 [Input Output Blog](https://iohk.io/en/blog/posts/page-1/) regularly publishes details related to current projects at [Input Output](https://iohk.io/en/).
 
-[Installing Cardano Node from Source](https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md)
+[Installing Cardano Node from Source](https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md) provides a detailed procedure for compiling and installing Cardano Node software on a computer.
 
-[Intersect Member-based Organization](https://www.intersectmbo.org/)
+[Intersect Member-based Organization](https://www.intersectmbo.org/) is tasked with bringing together the Cardano community behind a shared vision to enable a more resilient, secure, transparent and innovative Cardano ecosystem.
 
 [Lace](https://www.lace.io/) is a light wallet platform for exploring Cardano and Web3, developed by [Input Output](https://iohk.io/en/).
 
 [Mithril Guide](https://mithril.network/doc/) provides a complete guide to the Mithril project, which allows you to restore the Cardano blockchain for an instance of Cardano Node using snapshots more quickly than the time required to synchronize the full blockchain ledger from the network.
 
-[PoolTool](https://pooltool.io/)
+[PoolTool](https://pooltool.io/) is an online platform designed to facilitate interaction between Cardano stake pool operators and delegators.
 
 [Project Catalyst](https://projectcatalyst.io/) enables the Cardano community to submit ideas, vote and fund innovative proposals solving real-world challenges in the Cardano ecosystem.
 
