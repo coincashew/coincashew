@@ -142,8 +142,6 @@ ExecStart=/usr/local/bin/besu/bin/besu \
   --data-storage-format=BONSAI \
   --data-path="/var/lib/besu" \
   --Xplugin-rocksdb-high-spec-enabled \
-  --Xsnapsync-synchronizer-flat-db-healing-enabled=true \
-  --Xbonsai-trie-log-pruning-enabled=true \
   --engine-jwt-secret=/secrets/jwtsecret
   
 [Install]
