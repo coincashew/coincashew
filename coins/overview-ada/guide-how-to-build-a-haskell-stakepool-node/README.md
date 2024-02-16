@@ -36,7 +36,9 @@ Pull requests or issues can be submitted on [github](https://github.com/coincash
 ## :tada: Introduction
 
 {% hint style="info" %}
-If you want to support this free educational Cardano content or found this helpful, visit [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. Much appreciated in advance. :pray:
+If you want to support this free educational Cardano content or found this helpful, please delegate to [Change Pool](https://change.paradoxicalsphere.com) or visit [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses.&#x20;
+
+Much appreciated in advance. :pray:
 {% endhint %}
 
 ## :page\_facing\_up: Change Log
@@ -44,11 +46,11 @@ If you want to support this free educational Cardano content or found this helpf
 * February 3, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
     * Creating the [Cardano Resource Index](appendix-b-resource-index.md)
-	* Removing out-of-date information related to delegation strategies that founding entities no longer use
-	* Distinguishing between legacy and peer-to-peer topologies
+    * Removing out-of-date information related to delegation strategies that founding entities no longer use
+    * Distinguishing between legacy and peer-to-peer topologies
     * Updating system requirements
-	* Incorporating miscellaneous minor improvements to procedures
-	* Updating broken hyperlinks
+    * Incorporating miscellaneous minor improvements to procedures
+    * Updating broken hyperlinks
 * January 2, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
     * Updating prerequisites and procedures for Cardano Node 8.7.2
