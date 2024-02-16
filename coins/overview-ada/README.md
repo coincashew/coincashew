@@ -15,8 +15,8 @@ description: >-
 | Website Foundation | [https://cardanofoundation.org/](https://cardanofoundation.org/)                                 |
 | Website IOHK       | [https://iohk.io/](https://iohk.io/)                                                             |
 | Website Emurgo     | [https://emurgo.io/](https://emurgo.io/)                                                         |
-| Source Code        | [https://github.com/input-output-hk/cardano-sl/](https://github.com/input-output-hk/cardano-sl/) |
-| Whitepaper         | [https://www.cardano.org/en/academic-papers/](https://www.cardano.org/en/academic-papers/)       |
+| Source Code        | [https://github.com/IntersectMBO](https://github.com/IntersectMBO) |
+| Whitepaper         | [https://iohk.io/en/research/library/](https://iohk.io/en/research/library/)       |
 
 ## :person\_raising\_hand: Social Media and Community
 

@@ -16,7 +16,11 @@ sudo systemctl start cardano-node
 {% endtab %}
 {% endtabs %}
 
-Install gLiveView, a monitoring tool. <a href="#gliveview" id="gliveview"></a>
+{% hint style="success" %}
+Congratulations! Your nodes are running successfully. Synchronizing your local copies of the Cardano blockchain ledger with the network may take about 18 hours.
+{% endhint %}
+
+To monitor your Cardano nodes, install gLiveView. <a href="#gliveview" id="gliveview"></a>
 
 {% hint style="info" %}
 gLiveView displays crucial node status information and works well with systemd services.
@@ -54,7 +58,7 @@ journalctl --unit=cardano-node --follow
 ****:sparkles: **Pro tip**: If you synchronize a node, then you can copy the database directory to a different computer to save time synchronizing another node.
 {% endhint %}
 
-Run gLiveView to monitor the progress of the node synchronizing with the blockchain.
+Run gLiveView to monitor the progress of the local Cardano Node synchronizing with the blockchain.
 
 ```
 ./gLiveView.sh
@@ -63,7 +67,3 @@ Run gLiveView to monitor the progress of the node synchronizing with the blockch
 Sample output of gLiveView.
 
 ![](../../../../.gitbook/assets/glive-update2.jpg)
-
-{% hint style="success" %}
-Congratulations! Your node is running successfully now. Let it sync up.
-{% endhint %}

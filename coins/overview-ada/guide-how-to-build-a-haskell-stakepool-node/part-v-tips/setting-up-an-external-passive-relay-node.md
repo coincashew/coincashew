@@ -245,7 +245,7 @@ Specific to your networking setup or cloud provider settings, ensure your relay 
 :sparkles: **Port Forwarding Tip**: Check that your relay port 6000 is open with [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/) or [https://canyouseeme.org/](https://canyouseeme.org) .
 {% endhint %}
 
-Additionally, if you have node-exporter installed for grafana stats, you will need to open ports 9100 and 12798. Don't forget to update `prometheus.yml` on your prometheus server (aka relaynode1). Restart prometheus service for the new relay node to appear in your dashboard.
+Additionally, if you have prometheus-node-exporter installed for providing Grafana statistics, then you need to open ports 9100 and 12798. Do not forget to update `prometheus.yml` on your prometheus server (aka relaynode1). Restart the prometheus service so that the new relay node appears in your dashboard.
 
 ## :woman\_technologist: Configuring Topology for Existing Nodes
 
@@ -263,7 +263,7 @@ Example snippet to add to your block producer's topology file. Add a comma to se
  }
 ```
 
-For relay nodes, [manage your topology file](../part-iii-operation/configuring-network-topology.md) or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
+For relay nodes, [manage your topology file](../part-iii-operation/configuring-legacy-network-topology.md) or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
 
 ## :arrows\_counterclockwise: Restarting Nodes
 

@@ -134,29 +134,14 @@ sudo ldconfig
 ```
 ## Installing the blst Library <a href="#blst" id="blst"></a>
 
-Use the following procedure to install the `blst` library on your air-gapped, offline computer without connecting to the Internet.
+**To install the `blst` library on your air-gapped, offline computer without connecting to the Internet:**
 
-1. After cloning the `blst` GitHub repository at https://github.com/supranational/blst on a block-producing node or relay node, using removable media copy the `blst` folder to your air-gapped, offline computer.
+1. Using removable media, copy the `blst` folder from a block-producing or relay node where you installed the library to your air-gapped, offline computer.
 
 2. Type the following commands:
 
 ```
 cd blst
-git checkout v0.3.10
-./build.sh
-cat > libblst.pc << EOF
-prefix=/usr/local
-exec_prefix=\${prefix}
-libdir=\${exec_prefix}/lib
-includedir=\${prefix}/include
-
-Name: libblst
-Description: Multilingual BLS12-381 signature library
-URL: https://github.com/supranational/blst
-Version: 0.3.10
-Cflags: -I\${includedir}
-Libs: -L\${libdir} -lblst
-EOF
 sudo cp libblst.pc /usr/local/lib/pkgconfig/
 sudo cp bindings/blst_aux.h bindings/blst.h bindings/blst.hpp /usr/local/include/
 sudo cp libblst.a /usr/local/lib

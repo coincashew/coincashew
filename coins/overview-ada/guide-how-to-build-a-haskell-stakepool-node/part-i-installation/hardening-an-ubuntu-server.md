@@ -389,14 +389,17 @@ sudo systemctl restart fail2ban
 
 The standard UFW firewall can be used to control network access to your node.
 
-With any new installation, ufw is disabled by default. Enable it with the following settings.
+With any new installation, UFW is disabled by default. Enable UFW. Assuming that you use the default profile allowing outgoing traffic and denying incoming traffic, open the following ports to incoming traffic:
 
 * Port 22 (or your random port #) TCP for SSH connection
 * Port 123 UDP for chrony ntp
-* Port 6000 TCP for p2p traffic
-* Port 3000 TCP for Grafana web server (if applicable)
-* Port 9100 tcp for Prometheus node data
-* Port 12798 tcp for Prometheus cardano-node metrics data
+* Port 6000 TCP for Cardano network traffic
+
+If you install a Grafana dashboard for monitoring your Cardano stake pool, then also open the following ports in UFW:
+
+* Port 3000 TCP for Grafana web server
+* Port 9100 TCP for Prometheus Node Exporter data
+* Port 12798 TCP for Cardano Node data for Prometheus
 
 ```bash
 # By default, deny all incoming traffic and allow outgoing traffic.

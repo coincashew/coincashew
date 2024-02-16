@@ -22,9 +22,9 @@ As a Stake Pool Operator (SPO) for Cardano, you need:
 
 ## :reminder\_ribbon: Minimum Stake Pool Hardware Requirements
 
-* **Two separate servers**: 1 for block producer node, 1 for relay node
+* **Two separate servers**: 1 block producer node, 1 unregistered relay node using legacy network topology
 * **One air-gapped offline machine (cold environment)**
-* **Operating system**: 64-bit Linux (i.e. Ubuntu Server 20.04 LTS)
+* **Operating system**: 64-bit Linux (i.e. Ubuntu 22.04 LTS)
 * **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
 * **Memory:** 24GB RAM
 * **Storage:** 200GB free storage
@@ -35,9 +35,9 @@ As a Stake Pool Operator (SPO) for Cardano, you need:
 
 ## :man\_lifting\_weights: Recommended Future-proof Stake Pool Hardware Setup
 
-* **Three separate servers**: 1 for block producer node, 2 for relay nodes
+* **Four separate servers**: 1 block producer node, 3 relay nodes (2 registered relays using peer-to-peer networking and 1 unregistered relay using legacy network topology)
 * **One air-gapped offline machine (cold environment)**
-* **Operating system**: 64-bit Linux (i.e. Ubuntu 20.04 LTS)
+* **Operating system**: 64-bit Linux (i.e. Ubuntu 22.04 LTS)
 * **Processor:** 4 core or higher CPU
 * **Memory**: 24GB+ RAM
 * **Storage**: 250GB+ free storage
@@ -52,9 +52,7 @@ If you need ideas on how to harden your stake pool's nodes, refer to [this guide
 
 ## :tools: Setup Ubuntu
 
-If you need to install **Ubuntu Server**, refer [to this guide.](https://ubuntu.com/tutorials/install-ubuntu-server#1-overview)
-
-For instructions on installing **Ubuntu Desktop**, refer [to this guide.](https://www.coincashew.com/coins/overview-xtz/guide-how-to-setup-a-baker/install-ubuntu)
+Refer to the respective guide to [Install Ubuntu Server](https://ubuntu.com/tutorials/install-ubuntu-server) or [Install Ubuntu Desktop](https://ubuntu.com/tutorials/install-ubuntu-desktop).
 
 ## :bricks: Rebuilding Nodes
 

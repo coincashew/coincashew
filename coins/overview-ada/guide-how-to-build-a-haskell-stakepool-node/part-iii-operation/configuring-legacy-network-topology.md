@@ -1,17 +1,17 @@
-# Configuring Network Topology
+# Configuring Legacy Network Topology
 
 {% hint style="info" %}
-Shelley has been launched without peer-to-peer (p2p) node discovery so that means we will need to manually add trusted nodes in order to configure our topology. This is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
+Configuring network topology is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.
 {% endhint %}
 
 ## :rocket: Activating Your Relay Node
 
 {% hint style="info" %}
-Credits to [GROWPOOL](https://twitter.com/PoolGrow) for this addition and credits to [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) on creating this process.
+Credits to [GROWPOOL](https://twitter.com/PoolGrow) for this addition and credits to [Guild Operators](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater/) on creating this process.
 {% endhint %}
 
 {% hint style="info" %}
-**How Topology API works**
+**How the Legacy Topology API works**
 
 1. Your relay node pings an API server.
 2. When the API server is convinced that your relay node is stable and is actually a running Cardano node, based on the ability to report the current block number accurately a number of times over a period of time, then the domain name or IP address of your node is automatically added to a list of other nodes that have been vetted similarly for quality and stability.
@@ -21,7 +21,7 @@ Credits to [GROWPOOL](https://twitter.com/PoolGrow) for this addition and credit
 Credits for the high level explanation: [Paradoxical Sphere - Change (CHG) Cardano Stake Pool Operator](https://change.paradoxicalsphere.com)
 {% endhint %}
 
-Create the `topologyUpdater.sh` script which publishes your node information to a topology fetch list.
+Create the `topologyUpdater.sh` script to publish your node information to a topology fetch list.
 
 ```bash
 ###
@@ -102,7 +102,7 @@ rm ${NODE_HOME}/crontab-fragment.txt
 After four hours and four updates, your node IP will be registered in the topology fetch list.
 {% endhint %}
 
-## :newspaper: Updating Topology Files on a Relay Node
+## :newspaper: Updating Legacy Topology Files on a Relay Node
 
 {% hint style="danger" %}
 Complete this section after **four hours** when your relay node IP is properly registered.
@@ -120,7 +120,7 @@ cat > $NODE_HOME/relay-topology_pull.sh << EOF
 #!/bin/bash
 BLOCKPRODUCING_IP=<BLOCK PRODUCERS IP ADDRESS>
 BLOCKPRODUCING_PORT=6000
-curl -s -o $NODE_HOME/topology.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:1|relays-new.cardano-mainnet.iohk.io:3001:2"
+curl -s -o $NODE_HOME/topology-legacy.json "https://api.clio.one/htopology/v1/fetch/?max=20&customPeers=\${BLOCKPRODUCING_IP}:\${BLOCKPRODUCING_PORT}:1|relays-new.cardano-mainnet.iohk.io:3001:2"
 EOF
 ```
 {% endtab %}
@@ -140,7 +140,7 @@ EOF
 {% endtab %}
 {% endtabs %}
 
-Add permissions and pull new topology files.
+Add permissions and pull updated topology files.
 
 ```bash
 ###
@@ -150,7 +150,7 @@ chmod +x relay-topology_pull.sh
 ./relay-topology_pull.sh
 ```
 
-The new topology takes after after restarting your stake pool.
+To implement the updated topology, restart your stake pool.
 
 ```bash
 ###
@@ -160,11 +160,11 @@ sudo systemctl restart cardano-node
 ```
 
 {% hint style="warning" %}
-Don't forget to restart your relay nodes after every time you fetch the topology!
+Don't forget to restart your relay nodes after every time you fetch topology!
 {% endhint %}
 
 {% hint style="danger" %}
-:octagonal\_sign: **Critical Key Security Reminde**r: The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer. Namely, the following three files.
+:octagonal\_sign: **Critical Key Security Reminder**: The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer. Namely, the following three files.
 
 ```bash
 ###

@@ -115,7 +115,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 |  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
 |  :----------:  | :------------------: | :---------: | :-----------: |
-| December, 2023 |         8.7.2        |    8.10.7   |    3.8.1.0    |
+|  January 2024  |         8.7.3        |    8.10.7   |    3.8.1.0    |
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -168,7 +168,7 @@ sudo make install
 
 **To install the blst library:**
 
-As of version 8.7.2, the `blst` library is required.
+In version 8.7.2 and later, the `blst` library is required.
 
 ```
 cd $HOME/git
@@ -212,15 +212,17 @@ sudo systemctl stop <CardanoServiceName>.service
 If you follow the Coin Cashew instructions for [Creating Startup Scripts](../part-ii-configuration/creating-startup-scripts.md), then `<CardanoServiceName>` is `cardano-node`
 {% endhint %}
 
-2\. To back up the configuration files that your node currently uses, type the following commands where `<ConfigurationFileFolder>` is the path to the folder where the configuration files are located:
+2\. To back up the configuration files that your node currently uses, type the following commands as appropriate where `<ConfigurationFileFolder>` is the path to the folder where the configuration files are located:
 
 ```bash
 cd <ConfigurationFileFolder>
-mv mainnet-config.json mainnet-config.bak
-mv mainnet-byron-genesis.json mainnet-byron-genesis.bak
-mv mainnet-shelley-genesis.json mainnet-shelley-genesis.bak
-mv mainnet-alonzo-genesis.json mainnet-alonzo-genesis.bak
-mv mainnet-topology.json mainnet-topology.bak
+mv config.json config.bak
+mv byron-genesis.json byron-genesis.bak
+mv shelley-genesis.json shelley-genesis.bak
+mv alonzo-genesis.json alonzo-genesis.bak
+mv conway-genesis.json conway-genesis.bak
+mv topology.json topology.bak
+mv topology-legacy.json topology-legacy.bak
 ```
 
 {% hint style="info" %}

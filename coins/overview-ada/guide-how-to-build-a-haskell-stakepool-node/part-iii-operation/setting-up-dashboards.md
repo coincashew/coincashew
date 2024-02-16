@@ -92,18 +92,22 @@ scrape_configs:
   - job_name: 'prometheus'
 
     static_configs:
+	
       - targets: ['localhost:9100']
         labels:
           alias: 'relaynode1'
-          type:  'cardano-node'
+          type:  'prometheus-node-exporter'
+		  
       - targets: ['<block producer ip address>:9100']
         labels:
           alias: 'block-producer-node'
-          type:  'cardano-node'
+          type:  'prometheus-node-exporter'
+		  
       - targets: ['<block producer ip address>:12798']
         labels:
           alias: 'block-producer-node'
           type:  'cardano-node'
+		  
       - targets: ['localhost:12798']
         labels:
           alias: 'relaynode1'

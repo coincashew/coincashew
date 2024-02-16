@@ -319,7 +319,7 @@ ping 10.0.0.2
 {% tab title="Cardano" %}
 #### Cardano-specific Configuration
 
-Update and/or review your topology.json file(s) and/or [relay-topology\_pull.sh](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/configuring-network-topology#updating-topology-files-on-a-relay-node) script to ensure the "addr" matches this new tunneled IP address, and not the usual public node IP address.&#x20;
+Update and/or review your topology.json file(s) and/or [relay-topology\_pull.sh](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/configuring-legacy-network-topology#updating-topology-files-on-a-relay-node) script to ensure the "addr" matches this new tunneled IP address, and not the usual public node IP address.&#x20;
 
 
 
