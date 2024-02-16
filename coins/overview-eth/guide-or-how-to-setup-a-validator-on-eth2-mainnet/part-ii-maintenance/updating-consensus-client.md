@@ -132,6 +132,12 @@ yarn install
 yarn run build
 ```
 
+:warning: In case of build errors or missing dependencies, run the following command.
+
+```bash
+yarn clean:nm && yarn install
+```
+
 Verify Lodestar was installed properly by displaying the version.
 
 ```bash
