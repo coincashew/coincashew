@@ -325,7 +325,7 @@ Now you can access Grafana on your local machine by pointing a web browser to [h
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
 9. **Download and save** your consensus client's json file. More json dashboard options available below. \[ [Lighthouse](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark\_ETH\_staking\_dashboard.json) | [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon\_nodes\_Grafana\_dashboard.json)| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less\_10\_validators.json)| [Prysm > 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more\_10\_validators.json) | [Lodestar](https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboards/lodestar\_summary.json) ]
-10. **Download and save** your execution client's json file \[ [Geth](https://gist.githubusercontent.com/karalabe/e7ca79abdec54755ceae09c08bd090cd/raw/3a400ab90f9402f2233280afd086cb9d6aac2111/dashboard.json) | [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)| [Nethermind](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/provisioning/dashboards/nethermind.json) | [Erigon](https://raw.githubusercontent.com/ledgerwatch/erigon/devel/cmd/prometheus/dashboards/erigon.json) | [Reth](https://raw.githubusercontent.com/paradigmxyz/reth/main/etc/grafana/dashboards/overview.json) ]
+10. **Download and save** your execution client's json file \[ [Geth](https://github.com/ethereum/go-ethereum/files/14211070/Geth-Cancun-Prometheus.json) | [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)| [Nethermind](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/provisioning/dashboards/nethermind.json) | [Erigon](https://raw.githubusercontent.com/ledgerwatch/erigon/devel/cmd/prometheus/dashboards/erigon.json) | [Reth](https://raw.githubusercontent.com/paradigmxyz/reth/main/etc/grafana/dashboards/overview.json) ]
 11. **Download and save** a [node-exporter dashboard](https://grafana.com/api/dashboards/11074/revisions/9/download) for general system monitoring
 12. Click **Create +** icon > **Import**
 13. Add the consensus client dashboard via **Upload JSON file**
@@ -430,6 +430,10 @@ Credits: [https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboar
 ![Dashboard by karalabe](../../../../.gitbook/assets/geth-dash.png)
 
 Credits: [https://gist.github.com/karalabe/e7ca79abdec54755ceae09c08bd090cd](https://gist.github.com/karalabe/e7ca79abdec54755ceae09c08bd090cd)
+
+
+
+Blob enabled dashboard: [https://github.com/ethereum/go-ethereum/files/14211070/Geth-Cancun-Prometheus.json](https://github.com/ethereum/go-ethereum/files/14211070/Geth-Cancun-Prometheus.json)
 {% endtab %}
 
 {% tab title="Besu" %}
