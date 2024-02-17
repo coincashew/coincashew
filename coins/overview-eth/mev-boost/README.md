@@ -351,49 +351,13 @@ sudo nano /etc/systemd/system/validator.service
 {% endtab %}
 
 {% tab title="Teku" %}
-:fire:**TIP: Only do the following if running Teku validator in a separate client.**&#x20;
-
-:octagonal\_sign: **Most common Teku setups DO NOT use this configuration.**&#x20;
-
-:information\_source: **V2 and V1 staking setups DO NOT use this configuration.**
+For Teku running in standalone validator configuration,
 
 ```bash
 --validators-builder-registration-default-enabled=true
---validators-proposer-config="/var/lib/teku/proposerConfig.json"
 ```
 
-Create a proposerConfig.json file with the following:
-
-```bash
-sudo nano /var/lib/teku/proposerConfig.json
-```
-
-For example, enable MEV by default, and keep it disabled for a specific key.
-
-```
-{
-  "proposer_config": {
-    "0xa057816155ad77931185101128655c0191bd0214c201ca48ed887f6c4c6adf334070efcd75140eada5ac83a92506dd7a": {
-      "fee_recipient": "0x50155530FCE8a85ec7055A5F8b2bE214B3DaeFd3",
-      "builder": {
-        "enabled": false
-      }
-    }
-  },
-  "default_config": {
-    "fee_recipient": "0x6e35733c5af9B61374A128e6F85f553aF09ff89A",
-    "builder": {
-      "enabled": true
-    }
-  }
-}
-```
-
-Update file ownership permissions.
-
-```bash
-sudo chown consensus:consensus /var/lib/teku/proposerConfig.json
-```
+For Teku running in combined BN+VC configuration, there is no extra configuration needed.
 {% endtab %}
 
 {% tab title="Lodestar" %}
@@ -403,13 +367,13 @@ sudo chown consensus:consensus /var/lib/teku/proposerConfig.json
 {% endtab %}
 
 {% tab title="Nimbus" %}
-For Nimbus running in separate beacon node only configuration,
+For Nimbus running in standalone validator configuration,
 
 ```
 --payload-builder=true
 ```
 
-For Nimbus running in combined CL+VC configuration, there is no extra configuration needed.
+For Nimbus running in combined BN+VC configuration, there is no extra configuration needed.
 {% endtab %}
 
 {% tab title="Prysm" %}

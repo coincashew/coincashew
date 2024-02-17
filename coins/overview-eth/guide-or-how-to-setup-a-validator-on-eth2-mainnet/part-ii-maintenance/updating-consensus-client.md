@@ -195,6 +195,9 @@ rm teku.tar.gz
 Stop the services.
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl stop consensus
+</strong><strong>
+</strong><strong># If running Standalone Teku Validator
+</strong><strong>sudo systemctl stop validator
 </strong></code></pre>
 
 Remove old binaries, install new binaries and restart the services.
@@ -203,6 +206,9 @@ Remove old binaries, install new binaries and restart the services.
 sudo rm -rf /usr/local/bin/teku
 sudo mv $HOME/teku /usr/local/bin/teku
 sudo systemctl start consensus
+
+# If running Standalone Teku Validator
+sudo systemctl start validator
 ```
 
 </details>
@@ -232,7 +238,10 @@ cd $HOME/git/teku/build/install/teku/bin
 Stop the services.
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl stop consensus
-</strong></code></pre>
+</strong><strong>
+</strong># If running Standalone Teku Validator
+sudo systemctl stop validator
+</code></pre>
 
 Remove old binaries, install new binaries and restart the services.
 
@@ -240,6 +249,9 @@ Remove old binaries, install new binaries and restart the services.
 sudo rm -rf /usr/local/bin/teku
 sudo cp -a $HOME/git/teku/build/install/teku /usr/local/bin/teku
 sudo systemctl start consensus
+
+# If running Standalone Teku Validator
+sudo systemctl start validator
 ```
 
 </details>
@@ -417,7 +429,7 @@ sudo systemctl start consensus validator
 ## Step 2: Verify services and logs are working properly
 
 {% tabs %}
-{% tab title="Lighthouse | Prysm | Lodestar" %}
+{% tab title="Lighthouse | Prysm | Lodestar | Nimbus | Teku" %}
 ```bash
 # Verify services status
 sudo systemctl status consensus validator
@@ -433,7 +445,7 @@ sudo journalctl -fu validator
 ```
 {% endtab %}
 
-{% tab title=" Nimbus | Teku" %}
+{% tab title=" Combined BN+VC for Nimbus | Teku" %}
 ```bash
 # Check services status
 sudo systemctl status consensus 

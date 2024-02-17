@@ -78,7 +78,8 @@ sudo rm -rf /var/lib/lighthouse/validators
 #Lodestar
 sudo rm -rf /var/lib/lodestar/validators
 
-#Teku removed when uninstalling consensus client
+#Teku, if running Standalone Teku Validator
+sudo rm -rf /var/lib/teku_validator
 
 #Nimbus, if running standalone Nimbus Validator
 sudo rm -rf /var/lib/nimbus_validator

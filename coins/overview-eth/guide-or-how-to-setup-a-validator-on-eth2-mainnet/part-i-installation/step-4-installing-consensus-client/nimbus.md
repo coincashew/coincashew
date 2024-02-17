@@ -200,7 +200,7 @@ WantedBy=multi-user.target
 {% endtabs %}
 
 * Replace `<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
-* **Not staking?** If you only want a full node, use the Beacon Node Only configuration and delete the whole line beginning with
+* **Not staking?** If you only want a full node, use the Standalone Beacon Node configuration and delete the whole line beginning with
 
 ```
 --suggested-fee-recipient

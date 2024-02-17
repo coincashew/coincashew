@@ -112,8 +112,11 @@ sudo nano /etc/systemd/system/consensus.service
 
 Paste the following configuration into the file.
 
-<pre class="language-shell"><code class="lang-shell"><strong>[Unit]
-</strong>Description=Teku Consensus Layer Client service for Holesky
+{% tabs %}
+{% tab title="Standalone Beacon Node (Recommended)" %}
+```shell
+[Unit]
+Description=Teku Beacon Node Consensus Client service for Holesky
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -126,26 +129,83 @@ Restart=on-failure
 RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=900
-Environment=JAVA_OPTS=-Xmx5g
+Environment=JAVA_OPTS=-Xmx6g
+Environment=TEKU_OPTS=-XX:-HeapDumpOnOutOfMemoryError
 ExecStart=/usr/local/bin/teku/bin/teku \
-  --network holesky \
-  --data-path /var/lib/teku/ \
+  --network=holesky \
+  --data-path=/var/lib/teku/ \
   --data-storage-mode="prune" \
-  --initial-state="https://holesky.beaconstate.ethstaker.cc/eth/v2/debug/beacon/states/finalized" \
-  --ee-endpoint http://127.0.0.1:8551 \
-  --ee-jwt-secret-file /secrets/jwtsecret \
-  --rest-api-enabled true \
-  --metrics-enabled true \
-  --metrics-port 8008 \
-  --validator-keys /var/lib/teku/validator_keys:/var/lib/teku/validator_keys \
-  --validators-graffiti "" \
-  --validators-proposer-default-fee-recipient &#x3C;0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
+  --initial-state="https://holesky.beaconstate.ethstaker.cc" \
+  --ee-endpoint=http://127.0.0.1:8551 \
+  --ee-jwt-secret-file=/secrets/jwtsecret \
+  --rest-api-enabled=true \
+  --rest-api-port=5052 \
+  --p2p-port=9000 \
+  --p2p-peer-upper-bound=100 \
+  --p2p-peer-lower-bound=60 \
+  --metrics-enabled=true \
+  --metrics-port=8008 \
+  --validators-proposer-default-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
 
 [Install]
 WantedBy=multi-user.target
-</code></pre>
+```
 
-* Replace`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* **Not staking?** If you only want a full node, delete the line beginning with
+
+```
+--validators-proposer-default-fee-recipient
+```
+
+To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
+{% endtab %}
+
+{% tab title="Combined BN+VC" %}
+{% hint style="info" %}
+This configuration combines the beacon chain and validator into one running service. While it is simpler to manage and run, this configuration is less flexible when it comes to running EL+CL failover nodes or in times you wish to resync your execution client and temporarily use [Rocket Pool's Rescue Node](https://rescuenode.com/docs/how-to-connect/solo).
+{% endhint %}
+
+```shell
+[Unit]
+Description=Teku Beacon Node + Validator Consensus Layer Client service for Holesky
+Wants=network-online.target
+After=network-online.target
+Documentation=https://www.coincashew.com
+
+[Service]
+Type=simple
+User=consensus
+Group=consensus
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGINT
+TimeoutStopSec=900
+Environment=JAVA_OPTS=-Xmx6g
+Environment=TEKU_OPTS=-XX:-HeapDumpOnOutOfMemoryError
+ExecStart=/usr/local/bin/teku/bin/teku \
+  --network=holesky \
+  --data-path=/var/lib/teku/ \
+  --data-storage-mode="prune" \
+  --initial-state="https://holesky.beaconstate.ethstaker.cc" \
+  --ee-endpoint=http://127.0.0.1:8551 \
+  --ee-jwt-secret-file=/secrets/jwtsecret \
+  --rest-api-enabled=true \
+  --rest-api-port=5052 \
+  --p2p-port=9000 \
+  --p2p-peer-upper-bound=100 \
+  --p2p-peer-lower-bound=60 \
+  --metrics-enabled=true \
+  --metrics-port=8008 \
+  --validator-keys=/var/lib/teku/validator_keys:/var/lib/teku/validator_keys \
+  --validators-graffiti="🏠🥩🪙🛡️" \
+  --validators-proposer-default-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
+
+[Install]
+WantedBy=multi-user.target
+```
+
+* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * **Not staking?** If you only want a full node, delete the whole three lines beginning with
 
 ```
@@ -155,6 +215,8 @@ WantedBy=multi-user.target
 ```
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
+{% endtab %}
+{% endtabs %}
 
 Run the following to enable auto-start at boot time.
 
