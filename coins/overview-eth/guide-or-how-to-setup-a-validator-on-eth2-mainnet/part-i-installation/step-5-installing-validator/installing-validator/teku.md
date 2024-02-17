@@ -95,7 +95,7 @@ ExecStart=/usr/local/bin/teku/bin/teku validator-client \
   --validators-proposer-default-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS> \
   --validators-graffiti="🏠🥩🪙🛡️" \
   --metrics-enabled=true \
-  --metrics-port=8008
+  --metrics-port=8009
 
 [Install]
 WantedBy=multi-user.target
