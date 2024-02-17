@@ -41,9 +41,10 @@ sudo mkdir -p /var/lib/teku_validator/validator_keys
 sudo cp $HOME/staking-deposit-cli/validator_keys/keystore* /var/lib/teku_validator/validator_keys
 ```
 
-Setup ownership permissions, including hardening the access to this directory.
+Create a service user for the validator service, then create data directories and setup ownership permissions, including hardening the access to this directory.
 
 ```bash
+sudo adduser --system --no-create-home --group validator
 sudo chown -R validator:validator /var/lib/teku_validator
 sudo chmod -R 700 /var/lib/teku_validator
 ```
@@ -94,7 +95,7 @@ ExecStart=/usr/local/bin/teku/bin/teku validator-client \
   --validators-proposer-default-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS> \
   --validators-graffiti="🏠🥩🪙🛡️" \
   --metrics-enabled=true \
-  --metrics-port=8009
+  --metrics-port=8008
 
 [Install]
 WantedBy=multi-user.target

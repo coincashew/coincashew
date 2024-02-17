@@ -144,7 +144,6 @@ ExecStart=/usr/local/bin/teku/bin/teku \
   --p2p-peer-upper-bound=100 \
   --p2p-peer-lower-bound=60 \
   --metrics-enabled=true \
-  --metrics-port=8008 \
   --validators-proposer-default-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
 
 [Install]

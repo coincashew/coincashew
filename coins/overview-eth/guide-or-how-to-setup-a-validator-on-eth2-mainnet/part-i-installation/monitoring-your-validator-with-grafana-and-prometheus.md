@@ -87,11 +87,11 @@ scrape_configs:
      static_configs:
        - targets: ['localhost:9100']
    - job_name: 'Nimbus'
-     metrics_path: /metrics    
+     metrics_path: /metrics
      static_configs:
        - targets: ['localhost:8008']
    - job_name: 'Nimbus_Validator'
-     metrics_path: /metrics    
+     metrics_path: /metrics
      static_configs:
        - targets: ['localhost:8009']
 ```
@@ -117,10 +117,6 @@ scrape_configs:
      metrics_path: /metrics
      static_configs:
        - targets: ['localhost:8008']
-   - job_name: 'Teku_Validator'
-     metrics_path: /metrics
-     static_configs:
-       - targets: ['localhost:8009']
 ```
 {% endtab %}
 
