@@ -71,7 +71,7 @@ ExecStart=/usr/local/bin/lodestar/lodestar validator \
   --network holesky \
   --dataDir /var/lib/lodestar/validators \
   --metrics true \
-  --graffiti "" \
+  --graffiti "🏠🥩🪙🛡️" \
   --suggestedFeeRecipient <0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
   
 [Install]
