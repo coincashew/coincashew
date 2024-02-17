@@ -136,7 +136,8 @@ WantedBy=multi-user.target
 
 <summary>Option 2 - Configuration for building from source</summary>
 
-<pre class="language-bash"><code class="lang-bash">[Unit]
+```bash
+[Unit]
 Description=Prysm validator Client service for mainnet
 Wants=network-online.target
 After=network-online.target
@@ -157,13 +158,13 @@ ExecStart=bazel run //cmd/validator --config=release -- \
   --datadir=/var/lib/prysm/validators \
   --beacon-rpc-provider=localhost:4000 \
   --wallet-dir=/var/lib/prysm/validators \
-<strong>  --wallet-password-file=/var/lib/prysm/validators/password.txt \
-</strong><strong>  --graffiti="🏠🥩🪙🛡️" \
-</strong>  --suggested-fee-recipient=&#x3C;0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
+  --wallet-password-file=/var/lib/prysm/validators/password.txt \
+  --graffiti="🏠🥩🪙🛡️" \
+  --suggested-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
 
 [Install]
 WantedBy=multi-user.target
-</code></pre>
+```
 
 </details>
 
