@@ -64,8 +64,9 @@ rm nimbus.tar.gz
 
 Install the binaries, display version and cleanup.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo mv nimbus/build/nimbus_beacon_node /usr/local/bin/nimbus_beacon_node
-</strong>nimbus_beacon_node --version
+<pre class="language-bash"><code class="lang-bash"><strong>sudo mv nimbus/build/nimbus_beacon_node /usr/local/bin
+</strong>sudo mv nimbus/build/nimbus_validator_client /usr/local/bin
+nimbus_beacon_node --version
 rm -r nimbus
 </code></pre>
 
@@ -102,9 +103,9 @@ cd $HOME/git/nimbus-eth2/build
 
 Install the binary.
 
-```bash
-sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/local/bin
-```
+<pre class="language-bash"><code class="lang-bash"><strong>sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/local/bin
+</strong><strong>sudo cp $HOME/git/nimbus-eth2/build/nimbus_validator_client /usr/local/bin
+</strong></code></pre>
 
 </details>
 
@@ -117,6 +118,50 @@ sudo nano /etc/systemd/system/consensus.service
 ```
 
 Paste the following configuration into the file.
+
+{% tabs %}
+{% tab title="Standalone Beacon Node (Recommended)" %}
+```shell
+[Unit]
+Description=Nimbus Consensus Layer Client service for Mainnet
+Wants=network-online.target
+After=network-online.target
+Documentation=https://www.coincashew.com
+
+[Service]
+Type=simple
+User=consensus
+Group=consensus
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGINT
+TimeoutStopSec=900
+ExecStart=/usr/local/bin/nimbus_beacon_node \
+  --network=mainnet \
+  --data-dir=/var/lib/nimbus \
+  --tcp-port=9000 \
+  --udp-port=9000 \
+  --max-peers=100 \
+  --rest-port=5052 \
+  --non-interactive \
+  --status-bar=false \
+  --in-process-validators=false \
+  --web3-url=http://127.0.0.1:8551 \
+  --rest \
+  --metrics \
+  --metrics-port=8008 \
+  --jwt-secret="/secrets/jwtsecret" \
+  --suggested-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
+
+[Install]
+WantedBy=multi-user.target
+```
+{% endtab %}
+
+{% tab title="Combined (BN+VC)" %}
+{% hint style="info" %}
+This configuration combines the beacon chain and validator into one running service. While it is simpler to manage and run, this configuration is less flexible when it comes to running EL+CL failover nodes or in times you wish to resync your execution client and temporarily use [Rocket Pool's Rescue Node](https://rescuenode.com/docs/how-to-connect/solo).
+{% endhint %}
 
 ```shell
 [Unit]
@@ -136,19 +181,26 @@ TimeoutStopSec=900
 ExecStart=/usr/local/bin/nimbus_beacon_node \
   --network=mainnet \
   --data-dir=/var/lib/nimbus \
+  --tcp-port=9000 \
+  --udp-port=9000 \
+  --max-peers=100 \
+  --rest-port=5052 \
   --web3-url=http://127.0.0.1:8551 \
   --rest \
   --metrics \
   --metrics-port=8008 \
   --jwt-secret="/secrets/jwtsecret" \
+  --graffiti="🏠🥩🪙🛡️!" \
   --suggested-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
 
 [Install]
 WantedBy=multi-user.target
 ```
+{% endtab %}
+{% endtabs %}
 
-* Replace\*\*`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`\*\* with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
-* **Not staking?** If you only want a full node, delete the whole line beginning with
+* Replace `<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* **Not staking?** If you only want a full node, use the Beacon Node Only configuration and delete the whole line beginning with
 
 ```
 --suggested-fee-recipient

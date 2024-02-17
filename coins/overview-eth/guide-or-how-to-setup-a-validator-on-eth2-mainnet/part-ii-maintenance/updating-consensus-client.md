@@ -272,15 +272,24 @@ rm nimbus.tar.gz
 Stop the services.
 
 <pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl stop consensus
+</strong><strong># If running standalone Nimbus Validator
+</strong><strong>sudo systemctl stop validator
 </strong></code></pre>
 
 Remove old binaries, install new binaries, cleanup and restart the services.
 
-<pre class="language-bash"><code class="lang-bash">sudo rm /usr/local/bin/nimbus_beacon_node
-sudo mv nimbus/build/nimbus_beacon_node /usr/local/bin/nimbus_beacon_node
-<strong>rm -r nimbus
-</strong><strong>sudo systemctl start consensus
-</strong></code></pre>
+```bash
+sudo rm /usr/local/bin/nimbus_beacon_node
+sudo rm /usr/local/bin/nimbus_validator_client
+sudo mv nimbus/build/nimbus_beacon_node /usr/local/bin
+sudo mv nimbus/build/nimbus_validator_client /usr/local/bin
+rm -r nimbus
+sudo systemctl start consensus
+# If running standalone Nimbus Validator
+sudo systemctl start validator
+```
+
+Reminder: In combined CL+VC Nimbus configuration, there will be no validator systemctl service.
 
 </details>
 
@@ -305,16 +314,25 @@ cd $HOME/git/nimbus-eth2/build
 
 Stop the services.
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl stop consensus
-</strong></code></pre>
+```bash
+sudo systemctl stop consensus
+# If running standalone Nimbus Validator
+sudo systemctl stop validator
+```
 
 Remove old binaries, install new binaries and restart the services.
 
 ```bash
 sudo rm /usr/local/bin/nimbus_beacon_node
+sudo rm /usr/local/bin/nimbus_validator_client
 sudo cp $HOME/git/nimbus-eth2/build/nimbus_beacon_node /usr/local/bin
+sudo cp $HOME/git/nimbus-eth2/build/nimbus_validator_client /usr/local/bin
 sudo systemctl start consensus
+# If running standalone Nimbus Validator
+sudo systemctl start validator
 ```
+
+Reminder: In combined CL+VC Nimbus configuration, there will be no validator systemctl service.
 
 </details>
 

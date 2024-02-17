@@ -337,10 +337,6 @@ ExecStart=/usr/local/bin/beacon-chain \
 
 **Validator Client Changes**
 
-{% hint style="warning" %}
-**Using Teku or Nimbus?** Skip this section on validator client changes. MEV configuration is set in your **consensus.service** file during the prior step.&#x20;
-{% endhint %}
-
 If required, add the appropriate flag to the `ExecStart` line of your **validator** **client** service file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
 ```bash
@@ -407,7 +403,13 @@ sudo chown consensus:consensus /var/lib/teku/proposerConfig.json
 {% endtab %}
 
 {% tab title="Nimbus" %}
-Runs in consensus client, not needed.
+For Nimbus running in separate beacon node only configuration,
+
+```
+--payload-builder=true
+```
+
+For Nimbus running in combined CL+VC configuration, there is no extra configuration needed.
 {% endtab %}
 
 {% tab title="Prysm" %}

@@ -90,6 +90,10 @@ scrape_configs:
      metrics_path: /metrics    
      static_configs:
        - targets: ['localhost:8008']
+   - job_name: 'Nimbus_Validator'
+     metrics_path: /metrics    
+     static_configs:
+       - targets: ['localhost:8009']
 ```
 {% endtab %}
 

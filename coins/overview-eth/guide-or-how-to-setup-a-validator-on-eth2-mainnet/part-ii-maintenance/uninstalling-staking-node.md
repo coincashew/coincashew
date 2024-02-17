@@ -76,7 +76,8 @@ sudo rm -rf /var/lib/lodestar/validators
 
 #Teku removed when uninstalling consensus client
 
-#Nimbus removed when uninstalling consensus client
+#Nimbus, if running standalone Nimbus Validator
+sudo rm -rf /var/lib/nimbus_validator
 
 #Prysm from Binaries
 sudo rm -rf /usr/local/bin/validator

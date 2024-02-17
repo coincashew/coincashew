@@ -2,6 +2,8 @@
 
 ## :page\_facing\_up: List of changes
 
+* Add Nimbus and Teku standalone beacon node/validator configurations
+  * Useful for [rescuenode](https://rescuenode.com/docs/) failover setups or pointing a single validator client at multiple EL/CL nodes for extra redundancy and minimizing supermajority risks
 * Added [Switching / Migration Execution Client guide](part-iii-tips/switching-execution-client.md) for both V2 and V1 staking setups
 * Added [Reth Execution Client](../testnet-holesky-validator/step-3-installing-execution-client/reth.md) - Alpha software, yet functional
 * Created guide on how to [connect your wallet software to your own Node's RPC](part-iii-tips/using-staking-node-as-rpc-url-endpoint.md)
