@@ -129,6 +129,11 @@ TimeoutStopSec=900
 ExecStart=/usr/local/bin/beacon-chain \
   --mainnet \
   --datadir=/var/lib/prysm/beacon \
+  --grpc-gateway-port 5052 \
+  --p2p-tcp-port 13000 \
+  --p2p-udp-port 12000 \
+  --p2p-max-peers 80 \
+  --monitoring-port 8008 \
   --checkpoint-sync-url=https://beaconstate.info \
   --genesis-beacon-api-url=https://beaconstate.info \
   --execution-endpoint=http://localhost:8551 \
@@ -164,6 +169,10 @@ WorkingDirectory=/usr/local/bin/prysm
 ExecStart=bazel run //cmd/beacon-chain --config=release -- \
   --mainnet \
   --datadir=/var/lib/prysm/beacon \
+  --p2p-tcp-port 13000 \
+  --p2p-udp-port 12000 \
+  --p2p-max-peers 80 \
+  --monitoring-port 8008 \
   --checkpoint-sync-url=https://beaconstate.info \
   --genesis-beacon-api-url=https://beaconstate.info \
   --execution-endpoint=http://localhost:8551 \

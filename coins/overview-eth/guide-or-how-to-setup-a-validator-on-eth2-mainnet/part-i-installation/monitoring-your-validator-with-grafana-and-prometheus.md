@@ -145,7 +145,7 @@ scrape_configs:
        - targets: ['localhost:8081']
    - job_name: 'Prysm'
      static_configs:
-       - targets: ['localhost:8080']
+       - targets: ['localhost:8008']
 ```
 {% endtab %}
 

@@ -129,6 +129,10 @@ TimeoutStopSec=900
 ExecStart=/usr/local/bin/beacon-chain \
   --holesky \
   --datadir=/var/lib/prysm/beacon \
+  --p2p-tcp-port 13000 \
+  --p2p-udp-port 12000 \
+  --p2p-max-peers 80 \
+  --monitoring-port 8008 \
   --checkpoint-sync-url=https://holesky.beaconstate.ethstaker.cc \
   --execution-endpoint=http://localhost:8551 \
   --jwt-secret=/secrets/jwtsecret \
@@ -163,6 +167,10 @@ WorkingDirectory=/usr/local/bin/prysm
 ExecStart=bazel run //cmd/beacon-chain --config=release -- \
   --holesky \
   --datadir=/var/lib/prysm/beacon \
+  --p2p-tcp-port 13000 \
+  --p2p-udp-port 12000 \
+  --p2p-max-peers 80 \
+  --monitoring-port 8008 \
   --checkpoint-sync-url=https://holesky.beaconstate.ethstaker.cc \
   --execution-endpoint=http://localhost:8551 \
   --jwt-secret=/secrets/jwtsecret \
