@@ -154,6 +154,10 @@ ExecStart=/usr/local/bin/lighthouse bn \
   --metrics \
   --checkpoint-sync-url=https://holesky.beaconstate.ethstaker.cc \
   --port 9000 \
+  --quic-port 9001 \
+  --http-port 5052 \
+  --target-peers 80 \
+  --metrics-port 8008 \
   --execution-endpoint http://127.0.0.1:8551 \
   --execution-jwt /secrets/jwtsecret
 
