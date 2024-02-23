@@ -134,6 +134,10 @@ WorkingDirectory=/usr/local/bin/lodestar
 ExecStart=/usr/local/bin/lodestar/lodestar beacon \
   --dataDir /var/lib/lodestar \
   --network mainnet \
+  --rest.port 5052 \
+  --port 9000 \
+  --targetPeers 100 \
+  --metrics.port 8008 \
   --metrics true \
   --checkpointSyncUrl https://beaconstate.info \
   --jwt-secret /secrets/jwtsecret \
