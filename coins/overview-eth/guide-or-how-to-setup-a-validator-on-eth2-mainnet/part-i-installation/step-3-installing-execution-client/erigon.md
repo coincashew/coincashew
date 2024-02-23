@@ -138,6 +138,11 @@ TimeoutStopSec=900
 ExecStart=/usr/local/bin/erigon \
    --datadir /var/lib/erigon \
    --chain mainnet \
+   --port 30303 \
+   --torrent.port 42069 \
+   --maxpeers 50 \
+   --private.api.addr 127.0.0.1:9099 \
+   --authrpc.port 8551 \
    --metrics \
    --pprof \
    --prune htc \
