@@ -204,9 +204,7 @@ echo Downloading URL: $BINARIES_URL
 
 cd $HOME
 wget -O geth.tar.gz $BINARIES_URL
-tar -xzvf geth.tar.gz -C $HOME
-rm geth.tar.gz
-sudo mv $HOME/geth-* geth
+tar -xzvf geth.tar.gz -C $HOME --strip-components=1
 </code></pre>
 
 Stop the services.
@@ -214,12 +212,12 @@ Stop the services.
 <pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl stop execution
 </strong></code></pre>
 
-Remove old binaries, install new binaries and restart the services.
+Install new binaries, restart the services and cleanup files.
 
 ```bash
-sudo rm -rf /usr/local/bin/geth
-sudo mv $HOME/geth/geth /usr/local/bin
+sudo mv $HOME/geth /usr/local/bin
 sudo systemctl start execution
+rm geth.tar.gz COPYING
 ```
 
 </details>
@@ -273,7 +271,7 @@ echo Downloading URL: $BINARIES_URL
 cd $HOME
 wget -O erigon.tar.gz $BINARIES_URL
 tar -xzvf erigon.tar.gz -C $HOME
-rm erigon.tar.gz
+rm erigon.tar.gz README.md
 </code></pre>
 
 Stop the services.
@@ -318,6 +316,88 @@ Remove old binaries, install new binaries and restart the services.
 sudo rm -rf /usr/local/bin/erigon
 sudo cp $HOME/git/erigon/build/bin/erigon /usr/local/bin
 sudo systemctl start execution
+```
+
+</details>
+
+### Reth
+
+<details>
+
+<summary>Option 1 - Download binaries</summary>
+
+Run the following to automatically download the latest linux release, un-tar and cleanup.
+
+```bash
+RELEASE_URL="https://api.github.com/repos/paradigmxyz/reth/releases/latest"
+BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep x86_64-unknown-linux-gnu.tar.gz$)"
+
+echo Downloading URL: $BINARIES_URL
+
+cd $HOME
+wget -O reth.tar.gz $BINARIES_URL
+tar -xzvf reth.tar.gz -C $HOME
+rm reth.tar.gz
+```
+
+Stop the services.
+
+<pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl stop execution
+</strong></code></pre>
+
+Remove old binaries, install new binaries, display the version, and restart the services.
+
+```bash
+sudo rm -rf /usr/local/bin/reth
+sudo mv $HOME/reth /usr/local/bin
+reth --version
+sudo systemctl restart execution
+```
+
+</details>
+
+<details>
+
+<summary>Option 2 - Build from source code</summary>
+
+Build the binaries.
+
+```bash
+cd ~/git/reth
+git fetch --tags
+# Get latest tag name
+latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+# Checkout latest tag
+git checkout $latestTag
+# Build the release
+cargo build --release
+```
+
+Verify Reth was built properly by checking the version number.
+
+```bash
+~/git/reth/target/release/reth --version
+```
+
+In case of compilation errors, run the following sequence.
+
+```bash
+rustup update
+cargo clean
+cargo build --release
+```
+
+Stop the services.
+
+<pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl stop execution
+</strong></code></pre>
+
+Remove old binaries, install new binaries and restart the services.
+
+```bash
+sudo rm -rf /usr/local/bin/reth
+sudo cp ~/git/reth/target/release/reth /usr/local/bin
+sudo systemctl restart execution
 ```
 
 </details>

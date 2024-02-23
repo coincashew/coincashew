@@ -200,9 +200,7 @@ echo Downloading URL: $BINARIES_URL
 
 cd $HOME
 wget -O geth.tar.gz $BINARIES_URL
-tar -xzvf geth.tar.gz -C $HOME
-rm geth.tar.gz
-sudo mv $HOME/geth-* geth
+tar -xzvf geth.tar.gz -C $HOME --strip-components=1
 </code></pre>
 
 Stop the services.
@@ -210,12 +208,12 @@ Stop the services.
 <pre class="language-bash"><code class="lang-bash"><strong>sudo systemctl stop execution
 </strong></code></pre>
 
-Remove old binaries, install new binaries and restart the services.
+Install new binaries, restart the services and cleanup files.
 
 ```bash
-sudo rm -rf /usr/local/bin/geth
-sudo mv $HOME/geth/geth /usr/local/bin
+sudo mv $HOME/geth /usr/local/bin
 sudo systemctl start execution
+rm geth.tar.gz COPYING
 ```
 
 </details>
@@ -269,7 +267,7 @@ echo Downloading URL: $BINARIES_URL
 cd $HOME
 wget -O erigon.tar.gz $BINARIES_URL
 tar -xzvf erigon.tar.gz -C $HOME
-rm erigon.tar.gz
+rm erigon.tar.gz README.md
 </code></pre>
 
 Stop the services.
