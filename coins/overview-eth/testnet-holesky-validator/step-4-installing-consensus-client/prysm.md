@@ -129,6 +129,7 @@ TimeoutStopSec=900
 ExecStart=/usr/local/bin/beacon-chain \
   --holesky \
   --datadir=/var/lib/prysm/beacon \
+  --grpc-gateway-port 5052 \
   --p2p-tcp-port 13000 \
   --p2p-udp-port 12000 \
   --p2p-max-peers 80 \
@@ -167,6 +168,7 @@ WorkingDirectory=/usr/local/bin/prysm
 ExecStart=bazel run //cmd/beacon-chain --config=release -- \
   --holesky \
   --datadir=/var/lib/prysm/beacon \
+  --grpc-gateway-port 5052 \
   --p2p-tcp-port 13000 \
   --p2p-udp-port 12000 \
   --p2p-max-peers 80 \
