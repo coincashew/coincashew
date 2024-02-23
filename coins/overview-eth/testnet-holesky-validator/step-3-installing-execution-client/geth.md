@@ -139,6 +139,10 @@ KillSignal=SIGINT
 TimeoutStopSec=900
 ExecStart=/usr/local/bin/geth \
     --holesky \
+    --port 30303 \
+    --http.port 8545 \
+    --authrpc.port 8551 \
+    --maxpeers 50 \
     --metrics \
     --http \
     --datadir=/var/lib/geth \
