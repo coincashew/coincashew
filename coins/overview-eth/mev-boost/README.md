@@ -140,6 +140,8 @@ Important: Ensure each relay line ends with \ except the last relay line.
 
 Paste the following into your `mevboost.service` file. To exit and save from the `nano` editor, press `Ctrl` + `X`, then `Y`, then`Enter`.
 
+{% tabs %}
+{% tab title="Ethereum Mainnet" %}
 ```bash
 [Unit]
 Description=MEV-Boost Service for Ethereum Mainnet
@@ -166,6 +168,36 @@ ExecStart=/usr/local/bin/mev-boost \
 [Install]
 WantedBy=multi-user.target
 ```
+{% endtab %}
+
+{% tab title="Holesky Testnet" %}
+```bash
+[Unit]
+Description=MEV-Boost Service for Holesky
+Wants=network-online.target
+After=network-online.target
+Documentation=https://www.coincashew.com
+
+[Service]
+User=mevboost
+Group=mevboost
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/mev-boost \
+  -mainnet \
+  -min-bid 0.03 \
+  -relay-check \
+  -relay https://0x821f2a65afb70e7f2e820a925a9b4c80a159620582c1766b1b09729fec178b11ea22abb3a51f07b288be815a1a2ff516@bloxroute.holesky.blxrbdn.com \
+  -relay https://0xb1d229d9c21298a87846c7022ebeef277dfc321fe674fa45312e20b5b6c400bfde9383f801848d7837ed5fc449083a12@relay-holesky.edennetwork.io \
+  -relay https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@boost-relay-holesky.flashbots.net \
+  -relay https://0xaa58208899c6105603b74396734a6263cc7d947f444f396a90f7b7d3e65d102aec7e5e5291b27e08d02c50a050825c2f@holesky.titanrelay.xyz
+
+[Install]
+WantedBy=multi-user.target
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 Using `-min-bid` flag, you can set a minimum bid value in ETH.&#x20;

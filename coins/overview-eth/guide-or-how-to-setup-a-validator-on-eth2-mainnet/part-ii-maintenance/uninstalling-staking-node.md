@@ -27,6 +27,10 @@ sudo rm -rf /var/lib/geth
 sudo rm -rf /usr/local/bin/erigon
 sudo rm -rf /var/lib/erigon
 
+#Reth
+sudo rm -rf /usr/local/bin/reth
+sudo rm -rf /var/lib/reth
+
 sudo userdel execution
 ```
 
@@ -79,6 +83,7 @@ sudo rm -rf /var/lib/teku_validator
 
 #Nimbus, if running standalone Nimbus Validator
 sudo rm -rf /var/lib/nimbus_validator
+sudo rm -rf /usr/local/bin/nimbus_validator_client
 
 #Prysm from Binaries
 sudo rm -rf /usr/local/bin/validator

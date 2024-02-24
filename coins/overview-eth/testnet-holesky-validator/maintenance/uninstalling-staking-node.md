@@ -83,6 +83,7 @@ sudo rm -rf /var/lib/teku_validator
 
 #Nimbus, if running standalone Nimbus Validator
 sudo rm -rf /var/lib/nimbus_validator
+sudo rm -rf /usr/local/bin/nimbus_validator_client
 
 #Prysm from Binaries
 sudo rm -rf /usr/local/bin/validator
