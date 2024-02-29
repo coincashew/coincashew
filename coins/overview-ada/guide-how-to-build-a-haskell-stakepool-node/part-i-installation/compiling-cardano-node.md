@@ -13,7 +13,7 @@ cd $HOME/git
 1. To download Cardano Node source code, type:
 
 ```bash
-git clone https://github.com/input-output-hk/cardano-node.git
+git clone https://github.com/IntersectMBO/cardano-node.git
 cd cardano-node
 git fetch --all --recurse-submodules --tags
 ```
@@ -21,7 +21,7 @@ git fetch --all --recurse-submodules --tags
 1. To switch the repository that you downloaded to your local computer in step 2 to the latest tagged commit, type:
 
 ```bash
-git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
+git checkout $(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/releases/latest | jq -r .tag_name)
 ```
 
 {% hint style="info" %}
