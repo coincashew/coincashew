@@ -3,11 +3,11 @@
 {% hint style="info" %}
 Why use EthPillar?
 
-:owl: **Fast Updates**: Quickly find and download the latest consensus/execution release
-
 :floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text menu.
 
-:tada:**Compatiblity**: Behind the scenes, node commands and file structure are identical to V2 staking setups.&#x20;
+:owl: **Fast Updates**: Quickly find and download the latest consensus/execution release. Less downtime!
+
+:tada:**Compatibility**: Behind the scenes, node commands and file structure are identical to V2 staking setups.&#x20;
 {% endhint %}
 
 {% hint style="warning" %}
@@ -16,7 +16,7 @@ Why use EthPillar?
 
 <figure><img src="../../.gitbook/assets/ethpillar.png" alt=""><figcaption><p>EthPillar Main Menu</p></figcaption></figure>
 
-## Option 1: Automated One-Liner
+## Option 1: Automated One-Liner Install
 
 Simply copy and paste the command into your terminal.
 
@@ -26,7 +26,7 @@ Open source source code available here: [https://github.com/coincashew/EthPillar
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/ethpillar/master/install.sh)"
 ```
 
-## Option 2: Manual Method
+## Option 2: Manual Install
 
 **Install updates and packages:**
 
