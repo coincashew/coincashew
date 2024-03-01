@@ -43,7 +43,7 @@
 * :tools:**Node** **Maintenance**: Familiarize yourself with [Part II - Maintenance](../../part-ii-maintenance/) section, as you'll need to keep your staking node running at its best.
 * :books:**Study** [**EthStaker Knowledge Base**](https://docs.ethstaker.cc/ethstaker-knowledge-base/): Increase your staking understanding
 * :cd:**Backups**: Review your staking validator backups!
-* :fingers\_crossed:**Finished testing?** Before decommissioning your validator, it's good practice to properly [exit your validator](../../part-iii-tips/voluntary-exiting-a-validator.md) as this improves staking network health.
+* :fingers\_crossed:**Finished with staking?** Before decommissioning your validator, it's good practice to properly [exit your validator](../../part-iii-tips/voluntary-exiting-a-validator.md) and re-claim your ETH deposit.
 
 ### :checkered\_flag: Optional Steps
 
