@@ -2,6 +2,10 @@
 
 ## :page\_facing\_up: List of changes
 
+* New [EthPillar](../ethpillar.md) - a simple companion UI for node management! Command line use is greatly reduced. Update your software with a keystroke.
+*
+
+    <figure><img src="../../../.gitbook/assets/ethpillar.png" alt=""><figcaption><p>ethpillar</p></figcaption></figure>
 * Add Nimbus and Teku standalone beacon node/validator configurations
   * Useful for [rescuenode](https://rescuenode.com/docs/) failover setups or pointing a single validator client at multiple EL/CL nodes for extra redundancy and minimizing supermajority risks
 * Added [Switching / Migration Execution Client guide](part-iii-tips/switching-execution-client.md) for both V2 and V1 staking setups

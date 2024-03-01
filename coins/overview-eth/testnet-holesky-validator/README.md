@@ -14,7 +14,7 @@ description: >-
 ## :new: Announcements
 
 {% hint style="success" %}
-As of Jan 21 2024, this **Version 2 Guide** is written for **testnet HOLESKY** :grin:
+As of Mar 1 2024, this **Version 2 Guide** is written for **testnet HOLESKY** :grin:
 {% endhint %}
 
 {% hint style="info" %}
