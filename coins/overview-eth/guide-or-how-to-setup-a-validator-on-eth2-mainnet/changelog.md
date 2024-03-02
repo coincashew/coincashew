@@ -2,7 +2,7 @@
 
 ## :page\_facing\_up: List of changes
 
-* New [EthPillar](../ethpillar.md) - a simple companion UI for node management! Command line use is greatly reduced. Update your software with a keystroke.
+* New [EthPillar](../ethpillar.md) - a friendly TUI for node management! Command line use is greatly reduced. Update your software with a keystroke. Automatically install a minority client (Nethermind + Nimbus) node in minutes!
 *
 
     <figure><img src="../../../.gitbook/assets/ethpillar.png" alt=""><figcaption><p>ethpillar</p></figcaption></figure>
