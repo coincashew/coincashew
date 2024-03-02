@@ -1,7 +1,9 @@
-# 🛡️ EthPillar: a simple UI for Validator Node Management
+# 🛡️ EthPillar: a simple TUI for Validator Node Management
 
 {% hint style="info" %}
 Why use EthPillar?
+
+:smile: **Friendly Node Installer**: No node yet? Helps you installs a Ethereum node stack in a jiffy.
 
 :floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text menu.
 
@@ -11,7 +13,9 @@ Why use EthPillar?
 {% endhint %}
 
 {% hint style="warning" %}
-&#x20;[Requires a Coincashew V2 Staking Setup.](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
+Compatible with [a Coincashew V2 Staking Setup.](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)&#x20;
+
+If no staking setup is installed, EthPillar offers a quickstart to install a full Nethermind EL/ Nimbus CL node with Nimbus validator and mevboost enabled.
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/ethpillar.png" alt=""><figcaption><p>EthPillar Main Menu</p></figcaption></figure>
@@ -48,6 +52,40 @@ sudo ln -s ~/git/ethpillar/ethpillar.sh /usr/local/bin/ethpillar
 ethpillar
 ```
 
+## :tada:Next Steps
+
 {% hint style="success" %}
 Congrats on installing a simple UI for making node maintenance easier!
 {% endhint %}
+
+<details>
+
+<summary>Additional steps for new node operators</summary>
+
+Firewall
+
+Port forwarding
+
+TBD
+
+</details>
+
+<details>
+
+<summary>Additional steps for new Validators</summary>
+
+Generate Keys
+
+Upload
+
+Load TBD
+
+</details>
+
+:thumbsup:Are you a EthPillar Enjooyer? [Support this public good by purchasing a limited edition POAP!](https://checkout.poap.xyz/169495)
+
+<figure><img src="../../.gitbook/assets/3adf69e9-fb1b-4665-8645-60d71dd01a7b.png" alt=""><figcaption><p>Your EthPillar Enjoyoor's POAP</p></figcaption></figure>
+
+**Purchase link:** [https://checkout.poap.xyz/169495](https://checkout.poap.xyz/169495)
+
+ETH accepted on Mainnet, Arbitrum, Base, Optimism. :pray:
