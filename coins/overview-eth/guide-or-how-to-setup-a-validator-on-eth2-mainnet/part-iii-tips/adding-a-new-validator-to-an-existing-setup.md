@@ -14,16 +14,20 @@ Before continuing please have the following ready:
 * Existing keystore password
 * ETH Withdrawal Address from your hardware wallet
 
-### Step 1: Backup existing `validator_keys` directory
+### Optional Step 0: Cleanup leftover validator\_keys
+
+Verify that you have backups of validator\_keys directory. The contents are the keystore files.&#x20;
+
+Having backup copies of your validator\_keys directory on USB media  can make recovery from node problems quicker. Validator keys can always be regenerated from secret recovery mnemonic phrase.
+
+You may safely delete the directory.
 
 ```bash
-# Change into default validator_key directory
-cd $HOME/staking-deposit-cli
-# Renames and append the date to the existing validator_key directory
-mv validator_keys validator_keys_$(date +"%Y%d%m-%H%M%S")
+# Remove default validator_key directory
+sudo rm -r $HOME/staking-deposit-cli/validator_keys
 ```
 
-### Step 2: Create new deposit\_data json file and new validator\_keys&#x20;
+### Step 1: Create new deposit\_data json file and new validator\_keys&#x20;
 
 In this example, using the `staking-deposit-cli` tool, you can add more validators by creating a new deposit data file and `validator_keys`&#x20;
 
@@ -55,7 +59,7 @@ For example, in case we originally created **3 validators** but now wish to **ad
 | --chain                   | Options: mainnet holesky goerli                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | --execution\_address      | <p><strong>Critically important</strong>: Your Ethereum Address from a Hardware Wallet. </p><p></p><p>Withdrawals will be sent to this address. If you stop validating and exit your validator, your 32 ETH will be sent here. </p><p></p><p>This <strong>ETH withdrawal address</strong> is one such that <strong>you control the private keys</strong> to, ideally one from a hardware wallet.</p><p></p><p><span data-gb-custom-inline data-tag="emoji" data-code="1f6d1">🛑</span><strong>DO NOT USE A EXCHANGE ADDRESS!</strong><span data-gb-custom-inline data-tag="emoji" data-code="1f6d1">🛑</span></p> |
 
-### Step 3: Deposit 32 ETH per validator
+### Step 2: Deposit 32 ETH per validator
 
 **Option 1**: Visit the [official Ethereum Launchpad site](https://launchpad.ethereum.org)
 
@@ -66,7 +70,7 @@ Two important tasks to complete at the launchpad.
 
 **Option 2**: Use [Abyss's Batch Ethereum Depositor](https://abyss.finance/eth2depositor) to combine many validator deposits into just 1 transaction.
 
-### Step 4: Import New Validator Keys
+### Step 3: Import New Validator Keys
 
 This step assumes your new validator keys are located in&#x20;
 
@@ -194,6 +198,97 @@ Press `Ctrl` + `C` to exit the logs.
 {% endtab %}
 
 {% tab title="Teku" %}
+<details>
+
+<summary>Option 1: For standalone validator</summary>
+
+Stop your Teku client.
+
+```bash
+sudo systemctl stop validator
+```
+
+Storing your **keystore password** in a text file is required so that Teku can decrypt and load your validators automatically.
+
+Create a temporary file to store your **keystore password**. Type your password in this file.
+
+```bash
+sudo nano $HOME/validators-password.txt
+```
+
+To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
+
+Confirm that your **keystore password** is correct.
+
+```bash
+sudo cat $HOME/validators-password.txt
+```
+
+Run the following command to create a corresponding password file for every one of your validators.
+
+```bash
+for f in $HOME/staking-deposit-cli/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt $HOME/staking-deposit-cli/validator_keys/$(basename $f .json).txt; done
+```
+
+Copy keystores to validator folder
+
+```bash
+sudo cp $HOME/staking-deposit-cli/validator_keys/keystore* /var/lib/teku_validator/validator_keys
+```
+
+Setup ownership permissions, including hardening the access to this directory.
+
+```bash
+sudo chown -R validator:validator /var/lib/teku_validator
+sudo chmod -R 700 /var/lib/teku_validator
+```
+
+Verify that your validator's keystore .json files and validator's passwords .txt files are present by checking the following directory.
+
+```bash
+sudo ls -l /var/lib/teku_validator/validator_keys
+```
+
+Example output of two validator's keystore.json files with matching password.txt files.
+
+```
+-rwx------ 1 consensus consensus 710 Sep 19 23:39 keystore-m_12381_3600_1_0_0-1695165818.json
+-rwx------ 1 consensus consensus  43 Sep 19 23:39 keystore-m_12381_3600_1_0_0-1695165818.txt
+-rwx------ 1 consensus consensus 710 Sep 19 23:39 keystore-m_12381_3600_2_0_0-1695165819.json
+-rwx------ 1 consensus consensus  43 Sep 19 23:39 keystore-m_12381_3600_2_0_0-1695165819.txt
+```
+
+Delete the temporary **keystore password** file.
+
+```bash
+sudo rm $HOME/validators-password.txt
+```
+
+Finally, restart Teku to use the new validators.
+
+```bash
+sudo systemctl restart validator
+```
+
+Check your logs to confirm that the validators are up and functioning.
+
+```bash
+sudo journalctl -fu validator | ccze
+```
+
+For example when using 2 validators, logs will show the following:
+
+```bash
+INFO  - Loading 2 validator keys...
+INFO  - Loaded 2 Validators: 95d3986, 82b225f
+```
+
+</details>
+
+<details>
+
+<summary>Option 2: For Combined CL+VC</summary>
+
 Stop your Teku client.
 
 ```bash
@@ -273,9 +368,69 @@ For example when using 2 validators, logs will show the following:
 INFO  - Loading 2 validator keys...
 INFO  - Loaded 2 Validators: 95d3986, 82b225f
 ```
+
+</details>
 {% endtab %}
 
 {% tab title="Nimbus" %}
+<details>
+
+<summary>Option 1: For standalone validator</summary>
+
+Stop your Nimbus client.
+
+```bash
+sudo systemctl stop validator
+```
+
+Enter your **keystore password** to import accounts.
+
+```bash
+sudo /usr/local/bin/nimbus_beacon_node deposits import \
+  --data-dir=/var/lib/nimbus_validator $HOME/staking-deposit-cli/validator_keys
+```
+
+Now you can verify the accounts were imported successfully by doing a directory listing.
+
+```bash
+sudo ls -l /var/lib/nimbus_validator/validators
+```
+
+You should see a folder named for each of your validator's pubkey.
+
+Setup ownership permissions, including hardening the access to this directory.
+
+```bash
+sudo chown -R validator:validator /var/lib/nimbus_validator
+sudo chmod -R 700 /var/lib/nimbus_validator
+```
+
+Finally, restart Nimbus to use the new validators.
+
+```bash
+sudo systemctl restart validator
+```
+
+Check your logs to confirm that the validators are up and functioning.
+
+```bash
+sudo journalctl -fu validator | ccze
+```
+
+For example when using 2 validators, logs will show the following:
+
+```bash
+Loading validators             topics="beacval" validatorsDir=/var/lib/nimbus/validators keystore_cache_available=true
+Local validator attached       topics="val_pool" pubkey=95d39860a0d6ea3b92cba78069d21f3a validator=95d39860 initial_fee_recipient=81ba8d5c4ae850
+Local validator attached       topics="val_pool" pubkey=82b225f66476962b161ed015786df00f validator=82b225f6 initial_fee_recipient=81ba8d5c4ae850
+```
+
+</details>
+
+<details>
+
+<summary>Option 2: For Combined CL+VC</summary>
+
 Stop your Nimbus client.
 
 ```bash
@@ -323,6 +478,8 @@ Loading validators             topics="beacval" validatorsDir=/var/lib/nimbus/va
 Local validator attached       topics="val_pool" pubkey=95d39860a0d6ea3b92cba78069d21f3a validator=95d39860 initial_fee_recipient=81ba8d5c4ae850
 Local validator attached       topics="val_pool" pubkey=82b225f66476962b161ed015786df00f validator=82b225f6 initial_fee_recipient=81ba8d5c4ae850
 ```
+
+</details>
 {% endtab %}
 
 {% tab title="Prysm" %}
@@ -414,6 +571,17 @@ level=info msg="Validating for public key" prefix=validator publicKey=0x82b225f6
 ```
 {% endtab %}
 {% endtabs %}
+
+### Step 4: Backup and Delete `validator_keys` directory
+
+Make backup copies of your validator\_keys directory to USB media or other devices. These validator keys can always be regenerated from secret recovery mnemonic phrase.
+
+Afterwards, you may safely delete the directory.
+
+```bash
+# Remove default validator_key directory
+sudo rm -r $HOME/staking-deposit-cli/validator_keys
+```
 
 ### Step 5: Estimate when your new validator becomes active
 
