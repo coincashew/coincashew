@@ -68,7 +68,7 @@ WantedBy=multi-user.target
 ```
 
 * Replace`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
-* If you wish to customize a short message that is included when you produce a block, add your message to the `--graffiti`.
+* If you wish to customize a short message that is included when you produce a block, add your message to the `--graffiti`. Maximum length is 16 characters.
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 
