@@ -1,8 +1,8 @@
 # 🛡️ EthPillar: a simple TUI for Validator Node Management
 
-## What is EthPillar?
+## :new: What is EthPillar?
 
-:smile: **Friendly Node Installer**: No node yet? Helps you installs a Ethereum node stack in a jiffy.
+:smile: **Friendly Node Installer**: No node yet? Helps you installs a Ethereum node stack in just minutes. [Review the hardware requirements first.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md)
 
 :floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text menu.
 
@@ -51,7 +51,7 @@ ethpillar
 ## :tada:Next Steps
 
 {% hint style="success" %}
-Congrats on installing a simple UI for making node maintenance easier!
+Congrats on installing a friendly TUI for making node maintenance easier!
 {% endhint %}
 
 <details>
@@ -120,10 +120,22 @@ sudo journalctl -fu validator | ccze
 
 </details>
 
-:thumbsup:Are you a EthPillar Enjooyer? [Support this public good by purchasing a limited edition POAP!](https://checkout.poap.xyz/169495)
+## :joy: POAP
+
+Are you a EthPillar Enjooyer? [Support this public good by purchasing a limited edition POAP!](https://checkout.poap.xyz/169495)
 
 <figure><img src="../../.gitbook/assets/3adf69e9-fb1b-4665-8645-60d71dd01a7b.png" alt=""><figcaption><p>Your EthPillar Enjoyoor's POAP</p></figcaption></figure>
 
 **Purchase link:** [https://checkout.poap.xyz/169495](https://checkout.poap.xyz/169495)
 
 ETH accepted on Mainnet, Arbitrum, Base, Optimism. :pray:
+
+## :telephone: Get in touch
+
+Have questions? Chat with other home stakers on [Discord](https://discord.gg/w8Bx8W2HPW) or open PRs/issues on [Github](https://github.com/coincashew/ethpillar).
+
+## :heart: Donations
+
+If you'd like to support this public goods project, find us on the next Gitcoin Grants.
+
+Our donation address is 0xCF83d0c22dd54475cC0C52721B0ef07d9756E8C0 or coincashew.eth
