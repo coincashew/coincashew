@@ -7,10 +7,6 @@ description: >-
 
 # Guide | How to setup a validator for Ethereum staking on mainnet
 
-{% hint style="info" %}
-:sparkles: Adore our guides? Donate a ☕ via [CoinTr.ee](https://cointr.ee/coincashew)
-{% endhint %}
-
 ## :new: Announcements
 
 {% hint style="success" %}

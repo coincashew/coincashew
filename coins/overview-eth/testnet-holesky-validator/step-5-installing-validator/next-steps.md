@@ -1,39 +1,41 @@
 # Next Steps
 
-## :track\_next: Next Steps
-
-{% hint style="info" %}
-**Sync Timeline:** Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to a day. On nodes with fast NVME drives and gigabit internet, expect your node to be fully synced in a few hours.
+{% hint style="success" %}
+:tada: Congrats! You've finished the primary steps of setting up your validator. You're now an Ethereum staker!
 {% endhint %}
 
-{% hint style="warning" %}
-**Patience required**: If you're checking the logs and see any warnings or errors, please be patient as these will normally resolve once both your execution and consensus clients are fully synced to the Ethereum network.
+## :track\_next: FAQ
+
+<details>
+
+<summary>Wen staking rewards?</summary>
+
+**Activation Queue**: Once your EL+CL is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. Check the queue length: [https://wenmerge.com ](https://wenmerge.com)
+
+**Activated**: When you're activated, your validator will begin creating and voting on blocks while earning staking rewards.
+
+**Quick monitoring**: Use [https://beaconcha.in/](https://beaconcha.in) to create alerts and track your validator's performance.
+
+</details>
+
+<details>
+
+<summary>Sync Timeline</summary>
+
+Syncing the consensus client is instantaneous with checkpoint sync but the execution client can take up to a day. On nodes with fast NVME drives and gigabit internet, expect your node to be fully synced in a few hours.
 
 
 
 **How do I know I'm fully synced?**
 
-* Check your execution client's logs and compare the block number against the most recent block on [https://holesky.etherscan.io](https://holesky.etherscan.io/)
+* Check your execution client's logs and compare the block number against the most recent block on [https://etherscan.io](https://etherscan.io/)
   * Check EL logs: `journalctl -fu execution`
-* Check your consensus client's logs and compare the slot number against the most recent slot on [https://holesky.beaconcha.in](https://holesky.beaconcha.in/)
+* Thanks to checkpoint sync, your consensus client's is instantly synched. You can compare the slot number against the most recent slot on [https://beaconcha.in](https://beaconcha.in/)
   * Check CL logs: `journalctl -fu consensus`
-{% endhint %}
-
-{% hint style="info" %}
-**Activation Queue**: Once your EL+CL is synced, validator up and running, you just wait for activation. This process can take 24+ hours. Only 900 new validators can join per day. Check the queue length: [https://wenmerge.com](https://wenmerge.com)
 
 
 
-**Activated**: When you're activated, your validator will begin creating and voting on blocks while earning staking rewards.
-
-
-
-**Quick monitoring**: Use [https://holesky.beaconcha.in](https://holesky.beaconcha.in/) to create alerts and track your validator's performance.
-{% endhint %}
-
-{% hint style="success" %}
-:tada: Congrats! You've finished the primary steps of setting up your validator. You're now an Ethereum staker!
-{% endhint %}
+</details>
 
 ### :thumbsup: Recommended Steps
 
