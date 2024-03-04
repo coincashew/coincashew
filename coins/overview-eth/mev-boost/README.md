@@ -185,7 +185,7 @@ Type=simple
 Restart=always
 RestartSec=5
 ExecStart=/usr/local/bin/mev-boost \
-  -mainnet \
+  -holesky \
   -min-bid 0.03 \
   -relay-check \
   -relay https://0x821f2a65afb70e7f2e820a925a9b4c80a159620582c1766b1b09729fec178b11ea22abb3a51f07b288be815a1a2ff516@bloxroute.holesky.blxrbdn.com \

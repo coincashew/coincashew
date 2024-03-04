@@ -7,38 +7,23 @@ description: >-
 
 # Guide | How to setup a validator for Ethereum staking on mainnet
 
-## :new: Announcements
+## Installation
 
-{% hint style="success" %}
-As of Mar 1 2024, this is the new **Version 2 Guide** written for **post-🦉Dencun**🦉 written for **MAINNET Ethereum** :grin:
-{% endhint %}
+### :rocket:Option 1: Quickstart with EthPillar
 
-{% hint style="info" %}
-:sparkles: **Always test and practice on testnet first. See** [Holesky testnet ](../testnet-holesky-validator/)guide.
-{% endhint %}
+* Recommended for most users.
+* Deploys a systemd installation with minority clients Nimbus CL Nethermind EL and mevboost.
+* Supports automated node deployment for both validators and non-staking RPC nodes.
+* When EthPillar is deployed, operating your node becomes a breeze.
 
-{% hint style="warning" %}
-:eyes: **Looking for Version 1 MAINNET Guide?** [Available here.](../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
-{% endhint %}
+To install EthPillar, [visit the quickstart page.](../ethpillar.md)
 
-## :wrench: About This Guide
+### :chains:Option 2: Manual Installation
 
-The _How to Setup a Validator for Ethereum Staking_ guide aims to give you complete, step-by-step instructions to implement and maintain a secure Ethereum Staking Node using the currently recommended software versions.
+* Great for advanced users comfortable with the CLI terminal who want full control and require customization of EL/CL combinations and their configurations.
+* Deploys a systemd installation with any combination you choose.
+* After installation, use EthPillar to simplify maintenance of your node.
 
-The guide includes the following parts:
-
-* [**Part I - Installation**](part-i-installation/) describes in 5 steps how to setup your staking node.
-* [**Part II - Maintenance**](part-ii-maintenance/) explains ongoing tasks you'll require to keep your staking node in great shape and up-to-date.
-* [**Part III - Tips**](part-iii-tips/) contains additional procedures to simplify managing your staking node.
-
-## :thumbsup: Your Github Contributions Welcome
-
-This guide is fully open source and fully powered by home-stakers like you.
-
-Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
-
-{% embed url="https://github.com/coincashew/coincashew" %}
+To install manually, continue with this guide.
 
 #### :shield: Built by home-stakers for home-stakers. :pray:
-
-#### :arrow\_up: [View Changelog](changelog.md): See the latest changes to the guide.

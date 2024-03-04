@@ -7,40 +7,22 @@ description: >-
 
 # Guide | How to setup a validator for Ethereum staking on testnet HOLESKY
 
-{% hint style="info" %}
-:sparkles: Adore our guides? Donate a ☕ via [CoinTr.ee](https://cointr.ee/coincashew)
-{% endhint %}
+## Installation
 
-## :new: Announcements
+### :rocket:Option 1: Quickstart with EthPillar
 
-{% hint style="success" %}
-As of Mar 1 2024, this **Version 2 Guide** is written for **testnet HOLESKY** :grin:
-{% endhint %}
+* Recommended for most users.
+* Deploys a systemd installation with minority clients Nimbus CL Nethermind EL and mevboost.
+* Provides user friendly TUI to manage your node with a few keystokes.
 
-{% hint style="info" %}
-:sparkles:**Always test and practice on testnet first.** [**Mainnet guide available here.**](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
-{% endhint %}
+To install EthPillar, [visit the quickstart page.](../ethpillar.md)
 
-## :thumbsup: Your Github Contributions Welcome
+### :chains:Option 2: Manual Installation
 
-This guide is fully open source and fully powered by home-stakers like you.
+* Great for advanced users comfortable with the CLI terminal who want more control and require customization of EL/CL combinations and configurations.
+* Deploys a systemd installation with any combination you choose.
+* After installation, use EthPillar to simplify maintenance of your node.
 
-Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
-
-{% embed url="https://github.com/coincashew/coincashew" %}
-
-## :star: Installation Overview
-
-Installation is a 5 step process. From start to finish, time to complete these steps can take up to a few hours. Fully syncing the node can take a day.
-
-Rest assured, as you become more familiar and more comfortable by practicing on testnet, you are now proudly on the path towards the gold standard of ETH solo-staking.
-
-* Step 1: Prerequisites
-* Step 2: Configuring Node
-* Step 3: Setting up Validator Keys
-* Step 4: Installing execution client
-* Step 5: Installing consensus client
+To install manually, continue with this guide.
 
 #### :shield: Built by home-stakers for home-stakers. :pray:
-
-#### :arrow\_up: [View Changelog](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/changelog.md): See the latest changes to the guide.

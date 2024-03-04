@@ -1,10 +1,16 @@
+---
+description: >-
+  Empowered, inspired, home staker. Free. Open source. Public goods for
+  Ethereum.
+---
+
 # 🛡️ EthPillar: a simple TUI for Validator Node Management
 
 ## :new: What is EthPillar?
 
-:smile: **Friendly Node Installer**: No node yet? Helps you installs a Ethereum node stack in just minutes. [Review the hardware requirements first.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md)
+:smile: **Friendly Node Installer**: No node yet? Helps you installs a Ethereum node stack in just minutes.
 
-:floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text menu.
+:floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text user interface (TUI).
 
 :owl: **Fast Updates**: Quickly find and download the latest consensus/execution release. Less downtime!
 
@@ -15,6 +21,11 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/ethpillar.png" alt=""><figcaption><p>EthPillar Main Menu</p></figcaption></figure>
+
+## Prerequisites
+
+* [Review how staking works and the hardware requirements](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md)
+* An [Ubuntu](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md#setup-ubuntu) installation. Tested working with v22.04 LTS.
 
 ## Option 1: Automated One-Liner Install
 
@@ -138,4 +149,4 @@ Have questions? Chat with other home stakers on [Discord](https://discord.gg/w8B
 
 If you'd like to support this public goods project, find us on the next Gitcoin Grants.
 
-Our donation address is 0xCF83d0c22dd54475cC0C52721B0ef07d9756E8C0 or coincashew.eth
+Our donation address is [0xCF83d0c22dd54475cC0C52721B0ef07d9756E8C0](https://etherscan.io/address/0xCF83d0c22dd54475cC0C52721B0ef07d9756E8C0) or coincashew.eth

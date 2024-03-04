@@ -129,11 +129,11 @@ With your local or remote node, now you need to install an Operating System. Thi
 **Tip**: When installing Ubuntu Server, ensure you are selecting “**Use an entire disk**” on the **Guided storage configuration** screen. Next screen will be the **Storage configuration** screen, ensure your settings are using all available disk storage. A [common issue](../part-iii-tips/using-all-available-lvm-disk-space.md) is that Ubuntu server defaults to using only 200GB.
 {% endhint %}
 
-## :performing\_arts: Setup Metamask
+## :performing\_arts: Setup Rabby
 
 When the time comes to make your validator's 32ETH deposit(s), you'll need a wallet to transfer funds to the beacon chain deposit contract.
 
-* To install Metamask, refer to [this guide.](https://www.coincashew.com/wallets/browser-wallets/metamask-ethereum)
+* To install Rabby, visit their [official site.](https://rabby.io/)
 
 ## :jigsaw: High Level Validator Node Overview
 
