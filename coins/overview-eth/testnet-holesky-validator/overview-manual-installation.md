@@ -14,12 +14,6 @@ As of Mar 1 2024, this **Version 2 Guide** written for **🦉Dencun**🦉 **Hole
 
 For the advanced user who wants customization and is comfortable with CLI commands, this guide will walk you through the details of setting up a validator. For most users, the quickest and automated way to setup a staking node is with [EthPillar](../ethpillar.md).
 
-The following parts make up this guide:
-
-* **Part I - Installation** describes in 5 steps how to setup your staking node.
-* **Part II - Maintenance** explains ongoing tasks you'll require to keep your staking node in great shape and up-to-date.
-* **Part III - Tips** contains additional procedures to simplify managing your staking node.
-
 ## :thumbsup: Your Github Contributions Welcome
 
 This guide is fully open source and fully powered by home-stakers like you.

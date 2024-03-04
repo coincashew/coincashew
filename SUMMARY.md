@@ -103,7 +103,7 @@
   * [Book: Mastering Bitcoin](coins/btc/book-mastering-bitcoin.md)
 * [Ethereum: ETH](coins/overview-eth/README.md)
   * [Guide | How to setup a validator for Ethereum staking on mainnet](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/README.md)
-    * [Overview - Manual installation](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/overview-manual-installation.md)
+    * [Overview - Manual Installation](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/overview-manual-installation.md)
     * [PART I - INSTALLATION](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/README.md)
       * [Step 1: Prerequisites](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md)
       * [Step 2: Configuring Node](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-2-configuring-node.md)
