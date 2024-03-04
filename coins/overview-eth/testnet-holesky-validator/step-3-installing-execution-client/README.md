@@ -6,9 +6,9 @@ Your choice of either [**Besu**](https://besu.hyperledger.org)**,** [**Nethermin
 Only one execution client is required per node.
 {% endhint %}
 
-## **Execution Client Diversity**&#x20;
+## **Execution Client Diversity**
 
-* To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity.&#x20;
+* To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity.
 * Find the latest distribution of execution clients here: [https://clientdiversity.org](https://clientdiversity.org/)
 
 <figure><img src="../../../../.gitbook/assets/cd-e.png" alt=""><figcaption><p>Sept 2023 Client Diversity</p></figcaption></figure>
@@ -26,7 +26,7 @@ Only one execution client is required per node.
 ### Nethermind
 
 * Nethermind: Open-source Ethereum client written in .NET Core.
-* Fast sync speed: Boasts the quickest Execution client syncing performance.
+* Fast sync speed: Boasts the quickest Execution client syncing performance and is designed so you can start following the chain and attesting while it downloads history in the background.
 * Flexible configuration: Rich set of options tailored for node operators.
 * Online pruning: Allows database pruning while still online, no need to turn off client.
 * Resource-intensive pruning process: May result in noticeable performance degradation for low-power nodes during the process.
@@ -67,6 +67,6 @@ Only one execution client is required per node.
 
 #### Notes:
 
-* Time to sync depends on the IOPs of your storage drive.&#x20;
+* Time to sync to a state capable beginning attestations depends on the IOPs of your storage drive.
 * Initial sync is always resource intensive. Synced operation is relatively resource use light.
 * Nethermind, Besu, Geth have the capability to prune the database.
