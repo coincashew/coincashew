@@ -8,7 +8,7 @@ description: >-
 
 ## :new: What is EthPillar?
 
-:smile: **Friendly Node Installer**: No node yet? Helps you installs a Ethereum node stack in just minutes.
+:smile: **Friendly Node Installer**: No node yet? Helps you installs a Ethereum node stack in just minutes. MEVboost included.
 
 :floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text user interface (TUI).
 
@@ -62,7 +62,7 @@ ethpillar
 ## :tada:Next Steps
 
 {% hint style="success" %}
-Congrats on installing a friendly TUI for making node maintenance easier!
+Congrats on installing a EthPillar, making nodes and home staking easier!
 {% endhint %}
 
 <details>
