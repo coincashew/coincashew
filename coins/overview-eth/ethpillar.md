@@ -136,3 +136,7 @@ git pull
 ```
 {% endtab %}
 {% endtabs %}
+
+## :tada: Credits
+
+Shout out to [accidental-green](https://github.com/accidental-green/validator-install) for their pioneering work in Python validator tools, which has unintentionally ignited the inspiration and direction for this project. We are building upon their innovative foundations by forking their validator-install code. A heartfelt thanks to accidental-green for their game-changing contributions to the open-source Ethereum ecosystem!
