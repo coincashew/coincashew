@@ -4,11 +4,11 @@ description: >-
   Ethereum.
 ---
 
-# 🛡️ EthPillar: a simple TUI for Validator Node Management
+# 🛡️ EthPillar: one-liner setup tool and node management TUI
 
 ## :new: What is EthPillar?
 
-:smile: **Friendly Node Installer**: No node yet? Helps you installs a Ethereum node stack in just minutes. MEVboost included.
+:smile: **Friendly Node Installer**: No node yet? Helps you installs a Ethereum node (Nimbus+Nethermind) stack in just minutes. MEVboost included.
 
 :floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text user interface (TUI).
 
@@ -117,3 +117,22 @@ Have questions? Chat with other home stakers on [Discord](https://discord.gg/w8B
 If you'd like to support this public goods project, find us on the next Gitcoin Grants.
 
 Our donation address is [0xCF83d0c22dd54475cC0C52721B0ef07d9756E8C0](https://etherscan.io/address/0xCF83d0c22dd54475cC0C52721B0ef07d9756E8C0) or coincashew.eth
+
+## :ballot\_box\_with\_check: How to Update
+
+{% tabs %}
+{% tab title="TUI Update" %}
+Upon opening EthPillar,
+
+* Navigate to **System Administration > Update EthPillar** and then quit and relaunch.
+{% endtab %}
+
+{% tab title="Manual Update" %}
+From a terminal, pull the latest updates from git.
+
+```bash
+cd ~/git/ethpillar
+git pull
+```
+{% endtab %}
+{% endtabs %}
