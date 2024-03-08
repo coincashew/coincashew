@@ -6,8 +6,8 @@ description: Simple two step process to buying Doge.
 
 ## :fire: 1. Get some money into crypto
 
-{% content-ref url="../../exchanges/guide-where-to-get-crypto.md" %}
-[guide-where-to-get-crypto.md](../../exchanges/guide-where-to-get-crypto.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## :arrows\_counterclockwise: 2. Convert on Exchange

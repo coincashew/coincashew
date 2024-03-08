@@ -4,10 +4,10 @@ description: Simple two step process to buying Bitcoin.
 
 # Guide | How to buy BTC
 
-## ​ :fire: 1. Get some money into crypto <a href="#1-get-some-money-into-crypto" id="1-get-some-money-into-crypto"></a>
+## ​ :fire: 1. Get some money into crypto <a href="#id-1-get-some-money-into-crypto" id="id-1-get-some-money-into-crypto"></a>
 
-{% content-ref url="../../exchanges/guide-where-to-get-crypto.md" %}
-[guide-where-to-get-crypto.md](../../exchanges/guide-where-to-get-crypto.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## :arrows\_counterclockwise: 2. Convert on Exchange

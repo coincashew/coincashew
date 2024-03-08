@@ -2,8 +2,8 @@
 
 ## :fire: 1. Get some money into crypto
 
-{% content-ref url="../../exchanges/guide-where-to-get-crypto.md" %}
-[guide-where-to-get-crypto.md](../../exchanges/guide-where-to-get-crypto.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## :currency\_exchange: 2. Convert on Exchange

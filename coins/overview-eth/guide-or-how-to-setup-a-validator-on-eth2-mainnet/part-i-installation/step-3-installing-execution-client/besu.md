@@ -138,8 +138,9 @@ ExecStart=/usr/local/bin/besu/bin/besu \
   --metrics-enabled=true \
   --metrics-port=6060 \
   --rpc-http-enabled=true \
-  --sync-mode=X_SNAP \
+  --sync-mode=SNAP \
   --data-storage-format=BONSAI \
+  --Xbonsai-limit-trie-logs-enabled=true \
   --data-path="/var/lib/besu" \
   --Xplugin-rocksdb-high-spec-enabled \
   --engine-jwt-secret=/secrets/jwtsecret

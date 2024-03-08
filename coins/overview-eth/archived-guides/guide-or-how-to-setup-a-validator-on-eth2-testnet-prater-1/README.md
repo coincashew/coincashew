@@ -1,25 +1,28 @@
 ---
 description: >-
-  Become a validator and help secure Ethereum, a proof-of-stake blockchain.
-  Anyone with 32 ETH can join.
+  Using the gold standard of ETH staking, become a solo home staker. Help
+  decentralize Ethereum, a proof-of-stake blockchain. Anyone with 32 ETH can
+  join.
 ---
 
-# Guide Version 1 | How to setup a validator for Ethereum staking on testnet GOERLI
+# Guide | How to setup a validator for Ethereum staking on testnet GOERLI
+
+{% hint style="info" %}
+:sparkles: Adore our guides? Donate a ☕ via [CoinTr.ee](https://cointr.ee/coincashew)
+{% endhint %}
 
 ## :new: Announcements
 
-{% hint style="danger" %}
-As of July 4 2023, this is the **V1 GOERLI** guide written for **post-🦉Shapella**🦉
-
-Archived here, this guide is for historical reference purposes.
-{% endhint %}
-
 {% hint style="success" %}
-**New staking setups** should follow the [**V2 guides.**](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/)
+As of July 15 2023, this is the new **Version 2 Guide** written for **post-🦉Shapella**🦉 written for **testnet GOERLI** :grin:
 {% endhint %}
 
 {% hint style="info" %}
-**Always test and practice on testnet first.** [**Mainnet guide available here.**](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+:sparkles:**Always test and practice on testnet first.** [**Mainnet guide available here.**](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+{% endhint %}
+
+{% hint style="warning" %}
+:eyes: **Looking for Version 1 GOERLI Guide?** [Available here.](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/)
 {% endhint %}
 
 ## :thumbsup: Your Github Contributions Welcome
@@ -43,3 +46,5 @@ Rest assured, as you become more familiar and more comfortable by practicing on 
 * Step 5: Installing consensus client
 
 #### :shield: Built by home-stakers for home-stakers. :pray:
+
+#### :arrow\_up: [View Changelog](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/changelog.md): See the latest changes to the guide.

@@ -4,13 +4,13 @@ description: Simple two step process to buying Cardano.
 
 # Guide: How to buy ADA
 
-## ​ :fire: 1. Get some money into crypto <a href="#1-get-some-money-into-crypto" id="1-get-some-money-into-crypto"></a>
+## ​ :fire: 1. Get some money into crypto <a href="#id-1-get-some-money-into-crypto" id="id-1-get-some-money-into-crypto"></a>
 
-{% content-ref url="../../exchanges/guide-where-to-get-crypto.md" %}
-[guide-where-to-get-crypto.md](../../exchanges/guide-where-to-get-crypto.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-## ​ :arrows\_counterclockwise: 2. Convert on Exchange <a href="#2-convert-on-exchange" id="2-convert-on-exchange"></a>
+## ​ :arrows\_counterclockwise: 2. Convert on Exchange <a href="#id-2-convert-on-exchange" id="id-2-convert-on-exchange"></a>
 
 | Site                                                                   | Pairs             | Location   | KYC Required?      |
 | ---------------------------------------------------------------------- | ----------------- | ---------- | ------------------ |

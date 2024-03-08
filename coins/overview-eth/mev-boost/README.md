@@ -2,7 +2,7 @@
 description: Quickstart guide to setting up MEV-boost for your ETH validator.
 ---
 
-# Guide | MEV-boost for Ethereum Staking
+# 💰 Guide | MEV-boost for Ethereum Staking
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.

@@ -86,11 +86,14 @@ As a validator for Ethereum, you will typically have the following abilities:
 * **Wallet**: [Rabby](https://rabby.io/) Wallet installed
 
 {% hint style="info" %}
-**Hardware Builds**: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/docs/guides/node/local/hardware.md#example-setups) and [Ethstaker's Hardware Examples](https://docs.ethstaker.cc/ethstaker-knowledge-base/hardware/hardware-examples).
+:desktop: **Hardware Builds**: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/docs/guides/node/local/hardware.md#example-setups) and [Ethstaker's Hardware Examples](https://docs.ethstaker.cc/ethstaker-knowledge-base/hardware/hardware-examples).
 {% endhint %}
 
 {% hint style="info" %}
-**Yorick's Storage Advice**: Refer to Yorick's Great and less great SSDs for Ethereum nodes: [https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
+:cd: **Storage Suggestion**: Check out the following to find your ideal NVME or SSD drive.
+
+* [**Yorick's Storage Advice**](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038): Refer to Yorick's Great and less great SSDs for Ethereum nodes
+* [**Top SSD List**](https://docs.google.com/spreadsheets/d/1B27\_j9NDPU3cNlj2HKcrfpJKHkOf-Oi1DbuuQva2gT4/edit)**:** Suitable drives are identified as Mid-Range or better.
 {% endhint %}
 
 <figure><img src="../../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>

@@ -5,7 +5,7 @@ description: >-
   join.
 ---
 
-# Guide | How to setup a validator for Ethereum staking on mainnet
+# 🥩 Guide | How to setup a validator for Ethereum staking on mainnet
 
 ## Installation
 

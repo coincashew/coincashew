@@ -9,14 +9,14 @@ description: >-
 
 ## <img src="../../.gitbook/assets/ada.png" alt="" data-size="original"> General Data
 
-| Site               | Title                                                                                            |
-| ------------------ | ------------------------------------------------------------------------------------------------ |
-| Website            | [https://www.cardano.org/](https://www.cardano.org/)                                             |
-| Website Foundation | [https://cardanofoundation.org/](https://cardanofoundation.org/)                                 |
-| Website IOHK       | [https://iohk.io/](https://iohk.io/)                                                             |
-| Website Emurgo     | [https://emurgo.io/](https://emurgo.io/)                                                         |
-| Source Code        | [https://github.com/IntersectMBO](https://github.com/IntersectMBO) |
-| Whitepaper         | [https://iohk.io/en/research/library/](https://iohk.io/en/research/library/)       |
+| Site               | Title                                                                        |
+| ------------------ | ---------------------------------------------------------------------------- |
+| Website            | [https://www.cardano.org/](https://www.cardano.org/)                         |
+| Website Foundation | [https://cardanofoundation.org/](https://cardanofoundation.org/)             |
+| Website IOHK       | [https://iohk.io/](https://iohk.io/)                                         |
+| Website Emurgo     | [https://emurgo.io/](https://emurgo.io/)                                     |
+| Source Code        | [https://github.com/IntersectMBO](https://github.com/IntersectMBO)           |
+| Whitepaper         | [https://iohk.io/en/research/library/](https://iohk.io/en/research/library/) |
 
 ## :person\_raising\_hand: Social Media and Community
 
@@ -56,18 +56,18 @@ description: >-
 
 ## :moneybag: Wallets
 
-{% content-ref url="../../wallets/browser-wallets/lace-wallet-cardano.md" %}
-[lace-wallet-cardano.md](../../wallets/browser-wallets/lace-wallet-cardano.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/browser-wallets/yoroi-wallet-cardano.md" %}
-[yoroi-wallet-cardano.md](../../wallets/browser-wallets/yoroi-wallet-cardano.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
-[exodus-multi-chain-assets.md](../../wallets/mobile-wallets/exodus-multi-chain-assets.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
-[guarda-multi-chain-assets.md](../../wallets/mobile-wallets/guarda-multi-chain-assets.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

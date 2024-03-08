@@ -7,16 +7,16 @@
 
 ## :last\_quarter\_moon\_with\_face: 2. Install and use a compatible wallet
 
-{% content-ref url="../../wallets/mobile-wallets/cakewallet-monero.md" %}
-[cakewallet-monero.md](../../wallets/mobile-wallets/cakewallet-monero.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/monerujo-monero.md" %}
-[monerujo-monero.md](../../wallets/mobile-wallets/monerujo-monero.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/desktop-wallets/monero-official-gui.md" %}
-[monero-official-gui.md](../../wallets/desktop-wallets/monero-official-gui.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## :pick: 3. Install mining software

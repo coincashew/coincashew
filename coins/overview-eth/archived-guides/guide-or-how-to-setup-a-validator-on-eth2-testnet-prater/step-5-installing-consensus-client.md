@@ -1181,7 +1181,7 @@ Use [https://goerli.beaconcha.in](https://goerli.beaconcha.in/) to create alerts
 
 ### :heart\_decoration: Like these guides?
 
-* **Audience-funded guide**: If you found this helpful, [please consider supporting it directly.](../../../../donations.md) :pray:
+* **Audience-funded guide**: If you found this helpful, [please consider supporting it directly.](../../../../contact-us/donations.md) :pray:
 * **Support us on Gitcoin Grants:** We build this guide exclusively by community support!
 * **Feedback or pull-requests**: [https://github.com/coincashew/coincashew](https://github.com/coincashew/coincashew)
 

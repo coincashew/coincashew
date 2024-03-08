@@ -1,6 +1,20 @@
 ---
 cover: .gitbook/assets/ce.png
 coverY: 0
+layout:
+  cover:
+    visible: true
+    size: full
+  title:
+    visible: false
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # Home
@@ -11,19 +25,14 @@ coverY: 0
 >
 > Learn to do anything with crypto, _better_.
 
-{% hint style="success" %}
-:sparkles: Adore our guides? Donate a ☕ via [CoinTr.ee](https://cointr.ee/coincashew)
-{% endhint %}
-
 {% hint style="info" %}
 :fire: **HOT TOPICS**
 
-* :pill:**Install** [**EthPillar**](coins/overview-eth/ethpillar.md): a simple companion UI for node management! Command line use is greatly reduced. Update your software with a keystroke.
-* Learn to setup your own [Ethereum Staking Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
-* Added [Holesky testnet staking guide](coins/overview-eth/testnet-holesky-validator/)
-* [Update Withdrawal Keys for Ethereum Validator with Ethdo](coins/overview-eth/update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
-* [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/)
-* Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
+* :pill:Install [**EthPillar**](coins/overview-eth/ethpillar.md): one-liner setup tool and node management TUI!
+* :cut\_of\_meat:Learn to setup your own [Ethereum Staking Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
+* :blue\_book: Added [Holesky testnet staking guide](coins/overview-eth/testnet-holesky-validator/)
+* :moneybag: [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/)
+* :chains:Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
 {% endhint %}
 
 ## :robot: Blazingly helpful

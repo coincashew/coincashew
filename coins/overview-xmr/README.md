@@ -47,30 +47,30 @@ description: >-
 
 ## :moneybag: Wallets
 
-{% content-ref url="../../wallets/browser-wallets/mymonero-xmr.md" %}
-[mymonero-xmr.md](../../wallets/browser-wallets/mymonero-xmr.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/desktop-wallets/monero-official-gui.md" %}
-[monero-official-gui.md](../../wallets/desktop-wallets/monero-official-gui.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/monerujo-monero.md" %}
-[monerujo-monero.md](../../wallets/mobile-wallets/monerujo-monero.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/cakewallet-monero.md" %}
-[cakewallet-monero.md](../../wallets/mobile-wallets/cakewallet-monero.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
-[exodus-multi-chain-assets.md](../../wallets/mobile-wallets/exodus-multi-chain-assets.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
-[coinomi-multi-chain-assets.md](../../wallets/mobile-wallets/coinomi-multi-chain-assets.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
-[guarda-multi-chain-assets.md](../../wallets/mobile-wallets/guarda-multi-chain-assets.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

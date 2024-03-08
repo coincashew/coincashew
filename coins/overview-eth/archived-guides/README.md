@@ -12,5 +12,5 @@ layout:
     visible: true
 ---
 
-# Archived Guides
+# 📜 Archived Guides
 

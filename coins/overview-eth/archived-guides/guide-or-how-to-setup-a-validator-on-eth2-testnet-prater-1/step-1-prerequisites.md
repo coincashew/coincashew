@@ -12,9 +12,9 @@ A Ethereum node consists of the Execution Layer + Consensus Layer.
 
 A Ethereum Staking node is the previous plus a Validator client.
 
-<figure><img src="../../../.gitbook/assets/client-stack.png" alt=""><figcaption><p>Client Stack</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/client-stack.png" alt=""><figcaption><p>Client Stack</p></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/eth-validator-diagram.png" alt=""><figcaption><p>Big picture: Execution / Consensus / Validator</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/eth-validator-diagram.png" alt=""><figcaption><p>Big picture: Execution / Consensus / Validator</p></figcaption></figure>
 
 ## :wave: Introduction
 
@@ -71,7 +71,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 * **Internet Data Plan**: At least 2 TB per month.
 * **Power:** Reliable electrical power. Mitigate with a [Uninterruptible Power Supply (UPS)](https://www.lifewire.com/best-uninterrupted-power-supplies-4142625).
 * **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
-* **Wallet**: [Rabby](https://rabby.io/) wallet installed
+* **Wallet**: Metamask installed
 
 ## :man\_lifting\_weights: Recommended Node Setup Requirements
 
@@ -82,25 +82,22 @@ Once done with testnet staking, this hardware configuration would be suitable fo
 * **Operating system:** 64-bit Linux (i.e. Ubuntu 22.04.1 LTS Server or Desktop)
 * **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
 * **Memory:** 32GB RAM
-* **Storage:** 4TB NVME
+* **Storage:** 2TB NVME
 * **Internet:** Stable broadband internet connections with speeds at least 10 Mbps without data limit.
 * **Data Plan**: At least 2 TB per month. Ideally, no data cap or unlimited data plan.
 * **Power:** Reliable electrical power with a [Uninterruptible Power Supply (UPS)](https://www.lifewire.com/best-uninterrupted-power-supplies-4142625).
 * **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
-* **Wallet**: [Rabby](https://rabby.io/) wallet installed
+* **Wallet**: Metamask installed
 
 {% hint style="info" %}
-:desktop: **Hardware Builds**: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/docs/guides/node/local/hardware.md#example-setups) and [Ethstaker's Hardware Examples](https://docs.ethstaker.cc/ethstaker-knowledge-base/hardware/hardware-examples).
+**Hardware Builds**: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/docs/guides/node/local/hardware.md#example-setups) and [Ethstaker's Hardware Examples](https://docs.ethstaker.cc/ethstaker-knowledge-base/hardware/hardware-examples).
 {% endhint %}
 
 {% hint style="info" %}
-:cd: **Storage Suggestion**: Check out the following to find your ideal NVME or SSD drive.
-
-* [**Yorick's Storage Advice**](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038): Refer to Yorick's Great and less great SSDs for Ethereum nodes
-* [**Top SSD List**](https://docs.google.com/spreadsheets/d/1B27\_j9NDPU3cNlj2HKcrfpJKHkOf-Oi1DbuuQva2gT4/edit)**:** Suitable drives are identified as Mid-Range or better.
+**Yorick's Storage Advice**: Refer to Yorick's Great and less great SSDs for Ethereum nodes: [https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038)
 {% endhint %}
 
-<figure><img src="../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
 
 {% hint style="success" %}
 :sparkles: **Pro Validator Tip**: Highly recommend you begin with a brand new instance of an OS, VM, and/or machine. Avoid headaches by NOT reusing testnet keys, wallets, or databases for your validator.
@@ -133,14 +130,14 @@ With your local or remote node, now you need to install an Operating System. Thi
 {% endhint %}
 
 {% hint style="warning" %}
-**Tip**: When installing Ubuntu Server, ensure you are selecting “**Use an entire disk**” on the **Guided storage configuration** screen. Next screen will be the **Storage configuration** screen, ensure your settings are using all available disk storage. A [common issue](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/using-all-available-lvm-disk-space.md) is that Ubuntu server defaults to using only 200GB.
+**Tip**: When installing Ubuntu Server, ensure you are selecting “**Use an entire disk**” on the **Guided storage configuration** screen. Next screen will be the **Storage configuration** screen, ensure your settings are using all available disk storage. A [common issue](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/using-all-available-lvm-disk-space.md) is that Ubuntu server defaults to using only 200GB.
 {% endhint %}
 
-## :performing\_arts: Setup Rabby
+## :performing\_arts: Setup Metamask
 
 When the time comes to make your validator's 32ETH deposit(s), you'll need a wallet to transfer funds to the beacon chain deposit contract.
 
-* To install Rabby, visit their [official site.](https://rabby.io/)
+* To install Metamask, refer to [this guide.](https://www.coincashew.com/wallets/browser-wallets/metamask-ethereum)
 
 ## :jigsaw: High Level Validator Node Overview
 
@@ -154,4 +151,4 @@ At the end of this guide, you will build a staking validator node that hosts thr
 **Execution client** - Supplies incoming validator deposits from the eth mainnet chain to the beacon chain client.
 {% endhint %}
 
-![How Ethereum nodes fits together featuring Leslie the Rhino, the mascot named after American computer scientist Leslie Lamport](../../../.gitbook/assets/eth2network.png)
+![How Ethereum nodes fits together featuring Leslie the Rhino, the mascot named after American computer scientist Leslie Lamport](../../../../.gitbook/assets/eth2network.png)

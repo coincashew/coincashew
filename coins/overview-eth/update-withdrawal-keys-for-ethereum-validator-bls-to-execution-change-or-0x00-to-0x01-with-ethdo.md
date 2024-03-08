@@ -4,7 +4,7 @@ description: >-
   execution withdrawal 0x01 credentials using the ETHDO tool by wealdtech.
 ---
 
-# Update Withdrawal Keys for Ethereum Validator (BLS to Execution Change or 0x00 to 0x01) with ETHDO
+# 🦉 Update Withdrawal Keys for Ethereum Validator (BLS to Execution Change or 0x00 to 0x01) with ETHDO
 
 {% hint style="info" %}
 The following steps align with our [mainnet guide](guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
@@ -292,7 +292,7 @@ Congrats! Your BLS to Execution change is now pending in a queue, waiting to be 
 
 #### Like these guides?
 
-* [Tips much appreciated](../../donations.md) :pray:
+* [Tips much appreciated](../../contact-us/donations.md) :pray:
 * [**Support us on Gitcoin Grants**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)**:** We build this guide exclusively by community support!🙏
 * Feedback or pull-requests: [https://github.com/coincashew/coincashew](https://github.com/coincashew/coincashew)
 

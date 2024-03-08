@@ -49,7 +49,7 @@
 * Updated staking-deposit-cli and added section on eth1 withdrawal address
 * Added generating mnemonic seeds on **Tails OS** by [punggolzenith](https://github.com/punggolzenith)
 * Iancoleman.io BLS12-381 Key Generation Tool [how-to added](part-iii-tips/eip2333-key-generator-by-iancoleman-io.md)
-* Testnet guide forked for [Prater testnet](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/) staking
+* Testnet guide forked for [Prater testnet](../archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/) staking
 * [Geth pruning guide](part-ii-maintenance/pruning-the-execution-client-to-free-up-disk-space.md) created
 * Major changes to Lodestar guide
 * Additional [Grafana Dashboards](part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md) for Prysm, Lighthouse and Nimbus

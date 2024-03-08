@@ -46,26 +46,26 @@ description: >-
 
 ## :moneybag: Wallets
 
-{% content-ref url="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
-[exodus-multi-chain-assets.md](../../wallets/mobile-wallets/exodus-multi-chain-assets.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/coinomi-multi-chain-assets.md" %}
-[coinomi-multi-chain-assets.md](../../wallets/mobile-wallets/coinomi-multi-chain-assets.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/desktop-wallets/atomic-multi-currency.md" %}
-[atomic-multi-currency.md](../../wallets/desktop-wallets/atomic-multi-currency.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/hardware-wallets/trezor.io-wallet/" %}
-[trezor.io-wallet](../../wallets/hardware-wallets/trezor.io-wallet/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/" %}
-[ledger-live-ledger-nano-wallet](../../wallets/hardware-wallets/ledger-live-ledger-nano-wallet/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
-{% content-ref url="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
-[guarda-multi-chain-assets.md](../../wallets/mobile-wallets/guarda-multi-chain-assets.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
