@@ -7,18 +7,6 @@
 
 ## :last\_quarter\_moon\_with\_face: 2. Install and use a compatible wallet
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 ## :pick: 3. Install mining software
 
 ### Recommended Option 1: Gupux, all-in-one mining solution with p2pool and xmrig

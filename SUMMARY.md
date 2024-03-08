@@ -11,8 +11,8 @@
 
 ## Wallets
 
-* [Guide: Crypto Wallet Tips 101 - Do's and Don'ts](wallets/guide-wallet-tips-101-dos-and-donts.md)
-* [Review: Metal Bitcoin Seed Storage by jlopp](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
+* [Guide: Crypto Wallet Tips 101 - Do's and Don'ts](wallets/guide-wallet-tips-101-dos-and-donts/README.md)
+  * [Review: Metal Bitcoin Seed Storage by jlopp](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
 
 ## Coins
 
@@ -155,7 +155,7 @@
       * [Step 3: Setting up Validator Keys](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-3-setting-up-validator-keys.md)
       * [Step 4: Installing execution client](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-4-installing-execution-client.md)
       * [Step 5: Installing consensus client](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater/step-5-installing-consensus-client.md)
-    * [Guide | How to setup a validator for Ethereum staking on testnet GOERLI](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/README.md)
+    * [Guide Version 2 | How to setup a validator for Ethereum staking on testnet GOERLI](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/README.md)
       * [Step 1: Prerequisites](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-1-prerequisites.md)
       * [Step 2: Configuring Node](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-2-configuring-node.md)
       * [Step 3: Installing execution client](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/step-3-installing-execution-client/README.md)
