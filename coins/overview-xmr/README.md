@@ -20,7 +20,6 @@ description: >-
 | Community         | Link                                                                                                 |
 | ----------------- | ---------------------------------------------------------------------------------------------------- |
 | :bird: Twitter    | [https://twitter.com/monero](https://twitter.com/monero)                                             |
-| Facebook          | [https://www.facebook.com/monerocurrency](https://www.facebook.com/monerocurrency)                   |
 | Reddit            | [https://www.reddit.com/r/monero](https://www.reddit.com/r/monero)                                   |
 | Official Forum    | [https://forum.getmonero.org/](https://forum.getmonero.org/)                                         |
 | Bitcointalk Forum | [https://bitcointalk.org/index.php?topic=583449.0](https://bitcointalk.org/index.php?topic=583449.0) |
@@ -44,33 +43,3 @@ description: >-
 | ------------- | -------------------------------------------------------------------------------------------- |
 | CoinPaprika   | [https://coinpaprika.com/coin/xmr-monero/](https://coinpaprika.com/coin/xmr-monero/)         |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/monero/](https://coinmarketcap.com/currencies/monero/) |
-
-## :moneybag: Wallets
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}

@@ -53,21 +53,3 @@ description: >-
 | CoinPaprika   | [https://coinpaprika.com/coin/ada-cardano/](https://coinpaprika.com/coin/ada-cardano/)         |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/cardano/](https://coinmarketcap.com/currencies/cardano/) |
 | CoinGecko     | [https://www.coingecko.com/en/coins/cardano](https://www.coingecko.com/en/coins/cardano)       |
-
-## :moneybag: Wallets
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
