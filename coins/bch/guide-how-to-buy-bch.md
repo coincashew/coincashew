@@ -6,10 +6,6 @@ description: Simple two step process to buying Bitcoin Cash.
 
 ## :fire: 1. Get some money into crypto
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 ## :arrows\_counterclockwise: 2. Convert on Exchange
 
 | Site                                                                   | Pairs             | Location   | KYC Required?      |

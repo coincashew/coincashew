@@ -2,10 +2,6 @@
 
 ## :fire: 1. Get some money into crypto
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 ## :currency\_exchange: 2. Convert on Exchange
 
 | Site                                                                   | Pairs             | Location   | KYC Required?      |
