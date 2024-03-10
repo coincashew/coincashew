@@ -45,11 +45,11 @@ Link: [https://holesky-faucet.pk910.de](https://holesky-faucet.pk910.de/)
   * where your ETH is returned upon "voluntary exiting a validator", or also known as full withdrawal.
   * where you receive partial withdrawals, which is where any excess balance above 32 ETH is periodically scraped and made available for use.
 * [ ] As this is **permanent** once set, **triple check** your address.
-* [ ] DO NOT USE AN :octagonal\_sign: **EXCHANGE ADDRESS** :octagonal\_sign: AS WITHDRAWAL ADDRESS.&#x20;
+* [ ] DO NOT USE AN :octagonal\_sign: **EXCHANGE ADDRESS** :octagonal\_sign: AS WITHDRAWAL ADDRESS.
 * [ ] For **testnet purposes** it's okay to use a browser/hot wallet address.
 
 {% hint style="warning" %}
-**Offline Key Generation Best Practices**: The mnemonic seed (24 words) to your validator should be protected by keeping them offline. Use Tails OS (see option 3) or a [Linux Live USB with staking-deposit-cli](https://www.youtube.com/watch?v=oDELXYNSS5w) (Option 1) or Wagyu to generate keys.&#x20;
+**Offline Key Generation Best Practices**: The mnemonic seed (24 words) to your validator should be protected by keeping them offline. Use Tails OS (see option 3) or a [Linux Live USB with staking-deposit-cli](https://www.youtube.com/watch?v=oDELXYNSS5w) (Option 1) or Wagyu to generate keys.
 
 If this is not possible, at least physically disconnect from the network by unplugging ethernet cable or disconnecting from Wifi.
 {% endhint %}
@@ -60,7 +60,7 @@ Ways to create your validator keys:
 
 <summary>Option 1 for Ubuntu - staking-deposit-cli</summary>
 
-#### 1. Download [staking-deposit-cli](https://github.com/ethereum/staking-deposit-cli#introduction) from Github.
+**1. Download** [**staking-deposit-cli**](https://github.com/ethereum/staking-deposit-cli#introduction) **from Github.**
 
 ```bash
 #Install dependencies
@@ -83,7 +83,7 @@ mv staking_deposit-cli*amd64 staking-deposit-cli
 cd staking-deposit-cli
 ```
 
-#### 2. Make a new mnemonic
+**2. Make a new mnemonic**
 
 Replace `<HARDWARE_WALLET_ADDRESS>` with withdrawal address.
 
@@ -102,8 +102,9 @@ Replace `<HARDWARE_WALLET_ADDRESS>` with withdrawal address.
 
 You will see the following messages after successfully generated the keystore(s) and the deposit(s):
 
-<pre class="language-bash"><code class="lang-bash"><strong>
-</strong>                  #####     #####
+```bash
+
+                  #####     #####
                 ##     #####     ##
     ###         ##   #######     #########################
     ##  ##      #####               ##                   ##
@@ -124,16 +125,16 @@ You will see the following messages after successfully generated the keystore(s)
                      ##   ## ##        ##   ##    ###
                      ##############          #############
 
-Creating your keys:               [####################################]  &#x3C;N>/&#x3C;N>
-Creating your keystores:          [####################################]  &#x3C;N>/&#x3C;N>
-Verifying your keystores:         [####################################]  &#x3C;N>/&#x3C;N>
-Verifying your deposits:          [####################################]  &#x3C;N>/&#x3C;N>
+Creating your keys:               [####################################]  <N>/<N>
+Creating your keystores:          [####################################]  <N>/<N>
+Verifying your keystores:         [####################################]  <N>/<N>
+Verifying your deposits:          [####################################]  <N>/<N>
 
 Success!
 Your keys can be found at: /home/username/staking-deposit-cli/validator_keys
-</code></pre>
+```
 
-#### 3. Verify mnemonic seed
+**3. Verify mnemonic seed**
 
 By re-generating the keystore files and comparing them to the originals, the mnemonic seen is verified correct by being reproducible.
 
@@ -207,7 +208,7 @@ You will learn how to boot up a windows PC into an airgapped [Tails operating sy
 
 The Tails OS is an _amnesic_ operating system, meaning it will save nothing and _leave no tracks behind_ each time you boot it.
 
-#### **1. Prerequisites**
+**1. Prerequisites**
 
 You need:
 
@@ -216,13 +217,13 @@ You need:
 * Windows or Mac computer
 * 30 minutes or longer depending on your download speed
 
-#### **2. Download Tails OS**
+**2. Download Tails OS**
 
 Download the official image from the [Tails website](https://tails.boum.org/install/index.en.html). Might take a while, go grab a coffee.
 
 Make sure you follow the guide on the Tails website to verify your download of Tails.
 
-#### **3. Download and install the software to transfer your Tails image on your USB stick**
+**3. Download and install the software to transfer your Tails image on your USB stick**
 
 For Windows, use one of
 
@@ -232,7 +233,7 @@ For Windows, use one of
 
 For Mac, download [Etcher](https://tails.boum.org/etcher/Etcher.dmg)
 
-#### **4. Making your bootable USB stick**
+**4. Making your bootable USB stick**
 
 Run the above software. This is an example how it looks like on Mac OS with etcher, but other software should be similar.
 
@@ -242,13 +243,13 @@ Select the Tails OS image that you downloaded as the image. Then select the USB 
 
 Then flash the image to the larger USB stick.
 
-#### **5. Download and verify the staking-deposit-cli**
+**5. Download and verify the staking-deposit-cli**
 
 Download the latest staking-deposit-cli binary by referring to Option 1's steps.
 
 Copy the file to the other USB stick.
 
-#### **6. Reboot your computer and into Tails OS**
+**6. Reboot your computer and into Tails OS**
 
 After you have done all the above, you can reboot. If you are connected by a LAN cable to the internet, you can disconnect it manually.
 
@@ -260,15 +261,15 @@ On Windows, it depends on your computer manufacturer. Usually it is by pressing 
 
 Choose the USB stick that you loaded up with Tails OS to boot into Tails.
 
-#### **7. Welcome to Tails OS**
+**7. Welcome to Tails OS**
 
 <img src="../../../../.gitbook/assets/grub.png" alt="" data-size="original">
 
 You can boot with all the default settings.
 
-#### **8. Run the staking-deposit-cli**
+**8. Run the staking-deposit-cli**
 
-Plug in your other USB key with the `staking-deposit-cli` file.&#x20;
+Plug in your other USB key with the `staking-deposit-cli` file.
 
 Locate the USB key, mount the drive and add execute permissions.
 
@@ -285,7 +286,7 @@ cd /media/usb-drive/staking-deposit-cli
 sudo chmod +x ./deposit
 ```
 
-#### 9. Make a new mnemonic
+**9. Make a new mnemonic**
 
 Replace `<HARDWARE_WALLET_ADDRESS>` with withdrawal address.
 
@@ -304,8 +305,9 @@ Replace `<HARDWARE_WALLET_ADDRESS>` with withdrawal address.
 
 You will see the following messages after successfully generated the keystore(s) and the deposit(s):
 
-<pre class="language-bash"><code class="lang-bash"><strong>
-</strong>                  #####     #####
+```bash
+
+                  #####     #####
                 ##     #####     ##
     ###         ##   #######     #########################
     ##  ##      #####               ##                   ##
@@ -326,18 +328,18 @@ You will see the following messages after successfully generated the keystore(s)
                      ##   ## ##        ##   ##    ###
                      ##############          #############
 
-Creating your keys:               [####################################]  &#x3C;N>/&#x3C;N>
-Creating your keystores:          [####################################]  &#x3C;N>/&#x3C;N>
-Verifying your keystores:         [####################################]  &#x3C;N>/&#x3C;N>
-Verifying your deposits:          [####################################]  &#x3C;N>/&#x3C;N>
+Creating your keys:               [####################################]  <N>/<N>
+Creating your keystores:          [####################################]  <N>/<N>
+Verifying your keystores:         [####################################]  <N>/<N>
+Verifying your deposits:          [####################################]  <N>/<N>
 
 Success!
 Your keys can be found at: /home/username/staking-deposit-cli/validator_keys
-</code></pre>
+```
 
 **Result**: a folder called `validator_keys` containing keystore-m files and deposit\_data.json
 
-#### 10. Verify mnemonic seed
+**10. Verify mnemonic seed**
 
 By re-generating the keystore files and comparing them to the originals, the mnemonic seen is verified correct by being reproducible.
 
@@ -376,7 +378,7 @@ Clean up duplicate files.
 rm -r verify_seed
 ```
 
-If you ran this command directly from your non-Tails USB stick, the validator keys should stay on it.&#x20;
+If you ran this command directly from your non-Tails USB stick, the validator keys should stay on it.
 
 If it hasn't, copy the directory over to your non-Tails USB stick.
 
@@ -434,7 +436,9 @@ $HOME/staking-deposit-cli/validator_keys
 
 <summary>Option 2 - USB Key</summary>
 
-Plug the USB key into node, then locate the device name.
+### **Step 1: From OFFLINE machine, copy validator keys to a USB key.**
+
+Plug the USB key into offline machine, then locate the device name.
 
 ```bash
 # Locate the usb key
@@ -468,10 +472,52 @@ Copy the keys. Adjust the path names if needed.
 
 ```bash
 # Create a directory on the usb drive to copy the keys into
-sudo mkdir /media/usb-drive/staking-deposit-cli
-sudo mkdir /media/usb-drive/staking-deposit-cli/validator_keys
-#Copy the keys to the usb drive
+sudo mkdir -p /media/usb-drive/staking-deposit-cli/validator_keys
+# Copy the keys to the usb drive
 sudo cp $HOME/staking-deposit-cli/validator_keys/*.json /media/usb-drive/staking-deposit-cli/validator_keys
+# Cleanup
+sudo umount /media/usb-drive
+```
+
+### **Step 2: From a USB key,  copy validator keys to the NODE.**
+
+Plug the USB key into node, then locate the device name.
+
+```bash
+# Locate the usb key
+sudo fdisk -l
+```
+
+Upon executing the above command you will get an output similar to the one below:
+
+```bash
+Disk /dev/sdc: 7.4 GiB, 7948206080 bytes, 15523840 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x00000000
+
+Device     Boot Start      End  Sectors  Size Id Type
+/dev/sdc1  *     8192 15555555 25555555 7.4G  b W95 FAT32
+```
+
+Mount the key. Change the device name accordingly.
+
+```bash
+# Create a mount point
+sudo mkdir -p /media/usb-drive
+# Mount the usb key
+sudo mount /dev/sdc1 /media/usb-drive
+```
+
+Copy the keys. Adjust the path names if needed.
+
+```bash
+# Create a directory copy the keys into
+sudo mkdir -p $HOME/staking-deposit-cli/validator_keys
+# Copy the keys to the default path
+sudo cp /media/usb-drive/staking-deposit-cli/validator_keys/*.json $HOME/staking-deposit-cli/validator_keys
 # Cleanup
 sudo umount /media/usb-drive
 ```
@@ -529,12 +575,10 @@ Your transaction is depositing your ETH to the Holesky Deposit Contract address.
 {% hint style="danger" %}
 :fire: **Critical Crypto Reminder:** **Keep your mnemonics, keep your ETH.**
 
-
-
 * **Stay Offline**: Write down your mnemonic seed **offline**. _Not email. Not cloud._
 * **More than 1 backup of mnemonic**: Multiple copies with multiple locations is better. _Best stored in a_ [_metal seed._](https://jlopp.github.io/metal-bitcoin-storage-reviews/)
 * **Verify your hardware wallet's backup:** Most important of all data, this is where your withdrawal address belongs and ultimately controls the 32 ETH
-* **In case of recovery**: Stored on a USB key, keep copies of&#x20;
+* **In case of recovery**: Stored on a USB key, keep copies of
   * `validator_keys directory` - contains all the keystore .json files
   * keystore password - used to encrypt keystore files
 {% endhint %}
