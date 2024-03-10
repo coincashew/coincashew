@@ -467,8 +467,11 @@ sudo mount /dev/sdc1 /media/usb-drive
 Copy the keys. Adjust the path names if needed.
 
 ```bash
-# Copy the keys to the default path
-sudo cp /media/usb-drive/staking-deposit-cli/validator_keys/*.json $HOME/staking-deposit-cli/validator_keys
+# Create a directory on the usb drive to copy the keys into
+sudo mkdir /media/usb-drive/staking-deposit-cli
+sudo mkdir /media/usb-drive/staking-deposit-cli/validator_keys
+#Copy the keys to the usb drive
+sudo cp $HOME/staking-deposit-cli/validator_keys/*.json /media/usb-drive/staking-deposit-cli/validator_keys
 # Cleanup
 sudo umount /media/usb-drive
 ```
