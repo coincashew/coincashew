@@ -22,27 +22,29 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 
 <figure><img src="../../.gitbook/assets/ethpillar.png" alt=""><figcaption><p>EthPillar Main Menu</p></figcaption></figure>
 
-## Prerequisites
+## :whale: Prerequisites
 
 * [Review how staking works and the hardware requirements](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md)
-* An [Ubuntu](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md#setup-ubuntu) installation. Tested working with v22.04 LTS.
+* An [Ubuntu](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md#setup-ubuntu) installation.&#x20;
+  * Tested working with Ubuntu 22.04 LTS
+  * Also appears compatible with Linux Mint 21.2, Debian 12
 
-## Option 1: Automated One-Liner Install
+## :triangular\_ruler: Option 1: Automated One-Liner Install
 
 Simply copy and paste the command into your terminal.
 
 Open source source code available here: [https://github.com/coincashew/EthPillar](https://github.com/coincashew/EthPillar)
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/ethpillar/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/EthPillar/main/install.sh)"
 ```
 
-## Option 2: Manual Install
+## :handshake: Option 2: Manual Install
 
 **Install updates and packages:**
 
 ```bash
-sudo apt-get update && sudo apt-get install git curl ccze
+sudo apt-get update && sudo apt-get install git curl ccze bc tmux
 ```
 
 **Clone the ethpillar repo and install:**
