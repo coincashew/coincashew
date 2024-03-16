@@ -315,7 +315,8 @@ Pull the latest source code and build the binary.
 git checkout stable &#x26;&#x26; git pull
 make -j$(nproc) update
 <strong>make -j$(nproc) nimbus_beacon_node
-</strong></code></pre>
+</strong>make -j$(nproc) nimbus_validator_client
+</code></pre>
 
 Verify Nimbus was built properly by displaying the version.
 

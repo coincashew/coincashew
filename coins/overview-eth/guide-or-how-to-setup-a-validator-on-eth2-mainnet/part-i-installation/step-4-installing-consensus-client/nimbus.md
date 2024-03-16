@@ -92,6 +92,7 @@ git clone -b stable https://github.com/status-im/nimbus-eth2
 cd nimbus-eth2
 make -j$(nproc) update
 make -j$(nproc) nimbus_beacon_node
+make -j$(nproc) nimbus_validator_client
 ```
 
 Verify Nimbus was built properly by displaying the version.
