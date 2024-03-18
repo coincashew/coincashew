@@ -45,7 +45,6 @@ Monitor the reliability / uptime / performance of your relays
 
 * **Relay Overview:** [https://beaconcha.in/relays](https://beaconcha.in/relays)
 * **mevboost.org - Tracking relays and block builders**: [https://www.mevboost.org](https://www.mevboost.org/)
-* **MEV Relays - Uptime Monitor:** [https://mev-relays.beaconstate.info](https://mev-relays.beaconstate.info/)
 * **MEV Watch:** [https://www.mevwatch.info](https://www.mevwatch.info/)
 * **MEV-Boost Dashboard:** [https://mevboost.pics](https://mevboost.pics/)
 * **Tornado Warning:** [https://tornado-warning.info](https://tornado-warning.info/)
