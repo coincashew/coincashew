@@ -8,7 +8,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 |  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
 |  :----------:  | :------------------: | :---------: | :-----------: |
-|  January 2024  |         8.7.3        |    8.10.7   |    3.8.1.0    |
+|   March 2024   |         8.9.0        |    8.10.7   |    3.8.1.0    |
 
 **To install GHC and Cabal:**
 
@@ -118,7 +118,7 @@ sudo apt-get install libnuma-dev
 cd $HOME/git
 git clone https://github.com/bitcoin-core/secp256k1
 cd secp256k1
-git checkout ac83be33
+git checkout v0.3.2
 ./autogen.sh
 ./configure --enable-module-schnorrsig --enable-experimental
 make
@@ -133,7 +133,7 @@ sudo ldconfig
 cd $HOME/git
 git clone https://github.com/supranational/blst
 cd blst
-git checkout v0.3.10
+git checkout v0.3.11
 ./build.sh
 cat > libblst.pc << EOF
 prefix=/usr/local
@@ -144,7 +144,7 @@ includedir=\${prefix}/include
 Name: libblst
 Description: Multilingual BLS12-381 signature library
 URL: https://github.com/supranational/blst
-Version: 0.3.10
+Version: 0.3.11
 Cflags: -I\${includedir}
 Libs: -L\${libdir} -lblst
 EOF

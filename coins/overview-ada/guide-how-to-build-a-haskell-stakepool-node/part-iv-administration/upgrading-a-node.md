@@ -38,8 +38,8 @@ Do not confuse the Cardano Community's CNCLI utilities with the [`cncli.sh`](htt
 RELEASETAG=$(curl -s https://api.github.com/repos/cardano-community/cncli/releases/latest | jq -r .tag_name)
 VERSION=$(echo ${RELEASETAG} | cut -c 2-)
 echo "Installing release ${RELEASETAG}"
-curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
-sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
+curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-ubuntu22-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-ubuntu22-x86_64-unknown-linux-gnu.tar.gz
+sudo tar xzvf /tmp/cncli-${VERSION}-ubuntu22-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
 2\. To confirm that the new version of the CNCLI binary is installed, type:
@@ -115,7 +115,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 |  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
 |  :----------:  | :------------------: | :---------: | :-----------: |
-|  January 2024  |         8.7.3        |    8.10.7   |    3.8.1.0    |
+|   March 2024   |         8.9.0        |    8.10.7   |    3.8.1.0    |
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -166,15 +166,32 @@ make check
 sudo make install
 ```
 
+**To update secp256k1:**
+
+As of version 8.9.0, a new version of `libsecp256k1` is required
+
+```
+cd $HOME/git
+git clone https://github.com/bitcoin-core/secp256k1
+cd secp256k1
+git checkout v0.3.2
+./autogen.sh
+./configure --enable-module-schnorrsig --enable-experimental
+make
+make check
+sudo make install
+sudo ldconfig
+```
+
 **To install the blst library:**
 
-In version 8.7.2 and later, the `blst` library is required.
+As of version 8.9.0, a new version of `blst` is required.
 
 ```
 cd $HOME/git
 git clone https://github.com/supranational/blst
 cd blst
-git checkout v0.3.10
+git checkout v0.3.11
 ./build.sh
 cat > libblst.pc << EOF
 prefix=/usr/local
@@ -185,7 +202,7 @@ includedir=\${prefix}/include
 Name: libblst
 Description: Multilingual BLS12-381 signature library
 URL: https://github.com/supranational/blst
-Version: 0.3.10
+Version: 0.3.11
 Cflags: -I\${includedir}
 Libs: -L\${libdir} -lblst
 EOF
@@ -393,7 +410,7 @@ To monitor your node, type the command `journalctl -fu cardano-node`in a termina
 
 6\. Copy the new `cardano-cli` binary to the air-gapped, offline computer that you use to sign transactions for your stake pool.
 
-7\. On your air-gapped, offline computer, ensure that [libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp) and [blst](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#blst) are installed.
+7\. On your air-gapped, offline computer, ensure that [libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp) and [blst](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#blst) are installed and up to date.
 
 ## :checkered\_flag:Verifying the Upgrade
 
