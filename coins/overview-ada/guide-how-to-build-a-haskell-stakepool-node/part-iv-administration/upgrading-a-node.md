@@ -325,13 +325,13 @@ rm -rf ~/tmp2
 
 **To build binaries for a new Cardano Node version:**
 
-1. To create a clone of the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), type the following commands in a terminal window on the computer you want to upgrade where `<NewFolderName>` is the name of a folder that does not exist:
+1. To create a clone of the Cardano Node [GitHub repository](https://github.com/IntersectMBO/cardano-node), type the following commands in a terminal window on the computer you want to upgrade where `<NewFolderName>` is the name of a folder that does not exist:
 
 ```bash
 # Navigate to the folder where you want to clone the repository
 cd $HOME/git
 # Download the Cardano Node repository to your local computer
-git clone https://github.com/input-output-hk/cardano-node.git ./<NewFolderName>
+git clone https://github.com/IntersectMBO/cardano-node.git ./<NewFolderName>
 ```
 
 Cloning the GitHub repository to a new folder allows you to roll back the upgrade, if needed, by re-installing on your computer the `cardano-node` and `cardano-cli` binaries from a folder where you compiled a previous version of Cardano Node packages.
@@ -346,7 +346,7 @@ cabal update
 # Download all branches and tags from the remote repository
 git fetch --all --recurse-submodules --tags
 # Switch to the branch of the latest Cardano Node release
-git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
+git checkout $(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/releases/latest | jq -r .tag_name)
 # Adjust the project configuration to disable optimization and use the recommended compiler version
 cabal configure -O0 -w ghc-<GHCVersionNumber>
 # Append the cabal.project.local file in the current folder to avoid installing the custom libsodium library

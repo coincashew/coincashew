@@ -25,7 +25,7 @@ git checkout $(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/re
 ```
 
 {% hint style="info" %}
-Typing a dollar sign ("$") before a command in parentheses refers to the output of the command in parentheses. For example, using a Web browser you can navigate to the above URL https://api.github.com/repos/input-output-hk/cardano-node/releases/latest to display the data that the `curl` command retrieves, and then confirm the value of the `tag_name` attribute that the `jq` command selects.
+Typing a dollar sign ("$") before a command in parentheses refers to the output of the command in parentheses. For example, using a Web browser you can navigate to the above URL https://api.github.com/repos/IntersectMBO/cardano-node/releases/latest to display the data that the `curl` command retrieves, and then confirm the value of the `tag_name` attribute that the `jq` command selects.
 {% endhint %}
 
 1. To adjust the project configuration to disable optimization and set the recommended compiler version, type the following command where `<GHCVersionNumber>` is the GHC version that you set in the procedure [Installing Glasgow Haskell Compiler and Cabal](installing-ghc-and-cabal.md):

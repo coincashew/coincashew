@@ -1,13 +1,33 @@
 ---
 description: >-
   On Ubuntu/Debian, this guide will illustrate how to install and configure a
-  Cardano stake pool from source code on a two node setup with 1 block producer
+  Cardano stake pool from source code on a two-node setup with 1 block producer
   node and 1 relay node.
 ---
 
 # Guide: How to Set Up a Cardano Stake Pool
 
+## :thumbsup:Your GitHub Contributions Welcome
+
+The _How to Set Up a Cardano Stake Pool_ guide is fully open source and fully powered by stake pool operators like you.
+
+Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
+
+{% embed url="https://github.com/coincashew/coincashew" %}
+
 ## :wrench: About This Guide
+
+Available since the initial launch of Cardano in 2017, the _How to Set Up a Cardano Stake Pool_ guide provides free educational content that continues to play an essential role in welcoming newcomers to the Cardano ecosystem while also serving as a valuable resource for experienced Cardano community members.
+
+[Change Pool](https://change.paradoxicalsphere.com) is the official stake pool of the _How to Set Up a Cardano Stake Pool_ guide available on [CoinCashew](https://www.coincashew.com/). Created in 2021 using the CoinCashew Guide, [Change Pool](https://change.paradoxicalsphere.com) commits to informing regular updates and improvements to CoinCashew Guide content based on the practical and tested day-to-day operating procedures used to administer the pool. [Change Pool](https://change.paradoxicalsphere.com) also commits to sharing a representative portion of pool fees received with CoinCashew.
+
+As an alternative to contributing content or making a one-time [donation](https://cointr.ee/coincashew), if you want to receive rewards for your stake while also offering financial support in perpetuity to the ongoing development and maintenance of the _How to Set Up a Cardano Stake Pool_ CoinCashew Guide, then please delegate to [Change Pool](https://change.paradoxicalsphere.com), ticker CHG
+
+{% hint style="info" %}
+Much appreciated in advance. :pray:
+{% endhint %}
+
+## :tada: Introduction
 
 The _How to Set Up a Cardano Stake Pool_ guide aims to give you complete, step-by-step instructions to implement a secure Cardano stake pool using the currently recommended software versions.
 
@@ -23,22 +43,6 @@ The guide includes the following parts:
 
 {% hint style="info" %}
 To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying glass (![](../../../.gitbook/assets/search-icon.png)) icon in the top right corner of the left navigation.
-{% endhint %}
-
-## :thumbsup:Your Github Contributions Welcome
-
-This guide is fully open source and fully powered by stake pool operators like you.
-
-Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
-
-{% embed url="https://github.com/coincashew/coincashew" %}
-
-## :tada: Introduction
-
-{% hint style="info" %}
-If you want to support this free educational Cardano content or found this helpful, please delegate to [Change Pool](https://change.paradoxicalsphere.com) or visit [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses.&#x20;
-
-Much appreciated in advance. :pray:
 {% endhint %}
 
 ## :page\_facing\_up: Change Log
