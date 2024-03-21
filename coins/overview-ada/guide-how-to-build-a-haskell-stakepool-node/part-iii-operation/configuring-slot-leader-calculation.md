@@ -319,8 +319,6 @@ For every epoch, there will be a file called leaderSchedule\_epoch.txt
 A community-based `cardano-node` CLI tool. It's a collection of utilities to enhance and extend beyond those available with the `cardano-cli`.
 {% endhint %}
 
-
-
 :dna: **Installing the Binary**
 
 ```bash
@@ -330,14 +328,9 @@ A community-based `cardano-node` CLI tool. It's a collection of utilities to enh
 RELEASETAG=$(curl -s https://api.github.com/repos/cardano-community/cncli/releases/latest | jq -r .tag_name)
 VERSION=$(echo ${RELEASETAG} | cut -c 2-)
 echo "Installing release ${RELEASETAG}"
-curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
+curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-ubuntu22-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-ubuntu22-x86_64-unknown-linux-gnu.tar.gz
+sudo tar xzvf /tmp/cncli-${VERSION}-ubuntu22-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
-
-```bash
-sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
-```
-
-
 
 **Confirming That CNCLI is Properly Installed**
 
