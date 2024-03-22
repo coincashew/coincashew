@@ -8,7 +8,7 @@ If you want to support this free educational Cardano content or found the conten
 :ledger:Technical writing by [Change Pool (ticker CHG)](https://change.paradoxicalsphere.com)
 {% endhint %}
 
-[Input-Output (IOHK)](https://iohk.io/) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each new release.
+[Input-Output (IOHK)](https://iohk.io/) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, configurations, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each new release.
 
 {% hint style="info" %}
 To receive notifications related to activity in the Cardano Node GitHub repository, configure [Watch](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#automatic-watching) functionality.
@@ -246,23 +246,23 @@ mv topology-legacy.json topology-legacy.bak
 If you follow the Coin Cashew instructions for [Preparing Configuration Files](../part-ii-configuration/preparing-configuration-files.md), then `<ConfigurationFileFolder>` is `$HOME/cardano-my-node` Alternately, you can type `$NODE_HOME` If needed, you can also use the environment variable `$NODE_CONFIG` to indicate the `mainnet` cluster in configuration file names.
 {% endhint %}
 
-3\. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), then browse to the latest release, then click to expand the Downloads dropdown list in the Technical Specification section of the release notes, and then click the Configuration Files link.
+3\. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/IntersectMBO/cardano-node), then browse to the latest release, then click to expand the Downloads dropdown list in the Technical Specification section of the release notes, and then click the Configuration Files link.
 
 4\. On the Cardano Configurations page, click the following links to download configuration files for the `mainnet` cluster to the folder where you created backups of your current configuration files in step 2: `config`, `byronGenesis`, `shelleyGenesis`, `alonzoGenesis, conwayGenesis` and `topology`
 
 {% hint style="warning" %}
-As of version 8.0.0, you need to download a new config file, `conway-genesis.json`
+As of version 8.9.0, you need to download a new config file, `conway-genesis.json`
 
 ```bash
 cd <ConfigurationFileFolder>
 wget https://book.world.dev.cardano.org/environments/mainnet/conway-genesis.json
 ```
 
-Then, verify `mainnet-config.json` contains the two lines additional lines:
+Then, verify `config.json` contains the following two lines:
 
 ```
 "ConwayGenesisFile": "conway-genesis.json", 
-"ConwayGenesisHash": "f28f1c1280ea0d32f8cd3143e268650d6c1a8e221522ce4a7d20d62fc09783e1",
+"ConwayGenesisHash": "de609b281cb3d8ae91a9d63a00c87092975612d603aa54c0f1c6a781e33d6e1e",
 ```
 {% endhint %}
 
@@ -272,9 +272,13 @@ If you want to download new configuration files using the command line, then nav
 
 5\. Using [`diff`](https://www.man7.org/linux/man-pages/man1/diff.1.html) or a similar file comparison utility, identify and copy customizations as needed from the backup configuration files that you created in step 2 to each new configuration file that you downloaded in step 4.
 
+{% hint style="warning" %}
+The `config.json` file contains hashes for the `byron-genesis.json`, `shelley-genesis.json`, `alonzo-genesis.json` and `conway-genesis.json` files using the `ByronGenesisHash`, `ShelleyGenesisHash`, `AlonzoGenesisHash` and `ConwayGenesisHash` keys, respectively. Therefore, do NOT manually edit the `*genesis.json` files.
+{% endhint %}
+
 ## :zap:Installing New Cardano Binaries <a href="#buildingcn" id="buildingcn"></a>
 
-1. Either build the latest binaries or download pre-built binaries from IOHK.
+1. Either build the latest binaries or download pre-built binaries that may be available from IOHK
 
 <details>
 
