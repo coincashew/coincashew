@@ -2,7 +2,7 @@
 
 The legacy network topology that Cardano uses relies on centralized servers. Development efforts continue to work towards removing security risks associated with centralization within the Cardano ecosystem. Since 2023, Cardano node software includes functionality supporting peer-to-peer network topology designed to reduce the reliance on centralized servers.
 
-While Cardano peer-to-peer functionality is improving, Input Output continues to recommend operating in your stake pool configuration at least one relay node that uses legacy topology and is NOT registered on the blockchain. If you implement more than one relay node in your stake pool, then Input Output recommends implementing peer-to-peer topology on additional relays.
+While Cardano peer-to-peer functionality is improving, Input Output currently recommends operating in your stake pool configuration one relay node that uses legacy topology and is NOT registered on the blockchain. Input Output also encourages implementing two or three relay nodes in your stake pool configuration, and implementing peer-to-peer networking topology on the additional relays.
 
 {% hint style="info" %}
 Registering nodes using legacy topology on the blockchain is optional. To operate a relay node using peer-to-peer topology, you MUST register the relay on the blockchain.
@@ -14,7 +14,7 @@ On a block-producing node, which connects only to relay nodes in your stake pool
 If you configure the block-producing node for your stake pool to use peer-to-peer topology, do NOT register the block-producing node on the blockchain.
 {% endhint %}
 
-If the configuration for nodes using peer-to-peer topology is out of date and your stake pool falls behind in synchronizing with the network, then the nodes may not resynchronize until you update the configuration.
+In general, you need to maintain the configuration for nodes using peer-to-peer topology regularly. If the configuration for nodes using peer-to-peer topology is out of date and your stake pool falls behind in synchronizing with the network, then the nodes may not resynchronize until you update the configuration.
 
 **To enable peer-to-peer topology on a Cardano node:**
 
