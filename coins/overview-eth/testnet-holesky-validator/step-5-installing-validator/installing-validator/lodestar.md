@@ -72,6 +72,7 @@ ExecStart=/usr/local/bin/lodestar/lodestar validator \
   --dataDir /var/lib/lodestar/validators \
   --beaconNodes http://127.0.0.1:5052 \
   --metrics true \
+  --metrics.port 8009 \
   --graffiti "🏠🥩🪙🛡️" \
   --suggestedFeeRecipient <0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
   

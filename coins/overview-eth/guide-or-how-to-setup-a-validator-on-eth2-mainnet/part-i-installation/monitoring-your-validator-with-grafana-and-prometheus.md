@@ -62,11 +62,11 @@ scrape_configs:
    - job_name: 'lighthouse'
      metrics_path: /metrics    
      static_configs:
-       - targets: ['localhost:5054']
+       - targets: ['localhost:8008']
    - job_name: 'lighthouse_validator'
      metrics_path: /metrics
      static_configs:
-       - targets: ['localhost:5064']
+       - targets: ['localhost:8009']
 ```
 {% endtab %}
 
@@ -142,7 +142,7 @@ scrape_configs:
        - targets: ['localhost:9100']
    - job_name: 'validator'
      static_configs:
-       - targets: ['localhost:8081']
+       - targets: ['localhost:8009']
    - job_name: 'Prysm'
      static_configs:
        - targets: ['localhost:8008']
@@ -171,7 +171,7 @@ scrape_configs:
    - job_name: 'validator'
      metrics_path: /metrics    
      static_configs:
-       - targets: ['localhost:5064']
+       - targets: ['localhost:8009']
 </code></pre>
 {% endtab %}
 {% endtabs %}

@@ -121,9 +121,11 @@ ExecStart=/usr/local/bin/validator \
   --accept-terms-of-use \
   --datadir=/var/lib/prysm/validators \
   --beacon-rpc-provider=localhost:4000 \
+  --beacon-rpc-gateway-provider=localhost:5052 \
   --wallet-dir=/var/lib/prysm/validators \
   --wallet-password-file=/var/lib/prysm/validators/password.txt \
   --graffiti="🏠🥩🪙🛡️" \
+  --monitoring-port=8009 \
   --suggested-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
 
 [Install]
@@ -157,9 +159,11 @@ ExecStart=bazel run //cmd/validator --config=release -- \
   --accept-terms-of-use \
   --datadir=/var/lib/prysm/validators \
   --beacon-rpc-provider=localhost:4000 \
+  --beacon-rpc-gateway-provider=localhost:5052 \
   --wallet-dir=/var/lib/prysm/validators \
   --wallet-password-file=/var/lib/prysm/validators/password.txt \
   --graffiti="🏠🥩🪙🛡️" \
+  --monitoring-port=8009 \
   --suggested-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
 
 [Install]
