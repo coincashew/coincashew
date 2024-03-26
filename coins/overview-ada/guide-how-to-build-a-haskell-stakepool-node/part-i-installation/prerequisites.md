@@ -26,7 +26,7 @@ As a Stake Pool Operator (SPO) for Cardano, you need:
 * **One air-gapped offline machine (cold environment)**
 * **Operating system**: 64-bit Linux (i.e. Ubuntu 22.04 LTS)
 * **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
-* **Memory:** 24GB RAM
+* **Memory:** 16GB to 24GB RAM
 * **Storage:** 200GB free storage
 * **Internet:** Static IP address and a broadband connection supporting speeds at least 10 Mbps
 * **Data Plan**: at least 1GB per hour. 720GB per month.
