@@ -35,8 +35,7 @@ cabal update
 cabal configure -O0 -w ghc-<GHCVersionNumber>
 ```
 
-1. Save and close the `cabal.project.local` file.
-2. To produce executable `cardano-node` and `cardano-cli` binaries, type:
+1. To produce executable `cardano-node` and `cardano-cli` binaries, type:
 
 ```bash
 cabal build cardano-node cardano-cli
