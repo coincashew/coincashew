@@ -35,13 +35,6 @@ cabal update
 cabal configure -O0 -w ghc-<GHCVersionNumber>
 ```
 
-1. Using a text editor, open the file named `cabal.project.local` located in the current folder, and then add the following lines at the end of the file to avoid installing a custom libsodium library:
-
-```bash
-package cardano-crypto-praos
- flags: -external-libsodium-vrf
-```
-
 1. Save and close the `cabal.project.local` file.
 2. To produce executable `cardano-node` and `cardano-cli` binaries, type:
 
