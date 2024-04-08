@@ -144,6 +144,7 @@ ExecStart=/usr/local/bin/nimbus_beacon_node \
   --udp-port=9000 \
   --max-peers=100 \
   --rest-port=5052 \
+  --enr-auto-update=true \
   --non-interactive \
   --status-bar=false \
   --in-process-validators=false \
@@ -186,6 +187,7 @@ ExecStart=/usr/local/bin/nimbus_beacon_node \
   --udp-port=9000 \
   --max-peers=100 \
   --rest-port=5052 \
+  --enr-auto-update=true \
   --web3-url=http://127.0.0.1:8551 \
   --rest \
   --metrics \
