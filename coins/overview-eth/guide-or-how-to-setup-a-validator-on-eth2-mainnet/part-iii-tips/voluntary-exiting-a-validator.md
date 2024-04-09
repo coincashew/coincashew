@@ -6,7 +6,7 @@ description: Remove a validator from staking duties.
 
 ## :track\_next: Voluntary Exit Timeline Visualized
 
-<figure><img src="../../../../.gitbook/assets/exit-timeline.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/exit-timeline.png" alt=""><figcaption><p>Voluntary exit procedures involve multiple steps and potential delays. For a complete overview of these steps and delays, refer to Ladislaus's informative graphic.</p></figcaption></figure>
 
 ## :clap: Purpose
 
