@@ -38,8 +38,10 @@ cabal configure -O0 -w ghc-<GHCVersionNumber>
 5. To produce executable `cardano-node` and `cardano-cli` binaries, type:
 
 ```bash
-cabal build cardano-node cardano-cli
+cabal build all
+cabal build cardano-cli
 ```
+<!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md -->
 
 {% hint style="info" %}
 Depending on your the processing power of your computer, the build process requires about 20 minutes to complete.

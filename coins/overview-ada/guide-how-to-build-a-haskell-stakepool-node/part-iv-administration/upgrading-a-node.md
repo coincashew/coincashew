@@ -354,8 +354,10 @@ git checkout $(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/re
 # Adjust the project configuration to disable optimization and use the recommended compiler version
 cabal configure -O0 -w ghc-<GHCVersionNumber>
 # Compile the cardano-node and cardano-cli packages found in the current directory
-cabal build cardano-node cardano-cli
+cabal build all
+cabal build cardano-cli
 ```
+<!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md -->
 
 The time required to compile the `cardano-node` and `cardano-cli` packages may be a few minutes to hours, depending on the specifications of your computer.
 
