@@ -151,7 +151,7 @@ chmod +x relay-topology_pull.sh
 ```
 
 {% hint style="info" %}
-Weekly, [Cardano Explorer](https://explorer.cardano.org/) publishes a current list of IP addresses and ports for all available relay nodes registered on the Cardano blockchain in a [`topology.json`](https://explorer.cardano.org/relays/topology.json) file.
+Weekly, [Cardano Explorer](https://explorer.cardano.org/) publishes a current list of IP addresses and ports for all relay nodes registered on the Cardano blockchain in a [`topology.json`](https://explorer.cardano.org/relays/topology.json) file.
 {% endhint %}
 
 To implement the updated topology, restart your stake pool.

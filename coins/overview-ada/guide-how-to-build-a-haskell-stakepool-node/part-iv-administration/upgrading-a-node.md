@@ -353,8 +353,6 @@ git fetch --all --recurse-submodules --tags
 git checkout $(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/releases/latest | jq -r .tag_name)
 # Adjust the project configuration to disable optimization and use the recommended compiler version
 cabal configure -O0 -w ghc-<GHCVersionNumber>
-# Append the cabal.project.local file in the current folder to avoid installing the custom libsodium library
-echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" >> cabal.project.local
 # Compile the cardano-node and cardano-cli packages found in the current directory
 cabal build cardano-node cardano-cli
 ```
