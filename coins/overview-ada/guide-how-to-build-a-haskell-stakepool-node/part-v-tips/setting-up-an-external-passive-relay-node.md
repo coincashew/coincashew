@@ -79,8 +79,6 @@ git fetch --tags --all
 git pull
 # For example, to build node version 1.26.2 type git checkout 1.26.2
 git checkout <NodeVersion>
-
-echo -e "package cardano-crypto-praos\n  flags: -external-libsodium-vrf" > cabal.project.local
 $CNODE_HOME/scripts/cabal-build-all.sh
 ```
 

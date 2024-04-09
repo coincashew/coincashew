@@ -113,9 +113,9 @@ For each Cardano Node release, Input-Output recommends compiling binaries using 
 
 _Table 1 Current Cardano Node Version Requirements_
 
-|  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
-|  :----------:  | :------------------: | :---------: | :-----------: |
-|  January 2024  |         8.7.3        |    8.10.7   |    3.8.1.0    |
+| Release Date | Cardano Node Version | GHC Version | Cabal Version |
+| :----------: | :------------------: | :---------: | :-----------: |
+| January 2024 |         8.7.3        |    8.10.7   |    3.8.1.0    |
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -194,7 +194,6 @@ sudo cp bindings/blst_aux.h bindings/blst.h bindings/blst.hpp /usr/local/include
 sudo cp libblst.a /usr/local/lib
 sudo chmod u=rw,go=r /usr/local/{lib/{libblst.a,pkgconfig/libblst.pc},include/{blst.{h,hpp},blst_aux.h}}
 ```
-<!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md-->
 
 ## :inbox\_tray:Downloading New Configuration Files
 
@@ -332,8 +331,6 @@ git fetch --all --recurse-submodules --tags
 git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
 # Adjust the project configuration to disable optimization and use the recommended compiler version
 cabal configure -O0 -w ghc-<GHCVersionNumber>
-# Append the cabal.project.local file in the current folder to avoid installing the custom libsodium library
-echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" >> cabal.project.local
 # Compile the cardano-node and cardano-cli packages found in the current directory
 cabal build cardano-node cardano-cli
 ```
