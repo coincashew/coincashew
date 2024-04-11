@@ -342,8 +342,6 @@ command -v cncli
 
 It should return `/usr/local/bin/cncli`
 
-
-
 :pick: **Running LeaderLog with stake-snapshot**
 
 This command calculates a stake pool's expected slot list.
@@ -354,13 +352,9 @@ This command calculates a stake pool's expected slot list.
 
 Example usage with the `stake-snapshot` approach for `next` epoch:
 
-
-
 {% hint style="info" %}
 Run this command 1.5 days (36 hours) before the next epoch begins.
 {% endhint %}
-
-
 
 ```bash
 /usr/local/bin/cncli sync --host 127.0.0.1 --port 6000 --no-service
@@ -383,8 +377,6 @@ PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
 
 echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
-
-
 
 Example usage with the `stake-snapshot` approach for `current` epoch:
 
@@ -410,8 +402,6 @@ PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
 echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
 
-
-
 Example usage with the `stake-snapshot` approach for `previous` epoch:
 
 ```bash
@@ -436,8 +426,6 @@ PERFORMANCE=`echo $MYPOOL | jq .maxPerformance`
 echo "\`MYPOOL - $SLOTS \`🎰\`,  $PERFORMANCE% \`🍀max, \`$IDEAL\` 🧱ideal"
 ```
 
-
-
 **Integrating with PoolTool**
 
 [PoolTool](https://pooltool.io) provides [example scripts](https://github.com/papacarp/pooltool.io) to submit the following data for your stake pool:
@@ -455,13 +443,9 @@ You can also use [CNCLI utilities](https://github.com/cardano-community/cncli) d
 
 To send data to PoolTool using CNCLI utilities without using the `cncli.sh` script, create a configuration file containing your PoolTool API key and stake pool details.
 
-
-
 {% hint style="info" %}
 For details on requesting an API key from PoolTool, see the topic [Obtaining a PoolTool API Key](../part-v-tips/obtaining-a-pooltool-api-key.md).
 {% endhint %}
-
-
 
 To create a configuration file, update values in the following example with your pool information. To follow the example, save the configuration file at `$NODE_HOME/scripts/pooltool.json`
 
@@ -480,8 +464,6 @@ cat > ${NODE_HOME}/scripts/pooltool.json << EOF
 }
 EOF
 ```
-
-
 
 **Creating systemd Services**
 
@@ -566,8 +548,6 @@ sudo systemctl start cncli-sync.service
 sudo systemctl start cncli-sendtip.service
 ```
 
-
-
 :tools: **Upgrading CNCLI**
 
 ```bash
@@ -580,8 +560,6 @@ curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASE
 ```bash
 sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
-
-
 
 **Confirming CNCLI Upgrades**
 

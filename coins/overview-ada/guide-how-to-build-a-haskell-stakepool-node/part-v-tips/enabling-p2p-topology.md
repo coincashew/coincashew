@@ -9,7 +9,7 @@ Currently, Input Output recommends the following configuration in a stake pool u
 - On the block-producing node, implementing peer-to-peer topology
 
 {% hint style="warning" %}
-To operate a relay node using peer-to-peer topology, you MUST register the relay on the blockchain. The requirement to register all relay nodes using peer-to-peer topology publicly creates a security risk. A relay node using legacy topology operates when registered or unregistered. The block-producing node connects only to relay nodes in your stake pool configuration. Do NOT register a block-producing node using peer-to-peer networking on the blockchain.
+To operate a relay node using peer-to-peer topology, you MUST register the relay on the blockchain. The requirement to register all relay nodes using peer-to-peer topology publicly may create a security risk. A relay node using legacy topology operates when registered or unregistered. The block-producing node connects only to relay nodes in your stake pool configuration. Do NOT register a block-producing node using peer-to-peer networking on the blockchain.
 {% endhint %}
 
 Using peer-to-peer topology requires maintaining the configuration. If the configuration for nodes using peer-to-peer topology is out of date and your stake pool falls behind in synchronizing with the network, then the nodes may not resynchronize until you update the configuration.
@@ -25,7 +25,7 @@ Submitting a registration certificate replaces any registration certificates tha
 2. Using [Cardanoscan](https://cardanoscan.io/pools) or another Cardano block explorer, confirm that the relay node you registered in step 1 appears as a relay for your stake pool.
 
 {% hint style="warning" %}
-When enabling peer-to-peer topology for a relay node, do NOT complete additional steps in the procedure until you successfully register the node on the blockchain. If a relay node using peer-to-peer topology is not registered, then other nodes in the peer-to-peer network will NOT connect to your relay.
+When enabling peer-to-peer topology for a relay node, do NOT complete additional steps in the procedure until you successfully register the node on the blockchain. If a relay node using peer-to-peer topology is not registered, then other nodes in the peer-to-peer network will NOT connect to the relay.
 {% endhint %}
 
 3. To stop the Cardano node, type `sudo systemctl stop cardano-node`

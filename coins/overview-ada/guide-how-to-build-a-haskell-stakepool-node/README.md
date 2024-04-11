@@ -17,7 +17,7 @@ Pull requests or issues can be submitted on [github](https://github.com/coincash
 
 ## :wrench: About This Guide
 
-Available since the initial launch of Cardano in 2017, the _How to Set Up a Cardano Stake Pool_ guide provides free educational content that continues to play an essential role in welcoming newcomers to the Cardano ecosystem while also serving as a valuable resource for experienced Cardano community members. The level of detail and accuracy that the guide presents supporting operation of Cardano nodes in practical, real-world stake pool configurations, as well as procedures specific to upgrading Cardano nodes, uniquely differentiates the guide amongst Cardano technical documentation.
+Available since 2021 and one of the first resources available online to support Cardano stake pool operations, the _How to Set Up a Cardano Stake Pool_ guide provides free educational content that continues to play an essential role in welcoming newcomers to the Cardano ecosystem while also serving as a valuable resource for experienced Cardano community members. The level of detail and accuracy that the guide presents supporting operation of Cardano nodes in practical, real-world stake pool configurations, as well as procedures explaining specific Cardano node upgrade paths, uniquely differentiates the guide amongst Cardano technical documentation.
 
 [Change Pool](https://change.paradoxicalsphere.com) is the official stake pool of the _How to Set Up a Cardano Stake Pool_ guide available on [CoinCashew](https://www.coincashew.com/). Created in 2021 using the CoinCashew Guide, [Change Pool](https://change.paradoxicalsphere.com) commits to informing regular updates and improvements to CoinCashew Guide content based on the practical and tested day-to-day operating procedures used to administer the pool. [Change Pool](https://change.paradoxicalsphere.com) also commits to sharing a representative portion of pool fees received with CoinCashew.
 
@@ -47,6 +47,11 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :page\_facing\_up: Change Log
 
+* April 10, 2024
+  * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
+    * Incorporating updates for Cardano Node 8.9.1
+    * Creating the [Enabling Peer-to-peer Network Topology](part-v-tips/enabling-p2p-topology.md) topic
+    * Adapting existing content to reflect peer-to-peer network topology
 * February 3, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
     * Creating the [Cardano Resource Index](appendix-b-resource-index.md)
