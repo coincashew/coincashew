@@ -4,18 +4,22 @@ description: Remove a validator from staking duties.
 
 # Voluntary Exiting a Validator
 
-{% hint style="info" %}
+## :track\_next: Voluntary Exit Timeline Visualized
+
+<figure><img src="../../../../.gitbook/assets/exit-timeline.png" alt=""><figcaption><p>Voluntary exit procedures involve multiple steps and potential delays. For a complete overview of these steps and delays, refer to Ladislaus's informative graphic.</p></figcaption></figure>
+
+## :clap: Purpose
+
 Use the Voluntary Exit command to signal your intentions to permanently stop your duties as a validator.
 
-* **Timeline**: Voluntary exiting is possible after your validator is active for at least a minimum of 2048 epochs (or \~9days). If there is no exit queue, the exit process requires at least 32 minutes. After 27.3 hours, your ETH becomes withdrawable and is automatically swept back to your withdrawal address.
+* **Timeline**: Voluntary exiting is possible after your validator is actively validating. If there is no exit queue, the exit process requires at least 4 epochs, or 26 minutes. After your validator is "exited", and proceeds through the "withdrawal delay" phase and "withdrawal processing" phase, your ETH is automatically swept back to your withdrawal address.
 * **Consequences**: Once a validator is in exited state, it's non-reversible. You would need to re-key, or generate new validator keys to start staking again.
 * **ETH Deposit**: In order to re-claim your 32ETH validator deposit and perform a full withdrawal, you must have previously set a Withdrawal Address. If not yet set, see here: [0x01 withdrawal address.](../../update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
 * **Responsibilities**: After your validator leaves the exit queue and is truly exited, it is safe to turn off your execution client, consensus client and validator.
 
-
-
 Reference: [https://liquidcollective.io/eth-activations-and-exits/](https://liquidcollective.io/eth-activations-and-exits/)
-{% endhint %}
+
+## :computer: How-to initiate a voluntary exit
 
 {% tabs %}
 {% tab title="Lighthouse" %}
@@ -103,7 +107,7 @@ sudo systemctl restart validator
 **Troubleshooting**: To perform a voluntary exit, make sure your consensus client (aka beacon node) is running with **REST-API** enabled.
 {% endhint %}
 
-#### Official reference documentation from each team can be found below:
+### Official reference documentation from each team can be found below:
 
 * [Exiting a Teku validator](https://docs.teku.consensys.net/how-to/voluntarily-exit)
 * [Exiting a Prysm validator](https://docs.prylabs.network/docs/wallet/exiting-a-validator)

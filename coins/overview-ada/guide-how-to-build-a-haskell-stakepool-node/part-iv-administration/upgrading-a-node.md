@@ -117,6 +117,7 @@ _Table 1 Current Cardano Node Version Requirements_
 |  :----------:  | :------------------: | :---------: | :-----------: |
 | March 25, 2024 |         8.9.1        |    8.10.7   |    3.8.1.0    |
 
+
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
 * In a terminal window, type:
@@ -211,7 +212,6 @@ sudo cp bindings/blst_aux.h bindings/blst.h bindings/blst.hpp /usr/local/include
 sudo cp libblst.a /usr/local/lib
 sudo chmod u=rw,go=r /usr/local/{lib/{libblst.a,pkgconfig/libblst.pc},include/{blst.{h,hpp},blst_aux.h}}
 ```
-<!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md-->
 
 ## :inbox\_tray:Downloading New Configuration Files
 

@@ -40,6 +40,7 @@ cabal configure -O0 -w ghc-<GHCVersionNumber>
 ```bash
 cabal build all
 cabal build cardano-cli
+
 ```
 <!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md -->
 

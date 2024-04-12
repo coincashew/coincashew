@@ -68,6 +68,7 @@ ExecStart=/usr/local/bin/lighthouse vc \
   --datadir /var/lib/lighthouse \
   --graffiti="🏠🥩🪙🛡️" \
   --metrics \
+  --metrics-port 8009 \
   --suggested-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
 
 [Install]

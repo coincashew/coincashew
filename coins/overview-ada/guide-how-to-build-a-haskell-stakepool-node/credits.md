@@ -16,7 +16,7 @@ Thank you for supporting Cardano and us! Please use the below cointr.ee link. :b
 
 ## :grin: Thank You
 
-Thanks to all 102,000+ of you, the Cardano hodlers, buidlers, stakers, and pool operators for making the better future a reality.
+Thanks to all 102,000+ of you, the Cardano hodlers, builders, stakers, and pool operators for making the better future a reality.
 
 ## :sparkles: Contributors
 

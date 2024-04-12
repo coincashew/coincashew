@@ -20,9 +20,11 @@ To install EthPillar, [visit the quickstart page.](../ethpillar.md)
 
 ### :chains:Option 2: Manual Installation
 
+* This guide aims to reduce the reliance on scripts in this section to make the learning process more straightforward and understandable.
+* This approach provides a detailed overview of the steps involved, ensuring stakers have a clear understanding of the process.
 * Great for advanced users comfortable with the CLI terminal who want full control and require customization of EL/CL combinations and their configurations.
-* Deploys a systemd installation with any combination you choose.
-* After installation, use EthPillar to simplify maintenance of your node.
+* Deploys a systemd installation with any EL/CL combination you choose.
+* After installation, use [EthPillar](../ethpillar.md) to simplify maintenance of your node.
 
 To install manually, continue with this guide.
 
