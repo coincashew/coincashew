@@ -222,9 +222,10 @@ cabal update
 git fetch --all --recurse-submodules --tags
 git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
 cabal configure -O0 -w ghc-8.10.4
-echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local
-cabal build cardano-node cardano-cli
+cabal build all
+cabal build cardano-cli
 ```
+<!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md -->
 
 {% hint style="info" %}
 Build process may take a few minutes up to a few hours depending on your computer's processing power.

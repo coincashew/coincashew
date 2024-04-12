@@ -99,13 +99,13 @@ rm ${NODE_HOME}/crontab-fragment.txt
 ```
 
 {% hint style="success" %}
-After four hours and four updates, your node IP will be registered in the topology fetch list.
+After four hours and four updates, your node IP will be included in the topology fetch list.
 {% endhint %}
 
 ## :newspaper: Updating Legacy Topology Files on a Relay Node
 
 {% hint style="danger" %}
-Complete this section after **four hours** when your relay node IP is properly registered.
+Complete this section after **four hours** when your relay node IP is included in the legacy network topology fetch list.
 {% endhint %}
 
 Create `relay-topology_pull.sh` script which fetches your relay node buddies and updates your topology file. **Update with your block producer's IP address.**
@@ -150,6 +150,10 @@ chmod +x relay-topology_pull.sh
 ./relay-topology_pull.sh
 ```
 
+{% hint style="info" %}
+Weekly, [Cardano Explorer](https://explorer.cardano.org/) publishes a current list of IP addresses and ports for all relay nodes registered on the Cardano blockchain in a [`topology.json`](https://explorer.cardano.org/relays/topology.json) file.
+{% endhint %}
+
 To implement the updated topology, restart your stake pool.
 
 ```bash
@@ -183,5 +187,5 @@ CERT=${NODE_HOME}/node.cert
 {% endhint %}
 
 {% hint style="success" %}
-Congratulations! Your stake pool is registered and ready to produce blocks.
+Congratulations! Your stake pool is included in the legacy network topology and ready to produce blocks. When you finish testing that your stake pool successfully produces blocks, consider [future-proofing](../part-i-installation/prerequisites.md#futureproof) your stake pool and [Enabling Peer-to-peer Network Topology](../part-v-tips/enabling-p2p-topology.md).
 {% endhint %}

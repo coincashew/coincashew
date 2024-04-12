@@ -8,7 +8,7 @@ If you want to support this free educational Cardano content or found the conten
 :ledger:Technical writing by [Change Pool (ticker CHG)](https://change.paradoxicalsphere.com)
 {% endhint %}
 
-[Input-Output (IOHK)](https://iohk.io/) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each new release.
+[Input-Output (IOHK)](https://iohk.io/) regularly releases new versions of Cardano Node via the `cardano-node` [GitHub repository](https://github.com/input-output-hk/cardano-node). Carefully review release notes available in the repository for new features, configurations, known issues, technical specifications, related downloads, documentation, changelogs, assets and other details of each new release.
 
 {% hint style="info" %}
 To receive notifications related to activity in the Cardano Node GitHub repository, configure [Watch](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#automatic-watching) functionality.
@@ -38,8 +38,8 @@ Do not confuse the Cardano Community's CNCLI utilities with the [`cncli.sh`](htt
 RELEASETAG=$(curl -s https://api.github.com/repos/cardano-community/cncli/releases/latest | jq -r .tag_name)
 VERSION=$(echo ${RELEASETAG} | cut -c 2-)
 echo "Installing release ${RELEASETAG}"
-curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz
-sudo tar xzvf /tmp/cncli-${VERSION}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
+curl -sLJ https://github.com/cardano-community/cncli/releases/download/${RELEASETAG}/cncli-${VERSION}-ubuntu22-x86_64-unknown-linux-gnu.tar.gz -o /tmp/cncli-${VERSION}-ubuntu22-x86_64-unknown-linux-gnu.tar.gz
+sudo tar xzvf /tmp/cncli-${VERSION}-ubuntu22-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/
 ```
 
 2\. To confirm that the new version of the CNCLI binary is installed, type:
@@ -113,9 +113,10 @@ For each Cardano Node release, Input-Output recommends compiling binaries using 
 
 _Table 1 Current Cardano Node Version Requirements_
 
-| Release Date | Cardano Node Version | GHC Version | Cabal Version |
-| :----------: | :------------------: | :---------: | :-----------: |
-| January 2024 |         8.7.3        |    8.10.7   |    3.8.1.0    |
+|  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
+|  :----------:  | :------------------: | :---------: | :-----------: |
+| March 25, 2024 |         8.9.1        |    8.10.7   |    3.8.1.0    |
+
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -166,15 +167,32 @@ make check
 sudo make install
 ```
 
+**To update secp256k1:**
+
+As of version 8.9.0, a new version of `libsecp256k1` is required
+
+```
+cd $HOME/git
+git clone https://github.com/bitcoin-core/secp256k1
+cd secp256k1
+git checkout v0.3.2
+./autogen.sh
+./configure --enable-module-schnorrsig --enable-experimental
+make
+make check
+sudo make install
+sudo ldconfig
+```
+
 **To install the blst library:**
 
-In version 8.7.2 and later, the `blst` library is required.
+As of version 8.9.0, a new version of `blst` is required.
 
 ```
 cd $HOME/git
 git clone https://github.com/supranational/blst
 cd blst
-git checkout v0.3.10
+git checkout v0.3.11
 ./build.sh
 cat > libblst.pc << EOF
 prefix=/usr/local
@@ -185,7 +203,7 @@ includedir=\${prefix}/include
 Name: libblst
 Description: Multilingual BLS12-381 signature library
 URL: https://github.com/supranational/blst
-Version: 0.3.10
+Version: 0.3.11
 Cflags: -I\${includedir}
 Libs: -L\${libdir} -lblst
 EOF
@@ -228,23 +246,23 @@ mv topology-legacy.json topology-legacy.bak
 If you follow the Coin Cashew instructions for [Preparing Configuration Files](../part-ii-configuration/preparing-configuration-files.md), then `<ConfigurationFileFolder>` is `$HOME/cardano-my-node` Alternately, you can type `$NODE_HOME` If needed, you can also use the environment variable `$NODE_CONFIG` to indicate the `mainnet` cluster in configuration file names.
 {% endhint %}
 
-3\. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), then browse to the latest release, then click to expand the Downloads dropdown list in the Technical Specification section of the release notes, and then click the Configuration Files link.
+3\. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/IntersectMBO/cardano-node), then browse to the latest release, then click to expand the Downloads dropdown list in the Technical Specification section of the release notes, and then click the Configuration Files link.
 
 4\. On the Cardano Configurations page, click the following links to download configuration files for the `mainnet` cluster to the folder where you created backups of your current configuration files in step 2: `config`, `byronGenesis`, `shelleyGenesis`, `alonzoGenesis, conwayGenesis` and `topology`
 
 {% hint style="warning" %}
-As of version 8.0.0, you need to download a new config file, `conway-genesis.json`
+As of version 8.9.0, you need to download a new config file, `conway-genesis.json`
 
 ```bash
 cd <ConfigurationFileFolder>
 wget https://book.world.dev.cardano.org/environments/mainnet/conway-genesis.json
 ```
 
-Then, verify `mainnet-config.json` contains the two lines additional lines:
+Then, verify `config.json` contains the following two lines:
 
 ```
 "ConwayGenesisFile": "conway-genesis.json", 
-"ConwayGenesisHash": "f28f1c1280ea0d32f8cd3143e268650d6c1a8e221522ce4a7d20d62fc09783e1",
+"ConwayGenesisHash": "de609b281cb3d8ae91a9d63a00c87092975612d603aa54c0f1c6a781e33d6e1e",
 ```
 {% endhint %}
 
@@ -254,9 +272,13 @@ If you want to download new configuration files using the command line, then nav
 
 5\. Using [`diff`](https://www.man7.org/linux/man-pages/man1/diff.1.html) or a similar file comparison utility, identify and copy customizations as needed from the backup configuration files that you created in step 2 to each new configuration file that you downloaded in step 4.
 
+{% hint style="warning" %}
+The `config.json` file contains hashes for the `byron-genesis.json`, `shelley-genesis.json`, `alonzo-genesis.json` and `conway-genesis.json` files using the `ByronGenesisHash`, `ShelleyGenesisHash`, `AlonzoGenesisHash` and `ConwayGenesisHash` keys, respectively. Therefore, do NOT manually edit the `*genesis.json` files.
+{% endhint %}
+
 ## :zap:Installing New Cardano Binaries <a href="#buildingcn" id="buildingcn"></a>
 
-1. Either build the latest binaries or download pre-built binaries from IOHK.
+1. Either build the latest binaries or download pre-built binaries that may be available from IOHK
 
 <details>
 
@@ -307,13 +329,13 @@ rm -rf ~/tmp2
 
 **To build binaries for a new Cardano Node version:**
 
-1. To create a clone of the Cardano Node [GitHub repository](https://github.com/input-output-hk/cardano-node), type the following commands in a terminal window on the computer you want to upgrade where `<NewFolderName>` is the name of a folder that does not exist:
+1. To create a clone of the Cardano Node [GitHub repository](https://github.com/IntersectMBO/cardano-node), type the following commands in a terminal window on the computer you want to upgrade where `<NewFolderName>` is the name of a folder that does not exist:
 
 ```bash
 # Navigate to the folder where you want to clone the repository
 cd $HOME/git
 # Download the Cardano Node repository to your local computer
-git clone https://github.com/input-output-hk/cardano-node.git ./<NewFolderName>
+git clone https://github.com/IntersectMBO/cardano-node.git ./<NewFolderName>
 ```
 
 Cloning the GitHub repository to a new folder allows you to roll back the upgrade, if needed, by re-installing on your computer the `cardano-node` and `cardano-cli` binaries from a folder where you compiled a previous version of Cardano Node packages.
@@ -328,12 +350,14 @@ cabal update
 # Download all branches and tags from the remote repository
 git fetch --all --recurse-submodules --tags
 # Switch to the branch of the latest Cardano Node release
-git checkout $(curl -s https://api.github.com/repos/input-output-hk/cardano-node/releases/latest | jq -r .tag_name)
+git checkout $(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/releases/latest | jq -r .tag_name)
 # Adjust the project configuration to disable optimization and use the recommended compiler version
 cabal configure -O0 -w ghc-<GHCVersionNumber>
 # Compile the cardano-node and cardano-cli packages found in the current directory
-cabal build cardano-node cardano-cli
+cabal build all
+cabal build cardano-cli
 ```
+<!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md -->
 
 The time required to compile the `cardano-node` and `cardano-cli` packages may be a few minutes to hours, depending on the specifications of your computer.
 
@@ -390,7 +414,7 @@ To monitor your node, type the command `journalctl -fu cardano-node`in a termina
 
 6\. Copy the new `cardano-cli` binary to the air-gapped, offline computer that you use to sign transactions for your stake pool.
 
-7\. On your air-gapped, offline computer, ensure that [libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp) and [blst](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#blst) are installed.
+7\. On your air-gapped, offline computer, ensure that [libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp) and [blst](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#blst) are installed and up to date.
 
 ## :checkered\_flag:Verifying the Upgrade
 
