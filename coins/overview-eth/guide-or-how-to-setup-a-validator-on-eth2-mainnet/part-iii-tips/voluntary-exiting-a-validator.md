@@ -43,7 +43,7 @@ sudo lighthouse account validator exit \
 {% tab title="Teku" %}
 ```bash
 sudo /usr/bin/teku/bin/teku voluntary-exit \
---beacon-node-api-endpoint=http://127.0.0.1:5051 \
+--beacon-node-api-endpoint=http://127.0.0.1:5052 \
 --validator-keys=<path to keystore.json>:<path to password.txt file>
 ```
 
@@ -51,7 +51,7 @@ Example:
 
 ```
 sudo /usr/bin/teku/bin/teku voluntary-exit \
---beacon-node-api-endpoint=http://127.0.0.1:5051 \
+--beacon-node-api-endpoint=http://127.0.0.1:5052 \
 --validator-keys=/var/lib/teku/validator_keys/keys/validator_1abc3.json:/etc/teku/validators-password.txt
 ```
 {% endtab %}
