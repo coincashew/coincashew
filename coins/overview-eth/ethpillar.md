@@ -69,11 +69,15 @@ Congrats on installing a EthPillar, making nodes and home staking easier!
 
 <details>
 
-<summary>Additional step for new Node operators</summary>
+<summary>Additional step for new Node operators, new Validators</summary>
 
-Step 1: Configure your network, port forwarding and firewall. From the main guide, [click here for detailed network configuration](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-2-configuring-node.md#network-configuration).
+**Step 1: Configure your network, port forwarding and firewall.**&#x20;
 
-* Involves setting UFW defaults, opening SSH port, allowing consensus/execution p2p port traffic, enabling the UFW firewall, configuring port forwarding and installing fail2ban.
+* With EthPillar, configuration can be changed at:
+  * **Tools > UFW Firewall > Enable firewall with default settings**
+  * Port forwarding is [manually configured](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-2-configuring-node.md#configure-port-forwarding), depending on your router.
+  * Confirm port forwarding is working with **Tools** > **Port Checker**
+* Alternatively configure manually per the manual guide. [Click here for detailed network configuration.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-2-configuring-node.md#network-configuration)
 
 </details>
 

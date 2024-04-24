@@ -398,29 +398,24 @@ sudo ufw status numbered
 
 Example of ufw status for a remote staking node configured for Prysm consensus client.
 
-> ```csharp
->      To                         Action      From
->      --                         ------      ----
-> [ 1] 22/tcp                     ALLOW IN    Anywhere
-> [ 2] 9000                       ALLOW IN    Anywhere
-> [ 3] 30303                      ALLOW IN    Anywhere
-> [ 4] 22/tcp (v6)                ALLOW IN    Anywhere (v6)
-> [ 5] 9000 (v6)                  ALLOW IN    Anywhere (v6)
-> [ 6] 30303 (v6)                 ALLOW IN    Anywhere (v6)
-> ```
+```csharp
+     To                         Action      From
+     --                         ------      ----
+[ 1] 22/tcp                     ALLOW IN    Anywhere
+[ 2] 9000                       ALLOW IN    Anywhere
+[ 3] 30303                      ALLOW IN    Anywhere
+[ 4] 22/tcp (v6)                ALLOW IN    Anywhere (v6)
+[ 5] 9000 (v6)                  ALLOW IN    Anywhere (v6)
+[ 6] 30303 (v6)                 ALLOW IN    Anywhere (v6)
+```
 
-{% hint style="info" %}
-**Port Forwarding Tip for Local Stakers at Home:** You'll need to forward ports to your validator.&#x20;
+### Configure Port Forwarding
 
-
+**Port Forwarding Tip for Local Stakers at Home:** You'll need to forward ports to your validator.
 
 For optimal connectivity, ensure Port Forwarding is setup for your router. Learn to port forward with guides found at [https://portforward.com/how-to-port-forward](https://portforward.com/how-to-port-forward/)
 
-
-
 Verify port forwarding is working with the following.
-
-
 
 **Option 1:** From the terminal on staking machine. Choose accordingly to your clients.
 
@@ -440,12 +435,9 @@ curl https://eth2-client-port-checker.vercel.app/api/checker?ports=30303,12000,1
 * [https://www.yougetsignal.com/tools/open-ports/](https://www.yougetsignal.com/tools/open-ports/)
 * or [https://canyouseeme.org](https://canyouseeme.org)
 
-
-
 As an example, for Lighthouse, you would verify ports 9000 and 30303 are reachable.
-{% endhint %}
 
-#### Optional: Whitelisting Connections
+### Optional: Whitelisting Connections
 
 Whitelisting, which means permitting connections from a specific IP, can be setup via the following command.
 
