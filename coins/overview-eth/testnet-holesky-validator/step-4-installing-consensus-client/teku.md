@@ -134,7 +134,7 @@ Environment=TEKU_OPTS=-XX:-HeapDumpOnOutOfMemoryError
 ExecStart=/usr/local/bin/teku/bin/teku \
   --network=holesky \
   --data-path=/var/lib/teku/ \
-  --data-storage-mode="prune" \
+  --data-storage-mode="minimal" \
   --initial-state="https://holesky.beaconstate.ethstaker.cc" \
   --ee-endpoint=http://127.0.0.1:8551 \
   --ee-jwt-secret-file=/secrets/jwtsecret \
@@ -186,7 +186,7 @@ Environment=TEKU_OPTS=-XX:-HeapDumpOnOutOfMemoryError
 ExecStart=/usr/local/bin/teku/bin/teku \
   --network=holesky \
   --data-path=/var/lib/teku/ \
-  --data-storage-mode="prune" \
+  --data-storage-mode="minimal" \
   --initial-state="https://holesky.beaconstate.ethstaker.cc" \
   --ee-endpoint=http://127.0.0.1:8551 \
   --ee-jwt-secret-file=/secrets/jwtsecret \
