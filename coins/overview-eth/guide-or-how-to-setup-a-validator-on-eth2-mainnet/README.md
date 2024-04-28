@@ -7,6 +7,10 @@ description: >-
 
 # 🥩 Guide | How to setup a validator for Ethereum staking on mainnet
 
+{% hint style="success" %}
+:heart: Support us on **Gitcoin** GR20: [https://explorer.gitcoin.co/#/round/42161/26/34](https://explorer.gitcoin.co/#/round/42161/26/34)
+{% endhint %}
+
 ## Installation
 
 ### :rocket:Option 1: Quickstart with EthPillar
