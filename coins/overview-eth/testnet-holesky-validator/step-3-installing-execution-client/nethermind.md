@@ -164,11 +164,18 @@ ExecStart=/usr/local/bin/nethermind/nethermind \
   --JsonRpc.EnginePort 8551 \
   --Metrics.Enabled true \
   --Metrics.ExposePort 6060 \
-  --JsonRpc.JwtSecretFile /secrets/jwtsecret
-  
+  --JsonRpc.JwtSecretFile /secrets/jwtsecret \
+  --Pruning.Mode=Hybrid \
+  --Pruning.FullPruningTrigger=VolumeFreeSpace \
+  --Pruning.FullPruningThresholdMb=300000
+   
 [Install]
 WantedBy=multi-user.target
 ```
+
+{% hint style="info" %}
+Nethermind will prune the database when disk space is low (below 300GB)
+{% endhint %}
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 
