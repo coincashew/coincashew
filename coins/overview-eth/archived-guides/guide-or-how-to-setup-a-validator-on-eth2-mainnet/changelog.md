@@ -29,7 +29,7 @@
 * Added generating mnemonic seeds on **Tails OS** by [punggolzenith](https://github.com/punggolzenith)
 * Iancoleman.io BLS12-381 Key Generation Tool [how-to added](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/eip2333-key-generator-by-iancoleman-io.md)
 * Testnet guide forked for [Prater testnet](../guide-or-how-to-setup-a-validator-on-eth2-testnet-prater-1/) staking
-* [Geth pruning guide](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/pruning-the-execution-client-to-free-up-disk-space.md) created
+* [Geth pruning guide](broken-reference) created
 * Major changes to Lodestar guide
 * Additional [Grafana Dashboards](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/monitoring-your-validator-with-grafana-and-prometheus.md) for Prysm, Lighthouse and Nimbus
 * [Validator Security Best Practices added](broken-reference)

@@ -54,7 +54,6 @@
       * [Uninstalling Staking Node](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/uninstalling-staking-node.md)
       * [Finding the longest attestation slot gap](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/finding-the-longest-attestation-slot-gap.md)
       * [Checking my eth validator's sync committee duties](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/checking-my-eth-validators-sync-committee-duties.md)
-      * [Pruning the execution client to free up disk space](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/pruning-the-execution-client-to-free-up-disk-space.md)
       * [Checklist | Confirming a healthy functional ETH staking node](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/checklist-confirming-healthy-functional-eth-staking-node.md)
     * [PART III - TIPS](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/README.md)
       * [Voluntary Exiting a Validator](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/voluntary-exiting-a-validator.md)
