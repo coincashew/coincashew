@@ -6,7 +6,19 @@ description: >-
 
 # Updating Consensus Client
 
-## :fast\_forward: Quick steps guide
+## :rocket: Automated Updates
+
+:pill:**Install** [**EthPillar**](../../ethpillar.md): a simple companion UI for node management!&#x20;
+
+Update your software with a keystroke.
+
+To update, navigate to
+
+`EthPillar > Consensus Client > Update to latest release`
+
+<figure><img src="../../../../.gitbook/assets/cl-update.png" alt=""><figcaption><p>EthPillar Update</p></figcaption></figure>
+
+## :fast\_forward: Manual Updates
 
 When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your beacon chain and validator.
 
