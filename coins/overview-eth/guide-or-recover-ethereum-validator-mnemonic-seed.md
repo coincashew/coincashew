@@ -14,9 +14,9 @@ description: >-
 
 ## :hammer\_pick: How to Recover?
 
-## Step 1: Setup an offline PC with Ubuntu Live ISO
+## Step 1: Setup an offline PC with Ubuntu Live USB
 
-* First, you'll need to create an Ubuntu Live ISO. [Download Ubuntu ISO](https://ubuntu.com/download/desktop) and image to USB drive. See below video demos or [this guide](https://itsfoss.com/create-live-usb-of-ubuntu-in-windows/).
+* First, you'll need to create an Ubuntu Live USB. [Download Ubuntu ISO](https://ubuntu.com/download/desktop) and image to USB drive. See below video demos or [this guide](https://itsfoss.com/create-live-usb-of-ubuntu-in-windows/).
 
 {% hint style="info" %}
 :tv: **Video Demos**

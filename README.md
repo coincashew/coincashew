@@ -25,6 +25,7 @@ layout:
 * :pill: Install [**EthPillar**](coins/overview-eth/ethpillar.md): one-liner setup tool and node management TUI!
 * :cut\_of\_meat: Learn to setup your own [Ethereum Staking Validator here!](coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/)
 * :blue\_book: Added [Holesky testnet staking guide](coins/overview-eth/testnet-holesky-validator/)
+* :scream: Don't Panic: [Recover ETH Validator Mnemonic Seed](coins/overview-eth/guide-or-recover-ethereum-validator-mnemonic-seed.md)
 * :moneybag: [Enable MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/)
 * :chains: Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
 

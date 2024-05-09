@@ -2,6 +2,7 @@
 
 ## :page\_facing\_up: List of changes
 
+* New guide: [Recover ETH Validator Mnemonic Seed](../guide-or-recover-ethereum-validator-mnemonic-seed.md)
 * New [EthPillar](../ethpillar.md) - a friendly TUI for node management! Command line use is greatly reduced. Update your software with a keystroke. Automatically install a minority client (Nethermind + Nimbus) node in minutes!
 *
 
