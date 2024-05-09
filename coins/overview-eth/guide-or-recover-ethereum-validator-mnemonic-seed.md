@@ -16,7 +16,7 @@ description: >-
 
 ## Step 1: Setup an offline PC with Ubuntu Live USB
 
-* First, you'll need to create an Ubuntu Live USB. [Download Ubuntu ISO](https://ubuntu.com/download/desktop) and image to USB drive. See below video demos or [this guide](https://itsfoss.com/create-live-usb-of-ubuntu-in-windows/).
+* First, you'll need to create an Ubuntu Live USB. [Download Ubuntu ISO](https://ubuntu.com/download/desktop) and flash image the ISO to USB drive with [balenaEtcher](https://etcher.balena.io/). See below video demos or [this guide](https://itsfoss.com/create-live-usb-of-ubuntu-in-windows/).
 
 {% hint style="info" %}
 :tv: **Video Demos**
