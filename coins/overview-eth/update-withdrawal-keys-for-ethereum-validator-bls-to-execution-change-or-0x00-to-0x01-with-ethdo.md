@@ -292,7 +292,7 @@ Congrats! Your BLS to Execution change is now pending in a queue, waiting to be 
 
 #### Like these guides?
 
-* [Tips much appreciated](../../contact-us/donations.md) :pray:
+* [Tips much appreciated](../../donations.md) :pray:
 * [**Support us on Gitcoin Grants**](https://gitcoin.co/grants/1653/eth2-staking-guides-by-coincashew)**:** We build this guide exclusively by community support!🙏
 * Feedback or pull-requests: [https://github.com/coincashew/coincashew](https://github.com/coincashew/coincashew)
 

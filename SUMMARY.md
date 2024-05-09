@@ -1,13 +1,12 @@
 # Table of contents
 
 * [Home](README.md)
-* [Guide: Where to Get Started](guide-where-to-get-started.md)
-* [About Us](contact-us/README.md)
-  * [Contributing](contact-us/contributing/README.md)
-    * [Contributor Covenant Code of Conduct](contact-us/contributing/contributor-covenant-code-of-conduct.md)
-    * [Style Guide](contact-us/contributing/style-guide.md)
-  * [Disclaimer](contact-us/disclaimer.md)
-  * [Donations | via CoinTr.ee](contact-us/donations.md)
+* [About Us](contact-us.md)
+* [Donations](donations.md)
+* [Contributing](contributing/README.md)
+  * [Contributor Covenant Code of Conduct](contributing/contributor-covenant-code-of-conduct.md)
+  * [Style Guide](contributing/style-guide.md)
+* [Disclaimer](disclaimer.md)
 
 ## Wallets
 

@@ -1,19 +1,19 @@
 ---
-description: 'By visiting this website, CoinCashew, you agree to the following terms.'
+description: By visiting this website, CoinCashew.com, you agree to the following terms.
 ---
 
 # Disclaimer
 
 {% hint style="warning" %}
-Education is your best investment. 
+Education is your best investment.&#x20;
 
 Please do your own due diligence.
 
-Pricing can be volatile. 
+Pricing can be volatile.&#x20;
 
-Use of this website does not consistent financial, tax, or legal advice. 
+Use of this website does not consistent financial, tax, or legal advice.&#x20;
 
-You agree to take all responsibility or liability for your actions and decisions. 
+You agree to take all responsibility or liability for your actions and decisions.&#x20;
 
 Anything presented, stated, allude to should not be considered as an endorsement or professional expert advice.
 
@@ -25,4 +25,3 @@ This site assumes no responsibility or liability for any errors or omissions in 
 
 The information contained herein is not intended to be a source of advice or credit analysis with respect to the material presented, and the information and/or documents contained in this website do not constitute investment advice.
 {% endhint %}
-
