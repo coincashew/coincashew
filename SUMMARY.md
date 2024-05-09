@@ -107,6 +107,7 @@
       * [Uninstalling Staking Node](coins/overview-eth/testnet-holesky-validator/maintenance/uninstalling-staking-node.md)
   * [💰 Guide | MEV-boost for Ethereum Staking](coins/overview-eth/mev-boost/README.md)
     * [MEV Relay List](coins/overview-eth/mev-boost/mev-relay-list.md)
+  * [🔎 Guide | Recover Ethereum Validator Mnemonic Seed](coins/overview-eth/guide-or-recover-ethereum-validator-mnemonic-seed.md)
   * [🦉 Update Withdrawal Keys for Ethereum Validator (BLS to Execution Change or 0x00 to 0x01) with ETHDO](coins/overview-eth/update-withdrawal-keys-for-ethereum-validator-bls-to-execution-change-or-0x00-to-0x01-with-ethdo.md)
   * [📜 Archived Guides](coins/overview-eth/archived-guides/README.md)
     * [Guide Version 1 | How to setup a validator for Ethereum staking on MAINNET](coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/README.md)
