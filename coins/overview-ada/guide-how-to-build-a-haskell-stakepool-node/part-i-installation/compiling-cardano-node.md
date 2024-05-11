@@ -45,7 +45,7 @@ cabal build cardano-cli
 <!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md -->
 
 {% hint style="info" %}
-Depending on your the processing power of your computer, the build process requires about 20 minutes to complete.
+Depending on the processing power of your computer, the build process requires about 20 minutes to complete.
 {% endhint %}
 
 6. To copy the `cardano-node` and `cardano-cli` binaries that you produced in step 7 into the `/usr/local/bin` directory, type:
@@ -62,4 +62,4 @@ cardano-node --version
 cardano-cli --version
 ```
 
-8. On each computer hosting a relay node for your stake pool, repeats steps 1 to 8
+8. On each computer hosting a relay node for your stake pool, repeat steps 1 to 8
