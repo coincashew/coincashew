@@ -67,7 +67,7 @@ The basic rules of hardening SSH are:
 * Don't allow root to SSH (the appropriate users should SSH in, then `su` or `sudo`)
 * Use `sudo` for users so commands are logged
 * Log unauthorized login attempts (and consider software to block/ban users who try to access your server too many times, like fail2ban)
-* Lock down SSH to only the ip range your require (if you feel like it)
+* Lock down SSH to only the ip range you require (if you feel like it)
 {% endhint %}
 
 Create a new SSH key pair on your local machine. Run this on your local machine. You will be asked to type a file name in which to save the key. This will be your **keyname**.
@@ -214,7 +214,7 @@ By default when enabled, the `unattended-upgrades` service only installs securit
 
 ## :teddy\_bear: Disabling the root Account
 
-System admins should not frequently log in as root in order to maintain server security. Instead, you can use sudo execute that require low-level privileges.
+System admins should not frequently log in as root in order to maintain server security. Instead, you can use sudo execute that requires low-level privileges.
 
 ```bash
 # To disable the root account, simply use the -l option.
@@ -502,7 +502,7 @@ Set the connection limit high enough so that your internal relay/block producer 
 
 :fire: **iptables rules applied via terminal are not reboot-resistant!**
 
-You can check you current connections with a sorted list. Change the relay node port number, if needed.
+You can check your current connections with a sorted list. Change the relay node port number, if needed.
 
 ```bash
 sudo netstat -enp | grep ":6000" | awk {'print $5'} | cut -d ':' -f 1 | sort | uniq -c | sort
