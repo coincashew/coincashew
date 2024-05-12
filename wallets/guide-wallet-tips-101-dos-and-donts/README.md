@@ -18,7 +18,7 @@ Remember, only you can defend yourself with knowledge. :right\_facing\_fist:&#x2
 ## :bulb: The Do's and Don'ts of Crypto Wallets
 
 {% hint style="info" %}
-Listed in order of **what not to do** along side with the correct action **to do**.
+Listed in order of **what not to do** alongside with the correct action **to do**.
 {% endhint %}
 
 ## :compass:1. Using Wallets

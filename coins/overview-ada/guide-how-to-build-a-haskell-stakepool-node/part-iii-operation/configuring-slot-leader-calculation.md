@@ -57,7 +57,7 @@ SlotNo                          UTC Time
 
 {% hint style="info" %}
 The automation of this process will work with the following method, as said, next epoch blocks can be checked 1.5 days before the start of the next epoch or at the 75% of the current epoch's completion.\
-What the script will do, is to calculate the the correct day and hour to run the command, then wait until it is possible to do that and once the selected time comes, run the check listed below.\
+What the script will do, is to calculate the correct day and hour to run the command, then wait until it is possible to do that and once the selected time comes, run the check listed below.\
 Once finished, it will redirect the output into a log file that can be analyzed.
 {% endhint %}
 
