@@ -28,6 +28,8 @@ description: >-
 
 ## Step 2: Install btcrecover
 
+Open a terminal window from anywhere by typing `Ctrl+Alt+T`.
+
 With a terminal open inside your Ubuntu Live session, run the following.
 
 ```bash
