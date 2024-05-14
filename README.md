@@ -18,7 +18,7 @@ layout:
 
 > **The best how-to guide for all your favorite cryptocurrencies.**
 >
-> Learn to do anything with crypto, _better_.
+> Learn to do anything with crypto in Spanish, _better_.
 
 ## :fire: **HOT TOPICS**
 
