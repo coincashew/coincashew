@@ -17,7 +17,7 @@ To receive notifications related to activity in the Cardano Node GitHub reposito
 The _Upgrading a Node_ topic describes how to upgrade a Cardano node to the latest version. Complete the following procedures on each block producer and relay node comprising your stake pool as needed to complete the upgrade.
 
 {% hint style="info" %}
-For instructions on upgrading your stake pool to a previous Cardano version, see the [archive](upgrading-a-node-archive.md).
+For instructions on upgrading your stake pool to a previous Cardano version, see the [archive](https://github.com/coincashew/coincashew/blob/master/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-administration/upgrading-a-node-archive.md).
 {% endhint %}
 
 ## :revolving\_hearts: Upgrading Third-party Software
@@ -94,7 +94,7 @@ sed -i env \
 ```
 
 {% hint style="info" %}
-For details on setting the `NODE_HOME` environment variable, see the topic [Installing Cabal and GHC](../part-i-installation/installing-cabal-and-ghc.md)
+For details on setting the `NODE_HOME` environment variable, see the topic [Installing Cabal and GHC](https://github.com/coincashew/coincashew/blob/master/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/installing-cabal-and-ghc.md)
 {% endhint %}
 
 5\. As needed to configure Guild LiveView for your stake pool, use a text editor to transfer additional user variable definitions from the `env.bak` file that you created in step 1 to the `env` file that you downloaded in step 2.
@@ -114,9 +114,8 @@ For each Cardano Node release, Input-Output recommends compiling binaries using 
 _Table 1 Current Cardano Node Version Requirements_
 
 |  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
-|  :----------:  | :------------------: | :---------: | :-----------: |
+| :------------: | :------------------: | :---------: | :-----------: |
 | March 25, 2024 |         8.9.1        |    8.10.7   |    3.8.1.0    |
-
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 
@@ -243,7 +242,7 @@ mv topology-legacy.json topology-legacy.bak
 ```
 
 {% hint style="info" %}
-If you follow the Coin Cashew instructions for [Preparing Configuration Files](../part-ii-configuration/preparing-configuration-files.md), then `<ConfigurationFileFolder>` is `$HOME/cardano-my-node` Alternately, you can type `$NODE_HOME` If needed, you can also use the environment variable `$NODE_CONFIG` to indicate the `mainnet` cluster in configuration file names.
+If you follow the Coin Cashew instructions for [Preparing Configuration Files](https://github.com/coincashew/coincashew/blob/master/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-ii-configuration/preparing-configuration-files.md), then `<ConfigurationFileFolder>` is `$HOME/cardano-my-node` Alternately, you can type `$NODE_HOME` If needed, you can also use the environment variable `$NODE_CONFIG` to indicate the `mainnet` cluster in configuration file names.
 {% endhint %}
 
 3\. Using a Web browser, navigate to the Cardano Node [GitHub repository](https://github.com/IntersectMBO/cardano-node), then browse to the latest release, then click to expand the Downloads dropdown list in the Technical Specification section of the release notes, and then click the Configuration Files link.
@@ -357,7 +356,6 @@ cabal configure -O0 -w ghc-<GHCVersionNumber>
 cabal build all
 cabal build cardano-cli
 ```
-<!-- Source: https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/install.md -->
 
 The time required to compile the `cardano-node` and `cardano-cli` packages may be a few minutes to hours, depending on the specifications of your computer.
 
@@ -383,7 +381,7 @@ sudo cp $(find ./dist-newstyle/build -type f -name "cardano-node") <DestinationP
 sudo cp $(find ./dist-newstyle/build -type f -name "cardano-cli") <DestinationPath>/cardano-cli
 ```
 
-If you follow the Coin Cashew instructions for [Compiling Source Code](../part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
+If you follow the Coin Cashew instructions for [Compiling Source Code](https://github.com/coincashew/coincashew/blob/master/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
 
 </details>
 

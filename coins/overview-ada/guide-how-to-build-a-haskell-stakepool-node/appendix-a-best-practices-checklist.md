@@ -6,5 +6,5 @@ Here are the top problems a stake pool can experience and how to solve them:
 2. **Relay status** - check your pool's relays on [adapools.org](https://adapools.org) under About Tab
 3. **Block producer in/out connections** - should match your environment. At least 1 in and 1 out connection is required. Check your firewall or IP/port configurations.
 4. **TX processed count** - must be non-zero on your block producer node. Check your network config.
-5. **Time synchronization** - install [chrony](how-to-setup-chrony.md) on all BP/relay nodes.
+5. **Time synchronization** - install [chrony](https://github.com/coincashew/coincashew/blob/master/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/how-to-setup-chrony.md) on all BP/relay nodes.
 6. **Declared pledge is met** - check your pool on [pooltool.io](https://pooltool.io) or [adapools.org](https://adapools.org). Add more ADA to pledge address.

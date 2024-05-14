@@ -166,5 +166,5 @@ Congrats on recovering your ETH Validator!!! Consider donating to the tool maker
 
 ## :books: References
 
-* btcrecover Github: [https://github.com/3rdIteration/btcrecover](https://github.com/3rdIteration/btcrecover)
-* Official Docs: [https://btcrecover.readthedocs.io/en/latest/Usage\_Examples/basic\_seed\_recoveries/#basic-ethereum-validator-recoveries](https://btcrecover.readthedocs.io/en/latest/Usage\_Examples/basic\_seed\_recoveries/#basic-ethereum-validator-recoveries)
+* btcrecover github: [https://github.com/3rdIteration/btcrecover](https://github.com/3rdIteration/btcrecover)
+* official docs: [https://btcrecover.readthedocs.io/en/latest/Usage\_Examples/basic\_seed\_recoveries/#basic-ethereum-validator-recoveries](https://btcrecover.readthedocs.io/en/latest/Usage\_Examples/basic\_seed\_recoveries/#basic-ethereum-validator-recoveries)

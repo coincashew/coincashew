@@ -9,7 +9,7 @@ description: >-
 ## :fast\_forward: Quick steps guide
 
 {% hint style="info" %}
-The following steps align with our [mainnet guide](../../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+The following steps align with our [mainnet guide](https://github.com/coincashew/coincashew/blob/master/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-iii-tips/README.md). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
 {% endhint %}
 
 1\. Backup and move your existing `validator_key` directory and append the date to the end.

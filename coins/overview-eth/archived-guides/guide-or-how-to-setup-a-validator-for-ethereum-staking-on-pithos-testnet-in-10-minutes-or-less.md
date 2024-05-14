@@ -32,7 +32,7 @@ This guide was tested against Ubuntu 20.04.1 LTS client. You'll need a virtual m
 * **Storage:** 16GB SSD
 
 {% hint style="info" %}
-&#x20;For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
+For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/src/guides/node/local/hardware.md).
 {% endhint %}
 
 {% hint style="success" %}
@@ -93,7 +93,7 @@ sudo reboot
 Initialize the firewall with Ethereum's p2p ports and ssh.
 
 {% hint style="info" %}
-More comprehensive [staking validator node security best practices](broken-reference) also available.
+More comprehensive [staking validator node security best practices](https://github.com/coincashew/coincashew/blob/master/coins/overview-eth/archived-guides/broken-reference/README.md) also available.
 {% endhint %}
 
 ```bash
@@ -252,13 +252,9 @@ Since the network is relatively new, syncing both the execution and consensus la
 {% endhint %}
 
 {% hint style="success" %}
-Congrats on setting up your Pithos staking node!&#x20;
-
-
+Congrats on setting up your Pithos staking node!
 
 Note: Validator Deposits not yet available. Deposits for general public should be available in a week.
-
-
 
 If you haven't already, learn to setup a [Validator for Ethereum Staking.](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)
 {% endhint %}
@@ -332,7 +328,7 @@ Now start up the [execution and consensus clients again.](guide-or-how-to-setup-
 
 **Scenario**: The default ports 30303 and 9000 are already in use and you need to change ports.
 
-Edit the appropriate docker .yml file. e.g.  `docker-compose.geth.yml`
+Edit the appropriate docker .yml file. e.g. `docker-compose.geth.yml`
 
 Add this to the command line.
 
@@ -342,6 +338,6 @@ Add this to the command line.
 
 Update UFW firewalls and/or port forwarding rules accordingly.
 
-## Reference Material <a href="#10.-reference-material" id="10.-reference-material"></a>
+## Reference Material <a href="#id-10.-reference-material" id="id-10.-reference-material"></a>
 
 * [https://github.com/parithosh/consensus-deployment-ansible#pithos-testnet-ansible-files--config](https://github.com/parithosh/consensus-deployment-ansible#pithos-testnet-ansible-files--config)
