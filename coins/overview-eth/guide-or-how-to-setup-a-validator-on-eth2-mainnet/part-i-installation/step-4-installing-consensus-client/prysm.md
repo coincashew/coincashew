@@ -62,12 +62,27 @@ Install the binaries.
 
 <summary>Option 2 - Build from source code</summary>
 
-Install Bazel
+Install Go dependencies
 
 ```bash
-wget -O bazel https://github.com/bazelbuild/bazelisk/releases/download/v1.16.0/bazelisk-linux-amd64
-chmod +x bazel
-sudo mv bazel /usr/local/bin
+wget -O go.tar.gz https://go.dev/dl/go1.22.2.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go.tar.gz
+echo export PATH=$PATH:/usr/local/go/bin >> $HOME/.bashrc
+source $HOME/.bashrc
+```
+
+Verify Go is properly installed by checking the version and cleanup files.
+
+```bash
+go version
+rm go.tar.gz
+```
+
+Install build dependencies.
+
+```bash
+sudo apt-get update
+sudo apt install build-essential git
 ```
 
 Build the binaries.
@@ -80,20 +95,15 @@ cd prysm
 git fetch --tags
 RELEASETAG=$(curl -s https://api.github.com/repos/prysmaticlabs/prysm/releases/latest | jq -r .tag_name)
 git checkout tags/$RELEASETAG
-bazel build //cmd/beacon-chain:beacon-chain --config=release
-bazel build //cmd/validator:validator --config=release
-```
-
-Verify Prysm was built properly by displaying the help menu.
-
-```shell
-bazel run //beacon-chain -- --help
+go build -o=./build/beacon-chain ./cmd/beacon-chain
+go build -o=./build/validator ./cmd/validator
 ```
 
 Install the binaries.
 
 ```shell
-sudo cp -a $HOME/git/prysm /usr/local/bin/prysm
+sudo cp $HOME/git/prysm/build/beacon-chain /usr/local/bin
+sudo cp $HOME/git/prysm/build/validator /usr/local/bin
 ```
 
 </details>
@@ -106,11 +116,7 @@ Create a **systemd unit file** to define your `consensus.service` configuration.
 sudo nano /etc/systemd/system/consensus.service
 ```
 
-Depending on whether you're downloading binaries or building from source, choose the appropriate option. Paste the following configuration into the file.
-
-<details>
-
-<summary>Option 1 - Configuration for binaries</summary>
+Paste the following configuration into the file.
 
 <pre class="language-bash"><code class="lang-bash"><strong>[Unit]
 </strong>Description=Prysm Consensus Layer Client service for Mainnet
@@ -144,48 +150,6 @@ ExecStart=/usr/local/bin/beacon-chain \
 [Install]
 WantedBy=multi-user.target
 </code></pre>
-
-</details>
-
-<details>
-
-<summary>Option 2 - Configuration for building from source</summary>
-
-<pre class="language-shell"><code class="lang-shell"><strong>[Unit]
-</strong>Description=Prysm Consensus Layer Client service for Mainnet
-Wants=network-online.target
-After=network-online.target
-Documentation=https://www.coincashew.com
-
-[Service]
-Type=simple
-User=consensus
-Group=consensus
-Restart=on-failure
-RestartSec=3
-KillSignal=SIGINT
-TimeoutStopSec=900
-WorkingDirectory=/usr/local/bin/prysm
-ExecStart=bazel run //cmd/beacon-chain --config=release -- \
-  --mainnet \
-  --datadir=/var/lib/prysm/beacon \
-  --grpc-gateway-port 5052 \
-  --p2p-tcp-port 13000 \
-  --p2p-udp-port 12000 \
-  --p2p-max-peers 80 \
-  --monitoring-port 8008 \
-  --checkpoint-sync-url=https://beaconstate.info \
-  --genesis-beacon-api-url=https://beaconstate.info \
-  --execution-endpoint=http://localhost:8551 \
-  --jwt-secret=/secrets/jwtsecret \
-  --accept-terms-of-use=true \
-  --suggested-fee-recipient=&#x3C;0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-
-</details>
 
 * Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * **Not staking?** If you only want a full node, delete the whole lines beginning with

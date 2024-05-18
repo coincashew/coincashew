@@ -393,14 +393,6 @@ sudo systemctl start consensus validator
 
 <summary>Option 2 - Build from source code</summary>
 
-Install Bazel
-
-```bash
-wget -O bazel https://github.com/bazelbuild/bazelisk/releases/download/v1.16.0/bazelisk-linux-amd64
-chmod +x bazel
-sudo mv bazel /usr/local/bin
-```
-
 Pull the latest source code and build the binaries.
 
 ```bash
@@ -408,14 +400,8 @@ cd $HOME/git/prysm
 git fetch --tags
 RELEASETAG=$(curl -s https://api.github.com/repos/prysmaticlabs/prysm/releases/latest | jq -r .tag_name)
 git checkout tags/$RELEASETAG
-bazel build //cmd/beacon-chain:beacon-chain --config=release
-bazel build //cmd/validator:validator --config=release
-```
-
-Verify Prysm was built properly by displaying the help menu.
-
-```shell
-bazel run //beacon-chain -- --help
+go build -o=./build/beacon-chain ./cmd/beacon-chain
+go build -o=./build/validator ./cmd/validator
 ```
 
 Stop the services.
@@ -426,8 +412,10 @@ Stop the services.
 Remove old binaries, install new binaries and restart the services.
 
 ```bash
-sudo rm -rf /usr/local/bin/prysm
-sudo cp -a $HOME/git/prysm /usr/local/bin/prysm
+sudo rm /usr/local/bin/beacon-chain
+sudo rm /usr/local/bin/validator
+sudo cp $HOME/git/prysm/build/beacon-chain /usr/local/bin
+sudo cp $HOME/git/prysm/build/validator /usr/local/bin
 sudo systemctl start consensus validator
 ```
 

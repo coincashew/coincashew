@@ -23,28 +23,13 @@ sudo cat /var/lib/prysm/validators/password.txt
 
 Import your validator keys by importing your **keystore file**. When asked to create a new wallet password, enter your **keystore password**. When prompted for the imported accounts password, enter your **keystore password** again.
 
-{% tabs %}
-{% tab title="Binaries" %}
-```shell
+```bash
 sudo /usr/local/bin/validator accounts import \
   --accept-terms-of-use \
   --mainnet \
   --wallet-dir=/var/lib/prysm/validators \
   --keys-dir=$HOME/staking-deposit-cli/validator_keys
 ```
-{% endtab %}
-
-{% tab title="Built from Source" %}
-```shell
-cd /usr/local/bin/prysm
-sudo bazel run //validator:validator -- accounts import \
-  --accept-terms-of-use \
-  --mainnet \
-  --wallet-dir=/var/lib/prysm/validators \
-  --keys-dir=$HOME/staking-deposit-cli/validator_keys
-```
-{% endtab %}
-{% endtabs %}
 
 {% hint style="danger" %}
 WARNING: Do not import your validator keys into multiple validator clients and run them at the same time, or you might get slashed. If moving validators to a new setup or different validator client, ensure deletion of the previous validator keys before continuing.
@@ -52,22 +37,10 @@ WARNING: Do not import your validator keys into multiple validator clients and r
 
 Verify that your keystore file was imported successfully.
 
-{% tabs %}
-{% tab title="Binaries" %}
 <pre class="language-bash"><code class="lang-bash"><strong>sudo /usr/local/bin/validator accounts list \
 </strong>  --wallet-dir=/var/lib/prysm/validators \
   --mainnet
 </code></pre>
-{% endtab %}
-
-{% tab title="Built from Source" %}
-<pre class="language-bash"><code class="lang-bash"><strong>cd /usr/local/bin/prysm
-</strong><strong>sudo bazel run //validator:validator -- accounts list \
-</strong>  --wallet-dir=/var/lib/prysm/validator \
-  --mainnet
-</code></pre>
-{% endtab %}
-{% endtabs %}
 
 Once successful, you will be shown your **validator's public key**. For example:
 
@@ -95,15 +68,11 @@ Create a **systemd unit file** to define your `validator.service` configuration.
 sudo nano /etc/systemd/system/validator.service
 ```
 
-Depending on whether you're downloading binaries or building from source, choose the appropriate option. Paste the following configuration into the file.
-
-<details>
-
-<summary>Option 1 - Configuration for binaries</summary>
+Paste the following configuration into the file.
 
 ```bash
 [Unit]
-Description=Prysm Validator Client service for mainnet
+Description=Prysm Validator Client service for Mainnet
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -131,46 +100,6 @@ ExecStart=/usr/local/bin/validator \
 [Install]
 WantedBy=multi-user.target
 ```
-
-</details>
-
-<details>
-
-<summary>Option 2 - Configuration for building from source</summary>
-
-```bash
-[Unit]
-Description=Prysm validator Client service for mainnet
-Wants=network-online.target
-After=network-online.target
-Documentation=https://www.coincashew.com
-
-[Service]
-Type=simple
-User=validator
-Group=validator
-Restart=on-failure
-RestartSec=3
-KillSignal=SIGINT
-TimeoutStopSec=900
-WorkingDirectory=/usr/local/bin/prysm
-ExecStart=bazel run //cmd/validator --config=release -- \
-  --mainnet \
-  --accept-terms-of-use \
-  --datadir=/var/lib/prysm/validators \
-  --beacon-rpc-provider=localhost:4000 \
-  --beacon-rpc-gateway-provider=localhost:5052 \
-  --wallet-dir=/var/lib/prysm/validators \
-  --wallet-password-file=/var/lib/prysm/validators/password.txt \
-  --graffiti="🏠🥩🪙🛡️" \
-  --monitoring-port=8009 \
-  --suggested-fee-recipient=<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>
-
-[Install]
-WantedBy=multi-user.target
-```
-
-</details>
 
 * Replace`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>` with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * If you wish to customize a graffiti message that is included when you produce a block, add your message between the double quotes after `--graffiti`. Maximum length is 16 characters.

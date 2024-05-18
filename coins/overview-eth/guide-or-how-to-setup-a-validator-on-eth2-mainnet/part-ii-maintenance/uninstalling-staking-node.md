@@ -36,7 +36,8 @@ sudo userdel execution
 
 ### Uninstalling consensus client&#x20;
 
-<pre class="language-bash"><code class="lang-bash">sudo systemctl stop consensus
+```bash
+sudo systemctl stop consensus
 sudo systemctl disable consensus
 sudo rm /etc/systemd/system/consensus.service
 
@@ -56,14 +57,12 @@ sudo rm -rf /var/lib/teku
 sudo rm -rf /usr/local/bin/nimbus_beacon_node
 sudo rm -rf /var/lib/nimbus
 
-#Prysm from Binaries
+#Prysm
 sudo rm -rf /usr/local/bin/beacon-chain
-#Prysm from Build from Source
-<strong>sudo rm -rf /usr/local/bin/prysm
-</strong>sudo rm -rf /var/lib/prysm
+sudo rm -rf /var/lib/prysm
 
 sudo userdel consensus
-</code></pre>
+```
 
 ### Uninstalling validator
 
@@ -85,7 +84,7 @@ sudo rm -rf /var/lib/teku_validator
 sudo rm -rf /var/lib/nimbus_validator
 sudo rm -rf /usr/local/bin/nimbus_validator_client
 
-#Prysm from Binaries
+#Prysm
 sudo rm -rf /usr/local/bin/validator
 sudo rm -rf /var/lib/prysm/validators
 
