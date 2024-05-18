@@ -140,8 +140,7 @@ ExecStart=/usr/local/bin/beacon-chain \
   --p2p-udp-port 12000 \
   --p2p-max-peers 80 \
   --monitoring-port 8008 \
-  --checkpoint-sync-url=https://beaconstate.info \
-  --genesis-beacon-api-url=https://beaconstate.info \
+  --checkpoint-sync-url=https://holesky.beaconstate.ethstaker.cc \
   --execution-endpoint=http://localhost:8551 \
   --jwt-secret=/secrets/jwtsecret \
   --accept-terms-of-use=true \

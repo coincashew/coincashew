@@ -141,7 +141,6 @@ ExecStart=/usr/local/bin/beacon-chain \
   --p2p-max-peers 80 \
   --monitoring-port 8008 \
   --checkpoint-sync-url=https://beaconstate.info \
-  --genesis-beacon-api-url=https://beaconstate.info \
   --execution-endpoint=http://localhost:8551 \
   --jwt-secret=/secrets/jwtsecret \
   --accept-terms-of-use=true \
