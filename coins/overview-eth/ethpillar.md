@@ -65,9 +65,9 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 
 ## :triangular\_ruler: Option 1: Automated One-Liner Install
 
-Simply copy and paste the command into your terminal.
+Open a terminal window from anywhere by typing `Ctrl+Alt+T`.&#x20;
 
-Open source source code available here: [https://github.com/coincashew/EthPillar](https://github.com/coincashew/EthPillar)
+To install, paste the following:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/EthPillar/main/install.sh)"
@@ -150,7 +150,9 @@ ETH accepted on Mainnet, Arbitrum, Base, Optimism. :pray:
 
 ## :telephone: Get in touch
 
-Have questions? Chat with other home stakers on [Discord](https://discord.gg/w8Bx8W2HPW) or open PRs/issues on [Github](https://github.com/coincashew/ethpillar).
+Have questions? Chat with other home stakers on [Discord](https://discord.gg/w8Bx8W2HPW) or open PRs/issues on [Github](https://github.com/coincashew/ethpillar).&#x20;
+
+Open source source code available here: [https://github.com/coincashew/EthPillar](https://github.com/coincashew/EthPillar)
 
 ## :heart: Donations
 

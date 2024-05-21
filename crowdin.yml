@@ -1,5 +1,0 @@
-files:
-  - source: /coins/overview-eth
-    ignore:
-      - '*with*'
-    translation: /coins/overview-eth/translations/%language%/%file_name%
