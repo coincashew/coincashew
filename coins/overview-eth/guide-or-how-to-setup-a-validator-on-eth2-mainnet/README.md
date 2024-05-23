@@ -16,11 +16,13 @@ description: >-
 ### :rocket:Option 1: Quickstart with EthPillar
 
 * Recommended for most users.
-* Deploys a systemd installation with minority clients Nimbus CL Nethermind EL and mevboost.
+* In minutes, rapidly deploys a systemd installation with minority clients Nimbus CL Nethermind EL and mevboost.
 * Supports automated node deployment for both validators and non-staking RPC nodes.
 * When EthPillar is deployed, operating your node becomes a breeze.
 
 To install EthPillar, [visit the quickstart page.](../ethpillar.md)
+
+<figure><img src="../../../.gitbook/assets/preview02.png" alt=""><figcaption><p>EthPillar's TUI - Navigate the menu to control your node</p></figcaption></figure>
 
 ### :chains:Option 2: Manual Installation
 
