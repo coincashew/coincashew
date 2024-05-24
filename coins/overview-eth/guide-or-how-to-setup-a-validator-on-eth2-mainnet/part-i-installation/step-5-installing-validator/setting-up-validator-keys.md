@@ -530,21 +530,9 @@ Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://tw
 
 4. Confirm the transaction(s). There's one deposit transaction of 32 ETH for each validator.
 
-{% hint style="info" %}
-Tip for **Ledger Nano Hardware wallet** users: If you encounter difficulty making the deposit transaction, enable blind signing and contract data.
-{% endhint %}
-
-{% hint style="info" %}
-For instance, if you want to run 3 validators you will need to have (32 x 3) = 96 ETH plus some extra to cover the gas fees.
-{% endhint %}
-
-{% hint style="info" %}
-Your transaction is depositing your ETH to the [official ETH2 deposit contract address.](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/)
-
-**Check**, _double-check_, _**triple-check**_ that the official Ethereum Deposit Contract address is correct.
-
-[`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
-{% endhint %}
+* **Deposit Example**: If you want to run 3 validators you will need to have (32 x 3) = 96 ETH plus some extra to cover the gas fees.
+* **Verify Deposit Contract:** Your transaction is depositing ETH to the [official deposit contract address.](https://blog.ethereum.org/2020/11/04/eth2-quick-update-no-19/) **Check**, _double-check_, _**triple-check**_ that the official Ethereum Deposit Contract address is correct. [`0x00000000219ab540356cBB839Cbe05303d7705Fa`](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa)
+* **Ledger Nano Hardware wallet users**: If you encounter difficulty making the deposit transaction, enable blind signing and contract data.
 
 ## 4. Review backups
 
