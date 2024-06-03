@@ -63,7 +63,7 @@ Syncing the consensus client is instantaneous with checkpoint sync but the execu
 
 ### :telephone: **Need extra live support?**
 
-* Find Ethstaker frens on the [Ethstaker](https://discord.io/ethstaker) Discord and [coincashew](https://discord.gg/w8Bx8W2HPW) Discord.
+* Find Ethstaker frens on the [Ethstaker](https://discord.io/ethstaker) Discord and [coincashew](https://discord.gg/dEpAVWgFNB) Discord.
 * Use reddit: [r/Ethstaker](https://www.reddit.com/r/ethstaker/), or [DMs](https://www.reddit.com/user/coincashew), or [r/coincashew](https://www.reddit.com/r/coincashew/)
 
 ### :heart\_decoration: Like these guides?

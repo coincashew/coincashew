@@ -29,6 +29,10 @@ layout:
 * :scream: Don't Panic: [Recover ETH Validator Mnemonic Seed](coins/overview-eth/guide-or-recover-ethereum-validator-mnemonic-seed.md)
 * :chains: Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
 
+{% hint style="info" %}
+:new: **New DISCORD Server: Join** [https://discord.gg/dEpAVWgFNB](https://discord.gg/dEpAVWgFNB)&#x20;
+{% endhint %}
+
 ## :robot: Blazingly helpful
 
 > "CoinCashew was like the expert crypto mentor I never knew I needed. Saved me so much time and money!" -- TheRealSatoshi

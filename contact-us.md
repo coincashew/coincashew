@@ -8,7 +8,7 @@ Every guide, tip, and review written on CoinCashew was written by someone who wa
 
 :alien: **Reddit**: [r/coincashew](https://www.reddit.com/r/coincashew/)
 
-:robot: **Discord**: [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW)
+:robot: **Discord**: [https://discord.gg/dEpAVWgFNB](https://discord.gg/dEpAVWgFNB) \[New as of May 26, 2024]
 
 :mobile\_phone: **Telegram:** [https://t.me/coincashew](https://t.me/coincashew)
 
