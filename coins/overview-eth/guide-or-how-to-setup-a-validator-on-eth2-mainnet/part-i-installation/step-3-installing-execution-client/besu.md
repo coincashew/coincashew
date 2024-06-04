@@ -27,7 +27,7 @@ sudo chown -R execution:execution /var/lib/besu
 Install dependencies.
 
 ```bash
-sudo apt install -y openjdk-17-jdk libjemalloc-dev jq
+sudo apt install -y openjdk-21-jdk libjemalloc-dev jq
 ```
 
 ### 2. Install Binaries
