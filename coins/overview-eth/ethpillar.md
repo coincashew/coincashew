@@ -113,6 +113,22 @@ Congrats on installing a EthPillar, making nodes and home staking easier!
   * Confirm port forwarding is working with **Tools** > **Port Checker**
 * Alternatively configure manually per the manual guide. [Click here for detailed network configuration.](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-2-configuring-node.md#network-configuration)
 
+**Step 2: Configure your BIOS to auto power on after power loss**
+
+Actual steps vary depending on your computer's BIOS. General idea here: [https://www.wintips.org/setup-computer-to-auto-power-on-after-power-outage/](https://www.wintips.org/setup-computer-to-auto-power-on-after-power-outage/)
+
+**Step 3: Enable Monitoring and Alerts (Optional)**
+
+Found under:
+
+* **Tools** > **Monitoring**
+
+**Step 4: Benchmark your node (Optional)**
+
+Ensure your node has sufficient CPU/disk/network performance.
+
+* **Tools** > **Yet-Another-Bench-Script**
+
 </details>
 
 <details>
