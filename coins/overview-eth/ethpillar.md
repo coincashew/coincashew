@@ -154,6 +154,24 @@ Ensure your node has sufficient CPU/disk/network performance.
 
 </details>
 
+## :question: FAQ
+
+<details>
+
+<summary>How to switch between testnet and mainnet with EthPillar ?</summary>
+
+To switch to mainnet, there are two recommended methods.
+
+* **Cleanest and most problem-free option**: Reformat Ubuntu OS and re-install EthPillar.&#x20;
+
+<!---->
+
+* **Uninstall and reinstall EthPillar:** Navigate to **System Administration > Uninstall Node.** Afterwards, simply run `ethpillar` again to re-install.
+
+</details>
+
+
+
 ## :joy: POAP
 
 Are you a EthPillar Enjooyer? [Support this public good by purchasing a limited edition POAP!](https://checkout.poap.xyz/169495)
