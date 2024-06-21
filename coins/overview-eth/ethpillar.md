@@ -166,7 +166,7 @@ To switch to mainnet, there are two recommended methods.
 
 <!---->
 
-* **Uninstall and reinstall EthPillar:** Navigate to **System Administration > Uninstall Node.** Afterwards, simply run `ethpillar` again to re-install.
+* **Use EthPillar:** Navigate to **System Administration > Change Network**
 
 </details>
 
