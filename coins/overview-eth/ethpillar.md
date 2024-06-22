@@ -213,6 +213,15 @@ git pull
 {% endtab %}
 {% endtabs %}
 
+## :star2:Contribute
+
+We appreciate any help! To join in:
+
+* Star the project on [GitHub](https://github.com/coincashew/EthPillar).
+* Share the project on X or reddit. Talk about your experiences with solo staking.
+* Provide feedback on [Github](https://github.com/coincashew/EthPillar/issues).
+* [Submit PRs](https://github.com/coincashew/EthPillar/pulls) to improve the code.
+
 ## :tada: Credits
 
 Shout out to [accidental-green](https://github.com/accidental-green/validator-install) for their pioneering work in Python validator tools, which has unintentionally ignited the inspiration and direction for this project. We are building upon their innovative foundations by forking their validator-install code. A heartfelt thanks to accidental-green for their game-changing contributions to the open-source Ethereum ecosystem!
