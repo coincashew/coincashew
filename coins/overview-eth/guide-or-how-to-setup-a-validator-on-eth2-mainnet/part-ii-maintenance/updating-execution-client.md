@@ -342,7 +342,7 @@ Run the following to automatically download the latest linux release, un-tar and
 
 ```bash
 RELEASE_URL="https://api.github.com/repos/paradigmxyz/reth/releases/latest"
-BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep x86_64-unknown-linux-gnu.tar.gz$  | grep -v op-reth)"
+BINARIES_URL="$(curl -s $RELEASE_URL | jq -r '.assets[] | select(.name | startswith ("reth")) | .browser_download_url' | grep x86_64-unknown-linux-gnu.tar.gz$)"
 
 echo Downloading URL: $BINARIES_URL
 
