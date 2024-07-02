@@ -338,7 +338,7 @@ Run the following to automatically download the latest linux release, un-tar and
 
 ```bash
 RELEASE_URL="https://api.github.com/repos/paradigmxyz/reth/releases/latest"
-BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep x86_64-unknown-linux-gnu.tar.gz$)"
+BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep x86_64-unknown-linux-gnu.tar.gz$ | grep -v op-reth)"
 
 echo Downloading URL: $BINARIES_URL
 
@@ -378,7 +378,7 @@ latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
 # Checkout latest tag
 git checkout $latestTag
 # Build the release
-cargo build --release
+cargo build --release --features jemalloc
 ```
 
 Verify Reth was built properly by checking the version number.
@@ -392,7 +392,7 @@ In case of compilation errors, run the following sequence.
 ```bash
 rustup update
 cargo clean
-cargo build --release
+cargo build --release --features jemalloc
 ```
 
 Stop the services.

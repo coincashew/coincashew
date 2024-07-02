@@ -6,13 +6,7 @@
 **Reth** - short for Rust Ethereum, is an Ethereum full node implementation that is focused on being user-friendly, highly modular, as well as being fast and efficient.
 {% endhint %}
 
-{% hint style="warning" %}
-:construction: Reth is the bleeding edge of Ethereum EL clients. As alpha software, expect rapid change and proceed with caution. :construction:
-{% endhint %}
-
 #### Official Links
-
-
 
 | Subject       | Link                                                                       |
 | ------------- | -------------------------------------------------------------------------- |
@@ -48,7 +42,7 @@ sudo apt install -y ccze jq curl
 
 ```bash
 RELEASE_URL="https://api.github.com/repos/paradigmxyz/reth/releases/latest"
-BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep x86_64-unknown-linux-gnu.tar.gz$)"
+BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep x86_64-unknown-linux-gnu.tar.gz$ | grep -v op-reth)"
 
 echo Downloading URL: $BINARIES_URL
 
@@ -106,7 +100,7 @@ latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
 # Checkout latest tag
 git checkout $latestTag
 # Build the release
-cargo build --release
+cargo build --release --features jemalloc
 ```
 
 In case of compilation errors, run the following sequence.
@@ -114,7 +108,7 @@ In case of compilation errors, run the following sequence.
 ```bash
 rustup update
 cargo clean
-cargo build --release
+cargo build --release --features jemalloc
 ```
 
 Verify Reth was built properly by checking the version number.
@@ -162,6 +156,9 @@ ExecStart=/usr/local/bin/reth node \
     --datadir=/var/lib/reth \
     --metrics 127.0.0.1:6060 \
     --port 30303 \
+    --discovery.port 30303 \
+    --enable-discv5-discovery \
+    --discovery.v5.port 30304 \
     --http \
     --http.port 8545 \
     --http.api="rpc,eth,web3,net,debug" \
