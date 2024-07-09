@@ -47,6 +47,9 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :page\_facing\_up: Change Log
 
+* July 8, 2024
+  * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
+    * Incorporating revisions for Cardano Node 9.0.0
 * April 10, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
     * Incorporating updates for Cardano Node 8.9.1

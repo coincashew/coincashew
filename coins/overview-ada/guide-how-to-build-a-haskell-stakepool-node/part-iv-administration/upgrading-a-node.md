@@ -115,7 +115,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 |  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
 |  :----------:  | :------------------: | :---------: | :-----------: |
-| March 25, 2024 |         8.9.1        |    8.10.7   |    3.8.1.0    |
+|  July 8, 2024  |         9.0.0        |    8.10.7   |    3.8.1.0    |
 
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
@@ -364,8 +364,8 @@ The time required to compile the `cardano-node` and `cardano-cli` packages may b
 3\. When the compiler finishes, to verify the version numbers of the new `cardano-node` and `cardano-cli` binaries type:
 
 ```bash
-$(find ./dist-newstyle/build -type f -name "cardano-node") version
-$(find ./dist-newstyle/build -type f -name "cardano-cli") version
+$(./scripts/bin-path.sh cardano-node) version
+$(./scripts/bin-path.sh cardano-cli) version
 ```
 
 **To install new `cardano-node` and `cardano-cli` binaries:**
@@ -379,8 +379,9 @@ sudo systemctl stop <CardanoServiceName>.service
 2\. To replace the existing `cardano-node` and `cardano-cli` binaries, type the following commands where `<DestinationPath>` is the absolute file path to the folder where you install Cardano Node binaries on your local computer:
 
 ```bash
-sudo cp $(find ./dist-newstyle/build -type f -name "cardano-node") <DestinationPath>/cardano-node
-sudo cp $(find ./dist-newstyle/build -type f -name "cardano-cli") <DestinationPath>/cardano-cli
+sudo cp -p "$(./scripts/bin-path.sh cardano-node)" <DestinationPath>/cardano-node
+sudo cp -p "$(./scripts/bin-path.sh cardano-cli)" <DestinationPath>/cardano-cli
+
 ```
 
 If you follow the Coin Cashew instructions for [Compiling Source Code](../part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
