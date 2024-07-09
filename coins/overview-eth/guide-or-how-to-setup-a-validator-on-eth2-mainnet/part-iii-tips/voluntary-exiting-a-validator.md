@@ -112,5 +112,5 @@ sudo systemctl restart validator
 * [Exiting a Teku validator](https://docs.teku.consensys.net/how-to/voluntarily-exit)
 * [Exiting a Prysm validator](https://docs.prylabs.network/docs/wallet/exiting-a-validator)
 * [Exiting a Nimbus validator](https://nimbus.guide/voluntary-exit.html)
-* [Exiting a Lodestar validator](https://chainsafe.github.io/lodestar/reference/cli/#validator-voluntary-exit)
+* [Exiting a Lodestar validator](https://chainsafe.github.io/lodestar/run/validator-management/validator-cli#validator-voluntary-exit)
 * [Exiting a Lighthouse validator](https://lighthouse-book.sigmaprime.io/voluntary-exit.html)
