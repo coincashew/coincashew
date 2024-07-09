@@ -159,6 +159,7 @@ ExecStart=/usr/local/bin/mev-boost \
   -mainnet \
   -min-bid 0.03 \
   -relay-check \
+  -addr 127.0.0.1:18550 \
   -relay https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net \
   -relay https://0xa1559ace749633b997cb3fdacffb890aeebdb0f5a3b6aaa7eeeaf1a38af0a8fe88b9e4b1f61f236d2e64d95733327a62@relay.ultrasound.money \
   -relay https://0xa15b52576bcbf1072f4a011c0f99f9fb6c66f3e1ff321f11f461d15e31b1cb359caa092c71bbded0bae5b5ea401aab7e@aestus.live \
@@ -202,7 +203,13 @@ WantedBy=multi-user.target
 {% endtabs %}
 
 {% hint style="info" %}
-Using `-min-bid` flag, you can set a minimum bid value in ETH.&#x20;
+**Notes about configration:**
+
+**Installation location**: Mevboost communiates with the consensus client and should be installed on the same machine as your consensus client.
+
+`-addr`: set this to `0.0.0.0:18550` if your mevboost is installed on a different machine than your consensus client. Update firewall rules if needed.
+
+`-min-bid`: you can set a minimum bid value in ETH.&#x20;
 
 * If all relays cannot bid higher than your minimum value, then your local execution client will produce the block.&#x20;
 * By setting this value, you can capture MEV opportunities for higher value blocks and maintain a degree of control for local block production which helps strengthen censorship resistance and a neutral Ethereum network.&#x20;
