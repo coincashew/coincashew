@@ -39,7 +39,7 @@ Be sure to select the right network. Relays are available for **Mainnet, Holesky
 
 | Relay Name | Non-Censoring | URL                                                                                                                                          |
 | ---------- | :-----------: | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Flashbots  |      :x:      | https://0x845bd072b7cd566f02faeb0a4033ce9399e42839ced64e8b2adcfc859ed1e8e1a5a293336a49feac6d9a5edb779be53a@boost-relay-sepolia.flashbots.net |
+| Flashbots  |      :x:      | https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@boost-relay-sepolia.flashbots.net |
 
 ## :ladder: Next Steps
 
