@@ -54,9 +54,9 @@ When a node operates using peer-to-peer topology, the gLiveView dashboard displa
 
 ```bash
 │- CONNECTIONS --------------------------------------------------------│
-│ P2P        : enabled   Cold Peers : 32        Uni-Dir    : 24        │
-│ Incoming   : 19        Warm Peers : 30        Bi-Dir     : 47        │
-│ Outgoing   : 50        Hot Peers  : 20        Duplex     : 0         │
+│ P2P        : enabled   Cold Peers : 32        Uni-Dir    : 23        │
+│ Incoming   : 19        Warm Peers : 30        Bi-Dir     : 45        │
+│ Outgoing   : 50        Hot Peers  : 20        Duplex     : 1         │
 │----------------------------------------------------------------------│
 ```
 
