@@ -24,9 +24,11 @@ Every 32 ETH you own allows you to make 1 validator. You can run thousands of va
 
 <details>
 
-<summary>Option 2: Use faucet from pk910</summary>
+<summary>Option 2: Use faucets from pk910 / axol.io / google</summary>
 
-Link: [https://holesky-faucet.pk910.de](https://holesky-faucet.pk910.de/)
+* pk910: [https://holesky-faucet.pk910.de](https://holesky-faucet.pk910.de/)
+* axol.io: [https://faucet.axol.io/](https://faucet.axol.io/)
+* google: [https://cloud.google.com/application/web3/faucet/ethereum/holesky](https://cloud.google.com/application/web3/faucet/ethereum/holesky)
 
 </details>
 
