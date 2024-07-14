@@ -32,11 +32,43 @@ sudo apt-get install gcc g++ make git curl ccze -y
 
 ### 2. Install Binaries
 
+* Downloading binaries is often faster and more convenient.
 * Building from source code can offer better compatibility and is more aligned with the spirit of FOSS (free open source software).
 
 <details>
 
-<summary>Option 1 - Build from source code</summary>
+<summary>Option 1 - Download binaries</summary>
+
+Run the following to automatically download the latest linux release, un-tar and cleanup.
+
+```bash
+RELEASE_URL="https://api.github.com/repos/ChainSafe/lodestar/releases/latest"
+LATEST_TAG="$(curl -s $RELEASE_URL | jq -r ".tag_name")"
+BINARIES_URL="https://github.com/ChainSafe/lodestar/releases/download/${LATEST_TAG}/lodestar-${LATEST_TAG}-linux-amd64.tar.gz"
+	
+echo Downloading URL: $BINARIES_URL
+
+cd $HOME
+# Download
+wget -O lodestar.tar.gz $BINARIES_URL
+# Untar
+tar -xzvf lodestar.tar.gz -C $HOME
+# Cleanup
+rm lodestar.tar.gz
+```
+
+Install the binaries.
+
+```bash
+sudo mkdir -p /usr/local/bin/lodestar
+sudo mv $HOME/lodestar /usr/local/bin/lodestar
+```
+
+</details>
+
+<details>
+
+<summary>Option 2 - Build from source code</summary>
 
 Install yarn.
 

@@ -2,6 +2,8 @@
 
 ## :page\_facing\_up: List of changes
 
+* Add downloadable [Lodestar](part-i-installation/step-4-installing-consensus-client/lodestar.md) binaries as an installation option
+* [Reth](../testnet-holesky-validator/step-3-installing-execution-client/reth.md) Execution Client has reached V1.0 and is officially supported.
 * New guide: [Recover ETH Validator Mnemonic Seed](../guide-or-recover-ethereum-validator-mnemonic-seed.md)
 * New [EthPillar](../ethpillar.md) - a friendly TUI for node management! Command line use is greatly reduced. Update your software with a keystroke. Automatically install a minority client (Nethermind + Nimbus) node in minutes!
 *

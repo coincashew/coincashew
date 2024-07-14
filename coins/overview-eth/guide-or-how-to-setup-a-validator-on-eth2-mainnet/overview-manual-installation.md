@@ -1,9 +1,9 @@
-# Overview - Manual installation
+# Overview - Manual Installation
 
 ## :new: Announcements
 
 {% hint style="success" %}
-As of Mar 1 2024, this **Version 2 Guide** written for **🦉Dencun**🦉 **MAINNET Ethereum** :grin:
+As of July 6 2024, this **Version 2 Guide** written for **🦉Dencun**🦉 **MAINNET Ethereum** :grin:
 {% endhint %}
 
 {% hint style="info" %}

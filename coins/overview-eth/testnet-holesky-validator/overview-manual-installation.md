@@ -3,7 +3,7 @@
 ## :new: Announcements
 
 {% hint style="success" %}
-As of Mar 1 2024, this **Version 2 Guide** written for **🦉Dencun**🦉 **Holesky Testnet** :grin:
+As of July 6 2024, this **Version 2 Guide** written for **🦉Dencun**🦉 **Holesky Testnet** :grin:
 {% endhint %}
 
 {% hint style="info" %}
