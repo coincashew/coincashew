@@ -56,10 +56,8 @@ As a validator for Ethereum, you will typically have the following abilities:
 
 ## :man\_technologist: Experience required to be a successful ETH Staker
 
+* have studied [Ethstaker's Staking for Beginners](https://www.reddit.com/r/ethstaker/wiki/staking\_for\_beginners/)
 * have perused the vast tomes of the [EthStaker Knowledge Base](https://docs.ethstaker.cc/ethstaker-knowledge-base/)
-* have learned the essentials by watching ['Intro to Eth2 & Staking for Beginners' by Superphiz](https://www.youtube.com/watch?v=tpkpW031RCI)
-* have passed or is actively enrolled in the [Eth2 Study Master course](https://ethereumstudymaster.com)
-* and have read the [8 Things Every Eth2 validator should know.](https://medium.com/chainsafe-systems/8-things-every-eth2-validator-should-know-before-staking-94df41701487)
 
 ## :reminder\_ribbon: **Minimum Node Setup Requirements**
 
