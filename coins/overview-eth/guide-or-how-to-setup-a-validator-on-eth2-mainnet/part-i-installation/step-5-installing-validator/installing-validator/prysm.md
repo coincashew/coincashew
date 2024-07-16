@@ -143,3 +143,16 @@ Press `Ctrl` + `C` to exit the logs.
 ```bash
 [2022-11-21 1:21:21]  INFO validator: Submitted new attestations AggregatorIndices=[12412] AttesterIndices=[73613] BeaconBlockRoot=0xca3213f1a3 CommitteeIndex=12 Slot=12422 SourceEpoch=12318 SourceRoot=0xd9ddeza1289 TargetEpoch=121231 TargetRoot=0xff313419acaa1
 ```
+
+#### Cleanup leftover validator\_keys <a href="#optional-step-0-cleanup-leftover-validator_keys" id="optional-step-0-cleanup-leftover-validator_keys"></a>
+
+Verify that you have backups of validator\_keys directory. The contents are the keystore files.
+
+Having backup copies of your validator\_keys directory on USB media can make recovery from node problems quicker. Validator keys can always be regenerated from secret recovery mnemonic phrase.
+
+You may safely delete the directory.
+
+```bash
+# Remove default validator_key directory
+sudo rm -r $HOME/staking-deposit-cli/validator_keys
+```

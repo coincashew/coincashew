@@ -14,19 +14,6 @@ Before continuing please have the following ready:
 * Existing keystore password
 * ETH Withdrawal Address from your hardware wallet
 
-### Optional Step 0: Cleanup leftover validator\_keys
-
-Verify that you have backups of validator\_keys directory. The contents are the keystore files.&#x20;
-
-Having backup copies of your validator\_keys directory on USB media  can make recovery from node problems quicker. Validator keys can always be regenerated from secret recovery mnemonic phrase.
-
-You may safely delete the directory.
-
-```bash
-# Remove default validator_key directory
-sudo rm -r $HOME/staking-deposit-cli/validator_keys
-```
-
 ### Step 1: Create new deposit\_data json file and new validator\_keys&#x20;
 
 In this example, using the `staking-deposit-cli` tool, you can add more validators by creating a new deposit data file and `validator_keys`&#x20;

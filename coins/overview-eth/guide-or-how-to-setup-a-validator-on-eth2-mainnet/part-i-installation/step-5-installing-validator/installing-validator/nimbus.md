@@ -144,3 +144,16 @@ Press `Ctrl` + `C` to exit the logs.
 ```bash
 nimbus_beacon_node[292966]: INF 2023-02-05 01:25:26.263+00:00 Attestation sent      attestation="(aggregation_bits: 0b00000000000000000000000000000000000000000000000000000000, data: (slot: 31235, index: 3, beacon_block_root: \"ca3213f1\", source: \"1901:9deza1289\", target: \"1901:6ab1fafff\"), signature: \"32173064\")" delay=46ms543us294ns subnet_id=20
 ```
+
+#### Cleanup leftover validator\_keys <a href="#optional-step-0-cleanup-leftover-validator_keys" id="optional-step-0-cleanup-leftover-validator_keys"></a>
+
+Verify that you have backups of validator\_keys directory. The contents are the keystore files.
+
+Having backup copies of your validator\_keys directory on USB media can make recovery from node problems quicker. Validator keys can always be regenerated from secret recovery mnemonic phrase.
+
+You may safely delete the directory.
+
+```bash
+# Remove default validator_key directory
+sudo rm -r $HOME/staking-deposit-cli/validator_keys
+```

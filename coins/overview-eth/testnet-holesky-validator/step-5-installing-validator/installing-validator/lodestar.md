@@ -128,3 +128,16 @@ Feb-1  03:46:36.450     info: Published attestations slot=2713, index=2, count=1
 Feb-1  03:53:48.944     info: Published attestations slot=2765, index=21, count=1
 Feb-1  04:01:48.812     info: Published attestations slot=2809, index=17, count=1
 ```
+
+#### Cleanup leftover validator\_keys <a href="#optional-step-0-cleanup-leftover-validator_keys" id="optional-step-0-cleanup-leftover-validator_keys"></a>
+
+Verify that you have backups of validator\_keys directory. The contents are the keystore files.
+
+Having backup copies of your validator\_keys directory on USB media can make recovery from node problems quicker. Validator keys can always be regenerated from secret recovery mnemonic phrase.
+
+You may safely delete the directory.
+
+```bash
+# Remove default validator_key directory
+sudo rm -r $HOME/staking-deposit-cli/validator_keys
+```

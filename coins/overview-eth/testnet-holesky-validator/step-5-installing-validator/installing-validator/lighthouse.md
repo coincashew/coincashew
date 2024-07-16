@@ -119,3 +119,16 @@ Press `Ctrl` + `C` to exit the logs.
 Feb 08 01:01:0 INFO Successfully published attestations type: unaggregated, slot: 12422, committee_index: 3, head_block: 0xabc111daedf1281..., validator_indices: [12345], count:1, service: attestation 
 Feb 08 01:01:30 INFO Connected to beacon node(s) synced: 1, available: 1, total: 1, service: notifier
 ```
+
+#### Cleanup leftover validator\_keys <a href="#optional-step-0-cleanup-leftover-validator_keys" id="optional-step-0-cleanup-leftover-validator_keys"></a>
+
+Verify that you have backups of validator\_keys directory. The contents are the keystore files.
+
+Having backup copies of your validator\_keys directory on USB media can make recovery from node problems quicker. Validator keys can always be regenerated from secret recovery mnemonic phrase.
+
+You may safely delete the directory.
+
+```bash
+# Remove default validator_key directory
+sudo rm -r $HOME/staking-deposit-cli/validator_keys
+```

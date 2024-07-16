@@ -199,3 +199,16 @@ Delete the temporary **keystore password** file.
 ```bash
 sudo rm $HOME/validators-password.txt
 ```
+
+#### Cleanup leftover validator\_keys <a href="#optional-step-0-cleanup-leftover-validator_keys" id="optional-step-0-cleanup-leftover-validator_keys"></a>
+
+Verify that you have backups of validator\_keys directory. The contents are the keystore files.
+
+Having backup copies of your validator\_keys directory on USB media can make recovery from node problems quicker. Validator keys can always be regenerated from secret recovery mnemonic phrase.
+
+You may safely delete the directory.
+
+```bash
+# Remove default validator_key directory
+sudo rm -r $HOME/staking-deposit-cli/validator_keys
+```
