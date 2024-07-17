@@ -104,7 +104,7 @@ Congrats on installing a EthPillar, making nodes and home staking easier!
 
 <details>
 
-<summary>Additional step for new Node operators, new Validators</summary>
+<summary>All types of node operators: Solo staking, Full node, CSM Staking Node</summary>
 
 **Step 1: Configure your network, port forwarding and firewall.**&#x20;
 
@@ -134,7 +134,28 @@ Ensure your node has sufficient CPU/disk/network performance.
 
 <details>
 
-<summary>Additional steps for new Validators</summary>
+<summary>Lido CSM Staking Node Operators</summary>
+
+**Step 1: Generate Validator Keys:**
+
+* Generate new CSM validator keys for the Lido withdrawal vault on Holesky (0xF0179dEC45a37423EAD4FaD5fCb136197872EAd9).
+* `Ethpillar > Validator Client > Generate / Import Validator Keys`
+
+**Step 2: Upload JSON Deposit Data:**
+
+* Upload the newly generated deposit data file for your CSM keystores to the Lido CSM Widget. [https://csm.testnet.fi](https://csm.testnet.fi/)
+* Provide the required bond amount in ETH/stETH/wstETH.
+
+**Step 3: Monitor Validator Key Deposit:**
+
+* Wait for your CSM validator keys to be deposited by Lido.&#x20;
+* Ensure your node remains online during the process.
+
+</details>
+
+<details>
+
+<summary>Additional steps for Solo Stakers</summary>
 
 **Step 1: Setup Validator Keys**
 
