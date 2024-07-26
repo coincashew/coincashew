@@ -1,7 +1,7 @@
 ---
 description: >-
   Empowered, inspired, home staker. Free. Open source. Public goods for
-  Ethereum.
+  Ethereum. ARM64 and AMD64 support.
 ---
 
 # 🛡️ EthPillar: one-liner setup tool and node management TUI
@@ -12,7 +12,7 @@ description: >-
 
 ## :new: What is EthPillar?
 
-:smile: **Friendly Node Installer**: No node yet? Helps you installs a Ethereum node (Nimbus+Nethermind) stack in just minutes. MEVboost included.
+:smile: **Friendly Node Installer**: Helps you installs a Ethereum node (Nimbus+Nethermind) stack in just minutes. MEVboost included.
 
 :floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text user interface (TUI).
 
@@ -61,7 +61,8 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 * Study [Ethstaker's Staking for Beginners](https://www.reddit.com/r/ethstaker/wiki/staking\_for\_beginners/)
 * [Review how staking works and the hardware requirements](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md)
 * An [Ubuntu](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md#setup-ubuntu) installation.&#x20;
-  * Tested working with Ubuntu 22.04 LTS
+  * Tested working with Ubuntu 24.04 LTS
+  * Support for **AMD64 and ARM64** architecture
   * Also appears compatible with Linux Mint 21.2, Debian 12
 
 ## :triangular\_ruler: Option 1: Automated One-Liner Install
