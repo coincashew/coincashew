@@ -60,11 +60,11 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 
 * Study [Ethstaker's Staking for Beginners](https://www.reddit.com/r/ethstaker/wiki/staking\_for\_beginners/)
 * [Review how staking works and the hardware requirements](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md)
-* A Linux [Ubuntu](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md#setup-ubuntu) installation.&#x20;
-  * Tested working with Ubuntu 24.04 LTS
+* A Linux [Ubuntu](https://ubuntu.com/download) installation.&#x20;
+  * Tested with [Ubuntu 24.04 LTS](https://ubuntu.com/download)
+  * Also appears compatible with [armbian](https://www.armbian.com/download/), [Linux Mint](https://www.linuxmint.com/), [Debian](https://www.debian.org/distrib/netinst)
   * Support for **AMD64 and ARM64** architecture
-  * Recommend at least 16GB RAM
-  * Also appears compatible with Linux Mint 21.2, Debian 12
+  * Recommend at least 16GB RAM for **ARM64** sbc
 
 ## :triangular\_ruler: Option 1: Automated One-Liner Install
 
