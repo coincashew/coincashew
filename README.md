@@ -14,7 +14,7 @@ layout:
 
 # Home
 
-## <img src=".gitbook/assets/newcc.png" alt="" data-size="line"> CoinCashew
+## <img src=".gitbook/assets/newcc128.png" alt="" data-size="line"> CoinCashew
 
 > **The best how-to guide for all your favorite cryptocurrencies.**
 >
