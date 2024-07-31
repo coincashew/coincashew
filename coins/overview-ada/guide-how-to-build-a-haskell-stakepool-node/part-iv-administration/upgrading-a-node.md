@@ -307,11 +307,11 @@ tar -xvf cardano*.gz
 4. Install the new node and cli binaries.
 
 ```
-sudo mv ~/tmp2/cardano-cli /usr/local/bin/
+sudo mv ~/tmp2/bin/cardano-cli /usr/local/bin/
 ```
 
 ```
-sudo mv ~/tmp2/cardano-node /usr/local/bin/
+sudo mv ~/tmp2/bin/cardano-node /usr/local/bin/
 ```
 
 5. Clean up temporary path.
