@@ -77,7 +77,7 @@ Find the amount of the deposit required to register a stake address.
 {% tab title="block producer node" %}
 ```bash
 stakeAddressDeposit=$(cat $NODE_HOME/params.json | jq -r '.stakeAddressDeposit')
-echo stakeAddressDeposit : $stakeAddressDeposit
+echo stakeAddressDeposit : ${stakeAddressDeposit}
 ```
 {% endtab %}
 {% endtabs %}
@@ -97,9 +97,9 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 ```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+0 \
+    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakeAddressDeposit})) \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
+    --fee 200000 \
     --out-file tx.tmp \
     --certificate stake.cert
 ```
