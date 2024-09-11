@@ -137,4 +137,4 @@ To help confirm that your ports are configured as needed, you can use the [Port 
 
 ## Conclusion
 
-The topology configuration described above allows your nodes to connect with each other and synchronize with the blockchain. Operating a stake pool requires that your relay node(s) also connect with other relay nodes in the Cardano network, as explained in the section [Configuring Legacy Network Topology](../part-iii-operation/configuring-legacy-network-topology.md). However, the _How to Set Up a Cardano Stake Pool_ guide first explains other tasks that you need to complete before your stake pool joins the Cardano network.
+The topology configuration described above allows your nodes to connect with each other and synchronize with the blockchain. Operating a stake pool requires that your relay node(s) also connect with other relay nodes in the Cardano network, as explained in the section [Configuring Network Topology](../part-iii-operation/configuring-network-topology.md). However, the _How to Set Up a Cardano Stake Pool_ guide first explains other tasks that you need to complete before your stake pool joins the Cardano network.
