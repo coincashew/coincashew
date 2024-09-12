@@ -263,7 +263,7 @@ Example snippet to add to your block producer's topology file. Add a comma to se
  }
 ```
 
-For relay nodes, [manage your topology file](../part-iii-operation/configuring-network-topology.md) or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
+For relay nodes, [manage your topology file](../part-ii-configuration/configuring-stake-pool-topology.md)
 
 ## :arrows\_counterclockwise: Restarting Nodes
 

@@ -28,3 +28,7 @@ A non-empty string return means you're registered! :clap:
 {% endhint %}
 
 With your stake pool ID, now you can find your data on block explorers such as [https://pooltool.io/](https://pooltool.io)
+
+{% hint style="success" %}
+Congratulations! Your stake pool is included in the Cardano network and ready to produce blocks. When you finish testing that your stake pool successfully produces blocks, consider [future-proofing](../part-i-installation/prerequisites.md#futureproof) your stake pool.
+{% endhint %}

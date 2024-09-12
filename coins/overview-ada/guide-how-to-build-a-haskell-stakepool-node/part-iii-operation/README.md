@@ -9,7 +9,6 @@ Part III includes the following topics discussing how to create your stake pool:
 * [Registering Your Stake Address](registering-your-stake-address.md)
 * [Registering Your Stake Pool](registering-your-stake-pool.md)
 * [Verifying Stake Pool Operation](verifying-stake-pool-operation.md)
-* [Configuring Network Topology](configuring-network-topology.md)
 * [Setting Up Dashboards](setting-up-dashboards.md)
 * [Configuring Slot Leader Calculations](configuring-slot-leader-calculation.md)
 * [Securing Your Stake Pool Using a Hardware Wallet](securing-your-stake-pool-using-a-hardware-wallet.md)

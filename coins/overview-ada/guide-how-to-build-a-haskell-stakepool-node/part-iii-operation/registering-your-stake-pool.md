@@ -335,3 +335,24 @@ cardano-cli transaction submit \
 ```
 {% endtab %}
 {% endtabs %}
+
+# :octagonal\_sign: Critical Security Reminders :fire:
+
+## Block-producing Node
+
+The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer, specifically the following three files.
+
+```bash
+###
+### On block producer node
+###
+KES=${NODE_HOME}/kes.skey
+VRF=${NODE_HOME}/vrf.skey
+CERT=${NODE_HOME}/node.cert
+```
+
+**All other keys must remain offline in your air-gapped offline cold environment.**
+
+## Relay Nodes
+
+Relay nodes must NOT store any **`operational certificates`, `vrf`, `skey` or `cold`**` ``` **keys**.
