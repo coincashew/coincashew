@@ -1,4 +1,4 @@
-# Configuring Stake Pool Topology
+# Configuring Topology
 
 Network topology describes the physical and logical structure of a network. In the Cardano network, each stake pool must operate at least one block-producing node and one relay node. The keys and certificates required to issue blocks are located on the block-producing node. For security reasons, your block producer must connect **only** to one or more relay nodes that you—the stake pool operator—control.
 

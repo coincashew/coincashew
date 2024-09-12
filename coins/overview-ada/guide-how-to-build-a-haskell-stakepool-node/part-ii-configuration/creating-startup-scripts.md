@@ -52,7 +52,7 @@ CONFIG=<NodeHomeValue>/<ConfigFileName>
 ```
 
 {% hint style="info" %}
-You configured the `topology.json` file when [Configuring Stake Pool Topology](configuring-stake-pool-topology.md). You downloaded the `config.json` file when [Downloading Configuration Files](downloading-configuration-files.md). For more details on options for the `cardano-node run` command, see the topic [How to run cardano-node](https://developers.cardano.org/docs/get-started/running-cardano) in the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/).
+You configured the `topology.json` file when [Configuring Topology](configuring-topology.md). You downloaded the `config.json` file when [Downloading Configuration Files](downloading-configuration-files.md). For more details on options for the `cardano-node run` command, see the topic [How to run cardano-node](https://developers.cardano.org/docs/get-started/running-cardano) in the [Cardano Developer Portal](https://developers.cardano.org/docs/get-started/).
 {% endhint %}
 
 4. Save and close the `startCardanoNode.sh` file.
