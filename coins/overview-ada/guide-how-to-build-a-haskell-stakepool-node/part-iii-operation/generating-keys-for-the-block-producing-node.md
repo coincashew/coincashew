@@ -157,7 +157,7 @@ cat > $NODE_HOME/startBlockProducingNode.sh << EOF
 DIRECTORY=$NODE_HOME
 PORT=6000
 HOSTADDR=0.0.0.0
-TOPOLOGY=\${DIRECTORY}/topology-legacy.json
+TOPOLOGY=\${DIRECTORY}/topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/config.json

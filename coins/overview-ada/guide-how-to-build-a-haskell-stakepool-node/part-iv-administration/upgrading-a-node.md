@@ -239,7 +239,6 @@ mv shelley-genesis.json shelley-genesis.bak
 mv alonzo-genesis.json alonzo-genesis.bak
 mv conway-genesis.json conway-genesis.bak
 mv topology.json topology.bak
-mv topology-legacy.json topology-legacy.bak
 ```
 
 {% hint style="info" %}
