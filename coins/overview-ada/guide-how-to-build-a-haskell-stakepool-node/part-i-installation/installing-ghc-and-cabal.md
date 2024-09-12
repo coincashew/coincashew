@@ -186,4 +186,4 @@ mkdir $HOME/cardano-my-node
 source $HOME/.bashrc
 ```
 
-16\. On each computer hosting a relay node for your stake pool, repeat steps 1 to 15
+16\. On each computer hosting a relay or block-producing node for your stake pool, repeat steps 1 to 15

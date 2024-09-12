@@ -1,4 +1,4 @@
-# Configuring Legacy Stake Pool Topology
+# Configuring Stake Pool Topology
 
 Network topology describes the physical and logical structure of a network. In the Cardano network, each stake pool must operate at least one block-producing node and one relay node. The keys and certificates required to issue blocks are located on the block-producing node. For security reasons, your block producer must connect **only** to one or more relay nodes that you—the stake pool operator—control.
 
@@ -13,69 +13,79 @@ Before you start the nodes comprising your stake pool, you must:
 
 ## Configuring a Relay Node
 
-**To configure your relay node(s) to use legacy topology:**
+**To configure your relay node(s) to connect with your block-producing node:**
 
-1. Using a text editor, open the `config.json` file, and then edit the following option:
+1. On the computer hosting your relay node, using a text editor open the `config.json` file, and then edit the following option if needed:
 
 ```bash
-"EnableP2P": false,
+"EnableP2P": true,
 ```
 
 2. Save and close the `config.json` file.
 
-**To configure your relay node(s) to connect with your block-producing node:**
-
-1. On the computer hosting your relay node, in a terminal window type the following command to navigate to the folder where you downloaded Cardano configuration files:
+3. In a terminal window, type the following command to navigate to the folder where you downloaded Cardano configuration files:
 
 ```bash
 cd ${NODE_HOME}
 ```
 
-2. To create a backup of the original topology configuration file, type:
+4. To create a backup of the original topology configuration file, type:
 
 ```bash
-cp topology-legacy.json topology-legacy.json.bak
+cp topology.json topology.json.bak
 ```
 
-{% hint style="info" %}
-You set the `NODE_CONFIG` environment variable when [Installing GHC and Cabal](../part-i-installation/installing-ghc-and-cabal.md).
-{% endhint %}
-
-3. Using a text editor, open the `topology-legacy.json` file, and then add a record for the block-producing node as follows, where `<BlockProducingNodeIPAddress>` is the IP address of the block-producing node in your stake pool configuration:
+5. Using a text editor, open the `topology.json` file, and then add a record for the block-producing node in the `localRoots` section as follows, where `<BlockProducingNodeIPAddress>` is the IP address of the block-producing node in your stake pool configuration, and `<BlockProducingNodeName>` is an optional descriptive label for your block-producing node. Also, set the value `true` for the `trustable` key:
 
 ```bash
 {
-	"Producers": [
-	  {
-	    "addr": "<BlockProducingNodeIPAddress>",
-	    "port": 6000,
-	    "valency": 1
-	  },
-	  {
-	    "addr": "backbone.cardano-mainnet.iohk.io",
-	    "port": 3001,
-	    "valency": 1
-	  },
-	  {
-	    "addr": "backbone.cardano.iog.io",
-	    "port": 3001,
-	    "valency": 1
-	  },
-	  {
-	    "addr": "backbone.mainnet.emurgornd.com",
-	    "port": 3001,
-	    "valency": 1
-	  }
-	]
+  "bootstrapPeers": [
+    {
+      "address": "backbone.cardano.iog.io",
+      "port": 3001
+    },
+    {
+      "address": "backbone.mainnet.emurgornd.com",
+      "port": 3001
+    },
+    {
+      "address": "backbone.mainnet.cardanofoundation.org",
+      "port": 3001
+    }
+  ],
+  "localRoots": [
+    {
+      "accessPoints": [
+	  
+	    {
+          "address": "<BlockProducingNodeIPAddress>",
+          "port": 6000,
+          "name": "<BlockProducingNodeName>"
+        }
+	  ],
+      "advertise": false,
+	  "comment": "Do NOT advertise the block-producing node",
+      "trustable": true,
+      "valency": 1
+    }
+  ],
+  "publicRoots": [
+    {
+      "accessPoints": [],
+      "advertise": false
+    }
+  ],
+  "useLedgerAfterSlot": 128908821
 }
 ```
 
 {% hint style="info" %}
-To follow best practices, set `<BlockProducingNodeIPAddress>` to the local area network (LAN) Internet protocol (IP) address of the computer hosting the block-producing node when possible. If necessary—for example, if you set up your block-producing node on a different network than the relay node—then use the wide area network (WAN) IP address. Connecting to `backbone.cardano-mainnet.iohk.io`, `backbone.cardano.iog.io` and `backbone.mainnet.emurgornd.com` allows your relay node to synchronize with the blockchain.
+To follow best practices, set `<BlockProducingNodeIPAddress>` to the local area network (LAN) Internet protocol (IP) address of the computer hosting the block-producing node when possible. If necessary—for example, if you set up your block-producing node on a different network than the relay node—then use the wide area network (WAN) IP address. Connecting to `backbone.cardano.iog.io`, `backbone.mainnet.emurgornd.com` and `backbone.mainnet.cardanofoundation.org` allows your relay node to synchronize with the blockchain.
 {% endhint %}
 
-4. Save and close the `topology-legacy.json` file.
-5. To configure additional relay nodes, repeat steps 1 to 4 for each additional relay node in your stake pool configuration.
+6. Save and close the `topology.json` file.
+
+7. To configure additional relay nodes, repeat steps 1 to 6 for each additional relay node in your stake pool configuration.
 
 ## Configuring Your Block-producing Node
 
@@ -136,5 +146,7 @@ In the procedures to configure topology above, all block-producing and relay nod
 To help confirm that your ports are configured as needed, you can use the [Port Forwarding Tester](https://www.yougetsignal.com/tools/open-ports/) or [CanYouSeeMe.org](https://canyouseeme.org/) for example.
 
 ## Conclusion
+
+For more details on configuring topology, visit [Understanding Configuration Files](https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/understanding-config-files.md#the-topologyjson-file).
 
 The topology configuration described above allows your nodes to connect with each other and synchronize with the blockchain. Operating a stake pool requires that your relay node(s) also connect with other relay nodes in the Cardano network, as explained in the section [Configuring Network Topology](../part-iii-operation/configuring-network-topology.md). However, the _How to Set Up a Cardano Stake Pool_ guide first explains other tasks that you need to complete before your stake pool joins the Cardano network.

@@ -1,4 +1,4 @@
-# Configuring Legacy Network Topology
+# Configuring Network Topology
 
 {% hint style="info" %}
 Configuring network topology is a **critical step** as skipping this step will result in your minted blocks being orphaned by the rest of the network.

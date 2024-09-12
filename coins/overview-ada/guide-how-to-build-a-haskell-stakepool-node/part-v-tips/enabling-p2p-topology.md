@@ -38,7 +38,7 @@ When enabling peer-to-peer topology for a relay node, do NOT complete additional
 
 5. Save and close the `config.json` file.
 
-6. Using a text editor, create a new file named `$NODE_HOME/topology.json` using syntax supporting peer-to-peer topology. For details on the syntax that peer-to-peer topology requires, visit [Understanding Configuration Files](https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/understanding-config-files.md).
+6. Using a text editor, create a new file named `$NODE_HOME/topology.json` using syntax supporting peer-to-peer topology. For details on the syntax that peer-to-peer topology requires, visit [Understanding Configuration Files](https://github.com/input-output-hk/cardano-node-wiki/blob/main/docs/getting-started/understanding-config-files.md#the-topologyjson-file).
 
 7. Using a text editor, update the value of the `TOPOLOGY` variable in the `$NODE_HOME/startCardanoNode.sh` script so that the node uses the new `topology.json` file that you created in step 6
 

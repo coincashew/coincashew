@@ -62,4 +62,4 @@ cardano-node --version
 cardano-cli --version
 ```
 
-8. On each computer hosting a relay node for your stake pool, repeat steps 1 to 8
+8. On each computer hosting a relay or block-producing node for your stake pool, repeat steps 1 to 7
