@@ -5,6 +5,7 @@ Part V includes the following topics containing additional procedures to simplif
 * [Submitting a Simple Transaction](submitting-a-simple-transaction.md)
 * [Transferring Files Using SSH](transferring-files-using-ssh.md)
 * [Updating Configuration Files](updating-configuration-files.md)
+* [Implementing Peer Sharing](implementing-peer-sharing.md)
 * [Uploading Pool Metadata to GitHub Pages](uploading-pool-metadata-to-github.md)
 * [Obtaining a PoolTool API Key](obtaining-a-pooltool-api-key.md)
 * [Configuring Glasgow Haskell Compiler Runtime System Options](configuring-runtime-options.md)

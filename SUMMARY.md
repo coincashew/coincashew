@@ -227,7 +227,7 @@
       * [Submitting a Simple Transaction](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/submitting-a-simple-transaction.md)
       * [Transferring Files Using SSH](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/transferring-files-using-ssh.md)
       * [Updating Configuration Files](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/updating-configuration-files.md)
-      * [Enabling Peer Sharing](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/enabling-peer-sharing.md)
+      * [Implementing Peer Sharing](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/implementing-peer-sharing.md)
       * [Uploading Pool Metadata to GitHub Pages](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/uploading-pool-metadata-to-github.md)
       * [Obtaining a PoolTool API Key](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/obtaining-a-pooltool-api-key.md)
       * [Configuring Glasgow Haskell Compiler Runtime System Options](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-v-tips/configuring-runtime-options.md)

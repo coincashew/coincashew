@@ -79,11 +79,11 @@ minPoolCost is 170000000 lovelace or 170 ADA. Therefore, your `--pool-cost` must
 Create a registration certificate for your stake pool. Update with your **metadata URL** and your **relay node information**. Choose one of the three options available to configure relay nodes -- DNS based, Round Robin DNS based, or IP based.
 
 {% hint style="info" %}
-For your stake pool to join the Cardano network, you MUST register at least one relay node using the registration certificate. DNS based relays are recommended for simplicity of node management. In other words, you don't need to re-submit this **registration certificate** transaction every time your IP changes. Also you can easily update the DNS to point towards a new IP should you re-locate or re-build a relay node, for example.
+DNS based relays are recommended for simplicity of node management. In other words, you don't need to re-submit this **registration certificate** transaction every time your IP changes. Also you can easily update the DNS to point towards a new IP should you re-locate or re-build a relay node, for example.
 {% endhint %}
 
 {% hint style="warning" %}
- Registering all your relay nodes publicly on the blockchain may create a security risk. You can operate one or more additional, unregistered relays by [Enabling Peer Sharing](../part-v-tips/enabling-peer-sharing.md). Do NOT register your block-producing node on the blockchain.
+You MUST register at least one relay node on the blockchain using the registration certificate. If you operate multiple relay nodes, then registering all your relay nodes publicly on the blockchain may create a security risk. You can operate one or more unregistered relays by [Implementing Peer Sharing](../part-v-tips/implementing-peer-sharing.md). Do NOT register your block-producing node on the blockchain.
  {% endhint %}
 
 {% hint style="info" %}

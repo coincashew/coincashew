@@ -165,3 +165,5 @@ To help confirm that your ports are configured as needed, you can use the [Port 
 ## Conclusion
 
 The topology configuration described above allows your nodes to connect securely with each other, as well as with other relay nodes in the Cardano network.
+
+If you configure one or more additional relays in your stake pool, then consider [Implementing Peer Sharing](../part-v-tips/implementing-peer-sharing.md) to help improve network security.
