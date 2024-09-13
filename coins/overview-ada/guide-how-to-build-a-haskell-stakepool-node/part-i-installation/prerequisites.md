@@ -35,7 +35,7 @@ As a Stake Pool Operator (SPO) for Cardano, you need:
 
 ## :man\_lifting\_weights: Recommended Future-proof Stake Pool Hardware Setup <a href="#futureproof" id="futureproof"></a>
 
-* **Four separate servers**: 1 block producer node, 3 relay nodes (2 registered relays using peer-to-peer networking and 1 unregistered relay using legacy network topology)
+* **Four separate servers**: 1 block producer node, 3 relay nodes (2 registered relays and 1 unregistered relay)
 * **One air-gapped offline machine (cold environment)**
 * **Operating system**: 64-bit Linux (i.e. Ubuntu 22.04 LTS)
 * **Processor:** 4 core or higher CPU

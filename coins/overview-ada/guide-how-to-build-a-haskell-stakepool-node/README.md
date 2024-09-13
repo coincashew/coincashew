@@ -53,7 +53,7 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 * April 10, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
     * Incorporating updates for Cardano Node 8.9.1
-    * Creating the [Enabling Peer-to-peer Network Topology](part-v-tips/enabling-p2p-topology.md) topic
+    * Creating the *Enabling Peer-to-peer Network Topology* topic
     * Adapting existing content to reflect peer-to-peer network topology
 * February 3, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))

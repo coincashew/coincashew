@@ -6,6 +6,8 @@ The following diagram illustrates Cardano network topology:
 
 ![](../../../../.gitbook/assets/producer-relay-diagram.png)
 
+For details on Cardano networking components, visit [Peer-to-peer (P2P) Networking](https://docs.cardano.org/explore-cardano/cardano-network/p2p-networking/).
+
 Before you start the nodes comprising your stake pool, you must:
 
 * Configure your relay node(s) to connect with your block-producing node
