@@ -80,7 +80,7 @@ For more details on editing the `topology.json` file, see the topic [Configuring
 
 4. Save and close the `topology.json` file.
 
-5. To restart the Cardano Node, type:
+5. On your registered relay, to restart the Cardano Node type:
 
 ```
 sudo systemctl restart cardano-node.service

@@ -6,7 +6,9 @@ Let's walk through an example to claim your stake pools rewards.
 Rewards are accumulated in the `stake.addr` address.
 {% endhint %}
 
-First, find the **tip** of the blockchain to set the **invalid-hereafter** parameter properly.
+First, you need to ensure that your `stake.addr` is [delegating to a representative](../part-iv-administration/delegating-to-a-representative.md).
+
+Second, find the **tip** of the blockchain to set the **invalid-hereafter** parameter properly.
 
 {% tabs %}
 {% tab title="block producer node" %}
