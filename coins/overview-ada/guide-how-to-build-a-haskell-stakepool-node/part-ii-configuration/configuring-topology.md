@@ -58,7 +58,6 @@ cp topology.json topology.json.bak
   "localRoots": [
     {
       "accessPoints": [
-	  
 	    {
           "address": "<BlockProducingNodeIPAddress>",
           "port": 6000,
