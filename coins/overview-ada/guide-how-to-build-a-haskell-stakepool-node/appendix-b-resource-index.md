@@ -1,7 +1,5 @@
 # Appendix B - Cardano Resource Index
 
-Cardano documentation tends to be scattered around the Internet, including duplicate or out-of-date information. Some Cardano community members may contribute in multiple roles.
-
 The Cardano Resource Index aims to present a well-rounded, unbiased collection of general Cardano resources available online and useful for stake pool operators, listed alphabetically by name or topic, including an accurate description of content available at each resource.
 
 [BlockFrost.io](https://blockfrost.io/) offers an Application Programming Interface (API), webhooks and InterPlanetary File System (IPFS) decentralized file storage, allowing you to tap into Cardano's potential without the need for manual checks.
