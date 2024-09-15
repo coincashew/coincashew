@@ -19,6 +19,7 @@ You can delegate your voting power to:
 Thanks to [Latin Stake Pools](https://latinstakepools.com/) :clap:
 {% endhint %}
 
+<!-- The following procedure is based on the procedure in the Registering Your Stake Address topic -->
 **To delegate voting power:**
 
 Create a certificate, `vote-deleg.cert`, using the `stake.vkey`
