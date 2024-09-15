@@ -138,8 +138,8 @@ cardano-cli transaction build-raw \
     ${tx_in} \
     --mary-era \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
+    --fee 200000 \
     --certificate-file pool.cert \
     --out-file tx.tmp
 ```
@@ -184,7 +184,7 @@ cardano-cli transaction build-raw \
     ${tx_in} \
     --mary-era \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
     --certificate-file pool.cert \
     --out-file tx-pool.raw

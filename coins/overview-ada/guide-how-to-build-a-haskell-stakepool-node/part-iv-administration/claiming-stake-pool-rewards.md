@@ -87,9 +87,9 @@ Run the build-raw transaction command.
 ```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+0 \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
+    --tx-out $(cat payment.addr)+$(( ${total_balance} + ${rewardBalance} )) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
+    --fee 200000 \
     --withdrawal ${withdrawalString} \
     --out-file tx.tmp
 ```
@@ -133,7 +133,7 @@ Build your transaction.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
     --withdrawal ${withdrawalString} \
     --out-file tx.raw

@@ -72,9 +72,9 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 ```bash
 cardano-cli transaction build-raw \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+0 \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
+    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakeAddressDeposit} )) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
+    --fee 200000 \
     --out-file tx.tmp \
     --certificate stake.cert
 ```
@@ -110,7 +110,7 @@ Build your transaction which will register your stake address.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
     --certificate-file stake.cert \
     --out-file tx.raw
@@ -198,8 +198,8 @@ Run the build-raw transaction command.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
+    --fee 200000 \
     --certificate-file deleg.cert \
     --out-file tx.tmp
 ```
@@ -231,7 +231,7 @@ Build the transaction.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
     --certificate-file deleg.cert \
     --out-file tx.raw

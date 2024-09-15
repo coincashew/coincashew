@@ -130,8 +130,8 @@ Run the build-raw transaction command.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
+    --fee 200000 \
     --certificate-file pool.dereg \
     --out-file tx.tmp
 ```
@@ -175,7 +175,7 @@ Build the transaction.
 cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
     --certificate-file pool.dereg \
     --out-file tx.raw
