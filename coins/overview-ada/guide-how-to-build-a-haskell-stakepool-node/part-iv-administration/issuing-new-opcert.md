@@ -20,12 +20,12 @@ A Companion Script that can help you with rotating KES keys and issuing a new Op
 
 ```bash
 cd $NODE_HOME
-cardano-cli query kes-period-info \
+cardano-cli conway query kes-period-info \
     --${NODE_CONFIG} \
     --op-cert-file node.cert
 ```
 
-The `cardano-cli query kes-period-info` command returns output similar to:
+The `cardano-cli conway query kes-period-info` command returns output similar to:
 
 ```bash
 ✓ Operational certificate's KES period is within the correct KES period interval
@@ -67,7 +67,7 @@ When you issue a new operational certificate, a `node.counter` file sets the cou
 If you follow the Coin Cashew instructions, then you created a `node.counter` file when [Generating Keys for the Block-producing Node](../part-iii-operation/generating-keys-for-the-block-producing-node.md)
 {% endhint %}
 
-When you run the `cardano-cli query kes-period-info` command on your block producer node, if the value of the `qKesOnDiskOperationalCertificateNumber` key equals the value of the `qKesNodeStateOperationalCertificateNumber` key, then your stake pool minted at least one block using the current operational certificate and you do **not** need to set the counter value manually.
+When you run the `cardano-cli conway query kes-period-info` command on your block producer node, if the value of the `qKesOnDiskOperationalCertificateNumber` key equals the value of the `qKesNodeStateOperationalCertificateNumber` key, then your stake pool minted at least one block using the current operational certificate and you do **not** need to set the counter value manually.
 
 If the value of the `qKesOnDiskOperationalCertificateNumber` key is greater than the value of the `qKesNodeStateOperationalCertificateNumber` key, then prior to issuing a new operational certificate you need to set the counter value using the following procedure.
 
@@ -77,7 +77,7 @@ If the value of the `qKesOnDiskOperationalCertificateNumber` key is greater than
 
 ```bash
 cd $HOME/cold-keys
-cardano-cli node new-counter \
+cardano-cli conway node new-counter \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --counter-value $(( <NodeCertificateNumber> + 1 )) \
     --operational-certificate-issue-counter-file node.counter
@@ -105,7 +105,7 @@ When you generate a new `node.counter` file, the value of the `description` key 
 
 ```bash
 cd $NODE_HOME
-cardano-cli node key-gen-KES \
+cardano-cli conway node key-gen-KES \
     --verification-key-file kes.vkey \
     --signing-key-file kes.skey
 ```
@@ -117,7 +117,7 @@ cardano-cli node key-gen-KES \
 cd $NODE_HOME
 # Query the current slot height of the blockchain, and then
 # retrieve the value of the slot key in the results
-slotNo=$(cardano-cli query tip --mainnet | jq -r '.slot')
+slotNo=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 # Retrieve the number of slots per KES period from the key named slotsPerKESPeriod 
 # in the Shelley Genesis JSON configuration file that your stake pool uses
 slotsPerKESPeriod=$(cat $NODE_HOME/shelley-genesis.json | jq -r '.slotsPerKESPeriod')
@@ -133,7 +133,7 @@ echo StartingKESPEriod: ${StartingKESPeriod}
 ```bash
 cd $NODE_HOME
 chmod u+rwx $HOME/cold-keys
-cardano-cli node issue-op-cert \
+cardano-cli conway node issue-op-cert \
     --kes-verification-key-file <KESvkeyFile> \
     --cold-signing-key-file $HOME/cold-keys/node.skey \
     --operational-certificate-issue-counter $HOME/cold-keys/node.counter \
@@ -157,13 +157,13 @@ sudo systemctl restart cardano-node
 
 ```bash
 cd $NODE_HOME
-cardano-cli query kes-period-info \
+cardano-cli conway query kes-period-info \
     --${NODE_CONFIG} \
     --op-cert-file node.cert
 ```
 
 {% hint style="info" %}
-In the results of the `cardano-cli query kes-period-info` command, prior to your stake pool minting a block using the operational certificate that you issued in step 4, in a valid operational certificate the value of the `qKesOnDiskOperationalCertificateNumber` key is greater than the value of the `qKesNodeStateOperationalCertificateNumber` key by exactly one (1) The first time your stake pool mints a block using the operational certificate that you issued in step 4, the value of the `qKesNodeStateOperationalCertificateNumber` increments by one (1) to equal the value of the `qKesOnDiskOperationalCertificateNumber` key.
+In the results of the `cardano-cli conway query kes-period-info` command, prior to your stake pool minting a block using the operational certificate that you issued in step 4, in a valid operational certificate the value of the `qKesOnDiskOperationalCertificateNumber` key is greater than the value of the `qKesNodeStateOperationalCertificateNumber` key by exactly one (1) The first time your stake pool mints a block using the operational certificate that you issued in step 4, the value of the `qKesNodeStateOperationalCertificateNumber` increments by one (1) to equal the value of the `qKesOnDiskOperationalCertificateNumber` key.
 {% endhint %}
 
 1. In a secure location, create backup copies of the KES key files that you generated in step 1; the current `node.counter` file for your stake pool; and, the `node.cert` file that you generated in step 4

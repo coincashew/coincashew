@@ -11,7 +11,7 @@ Wait for the block-producing node to start syncing before continuing if you get 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query protocol-parameters \
+cardano-cli conway query protocol-parameters \
     --mainnet \
     --out-file params.json
 ```
@@ -41,7 +41,7 @@ Create a new payment key pair: `payment.skey` & `payment.vkey`
 ### On air-gapped offline machine,
 ###
 cd $NODE_HOME
-cardano-cli address key-gen \
+cardano-cli conway address key-gen \
     --verification-key-file payment.vkey \
     --signing-key-file payment.skey
 ```
@@ -52,7 +52,7 @@ Create a new stake address key pair: `stake.skey` & `stake.vkey`
 ###
 ### On air-gapped offline machine,
 ###
-cardano-cli stake-address key-gen \
+cardano-cli conway stake-address key-gen \
     --verification-key-file stake.vkey \
     --signing-key-file stake.skey
 ```
@@ -63,7 +63,7 @@ Create your stake address from the stake address verification key and store it i
 ###
 ### On air-gapped offline machine,
 ###
-cardano-cli stake-address build \
+cardano-cli conway stake-address build \
     --stake-verification-key-file stake.vkey \
     --out-file stake.addr \
     --mainnet
@@ -75,7 +75,7 @@ Build a payment address for the payment key `payment.vkey` which will delegate t
 ###
 ### On air-gapped offline machine,
 ###
-cardano-cli address build \
+cardano-cli conway address build \
     --payment-verification-key-file payment.vkey \
     --stake-verification-key-file stake.vkey \
     --out-file payment.addr \
@@ -293,7 +293,7 @@ Before continuing, your nodes must be fully synchronized to the blockchain. Othe
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet
 ```

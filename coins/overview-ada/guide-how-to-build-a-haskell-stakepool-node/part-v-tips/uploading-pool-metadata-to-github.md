@@ -54,5 +54,5 @@ cat md.json
 10. On your block producer node, generate the updated pool metadata hash.
 
 ```bash
-cardano-cli stake-pool metadata-hash --pool-metadata-file md.json > poolMetaDataHash.txt
+cardano-cli conway stake-pool metadata-hash --pool-metadata-file md.json > poolMetaDataHash.txt
 ```

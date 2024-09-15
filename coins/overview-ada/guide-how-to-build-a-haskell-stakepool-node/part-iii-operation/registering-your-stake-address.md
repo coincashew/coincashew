@@ -16,7 +16,7 @@ Create a certificate, `stake.cert`, using the `stake.vkey`
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```
-cardano-cli stake-address registration-certificate \
+cardano-cli conway stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
     --out-file stake.cert
 ```
@@ -30,7 +30,7 @@ You need to find the **tip** of the blockchain to set the **invalid-hereafter** 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
+currentSlot=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -41,7 +41,7 @@ Find your balance and **UTXOs**.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -95,7 +95,7 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakeAddressDeposit} )) \
     --invalid-hereafter $(( ${currentSlot} + 10000 )) \
@@ -111,7 +111,7 @@ Calculate the current minimum fee:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
+fee=$(cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -148,7 +148,7 @@ Build your transaction which will register your stake address.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --invalid-hereafter $(( ${currentSlot} + 10000 )) \
@@ -166,7 +166,7 @@ Sign the transaction with both the payment and stake secret keys.
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
@@ -183,7 +183,7 @@ Send the signed transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```

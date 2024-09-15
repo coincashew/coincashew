@@ -29,7 +29,7 @@ Create a certificate, `vote-deleg.cert`, using the `stake.vkey`
 To delegate your voting power to a DRep, type the following command where `<DRepID>` is the ID of the DRep receiving your delegation:
 
 ```
-cardano-cli stake-address registration-certificate \
+cardano-cli conway stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
     --drep-key-hash <DRepID> \
     --out-file vote-deleg.cert
@@ -40,7 +40,7 @@ cardano-cli stake-address registration-certificate \
 To opt out of the governance process, type:
 
 ```
-cardano-cli stake-address registration-certificate \
+cardano-cli conway stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
     --always-abstain \
     --out-file vote-deleg.cert
@@ -51,7 +51,7 @@ cardano-cli stake-address registration-certificate \
 To vote `No` on every proposal, type:
 
 ```
-cardano-cli stake-address registration-certificate \
+cardano-cli conway stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
     --always-no-confidence \
     --out-file vote-deleg.cert
@@ -66,7 +66,7 @@ You need to find the **tip** of the blockchain to set the **invalid-hereafter** 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
+currentSlot=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -77,7 +77,7 @@ Find your balance and **UTXOs**:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -116,7 +116,7 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
     --invalid-hereafter $(( ${currentSlot} + 10000 )) \
@@ -132,7 +132,7 @@ Calculate the current minimum fee:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
+fee=$(cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -165,7 +165,7 @@ Build your transaction to delegate voting power:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --invalid-hereafter $(( ${currentSlot} + 10000 )) \
@@ -183,7 +183,7 @@ Sign the transaction with both the payment and stake secret keys:
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
@@ -200,7 +200,7 @@ Send the signed transaction:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```

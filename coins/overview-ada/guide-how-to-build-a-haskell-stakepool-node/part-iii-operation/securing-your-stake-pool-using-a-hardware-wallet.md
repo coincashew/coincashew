@@ -56,7 +56,7 @@ If you have **multiple relay nodes,** then [change your parameters accordingly](
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli stake-pool registration-certificate \
+cardano-cli conway stake-pool registration-certificate \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 1000000000 \
@@ -88,7 +88,7 @@ You need to find the **tip** of the blockchain to set the **invalid-hereafter** 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
+currentSlot=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -99,7 +99,7 @@ Find your balance and **UTXOs**.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -134,7 +134,7 @@ Run the build-raw transaction command.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --mary-era \
     --tx-out $(cat payment.addr)+${total_balance} \
@@ -151,7 +151,7 @@ Calculate the minimum fee:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
+fee=$(cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -180,7 +180,7 @@ Build the transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --mary-era \
     --tx-out $(cat payment.addr)+${txOut} \
@@ -208,7 +208,7 @@ Create a witness using node.skey,
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli transaction witness \
+cardano-cli conway transaction witness \
   --tx-body-file tx-pool.raw \
   --signing-key-file $HOME/cold-keys/node.skey \
   --mainnet \
@@ -222,7 +222,7 @@ Create a witness using stake.skey,
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```
-cardano-cli transaction witness \
+cardano-cli conway transaction witness \
   --tx-body-file tx-pool.raw \
   --signing-key-file stake.skey \
   --mainnet \
@@ -236,7 +236,7 @@ Create a witness using payment.skey,
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```
-cardano-cli transaction witness \
+cardano-cli conway transaction witness \
   --tx-body-file tx-pool.raw \
   --signing-key-file payment.skey \
   --mainnet \
@@ -266,7 +266,7 @@ Copy **hw-stake.witness** to your **cold environment.**
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```
-cardano-cli transaction assemble \
+cardano-cli conway transaction assemble \
   --tx-body-file tx-pool.raw \
   --witness-file node.witness \
   --witness-file stake.witness \
@@ -284,7 +284,7 @@ Send the transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx-pool.multisign \
     --mainnet
 ```

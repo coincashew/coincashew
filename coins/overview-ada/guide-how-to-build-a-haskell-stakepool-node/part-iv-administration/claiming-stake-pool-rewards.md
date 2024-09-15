@@ -13,7 +13,7 @@ Second, find the **tip** of the blockchain to set the **invalid-hereafter** para
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
+currentSlot=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -24,7 +24,7 @@ Set the amount to send in lovelaces. :sparkles: Remember **1 ADA** = **1,000,000
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-rewardBalance=$(cardano-cli query stake-address-info \
+rewardBalance=$(cardano-cli conway query stake-address-info \
     --mainnet \
     --address $(cat stake.addr) | jq -r ".[0].rewardAccountBalance")
 echo rewardBalance: $rewardBalance
@@ -48,7 +48,7 @@ Find your payment.addr balance, utxos and build the withdrawal string.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -85,7 +85,7 @@ Run the build-raw transaction command.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+$(( ${total_balance} + ${rewardBalance} )) \
     --invalid-hereafter $(( ${currentSlot} + 10000 )) \
@@ -101,7 +101,7 @@ Calculate the current minimum fee:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
+fee=$(cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -130,7 +130,7 @@ Build your transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --invalid-hereafter $(( ${currentSlot} + 10000 )) \
@@ -148,7 +148,7 @@ Sign the transaction with both the payment and stake secret keys.
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
@@ -165,7 +165,7 @@ Send the signed transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -177,7 +177,7 @@ Check if the funds arrived.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address ${destinationAddress} \
     --mainnet
 ```

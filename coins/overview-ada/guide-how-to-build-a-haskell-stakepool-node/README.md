@@ -53,10 +53,11 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 	* Removing references to legacy network topology
 	* Revising material related to peer-to-peer networking
 	* Creating the [Delegating to a Representative](part-iv-administration/delegating-to-a-representative.md) topic
-	* Increasing precision of transaction fee calculations
 	* Creating the [Implementing Peer Sharing](part-v-tips/implementing-peer-sharing.md) topic
-	* Updating the [Cardano Resource Index](appendix-b-resource-index.md)
+	* Increasing precision of transaction fee calculations
 	* Updating the procedure to install pre-built binaries in the [Upgrading a Node](part-iv-administration/upgrading-a-node.md) topic
+	* Updating `cardano-cli` commands to specify a network era
+	* Adding resources related to governance in the [Cardano Resource Index](appendix-b-resource-index.md)
 	* Including miscellaneous minor updates and improvements
 * July 8, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))

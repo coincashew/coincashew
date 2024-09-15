@@ -30,7 +30,7 @@ Calculate the hash of your metadata file. It's saved to **poolMetaDataHash.txt**
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli stake-pool metadata-hash --pool-metadata-file md.json > poolMetaDataHash.txt
+cardano-cli conway stake-pool metadata-hash --pool-metadata-file md.json > poolMetaDataHash.txt
 ```
 {% endtab %}
 {% endtabs %}
@@ -46,7 +46,7 @@ Verify the metadata hashes by comparing your uploaded .json file and your local 
 Get the metadata hash from your metadata json URL. Replace **\<https://REPLACE WITH YOUR METADATA\_URL>** with your actual URL.
 
 ```bash
-cardano-cli stake-pool metadata-hash --pool-metadata-file <(curl -s -L <https://REPLACE WITH YOUR METADATA_URL>)
+cardano-cli conway stake-pool metadata-hash --pool-metadata-file <(curl -s -L <https://REPLACE WITH YOUR METADATA_URL>)
 ```
 
 This above hash must equal the local metadata hash.
@@ -91,7 +91,7 @@ You MUST register at least one relay node on the blockchain using the registrati
 
 Update the next operation
 
-`cardano-cli stake-pool registration-certificate`
+`cardano-cli conway stake-pool registration-certificate`
 
 to be run on your air-gapped offline machine appropriately. Replace with your proper domain names or IP addresses.
 
@@ -128,7 +128,7 @@ to be run on your air-gapped offline machine appropriately. Replace with your pr
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli stake-pool registration-certificate \
+cardano-cli conway stake-pool registration-certificate \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 100000000 \
@@ -157,7 +157,7 @@ Pledge stake to your stake pool.
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli stake-address delegation-certificate \
+cardano-cli conway stake-address delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --out-file deleg.cert
@@ -185,7 +185,7 @@ You need to find the **tip** of the blockchain to set the **invalid-hereafter** 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
+currentSlot=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -196,7 +196,7 @@ Find your balance and **UTXOs**.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -246,7 +246,7 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakePoolDeposit} ))  \
     --invalid-hereafter $(( ${currentSlot} + 10000 )) \
@@ -263,7 +263,7 @@ Calculate the minimum fee:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
+fee=$(cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -296,7 +296,7 @@ Build the transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --invalid-hereafter $(( ${currentSlot} + 10000 )) \
@@ -315,7 +315,7 @@ Sign the transaction.
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file $HOME/cold-keys/node.skey \
@@ -333,7 +333,7 @@ Send the transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```

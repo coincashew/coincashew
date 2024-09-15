@@ -5,7 +5,7 @@ Your stake pool ID can be computed with:
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli stake-pool id --cold-verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
+cardano-cli conway stake-pool id --cold-verification-key-file $HOME/cold-keys/node.vkey --output-format hex > stakepoolid.txt
 cat stakepoolid.txt
 ```
 {% endtab %}
@@ -18,7 +18,7 @@ Now that you have your stake pool ID, verify it's included in the blockchain.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) --mainnet 
+cardano-cli conway query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) --mainnet 
 ```
 {% endtab %}
 {% endtabs %}
