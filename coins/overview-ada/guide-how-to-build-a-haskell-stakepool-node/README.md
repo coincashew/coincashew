@@ -50,12 +50,13 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 * September 15, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com)) and [Latin Stake Pools](https://latinstakepools.com/)
     * Incorporating revisions for Cardano Node 9.1.1
-	* Updating the procedure to install pre-built binaries in the [Upgrading a Node](part-iv-administration/upgrading-a-node.md) topic
 	* Removing references to legacy network topology
 	* Revising material related to peer-to-peer networking
-	* Creating the [Implementing Peer Sharing](part-v-tips/implementing-peer-sharing.md) topic
 	* Creating the [Delegating to a Representative](part-iv-administration/delegating-to-a-representative.md) topic
 	* Increasing precision of transaction fee calculations
+	* Creating the [Implementing Peer Sharing](part-v-tips/implementing-peer-sharing.md) topic
+	* Updating the [Cardano Resource Index](appendix-b-resource-index.md)
+	* Updating the procedure to install pre-built binaries in the [Upgrading a Node](part-iv-administration/upgrading-a-node.md) topic
 	* Including miscellaneous minor updates and improvements
 * July 8, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
