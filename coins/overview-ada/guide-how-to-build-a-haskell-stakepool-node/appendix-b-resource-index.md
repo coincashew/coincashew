@@ -42,7 +42,7 @@ The Cardano Resource Index aims to present a well-rounded, unbiased collection o
 
 [eUTxO](https://eutxo.org/) is a visual blockchain explorer for Cardano.
 
-[GOV TOOL](https://gov.tools/) simplifies the process for you to coordinate, collaborate and achieve better results using the Cardano on-chain decentralized governance model.
+[GOV TOOL](https://gov.tools/) simplifies the process for you to coordinate and collaborate intelligently with people via Cardano on-chain decentralized governance.
 
 [Guild Operators](https://cardano-community.github.io/guild-operators/) offer various scripts and other software that stake pool operators may use to simplify setting up, managing and monitoring a stake pool.
 
