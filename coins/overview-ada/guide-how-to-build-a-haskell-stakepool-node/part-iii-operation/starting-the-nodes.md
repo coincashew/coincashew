@@ -69,7 +69,7 @@ Sample output of gLiveView.
 <!-- ![](../../../../.gitbook/assets/glive-update2.jpg) -->
 
 ```bash
-           > Cardano Node - (Core - Mainnet) : 9.1.1 [efd56007] <
+           > Cardano Node - (Core - Mainnet) : 9.2.0 [341ea87b] <
 ┌───────────────────────────────┬────────────┬─────────────────────────┐
 │ Uptime: 11:45:29              │ Port: 6000 │ Koios gLiveView v1.29.1 │
 │-------------------------------└────────────┴─────────────────────────┤

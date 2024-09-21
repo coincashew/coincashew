@@ -47,9 +47,9 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :page\_facing\_up: Change Log
 
-* September 15, 2024
+* September 20, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com)) and [Latin Stake Pools](https://latinstakepools.com/)
-    * Incorporating revisions for Cardano Node 9.1.1
+    * Incorporating revisions for Cardano Node 9.2.0
 	* Removing references to legacy network topology
 	* Revising material related to peer-to-peer networking
 	* Creating the [Delegating to a Representative](part-iv-administration/delegating-to-a-representative.md) topic
