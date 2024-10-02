@@ -13,3 +13,4 @@ Part III includes the following topics discussing how to create your stake pool:
 * [Setting Up Dashboards](setting-up-dashboards.md)
 * [Configuring Slot Leader Calculations](configuring-slot-leader-calculation.md)
 * [Securing Your Stake Pool Using a Hardware Wallet](securing-your-stake-pool-using-a-hardware-wallet.md)
+* [Setting up a Mithril Signer](setting-up-mithril-signer.md)
