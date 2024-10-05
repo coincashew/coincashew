@@ -1,14 +1,13 @@
 ---
 description: >-
   Empowered, inspired, home staker. Free. Open source. Public goods for
-  Ethereum. ARM64 and AMD64 support. Lido CSM Compatible.
+  Ethereum. ARM64 and AMD64 support. Lido CSM Compatible. Jumpstart your ETH
+  solo-staking / Lido CSM journey.
 ---
 
 # 🛡️ EthPillar: one-liner setup tool and node management TUI
 
-## :arrow\_forward: Jumpstart your ETH solo-staking / Lido CSM journey with EthPillar
-
-### Quickstart: Ubuntu One-liner Install
+## :arrow\_forward: Quickstart: Ubuntu One-liner Install
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/EthPillar/main/install.sh)"
