@@ -291,7 +291,7 @@ mkdir ~/tmp2
 cd ~/tmp2
 ```
 
-Visit the [official Github](https://github.com/input-output-hk/cardano-node/releases) to determine the latest cardano-node linux binaries link, located under Downloads > Static Binaries > Linux.
+Visit the [official Github](https://github.com/IntersectMBO/cardano-node/releases) to determine the latest cardano-node linux binaries link, located under Downloads > Static Binaries > Linux.
 
 2. Download the latest static binaries for Linux. Update below URL with the latest link before continuing.
 

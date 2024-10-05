@@ -131,7 +131,7 @@ cardano-cli transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
     --invalid-hereafter $(( ${currentSlot} + 10000)) \
-    --fee 0 \
+    --fee 200000 \
     --certificate-file pool.dereg \
     --out-file tx.tmp
 ```
