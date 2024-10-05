@@ -81,9 +81,9 @@ Run the build-raw transaction command.
 ```bash
 cardano-cli conway transaction build-raw \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${amountToSend} )) \
+    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${amountToSend})) \
     --tx-out ${destinationAddress}+${amountToSend} \
-    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
+    --invalid-hereafter $(( ${currentSlot} + 10000)) \
     --fee 200000 \
     --out-file tx.tmp
 ```

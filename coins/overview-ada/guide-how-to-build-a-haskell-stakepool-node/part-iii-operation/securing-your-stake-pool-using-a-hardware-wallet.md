@@ -60,7 +60,7 @@ cardano-cli conway stake-pool registration-certificate \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 1000000000 \
-    --pool-cost 345000000 \
+    --pool-cost 170000000 \
     --pool-margin 0.10 \
     --pool-reward-account-verification-key-file hw-stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
@@ -78,7 +78,7 @@ cardano-cli conway stake-pool registration-certificate \
 {% hint style="info" %}
 :eyes: Notice the **pool-reward-account** and additional **pool-ownerstake-verification-key-file** lines point to **hw-stake.vkey**.
 
-Example above is pledging 1000 ADA with a fixed pool cost of 345 ADA and a pool margin of 10%.
+Example above is pledging 1000 ADA with a fixed pool cost of 170 ADA and a pool margin of 10%.
 {% endhint %}
 
 Copy **pool.cert** to your **hot environment.**

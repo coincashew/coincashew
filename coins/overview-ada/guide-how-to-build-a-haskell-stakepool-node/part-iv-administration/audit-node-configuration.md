@@ -6,23 +6,27 @@ This guide was graciously contributed by [\[FRADA\] ADA Made in France](https://
 
 To make sure your Cardano nodes (relays and block-producer) are correctly configured, you can use an automated audit script that will do the following checks :
 
-**Cardano Node checks**
+**Cardano compliance**
 
-* Environment Variables
-* Systemd cardano-node file verification and parsing
-* Cardano startup script verification and parsing
-* Node operation mode (Block Producer ? Relay ?)
-* Topology mode
-* Topology configuration
-* KES keys expiry and rotation alert
+- New 9.1.0 Cardano-Node version requirement for Chang hardfork
+- Cardano-node latest version verification
+- Cardano bootstrap check
+- Environment Variables
+- Systemd cardano-node file verification and parsing
+- Cardano startup script verification and parsing
+- Node operation mode (Block Producer ? Relay ?)
+- Topology mode (p2p enabled)
+- Topology configuration file parsing and compliance checks
+- Cardano security checks (hot keys permissions, cold keys detection)
+- KES keys rotation alert
 
 **Security and system checks**
 
-* SSHD hardening
-* Null passwords check
-* Important services running
-* Firewalling rules extract
-* sysctl.conf hardening check
+- SSHD hardening
+- Null passwords check
+- Important services running (ufw, fail2ban, ntp server...)
+- Firewalling rules extract
+- sysctl.conf hardening check
 
 {% hint style="info" %}
 Please note that this script is only intended to help you identify configuration and basic security issues. It does not guarantee that your server is fully protected.
@@ -32,20 +36,22 @@ Please note that this script is only intended to help you identify configuration
 
 ### Download the Audit Script
 
-The script can be found on this [GitHub repository](https://github.com/Kirael12/Cardano-Audit-Coincashew) by [\[FRADA\] ADA Made In France](https://cardano-france-stakepool.org)
+The script can be found on this [GitHub repository](https://github.com/Kirael12/cardano-node-audit) by [\[FRADA\] ADA Made In France](https://cardano-france-stakepool.org)
 
 You can directly download the repository from your Cardano Nodes :
 
 ```bash
 cd $HOME/git
-git clone https://github.com/Kirael12/Cardano-Audit-Coincashew
+mkdir audit-cardano-node
+cd audit-cardano-node
+wget --show-progress -q https://github.com/Kirael12/cardano-node-audit/releases/latest/download/audit-cardano-node.sh
 ```
 
 ### Make script executable
 
 ```bash
-cd $HOME/git/Cardano-Audit-Coincashew
-chmod +x audit-coincashew.sh
+cd $HOME/git/audit-cardano-node
+chmod +x audit-cardano-node.sh
 ```
 
 ### Run the script
@@ -53,17 +59,24 @@ chmod +x audit-coincashew.sh
 The script must be ran with sudo and the -E option, to include your environment variables defined during the Coincashew guide (like $NODE\_HOME or $NODE\_CONFIG)
 
 ```bash
-sudo -E ./audit-coincashew.sh
+sudo -E ./audit-cardano-node.sh
 ```
+You will be asked to select the type of your Cardano setup with a menu. Select COINCASHEW. You can also choose to perform only security checks.
+
+![Capture d’écran 2024-09-21 à 13 07 12](https://github.com/user-attachments/assets/88d6f008-264e-4d19-9736-cbe8588ef243)
+
+You will then be asked if you want to export the results to a file.
+
+![Capture d’écran 2024-09-21 à 15 16 50](https://github.com/user-attachments/assets/1664112d-d627-4db9-bc4e-88d2d1533037)
 
 ## Results
 
 It takes 20 seconds for the script to complete. You'll get information about your node and will immediately be able to check whether your configuration is good or not, and make appropriate changes.
+Sample outputs :
 
-<div data-full-width="false">
+![Capture d’écran 2024-09-21 à 13 08 50](https://github.com/user-attachments/assets/553a041d-d25d-4ca5-8ce4-86c39f4f183c)
+![Capture d’écran 2024-09-21 à 13 12 19](https://github.com/user-attachments/assets/ce31e683-70ed-4f1a-bd2f-b6a31e35186b)
+![Capture d’écran 2024-09-21 à 13 13 25](https://github.com/user-attachments/assets/5b8ef782-187a-4924-b589-8e9f9067c242)
 
-<img src="https://github.com/Kirael12/coincashew/assets/113426048/8491c683-4445-4492-8daa-1dddc3ea2807" alt="Sample Output">
 
-</div>
 
-![More sample output](https://github.com/Kirael12/coincashew/assets/113426048/47174d08-7b36-4351-b31c-6ea17a148512)

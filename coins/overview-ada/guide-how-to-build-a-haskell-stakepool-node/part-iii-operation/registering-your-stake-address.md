@@ -77,7 +77,7 @@ Find the amount of the deposit required to register a stake address.
 {% tab title="block producer node" %}
 ```bash
 stakeAddressDeposit=$(cat $NODE_HOME/params.json | jq -r '.stakeAddressDeposit')
-echo stakeAddressDeposit : $stakeAddressDeposit
+echo stakeAddressDeposit : ${stakeAddressDeposit}
 ```
 {% endtab %}
 {% endtabs %}

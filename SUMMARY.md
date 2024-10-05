@@ -213,6 +213,7 @@
       * [Setting Up Dashboards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/setting-up-dashboards.md)
       * [Configuring Slot Leader Calculations](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/configuring-slot-leader-calculation.md)
       * [Securing Your Stake Pool Using a Hardware Wallet](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/securing-your-stake-pool-using-a-hardware-wallet.md)
+      * [Setting up a Mithril Signer](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/setting-up-mithril-signer.md)
     * [PART IV - ADMINISTRATION & MAINTENANCE](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-administration/README.md)
       * [Checking Stake Pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-administration/checking-stake-pool-rewards.md)
       * [Claiming Stake Pool Rewards](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iv-administration/claiming-stake-pool-rewards.md)
