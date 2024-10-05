@@ -47,13 +47,25 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :page\_facing\_up: Change Log
 
+* September 20, 2024
+  * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com)) and [Latin Stake Pools](https://latinstakepools.com/)
+    * Incorporating revisions for Cardano Node 9.2.0
+	* Removing references to legacy network topology
+	* Revising material related to peer-to-peer networking
+	* Creating the [Delegating to a Representative](part-iv-administration/delegating-to-a-representative.md) topic
+	* Creating the [Implementing Peer Sharing](part-v-tips/implementing-peer-sharing.md) topic
+	* Increasing precision of transaction fee calculations
+	* Updating the procedure to install pre-built binaries in the [Upgrading a Node](part-iv-administration/upgrading-a-node.md) topic
+	* Updating `cardano-cli` commands to specify a network era
+	* Adding resources related to governance in the [Cardano Resource Index](appendix-b-resource-index.md)
+	* Including miscellaneous minor updates and improvements
 * July 8, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
     * Incorporating revisions for Cardano Node 9.0.0
 * April 10, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))
     * Incorporating updates for Cardano Node 8.9.1
-    * Creating the [Enabling Peer-to-peer Network Topology](part-v-tips/enabling-p2p-topology.md) topic
+    * Creating the *Enabling Peer-to-peer Network Topology* topic
     * Adapting existing content to reflect peer-to-peer network topology
 * February 3, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com))

@@ -24,20 +24,26 @@ cardano-cli <Command> --help
 cardano-cli <Command> <Subcommand> --help
 ```
 
-For example, typing `cardano-cli` informs you that a `node` command is available for performing actions related to node operation. To display additional help for the `cardano-cli node` command, type:
+For example, typing `cardano-cli` informs you that a `conway` command is available for performing actions related to the Conway network era. To display additional help for the `cardano-cli conway` command, type:
 
 ```bash
-cardano-cli node --help
+cardano-cli conway --help
 ```
 
-The command-specific help that displays includes the `key-gen-KES` subcommand used to generate a KES key pair. A current KES key pair is required to operate your stake pool. To display the available options for the `cardano-cli node key-gen-KES` command, type:
+The command-specific help that displays informs you that a `node` command is available for performing actions related to node operation. To display additional help for the `cardano-cli conway node` command, type:
 
 ```bash
-cardano-cli node key-gen-KES --help
+cardano-cli conway node --help
+```
+
+The command-specific help that displays includes the `key-gen-KES` subcommand used to generate a KES key pair. A current KES key pair is required to operate your stake pool. To display the available options for the `cardano-cli conway node key-gen-KES` command, type:
+
+```bash
+cardano-cli conway node key-gen-KES --help
 ```
 
 The built-in documentation is available to help you understand commands that you execute when setting up and operating your stake pool.
 
 {% hint style="info" %}
-If you need additional help, the [Cardano Forum](https://forum.cardano.org/) is available as a resource. The Cardano community welcomes you.
+If you need additional help, the [Cardano Forum](https://forum.cardano.org/) is available as a resource where you may ask questions, share information and learn.
 {% endhint %}

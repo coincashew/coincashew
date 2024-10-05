@@ -1,29 +1,65 @@
-# Registering Your Stake Address
+# Delegating to a Representative
 
-Pledge is the stake that you delegate to your own pool. Using a transaction, you must register on the blockchain the stake address associated with a payment address containing funds that you want to pledge.
-<!-- References:
-https://youtu.be/PCqvFMTGu3o 
-https://developers.cardano.org/docs/operate-a-stake-pool/cardano-key-pairs -->
+In the Cardano ecosystem, Delegated Representatives (DReps) work to coordinate resources on behalf of ADA holders who delegate power to vote on governance actions.
 
 {% hint style="info" %}
-For a general discussion on creating transactions, see the topic [Building and Signing Transactions](http://web.archive.org/web/20211025133818/https://testnets.cardano.org/en/testnets/cardano/transactions/creating-transactions/).
+For more information on Cardano governance, visit [1694.IO](https://www.1694.io/en) or [GOV TOOL](https://gov.tools/)
 {% endhint %}
 
-**To register a stake address on the blockchain:**
+Delegating to a representative involves generating a vote delegation certificate reflecting your delegation, and then submitting the certificate to the blockchain.
 
-Create a certificate, `stake.cert`, using the `stake.vkey`
+You can delegate your voting power to:
+
+* **Registered DReps**—Members of the Cardano community who receive the delegation of voting power for voting on governance actions.
+* **Always Abstain**—Opt out of the governance process.
+* **Always Vote No Confidence**—Vote `No` on every proposal.
+<!-- Source: https://cardanospot.io/news/participating-in-cardano-governance-0 -->
+
+{% hint style="info" %}
+Thanks to [Latin Stake Pools](https://latinstakepools.com/) :clap:
+{% endhint %}
+
+<!-- The following procedure is based on the procedure in the Registering Your Stake Address topic -->
+**To delegate voting power:**
+
+Create a certificate, `vote-deleg.cert`, using the `stake.vkey`
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
+To delegate your voting power to a DRep, type the following command where `<DRepID>` is the ID of the DRep receiving your delegation:
+
 ```
 cardano-cli conway stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
-    --out-file stake.cert
+    --drep-key-hash <DRepID> \
+    --out-file vote-deleg.cert
+```
+
+<center><b>OR</b></center>
+
+To opt out of the governance process, type:
+
+```
+cardano-cli conway stake-address registration-certificate \
+    --stake-verification-key-file stake.vkey \
+    --always-abstain \
+    --out-file vote-deleg.cert
+```
+
+<center><b>OR</b></center>
+
+To vote `No` on every proposal, type:
+
+```
+cardano-cli conway stake-address registration-certificate \
+    --stake-verification-key-file stake.vkey \
+    --always-no-confidence \
+    --out-file vote-deleg.cert
 ```
 {% endtab %}
 {% endtabs %}
 
-Copy **stake.cert** to your **hot environment.**
+Copy **vote-deleg.cert** to your **hot environment.**
 
 You need to find the **tip** of the blockchain to set the **invalid-hereafter** parameter properly.
 
@@ -36,7 +72,7 @@ echo Current Slot: $currentSlot
 {% endtab %}
 {% endtabs %}
 
-Find your balance and **UTXOs**.
+Find your balance and **UTXOs**:
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -71,22 +107,7 @@ echo Number of UTXOs: ${txcnt}
 {% endtab %}
 {% endtabs %}
 
-Find the amount of the deposit required to register a stake address.
-
-{% tabs %}
-{% tab title="block producer node" %}
-```bash
-stakeAddressDeposit=$(cat $NODE_HOME/params.json | jq -r '.stakeAddressDeposit')
-echo stakeAddressDeposit : ${stakeAddressDeposit}
-```
-{% endtab %}
-{% endtabs %}
-
-{% hint style="info" %}
-Registering a stake address requires a deposit of 2000000 lovelace.
-{% endhint %}
-
-Run the build-raw transaction command
+Run the build-raw transaction command:
 
 {% hint style="info" %}
 The **invalid-hereafter** value must be greater than the current tip. In this example, we use current slot + 10000.
@@ -97,11 +118,11 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 ```bash
 cardano-cli conway transaction build-raw \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakeAddressDeposit} )) \
+    --tx-out $(cat payment.addr)+${total_balance} \
     --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee 200000 \
     --out-file tx.tmp \
-    --certificate stake.cert
+    --certificate vote-deleg.cert
 ```
 {% endtab %}
 {% endtabs %}
@@ -125,25 +146,21 @@ echo fee: $fee
 {% endtabs %}
 
 {% hint style="info" %}
-When calculating the fee for a transaction, the `--witness-count` option indicates the number of keys signing the transaction. You must sign a transaction submitting a stake address registration certificate to the blockchain using the secret—private—key for the payment address spending the input, as well as the secret key for the stake address to register.
+When calculating the fee for a transaction, the `--witness-count` option indicates the number of keys signing the transaction. You must sign a transaction submitting a vote delegation certificate to the blockchain using the secret—private—key for the payment address spending the input, as well as the secret key for the stake address delegating voting power.
 {% endhint %}
 
-{% hint style="info" %}
-When creating the transaction, ensure that the funds the input contains are greater than the total of the transaction fee and stake address deposit. If funds are insufficient, then the transaction fails.
-{% endhint %}
-
-Calculate your change output.
+Calculate your change output:
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-txOut=$((${total_balance}-${stakeAddressDeposit}-${fee}))
+txOut=$((${total_balance}-${fee}))
 echo Change Output: ${txOut}
 ```
 {% endtab %}
 {% endtabs %}
 
-Build your transaction which will register your stake address.
+Build your transaction to delegate voting power:
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -153,7 +170,7 @@ cardano-cli conway transaction build-raw \
     --tx-out $(cat payment.addr)+${txOut} \
     --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
-    --certificate-file stake.cert \
+    --certificate-file vote-deleg.cert \
     --out-file tx.raw
 ```
 {% endtab %}
@@ -161,7 +178,7 @@ cardano-cli conway transaction build-raw \
 
 Copy **tx.raw** to your **cold environment**.
 
-Sign the transaction with both the payment and stake secret keys.
+Sign the transaction with both the payment and stake secret keys:
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -178,7 +195,7 @@ cardano-cli conway transaction sign \
 
 Copy **tx.signed** to your **hot environment.**
 
-Send the signed transaction.
+Send the signed transaction:
 
 {% tabs %}
 {% tab title="block producer node" %}

@@ -13,7 +13,7 @@ First, generate the protocol-parameters.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query protocol-parameters \
+cardano-cli conway query protocol-parameters \
     --mainnet \
     --out-file $NODE_HOME/params.json
 ```
@@ -66,7 +66,7 @@ Create the deregistration certificate and save it as `pool.dereg.` Update the ep
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli stake-pool deregistration-certificate \
+cardano-cli conway stake-pool deregistration-certificate \
 --cold-verification-key-file $HOME/cold-keys/node.vkey \
 --epoch <retirementEpoch> \
 --out-file pool.dereg
@@ -81,7 +81,7 @@ Find your balance and **UTXOs**.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -116,7 +116,7 @@ Find the **tip** of the blockchain to set the **invalid-here** after parameter p
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
+currentSlot=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -127,10 +127,10 @@ Run the build-raw transaction command.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee 200000 \
     --certificate-file pool.dereg \
     --out-file tx.tmp
@@ -143,7 +143,7 @@ Calculate the minimum fee:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
+fee=$(cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -172,10 +172,10 @@ Build the transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
     --certificate-file pool.dereg \
     --out-file tx.raw
@@ -190,7 +190,7 @@ Sign the transaction.
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file $HOME/cold-keys/node.skey \
@@ -207,7 +207,7 @@ Send the transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -225,7 +225,7 @@ After the retirement epoch, you can verify that the pool was successfully retire
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query ledger-state --mainnet > ledger-state.json
+cardano-cli conway query ledger-state --mainnet > ledger-state.json
 jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
 ```
 {% endtab %}

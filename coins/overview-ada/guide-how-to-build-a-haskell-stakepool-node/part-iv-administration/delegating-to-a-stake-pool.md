@@ -9,7 +9,7 @@
 Create a certificate, `stake.cert`, using the `stake.vkey`
 
 ```
-cardano-cli stake-address registration-certificate \
+cardano-cli conway stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
     --out-file stake.cert
 ```
@@ -17,14 +17,14 @@ cardano-cli stake-address registration-certificate \
 You need to find the slot tip of the blockchain.
 
 ```
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
+currentSlot=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 
 Find your balance and **UTXOs**.
 
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -70,10 +70,10 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 {% endhint %}
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakeAddressDeposit})) \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakeAddressDeposit} )) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee 200000 \
     --out-file tx.tmp \
     --certificate stake.cert
@@ -82,7 +82,7 @@ cardano-cli transaction build-raw \
 Calculate the current minimum fee:
 
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
+fee=$(cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -107,10 +107,10 @@ echo Change Output: ${txOut}
 Build your transaction which will register your stake address.
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
     --certificate-file stake.cert \
     --out-file tx.raw
@@ -119,7 +119,7 @@ cardano-cli transaction build-raw \
 Sign the transaction with both the payment and stake secret keys.
 
 ```
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
@@ -130,7 +130,7 @@ cardano-cli transaction sign \
 Send the signed transaction.
 
 ```bash
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -140,7 +140,7 @@ cardano-cli transaction submit \
 Given its **stake pool verification key file** `node.vkey` , from your stakepool should have generated (and published) a **stake pool ID**:
 
 ```
-cardano-cli stake-pool id \
+cardano-cli conway stake-pool id \
     --cold-verification-key-file node.vkey \
     --output-format 'hex'
 ```
@@ -148,7 +148,7 @@ cardano-cli stake-pool id \
 Given the **stake pool ID** from your stakepool, run the following:
 
 ```bash
-cardano-cli stake-address delegation-certificate \
+cardano-cli conway stake-address delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --stake-pool-id <stake pool ID> \
     --out-file deleg.cert
@@ -157,14 +157,14 @@ cardano-cli stake-address delegation-certificate \
 You need to find the tip of the blockchain to set the ttl parameter properly.
 
 ```
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
+currentSlot=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 
 Find your balance and **UTXOs**.
 
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -195,10 +195,10 @@ echo Number of UTXOs: ${txcnt}
 Run the build-raw transaction command.
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${total_balance} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee 200000 \
     --certificate-file deleg.cert \
     --out-file tx.tmp
@@ -207,7 +207,7 @@ cardano-cli transaction build-raw \
 Calculate the minimum fee:
 
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
+fee=$(cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -228,10 +228,10 @@ echo txOut: ${txOut}
 Build the transaction.
 
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
     --certificate-file deleg.cert \
     --out-file tx.raw
@@ -240,7 +240,7 @@ cardano-cli transaction build-raw \
 Sign the transaction.
 
 ```bash
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file stake.skey \
@@ -251,7 +251,7 @@ cardano-cli transaction sign \
 Send the transaction.
 
 ```
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```

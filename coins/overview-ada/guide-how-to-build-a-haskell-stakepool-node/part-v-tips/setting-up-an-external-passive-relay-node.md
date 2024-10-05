@@ -1,13 +1,12 @@
 ---
 description: >-
-  This quick start guide walks through setting up an external relay node with
-  the help of CNTOOLs.
+  This quick start guide walks through setting up an external relay node with the help of CNTOOLs.
 ---
 
 # Setting Up an External Passive Relay Node
 
 {% hint style="success" %}
-Major credits and appreciation to the fine folks at [Cardano Community Guild Operators](https://cardano-community.github.io/guild-operators/#/README) for creating and maintaining [CNtool](https://cardano-community.github.io/guild-operators/#/Scripts/cntools), a most helpful swiss army knife for pool operators. You MUST be familiar with how [ADA staking works](https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/index.html) and possess [fundamental Linux system administration skills](https://www.tecmint.com/free-online-linux-learning-guide-for-beginners/) before continuing this guide.
+Major credits and appreciation to the fine folks at [Cardano Community Guild Operators](https://cardano-community.github.io/guild-operators/#/README) for creating and maintaining [CNtool](https://cardano-community.github.io/guild-operators/), a most helpful swiss army knife for pool operators. You MUST be familiar with how [ADA staking works](https://adastakingguide.com/) and possess [fundamental Linux system administration skills](https://www.tecmint.com/free-online-linux-learning-guide-for-beginners/) before continuing this guide.
 {% endhint %}
 
 {% hint style="info" %}
@@ -40,7 +39,7 @@ chmod 755 prereqs.sh
 # ./prereqs.sh -h
 # Usage: prereqs.sh [-o] [-s] [-i] [-g] [-p]
 # Install pre-requisites for building cardano node and using cntools
-# -o    Do *NOT* overwrite existing genesis, topology.json and topology-updater.sh files (Default: will overwrite)
+# -o    Do *NOT* overwrite existing genesis and topology.json files (Default: will overwrite)
 # -s    Skip installing OS level dependencies (Default: will check and install any missing OS level prerequisites)
 # -i    Interactive mode (Default: silent mode)
 # -g    Connect to guild network instead of public network (Default: connect to public cardano network)
@@ -219,23 +218,7 @@ For more information, refer to the [official Guild Live View docs.](https://card
 
 ## :octagonal\_sign: Configuring and Reviewing the Relay Node Topology File
 
-Modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script to configure your relay node's connections to your other relays and block producer node. Refer to the [official documentation for more info.](https://cardano-community.github.io/guild-operators/#/Scripts/topologyupdater?id=download-and-configure-topologyupdatersh)
-
-```bash
-nano $CNODE_HOME/scripts/topologyUpdater.sh
-```
-
-Deploy the scripts with `deploy-as-systemd.sh` to setup and schedule the execution. This will handle automatically sending updates to the Topology Updater API as well as fetching new peers whenever the node is restarted.
-
-```bash
-$CNODE_HOME/scripts/deploy-as-systemd.sh
-```
-
-Review your topology.json and check that it looks correct. Your new relay node's topology should contain your block producer node, your other relay nodes, and other public buddy relay nodes.
-
-```bash
-cat $CNODE_HOME/files/topology.json
-```
+Modify the `localRoots` section of the `topology.json` file to configure your relay node's connections to your other relays and your block producer node. For more details, see the topic [Configuring Topology](../part-ii-configuration/configuring-topology.md).
 
 ## :fire: Configuring Port Forwarding and/or Firewall
 
@@ -249,21 +232,16 @@ Additionally, if you have prometheus-node-exporter installed for providing Grafa
 
 ## :woman\_technologist: Configuring Topology for Existing Nodes
 
-Finally, add your **NEW** relay node IP/port information to your **EXISTING** block producer and/or relay node's topology file. Modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
-
-For your block producer node, you'll want to manually add the new relay node information to your topology.json file.
+Finally, add your new relay node IP/port information to the `localRoots` section of the `topology.json` file for your existing block producer and/or relay nodes. For more details, see the topic [Configuring Topology](../part-ii-configuration/configuring-topology.md).
 
 Example snippet to add to your block producer's topology file. Add a comma to separate the nodes where appropriate.
 
 ```
  {
-    "addr": "<relay node public ip address>",
-    "port": 6000,
-    "valency": 1
+    "address": "<relay node public ip address>",
+    "port": 6000
  }
 ```
-
-For relay nodes, [manage your topology file](../part-iii-operation/configuring-legacy-network-topology.md) or modify the **CUSTOM\_PEERS section** of the `topologyUpdater.sh` script.
 
 ## :arrows\_counterclockwise: Restarting Nodes
 

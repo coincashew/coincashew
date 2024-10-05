@@ -317,39 +317,39 @@ ping 10.0.0.2
 
 {% tabs %}
 {% tab title="Cardano" %}
+
 #### Cardano-specific Configuration
 
-Update and/or review your topology.json file(s) and/or [relay-topology\_pull.sh](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-iii-operation/configuring-legacy-network-topology#updating-topology-files-on-a-relay-node) script to ensure the "addr" matches this new tunneled IP address, and not the usual public node IP address.&#x20;
-
-
+[Review and update](../part-ii-configuration/configuring-topology.md) your `topology.json` file(s) to ensure that the `address` key in the `localRoots` section matches this new tunneled IP address, and not the usual public node IP address.
 
 **Dual node setup**
 
 > Example: topology.json on **blockproducer**\
-> { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
+> { "address": "10.0.0.2", "port": 6000 },
 
 > topology.json on \*\*relaynode1 \*\*\
-> { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
+> { "address": "10.0.0.1", "port": 6000 },
 
 **Triple node setup**
 
 > Example: topology.json on **blockproducer**\
-> { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
+> { "address": "10.0.0.2", "port": 6000 },
 >
-> { "addr": "10.0.0.3", "port": 6000, "valency": 1 },
+> { "address": "10.0.0.3", "port": 6000 },
 
 > topology.json on \*\*relaynode1 \*\*\
-> { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
+> { "address": "10.0.0.1", "port": 6000 },
 >
-> { "addr": "10.0.0.3", "port": 6000, "valency": 1 },
+> { "address": "10.0.0.3", "port": 6000 },
 
 > topology.json on **relaynode2**\
-> { "addr": "10.0.0.1", "port": 6000, "valency": 1 },
+> { "address": "10.0.0.1", "port": 6000 },
 >
-> { "addr": "10.0.0.2", "port": 6000, "valency": 1 },
+> { "address": "10.0.0.2", "port": 6000 },
 {% endtab %}
 
 {% tab title="ETH" %}
+
 #### ETH Validator Specific Configuration
 
 Update and/or review your validator's configuration and ensure it connects to the beacon-chain's new tunneled IP address, and not the usual public node IP address.

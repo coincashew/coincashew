@@ -113,9 +113,9 @@ For each Cardano Node release, Input-Output recommends compiling binaries using 
 
 _Table 1 Current Cardano Node Version Requirements_
 
-|  Release Date  | Cardano Node Version | GHC Version | Cabal Version |
-|  :----------:  | :------------------: | :---------: | :-----------: |
-|  July 8, 2024  |         9.0.0        |    8.10.7   |    3.8.1.0    |
+|     Release Date     | Cardano Node Version | GHC Version | Cabal Version |
+|  :----------------:  | :------------------: | :---------: | :-----------: |
+|  September 20, 2024  |         9.2.0        |    8.10.7   |    3.8.1.0    |
 
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
@@ -239,7 +239,6 @@ mv shelley-genesis.json shelley-genesis.bak
 mv alonzo-genesis.json alonzo-genesis.bak
 mv conway-genesis.json conway-genesis.bak
 mv topology.json topology.bak
-mv topology-legacy.json topology-legacy.bak
 ```
 
 {% hint style="info" %}
@@ -278,33 +277,34 @@ The `config.json` file contains hashes for the `byron-genesis.json`, `shelley-ge
 
 ## :zap:Installing New Cardano Binaries <a href="#buildingcn" id="buildingcn"></a>
 
-1. Either build the latest binaries or download pre-built binaries that may be available from IOHK
+You can install pre-built Cardano Node binaries available for download from the Cardano Node [GitHub repository](https://github.com/IntersectMBO/cardano-node), or you can download the source code and compile the binaries yourself.
 
-<details>
+### Using Pre-built Binaries
 
-<summary>Downloading pre-built binaries from IOHK</summary>
+**To install pre-built Cardano Node binaries:**
 
-1. Create a temporary path to store the pre-built binaries.
+1. To create a temporary path to store the pre-built binaries, type:
 
 ```
 mkdir ~/tmp2
 cd ~/tmp2
 ```
 
-Visit the [official Github](https://github.com/IntersectMBO/cardano-node/releases) to determine the latest cardano-node linux binaries link, located under Downloads > Static Binaries > Linux.
+2. Using a Web browser, visit the [Releases](https://github.com/IntersectMBO/cardano-node/releases) page for the Cardano Node GitHub repository, and then scroll down to the *Assets* section for the Cardano Node release you want to install. Right-click the archive containing the binaries that you want to install, and then click *Copy Link*
 
-2. Download the latest static binaries for Linux. Update below URL with the latest link before continuing.
-
-<pre><code><strong>wget https://update-cardano-mainnet.iohk.io/cardano-node-releases/cardano-node-8.0.0-linux.tar.gz
-</strong></code></pre>
-
-3. Un-tar the archive.
+3. To download the binaries, type the following commands where <BinaryURL> the link that you copied in step 2:
 
 ```
-tar -xvf cardano*.gz
+wget <BinaryURL>
 ```
 
-4. Install the new node and cli binaries.
+4. To extract the archive that you downloaded in step 3, type:
+
+```
+tar -xvf ./cardano*.gz
+```
+
+5. To install the new node and cli binaries, type:
 
 ```
 sudo mv ~/tmp2/bin/cardano-cli /usr/local/bin/
@@ -314,18 +314,16 @@ sudo mv ~/tmp2/bin/cardano-cli /usr/local/bin/
 sudo mv ~/tmp2/bin/cardano-node /usr/local/bin/
 ```
 
-5. Clean up temporary path.
+6. To delete the temporary folder, type:
 
 ```
-cd
+cd ..
 rm -rf ~/tmp2
 ```
 
-</details>
+7. [Complete](./upgrading-a-node.md#complete) the upgrade.
 
-<details>
-
-<summary>Building Cardano Node Binaries</summary>
+### Compiling the Binaries
 
 **To build binaries for a new Cardano Node version:**
 
@@ -368,7 +366,7 @@ $(./scripts/bin-path.sh cardano-node) version
 $(./scripts/bin-path.sh cardano-cli) version
 ```
 
-**To install new `cardano-node` and `cardano-cli` binaries:**
+**To install the binaries that you compiled:**
 
 1. If your Cardano node is running, then type the following command to stop the node where `<CardanoServiceName>` is the name of the systemd service running your node:
 
@@ -386,22 +384,24 @@ sudo cp -p "$(./scripts/bin-path.sh cardano-cli)" <DestinationPath>/cardano-cli
 
 If you follow the Coin Cashew instructions for [Compiling Source Code](../part-i-installation/compiling-source-code.md), then `<DestinationPath>` is `/usr/local/bin`
 
-</details>
+### Completing the Upgrade <a href="#complete" id="complete"></a>
 
-2\. To verify that you installed the new Cardano Node binaries successfully, type:
+**To finish upgrading Cardano Node binaries:**
+
+1\. To verify that you installed the new Cardano Node binaries successfully, type:
 
 ```bash
 cardano-node version
 cardano-cli version
 ```
 
-3\. Restart your Cardano node systemd service to finish the upgrade process.
+2\. Restart your Cardano node systemd service to finish the upgrade process.
 
 ```bash
 sudo systemctl restart cardano-node
 ```
 
-4\. Optionally, to install the latest versions of all previously installed packages on your computer, and then reboot the computer, type:
+3\. Optionally, to install the latest versions of all previously installed packages on your computer, and then reboot the computer, type:
 
 ```
 sudo apt-get update && sudo apt-get upgrade -y && sudo reboot
@@ -413,9 +413,9 @@ Upgrading to a new Cardano Node version may require replaying the copy of the bl
 To monitor your node, type the command `journalctl -fu cardano-node`in a terminal window.
 {% endhint %}
 
-6\. Copy the new `cardano-cli` binary to the air-gapped, offline computer that you use to sign transactions for your stake pool.
+4\. Copy the new `cardano-cli` binary to the air-gapped, offline computer that you use to sign transactions for your stake pool.
 
-7\. On your air-gapped, offline computer, ensure that [libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp) and [blst](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#blst) are installed and up to date.
+5\. On your air-gapped, offline computer, ensure that [libsecp256k1](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#libsecp) and [blst](../part-ii-configuration/configuring-an-air-gapped-offline-computer.md#blst) are installed and up to date.
 
 ## :checkered\_flag:Verifying the Upgrade
 

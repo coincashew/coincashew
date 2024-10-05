@@ -22,7 +22,7 @@ As a Stake Pool Operator (SPO) for Cardano, you need:
 
 ## :reminder\_ribbon: Minimum Stake Pool Hardware Requirements
 
-* **Two separate servers**: 1 block producer node, 1 unregistered relay node using legacy network topology
+* **Two separate servers**: 1 block producer node, 1 registered relay node
 * **One air-gapped offline machine (cold environment)**
 * **Operating system**: 64-bit Linux (i.e. Ubuntu 22.04 LTS)
 * **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
@@ -35,7 +35,7 @@ As a Stake Pool Operator (SPO) for Cardano, you need:
 
 ## :man\_lifting\_weights: Recommended Future-proof Stake Pool Hardware Setup <a href="#futureproof" id="futureproof"></a>
 
-* **Four separate servers**: 1 block producer node, 3 relay nodes (2 registered relays using peer-to-peer networking and 1 unregistered relay using legacy network topology)
+* **Four separate servers**: 1 block producer node, 3 relay nodes (2 registered relays and 1 unregistered relay)
 * **One air-gapped offline machine (cold environment)**
 * **Operating system**: 64-bit Linux (i.e. Ubuntu 22.04 LTS)
 * **Processor:** 4 core or higher CPU

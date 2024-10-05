@@ -1,8 +1,8 @@
 # Appendix B - Cardano Resource Index
 
-Cardano documentation tends to be scattered around the Internet, including duplicate or out-of-date information. Some Cardano community members may contribute in multiple roles.
-
 The Cardano Resource Index aims to present a well-rounded, unbiased collection of general Cardano resources available online and useful for stake pool operators, listed alphabetically by name or topic, including an accurate description of content available at each resource.
+
+[1694.IO](https://www.1694.io/en) explains the current on-chain decentralized governance model that members of the Cardano ecosystem employ to cooperate and collaborate in a shared vision for a more sustainable future for everyone.
 
 [BlockFrost.io](https://blockfrost.io/) offers an Application Programming Interface (API), webhooks and InterPlanetary File System (IPFS) decentralized file storage, allowing you to tap into Cardano's potential without the need for manual checks.
 
@@ -41,6 +41,8 @@ The Cardano Resource Index aims to present a well-rounded, unbiased collection o
 [Etrnl](https://eternl.io/) is one of the major Cardano wallets, implementing features requested by the Cardano community.
 
 [eUTxO](https://eutxo.org/) is a visual blockchain explorer for Cardano.
+
+[GOV TOOL](https://gov.tools/) simplifies the process for you to coordinate and collaborate intelligently with people in the Cardano ecosystem using the established on-chain decentralized governance model.
 
 [Guild Operators](https://cardano-community.github.io/guild-operators/) offer various scripts and other software that stake pool operators may use to simplify setting up, managing and monitoring a stake pool.
 

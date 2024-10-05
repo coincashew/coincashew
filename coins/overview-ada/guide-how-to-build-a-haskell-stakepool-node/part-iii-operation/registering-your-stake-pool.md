@@ -30,7 +30,7 @@ Calculate the hash of your metadata file. It's saved to **poolMetaDataHash.txt**
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli stake-pool metadata-hash --pool-metadata-file md.json > poolMetaDataHash.txt
+cardano-cli conway stake-pool metadata-hash --pool-metadata-file md.json > poolMetaDataHash.txt
 ```
 {% endtab %}
 {% endtabs %}
@@ -46,7 +46,7 @@ Verify the metadata hashes by comparing your uploaded .json file and your local 
 Get the metadata hash from your metadata json URL. Replace **\<https://REPLACE WITH YOUR METADATA\_URL>** with your actual URL.
 
 ```bash
-cardano-cli stake-pool metadata-hash --pool-metadata-file <(curl -s -L <https://REPLACE WITH YOUR METADATA_URL>)
+cardano-cli conway stake-pool metadata-hash --pool-metadata-file <(curl -s -L <https://REPLACE WITH YOUR METADATA_URL>)
 ```
 
 This above hash must equal the local metadata hash.
@@ -58,7 +58,7 @@ cat poolMetaDataHash.txt
 {% endtabs %}
 
 {% hint style="warning" %}
-If the hashes do no match, then the uploaded .json file likely was truncated or extra whitespace caused issues. Upload the .json again or to a different web host.
+If the hashes do no match, then the uploaded .JSON file likely was truncated or extra whitespace caused issues. Upload the .JSON again or to a different web host.
 {% endhint %}
 
 Find the minimum pool cost.
@@ -73,7 +73,7 @@ echo minPoolCost: ${minPoolCost}
 {% endtabs %}
 
 {% hint style="info" %}
-minPoolCost is 340000000 lovelace or 340 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
+minPoolCost is 170000000 lovelace or 170 ADA. Therefore, your `--pool-cost` must be at a minimum this amount.
 {% endhint %}
 
 Create a registration certificate for your stake pool. Update with your **metadata URL** and your **relay node information**. Choose one of the three options available to configure relay nodes -- DNS based, Round Robin DNS based, or IP based.
@@ -82,12 +82,16 @@ Create a registration certificate for your stake pool. Update with your **metada
 DNS based relays are recommended for simplicity of node management. In other words, you don't need to re-submit this **registration certificate** transaction every time your IP changes. Also you can easily update the DNS to point towards a new IP should you re-locate or re-build a relay node, for example.
 {% endhint %}
 
+{% hint style="warning" %}
+You MUST register at least one relay node on the blockchain using the registration certificate. If you operate multiple relay nodes, then registering all your relay nodes publicly on the blockchain may create a security risk. You can operate one or more unregistered relays by [Implementing Peer Sharing](../part-v-tips/implementing-peer-sharing.md). Do NOT register your block-producing node on the blockchain.
+ {% endhint %}
+
 {% hint style="info" %}
 :sparkles: **Configuring Multiple Relay Nodes**
 
 Update the next operation
 
-`cardano-cli stake-pool registration-certificate`
+`cardano-cli conway stake-pool registration-certificate`
 
 to be run on your air-gapped offline machine appropriately. Replace with your proper domain names or IP addresses.
 
@@ -124,7 +128,7 @@ to be run on your air-gapped offline machine appropriately. Replace with your pr
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli stake-pool registration-certificate \
+cardano-cli conway stake-pool registration-certificate \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --vrf-verification-key-file vrf.vkey \
     --pool-pledge 100000000 \
@@ -153,7 +157,7 @@ Pledge stake to your stake pool.
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli stake-address delegation-certificate \
+cardano-cli conway stake-address stake-delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --cold-verification-key-file $HOME/cold-keys/node.vkey \
     --out-file deleg.cert
@@ -181,7 +185,7 @@ You need to find the **tip** of the blockchain to set the **invalid-hereafter** 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
+currentSlot=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -192,7 +196,7 @@ Find your balance and **UTXOs**.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -242,10 +246,10 @@ The **invalid-hereafter** value must be greater than the current tip. In this ex
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
-    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakePoolDeposit}))  \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --tx-out $(cat payment.addr)+$(( ${total_balance} - ${stakePoolDeposit} ))  \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee 200000 \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
@@ -259,7 +263,7 @@ Calculate the minimum fee:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
+fee=$(cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 1 \
@@ -292,10 +296,10 @@ Build the transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
     --certificate-file pool.cert \
     --certificate-file deleg.cert \
@@ -311,7 +315,7 @@ Sign the transaction.
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --signing-key-file $HOME/cold-keys/node.skey \
@@ -329,9 +333,30 @@ Send the transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
 {% endtab %}
 {% endtabs %}
+
+# :octagonal\_sign: Critical Security Reminders :fire:
+
+## Block-producing Node
+
+The only stake pool **keys** and **certs** that are required to run a stake pool are those required by the block producer, specifically the following three files.
+
+```bash
+###
+### On block producer node
+###
+KES=${NODE_HOME}/kes.skey
+VRF=${NODE_HOME}/vrf.skey
+CERT=${NODE_HOME}/node.cert
+```
+
+**All other keys must remain offline in your air-gapped offline cold environment.**
+
+## Relay Nodes
+
+Relay nodes must NOT store any **`operational certificates`, `vrf`, `skey` or `cold`**` ``` **keys**.

@@ -5,10 +5,6 @@ description: Guide to monitor your node security with OSSEC and Slack.
 # Monitoring Node Security Using OSSEC Server and Slack
 
 {% hint style="info" %}
-This guide was contributed by [Billionaire Pool](https://www.billionairepool.com). If you find this guide useful, please consider staking to it (**BIL** ticker). Thank you 🙏
-{% endhint %}
-
-{% hint style="info" %}
 The guide is kindly hosted by our Coincashew friends. Use [cointr.ee to find our donation ](https://cointr.ee/coincashew)addresses. 🙏
 {% endhint %}
 

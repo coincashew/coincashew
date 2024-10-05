@@ -5,7 +5,7 @@ After the epoch is over and assuming you successfully minted blocks, check with 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query stake-address-info \
+cardano-cli conway query stake-address-info \
  --address $(cat stake.addr) \
  --mainnet
 ```

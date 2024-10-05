@@ -12,7 +12,7 @@ First, make a KES key pair.
 {% tab title="block producer node" %}
 ```bash
 cd $NODE_HOME
-cardano-cli node key-gen-KES \
+cardano-cli conway node key-gen-KES \
     --verification-key-file kes.vkey \
     --signing-key-file kes.skey
 ```
@@ -45,7 +45,7 @@ Make a set of cold keys and create the cold counter file.
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli node key-gen \
+cardano-cli conway node key-gen \
     --cold-verification-key-file node.vkey \
     --cold-signing-key-file $HOME/cold-keys/node.skey \
     --operational-certificate-issue-counter node.counter
@@ -76,7 +76,7 @@ Before continuing, your node must be fully synchronized to the blockchain. Other
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-slotNo=$(cardano-cli query tip --mainnet | jq -r '.slot')
+slotNo=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo slotNo: ${slotNo}
 ```
 {% endtab %}
@@ -108,7 +108,7 @@ Your stake pool requires an operational certificate to verify that the pool has 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli node issue-op-cert \
+cardano-cli conway node issue-op-cert \
     --kes-verification-key-file kes.vkey \
     --cold-signing-key-file $HOME/cold-keys/node.skey \
     --operational-certificate-issue-counter $HOME/cold-keys/node.counter \
@@ -125,7 +125,7 @@ Make a VRF key pair.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli node key-gen-VRF \
+cardano-cli conway node key-gen-VRF \
     --verification-key-file vrf.vkey \
     --signing-key-file vrf.skey
 ```
@@ -157,7 +157,7 @@ cat > $NODE_HOME/startBlockProducingNode.sh << EOF
 DIRECTORY=$NODE_HOME
 PORT=6000
 HOSTADDR=0.0.0.0
-TOPOLOGY=\${DIRECTORY}/topology-legacy.json
+TOPOLOGY=\${DIRECTORY}/topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
 CONFIG=\${DIRECTORY}/config.json

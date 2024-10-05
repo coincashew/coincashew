@@ -11,7 +11,7 @@ First, find the **tip** of the blockchain to set the **invalid-hereafter** param
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-currentSlot=$(cardano-cli query tip --mainnet | jq -r '.slot')
+currentSlot=$(cardano-cli conway query tip --mainnet | jq -r '.slot')
 echo Current Slot: $currentSlot
 ```
 {% endtab %}
@@ -44,7 +44,7 @@ Find your balance and **UTXOs**.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address $(cat payment.addr) \
     --mainnet > fullUtxo.out
 
@@ -79,7 +79,7 @@ Run the build-raw transaction command.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+$(( ${total_balance} - ${amountToSend})) \
     --tx-out ${destinationAddress}+${amountToSend} \
@@ -95,7 +95,7 @@ Calculate the current minimum fee:
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-fee=$(cardano-cli transaction calculate-min-fee \
+fee=$(cardano-cli conway transaction calculate-min-fee \
     --tx-body-file tx.tmp \
     --tx-in-count ${txcnt} \
     --tx-out-count 2 \
@@ -124,11 +124,11 @@ Build your transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction build-raw \
+cardano-cli conway transaction build-raw \
     ${tx_in} \
     --tx-out $(cat payment.addr)+${txOut} \
     --tx-out ${destinationAddress}+${amountToSend} \
-    --invalid-hereafter $(( ${currentSlot} + 10000)) \
+    --invalid-hereafter $(( ${currentSlot} + 10000 )) \
     --fee ${fee} \
     --out-file tx.raw
 ```
@@ -142,7 +142,7 @@ Sign the transaction with the payment secret key.
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
 ```bash
-cardano-cli transaction sign \
+cardano-cli conway transaction sign \
     --tx-body-file tx.raw \
     --signing-key-file payment.skey \
     --mainnet \
@@ -158,7 +158,7 @@ Send the signed transaction.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli transaction submit \
+cardano-cli conway transaction submit \
     --tx-file tx.signed \
     --mainnet
 ```
@@ -170,7 +170,7 @@ Check if the funds arrived.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli query utxo \
+cardano-cli conway query utxo \
     --address ${destinationAddress} \
     --mainnet
 ```
