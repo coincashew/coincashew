@@ -15,7 +15,7 @@ description: >-
 
 ## :new: What is EthPillar?
 
-:droplet:**Lido CSM Compatible**: Deploys in minutes and start staking via [Lido's CSM with as little as 2 ETH](https://csm.testnet.fi/?ref=ethpillar).
+:droplet:**Lido CSM Compatible**: Deploys in minutes and start staking via [Lido's CSM with as little as 2.4 ETH](https://csm.testnet.fi/?ref=ethpillar).
 
 :smile: **Friendly Node Installer**: Helps you installs a Ethereum node (Nimbus+Nethermind) stack in just minutes. MEVboost included.
 
