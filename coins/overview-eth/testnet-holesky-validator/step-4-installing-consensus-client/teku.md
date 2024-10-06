@@ -31,7 +31,7 @@ sudo chown -R consensus:consensus /var/lib/teku
 Install dependencies.
 
 ```bash
-sudo apt install curl ccze openjdk-17-jdk libsnappy-dev libc6-dev jq git libc6 unzip -y
+sudo apt install curl ccze openjdk-21-jdk libsnappy-dev libc6-dev jq git libc6 unzip -y
 ```
 
 ### 2. Install Binaries
