@@ -61,6 +61,10 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 
 </div>
 
+## :tada: Speedrun Demo by Stakesaurus
+
+{% embed url="https://www.youtube.com/watch?v=aZLPACj2oPI" %}
+
 ## :whale: Prerequisites
 
 * Study [Ethstaker's Staking for Beginners](https://www.reddit.com/r/ethstaker/wiki/staking\_for\_beginners/)
