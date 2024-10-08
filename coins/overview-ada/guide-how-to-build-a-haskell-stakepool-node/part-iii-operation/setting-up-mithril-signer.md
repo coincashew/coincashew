@@ -1,10 +1,10 @@
-# Setting Up Mithril Signer
+# (Optional) Setting Up Mithril Signer
 
 {% hint style="info" %}
 **Mithril** is a research project whose goal is to provide Stake-based Threshold Multisignatures on top of the Cardano network.
 In a nutshell, Mithril can be summarized as:
 A protocol that allows stakeholders in a proof-of-stake blockchain network to individually sign messages that are aggregated into a multi-signature, which guarantees that they represent a minimum share of the total stake.
-[Official documentation is available here.]https://mithril.network/doc/mithril/intro/
+[Official documentation is available here.](https://mithril.network/doc/mithril/intro/)
 {% endhint %}
 
 2 components need to be installed :
@@ -19,7 +19,7 @@ A protocol that allows stakeholders in a proof-of-stake blockchain network to in
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-(Proceed with standard installation (default - just press enter))
+(Proceed with standard - default installation)
 
 Source your env file under $HOME/.cargo. :
 ```bash
