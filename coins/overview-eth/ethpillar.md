@@ -203,7 +203,33 @@ To switch to mainnet, there are two recommended methods.
 
 </details>
 
+<details>
 
+<summary>How do I exit a validator?</summary>
+
+If you already have VEMs created, skip to step 2.
+
+Step 1: Navigate to EthPillar > Validator > Generate Voluntary Exit Message
+
+Step 2: Broadcast Voluntary Exit Message
+
+</details>
+
+<details>
+
+<summary>What is a failover staking node?</summary>
+
+**Purpose**: To provide high availability, you would run TWO (or more) failover staking nodes on separate machines. Point your validator client to your two failover staking nodes.
+
+**What**: A failover staking node is made up of an execution client, consensus client and mevboost.
+
+**How to**: To configure for nimbus validator client, edit your validator client configuration. [https://nimbus.guide/validator-client-options.html#multiple-beacon-nodes](https://nimbus.guide/validator-client-options.html#multiple-beacon-nodes)
+
+Exposing the consensus client RPC port will also be required. You will need to adjust your firewall to allow traffic from your validator client's IP address as well.
+
+**Benefit**: Running multiple failover staking nodes (or beacon nodes as nimbus refers to it) would allow you to perform maintenance or have an outage on 1 failover staking node.
+
+</details>
 
 ## :joy: POAP
 
