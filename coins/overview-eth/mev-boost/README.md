@@ -83,7 +83,7 @@ sudo apt -y install build-essential
 Install Go and removing any previous Go installations.
 
 <pre class="language-bash"><code class="lang-bash"><strong>cd $HOME
-</strong>wget -O go.tar.gz https://go.dev/dl/go1.19.6.linux-amd64.tar.gz
+</strong>wget -O go.tar.gz https://go.dev/dl/go1.23.2.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go &#x26;&#x26; sudo tar -C /usr/local -xzf go.tar.gz
 rm go.tar.gz
 echo export PATH=$PATH:/usr/local/go/bin >> $HOME/.bashrc
