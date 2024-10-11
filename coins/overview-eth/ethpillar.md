@@ -217,6 +217,21 @@ Step 2: Broadcast Voluntary Exit Message
 
 <details>
 
+<summary>I already have validators running. I want to add one more validator. How do I do that?</summary>
+
+Navigate to,
+
+**EthPillar > Validator Client > Generate / Import Validator Keys**
+
+From there you will pick 1 of 2 options.
+
+* Import validator keys from offline key generation or backup
+* Add new or regenerate existing validator keys from Secret Recovery Phrase
+
+</details>
+
+<details>
+
 <summary>What is a failover staking node?</summary>
 
 **Purpose**: To provide high availability, you would run TWO (or more) failover staking nodes on separate machines. Point your validator client to your two failover staking nodes.
