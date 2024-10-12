@@ -66,41 +66,5 @@ Run gLiveView to monitor the progress of the local Cardano Node synchronizing wi
 
 Sample output of gLiveView.
 
-<!-- ![](../../../../.gitbook/assets/glive-update2.jpg) -->
+![](../../../../.gitbook/assets/glive-update3.png)
 
-```bash
-           > Cardano Node - (Core - Mainnet) : 9.2.0 [341ea87b] <
-┌───────────────────────────────┬────────────┬─────────────────────────┐
-│ Uptime: 11:45:29              │ Port: 6000 │ Koios gLiveView v1.29.1 │
-│-------------------------------└────────────┴─────────────────────────┤
-│ Epoch 509 [38.4%], 3d 01:54:14 remaining                             │
-│ ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖ │
-│                                                                      │
-│ Block      : 10831281  Tip (ref)  : 134690746 Forks      : 4         │
-│ Slot       : 134690744 Tip (diff) : 2 :)      Total Tx   : 1184      │
-│ Slot epoch : 165944    Density    : 4.928     Pending Tx : 0/0K      │
-│- CONNECTIONS --------------------------------------------------------│
-│ P2P        : enabled   Cold Peers : 0         Uni-Dir    : 2         │
-│ Incoming   : 1         Warm Peers : 0         Bi-Dir     : 0         │
-│ Outgoing   : 1         Hot Peers  : 1         Duplex     : 0         │
-│- BLOCK PROPAGATION --------------------------------------------------│
-│ Last Block : 0.53s     Served     : 315       Late (>5s) : 0         │
-│ Within 1s  : 93.56%    Within 3s  : 99.62%    Within 5s  : 100%      │
-│- NODE RESOURCE USAGE ------------------------------------------------│
-│ CPU (sys)  : 1.61%     Mem (RSS)  : 12.5G     GC Minor   : 5396      │
-│ Disk util  : 57%       Mem (Live) : 5.2G      GC Major   : 26        │
-│                        Mem (Heap) : 12.4G                            │
-├─ CORE ───────────────────────────────────────────────────────────────┤
-│ KES current|remaining|exp         : 1039 | 46 | 2024-11-21 01:44 PST │
-│ OP Cert disk|chain                : 42 | 42                          │
-│ Missed slot leader checks         : 0 (0.0000 %)                     │
-│- BLOCK PRODUCTION ---------------------------------------------------│
-│ Leader     : 0         Adopted    : 0         Missed     : 0         │
-│ Ideal      : 0.83      Confirmed  : 0         Ghosted    : 0         │
-│ Luck       : 0.0%      Invalid    : 0         Stolen     : 0         │
-└──────────────────────────────────────────────────────────────────────┘
- TG Announcement/Support channel: t.me/CardanoKoios/9759
-
- [esc/q] Quit | [i] Info | [p] Peer Analysis | [v] Compact
-
-```

@@ -6,9 +6,9 @@ For each Cardano Node release, Input-Output recommends compiling binaries using 
 
 _Table 1 Current Cardano Node Version Requirements_
 
-|     Release Date     | Cardano Node Version | GHC Version | Cabal Version |
-|  :----------------:  | :------------------: | :---------: | :-----------: |
-|  September 20, 2024  |         9.2.0        |    8.10.7   |    3.8.1.0    |
+|     Release Date     | Cardano Node Version | Cardano CLI Version | GHC Version | Cabal Version |
+|  :----------------:  | :------------------: | :-----------------: | :---------: | :-----------: |
+|     October 2024     |         9.2.1        |       9.4.1.0       |    8.10.7   |    3.8.1.0    |
 
 **To install GHC and Cabal:**
 
