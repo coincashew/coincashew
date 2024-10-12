@@ -59,33 +59,17 @@ As a validator for Ethereum, you will typically have the following abilities:
 * have studied [Ethstaker's Staking for Beginners](https://www.reddit.com/r/ethstaker/wiki/staking\_for\_beginners/)
 * have perused the vast tomes of the [EthStaker Knowledge Base](https://docs.ethstaker.cc/ethstaker-knowledge-base/)
 
-## :reminder\_ribbon: **Minimum Node Setup Requirements**
-
-* **Operating system:** 64-bit Linux (i.e. Ubuntu 22.04.1 LTS Server or Desktop)
-* **Processor:** Dual core CPU, Intel Core i5–760 or AMD FX-8100 or better
-* **Memory:** 16GB RAM
-* **Storage:** 1TB SSD for testnet
-* **Internet:** Stable broadband internet connection with speeds at least 5 Mbps upload and download.
-* **Internet Data Plan**: At least 2 TB per month.
-* **Power:** Reliable electrical power. Mitigate with a [Uninterruptible Power Supply (UPS)](https://www.lifewire.com/best-uninterrupted-power-supplies-4142625).
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
-* **Wallet**: [Rabby](https://rabby.io/) wallet installed
-
 ## :man\_lifting\_weights: Recommended Node Setup Requirements
 
-{% hint style="info" %}
-Once done with testnet staking, this hardware configuration would be suitable for a mainnet staking node.
-{% endhint %}
-
-* **Operating system:** 64-bit Linux (i.e. Ubuntu 22.04.1 LTS Server or Desktop)
-* **Processor:** Quad core CPU, Intel Core i7–4770 or AMD FX-8310 or better
+* **Operating system:** Ubuntu 24.04 LTS Server or Desktop
+* **Processor:** 4 CPU Cores or more
 * **Memory:** 32GB RAM
-* **Storage:** 4TB NVME
-* **Internet:** Stable broadband internet connections with speeds at least 10 Mbps without data limit.
+* **Storage:** Testnet: 300GB. Mainnet: 4TB NVME (not QLC).
+* **Internet:** Stable broadband internet connections with speeds at least 20 Mbps without data limit.
 * **Data Plan**: At least 2 TB per month. Ideally, no data cap or unlimited data plan.
 * **Power:** Reliable electrical power with a [Uninterruptible Power Supply (UPS)](https://www.lifewire.com/best-uninterrupted-power-supplies-4142625).
-* **ETH balance:** at least 32 ETH and some ETH for deposit transaction fees
-* **Wallet**: [Rabby](https://rabby.io/) wallet installed
+* **ETH balance:** 2.4ETH for Lido CSM or at least 32 ETH for solo staking with 1 validator
+* **Wallet**: [Rabby](https://rabby.io/) Wallet installed
 
 {% hint style="info" %}
 :desktop: **Hardware Builds**: For examples of actual staking hardware builds, check out [RocketPool's hardware guide](https://github.com/rocket-pool/docs.rocketpool.net/blob/main/docs/guides/node/local/hardware.md#example-setups) and [Ethstaker's Hardware Examples](https://docs.ethstaker.cc/ethstaker-knowledge-base/hardware/hardware-examples).
