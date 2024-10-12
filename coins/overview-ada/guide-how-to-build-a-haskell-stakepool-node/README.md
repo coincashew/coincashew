@@ -47,6 +47,11 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :page\_facing\_up: Change Log
 
+* October 12, 2024
+  * Updating version numbers to Cardano Node 9.2.1
+  * Adding version numbers for Cardano CLI
+  * Updating jquery (jq) commands to reflect the JSON schema for results of the `cardano-cli conway query ledger-state` command
+  * Updating gLiveView dashboard image
 * September 20, 2024
   * Adding contributions by ([Change Pool](https://change.paradoxicalsphere.com)) and [Latin Stake Pools](https://latinstakepools.com/)
     * Incorporating revisions for Cardano Node 9.2.0

@@ -226,7 +226,9 @@ After the retirement epoch, you can verify that the pool was successfully retire
 {% tab title="block producer node" %}
 ```bash
 cardano-cli conway query ledger-state --mainnet > ledger-state.json
-jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
+sudo systemctl stop cardano-node.service
+jq -r '.stateBefore.esLState.delegationState.pstate.stakePoolParams."'"$(cat stakepoolid.txt)"'" // empty' ledger-state.json
+sudo systemctl start cardano-node.service
 ```
 {% endtab %}
 {% endtabs %}

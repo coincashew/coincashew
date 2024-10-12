@@ -233,13 +233,15 @@ cardano-cli conway transaction submit \
 {% endtab %}
 {% endtabs %}
 
-Changes take effect in two epochs. After the next epoch transition, verify that your pool settings are correct.
+Some changes only take effect in two epochs. After the next epoch transition, verify that your pool settings are correct.
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
 cardano-cli conway query ledger-state --mainnet > ledger-state.json
-jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'"  // empty' ledger-state.json
+sudo systemctl stop cardano-node.service
+jq -r '.stateBefore.esLState.delegationState.pstate.stakePoolParams."'"$(cat stakepoolid.txt)"'" // empty' ledger-state.json
+sudo systemctl start cardano-node.service
 ```
 {% endtab %}
 {% endtabs %}
