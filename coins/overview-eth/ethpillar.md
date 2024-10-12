@@ -17,7 +17,7 @@ description: >-
 
 :droplet:**Lido CSM Compatible**: Deploys in minutes and start staking via [Lido's CSM with as little as 2.4 ETH](https://csm.testnet.fi/?ref=ethpillar).
 
-:smile: **Friendly Node Installer**: Helps you installs a Ethereum node (Nimbus+Nethermind) stack in just minutes. MEVboost included.
+:smile: **Friendly Node Installer**: Helps you deploy a systemd installation with minority clients Nimbus CL Nethermind EL stack in just minutes. MEVboost included.
 
 :floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text user interface (TUI).
 

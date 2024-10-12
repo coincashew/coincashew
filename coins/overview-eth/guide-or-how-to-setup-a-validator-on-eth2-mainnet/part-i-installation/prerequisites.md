@@ -68,7 +68,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 * **Internet:** Stable broadband internet connections with speeds at least 20 Mbps without data limit.
 * **Data Plan**: At least 2 TB per month. Ideally, no data cap or unlimited data plan.
 * **Power:** Reliable electrical power with a [Uninterruptible Power Supply (UPS)](https://www.lifewire.com/best-uninterrupted-power-supplies-4142625).
-* **ETH balance:** 2.4ETH for Lido CSM or at least 32 ETH for solo staking with 1 validator
+* **ETH balance:** 2.4ETH for [Lido CSM](https://csm.lido.fi/?ref=ethpillar) or at least 32 ETH for solo staking with 1 validator
 * **Wallet**: [Rabby](https://rabby.io/) Wallet installed
 
 {% hint style="info" %}

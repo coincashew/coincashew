@@ -13,12 +13,15 @@ description: >-
 
 ## Installation
 
-### :rocket:Option 1: Quickstart with EthPillar
+### :rocket:Option 1: Quickstart with EthPillar - Recommended for most users
 
-* Recommended for most users.
-* In minutes, rapidly deploys a systemd installation with minority clients Nimbus CL Nethermind EL and mevboost.
-* Supports automated node deployment for both validators and non-staking RPC nodes.
-* When EthPillar is deployed, operating your node becomes a breeze.
+:droplet:**Lido CSM Compatible**: Deploys in minutes and start staking via [Lido's CSM with as little as 2.4 ETH](https://csm.testnet.fi/?ref=ethpillar).
+
+:smile: **Friendly Node Installer**: Helps you deploy a systemd installation with minority clients Nimbus CL Nethermind EL stack in just minutes. MEVboost included.
+
+:floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text user interface (TUI). When EthPillar is deployed, operating your node becomes a breeze.
+
+:owl: **Fast Updates**: Quickly find and download the latest consensus/execution release. Less downtime!
 
 To install EthPillar, [visit the quickstart page.](../ethpillar.md)
 
