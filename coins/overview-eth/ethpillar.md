@@ -149,12 +149,12 @@ Ensure your node has sufficient CPU/disk/network performance.
 
 **Step 1: Generate Validator Keys:**
 
-* Generate new CSM validator keys for the Lido withdrawal vault on Holesky (0xF0179dEC45a37423EAD4FaD5fCb136197872EAd9).
+* Generate new CSM validator keys for the Lido withdrawal vault
 * `Ethpillar > Validator Client > Generate / Import Validator Keys`
 
 **Step 2: Upload JSON Deposit Data:**
 
-* Upload the newly generated deposit data file for your CSM keystores to the Lido CSM Widget. [https://csm.testnet.fi](https://csm.testnet.fi/)
+* Upload the newly generated deposit data file for your CSM keystores to the Lido CSM Widget. [CSM Holesky](https://csm.testnet.fi/?ref=ethpillar) or [CSM Mainnet](https://csm.lido.fi/?ref=ethpillar)
 * Provide the required bond amount in ETH/stETH/wstETH.
 
 **Step 3: Monitor Validator Key Deposit:**
@@ -191,7 +191,7 @@ Ensure your node has sufficient CPU/disk/network performance.
 
 <details>
 
-<summary>How to switch between testnet and mainnet with EthPillar ?</summary>
+<summary>Change Networks: How to switch between testnet and mainnet with EthPillar ?</summary>
 
 To switch to mainnet, there are two recommended methods.
 
@@ -205,7 +205,7 @@ To switch to mainnet, there are two recommended methods.
 
 <details>
 
-<summary>How do I exit a validator?</summary>
+<summary>Exit Validator: How do I exit a validator?</summary>
 
 If you already have VEMs created, skip to step 2.
 
@@ -217,7 +217,7 @@ Step 2: Broadcast Voluntary Exit Message
 
 <details>
 
-<summary>I already have validators running. I want to add one more validator. How do I do that?</summary>
+<summary>Add Validators: I already have validators running. I want to add one more validator. How do I do that?</summary>
 
 Navigate to,
 
@@ -232,7 +232,7 @@ From there you will pick 1 of 2 options.
 
 <details>
 
-<summary>What is a failover staking node?</summary>
+<summary>Node Types: What is a failover staking node?</summary>
 
 **Purpose**: To provide high availability, you would run TWO (or more) failover staking nodes on separate machines. Point your validator client to your two failover staking nodes.
 
