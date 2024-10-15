@@ -7,6 +7,8 @@ description: >-
 
 # 🛡️ EthPillar: one-liner setup tool and node management TUI
 
+<figure><img src="../../.gitbook/assets/EthPillar.final.png" alt=""><figcaption></figcaption></figure>
+
 ## :arrow\_forward: Quickstart: Ubuntu One-liner Install
 
 ```bash
