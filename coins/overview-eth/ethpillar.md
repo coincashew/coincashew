@@ -17,9 +17,7 @@ description: >-
 
 ## :new: What is EthPillar?
 
-:droplet:**Lido CSM Compatible**: Deploys in minutes and start staking via [Lido's CSM with as little as 2.4 ETH](https://csm.testnet.fi/?ref=ethpillar).
-
-:smile: **Friendly Node Installer**: Helps you deploy a systemd installation with minority clients Nimbus CL Nethermind EL stack in just minutes. MEVboost included.
+:smile: **Friendly Node Installer**: Helps you deploy a systemd installation with minority clients Nimbus-Nethermind or Teku-Besu stack in just minutes. MEVboost included.
 
 :floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text user interface (TUI).
 
@@ -30,6 +28,20 @@ description: >-
 {% hint style="warning" %}
 Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Staking Setup.](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet)&#x20;
 {% endhint %}
+
+## :fire: Features
+
+:chains: **Ephemery Testnet Support**: Quickest and easiest way run a node now with native Besu-Teku and ethstaker-deposit-cli integrations.
+
+:droplet: **Lido CSM Integration**: Deploys in minutes and start staking via [Lido's CSM with as little as 2.4 ETH](https://csm.testnet.fi/?ref=ethpillar).
+
+:tools: **Ethdo and eth-duties Integration:** Helps stakers with every day common tasks.
+
+:bacon: **Grafana and Ethereum-Metrics-Exporter Integration:** Monitoring and dashboards has never been easier.
+
+:mag\_right:  **Built-in Troubleshooting:** Find common issues preventing your node from it's peak performance. Discover EthPillar's built-in Toolbox with port checkers, peer counts, automated system benchmarking.
+
+:tada: **Multiple deployment configurations:** Deploy a Solo Staking Node, Full Node Only, Lido CSM Staking Node, Validator Client Only or Failover Staking Node.
 
 ## :sunglasses: Preview
 
