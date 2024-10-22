@@ -236,7 +236,7 @@ wget -O teku.tar.gz $BINARIES_URL
 # Untar
 tar -xzvf teku.tar.gz -C $HOME
 # Rename folder
-mv teku-* teku
+mv teku-${LATEST_TAG} teku
 # Cleanup
 rm teku.tar.gz
 ```
