@@ -32,11 +32,21 @@ Always review the **release notes** before updating. There may be changes requir
 * [Prysm](https://github.com/prysmaticlabs/prysm/releases)
 {% endhint %}
 
-{% hint style="success" %}
-:fire: **Pro tip**: Plan your update to overlap with the longest attestation gap. [Learn how here.](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/finding-the-longest-attestation-slot-gap.md)
-{% endhint %}
-
 ## Step 1: Select your consensus client.
+
+{% hint style="info" %}
+**Did you know you can use** [**EthPillar**](../../ethpillar.md)**?**\
+
+
+:rocket: [**EthPillar**](../../ethpillar.md):  your node's buddy for easy and fast node management! Update your software with a keystroke.\
+
+
+#### :arrow\_forward: EthPillar Quickstart: Ubuntu One-liner Install <a href="#quickstart-ubuntu-one-liner-install" id="quickstart-ubuntu-one-liner-install"></a>
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/EthPillar/main/install.sh)"
+```
+{% endhint %}
 
 ### Lighthouse
 

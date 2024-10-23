@@ -39,11 +39,13 @@ Syncing the consensus client is instantaneous with checkpoint sync but the execu
 
 ### :thumbsup: Recommended Next Steps
 
-{% hint style="info" %}
-:pill:**Install** [**EthPillar**](../../../ethpillar.md): a simple companion UI for node management! Command line use is greatly reduced. Update your software with a keystroke.
+* :rocket: **Install** [**EthPillar**](../../../ethpillar.md):  your node's buddy for easy and fast node management! Update your software with a keystroke.
 
-![](../../../../../.gitbook/assets/ethpillar.png)
-{% endhint %}
+#### :arrow\_forward: EthPillar Quickstart: Ubuntu One-liner Install <a href="#quickstart-ubuntu-one-liner-install" id="quickstart-ubuntu-one-liner-install"></a>
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/EthPillar/main/install.sh)"
+```
 
 * :newspaper2:**Subscribe to your Execution Client and Consensus Client's Github repository**: Be notified of new releases. Find the Github links on each EL/CL's Overview section. At your EL or CL's github page while logged in, click the **Watch** button > **Custom** > click the checkbox for "**Release**".
 * :smile:**Join Community**: Join the [community on Discord and Reddit](../../joining-the-community-on-discord-and-reddit.md#discord) to discuss all things staking related.
