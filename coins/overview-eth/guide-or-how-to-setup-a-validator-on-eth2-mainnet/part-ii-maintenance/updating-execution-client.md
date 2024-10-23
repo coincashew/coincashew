@@ -139,7 +139,7 @@ cd $HOME
 wget -O besu.tar.gz $BINARIES_URL
 tar -xzvf besu.tar.gz -C $HOME
 rm besu.tar.gz
-sudo mv $HOME/besu-* besu
+sudo mv $HOME/besu-${TAG} besu
 ```
 
 Stop the services.
