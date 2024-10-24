@@ -29,7 +29,7 @@ Create a certificate, `vote-deleg.cert`, using the `stake.vkey`
 To delegate your voting power to a DRep, type the following command where `<DRepID>` is the ID of the DRep receiving your delegation:
 
 ```
-cardano-cli conway stake-address registration-certificate \
+cardano-cli conway stake-address vote-delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --drep-key-hash <DRepID> \
     --out-file vote-deleg.cert
@@ -40,7 +40,7 @@ cardano-cli conway stake-address registration-certificate \
 To opt out of the governance process, type:
 
 ```
-cardano-cli conway stake-address registration-certificate \
+cardano-cli conway stake-address vote-delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --always-abstain \
     --out-file vote-deleg.cert
@@ -51,7 +51,7 @@ cardano-cli conway stake-address registration-certificate \
 To vote `No` on every proposal, type:
 
 ```
-cardano-cli conway stake-address registration-certificate \
+cardano-cli conway stake-address vote-delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --always-no-confidence \
     --out-file vote-deleg.cert
