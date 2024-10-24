@@ -18,6 +18,7 @@ Create a certificate, `stake.cert`, using the `stake.vkey`
 ```
 cardano-cli conway stake-address registration-certificate \
     --stake-verification-key-file stake.vkey \
+	--key-reg-deposit-amt 2000000 \
     --out-file stake.cert
 ```
 {% endtab %}
