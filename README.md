@@ -20,6 +20,10 @@ layout:
 >
 > Learn to do anything with crypto, _better_.
 
+{% hint style="success" %}
+:heart: Support us on **Gitcoin** GR22: [https://explorer.gitcoin.co/#/round/42161/610/32](https://explorer.gitcoin.co/#/round/42161/610/32)
+{% endhint %}
+
 ## :fire: **HOT TOPICS**
 
 * :pill: Install [**EthPillar**](coins/overview-eth/ethpillar.md): one-liner setup tool and node management TUI!

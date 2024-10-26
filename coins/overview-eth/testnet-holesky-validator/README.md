@@ -8,7 +8,7 @@ description: >-
 # ⛓️ Guide | How to setup a validator for Ethereum staking on testnet HOLESKY
 
 {% hint style="success" %}
-:heart: Support us on **Gitcoin** GR20: [https://explorer.gitcoin.co/#/round/42161/26/34](https://explorer.gitcoin.co/#/round/42161/26/34)
+:heart: Support us on **Gitcoin** GR22: [https://explorer.gitcoin.co/#/round/42161/610/32](https://explorer.gitcoin.co/#/round/42161/610/32)
 {% endhint %}
 
 ## Installation

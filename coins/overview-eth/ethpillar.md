@@ -15,6 +15,10 @@ description: >-
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/EthPillar/main/install.sh)"
 ```
 
+{% hint style="success" %}
+:heart: Support us on **Gitcoin** GR22: [https://explorer.gitcoin.co/#/round/42161/610/32](https://explorer.gitcoin.co/#/round/42161/610/32)
+{% endhint %}
+
 ## :new: What is EthPillar?
 
 :smile: **Friendly Node Installer**: Helps you deploy a systemd installation with minority clients Nimbus-Nethermind or Teku-Besu stack in just minutes. MEVboost included.
