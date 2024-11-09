@@ -47,6 +47,10 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :page\_facing\_up: Change Log
 
+* November 9, 2024
+  * Updating version numbers for Cardano Node software
+  * Updating secp256k1 installation procedure
+  * Improving instructions for using the stake snapshot query
 * October 12, 2024
   * Updating version numbers to Cardano Node 9.2.1
   * Adding version numbers for Cardano CLI
