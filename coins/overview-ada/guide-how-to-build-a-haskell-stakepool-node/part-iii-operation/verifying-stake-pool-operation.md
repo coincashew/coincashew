@@ -4,7 +4,7 @@ If you can successfully complete the following tasks, then your stake pool is re
 
 - [Retrieving the Stake Pool ID](#poolid)
 - [Querying Stakes](#stakes)
-- [Finding Your Pool Using a Block Explorer](#explorer)
+- [Finding Your Stake Pool Using a Block Explorer](#explorer)
 
 ## Retrieving the Stake Pool ID<a href="#poolid" id="poolid"></a>
 
