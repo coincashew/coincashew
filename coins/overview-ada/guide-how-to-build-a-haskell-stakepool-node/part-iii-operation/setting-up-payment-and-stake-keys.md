@@ -311,3 +311,8 @@ You should see output similar to this. This is your unspent transaction output (
 {% hint style="danger" %}
 :fire: **Critical Backup Advice:** Make redundant copies of your **payment and staking keys** on offline USB keys or other offline data backups. Have a recovery plan in case of corrupted or lost keys.
 {% endhint %}
+
+{% hint style="info" %}
+Named after the English mathematician and writer Ada Lovelace, the sub-unit of ADA is the Lovelace. 1 ADA is comprised of 1,000,000 Lovelace.
+{% endhint %}
+
