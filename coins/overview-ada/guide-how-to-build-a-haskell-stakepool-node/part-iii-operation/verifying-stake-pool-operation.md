@@ -23,7 +23,7 @@ Copy **stakepoolid.txt** to your **hot environment.**
 
 ## Querying Stakes<a href="#stakes" id="stakes"></a>
 
-Using your stake pool ID, at any time you can query the blockchain to display the stakes delegated to your pool using the following command:
+Using your stake pool ID and the following command, you can query the Cardano blockchain at any time to display the stakes delegated to your pool:
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -41,7 +41,7 @@ In the `pools` object in the JSON-formatted query results, the following keys di
 
 - `stakeGo` displays the stakes delegated to your pool in the previous epoch
 - `stakeSet` displays the stakes delegated to your pool in the current epoch
-- `stakeMark` displays the stakes currently delegated to your pool in the next epoch
+- `stakeMark` displays the stakes currently delegated to your pool for the next epoch
 
 ## Finding Your Stake Pool Using a Block Explorer<a href="#explorer" id="explorer"></a>
 
