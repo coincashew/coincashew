@@ -39,9 +39,9 @@ If the query returns results, then your stake pool is registered! :clap:
 
 In the `pools` object in the JSON-formatted query results, the following keys display the stakes delegated to your pool, in Lovelace:
 
-- `stakeGo` displays the stakes delegated to your pool in the previous epoch
-- `stakeSet` displays the stakes delegated to your pool in the current epoch
-- `stakeMark` displays the stakes currently delegated to your pool for the next epoch
+- `stakeGo` displays the total stakes delegated to your pool in the previous epoch
+- `stakeSet` displays the total stakes delegated to your pool in the current epoch
+- `stakeMark` displays the total stakes currently delegated to your pool for the next epoch
 
 ## Finding Your Stake Pool Using a Block Explorer<a href="#explorer" id="explorer"></a>
 
