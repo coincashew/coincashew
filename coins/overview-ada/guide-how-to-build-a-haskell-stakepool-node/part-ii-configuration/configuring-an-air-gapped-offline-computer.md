@@ -97,7 +97,7 @@ sudo mkdir /usr/local/lib/pkgconfig
 ```bash
 /usr/local/lib/libsecp256k1.a
 /usr/local/lib/libsecp256k1.la
-/usr/local/lib/libsecp256k1.so.0.0.0
+/usr/local/lib/libsecp256k1.so.2.0.2
 /usr/local/lib/pkgconfig/libsecp256k1.pc
 ```
 
@@ -108,7 +108,7 @@ cd /usr/local/lib
 sudo chown root:root libsecp256k1.*
 sudo chmod 644 libsecp256k1.a
 sudo chmod 755 libsecp256k1.la
-sudo chmod 755 libsecp256k1.so.0.0.0
+sudo chmod 755 libsecp256k1.so.2.0.2
 sudo chown root:root ./pkgconfig/libsecp256k1.pc
 sudo chmod 644 ./pkgconfig/libsecp256k1.pc
 ```
@@ -116,15 +116,15 @@ sudo chmod 644 ./pkgconfig/libsecp256k1.pc
 7. To create symbolic links, type:
 
 ```bash
-sudo ln -s libsecp256k1.so.0.0.0 libsecp256k1.so
-sudo ln -s libsecp256k1.so.0.0.0 libsecp256k1.so.0
+sudo ln -s libsecp256k1.so.2.0.2 libsecp256k1.so
+sudo ln -s libsecp256k1.so.2.0.2 libsecp256k1.so.2
 ```
 
 8. Type `ls -la` and then confirm that in step 7 you created the following symbolic links:
 
 ```bash
-lrwxrwxrwx root root libsecp256k1.so -> libsecp256k1.so.0.0.0
-lrwxrwxrwx root root libsecp256k1.so.0 -> libsecp256k1.so.0.0.0
+lrwxrwxrwx root root libsecp256k1.so -> libsecp256k1.so.2.0.2
+lrwxrwxrwx root root libsecp256k1.so.2 -> libsecp256k1.so.2.0.2
 ```
 
 9. To update available symbolic links for currently shared libraries, type:

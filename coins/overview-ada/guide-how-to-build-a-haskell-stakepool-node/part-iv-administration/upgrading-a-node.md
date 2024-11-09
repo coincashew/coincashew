@@ -173,9 +173,8 @@ As of version 8.9.0, a new version of `libsecp256k1` is required
 
 ```
 cd $HOME/git
-git clone https://github.com/bitcoin-core/secp256k1
+git clone --depth 1 --branch v0.3.2 https://github.com/bitcoin-core/secp256k1
 cd secp256k1
-git checkout v0.3.2
 ./autogen.sh
 ./configure --enable-module-schnorrsig --enable-experimental
 make

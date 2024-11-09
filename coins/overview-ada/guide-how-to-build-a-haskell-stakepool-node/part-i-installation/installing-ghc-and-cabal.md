@@ -116,9 +116,8 @@ sudo apt-get install libnuma-dev
 
 ```
 cd $HOME/git
-git clone https://github.com/bitcoin-core/secp256k1
+git clone --depth 1 --branch v0.3.2 https://github.com/bitcoin-core/secp256k1
 cd secp256k1
-git checkout v0.3.2
 ./autogen.sh
 ./configure --enable-module-schnorrsig --enable-experimental
 make
