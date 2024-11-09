@@ -50,7 +50,7 @@ Using your stake pool ID, you can also find data for your pool on block explorer
 ## Conclusion
 
 {% hint style="success" %}
-Congratulations! Your stake pool is included in the Cardano network and ready to produce blocks.
+Congratulations! Your stake pool is included in the Cardano network and is ready to produce blocks.
 {% endhint %}
 
 Currently, Input Output recommends the following stake pool configuration:
