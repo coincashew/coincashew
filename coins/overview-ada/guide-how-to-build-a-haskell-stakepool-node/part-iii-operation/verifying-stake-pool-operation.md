@@ -2,11 +2,11 @@
 
 If you can successfully complete the following tasks, then your stake pool is registered on the blockchain:
 
-- [Retrieving the Pool ID](#poolid)
+- [Retrieving the Stake Pool ID](#poolid)
 - [Querying Stakes](#stakes)
 - [Finding Your Pool Using a Block Explorer](#explorer)
 
-## Retrieving the Pool ID<a href="#poolid" id="poolid"></a>
+## Retrieving the Stake Pool ID<a href="#poolid" id="poolid"></a>
 
 Compute your stake pool ID using the following command:
 
@@ -43,7 +43,7 @@ In the `pools` object in the JSON-formatted query results, the following keys di
 - `stakeSet` displays the stakes delegated to your pool in the current epoch
 - `stakeMark` displays the stakes currently delegated to your pool in the next epoch
 
-## Finding Your Pool Using a Block Explorer<a href="#explorer" id="explorer"></a>
+## Finding Your Stake Pool Using a Block Explorer<a href="#explorer" id="explorer"></a>
 
 Using your stake pool ID, you can also find data for your pool on block explorers such as [https://pooltool.io/](https://pooltool.io)
 
