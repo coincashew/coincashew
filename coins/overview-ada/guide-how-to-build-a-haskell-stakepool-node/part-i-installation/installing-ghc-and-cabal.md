@@ -8,7 +8,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 |     Release Date     | Cardano Node Version | Cardano CLI Version | GHC Version | Cabal Version |
 |  :----------------:  | :------------------: | :-----------------: | :---------: | :-----------: |
-|     October 2024     |         9.2.1        |       9.4.1.0       |    8.10.7   |    3.8.1.0    |
+|    November 2024     |        10.1.2        |      10.1.1.0       |    8.10.7   |    3.8.1.0    |
 
 **To install GHC and Cabal:**
 
@@ -22,7 +22,7 @@ sudo apt-get upgrade -y
 2\. To install packages and tools required for downloading and compiling Cardano Node source code, type:
 
 ```bash
-sudo apt-get install autoconf automake build-essential curl g++ git jq libffi-dev libgmp-dev libncursesw5 libssl-dev libsystemd-dev libtinfo-dev libtool make pkg-config tmux wget zlib1g-dev -y
+sudo apt-get install autoconf automake build-essential curl g++ git jq libffi-dev libgmp-dev libncursesw5 libssl-dev libsystemd-dev libtinfo-dev libtool make pkg-config tmux wget zlib1g-dev liblmdb-dev -y
 ```
 
 {% hint style="info" %}
@@ -116,9 +116,8 @@ sudo apt-get install libnuma-dev
 
 ```
 cd $HOME/git
-git clone https://github.com/bitcoin-core/secp256k1
+git clone --depth 1 --branch v0.3.2 https://github.com/bitcoin-core/secp256k1
 cd secp256k1
-git checkout v0.3.2
 ./autogen.sh
 ./configure --enable-module-schnorrsig --enable-experimental
 make

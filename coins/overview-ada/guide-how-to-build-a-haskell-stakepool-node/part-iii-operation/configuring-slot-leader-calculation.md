@@ -363,8 +363,8 @@ MYPOOLID=$(cat $NODE_HOME/stakepoolid.txt)
 echo "LeaderLog - POOLID $MYPOOLID"
 
 SNAPSHOT=$(/usr/local/bin/cardano-cli conway query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
-POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeMark": )\d+(?=,?)')
-ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeMark": )\d+(?=,?)')
+POOL_STAKE=$(echo "$SNAPSHOT" | jq -r ".pools.$MYPOOLID.stakeMark")
+ACTIVE_STAKE=$(echo "$SNAPSHOT" | jq -r ".total.stakeMark")
 MYPOOL=`/usr/local/bin/cncli leaderlog --consensus praos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set next`
 echo $MYPOOL | jq .
 
@@ -387,8 +387,8 @@ MYPOOLID=$(cat $NODE_HOME/stakepoolid.txt)
 echo "LeaderLog - POOLID $MYPOOLID"
 
 SNAPSHOT=$(/usr/local/bin/cardano-cli conway query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
-POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeSet": )\d+(?=,?)')
-ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeSet": )\d+(?=,?)')
+POOL_STAKE=$(echo "$SNAPSHOT" | jq -r ".pools.$MYPOOLID.stakeSet")
+ACTIVE_STAKE=$(echo "$SNAPSHOT" | jq -r ".total.stakeSet")
 MYPOOL=`/usr/local/bin/cncli leaderlog --consensus praos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set current`
 echo $MYPOOL | jq .
 
@@ -411,8 +411,8 @@ MYPOOLID=$(cat $NODE_HOME/stakepoolid.txt)
 echo "LeaderLog - POOLID $MYPOOLID"
 
 SNAPSHOT=$(/usr/local/bin/cardano-cli conway query stake-snapshot --stake-pool-id $MYPOOLID --mainnet)
-POOL_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "poolStakeGo": )\d+(?=,?)')
-ACTIVE_STAKE=$(echo "$SNAPSHOT" | grep -oP '(?<=    "activeStakeGo": )\d+(?=,?)')
+POOL_STAKE=$(echo "$SNAPSHOT" | jq -r ".pools.$MYPOOLID.stakeGo")
+ACTIVE_STAKE=$(echo "$SNAPSHOT" | jq -r ".total.stakeGo"))
 MYPOOL=`/usr/local/bin/cncli leaderlog --consensus praos --pool-id $MYPOOLID --pool-vrf-skey ${NODE_HOME}/vrf.skey --byron-genesis ${NODE_HOME}/byron-genesis.json --shelley-genesis ${NODE_HOME}/shelley-genesis.json --pool-stake $POOL_STAKE --active-stake $ACTIVE_STAKE --ledger-set prev`
 echo $MYPOOL | jq .
 

@@ -115,7 +115,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 |     Release Date     | Cardano Node Version | Cardano CLI Version | GHC Version | Cabal Version |
 |  :----------------:  | :------------------: | :-----------------: | :---------: | :-----------: |
-|     October 2024     |         9.2.1        |       9.4.1.0       |    8.10.7   |    3.8.1.0    |
+|    November 2024     |        10.1.2        |      10.1.1.0       |    8.10.7   |    3.8.1.0    |
 
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
@@ -173,9 +173,8 @@ As of version 8.9.0, a new version of `libsecp256k1` is required
 
 ```
 cd $HOME/git
-git clone https://github.com/bitcoin-core/secp256k1
+git clone --depth 1 --branch v0.3.2 https://github.com/bitcoin-core/secp256k1
 cd secp256k1
-git checkout v0.3.2
 ./autogen.sh
 ./configure --enable-module-schnorrsig --enable-experimental
 make

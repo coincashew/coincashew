@@ -149,7 +149,7 @@ cardano-cli conway stake-pool id \
 Given the **stake pool ID** from your stakepool, run the following:
 
 ```bash
-cardano-cli conway stake-address delegation-certificate \
+cardano-cli conway stake-address stake-delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --stake-pool-id <stake pool ID> \
     --out-file deleg.cert

@@ -1,6 +1,14 @@
 # Verifying Stake Pool Operation
 
-Your stake pool ID can be computed with:
+If you can successfully complete the following tasks, then your stake pool is registered on the blockchain:
+
+- [Retrieving the Stake Pool ID](#poolid)
+- [Querying Stakes](#stakes)
+- [Finding Your Stake Pool Using a Block Explorer](#explorer)
+
+## Retrieving the Stake Pool ID<a href="#poolid" id="poolid"></a>
+
+Compute your stake pool ID using the following command:
 
 {% tabs %}
 {% tab title="air-gapped offline machine" %}
@@ -13,7 +21,9 @@ cat stakepoolid.txt
 
 Copy **stakepoolid.txt** to your **hot environment.**
 
-Now that you have your stake pool ID, verify it's included in the blockchain.
+## Querying Stakes<a href="#stakes" id="stakes"></a>
+
+Using your stake pool ID and the following command, you can query the Cardano blockchain at any time to display the stakes delegated to your pool:
 
 {% tabs %}
 {% tab title="block producer node" %}
@@ -24,13 +34,23 @@ cardano-cli conway query stake-snapshot --stake-pool-id $(cat stakepoolid.txt) -
 {% endtabs %}
 
 {% hint style="info" %}
-A non-empty string return means you're registered! :clap:
+If the query returns results, then your stake pool is registered! :clap:
 {% endhint %}
 
-With your stake pool ID, now you can find your data on block explorers such as [https://pooltool.io/](https://pooltool.io)
+In the `pools` object in the JSON-formatted query results, the following keys display the stakes delegated to your pool, in Lovelace:
+
+- `stakeGo` displays the total stakes delegated to your pool in the previous epoch
+- `stakeSet` displays the total stakes delegated to your pool in the current epoch
+- `stakeMark` displays the total stakes currently delegated to your pool for the next epoch
+
+## Finding Your Stake Pool Using a Block Explorer<a href="#explorer" id="explorer"></a>
+
+Using your stake pool ID, you can also find data for your pool on block explorers such as [https://pooltool.io/](https://pooltool.io)
+
+## Conclusion
 
 {% hint style="success" %}
-Congratulations! Your stake pool is included in the Cardano network and ready to produce blocks.
+Congratulations! Your stake pool is included in the Cardano network and is ready to produce blocks.
 {% endhint %}
 
 Currently, Input Output recommends the following stake pool configuration:
