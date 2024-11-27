@@ -12,11 +12,7 @@ Every 32 ETH you own allows you to make 1 validator. You can run thousands of va
 
 * **Step 1**: Visit the [Ethstaker Discord](https://discord.io/ethstaker) and join the #cheap-holesky-validator channel
 
-<!---->
-
-* **Step 2**: Use the `/cheap-holesky-deposit` slash command and follow the instructions from the bot. You need to start typing the slash command and it will show above your input box where you can use it.
-
-<!---->
+- **Step 2**: Use the `/cheap-holesky-deposit` slash command and follow the instructions from the bot. You need to start typing the slash command and it will show above your input box where you can use it.
 
 * **Requirement**: In order to use the cheap holesky validator process, you must now set your withdrawal address to `0x4D496CcC28058B1D74B7a19541663E21154f9c84` when creating your validator keys and deposit file. This is to prevent abuses of this service.
 
@@ -36,7 +32,14 @@ Every 32 ETH you own allows you to make 1 validator. You can run thousands of va
 
 #### Before continuing please have the following:
 
-* [ ] **Hardware wallet address or** [**Safe multisig wallet**](https://app.safe.global/welcome) **address**: This is for your [Withdrawal Address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-What-are-the-two-types-of-withdrawals). It must be in checksum format, which means some letters are UPPERCASE. If needed, validate your address's checksum format against a block explorer, such as [https://etherscan.io](https://etherscan.io)
+* [ ] **Hardware wallet address or** **Safe multisig wallet** **address**: This is for your [Withdrawal Address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-What-are-the-two-types-of-withdrawals). It must be in checksum format, which means some letters are UPPERCASE. If needed, validate your address's checksum format against a block explorer, such as [https://etherscan.io](https://etherscan.io)
+
+{% hint style="info" %}
+Safe {Wallet} Multisig Links:\
+Holesky - [https://holesky-safe.protofire.io](https://holesky-safe.protofire.io/)\
+Mainnet - [https://app.safe.global/welcome](https://app.safe.global/welcome)
+{% endhint %}
+
 * [ ] **Browser dApp Wallet** (i.e. Metamask) with 32 Ethers for each validator
 
 <figure><img src="../../../../.gitbook/assets/checksum.png" alt=""><figcaption><p>Example of Vitalik's address in checksum format</p></figcaption></figure>
@@ -231,7 +234,7 @@ For Windows, use one of
 
 * [Etcher](https://tails.boum.org/etcher/Etcher-Portable.exe)
 * [Win32 Disk Imager](https://win32diskimager.org/#download)
-* [Rufus](https://rufus.ie/en\_US/)
+* [Rufus](https://rufus.ie/en_US/)
 
 For Mac, download [Etcher](https://tails.boum.org/etcher/Etcher.dmg)
 
