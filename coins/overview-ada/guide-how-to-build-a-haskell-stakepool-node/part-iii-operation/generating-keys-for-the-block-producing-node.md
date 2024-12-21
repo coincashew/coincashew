@@ -82,6 +82,10 @@ echo slotNo: ${slotNo}
 {% endtab %}
 {% endtabs %}
 
+{% hint style="info" %}
+The `cardano-cli conway query tip --mainnet` command uses the `CARDANO_NODE_SOCKET_PATH` environment variable that you set in the `$HOME/.bashrc` file when [Installing GHC and Cabal](../part-i-installation/installing-ghc-and-cabal.md). `cardano-cli` commands throughout the CoinCashew Guide may use the `CARDANO_NODE_SOCKET_PATH` environment variable. If you do not set the `CARDANO_NODE_SOCKET_PATH` environment variable, then you need to set the `--socket-path` option explicitly in each command requiring the location of the Cardano node socket file.
+{% endhint %}
+
 Find the kesPeriod by dividing the slot tip number by the slotsPerKESPeriod.
 
 {% tabs %}
