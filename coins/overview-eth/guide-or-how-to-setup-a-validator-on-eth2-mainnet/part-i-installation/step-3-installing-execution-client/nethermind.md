@@ -165,7 +165,10 @@ ExecStart=/usr/local/bin/nethermind/nethermind \
   --JsonRpc.JwtSecretFile /secrets/jwtsecret \
   --Pruning.Mode=Hybrid \
   --Pruning.FullPruningTrigger=VolumeFreeSpace \
-  --Pruning.FullPruningThresholdMb=300000
+  --Pruning.FullPruningThresholdMb=300000 \
+  --Pruning.FullPruningMemoryBudgetMb=16384 \
+  --Pruning.FullPruningMaxDegreeOfParallelism=2 \
+  --Pruning.FullPruningCompletionBehavior=AlwaysShutdown
   
 [Install]
 WantedBy=multi-user.target
