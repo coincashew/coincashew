@@ -157,7 +157,7 @@ sudo chmod u=rw,go=r /usr/local/{lib/{libblst.a,pkgconfig/libblst.pc},include/{b
 12\. Using a text editor, open the `$HOME/.bashrc` file, and then add the following lines at the end of the file:
 
 ```bash
-# Set environment variables so that the compiler finds libsodium on your computer
+# Set environment variables so that the compiler finds libsodium, libsecp256k1 and blst libraries on your computer
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 # Set an environment variable indicating the file path to configuration files and scripts
@@ -165,6 +165,8 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 export NODE_HOME="$HOME/cardano-my-node"
 # Set an environment variable indicating the Cardano network cluster where your node runs
 export NODE_CONFIG="mainnet"
+# Set an environment variable indicating where the Cardano node socket file is located
+export CARDANO_NODE_SOCKET_PATH="$NODE_HOME/db/socket"
 ```
 
 {% hint style="info" %}
