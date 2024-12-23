@@ -3,7 +3,7 @@
 ## Overview
 
 {% hint style="info" %}
-[Lodestar ](https://lodestar.chainsafe.io)is a Typescript implementation of the official Ethereum specification by the [ChainSafe.io](https://lodestar.chainsafe.io) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS\_eiLUajr3gi9g). Finally, the Lodestar team is leading in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
+[Lodestar ](https://lodestar.chainsafe.io)is a Typescript implementation of the official Ethereum specification by the [ChainSafe.io](https://lodestar.chainsafe.io) team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. A complete list can be found [here](https://hackmd.io/CcsWTnvRS_eiLUajr3gi9g). Finally, the Lodestar team is leading in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 {% endhint %}
 
 #### Official Links
@@ -180,7 +180,7 @@ ExecStart=/usr/local/bin/lodestar/lodestar beacon \
 WantedBy=multi-user.target
 ```
 
-* Replace**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
+* Replac&#x65;**`<0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>`** with your own Ethereum address that you control. Tips are sent to this address and are immediately spendable.
 * **Not staking?** If you only want a full node, delete the whole line beginning with
 
 ```

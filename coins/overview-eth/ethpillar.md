@@ -49,35 +49,19 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 
 ## :sunglasses: Preview
 
-<figure><img src="../../.gitbook/assets/preview02.png" alt=""><figcaption><p>Main Menu</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/1menu.png" alt=""><figcaption><p>Main Menu</p></figcaption></figure>
 
-<div>
 
-<figure><img src="../../.gitbook/assets/preview01.png" alt=""><figcaption><p>Execution Client</p></figcaption></figure>
 
- 
+<div><figure><img src="../../.gitbook/assets/2ec.png" alt=""><figcaption><p>Execution Client</p></figcaption></figure> <figure><img src="../../.gitbook/assets/3cl.png" alt=""><figcaption><p>Consensus Client</p></figcaption></figure> <figure><img src="../../.gitbook/assets/4vc.png" alt=""><figcaption><p>Validator</p></figcaption></figure></div>
 
-<figure><img src="../../.gitbook/assets/preview03.png" alt=""><figcaption><p>Consensus Client</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/6tool.png" alt=""><figcaption><p>Tools</p></figcaption></figure>
 
- 
 
-<figure><img src="../../.gitbook/assets/preview04.png" alt=""><figcaption><p>Validator</p></figcaption></figure>
 
-</div>
+<div><figure><img src="../../.gitbook/assets/7plug.png" alt=""><figcaption><p>Plugins</p></figcaption></figure> <figure><img src="../../.gitbook/assets/8mev.png" alt=""><figcaption><p>Mevboost</p></figcaption></figure> <figure><img src="../../.gitbook/assets/5sa.png" alt=""><figcaption><p>System Administration</p></figcaption></figure></div>
 
-<div>
 
-<figure><img src="../../.gitbook/assets/preview05.png" alt=""><figcaption><p>System Administration</p></figcaption></figure>
-
- 
-
-<figure><img src="../../.gitbook/assets/preview06.png" alt=""><figcaption><p>Tools</p></figcaption></figure>
-
- 
-
-<figure><img src="../../.gitbook/assets/preview07.png" alt=""><figcaption><p>Mevboost</p></figcaption></figure>
-
-</div>
 
 ## :tada: Speedrun Demo by Stakesaurus
 
@@ -85,7 +69,7 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 
 ## :whale: Prerequisites
 
-* Study [Ethstaker's Staking for Beginners](https://www.reddit.com/r/ethstaker/wiki/staking\_for\_beginners/)
+* Study [Ethstaker's Staking for Beginners](https://www.reddit.com/r/ethstaker/wiki/staking_for_beginners/)
 * [Review how staking works and the hardware requirements](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md)
 * A Linux [Ubuntu](https://ubuntu.com/download) installation.&#x20;
   * Tested with [Ubuntu 24.04 LTS](https://ubuntu.com/download)
@@ -199,9 +183,7 @@ Ensure your node has sufficient CPU/disk/network performance.
 
 * Now you're waiting in the Entry Queue [https://www.validatorqueue.com](https://www.validatorqueue.com/)
 
-<!---->
-
-* Check out the [next steps from the main guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-5-installing-validator/next-steps) for further knowledge. Especially the FAQ's "Wen staking rewards?"
+- Check out the [next steps from the main guide](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-5-installing-validator/next-steps) for further knowledge. Especially the FAQ's "Wen staking rewards?"
 
 </details>
 
@@ -215,9 +197,7 @@ To switch to mainnet, there are two recommended methods.
 
 * **Cleanest and most problem-free option**: Reformat Ubuntu OS and re-install EthPillar.&#x20;
 
-<!---->
-
-* **Use EthPillar:** Navigate to **System Administration > Change Network**
+- **Use EthPillar:** Navigate to **System Administration > Change Network**
 
 </details>
 

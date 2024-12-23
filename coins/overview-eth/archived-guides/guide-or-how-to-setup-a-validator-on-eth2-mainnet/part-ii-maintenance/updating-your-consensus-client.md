@@ -19,7 +19,7 @@ The following steps align with our [mainnet guide](../../../guide-or-how-to-setu
 When a new release is cut, you will want to update to the latest stable release. The following shows you how to update your beacon chain and validator.
 
 {% hint style="info" %}
-Always review the **git logs** with command **`git log`**or **release notes** before updating. There may be changes requiring your attention.
+Always review the **git logs** with command **`git log`**&#x6F;r **release notes** before updating. There may be changes requiring your attention.
 {% endhint %}
 
 {% hint style="success" %}
