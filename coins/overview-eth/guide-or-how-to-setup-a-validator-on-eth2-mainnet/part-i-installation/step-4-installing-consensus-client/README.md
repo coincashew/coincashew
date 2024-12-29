@@ -11,7 +11,7 @@ Only one consensus client is required per node.
 * To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity.
 * Find the latest distribution of consensus clients here: [https://clientdiversity.org](https://clientdiversity.org/)
 
-<figure><img src="../../../../../.gitbook/assets/cd-c.png" alt=""><figcaption><p>Sept 2023 Client Diversity</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/CL.png" alt=""><figcaption><p>CL Diversity as of Dec 2024</p></figcaption></figure>
 
 ## Overview of Consensus Clients
 

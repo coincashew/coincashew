@@ -1,6 +1,6 @@
 # Step 3: Installing execution client
 
-Your choice of either [**Besu**](https://besu.hyperledger.org)**,** [**Nethermind**](https://www.nethermind.io)**,** [**Reth**](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-3-installing-execution-client/reth.md) **or** [**Erigon**](https://github.com/ledgerwatch/erigon)**.**
+Your choice of either [**Besu**](https://besu.hyperledger.org)**,** [**Nethermind**](https://www.nethermind.io)**, Geth,** [**Reth**](../../guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/step-3-installing-execution-client/reth.md) **or** [**Erigon**](https://github.com/ledgerwatch/erigon)**.**
 
 {% hint style="warning" %}
 Only one execution client is required per node.
@@ -11,16 +11,12 @@ Only one execution client is required per node.
 * To strengthen Ethereum's resilience against potential attacks or consensus bugs, it's best practice to run a minority client in order to increase client diversity.
 * Find the latest distribution of execution clients here: [https://clientdiversity.org](https://clientdiversity.org/)
 
-<figure><img src="../../../../.gitbook/assets/cd-e.png" alt=""><figcaption><p>Sept 2023 Client Diversity</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/EL.png" alt=""><figcaption><p>EL Diversity as of Dec 2024</p></figcaption></figure>
 
 ## Overview of Execution Clients
 
 {% hint style="info" %}
 :shield: **Recommendation** :shield:: **Nethermind** or **Besu**
-{% endhint %}
-
-{% hint style="danger" %}
-:octagonal\_sign:**Strongly discouraged** :octagonal\_sign:**: GETH can be** [**hazardous to your all YOUR STAKE.**](https://twitter.com/EthDreamer/status/1749355402473410714)
 {% endhint %}
 
 ### Nethermind
