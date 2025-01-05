@@ -39,7 +39,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 i. Press ENTER to proceed.\
 ii. To prepend the required PATH variable to `$HOME/.bashrc`, type `P`\
 iii. When prompted to install haskell-language-server (HLS), type `N`\
-iv. When prompted to install slack, type `N`\
+iv. When prompted to install stack, type `N`\
 v. Press ENTER to proceed.
 
 {% hint style="info" %}
