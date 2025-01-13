@@ -43,3 +43,4 @@ description: >-
 | ------------- | -------------------------------------------------------------------------------------------- |
 | CoinPaprika   | [https://coinpaprika.com/coin/xmr-monero/](https://coinpaprika.com/coin/xmr-monero/)         |
 | CoinMarketCap | [https://coinmarketcap.com/currencies/monero/](https://coinmarketcap.com/currencies/monero/) |
+| CoinGecko     | [https://www.coingecko.com/pl/waluty/monero](https://www.coingecko.com/pl/waluty/monero)     |
