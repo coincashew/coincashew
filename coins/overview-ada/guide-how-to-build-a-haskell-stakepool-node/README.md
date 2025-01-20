@@ -17,14 +17,18 @@ Pull requests or issues can be submitted on [github](https://github.com/coincash
 
 ## :wrench: About This Guide
 
-Available since 2021 and one of the first resources available online to support Cardano stake pool operations, the _How to Set Up a Cardano Stake Pool_ guide provides free educational content that continues to play an essential role in welcoming newcomers to the Cardano ecosystem while also serving as a valuable resource for experienced Cardano community members. The level of detail and accuracy that the guide presents supporting operation of Cardano nodes in practical, real-world stake pool configurations, as well as procedures explaining specific Cardano node upgrade paths, uniquely differentiates the guide amongst Cardano technical documentation.
+Available since 2021 and one of the first resources available online to support Cardano stake pool operations, the _How to Set Up a Cardano Stake Pool_ guide provides open source educational content that continues to play an essential role in welcoming newcomers to the Cardano ecosystem while also serving as a valuable resource for experienced Cardano community members.
 
-[Change Pool](https://change.paradoxicalsphere.com) is the official stake pool of the _How to Set Up a Cardano Stake Pool_ guide available on [CoinCashew](https://www.coincashew.com/). Created in 2021 using the CoinCashew Guide, [Change Pool](https://change.paradoxicalsphere.com) commits to informing regular updates and improvements to CoinCashew Guide content based on the practical and tested day-to-day operating procedures used to administer the pool. [Change Pool](https://change.paradoxicalsphere.com) also commits to sharing a representative portion of pool fees received with CoinCashew.
+The guide offers complete, accurate and up-to-date information and step-by-step procedures on topics related to operating the Cardano Node and supporting software in practical, real-world stake pool configurations. The guide also explains in detail how to upgrade Cardano Node software.
 
-As an alternative to contributing content or making a one-time [donation](https://cointr.ee/coincashew), if you want to receive rewards for your stake while offering financial support in perpetuity to the ongoing development and maintenance of the _How to Set Up a Cardano Stake Pool_ CoinCashew Guide, then please delegate to [Change Pool (ticker CHG)](https://change.paradoxicalsphere.com)
+The design of the guide allows you to scan ahead easily if you read something that you already know. Ongoing support and application of industry standards uniquely differentiate the guide amongst Cardano technical documentation.
+
+[Change Pool](https://change.paradoxicalsphere.com) is the official stake pool of the _How to Set Up a Cardano Stake Pool_ guide available on [CoinCashew](https://www.coincashew.com/). Created in 2021 using the guide, [Change Pool](https://change.paradoxicalsphere.com) makes a commitment to maintaining the guide over time. [Change Pool](https://change.paradoxicalsphere.com) also shares a portion of pool fees received with CoinCashew.
+
+As an alternative to contributing content or making a one-time [donation](https://cointr.ee/coincashew), your delegation to [Change Pool](https://change.paradoxicalsphere.com) offers direct, ongoing financial support for development and maintenance of content for the _How to Set Up a Cardano Stake Pool_ guide while you receive a return on your investment.
 
 {% hint style="info" %}
-Much appreciated in advance. :pray:
+Your delegation is much appreciated in advance. :pray:
 {% endhint %}
 
 ## :tada: Introduction
