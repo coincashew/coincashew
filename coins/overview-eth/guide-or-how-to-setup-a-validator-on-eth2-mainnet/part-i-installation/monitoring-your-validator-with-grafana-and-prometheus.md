@@ -332,7 +332,7 @@ Now you can access Grafana on your local machine by pointing a web browser to [h
 6. Set **Name** to **"Prometheus**"
 7. Set **URL** to [http://localhost:9090](http://localhost:9090)
 8. Click **Save & Test**
-9. **Download and save** your consensus client's json file. More json dashboard options available below. \[ [Lighthouse](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark\_ETH\_staking\_dashboard.json) | [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon\_nodes\_Grafana\_dashboard.json)| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less\_10\_validators.json)| [Prysm > 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more\_10\_validators.json) | [Lodestar](https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboards/lodestar\_summary.json) ]
+9. **Download and save** your consensus client's json file. More json dashboard options available below. \[ [Lighthouse](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark_ETH_staking_dashboard.json) | [Teku ](https://grafana.com/api/dashboards/13457/revisions/2/download)| [Nimbus ](https://raw.githubusercontent.com/status-im/nimbus-eth2/master/grafana/beacon_nodes_Grafana_dashboard.json)| [Prysm ](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/less_10_validators.json)| [Prysm > 10 Validators](https://raw.githubusercontent.com/GuillaumeMiralles/prysm-grafana-dashboard/master/more_10_validators.json) | [Lodestar](https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboards/lodestar_summary.json) ]
 10. **Download and save** your execution client's json file \[ [Geth](https://github.com/ethereum/go-ethereum/files/14211070/Geth-Cancun-Prometheus.json) | [Besu ](https://grafana.com/api/dashboards/10273/revisions/5/download)| [Nethermind](https://raw.githubusercontent.com/NethermindEth/metrics-infrastructure/master/grafana/provisioning/dashboards/nethermind.json) | [Erigon](https://raw.githubusercontent.com/ledgerwatch/erigon/devel/cmd/prometheus/dashboards/erigon.json) | [Reth](https://raw.githubusercontent.com/paradigmxyz/reth/main/etc/grafana/dashboards/overview.json) ]
 11. **Download and save** a [node-exporter dashboard](https://grafana.com/api/dashboards/11074/revisions/9/download) for general system monitoring
 12. Click **Create +** icon > **Import**
@@ -389,13 +389,13 @@ Credits: [https://github.com/sigp/lighthouse-metrics/](https://github.com/sigp/l
 
 ![LH dashboard by Yoldark](../../../../.gitbook/assets/yoldark-lighthouse.png)
 
-JSON Download link: [https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark\_ETH\_staking\_dashboard.json](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark\_ETH\_staking\_dashboard.json)
+JSON Download link: [https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark\_ETH\_staking\_dashboard.json](https://raw.githubusercontent.com/Yoldark34/lighthouse-staking-dashboard/main/Yoldark_ETH_staking_dashboard.json)
 
 Credits: [https://github.com/Yoldark34/lighthouse-staking-dashboard](https://github.com/Yoldark34/lighthouse-staking-dashboard)
 {% endtab %}
 
 {% tab title="Nimbus" %}
-![Dashboard by status-im](../../../../.gitbook/assets/nim\_dashboard.png)
+![Dashboard by status-im](../../../../.gitbook/assets/nim_dashboard.png)
 
 Credits: [https://github.com/status-im/nimbus-eth2/](https://github.com/status-im/nimbus-eth2/)
 
@@ -413,7 +413,7 @@ Credits: [https://grafana.com/grafana/dashboards/13457](https://grafana.com/graf
 {% endtab %}
 
 {% tab title="Prysm" %}
-![Prysm dashboard by GuillaumeMiralles](../../../../.gitbook/assets/prysm\_dash.png)
+![Prysm dashboard by GuillaumeMiralles](../../../../.gitbook/assets/prysm_dash.png)
 
 Credits: [https://github.com/GuillaumeMiralles/prysm-grafana-dashboard](https://github.com/GuillaumeMiralles/prysm-grafana-dashboard)
 
@@ -427,7 +427,7 @@ Credits: [https://github.com/metanull-operator/eth2-grafana/](https://github.com
 {% tab title="Lodestar" %}
 <figure><img src="../../../../.gitbook/assets/lode-dash.png" alt=""><figcaption></figcaption></figure>
 
-Credits: [https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboards/lodestar\_summary.json](https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboards/lodestar\_summary.json)
+Credits: [https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboards/lodestar\_summary.json](https://raw.githubusercontent.com/ChainSafe/lodestar/unstable/dashboards/lodestar_summary.json)
 {% endtab %}
 {% endtabs %}
 
@@ -509,10 +509,10 @@ Get notified of problems with your validators. Choose between email, telegram, d
 
 <summary>Option 2: Telegram Notifications</summary>
 
-1. On the menu of Grafana, select **Notification channels** under the bell icon.
-2. Click on **Add channel**.
-3. Give the notification channel a **name**.
-4. Select **Telegram** from the Type list.
+1. On the menu of Grafana, select **Alerting.**
+2. Click on **Contact points menu,** then **+Create contact point** butto&#x6E;**.**
+3. Give the contact point a **name**.
+4. Select **Telegram** from the Integration list.
 5. To complete the **Telegram API settings**, a **Telegram channel** and \*\*bot \*\*are required. For instructions on setting up a bot with `@Botfather`, see [this section](https://core.telegram.org/bots#6-botfather) of the Telegram documentation. You need to create a BOT API token.
 6. Create a new telegram group.
 7. Invite the bot to your new group.
@@ -533,13 +533,14 @@ Get notified of problems with your validators. Choose between email, telegram, d
 
 <summary>Option 3: Discord Notifications</summary>
 
-1. On the menu of Grafana, select **Notification channels** under the bell icon.
-2. Click on **Add channel**.
-3. Add a **name** to the notification channel.
-4. Select **Discord** from the Type list.
+1. On the menu of Grafana, select **Alerting.**
+2. Click on **Contact points menu,** then **+Create contact point** butto&#x6E;**.**
+3. Give the contact point a **name**.
+4. Select **Discord** from the Integration list.
 5. To complete the set up, a Discord server (and a text channel available) as well as a Webhook URL are required. For instructions on setting up a Discord's Webhooks, see [this section](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) of their documentation.
 6. Enter the Webhook **URL** in the Discord notification settings panel.
 7. Click **Send Test**, which will push a confirmation message to the Discord channel.
+8. Now you can create custom alerts from your dashboards. [Visit here to learn how to create alerts.](https://grafana.com/docs/grafana/latest/alerting/create-alerts/)
 
 </details>
 
@@ -547,12 +548,13 @@ Get notified of problems with your validators. Choose between email, telegram, d
 
 <summary>Option 4: Slack Notifications</summary>
 
-1. On the menu of Grafana, select **Notification channels** under the bell icon.
-2. Click on **Add channel**.
-3. Add a **name** to the notification channel.
-4. Select **Slack** from the Type list.
+1. On the menu of Grafana, select **Alerting.**
+2. Click on **Contact points menu,** then **+Create contact point** butto&#x6E;**.**
+3. Give the contact point a **name**.
+4. Select **Slack** from the Integration list.
 5. For instructions on setting up a Slack's Incoming Webhooks, see [this section](https://api.slack.com/messaging/webhooks) of their documentation.
 6. Enter the Slack Incoming Webhook URL in the **URL** field.
 7. Click **Send Test**, which will push a confirmation message to the Slack channel.
+8. Now you can create custom alerts from your dashboards. [Visit here to learn how to create alerts.](https://grafana.com/docs/grafana/latest/alerting/create-alerts/)
 
 </details>
