@@ -1,9 +1,15 @@
 ---
 description: >-
-  Cardano is a decentralised public blockchain and cryptocurrency project and is
-  fully open source. It is the first blockchain platform to evolve out of a
-  scientific philosophy.
+  Cardano is a decentralized, public blockchain platform and cryptocurrency project
+  aiming to provide a secure and scalable infrastructure for the development of
+  decentralized applications (DApps) and smart contracts. A focus on sustainability,
+  security, interoperability and a research-driven approach to development differentiate
+  Cardano. The native cryptocurrency, ADA, is used for transactions as well as staking,
+  enabling users to earn a return on investments and participate in the governance of
+  the ecosystem.
+  
 ---
+<!-- Source: https://www.reddit.com/r/cardano/comments/177a2iz/what_is_cardano/
 
 # Cardano: ADA
 
