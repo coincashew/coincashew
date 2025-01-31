@@ -244,6 +244,50 @@ Exposing the consensus client RPC port will also be required. You will need to a
 
 </details>
 
+<details>
+
+<summary>Withdrawal Address: Can I have different withdraw addresses per validator or only 1 per setup?</summary>
+
+Different withdrawal addresses per validator are possible if you run the ./deposit tool separately for each validator.
+
+</details>
+
+<details>
+
+<summary>Generating Keystores: Can I generate 10 validator keystores and activate them one by one at the launchpad?</summary>
+
+You can but it would require manual editing as you'll need to change the deposit\_data json.
+
+</details>
+
+<details>
+
+<summary>Migrate or Upgrade Staking Setup: How to switch to EthPillar from a V1 Staking setup or other staking tool</summary>
+
+To migrate from a different staking setup, find your most applicable situation:
+
+**Cleanest and most problem-free option**:&#x20;
+
+* 1\) Reformat Ubuntu Operating System
+* 2\) Install EthPillar
+* 3\) Import validator keys
+
+**Existing V1 Staking Setup:** OGs and genesis stakers :saluting\_face:
+
+* 1\) [Uninstall V1 Staking Setup](archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-ii-maintenance/uninstalling-v1-staking-node.md)
+* 2\) Install EthPillar
+* 3\) Import validator keys
+
+**Other staking automation tools or cloud hosted setups:**&#x20;
+
+* 1\) Uninstall / cancel / existing tool or service provider
+* 2\) Install EthPillar
+* 3\) Import validator keys
+
+:white\_check\_mark: **To avoid slashing penalties**, ensure your validator keys are deleted from existing staking setups.
+
+</details>
+
 ## :joy: POAP
 
 Are you a EthPillar Enjooyer? [Support this public good by purchasing a limited edition POAP!](https://checkout.poap.xyz/169495)
