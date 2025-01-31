@@ -7,7 +7,7 @@ description: >-
 
 # Guide: How to Set Up a Cardano Stake Pool
 
-## :thumbsup:Your GitHub Contributions Welcome
+## :thumbsup: Your GitHub Contributions Welcome
 
 The _How to Set Up a Cardano Stake Pool_ guide is fully open source and fully powered by stake pool operators like you.
 

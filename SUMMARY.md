@@ -191,6 +191,7 @@
   * [Guide: How to buy ETH](coins/overview-eth/guide-how-to-buy-eth.md)
 * [Cardano: ADA](coins/overview-ada/README.md)
   * [Guide: How to Set Up a Cardano Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/README.md)
+    * [Benefits of Operating a Cardano Stake Pool](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/benefits.md)
     * [PART I - INSTALLATION](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/README.md)
       * [Prerequisites](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/prerequisites.md)
       * [Hardening an Ubuntu Server](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/part-i-installation/hardening-an-ubuntu-server.md)
