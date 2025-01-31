@@ -2,6 +2,8 @@
 
 The Cardano Resource Index aims to present a well-rounded, unbiased collection of general Cardano resources available online and useful for stake pool operators, listed alphabetically by name or topic, including an accurate description of content available at each resource.
 
+[11 Blockchain Tenets: Towards a Blockchain Bill of Rights](https://iohk.io/en/blog/posts/2024/10/11/the-11-blockchain-tenets-towards-a-blockchain-bill-of-rights/) describes general principles that are widely accepted by the Cardano community and reflect the basic rights of community members, as users and contributors to the ecosystem.
+
 [1694.IO](https://www.1694.io/en) explains the current on-chain decentralized governance model that members of the Cardano ecosystem employ to cooperate and collaborate in a shared vision for a more sustainable future for everyone.
 
 [BlockFrost.io](https://blockfrost.io/) offers an Application Programming Interface (API), webhooks and InterPlanetary File System (IPFS) decentralized file storage, allowing you to tap into Cardano's potential without the need for manual checks.
@@ -57,6 +59,8 @@ The Cardano Resource Index aims to present a well-rounded, unbiased collection o
 [Lace](https://www.lace.io/) is a light wallet platform for exploring Cardano and Web3, developed by [Input Output](https://iohk.io/en/).
 
 [Mithril Guide](https://mithril.network/doc/) provides a complete guide to the Mithril project, which allows you to restore the Cardano blockchain on your local computer using snapshots, more quickly than the time required to synchronize the full blockchain ledger from the network.
+
+[Our Cardano](https://www.cardanofoundation.org/our-cardano) provides an understanidng of the Ethos and Principles that inform and shape the participation of the [Cardano Foundation](https://cardanofoundation.org/) in Cardano governance, as well as the role of the organization in the Cardano ecosystem.
 
 [PoolTool](https://pooltool.io/) is an online platform designed to facilitate interaction between Cardano stake pool operators and delegators.
 
