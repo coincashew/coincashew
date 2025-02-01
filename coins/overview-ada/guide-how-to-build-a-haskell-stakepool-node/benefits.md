@@ -2,7 +2,7 @@
 
 Operating a Cardano stake pool is similar to owning a bank. Stake pools help to secure an ecosystem having the potential to continue growing on a global scale, without limits set by geopolitics.
 
-To operate a stake pool, you do not seek permission. You operate the stake pool day to day on your own terms, and only retire if and whenever you want. No one can stop you.
+To operate a stake pool, you do not seek permission. You operate the stake pool day to day on your own terms. You do not need to explain your reasons for being a stake pool operator. No one can stop you. You only retire if and whenever you want.
 
 Theoretically, the Cardano protocol slightly incentivizes community members who delegate stake to your pool to help grow the pool. Practically, the protocol ensures that every stake in the Cardano ecosystem fairly receives approximately the same rate of return. Your careful hard work, dedication and patience contributing to the Cardano ecosystem pay off.
 
