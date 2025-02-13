@@ -7,7 +7,7 @@ description: >-
 
 # Guide: How to Set Up a Cardano Stake Pool
 
-## :thumbsup:Your GitHub Contributions Welcome
+## :thumbsup: Your GitHub Contributions Welcome
 
 The _How to Set Up a Cardano Stake Pool_ guide is fully open source and fully powered by stake pool operators like you.
 
@@ -51,6 +51,10 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :page\_facing\_up: Change Log
 
+* January 31, 2025
+  * Updating version numbers for Cardano Node software
+  * Adding the [Benefits of Operating a Cardano Stake Pool](benefits.md) topic
+  * Updating [Appendix B - Cardano Resource Index](appendix-b-resource-index.md)
 * November 12, 2024
   * Updating version numbers for Cardano Node software
   * Updating secp256k1 installation procedure
