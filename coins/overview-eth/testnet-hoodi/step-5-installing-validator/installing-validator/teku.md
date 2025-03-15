@@ -74,7 +74,7 @@ Paste the following configuration into the file.&#x20;
 
 ```bash
 [Unit]
-Description=Teku Validator Client service for Holesky
+Description=Teku Validator Client service for Hoodi
 Wants=network-online.target
 After=network-online.target
 Documentation=https://www.coincashew.com
@@ -88,7 +88,7 @@ RestartSec=3
 KillSignal=SIGINT
 TimeoutStopSec=900
 ExecStart=/usr/local/bin/teku/bin/teku validator-client \
-  --network=holesky \
+  --network=hoodi \
   --data-path=/var/lib/teku_validator \
   --validator-keys=/var/lib/teku_validator/validator_keys:/var/lib/teku_validator/validator_keys \
   --beacon-node-api-endpoint=http://localhost:5052 \

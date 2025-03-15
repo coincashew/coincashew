@@ -221,8 +221,8 @@ Checkpoint sync allows you to start your consensus layer within minutes instead 
 
 ```bash
 sudo -u consensus /usr/local/bin/nimbus_beacon_node trustedNodeSync \
---network=holesky \
---trusted-node-url=https://holesky.beaconstate.ethstaker.cc \
+--network=hoodi \
+--trusted-node-url=https://hoodi.beaconstate.ethstaker.cc \
 --data-dir=/var/lib/nimbus \
 --backfill=false
 ```
@@ -307,8 +307,8 @@ sudo rm -rf /var/lib/nimbus/db
 
 #Perform checkpoint sync
 sudo -u consensus /usr/local/bin/nimbus_beacon_node trustedNodeSync \
---network=holesky \
---trusted-node-url=https://holesky.beaconstate.ethstaker.cc \
+--network=hoodi \
+--trusted-node-url=https://hoodi.beaconstate.ethstaker.cc \
 --data-dir=/var/lib/nimbus \
 --backfill=false
 

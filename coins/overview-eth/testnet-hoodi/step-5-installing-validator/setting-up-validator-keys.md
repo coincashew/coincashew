@@ -8,13 +8,13 @@ Every 32 ETH you own allows you to make 1 validator. You can run thousands of va
 
 <details>
 
-<summary>Option 1: Ethstaker's #cheap-holesky-validator Channel</summary>
+<summary>Option 1: Ethstaker's #cheap-hoodi-validator Channel</summary>
 
-* **Step 1**: Visit the [Ethstaker Discord](https://discord.io/ethstaker) and join the #cheap-holesky-validator channel
+* **Step 1**: Visit the [Ethstaker Discord](https://discord.io/ethstaker) and join the #cheap-hoodi-validator channel
 
-- **Step 2**: Use the `/cheap-holesky-deposit` slash command and follow the instructions from the bot. You need to start typing the slash command and it will show above your input box where you can use it.
+- **Step 2**: Use the `/cheap-hoodi-deposit` slash command and follow the instructions from the bot. You need to start typing the slash command and it will show above your input box where you can use it.
 
-* **Requirement**: In order to use the cheap holesky validator process, you must now set your withdrawal address to `0x4D496CcC28058B1D74B7a19541663E21154f9c84` when creating your validator keys and deposit file. This is to prevent abuses of this service.
+* **Requirement**: In order to use the cheap hoodi validator process, you must now set your withdrawal address to `0x4D496CcC28058B1D74B7a19541663E21154f9c84` when creating your validator keys and deposit file. This is to prevent abuses of this service.
 
 </details>
 
@@ -22,9 +22,9 @@ Every 32 ETH you own allows you to make 1 validator. You can run thousands of va
 
 <summary>Option 2: Use faucets from pk910 / axol.io / google</summary>
 
-* pk910: [https://holesky-faucet.pk910.de](https://holesky-faucet.pk910.de/)
+* pk910: https://hoodi-faucet.pk910.de
 * axol.io: [https://faucet.axol.io/](https://faucet.axol.io/)
-* google: [https://cloud.google.com/application/web3/faucet/ethereum/holesky](https://cloud.google.com/application/web3/faucet/ethereum/holesky)
+* google: https://cloud.google.com/application/web3/faucet/ethereum/hoodi
 
 </details>
 
@@ -544,27 +544,27 @@ Expected sample output:
 
 ## :woman\_technologist: 4. Deposit transactions at the Launchpad
 
-1. Follow the walk-through at the Launchpad: [https://holesky.launchpad.ethstaker.cc](https://holesky.launchpad.ethstaker.cc)
+1. Follow the walk-through at the Launchpad: [https://hoodi.launchpad.ethstaker.cc](https://hoodi.launchpad.ethstaker.cc)
 
 {% hint style="danger" %}
-**Do not send real mainnet ETH during this process!** :octagonal\_sign: Use only Holesky ETH.
+**Do not send real mainnet ETH during this process!** :octagonal\_sign: Use only Hoodi ETH.
 {% endhint %}
 
 2. Upload your`deposit_data-#########.json` found in the `validator_keys` directory.
-3. Connect the launchpad with your wallet, review and accept terms. Ensure you're connected to **Holešky** network.
+3. Connect the launchpad with your wallet, review and accept terms. Ensure you're connected to **Hoodi** network.
 
 {% hint style="info" %}
 :whale: **Batch Depositing Tip**: If you have many deposits to make for many validators, consider using [Abyss.finance's eth2depositor tool.](https://abyss.finance/eth2depositor) This greatly improves the deposit experience as multiple deposits can be batched into one transaction, thereby saving gas fees and saving your fingers by minimizing Metamask clicking.
 
-On the tool's dropdown box, select **Holešky** network.
+On the tool's dropdown box, select **Hoodi** network.
 
 Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://twitter.com/AbyssFinance/status/1379732382044069888)
 {% endhint %}
 
 4. Confirm the transaction(s). There's one deposit transaction of 32 ETH for each validator.
 
-* **Deposit Example**: If you want to run 3 validators you will need to have (32 x 3) = 96 Holesky ETH plus some extra to cover the gas fees.
-* **Verify Deposit Contract:** Your transaction is depositing your ETH to the Holesky Deposit Contract address.**Check**, _double-check_, _**triple-check**_ that the Holesky Deposit Contract address is correct. [`0x4242424242424242424242424242424242424242`](https://holesky.beaconcha.in/address/4242424242424242424242424242424242424242)
+* **Deposit Example**: If you want to run 3 validators you will need to have (32 x 3) = 96 Hoodi ETH plus some extra to cover the gas fees.
+* **Verify Deposit Contract:** Your transaction is depositing your ETH to the Hoodi Deposit Contract address.**Check**, _double-check_, _**triple-check**_ that the Hoodi Deposit Contract address is correct. `0x4242424242424242424242424242424242424242`
 * **Ledger Nano Hardware wallet users**: If you encounter difficulty making the deposit transaction, enable blind signing and contract data.
 
 ## 4. Review backups

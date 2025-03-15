@@ -170,7 +170,7 @@ ExecStart=/usr/local/bin/lodestar/lodestar beacon \
   --targetPeers 100 \
   --metrics.port 8008 \
   --metrics true \
-  --checkpointSyncUrl https://holesky.beaconstate.ethstaker.cc \
+  --checkpointSyncUrl https://hoodi.beaconstate.ethstaker.cc \
   --jwt-secret /secrets/jwtsecret \
   --execution.urls http://127.0.0.1:8551 \
   --suggestedFeeRecipient <0x_CHANGE_THIS_TO_MY_ETH_FEE_RECIPIENT_ADDRESS>

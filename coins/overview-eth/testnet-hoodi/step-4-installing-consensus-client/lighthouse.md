@@ -152,7 +152,7 @@ ExecStart=/usr/local/bin/lighthouse bn \
   --staking \
   --validator-monitor-auto \
   --metrics \
-  --checkpoint-sync-url=https://holesky.beaconstate.ethstaker.cc \
+  --checkpoint-sync-url=https://hoodi.beaconstate.ethstaker.cc \
   --port 9000 \
   --quic-port 9001 \
   --http-port 5052 \

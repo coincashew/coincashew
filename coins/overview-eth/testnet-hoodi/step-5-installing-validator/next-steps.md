@@ -14,7 +14,7 @@
 
 **Activated**: When you're activated, your validator will begin creating and voting on blocks while earning staking rewards.
 
-**Quick monitoring**: Use [https://holesky.beaconcha.in](https://holesky.beaconcha.in/) to create alerts and track your validator's performance.
+**Quick monitoring**: Use [https://hoodi.beaconcha.in](https://hoodi.beaconcha.in) to create alerts and track your validator's performance.
 
 </details>
 
@@ -28,9 +28,9 @@ Syncing the consensus client is instantaneous with checkpoint sync but the execu
 
 **How do I know I'm fully synced?**
 
-* Check your execution client's logs and compare the block number against the most recent block on [https://holesky.etherscan.io](https://holesky.etherscan.io/)
+* Check your execution client's logs and compare the block number against the most recent block on [https://hoodi.etherscan.io](https://hoodi.etherscan.io)
   * Check EL logs: `journalctl -fu execution`
-* Thanks to checkpoint sync, your consensus client's is instantly synched. You can compare the slot number against the most recent slot on [https://holesky.beaconcha.in](https://holesky.beaconcha.in/)
+* Thanks to checkpoint sync, your consensus client's is instantly synched. You can compare the slot number against the most recent slot on [https://hoodi.beaconcha.in](https://hoodi.beaconcha.in)
   * Check CL logs: `journalctl -fu consensus`
 
 
