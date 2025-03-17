@@ -564,7 +564,7 @@ Source: [https://twitter.com/AbyssFinance/status/1379732382044069888](https://tw
 4. Confirm the transaction(s). There's one deposit transaction of 32 ETH for each validator.
 
 * **Deposit Example**: If you want to run 3 validators you will need to have (32 x 3) = 96 Hoodi ETH plus some extra to cover the gas fees.
-* **Verify Deposit Contract:** Your transaction is depositing your ETH to the Hoodi Deposit Contract address.**Check**, _double-check_, _**triple-check**_ that the Hoodi Deposit Contract address is correct. `0x4242424242424242424242424242424242424242`
+* **Verify Deposit Contract:** Your transaction is depositing your ETH to the Hoodi Deposit Contract address.**Check**, _double-check_, _**triple-check**_ that the Hoodi Deposit Contract address is correct. 0x00000000219ab540356cBB839Cbe05303d7705Fa
 * **Ledger Nano Hardware wallet users**: If you encounter difficulty making the deposit transaction, enable blind signing and contract data.
 
 ## 4. Review backups
