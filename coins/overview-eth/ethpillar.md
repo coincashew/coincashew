@@ -35,7 +35,7 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 
 ## :fire: Features
 
-:chains: **Ephemery Testnet Support**: Quickest and easiest way run a node now with native Besu-Teku and ethstaker-deposit-cli integrations.
+:chains: **Hoodi and Ephemery Testnet Support**: Quickest and easiest way run a node now with native Besu-Teku and ethstaker-deposit-cli integrations.
 
 :droplet: **Lido CSM Integration**: Deploys in minutes and start staking via [Lido's CSM with as little as 2.4 ETH](https://csm.testnet.fi/?ref=ethpillar).
 
