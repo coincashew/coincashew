@@ -58,7 +58,7 @@ Only one execution client is required per node.
 
 ## Comparison of Execution Clients
 
-<table><thead><tr><th>Client</th><th width="111">RAM Use</th><th>Minimum Database Size</th><th>Database Growth</th><th>Time to sync</th></tr></thead><tbody><tr><td><strong>Nethermind</strong></td><td>8 GB</td><td>0.95 TB</td><td>18 GB/week</td><td>Fastest, 2hrs+</td></tr><tr><td><strong>Besu</strong></td><td>12 GB</td><td>1.2 TB</td><td>10 GB/week</td><td>Medium, 16hrs+</td></tr><tr><td><strong>Geth</strong></td><td>8 GB</td><td>1.2 TB</td><td>8 GB/week</td><td>Fast, 8hrs+</td></tr><tr><td><strong>Erigon</strong></td><td>8 GB</td><td>1.2 TB</td><td>8 GB/week</td><td>Medium, 16hrs+</td></tr><tr><td><strong>Reth</strong></td><td>10 GB</td><td>1.2 TB</td><td>4GB/week</td><td>Medium, 16hrs+</td></tr></tbody></table>
+<table><thead><tr><th>Client</th><th width="111">RAM Use</th><th>Minimum Database Size</th><th>Database Growth</th><th>Time to sync</th></tr></thead><tbody><tr><td><strong>Nethermind</strong></td><td>8 GB</td><td>0.95 TB</td><td>18 GB/week</td><td>Fastest, 2hrs+</td></tr><tr><td><strong>Besu</strong></td><td>12 GB</td><td>1.2 TB</td><td>10 GB/week</td><td>Medium, 16hrs+</td></tr><tr><td><strong>Geth</strong></td><td>8 GB</td><td>1.2 TB</td><td>8 GB/week</td><td>Fast, 8hrs+</td></tr><tr><td><strong>Erigon 3</strong></td><td>8 GB</td><td>0.92 GB</td><td>8 GB/week</td><td>Medium, 16hrs+</td></tr><tr><td><strong>Reth</strong></td><td>10 GB</td><td>1.2 TB</td><td>4GB/week</td><td>Medium, 16hrs+</td></tr></tbody></table>
 
 #### Notes:
 

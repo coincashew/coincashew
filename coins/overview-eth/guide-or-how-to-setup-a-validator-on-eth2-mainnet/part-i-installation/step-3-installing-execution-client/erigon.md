@@ -147,7 +147,8 @@ ExecStart=/usr/local/bin/erigon \
    --pprof \
    --prune htc \
    --prune.r.before=11052984 \
-   --authrpc.jwtsecret=/secrets/jwtsecret
+   --authrpc.jwtsecret=/secrets/jwtsecret \
+   --externalcl=true
 
 [Install]
 WantedBy=multi-user.target
