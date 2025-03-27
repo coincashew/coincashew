@@ -18,7 +18,7 @@ A Ethereum Staking node is the previous plus a Validator client.
 
 ## :wave: Introduction
 
-This guide was written for aspiring Ethereum stakers who have basic familiarity with command line tools and it was tested against Ubuntu 22.04.1 LTS client. You’ll want a dedicated cloud VPS or local desktop/server/laptop running a clean install of Ubuntu preferably.
+This guide was written for aspiring Ethereum stakers who have basic familiarity with command line tools and it was tested against Ubuntu 24.04 LTS client. You’ll want a dedicated cloud VPS or local desktop/server/laptop running a clean install of Ubuntu preferably.
 
 ### Terminology
 
@@ -56,7 +56,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 
 ## :man\_technologist: Experience required to be a successful ETH Staker
 
-* have studied [Ethstaker's Staking for Beginners](https://www.reddit.com/r/ethstaker/wiki/staking\_for\_beginners/)
+* have studied [Ethstaker's Staking for Beginners](https://www.reddit.com/r/ethstaker/wiki/staking_for_beginners/)
 * have perused the vast tomes of the [EthStaker Knowledge Base](https://docs.ethstaker.cc/ethstaker-knowledge-base/)
 
 ## :man\_lifting\_weights: Recommended Node Setup Requirements
@@ -79,7 +79,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 :cd: **Storage Suggestion**: Check out the following to find your ideal NVME or SSD drive.
 
 * [**Yorick's Storage Advice**](https://gist.github.com/yorickdowne/f3a3e79a573bf35767cd002cc977b038): Refer to Yorick's Great and less great SSDs for Ethereum nodes
-* [**Top SSD List**](https://docs.google.com/spreadsheets/d/1B27\_j9NDPU3cNlj2HKcrfpJKHkOf-Oi1DbuuQva2gT4/edit)**:** Suitable drives are identified as Mid-Range or better.
+* [**Top SSD List**](https://docs.google.com/spreadsheets/d/1B27_j9NDPU3cNlj2HKcrfpJKHkOf-Oi1DbuuQva2gT4/edit)**:** Suitable drives are identified as Mid-Range or better.
 {% endhint %}
 
 <figure><img src="../../../../.gitbook/assets/ethereum-inside.png" alt=""><figcaption><p>Ethereum Staking Node</p></figcaption></figure>
@@ -101,7 +101,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 |   Barrier to Entry   | <p>Plus - Can re-use or re-purpose existing hardware<br><br>Minus - Initial cost to purchase new computer equipment</p>                            | Plus - Renting a VPS might require a lower initial investment as you can pay monthly.                                                                                       |
 |   Decentralization   | Plus - Home staking is the **gold standard** for Ethereum decentralization, nothing bets it!                                                       | Minus - VPS cloud hosts like [Netcup](https://www.netcup.eu/bestellen/produkt.php?produkt=3026) or AmazonWebServices are by nature more centralized.                        |
 |     Customization    | Plus - More fine control over hardware configuration                                                                                               | Minus - May be limited choices and hardware can be shared. For example, a common issue is insufficient disk storage I/O speeds (IOPS).                                      |
-|       Security       | Plus - As secure as your home and personal [OPSEC](https://en.wikipedia.org/wiki/Operations\_security)                                             | <p>Plus - Enterprise-grade, professional data centers.</p><p>Minus - Not your hardware, not your node. It's possible the hosting provide can view your node's contents.</p> |
+|       Security       | Plus - As secure as your home and personal [OPSEC](https://en.wikipedia.org/wiki/Operations_security)                                              | <p>Plus - Enterprise-grade, professional data centers.</p><p>Minus - Not your hardware, not your node. It's possible the hosting provide can view your node's contents.</p> |
 |        Freedom       | <p>Plus - Do whatever you want. Plan your own upgrades.<br><br>Minus - With great freedom and power, you are solely responsible for your node.</p> | <p>Plus - Professionally managed.</p><p><br>Minus - At the mercy of the host's actions, data center outages are possible.</p>                                               |
 
 ## :tools: Setup Ubuntu

@@ -18,7 +18,7 @@ A Ethereum Staking node is the previous plus a Validator client.
 
 ## :wave: Introduction
 
-This guide was written for aspiring Ethereum stakers who have basic familiarity with command line tools and it was tested against Ubuntu 22.04.1 LTS client. You’ll want a dedicated cloud VPS or local desktop/server/laptop running a clean install of Ubuntu preferably.
+This guide was written for aspiring Ethereum stakers who have basic familiarity with command line tools and it was tested against Ubuntu 24.04 LTS client. You’ll want a dedicated cloud VPS or local desktop/server/laptop running a clean install of Ubuntu preferably.
 
 ### Terminology
 
