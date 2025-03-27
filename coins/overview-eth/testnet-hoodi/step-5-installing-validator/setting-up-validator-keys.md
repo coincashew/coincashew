@@ -36,7 +36,7 @@ Every 32 ETH you own allows you to make 1 validator. You can run thousands of va
 
 {% hint style="info" %}
 Safe {Wallet} Multisig Links:\
-Hoodi - [https://](https://holesky-safe.protofire.io/)ToBeDetermined\
+Hoodi - [https://app.safe.protofire.io](https://app.safe.protofire.io)\
 Mainnet - [https://app.safe.global/welcome](https://app.safe.global/welcome)
 {% endhint %}
 
