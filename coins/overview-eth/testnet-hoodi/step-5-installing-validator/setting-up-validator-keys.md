@@ -58,9 +58,9 @@ Ways to create your validator keys:
 
 <details>
 
-<summary>Option 1 for Ubuntu - ethstaker-deposit-cli</summary>
+<summary>Option 1 for Ubuntu - ethstaker_deposit-cli</summary>
 
-**1. Download ethstaker-deposit-cli from Github.**
+**1. Download ethstaker\_deposit-cli from Github.**
 
 ```bash
 #Install dependencies
@@ -69,7 +69,7 @@ sudo apt install jq curl -y
 #Setup variables
 RELEASE_URL="https://api.github.com/repos/eth-educators/ethstaker-deposit-cli/releases/latest"
 BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-amd64.tar.gz$)"
-BINARY_FILE="ethstaker-deposit-cli.tar.gz"
+BINARY_FILE="ethstaker_deposit-cli.tar.gz"
 
 echo "Downloading URL: $BINARIES_URL"
 
@@ -79,8 +79,8 @@ wget -O $BINARY_FILE $BINARIES_URL
 #Extract archive
 tar -xzvf $BINARY_FILE -C $HOME
 #Rename
-mv ethstaker_deposit*amd64 ethstaker-deposit-cli
-cd ethstaker-deposit-cli
+mv ethstaker_deposit*amd64 ethstaker_deposit-cli
+cd ethstaker_deposit-cli
 ```
 
 **2. Make a new mnemonic**
@@ -132,7 +132,7 @@ Verifying your keystores:         [####################################]  <N>/<N
 Verifying your deposits:          [####################################]  <N>/<N>
 
 Success!
-Your keys can be found at: /home/username/ethstaker-deposit-cli/validator_keys
+Your keys can be found at: /home/username/ethstaker_deposit-cli/validator_keys
 ```
 
 </details>
@@ -164,7 +164,7 @@ As a 'one-click installer', it provides a clean UI automating the setup and mana
 
 <details>
 
-<summary>Option 3 - Offline Tails with ethstaker-deposit-cli</summary>
+<summary>Option 3 - Offline Tails with ethstaker_deposit-cli</summary>
 
 You will learn how to boot up a windows PC into an airgapped [Tails operating system](https://tails.boum.org/index.en.html).
 
@@ -205,9 +205,9 @@ Select the Tails OS image that you downloaded as the image. Then select the USB 
 
 Then flash the image to the larger USB stick.
 
-**5. Download and verify the ethstaker-deposit-cli**
+**5. Download and verify the ethstaker\_deposit-cli**
 
-Download the latest ethstaker-deposit-cli binary by referring to Option 1's steps.
+Download the latest ethstaker\_deposit-cli binary by referring to Option 1's steps.
 
 Copy the file to the other USB stick.
 
@@ -229,9 +229,9 @@ Choose the USB stick that you loaded up with Tails OS to boot into Tails.
 
 You can boot with all the default settings.
 
-**8. Run the ethstaker-deposit-cli**
+**8. Run the ethstaker\_deposit-cli**
 
-Plug in your other USB key with the `ethstaker-deposit-cli` file.
+Plug in your other USB key with the `ethstaker_deposit-cli` file.
 
 Locate the USB key, mount the drive and add execute permissions.
 
@@ -243,7 +243,7 @@ sudo mkdir -p /media/usb-drive
 # Mount the usb key. Change device name
 sudo mount /dev/sda1 /media/usb-drive
 # Change directories
-cd /media/usb-drive/ethstaker-deposit-cli
+cd /media/usb-drive/ethstaker_deposit-cli
 # Add execute permissions
 sudo chmod +x ./deposit
 ```
@@ -297,7 +297,7 @@ Verifying your keystores:         [####################################]  <N>/<N
 Verifying your deposits:          [####################################]  <N>/<N>
 
 Success!
-Your keys can be found at: /home/username/ethstaker-deposit-cli/validator_keys
+Your keys can be found at: /home/username/ethstaker_deposit-cli/validator_keys
 ```
 
 **Result**: a folder called `validator_keys` containing keystore-m files and deposit\_data.json
@@ -309,7 +309,7 @@ If it hasn't, copy the directory over to your non-Tails USB stick.
 Confirm your validator\_keys are on the USB stick before leaving.
 
 ```bash
-ls /media/usb-drive/ethstaker-deposit-cli/validator_keys
+ls /media/usb-drive/ethstaker_deposit-cli/validator_keys
 ```
 
 :fire: Make sure you have saved your validator keys directory in your other USB stick (non Tails OS) before you shutdown Tails. Tails will delete everything saved on it after you shutdown.
@@ -328,14 +328,14 @@ ls /media/usb-drive/ethstaker-deposit-cli/validator_keys
 ## :arrow\_up: 3. Transfer validator keys to node
 
 {% hint style="info" %}
-**Local node**: Skip this step if you generated your keys on your node with **ethstaker-deposit-cli**. No need to transfer as they're already there.
+**Local node**: Skip this step if you generated your keys on your node with **ethstaker\_deposit-cli**. No need to transfer as they're already there.
 {% endhint %}
 
 After creating the validator keys offline, you'll want to copy these validator keys to your node.
 
 To align with this guide's steps, make the default validator\_keys path on your node.
 
-<pre class="language-bash"><code class="lang-bash"><strong>mkdir -p $HOME/ethstaker-deposit-cli/validator_keys
+<pre class="language-bash"><code class="lang-bash"><strong>mkdir -p $HOME/ethstaker_deposit-cli/validator_keys
 </strong></code></pre>
 
 To transfer validator key files to your node from your local computer, consider using:
@@ -451,7 +451,7 @@ sudo umount /media/usb-drive
 After transfering the files, verify that the keystore-m files are in the proper location on your node.
 
 ```bash
-ls -l $HOME/ethstaker-deposit-cli/validator_keys
+ls -l $HOME/ethstaker_deposit-cli/validator_keys
 ```
 
 Expected sample output:
