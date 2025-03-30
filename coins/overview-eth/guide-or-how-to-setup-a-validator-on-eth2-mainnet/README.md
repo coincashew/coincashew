@@ -11,9 +11,7 @@ description: >-
 :heart: Support us on **Gitcoin** GR22: [https://explorer.gitcoin.co/#/round/42161/610/32](https://explorer.gitcoin.co/#/round/42161/610/32)
 {% endhint %}
 
-## Installation
-
-### :rocket:Option 1: Quickstart with EthPillar - Recommended for most users
+## :rocket:Option 1: Quickstart with EthPillar - Recommended for most users
 
 ### :arrow\_forward:  Ubuntu One-liner Install:
 
@@ -21,7 +19,7 @@ description: >-
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/EthPillar/main/install.sh)"
 ```
 
-😄 **Friendly Node Installer**: Helps you deploy a systemd installation with minority clients Nimbus-Nethermind or Teku-Besu stack in just minutes. MEVboost included.
+😄 **Friendly Node Installer**: Helps you deploy a systemd installation with minority clients Nimbus-Nethermind or Teku-Besu stack in just minutes. MEVboost included. Lido CSM supported.
 
 :floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text user interface (TUI). When EthPillar is deployed, operating your node becomes a breeze.
 

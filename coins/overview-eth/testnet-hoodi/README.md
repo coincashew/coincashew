@@ -7,26 +7,25 @@ description: >-
 
 # 🌠 Guide | How to setup a validator for Ethereum staking on testnet HOODI
 
-{% hint style="danger" %}
-Under Construction.&#x20;
+## :rocket:Option 1: Quickstart with EthPillar - Recommended for most users
 
-When Hoodi launches March 17, 2025, expect turbulence as the tools, client software, and network stabalizes.
-{% endhint %}
+### :arrow\_forward:  Ubuntu One-liner Install:
 
-## Installation
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/coincashew/EthPillar/main/install.sh)"
+```
 
-### :rocket:Option 1: Quickstart with EthPillar
+😄 **Friendly Node Installer**: Helps you deploy a systemd installation with minority clients Nimbus-Nethermind or Teku-Besu stack in just minutes. MEVboost included. Lido CSM supported.
 
-* Recommended for most users.
-* In minutes, rapidly deploys a systemd installation with minority clients Nimbus CL Nethermind EL and mevboost.
-* Supports automated node deployment for both validators and non-staking RPC nodes.
-* When EthPillar is deployed, operating your node becomes a breeze.
+:floppy\_disk: **Ease of use**: No more remembering CLI commands required. Access common node operations via a simple text user interface (TUI). When EthPillar is deployed, operating your node becomes a breeze.
 
-To install EthPillar, [visit the quickstart page.](../ethpillar.md)
+:owl: **Fast Updates**: Quickly find and download the latest consensus/execution release. Less downtime!
+
+#### :exclamation:To learn more about EthPillar, [visit the quickstart page.](../ethpillar.md)
 
 <figure><img src="../../../.gitbook/assets/preview02.png" alt=""><figcaption><p>EthPillar's TUI - Navigate the menu to control your node</p></figcaption></figure>
 
-### :chains:Option 2: Manual Installation
+## :chains:Option 2: Manual Installation
 
 * This guide aims to reduce the reliance on scripts in this section to make the learning process more straightforward and understandable.
 * This approach provides a detailed overview of the steps involved, ensuring stakers have a clear understanding of the process.
