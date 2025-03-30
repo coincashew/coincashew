@@ -5,7 +5,7 @@
 * **Non-Censoring:** Will not filter or censor transactions according to OFAC sanction lists. Also commonly referred to as neutral, unregulated or censorship-free. All types of MEV permitted.
 
 {% hint style="info" %}
-Be sure to select the right network. Relays are available for **Mainnet, Holesky, Goerli and Sepolia Testnets**.
+Be sure to select the right network. Relays are available for **Mainnet, Hoodi, Holesky, Goerli and Sepolia Testnets**.
 {% endhint %}
 
 ## Ethereum Mainnet Relays
@@ -22,6 +22,15 @@ Be sure to select the right network. Relays are available for **Mainnet, Holesky
 | [Wenmerge](https://relay.wenmerge.com)                                                                    | :white\_check\_mark: | https://0x8c7d33605ecef85403f8b7289c8058f440cbb6bf72b055dfe2f3e2c6695b6a1ea5a9cd0eb3a7982927a463feb4c3dae2@relay.wenmerge.com               |
 | [TitanRelay](https://titanrelay.xyz)                                                                      | :white\_check\_mark: | https://0x8c4ed5e24fe5c6ae21018437bde147693f68cda427cd1122cf20819c30eda7ed74f72dece09bb313f2a1855595ab677d@titanrelay.xyz                   |
 
+## Hoodi Testnet Relays
+
+| Relay Name                             |     Non-Censoring    | URL                                                                                                                                        |
+| -------------------------------------- | :------------------: | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| [bloXroute](https://bloxroute.com)     | :white\_check\_mark: | https://0x821f2a65afb70e7f2e820a925a9b4c80a159620582c1766b1b09729fec178b11ea22abb3a51f07b288be815a1a2ff516@bloxroute.hoodi.blxrbdn.com     |
+| [Flashbots](https://www.flashbots.net) |          :x:         | https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@boost-relay-hoodi.flashbots.net |
+| [Titan Relay](http://titanrelay.xyz/)  | :white\_check\_mark: | https://0xaa58208899c6105603b74396734a6263cc7d947f444f396a90f7b7d3e65d102aec7e5e5291b27e08d02c50a050825c2f@hoodi.titanrelay.xyz            |
+| [Aestus](https://aestus.live)          | :white\_check\_mark: | https://0x98f0ef62f00780cf8eb06701a7d22725b9437d4768bb19b363e882ae87129945ec206ec2dc16933f31d983f8225772b6@hoodi.aestus.live               |
+
 ## Holesky Testnet Relays
 
 | Relay Name                                    |     Non-Censoring    | URL                                                                                                                                          |
@@ -31,7 +40,6 @@ Be sure to select the right network. Relays are available for **Mainnet, Holesky
 | [Titan Relay](http://titanrelay.xyz/)         |           ?          | https://0xaa58208899c6105603b74396734a6263cc7d947f444f396a90f7b7d3e65d102aec7e5e5291b27e08d02c50a050825c2f@holesky.titanrelay.xyz            |
 | [Aestus](https://aestus.live)                 | :white\_check\_mark: | https://0xab78bf8c781c58078c3beb5710c57940874dd96aef2835e7742c866b4c7c0406754376c2c8285a36c630346aa5c5f833@holesky.aestus.live               |
 | [Ultra Sound](https://relay.ultrasound.money) | :white\_check\_mark: | https://0xb1559beef7b5ba3127485bbbb090362d9f497ba64e177ee2c8e7db74746306efad687f2cf8574e38d70067d40ef136dc@relay-stag.ultrasound.money       |
-| [TitanRelay](https://titanrelay.xyz)          | :white\_check\_mark: | https://0xaa58208899c6105603b74396734a6263cc7d947f444f396a90f7b7d3e65d102aec7e5e5291b27e08d02c50a050825c2f@holesky.titanrelay.xyz            |
 
 ## Sepolia Testnet Relays
 
