@@ -50,3 +50,5 @@ layout:
 Perhaps you wrote your own guide? Scale, share, and amplify your knowledge. [Your pull request contributions are welcome on GitHub!](contributing/)
 
 > Accelerating the adoption of crypto! Yes, you are.
+
+## :star:Stargazers over time [![Stargazers over time](https://starchart.cc/coincashew/coincashew.svg?variant=adaptive)](https://starchart.cc/coincashew/coincashew)
