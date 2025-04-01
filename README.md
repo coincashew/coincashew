@@ -21,7 +21,7 @@ layout:
 > Learn to do anything with crypto, _better_.
 
 {% hint style="success" %}
-:heart: Support us on **Gitcoin** GR22: [https://explorer.gitcoin.co/#/round/42161/610/32](https://explorer.gitcoin.co/#/round/42161/610/32)
+:heart: Support us on **Gitcoin** GR23: [https://explorer.gitcoin.co/#/round/42161/865/14](https://explorer.gitcoin.co/#/round/42161/865/14)
 {% endhint %}
 
 ## :fire: **HOT TOPICS**
@@ -34,7 +34,7 @@ layout:
 * :chains: Learn to setup your own [Cardano Stake Pool here!](coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/)
 
 {% hint style="info" %}
-:new: **New DISCORD Server: Join** [https://discord.gg/dEpAVWgFNB](https://discord.gg/dEpAVWgFNB)&#x20;
+:new: **New DISCORD Server: Join** [https://discord.gg/dEpAVWgFNB](https://discord.gg/dEpAVWgFNB)
 {% endhint %}
 
 ## :robot: Blazingly helpful

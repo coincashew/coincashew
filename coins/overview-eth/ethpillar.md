@@ -16,7 +16,7 @@ description: >-
 ```
 
 {% hint style="success" %}
-:heart: Support us on **Gitcoin** GR22: [https://explorer.gitcoin.co/#/round/42161/610/32](https://explorer.gitcoin.co/#/round/42161/610/32)
+:heart: Support us on **Gitcoin** GR23: [https://explorer.gitcoin.co/#/round/42161/865/14](https://explorer.gitcoin.co/#/round/42161/865/14)
 {% endhint %}
 
 ## :new: What is EthPillar?
