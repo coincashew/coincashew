@@ -18,7 +18,7 @@ A Ethereum Staking node is the previous plus a Validator client.
 
 ## :wave: Introduction
 
-This guide was written for aspiring Ethereum stakers who have basic familiarity with command line tools and it was tested against Ubuntu 24.04 LTS client. You’ll want a dedicated cloud VPS or local desktop/server/laptop running a clean install of Ubuntu preferably.
+This guide was written for aspiring Ethereum stakers who have basic familiarity with command line tools and it was tested against Ubuntu LTS client. You’ll want a dedicated cloud VPS or local desktop/server/laptop running a clean install of Ubuntu preferably.
 
 ### Terminology
 
@@ -61,7 +61,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 
 ## :man\_lifting\_weights: Recommended Node Setup Requirements
 
-* **Operating system:** Ubuntu 24.04 LTS Server or Desktop
+* **Operating system:** Ubuntu LTS Server or Desktop
 * **Processor:** 4 CPU Cores or more
 * **Memory:** 32GB RAM
 * **Storage:** Testnet: 300GB. Mainnet: 4TB NVME (not QLC).
@@ -106,7 +106,7 @@ As a validator for Ethereum, you will typically have the following abilities:
 
 ## :tools: Setup Ubuntu
 
-With your local or remote node, now you need to install an Operating System. This guide is designed for Ubuntu 22.04.1 LTS.
+With your local or remote node, now you need to install an Operating System. This guide is designed for Ubuntu LTS.
 
 * To install **Ubuntu Server or Desktop**, refer to this [guide](https://docs.ethstaker.cc/ethstaker-knowledge-base/tutorials/installing-linux).
 
