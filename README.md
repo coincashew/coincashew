@@ -51,4 +51,6 @@ Perhaps you wrote your own guide? Scale, share, and amplify your knowledge. [You
 
 > Accelerating the adoption of crypto! Yes, you are.
 
-## :star:Stargazers over time [![Stargazers over time](https://starchart.cc/coincashew/coincashew.svg?variant=adaptive)](https://starchart.cc/coincashew/coincashew)
+## :star:Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/coincashew/coincashew.svg?variant=adaptive)](https://starchart.cc/coincashew/coincashew)
