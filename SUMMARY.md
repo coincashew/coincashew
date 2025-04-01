@@ -288,3 +288,7 @@
     * [Movie: Monero Means Money](coins/overview-xmr/external-reading-material/movie-monero-means-money.md)
     * [Guide: Zero to Monero](coins/overview-xmr/external-reading-material/guide-zero-to-monero.md)
     * [Book: Mastering Monero](coins/overview-xmr/external-reading-material/book-mastering-monero.md)
+
+***
+
+* [verification](verification.md)
