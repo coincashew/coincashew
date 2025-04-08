@@ -154,5 +154,5 @@ You may safely delete the directory.
 
 ```bash
 # Remove default validator_key directory
-sudo rm -r $HOME/staking-deposit-cli/validator_keys
+sudo rm -r $HOME/ethstaker_deposit-cli/validator_keys
 ```
