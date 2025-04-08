@@ -27,7 +27,7 @@ For example `keystore-m_12221_3600_1_0_0-11222333.json` and `keystore-m_12221_36
 Run the following command to create a corresponding password file for every one of your validators.
 
 ```bash
-for f in $HOME/staking-deposit-cli/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt $HOME/staking-deposit-cli/validator_keys/$(basename $f .json).txt; done
+for f in $HOME/ethstaker_deposit-cli/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt $HOME/ethstaker_deposit-cli/validator_keys/$(basename $f .json).txt; done
 ```
 
 Select a tab for your Teku configuration, either **Standalone Validator (Recommended)** or **Combined Beacon Node with Validator**. Running a standalone validator configuration is recommended for best modularity and redundancy.
@@ -38,7 +38,7 @@ Copy your `validator_keys` to the data directory.
 
 ```bash
 sudo mkdir -p /var/lib/teku_validator/validator_keys
-sudo cp $HOME/staking-deposit-cli/validator_keys/keystore* /var/lib/teku_validator/validator_keys
+sudo cp $HOME/ethstaker_deposit-cli/validator_keys/keystore* /var/lib/teku_validator/validator_keys
 ```
 
 Create a service user for the validator service, then create data directories and setup ownership permissions, including hardening the access to this directory.
@@ -143,7 +143,7 @@ Copy your `validator_keys` to the data directory.
 
 ```bash
 sudo mkdir -p /var/lib/teku/validator_keys
-sudo cp $HOME/staking-deposit-cli/validator_keys/keystore* /var/lib/teku/validator_keys
+sudo cp $HOME/ethstaker_deposit-cli/validator_keys/keystore* /var/lib/teku/validator_keys
 ```
 
 Verify that your validator's keystore .json files and validator's passwords .txt files are present by checking the following directory.

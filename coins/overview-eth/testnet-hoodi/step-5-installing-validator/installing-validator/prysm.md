@@ -28,7 +28,7 @@ sudo /usr/local/bin/validator accounts import \
   --accept-terms-of-use \
   --hoodi \
   --wallet-dir=/var/lib/prysm/validators \
-  --keys-dir=$HOME/staking-deposit-cli/validator_keys
+  --keys-dir=$HOME/ethstaker_deposit-cli/validator_keys
 ```
 
 {% hint style="danger" %}

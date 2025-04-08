@@ -13,7 +13,7 @@ Import your validator keys by importing your **keystore file**. Be sure to enter
 sudo lighthouse account validator import \
   --network mainnet \
   --datadir /var/lib/lighthouse \
-  --directory=$HOME/staking-deposit-cli/validator_keys \
+  --directory=$HOME/ethstaker_deposit-cli/validator_keys \
   --reuse-password
 ```
 

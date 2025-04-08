@@ -26,7 +26,7 @@ Every 32 ETH you own allows you to make 1 validator. You can run thousands of va
 * [ ] DO NOT USE AN :octagonal\_sign: **EXCHANGE ADDRESS** :octagonal\_sign: AS WITHDRAWAL ADDRESS.
 
 {% hint style="warning" %}
-**Offline Key Generation Best Practices**: The mnemonic seed (24 words) to your validator should be protected by keeping them offline. Use Tails OS (see option 3) or a [Linux Live USB with staking-deposit-cli](https://www.youtube.com/watch?v=oDELXYNSS5w) (Option 1) or Wagyu to generate keys.&#x20;
+**Offline Key Generation Best Practices**: The mnemonic seed (24 words) to your validator should be protected by keeping them offline. Use Tails OS (see option 3) or a [Linux Live USB](https://www.youtube.com/watch?v=oDELXYNSS5w)(Option 1) or Wagyu to generate keys.&#x20;
 
 If this is not possible, at least physically disconnect from the network by unplugging ethernet cable or disconnecting from Wifi.
 {% endhint %}
@@ -35,18 +35,18 @@ Ways to create your validator keys:
 
 <details>
 
-<summary>Option 1 for Ubuntu - staking-deposit-cli</summary>
+<summary>Option 1 for Ubuntu - ethstaker_deposit-cli</summary>
 
-#### 1. Download [staking-deposit-cli](https://github.com/ethereum/staking-deposit-cli#introduction) from Github.
+#### 1. Download ethstaker\_deposit-cli from Github.
 
 ```bash
 #Install dependencies
 sudo apt install jq curl -y
 
 #Setup variables
-RELEASE_URL="https://api.github.com/repos/ethereum/staking-deposit-cli/releases/latest"
+RELEASE_URL="https://api.github.com/repos/eth-educators/ethstaker-deposit-cli/releases/latest"
 BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux-amd64.tar.gz$)"
-BINARY_FILE="staking-deposit-cli.tar.gz"
+BINARY_FILE="ethstaker_deposit-cli.tar.gz"
 
 echo "Downloading URL: $BINARIES_URL"
 
@@ -56,8 +56,8 @@ wget -O $BINARY_FILE $BINARIES_URL
 #Extract archive
 tar -xzvf $BINARY_FILE -C $HOME
 #Rename
-mv staking_deposit-cli*amd64 staking-deposit-cli
-cd staking-deposit-cli
+mv ethstaker_deposit*amd64 ethstaker_deposit-cli
+cd ethstaker_deposit-cli
 ```
 
 #### 2. Make a new mnemonic
@@ -73,9 +73,11 @@ Replace `<HARDWARE_WALLET_ADDRESS>` with withdrawal address.
 * Choose the language of the mnemonic word list
 * Choose how many new validators you wish to run
 * Create a **keystore password** that secures your validator keystore files
-* Repeat your **keystore password** for confirmation
-* Write down your 24 word mnemonic seed
-* Type your mnemonic, first 4 letters is enough
+
+- Repeat your **keystore password** for confirmation
+- Answer yes if you want to generate compounding 0x02 validator
+- Write down your 24 word mnemonic seed
+- Type your mnemonic, first 4 letters is enough
 
 You will see the following messages after successfully generated the keystore(s) and the deposit(s):
 
@@ -107,47 +109,8 @@ Verifying your keystores:         [####################################]  &#x3C;
 Verifying your deposits:          [####################################]  &#x3C;N>/&#x3C;N>
 
 Success!
-Your keys can be found at: /home/username/staking-deposit-cli/validator_keys
+Your keys can be found at: /home/username/ethstaker_deposit-cli/validator_keys
 </code></pre>
-
-#### 3. Verify mnemonic seed
-
-By re-generating the keystore files and comparing them to the originals, the mnemonic seen is verified correct by being reproducible.
-
-```bash
-#Make temp directory to verify seeds
-mkdir -p ~/staking-deposit-cli/verify_seed
-#Re-generate keys
-./deposit existing-mnemonic --chain mainnet --folder verify_seed --execution_address <HARDWARE_WALLET_ADDRESS>
-```
-
-* Choose your language
-* Repeat your withdrawal/execution address for confirmation
-* Type your mnemonic seed, first 4 letters is enough
-* Since this is the first time generating keys, enter the index number as 0.
-* Repeat the index to confirm, 0.
-* Enter how many validators you with to run (same as before)
-* Enter any keystore password, since this is temporary and will be deleted
-
-Compare the **deposit\_data** files.
-
-```bash
-diff -s validator_keys/deposit_data*.json verify_seed/validator_keys/deposit_data*.json
-```
-
-When the **deposit\_data** files are the same, this means your mnemonic seed is correct.
-
-Example output:
-
-```
-Files validator_keys/deposit_data-16945983.json and verify_seed/validator_keys/deposit_data-16647657.json are identical
-```
-
-Clean up duplicate files.
-
-```bash
-rm -r verify_seed
-```
 
 </details>
 
@@ -178,7 +141,7 @@ As a 'one-click installer', it provides a clean UI automating the setup and mana
 
 <details>
 
-<summary>Option 3 - Offline Tails with staking-deposit-cli</summary>
+<summary>Option 3 - Offline Tails with ethstaker_deposit-cli</summary>
 
 You will learn how to boot up a windows PC into an airgapped [Tails operating system](https://tails.boum.org/index.en.html).
 
@@ -205,7 +168,7 @@ For Windows, use one of
 
 * [Etcher](https://tails.boum.org/etcher/Etcher-Portable.exe)
 * [Win32 Disk Imager](https://win32diskimager.org/#download)
-* [Rufus](https://rufus.ie/en\_US/)
+* [Rufus](https://rufus.ie/en_US/)
 
 For Mac, download [Etcher](https://tails.boum.org/etcher/Etcher.dmg)
 
@@ -219,9 +182,9 @@ Select the Tails OS image that you downloaded as the image. Then select the USB 
 
 Then flash the image to the larger USB stick.
 
-#### **5. Download and verify the staking-deposit-cli**
+#### **5. Download and verify the ethstaker\_deposit-cli**
 
-Download the latest staking-deposit-cli binary by referring to Option 1's steps.
+Download the latest ethstaker\_deposit-cli binary by referring to Option 1's steps.
 
 Copy the file to the other USB stick.
 
@@ -243,9 +206,9 @@ Choose the USB stick that you loaded up with Tails OS to boot into Tails.
 
 You can boot with all the default settings.
 
-#### **8. Run the staking-deposit-cli**
+#### **8. Run** ethstaker\_deposit-cli
 
-Plug in your other USB key with the `staking-deposit-cli` file.&#x20;
+Plug in your other USB key with the `ethstaker_deposit-cli` file.&#x20;
 
 Locate the USB key, mount the drive and add execute permissions.
 
@@ -257,7 +220,7 @@ sudo mkdir -p /media/usb-drive
 # Mount the usb key. Change device name
 sudo mount /dev/sda1 /media/usb-drive
 # Change directories
-cd /media/usb-drive/staking-deposit-cli
+cd /media/usb-drive/ethstaker_deposit-cli
 # Add execute permissions
 sudo chmod +x ./deposit
 ```
@@ -276,6 +239,7 @@ Replace `<HARDWARE_WALLET_ADDRESS>` with withdrawal address.
 * Choose how many new validators you wish to run
 * Create a **keystore password** that secures your validator keystore files
 * Repeat your **keystore password** for confirmation
+* Answer yes if you want to generate compounding 0x02 validator
 * Write down your 24 word mnemonic seed
 * Type your mnemonic, first 4 letters is enough
 
@@ -309,49 +273,10 @@ Verifying your keystores:         [####################################]  &#x3C;
 Verifying your deposits:          [####################################]  &#x3C;N>/&#x3C;N>
 
 Success!
-Your keys can be found at: /home/username/staking-deposit-cli/validator_keys
+Your keys can be found at: /home/username/ethstaker_deposit-cli/validator_keys
 </code></pre>
 
 **Result**: a folder called `validator_keys` containing keystore-m files and deposit\_data.json
-
-#### 10. Verify mnemonic seed
-
-By re-generating the keystore files and comparing them to the originals, the mnemonic seen is verified correct by being reproducible.
-
-```bash
-#Make temp directory to verify seeds
-mkdir verify_seed
-#Re-generate keys
-./deposit existing-mnemonic --chain mainnet --folder verify_seed --execution_address <HARDWARE_WALLET_ADDRESS>
-```
-
-* Choose your language
-* Repeat your withdrawal/execution address for confirmation
-* Type your mnemonic seed, first 4 letters is enough
-* Since this is the first time generating keys, enter the index number as 0.
-* Repeat the index to confirm, 0.
-* Enter how many validators you with to run (same as before)
-* Enter any keystore password, since this is temporary and will be deleted
-
-Compare the **deposit\_data** files.
-
-```bash
-diff -s validator_keys/deposit_data*.json verify_seed/validator_keys/deposit_data*.json
-```
-
-When the **deposit\_data** files are the same, this means your mnemonic seed is correct.
-
-Example output:
-
-```
-Files validator_keys/deposit_data-16945983.json and verify_seed/validator_keys/deposit_data-16647657.json are identical
-```
-
-Clean up duplicate files.
-
-```bash
-rm -r verify_seed
-```
 
 If you ran this command directly from your non-Tails USB stick, the validator keys should stay on it.&#x20;
 
@@ -360,7 +285,7 @@ If it hasn't, copy the directory over to your non-Tails USB stick.
 Confirm your validator\_keys are on the USB stick before leaving.
 
 ```bash
-ls /media/usb-drive/staking-deposit-cli/validator_keys
+ls /media/usb-drive/ethstaker_deposit-cli/validator_keys
 ```
 
 :fire: Make sure you have saved your validator keys directory in your other USB stick (non Tails OS) before you shutdown Tails. Tails will delete everything saved on it after you shutdown.
@@ -379,14 +304,14 @@ ls /media/usb-drive/staking-deposit-cli/validator_keys
 ## :arrow\_up: 3. Transfer validator keys to node
 
 {% hint style="info" %}
-**Local node**: Skip this step if you generated your keys on your node with **staking-deposit-cli**. No need to transfer as they're already there.
+**Local node**: Skip this step if you generated your keys on your node with **ethstaker\_deposit-cli**. No need to transfer as they're already there.
 {% endhint %}
 
 After creating the validator keys offline, you'll want to copy these validator keys to your node.
 
 To align with this guide's steps, make the default validator\_keys path on your node.
 
-<pre class="language-bash"><code class="lang-bash"><strong>mkdir -p $HOME/staking-deposit-cli/validator_keys
+<pre class="language-bash"><code class="lang-bash"><strong>mkdir -p $HOME/ethstaker_deposit-cli/validator_keys
 </strong></code></pre>
 
 To transfer validator key files to your node from your local computer, consider using:
@@ -402,7 +327,7 @@ To transfer validator key files to your node from your local computer, consider 
 Transfer the **keystore-m\_xxxxxxxx.json** files to the following location on your node.
 
 ```bash
-$HOME/staking-deposit-cli/validator_keys
+$HOME/ethstaker_deposit-cli/validator_keys
 ```
 
 </details>
@@ -447,9 +372,9 @@ Copy the keys. Adjust the path names if needed.
 
 ```bash
 # Create a directory on the usb drive to copy the keys into
-sudo mkdir -p /media/usb-drive/staking-deposit-cli/validator_keys
+sudo mkdir -p /media/usb-drive/ethstaker_deposit-cli/validator_keys
 # Copy the keys to the usb drive
-sudo cp $HOME/staking-deposit-cli/validator_keys/*.json /media/usb-drive/staking-deposit-cli/validator_keys
+sudo cp $HOME/ethstaker_deposit-cli/validator_keys/*.json /media/usb-drive/ethstaker_deposit-cli/validator_keys
 # Cleanup
 sudo umount /media/usb-drive
 ```
@@ -490,9 +415,9 @@ Copy the keys. Adjust the path names if needed.
 
 ```bash
 # Create a directory copy the keys into
-sudo mkdir -p $HOME/staking-deposit-cli/validator_keys
+sudo mkdir -p $HOME/ethstaker_deposit-cli/validator_keys
 # Copy the keys to the default path
-sudo cp /media/usb-drive/staking-deposit-cli/validator_keys/*.json $HOME/staking-deposit-cli/validator_keys
+sudo cp /media/usb-drive/ethstaker_deposit-cli/validator_keys/*.json $HOME/ethstaker_deposit-cli/validator_keys
 # Cleanup
 sudo umount /media/usb-drive
 ```
@@ -502,7 +427,7 @@ sudo umount /media/usb-drive
 After transferring the files, verify that the keystore-m files are in the proper location on your node.
 
 ```bash
-ls -l $HOME/staking-deposit-cli/validator_keys
+ls -l $HOME/ethstaker_deposit-cli/validator_keys
 ```
 
 Expected sample output:

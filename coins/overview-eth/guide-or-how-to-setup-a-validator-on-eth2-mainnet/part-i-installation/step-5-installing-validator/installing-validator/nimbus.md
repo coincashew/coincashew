@@ -16,7 +16,7 @@ Enter your **keystore password** to import accounts.
 
 ```bash
 sudo /usr/local/bin/nimbus_beacon_node deposits import \
-  --data-dir=/var/lib/nimbus_validator $HOME/staking-deposit-cli/validator_keys
+  --data-dir=/var/lib/nimbus_validator $HOME/ethstaker_deposit-cli/validator_keys
 ```
 
 {% hint style="danger" %}
