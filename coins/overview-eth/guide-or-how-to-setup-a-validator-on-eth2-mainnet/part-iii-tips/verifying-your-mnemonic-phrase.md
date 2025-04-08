@@ -11,7 +11,7 @@ If this is not possible, at least physically disconnect from the network by unpl
 Using the pre-built staking-deposit-cli executable,
 
 ```bash
-cd $HOME/staking-deposit-cli 
+cd $HOME/ethstaker_deposit-cli
 ./deposit existing-mnemonic --chain mainnet
 ```
 

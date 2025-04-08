@@ -81,7 +81,7 @@ Import your validator keys by importing your **keystore file**. Be sure to enter
 sudo lighthouse account validator import \
   --network mainnet \
   --datadir /var/lib/lighthouse \
-  --directory=$HOME/staking-deposit-cli/validator_keys \
+  --directory=$HOME/ethstaker_deposit-cli/validator_keys \
   --reuse-password
 ```
 
@@ -138,7 +138,7 @@ cd /usr/local/bin/lodestar
 sudo ./lodestar validator import \
   --network mainnet \
   --dataDir="/var/lib/lodestar/validators" \
-  --keystore=$HOME/staking-deposit-cli/validator_keys
+  --keystore=$HOME/ethstaker_deposit-cli/validator_keys
 ```
 
 Verify that your keystore file was imported successfully.
@@ -214,13 +214,13 @@ sudo cat $HOME/validators-password.txt
 Run the following command to create a corresponding password file for every one of your validators.
 
 ```bash
-for f in $HOME/staking-deposit-cli/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt $HOME/staking-deposit-cli/validator_keys/$(basename $f .json).txt; done
+for f in $HOME/ethstaker_deposit-cli/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt $HOME/ethstaker_deposit-cli/validator_keys/$(basename $f .json).txt; done
 ```
 
 Copy keystores to validator folder
 
 ```bash
-sudo cp $HOME/staking-deposit-cli/validator_keys/keystore* /var/lib/teku_validator/validator_keys
+sudo cp $HOME/ethstaker_deposit-cli/validator_keys/keystore* /var/lib/teku_validator/validator_keys
 ```
 
 Setup ownership permissions, including hardening the access to this directory.
@@ -301,13 +301,13 @@ sudo cat $HOME/validators-password.txt
 Run the following command to create a corresponding password file for every one of your validators.
 
 ```bash
-for f in $HOME/staking-deposit-cli/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt $HOME/staking-deposit-cli/validator_keys/$(basename $f .json).txt; done
+for f in $HOME/ethstaker_deposit-cli/validator_keys/keystore*.json; do sudo cp $HOME/validators-password.txt $HOME/ethstaker_deposit-cli/validator_keys/$(basename $f .json).txt; done
 ```
 
 Copy keystores to validator folder
 
 ```bash
-sudo cp $HOME/staking-deposit-cli/validator_keys/keystore* /var/lib/teku/validator_keys
+sudo cp $HOME/ethstaker_deposit-cli/validator_keys/keystore* /var/lib/teku/validator_keys
 ```
 
 Setup ownership permissions, including hardening the access to this directory.
@@ -374,7 +374,7 @@ Enter your **keystore password** to import accounts.
 
 ```bash
 sudo /usr/local/bin/nimbus_beacon_node deposits import \
-  --data-dir=/var/lib/nimbus_validator $HOME/staking-deposit-cli/validator_keys
+  --data-dir=/var/lib/nimbus_validator $HOME/ethstaker_deposit-cli/validator_keys
 ```
 
 Now you can verify the accounts were imported successfully by doing a directory listing.
@@ -428,7 +428,7 @@ Enter your **keystore password** to import accounts.
 
 ```bash
 sudo /usr/local/bin/nimbus_beacon_node deposits import \
-  --data-dir=/var/lib/nimbus $HOME/staking-deposit-cli/validator_keys
+  --data-dir=/var/lib/nimbus $HOME/ethstaker_deposit-cli/validator_keys
 ```
 
 Now you can verify the accounts were imported successfully by doing a directory listing.
@@ -485,7 +485,7 @@ sudo /usr/local/bin/validator accounts import \
   --accept-terms-of-use \
   --mainnet \
   --wallet-dir=/var/lib/prysm/validators \
-  --keys-dir=$HOME/staking-deposit-cli/validator_keys
+  --keys-dir=$HOME/ethstaker_deposit-cli/validator_keys
 ```
 
 If Built from Source,
@@ -496,7 +496,7 @@ sudo bazel run //validator:validator -- accounts import \
   --accept-terms-of-use \
   --mainnet \
   --wallet-dir=/var/lib/prysm/validators \
-  --keys-dir=$HOME/staking-deposit-cli/validator_keys
+  --keys-dir=$HOME/ethstaker_deposit-cli/validator_keys
 ```
 
 Verify that your keystore file was imported successfully.
