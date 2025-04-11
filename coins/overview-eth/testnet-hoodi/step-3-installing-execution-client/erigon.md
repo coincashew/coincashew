@@ -8,11 +8,11 @@
 
 #### Official Links
 
-| Subject       | Link                                                                                                       |
-| ------------- | ---------------------------------------------------------------------------------------------------------- |
-| Releases      | [https://github.com/ledgerwatch/erigon/releases](https://github.com/ledgerwatch/erigon/releases)           |
-| Documentation | [https://github.com/ledgerwatch/erigon#documentation](https://github.com/ledgerwatch/erigon#documentation) |
-| Website       | [https://erigon.substack.com](https://erigon.substack.com/)                                                |
+| Subject       | Link                                                                                           |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| Releases      | [https://github.com/erigontech/erigon/releases](https://github.com/erigontech/erigon/releases) |
+| Documentation | [https://docs.erigon.tech](https://docs.erigon.tech/)                                          |
+| Website       | [https://erigon.tech](https://erigon.tech/)                                                    |
 
 ### 1. Initial configuration
 
@@ -42,21 +42,22 @@ sudo apt install curl libsnappy-dev libc6-dev jq libc6 unzip -y
 Run the following to automatically download the latest linux release, un-tar and cleanup.
 
 ```bash
-RELEASE_URL="https://api.github.com/repos/ledgerwatch/erigon/releases/latest"
-BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux_amd64)"
+RELEASE_URL="https://api.github.com/repos/erigontech/erigon/releases/latest"
+BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux_amd64.tar.gz)"
 
 echo Downloading URL: $BINARIES_URL
 
 cd $HOME
 wget -O erigon.tar.gz $BINARIES_URL
 tar -xzvf erigon.tar.gz -C $HOME
-rm erigon.tar.gz
+mv erigon_* erigon
 ```
 
-Install the binaries.
+Install the binaries and cleanup.
 
 ```bash
-sudo mv $HOME/erigon /usr/local/bin/erigon
+sudo mv $HOME/erigon/erigon /usr/local/bin
+rm -rf erigon erigon.tar.gz
 ```
 
 </details>
@@ -68,7 +69,7 @@ sudo mv $HOME/erigon /usr/local/bin/erigon
 Install Go dependencies. Latest version [available here](https://go.dev/dl/).
 
 ```bash
-wget -O go.tar.gz https://go.dev/dl/go1.20.5.linux-amd64.tar.gz
+wget -O go.tar.gz <LATEST VERSION URL FROM ABOVE>
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go.tar.gz
 echo export PATH=$PATH:/usr/local/go/bin >> $HOME/.bashrc
 source $HOME/.bashrc
@@ -93,7 +94,7 @@ Build the binary.
 ```bash
 mkdir -p ~/git
 cd ~/git
-git clone https://github.com/ledgerwatch/erigon.git
+git clone https://github.com/erigontech/erigon.git
 cd erigon
 git fetch --tags
 # Get latest tag name
@@ -145,7 +146,7 @@ ExecStart=/usr/local/bin/erigon \
    --authrpc.port 8551 \
    --metrics \
    --pprof \
-   --prune htc \
+   --prune.mode minimal \
    --authrpc.jwtsecret=/secrets/jwtsecret \
    --externalcl=true
 

@@ -281,15 +281,15 @@ sudo systemctl start execution
 
 Run the following to automatically download the latest linux release, un-tar and cleanup.
 
-<pre class="language-bash"><code class="lang-bash">RELEASE_URL="https://api.github.com/repos/ledgerwatch/erigon/releases/latest"
-<strong>BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux_amd64)"
+<pre class="language-bash"><code class="lang-bash">RELEASE_URL="https://api.github.com/repos/erigontech/erigon/releases/latest"
+<strong>BINARIES_URL="$(curl -s $RELEASE_URL | jq -r ".assets[] | select(.name) | .browser_download_url" | grep linux_amd64.tar.gz)"
 </strong>
 echo Downloading URL: $BINARIES_URL
 
 cd $HOME
 wget -O erigon.tar.gz $BINARIES_URL
 tar -xzvf erigon.tar.gz -C $HOME
-rm erigon.tar.gz README.md
+mv erigon_* erigon
 </code></pre>
 
 Stop the services.
@@ -301,8 +301,9 @@ Remove old binaries, install new binaries and restart the services.
 
 ```bash
 sudo rm -rf /usr/local/bin/erigon
-sudo mv $HOME/erigon /usr/local/bin/erigon
+sudo mv $HOME/erigon/erigon /usr/local/bin/erigon
 sudo systemctl start execution
+rm -rf erigon/ erigon.tar.gz
 ```
 
 </details>
