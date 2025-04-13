@@ -96,7 +96,7 @@ To install, paste the following:
 **Install updates and packages:**
 
 ```bash
-sudo apt-get update && sudo apt-get install git curl ccze bc tmux
+sudo apt-get update && sudo apt-get install git curl ccze bc tmux jq nano btop whiptail ufw
 ```
 
 **Clone the ethpillar repo and install:**
