@@ -9,6 +9,10 @@ description: >-
 
 <figure><img src="../../.gitbook/assets/EthPillar.final.png" alt=""><figcaption></figcaption></figure>
 
+{% hint style="success" %}
+:heart: Support us on **Gitcoin** GR23: [https://explorer.gitcoin.co/#/round/42161/865/14](https://explorer.gitcoin.co/#/round/42161/865/14)
+{% endhint %}
+
 ## :arrow\_forward: Quickstart: Ubuntu One-liner Install
 
 ```bash
@@ -16,7 +20,7 @@ description: >-
 ```
 
 {% hint style="success" %}
-:heart: Support us on **Gitcoin** GR23: [https://explorer.gitcoin.co/#/round/42161/865/14](https://explorer.gitcoin.co/#/round/42161/865/14)
+**Important Safety Best Practice:** Avoid downloading untrusted scripts. Unverified code may pose security risks. Double-check the script or ask someone trusted for verification. Only install after confirming its authenticity.
 {% endhint %}
 
 ## :new: What is EthPillar?
@@ -72,8 +76,8 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 * Study [Ethstaker's Staking for Beginners](https://www.reddit.com/r/ethstaker/wiki/staking_for_beginners/)
 * [Review how staking works and the hardware requirements](guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/prerequisites.md)
 * A Linux [Ubuntu](https://ubuntu.com/download) installation.&#x20;
-  * Tested with [Ubuntu 24.04 LTS](https://ubuntu.com/download)
-  * Also appears compatible with [armbian](https://www.armbian.com/download/), [Linux Mint](https://www.linuxmint.com/), [Debian](https://www.debian.org/distrib/netinst)
+  * Tested with [Ubuntu 24.04 LTS](https://ubuntu.com/download) Server
+  * Also appears compatible with [armbian](https://www.armbian.com/download/), [Linux Mint](https://www.linuxmint.com/), [Debian 12](https://www.debian.org/distrib/netinst)
   * Support for **AMD64 and ARM64** architecture
   * Recommend at least 16GB RAM for **ARM64** sbc
 
