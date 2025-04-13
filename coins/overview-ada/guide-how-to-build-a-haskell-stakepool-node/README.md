@@ -54,6 +54,7 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 * April 12, 2025
   * Revising the [Benefits of Operating a Cardano Stake Pool](benefits.md) topic
   * Updating the [Prerequisites](part-i-installation/prerequisites.md) topic to discuss how to use Testnet environments
+  * Updating the [Starting the Nodes](part-iii-operation/starting-the-nodes.md) topic to mention the Mithril Client
 * January 31, 2025
   * Updating version numbers for Cardano Node software
   * Adding the [Benefits of Operating a Cardano Stake Pool](benefits.md) topic
