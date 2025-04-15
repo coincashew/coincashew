@@ -219,7 +219,7 @@ Example of how to create a ssh tunnel in Windows with [Putty](https://putty.org/
 
 Navigate to Connection > SSH > Tunnels > Enter Source Port `3000` > Enter Destination `localhost:3000` > Click Add
 
-![](../../../../.gitbook/assets/image.png)
+<img src="../../../../.gitbook/assets/image.png" alt="" data-size="original">
 
 Now you can access Grafana on your local machine by pointing a web browser to [http://localhost:3000](http://localhost:3000/)
 

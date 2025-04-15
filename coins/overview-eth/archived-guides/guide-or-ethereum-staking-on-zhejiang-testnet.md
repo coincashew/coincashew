@@ -206,15 +206,9 @@ Only one execution layer client is required per node.
 {% hint style="info" %}
 [**Hyperledger Besu**](https://besu.hyperledger.org/) is an open-source Ethereum client designed for demanding enterprise applications requiring secure, high-performance transaction processing in a private network. It's developed under the Apache 2.0 license and written in **Java**.
 
-
-
 [**Nethermind**](https://docs.nethermind.io/nethermind/) is all about performance and flexibility. Built on .NET core, a widespread, enterprise-friendly platform, Nethermind makes integration with existing infrastructures simple, without losing sight of stability, reliability, data integrity, and security.
 
-
-
 [**Erigon**](https://github.com/ledgerwatch/erigon) is an implementation of Ethereum innovating on the efficiency frontier, written in Go.
-
-
 
 [**Geth**](https://geth.ethereum.org/) - Go-ethereum (aka Geth) is an Ethereum client built in [Go](https://go.dev). It is one of the original and most popular Ethereum clients.
 {% endhint %}
@@ -332,15 +326,11 @@ Verify Besu was properly built by checking the version.
 ./build/install/besu/bin/besu --version
 ```
 
-
-
 Sample output of a compatible version.
 
 `besu/v23.1.0-dev-e18e407c/linux-x86_64/openjdk-java-17`
 
 `2023-02-02 01:22:12.000+00:00 | main | INFO | Besu | Using jemalloc`
-
-
 
 Install the binaries.
 
@@ -406,15 +396,13 @@ WantedBy=multi-user.target
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 
-
-
 </details>
 
 <details>
 
 <summary>Install Erigon</summary>
 
-&#x20;Install Go dependencies
+Install Go dependencies
 
 ```bash
 wget -O go.tar.gz https://go.dev/dl/go1.19.6.linux-amd64.tar.gz
@@ -502,7 +490,7 @@ WantedBy=multi-user.target
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 
-#### Initialize database
+**Initialize database**
 
 ```bash
 sudo -u execution /usr/local/bin/erigon init \
@@ -602,7 +590,7 @@ ExecStart=/usr/local/bin/geth \
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 
-#### Initialize database
+**Initialize database**
 
 ```bash
 sudo -u execution /usr/local/bin/geth init \
@@ -638,19 +626,11 @@ Set up your consensus layer client. Your choice of [Lighthouse](https://github.c
 {% hint style="warning" %}
 [​**Lodestar**](https://lodestar.chainsafe.io/) **is a Typescript implementation** by the Chainsafe.io team. In addition to the beacon chain client, the team is also working on 22 packages and libraries. Finally, the Lodestar team is leading the Ethereum space in light client research and development and has received funding from the EF and Moloch DAO for this purpose.
 
-
-
 [**Lighthouse**](https://github.com/sigp/lighthouse) is an Ethereum client with a heavy focus on speed and security. The team behind it, [Sigma Prime](https://sigmaprime.io/) is an information security and software engineering firm who have funded Lighthouse along with the Ethereum Foundation, Consensys, and private individuals. Lighthouse is built in Rust and offered under an Apache 2.0 License.
-
-
 
 [**Teku**](https://consensys.net/knowledge-base/ethereum-2/teku/) is a Java-based Ethereum 2.0 client designed & built to meet institutional needs and security requirements. Dedicated to building enterprise-ready clients and tools for interacting with the core Ethereum platform, Teku is Apache 2 licensed and written in Java, a language notable for its maturity & ubiquity.
 
-
-
 [**Nimbus**](https://our.status.im/tag/nimbus/) is a research project and a client implementation for Ethereum 2.0 designed to perform well on embedded systems and personal mobile devices, including older smartphones with resource-restricted hardware. The Nimbus team are from [Status](https://status.im/about/) the company best known for [their messaging app/wallet/Web3 browser](https://status.im) by the same name. Nimbus (Apache 2) is written in Nim, a language with Python-like syntax that compiles to C.
-
-
 
 [**Prysm**](https://github.com/prysmaticlabs/prysm) is a Go implementation of Ethereum 2.0 protocol with a focus on usability, security, and reliability. Prysm is developed by [Prysmatic Labs](https://prysmaticlabs.com), a company with the sole focus on the development of their client. Prysm is written in Go and released under a GPL-3.0 license.
 {% endhint %}
@@ -659,7 +639,7 @@ Set up your consensus layer client. Your choice of [Lighthouse](https://github.c
 
 <summary>Install Lighthouse Consensus Client</summary>
 
-#### Install rust dependency
+**Install rust dependency**
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -1002,16 +982,12 @@ Verify Lodestar was built properly by displaying the version.
 ./lodestar --version
 ```
 
-
-
 Sample output of a compatible version.
 
 🌟 Lodestar: TypeScript Implementation of the Ethereum Consensus Beacon Chain.
 
 * Version: v1.4.1/bff1438
 * by ChainSafe Systems, 2018-2022
-
-
 
 Install the binaries.
 
@@ -1366,7 +1342,7 @@ Configure your [MetaMask](https://metamask.io/) to point to the Zhejiang testnet
 
 <summary>Use my node</summary>
 
-#### 1) Setup SSH tunnel
+**1) Setup SSH tunnel**
 
 **Note**: If your node and where metamask resides is on the same local laptop/desktop/server, skip step 1.
 
@@ -1382,7 +1358,7 @@ ssh -N -v <user>@<staking.node.ip.address> -L 8545:localhost:8545
 
 For Windows using Putty, configure the SSH Tunnel as follows:
 
-1\) Navigate to`Connection > SSH > Tunnels`&#x20;
+1\) Navigate to`Connection > SSH > Tunnels`
 
 2\) Set Source port: **8545**
 
@@ -1390,9 +1366,9 @@ For Windows using Putty, configure the SSH Tunnel as follows:
 
 4\) Click **Add** button, then **Open** Button
 
-![](../../../.gitbook/assets/putty8545.png)
+<img src="../../../.gitbook/assets/putty8545.png" alt="" data-size="original">
 
-#### 2) Add a network to Metamask:
+**2) Add a network to Metamask:**
 
 Go to `Metamask > Settings> Networks > Add a network > Localhost 8545`
 
@@ -1404,7 +1380,7 @@ Configure your Metamask as follows:
 * **Currency symbol**: ETH
 * **Block explorer URL**: [https://blockscout.com/eth/zhejiang-testnet](https://blockscout.com/eth/zhejiang-testnet)
 
-![](../../../.gitbook/assets/metamask-zhe.png)
+<img src="../../../.gitbook/assets/metamask-zhe.png" alt="" data-size="original">
 
 </details>
 
@@ -1452,7 +1428,7 @@ mv staking_deposit-cli-ef89710-linux-amd64 staking-deposit-cli
 cd staking-deposit-cli
 ```
 
-Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1\_withdrawal\_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet. Adjust number of validators accordingly.
+Make a new mnemonic and replace `<ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>` with your [ethereum withdrawal address](https://notes.ethereum.org/@launchpad/withdrawals-faq#Q-If-I-used---eth1_withdrawal_address-when-making-my-initial-deposit-which-type-of-withdrawal-credentials-do-I-have), ideally from a Trezor, Ledger or comparable hardware wallet. Adjust number of validators accordingly.
 
 ```
 ./deposit new-mnemonic --num_validators 1 --chain zhejiang --eth1_withdrawal_address <ETH_ADDRESS_FROM_IDEALLY_HARDWARE_WALLET>
@@ -1565,8 +1541,6 @@ Once successful, you will be shown your **validator's public key**.
 
 For example, `0x8d9138fcf5676e2031dc4eae30a2c92e3306903eeec83ca83f4f851afbd4cb3b33f710e6f4ac516b4598697b30b04302`
 
-
-
 Monitor your validator's status and performance at [https://zhejiang.beaconcha.in](https://zhejiang.beaconcha.in) by entering your **validator's public key**.
 
 Create a **systemd unit file** to define your `validator.service` configuration.
@@ -1613,7 +1587,7 @@ To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 
 <summary>Setup Teku Validator</summary>
 
-#### Note: Teku combines consensus and validator clients into one binary and service.
+**Note: Teku combines consensus and validator clients into one binary and service.**
 
 First, copy your `validator_keys` to the data directory.
 
@@ -1666,7 +1640,7 @@ ll /var/lib/teku/validator_keys/zhejiang
 
 <summary>Setup Nimbus Validator</summary>
 
-#### Note: Nimbus combines consensus and validator clients into one binary and service.
+**Note: Nimbus combines consensus and validator clients into one binary and service.**
 
 The following command will import your validator keys.
 
@@ -1726,13 +1700,9 @@ Verify that your keystore file was imported successfully.
 </strong>  --dataDir="/var/lib/lodestar/validators/zhejiang"
 </code></pre>
 
-
-
 Once successful, you will be shown your **validator's public key**.
 
 For example, `0x8d9138fcf5676e2031dc4eae30a2c92e3306903eeec83ca83f4f851afbd4cb3b33f710e6f4ac516b4598697b30b04302`
-
-
 
 Monitor your validator's status and performance at [https://zhejiang.beaconcha.in](https://zhejiang.beaconcha.in) by entering your **validator's public key**.
 
@@ -1951,8 +1921,6 @@ nimbus_beacon_node[292966]: INF 2023-02-05 01:25:26.263+00:00 Attestation sent  
 
 </details>
 
-
-
 Press `Ctrl` + `C` to exit the logs.
 
 {% hint style="info" %}
@@ -2024,8 +1992,8 @@ Run the voluntary exit command and follow the instructions
 
 <pre class="language-bash"><code class="lang-bash"><strong># change directories to binary folder
 </strong><strong>cd /usr/local/bin/lodestar
-</strong><strong>
-</strong># the voluntary exit command
+</strong>
+# the voluntary exit command
 ./lodestar validator voluntary-exit
 </code></pre>
 

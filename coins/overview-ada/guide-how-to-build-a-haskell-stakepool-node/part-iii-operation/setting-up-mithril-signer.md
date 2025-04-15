@@ -1,10 +1,7 @@
-# (Optional) Setting Up Mithril Signer
+# Setting up a Mithril Signer
 
 {% hint style="info" %}
-**Mithril** is a research project whose goal is to provide Stake-based Threshold Multisignatures on top of the Cardano network.
-In a nutshell, Mithril can be summarized as:
-A protocol that allows stakeholders in a proof-of-stake blockchain network to individually sign messages that are aggregated into a multi-signature, which guarantees that they represent a minimum share of the total stake.
-[Official documentation is available here.](https://mithril.network/doc/mithril/intro/)
+**Mithril** is a research project whose goal is to provide Stake-based Threshold Multisignatures on top of the Cardano network. In a nutshell, Mithril can be summarized as: A protocol that allows stakeholders in a proof-of-stake blockchain network to individually sign messages that are aggregated into a multi-signature, which guarantees that they represent a minimum share of the total stake. [Official documentation is available here.](https://mithril.network/doc/mithril/intro/)
 {% endhint %}
 
 2 components need to be installed :
@@ -19,26 +16,31 @@ A protocol that allows stakeholders in a proof-of-stake blockchain network to in
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
+
 (Proceed with standard - default installation)
 
 Source your env file under $HOME/.cargo. :
+
 ```bash
 . "$HOME/.cargo/env"
 ```
 
-Check Rust Version : 
+Check Rust Version :
+
 ```bash
 rustc --version
 ```
 
 ### Install Mithril from github
+
 Download from github
+
 ```bash
 cd $HOME/git
 git clone https://github.com/input-output-hk/mithril.git mithril
 ```
-Find the latest version available :
-https://github.com/input-output-hk/mithril/releases/latest
+
+Find the latest version available : https://github.com/input-output-hk/mithril/releases/latest
 
 This guide is based on version v2437.1. Change accordingly to the latest version available and compatible with cardano mainnet.
 
@@ -46,24 +48,33 @@ This guide is based on version v2437.1. Change accordingly to the latest version
 cd $HOME/git/mithril
 git checkout 2437.1
 ```
+
 Build Mithril Signer :
+
 ```bash
 cd $HOME/git/mithril/mithril-signer
 make test
 ```
+
 ```bash
 make build
 ```
+
 Verify the Build Version
+
 ```bash
 cd $HOME/git/mithril/mithril-signer
 ./mithril-signer -V
 ```
+
 Verify the build is working correctly
+
 ```bash
 ./mithril-signer -h
 ```
+
 Move mithril-signer to a dedicated folder :
+
 ```bash
 mkdir $NODE_HOME/mithril-signer
 cd $HOME/git/mithril/mithril-signer
@@ -72,7 +83,7 @@ sudo mv -f mithril-signer $NODE_HOME/mithril-signer
 
 ### Setup Mithril Signer ENV variables
 
-Adjust **RELAY_ENDPOINT** with your Relay IP that will host Mithril Relay
+Adjust **RELAY\_ENDPOINT** with your Relay IP that will host Mithril Relay
 
 ```bash
 sudo cat > $NODE_HOME/mithril-signer/mithril-signer.env << EOF
@@ -116,23 +127,27 @@ WantedBy=multi-user.target
 ```
 
 Move the service file and set permissions
+
 ```bash
 sudo mv mithril-signer.service /etc/systemd/system/mithril-signer.service
 sudo chmod 644 /etc/systemd/system/mithril-signer.service
 ```
 
 Enable service start on boot
+
 ```bash
 sudo systemctl enable mithril-signer
 sudo systemctl daemon-reload
 ```
 
 Start the service
+
 ```bash
 sudo systemctl start mithril-signer
 ```
 
 Check the service
+
 ```bash
 systemctl status mithril-signer.service
 ```
@@ -150,7 +165,6 @@ rm -rf mithril
 The Mithril relay node serves as a forward proxy, relaying traffic between the Mithril signer and the Mithril aggregator. When appropriately configured, it facilitates the security of the block-producing node. You can use squid to operate this forward proxy, and this section presents a recommended configuration.
 {% endhint %}
 
-
 ### Install Squid and set service start
 
 ```bash
@@ -161,6 +175,7 @@ sudo systemctl start squid
 ```
 
 Make a copy of the squid original conf
+
 ```bash
 sudo cp /etc/squid/squid.conf /etc/squid/squid.conf.bak
 ```
@@ -168,6 +183,7 @@ sudo cp /etc/squid/squid.conf /etc/squid/squid.conf.bak
 ### Create a Squid configuration
 
 Create a new squid configuration file for Mithril
+
 ```bash
 sudo nano squid.conf 
 ```
@@ -224,6 +240,7 @@ http_access deny all
 ```
 
 Move the new squid.conf
+
 ```bash
 sudo mv -f squid.conf /etc/squid/squid.conf
 ```
@@ -254,17 +271,20 @@ wget https://mithril.network/doc/scripts/verify_signer_registration.sh
 ```
 
 Make the script executable:
+
 ```bash
 chmod +x verify_signer_registration.sh
 ```
 
-Run Script (replace POOL_ID sith your stakepool ID
+Run Script (replace POOL\_ID sith your stakepool ID
+
 ```bash
 cd $NODE_HOME/mithril-signer
 PARTY_ID=<POOL_ID> AGGREGATOR_ENDPOINT=https://aggregator.release-mainnet.api.mithril.network/aggregator ./verify_signer_registration.sh
 ```
 
 If your signer is registered, you should see this message:
+
 ```bash
 >> Congrats, your signer node is registered!
 ```
@@ -277,8 +297,7 @@ Otherwise, you should see this error message:
 
 ### Verify your signer contributes with individual signatures
 
-After waiting for two epochs, you will be able to verify that your signer is contributing with individual signatures.
-First, download the script into the mithril-signer directory
+After waiting for two epochs, you will be able to verify that your signer is contributing with individual signatures. First, download the script into the mithril-signer directory
 
 ```bash
 cd $NODE_HOME/mithril-signer
@@ -286,29 +305,26 @@ wget https://mithril.network/doc/scripts/verify_signer_signature.sh
 ```
 
 Make the script executable:
+
 ```bash
 chmod +x verify_signer_signature.sh
 ```
 
-Run Script (replace POOL_ID sith your stakepool ID
+Run Script (replace POOL\_ID sith your stakepool ID
+
 ```bash
 cd $NODE_HOME/mithril-signer
 PARTY_ID=<POOL_ID> AGGREGATOR_ENDPOINT=https://aggregator.release-mainnet.api.mithril.network/aggregator ./verify_signer_signature.sh
 ```
 
 If your signer is contributing, you should see this message:
+
 ```bash
 >> Congrats, you have signed this certificate: ...
 ```
 
 Otherwise, you should see this error message:
+
 ```bash
 >> Oops, your party id was not found in the last 20 certificates. Please try again later.
 ```
-
-
-
-
-
-
-

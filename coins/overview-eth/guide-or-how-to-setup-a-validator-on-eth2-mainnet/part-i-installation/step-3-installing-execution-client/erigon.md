@@ -144,6 +144,7 @@ ExecStart=/usr/local/bin/erigon \
    --maxpeers 50 \
    --private.api.addr 127.0.0.1:9099 \
    --authrpc.port 8551 \
+   --http.api web3,eth,net,engine \
    --metrics \
    --pprof \
    --prune.mode minimal \
