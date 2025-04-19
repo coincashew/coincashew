@@ -10,7 +10,7 @@ By design, the size of every Cardano stake pool is fluid. Regardless of stake si
 
 As a stake pool operator, you gain unique, individual insight and perspective within the Cardano ecosystem, giving you a valuable and important voice within the community as your experience grows. Operating a stake pool allows you to command respect.
 
-Going "all in" on Cardano or any other crypotcurrency project is probably very risky. Understanding your tolerance for risk before investing is very important so you can make suitable and educated investment decisions, including decisions related to investing in operating a stake pool. Make your approach sustainable. Always follow local laws and regulations.
+Going "all in" on Cardano or any other cryptocurrency project is probably very risky. Understanding your tolerance for risk before investing is very important so you can make suitable and educated investment decisions, including decisions related to investing in operating a stake pool. Make your approach sustainable. Always follow local laws and regulations.
 
 As your skills and knowledge improve, you become more able to contribute to the Cardano community in ways that interest you.
 
