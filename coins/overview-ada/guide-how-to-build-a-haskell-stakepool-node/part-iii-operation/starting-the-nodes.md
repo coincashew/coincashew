@@ -39,7 +39,7 @@ Run the following to modify **env** with the updated file locations.
 ```bash
 sed -i env \
     -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/config.json\"/g" \
-    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
+    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
 
 {% hint style="info" %}

@@ -69,7 +69,7 @@ mv env env.bak
 ```
 
 {% hint style="info" %}
-If you follow the Coin Cashew instructions for [Starting the Nodes](../part-iii-operation/starting-the-nodes.md), then you can type `$NODE_HOME` to replace
+If you follow the Coin Cashew instructions for [Starting the Nodes](../part-iii-operation/starting-the-nodes.md), then you can type `$NODE_HOME` to replace `<gLiveViewFolder>`
 {% endhint %}
 
 2\. To download the latest Guild LiveView script files, type:
@@ -90,7 +90,7 @@ chmod 755 gLiveView.sh
 ```bash
 sed -i env \
     -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
-    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
+    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
 
 {% hint style="info" %}
