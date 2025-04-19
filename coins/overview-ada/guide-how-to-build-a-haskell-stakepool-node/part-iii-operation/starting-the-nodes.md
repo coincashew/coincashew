@@ -17,7 +17,7 @@ sudo systemctl start cardano-node
 {% endtabs %}
 
 {% hint style="success" %}
-Congratulations! Your nodes are running successfully. Synchronizing your local copies of the Cardano blockchain ledger with the network may take about 18 hours.
+Congratulations! Your nodes are running successfully. Synchronizing your local copies of the Cardano blockchain ledger with the network may take 24 hours, or more. As of April 2025, the size of the Cardano blockchain ledger is approximately 200 GB. Optionally, to restore and bootstrap a full node rapidly set up a [Mithril Client](https://mithril.network/doc/mithril/advanced/mithril-network/client)
 {% endhint %}
 
 To monitor your Cardano nodes, install gLiveView. <a href="#gliveview" id="gliveview"></a>
@@ -34,12 +34,12 @@ curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operato
 chmod 755 gLiveView.sh
 ```
 
-Run the following to modify **env** with the updated file locations.
+To modify **env** with the updated file locations, type the following command where `<ConfigFileName>` is `config-bp.json` on your block-producing node and `config.json` on all your relay nodes
 
 ```bash
 sed -i env \
-    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/config.json\"/g" \
-    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
+    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/<ConfigFileName>\"/g" \
+    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
 
 {% hint style="info" %}
