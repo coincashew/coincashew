@@ -73,7 +73,19 @@ If the value of the `qKesOnDiskOperationalCertificateNumber` key is greater than
 
 **To set the counter value for issuing a new operational certificate:**
 
-1. To create a new `node.counter` file having the required counter value, type the following command in a terminal window on your air-gapped, offline computer where `<NodeCertificateNumber>` is the current value of the `qKesNodeStateOperationalCertificateNumber` key for your stake pool:
+1. To create a new `node.counter` file having the required counter value, if the current value of the `qKesNodeStateOperationalCertificateNumber` key for your stake pool is `null` then type the following command in a terminal window on your air-gapped, offline computer:
+
+```bash
+cd $HOME/cold-keys
+cardano-cli conway node new-counter \
+    --cold-verification-key-file $HOME/cold-keys/node.vkey \
+    --counter-value 0 \
+    --operational-certificate-issue-counter-file node.counter
+```
+
+<center><b>OR</b></center>
+
+If the current value of the `qKesNodeStateOperationalCertificateNumber` key for your stake pool is NOT `null`, then type the following command in a terminal window on your air-gapped, offline computer where `<NodeCertificateNumber>` is the current value of the `qKesNodeStateOperationalCertificateNumber` key for your stake pool:
 
 ```bash
 cd $HOME/cold-keys
@@ -83,11 +95,7 @@ cardano-cli conway node new-counter \
     --operational-certificate-issue-counter-file node.counter
 ```
 
-{% hint style="info" %}
-If the current value of the `qKesNodeStateOperationalCertificateNumber` key for your stake pool is `null`, then set the `--counter-value` option to zero (`0`)
-{% endhint %}
-
-1. To display the contents of the `node.counter` file that you created in step 1, type:
+2. To display the contents of the `node.counter` file that you created in step 1, type:
 
 ```bash
 cat $HOME/cold-keys/node.counter
