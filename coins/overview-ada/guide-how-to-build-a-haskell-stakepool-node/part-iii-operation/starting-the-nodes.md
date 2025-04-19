@@ -34,11 +34,11 @@ curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operato
 chmod 755 gLiveView.sh
 ```
 
-Run the following to modify **env** with the updated file locations.
+To modify **env** with the updated file locations, type the following command where `<ConfigFileName>` is `config-bp.json` on your block-producing node and `config.json` on all your relay nodes
 
 ```bash
 sed -i env \
-    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/config.json\"/g" \
+    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/<ConfigFileName>\"/g" \
     -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
 
