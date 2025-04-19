@@ -1,5 +1,11 @@
 # Prerequisites
 
+Operating a stake pool in a Cardano [Testnet Environment](https://docs.cardano.org/cardano-testnets/environments) prior to registering a stake pool in the Mainnet production environment offers a risk-free approach to start learning practically about the technical skills, commitment, responsibilities and benefits of operating a Cardano stake pool.
+
+When operating a stake pool on Mainnet, using a Testnet environment to test configuration changes and upgrades as well as troubleshoot any issues that may arise without impacting the production environment is very helpful.
+
+While explaining how to implement a stake pool on Mainnet, The _How to Set Up a Cardano Stake Pool_ guide also includes instructions throughout describing how to configure a stake pool to operate in a Testnet environment.
+
 ## :man\_mage: Mandatory Skills for Stake Pool Operators
 
 As a Stake Pool Operator (SPO) for Cardano, you need:
@@ -20,31 +26,43 @@ As a Stake Pool Operator (SPO) for Cardano, you need:
 :octagonal\_sign: **Before continuing this guide, you must satisfy the above requirements**. :construction:
 {% endhint %}
 
-## :reminder\_ribbon: Minimum Stake Pool Hardware Requirements
+## :reminder\_ribbon: Minimum Mainnet Stake Pool Hardware and Operating Requirements
 
 * **Two separate servers**: 1 block producer node, 1 registered relay node
 * **One air-gapped offline machine (cold environment)**
 * **Operating system**: 64-bit Linux (i.e. Ubuntu 22.04 LTS)
 * **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
 * **Memory:** 24GB RAM (including swap space)
-* **Storage:** 200GB free storage
+* **Storage:** 250GB free storage
 * **Internet:** Static IP address and a broadband connection supporting speeds at least 10 Mbps
-* **Data Plan**: at least 1GB per hour. 720GB per month.
+* **Data Plan**: At least 1GB per day (30GB per month)
 * **Power:** Reliable electrical power
-* **ADA balance:** at least 505 ADA for pool deposit and transaction fees
+* **ADA balance:** At least 505 ADA for pool deposit and transaction fees
 
-## :man\_lifting\_weights: Recommended Future-proof Stake Pool Hardware Setup <a href="#futureproof" id="futureproof"></a>
+## :man\_lifting\_weights: Recommended Future-proof Mainnet Stake Pool Hardware and Operating Requirements <a href="#futureproof" id="futureproof"></a>
 
-* **Four separate servers**: 1 block producer node, 3 relay nodes (2 registered relays and 1 unregistered relay)
+* **Four separate servers**: 1 block producer node, 3 relay nodes (2 registered relays and 1 unregistered relay) located in at least two different physical locations around the world
 * **One air-gapped offline machine (cold environment)**
 * **Operating system**: 64-bit Linux (i.e. Ubuntu 22.04 LTS)
 * **Processor:** 4 core or higher CPU
 * **Memory**: 24GB+ RAM
-* **Storage**: 250GB+ free storage
+* **Storage**: 300GB+ free storage
 * **Internet**: Static IP addresses and broadband connections supporting speeds of at least 100 Mbps
 * **Data Plan**: Unlimited
-* **Power:** Reliable electrical power with UPS
-* **ADA balance**: more pledge is better, to be determined by **a0**, the pledge influence factor
+* **Power:** Reliable electrical power with UPS or other backup power source
+* **ADA balance**: More pledge and stake is better, to be determined by **a0**, the pledge influence factor
+
+## :hammer: Example Testnet Stake Pool Hardware and Operating Requirements
+
+* **One server**: 1 block producer node
+* **Operating system**: 64-bit Linux (i.e. Ubuntu 22.04 LTS)
+* **Processor:** An Intel or AMD x86 processor with two or more cores, at 2GHz or faster
+* **Memory:** 8GB RAM
+* **Storage:** 25GB free storage
+* **Internet:** Static IP address and a broadband connection supporting speeds at least 10 Mbps
+* **Data Plan**: At least 1GB per day (30GB per month)
+* **Power:** Reliable electrical power
+* **ADA balance:** 0 ADA (Request tokens and stake pool delegations using the [Testnets Faucet](https://docs.cardano.org/cardano-testnets/tools/faucet))
 
 ## :unlock: Recommended Stake Pool Security
 

@@ -69,7 +69,7 @@ mv env env.bak
 ```
 
 {% hint style="info" %}
-If you follow the Coin Cashew instructions for [Starting the Nodes](../part-iii-operation/starting-the-nodes.md), then you can type `$NODE_HOME` to replace
+If you follow the Coin Cashew instructions for [Starting the Nodes](../part-iii-operation/starting-the-nodes.md), then you can type `$NODE_HOME` to replace `<gLiveViewFolder>`
 {% endhint %}
 
 2\. To download the latest Guild LiveView script files, type:
@@ -85,12 +85,12 @@ curl -s -o env https://raw.githubusercontent.com/cardano-community/guild-operato
 chmod 755 gLiveView.sh
 ```
 
-4\. To set the `CONFIG` and `SOCKET` user variables in the `env` file that you downloaded in step 2, type:
+4\. To set the `CONFIG` and `SOCKET` user variables in the `env` file that you downloaded in step 2, type the following command where `<ConfigFileName>` is `config-bp.json` on your block-producing node and `config.json` on all your relay nodes:
 
 ```bash
 sed -i env \
-    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/mainnet-config.json\"/g" \
-    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node0.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
+    -e "s/\#CONFIG=\"\${CNODE_HOME}\/files\/config.json\"/CONFIG=\"\${NODE_HOME}\/<ConfigFileName>\"/g" \
+    -e "s/\#SOCKET=\"\${CNODE_HOME}\/sockets\/node.socket\"/SOCKET=\"\${NODE_HOME}\/db\/socket\"/g"
 ```
 
 {% hint style="info" %}
