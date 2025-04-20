@@ -140,18 +140,12 @@ ExecStart=/usr/local/bin/besu/bin/besu \
   --rpc-http-enabled=true \
   --sync-mode=SNAP \
   --data-storage-format=BONSAI \
-  --Xbonsai-limit-trie-logs-enabled=true \
   --data-path="/var/lib/besu" \
-  --Xplugin-rocksdb-high-spec-enabled \
   --engine-jwt-secret=/secrets/jwtsecret
   
 [Install]
 WantedBy=multi-user.target
 ```
-
-{% hint style="info" %}
-**Running less than 32GB of RAM?** Deleting the flag, `--Xplugin-rocksdb-high-spec-enabled` is advisable.
-{% endhint %}
 
 To exit and save, press `Ctrl` + `X`, then `Y`, then `Enter`.
 

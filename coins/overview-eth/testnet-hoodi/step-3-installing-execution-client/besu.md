@@ -140,7 +140,6 @@ ExecStart=/usr/local/bin/besu/bin/besu \
   --rpc-http-enabled=true \
   --sync-mode=SNAP \
   --data-storage-format=BONSAI \
-  --Xbonsai-limit-trie-logs-enabled=true \
   --data-path="/var/lib/besu" \
   --engine-jwt-secret=/secrets/jwtsecret
   
