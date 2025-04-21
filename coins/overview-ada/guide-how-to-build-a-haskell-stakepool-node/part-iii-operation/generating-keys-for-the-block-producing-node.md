@@ -157,14 +157,14 @@ Update your startup script with the new **KES, VRF and Operation Certificate.**
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cat > $NODE_HOME/startBlockProducingNode.sh << EOF 
+cat > $NODE_HOME/startCardanoNode.sh << EOF 
 DIRECTORY=$NODE_HOME
 PORT=6000
 HOSTADDR=0.0.0.0
 TOPOLOGY=\${DIRECTORY}/topology.json
 DB_PATH=\${DIRECTORY}/db
 SOCKET_PATH=\${DIRECTORY}/db/socket
-CONFIG=\${DIRECTORY}/config.json
+CONFIG=\${DIRECTORY}/config-bp.json
 KES=\${DIRECTORY}/kes.skey
 VRF=\${DIRECTORY}/vrf.skey
 CERT=\${DIRECTORY}/node.cert
@@ -190,3 +190,7 @@ sudo systemctl start cardano-node
 ```
 {% endtab %}
 {% endtabs %}
+
+The following figure illustrates sample output of the gLiveView dashboard when Cardano Node is operating as a block producer.
+
+![](../../../../.gitbook/assets/glive-update4.png)

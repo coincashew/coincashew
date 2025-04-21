@@ -1,9 +1,11 @@
 # Creating Startup Scripts and Services
 
-To run an instance of Cardano Node, create a bash script to configure options. Also, implement Cardano Node as a `systemd` service.
+To run an instance of Cardano Node, create a bash script to configure options.
+
+Also, implement Cardano Node as a `systemd` service. Running Cardano Node as a `systemd` service maximizes the uptime of your stake pool by restarting the stake pool automatically if any stake pool processes may crash, or when the computer reboots.
 
 {% hint style="info" %}
-Running Cardano Node as a `systemd` service maximizes the uptime of your stake pool by restarting the stake pool automatically if any stake pool processes may crash, or when the computer reboots.
+The following procedure configures options for all the nodes in your stake pool—including the block-producing node—to operate as relay nodes. Temporarily configuring the block-producing node to operate as a relay node is sufficient for [Starting the Nodes](../part-iii-operation/starting-the-nodes.md) in order to synchronize a local copy of the Cardano blockchain. Every node in a stake pool configuration, including the block-producing node, stores a local copy of the Cardano blockchain. The topic [Generating Keys for the Block-producing Node](../part-iii-operation/generating-keys-for-the-block-producing-node.md) explains how to configure the block-producing node with the capabilities required to mint blocks.
 {% endhint %}
 
 **To create a startup script and service for an instance of Cardano Node:**

@@ -1,21 +1,15 @@
 ---
 description: >-
-  On Ubuntu/Debian, this guide will illustrate how to install and configure a
-  Cardano stake pool from source code on a two-node setup with 1 block producer
-  node and 1 relay node.
+  This guide explains how to install and configure a Cardano stake pool from source code on Ubuntu/Debian in a two-node setup comprised of one block-producing node and one relay node. Every Cardano stake pool requires one node configured as a block producer. For security, stake pools operating on Mainnet also implement one or more relay nodes.
 ---
 
 # Guide: How to Set Up a Cardano Stake Pool
 
-## :thumbsup: Your GitHub Contributions Welcome
-
-The _How to Set Up a Cardano Stake Pool_ guide is fully open source and fully powered by stake pool operators like you.
-
-Pull requests or issues can be submitted on [github](https://github.com/coincashew/coincashew):
-
-{% embed url="https://github.com/coincashew/coincashew" %}
+![](../../../.gitbook/assets/producer-relay-diagram.png)
 
 ## :wrench: About This Guide
+
+The _How to Set Up a Cardano Stake Pool_ guide is fully open source and fully powered by stake pool operators like you.
 
 Available since 2021 and one of the first resources available online to support Cardano stake pool operations, the _How to Set Up a Cardano Stake Pool_ guide provides open source educational content that continues to play an essential role in welcoming newcomers to the Cardano ecosystem while also serving as a valuable resource for experienced Cardano community members.
 
@@ -30,6 +24,13 @@ As an alternative to contributing content or making a one-time [donation](https:
 {% hint style="info" %}
 Your delegation is much appreciated in advance. :pray:
 {% endhint %}
+
+## :thumbsup: Submitting a Technical Support Request
+
+If you encounter issues when using the _How to Set Up a Cardano Stake Pool_ guide, please contact CoinCashew including relevant details using one of the following channels:
+
+- [GitHub](https://github.com/coincashew/coincashew/issues)
+- [Discord](https://discord.gg/dEpAVWgFNB)
 
 ## :tada: Introduction
 
@@ -51,6 +52,10 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :page\_facing\_up: Change Log
 
+* April 21, 2025
+  * Fixing error in the [Generating Keys for the Block-producing Node](part-iii-operation/generating-keys-for-the-block-producing-node.md) topic
+  * Improving general overview of Cardano network and stake pool architecture
+  * Clarifying how users may submit technical support requests to CoinCashew
 * April 19, 2025
   * Revising the [Benefits of Operating a Cardano Stake Pool](benefits.md) topic
   * Updating the [Prerequisites](part-i-installation/prerequisites.md) topic to discuss how to use Testnet environments

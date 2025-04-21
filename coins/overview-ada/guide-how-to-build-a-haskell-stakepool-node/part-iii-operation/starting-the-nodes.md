@@ -64,7 +64,6 @@ Run gLiveView to monitor the progress of the local Cardano Node synchronizing wi
 ./gLiveView.sh
 ```
 
-Sample output of gLiveView.
+The following figure illustrates sample output of the gLiveView dashboard when Cardano Node is operating as a relay.
 
 ![](../../../../.gitbook/assets/glive-update3.png)
-
