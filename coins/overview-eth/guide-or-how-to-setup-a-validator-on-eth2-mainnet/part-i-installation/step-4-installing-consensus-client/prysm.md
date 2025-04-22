@@ -62,10 +62,10 @@ Install the binaries.
 
 <summary>Option 2 - Build from source code</summary>
 
-Install Go dependencies
+Install Go dependencies. Latest version [available here](https://go.dev/dl/).
 
 ```bash
-wget -O go.tar.gz https://go.dev/dl/go1.22.2.linux-amd64.tar.gz
+wget -O go.tar.gz <LATEST VERSION URL FROM ABOVE>
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go.tar.gz
 echo export PATH=$PATH:/usr/local/go/bin >> $HOME/.bashrc
 source $HOME/.bashrc
