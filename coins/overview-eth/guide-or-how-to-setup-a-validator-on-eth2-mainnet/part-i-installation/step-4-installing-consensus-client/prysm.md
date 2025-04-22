@@ -8,11 +8,11 @@
 
 #### Official Links
 
-| Subject       | Links                                                                                              |
-| ------------- | -------------------------------------------------------------------------------------------------- |
-| Releases      | [https://github.com/prysmaticlabs/prysm/releases](https://github.com/prysmaticlabs/prysm/releases) |
-| Documentation | [https://docs.prylabs.network](https://docs.prylabs.network/)                                      |
-| Website       | [https://prysmaticlabs.com](https://prysmaticlabs.com/)                                            |
+| Subject       | Links                                                                                            |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| Releases      | [https://github.com/OffchainLabs/prysm/releases](https://github.com/OffchainLabs/prysm/releases) |
+| Documentation | [https://www.offchainlabs.com/prysm/docs](https://www.offchainlabs.com/prysm/docs)               |
+| Website       | [https://www.offchainlabs.com/prysm/docs](https://www.offchainlabs.com/prysm/docs)               |
 
 ### 1. Initial configuration
 
@@ -90,10 +90,10 @@ Build the binaries.
 ```bash
 mkdir -p ~/git
 cd ~/git
-git clone https://github.com/prysmaticlabs/prysm.git
+git clone https://github.com/OffchainLabs/prysm.git
 cd prysm
 git fetch --tags
-RELEASETAG=$(curl -s https://api.github.com/repos/prysmaticlabs/prysm/releases/latest | jq -r .tag_name)
+RELEASETAG=$(curl -s https://api.github.com/repos/OffchainLabs/prysm/releases/latest | jq -r .tag_name)
 git checkout tags/$RELEASETAG
 go build -o=./build/beacon-chain ./cmd/beacon-chain
 go build -o=./build/validator ./cmd/validator

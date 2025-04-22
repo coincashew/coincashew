@@ -445,7 +445,7 @@ Pull the latest source code and build the binaries.
 ```bash
 cd $HOME/git/prysm
 git fetch --tags
-RELEASETAG=$(curl -s https://api.github.com/repos/prysmaticlabs/prysm/releases/latest | jq -r .tag_name)
+RELEASETAG=$(curl -s https://api.github.com/repos/OffchainLabs/prysm/releases/latest | jq -r .tag_name)
 git checkout tags/$RELEASETAG
 go build -o=./build/beacon-chain ./cmd/beacon-chain
 go build -o=./build/validator ./cmd/validator
