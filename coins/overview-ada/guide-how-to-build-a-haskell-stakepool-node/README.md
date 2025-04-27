@@ -52,6 +52,8 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :page\_facing\_up: Change Log
 
+* April 26, 2025
+  * Incorporating revisions to support Cardano Node 10.3.1 and Cardano CLI 10.7.0.0
 * April 21, 2025
   * Fixing error in the [Generating Keys for the Block-producing Node](part-iii-operation/generating-keys-for-the-block-producing-node.md) topic
   * Improving general overview of Cardano network and stake pool architecture

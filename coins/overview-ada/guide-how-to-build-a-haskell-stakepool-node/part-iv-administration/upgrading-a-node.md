@@ -115,7 +115,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 |     Release Date     | Cardano Node Version | Cardano CLI Version | GHC Version | Cabal Version |
 |  :----------------:  | :------------------: | :-----------------: | :---------: | :-----------: |
-|     January 2025     |        10.1.4        |      10.1.1.0       |    8.10.7   |    3.8.1.0    |
+|      April 2025      |        10.3.1        |      10.7.0.0       |    9.6.7    |    3.12.1.0   |
 
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
@@ -340,6 +340,8 @@ Cloning the GitHub repository to a new folder allows you to roll back the upgrad
 2\. To build Cardano Node binaries using the source code that you downloaded in step 1, type the following commands where `<NewFolderName>` is the name of the folder you created in step 1 and `<GHCVersionNumber>` is the GHC version that you set in the section [Setting GHC and Cabal Versions](upgrading-a-node.md#SetGCVersions):
 
 ```bash
+# Ensure that development headers for the libsodium cryptographic library are NOT installed on the local computer
+sudo apt remove libsodium-dev
 # Navigate to the folder where you cloned the Cardano Node repository
 cd $HOME/git/<NewFolderName>
 # Update the list of available packages
