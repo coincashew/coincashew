@@ -10,7 +10,7 @@ description: >-
 <figure><img src="../../.gitbook/assets/EthPillar.final.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="success" %}
-:heart: Support us on **Gitcoin** GR23: [https://explorer.gitcoin.co/#/round/42161/865/14](https://explorer.gitcoin.co/#/round/42161/865/14)
+#### Do you like this software? Star the project and become a [⭐ Stargazer](https://github.com/coincashew/ethpillar/stargazers)
 {% endhint %}
 
 ## :arrow\_forward: Quickstart: Ubuntu One-liner Install
