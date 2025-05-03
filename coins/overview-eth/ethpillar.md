@@ -39,15 +39,15 @@ Already a running a Validator? EthPillar is compatible with [a Coincashew V2 Sta
 
 ## :fire: Features
 
-:chains: **Hoodi and Ephemery Testnet Support**: Quickest and easiest way run a node now with native Besu-Teku and ethstaker-deposit-cli integrations.
+:chains: **Hoodi and Ephemery Testnet Support**: Quickest and easiest way run a node now, risk free. Learn and practice here before moving to mainnet.
 
 :droplet: **Lido CSM Integration**: Deploys in minutes and start staking via [Lido's CSM with as little as 2.4 ETH](https://csm.testnet.fi/?ref=ethpillar).
 
-:tools: **Ethdo and eth-duties Integration:** Helps stakers with every day common tasks.
+:tools: **Plugins and Tools**: Node-checker, eth-validator-cli, Dora the lightweight block explorer, contributoor, Ethdo, client-stats, csm-sentinel and eth-duties Integration helps stakers with every day common tasks.
 
 :bacon: **Grafana and Ethereum-Metrics-Exporter Integration:** Monitoring and dashboards has never been easier.
 
-:mag\_right:  **Built-in Troubleshooting:** Find common issues preventing your node from it's peak performance. Discover EthPillar's built-in Toolbox with port checkers, peer counts, automated system benchmarking.
+:mag\_right:  **Built-in Troubleshooting:** Find common issues preventing your node from it's peak performance. Discover EthPillar's built-in Node Checker which checks for common system issues.
 
 :tada: **Multiple deployment configurations:** Deploy a Solo Staking Node, Full Node Only, Lido CSM Staking Node, Validator Client Only or Failover Staking Node.
 
@@ -291,16 +291,6 @@ To migrate from a different staking setup, find your most applicable situation:
 :white\_check\_mark: **To avoid slashing penalties**, ensure your validator keys are deleted from existing staking setups.
 
 </details>
-
-## :joy: POAP
-
-Are you a EthPillar Enjooyer? [Support this public good by purchasing a limited edition POAP!](https://checkout.poap.xyz/169495)
-
-<figure><img src="../../.gitbook/assets/3adf69e9-fb1b-4665-8645-60d71dd01a7b.png" alt=""><figcaption><p>Your EthPillar Enjoyoor's POAP</p></figcaption></figure>
-
-**Purchase link:** [https://checkout.poap.xyz/169495](https://checkout.poap.xyz/169495)
-
-ETH accepted on Mainnet, Arbitrum, Base, Optimism. :pray:
 
 ## :telephone: Get in touch
 
