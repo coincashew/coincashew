@@ -7,6 +7,22 @@ description: >-
 
 # 🛡️ EthPillar: one-liner setup tool and node management TUI
 
+{% hint style="danger" %}
+DOCUMENTATION HAS MOVED TO > [https://docs.coincashew.com/ethpillar](https://docs.coincashew.com/ethpillar)
+
+Below is for historical reference purposes only.
+{% endhint %}
+
+
+
+
+
+
+
+
+
+
+
 <figure><img src="../../.gitbook/assets/EthPillar.final.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="success" %}

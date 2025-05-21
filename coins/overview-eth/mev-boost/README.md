@@ -4,9 +4,19 @@ description: Quickstart guide to setting up MEV-boost for your ETH validator.
 
 # 💰 Guide | MEV-boost for Ethereum Staking
 
-{% hint style="info" %}
-The following steps align with our [mainnet guide](../guide-or-how-to-setup-a-validator-on-eth2-mainnet/). You may need to adjust file names and directory locations where appropriate. The core concepts remain the same.
+{% hint style="danger" %}
+DOCUMENTATION HAS MOVED TO > [https://docs.coincashew.com/guides/mev-boost](https://docs.coincashew.com/guides/mev-boost)
+
+Below is for historical reference purposes only.
 {% endhint %}
+
+
+
+
+
+
+
+
 
 ## :question:What is mev-boost?
 
@@ -673,11 +683,9 @@ Refer to [this article by Stephane Gosslin](https://writings.flashbots.net/writi
 * Block builders prepare full blocks, optimizing for MEV extraction and fair distribution of rewards.
 * They then submit their blocks to relays.
 
-<!---->
-
-* Relays aggregate blocks from **multiple** builders in order to select the block with the highest fees.
-* One instance of MEV-boost can be configured by a validator to connect to **multiple** relays.
-* The Consensus Layer client of a validator proposes the most profitable block received from MEV-boost to the Ethereum network for attestation and block inclusion.
+- Relays aggregate blocks from **multiple** builders in order to select the block with the highest fees.
+- One instance of MEV-boost can be configured by a validator to connect to **multiple** relays.
+- The Consensus Layer client of a validator proposes the most profitable block received from MEV-boost to the Ethereum network for attestation and block inclusion.
 
 <img src="../../../.gitbook/assets/mev-boost-integration-overview.png" alt="" data-size="original">
 

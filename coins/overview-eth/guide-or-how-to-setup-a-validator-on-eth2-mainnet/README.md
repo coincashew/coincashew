@@ -7,9 +7,19 @@ description: >-
 
 # 🥩 Guide | How to setup a validator for Ethereum staking on mainnet
 
-{% hint style="success" %}
-#### Do you like this software? Star the project and become a [⭐ Stargazer](https://github.com/coincashew/ethpillar/stargazers)
+{% hint style="danger" %}
+DOCUMENTATION HAS MOVED TO > [https://docs.coincashew.com/guides/mainnet](https://docs.coincashew.com/guides/mainnet)
+
+Below is for historical reference purposes only.
 {% endhint %}
+
+
+
+
+
+
+
+
 
 ## :rocket:Option 1: Quickstart with EthPillar - Recommended for most users
 
