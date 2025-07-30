@@ -22,7 +22,7 @@ sudo apt-get upgrade -y
 2\. To install packages and tools required for downloading and compiling Cardano Node source code, type:
 
 ```bash
-sudo apt-get install autoconf automake build-essential curl g++ git jq libffi-dev libgmp-dev libncursesw5 libssl-dev libsystemd-dev libtinfo-dev libtool make pkg-config tmux wget zlib1g-dev liblmdb-dev -y
+sudo apt-get install autoconf automake build-essential curl g++ git jq libffi-dev libgmp-dev libncurses-dev libssl-dev libsystemd-dev libtool make pkg-config tmux wget zlib1g-dev liblmdb-dev -y
 ```
 
 {% hint style="info" %}
