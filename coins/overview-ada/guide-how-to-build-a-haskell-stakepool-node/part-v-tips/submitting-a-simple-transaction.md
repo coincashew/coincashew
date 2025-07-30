@@ -44,32 +44,31 @@ Find your balance and **UTXOs**.
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli conway query utxo \
-    --address $(cat payment.addr) \
-    --mainnet > fullUtxo.out
-
-tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
-
-cat balance.out
+utxo_json=$(cardano-cli conway query utxo --address $(cat payment.addr) --mainnet)
 
 tx_in=""
 total_balance=0
-while read -r utxo; do
-    type=$(awk '{ print $6 }' <<< "${utxo}")
-    if [[ ${type} == 'TxOutDatumNone' ]]
-    then
-        in_addr=$(awk '{ print $1 }' <<< "${utxo}")
-        idx=$(awk '{ print $2 }' <<< "${utxo}")
-        utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
-        total_balance=$((${total_balance}+${utxo_balance}))
-        echo TxHash: ${in_addr}#${idx}
-        echo ADA: ${utxo_balance}
-        tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
+txcnt=0
+
+# Use jq to iterate over all UTXOs
+while read -r txid; do
+    hash=$(cut -d'#' -f1 <<< "$txid")
+    index=$(cut -d'#' -f2 <<< "$txid")
+    amount=$(jq -r --arg txid "$txid" '.[$txid].value.lovelace' <<< "$utxo_json")
+    
+    if [[ "$amount" != "null" && "$amount" -gt 0 ]]; then
+        echo "TxHash: ${hash}#${index}"
+        echo "ADA: ${amount}"
+        tx_in="${tx_in} --tx-in ${hash}#${index}"
+        total_balance=$((total_balance + amount))
+        txcnt=$((txcnt + 1))
     fi
-done < balance.out
-txcnt=$(cat balance.out | wc -l)
-echo Total available ADA balance: ${total_balance}
-echo Number of UTXOs: ${txcnt}
+done <<< "$(jq -r 'keys[]' <<< "$utxo_json")"
+
+echo
+echo "Total available ADA balance: ${total_balance}"
+echo "Number of UTXOs: ${txcnt}"
+echo "Final --tx-in string: ${tx_in}"
 ```
 {% endtab %}
 {% endtabs %}
