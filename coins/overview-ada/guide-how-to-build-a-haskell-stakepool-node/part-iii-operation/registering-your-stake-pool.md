@@ -18,7 +18,7 @@ cat > md.json << EOF
 "name": "MyPoolName",
 "description": "My pool description",
 "ticker": "MPN",
-"homepage": "https://myadapoolnamerocks.com"
+"homepage": "https://pool.example.net"
 }
 EOF
 ```
@@ -98,16 +98,16 @@ to be run on your air-gapped offline machine appropriately. Replace with your pr
 **DNS based relays, 1 entry per DNS record**
 
 ```bash
-    --single-host-pool-relay <relaynode1.myadapoolnamerocks.com> \
+    --single-host-pool-relay <relaynode1.pool.example.net> \
     --pool-relay-port 6000 \
-    --single-host-pool-relay <relaynode2.myadapoolnamerocks.com> \
+    --single-host-pool-relay <relaynode2.pool.example.net> \
     --pool-relay-port 6000 \
 ```
 
 **Round Robin DNS based relays, 1 entry per** [**SRV DNS record**](https://support.dnsimple.com/articles/srv-record/)
 
 ```bash
-    --multi-host-pool-relay <relayNodes.myadapoolnamerocks.com> \
+    --multi-host-pool-relay <relayNodes.pool.example.net> \
     --pool-relay-port 6000 \
 ```
 
@@ -137,7 +137,7 @@ cardano-cli conway stake-pool registration-certificate \
     --pool-reward-account-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file stake.vkey \
     --mainnet \
-    --single-host-pool-relay <dns based relay, example ~ relaynode1.myadapoolnamerocks.com> \
+    --single-host-pool-relay <dns based relay, example ~ relaynode1.pool.example.net> \
     --pool-relay-port 6000 \
     --metadata-url <url where you uploaded md.json> \
     --metadata-hash $(cat poolMetaDataHash.txt) \
