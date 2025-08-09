@@ -1,55 +1,56 @@
 # Setting up a Mithril Signer
 
-{% hint style="info" %}
-**Mithril** is a research project whose goal is to provide Stake-based Threshold Multisignatures on top of the Cardano network. In a nutshell, Mithril can be summarized as: A protocol that allows stakeholders in a proof-of-stake blockchain network to individually sign messages that are aggregated into a multi-signature, which guarantees that they represent a minimum share of the total stake. [Official documentation is available here.](https://mithril.network/doc/mithril/intro/)
-{% endhint %}
+The [Mithril](https://mithril.network/doc/mithril/intro/) project implements Stake-based Threshold Multisignatures on top of the Cardano network. The Mithril protocol allows individual stakeholders in the Cardano blockchain network to sign messages aggregated into a multi-signature, guaranteeing that the stakeholders represent a minimum share of the total stake.
 
-2 components need to be installed :
+To set up a Mithril Signer, you need to:
 
-* A Mithril Signer on your Cardano block producer
-* A Mithril Relay on one of your Cardano relays
+1. Install Mithril Signer on the block-producing node for your stake pool.
 
-## Installing Mithril Signer on Block Producer
+2. Implement [Squid](https://www.squid-cache.org/) as a forward proxy on one the relays for your stake pool.
 
-### Install Rust
+## Installing Mithril Signer on Your Block Producer
+
+**To install Rust:**
+
+1. Using a terminal window on your block producer, type the following command:
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-(Proceed with standard - default installation)
+2. When prompted, press **1** to proceed with a standard installation
 
-Source your env file under $HOME/.cargo. :
+3. To set up the current shell session, type:
 
 ```bash
-. "$HOME/.cargo/env"
+source "$HOME/.cargo/env"
 ```
 
-Check Rust Version :
+4. To verify the Rust version, type:
 
 ```bash
 rustc --version
 ```
 
-### Install Mithril from github
+**To install Mithril:**
 
-Download from github
+1. To download Mithril, using a terminal window on your block producer, type:
 
 ```bash
 cd $HOME/git
-git clone https://github.com/input-output-hk/mithril.git mithril
+git clone https://github.com/input-output-hk/mithril.git ./mithril
 ```
 
-Find the latest version available : https://github.com/input-output-hk/mithril/releases/latest
+2. To identify the latest Mithril version available, visit the [Latest Release](https://github.com/input-output-hk/mithril/releases/latest) page in the Mithril GitHub repository.
 
-This guide is based on version v2437.1. Change accordingly to the latest version available and compatible with cardano mainnet.
+3. To select the latest version, type the following command where <ReleaseVersion> is the version that you identified in step 2
 
 ```bash
 cd $HOME/git/mithril
-git checkout 2437.1
+git checkout <ReleaseVersion>
 ```
 
-Build Mithril Signer :
+4. To build Mithril Signer, type:
 
 ```bash
 cd $HOME/git/mithril/mithril-signer
@@ -60,20 +61,15 @@ make test
 make build
 ```
 
-Verify the Build Version
+5. To verify that Mithril compiled successfully, type:
 
 ```bash
 cd $HOME/git/mithril/mithril-signer
 ./mithril-signer -V
-```
-
-Verify the build is working correctly
-
-```bash
 ./mithril-signer -h
 ```
 
-Move mithril-signer to a dedicated folder :
+6. To move the mithril-signer binary to a dedicated folder, type:
 
 ```bash
 mkdir $NODE_HOME/mithril-signer
@@ -81,9 +77,7 @@ cd $HOME/git/mithril/mithril-signer
 sudo mv -f mithril-signer $NODE_HOME/mithril-signer
 ```
 
-### Setup Mithril Signer ENV variables
-
-Adjust **RELAY\_ENDPOINT** with your Relay IP that will host Mithril Relay
+7. To configure environment variables, type the following command where `<SquidRelayIPAddress>` is the IP address of the relay in your stake pool configuration where you plan to implement the Squid forward proxy:
 
 ```bash
 sudo cat > $NODE_HOME/mithril-signer/mithril-signer.env << EOF
@@ -99,15 +93,17 @@ DATA_STORES_DIRECTORY=/opt/mithril/stores
 STORE_RETENTION_LIMIT=5
 ERA_READER_ADAPTER_TYPE=cardano-chain
 ERA_READER_ADAPTER_PARAMS=$(jq -nc --arg address $(wget -q -O - https://raw.githubusercontent.com/input-output-hk/mithril/main/mithril-infra/configuration/release-mainnet/era.addr) --arg verification_key $(wget -q -O - https://raw.githubusercontent.com/input-output-hk/mithril/main/mithril-infra/configuration/release-mainnet/era.vkey) '{"address": $address, "verification_key": $verification_key}')
-RELAY_ENDPOINT=<YOUR RELAY IP THAT WILL RUN SQUID PROXY>:3132
+RELAY_ENDPOINT=<SquidRelayIPAddress>:3132
 EOF
 ```
 
-### Service creation
+8. To create a systemd service to manage Mithril, type:
 
 ```bash
 sudo nano mithril-signer.service
 ```
+
+9. In the `mithril-signer.service` file, copy and paste the following lines where `<UserName>` is the user under which to execute the processes of the service, `<EnvFilePath>` is the full path to the `mithril-signer.env` file, and `<ExecFilePath>` is the full path to the `mithril-signer` binary executable file.
 
 ```bash
 [Unit]
@@ -118,54 +114,54 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=60
-User=kirael
-EnvironmentFile=<FULL PATH TO YOUR mithril-signer.env ENV FILE>
-ExecStart=<FULL PATH TO YOUR mithril-signer EXE FILE> -vvv
+User=<UserName>
+EnvironmentFile=<EnvFilePath>
+ExecStart=<ExecFilePath> -vvv
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Move the service file and set permissions
+10. To move the `mithril-signer.service` file and set file permissions, type:
 
 ```bash
 sudo mv mithril-signer.service /etc/systemd/system/mithril-signer.service
 sudo chmod 644 /etc/systemd/system/mithril-signer.service
 ```
 
-Enable service start on boot
+11. To enable the service to start when the block producer boots, type:
 
 ```bash
 sudo systemctl enable mithril-signer
 sudo systemctl daemon-reload
 ```
 
-Start the service
+12. To start the service, type:
 
 ```bash
 sudo systemctl start mithril-signer
 ```
 
-Check the service
+13. To verify that the service is running, type:
 
 ```bash
 systemctl status mithril-signer.service
 ```
 
-### Clean
+14. Optionally, to remove the Mithril source files, type:
 
 ```bash
 cd $HOME/git/
-rm -rf mithril
+rm -rf ./mithril
 ```
 
-## Installing Mithril Relay on your Cardano Relay
+## Implementing Squid on a Relay Node
 
-{% hint style="info" %}
-The Mithril relay node serves as a forward proxy, relaying traffic between the Mithril signer and the Mithril aggregator. When appropriately configured, it facilitates the security of the block-producing node. You can use squid to operate this forward proxy, and this section presents a recommended configuration.
-{% endhint %}
+Configuring Squid as a forward proxy on a relay node in your stake pool configuration handles network traffic between a Mithril Signer and Mithril Aggregator securely. Mithril Aggregator is responsible for collecting and aggregating individual signatures from Mithril Signers into a multi-signature. To protect the security of your block-producing node, use the following Squid configuration.
 
-### Install Squid and set service start
+**To configure Squid:**
+
+1. On the relay node where you want to set up a forward proxy to protect your Mithril Signer, type:
 
 ```bash
 sudo apt-get install squid
@@ -174,28 +170,22 @@ sudo systemctl daemon-reload
 sudo systemctl start squid
 ```
 
-Make a copy of the squid original conf
+2. To configure Squid, type:
 
 ```bash
-sudo cp /etc/squid/squid.conf /etc/squid/squid.conf.bak
+cd /etc/squid/
+sudo cp ./squid.conf ./squid.conf.bak
+sudo nano squid.conf
 ```
 
-### Create a Squid configuration
-
-Create a new squid configuration file for Mithril
-
-```bash
-sudo nano squid.conf 
-```
-
-Adjust with your Relay Listening IP and your Block Producer IP
+3. In the `squid.conf` file, copy and paste the following lines where `<SquidRelayIPAddress>` is the IP address where the relay hosting Squid listens, and `<BlockProducerIPAddress>` is the IP address of the block-producing node hosting Mithril Signer:
 
 ```bash
 # Listening port (port 3132 is recommended)
-http_port <YOUR RELAY LISTENING IP>:3132
+http_port <SquidRelayIPAddress>:3132
 
 # ACL for internal IP of your block producer node
-acl block_producer_internal_ip src <YOUR BP MITHRIL SIGNER IP>
+acl block_producer_internal_ip src <BlockProducerIPAddress>
 
 # ACL for aggregator endpoint
 acl aggregator_domain dstdomain .mithril.network
@@ -239,92 +229,64 @@ cache deny all
 http_access deny all
 ```
 
-Move the new squid.conf
+4. To configure UFW firewall rules for Squid, type the following command where `<BlockProducerIPAddress>` is the IP address of your block-producing node hosting Mithril Signer, and `<SquidRelayIPAddress>` is the IP address of the relay node hosting Squid:
 
 ```bash
-sudo mv -f squid.conf /etc/squid/squid.conf
+sudo ufw allow from <BlockProducerIPAddress> to <SquidRelayIPAddress> port 3132 proto tcp
 ```
 
-### Configure your UFW Firewall rule
-
-```bash
-sudo ufw allow from <YOUR BP MITHRIL SIGNER IP> to <YOUR RELAY IP> port 3132 proto tcp
-```
-
-### Restart Squid
+5. To restart Squid, type:
 
 ```bash
 sudo systemctl restart squid
 ```
 
-## Verify that your Mithril Signer works
+## Verifying Your Mithril Signer Implementation
 
-You can check if your signer is registered and contributes with individual signatures :
+**To verify that your Mithril Signer is registered:**
 
-### Verify your signer is registered
-
-Download the script into the mithril-signer directory
+1. Type the following commands to download the `verify_signer_registration.sh` script:
 
 ```bash
 cd $NODE_HOME/mithril-signer
 wget https://mithril.network/doc/scripts/verify_signer_registration.sh
-```
-
-Make the script executable:
-
-```bash
 chmod +x verify_signer_registration.sh
 ```
 
-Run Script (replace POOL\_ID sith your stakepool ID
+2. To run the script, type the following command where <PoolID> is your stake pool ID using Bech32 format:
 
 ```bash
 cd $NODE_HOME/mithril-signer
-PARTY_ID=<POOL_ID> AGGREGATOR_ENDPOINT=https://aggregator.release-mainnet.api.mithril.network/aggregator ./verify_signer_registration.sh
+PARTY_ID=<PoolID> AGGREGATOR_ENDPOINT=https://aggregator.release-mainnet.api.mithril.network/aggregator ./verify_signer_registration.sh
 ```
 
-If your signer is registered, you should see this message:
+If your Mithril Signer is registered, then the script displays:
 
 ```bash
 >> Congrats, your signer node is registered!
 ```
 
-Otherwise, you should see this error message:
+{% hint style="info" %}
+To verify manually that your Mithril Signer is registered, visit the URL `https://aggregator.release-mainnet.api.mithril.network/aggregator/signers/registered/<CurrentEpoch>` using a Web browser, where <CurrentEpoch> is the current Cardano epoch, and then search the Web page for your stake pool ID in Bech32 format.
+{% endhint %}
 
-```bash
->> Oops, your signer node is not registered. Party ID not found among the signers registered at epoch XXX.
-```
+After waiting two epochs, you can verify that your Mithril Signer signs certificates.
 
-### Verify your signer contributes with individual signatures
+**To verify that your Mithril Signer signs certificates:**
 
-After waiting for two epochs, you will be able to verify that your signer is contributing with individual signatures. First, download the script into the mithril-signer directory
+1. Type the following commands to download the `verify_signer_signature.sh` script:
 
 ```bash
 cd $NODE_HOME/mithril-signer
 wget https://mithril.network/doc/scripts/verify_signer_signature.sh
-```
-
-Make the script executable:
-
-```bash
 chmod +x verify_signer_signature.sh
 ```
 
-Run Script (replace POOL\_ID sith your stakepool ID
+2. To run the script, type the following command where <PoolID> is your stake pool ID using Bech32 format:
 
 ```bash
 cd $NODE_HOME/mithril-signer
-PARTY_ID=<POOL_ID> AGGREGATOR_ENDPOINT=https://aggregator.release-mainnet.api.mithril.network/aggregator ./verify_signer_signature.sh
+PARTY_ID=<PoolID> AGGREGATOR_ENDPOINT=https://aggregator.release-mainnet.api.mithril.network/aggregator ./verify_signer_signature.sh
 ```
 
-If your signer is contributing, you should see this message:
-
-```bash
->> Congrats, you have signed this certificate: ...
-```
-
-Otherwise, you should see this error message:
-
-```bash
->> Oops, your party id was not found in the last 20 certificates. Please try again later.
-```
+If your Mithril signer signs certificates, then the `verify_signer_signature.sh` script displays a list of certificates that your Mithril Signer signed.
