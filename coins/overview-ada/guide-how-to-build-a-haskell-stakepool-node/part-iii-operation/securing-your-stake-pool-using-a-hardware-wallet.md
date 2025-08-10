@@ -66,7 +66,7 @@ cardano-cli conway stake-pool registration-certificate \
     --pool-owner-stake-verification-key-file stake.vkey \
     --pool-owner-stake-verification-key-file hw-stake.vkey \
     --mainnet \
-    --single-host-pool-relay <dns based relay, example ~ relaynode1.myadapoolnamerocks.com> \
+    --single-host-pool-relay <dns based relay, example ~ relaynode1.pool.example.net> \
     --pool-relay-port 6000 \
     --metadata-url <url where you uploaded poolMetaData.json> \
     --metadata-hash $(cat poolMetaDataHash.txt) \
