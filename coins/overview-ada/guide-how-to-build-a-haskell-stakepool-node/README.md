@@ -2,7 +2,7 @@
 
 The _How to Set Up a Cardano Stake Pool_ guide explains how to install and configure a Cardano stake pool from source code on Ubuntu/Debian in a two-node setup comprised of one block-producing node and one relay node.
 
-Every Cardano stake pool requires one node configured as a block producer. For security, stake pools operating on Mainnet also implement one or more relay nodes, as illustrated in the following diagram.
+Every Cardano stake pool requires one node configured as a block producer. To preserve network security, stake pools operating on Mainnet also implement one or more relay nodes, as illustrated in the following diagram.
 
 
 ![](../../../.gitbook/assets/producer-relay-diagram.png)
