@@ -1,12 +1,18 @@
 # Setting up a Mithril Signer
 
-The [Mithril](https://mithril.network/doc/mithril/intro/) project implements Stake-based Threshold Multisignatures on top of the Cardano network. The Mithril protocol allows individual stakeholders in the Cardano blockchain network to sign messages aggregated into a multi-signature, guaranteeing that the stakeholders represent a minimum share of the total stake.
+The [Mithril](https://mithril.network/doc/mithril/intro/) project implements Stake-based Threshold Multisignatures on the Cardano network. The Mithril protocol allows individual stakeholders in the Cardano blockchain network to sign messages aggregated into a multi-signature, guaranteeing that the stakeholders represent a minimum share of the total stake.
 
 To set up a Mithril Signer, you need to:
 
 1. Install Mithril Signer on the block-producing node for your stake pool.
 
 2. Implement [Squid](https://www.squid-cache.org/) as a forward proxy on one the relays for your stake pool.
+
+Implementing a Mithril Signer and Relay enables your stake pool to contribute to securing the integrity of Mithril snapshots available on the Cardano network.
+
+{% hint style="info" %}
+Mithril has numerous potential applications, including synchronizing data for both light and full-node wallets, as well as facilitating data exchanges with layer 2 solutions such as bridges, sidechains, rollups and state channels. For most stake pools, implementing a Mithril client to bootstrap a Cardano Node using a Mithril snapshot is not necessary.
+{% endhint %}
 
 ## Installing Mithril Signer on Your Block Producer
 
