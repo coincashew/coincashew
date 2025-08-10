@@ -1,10 +1,12 @@
 # Prerequisites
 
+After completing the _How to Set Up a Cardano Stake Pool_ guide, you will know what you need to register and operate a stake pool on Mainnet. The guide also includes instructions throughout explaining how to configure a stake pool to operate in a Testnet environment.
+
 Operating a stake pool in a Cardano [Testnet Environment](https://docs.cardano.org/cardano-testnets/environments) prior to registering a stake pool in the Mainnet production environment offers a risk-free approach to start learning practically about the technical skills, commitment, responsibilities and benefits of operating a Cardano stake pool.
 
-When operating a stake pool on Mainnet, using a Testnet environment to test configuration changes and upgrades as well as troubleshoot any issues that may arise without impacting the production environment is very helpful.
+If you are unsure of the Testnet environment to use to practice registering and operating a stake pool, consider using the [Preview](https://docs.cardano.org/cardano-testnets/environments#preview) testing network environment.
 
-While explaining how to implement a stake pool on Mainnet, The _How to Set Up a Cardano Stake Pool_ guide also includes instructions throughout describing how to configure a stake pool to operate in a Testnet environment.
+When operating a stake pool on Mainnet, using a Testnet environment to test configuration changes and upgrades as well as troubleshoot any issues that may arise without impacting the production environment is very helpful.
 
 ## :man\_mage: Mandatory Skills for Stake Pool Operators
 
