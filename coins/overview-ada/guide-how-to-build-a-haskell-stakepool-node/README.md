@@ -54,6 +54,7 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 * August 8, 2025
   * Incorporating revisions supporting Cardano Node 10.5.1 and Cardano CLI 10.11.0.0
+  * Updating scripts to parse Cardano CLI JSON output
   * Revising the example DNS name used to demonstrate how to register relay nodes
   * Fixing minor errors
 * April 26, 2025
