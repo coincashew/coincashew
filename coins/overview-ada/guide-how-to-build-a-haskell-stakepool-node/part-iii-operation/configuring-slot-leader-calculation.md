@@ -40,17 +40,41 @@ cardano-cli conway query leadership-schedule \
 
 Example leadership schedule output:
 
-```ada
-SlotNo                          UTC Time
--------------------------------------------------------------
-     4073                   2021-12-29 17:26:54.998001755 UTC
-     4126                   2021-12-29 17:27:00.298001755 UTC
-     4206                   2021-12-29 17:27:08.298001755 UTC
-     4256                   2021-12-29 17:27:13.298001755 UTC
-     4309                   2021-12-29 17:27:18.598001755 UTC
-     4376                   2021-12-29 17:27:25.298001755 UTC
-     4423                   2021-12-29 17:27:29.998001755 UTC
-     4433                   2021-12-29 17:27:30.998001755 UTC
+```
+[
+    {
+        "slotNumber": 88241103,
+        "slotTime": "2025-08-11T07:25:03Z"
+    },
+    {
+        "slotNumber": 88242465,
+        "slotTime": "2025-08-11T07:47:45Z"
+    },
+    {
+        "slotNumber": 88254698,
+        "slotTime": "2025-08-11T11:11:38Z"
+    },
+    {
+        "slotNumber": 88267859,
+        "slotTime": "2025-08-11T14:50:59Z"
+    },
+    {
+        "slotNumber": 88280570,
+        "slotTime": "2025-08-11T18:22:50Z"
+    },
+    {
+        "slotNumber": 88281213,
+        "slotTime": "2025-08-11T18:33:33Z"
+    },
+    {
+        "slotNumber": 88283929,
+        "slotTime": "2025-08-11T19:18:49Z"
+    },
+    {
+        "slotNumber": 88292543,
+        "slotTime": "2025-08-11T21:42:23Z"
+    }
+]
 ```
 
 :repeat: **Automate the process with Cronjob:**
