@@ -115,8 +115,7 @@ _Table 1 Current Cardano Node Version Requirements_
 
 |     Release Date     | Cardano Node Version | Cardano CLI Version | GHC Version | Cabal Version |
 |  :----------------:  | :------------------: | :-----------------: | :---------: | :-----------: |
-|      April 2025      |        10.3.1        |      10.7.0.0       |    9.6.7    |    3.12.1.0   |
-
+|       July 2025      |        10.5.1        |      10.11.0.0      |    9.6.7    |    3.12.1.0   |
 
 **To upgrade the GHCup installer for GHC and Cabal to the latest version:**
 

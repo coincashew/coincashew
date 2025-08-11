@@ -43,37 +43,45 @@ echo destinationAddress: $destinationAddress
 {% endtab %}
 {% endtabs %}
 
-Find your payment.addr balance, utxos and build the withdrawal string.
+Retrieve the UTXOs available for your payment address, calculate the balance and build the withdrawal string.
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
-cardano-cli conway query utxo \
-    --address $(cat payment.addr) \
-    --mainnet > fullUtxo.out
+# Retrieve the list of UTXOs available for your payment address
+utxo_json=$(cardano-cli conway query utxo --address $(cat payment.addr) --mainnet)
 
-tail -n +3 fullUtxo.out | sort -k3 -nr > balance.out
-
-cat balance.out
-
+# Initialize variables
 tx_in=""
 total_balance=0
+txcnt=0
+
+# Loop through the list of UTXOs
 while read -r utxo; do
-    type=$(awk '{ print $6 }' <<< "${utxo}")
-    if [[ ${type} == 'TxOutDatumNone' ]]
+    # Retrieve the values for the current UTXO
+    values=$(jq -r --arg k "${utxo}" '.[$k]' <<< "${utxo_json}")
+    # Retrieve datum associated with the UTXO
+    datum=$(jq -r '.datum' <<< "${values}")
+    # Retrieve the reference script associated with the UTXO
+    script=$(jq -r '.referenceScript' <<< "${values}")
+	# If limits on spending the UTXO may exist, then skip the UTXO
+    if [[ ${datum} == 'null' && ${script} == 'null' ]]
     then
-        in_addr=$(awk '{ print $1 }' <<< "${utxo}")
-        idx=$(awk '{ print $2 }' <<< "${utxo}")
-        utxo_balance=$(awk '{ print $3 }' <<< "${utxo}")
+        hash=${utxo%%#*}
+        idx=${utxo#*#}
+        utxo_balance=$(jq -r '.value.lovelace' <<< "${values}")
         total_balance=$((${total_balance}+${utxo_balance}))
-        echo TxHash: ${in_addr}#${idx}
-        echo ADA: ${utxo_balance}
-        tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
+        echo "TxHash: ${hash}#${idx}"
+        echo "ADA: ${utxo_balance}"
+        tx_in="${tx_in} --tx-in ${hash}#${idx}"
+		txcnt=$((txcnt + 1))
     fi
-done < balance.out
-txcnt=$(cat balance.out | wc -l)
-echo Total available ADA balance: ${total_balance}
-echo Number of UTXOs: ${txcnt}
+done <<< "$(jq -r 'keys[]' <<< "${utxo_json}")"
+
+echo
+echo "Total available ADA balance: ${total_balance}"
+echo "Number of UTXOs: ${txcnt}"
+echo "Final --tx-in string:${tx_in}"
 
 withdrawalString="$(cat stake.addr)+${rewardBalance}"
 ```
@@ -108,7 +116,7 @@ fee=$(cardano-cli conway transaction calculate-min-fee \
     --mainnet \
     --witness-count 2 \
     --byron-witness-count 0 \
-    --protocol-params-file params.json | awk '{ print $1 }')
+    --protocol-params-file params.json | jq -r '.fee')
 echo fee: $fee
 ```
 {% endtab %}
