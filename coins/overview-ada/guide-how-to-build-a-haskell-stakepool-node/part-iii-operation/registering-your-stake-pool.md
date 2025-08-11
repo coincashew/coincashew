@@ -278,7 +278,7 @@ fee=$(cardano-cli conway transaction calculate-min-fee \
     --mainnet \
     --witness-count 3 \
     --byron-witness-count 0 \
-    --protocol-params-file params.json | awk '{ print $1 }')
+    --protocol-params-file params.json | jq -r '.fee')
 echo fee: $fee
 ```
 {% endtab %}
