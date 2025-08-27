@@ -39,36 +39,45 @@ echo destinationAddress: $destinationAddress
 {% endtab %}
 {% endtabs %}
 
-Find your balance and **UTXOs**.
+Retrieve the UTXOs available for your payment address and calculate the balance.
 
 {% tabs %}
 {% tab title="block producer node" %}
 ```bash
+# Retrieve the list of UTXOs available for your payment address
 utxo_json=$(cardano-cli conway query utxo --address $(cat payment.addr) --mainnet)
 
+# Initialize variables
 tx_in=""
 total_balance=0
 txcnt=0
 
-# Use jq to iterate over all UTXOs
-while read -r txid; do
-    hash=$(cut -d'#' -f1 <<< "$txid")
-    index=$(cut -d'#' -f2 <<< "$txid")
-    amount=$(jq -r --arg txid "$txid" '.[$txid].value.lovelace' <<< "$utxo_json")
-    
-    if [[ "$amount" != "null" && "$amount" -gt 0 ]]; then
-        echo "TxHash: ${hash}#${index}"
-        echo "ADA: ${amount}"
-        tx_in="${tx_in} --tx-in ${hash}#${index}"
-        total_balance=$((total_balance + amount))
-        txcnt=$((txcnt + 1))
+# Loop through the list of UTXOs
+while read -r utxo; do
+    # Retrieve the values for the current UTXO
+    values=$(jq -r --arg k "${utxo}" '.[$k]' <<< "${utxo_json}")
+    # Retrieve datum associated with the UTXO
+    datum=$(jq -r '.datum' <<< "${values}")
+    # Retrieve the reference script associated with the UTXO
+    script=$(jq -r '.referenceScript' <<< "${values}")
+	# If limits on spending the UTXO may exist, then skip the UTXO
+    if [[ ${datum} == 'null' && ${script} == 'null' ]]
+    then
+        hash=${utxo%%#*}
+        idx=${utxo#*#}
+        utxo_balance=$(jq -r '.value.lovelace' <<< "${values}")
+        total_balance=$((${total_balance}+${utxo_balance}))
+        echo "TxHash: ${hash}#${idx}"
+        echo "ADA: ${utxo_balance}"
+        tx_in="${tx_in} --tx-in ${hash}#${idx}"
+		txcnt=$((txcnt + 1))
     fi
-done <<< "$(jq -r 'keys[]' <<< "$utxo_json")"
+done <<< "$(jq -r 'keys[]' <<< "${utxo_json}")"
 
 echo
 echo "Total available ADA balance: ${total_balance}"
 echo "Number of UTXOs: ${txcnt}"
-echo "Final --tx-in string: ${tx_in}"
+echo "Final --tx-in string:${tx_in}"
 ```
 {% endtab %}
 {% endtabs %}
@@ -101,7 +110,7 @@ fee=$(cardano-cli conway transaction calculate-min-fee \
     --mainnet \
     --witness-count 1 \
     --byron-witness-count 0 \
-    --protocol-params-file params.json | awk '{ print $1 }')
+    --protocol-params-file params.json | jq -r '.fee')
 echo fee: $fee
 ```
 {% endtab %}

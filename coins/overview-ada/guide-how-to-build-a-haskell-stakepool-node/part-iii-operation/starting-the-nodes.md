@@ -17,7 +17,7 @@ sudo systemctl start cardano-node
 {% endtabs %}
 
 {% hint style="success" %}
-Congratulations! Your nodes are running successfully. Synchronizing your local copies of the Cardano blockchain ledger with the network may take 24 hours, or more. As of April 2025, the size of the Cardano blockchain ledger is approximately 200 GB. Optionally, to restore and bootstrap a full node rapidly set up a [Mithril Client](https://mithril.network/doc/mithril/advanced/mithril-network/client)
+Congratulations! Your nodes are running successfully. Synchronizing your local copies of the Cardano blockchain ledger with the network may take more than 24 hours. As of August 2025, the size of the Cardano Mainnet blockchain ledger is approximately 215 GB. <!-- Optionally, to restore and bootstrap a full node rapidly set up a [Mithril Client](https://mithril.network/doc/mithril/advanced/mithril-network/client). -->
 {% endhint %}
 
 To monitor your Cardano nodes, install gLiveView. <a href="#gliveview" id="gliveview"></a>
